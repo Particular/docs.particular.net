@@ -35,7 +35,7 @@ The database created by this sample is `NsbSamplesSagaMigration`.
  1. Stop the solution.
  1. Uncomment the `#define MIGRATION` line in `TestSaga.cs`.
  1. Start the solution.
- 1. Start and complete some new sagas (e.g. `start A`, `start B` and `start C`).
+ 1. Start some new sagas (e.g. `start A`, `start B` and `start C`).
  1. Verify sagas are started by running `SELECT * FROM [NsbSamplesSagaMigration].[dbo].[NewTestSaga]`.
  1. Verify that the messages were handled by the "Server.New" endpoint.
  1. Notice that the "Server" console shows information indicating that the not-found handler has been used.
@@ -43,7 +43,7 @@ The database created by this sample is `NsbSamplesSagaMigration`.
  1. Verify the messages are handled by the old "Server" endpoint, not the "Server.New" endpoint.
  1. Complete one of the new sagas (e.g. `complete A`) to verify it is handled properly by "Server.New"
  1. Complete another saga (e.g. `complete B`) and stop the solution as soon as `Got a follow-up message.` is shown in the console.
- 1. Run `SELECT [Destination], [SagaId] FROM [NsbSamplesSagaMigration].[dbo].[NewTimeoutData]` to verify the timeout is stored in the database and the destination is the "Server.New" queue.
+ 1. Inspect the `.learningtransport`-folder holding your messages. The `.delayed`-folder, should contain the timeout message, and the destination should be set to the "Server.New" queue.
  1. Uncomment the `#define POST_MIGRATION` line in `Program.cs` and `DrainTempQueueSatelliteFeature.cs` of "Server.New". This changes the input queue of "Server.New" back to the well-known `Samples.SagaMigration.Server` and enables an additional receiver that drains the temporary queue.
  1. Start only the "Server.New" project by right-clicking the project in Solution Explorer and selecting "Debug -> Start new instance".
  1. Notice "Server.New" prints `Moving message from Samples.SagaMigration.Server.New@<machine> to Samples.SagaMigration.Server@<machine>` and then `Got timeout. Completing.` which means the timeout has been successfully redirected from the temporary queue. This happens only if there were outstanding timeout messages present when new version of the endpoint replaced the old one.
