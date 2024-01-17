@@ -15,6 +15,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.SagaMigration.Server");
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
 
         // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSagaMigration;Integrated Security=True;Max Pool Size=100;Encrypt=false
