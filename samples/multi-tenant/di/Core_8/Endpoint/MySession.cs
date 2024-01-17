@@ -8,8 +8,8 @@ class MySession :
     IDisposable
 {
     string tenant;
-    ILog log = LogManager.GetLogger<MySession>();
-    List<object> entities = new List<object>();
+    readonly ILog log = LogManager.GetLogger<MySession>();
+    readonly List<object> entities = new();
 
     public void Initialize(string tenantName)
     {

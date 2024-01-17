@@ -35,6 +35,8 @@ class Program
                 .ConfigureAwait(false);
 
             #endregion
+
+            Console.WriteLine($"Placed order for tenant {tenantId}");
         }
     }
 }
