@@ -1,6 +1,6 @@
+using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using NServiceBus;
-using System.Threading.Tasks;
 using NServiceBus.Logging;
 
 public class OrderSubmittedHandler :
