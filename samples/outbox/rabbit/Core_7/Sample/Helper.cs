@@ -1,7 +1,7 @@
 ﻿using System;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using NServiceBus;
 
 public static class Helper
