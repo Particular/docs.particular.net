@@ -6,14 +6,13 @@ related:
  - nservicebus/operations
  - nservicebus/operations/opentelemetry
  - samples/logging/metrics
- - samples/logging/prometheus-grafana
  - samples/logging/new-relic
  - samples/logging/datadog
 redirects:
  - nservicebus/operations/metrics/raw
 ---
 
-When [Performance Counters](./performance-counters.md) reporting and [ServiceControl](./install-plugin.md) reporting is not enough, it's possible to consume raw metrics data by directly attaching to the public API provided by the package. First, the Metrics themselves need to be enabled. Then, a custom reporter can be attached to send data to any collector e.g. Service Control, Azure Application Insights, etc.
+When [Performance Counters](./performance-counters.md) reporting and [ServiceControl](./install-plugin.md) reporting are not enough, it's possible to consume raw metrics data by directly attaching them to the public API provided by the package. First, the Metrics themselves need to be enabled. Then, a custom reporter can be attached to send data to any collector e.g. Service Control, Azure Application Insights, etc.
 
 ## Enabling NServiceBus.Metrics
 
