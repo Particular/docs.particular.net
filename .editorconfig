@@ -7,6 +7,9 @@ indent_size = 2
 [*.cs]
 indent_style = space
 indent_size = 4
+# 'using' directive preferences
+dotnet_sort_system_directives_first = true
+dotnet_separate_import_directive_groups = false
 
 [*]
 trim_trailing_whitespace = true
