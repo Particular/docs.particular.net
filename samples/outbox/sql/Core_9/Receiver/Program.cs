@@ -48,6 +48,8 @@ class Program
 
         endpointConfiguration.EnableOutbox();
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
         #endregion
         SqlHelper.CreateSchema(connectionString, "receiver");
 
