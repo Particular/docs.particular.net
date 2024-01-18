@@ -14,9 +14,12 @@ public class MessageSessionFilter : IAsyncResourceFilter
             var session = context.HttpContext.RequestServices.GetRequiredService<ITransactionalSession>();
             await session.Open(new SqlPersistenceOpenSessionOptions());
 
-            await next();
+            var result = await next();
 
-            await session.Commit();
+            if(result.Exception == null)
+            {
+                await session.Commit();
+            }            
         }
         else
         {
