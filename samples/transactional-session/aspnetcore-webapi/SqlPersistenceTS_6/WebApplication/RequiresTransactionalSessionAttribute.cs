@@ -24,7 +24,7 @@ public sealed class RequiresTransactionalSessionAttribute : TypeFilterAttribute
 
             var result = await next();
 
-            if(result.Exception == null)
+            if(result.Exception is null)
             {
                 await transactionalSession.Commit();
             }           
