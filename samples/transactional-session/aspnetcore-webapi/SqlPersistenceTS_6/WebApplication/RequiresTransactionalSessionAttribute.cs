@@ -22,9 +22,12 @@ public sealed class RequiresTransactionalSessionAttribute : TypeFilterAttribute
         {
             await transactionalSession.Open(new SqlPersistenceOpenSessionOptions());
 
-            await next();
+            var result = await next();
 
-            await transactionalSession.Commit();
+            if(result.Exception == null)
+            {
+                await transactionalSession.Commit();
+            }           
         }
 
         private readonly ITransactionalSession transactionalSession;
