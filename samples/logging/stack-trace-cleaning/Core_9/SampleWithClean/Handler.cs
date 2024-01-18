@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using NServiceBus;
 
-// Extra line to make the exception throw on the same line as the other sample
+#region handler
 public class Handler :
     IHandleMessages<Message>
 {
@@ -11,3 +11,4 @@ public class Handler :
         throw new Exception("Foo");
     }
 }
+#endregion

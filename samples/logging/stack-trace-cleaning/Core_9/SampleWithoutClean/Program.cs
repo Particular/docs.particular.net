@@ -11,15 +11,11 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.SampleWithClean";
-
-        #region ConfigureNLog
-
-        LogManager.Setup().SetupExtensions(ext => ext.RegisterLayoutRenderer<CustomExceptionLayoutRenderer>("customexception"));
+        Console.Title = "Samples.SampleWithoutClean";
 
         var config = new LoggingConfiguration();
 
-        var layout = "$|${logger}|${message}${onexception:${newline}${customexception:format=tostring}}";
+        var layout = "${logger}|${message}${onexception:${newline}${exception:format=tostring}}";
         var consoleTarget = new ConsoleTarget
         {
             Layout = layout
@@ -39,32 +35,10 @@ class Program
         LogManager.Configuration = config;
 
         NServiceBus.Logging.LogManager.UseFactory(new ExtensionsLoggerFactory(new NLogLoggerFactory()));
-        var endpointConfiguration = new EndpointConfiguration("Samples.SampleWithClean");
 
-        #endregion
-
+        var endpointConfiguration = new EndpointConfiguration("Samples.SampleWithoutClean");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
-        DisableRetries(endpointConfiguration);
-
-        #region customization-config
-
-        var recoverability = endpointConfiguration.Recoverability();
-        recoverability.Failed(failed => failed.HeaderCustomization(StackTraceCleaner.CleanUp));
-
-        #endregion
-
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
-        await Run(endpointInstance)
-            .ConfigureAwait(false);
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
-    }
-
-    static void DisableRetries(EndpointConfiguration endpointConfiguration)
-    {
-        #region disable-retries
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.Immediate(
@@ -78,7 +52,12 @@ class Program
                 delayed.NumberOfRetries(0);
             });
 
-        #endregion
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
+            .ConfigureAwait(false);
+        await Run(endpointInstance)
+            .ConfigureAwait(false);
+        await endpointInstance.Stop()
+            .ConfigureAwait(false);
     }
 
     static async Task Run(IEndpointInstance endpointInstance)
