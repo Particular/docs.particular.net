@@ -1,9 +1,9 @@
-using MassTransit;
-using Messages.Events;
-using Microsoft.Extensions.Hosting;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using MassTransit;
+using Messages.Events;
+using Microsoft.Extensions.Hosting;
 
 namespace MTEndpoint
 {

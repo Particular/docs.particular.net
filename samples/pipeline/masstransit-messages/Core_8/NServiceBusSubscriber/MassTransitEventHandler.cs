@@ -1,8 +1,7 @@
-﻿using Messages.Events;
-using Microsoft.Extensions.Logging;
+﻿using System.Threading.Tasks;
+using Messages.Events;
 using NServiceBus;
 using NServiceBus.Logging;
-using System.Threading.Tasks;
 
 namespace NServiceBusSubscriber
 {

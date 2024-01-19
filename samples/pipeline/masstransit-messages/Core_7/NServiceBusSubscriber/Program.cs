@@ -1,7 +1,6 @@
-using Microsoft.Extensions.DependencyInjection;
+using System;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
-using System;
 
 namespace NServiceBusSubscriber
 {
