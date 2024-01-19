@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net7.0;net6.0</TargetFrameworks>
-    <LangVersion>10.0</LangVersion>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>12.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.*" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="4.0.0-alpha.1" />
   </ItemGroup>
 
   <ItemGroup>
