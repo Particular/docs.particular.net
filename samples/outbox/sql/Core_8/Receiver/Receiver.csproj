@@ -10,7 +10,7 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="7.*" />
-    <PackageReference Include="NServiceBus.SqlServer" Version="7.*" />
+    <PackageReference Include="NServiceBus.Transport.SqlServer" Version="7.*" />
   </ItemGroup>
   <ItemGroup>
     <None Update="Startup.sql" CopyToOutputDirectory="PreserveNewest" />
