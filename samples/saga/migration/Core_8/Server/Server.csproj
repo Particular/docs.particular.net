@@ -10,5 +10,6 @@
     <PackageReference Include="NHibernate" Version="5.4.6" />
     <PackageReference Include="NServiceBus.NHibernate" Version="9.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.*" />
+    <PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
   </ItemGroup>
 </Project>
