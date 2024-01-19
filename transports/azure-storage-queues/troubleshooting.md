@@ -16,7 +16,6 @@ Microsoft.WindowsAzure.Storage.StorageException: Element 0 in the batch returned
 Reduce the message body with one or more of the following techniques:
 
 - use the [data bus](/nservicebus/messaging/databus/)
-- use [message streams](/samples/pipeline/stream-properties/) to offload data external to the message
 - apply [message compression](https://www.nuget.org/packages/NServiceBus.Compression/)
 - use a [compact binary serializer](/nservicebus/community/#serializers)
 - store less data in the message.

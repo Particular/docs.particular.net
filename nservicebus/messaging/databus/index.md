@@ -5,6 +5,7 @@ component: Core
 reviewed: 2020-12-01
 redirects:
  - nservicebus/databus
+ - samples/pipeline/stream-properties
 related:
  - samples/databus/file-share-databus
  - samples/databus/custom-serializer
@@ -100,8 +101,6 @@ NOTE: A combination of these techniques may be used.
 - Use a different transport or different tier (e.g. Azure Service Bus _Premium_ instead of _Standard_).
 - Use message body compression, which works well on text-based payloads like XML and JSON or any payload (text or binary) that contains repetitive data.
   - The [message mutator sample](/samples/messagemutators/) demonstrates message body compression.
-- Use stream-based properties.
-  - The sample showing how to [handle large stream properties via the pipeline](/samples/pipeline/stream-properties/) demonstrates a purely stream-based approach (instead of loading full payloads into memory).
 - Use a more efficient serializer, such as a binary serializer.
   - A custom serializer can usually be implemented in only a few lines of code.
   - Some binary [serializers are maintained by the community](/nservicebus/community/#serializers).
