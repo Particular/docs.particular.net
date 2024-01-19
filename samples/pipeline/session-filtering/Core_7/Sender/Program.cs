@@ -13,7 +13,7 @@ class Program
         var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
         transport.Routing().RouteToEndpoint(
-            typeof(SomeMessage), 
+            typeof(SomeMessage),
             "Samples.SessionFilter.Receiver"
         );
 

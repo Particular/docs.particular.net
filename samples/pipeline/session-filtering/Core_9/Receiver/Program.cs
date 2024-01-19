@@ -6,19 +6,12 @@ class Program
 {
     static async Task Main(string[] args)
     {
-        Console.Title = "Samples.SessionFilter.Sender";
-        var endpointConfiguration = new EndpointConfiguration("Samples.SessionFilter.Sender");
+        Console.Title = "Samples.SessionFilter.Receiver";
+        var endpointConfiguration = new EndpointConfiguration("Samples.SessionFilter.Receiver");
 
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        var routing = endpointConfiguration.UseTransport(new LearningTransport());
-
-        routing.RouteToEndpoint(
-            typeof(SomeMessage),
-            "Samples.SessionFilter.Receiver"
-        );
-
-        #region add-filter-behavior
+        endpointConfiguration.UseTransport(new LearningTransport());
 
         var sessionKeyProvider = new RotatingSessionKeyProvider();
 
@@ -27,20 +20,15 @@ class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        #endregion
-
-        await MainLoop(endpointInstance, sessionKeyProvider)
-            .ConfigureAwait(false);
+        MainLoop(sessionKeyProvider);
 
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
 
-    static async Task MainLoop(IEndpointInstance endpoint, RotatingSessionKeyProvider sessionKeyProvider)
+    static void MainLoop(RotatingSessionKeyProvider sessionKeyProvider)
     {
         PrintMenu(sessionKeyProvider);
-
-        var index = 1;
 
         while (true)
         {
@@ -53,11 +41,6 @@ class Program
                     break;
                 case ConsoleKey.Escape:
                     return;
-                default:
-                    await endpoint.Send(new SomeMessage { Counter = index })
-                        .ConfigureAwait(false);
-                    Console.WriteLine($"Sent message {index++}");
-                    break;
             }
         }
     }
@@ -68,6 +51,14 @@ class Program
         Console.WriteLine($"Session Key: {sessionKeyProvider.SessionKey}");
         Console.WriteLine("C)   Change Session Key");
         Console.WriteLine("ESC) Close");
-        Console.WriteLine("any other key to send a message");
+    }
+}
+
+class SomeMessageHandler : IHandleMessages<SomeMessage>
+{
+    public Task Handle(SomeMessage message, IMessageHandlerContext context)
+    {
+        Console.WriteLine($"Got message {message.Counter}");
+        return Task.CompletedTask;
     }
 }
