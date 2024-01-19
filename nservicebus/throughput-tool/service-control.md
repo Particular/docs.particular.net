@@ -12,6 +12,8 @@ This article details how to collect endpoint and throughput data using data from
 
 The tool should be used with a [supported version of ServiceControl](/servicecontrol/upgrades/supported-versions.md).
 
+NOTE: Do not attempt to install ServiceControl just to run the throughput tool on an MSMQ or Azure Storage Queues system. In order to successfully collect any data, every system endpoint must be modified to send data to the new ServiceControl installation or there will be no data to collect. Instead, reach out to a licensing specialist to suggest alternate ways to estimate the system throughput needed for licensing.
+
 ## Running the tool
 
 Once installed, execute the tool with the URLs for the ServiceControl and monitoring APIs.
