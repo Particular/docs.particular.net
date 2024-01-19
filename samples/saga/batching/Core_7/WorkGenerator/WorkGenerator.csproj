@@ -1,18 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-    <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <TargetFrameworks>net7.0;net6.0</TargetFrameworks>
-        <LangVersion>10.0</LangVersion>
-    </PropertyGroup>
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net7.0;net6.0</TargetFrameworks>
+    <LangVersion>10.0</LangVersion>
+  </PropertyGroup>
 
-    <ItemGroup>
-      <PackageReference Include="NServiceBus" Version="7.*" />
-      <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
-    </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
+  </ItemGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\SharedMessages\SharedMessages.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SharedMessages\SharedMessages.csproj" />
+  </ItemGroup>
 
 </Project>

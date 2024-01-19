@@ -5,10 +5,9 @@
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Iesi.Collections" Version="4.*" />
     <PackageReference Include="NHibernate" Version="5.*" />
     <PackageReference Include="NServiceBus" Version="8.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="9.*" />
-	  <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.4" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
   </ItemGroup>
 </Project>
