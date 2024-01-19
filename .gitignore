@@ -64,6 +64,9 @@ data-prometheus
 # mac temp file ignore
 .DS_Store
 
+# Windows shortcuts
+*.lnk
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
