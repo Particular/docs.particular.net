@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <LangVersion>12.0</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="FluentNHibernate" Version="2.*" />
+    <PackageReference Include="NHibernate" Version="5.*" />
+    <PackageReference Include="NServiceBus.NHibernate" Version="10.0.0-alpha.1" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
+  </ItemGroup>
+</Project>

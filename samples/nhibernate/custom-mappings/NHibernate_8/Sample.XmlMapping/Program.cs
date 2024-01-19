@@ -6,13 +6,12 @@ using NHibernate.Dialect;
 using NHibernate.Driver;
 using NServiceBus;
 using NServiceBus.Persistence;
-using Environment = NHibernate.Cfg.Environment;
 
 class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.CustomNhMappings.XmlMapping";        
+        Console.Title = "Samples.CustomNhMappings.XmlMapping";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.XmlMapping");
         endpointConfiguration.EnableInstallers();

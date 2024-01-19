@@ -6,10 +6,10 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="Iesi.Collections" Version="4.*" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="NHibernate" Version="5.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="8.*" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
-	<PackageReference Include="Microsoft.NETCore.Targets" Version="5.*" PrivateAssets="all" />
   </ItemGroup>
 </Project>

@@ -6,7 +6,6 @@ using NHibernate.Driver;
 using NHibernate.Mapping.ByCode;
 using NServiceBus;
 using NServiceBus.Persistence;
-using Environment = NHibernate.Cfg.Environment;
 
 class Program
 {

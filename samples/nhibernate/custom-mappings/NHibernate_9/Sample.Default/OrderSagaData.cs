@@ -1,6 +1,6 @@
-﻿using NServiceBus;
+﻿using System;
+using NServiceBus;
 using NServiceBus.SagaPersisters.NHibernate;
-using System;
 
 #pragma warning disable NSB0012 // Saga data classes should inherit ContainSagaData - Required for [RowVersion]
 

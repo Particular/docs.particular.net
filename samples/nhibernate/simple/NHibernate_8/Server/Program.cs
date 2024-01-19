@@ -6,7 +6,6 @@ using NHibernate.Driver;
 using NHibernate.Mapping.ByCode;
 using NServiceBus;
 using NServiceBus.Persistence;
-using Environment = NHibernate.Cfg.Environment;
 
 class Program
 {
@@ -51,7 +50,7 @@ class Program
     static void AddMappings(Configuration nhConfiguration)
     {
         var mapper = new ModelMapper();
-        mapper.AddMappings(typeof (OrderShipped).Assembly.GetTypes());
+        mapper.AddMappings(typeof(OrderShipped).Assembly.GetTypes());
         nhConfiguration.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
     }
 }
