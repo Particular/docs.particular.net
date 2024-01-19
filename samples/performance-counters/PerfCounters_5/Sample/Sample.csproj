@@ -4,10 +4,10 @@
     <OutputType>Exe</OutputType>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <LangVersion>10.0</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Metrics.PerformanceCounters" Version="5.*" />
     <PackageReference Include="NServiceBus" Version="8.*" />
-    <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="1.*" />
   </ItemGroup>
 </Project>
