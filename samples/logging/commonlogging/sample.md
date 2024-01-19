@@ -1,7 +1,7 @@
 ---
 title: CommonLogging Usage
 summary: Using CommonLogging logging capability of NServiceBus.
-reviewed: 2021-09-21
+reviewed: 2024-01-11
 component: CommonLogging
 related:
 - nservicebus/logging
@@ -9,7 +9,7 @@ related:
 
 ## Introduction
 
-This sample shows a usage of [CommonLogging](http://netcommon.sourceforge.net/) as a logging framework for NServiceBus.
+This sample shows the usage of [CommonLogging](http://netcommon.sourceforge.net/) as a logging framework for NServiceBus.
 
 ### Enabling Logging
 

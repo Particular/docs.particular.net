@@ -9,7 +9,7 @@ reviewed: 2021-04-21
 
 Azure Application Insights (App Insights) provides monitoring and alerting capabilities that can be leveraged to monitor the health of individual NServiceBus endpoints. It is possible to gather performance metrics like [Processing Time](/monitoring/metrics/definitions.md#metrics-captured-processing-time) and [Critial Time](/monitoring/metrics/definitions.md#metrics-captured-critical-time) as well as data on number of immediate and delayed [retries](/nservicebus/recoverability).
 
-For more details, see [this sample](/samples/logging/application-insights).
+For more details, see [this sample](/samples/open-telemetry/application-insights).
 
 ## Distributed tracing
 

@@ -85,7 +85,7 @@
 * [Quartz.NET Usage](/samples/scheduling/quartz/)
 * [Repair malformed messages using pipeline behavior](/samples/pipeline/fix-messages-using-behavior/)
 * [Repair malformed messages using ServiceControl retry redirects](/samples/servicecontrol/fix-messages/)
-* [Report metrics to Azure Monitor Application Insights](/samples/logging/application-insights/)
+* [Report metrics to Azure Monitor Application Insights](/samples/open-telemetry/application-insights/)
 * [Scheduler](/samples/scheduling/scheduler/)
 * [Scheduling with Timers](/samples/scheduling/timer/)
 * [Self-Hosting in Azure WebJobs](/samples/azure/webjob-host/)

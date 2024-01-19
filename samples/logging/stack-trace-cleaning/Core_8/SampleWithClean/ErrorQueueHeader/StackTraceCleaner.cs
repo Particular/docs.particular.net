@@ -33,5 +33,4 @@ class StackTraceCleaner
         headers[stackTraceKey] = builder.ToString();
     }
 }
-
 #endregion

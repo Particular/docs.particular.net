@@ -7,7 +7,6 @@ using NLog.Targets;
 using NServiceBus;
 using NServiceBus.Extensions.Logging;
 
-#pragma warning disable CS0618 // Type or member is obsolete
 class Program
 {
     static async Task Main()
@@ -36,10 +35,11 @@ class Program
         LogManager.Configuration = config;
 
         NServiceBus.Logging.LogManager.UseFactory(new ExtensionsLoggerFactory(new NLogLoggerFactory()));
+
         var endpointConfiguration = new EndpointConfiguration("Samples.SampleWithoutClean");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();
+
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.Immediate(
             customizations: immediate =>
@@ -80,4 +80,3 @@ class Program
         }
     }
 }
-#pragma warning restore CS0618 // Type or member is obsolete

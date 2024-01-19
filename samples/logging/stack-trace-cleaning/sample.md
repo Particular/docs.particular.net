@@ -1,7 +1,7 @@
 ---
 title: Stack Trace Cleaning
 summary: Shows how to minimize the stack trace written to the Error queue and the log output.
-reviewed: 2021-09-08
+reviewed: 2024-01-18
 component: Core
 related:
 - nservicebus/pipeline
@@ -18,11 +18,9 @@ This sample leverages the logging and recoverability APIs to remove some of the 
 
 NOTE: .NET Core 2.1 and newer [already make async stack traces more readable](https://github.com/dotnet/corefx/issues/24627). This sample is only meant to be used on the .NET Framework.
 
-
 ## Solution Layout
 
 The solution consists of two projects. `SampleWithoutClean` which takes the standard approach to converting an exception to a string. `SampleWithClean` which cleans the exception information before allowing it to be written.
-
 
 ### The Handler
 
@@ -30,13 +28,11 @@ The code in the handler throws an exception.
 
 snippet: handler
 
-
 ### Retries are disabled
 
 Retries are disabled so as to reduce the noise of the handler throwing exceptions multiple times.
 
 snippet: disable-retries
-
 
 ## Before optimizations
 
@@ -90,32 +86,27 @@ at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotifi
 at NServiceBus.MoveFaultsToErrorQueueBehavior.<Invoke>d__3.MoveNext() in C:\Build\src\NServiceBus.Core\Recoverability\Faults\MoveFaultsToErrorQueueBehavior.cs:line 38
 ```
 
-
 ## Manipulate Error Queue Header
 
-NServiceBus has no explicit API to control what is written to the exceptions headers when messages are handled by [recoverability](/nservicebus/recoverability). Instead this sample leverages the [error message header customizations](/nservicebus/recoverability/configure-error-handling.md) to manipulate the headers after they are added, but before the error message is sent.
-
+NServiceBus has no explicit API to control what is written to the exception headers when messages are handled by [recoverability](/nservicebus/recoverability). Instead this sample leverages the [error message header customizations](/nservicebus/recoverability/configure-error-handling.md) to manipulate the headers after they are added, but before the error message is sent.
 
 ### The Stack Trace Cleaner
 
-The cleaner uses some simple string manipulation to remove much of the noise from the exception information. It reads the information from the current header, and then overwrites that header with the result.
+The cleaner uses some simple string manipulation to remove much of the noise from the exception information. It reads the information from the current header and then overwrites that header with the result.
 
 snippet: StackTraceCleaner
 
 WARNING: To keep the sample simple no effort has been made to localize this. So for example `End of stack trace from...` may be different in other locals.
 
-
 ### Configuring the Error Header Customizations
 
-The above cleaner is passed to Recoverability extension point.
+The above cleaner is passed to the Recoverability extension point.
 
 snippet: customization-config
-
 
 ## Manipulate Logging Output
 
 The [default logging](/nservicebus/logging/) included in NServiceBus does not support overwriting how exceptions are written to the log. So this sample uses NLog with a custom `LayoutRenderer` for exceptions.
-
 
 ### Layout Renderer
 
@@ -123,12 +114,11 @@ The [default logging](/nservicebus/logging/) included in NServiceBus does not su
 
 See also: [NLog Layout-Renderers](https://github.com/nlog/nlog/wiki/Layout-Renderers).
 
-This sample leverages the existing [Exception Layout Renderer]( https://github.com/nlog/nlog/wiki/Exception-Layout-Renderer) and override how exceptions are converted to strings.
+This sample leverages the existing [Exception Layout Renderer]( https://github.com/nlog/nlog/wiki/Exception-Layout-Renderer) and overrides how exceptions are converted to strings.
 
-This samples also uses the [AsyncFriendlyStackTrace Project](https://github.com/aelij/AsyncFriendlyStackTrace) so simplify the conversion logic. However other approaches, such as string manipulation, could also be used.
+This sample also uses the [AsyncFriendlyStackTrace Project](https://github.com/aelij/AsyncFriendlyStackTrace) to simplify the conversion logic. However other approaches, such as string manipulation, could also be used.
 
 snippet: Renderer
-
 
 ### Configure Layout Renderer and NLog
 
@@ -136,13 +126,11 @@ The endpoint is then configured to the layout Renderer:
 
 snippet: ConfigureNLog
 
-
 ## Result
-
 
 ### Logging with optimizations
 
-With the above optimizations the following text (**14 lines and ~2100 characters**) is written to the log.
+With the above optimizations, the following text (**14 lines and ~2100 characters**) is written to the log.
 
 ```
 System.Exception: Foo
@@ -161,10 +149,9 @@ at async NServiceBus.TransportReceiveToPhysicalMessageProcessingConnector.Invoke
 at async NServiceBus.MoveFaultsToErrorQueueBehavior.Invoke(?) in C:\Build\src\NServiceBus.Core\Recoverability\Faults\MoveFaultsToErrorQueueBehavior.cs:line 38
 ```
 
-
 ### Error Queue with optimizations
 
-With the above optimizations the following text (**14 lines and ~2300 characters**) is written to the error queue.
+With the above optimizations, the following text (**14 lines and ~2300 characters**) is written to the error queue.
 
 ```
 System.Exception: Foo

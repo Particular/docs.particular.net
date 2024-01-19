@@ -13,11 +13,10 @@ class Program
     {
         Console.Title = "Samples.SampleWithClean";
 
-        #pragma warning disable CS0618 // Type or member is obsolete
         #region ConfigureNLog
 
-        ConfigurationItemFactory.Default.LayoutRenderers
-            .RegisterDefinition("customexception", typeof(CustomExceptionLayoutRenderer));
+        LogManager.Setup().SetupExtensions(ext => ext.RegisterLayoutRenderer<CustomExceptionLayoutRenderer>("customexception"));
+
         var config = new LoggingConfiguration();
 
         var layout = "$|${logger}|${message}${onexception:${newline}${customexception:format=tostring}}";
@@ -43,9 +42,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.SampleWithClean");
 
         #endregion
-        #pragma warning restore CS0618 // Type or member is obsolete
 
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         DisableRetries(endpointConfiguration);

@@ -1,7 +1,7 @@
 ---
 title: Default Logging
 summary: The default logging capability of NServiceBus.
-reviewed: 2021-09-23
+reviewed: 2024-01-15
 component: Core
 related:
 - nservicebus/logging

@@ -8,10 +8,10 @@ using StatsdClient;
 
 class DatadogFeature : Feature
 {
-    MetricsOptions _metricsOptions;
-    string _endpointName;
+    MetricsOptions metricsOptions;
+    string endpointName;
 
-    readonly Dictionary<string, string> _nameMapping = new Dictionary<string, string>
+    readonly Dictionary<string, string> nameMapping = new Dictionary<string, string>
     {
         {"# of msgs successfully processed / sec", "nservicebus.processed"},
         {"# of msgs pulled from the input queue /sec", "nservicebus.fetched"},
@@ -25,8 +25,8 @@ class DatadogFeature : Feature
     {
         Defaults(settings =>
         {
-            _metricsOptions = settings.EnableMetrics();
-            _endpointName = settings.EndpointName();
+            metricsOptions = settings.EnableMetrics();
+            endpointName = settings.EndpointName();
         });
         EnableByDefault();
     }
@@ -38,7 +38,7 @@ class DatadogFeature : Feature
         var dogstatsdConfig = new StatsdConfig
         {
             StatsdServerName = "127.0.0.1",
-            StatsdPort = 8125,
+            StatsdPort = 8125
         }; //Datadog agent default address, port
 
         DogStatsd.Configure(dogstatsdConfig);
@@ -47,11 +47,11 @@ class DatadogFeature : Feature
 
         #region datadog-enable-nsb-metrics
 
-        _metricsOptions.RegisterObservers(register: probeContext =>
+        metricsOptions.RegisterObservers(register: probeContext =>
             {
                 foreach (var duration in probeContext.Durations)
                 {
-                    if (!_nameMapping.ContainsKey(duration.Name))
+                    if (!nameMapping.ContainsKey(duration.Name))
                     {
                         continue;
                     }
@@ -65,7 +65,7 @@ class DatadogFeature : Feature
 
                 foreach (var signal in probeContext.Signals)
                 {
-                    if (!_nameMapping.ContainsKey(signal.Name))
+                    if (!nameMapping.ContainsKey(signal.Name))
                     {
                         continue;
                     }
@@ -81,17 +81,17 @@ class DatadogFeature : Feature
         #endregion
     }
 
-    private string ComposeStatName(string eventName)
+    string ComposeStatName(string eventName)
     {
-        _nameMapping.TryGetValue(eventName, out var mappedName);
+        nameMapping.TryGetValue(eventName, out var mappedName);
         return mappedName;
     }
     
-    private string[] ComposeTags(string messageType)
+    string[] ComposeTags(string messageType)
     {
         var tags = new List<string> 
         { 
-            "endpoint:" + _endpointName 
+            "endpoint:" + endpointName 
         };
 
         if (!string.IsNullOrEmpty(messageType))

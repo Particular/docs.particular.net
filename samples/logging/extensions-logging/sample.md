@@ -2,7 +2,7 @@
 title: NServiceBus.Extensions.Logging Usage
 summary: A sample that uses Microsoft.Extensions.Logging with NLog
 component: Extensions.Logging
-reviewed: 2022-12-23
+reviewed: 2024-01-15
 related:
  - nservicebus/logging
 ---
@@ -13,14 +13,12 @@ Both Microsoft.Extensions.Logging and NServiceBus.Logging are logging abstractio
 
 The following logging chain is created:
 
-
 - NServiceBus.Logging
   - NServiceBus.Extensions.Logging
     - Microsoft.Extensions.Logging
       - NLog.Extensions.Logging
         - NLog
           - Console output
-
 
 ### Configure NLog
 
