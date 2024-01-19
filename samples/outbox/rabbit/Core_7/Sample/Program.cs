@@ -1,6 +1,6 @@
 ﻿using System;
-using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
 
@@ -19,7 +19,8 @@ class Program
 
         #region ConfigurePersistence
         // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbRabbitMqOutbox;Integrated Security=True;Max Pool Size=100;Encrypt=false
-        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbRabbitMqOutbox;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
+        // Password must match value in docker-compose.yml
+        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbRabbitMqOutbox;User Id=SA;Password=NServiceBus!;Max Pool Size=100;Encrypt=false";
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SqlDialect<SqlDialect.MsSqlServer>();
         persistence.ConnectionBuilder(() => new SqlConnection(connectionString));

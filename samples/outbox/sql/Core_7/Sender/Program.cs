@@ -1,9 +1,7 @@
 ﻿using System;
-using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using NServiceBus;
-using NServiceBus.Persistence.Sql;
-using NServiceBus.Transport.SqlServer;
 
 class Program
 {

@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using NServiceBus;
+using NServiceBus.Transport.SqlServer;
 
 class Program
 {
@@ -19,12 +20,16 @@ class Program
 
         #region ReceiverConfiguration
 
-        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(connectionString);
-        transport.DefaultSchema("receiver");
-        transport.UseSchemaForEndpoint("Samples.SqlOutbox.Sender", "sender");
-        transport.UseSchemaForQueue("error", "dbo");
-        transport.UseSchemaForQueue("audit", "dbo");
+        var transport = new SqlServerTransport(connectionString)
+        {
+            DefaultSchema = "receiver",
+            TransportTransactionMode = TransportTransactionMode.ReceiveOnly
+        };
+        transport.SchemaAndCatalog.UseSchemaForQueue("error", "dbo");
+        transport.SchemaAndCatalog.UseSchemaForQueue("audit", "dbo");
+
+        var routing = endpointConfiguration.UseTransport(transport);
+        routing.UseSchemaForEndpoint("Samples.SqlOutbox.Sender", "sender");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.ConnectionBuilder(
@@ -36,14 +41,14 @@ class Program
         dialect.Schema("receiver");
         persistence.TablePrefix("");
 
-        var subscriptions = transport.SubscriptionSettings();
-        subscriptions.DisableSubscriptionCache();
-
-        subscriptions.SubscriptionTableName(
-            tableName: "Subscriptions",
-            schemaName: "dbo");
+        transport.Subscriptions.DisableCaching = true;
+        transport.Subscriptions.SubscriptionTableName = new SubscriptionTableName(
+            table: "Subscriptions",
+            schema: "dbo");
 
         endpointConfiguration.EnableOutbox();
+
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         #endregion
         SqlHelper.CreateSchema(connectionString, "receiver");

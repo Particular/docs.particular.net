@@ -1,15 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net7.0;net6.0;net48</TargetFrameworks>
-    <LangVersion>10.0</LangVersion>
+    <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>12.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="7.*" />
-    <PackageReference Include="NServiceBus.SqlServer" Version="7.*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="8.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="8.0.0-alpha.1" />
   </ItemGroup>
 </Project>
