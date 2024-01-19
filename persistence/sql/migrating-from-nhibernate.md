@@ -33,7 +33,7 @@ NHibernate has an `OutboxRecord` table shared by all endpoints, where in later v
 
 ## Outbox retention
 
-If the outbox retention period is set to a very large period and the message throughput is high then such a migration will take a while to complete. It is recommended to keep the retention period as low as possible. 
+If the outbox retention period is set to a very large period and the message throughput is high then such a migration will take a while to complete. It is recommended to keep the retention period as low as possible.
 
 - [NHibernate Deduplication record lifespan](/persistence/nhibernate/outbox.md#deduplication-record-lifespan)
 - [SQL Persistence Deduplication record lifespan](/persistence/sql/outbox.md#deduplication-record-lifespan)
@@ -55,15 +55,3 @@ Downtime migration that uses custom scripting with deep knowledge on saga state 
  - Downtime is relative to the size of the data set
  - Pretty easy if the saga state schema is fairly flat
  - Required for outbox,  timeouts, and subscriptions
- 
-### Runtime migration
-
-Runtime migration means that both NHibernate and SQL Persistence are used. New saga instances are created via SQL Persistence while legacy instances stored using NHibernate eventually will be removed once these saga instance complete.
-
-The [Saga migration from NHibernate to SQL Persistence sample](/samples/saga/migration/) shows how this can be achieved.
-
-- Complex deployment
-- Requires saga logic to be mainted for both persisters
-- Does not require serialization knowledge
-- No downtime
-- Not very suitable for saga instances that never complete or when instances complete far into the future
