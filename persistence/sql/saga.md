@@ -6,7 +6,6 @@ related:
  - samples/sql-persistence/simple
  - samples/sql-persistence/transitioning-correlation-ids
  - samples/saga/sql-sagafinder
- - samples/saga/migration
  - persistence/sql/saga-concurrency
  - persistence/sql/sqlsaga
 redirects:
@@ -37,7 +36,7 @@ NOTE: Using [delimited identifiers](https://technet.microsoft.com/en-us/library/
 ### Columns
 
 
-#### ID 
+#### ID
 
 The value of `IContainSagaData.Id`. Primary Key.
 
