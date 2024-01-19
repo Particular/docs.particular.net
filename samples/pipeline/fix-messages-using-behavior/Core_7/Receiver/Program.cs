@@ -31,11 +31,11 @@ class Program
 
         #region RegisterFixBehavior
 
-//        var pipeline = endpointConfiguration.Pipeline;
-//
-//        pipeline.Register(
-//            behavior: new FixMessageIdBehavior(),
-//            description: "Fix message Id");
+        //var pipeline = endpointConfiguration.Pipeline;
+        //
+        //pipeline.Register(
+        //    behavior: new FixMessageIdBehavior(),
+        //    description: "Fix message Id");
 
         #endregion
 

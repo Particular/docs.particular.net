@@ -1,6 +1,6 @@
-﻿using NServiceBus;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using NServiceBus;
 
 public static class Program
 {

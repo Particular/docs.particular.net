@@ -1,6 +1,4 @@
-﻿using System;
-
-#region MassTransitEvent
+﻿#region MassTransitEvent
 
 namespace Messages.Events
 {

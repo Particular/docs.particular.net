@@ -1,7 +1,7 @@
-﻿using MassTransit;
+﻿using System.Threading.Tasks;
+using MassTransit;
 using Messages.Events;
 using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
 
 namespace MTEndpoint
 {
