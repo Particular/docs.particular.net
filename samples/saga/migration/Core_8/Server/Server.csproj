@@ -3,6 +3,7 @@
     <TargetFrameworks>net472;net6.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <LangVersion>10.0</LangVersion>
+    <NoWarn>NU1605</NoWarn>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
@@ -10,6 +11,5 @@
     <PackageReference Include="NHibernate" Version="5.4.6" />
     <PackageReference Include="NServiceBus.NHibernate" Version="9.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.*" />
-    <PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
   </ItemGroup>
 </Project>
