@@ -39,6 +39,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Logging.ExtensionsLogging");
 
         endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
