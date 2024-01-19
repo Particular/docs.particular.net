@@ -54,7 +54,6 @@
 * [FluentScheduler Usage](/samples/scheduling/fluentscheduler/)
 * [Forwarding address](/samples/routing/fowarding-address/)
 * [Generic Host multiple endpoint hosting](/samples/hosting/generic-multi-hosting/)
-* [Handling Stream Properties Via the Pipeline](/samples/pipeline/stream-properties/)
 * [Hangfire Usage](/samples/scheduling/hangfire/)
 * [Hosting endpoints in Docker Linux containers](/samples/hosting/docker/)
 * [Injecting tenant-aware components into message handlers](/samples/multi-tenant/di/)
