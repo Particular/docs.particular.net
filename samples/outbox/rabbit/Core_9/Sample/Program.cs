@@ -20,7 +20,7 @@ class Program
         endpointConfiguration.UseTransport(rabbitMqTransport);
         #endregion
 
-        #region ConfigurePersistence        
+        #region ConfigurePersistence
         // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbRabbitMqOutbox;Integrated Security=True;Max Pool Size=100;Encrypt=false
         // Password must match value in docker-compose.yml
         var connectionString = @"Server=localhost,11433;Initial Catalog=NsbRabbitMqOutbox;User Id=SA;Password=NServiceBus!;Max Pool Size=100;Encrypt=false";
