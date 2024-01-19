@@ -5,15 +5,15 @@
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <None Update="OrderSagaDataXml.hbm.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="NHibernate" Version="5.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.NHibernate" Version="8.*" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="OrderSagaDataXml.hbm.xml" CopyToOutputDirectory="Always" />
   </ItemGroup>
 </Project>

@@ -6,7 +6,6 @@ using NHibernate.Driver;
 using NHibernate.Mapping.Attributes;
 using NServiceBus;
 using NServiceBus.Persistence;
-using Environment = NHibernate.Cfg.Environment;
 
 class Program
 {
@@ -31,7 +30,7 @@ class Program
         AddAttributeMappings(hibernateConfig);
 
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
-        persistence.UseConfiguration(hibernateConfig);                
+        persistence.UseConfiguration(hibernateConfig);
 
         var endpoint = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

@@ -6,14 +6,13 @@ using NHibernate.Driver;
 using NHibernate.Mapping.ByCode;
 using NServiceBus;
 using NServiceBus.Persistence;
-using Environment = NHibernate.Cfg.Environment;
 
 class Program
 {
     static async Task Main()
     {
         Console.Title = "Samples.CustomNhMappings.Loquacious";
-        
+
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.Loquacious");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();

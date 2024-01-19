@@ -6,13 +6,12 @@ using NHibernate.Driver;
 using NHibernate.Mapping.Attributes;
 using NServiceBus;
 using NServiceBus.Persistence;
-using Environment = NHibernate.Cfg.Environment;
 
 class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.CustomNhMappings.Attributes";        
+        Console.Title = "Samples.CustomNhMappings.Attributes";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.Attributes");
         endpointConfiguration.EnableInstallers();

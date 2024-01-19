@@ -6,7 +6,6 @@ using NHibernate.Dialect;
 using NHibernate.Driver;
 using NServiceBus;
 using NServiceBus.Persistence;
-using Environment = NHibernate.Cfg.Environment;
 
 class Program
 {
@@ -17,7 +16,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.Fluent");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());        
+        endpointConfiguration.UseTransport(new LearningTransport());
 
         // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=Samples.CustomNhMappings;Integrated Security=True;Max Pool Size=100;Encrypt=false
         var connectionString = @"Server=localhost,1433;Initial Catalog=Samples.CustomNhMappings;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
