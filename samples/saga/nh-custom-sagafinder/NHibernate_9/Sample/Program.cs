@@ -19,7 +19,6 @@ class Program
 
         #region config
 
-        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesNhCustomSagaFinder;Integrated Security=True;Max Pool Size=100;Encrypt=false
         var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesNhCustomSagaFinder;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
         var hibernateConfig = new Configuration();
@@ -29,6 +28,9 @@ class Program
             x.Dialect<MsSql2012Dialect>();
             x.Driver<MicrosoftDataSqlClientDriver>();
         });
+
+        var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>()
+            .UseConfiguration(hibernateConfig);
 
         persistence.ConnectionString(connectionString);
 
