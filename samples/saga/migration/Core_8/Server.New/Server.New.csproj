@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
@@ -8,5 +8,7 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="7.*" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.*" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.*"/>
   </ItemGroup>
 </Project>

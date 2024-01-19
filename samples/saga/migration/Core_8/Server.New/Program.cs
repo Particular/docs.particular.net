@@ -12,6 +12,7 @@ class Program
         Console.Title = "Samples.SagaMigration.Server.New";
         var endpointConfiguration = new EndpointConfiguration("Samples.SagaMigration.Server");
         endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 
 #if !POST_MIGRATION
         endpointConfiguration.OverrideLocalAddress("Samples.SagaMigration.Server.New");

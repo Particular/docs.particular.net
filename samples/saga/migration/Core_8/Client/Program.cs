@@ -11,6 +11,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.SagaMigration.Client");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 
         var endpoint = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
