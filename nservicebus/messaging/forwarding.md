@@ -2,7 +2,7 @@
 title: Message forwarding
 summary: Describes how to set up message forwarding
 component: Core
-reviewed: 2020-11-02
+reviewed: 2024-01-19
 related:
  - nservicebus/operations/auditing
 ---
