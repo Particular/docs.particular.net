@@ -23,9 +23,9 @@ Saga state is created when a saga is started by a message. It may be updated whe
 
 ## Starting a saga
 
-When messages that start the same saga instance are received simultaneously, NServiceBus ensures that only one message starts the saga.
+When simultaneous messages initiating the same saga instance are received, NServiceBus ensures that only one message starts the saga. Optimistic concurrency is always used for saga creation.
 
-Using optimistic concurrency, only one message handler is allowed to succeed. The saga state is created and sent messages are dispatched. The other handlers fail, roll back, and their messages enter [recoverability](/nservicebus/recoverability/). When those messages are retried, the existing saga state is found. Handling the messages may involve changing the state or completing the saga. See below for how those scenarios are handled.
+Using optimistic concurrency, only one message handler is allowed to succeed. The saga state is created and sent messages are dispatched. The other handlers fail, roll back, and their messages enter [recoverability](/nservicebus/recoverability/). When those messages are retried, the existing saga state is found. Handling the messages may involve changing the state or completing the saga.  It's important to note that enabling pessimistic concurrency for the persister does not impact the optimistic concurrency of saga creation. See below for how those scenarios are handled.
 
 ## Changes to saga state
 
