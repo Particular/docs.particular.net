@@ -7,6 +7,7 @@ related:
   - nservicebus/operations/opentelemetry
 redirects:
   - samples/logging/application-insights
+  - samples/tracing
 ---
 
 [Azure Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview) (App Insights) provides monitoring and alerting capabilities that can be leveraged to monitor the health of NServiceBus endpoints.

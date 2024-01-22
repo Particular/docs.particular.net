@@ -7,7 +7,6 @@
 * [Custom Exception Handling](/samples/message-error-handling/)
 * [Customization with MEF or Reflection](/samples/plugin-based-config/)
 * [Delayed Delivery](/samples/delayed-delivery/)
-* [Distributed tracing with Azure Monitor Application Insights](/samples/tracing/)
 * [Endpoint configuration choices](/samples/endpoint-configuration/)
 * [Entity Framework Core integration with SQL Persistence](/samples/entity-framework-core/)
 * [Fault Tolerance](/samples/faulttolerance/)
