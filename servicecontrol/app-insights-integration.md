@@ -2,7 +2,7 @@
 title: Integrating with Azure Application Insights
 summary: How to monitor NServiceBus systems using Azure Application Insights
 component: ServiceControl
-reviewed: 2024-01-77
+reviewed: 2024-01-17
 ---
 
 ## Endpoint-level performance and health metrics
