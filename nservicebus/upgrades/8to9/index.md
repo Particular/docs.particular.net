@@ -71,12 +71,6 @@ Instead of using `settings.Get<TransportDefinition>().ToTransportAddress(myAddre
 
 snippet: core-8to9-address-translation
 
-## Restricted type argument for .UsePersistence<T>
-
-https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eL854
-
-Proposed action: Exclude since it doesn't impact users
-
 ## Exceptions no longer marked as serializable
 
 https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eL739
