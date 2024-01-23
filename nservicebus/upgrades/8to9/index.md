@@ -67,20 +67,20 @@ snippet: core-8to9-receive-addresses
 
 ### Dynamic address translation
 
-Use the new `ITransportAddressResolver` API to translate a `QueueAddress` to a transport-specific address at runtime.
+Instead of using `settings.Get<TransportDefinition>().ToTransportAddress(myAddress)`, inject the `ITransportAddressResolver` type to translate a `QueueAddress` to a transport-specific address at runtime.
 
 snippet: core-8to9-address-translation
 
 ## Extensibility
 
-This section describes changes to advanced extensibility API's.
+This section describes changes to advanced extensibility APIs.
 
-### Subscription storages
+### Making features depend on message driven subscriptions
 
-The API to make features depend on [message-driven subscriptions](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based) when implementing custom [subscription storages](/persistence/) has changed:
+The API to make features depend on [message-driven subscriptions](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based) when implementing custom [persisters](/persistence/) has changed:
 
 snippet: core-8to9-depend-on-subscriptions
 
-### The extension point for non-task-based notifications has been removed
+### The extension point for event-based notifications has been removed
 
-Instead, task-based notifications should be used, see the [new error notification events](/nservicebus/upgrades/7to8/#error-notification-events) for more details.
+NServiceBus 8 already replaced the event-based error notifications with task-based callbacks. The extension point for custom event-based notifications has been removed in NServiceBus 9. Any custom notifications should be converted. See [error notification events](/nservicebus/upgrades/7to8/#error-notification-events) for more details.
