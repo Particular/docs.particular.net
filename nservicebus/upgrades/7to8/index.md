@@ -134,15 +134,6 @@ The `NServiceBus.Host` package is deprecated. See the [NServiceBus Host upgrade 
 
 The `NServiceBus.Hosting.Azure` and `NServiceBus.Hosting.Azure.HostProcess` are deprecated.See the [NServiceBus Azure Host upgrade guide](/nservicebus/upgrades/acs-host-7to8.md) for details and alternatives.
 
-## Overriding the host machine name
-
-`RuntimeEnvironment.MachineNameAction` is deprecated. The host machine name of an endpoint instance may be overridden using:
-
-```csharp
-endpointConfiguration.UniquelyIdentifyRunningInstance()
-    .UsingHostName("NewMachineName");`
-```
-
 ## DateTimeOffset instead of DateTime
 
 Usage of `DateTime` can result in numerous issues caused by misalignment of time zone offsets, which can lead to time calculation errors. Although a `DateTime.Kind` property exists, it is often ignored during DateTime math and it is up to the user to ensure values are aligned in their offset. The `DateTimeOffset` type fixes this. It does not contain any time zone information, only an offset, which is sufficient to get the time calculations right.
@@ -231,87 +222,6 @@ The `InMemoryDeduplicationConfiguration` type within the NServiceBus.Gateway pac
 ## Dependency on System.Memory package for .NET Framework
 
 Memory allocations for incoming and outgoing messages bodies are reduced by using the low allocation memory types via the System.Memory namespace. These type are available on .NET Framework via the **System.Memory** package. The NServiceBus build that targets .NET Framework has this dependency added.
-
-## Endpoint addresses
-
-In NServiceBus version 7 and earlier, the local transport-specific queue addresses are accessible via the `settings.LocalAddress()` and `settings.InstanceSpecificQueue()` settings extension methods. In version 8, these extension methods have been marked as obsolete in favour of the API described in this section.
-
-### Logical endpoint address
-
-Since endpoint addresses are translated to transport-specific ones later during endpoint startup, addresses are defined using a transport-agnostic `QueueAddress` type. The addresses can be accessed via the `FeatureConfigurationContext`, for example:
-
-```csharp
-class MyFeature : Feature
-{
-    protected override void Setup(FeatureConfigurationContext context)
-    {
-        // instead of context.Settings.LocalAddress();
-        var localAddress = context.LocalQueueAddress();
-
-        // instead of context.Settings.InstanceSpecificQueue();
-        var instanceSpecificAddress = context.InstanceSpecificQueueAddress();
-    }
-}
-```
-
-A `QueueAddress` can be translated to a transport-specific address at runtime using `ITransportAddressResolver` if needed. The transport-specific receiving queue address can be directly accessed via `ReceiveAddresses`. See the next section for more information.
-
-### Endpoint receive addresses
-
-Instead of using the `settings.LocalAddress()` and `settings.InstanceSpecificQueue()` methods to get the endpoint's local receive addresses, inject the `ReceiveAddresses` type to access the endpoint receive addresses.
-
-```csharp
-class StartupTask : FeatureStartupTask
-{
-    static readonly ILog log = LogManager.GetLogger<StartupTask>();
-
-    readonly ReceiveAddresses receiveAddresses;
-
-    public StartupTask(ReceiveAddresses receiveAddresses)
-    {
-        this.receiveAddresses = receiveAddresses;
-    }
-
-    protected override Task OnStart(IMessageSession session, CancellationToken cancellationToken = default)
-    {
-        // equivalent to settings.LocalAddress()
-        log.Info($"Starting endpoint, listening on {receiveAddresses.MainReceiveAddress}");
-
-        if (receiveAddresses.InstanceReceiveAddress != null)
-        {
-            // equivalent to settings.InstanceSpecificQueue())
-            log.Info($"Starting endpoint, listening on {receiveAddresses.InstanceReceiveAddress}");
-        }
-        return Task.CompletedTask;
-    }
-
-    protected override Task OnStop(IMessageSession session, CancellationToken cancellationToken = default) => Task.CompletedTask;
-}
-```
-
-### Dynamic address translation
-
-Instead of using `settings.Get<TransportDefinition>().ToTransportAddress(myAddress)` to translate `QueueAddress` to a transport-specific address, inject the `ITransportAddressResolver` type to access the address translation mechanism at runtime.
-
-```csharp
-public class MyHandler : IHandleMessages<MyMessage>
-{
-    ITransportAddressResolver addressResolver;
-
-    public MyHandler(ITransportAddressResolver addressResolver)
-    {
-        this.addressResolver = addressResolver;
-    }
-
-    public Task Handle(MyMessage message, IMessageHandlerContext context)
-    {
-        var destination = addressResolver.ToTransportAddress(new QueueAddress("Sales"));
-        var sendOptions = new SendOptions();
-        sendOptions.SetDestination(destination);
-        return context.Send(new SomeMessage(), sendOptions);
-    }
-}
-```
 
 ## Implicit global using directives
 

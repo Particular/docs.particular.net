@@ -10,17 +10,24 @@ namespace Core8.UpgradeGuides
 
     class DataBusUpgradeGuide
     {
-        void ConfigureDataBus(EndpointConfiguration endpointConfiguration)
+        void SerializerMandatory(EndpointConfiguration endpointConfiguration)
         {
-            #region 7to8-DataBusUsage-UpgradeGuide
+            #region 7to8-databus-serializer-mandatory
             endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
             #endregion
         }
 
-        void ConfigureCustomDataBus(EndpointConfiguration endpointConfiguration)
+        void CustomSerializer(EndpointConfiguration endpointConfiguration)
         {
-            #region 7to8-CustomDataBus-UpgradeGuide
-            endpointConfiguration.UseDataBus(serviceProvider => new MyDataBus(serviceProvider.GetRequiredService<SomeDependency>()), new SystemJsonDataBusSerializer());
+            #region 7to8-databus-custom-serializer
+            endpointConfiguration.UseDataBus<FileShareDataBus, MyCustomDataBusSerializer>();
+            #endregion
+        }
+
+        void CustomImplementation(EndpointConfiguration endpointConfiguration)
+        {
+            #region 7to8-databus-custom-implementation
+            endpointConfiguration.UseDataBus(serviceProvider => new MyCustomDataBus(serviceProvider.GetRequiredService<SomeDependency>()), new SystemJsonDataBusSerializer());
             #endregion
         }
 
@@ -28,9 +35,9 @@ namespace Core8.UpgradeGuides
         {
         }
 
-        class MyDataBus : IDataBus
+        class MyCustomDataBus : IDataBus
         {
-            public MyDataBus(SomeDependency dependency)
+            public MyCustomDataBus(SomeDependency dependency)
             {
             }
 
@@ -47,6 +54,23 @@ namespace Core8.UpgradeGuides
             public Task Start(CancellationToken cancellationToken = new CancellationToken())
             {
                 return Task.CompletedTask;
+            }
+        }
+
+        class MyCustomDataBusSerializer : IDataBusSerializer
+        {
+            public string ContentType => throw new NotImplementedException();
+
+            #region 7to8-databus-type-information
+            public object Deserialize(Type propertyType, Stream stream)
+            #endregion
+            {
+                throw new NotImplementedException();
+            }
+
+            public void Serialize(object databusProperty, Stream stream)
+            {
+                throw new NotImplementedException();
             }
         }
     }
