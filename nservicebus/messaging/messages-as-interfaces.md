@@ -2,7 +2,7 @@
 title: Messages as Interfaces
 summary: NServiceBus supports messages being defined as interfaces
 component: core
-reviewed: 2020-11-06
+reviewed: 2024-01-23
 redirects:
 - nservicebus/messages-as-interfaces
 ---

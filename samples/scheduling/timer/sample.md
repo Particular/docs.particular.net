@@ -1,7 +1,7 @@
 ---
 title: Scheduling with Timers
 summary: An example of scheduling using .NET Timers
-reviewed: 2020-10-27
+reviewed: 2024-01-23
 component: Core
 related:
  - nservicebus/scheduling
