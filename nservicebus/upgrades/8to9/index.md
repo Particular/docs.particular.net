@@ -71,12 +71,6 @@ Use the new `ITransportAddressResolver` API to translate a `QueueAddress` to a t
 
 snippet: core-8to9-address-translation
 
-## Extensionpoint for non-task-based notifications has been deprecated
-
-https://github.com/Particular/NServiceBus/compare/release-8.1...master#diff-2c08aef8335f8f17ba3dc362fe939f8a5bdddde4f411d06a067882ac204fa43eR250 (TBD remove)
-
-Propose action: Don't mention this since the only use case was already deprecated in v8, see /nservicebus/upgrades/7to8/#error-notification-events and no downstream is using this API (there could be end users extending this though but that feels very unlikely?)
-
 ## Extensibility
 
 This section describes changes to advanced extensibility API's.
@@ -86,3 +80,7 @@ This section describes changes to advanced extensibility API's.
 The API to make features depend on [message-driven subscriptions](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based) when implementing custom [subscription storages](/persistence/) has changed:
 
 snippet: core-8to9-depend-on-subscriptions
+
+### The extension point for non-task-based notifications has been removed
+
+Instead, task-based notifications should be used, see the [new error notification events](/nservicebus/upgrades/7to8/#error-notification-events) for more details.
