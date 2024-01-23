@@ -16,23 +16,19 @@ class Program
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
-        #region StartingEndpointWithCancellationToken
-        var tokenSource = new CancellationTokenSource();
-
-        var endpointInstance = await Endpoint.Start(endpointConfiguration, tokenSource.Token)
+        var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
-        #endregion
-
-        Console.WriteLine("Endpoint started with cancellation token");
 
         await endpointInstance.SendLocal(new LongRunningMessage { DataId = Guid.NewGuid() });
 
         Console.ReadKey();
 
-        Console.WriteLine("Sending the Cancel signal to the cancellation token");
+        Console.WriteLine("Giving the endpoint 1 second to gracefully stop before sending a cancel signal to the cancellation token");
 
         #region StoppingEndpointWithCancellationToken
-        tokenSource.Cancel();
+        var tokenSource = new CancellationTokenSource();
+        tokenSource.CancelAfter(TimeSpan.FromSeconds(1));
+        await endpointInstance.Stop(tokenSource.Token);
         #endregion
     }
 }
