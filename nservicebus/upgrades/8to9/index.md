@@ -49,12 +49,6 @@ Service collection extensions to ease [the transition to Microsoft DI abstractio
 
 snippet: core-8to9-di-shims
 
-## Making features depend on message driven subscriptions
-
-The API to make features depend on [message driven subscriptions](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based) being in use has changed.
-
-snippet: core-8to9-depend-on-subscriptions
-
 ## Endpoint addresses
 
 In NServiceBus version 8 and earlier, the local transport-specific queue addresses are accessible via the `settings.LocalAddress()` and `settings.InstanceSpecificQueue()` settings extension methods. These extension methods have been replaced with a variety of new APIs, depending on the scenario of where the addresses are needed.
@@ -103,3 +97,13 @@ public static NServiceBus.Pipeline.IAuditContext CreateAuditContext(this NServic
 public static NServiceBus.Pipeline.IAuditContext CreateAuditContext(this NServiceBus.Pipeline.ForkConnector<NServiceBus.Pipeline.IIncomingPhysicalMessageContext, NServiceBus.Pipeline.IAuditContext> forkConnector, NServiceBus.Transport.OutgoingMessage message, string auditAddress, System.TimeSpan? timeToBeReceived, NServiceBus.Pipeline.IIncomingPhysicalMessageContext sourceContext) { }
 
 Proposed action: Do not mention since this api is only for internal use
+
+## Extensibility
+
+This section describes changes to advanced extensibility API's.
+
+### Subscription storages
+
+The API to make features depend on [message-driven subscriptions](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based) when implementing custom [subscription storages](/persistence/) has changed:
+
+snippet: core-8to9-depend-on-subscriptions
