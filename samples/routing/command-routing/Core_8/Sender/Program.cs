@@ -13,7 +13,7 @@ class Program
         var routing = endpointConfiguration.UseTransport(new LearningTransport());
 
         routing.RouteToEndpoint(
-            messageType: typeof(PlaceOrder), 
+            messageType: typeof(PlaceOrder),
             destination: "Samples.CommandRouting.Receiver"
         );
         #endregion
