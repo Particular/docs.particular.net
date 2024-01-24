@@ -1,8 +1,11 @@
-#region V2Message
-
-public interface ISomethingMoreHappened : ISomethingHappened
+namespace Contracts
 {
-    string MoreInfo { get; set; }
-}
+    #region V2Message
 
-#endregion
+    public interface ISomethingMoreHappened : ISomethingHappened
+    {
+        string MoreInfo { get; set; }
+    }
+
+    #endregion
+}

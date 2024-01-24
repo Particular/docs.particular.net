@@ -1,15 +1,18 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.Logging;
-using Versioning.Contracts;
-
-public class SomethingHappenedHandler : IHandleMessages<ISomethingHappened>
+﻿namespace V1.Subscriber
 {
-    static ILog log = LogManager.GetLogger<SomethingHappenedHandler>();
+    using System.Threading.Tasks;
+    using Contracts;
+    using NServiceBus;
+    using NServiceBus.Logging;
 
-    public Task Handle(ISomethingHappened message, IMessageHandlerContext context)
+    public class SomethingHappenedHandler : IHandleMessages<ISomethingHappened>
     {
-        log.Info($"Something happened with some data {message.SomeData} and no more info");
-        return Task.CompletedTask;
+        static readonly ILog log = LogManager.GetLogger<SomethingHappenedHandler>();
+
+        public Task Handle(ISomethingHappened message, IMessageHandlerContext context)
+        {
+            log.Info($"Something happened with some data '{message.SomeData}'");
+            return Task.CompletedTask;
+        }
     }
 }
