@@ -1,0 +1,14 @@
+var endpointName = "V2.Subscriber";
+Console.Title = endpointName;
+
+var endpointConfiguration = new EndpointConfiguration(endpointName);
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.EnableInstallers();
+
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
+
+Console.WriteLine("Press any key to exit");
+Console.ReadKey();
+
+await endpointInstance.Stop();
