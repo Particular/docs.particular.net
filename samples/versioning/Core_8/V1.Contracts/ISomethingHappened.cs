@@ -1,10 +1,13 @@
-﻿using NServiceBus;
-
-namespace Versioning.Contracts
+﻿namespace Contracts
 {
-    public interface ISomethingHappened :
-        IEvent
+    using NServiceBus;
+
+    #region V1Message
+
+    public interface ISomethingHappened : IEvent
     {
         int SomeData { get; set; }
     }
+
+    #endregion
 }

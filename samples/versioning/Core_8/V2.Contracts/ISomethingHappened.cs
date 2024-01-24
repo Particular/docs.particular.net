@@ -1,10 +1,9 @@
-﻿using NServiceBus;
-
-#region V1Message
-
-public interface ISomethingHappened : IEvent
+﻿namespace Contracts
 {
-    int SomeData { get; set; }
-}
+    using NServiceBus;
 
-#endregion
+    public interface ISomethingHappened : IEvent
+    {
+        int SomeData { get; set; }
+    }
+}
