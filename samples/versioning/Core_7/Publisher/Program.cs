@@ -7,8 +7,6 @@ Console.Title = endpointName;
 
 var endpointConfiguration = new EndpointConfiguration(endpointName);
 endpointConfiguration.UseTransport<LearningTransport>();
-endpointConfiguration.SendFailedMessagesTo("error");
-endpointConfiguration.EnableInstallers();
 
 var endpointInstance = await Endpoint.Start(endpointConfiguration);
 

@@ -8,8 +8,6 @@ Console.Title = endpointName;
 var endpointConfiguration = new EndpointConfiguration(endpointName);
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
-endpointConfiguration.SendFailedMessagesTo("error");
-endpointConfiguration.EnableInstallers();
 
 var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
