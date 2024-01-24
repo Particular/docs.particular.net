@@ -875,6 +875,10 @@
       Articles:
       - Url: transports/upgrades/msmq-1to2
         Title: Version 1 to 2
+  - Title: Kafka
+    Articles:
+    - Url: transports/kafka
+      Title: Kafka transport
   - Title: Learning
     Articles:
     - Url: transports/learning
