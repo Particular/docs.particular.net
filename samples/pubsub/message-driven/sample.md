@@ -1,7 +1,7 @@
 ---
 title: Message-driven Publish/Subscribe
-summary: Persistence based Publish/Subscribe for unicast-only transports.
-reviewed: 2022-12-18
+summary: Persistence-based Publish/Subscribe for unicast-only transports.
+reviewed: 2024-01-17
 component: Core
 related:
  - nservicebus/messaging/publish-subscribe
@@ -15,7 +15,7 @@ Before running the sample, review the solution structure, the projects, and the 
 
 ## Defining messages
 
-The `Shared` project contains the definition of the messages that are sent between the processes. Open "OrderReceived.cs" to see the message that will be published by this sample. Note that this event implements an interface called `IEvent` to denote that this message is an event. To define messages without adding a dependency to NServiceBus, use [unobtrusive mode messages](/nservicebus/messaging/unobtrusive-mode.md). 
+The `Shared` project contains the definition of the messages that are sent between the processes. Open "OrderReceived.cs" to see the message that will be published by this sample. Note that this event implements an interface called `IEvent` to denote that this message is an event. To define messages without adding a dependency to NServiceBus, use [unobtrusive mode messages](/nservicebus/messaging/unobtrusive-mode.md).
 
 ## Publishing the event
 
@@ -25,14 +25,14 @@ snippet: PublishLoop
 
 ## Subscribing to the event
 
-To receive messages from the publisher, the subscribers [must subscribe to the message types](/nservicebus/messaging/publish-subscribe/) they are designed to handle. A subscriber must have a handler for the type of message and a configuration that tells the endpoint where to send subscriptions for messages to:
+To receive messages from the publisher, the subscribers [must subscribe to the message types](/nservicebus/messaging/publish-subscribe/) they are designed to handle. A subscriber must have a handler for the type of message and a configuration that tells the endpoint where to send subscriptions for messages:
 
 snippet: SubscriptionConfiguration
 
- * The `Subscriber` handles and subscribes to the `OrderReceived` event type.
- * The handlers in each project are in files that end with the word `Handler` for example `OrderReceivedHandler.cs`.
- * `Subscriber` uses the default auto-subscription feature of the bus where the bus automatically subscribes to the configured publisher. [The auto-subscribe feature can be explicitly disabled](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md) as part of the endpoint configuration.
-  
+* The `Subscriber` handles and subscribes to the `OrderReceived` event type.
+* The handlers in each project are in files that end with the word `Handler` for example `OrderReceivedHandler.cs`.
+* `Subscriber` uses the default auto-subscription feature of the bus where the bus automatically subscribes to the configured publisher. [The auto-subscribe feature can be explicitly disabled](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md) as part of the endpoint configuration.
+
 ## Run the sample
 
 When running the sample, two console applications will open. Bring the `Publisher` endpoint to the foreground.
@@ -49,4 +49,4 @@ Shut down `Subscriber` by closing its console window. Return to the `Publisher` 
 
 In Visual Studio, right-click the project of the closed subscriber. Restart it by right-clicking the `Subscriber` project and selecting `Debug` followed by `Start new instance`.
 
-Note how `Subscriber` immediately receives the messages that were published while it was not running. The publisher safely places the event into the subscriber's queue without knowledge of the running status of any subscriber. Even when processes or machines restart, NServiceBus protects messages from being lost. 
+Note how `Subscriber` immediately receives the messages that were published while it was not running. The publisher safely places the event into the subscriber's queue without knowledge of the running status of any subscriber. Even when processes or machines restart, NServiceBus protects messages from being lost.
