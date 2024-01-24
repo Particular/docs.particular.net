@@ -11,9 +11,6 @@ static class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.EnableInstallers();
-
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
         await Start(endpointInstance)

@@ -10,7 +10,7 @@ static class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.PubSub.Subscriber");
 
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        var transport = endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.UseTransport(new LearningTransport());
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

@@ -9,10 +9,7 @@ static class Program
         Console.Title = "Samples.PubSub.Subscriber";
         var endpointConfiguration = new EndpointConfiguration("Samples.PubSub.Subscriber");
         endpointConfiguration.UsePersistence<LearningPersistence>();
-        var transport = endpointConfiguration.UseTransport<LearningTransport>();
-
-        endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
