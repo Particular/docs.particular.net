@@ -1,5 +1,4 @@
 ﻿using NServiceBus.Extensibility;
-using NServiceBus.ObjectBuilder;
 using NServiceBus.Pipeline;
 using NServiceBus.Routing;
 using NServiceBus.Transport;

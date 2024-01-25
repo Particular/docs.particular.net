@@ -1,24 +1,15 @@
 using System;
-using System.Threading.Tasks;
 using NServiceBus;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "UpgradedDestination";
-        var config = new EndpointConfiguration("UpgradedDestination");
-        config.UseSerialization<SystemJsonSerializer>();
-        config.UseTransport(new LearningTransport());
+Console.Title = "UpgradedDestination";
+var config = new EndpointConfiguration("UpgradedDestination");
+config.UseSerialization<SystemJsonSerializer>();
+config.UseTransport(new LearningTransport());
 
-        var endpoint = await Endpoint.Start(config)
-            .ConfigureAwait(false);
+var endpoint = await Endpoint.Start(config);
 
-        Console.WriteLine("Endpoint Started. Press any key to exit");
+Console.WriteLine("Endpoint Started. Press any key to exit");
 
-        Console.ReadKey();
+Console.ReadKey();
 
-        await endpoint.Stop()
-            .ConfigureAwait(false);
-    }
-}
+await endpoint.Stop();

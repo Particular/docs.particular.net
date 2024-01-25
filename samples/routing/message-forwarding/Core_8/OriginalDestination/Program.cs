@@ -1,32 +1,23 @@
 using System;
-using System.Threading.Tasks;
 using NServiceBus;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "OriginalDestination";
+Console.Title = "OriginalDestination";
 
-        #region forward-messages-after-processing
+#region forward-messages-after-processing
 
-        var config = new EndpointConfiguration("OriginalDestination");
-        config.UseTransport(new LearningTransport());
+var config = new EndpointConfiguration("OriginalDestination");
+config.UseTransport(new LearningTransport());
 
-        config.ForwardMessagesAfterProcessingTo("UpgradedDestination");
+config.ForwardMessagesAfterProcessingTo("UpgradedDestination");
 
-        #endregion
+#endregion
 
-        config.UseSerialization<SystemJsonSerializer>();
+config.UseSerialization<SystemJsonSerializer>();
 
-        var endpoint = await Endpoint.Start(config)
-            .ConfigureAwait(false);
+var endpoint = await Endpoint.Start(config);
 
-        Console.WriteLine("Endpoint Started. Press any key to exit");
+Console.WriteLine("Endpoint Started. Press any key to exit");
 
-        Console.ReadKey();
+Console.ReadKey();
 
-        await endpoint.Stop()
-            .ConfigureAwait(false);
-    }
-}
+await endpoint.Stop();
