@@ -16,8 +16,7 @@ class BusinessSaga : Saga<BusinessSaga.SagaData>,
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
     {
         mapper.MapSaga(saga => saga.BusinessId)
-            .ToMessage<BusinessMessage>(msg => msg.BusinessId)
-            ;
+            .ToMessage<BusinessMessage>(msg => msg.BusinessId);
     }
 
     public Task Handle(BusinessMessage message, IMessageHandlerContext context)

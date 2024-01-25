@@ -1,7 +1,7 @@
 ---
 title: Connect to ServicePlatform with JSON configuration
 summary: A sample that shows how to connect an NServiceBus endpoint to the Particular Service Platform using the JSON schema
-reviewed: 2021-11-26
+reviewed: 2024-01-25
 component: PlatformConnector
 related:
  - platform/connecting
@@ -34,14 +34,12 @@ snippet: configureConnection
 
 Features can be turned on and off, and configured, by adjusting the configuration file at deployment.
 
-snippet: json
-
 #### Endpoint features
 
 The endpoint contains:
 
-- A saga that processes messages triggered by the user, sends a request to a message handler, and waits for a result before marking the saga instance as complete. Connect ServiceInsight to the ServiceControl instance created by PlatformLauncher to view saga audit data.
-- A custom check that toggles state between success and failure every 30 seconds. Check the Custom Checks tab in ServicePulse to see failures reported here.
+- A saga that processes messages triggered by the user, sends a request to a message handler and waits for a result before marking the saga instance as complete. Connect ServiceInsight to the ServiceControl instance created by PlatformLauncher to view saga audit data.
+- A custom check that toggles the state between success and failure every 30 seconds. Check the Custom Checks tab in ServicePulse to see failures reported here.
 - A message handler that waits half a second before returning a response. This simulates real-world message processing in the Monitoring tab of ServicePulse.
 
 ### PlatformLauncher
