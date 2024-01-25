@@ -1,33 +1,16 @@
 using System;
-using System.Threading.Tasks;
 using NServiceBus;
-using Versioning.Contracts;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Samples.Versioning.V1.Subscriber";
-        var endpointConfiguration = new EndpointConfiguration("Samples.Versioning.V1.Subscriber");
-        endpointConfiguration.UsePersistence<NonDurablePersistence>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        var routing = endpointConfiguration.UseTransport(new MsmqTransport());
-        endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.EnableInstallers();
+var endpointName = "V1.Subscriber";
+Console.Title = endpointName;
 
-        #region V1SubscriberMapping
+var endpointConfiguration = new EndpointConfiguration(endpointName);
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        routing.RegisterPublisher(
-            assembly: typeof(ISomethingHappened).Assembly,
-            publisherEndpoint: "Samples.Versioning.V1Publisher");
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-        #endregion
+Console.WriteLine("Press any key to exit");
+Console.ReadKey();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
-    }
-}
+await endpointInstance.Stop();

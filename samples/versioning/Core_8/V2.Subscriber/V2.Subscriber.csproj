@@ -1,13 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFrameworks>net7.0;net6.0;net48</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\V2.Contracts\Versioning.Contracts.csproj" />
-    <PackageReference Include="NServiceBus" Version="8.*" />
-    <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="1.*" />
-    <PackageReference Include="NServiceBus.Transport.Msmq" Version="2.*" />
+    <ProjectReference Include="..\V2.Contracts\Contracts.csproj" />
   </ItemGroup>
 </Project>

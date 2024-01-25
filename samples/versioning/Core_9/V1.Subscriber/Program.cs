@@ -1,7 +1,4 @@
-using System;
-using NServiceBus;
-
-var endpointName = "V2.Subscriber";
+var endpointName = "V1.Subscriber";
 Console.Title = endpointName;
 
 var endpointConfiguration = new EndpointConfiguration(endpointName);

@@ -1,7 +1,7 @@
 ---
 title: Versioning
 summary: Message evolution over time using interfaces.
-reviewed: 2021-01-01
+reviewed: 2024-01-24
 component: Core
 redirects:
 - nservicebus/versioning-sample
@@ -12,57 +12,16 @@ related:
 
 This sample shows how to handle message schema evolution in a backward-compatible manner. The project consists of a publishing endpoint that has evolved from one version of the schema to the next. The newer subscriber has access to the additional information in the newest version of the schema while the older keeps operating without interruptions.
 
-In this sample there are two message projects: `V1.Messages` and `V2.Messages`:
+In this sample, there are two versions of the message contract project, `Contracts`. The V1 version of the project is referenced by `V1.Subscriber`, and the V2 version of the project is referenced by `Publisher` and `V2.Subscriber`.
+
+The version 1 message:
 
 snippet: V1Message
 
-The Version 2 message schema inherits from the Version 1 schema as shown below, adding another property on top of the properties in the Version 1 schema.
+The version 2 message inherits from version 1 as shown below, adding an additional property to the message.
 
 snippet: V2Message
 
-Each subscriber may use any of the versions, as the system is upgraded gradually.
+Subscribers have a message handler for the messages from their respective versions.
 
-Subscribers have a message handler for the messages from their respective versions. Yet there is a slight difference in their subscriptions configuration. `V1Subscriber` has:
-
-snippet: V1SubscriberMapping
-
-while `V2Subscriber` has:
-
-snippet: V2SubscriberMapping
-
-The only difference is that each subscriber declares the version of the schema on which it depends. In addition, the `V2Subscriber` also subscribes to the new version of the message.
-
-`V2Publisher` is publishing a message from the version 2 schema only. However, `V1Subscriber` receives these messages as well:
-
-### Publisher output
-
-```
-Press 'Enter' to publish a message, Ctrl + C to exit.
-Published event.
-```
-
-### V1Subscriber output
-
-```
-Press any key to stop program
-Something happened with some data 1 and no more info
-```
-
-### V2Subscriber output
-
-```
-Press any key to stop program
-Something happened with some data 1 and more information It's a secret.
-```
-
-## When receivers require additional data
-
-In some cases, receivers might require additional data in order to process a message. However, it may occur that the endpoint receives a message of the previous contract. In this scenario, consider using a saga to retrieve the additional data and send a new message that matches the V2 contract.
-
-The handler that accepts the V1 version of the contract might look like this:
-
-snippet: ReceivingV1
-
-The handler that accepts the V2 version of the contract contains the implementation that handles the fully populated message:
-
-snippet: ReceivingV2
+`Publisher` is publishing a version 2 message, however, `V1.Subscriber` receives these messages as well.

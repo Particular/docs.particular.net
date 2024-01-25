@@ -1,6 +1,3 @@
-using System;
-using NServiceBus;
-
 var endpointName = "V2.Subscriber";
 Console.Title = endpointName;
 
