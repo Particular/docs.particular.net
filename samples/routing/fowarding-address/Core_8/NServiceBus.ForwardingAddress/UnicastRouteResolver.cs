@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using NServiceBus;
@@ -39,5 +38,4 @@ class UnicastRouteResolver
     ITransportAddressResolver transportAddressResolver;
     EndpointInstances endpointInstances;
     IDistributionPolicy distributionPolicy;
-
 }

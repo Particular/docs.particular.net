@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Threading;
 using NServiceBus.Extensibility;
-using NServiceBus.ObjectBuilder;
 using NServiceBus.Pipeline;
 using NServiceBus.Routing;
 using NServiceBus.Transport;

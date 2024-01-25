@@ -2,16 +2,15 @@
 title: Forwarding address
 summary: Implementing forwarding address for in-flight messages during handler migration
 component: Core
-reviewed: 2021-07-28
+reviewed: 2024-01-25
 ---
 
 When a handler is moved to a new endpoint, there may still be "in-flight" messages, bound for the original endpoint. When those messages arrive at the original endpoint, they need to be re-routed to the new endpoint.
 
 An endpoint may be configured to [forward a copy of every successfully processed message to another endpoint](/nservicebus/messaging/forwarding.md). This sample is different in a few key ways:
 
- 1. This sample only forwards messages which have a configured forwarding address. Each message type can have a different forwarding address. The built-in forwarding forwards every message to a single destination address.
+ 1. This sample only forwards messages that have a configured forwarding address. Each message type can have a different forwarding address. The built-in forwarding forwards every message to a single destination address.
  1. This sample forwards messages to a logical endpoint, rather than a physical address. This allows it to interact with [sender-side distribution](/transports/msmq/sender-side-distribution.md) if required.
-
 
 ## Running the sample
 
@@ -25,18 +24,15 @@ The Sender is configured to send messages to OriginalDestination, and OriginalDe
 
 Remove the handler code from OriginalDestination, and run the sample again. Note that the sender is still configured to send the message to OriginalDestination, which will forward a copy to NewDestination even though it no longer contains a handler for the message.
 
-
 ## Code walk-through
 
 The sample contains four projects.
-
 
 ### Sender
 
 Contains routing configuration to send `ImportantMessage` messages to the OriginalDestination endpoint.
 
 snippet: route-message-to-original-destination
-
 
 ### OriginalDestination
 
@@ -48,15 +44,13 @@ The endpoint also contains the original handler for `ImportantMessage` messages.
 
 snippet: old-handler
 
-NOTE: This handler will still be called, but can be safely removed, if no longer required.
-
+NOTE: This handler will still be called, but can be safely removed if no longer required.
 
 ### NewDestination
 
 This endpoint contains the new handler for `ImportantMessage` messages.
 
 snippet: new-handler
-
 
 ### NServiceBus.ForwardingAddress
 
@@ -79,7 +73,6 @@ snippet: forwarding-feature
 The routing configuration extension enables the forwarding address feature and records the forwarding address.
 
 snippet: forwarding-routing-extensions
-
 
 ### Messages
 
