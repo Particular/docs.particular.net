@@ -7,7 +7,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Metrics.PerformanceCounters" Version="5.*" />
-    <PackageReference Include="NServiceBus" Version="8.*" />
+    <PackageReference Include="NServiceBus.Metrics.PerformanceCounters" Version="6.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus" Version="9.0.0-alpha.10" />
   </ItemGroup>
 </Project>
