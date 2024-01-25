@@ -1,16 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.Logging;
+﻿using NServiceBus.Logging;
 
 #region handler
 
 public class MyHandler :
     IHandleMessages<MyMessage>
 {
-    static ILog log = LogManager.GetLogger<MyHandler>();
+    static readonly ILog log = LogManager.GetLogger<MyHandler>();
 
-    static Random random = new Random();
+    static readonly Random random = new Random();
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
