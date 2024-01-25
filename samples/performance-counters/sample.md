@@ -1,7 +1,7 @@
 ---
 title: Performance Counter Usage
 summary: Using the built-in Performance Counters.
-reviewed: 2020-11-09
+reviewed: 2024-01-26
 component: PerfCounters
 related:
 - monitoring/metrics/performance-counters

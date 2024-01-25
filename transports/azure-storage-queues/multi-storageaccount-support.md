@@ -2,7 +2,7 @@
 title: Multiple storage accounts
 summary: Use multiple Azure storage accounts for scale out
 component: ASQ
-reviewed: 2020-11-09
+reviewed: 2024-01-26
 redirects:
  - nservicebus/using-multiple-azure-storage-accounts-for-scaleout
  - nservicebus/azure/using-multiple-azure-storage-accounts-for-scaleout
@@ -41,7 +41,7 @@ While an endpoint can only read from a single Azure storage account, it can send
 
 ## Scale Units
 
-Scaleout and splitting endpoints over multiple storage accounts works to a certain extent, but it cannot be applied infinitely while expecting throughput to increase linearly. Each resource and group of resources has certain throughput limitations.
+Scaleout and splitting endpoints over multiple storage accounts work to a certain extent, but it cannot be applied infinitely while expecting throughput to increase linearly. Each resource and group of resources has certain throughput limitations.
 
 A suitable technique to overcome this problem includes resource partitioning and usage of scale units. A scale unit is a set of resources with well determined throughput, where adding more resources to this unit does not result in increased throughput. When the scale unit is determined, to improve throughput more scale units can be created. Scale units do not share resources.
 
