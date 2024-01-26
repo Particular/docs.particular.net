@@ -5,7 +5,7 @@ versions: '[8,)'
 related:
 - transports/azure-storage-queues/configuration
 - samples/azure/storage-queues
-reviewed: 2020-11-09
+reviewed: 2024-01-26
 ---
 
 Starting with NServiceBus.Azure.Transports.WindowsAzureStorageQueues version 8.0, the transport no longer sanitizes queues by default.
