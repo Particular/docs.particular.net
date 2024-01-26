@@ -1,5 +1,5 @@
 ---
-title: Connect to ServicePlatform using .NET Generic Host
+title: Connect to ServicePlatform using the .NET Generic Host
 summary: A sample that shows how to connect an NServiceBus endpoint hosted in the .NET Generic Host to the Particular Service Platform
 reviewed: 2024-01-26
 component: PlatformConnector

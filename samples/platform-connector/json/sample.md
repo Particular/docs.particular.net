@@ -38,7 +38,7 @@ Features can be turned on and off, and configured, by adjusting the configuratio
 
 The endpoint contains:
 
-- A saga that processes messages triggered by the user, sends a request to a message handler and waits for a result before marking the saga instance as complete. Connect ServiceInsight to the ServiceControl instance created by PlatformLauncher to view saga audit data.
+- A saga that processes messages triggered by the user, sends a request to a message handler, and waits for a result before marking the saga instance as complete. Connect ServiceInsight to the ServiceControl instance created by PlatformLauncher to view saga audit data.
 - A custom check that toggles the state between success and failure every 30 seconds. Check the Custom Checks tab in ServicePulse to see failures reported here.
 - A message handler that waits half a second before returning a response. This simulates real-world message processing in the Monitoring tab of ServicePulse.
 

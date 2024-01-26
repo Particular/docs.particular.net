@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using NServiceBus;
-
-class BusinessSaga : Saga<BusinessSaga.SagaData>,
+﻿class BusinessSaga : Saga<BusinessSaga.SagaData>,
     IAmStartedByMessages<BusinessMessage>,
     IHandleMessages<RequestProcessingResponse>
 {
@@ -23,7 +19,7 @@ class BusinessSaga : Saga<BusinessSaga.SagaData>,
     {
         Data.BusinessId = message.BusinessId;
         Data.RequestSent = true;
-        return context.SendLocal(new RequestProcessing {BusinessId = message.BusinessId});
+        return context.SendLocal(new RequestProcessing { BusinessId = message.BusinessId });
     }
 
     public Task Handle(RequestProcessingResponse message, IMessageHandlerContext context)

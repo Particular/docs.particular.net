@@ -1,6 +1,3 @@
-using System;
-using NServiceBus;
-
 Console.Title = "Endpoint";
 
 var endpointConfiguration = new EndpointConfiguration("Endpoint");

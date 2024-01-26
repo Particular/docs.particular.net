@@ -5,12 +5,7 @@
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="platformConnection.json" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="platformConnection.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Update="platformConnection.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.*" />

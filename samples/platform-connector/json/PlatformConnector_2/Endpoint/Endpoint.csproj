@@ -3,11 +3,10 @@
     <TargetFrameworks>net7.0;net6.0;net48</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <LangVersion>10.0</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <Content Include="platformConnection.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <None Update="platformConnection.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="8.*" />

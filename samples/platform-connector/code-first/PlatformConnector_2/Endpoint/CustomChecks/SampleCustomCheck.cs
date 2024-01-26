@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using NServiceBus.CustomChecks;
+﻿using NServiceBus.CustomChecks;
 
 class SampleCustomCheck : CustomCheck
 {

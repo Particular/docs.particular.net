@@ -1,12 +1,10 @@
-using System;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NServiceBus;
 
 Console.Title = "Endpoint";
 
-var hostBuilder = Host.CreateApplicationBuilder();
+var hostBuilder = Host.CreateApplicationBuilder(args);
 
 #region addConfigFile
 hostBuilder.Configuration.AddJsonFile("appsettings.json");
@@ -32,7 +30,4 @@ hostBuilder.UseNServiceBus(endpointConfiguration);
 
 hostBuilder.Services.AddHostedService<BusinessMessageSimulator>();
 
-Console.WriteLine("Starting endpoint, use CTRL + C to stop");
-
-await hostBuilder.Build()
-    .RunAsync();
+await hostBuilder.Build().RunAsync();

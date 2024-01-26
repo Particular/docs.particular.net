@@ -14,12 +14,12 @@
   },
   "SagaAudit": {
     "Enabled": true,
-    "SagaAuditQueue":  "audit" 
+    "SagaAuditQueue":  "audit"
   },
   "Metrics": {
     "Enabled": true,
     "MetricsQueue": "Particular.Monitoring",
     "Interval": "00:00:01",
-    "InstanceId": "UniqueInstanceId" 
-  } 
+    "InstanceId": "UniqueInstanceId"
+  }
 }

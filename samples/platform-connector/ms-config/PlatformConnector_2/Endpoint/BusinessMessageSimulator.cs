@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Hosting;
-using NServiceBus;
+﻿using Microsoft.Extensions.Hosting;
 
 class BusinessMessageSimulator : BackgroundService
 {
@@ -19,7 +15,7 @@ class BusinessMessageSimulator : BackgroundService
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                await messageSession.SendLocal(new BusinessMessage {BusinessId = Guid.NewGuid()});
+                await messageSession.SendLocal(new BusinessMessage { BusinessId = Guid.NewGuid() });
                 await Task.Delay(TimeSpan.FromSeconds(1), stoppingToken);
                 Console.WriteLine("Message sent");
             }
