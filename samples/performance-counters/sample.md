@@ -66,18 +66,16 @@ The `SLA Violation Countdown` is the number of seconds left until the SLA for th
 
 ### Other counters
 
-The following counters are only available in Version 4 and above.
-
 To visualize both success and failures in the same view, change the handler code to the following.
 
 ```cs
-int sleepTime = random.Next(1, 1000);
-Thread.Sleep(sleepTime);
-if (sleepTime%2 != 0)
+var sleepTime = random.Next(1, 1000);
+await Task.Delay(sleepTime, context.CancellationToken);
+if (sleepTime % 2 != 0)
 {
     throw new Exception();
 }
-log.Info($"Hello from MyHandler. Slept for {sleepTime}ms");
+log.Info($"Hello from MyHandler. Slept for {sleepTime} ms");
 ```
 
 Run the endpoint and send some messages and monitor the results of all the performance counters.
