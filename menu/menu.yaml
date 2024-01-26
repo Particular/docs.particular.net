@@ -1511,10 +1511,10 @@
       Url: monitoring/metrics/install-plugin
     - Title: Managing in ServicePulse
       Url: monitoring/metrics/in-servicepulse
-    - Title: Performance Counters
-      Url: monitoring/metrics/performance-counters
     - Title: Accessing raw metric data
       Url: monitoring/metrics/raw
+    - Title: Windows Performance Counters
+      Url: monitoring/metrics/performance-counters
   - Title: Upgrade guides
     Articles:
     - Title: Upgrading to native queue length metric
