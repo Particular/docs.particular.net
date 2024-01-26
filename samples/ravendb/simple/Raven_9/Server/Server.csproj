@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.RavenDB" Version="8.*" />
+    <PackageReference Include="NServiceBus.RavenDB" Version="9.0.0-alpha.1" />
     <PackageReference Include="RavenDB.Client" Version="5.*" />
   </ItemGroup>
 </Project>
