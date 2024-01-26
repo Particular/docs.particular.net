@@ -1,47 +1,41 @@
-using System;
-using System.IO;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NServiceBus;
 
-public class Program
-{
-    public static Task Main()
+Console.Title = "Endpoint";
+
+var hostBuilder = new HostBuilder()
+    .ConfigureHostConfiguration(config =>
     {
-        Console.Title = "Endpoint";
+        #region addConfigFile
+        config.AddJsonFile("appsettings.json");
+        #endregion
+    })
+    .UseNServiceBus(hostContext =>
+    {
+        var endpointConfiguration = new EndpointConfiguration("Endpoint");
 
-        return new HostBuilder()
-            .ConfigureHostConfiguration(config =>
-            {
-                #region addConfigFile
-                config.AddJsonFile("appsettings.json");
-                #endregion
-            })
-            .UseNServiceBus(hostContext =>
-            {
-                var endpointConfiguration = new EndpointConfiguration("Endpoint");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UsePersistence<NonDurablePersistence>();
 
-                endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-                endpointConfiguration.UseTransport<LearningTransport>();
-                endpointConfiguration.UsePersistence<NonDurablePersistence>();
+        #region loadConnectionDetails
+        var platformConnection = hostContext.Configuration
+            .GetSection("ServicePlatformConfiguration")
+            .Get<ServicePlatformConnectionConfiguration>();
+        #endregion
 
-                #region loadConnectionDetails
-                var platformConnection = hostContext.Configuration
-                    .GetSection("ServicePlatformConfiguration")
-                    .Get<ServicePlatformConnectionConfiguration>();
-                #endregion
+        #region configureConnection
+        endpointConfiguration.ConnectToServicePlatform(platformConnection);
+        #endregion
 
-                #region configureConnection
-                endpointConfiguration.ConnectToServicePlatform(platformConnection);
-                #endregion
+        return endpointConfiguration;
+    })
+    .ConfigureServices((hostBuilderContext, services) =>
+    {
+        services.AddHostedService<BusinessMessageSimulator>();
+    });
 
-                return endpointConfiguration;
-            })
-            .ConfigureServices((hostBuilderContext, services) =>
-            {
-                services.AddHostedService<BusinessMessageSimulator>();
-            }).RunConsoleAsync();
-    }
-}
+Console.WriteLine("Starting endpoint, use CTRL + C to stop");
+
+await hostBuilder.RunConsoleAsync();

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using NServiceBus.CustomChecks;
+﻿using NServiceBus.CustomChecks;
 
 class SampleCustomCheck : CustomCheck
 {
@@ -15,7 +12,7 @@ class SampleCustomCheck : CustomCheck
     public override Task<CheckResult> PerformCheck(CancellationToken cancellationToken = default)
     {
         counter = (counter + 1) % 2;
-        if(counter == 1)
+        if (counter == 1)
         {
             return CheckResult.Failed("Sometimes failures happen");
         }

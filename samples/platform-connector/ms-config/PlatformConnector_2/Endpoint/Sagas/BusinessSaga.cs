@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using NServiceBus;
-
-class BusinessSaga : Saga<BusinessSaga.SagaData>,
+﻿class BusinessSaga : Saga<BusinessSaga.SagaData>,
     IAmStartedByMessages<BusinessMessage>,
     IHandleMessages<RequestProcessingResponse>
 {
@@ -16,15 +12,14 @@ class BusinessSaga : Saga<BusinessSaga.SagaData>,
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
     {
         mapper.MapSaga(saga => saga.BusinessId)
-            .ToMessage<BusinessMessage>(msg => msg.BusinessId)
-            ;
+            .ToMessage<BusinessMessage>(msg => msg.BusinessId);
     }
 
     public Task Handle(BusinessMessage message, IMessageHandlerContext context)
     {
         Data.BusinessId = message.BusinessId;
         Data.RequestSent = true;
-        return context.SendLocal(new RequestProcessing {BusinessId = message.BusinessId});
+        return context.SendLocal(new RequestProcessing { BusinessId = message.BusinessId });
     }
 
     public Task Handle(RequestProcessingResponse message, IMessageHandlerContext context)

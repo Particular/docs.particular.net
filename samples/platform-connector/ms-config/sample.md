@@ -1,7 +1,7 @@
 ---
-title: Connect to ServicePlatform in MS Host
-summary: A sample that shows how to connect an NServiceBus endpoint running in the Microsoft Generic Host to the Particular Service Platform
-reviewed: 2021-11-26
+title: Connect to ServicePlatform using the .NET Generic Host
+summary: A sample that shows how to connect an NServiceBus endpoint hosted in the .NET Generic Host to the Particular Service Platform
+reviewed: 2024-01-26
 component: PlatformConnector
 related:
  - platform/connecting
@@ -9,7 +9,7 @@ related:
 
 ## Introduction
 
-This sample connects an NServiceBus endpoint hosted in the Microsoft Generic Host to the Particular Service Platform and configures:
+This sample connects an NServiceBus endpoint hosted in the .NET Generic Host to the Particular Service Platform and configures:
 
 - An error queue
 - Message auditing
@@ -22,7 +22,7 @@ This sample connects an NServiceBus endpoint hosted in the Microsoft Generic Hos
 
 ### Endpoint
 
-A basic NServiceBus endpoint containing a saga, a handler, and a custom check. The endpoint is hosted in a [Microsoft Generic Host](https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host).
+A basic NServiceBus endpoint containing a saga, a handler, and a custom check. The endpoint is hosted in a [.NET Generic Host](https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host).
 
 The host is configured to include a JSON configuration file. The configuration can come from [any provider](https://docs.microsoft.com/en-us/dotnet/core/extensions/configuration-providers) supported by the configuration framework.
 
@@ -47,7 +47,7 @@ Note that configuration details are stored in a section called `ServicePlatformC
 The endpoint contains:
 
 - A saga that processes messages triggered generated 5 times per second, sends a request to a message handler, and waits for a result before marking the saga instance as complete. Connect ServiceInsight to the ServiceControl instance created by PlatformLauncher to view saga audit data.
-- A custom check that toggles state between success and failure every 30 seconds. Check the Custom Checks tab in ServicePulse to see failures reported here.
+- A custom check that toggles the state between success and failure every 30 seconds. Check the Custom Checks tab in ServicePulse to see failures reported here.
 - A message handler that waits half a second before returning a response. This simulates real-world message processing in the Monitoring tab of ServicePulse.
 
 ### PlatformLauncher
