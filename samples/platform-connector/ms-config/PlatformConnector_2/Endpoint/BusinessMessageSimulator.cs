@@ -20,12 +20,12 @@ class BusinessMessageSimulator : BackgroundService
             while (!stoppingToken.IsCancellationRequested)
             {
                 await messageSession.SendLocal(new BusinessMessage {BusinessId = Guid.NewGuid()});
-                await Task.Delay(200, stoppingToken);
+                await Task.Delay(TimeSpan.FromSeconds(1), stoppingToken);
+                Console.WriteLine("Message sent");
             }
         }
         catch (OperationCanceledException)
         {
-
         }
     }
 }
