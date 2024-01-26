@@ -12,6 +12,6 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="2.0.0-alpha.1" />
     <PackageReference Include="NServiceBus.ServicePlatform.Connector" Version="3.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.0-alpha.3" />
   </ItemGroup>
 </Project>

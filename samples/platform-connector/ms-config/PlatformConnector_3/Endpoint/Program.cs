@@ -6,38 +6,33 @@ using NServiceBus;
 
 Console.Title = "Endpoint";
 
-var hostBuilder = new HostBuilder()
-    .ConfigureHostConfiguration(config =>
-    {
-        #region addConfigFile
-        config.AddJsonFile("appsettings.json");
-        #endregion
-    })
-    .UseNServiceBus(hostContext =>
-    {
-        var endpointConfiguration = new EndpointConfiguration("Endpoint");
+var hostBuilder = Host.CreateApplicationBuilder();
 
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.UsePersistence<NonDurablePersistence>();
+#region addConfigFile
+hostBuilder.Configuration.AddJsonFile("appsettings.json");
+#endregion
 
-        #region loadConnectionDetails
-        var platformConnection = hostContext.Configuration
-            .GetSection("ServicePlatformConfiguration")
-            .Get<ServicePlatformConnectionConfiguration>();
-        #endregion
+var endpointConfiguration = new EndpointConfiguration("Endpoint");
 
-        #region configureConnection
-        endpointConfiguration.ConnectToServicePlatform(platformConnection);
-        #endregion
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport<LearningTransport>();
+endpointConfiguration.UsePersistence<NonDurablePersistence>();
 
-        return endpointConfiguration;
-    })
-    .ConfigureServices((hostBuilderContext, services) =>
-    {
-        services.AddHostedService<BusinessMessageSimulator>();
-    });
+#region loadConnectionDetails
+var platformConnection = hostBuilder.Configuration
+    .GetSection("ServicePlatformConfiguration")
+    .Get<ServicePlatformConnectionConfiguration>();
+#endregion
+
+#region configureConnection
+endpointConfiguration.ConnectToServicePlatform(platformConnection);
+#endregion
+
+hostBuilder.UseNServiceBus(endpointConfiguration);
+
+hostBuilder.Services.AddHostedService<BusinessMessageSimulator>();
 
 Console.WriteLine("Starting endpoint, use CTRL + C to stop");
 
-await hostBuilder.RunConsoleAsync();
+await hostBuilder.Build()
+    .RunAsync();
