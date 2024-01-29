@@ -8,11 +8,13 @@ redirects:
 related:
 - nservicebus/hosting
 - nservicebus/hosting/publishing-from-web-applications
+redirects:
+- samples/netcore-reference
 ---
 
 This sample consists of a web application hosting Web API controllers and a console application hosting the NServiceBus endpoint. The web application sends a command to the endpoint, waits for a response, and returns the result to the user. Web application shows two methods of sending a command:
 
- * `SendAndBlock`: a method in synchronous `Controller` class  
+ * `SendAndBlock`: a method in synchronous `Controller` class
  * `SendAsync`: a method in asynchronous `AsyncController` class
 
 NOTE: In `SendAndBlock`, the web page renders synchronously. From the user's perspective, the interaction is synchronous and blocking, even though behind the scenes NServiceBus is messaging asynchronously.

@@ -1,7 +1,6 @@
 ﻿* [Appending username using headers](/samples/username-header/)
 * [Automatic Retries](/samples/errorhandling/)
 * [Building a Custom Feature](/samples/feature/)
-* [Building endpoints with .NET Core 3.1](/samples/netcore-reference/)
 * [Callback Usage](/samples/callbacks/)
 * [Consumer-driven Contracts](/samples/consumer-driven-contracts/)
 * [Custom Exception Handling](/samples/message-error-handling/)
