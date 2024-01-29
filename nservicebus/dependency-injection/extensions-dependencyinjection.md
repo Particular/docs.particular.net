@@ -6,7 +6,6 @@ component: Extensions.DependencyInjection
 related:
  - samples/dependency-injection/extensions-dependency-injection
  - samples/hosting/generic-host
- - samples/netcore-reference
 redirects:
  - nservicebus/dependency-injection/property-injection
  - nservicebus/property-injection-in-handlers
