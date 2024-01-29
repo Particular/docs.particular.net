@@ -6,7 +6,6 @@ reviewed: 2023-11-23
 related:
  - samples/hosting/generic-host
  - samples/dependency-injection/aspnetcore
- - samples/netcore-reference
 ---
 
 ## Configuration
