@@ -24,10 +24,10 @@ public sealed class RequiresTransactionalSessionAttribute : TypeFilterAttribute
 
             var result = await next();
 
-            if(result.Exception is null)
+            if (result.Exception is null)
             {
                 await transactionalSession.Commit();
-            }    
+            }
         }
 
         private readonly ITransactionalSession transactionalSession;

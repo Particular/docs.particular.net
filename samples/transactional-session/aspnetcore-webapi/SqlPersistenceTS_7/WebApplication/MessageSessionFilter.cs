@@ -16,10 +16,10 @@ public class MessageSessionFilter : IAsyncResourceFilter
 
             var result = await next();
 
-            if(result.Exception is null)
+            if (result.Exception is null)
             {
                 await session.Commit();
-            }     
+            }
         }
         else
         {

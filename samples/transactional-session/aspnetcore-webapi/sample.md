@@ -2,7 +2,7 @@
 title: Using TransactionalSession with Entity Framework and ASP.NET Core
 summary: Transactional Session sample that illustrates how to send messages and modify data with Entity Framework in an atomic manner using ASP.NET Core.
 component: TransactionalSession.SqlPersistence
-reviewed: 2023-05-31
+reviewed: 2024-01-26
 related:
 - nservicebus/transactional-session
 - nservicebus/transactional-session/persistences/sql-persistence
@@ -11,15 +11,15 @@ related:
 
 include: webhost-warning
 
-This sample shows how to send messages and modify data in a database atomically within the scope of a web request using the `NServiceBus.TransactionalSession` package with ASP.NET Core. The operations are triggered by an incoming HTTP request to ASP.NET Core which will manage the `ITransactionalSession` lifetime inside a request middleware.
+This sample shows how to send messages and modify data in a database atomically within the scope of a web request using the `NServiceBus.TransactionalSession` package with ASP.NET Core. The operations are triggered by an incoming HTTP request to ASP.NET Core which will manage the `ITransactionalSession` lifetime using a request middleware.
 
 ## Prerequisites
 
 Ensure an instance of SQL Server (Version 2012 or above) is installed and accessible on `localhost` and port `1433`.
 
-Alternatively, change the connection string to point to different SQL Server instance.
+Alternatively, change the connection string to point to a different SQL Server instance.
 
-At startup each endpoint will create the required SQL assets including databases, tables, and schemas.
+At startup, each endpoint will create the required SQL assets including databases, tables, and schemas.
 
 ## Running the solution
 
@@ -27,7 +27,7 @@ When the solution is run, a new browser window/tab opens, as well as a console a
 
 An async [WebAPI](https://dotnet.microsoft.com/apps/aspnet/apis) controller handles the request. It stores a new document using Entity Framework and sends an NServiceBus message to the endpoint hosted in the console application.
 
-The message will be processed by the NServiceBus message handler and result in `"Message received at endpoint"`-message printed to the console. In addition, the handler will update the previously created entity.
+The message will be processed by the NServiceBus message handler and result in `"Message received at endpoint"` printed to the console. In addition, the handler will update the previously created entity.
 
 To query all the stored entities, navigate to `http://localhost:58118/all`. To apply a complex object hierarchy using the transactional session on an endpoint, navigate to `http://localhost:58118/service`.
 
