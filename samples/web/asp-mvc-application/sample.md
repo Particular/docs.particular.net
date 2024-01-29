@@ -1,7 +1,7 @@
 ---
 title: Using NServiceBus with ASP.NET MVC
 summary: Integrating NServiceBus with ASP.NET MVC web applications to send messages from a website.
-reviewed: 2022-04-13
+reviewed: 2024-01-29
 component: Core
 redirects:
 - nservicebus/using-nservicebus-with-asp.net-mvc
@@ -12,7 +12,7 @@ redirects:
 - samples/netcore-reference
 ---
 
-This sample consists of a web application hosting Web API controllers and a console application hosting the NServiceBus endpoint. The web application sends a command to the endpoint, waits for a response, and returns the result to the user. Web application shows two methods of sending a command:
+This sample consists of a web application hosting MVC controllers and a console application hosting the NServiceBus endpoint. The web application sends a command to the endpoint, waits for a response, and returns the result to the user. The Web application shows two methods for sending commands:
 
  * `SendAndBlock`: a method in synchronous `Controller` class
  * `SendAsync`: a method in asynchronous `AsyncController` class
@@ -61,9 +61,9 @@ Open the `SendAndBlockController` class:
 
 snippet: SendAndBlockController
 
-The controller is sending a command using the instance of `IMessageSession` injected via the constructor. The code calls the `Request` method, passing in the newly created command instance.
+The controller is sending a command using an instance of `IMessageSession` injected into the constructor. The `Request` method is called, passing in the newly created command instance.
 
-A calling to the `Request` method returns only after a response from the handler is received.
+The `Request` method returns once a response from the handler is received.
 
 
 ## Handling the message
@@ -72,8 +72,8 @@ In the Server project, open the `CommandMessageHandler` class to see the followi
 
 snippet: CommandMessageHandler
 
-This class implements the NServiceBus interface `IHandleMessages<T>` where `T` is the specific message type being handled; in this case, the `Command` message.
+`CommandMessageHandler` implements the NServiceBus interface `IHandleMessages<T>` where `T` is the message type being handled, in this case, the `Command` message.
 
-NServiceBus manages the classes that implement this interface. When a message arrives in the input queue, it is deserialized, and then, based on its type, NServiceBus instantiates the relevant message handler classes and calls their `Handle` method, passing in the message object and the context object.
+ When a message arrives in the input queue it is deserialized and then, based on its type, NServiceBus instantiates the relevant `IHandleMessages<T>` implementations and calls their `Handle` methods passing in the message object and the context object.
 
-In the method body notice the response being returned to the originating endpoint. This will result in a message being added to the input queue for `AsyncPagesMVC` endpoint.
+Notice in the method body the response is being returned to the originating endpoint. This will result in the message being added to the input queue of the `AsyncPagesMVC` endpoint.
