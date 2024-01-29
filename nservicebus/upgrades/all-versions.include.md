@@ -295,7 +295,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/2.0.1) | 2022-11-17     | -                 | -                                 |
-| [~~1.2.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/1.2.2) | ~~2022-09-19~~ | ~~2023-11-17~~    | ~~Superseded by 2.0.x~~           |
+| [1.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/1.2.2) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Persistence.DynamoDB](/nuget/NServiceBus.Persistence.DynamoDB)
 
@@ -779,7 +779,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/4.0.0) | 2022-11-17     | -                 | -                                 |
-| [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/3.0.0) | ~~2018-05-29~~ | ~~2023-11-17~~    | ~~Superseded by 4.0.x~~           |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/3.0.0) | 2018-05-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/2.0.3) | ~~2017-05-08~~ | ~~2019-05-29~~    | ~~Superseded by 3.0.x~~           |
 | [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/1.1.3) | ~~2017-01-16~~ | ~~2018-05-08~~    | ~~Superseded by 2.0.x~~           |
 
@@ -806,8 +806,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Gateway/4.0.0) | 2022-11-17     | -                 | -                                 |
-| [3.3.x](https://www.nuget.org/packages/NServiceBus.Gateway/3.3.0) | 2022-01-24     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Gateway/4.0.1) | 2022-11-17     | -                 | -                                 |
+| [3.3.x](https://www.nuget.org/packages/NServiceBus.Gateway/3.3.1) | 2022-01-24     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~3.2.x~~](https://www.nuget.org/packages/NServiceBus.Gateway/3.2.0) | ~~2021-06-28~~ | ~~2022-04-24~~    | ~~Superseded by 3.3.x~~           |
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.Gateway/3.1.0) | ~~2019-12-23~~ | ~~2021-09-28~~    | ~~Superseded by 3.2.x~~           |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Gateway/3.0.2) | ~~2018-05-29~~ | ~~2020-03-23~~    | ~~Superseded by 3.1.x~~           |
@@ -989,7 +989,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.UniformSession.Testing/3.0.0) | 2022-11-17     | -                 | -                                 |
-| [2.2.x](https://www.nuget.org/packages/NServiceBus.UniformSession.Testing/2.2.0) | 2021-03-31     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [~~2.2.x~~](https://www.nuget.org/packages/NServiceBus.UniformSession.Testing/2.2.0) | ~~2021-03-31~~ | ~~2023-11-17~~    | ~~Superseded by 3.0.x~~           |
 
 #### [NServiceBus.Wcf](/nuget/NServiceBus.Wcf)
 

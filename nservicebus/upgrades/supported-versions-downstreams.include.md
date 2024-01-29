@@ -101,7 +101,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/2.0.1) | 2022-11-17     | -                 | -                                 |
-| [~~1.2.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/1.2.2) | ~~2022-09-19~~ | ~~2023-11-17~~    | ~~Superseded by 2.0.x~~           |
+| [1.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/1.2.2) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Persistence.DynamoDB](/nuget/NServiceBus.Persistence.DynamoDB)
 
@@ -291,7 +291,6 @@
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/1.1.1) | 2023-09-21     | -                 | -                                 |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/1.0.1) | ~~2023-05-09~~ | ~~2023-12-21~~    | ~~Superseded by 1.1.x~~           |
 | [0.6.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/0.6.0) | 2023-04-27     | 2024-05-09        | Superseded by 1.0.x               |
-| [~~0.5.x~~](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/0.5.1) | ~~2021-01-14~~ | ~~2023-07-27~~    | ~~Superseded by 0.6.x~~           |
 
 #### [NServiceBus.AzureFunctions.InProcess.ServiceBus](/nuget/NServiceBus.AzureFunctions.InProcess.ServiceBus)
 
@@ -345,7 +344,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/4.0.0) | 2022-11-17     | -                 | -                                 |
-| [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/3.0.0) | ~~2018-05-29~~ | ~~2023-11-17~~    | ~~Superseded by 4.0.x~~           |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/3.0.0) | 2018-05-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.CustomChecks](/nuget/NServiceBus.CustomChecks)
 
@@ -366,8 +365,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Gateway/4.0.0) | 2022-11-17     | -                 | -                                 |
-| [3.3.x](https://www.nuget.org/packages/NServiceBus.Gateway/3.3.0) | 2022-01-24     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Gateway/4.0.1) | 2022-11-17     | -                 | -                                 |
+| [3.3.x](https://www.nuget.org/packages/NServiceBus.Gateway/3.3.1) | 2022-01-24     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Gateway.RavenDB](/nuget/NServiceBus.Gateway.RavenDB)
 
@@ -480,7 +479,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.UniformSession.Testing/3.0.0) | 2022-11-17     | -                 | -                                 |
-| [2.2.x](https://www.nuget.org/packages/NServiceBus.UniformSession.Testing/2.2.0) | 2021-03-31     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [~~2.2.x~~](https://www.nuget.org/packages/NServiceBus.UniformSession.Testing/2.2.0) | ~~2021-03-31~~ | ~~2023-11-17~~    | ~~Superseded by 3.0.x~~           |
 
 #### [NServiceBus.Wcf](/nuget/NServiceBus.Wcf)
 
