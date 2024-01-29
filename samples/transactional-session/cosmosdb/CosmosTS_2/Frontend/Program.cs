@@ -5,42 +5,32 @@ using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.TransactionalSession;
 
-class Program
+Console.Title = "Frontend";
+var builder = Host.CreateDefaultBuilder(args);
+builder.UseConsoleLifetime();
+
+builder.UseNServiceBus(builderContext =>
 {
-    public static void Main(string[] args)
-    {
-        Console.Title = "Frontend";
-        var host = CreateHostBuilder(args).Build();
-        host.Run();
-    }
+    var endpointConfiguration = new EndpointConfiguration("Samples.TransactionalSession.Frontend");
+    endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+    endpointConfiguration.EnableInstallers();
+    var transport = endpointConfiguration.UseTransport(new LearningTransport() { TransportTransactionMode = TransportTransactionMode.ReceiveOnly });
 
-    static IHostBuilder CreateHostBuilder(string[] args)
-    {
-        var builder = Host.CreateDefaultBuilder(args);
-        builder.UseConsoleLifetime();
+    #region cosmos-txsession-frontend-config
+    endpointConfiguration.EnableOutbox();
 
-        builder.UseNServiceBus(builderContext =>
-        {
-            var endpointConfiguration = new EndpointConfiguration("Samples.TransactionalSession.Frontend");
-            endpointConfiguration.EnableInstallers();
-            var transport = endpointConfiguration.UseTransport(new LearningTransport() { TransportTransactionMode = TransportTransactionMode.ReceiveOnly });
+    var persistence = endpointConfiguration.UsePersistence<CosmosPersistence>();
+    persistence.CosmosClient(new CosmosClient(Configuration.CosmosDBConnectionString));
+    persistence.DefaultContainer("Orders", "/CustomerId");
 
-            #region cosmos-txsession-frontend-config
-            endpointConfiguration.EnableOutbox();
+    persistence.EnableTransactionalSession();
+    #endregion
 
-            var persistence = endpointConfiguration.UsePersistence<CosmosPersistence>();
-            persistence.CosmosClient(new CosmosClient(Configuration.CosmosDBConnectionString));
-            persistence.DefaultContainer("Orders", "/CustomerId");
+    endpointConfiguration.PurgeOnStartup(true);
 
-            persistence.EnableTransactionalSession();
-            #endregion
+    return endpointConfiguration;
+});
 
-            endpointConfiguration.PurgeOnStartup(true);
+builder.ConfigureServices(services => services.AddHostedService<Worker>());
 
-            return endpointConfiguration;
-        });
-
-
-        return builder.ConfigureServices(services => { services.AddHostedService<Worker>(); });
-    }
-}
+builder.Build().Run();
