@@ -3,37 +3,26 @@ using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-class Program
+Console.Title = "Backend";
+
+var builder = Host.CreateDefaultBuilder(args);
+builder.UseConsoleLifetime();
+
+builder.UseNServiceBus(builderContext =>
 {
-    public static void Main(string[] args)
-    {
-        Console.Title = "Backend";
-        var host = CreateHostBuilder(args).Build();
-        host.Run();
-    }
+    var endpointConfiguration = new EndpointConfiguration("Samples.TransactionalSession.Backend");
+    endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+    endpointConfiguration.UseTransport(new LearningTransport { TransportTransactionMode = TransportTransactionMode.ReceiveOnly });
+    endpointConfiguration.EnableOutbox();
 
-    static IHostBuilder CreateHostBuilder(string[] args)
-    {
-        var builder = Host.CreateDefaultBuilder(args);
-        builder.UseConsoleLifetime();
+    #region cosmos-txsession-backend-persistence
+    var persistence = endpointConfiguration.UsePersistence<CosmosPersistence>();
+    persistence.CosmosClient(new CosmosClient(Configuration.CosmosDBConnectionString));
+    persistence.DefaultContainer("Orders", "/CustomerId");
+    persistence.TransactionInformation().ExtractPartitionKeyFromMessage<OrderReceived>(message => new PartitionKey(message.CustomerId));
+    #endregion
 
-        builder.UseNServiceBus(builderContext =>
-        {
-            var endpointConfiguration = new EndpointConfiguration("Samples.TransactionalSession.Backend");
-            endpointConfiguration.UseTransport(new LearningTransport { TransportTransactionMode = TransportTransactionMode.ReceiveOnly });
-            endpointConfiguration.EnableOutbox();
+    return endpointConfiguration;
+});
 
-            #region cosmos-txsession-backend-persistence
-            var persistence = endpointConfiguration.UsePersistence<CosmosPersistence>();
-            persistence.CosmosClient(new CosmosClient(Configuration.CosmosDBConnectionString));
-            persistence.DefaultContainer("Orders", "/CustomerId");
-            persistence.TransactionInformation().ExtractPartitionKeyFromMessage<OrderReceived>(message => new PartitionKey(message.CustomerId));
-            #endregion
-
-            return endpointConfiguration;
-        });
-
-
-        return builder;
-    }
-}
+await builder.Build().RunAsync();

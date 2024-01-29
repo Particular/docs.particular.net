@@ -1,7 +1,7 @@
 ---
 title: Using Transactional Session with CosmosDB
 summary: Transactional Session sample that illustrates how to send messages and modify data with CosmosDB in an atomic manner outside message handlers.
-reviewed: 2022-07-20
+reviewed: 2024-01-29
 component: TransactionalSession.CosmosDB
 related:
 - nservicebus/transactional-session
@@ -9,13 +9,13 @@ related:
 - persistence/cosmosdb
 ---
 
-This sample uses the [transactional session](/nservicebus/transactional-session) feature  with the [CosmosDB persistence](/persistence/cosmosdb) to achieve transactionally consistent database changes and message operations.
+This sample uses the [transactional session](/nservicebus/transactional-session) feature with the [CosmosDB persistence](/persistence/cosmosdb) to achieve transactionally consistent database changes and message operations.
 
 downloadbutton
 
 ## Overview
 
-The sample contains a frontend and a backend service both accessing the same CosmosDB database instance. When the `ITransactionalSession` instance on the frontend is committed, an `Order` document is created with the status `Received` and an `OrderReceived` event is published. The backend service subscribes to the event and loads the order document to update its status to `Accepted`.
+The sample contains frontend and backend services that access the same CosmosDB database instance. When the `ITransactionalSession` instance on the front end is committed, an `Order` document is created with the status `Received`, and an `OrderReceived` event is published. The backend service subscribes to the event and loads the order document to update its status to `Accepted`.
 
 ```mermaid
 sequenceDiagram
