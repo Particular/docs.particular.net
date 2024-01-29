@@ -50,7 +50,6 @@
 * [Endpoint hosting with the Generic Host](/samples/hosting/generic-host/)
 * [Externally Managed Mode](/samples/dependency-injection/externally-managed-mode/)
 * [FluentScheduler Usage](/samples/scheduling/fluentscheduler/)
-* [Forwarding address](/samples/routing/fowarding-address/)
 * [Generic Host multiple endpoint hosting](/samples/hosting/generic-multi-hosting/)
 * [Hangfire Usage](/samples/scheduling/hangfire/)
 * [Hosting endpoints in Docker Linux containers](/samples/hosting/docker/)

@@ -2,11 +2,10 @@
 title: Command routing
 summary: Basic NServiceBus message routing
 component: Core
-reviewed: 2022-02-09
+reviewed: 2024-01-24
 ---
 
 The sample demonstrates basic command routing between endpoints.
-
 
 ## Running the project
 
@@ -14,7 +13,6 @@ The sample demonstrates basic command routing between endpoints.
 1. In the Sender's console window send some orders by pressing S
 1. In the Sender's console window cancel some orders by pressing C
 1. Both messages are sent to the Receiver which logs a message
-
 
 ## Code walk-through
 
