@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFrameworks>net7.0;net6.0</TargetFrameworks>
-		<LangVersion>10.0</LangVersion>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFrameworks>net7.0;net6.0</TargetFrameworks>
+    <LangVersion>10.0</LangVersion>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="NServiceBus.Persistence.CosmosDB" Version="1.*" />
-		<PackageReference Include="NServiceBus" Version="7.*" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
+  </ItemGroup>
 
 </Project>

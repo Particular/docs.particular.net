@@ -15,7 +15,7 @@ downloadbutton
 
 ## Overview
 
-The sample contains a frontend and a backend service both accessing the same CosmosDB database instance. When the `ITransactionalSession` instance on the front end is committed, an `Order` document is created with the status `Received` and, an `OrderReceived` event is published. The backend service subscribes to the event and loads the order document to update its status to `Accepted`.
+The sample contains frontend and backend services that access the same CosmosDB database instance. When the `ITransactionalSession` instance on the front end is committed, an `Order` document is created with the status `Received`, and an `OrderReceived` event is published. The backend service subscribes to the event and loads the order document to update its status to `Accepted`.
 
 ```mermaid
 sequenceDiagram
