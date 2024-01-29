@@ -23,16 +23,13 @@ downloadbutton
 
 Unlike a traditional NServiceBus endpoint, an endpoint hosted in Azure Functions cannot create its own input queue. In this sample, that queue name is `ASBTriggerQueue`.
 
-To create the queue with the Azure CLI, execute the following [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli) command:
+To create the endpoint with the [Azure Service Bus Transport CLI](/transports/azure-service-bus/operational-scripting.md), execute the following command:
 
 ```
-az servicebus queue create --name ASBTriggerQueue --namespace-name <asb-namespace-to-use> --resource-group <resource-group-containing-namespace>
+asb-transport endpoint create ASBTriggerQueue
 ```
-### Manually create bundle topic
 
-```
-az servicebus topic create --name bundle-1 --namespace-name <asb-namespace-to-use> --resource-group <resource-group-containing-namespace>
-```
+The command will create the required queue and topic.
 
 ### Configure Connection string
 
