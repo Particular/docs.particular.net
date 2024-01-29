@@ -6,6 +6,8 @@ component: Core
 related:
 - nservicebus/hosting/docker-host
 - nservicebus/hosting
+redirects:
+- samples/hosting/kubernetes-simple
 ---
 
 This sample demonstrates how to use Docker Linux containers to host NServiceBus endpoints communicating over the [RabbitMQ transport](/transports/rabbitmq/).
