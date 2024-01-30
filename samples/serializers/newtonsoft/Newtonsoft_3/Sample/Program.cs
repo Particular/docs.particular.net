@@ -1,49 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using NServiceBus;
 using NServiceBus.MessageMutator;
 
-static class Program
+
+Console.Title = "Samples.Serialization.ExternalJson";
+
+#region config
+
+var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.ExternalJson");
+
+var settings = new JsonSerializerSettings
 {
-    static async Task Main()
-    {
-        Console.Title = "Samples.Serialization.ExternalJson";
+    Formatting = Formatting.Indented
+};
+var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+serialization.Settings(settings);
 
-        #region config
+#endregion
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.ExternalJson");
-        var settings = new JsonSerializerSettings
-        {
-            Formatting = Formatting.Indented
-        };
-        var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
-        serialization.Settings(settings);
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        #endregion
+#region registermutator
 
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.RegisterMessageMutator(new MessageBodyWriter());
 
-        #region registermutator
+#endregion
 
-        endpointConfiguration.RegisterMessageMutator(new MessageBodyWriter());
+var endpointInstance = await Endpoint.Start(endpointConfiguration)
+    .ConfigureAwait(false);
 
-        #endregion
-        
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+#region message
 
-        #region message
-
-        var message = new CreateOrder
-        {
-            OrderId = 9,
-            Date = DateTime.Now,
-            CustomerId = 12,
-            OrderItems = new List<OrderItem>
+var message = new CreateOrder
+{
+    OrderId = 9,
+    Date = DateTime.Now,
+    CustomerId = 12,
+    OrderItems = new List<OrderItem>
             {
                 new OrderItem
                 {
@@ -56,16 +51,17 @@ static class Program
                     Quantity = 4
                 },
             }
-        };
-        await endpointInstance.SendLocal(message)
-            .ConfigureAwait(false);
+};
 
-        #endregion
+await endpointInstance.SendLocal(message)
+    .ConfigureAwait(false);
 
-        Console.WriteLine("Order Sent");
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
-    }
-}
+#endregion
+
+Console.WriteLine("Order Sent");
+Console.WriteLine("Press any key to exit");
+Console.ReadKey();
+
+await endpointInstance.Stop()
+    .ConfigureAwait(false);
+
