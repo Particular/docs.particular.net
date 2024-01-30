@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using NServiceBus;
 
 internal class Program
@@ -15,21 +13,8 @@ internal class Program
 
     private static IHostBuilder CreateHostBuilder(string[] args)
     {
-        #region generic-host-service-lifetime
-
         var builder = Host.CreateDefaultBuilder(args);
         builder.UseWindowsService();
-
-        #endregion
-
-        /*
-        #region generic-host-console-lifetime
-
-        var builder = Host.CreateDefaultBuilder(args);
-        builder.UseConsoleLifetime();
-
-        #endregion
-        */
 
         #region generic-host-nservicebus
 
@@ -58,7 +43,6 @@ internal class Program
     {
         var fatalMessage =
             $"The following critical error was encountered:{Environment.NewLine}{context.Error}{Environment.NewLine}Process is shutting down. StackTrace: {Environment.NewLine}{context.Exception.StackTrace}";
-        EventLog.WriteEntry(".NET Runtime", fatalMessage, EventLogEntryType.Error);
 
         try
         {

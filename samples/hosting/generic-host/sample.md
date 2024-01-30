@@ -1,35 +1,39 @@
 ---
 title: Endpoint hosting with the Generic Host
-summary: Hosting an endpoint with the Generic Host.
+summary: Hosting an endpoint with the Generic Host
 reviewed: 2022-11-09
 component: Core
 related:
 - nservicebus/hosting/extensions-hosting
 ---
 
-The sample uses the Generic Host and the [`Microsoft.Extensions.Hosting.WindowsServices`](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices/) NuGet package to host NServiceBus as a Windows Service using the Generic Host underneath.
+The sample uses the Generic Host and the [`Microsoft.Extensions.Hosting.WindowsServices`](https://www.nuget.org/packages/Microsoft.Extensions.Hosting.WindowsServices/) NuGet package to host NServiceBus as a Windows Service.
 
-downloadbutton
+## Code walk-through
 
-## Prerequisites
+The builder configures NServiceBus using the [`NServiceBus.Extensions.Hosting`](/nservicebus/hosting/extensions-hosting.md) package, including the [critical error](/nservicebus/hosting/critical-errors.md) action that will shut down the application or service in case of a critical error.
 
-The sample has the following prerequisites:
+snippet: generic-host-nservicebus
 
-- [.NET 4.8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48)
-- [PowerShell Core for Windows](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows) in case the sample is to be installed as a Windows Service
+The critical error action:
 
-## Running the sample as a console
+snippet: generic-host-critical-error
 
-In Visual Studio, press <kbd>F5</kbd> to start the sample as a console application.
+To simulate work, a BackgroundService called `Worker` is registered as a hosted service:
+
+snippet: generic-host-worker-registration
+
+The `IMessageSession` is injected into the `Worker` constructor, and the `Worker` sends messages when it is executed.
+
+snippet: generic-host-worker
 
 ## Running the sample as a Windows Service
 
-- [Install PowerShell Core on Windows](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell-core-on-windows)
-- Start PowerShell core with elevated permissions
+- Start PowerShell with elevated permissions
 - Run `dotnet publish` in the directory of the sample; for example: `C:\samples\generic-host`
-- Run `New-Service -Name WorkerTest -BinaryPathName "C:\samples\generic-host\bin\Debug\net48\publish\GenericHost.exe"`
+- Run `New-Service -Name WorkerTest -BinaryPathName "C:\samples\generic-host\bin\Debug\{framework}\publish\GenericHost.exe"`
 - Run `Start-Service WorkerTest`
-- Go to the Event Viewer under `Windows Logs\Applications` and observe event log entries from source `GenericHost` with the following content
+- Go to the Event Viewer under `Windows Logs\Applications` and observe event log entries from source `GenericHost` with the following content:
 ```
 Category: MyMessageHandler
 EventId: 0
@@ -37,7 +41,3 @@ EventId: 0
 Received message #{Number}
 ```
 - Once done, run `Stop-Service WorkerTest` and `Remove-Service WorkerTest`
-
-NOTE: Currently to use the `Microsoft.Extensions.Logging` library, the `NServiceBus.MicrosoftLogging` community package should be used.
-
-partial: code-walk-through
