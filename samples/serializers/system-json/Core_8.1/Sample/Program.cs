@@ -1,35 +1,30 @@
 ﻿using NServiceBus;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
-static class Program
+Console.Title = "Samples.Serialization.SystemJson";
+
+var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.SystemJson");
+
+#region config
+
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
+#endregion
+
+endpointConfiguration.UseTransport(new LearningTransport());
+
+var endpointInstance = await Endpoint.Start(endpointConfiguration)
+    .ConfigureAwait(false);
+
+#region message
+
+var message = new CreateOrder
 {
-    static async Task Main()
-    {
-        Console.Title = "Samples.Serialization.SystemJson";
-
-        var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.SystemJson");
-        #region config
-
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-
-        #endregion
-
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseTransport(new LearningTransport());
-
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
-
-        #region message
-
-        var message = new CreateOrder
-        {
-            OrderId = 9,
-            Date = DateTime.Now,
-            CustomerId = 12,
-            OrderItems = new List<OrderItem>
+    OrderId = 9,
+    Date = DateTime.Now,
+    CustomerId = 12,
+    OrderItems = new List<OrderItem>
             {
                 new OrderItem
                 {
@@ -42,16 +37,15 @@ static class Program
                     Quantity = 4
                 },
             }
-        };
-        await endpointInstance.SendLocal(message)
-            .ConfigureAwait(false);
+};
+await endpointInstance.SendLocal(message)
+    .ConfigureAwait(false);
 
-        #endregion
+#endregion
 
-        Console.WriteLine("Order Sent");
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
-    }
-}
+Console.WriteLine("Order Sent");
+Console.WriteLine("Press any key to exit");
+Console.ReadKey();
+
+await endpointInstance.Stop()
+    .ConfigureAwait(false);
