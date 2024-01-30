@@ -9,11 +9,9 @@ Run the solution. A single console application starts up: `Server`.
 
 ## Code walk-through
 
-When the endpoint is started, a message is sent to the endpoint, which triggers a long-running message handler that enters a loop simulating a task that takes 3 seconds to execute, like writing a bunch of records to a database, by calling the async `Task.Delay()` operation.
+When the endpoint is started, a message is sent to the endpoint, which triggers a long-running message handler.  The handler enters an infinite loop, logging a message every two seconds, by calling the async `Task.Delay()` operation.  The `CancellationToken`, that is available in the context object where messages are being handled, is passed to `Task.Delay()` to cancel the delay operation if the `context.CancellationToken.IsCancellationRequested` property is set to `true`.
 
-The `try-catch` block is only being used to demonstrate how the async `Task.Delay()` operation throws an `OperationCancelException` when `context.CancellationToken.IsCancellationRequested` is set to `true`.  In most cases, [catching exceptions within a message handler](/nservicebus/cancellation-and-catching-exceptions.md#inside-the-message-processing-pipeline) is discouraged.
-
-Note: The NServiceBus pipeline filters out the `OperationCanceledException`.
+Note: The NServiceBus pipeline filters out the `OperationCanceledException` specifically when the `CancellationToken.IsCancellationRequested` property is set to `true`. Further details on this behavior can be found in the [cancellation and catching exceptions](/nservicebus/cancellation-and-catching-exceptions.md) documentation.
 
 snippet: LongRunningMessageHandler
 
