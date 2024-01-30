@@ -2,7 +2,6 @@ using System;
 using System.Threading.Tasks;
 using NServiceBus;
 using Raven.Client.Documents;
-using Raven.Client.Documents.Operations.Expiration;
 using Raven.Client.Exceptions;
 using Raven.Client.ServerWide;
 using Raven.Client.ServerWide.Operations;
@@ -14,7 +13,7 @@ Console.Title = "Samples.RavenDB.Server";
 var endpointConfiguration = new EndpointConfiguration("Samples.RavenDB.Server");
 using var documentStore = new DocumentStore
 {
-    Urls = new[] { "http://localhost:8080" },
+    Urls = ["http://localhost:8080"],
     Database = "RavenSimpleSample",
 };
 
