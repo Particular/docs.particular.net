@@ -18,8 +18,7 @@ static class Program
         endpointConfiguration.UseSerialization<XmlSerializer>();
 
         // External Newtonsoft Json
-        var externalNewtonsoftJson = endpointConfiguration.AddDeserializer<NewtonsoftJsonSerializer>();
-        externalNewtonsoftJson.ContentTypeKey("NewtonsoftJson");
+        var systemJson = endpointConfiguration.AddDeserializer<SystemJsonSerializer>();
 
         // External Newtonsoft Bson
         var externalNewtonsoftBson = endpointConfiguration.AddDeserializer<NewtonsoftJsonSerializer>();
