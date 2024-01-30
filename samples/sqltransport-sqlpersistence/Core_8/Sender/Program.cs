@@ -26,8 +26,6 @@ var transport = new SqlServerTransport(connectionString)
 transport.SchemaAndCatalog.UseSchemaForQueue("error", "dbo");
 transport.SchemaAndCatalog.UseSchemaForQueue("audit", "dbo");
 
-endpointConfiguration.UsePersistence<NonDurablePersistence>();
-
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(transport);
 

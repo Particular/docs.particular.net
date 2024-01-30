@@ -26,7 +26,6 @@ var transport = new SqlServerTransport(connectionString)
 transport.SchemaAndCatalog.UseSchemaForQueue("error", "dbo");
 transport.SchemaAndCatalog.UseSchemaForQueue("audit", "dbo");
 
-endpointConfiguration.UsePersistence<NonDurablePersistence>();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(transport);
 
@@ -38,8 +37,6 @@ var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
 Console.WriteLine("Press enter to send a message");
 Console.WriteLine("Press any key to exit");
-
-var random = new Random();
 
 while (true)
 {
@@ -54,7 +51,7 @@ while (true)
     var orderSubmitted = new OrderSubmitted
     {
         OrderId = Guid.NewGuid(),
-        Value = random.Next(100)
+        Value = Random.Shared.Next(100)
     };
     await endpointInstance.Publish(orderSubmitted)
         .ConfigureAwait(false);
