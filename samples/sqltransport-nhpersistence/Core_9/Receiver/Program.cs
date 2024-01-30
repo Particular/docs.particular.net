@@ -36,6 +36,7 @@ await new SchemaExport(hibernateConfig).ExecuteAsync(false, true, false);
 #region ReceiverConfiguration
 
 var endpointConfiguration = new EndpointConfiguration("Samples.SqlNHibernate.Receiver");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.SendFailedMessagesTo("error");
 endpointConfiguration.AuditProcessedMessagesTo("audit");
 endpointConfiguration.EnableInstallers();
