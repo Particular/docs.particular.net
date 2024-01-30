@@ -2,7 +2,6 @@ using System;
 using System.Threading.Tasks;
 using NServiceBus;
 using Raven.Client.Documents;
-using Raven.Client.Documents.Operations.Expiration;
 using Raven.Client.Exceptions;
 using Raven.Client.ServerWide;
 using Raven.Client.ServerWide.Operations;
@@ -14,7 +13,7 @@ Console.Title = "Samples.RavenDB.Server";
 var endpointConfiguration = new EndpointConfiguration("Samples.RavenDB.Server");
 using var documentStore = new DocumentStore
 {
-    Urls = new[] { "http://localhost:8080" },
+    Urls = ["http://localhost:8080"],
     Database = "RavenSimpleSample",
 };
 
@@ -35,7 +34,7 @@ var transport = new LearningTransport
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(transport);
 
-await EnsureDatabaseExistsAndExpirationEnabled(documentStore);
+await EnsureDatabaseExists(documentStore);
 
 var endpointInstance = await Endpoint.Start(endpointConfiguration)
     .ConfigureAwait(false);
@@ -46,7 +45,7 @@ Console.ReadKey();
 await endpointInstance.Stop()
     .ConfigureAwait(false);
 
-static async Task EnsureDatabaseExistsAndExpirationEnabled(DocumentStore documentStore)
+static async Task EnsureDatabaseExists(DocumentStore documentStore)
 {
     // create the database
     try
@@ -57,10 +56,4 @@ static async Task EnsureDatabaseExistsAndExpirationEnabled(DocumentStore documen
     {
         // intentionally ignored
     }
-
-    // enable document expiration
-    await documentStore.Maintenance.SendAsync(new ConfigureExpirationOperation(new ExpirationConfiguration
-    {
-        Disabled = false,
-    }));
 }

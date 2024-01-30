@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus;
 using Raven.Client.Documents;
-using Raven.Client.Documents.Operations.Expiration;
 using Raven.Client.Exceptions;
 using Raven.Client.ServerWide;
 using Raven.Client.ServerWide.Operations;
@@ -35,9 +33,8 @@ class Program
 
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
             transport.Transactions(TransportTransactionMode.ReceiveOnly);
-            endpointConfiguration.EnableInstallers();
 
-            await EnsureDatabaseExistsAndExpirationEnabled(documentStore);
+            await EnsureDatabaseExists(documentStore);
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration)
                 .ConfigureAwait(false);
@@ -50,7 +47,7 @@ class Program
         }
     }
 
-    static async Task EnsureDatabaseExistsAndExpirationEnabled(DocumentStore documentStore)
+    static async Task EnsureDatabaseExists(DocumentStore documentStore)
     {
         // create the database
         try
@@ -61,8 +58,5 @@ class Program
         {
             // intentionally ignored
         }
-
-        // enable document expiration
-        await documentStore.Maintenance.SendAsync(new ConfigureExpirationOperation(new ExpirationConfiguration { Disabled = false, }));
     }
 }
