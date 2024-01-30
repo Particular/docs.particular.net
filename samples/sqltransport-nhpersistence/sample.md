@@ -1,18 +1,16 @@
 ---
 title: SQL Server Transport and NHibernate Persistence
 summary: Integrating SQL Server transport with NHibernate persistence.
-reviewed: 2021-02-22
+reviewed: 2024-01-30
 component: Core
 related:
 - persistence/nhibernate
 - transports/sql
 ---
 
-
 In this sample, the [SQL Server transport](/transports/sql/) is used in conjunction with the [NHibernate persister](/persistence/nhibernate/). The sample shows how to use the same database connection for both transport and persistence operations, and how to access (using multiple [ORMs](https://en.wikipedia.org/wiki/Object-relational_mapping)) the current SQL connection and transaction from within a message handler to persist business objects to the database.
 
 include: persistence-session-note
-
 
 ## Prerequisites
 
@@ -20,27 +18,24 @@ include: sql-prereq
 
 The database created by this sample is `NsbSamplesSqlNHibernate`.
 
-
 ## Procedure
 
- 1. Start the Sender and Receiver projects.
- 1. In the Sender's console, press <kbd>enter</kbd>> to send a message when the app is ready.
- 1. On the Receiver console, notice that order was submitted.
- 1. On the Sender console, notice that the order was accepted.
- 1. After a few seconds, on the Receiver console, notice that the timeout message has been received.
- 1. Open SQL Server Management Studio and go to the `Samples.SqlNHibernate` database. Verify that there is a row in the saga state table (`receiver.OrderLifecycleSagaData`) and in the orders table (`receiver.Orders`)
-
+1. Start the Sender and Receiver projects.
+1. In the Sender's console, press <kbd>enter</kbd>> to send a message when the app is ready.
+1. On the Receiver console, notice that the order was submitted.
+1. On the Sender console, notice that the order was accepted.
+1. After a few seconds, on the Receiver console, notice that the timeout message has been received.
+1. Open SQL Server Management Studio and go to the `Samples.SqlNHibernate` database. Verify that there is a row in the saga state table (`receiver.OrderLifecycleSagaData`) and in the orders table (`receiver.Orders`)
 
 ## Code walk-through
 
 This sample contains three projects:
 
- * Shared - A class library containing common code, including the message definitions.
- * Sender - A console application responsible for sending the initial `OrderSubmitted` message and processing the follow-up `OrderAccepted` message.
- * Receiver - A console application responsible for processing the order message.
+* Shared - A class library containing common code, including the message definitions.
+* Sender - A console application responsible for sending the initial `OrderSubmitted` message and processing the follow-up `OrderAccepted` message.
+* Receiver - A console application responsible for processing the order message.
 
 Sender and Receiver use different schemas within one database. This creates a logical separation (since schemas can be secured independently) while retaining the benefits of having a single physical database. Apart from business data, each schema contains queues for the NServiceBus endpoint and tables for the NServiceBus persister. If no schema is specified, the transport will default to the `dbo` schema.
-
 
 ### Sender project
 
@@ -49,7 +44,6 @@ The Sender does not store any data. It mimics the front-end system where orders 
 snippet: SenderConfiguration
 
 The connection strings for both persistence and transport must be exactly the same.
-
 
 ### Receiver project
 
@@ -61,10 +55,10 @@ snippet: NHibernate
 
 When the message arrives at the Receiver, a `TransactionScope` is created that:
 
- * Dequeues the message.
- * Persists business data using the shared session.
- * Persists saga data for `OrderLifecycleSaga`.
- * Sends the reply message and the timeout request.
+* Dequeues the message.
+* Persists business data using the shared session.
+* Persists saga data for `OrderLifecycleSaga`.
+* Sends the reply message and the timeout request.
 
 snippet: Reply
 
