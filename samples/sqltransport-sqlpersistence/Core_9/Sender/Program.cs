@@ -38,8 +38,6 @@ var endpointInstance = await Endpoint.Start(endpointConfiguration);
 Console.WriteLine("Press enter to send a message");
 Console.WriteLine("Press any key to exit");
 
-var random = new Random();
-
 while (true)
 {
     var key = Console.ReadKey();
@@ -53,7 +51,7 @@ while (true)
     var orderSubmitted = new OrderSubmitted
     {
         OrderId = Guid.NewGuid(),
-        Value = random.Next(100)
+        Value = Random.Shared.Next(100)
     };
     await endpointInstance.Publish(orderSubmitted)
         .ConfigureAwait(false);

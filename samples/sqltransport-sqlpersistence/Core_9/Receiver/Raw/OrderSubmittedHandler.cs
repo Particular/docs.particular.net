@@ -9,7 +9,7 @@ namespace Raw
     public class OrderSubmittedHandler :
         IHandleMessages<OrderSubmitted>
     {
-        static ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
+        static readonly ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
 
         public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
         {
@@ -28,9 +28,11 @@ namespace Raw
                 transaction: (SqlTransaction)session.Transaction))
             {
                 var parameters = command.Parameters;
+
                 parameters.AddWithValue("Id", $"Raw-{message.OrderId}");
                 parameters.AddWithValue("Value", message.Value);
-                await command.ExecuteNonQueryAsync()
+
+                await command.ExecuteNonQueryAsync(context.CancellationToken)
                     .ConfigureAwait(false);
             }
 
