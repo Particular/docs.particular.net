@@ -10,7 +10,6 @@ static class Program
         Console.Title = "ChangeMessageIdentity.Phase2";
 
         var endpointConfiguration = new EndpointConfiguration("ChangeMessageIdentity.Phase2");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
@@ -23,9 +22,10 @@ static class Program
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 
-        Console.WriteLine("Order Sent");
+        Console.WriteLine("Waiting for orders..");
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
+
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
