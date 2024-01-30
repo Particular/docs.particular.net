@@ -1,22 +1,16 @@
 # startcode compose
 version: "3.8"
-services:   
+services:
     sender:
         image: sender
-        build:
-            context: .
-            dockerfile: ./Sender/Dockerfile
         depends_on:
             - rabbitmq
     receiver:
         image: receiver
-        build:
-            context: .
-            dockerfile: ./Receiver/Dockerfile
         depends_on:
             - rabbitmq
     rabbitmq:
-        image: "rabbitmq:3.11-management"
+        image: "rabbitmq:3.12-management"
         ports:
             - "15672:15672"
             - "5672:5672"
@@ -24,4 +18,4 @@ services:
             test: ["CMD-SHELL", "if rabbitmqctl status; then \nexit 0 \nfi \nexit 1"]
             interval: 10s
             retries: 5
-# endcode            
+# endcode

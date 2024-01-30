@@ -2,7 +2,7 @@
 
 using System.Net.Sockets;
 
-public class ProceedIfBrokerIsAlive
+public static class ProceedIfBrokerIsAlive
 {
     public static async Task WaitForBroker(string host, CancellationToken cancellationToken = default)
     {
@@ -10,9 +10,8 @@ public class ProceedIfBrokerIsAlive
         {
             try
             {
-                using var tcpClientB = new TcpClient();
-
-                await tcpClientB.ConnectAsync(host, 5672);
+                using var tcpClient = new TcpClient();
+                await tcpClient.ConnectAsync(host, 5672);
 
                 return;
             }

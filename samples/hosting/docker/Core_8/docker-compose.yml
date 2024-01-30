@@ -3,16 +3,10 @@ version: "3.8"
 services:
     sender:
         image: sender
-        build:
-            context: .
-            dockerfile: ./Sender/Dockerfile
         depends_on:
             - rabbitmq
     receiver:
         image: receiver
-        build:
-            context: .
-            dockerfile: ./Receiver/Dockerfile
         depends_on:
             - rabbitmq
     rabbitmq:
