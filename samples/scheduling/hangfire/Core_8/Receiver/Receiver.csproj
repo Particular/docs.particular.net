@@ -6,6 +6,8 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="Serilog" Version="2.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Serilog" Version="3.*" />
   </ItemGroup>
 </Project>

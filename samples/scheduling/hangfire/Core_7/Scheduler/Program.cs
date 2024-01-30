@@ -6,6 +6,7 @@ using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.Serilog;
 using Serilog;
+using Serilog.Sinks.SystemConsole.Themes;
 
 class Program
 {
@@ -14,7 +15,7 @@ class Program
         #region serilog
 
         Log.Logger = new LoggerConfiguration()
-            .WriteTo.ColoredConsole()
+            .WriteTo.Console(outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {Message}{NewLine}{Exception}", theme: AnsiConsoleTheme.Sixteen)
             .CreateLogger();
         LogManager.Use<SerilogFactory>();
 
