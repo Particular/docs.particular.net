@@ -3,7 +3,7 @@ using NServiceBus;
 
 Console.Title = "Samples.RavenDB.Client";
 var endpointConfiguration = new EndpointConfiguration("Samples.RavenDB.Client");
-endpointConfiguration.EnableInstallers();
+
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
 

@@ -34,7 +34,6 @@ var transport = new LearningTransport
 };
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(transport);
-endpointConfiguration.EnableInstallers();
 
 await EnsureDatabaseExistsAndExpirationEnabled(documentStore);
 

@@ -34,9 +34,8 @@ var transport = new LearningTransport
 };
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(transport);
-endpointConfiguration.EnableInstallers();
 
-await EnsureDatabaseExistsAndExpirationEnabled(documentStore);
+await EnsureDatabaseExists(documentStore);
 
 var endpointInstance = await Endpoint.Start(endpointConfiguration)
     .ConfigureAwait(false);
@@ -47,7 +46,7 @@ Console.ReadKey();
 await endpointInstance.Stop()
     .ConfigureAwait(false);
 
-static async Task EnsureDatabaseExistsAndExpirationEnabled(DocumentStore documentStore)
+static async Task EnsureDatabaseExists(DocumentStore documentStore)
 {
     // create the database
     try
@@ -58,10 +57,4 @@ static async Task EnsureDatabaseExistsAndExpirationEnabled(DocumentStore documen
     {
         // intentionally ignored
     }
-
-    // enable document expiration
-    await documentStore.Maintenance.SendAsync(new ConfigureExpirationOperation(new ExpirationConfiguration
-    {
-        Disabled = false,
-    }));
 }
