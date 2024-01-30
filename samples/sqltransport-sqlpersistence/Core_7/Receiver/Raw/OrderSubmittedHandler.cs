@@ -1,5 +1,5 @@
-using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using NServiceBus;
 using NServiceBus.Logging;
 
@@ -24,8 +24,8 @@ namespace Raw
                         values      (@Id, @Value)";
             using (var command = new SqlCommand(
                 cmdText: sql,
-                connection: (SqlConnection) session.Connection,
-                transaction: (SqlTransaction) session.Transaction))
+                connection: (SqlConnection)session.Connection,
+                transaction: (SqlTransaction)session.Transaction))
             {
                 var parameters = command.Parameters;
                 parameters.AddWithValue("Id", $"Raw-{message.OrderId}");

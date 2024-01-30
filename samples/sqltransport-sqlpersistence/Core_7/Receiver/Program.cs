@@ -1,53 +1,47 @@
 ﻿using System;
-using Microsoft.Data.SqlClient;
 using System.IO;
-using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using NServiceBus;
 
-public static class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Samples.Sql.Receiver";
+Console.Title = "Samples.Sql.Receiver";
 
-        #region ReceiverConfiguration
+#region ReceiverConfiguration
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.Sql.Receiver");
-        endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.AuditProcessedMessagesTo("audit");
-        endpointConfiguration.EnableInstallers();
-        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSql;Integrated Security=True;Max Pool Size=100;Encrypt=false
-        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSql;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
+var endpointConfiguration = new EndpointConfiguration("Samples.Sql.Receiver");
+endpointConfiguration.SendFailedMessagesTo("error");
+endpointConfiguration.AuditProcessedMessagesTo("audit");
+endpointConfiguration.EnableInstallers();
+// for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSql;Integrated Security=True;Max Pool Size=100;Encrypt=false
+var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSql;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
 
-        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(connectionString);
-        transport.DefaultSchema("receiver");
-        transport.UseSchemaForQueue("error", "dbo");
-        transport.UseSchemaForQueue("audit", "dbo");
-        transport.UseSchemaForQueue("Samples.Sql.Sender", "sender");
-        transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
+var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+transport.ConnectionString(connectionString);
+transport.DefaultSchema("receiver");
+transport.UseSchemaForQueue("error", "dbo");
+transport.UseSchemaForQueue("audit", "dbo");
+transport.UseSchemaForQueue("Samples.Sql.Sender", "sender");
+transport.Transactions(TransportTransactionMode.SendsAtomicWithReceive);
 
-        var subscriptions = transport.SubscriptionSettings();
-        subscriptions.CacheSubscriptionInformationFor(TimeSpan.FromMinutes(1));
-        subscriptions.SubscriptionTableName(tableName: "Subscriptions", schemaName: "dbo");
+var subscriptions = transport.SubscriptionSettings();
+subscriptions.CacheSubscriptionInformationFor(TimeSpan.FromMinutes(1));
+subscriptions.SubscriptionTableName(tableName: "Subscriptions", schemaName: "dbo");
 
-        var routing = transport.Routing();
-        routing.RouteToEndpoint(typeof(OrderAccepted), "Samples.Sql.Sender");
+var routing = transport.Routing();
+routing.RouteToEndpoint(typeof(OrderAccepted), "Samples.Sql.Sender");
 
-        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
-        dialect.Schema("receiver");
-        persistence.ConnectionBuilder(() => new SqlConnection(connectionString));
-        persistence.TablePrefix("");
+var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
+dialect.Schema("receiver");
+persistence.ConnectionBuilder(() => new SqlConnection(connectionString));
+persistence.TablePrefix("");
 
-        #endregion
+#endregion
 
-        await SqlHelper.CreateSchema(connectionString, "receiver");
-        var allText = File.ReadAllText("Startup.sql");
-        await SqlHelper.ExecuteSql(connectionString, allText);
-        var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop().ConfigureAwait(false);
-    }
-}
+await SqlHelper.CreateSchema(connectionString, "receiver");
+var allText = File.ReadAllText("Startup.sql");
+await SqlHelper.ExecuteSql(connectionString, allText);
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
+Console.WriteLine("Press any key to exit");
+Console.ReadKey();
+
+await endpointInstance.Stop();
