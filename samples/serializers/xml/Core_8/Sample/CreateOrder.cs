@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using NServiceBus;
 
-namespace XmlSample
+
+public class CreateOrder :
+    IMessage
 {
-    public class CreateOrder :
-        IMessage
-    {
-        public int OrderId { get; set; }
-        public DateTime Date { get; set; }
-        public int CustomerId { get; set; }
-        public List<OrderItem> OrderItems { get; set; }
-    }
+    public int OrderId { get; set; }
+    public DateTime Date { get; set; }
+    public int CustomerId { get; set; }
+    public List<OrderItem> OrderItems { get; set; }
 }

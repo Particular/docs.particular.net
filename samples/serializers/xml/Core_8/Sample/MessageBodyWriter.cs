@@ -7,13 +7,15 @@ using NServiceBus.MessageMutator;
 public class MessageBodyWriter :
     IMutateIncomingTransportMessages
 {
-    static ILog log = LogManager.GetLogger<MessageBodyWriter>();
+    readonly static ILog log = LogManager.GetLogger<MessageBodyWriter>();
 
     public Task MutateIncoming(MutateIncomingTransportMessageContext context)
     {
         var bodyAsString = Encoding.UTF8.GetString(context.Body.ToArray());
+
         log.Info("Serialized Message Body:");
         log.Info(bodyAsString);
+
         return Task.CompletedTask;
     }
 }
