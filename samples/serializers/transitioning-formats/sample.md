@@ -1,7 +1,7 @@
 ---
 title: Transition serialization formats
 summary: An approach for introducing a breaking change to message serialization with no downtime
-reviewed: 2023-02-10
+reviewed: 2024-01-31
 component: Core
 related:
 - nservicebus/serialization

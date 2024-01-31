@@ -1,52 +1,52 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using NServiceBus;
 
-static class Program
+Console.Title = "Samples.Serialization.TransitionPhase2";
+
+var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.TransitionPhase2");
+endpointConfiguration.SharedConfig();
+
+#region Phase2
+
+var settingsV1 = new JsonSerializerSettings
 {
-    static async Task Main()
-    {
-        Console.Title = "Samples.Serialization.TransitionPhase2";
+    Formatting = Formatting.Indented
+};
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.TransitionPhase2");
-        endpointConfiguration.SharedConfig();
+var serializationV1 = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+serializationV1.Settings(settingsV1);
+serializationV1.ContentTypeKey("jsonv1");
 
-        #region Phase2
+var settingsV2 = new JsonSerializerSettings
+{
+    Formatting = Formatting.Indented,
+    ContractResolver = new ExtendedResolver()
+};
 
-        var settingsV1 = new JsonSerializerSettings
-        {
-            Formatting = Formatting.Indented
-        };
-        var serializationV1 = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
-        serializationV1.Settings(settingsV1);
-        serializationV1.ContentTypeKey("jsonv1");
+var serializationV2 = endpointConfiguration.AddDeserializer<NewtonsoftJsonSerializer>();
+serializationV2.Settings(settingsV2);
+serializationV2.ContentTypeKey("jsonv2");
 
-        var settingsV2 = new JsonSerializerSettings
-        {
-            Formatting = Formatting.Indented,
-            ContractResolver = new ExtendedResolver()
-        };
-        var serializationV2 = endpointConfiguration.AddDeserializer<NewtonsoftJsonSerializer>();
-        serializationV2.Settings(settingsV2);
-        serializationV2.ContentTypeKey("jsonv2");
+#endregion
 
-        #endregion
+var endpointInstance = await Endpoint.Start(endpointConfiguration)
+    .ConfigureAwait(false);
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
-        var message = MessageCreator.NewOrder();
-        await endpointInstance.SendLocal(message)
-            .ConfigureAwait(false);
-        await endpointInstance.Send("Samples.Serialization.TransitionPhase1", message)
-            .ConfigureAwait(false);
-        await endpointInstance.Send("Samples.Serialization.TransitionPhase3", message)
-            .ConfigureAwait(false);
+var message = MessageCreator.NewOrder();
 
-        Console.WriteLine("Order Sent");
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
-    }
-}
+await endpointInstance.SendLocal(message)
+    .ConfigureAwait(false);
+
+await endpointInstance.Send("Samples.Serialization.TransitionPhase1", message)
+    .ConfigureAwait(false);
+
+await endpointInstance.Send("Samples.Serialization.TransitionPhase3", message)
+    .ConfigureAwait(false);
+
+Console.WriteLine("Order Sent");
+Console.WriteLine("Press any key to exit");
+Console.ReadKey();
+
+await endpointInstance.Stop()
+    .ConfigureAwait(false);
