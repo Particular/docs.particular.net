@@ -1,9 +1,9 @@
 using System;
 using System.Data;
-using Microsoft.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NServiceBus;
@@ -24,7 +24,7 @@ endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>()
     .Settings(new JsonSerializerSettings
     {
         TypeNameHandling = TypeNameHandling.Auto,
-        SerializationBinder = new SkipAssemblyNameForMessageTypesBinder(new[] { typeof(PlaceOrder), typeof(LegacyOrderDetected) })
+        SerializationBinder = new SkipAssemblyNameForMessageTypesBinder([typeof(PlaceOrder), typeof(LegacyOrderDetected)])
     });
 #endregion
 
@@ -89,15 +89,8 @@ static async Task PlaceOrder(string connectionString)
 }
 
 
-class SkipAssemblyNameForMessageTypesBinder : ISerializationBinder
+class SkipAssemblyNameForMessageTypesBinder(Type[] messageTypes) : ISerializationBinder
 {
-    Type[] messageTypes;
-
-    public SkipAssemblyNameForMessageTypesBinder(Type[] messageTypes)
-    {
-        this.messageTypes = messageTypes;
-    }
-
     public Type BindToType(string assemblyName, string typeName)
     {
         return messageTypes.FirstOrDefault(messageType => messageType.FullName == typeName);

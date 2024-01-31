@@ -6,6 +6,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
+    <PackageReference Include="NServiceBus" Version="9.0.0-alpha.10" />
     <PackageReference Include="NServiceBus.Transport.SqlServer" Version="8.0.0-alpha.1" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="4.0.0-alpha.1" />
   </ItemGroup>
