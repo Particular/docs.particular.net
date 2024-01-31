@@ -19,6 +19,7 @@ public class SqlConnectionBehavior : Behavior<IIncomingLogicalMessageContext>
         // Assign the connection/transaction for the data service to use later
         connectionHolder.Connection = transportTx.Get<SqlConnection>(
             "System.Data.SqlClient.SqlConnection");
+
         connectionHolder.Transaction = transportTx.Get<SqlTransaction>(
             "System.Data.SqlClient.SqlTransaction");
 
