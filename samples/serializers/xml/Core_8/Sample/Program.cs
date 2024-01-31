@@ -9,7 +9,6 @@ Console.Title = "Samples.Serialization.Xml";
 #region config
 var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.Xml");
 
-// this is optional since Xml is the default serializer
 endpointConfiguration.UseSerialization<XmlSerializer>();
 
 // register the mutator so the the message on the wire is written

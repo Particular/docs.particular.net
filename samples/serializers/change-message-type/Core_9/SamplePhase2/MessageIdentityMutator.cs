@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using System.Runtime.Loader;
 using System.Threading.Tasks;
 using NServiceBus.MessageMutator;
 
@@ -25,10 +26,10 @@ class MessageIdentityMutator :
                 {
                     Console.WriteLine("Message received from SamplePhase1 assembly, changing to SamplePhase2 assembly");
 
-                    return Assembly.Load("SamplePhase2");
+                    return AssemblyLoadContext.Default.LoadFromAssemblyName(new AssemblyName("SamplePhase2"));
                 }
 
-                return Assembly.Load(assemblyName);
+                return AssemblyLoadContext.Default.LoadFromAssemblyName(assemblyName);
             },
             typeResolver: (assembly, typeName, ignoreCase) =>
             {
