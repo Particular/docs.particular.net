@@ -1,6 +1,7 @@
 using NServiceBus;
-using System.Threading.Tasks;
 using NServiceBus.Logging;
+using System;
+using System.Threading.Tasks;
 
 public class LongRunningMessageHandler :
     IHandleMessages<LongRunningMessage>
@@ -12,11 +13,11 @@ public class LongRunningMessageHandler :
     {
         log.Info($"Received message {message.DataId}. Entering loop.");
 
-        do
+        while (true)
         {
+            log.Info("Handler still running. Press any key to forcibly stop the endpoint.");
             await Task.Delay(2000, context.CancellationToken);
-            log.Info("Press any key to cancel the loop and stop the endpoint.");
-        } while (!context.CancellationToken.IsCancellationRequested);
+        }
     }
     #endregion
 }
