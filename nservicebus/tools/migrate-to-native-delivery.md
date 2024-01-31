@@ -2,6 +2,8 @@
 title: Migrating from timeout manager to native delivery
 summary: An overview of the tool supporting migrating from timeout manager to native delivery
 reviewed: 2023-08-11
+redirects:
+- samples/sqltransport/native-time-migration
 ---
 
 NOTE: Tools are designed for single or occasional use. Only the latest version of a given tool is supported. Users should consider upgrading to the latest version of a tool before each use.
@@ -238,7 +240,7 @@ When all the timeouts in a given timeout table have been migrated, the timeout t
 
 The `timeoutsmigration` table is left in the state of the last migration that was run in case it is required for troubleshooting. The table is cleaned automatically during every migration run. To reduce storage costs, after all migrations are done it is advisable to delete:
 
-- The migration table: `timeoutsmigration` 
+- The migration table: `timeoutsmigration`
 - The timeout tool state table: `timeoutsmigrationtoolstate`
 
 ## Limitations
@@ -301,7 +303,7 @@ To list the history and status of migrations:
 
 To list all the timeouts that were staged for migration:
 
-`SELECT * FROM StagedTimeoutEntity` 
+`SELECT * FROM StagedTimeoutEntity`
 
 The results include the batch number and its status: `0=Pending`, `1=Staged`, or `2=Completed`.
 
