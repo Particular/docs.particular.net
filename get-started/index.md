@@ -9,7 +9,7 @@ NServiceBus makes it quick and easy to send, process, and publish messages acros
 
 ## Start your journey with these handy resources
 
-* [NServiceBus overview](https://particular.net/nservicebus) - The most important benefits of NServiceBus at a glance.
-* [NServiceBus technical introduction](/tutorials/quickstart/) - A more technical introduction to NServiceBus as well as the Service Platform.
-* [Quickstart tutorial](/tutorials/quickstart/) - Build your first end-to-end NServiceBus solution. Covering all the elements of one-way messaging, publish-subscribe, and automatic recovery from exceptions.
-* [Live coding your first NServiceBus system (video)](https://particular.net/webinars/live-coding-your-first-nservicebus-system) - For those who prefer to lay back and watch an experienced developer build a messaging system with NServiceBus.
+* **[NServiceBus overview](https://particular.net/nservicebus)** - The most important benefits of NServiceBus at a glance.
+* **[NServiceBus technical introduction](/tutorials/quickstart/)** - A more technical introduction to NServiceBus as well as the Service Platform.
+* **[Quickstart tutorial](/tutorials/quickstart/)** - Build your first end-to-end NServiceBus solution. Covering all the elements of one-way messaging, publish-subscribe, and automatic recovery from exceptions.
+* **[Live coding your first NServiceBus system (video)](https://particular.net/webinars/live-coding-your-first-nservicebus-system)** - For those who prefer to lay back and watch an experienced developer build a messaging system with NServiceBus.

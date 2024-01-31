@@ -18,7 +18,7 @@ In less than an hour, the demo retail store project will show you how to:
 
 If you've already experienced the benefits of messaging, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
 
-NOTE: It is recommended to keep the [glossary of messaging terms](/nservicebus/concepts/glossary) at hand to easily understand any new concepts introduced in the tutorial.
+NOTE: It is recommended to keep the [glossary of messaging terms](/nservicebus/concepts/glossary.md) at hand to easily understand any new concepts introduced in the tutorial.
 
 ## Download demo
 
