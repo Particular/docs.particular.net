@@ -42,6 +42,8 @@
       Title: NServiceBus monitoring demo
     - Url: tutorials
       Title: All tutorials
+  - Url: get-started
+    Title: Get started
   - Url: get-started/high-level-content
     Title: High-level content
 

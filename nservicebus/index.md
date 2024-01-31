@@ -2,9 +2,8 @@
 title: NServiceBus
 summary: NServiceBus Documentation Table of Contents
 component: Core
-reviewed: 2021-08-05
+reviewed: 2024-01-31
 suppressRelated: true
-isLearningPath: true
 redirects:
 - nservicebus/overview
 ---
