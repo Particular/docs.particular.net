@@ -17,7 +17,7 @@ endpointConfiguration.PurgeOnStartup(true);
 var endpointInstance = await Endpoint.Start(endpointConfiguration)
     .ConfigureAwait(false);
 
-Console.WriteLine("Version1 of Sagas starting. Will exit in 5 seconds. After exist start Phase 2 Endpoint.");
+Console.WriteLine("Version1 of Sagas starting. Will exit in 5 seconds. After exit, start Phase 2 Endpoint.");
 
 #region startSagas
 var startReplySaga = new StartReplySaga
