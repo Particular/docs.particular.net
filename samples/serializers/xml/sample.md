@@ -1,14 +1,14 @@
 ---
 title: XML Serializer sample
 summary: NServiceBus sample that shows how to use the default NServiceBus XML serializer
-reviewed: 2022-03-25
+reviewed: 2023-01-31
 component: Xml
 related:
 - nservicebus/serialization
 - nservicebus/serialization/xml
 ---
 
-This sample uses the default NServiceBus XML serializer in the core.
+This sample demonstrates the built-in NServiceBus XML serializer.
 
 ## Configuring to use XML
 

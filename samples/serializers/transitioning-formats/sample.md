@@ -1,7 +1,7 @@
 ---
 title: Transition serialization formats
 summary: An approach for introducing a breaking change to message serialization with no downtime
-reviewed: 2023-02-10
+reviewed: 2024-01-31
 component: Core
 related:
 - nservicebus/serialization
@@ -9,9 +9,9 @@ related:
 
 This sample illustrates an approach for introducing a breaking change to the [message serialization](/nservicebus/serialization/) format in a way that requires no endpoint downtime and no manipulation of message bodies.
 
-NOTE: This sample uses four "SamplePhase" endpoint projects to illustrate the iterations of a single endpoint in one solution.
+NOTE: This sample uses four "SamplePhase" endpoint projects to illustrate each iteration of a single endpoint over time.
 
-The [external Json.NET serializer](/nservicebus/serialization/newtonsoft.md) is used in this sample, but the phased upgrade approach is applicable to changing the format of any serializer or even moving between different serializers.
+The [external Json.NET serializer](/nservicebus/serialization/newtonsoft.md) is used in this sample, but the phased upgrade approach is applicable to changing the format of any serializer or moving between different serializers.
 
 ## Message contracts
 
@@ -27,7 +27,7 @@ snippet: send-to-both
 
 ## Serialization format change
 
-For demonstration purposes this sample uses a hypothetical scenario where the JSON serialization format needs to change the approach for serializing dictionaries. From using contents for the key and value to using an explicitly named key and value approach.
+This sample uses a hypothetical scenario where the JSON serialization format needs to change how dictionaries are serialized from using contents for the key and value to explicitly named key and value approach.
 
 ### JSON using a standard approach
 
@@ -69,7 +69,7 @@ For demonstration purposes this sample uses a hypothetical scenario where the JS
 
 ### Implementing the change
 
-This is implemented using the [NewtonSoft ContractResolver](https://www.newtonsoft.com/json/help/html/contractresolver.htm) and changing the array contract for the dictionary instead of the default.
+This is implemented using the [NewtonSoft ContractResolver](https://www.newtonsoft.com/json/help/html/contractresolver.htm) that changes the array contract for the dictionary from the default.
 
 snippet: ExtendedResolver
 
@@ -89,7 +89,7 @@ snippet: writer-registration
 
 ## Phases
 
-Note that in production, each of the phases must be applied to every endpoint that need to communicate with the new serialization format. So each endpoint can be, at most, one phase out of sync with any other endpoint it needs to communicate with.
+Note that, in production, each of the phases must be applied to every endpoint that need to communicate with the new serialization format. So each endpoint can be, at most, one phase out of sync with any other endpoint it needs to communicate with.
 
 ### Phase 1
 
