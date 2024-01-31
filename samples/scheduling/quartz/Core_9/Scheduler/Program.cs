@@ -12,6 +12,7 @@ class Program
         Console.Title = "Samples.QuartzScheduler.Scheduler";
         var endpointConfiguration = new EndpointConfiguration("Samples.QuartzScheduler.Scheduler");
         endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         #region Configuration
 

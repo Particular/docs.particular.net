@@ -11,6 +11,7 @@ class Program
         Console.Title = "Samples.HangfireScheduler.Scheduler";
         var endpointConfiguration = new EndpointConfiguration("Samples.HangfireScheduler.Scheduler");
         endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         #region Configuration
 

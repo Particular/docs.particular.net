@@ -63,15 +63,6 @@ The Quartz scheduler should be shut down when the endpoint is stopped.
 snippet: shutdown
 
 
-### Logging
-
-Quartz.NET uses [LibLog](https://github.com/damianh/LibLog). Since LibLog supports the detection and utilization of [Serilog](https://serilog.net/), this sample use the NServiceBus Serilog integration.
-
-snippet: serilog
-
-LibLog [supports many other common logging libraries](https://github.com/damianh/LibLog/wiki#transparent-logging-support). Quartz can also be configured to use a custom logger. See [Adding logging in Quartz.NET](https://www.quartz-scheduler.net/documentation/quartz-3.x/quick-start.html#adding-logging).
-
-
 ### Exception Handling
 
 Quartz recommendations for [Handling Exceptions](https://www.quartz-scheduler.net/documentation/best-practices.html#throwing-exceptions):
