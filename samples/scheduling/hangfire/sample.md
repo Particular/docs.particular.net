@@ -74,15 +74,6 @@ snippet: shutdown
 The Hangfire scheduler implements the `IDisposable` interface. For cleanup purposes, keep a reference to the scheduler instance and call `Dispose()` at shutdown. Alternatively, use [dependency injection](/nservicebus/dependency-injection/), and let cleanup be automatically be managed.
 
 
-### Logging
-
-Hangfire uses [LibLog](https://github.com/damianh/LibLog). Since LibLog supports the detection and utilization of [Serilog](https://serilog.net/), this sample uses the NServiceBus Serilog integration.
-
-snippet: serilog
-
-LibLog [supports many other common logging libraries](https://github.com/damianh/LibLog/wiki#transparent-logging-support). Hangfire can also be configured to use a custom logger. See [Adding logging in Hangfire](https://docs.hangfire.io/en/latest/configuration/configuring-logging.html).
-
-
 ## Scale Out
 
 Note that in this sample, an instance of the Hangfire scheduler is configured to run in every endpoint's instance. If an endpoint is [scaled out](/nservicebus/scaling.md), then the configured jobs will be executed by each of the running instances. A persistent [job storage](https://docs.hangfire.io/en/latest/configuration/index.html) can help to manage the Hangfire scheduler shared state, including jobs, triggers, calendars, etc.

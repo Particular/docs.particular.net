@@ -2,15 +2,12 @@
 using System.Threading.Tasks;
 using NServiceBus;
 using Quartz;
-using Serilog;
 
 #region SendMessageJob
 
 public class SendMessageJob :
     IJob
 {
-    static ILogger log = Log.ForContext<SendMessageJob>();
-
     public async Task Execute(IJobExecutionContext context)
     {
         try
@@ -22,7 +19,7 @@ public class SendMessageJob :
         }
         catch (Exception exception)
         {
-            log.Fatal(exception, "Execution Failed");
+            Console.WriteLine($"Execution Failed: {exception.Message}");
             // TODO: handle exception and dont throw.
             // consider implementing a circuit breaker
             throw;

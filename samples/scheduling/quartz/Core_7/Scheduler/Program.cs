@@ -1,26 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
-using NServiceBus.Serilog;
 using Quartz;
 using Quartz.Impl;
-using Serilog;
-using Serilog.Sinks.SystemConsole.Themes;
+using Quartz.Logging;
 
 class Program
 {
     static async Task Main()
     {
-        #region serilog
-
-        Log.Logger = new LoggerConfiguration()
-            .WriteTo.Console(outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {Message}{NewLine}{Exception}", theme: AnsiConsoleTheme.Sixteen)
-            .CreateLogger();
-        LogManager.Use<SerilogFactory>();
-
-        #endregion
-
         Console.Title = "Samples.QuartzScheduler.Scheduler";
         var endpointConfiguration = new EndpointConfiguration("Samples.QuartzScheduler.Scheduler");
         endpointConfiguration.UseTransport<LearningTransport>();
@@ -29,6 +17,8 @@ class Program
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
+
+        LogProvider.SetCurrentLogProvider(new QuartzConsoleLogProvider());
 
         var schedulerFactory = new StdSchedulerFactory();
 
@@ -77,7 +67,6 @@ class Program
             .ConfigureAwait(false);
         await endpointInstance.Stop()
             .ConfigureAwait(false);
-        Log.CloseAndFlush();
 
         #endregion
     }

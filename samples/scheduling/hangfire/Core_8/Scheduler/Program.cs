@@ -3,24 +3,11 @@ using System.Threading.Tasks;
 using Hangfire;
 using Hangfire.MemoryStorage;
 using NServiceBus;
-using NServiceBus.Logging;
-using NServiceBus.Serilog;
-using Serilog;
-using Serilog.Sinks.SystemConsole.Themes;
 
 class Program
 {
     static async Task Main()
     {
-        #region serilog
-
-        Log.Logger = new LoggerConfiguration()
-            .WriteTo.Console(outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss} [{Level:u3}] {Message}{NewLine}{Exception}", theme: AnsiConsoleTheme.Sixteen)
-            .CreateLogger();
-        LogManager.Use<SerilogFactory>();
-
-        #endregion
-
         Console.Title = "Samples.HangfireScheduler.Scheduler";
         var endpointConfiguration = new EndpointConfiguration("Samples.HangfireScheduler.Scheduler");
         endpointConfiguration.UseTransport(new LearningTransport());
@@ -36,6 +23,8 @@ class Program
         // use in memory storage. Production should use more robust alternatives:
         // SqlServer, Msmq, Redis etc
         GlobalConfiguration.Configuration.UseMemoryStorage();
+
+        GlobalConfiguration.Configuration.UseColouredConsoleLogProvider();
 
         // create and start scheduler instance
         var scheduler = new BackgroundJobServer();
@@ -57,7 +46,6 @@ class Program
         scheduler.Dispose();
         await endpointInstance.Stop()
             .ConfigureAwait(false);
-        Log.CloseAndFlush();
 
         #endregion
     }
