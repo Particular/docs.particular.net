@@ -12,7 +12,7 @@ namespace MyNamespace1
         IAmStartedByMessages<StartTimeoutSaga>,
         IHandleTimeouts<SagaTimeout>
     {
-        static ILog log = LogManager.GetLogger<MyTimeoutSagaVersion1>();
+        readonly static ILog log = LogManager.GetLogger<MyTimeoutSagaVersion1>();
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
         {
@@ -26,7 +26,9 @@ namespace MyNamespace1
             {
                 OriginatingSagaType = GetType().Name
             };
+
             log.Warn("Saga started. Sending Timeout");
+
             return RequestTimeout(context, TimeSpan.FromSeconds(10), timeout);
         }
 

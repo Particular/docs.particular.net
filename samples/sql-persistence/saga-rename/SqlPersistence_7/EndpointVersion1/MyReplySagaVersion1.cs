@@ -12,7 +12,7 @@ namespace MyNamespace1
         IAmStartedByMessages<StartReplySaga>,
         IHandleMessages<Reply>
     {
-        static ILog log = LogManager.GetLogger<MyReplySagaVersion1>();
+        readonly static ILog log = LogManager.GetLogger<MyReplySagaVersion1>();
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
         {
@@ -26,11 +26,14 @@ namespace MyNamespace1
             var sendOptions = new SendOptions();
             sendOptions.RouteToThisEndpoint();
             sendOptions.DelayDeliveryWith(TimeSpan.FromSeconds(10));
+
             var request = new Request
             {
                 TheId = message.TheId
             };
+
             log.Warn("Saga started. Sending Request");
+
             return context.Send(request, sendOptions);
         }
 

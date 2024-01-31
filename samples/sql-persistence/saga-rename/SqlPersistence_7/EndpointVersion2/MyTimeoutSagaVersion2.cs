@@ -11,7 +11,7 @@ namespace MyNamespace2
         IAmStartedByMessages<StartTimeoutSaga>,
         IHandleTimeouts<SagaTimeout>
     {
-        static ILog log = LogManager.GetLogger<MyTimeoutSagaVersion2>();
+        readonly static ILog log = LogManager.GetLogger<MyTimeoutSagaVersion2>();
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
         {
@@ -28,6 +28,7 @@ namespace MyNamespace2
         public Task Timeout(SagaTimeout state, IMessageHandlerContext context)
         {
             log.Warn($"Received Timeout from {state.OriginatingSagaType}");
+
             MarkAsComplete();
             return Task.CompletedTask;
         }

@@ -11,7 +11,7 @@ namespace MyNamespace2
         IAmStartedByMessages<StartReplySaga>,
         IHandleMessages<Reply>
     {
-        static ILog log = LogManager.GetLogger<MyReplySagaVersion2>();
+        readonly static ILog log = LogManager.GetLogger<MyReplySagaVersion2>();
 
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
         {
@@ -29,7 +29,9 @@ namespace MyNamespace2
         public Task Handle(Reply reply, IMessageHandlerContext context)
         {
             log.Warn($"Received Reply from {reply.OriginatingSagaType}");
+
             MarkAsComplete();
+
             return Task.CompletedTask;
         }
 
