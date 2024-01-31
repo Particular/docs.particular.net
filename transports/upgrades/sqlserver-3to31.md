@@ -45,14 +45,14 @@ CREATE NONCLUSTERED INDEX [Index_Due] ON {0}
 EXEC sp_releaseapplock @Resource = '{0}_lock'
 ```
 
-In order to drain all delayed messages sent before upgrading to version 3.1, [Timeout Manager](/nservicebus/messaging/timeout-manager.md) is enabled by default in version 3.1 of the transport. 
+In order to drain all delayed messages sent before upgrading to version 3.1, [Timeout Manager](/nservicebus/messaging/timeout-manager.md) is enabled by default in version 3.1 of the transport.
 
 As some delayed messages can have the due times months or even years in the future it might be advisable to move the messages manually from the old Timeout Manager storage to the native delayed tables. See the [SQL Server Native Delayed Delivery](/transports/sql/native-delayed-delivery.md) article for more details.
 
 
 ### SQL Server
 
-If SQL Server was used as a backing store for the Timeout Manager, either via [NHibernate persistence](/persistence/nhibernate/) or [SQL persistence](/persistence/sql), refer to [the native timeout migration](/samples/sqltransport/native-timeout-migration/) sample for details. 
+If SQL Server was used as a backing store for the Timeout Manager, either via [NHibernate persistence](/persistence/nhibernate/) or [SQL persistence](/persistence/sql), refer to [the timeouts migration tool documentation](/nservicebus/tools/migrate-to-native-delivery.md) for details.
 
 
 ### Other databases

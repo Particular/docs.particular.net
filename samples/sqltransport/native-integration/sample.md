@@ -1,19 +1,18 @@
 ---
 title: SQL Server transport native integration sample
 summary: Integrating natively with the SQL Server transport.
-reviewed: 2021-03-02
+reviewed: 2024-01-31
 component: SqlTransport
 isLearningPath: true
 related:
 - transports/sql
 ---
 
-This sample demonstrates how to send messages to an endpoint running on the [SqlServer Transport](/transports/sql) directly from the database using T-SQL statements. This enables integrating event-driven messaging endpoints within a legacy SQL application where most application logic is embedded within database stored procedures, even allowing messages to be sent as a result of database triggers.
+This sample demonstrates how to send messages to an endpoint running on the [SqlServer Transport](/transports/sql) directly from the database using T-SQL statements. This enables integrating event-driven messaging endpoints within a legacy SQL application where most application logic is embedded within stored procedures, even allowing messages to be sent as a result of database triggers.
 
 The sample also shows how to natively send messages using [ADO.NET](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview), such as from a utility application or batch job.
 
 downloadbutton
-
 
 ## Prerequisites
 
@@ -24,27 +23,25 @@ The database created by this sample is `NsbSamplesSqlNativeIntegration`.
 ## Running the sample
 
  1. Start the Receiver project.
- 1. In the Receiver's console notice `Press enter to send a message. Press any key to exit` text when the app is ready.
- 1. Hit enter key.
- 1. A message will be sent using ADO.NET and be received by the app.
- 1. Open SQL Server Management Studio and go to the `NsbSamplesSqlNativeIntegration` database.
- 1. Open the Scripts.sql included in the sample.
- 1. Run the `SendFromTSQL` statement.
- 1. Notice how the app shows that a new message has been processed.
- 1. Create the `Orders` table using the `CreateLegacyTable` statement.
- 1. Create the insert trigger using the `CreateTrigger` statement.
- 1. Right click the table just created and do `Edit top X rows`.
- 1. Notice that a message is received by the app for each "order" created.
-
+ 2. In the Receiver's console notice `Press enter to send a message. Press any key to exit` when the app is ready.
+ 3. Hit the enter key.
+ 4. A message will be sent using ADO.NET and be received by the app.
+ 5. Open SQL Server Management Studio and go to the `NsbSamplesSqlNativeIntegration` database.
+ 6. Open the Scripts.sql included in the sample.
+ 7. Run the `SendFromTSQL` statement.
+ 8. Notice how the app shows that a new message has been processed.
+ 9. Create the `Orders` table using the `CreateLegacyTable` statement.
+ 10. Create the insert trigger using the `CreateTrigger` statement.
+ 11. Right-click the table just created and `Edit top X rows`.
+ 12. Notice that a message is received by the app for each "order" created.
 
 ## Code walk-through
 
-The first thing when doing native integration with the SQL Server transport is figure out where to insert the "message". The database and server names can easily be found by looking at the connection string and the table name is, by default, the same as the endpoint's name. The endpoint configuration is as follows:
+The first thing when doing native integration with the SQL Server transport is to figure out where to insert the "message". The database and server names can easily be found by looking at the connection string and the table name is, by default, the same as the endpoint's name. The endpoint configuration is as follows:
 
 snippet: EndpointConfiguration
 
 The table would be `Samples.SqlServer.NativeIntegration` in the database `NsbSamplesSqlNativeIntegration` on server `.\sqlexpress` (localhost).
-
 
 ### Serialization
 
@@ -58,10 +55,9 @@ The final step is to tell the serializer what C# class the JSON payload belongs 
 
 snippet: MessagePayload
 
-With this in place the endpoint can now parse the incoming JSON payload to a strongly typed message and invoke the correct message handlers.
+With this in place, the endpoint can now parse the incoming JSON payload to a strongly typed message and invoke the correct message handlers.
 
 See [the message type detection documentation](/nservicebus/messaging/message-type-detection.md) for more details.
-
 
 ### Sending the message
 
@@ -71,13 +67,11 @@ snippet: SendingUsingAdoNet
 
 Armed with this it will be possible to send messages from any app in the organization that supports ADO.NET.
 
-
 ## Sending from within the database
 
 Sometimes it is necessary to integrate with old legacy apps where performing sends straight from within the database itself might be a better approach. Just execute the following SQL statement and notice how the message is consumed by the NServiceBus endpoint.
 
 snippet: SendFromTSQL
-
 
 ### Using triggers to emit messages
 
@@ -87,10 +81,10 @@ Create a fictive `Orders` table using:
 
 snippet: CreateLegacyTable
 
-And create an `on inserted` trigger that will send a `LegacyOrderDetected` message for each new order that is added to the table:
+Create an `on inserted` trigger that will send a `LegacyOrderDetected` message for each new order that is added to the table:
 
 snippet: CreateTrigger
 
 Notice a unique message ID is generated by hashing the identity column. NServiceBus requires each message to have a unique ID in order to safely perform retries.
 
-Add a few orders to the table and the app receives the messages. In a real life scenario the trigger would likely do a `Publish` to push an `OrderAccepted` event out on the queue.
+Add a few orders to the table and the app receives the messages. In a real-life scenario, the trigger would likely do a `Publish` to push an `OrderAccepted` event out on the queue.
