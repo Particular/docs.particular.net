@@ -3,7 +3,7 @@ title: Migration from Azure Storage Table to Azure Cosmos DB Table API
 component: ASP
 related:
 - persistence/azure-table
-reviewed: 2020-11-17
+reviewed: 2024-02-01
 ---
 
 WARN: The endpoint being migrated must be offline while migrating saga data. The saga data must be using secondary indexes (introduced in Azure Table Persistence 2.x) or be stored with Azure Table Persistence Version 3 or higher for this upgrade guide to succeed. The migration scenario described assumes only saga data of a one saga is stored per table.

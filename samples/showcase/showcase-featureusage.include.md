@@ -21,4 +21,4 @@ The use of message headers and message mutator is illustrated when the user clic
 
 ### Encryption
 
-The use of encryption is illustrated by passing in the credit card number and the expiration date from the web site. The UnobtrusiveConventions defined in the ECommerce endpoint show how to treat certain properties as encrypted. Both the ECommerce and the Sales endpoint use Rijndael encryption and the encryption key is provided in the config file. If the messages are inspected in the queue, both the credit card number and the expiration date will show the encrypted values.
+The use of encryption is illustrated by passing in the credit card number and the expiration date from the website. The UnobtrusiveConventions defined in the ECommerce endpoint show how to treat certain properties as encrypted. Both the ECommerce and the Sales endpoint use Rijndael encryption and the encryption key is provided in the config file. If the messages are inspected in the queue, both the credit card number and the expiration date will show the encrypted values.

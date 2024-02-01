@@ -3,13 +3,13 @@ title: Migration from Azure Table Persistence
 component: CosmosDB
 related:
 - persistence/azure-table
-reviewed: 2020-11-17
+reviewed: 2024-02-01
 redirects:
 - previews/cosmosdb/migration-from-azure-storage
 - previews/cosmosdb/migration-from-azure-table
 ---
 
-For existing system running in Azure and using [Azure Table Persistence](/persistence/azure-table) where a migration to Azure Cosmos DB SQL API is desired, a multi-step migration process is recommended, using Particular and Azure Cosmos DB tools.
+For existing system running in Azure and using [Azure Table Persistence](/persistence/azure-table), where a migration to Azure Cosmos DB SQL API is desired, a multi-step migration process is recommended, using Particular and Azure Cosmos DB tools.
 
 WARN: The endpoint being migrated must be offline while migrating saga data. The saga data must be using secondary indexes (introduced in Azure Table Persistence 2.x) or be stored with Azure Table Persistence Version 3 or higher for this upgrade guide to succeed. The migration scenario described assumes only saga data of a one saga is stored per table.
 
@@ -89,7 +89,7 @@ WARN: Dates stored using `DateTimeOffset` data type are susceptible to incorrect
 
 [Auto-correlated messages](/nservicebus/sagas/message-correlation.md#auto-correlation) include the saga ID in the [message headers](/nservicebus/messaging/headers.md#saga-related-headers-replying-to-a-saga). For unprocessed auto-correlated messages sent prior to migration, this may result in a saga not found error, since the saga ID contained in the message headers is not the [new saga ID](#export-data-exported-saga-id) expected by the Cosmos DB persister.
 
-By enabling migration mode only for auto correlated messages, the saga persister will attempt to query the collection using the [original saga ID in the saga metadata](#export-data-exported-saga-id) when the saga is not found. Messages [explicitly mapped using the `ConfigureHowToFindSaga` method](/nservicebus/sagas/message-correlation.md) do not require the additional query.
+By enabling migration mode only for auto-correlated messages, the saga persister will attempt to query the collection using the [original saga ID in the saga metadata](#export-data-exported-saga-id) when the saga is not found. Messages [explicitly mapped using the `ConfigureHowToFindSaga` method](/nservicebus/sagas/message-correlation.md) do not require the additional query.
 
 NOTE: Querying by the original saga ID with migration mode will incur additional RU usage on the collection.
 

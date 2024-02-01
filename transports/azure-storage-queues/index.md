@@ -5,7 +5,7 @@ component: ASQ
 related:
  - samples/azure/storage-queues
  - samples/azure/native-integration-asq
-reviewed: 2020-11-12
+reviewed: 2024-02-01
 redirects:
  - nservicebus/azure-storage-queues
 ---

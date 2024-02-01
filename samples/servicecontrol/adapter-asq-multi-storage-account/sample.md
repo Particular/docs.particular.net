@@ -2,7 +2,7 @@
 title: Monitor Azure Storage Queues endpoints with ServiceControl adapter
 summary: Centralized monitoring of Azure Storage Queues endpoints with ServiceControl adapter
 component: SCTransportAdapter
-reviewed: 2020-11-16
+reviewed: 2024-02-01
 related:
  - servicecontrol
  - servicecontrol/transport-adapter
@@ -37,9 +37,9 @@ graph RL
   sc .-> adapter
 ```
 
-Notice that ServiceControl is in a different namespace than the other endpoints, which means that it can't natively communicate with the `Sales` and `Shipping` endpoints. This sample shows how to create an adapter to bridge the gap.
+Notice that ServiceControl is in a different namespace than the other endpoints, meaning it can't natively communicate with the `Sales` and `Shipping` endpoints. This sample shows how to create an adapter to bridge the gap.
 
-The adapter also deals with advanced features of the Azure Storage Queues transport such as [multi-storage accounts](/transports/azure-storage-queues/multi-storageaccount-support.md) and [secure connection strings](/transports/azure-storage-queues/configuration.md#connection-strings-using-aliases-for-connection-strings-to-storage-accounts).
+The adapter also deals with advanced features of the Azure Storage Queues transport, such as [multi-storage accounts](/transports/azure-storage-queues/multi-storageaccount-support.md) and [secure connection strings](/transports/azure-storage-queues/configuration.md#connection-strings-using-aliases-for-connection-strings-to-storage-accounts).
 
 
 ## Prerequisites

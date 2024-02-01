@@ -2,7 +2,7 @@
 title: Configuration
 component: ASP
 summary: Configuring Azure Storage as persistence
-reviewed: 2020-11-19
+reviewed: 2024-02-01
 redirects:
  - nservicebus/azure-storage-persistence/configuration
 ---
