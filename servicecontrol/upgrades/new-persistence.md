@@ -25,6 +25,6 @@ Audit instances created using ServiceControl version 4.25 and below use the old 
 
 The persistence format of an instance can be verified using ServiceControl Management or the `Get-ServiceControlAuditInstances` powershell cmdlet after installing ServiceControl 4.26 or above.
 
-If the value is `RavenDB 5` then the instance is using the new persistence format and does not require upgrading.
+If the value is `RavenDB 5` (ServiceControl 4.x) or `RavenDB` (ServiceControl 5.x or later) then the instance is using the new persistence format and does not require upgrading.
 
 If the value is `RavenDB 3.5` then the instance is using the old persistence format and should follow the [instructions above](#how-to-switch-to-the-new-persistence-format) to migrate to the new persistence format.
