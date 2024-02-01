@@ -79,8 +79,7 @@ Additionally, each endpoint can send [heartbeat](/monitoring/heartbeats/), [heal
 
 The [real-time monitoring demo](https://particular.net/real-time-monitoring) provides the ability to experience the Service Platform in action. The [Platform Sample package](/platform/platform-sample-package.md) provides the ability to demonstrate the Service Platform from within any Visual Studio solution, without the need to install anything.
 
-## NServiceBus QuickStart tutorial
+## See it in action
 
-See how NServiceBus takes all the grunt work out of system design by handling all of the infrastructure complexity, taking system design best practices like reliability, failure recovery, and extensibility and baking them right into the software, providing guidance toward the pit of success.
-
-**[Check out the QuickStart tutorial →](/tutorials/quickstart/)**
+* **[Quickstart tutorial](/tutorials/quickstart/)** - Get a tour through an NServiceBus solution covering all the elements of one-way messaging, publish-subscribe, and automatic recovery from exceptions.
+* **[(Video) Live coding your first NServiceBus system](https://particular.net/webinars/live-coding-your-first-nservicebus-system)** - For those who prefer to lay back and watch an experienced developer build a messaging system with NServiceBus.
