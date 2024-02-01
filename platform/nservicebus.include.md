@@ -82,4 +82,4 @@ The [real-time monitoring demo](https://particular.net/real-time-monitoring) pro
 ## See it in action
 
 * **[Quickstart tutorial](/tutorials/quickstart/)** - Get a tour through an NServiceBus solution covering all the elements of one-way messaging, publish-subscribe, and automatic recovery from exceptions.
-* **[(Video) Live coding your first NServiceBus system](https://particular.net/webinars/live-coding-your-first-nservicebus-system)** - For those who prefer to lay back and watch an experienced developer build a messaging system with NServiceBus.
+* **[(Video) Live coding an NServiceBus system](https://particular.net/webinars/live-coding-your-first-nservicebus-system)** - For those who prefer to sit back and watch an experienced developer build a messaging system with NServiceBus.
