@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
@@ -8,8 +8,10 @@ namespace Receiver
 {
     class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
+            await ProceedIfBrokerIsAlive.WaitForBroker("rabbitmq");
+
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -22,7 +24,6 @@ namespace Receiver
                     logging.AddConsole();
                     logging.SetMinimumLevel(LogLevel.Information);
                 })
-                .ConfigureServices(services => services.AddSingleton<IHostedService>(new ProceedIfRabbitMqIsAlive("rabbitmq")))
                 .UseNServiceBus(ctx =>
                 {
                     var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Receiver");

@@ -1,5 +1,5 @@
-using NServiceBus;
 using System;
+using NServiceBus;
 
 namespace Shared
 {

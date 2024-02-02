@@ -89,22 +89,9 @@ NServiceBus can be hosted in a WebJob. See [Self-Hosting in Azure WebJobs](/samp
 
 NServiceBus can be hosted in several serverless environments such as [Azure Functions](/nservicebus/hosting/azure-functions-service-bus/) and [AWS Lambda](/nservicebus/hosting/aws-lambda-simple-queue-service/).
 
-### Multi-hosting
-
-"Multi-hosting" refers to hosting multiple NServiceBus endpoints in a single .NET process.
-
-It is safe for multiple endpoints to share the same AppDomain or use multiple AppDomains.
-
-Related:
-
- * [Multi-Hosting in the generic host](/samples/hosting/generic-multi-hosting/).
-
-partial: reusing-endpointconfig
-
 ### Accessing the bus
 
 Most usages of the bus will occur where the NServiceBus APIs are used, for example [handlers](/nservicebus/handlers/) and [sagas](/nservicebus/sagas/). However, there are other scenarios that may require an alternate approach where the user needs to directly access the bus from outside of the framework.
-
 
 #### Static variable
 

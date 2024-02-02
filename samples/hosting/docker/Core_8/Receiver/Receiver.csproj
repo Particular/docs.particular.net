@@ -1,20 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net7.0</TargetFramework>
+    <TargetFrameworks>net7.0;net6.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <LangVersion>11.0</LangVersion>
+    <LangVersion>10.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Microsoft.Net.Build.Containers" Version="8.*" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.*" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.*" />
     <PackageReference Include="NServiceBus.RabbitMQ" Version="8.*" />
-  </ItemGroup>
-  <ItemGroup Label="Transitive references">
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="RabbitMQ.Client" Version="6.*" />
   </ItemGroup>
   <ItemGroup>

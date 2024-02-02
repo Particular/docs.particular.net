@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
@@ -8,8 +9,10 @@ namespace Sender
 {
     class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
+            await ProceedIfBrokerIsAlive.WaitForBroker("rabbitmq");
+
             CreateHostBuilder(args).Build().Run();
         }
 
@@ -22,7 +25,6 @@ namespace Sender
                     logging.AddConsole();
                     logging.SetMinimumLevel(LogLevel.Information);
                 })
-                .ConfigureServices(sp => sp.AddSingleton<IHostedService>(new ProceedIfRabbitMqIsAlive("rabbitmq")))
                 .UseNServiceBus(ctx =>
                 {
                     var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Sender");
