@@ -1,9 +1,9 @@
-﻿using NServiceBus.CustomChecks;
-using NServiceBus.Logging;
-using System;
+﻿using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using NServiceBus.CustomChecks;
+using NServiceBus.Logging;
 
 #region thecustomcheck
 
