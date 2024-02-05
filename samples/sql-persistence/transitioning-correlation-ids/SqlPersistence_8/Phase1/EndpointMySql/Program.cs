@@ -10,6 +10,7 @@ partial class Program
         Console.Title = "EndpointMySql";
 
         var endpointConfiguration = new EndpointConfiguration("EndpointMySql");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.EnableInstallers();

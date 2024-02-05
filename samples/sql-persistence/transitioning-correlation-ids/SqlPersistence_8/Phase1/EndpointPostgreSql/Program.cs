@@ -12,6 +12,7 @@ partial class Program
 
         var endpointConfiguration = new EndpointConfiguration("EndpointPostgreSql");
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.EnableInstallers();
 
