@@ -13,24 +13,32 @@ partial class Program
 
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.EnableInstallers();
+
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+
         var password = Environment.GetEnvironmentVariable("OraclePassword");
+
         if (string.IsNullOrWhiteSpace(password))
         {
             throw new Exception("Could not extract 'OraclePassword' from Environment variables.");
         }
+
         var username = Environment.GetEnvironmentVariable("OracleUserName");
+
         if (string.IsNullOrWhiteSpace(username))
         {
             throw new Exception("Could not extract 'OracleUserName' from Environment variables.");
         }
+
         var connection = $"Data Source=localhost;User Id={username}; Password={password}; Enlist=false";
+
         persistence.SqlDialect<SqlDialect.Oracle>();
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
                 return new OracleConnection(connection);
             });
+
         var subscriptions = persistence.SubscriptionSettings();
         subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
@@ -39,6 +47,7 @@ partial class Program
 
         await SendMessage(endpointInstance)
             .ConfigureAwait(false);
+
         Console.WriteLine("StartOrder Message sent");
 
         Console.WriteLine("Press any key to exit");

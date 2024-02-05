@@ -10,7 +10,7 @@ public class OrderSaga :
     Saga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>
 {
-    static ILog log = LogManager.GetLogger<OrderSaga>();
+    readonly static ILog log = LogManager.GetLogger<OrderSaga>();
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
