@@ -9,6 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="npgsql" Version="4.*" />
+    <PackageReference Include="npgsql" Version="8.*" />
   </ItemGroup>
 </Project>
