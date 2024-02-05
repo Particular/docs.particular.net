@@ -34,6 +34,8 @@ partial class Program
         var subscriptions = persistence.SubscriptionSettings();
         subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
+        SqlHelper.EnsureDatabaseExists(connection);
+
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
 

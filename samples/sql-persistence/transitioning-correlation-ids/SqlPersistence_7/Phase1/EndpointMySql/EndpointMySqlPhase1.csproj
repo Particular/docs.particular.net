@@ -6,6 +6,9 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\SharedPhase1.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MySql.Data" Version="6.*" ExcludeAssets="contentFiles" />
   </ItemGroup>
 </Project>

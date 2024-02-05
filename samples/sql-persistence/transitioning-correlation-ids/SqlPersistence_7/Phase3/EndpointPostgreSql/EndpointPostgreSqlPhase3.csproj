@@ -10,5 +10,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\Phase1\EndpointPostgreSql\Program.cs" />
+    <Compile Include="..\..\Phase1\EndpointPostgreSql\SqlHelper.cs" />
   </ItemGroup>
 </Project>
