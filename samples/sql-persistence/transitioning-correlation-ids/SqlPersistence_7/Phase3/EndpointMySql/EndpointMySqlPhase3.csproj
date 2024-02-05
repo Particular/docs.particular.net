@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MySql.Data" Version="6.*" ExcludeAssets="contentFiles" />
+    <PackageReference Include="MySql.Data" Version="8.*" ExcludeAssets="contentFiles" />
   </ItemGroup>
 
   <ItemGroup>
