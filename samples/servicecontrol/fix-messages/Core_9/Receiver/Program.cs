@@ -1,42 +1,31 @@
 using System;
-using System.Threading.Tasks;
 using NServiceBus;
 
-class Program
-{
-    static async Task Main()
+Console.Title = "Receiver";
+var endpointConfiguration = new EndpointConfiguration("FixMalformedMessages.Receiver");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport<LearningTransport>();
+
+#region DisableRetries
+
+var recoverability = endpointConfiguration.Recoverability();
+
+recoverability.Delayed(
+    customizations: retriesSettings =>
     {
-        Console.Title = "Receiver";
-        var endpointConfiguration = new EndpointConfiguration("FixMalformedMessages.Receiver");
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        retriesSettings.NumberOfRetries(0);
+    });
+recoverability.Immediate(
+    customizations: retriesSettings =>
+    {
+        retriesSettings.NumberOfRetries(0);
+    });
 
-        #region DisableRetries
+#endregion
 
-        var recoverability = endpointConfiguration.Recoverability();
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-        recoverability.Delayed(
-            customizations: retriesSettings =>
-            {
-                retriesSettings.NumberOfRetries(0);
-            });
-        recoverability.Immediate(
-            customizations: retriesSettings =>
-            {
-                retriesSettings.NumberOfRetries(0);
-            });
+Console.WriteLine("Press 'Enter' to finish.");
+Console.ReadLine();
 
-        #endregion
-
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
-
-        Console.WriteLine("Press 'Enter' to finish.");
-        Console.ReadLine();
-
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
-    }
-}
+await endpointInstance.Stop();

@@ -10,8 +10,6 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("FixMalformedMessages.Receiver");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
 
         #region DisableRetries
 

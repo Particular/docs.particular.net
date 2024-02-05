@@ -9,8 +9,6 @@ class Program
         Console.Title = "MessageRepairingEndpoint";
         var endpointConfiguration = new EndpointConfiguration("FixMalformedMessages.MessageRepairingEndpoint");
         endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);

@@ -49,7 +49,6 @@ class Program3rdParty
         }
     }
 
-
     static void ListenerCallback(IAsyncResult result)
     {
         if (!listener.IsListening)
