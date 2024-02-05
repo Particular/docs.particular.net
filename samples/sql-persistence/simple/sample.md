@@ -1,7 +1,7 @@
 ---
 title: Simple SQL Persistence Usage
 summary: Using SQL Persistence to store sagas and timeouts.
-reviewed: 2023-01-10
+reviewed: 2024-02-01
 component: SqlPersistence
 related:
  - nservicebus/sagas
@@ -34,7 +34,7 @@ Contains the `OrderSaga` functionality and is referenced by the Server endpoints
 
 
 ### Server projects
- 
+
  * `EndpointMySql`, `EndpointSqlServer`, and `EndpointOracle` projects act as "servers" to run the saga instance.
  * Receive the `StartOrder` message and initiate an `OrderSaga`.
  * `OrderSaga` requests a timeout with an instance of `CompleteOrder` with the saga data.
