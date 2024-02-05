@@ -1,7 +1,6 @@
 ---
 title: "NServiceBus Quick Start"
-reviewed: 2022-06-28
-isLearningPath: true
+reviewed: 2024-01-31
 summary: See why software systems built on asynchronous messaging using NServiceBus are superior to traditional synchronous HTTP-based web services.
 extensions:
 - !!tutorial
@@ -18,6 +17,11 @@ In less than an hour, the demo retail store project will show you how to:
 * Create a system that can be easily extended as new requirements are added
 
 If you've already experienced the benefits of messaging, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
+
+{{NOTE:
+* If you haven't read about NServiceBus yet, we recommend to first [check this overview](https://particular.net/nservicebus).
+* While following this tutorial, it is recommended to keep the [glossary of messaging terms](/nservicebus/concepts/glossary.md) at hand to easily understand any new concepts.
+}}
 
 ## Download demo
 

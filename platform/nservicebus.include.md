@@ -1,4 +1,8 @@
-NServiceBus is the heart of a distributed system and the Particular Service Platform. It helps create systems that are scalable, reliable, and flexible.
+NServiceBus is the heart of a distributed system and the Particular Service Platform. It helps create systems that are scalable, reliable, and flexible. Adding NServiceBus to a project can be done via NuGet:
+
+```ps
+PM> Install-Package NServiceBus
+```
 
 At its core, NServiceBus works by routing _messages_ between _endpoints_. [Messages](/nservicebus/concepts/glossary.md#message) are plain C# classes that contain meaningful data for the business process that is being modeled.
 
@@ -65,8 +69,6 @@ NServiceBus works with many different technology stacks, offering choices for [t
 
 The NServiceBus message processing and dispatching pipeline is modular and extensible. [Message mutators](/nservicebus/pipeline/message-mutators.md) inject code into the pipeline to modify messages as they are being sent or received. More complex pipeline manipulation can be done with [behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md). NServiceBus extensions can be packaged up as [features](/nservicebus/pipeline/features.md), which can add behaviors to the pipeline and create tasks that get run when an endpoint starts and stops. Many of the existing capabilities of NServiceBus are implemented as behaviors and features.
 
-
-
 ## Particular Service Platform
 
 NServiceBus is designed to work with the rest of the Particular Service Platform. All messages are instrumented with additional [headers](/nservicebus/messaging/headers.md) detailing key information about the message and how it was processed. As each message is processed it is forwarded to an [audit queue](/nservicebus/operations/auditing.md), where it is picked up by [ServiceControl](/servicecontrol/). [ServiceInsight](/serviceinsight/) connects to a ServiceControl instance to provide powerful visualizations of a running NServiceBus system, making it easy to understand message flows and timing.
@@ -76,3 +78,8 @@ When a message fails to be processed, even after a number of retry strategies ha
 Additionally, each endpoint can send [heartbeat](/monitoring/heartbeats/), [health check](/monitoring/custom-checks/), and [performance metrics](/monitoring/metrics/) through the platform for visualization in ServicePulse, making it easy to see which endpoints are offline, which are ready to scale out, and which require manual intervention.
 
 The [real-time monitoring demo](https://particular.net/real-time-monitoring) provides the ability to experience the Service Platform in action. The [Platform Sample package](/platform/platform-sample-package.md) provides the ability to demonstrate the Service Platform from within any Visual Studio solution, without the need to install anything.
+
+## See it in action
+
+* **[Quickstart tutorial](/tutorials/quickstart/)** - Get a tour through an NServiceBus solution covering all the elements of one-way messaging, publish-subscribe, and automatic recovery from exceptions.
+* **[(Video) Live coding an NServiceBus system](https://particular.net/webinars/live-coding-your-first-nservicebus-system)** - For those who prefer to sit back and watch an experienced developer build a messaging system with NServiceBus.
