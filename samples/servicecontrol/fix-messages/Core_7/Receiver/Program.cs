@@ -9,8 +9,6 @@ class Program
         Console.Title = "Receiver";
         var endpointConfiguration = new EndpointConfiguration("FixMalformedMessages.Receiver");
         endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
 
         #region DisableRetries
 

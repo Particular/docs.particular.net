@@ -18,7 +18,7 @@ public class SimpleMessageHandler :
         log.Info($"Forwarding repaired message with Id = {message.Id} to the Receiver.");
 
         return context.Send("FixMalformedMessages.Receiver", message);
-        
+
         #endregion
     }
 }

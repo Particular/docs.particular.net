@@ -8,8 +8,6 @@ class Program
     {
         Console.Title = "Sender";
         var endpointConfiguration = new EndpointConfiguration("FixMalformedMessages.Sender");
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         var routing = endpointConfiguration.UseTransport<LearningTransport>().Routing();
         routing.RouteToEndpoint(typeof(SimpleMessage), "FixMalformedMessages.Receiver");

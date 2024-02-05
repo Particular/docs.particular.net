@@ -1,1 +1,0 @@
-The status of the custom check is also reported to ServiceControl, and can be viewed in ServicePulse. In the browser window, navigate to the ServicePulse **Custom Checks** page to see the status change from success to error. The ServicePulse **Dashboard** page provides the overall status of custom checks.

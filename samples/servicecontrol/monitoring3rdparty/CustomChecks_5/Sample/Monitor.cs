@@ -7,12 +7,11 @@ using NServiceBus.Logging;
 
 #region thecustomcheck
 
-class ThirdPartyMonitor :
-    CustomCheck
+class ThirdPartyMonitor : CustomCheck
 {
     const string url = "http://localhost:57789";
-    static ILog log = LogManager.GetLogger<ThirdPartyMonitor>();
-    static HttpClient client = new HttpClient { Timeout = TimeSpan.FromSeconds(3) };
+    static readonly ILog log = LogManager.GetLogger<ThirdPartyMonitor>();
+    static readonly HttpClient client = new() { Timeout = TimeSpan.FromSeconds(3) };
 
     public ThirdPartyMonitor()
         : base(
@@ -26,18 +25,17 @@ class ThirdPartyMonitor :
     {
         try
         {
-            using (var response = await client.GetAsync(url)
-                .ConfigureAwait(false))
+            using var response = await client.GetAsync(url, cancellationToken);
+
+            if (response.IsSuccessStatusCode)
             {
-                if (response.IsSuccessStatusCode)
-                {
-                    log.Info($"Succeeded in contacting {url}");
-                    return CheckResult.Pass;
-                }
-                var error = $"Failed to contact '{url}'. HttpStatusCode: {response.StatusCode}";
-                log.Info(error);
-                return CheckResult.Failed(error);
+                log.Info($"Succeeded in contacting {url}");
+                return CheckResult.Pass;
             }
+
+            var error = $"Failed to contact '{url}'. HttpStatusCode: {response.StatusCode}";
+            log.Info(error);
+            return CheckResult.Failed(error);
         }
         catch (Exception exception)
         {
