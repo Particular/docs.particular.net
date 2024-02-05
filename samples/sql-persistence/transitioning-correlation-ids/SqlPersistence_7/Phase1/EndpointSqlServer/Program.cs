@@ -11,6 +11,7 @@ partial class Program
 
         var endpointConfiguration = new EndpointConfiguration("EndpointSqlServer");
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.EnableInstallers();
 
