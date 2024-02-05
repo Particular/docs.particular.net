@@ -6,6 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\ServerShared\ServerShared.csproj" />
-    <PackageReference Include="MySql.Data" Version="6.*" />
+    <PackageReference Include="MySql.Data" Version="8.*" />
   </ItemGroup>
 </Project>

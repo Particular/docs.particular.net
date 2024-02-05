@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net7.0;net6.0;net48</TargetFrameworks>
     <OutputType>Exe</OutputType>
@@ -6,6 +6,9 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\ServerShared\ServerShared.csproj" />
-    <PackageReference Include="npgsql" Version="4.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="npgsql" Version="8.*" />
   </ItemGroup>
 </Project>
