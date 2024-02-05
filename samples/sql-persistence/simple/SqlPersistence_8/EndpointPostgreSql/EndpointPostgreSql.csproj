@@ -6,6 +6,9 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\ServerShared\ServerShared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="npgsql" Version="4.*" />
   </ItemGroup>
 </Project>
