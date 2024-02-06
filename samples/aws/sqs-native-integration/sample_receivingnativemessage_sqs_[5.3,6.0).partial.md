@@ -13,5 +13,3 @@ Next, the handler is invoked. The handler code can also access the native messag
 Note: The message attribute `MessageTypeFullName` might not be available anymore in the `MessageAttributes` collection in recoverability scenarios. Instead, it will be part of the `Headers` collection.
 
 snippet: HandlerAccessingNativeMessage
-
-

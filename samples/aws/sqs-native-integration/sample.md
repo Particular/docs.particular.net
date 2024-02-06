@@ -1,6 +1,6 @@
 ---
 title: AmazonSQS transport native integration sample
-reviewed: 2023-02-16
+reviewed: 2024-02-06
 component: Sqs
 related:
 - transports/sqs

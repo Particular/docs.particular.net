@@ -1,59 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using Amazon.SQS;
 using Amazon.SQS.Model;
-using Newtonsoft.Json;
 
-class Program
+#region NativeMessage
+var MessageToSend = @"{""$type"" : ""NativeIntegration.Receiver.SomeNativeMessage, Receiver"", ""ThisIsTheMessage"": ""Hello world!""}";
+#endregion
+
+Console.Title = "Samples.Sqs.NativeIntegration";
+
+while (true)
 {
-    #region NativeMessage
-    private static readonly string MessageToSend = @"{""$type"" : ""NativeIntegration.Receiver.SomeNativeMessage, Receiver"", ""ThisIsTheMessage"": ""Hello world!""}";
-    #endregion
-
-    static async Task Main()
+    Console.WriteLine("Enter 's' to send a message, enter 'exit' to stop");
+    var line = Console.ReadLine();
+    switch (line?.ToLowerInvariant())
     {
-        Console.Title = "Samples.Sqs.NativeIntegration";
+        case "exit":
+            return;
+        case "s":
 
-        while (true) {
-            Console.WriteLine("Enter 's' to send a message, enter 'exit' to stop");
-            var line = Console.ReadLine();
-            switch (line?.ToLowerInvariant())
-            {
-                case "exit":
-                    return;
-                case "s":
-
-                    #region SendingANativeMessage                   
-                    await SendTo(new Dictionary<string, MessageAttributeValue>
-                    {                        
+            #region SendingANativeMessage                   
+            await SendTo(new Dictionary<string, MessageAttributeValue>
+                    {
                         {"SomeKey", new MessageAttributeValue {DataType = "String", StringValue = "something"}}, //optional attributes that the receiver might need
                     }, MessageToSend);
-                    #endregion
-                    Console.WriteLine("Message was sent.");
-                    break;
-            }
-        }
+            #endregion
+            Console.WriteLine("Message was sent.");
+            break;
     }
+}
 
-    static async Task SendTo(Dictionary<string, MessageAttributeValue> messageAttributeValues, string message)
+static async Task SendTo(Dictionary<string, MessageAttributeValue> messageAttributeValues, string message)
+{
+    using (var sqsClient = new AmazonSQSClient())
     {
-        using (var sqsClient = new AmazonSQSClient())
+        var getQueueUrlResponse = await sqsClient.GetQueueUrlAsync(new GetQueueUrlRequest
         {
-            var getQueueUrlResponse = await sqsClient.GetQueueUrlAsync(new GetQueueUrlRequest
-            {
-                QueueName = "Samples-Sqs-SimpleReceiver" // sanitized queue name
-            }).ConfigureAwait(false);            
+            QueueName = "Samples-Sqs-SimpleReceiver" // sanitized queue name
+        });
 
-            var sendMessageRequest = new SendMessageRequest
-            {
-                QueueUrl = getQueueUrlResponse.QueueUrl,
-                MessageAttributes = messageAttributeValues,
-                MessageBody = message
-            };
+        var sendMessageRequest = new SendMessageRequest
+        {
+            QueueUrl = getQueueUrlResponse.QueueUrl,
+            MessageAttributes = messageAttributeValues,
+            MessageBody = message
+        };
 
-            await sqsClient.SendMessageAsync(sendMessageRequest).ConfigureAwait(false);
-        }
+        await sqsClient.SendMessageAsync(sendMessageRequest);
     }
 }
