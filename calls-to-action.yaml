@@ -17,3 +17,18 @@
   Text: "Join Udi Dahan's in-depth Advanced Distributed Systems Design course"
   ButtonText: 'Learn more about the course'
   Url: 'https://particular.net/adsd'
+
+- Name: interest-apache-kafka
+  Text: "Are you using Apache Kafka for your project?"
+  ButtonText: "Tell us how we can help"
+  Url: "https://2wq02jeoug5.typeform.com/to/bpjaVSDF"
+
+- Name: interest-azure-event-hubs
+  Text: "Are you using Azure Event Hubs for your project?"
+  ButtonText: "Tell us how we can help"
+  Url: "https://2wq02jeoug5.typeform.com/to/bpjaVSDF"
+
+- Name: interest-amazon-kinesis
+  Text: "Are you using Amazon Kinesis for your project?"
+  ButtonText: "Tell us how we can help"
+  Url: "https://2wq02jeoug5.typeform.com/to/bpjaVSDF"
