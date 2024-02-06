@@ -2,7 +2,7 @@
 
 namespace NativeIntegration.Receiver
 {
-    public class SomeNativeMessage : IMessage
+    public class SomeReply : IMessage
     {
         public string ThisIsTheMessage { get; set; }
     }

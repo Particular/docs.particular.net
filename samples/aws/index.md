@@ -1,6 +1,6 @@
 ---
 title: AWS
-reviewed: 2023-10-20
+reviewed: 2024-02-06
 redirects:
 - samples/sqs
 ---
