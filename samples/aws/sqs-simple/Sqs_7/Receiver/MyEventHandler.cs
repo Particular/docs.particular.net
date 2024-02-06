@@ -4,7 +4,7 @@ using NServiceBus.Logging;
 
 public class MyEventHandler : IHandleMessages<MyEvent>
 {
-    static ILog log = LogManager.GetLogger<MyEventHandler>();
+    static readonly ILog log = LogManager.GetLogger<MyEventHandler>();
 
     public Task Handle(MyEvent eventMessage, IMessageHandlerContext context)
     {

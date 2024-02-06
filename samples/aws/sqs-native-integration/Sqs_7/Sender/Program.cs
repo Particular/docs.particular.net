@@ -20,7 +20,7 @@ while (true)
             return;
         case "s":
 
-            #region SendingANativeMessage                   
+            #region SendingANativeMessage
             await SendTo(new Dictionary<string, MessageAttributeValue>
                     {
                         {"SomeKey", new MessageAttributeValue {DataType = "String", StringValue = "something"}}, //optional attributes that the receiver might need

@@ -1,70 +1,52 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using Amazon.SQS;
 using Amazon.SQS.Model;
-using Newtonsoft.Json;
 
-class Program
+#region NativeMessage
+var MessageToSend = @"{""$type"" : ""NativeIntegration.Receiver.SomeNativeMessage, Receiver"", ""ThisIsTheMessage"": ""Hello world!""}";
+#endregion
+
+Console.Title = "Samples.Sqs.NativeIntegration";
+
+while (true)
 {
-    static readonly string MessageToSend = new XDocument(new XElement("NativeIntegration.Receiver.SomeNativeMessage", new XElement("ThisIsTheMessage", "Hello!"))).ToString();
-
-    static async Task Main()
+    Console.WriteLine("Enter 's' to send a message, enter 'exit' to stop");
+    var line = Console.ReadLine();
+    switch (line?.ToLowerInvariant())
     {
-        Console.Title = "Samples.Sqs.NativeIntegration";
+        case "exit":
+            return;
+        case "s":
 
-        while (true) {
-            Console.WriteLine("Enter 'S' to send a message, enter 'exit' to stop");
-            var line = Console.ReadLine();
-            switch (line?.ToLowerInvariant())
-            {
-                case "exit":
-                    return;
-                case "s":
-
-                    #region SendingANativeMessage                   
-                    await SendTo(new Dictionary<string, MessageAttributeValue>
-                    {                        
-                        {"NServiceBus.AmazonSQS.Headers", new MessageAttributeValue {DataType = "String", StringValue = "{}"}}, //required for native integration
-                        {"SomeRandomKey", new MessageAttributeValue {DataType = "String", StringValue = "something-random"}}, //other optional attributes that the receiver might need
+            #region SendingANativeMessage
+            await SendTo(new Dictionary<string, MessageAttributeValue>
+                    {
+                        {"SomeKey", new MessageAttributeValue {DataType = "String", StringValue = "something"}}, //optional attributes that the receiver might need
                     }, MessageToSend);
-                    #endregion
-                    Console.WriteLine("Message was sent.");
-                    break;
-            }
-        }
+            #endregion
+            Console.WriteLine("Message was sent.");
+            break;
     }
+}
 
-    static async Task SendTo(Dictionary<string, MessageAttributeValue> messageAttributeValues, string message)
+static async Task SendTo(Dictionary<string, MessageAttributeValue> messageAttributeValues, string message)
+{
+    using (var sqsClient = new AmazonSQSClient())
     {
-        using (var sqsClient = new AmazonSQSClient())
+        var getQueueUrlResponse = await sqsClient.GetQueueUrlAsync(new GetQueueUrlRequest
         {
-            var getQueueUrlResponse = await sqsClient.GetQueueUrlAsync(new GetQueueUrlRequest
-            {
-                QueueName = "Samples-Sqs-SimpleReceiver" // sanitized queue name
-            }).ConfigureAwait(false);            
+            QueueName = "Samples-Sqs-SimpleReceiver" // sanitized queue name
+        });
 
-            var sendMessageRequest = new SendMessageRequest
-            {
-                QueueUrl = getQueueUrlResponse.QueueUrl,
-                MessageAttributes = messageAttributeValues,
-                MessageBody = message
-            };
-
-            await sqsClient.SendMessageAsync(sendMessageRequest).ConfigureAwait(false);
-        }
-    }
-
-    #region PopulatingNativeReplyToAddress
-    static string CreateHeadersWithReply()
-    {
-        var nsbHeaders = new Dictionary<string, string>
+        var sendMessageRequest = new SendMessageRequest
         {
-            { "NServiceBus.ReplyToAddress", "my-native-endpoint" }, //optional - used to demo replying back to the native endpoint         
+            QueueUrl = getQueueUrlResponse.QueueUrl,
+            MessageAttributes = messageAttributeValues,
+            MessageBody = message
         };
 
-        return JsonConvert.SerializeObject(nsbHeaders, Formatting.None);
+        await sqsClient.SendMessageAsync(sendMessageRequest);
     }
-    #endregion
 }

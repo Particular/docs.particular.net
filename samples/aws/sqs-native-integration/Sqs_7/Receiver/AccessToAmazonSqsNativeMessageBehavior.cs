@@ -7,7 +7,7 @@ using NServiceBus.Pipeline;
 #region BehaviorAccessingNativeMessage
 class AccessToAmazonSqsNativeMessageBehavior : Behavior<IIncomingLogicalMessageContext>
 {
-    static ILog log = LogManager.GetLogger<AccessToAmazonSqsNativeMessageBehavior>();
+    static readonly ILog log = LogManager.GetLogger<AccessToAmazonSqsNativeMessageBehavior>();
 
     public override Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
     {
