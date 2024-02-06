@@ -1,6 +1,6 @@
 ---
 title: Simple AmazonSQS Transport usage
-reviewed: 2021-05-11
+reviewed: 2024-01-06
 component: Sqs
 related:
 - transports/sqs
