@@ -3,9 +3,11 @@
     <TargetFrameworks>net7.0;net6.0;net48</TargetFrameworks>
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="6.*" />
   </ItemGroup>
+
 </Project>

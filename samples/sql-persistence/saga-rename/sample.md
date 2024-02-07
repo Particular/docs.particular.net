@@ -1,7 +1,7 @@
 ---
 title: SQL Persistence Saga Rename
 summary: Renaming a saga that is stored in the SQL Persistence
-reviewed: 2022-09-30
+reviewed: 2024-01-31
 component: SqlPersistence
 related:
  - nservicebus/sagas
@@ -24,22 +24,22 @@ The database created by this sample is `NsbSamplesSqlPersistenceRenameSaga`.
 
 ## Timeout saga
 
-The timeout saga sends a timeout at startup and then handles that timeout. 
+The timeout saga sends a timeout at startup and then handles that timeout.
 
 This saga will be renamed from `MyNamespace1.MyTimeoutSagaVersion1` to `MyNamespace2.MyTimeoutSagaVersion2`.
 
-This scenario illustrates how, when the timeout message is received, its header needs to be translated over the new saga name.
+This scenario demonstrates that when the timeout message is received, its header needs to be translated over the new saga name.
 
 The saga type is stored in the headers of the `TimeoutData` table ([SQL Server](/persistence/sql/sqlserver-scripts.md#build-time-timeout-create-table) and [MySQL](/persistence/sql/mysql-scripts.md#build-time-timeout-create-table)) but will be converted back to a [message header](/nservicebus/messaging/headers.md#saga-related-headers-requesting-a-timeout-from-a-saga) when the timeout is executed.
 
 
 ## Reply saga
 
-The reply saga sends a request at startup and then handles the response for that message. 
+The reply saga sends a request at startup and then handles the response for that message.
 
 This saga will be renamed from `MyNamespace1.MyReplySagaVersion1` to `MyNamespace2.MyReplySagaVersion2`.
 
-This scenario illustrates how, when the [reply message](/nservicebus/messaging/headers.md#saga-related-headers-replying-to-a-saga) is received, its header needs to be translated over the new saga name.
+This scenario demonstrates that when the [reply message](/nservicebus/messaging/headers.md#saga-related-headers-replying-to-a-saga) is received, its header needs to be translated over the new saga name.
 
 
 ## Projects
@@ -80,18 +80,18 @@ snippet: startSagas
 
 #### Reply saga
 
-At startup sends a new Request message. The message is delayed to give EndpointVersion1 time to shut down prior to attempting to handle the Reply message.
+At startup, sends a new Request message. The message is delayed to give EndpointVersion1 time to shut down prior to attempting to handle the Reply message.
 
-The `Handle` method for the Reply message throws an exception since in this sample, steps in that method will not be executed.
+The `Handle` method for the Reply message throws an exception since in this sample, this handler will not be executed.
 
 snippet: replySaga1
 
 
 #### Timeout saga
 
-At startup requests a `SagaTimeout`. The timeout is delayed to give EndpointVersion1 time to shut down prior to attempting to handle the timeout.
+At startup, requests a `SagaTimeout`. The timeout is delayed to give EndpointVersion1 time to shut down prior to attempting to handle the timeout.
 
-The `Handle` method for the SagaTimeout message throws an exception since in this sample, steps in that method will not be executed.
+The `Handle` method for the SagaTimeout message throws an exception since in this sample, this handler will not be executed.
 
 snippet: timeoutSaga1
 
@@ -105,7 +105,7 @@ This project contains the second versions of the sagas.
 
 Handles the Reply message that has been sent from `MyReplySagaVersion1`.
 
-The `Handle` method for the `StartReplySaga` message throws an exception since in this sample, steps in that method will not be executed.
+The `Handle` method for the `StartReplySaga` message throws an exception since in this sample, this handler will not be executed.
 
 
 snippet: replySaga2
@@ -115,7 +115,7 @@ snippet: replySaga2
 
 Handles the timeout that has been sent from `MyTimeoutSagaVersion1`.
 
-The `Handle` method for the `StartTimeoutSaga` message throws an exception since in this sample, steps in that method will not be executed.
+The `Handle` method for the `StartTimeoutSaga` message throws an exception since in this sample, this handler will not be executed.
 
 snippet: timeoutSaga2
 
@@ -129,7 +129,7 @@ WARNING: In a production scenario this code would be executed as part of an endp
 
 #### Mutator
 
-The mutator is an [incoming transport mutator](/nservicebus/pipeline/message-mutators.md#transport-messages-mutators-imutateincomingtransportmessages) that translates [saga reply headers](/nservicebus/messaging/headers.md#saga-related-headers-replying-to-a-saga) on incoming messages to the new saga names. 
+The mutator is an [incoming transport mutator](/nservicebus/pipeline/message-mutators.md#transport-messages-mutators-imutateincomingtransportmessages) that translates [saga reply headers](/nservicebus/messaging/headers.md#saga-related-headers-replying-to-a-saga) on incoming messages to the new saga names.
 
 This is required to handle the following scenario
 
@@ -141,9 +141,9 @@ snippet: mutator
 
 DANGER: This mutator must remain in place until all messages and timeouts that target the old saga versions are processed.
 
-For reply messages, the mutator should not be removed for at least [message discard time](/nservicebus/messaging/discard-old-messages.md) - if specified for those messages. Note that [messages in the error queue](/nservicebus/recoverability/configure-error-handling.md) might be stored by messaging infrastructure for even longer. If no discard period is specified, it is recommended to leave the mutator for a couple of weeks.
+For reply messages, the mutator should not be removed for at least [message discard time](/nservicebus/messaging/discard-old-messages.md) - if specified for those messages. Note that [messages in the error queue](/nservicebus/recoverability/configure-error-handling.md) might be stored by messaging infrastructure for even longer. If no discard period is specified, it is recommended to leave the mutator until it is reasonable to assume there are no more messages that need to be mutated.
 
-For timeouts the safe period of time to leave the mutator in place is dependent on the lifetime of the given saga. In other words, it is dependent on the business rules of a given saga - how long it is expected to exist before it is [marked as complete](/nservicebus/sagas/#ending-a-saga). Alternatively, the `TimeoutData` table can be queried, using [json_value](https://docs.microsoft.com/en-us/sql/t-sql/functions/json-value-transact-sql), to check if there are any pending timeouts that target the old saga:
+For timeouts, the safe period of time to leave the mutator in place is dependent on the lifetime of the given saga. The business rules of a given saga, how long it is expected to exist before it is [marked as complete](/nservicebus/sagas/#ending-a-saga), define its lifetime. Alternatively, the `TimeoutData` table can be queried, using [json_value](https://docs.microsoft.com/en-us/sql/t-sql/functions/json-value-transact-sql), to check if there are any pending timeouts that target the old saga:
 
 ```sql
 select Id

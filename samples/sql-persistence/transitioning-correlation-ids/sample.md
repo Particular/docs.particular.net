@@ -1,13 +1,13 @@
 ---
 title: Transitioning Saga Correlation IDs
 summary: An approach for transitioning between different correlation IDs with no downtime
-reviewed: 2023-02-15
+reviewed: 2024-02-05
 component: SqlPersistence
 related:
  - nservicebus/sagas
 ---
 
-This sample illustrates an approach for transitioning between different [correlation IDs](/persistence/sql/saga.md#correlation-ids) in a way that requires no endpoint downtime and no migration of saga data stored in sql.
+This sample illustrates an approach for transitioning between different [correlation IDs](/persistence/sql/saga.md#correlation-ids) in a way that requires no endpoint downtime or migration of saga data stored in sql.
 
 NOTE: The sample uses three "Phase" endpoint projects to illustrate the iterations of a single endpoint in one solution.
 

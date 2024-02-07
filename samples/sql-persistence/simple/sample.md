@@ -1,7 +1,7 @@
 ---
 title: Simple SQL Persistence Usage
 summary: Using SQL Persistence to store sagas and timeouts.
-reviewed: 2023-01-10
+reviewed: 2024-02-01
 component: SqlPersistence
 related:
  - nservicebus/sagas
@@ -34,7 +34,7 @@ Contains the `OrderSaga` functionality and is referenced by the Server endpoints
 
 
 ### Server projects
- 
+
  * `EndpointMySql`, `EndpointSqlServer`, and `EndpointOracle` projects act as "servers" to run the saga instance.
  * Receive the `StartOrder` message and initiate an `OrderSaga`.
  * `OrderSaga` requests a timeout with an instance of `CompleteOrder` with the saga data.
@@ -43,7 +43,7 @@ Contains the `OrderSaga` functionality and is referenced by the Server endpoints
 
 ## SQL scripts
 
-partial: scripts-package
+Note that only `ServerShared` has the [NServiceBus.Persistence.Sql NuGet package](https://www.nuget.org/packages/NServiceBus.Persistence.Sql) directly referenced. This will cause the script directory `ServerShared\bin\Debug\[TFM]\NServiceBus.Persistence.Sql\[Variant]` to be populated at build time.
 
 These scripts will be copied to the output of each endpoint and executed at startup.
 
@@ -74,7 +74,9 @@ snippet: MySqlConfig
 snippet: OracleConfig
 
 
-partial: postgresql
+#### PostgreSql
+
+snippet: postgreSqlConfig
 
 
 ## Order saga data
@@ -89,7 +91,7 @@ snippet: thesaga
 
 SQL persistence uses the [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/) package to serialize saga data and metadata.
 
-The saga data can be queried using the [JSON querying capababilities of SQL Server](https://docs.microsoft.com/en-us/sql/relational-databases/json/json-data-sql-server).
+The saga data can be queried using the [JSON querying capabilities of SQL Server](https://docs.microsoft.com/en-us/sql/relational-databases/json/json-data-sql-server).
 It is stored inside the `Data` column and can be queried as shown here:
 
 snippet: SqlServerSagaJsonQuery
