@@ -28,7 +28,7 @@ Version 4.26 of ServiceControl introduced a [new persistence format](../new-pers
 
 As a result, not all ServiceControl instances can be automatically upgraded from Version 4 to Version 5, including the data. An automatic upgrade process is available for:
 
-* Primary instances **but the process does not include data migration** i.e. all the data stored are deleted in the process. [The manual migration process](#new-data-format) describes how to migrate the data.
+* Primary instances **but the process does not include data migration** i.e. all the data stored are deleted in the process. [The manual migration process](#upgrading-to-version-5) describes how to migrate the data.
 * Audit instances that use `RavenDB 5` storage engine (instances created with version 4.26 or later).
 * All Monitoring instances.
 
