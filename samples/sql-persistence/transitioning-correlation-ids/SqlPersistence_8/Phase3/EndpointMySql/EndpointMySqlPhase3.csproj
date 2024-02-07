@@ -1,19 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <LangVersion>12.0</LangVersion>
   </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Shared\SharedPhase3.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MySql.Data" Version="8.*" ExcludeAssets="contentFiles" />
+    <PackageReference Include="MySql.Data" Version="8.*" />
   </ItemGroup>
 
   <ItemGroup>
     <Compile Include="..\..\Phase1\EndpointMySql\Program.cs" />
     <Compile Include="..\..\Phase1\EndpointMySql\SqlHelper.cs" />
   </ItemGroup>
+
 </Project>

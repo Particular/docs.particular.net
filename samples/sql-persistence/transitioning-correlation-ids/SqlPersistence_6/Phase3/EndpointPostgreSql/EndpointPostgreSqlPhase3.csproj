@@ -1,14 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFrameworks>net7.0;net6.0;net48</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Shared\SharedPhase3.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Npgsql" Version="4.*" />
   </ItemGroup>
+
   <ItemGroup>
     <Compile Include="..\..\Phase1\EndpointPostgreSql\Program.cs" />
   </ItemGroup>
+
 </Project>

@@ -1,9 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFrameworks>net7.0;net6.0;net48</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Shared\SharedPhase3.csproj" />
   </ItemGroup>
@@ -16,4 +18,5 @@
     <Compile Include="..\..\Phase1\EndpointSqlServer\Program.cs" />
     <Compile Include="..\..\Phase1\EndpointSqlServer\SqlHelper.cs" />
   </ItemGroup>
+
 </Project>

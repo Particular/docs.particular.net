@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Shared\SharedPhase1.csproj" />
   </ItemGroup>
@@ -11,4 +12,5 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
   </ItemGroup>
+
 </Project>

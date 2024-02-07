@@ -4,11 +4,17 @@
     <OutputType>Exe</OutputType>
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Shared\SharedPhase2.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="2.*" />
   </ItemGroup>
+
   <ItemGroup>
     <Compile Include="..\..\Phase1\EndpointOracle\Program.cs" />
   </ItemGroup>
+
 </Project>

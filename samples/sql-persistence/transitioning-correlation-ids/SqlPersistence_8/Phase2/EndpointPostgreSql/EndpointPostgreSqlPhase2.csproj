@@ -1,9 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <LangVersion>12.0</LangVersion>
   </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Shared\SharedPhase2.csproj" />
   </ItemGroup>
@@ -16,4 +18,5 @@
     <Compile Include="..\..\Phase1\EndpointPostgreSql\Program.cs" />
     <Compile Include="..\..\Phase1\EndpointPostgreSql\SqlHelper.cs" />
   </ItemGroup>
+
 </Project>

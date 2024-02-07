@@ -1,4 +1,0 @@
-
-#### PostgreSql
-
-snippet: postgreSqlConfig

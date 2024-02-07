@@ -1,6 +1,6 @@
-﻿using Microsoft.Data.SqlClient;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
 
 #region ServiceInterface
 public interface IDataService
@@ -11,16 +11,10 @@ public interface IDataService
 #endregion
 
 #region ServiceImplementation
-public class DataService : IDataService
+public class DataService(ConnectionHolder connectionHolder) : IDataService
 {
-    readonly SqlConnection connection;
-    readonly SqlTransaction transaction;
-
-    public DataService(ConnectionHolder connectionHolder)
-    {
-        connection = connectionHolder.Connection;
-        transaction = connectionHolder.Transaction;
-    }
+    readonly SqlConnection connection = connectionHolder.Connection;
+    readonly SqlTransaction transaction = connectionHolder.Transaction;
 
     public async Task SaveBusinessDataAsync(Guid receivedId)
     {
