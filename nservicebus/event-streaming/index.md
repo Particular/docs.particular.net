@@ -1,6 +1,6 @@
 ---
 title: Event stream processing
-summary: Combining the Particular Service Platform with an event stream processor (Apache Kafka, Azure Event Hubs, or Amazon Kinesis)
+summary: Integrating the Particular Service Platform with an event stream processor (Apache Kafka, Azure Event Hubs, or Amazon Kinesis)
 callsToAction:
   - interest-apache-kafka
   - interest-azure-event-hubs
@@ -10,7 +10,7 @@ related:
   - samples/azure-functions/service-bus-kafka
 ---
 
-_Event stream processing_ is a practice of taking action on a series of datapoints that originate from a system that continuously creates data.
+_Event stream processing_ is an architectural style in which a continuous stream of events serve as the basis to take further action in a system.
 
 There are great tools that facilitate event streaming including:
 
@@ -20,9 +20,9 @@ There are great tools that facilitate event streaming including:
 
 Although these tools and the Particular Service Platform both use the term _event_, [an event stream is not a queue](https://particular.net/blog/lets-talk-about-kafka).
 
-Event streaming tools are great for situations where a large amount of data needs to be processed looking for patterns or changes in state. Individual events are not important on their own, and only by processing many of them can interesting events be extracted.
+Event streaming tools are great for situations where a large amount of data needs to be processed, looking for patterns or changes in state. Individual events are not meaningful, but meaningful insights can be extracted by processing many.
 
-When something interesting is detected, that is a business event, and _it is time to use a message queue_. Message queues excel at handling important events, where each individual event is important. Business events should be successfully processed once, and only once, and should be retried until they are successfully processed.
+When something interesting is detected, that is a business event, and _it is time to use a message queue_. Message queues excel at handling business events, where each individual event is meaningful and important. Business events should be successfully processed once, and only once, and should be retried until they are successfully processed.
 
 To facilitate this, message stream processors that detect interesting patterns can turn them into NServiceBus messages and events.
 
