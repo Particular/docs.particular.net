@@ -14,13 +14,6 @@ class DelayedDelivery
 
         #endregion
 
-
-#pragma warning disable CS0618 // Type or member is obsolete
-        #region DelayedDeliveryProcessingInterval
-        delayedDeliverySettings.ProcessingInterval(TimeSpan.FromSeconds(5));
-        #endregion
-#pragma warning restore CS0618 // Type or member is obsolete
-
         #region DelayedDeliveryBatchSize
 
         delayedDeliverySettings.BatchSize(100);
