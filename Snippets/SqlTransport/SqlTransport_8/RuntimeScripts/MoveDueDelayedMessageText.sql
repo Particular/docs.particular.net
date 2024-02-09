@@ -13,7 +13,7 @@ OUTPUT
     NULL,
     deleted.Headers,
     deleted.Body
-INTO {1};
+INTO {1} (Id, CorrelationId, ReplyToAddress, Recoverable, Expires, Headers, Body);;
 
 SELECT TOP 1 GETUTCDATE() as UtcNow, Due as NextDue
 FROM {0} WITH (READPAST)
