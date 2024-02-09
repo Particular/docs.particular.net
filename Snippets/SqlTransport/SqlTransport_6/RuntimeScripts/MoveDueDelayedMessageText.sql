@@ -1,10 +1,6 @@
 startcode MoveDueDelayedMessageTextSql
 
-DECLARE @NOCOUNT VARCHAR(3) = 'OFF';
-IF ( (512 & @@OPTIONS) = 512 ) SET @NOCOUNT = 'ON';
-SET NOCOUNT ON;
-
-WITH message AS (
+;WITH message AS (
     SELECT TOP(@BatchSize) *
     FROM {0} WITH (UPDLOCK, READPAST, ROWLOCK)
     WHERE Due < GETUTCDATE())
@@ -17,8 +13,9 @@ OUTPUT
     NULL,
     deleted.Headers,
     deleted.Body
-INTO {1};
+INTO {1} (Id, CorrelationId, ReplyToAddress, Recoverable, Expires, Headers, Body);
 
-IF (@NOCOUNT = 'ON') SET NOCOUNT ON;
-IF (@NOCOUNT = 'OFF') SET NOCOUNT OFF;
+SELECT TOP 1 GETUTCDATE() as UtcNow, Due as NextDue
+FROM {0}
+ORDER BY Due";
 endcode
