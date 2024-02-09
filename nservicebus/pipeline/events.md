@@ -2,7 +2,7 @@
 title: Pipeline events
 summary: Subscribe to events raised by the pipeline
 component: Core
-reviewed: 2020-11-26
+reviewed: 2024-02-09
 versions: '[6,)'
 related:
 - nservicebus/recoverability

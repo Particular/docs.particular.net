@@ -2,7 +2,7 @@
 title: Aborting Pipeline execution
 summary: How to tell NServiceBus to abort processing any more handlers in the pipeline
 component: Core
-reviewed: 2020-11-26
+reviewed: 2024-02-09
 ---
 
 

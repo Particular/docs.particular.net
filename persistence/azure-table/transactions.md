@@ -4,7 +4,7 @@ component: ASP
 versions: 'ASTP:[3,]'
 related:
 - nservicebus/outbox
-reviewed: 2020-11-19
+reviewed: 2024-02-09
 ---
 
 partial: intro
