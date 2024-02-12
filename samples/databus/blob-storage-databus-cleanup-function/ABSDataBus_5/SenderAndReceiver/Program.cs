@@ -12,14 +12,16 @@ class Program
         var dataBus = endpointConfiguration.UseDataBus<AzureDataBus, SystemJsonDataBusSerializer>();
         dataBus.ConnectionString("UseDevelopmentStorage=true");
 
-        endpointConfiguration.UseSerialization<XmlSerializer>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration)
             .ConfigureAwait(false);
+
         await Run(endpointInstance)
             .ConfigureAwait(false);
+
         await endpointInstance.Stop()
             .ConfigureAwait(false);
     }
@@ -54,6 +56,7 @@ class Program
             Description = "This message contains a large payload that will be sent on the Azure data bus",
             LargePayload = new DataBusProperty<byte[]>(new byte[1024 * 1024 * 5]) // 5MB
         };
+
         await messageSession.SendLocal(message)
             .ConfigureAwait(false);
 
