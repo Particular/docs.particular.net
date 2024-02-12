@@ -29,4 +29,4 @@ ServiceControl must be in maintenance mode in order to compact the database with
 
 ### Step 3: Take ServiceControl out of maintenance mode
 
-* In ServiceControl advanced options, selected "Stop Maintenance Mode"
+* In ServiceControl management utility advanced options for the selected instance, select "Stop Maintenance Mode"
