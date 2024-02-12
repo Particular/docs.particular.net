@@ -21,13 +21,13 @@ snippet: messages
 
 To highlight compatibility between iterations of the endpoint, each phase sends a message to itself, the upper phase, and the lower phase.
 
-For example Phase3 sends to itself, as well as to Phase2 and Phase4.
+For example, Phase3 sends to itself as well as to Phase2 and Phase4.
 
 snippet: send-to-both
 
 ## Serialization format change
 
-This sample uses a hypothetical scenario where the JSON serialization format needs to change how dictionaries are serialized from using contents for the key and value to explicitly named key and value approach.
+This sample uses a hypothetical scenario where the JSON serialization format needs to change how dictionaries are serialized from using contents for the key and value to an explicitly named key and value approach.
 
 ### JSON using a standard approach
 
@@ -75,7 +75,7 @@ snippet: ExtendedResolver
 
 ## Diagnostic helpers
 
-To help visualize the serialization changes there are two [behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) that write the contents of each incoming and outgoing message.
+To help visualize the serialization changes, there are two [behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) that write the contents of each incoming and outgoing message.
 
 snippet: IncomingWriter
 
@@ -89,7 +89,7 @@ snippet: writer-registration
 
 ## Phases
 
-Note that, in production, each of the phases must be applied to every endpoint that need to communicate with the new serialization format. So each endpoint can be, at most, one phase out of sync with any other endpoint it needs to communicate with.
+Note that, in production, each of the phases must be applied to every endpoint that needs to communicate with the new serialization format. So each endpoint can be, at most, one phase out of sync with any other endpoint it needs to communicate with.
 
 ### Phase 1
 
@@ -108,7 +108,7 @@ Endpoint is running:
 * Version 1 serialization.
 * Version 2 deserialization.
 
-The new `JsonSerializerSettings` registered as a deserializer with the `ContentTypeKey` of `jsonv2`. This makes all endpoint capable of receiving V2 messages while still sending V1 messages.
+The new `JsonSerializerSettings` registered as a deserializer with the `ContentTypeKey` of `jsonv2`. This makes all endpoints capable of receiving V2 messages while still sending V1 messages.
 
 snippet: Phase2
 
@@ -135,7 +135,7 @@ snippet: Phase4
 
 ## Messages in transit
 
-It is important to consider both [discarding of old messages](/nservicebus/messaging/discard-old-messages.md) and how the [error queue](/nservicebus/recoverability/configure-error-handling.md) is handled. For example the following time-line could be problematic:
+It is important to consider both [discarding of old messages](/nservicebus/messaging/discard-old-messages.md) and how the [error queue](/nservicebus/recoverability/configure-error-handling.md) is handled. For example, the following time-line could be problematic:
 
 * A message makes use of the old serialization format.
 * The message has a long Time-To-Be-Received (TTBR).
