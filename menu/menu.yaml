@@ -1354,7 +1354,7 @@
     - Title: Managing ServiceControl via PowerShell
       Url: servicecontrol/powershell
       Articles:
-      - Title: Cmdlets and Aliases
+      - Title: Cmdlets and aliases
         Url: servicecontrol/powershell-cmdlets
     - Title: Licensing
       Url: servicecontrol/license
@@ -1386,43 +1386,45 @@
         Url: servicecontrol/servicecontrol-in-practice
       - Title: Hardware Considerations
         Url: servicecontrol/servicecontrol-instances/hardware
-      - Title: Capacity Planning
+      - Title: Capacity planning
         Url: servicecontrol/capacity-and-planning
       - Title: Security
         Url: servicecontrol/securing-servicecontrol
-      - Title: Non-Privileged Accounts
+      - Title: Non-Privileged accounts
         Url: servicecontrol/configure-non-privileged-service-account
-      - Title: Business Continuity / Disaster Recovery
+      - Title: Business continuity / disaster recovery
         Url: servicecontrol/bcdr
     - Title: Advanced installations
       Articles:
-      - Title: Cluster Deployment
+      - Title: Cluster deployment
         Url: servicecontrol/deploying-servicecontrol-in-a-cluster
-      - Title: Remote Instances
+      - Title: Remote instances
         Url: servicecontrol/servicecontrol-instances/remotes
       - Title: Settings
         Url: servicecontrol/creating-config-file
       - Title: Overriding the host identifier
         Url: nservicebus/hosting/override-hostid
-      - Title: RavenDB Location
+      - Title: RavenDB location
         Url: servicecontrol/configure-ravendb-location
       - Title: Configure the URI
         Url: servicecontrol/setting-custom-hostname
       - Title: Logging
         Url: servicecontrol/logging
-      - Title: Forwarding Queues
+      - Title: Forwarding queues
         Url: servicecontrol/errorlog-auditlog-behavior
       - Title: Configuring MSMQ
         Url: servicecontrol/configuring-msmq
     - Title: Management
       Articles:
-      - Title: Data Expiration
+      - Title: Data expiration
         Url: servicecontrol/how-purge-expired-data
       - Title: Backup
         Url: servicecontrol/backup-sc-database
-      - Title: Compacting database
+      - Title: Compacting the database (RavenDB 5)
+        Url: servicecontrol/db-compaction-v5
+      - Title: Compacting the database (RavenDB 3.5)
         Url: servicecontrol/db-compaction
-      - Title: Move Database Location
+      - Title: Move database location
         Url: servicecontrol/move-database-location
     - Title: Troubleshooting
       Articles:
