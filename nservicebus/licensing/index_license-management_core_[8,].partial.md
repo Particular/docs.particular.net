@@ -21,7 +21,8 @@ A license located at `{AppDomain.CurrentDomain.BaseDirectory}/license.xml` will 
 To install a license for all endpoints and Particular Service Platform applications run by a specific user, install the license file in the following location:
 
 * Windows: `%LOCALAPPDATA%\ParticularSoftware\license.xml`
-* Linux/macOS: `${XDG_DATA_HOME:-$HOME/.local/share}/ParticularSoftware/license.xml`
+* Linux/MacOS: `${XDG_DATA_HOME:-$HOME/.local/share}/ParticularSoftware/license.xml`
+* MacOS (.net 8): `$HOME/Library/Application Support/ParticularSoftware/license.xml`
 
 ### Machine-wide license location
 
