@@ -57,7 +57,11 @@ snippet: DataBusCleanupOrchestratorFunction
 
 The function uses a [durable function timer](https://docs.microsoft.com/en-us/azure/azure-functions/durable-functions-timers) to delete the blob from Azure Storage after the timeout period has elapsed.
 
-partial: delete
+#### DeleteBlob
+
+snippet: DeleteBlobFunction
+
+The function is executing the actual work to delete a blob.
 
 #### Configuring time to live for large binary objects
 

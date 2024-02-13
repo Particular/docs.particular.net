@@ -1,11 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFrameworks>net7.0;net6.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="8.*" />
     <PackageReference Include="NServiceBus.DataBus.AzureBlobStorage" Version="5.*" />
   </ItemGroup>
+
 </Project>

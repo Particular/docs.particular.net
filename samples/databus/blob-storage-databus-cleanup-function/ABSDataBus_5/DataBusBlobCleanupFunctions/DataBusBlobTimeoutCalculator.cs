@@ -1,5 +1,4 @@
-﻿
-using System.Globalization;
+﻿using System.Globalization;
 
 public static class DataBusBlobTimeoutCalculator
 {
@@ -113,6 +112,4 @@ public static class DataBusBlobTimeoutCalculator
     const string format = "yyyy-MM-dd HH:mm:ss:ffffff Z";
     const string errorMessage = "String was not recognized as a valid DateTime.";
     const int ticksPerMicrosecond = 10;
-
 }
-

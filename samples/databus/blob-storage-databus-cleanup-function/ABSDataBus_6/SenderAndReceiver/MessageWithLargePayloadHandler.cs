@@ -2,8 +2,7 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class MessageWithLargePayloadHandler :
-    IHandleMessages<MessageWithLargePayload>
+public class MessageWithLargePayloadHandler : IHandleMessages<MessageWithLargePayload>
 {
     static ILog log = LogManager.GetLogger<MessageWithLargePayloadHandler>();
 

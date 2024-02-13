@@ -1,4 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <OutputType>Exe</OutputType>
@@ -9,4 +10,5 @@
     <PackageReference Include="NServiceBus" Version="9.0.0-alpha.10" />
     <PackageReference Include="NServiceBus.DataBus.AzureBlobStorage" Version="6.0.0-alpha.1" />
   </ItemGroup>
+
 </Project>

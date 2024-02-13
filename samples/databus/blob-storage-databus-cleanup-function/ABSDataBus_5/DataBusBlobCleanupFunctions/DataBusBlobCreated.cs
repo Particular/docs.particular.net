@@ -3,7 +3,6 @@ using Microsoft.DurableTask;
 using Microsoft.DurableTask.Client;
 using Microsoft.Extensions.Logging;
 
-
 public class DataBusBlobCreated
 {
     public DataBusBlobCreated(ILogger<DataBusBlobCreated> logger)
@@ -48,4 +47,3 @@ public class DataBusBlobCreated
 
     static readonly string DataBusCleanupOrchestratorName = nameof(DataBusCleanupOrchestrator);
 }
-
