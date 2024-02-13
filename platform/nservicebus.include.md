@@ -4,6 +4,12 @@ NServiceBus is the heart of a distributed system and the Particular Service Plat
 PM> Install-Package NServiceBus
 ```
 
+or via .NET CLI:
+
+```ps
+dotnet add package NServiceBus
+```
+
 At its core, NServiceBus works by routing _messages_ between _endpoints_. [Messages](/nservicebus/concepts/glossary.md#message) are plain C# classes that contain meaningful data for the business process that is being modeled.
 
 ```csharp
