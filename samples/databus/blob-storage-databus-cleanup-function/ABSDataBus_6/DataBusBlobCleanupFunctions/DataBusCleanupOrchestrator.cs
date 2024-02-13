@@ -11,8 +11,6 @@ public class DataBusCleanupOrchestrator(ILogger<DataBusCleanupOrchestrator> logg
     [Function(nameof(DataBusCleanupOrchestrator))]
     public async Task RunOrchestrator([OrchestrationTrigger] TaskOrchestrationContext context)
     {
-        logger.LogInformation("RunOrchestrator is running..");
-
         var blobData = context.GetInput<DataBusBlobData>();
 
         logger.LogInformation("Orchestrating deletion for blob at {name} with ValidUntilUtc of {validUntilUtc}", blobData.Name, blobData.ValidUntilUtc);
