@@ -1,69 +1,64 @@
-﻿using System;
-using System.Linq;
+using System.ComponentModel;
 using System.Net;
-using System.Threading.Tasks;
+using System.Threading;
+using Azure.Storage.Blobs;
+using Azure.Storage.Blobs.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Azure.Storage.Blob;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.DurableTask;
-using Microsoft.Azure.WebJobs.Extensions.Http;
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.DurableTask;
+using Microsoft.DurableTask.Client;
 using Microsoft.Extensions.Logging;
 
-public class DataBusOrchestrateExistingBlobs
+public class DataBusOrchestrateExistingBlobs(BlobContainerClient blobContainerClient, ILogger<DataBusOrchestrateExistingBlobs> logger)
 {
-    readonly CloudBlobContainer container;
-
-    public DataBusOrchestrateExistingBlobs(CloudBlobContainer container)
-    {
-        this.container = container;
-    }
 
     #region DataBusOrchestrateExistingBlobsFunction
 
-    [FunctionName(nameof(DataBusOrchestrateExistingBlobs))]
-    public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = null)] HttpRequest req, [DurableClient] IDurableOrchestrationClient starter, ILogger log)
+    [Function(nameof(DataBusOrchestrateExistingBlobs))]
+    public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post")] HttpRequest req, [DurableClient] DurableTaskClient durableTaskClient, CancellationToken cancellationToken)
     {
         var counter = 0;
 
         try
         {
-            BlobContinuationToken token = null;
-            do
+            var segment = blobContainerClient.GetBlobsAsync(BlobTraits.Metadata).AsPages();
+
+            await foreach (var blobPage in segment)
             {
-                var segment = await container.ListBlobsSegmentedAsync(token).ConfigureAwait(false);
-
-                token = segment.ContinuationToken;
-
-                foreach (var blockBlob in segment.Results.Where(blob => blob is CloudBlockBlob).Cast<CloudBlockBlob>())
+                foreach (var blobItem in blobPage.Values)
                 {
-                    var instanceId = blockBlob.Name;
+                    var instanceId = blobItem.Name;
 
-                    var existingInstance = await starter.GetStatusAsync(instanceId);
+                    var existingInstance = await durableTaskClient.GetInstanceAsync(instanceId);
+
                     if (existingInstance != null)
                     {
-                        log.LogInformation($"{nameof(DataBusCleanupOrchestrator)} has already been started for blob {blockBlob.Uri}.");
+                        logger.LogInformation($"{nameof(DataBusCleanupOrchestrator)} has already been started for blob {blobItem.Name}.");
                         continue;
                     }
 
-                    var validUntilUtc = DataBusBlobTimeoutCalculator.GetValidUntil(blockBlob);
+                    var validUntilUtc = DataBusBlobTimeoutCalculator.GetValidUntil(blobItem.Metadata);
 
                     if (validUntilUtc == DateTime.MaxValue)
                     {
-                        log.LogError($"Could not parse the 'ValidUntilUtc' value for blob {blockBlob.Uri}. Cleanup will not happen on this blob. You may consider manually removing this entry if non-expiry is incorrect.");
+                        logger.LogError($"Could not parse the 'ValidUntilUtc' value for blob {blobItem.Name}. Cleanup will not happen on this blob. You may consider manually removing this entry if non-expiry is incorrect.");
                         continue;
                     }
 
-                    await starter.StartNewAsync(nameof(DataBusCleanupOrchestrator), instanceId, new DataBusBlobData
+                    await durableTaskClient.ScheduleNewOrchestrationInstanceAsync(nameof(DataBusCleanupOrchestrator), new DataBusBlobData
                     {
-                        Path = blockBlob.Uri.ToString(),
+                        Name = blobItem.Name,
                         ValidUntilUtc = DataBusBlobTimeoutCalculator.ToWireFormattedString(validUntilUtc)
-                    });
+                    },
+                    new StartOrchestrationOptions()
+                    {
+                        InstanceId = instanceId
+                    }, cancellationToken);
 
                     counter++;
                 }
-
-            } while (token != null);
+            }
         }
         catch (Exception exception)
         {
@@ -82,3 +77,4 @@ public class DataBusOrchestrateExistingBlobs
 
     #endregion
 }
+

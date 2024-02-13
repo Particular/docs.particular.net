@@ -1,42 +1,51 @@
-using System;
+using System.IO;
+using System.Reflection.Metadata;
 using System.Threading.Tasks;
-using Microsoft.Azure.Storage.Blob;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.DurableTask;
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.DurableTask;
+using Microsoft.DurableTask.Client;
 using Microsoft.Extensions.Logging;
 
-public class DataBusBlobCreated
+
+public class DataBusBlobCreated(ILogger<DataBusBlobCreated> logger)
 {
     #region DataBusBlobCreatedFunction
 
-    [FunctionName(nameof(DataBusBlobCreated))]
-    public async Task Run([BlobTrigger("databus/{name}", Connection = "DataBusStorageAccount")] CloudBlockBlob myBlob, [DurableClient] IDurableOrchestrationClient starter, ILogger log)
+    [Function(nameof(DataBusBlobCreated))]
+    public async Task Run([BlobTrigger("databus/{name}", Connection = "DataBusStorageAccount")] Stream blob, string name, Uri uri, IDictionary<string, string> metadata, [DurableClient] DurableTaskClient durableTaskClient, CancellationToken cancellationToken)
     {
-        log.LogInformation($"Blob created at {myBlob.Uri}");
+        logger.LogInformation($"Blob created at {uri}");
 
-        var instanceId = myBlob.Name;
+        var instanceId = name;
+        var existingInstance = await durableTaskClient.GetInstanceAsync(instanceId);
 
-        var existingInstance = await starter.GetStatusAsync(instanceId);
         if (existingInstance != null)
         {
-            log.LogInformation($"{nameof(DataBusCleanupOrchestrator)} has already been started for blob {myBlob.Uri}.");
+            logger.LogInformation($"{DataBusCleanupOrchestratorName} has already been started for blob {uri}.");
             return;
         }
 
-        var validUntilUtc = DataBusBlobTimeoutCalculator.GetValidUntil(myBlob);
+        var validUntilUtc = DataBusBlobTimeoutCalculator.GetValidUntil(metadata);
 
         if (validUntilUtc == DateTime.MaxValue)
         {
-            log.LogError($"Could not parse the 'ValidUntil' value for blob {myBlob.Uri}. Cleanup will not happen on this blob. You may consider manually removing this entry if non-expiry is incorrect.");
+            logger.LogError($"Could not parse the 'ValidUntil' value for blob {uri}. Cleanup will not happen on this blob. You may consider manually removing this entry if non-expiry is incorrect.");
             return;
         }
 
-        await starter.StartNewAsync(nameof(DataBusCleanupOrchestrator), instanceId, new DataBusBlobData
+        await durableTaskClient.ScheduleNewOrchestrationInstanceAsync(DataBusCleanupOrchestratorName, new DataBusBlobData
         {
-            Path = myBlob.Uri.ToString(),
+            Name = name,
             ValidUntilUtc = DataBusBlobTimeoutCalculator.ToWireFormattedString(validUntilUtc)
-        });
+        },
+        new StartOrchestrationOptions()
+        {
+            InstanceId = instanceId
+        }, cancellationToken);
     }
 
     #endregion
+
+    static readonly string DataBusCleanupOrchestratorName = nameof(DataBusCleanupOrchestrator);
 }
+

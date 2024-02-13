@@ -1,5 +1,6 @@
-public class DataBusBlobData
+﻿public class DataBusBlobData
 {
-    public string Path { get; set; }
-    public string ValidUntilUtc { get; set; }
+    public required string Name { get; set; }
+
+    public required string ValidUntilUtc { get; set; }
 }

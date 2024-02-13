@@ -1,20 +1,22 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Azure.WebJobs;
-using Microsoft.Azure.WebJobs.Extensions.DurableTask;
+﻿#nullable disable
+
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.DurableTask;
 using Microsoft.Extensions.Logging;
 
-public class DataBusCleanupOrchestrator
+public class DataBusCleanupOrchestrator(ILogger<DataBusCleanupOrchestrator> logger)
 {
+
     #region DataBusCleanupOrchestratorFunction
 
-    [FunctionName(nameof(DataBusCleanupOrchestrator))]
-    public async Task RunOrchestrator([OrchestrationTrigger] IDurableOrchestrationContext context, ILogger log)
+    [Function(nameof(DataBusCleanupOrchestrator))]
+    public async Task RunOrchestrator([OrchestrationTrigger] TaskOrchestrationContext context)
     {
+        logger.LogInformation("RunOrchestrator is running..");
+
         var blobData = context.GetInput<DataBusBlobData>();
 
-        log.LogInformation($"Orchestrating deletion for blob at {blobData.Path} with ValidUntilUtc of {blobData.ValidUntilUtc}");
+        logger.LogInformation($"Orchestrating deletion for blob at {blobData.Name} with ValidUntilUtc of {blobData.ValidUntilUtc}");
 
         var validUntilUtc = DataBusBlobTimeoutCalculator.ToUtcDateTime(blobData.ValidUntilUtc);
 
@@ -24,13 +26,15 @@ public class DataBusCleanupOrchestrator
         do
         {
             timeoutUntil = validUntilUtc > context.CurrentUtcDateTime.AddDays(6) ? context.CurrentUtcDateTime.AddDays(6) : validUntilUtc;
-            log.LogInformation($"Waiting until {timeoutUntil}/{validUntilUtc} for blob at {blobData.Path}. Currently {context.CurrentUtcDateTime}.");
+
+            logger.LogInformation($"Waiting until {timeoutUntil}/{validUntilUtc} for blob at {blobData.Name}. Currently {context.CurrentUtcDateTime}.");
+
             await context.CreateTimer(DataBusBlobTimeoutCalculator.ToUtcDateTime(blobData.ValidUntilUtc), CancellationToken.None);
         } while (validUntilUtc > timeoutUntil);
-
 
         await context.CallActivityAsync("DeleteBlob", blobData);
     }
 
     #endregion
 }
+
