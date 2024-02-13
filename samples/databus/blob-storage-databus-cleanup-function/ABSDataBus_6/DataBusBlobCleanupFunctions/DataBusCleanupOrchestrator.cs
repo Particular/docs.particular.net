@@ -4,13 +4,8 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.DurableTask;
 using Microsoft.Extensions.Logging;
 
-public class DataBusCleanupOrchestrator
+public class DataBusCleanupOrchestrator(ILogger<DataBusCleanupOrchestrator> logger)
 {
-    public DataBusCleanupOrchestrator(ILogger<DataBusCleanupOrchestrator> logger)
-    {
-        this.logger = logger;
-    }
-
     #region DataBusCleanupOrchestratorFunction
 
     [Function(nameof(DataBusCleanupOrchestrator))]
@@ -38,6 +33,4 @@ public class DataBusCleanupOrchestrator
     }
 
     #endregion
-
-    private readonly ILogger<DataBusCleanupOrchestrator> logger;
 }

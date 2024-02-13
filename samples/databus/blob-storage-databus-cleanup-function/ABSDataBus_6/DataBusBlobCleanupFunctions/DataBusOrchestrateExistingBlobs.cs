@@ -8,14 +8,8 @@ using Microsoft.DurableTask;
 using Microsoft.DurableTask.Client;
 using Microsoft.Extensions.Logging;
 
-public class DataBusOrchestrateExistingBlobs
+public class DataBusOrchestrateExistingBlobs(BlobContainerClient blobContainerClient, ILogger<DataBusOrchestrateExistingBlobs> logger)
 {
-    public DataBusOrchestrateExistingBlobs(BlobContainerClient blobContainerClient, ILogger<DataBusOrchestrateExistingBlobs> logger)
-    {
-        this.blobContainerClient = blobContainerClient;
-        this.logger = logger;
-    }
-
     #region DataBusOrchestrateExistingBlobsFunction
 
     [Function(nameof(DataBusOrchestrateExistingBlobs))]
@@ -49,12 +43,15 @@ public class DataBusOrchestrateExistingBlobs
                         continue;
                     }
 
-                    await durableTaskClient.ScheduleNewOrchestrationInstanceAsync(nameof(DataBusCleanupOrchestrator), new DataBusBlobData(blobItem.Name, DataBusBlobTimeoutCalculator.ToWireFormattedString(validUntilUtc)),
-                        new StartOrchestrationOptions()
-                        {
-                            InstanceId = instanceId
-                        },
-                        cancellationToken);
+                    await durableTaskClient.ScheduleNewOrchestrationInstanceAsync(nameof(DataBusCleanupOrchestrator), new DataBusBlobData
+                    {
+                        Name = blobItem.Name,
+                        ValidUntilUtc = DataBusBlobTimeoutCalculator.ToWireFormattedString(validUntilUtc)
+                    },
+                    new StartOrchestrationOptions()
+                    {
+                        InstanceId = instanceId
+                    }, cancellationToken);
 
                     counter++;
                 }
@@ -76,7 +73,4 @@ public class DataBusOrchestrateExistingBlobs
     }
 
     #endregion
-
-    private readonly BlobContainerClient blobContainerClient;
-    private readonly ILogger<DataBusOrchestrateExistingBlobs> logger;
 }

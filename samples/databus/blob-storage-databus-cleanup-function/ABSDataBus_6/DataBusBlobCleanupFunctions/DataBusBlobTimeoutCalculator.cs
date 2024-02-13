@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿
+using System.Globalization;
 
 public static class DataBusBlobTimeoutCalculator
 {

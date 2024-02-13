@@ -3,13 +3,8 @@ using Microsoft.DurableTask;
 using Microsoft.DurableTask.Client;
 using Microsoft.Extensions.Logging;
 
-public class DataBusBlobCreated
+public class DataBusBlobCreated(ILogger<DataBusBlobCreated> logger)
 {
-    public DataBusBlobCreated(ILogger<DataBusBlobCreated> logger)
-    {
-        this.logger = logger;
-    }
-
     #region DataBusBlobCreatedFunction
 
     [Function(nameof(DataBusBlobCreated))]
@@ -34,16 +29,18 @@ public class DataBusBlobCreated
             return;
         }
 
-        await durableTaskClient.ScheduleNewOrchestrationInstanceAsync(DataBusCleanupOrchestratorName, new DataBusBlobData(name, DataBusBlobTimeoutCalculator.ToWireFormattedString(validUntilUtc)),
-            new StartOrchestrationOptions()
-            {
-                InstanceId = instanceId
-            }, cancellationToken);
+        await durableTaskClient.ScheduleNewOrchestrationInstanceAsync(DataBusCleanupOrchestratorName, new DataBusBlobData
+        {
+            Name = name,
+            ValidUntilUtc = DataBusBlobTimeoutCalculator.ToWireFormattedString(validUntilUtc)
+        },
+        new StartOrchestrationOptions()
+        {
+            InstanceId = instanceId
+        }, cancellationToken);
     }
 
     #endregion
-
-    readonly ILogger<DataBusBlobCreated> logger;
 
     static readonly string DataBusCleanupOrchestratorName = nameof(DataBusCleanupOrchestrator);
 }

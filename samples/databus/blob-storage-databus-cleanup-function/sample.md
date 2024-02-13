@@ -18,7 +18,7 @@ downloadbutton
 
 ## Running the sample
 
-1. Start [Azurite Emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio). 
+1. Start [Azurite Emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio).
 1. Run the solution—two console applications will start.
 1. Switch to the console window with `SenderAndReceiver` in its path, and press <kbd>enter</kbd> to send a large message.
 
@@ -57,24 +57,15 @@ snippet: DataBusCleanupOrchestratorFunction
 
 The function uses a [durable function timer](https://docs.microsoft.com/en-us/azure/azure-functions/durable-functions-timers) to delete the blob from Azure Storage after the timeout period has elapsed.
 
-partial: delete
+#### DeleteBlob
+
+snippet: DeleteBlobFunction
+
+The function is executing the actual work to delete a blob.
 
 #### Configuring time to live for large binary objects
 
-The default time to live for all large binary objects is configured by setting the `DefaultTimeToLiveInSeconds` environment variable. This can be set during debugging by adding the appropriate `Values` setting in the `local.settings.json` file:
-
-```json
-{
-  "IsEncrypted": false,
-  "Values": {
-     "DefaultTimeToLiveInSeconds":  "180"
-  }
-}
-```
-
-In production this is set using an [applications settings](https://docs.microsoft.com/en-us/azure/azure-functions/functions-how-to-use-azure-function-app-settings#settings) value named `DefaultTimeToLiveInSeconds` in the [Azure portal](https://portal.azure.com).
-
-If a message has a specific [time to be received](/nservicebus/messaging/discard-old-messages.md), that value overrides the default time to live, and it will be used to determine when to clean up the blob.
+If a message has a specific [time to be received](/nservicebus/messaging/discard-old-messages.md), that value will be used to determine when to clean up the blob.
 
 #### Configuring the data bus location
 

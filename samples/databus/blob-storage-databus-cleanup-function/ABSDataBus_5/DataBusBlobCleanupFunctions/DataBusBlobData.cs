@@ -1,5 +1,12 @@
-public class DataBusBlobData
+﻿public class DataBusBlobData
 {
-    public string Path { get; set; }
+    public DataBusBlobData(string name, string validUntilUtc)
+    {
+        Name = name;
+        ValidUntilUtc = validUntilUtc;
+    }
+
+    public string Name { get; set; }
+
     public string ValidUntilUtc { get; set; }
 }
