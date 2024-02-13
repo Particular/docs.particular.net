@@ -14,14 +14,14 @@ public class DataBusBlobCreated(ILogger<DataBusBlobCreated> logger)
     [Function(nameof(DataBusBlobCreated))]
     public async Task Run([BlobTrigger("databus/{name}", Connection = "DataBusStorageAccount")] Stream blob, string name, Uri uri, IDictionary<string, string> metadata, [DurableClient] DurableTaskClient durableTaskClient, CancellationToken cancellationToken)
     {
-        logger.LogInformation($"Blob created at {uri}");
+        logger.LogInformation("Blob created at {uri}", uri);
 
         var instanceId = name;
-        var existingInstance = await durableTaskClient.GetInstanceAsync(instanceId);
+        var existingInstance = await durableTaskClient.GetInstanceAsync(instanceId, cancellationToken);
 
         if (existingInstance != null)
         {
-            logger.LogInformation($"{DataBusCleanupOrchestratorName} has already been started for blob {uri}.");
+            logger.LogInformation("{DataBusCleanupOrchestratorName} has already been started for blob {uri}.", DataBusCleanupOrchestratorName, uri);
             return;
         }
 
@@ -29,7 +29,7 @@ public class DataBusBlobCreated(ILogger<DataBusBlobCreated> logger)
 
         if (validUntilUtc == DateTime.MaxValue)
         {
-            logger.LogError($"Could not parse the 'ValidUntil' value for blob {uri}. Cleanup will not happen on this blob. You may consider manually removing this entry if non-expiry is incorrect.");
+            logger.LogError("Could not parse the 'ValidUntil' value for blob {uri}. Cleanup will not happen on this blob. You may consider manually removing this entry if non-expiry is incorrect.", uri);
             return;
         }
 

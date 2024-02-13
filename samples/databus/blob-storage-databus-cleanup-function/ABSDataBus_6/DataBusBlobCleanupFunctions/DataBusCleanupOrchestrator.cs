@@ -6,7 +6,6 @@ using Microsoft.Extensions.Logging;
 
 public class DataBusCleanupOrchestrator(ILogger<DataBusCleanupOrchestrator> logger)
 {
-
     #region DataBusCleanupOrchestratorFunction
 
     [Function(nameof(DataBusCleanupOrchestrator))]
@@ -16,7 +15,7 @@ public class DataBusCleanupOrchestrator(ILogger<DataBusCleanupOrchestrator> logg
 
         var blobData = context.GetInput<DataBusBlobData>();
 
-        logger.LogInformation($"Orchestrating deletion for blob at {blobData.Name} with ValidUntilUtc of {blobData.ValidUntilUtc}");
+        logger.LogInformation("Orchestrating deletion for blob at {name} with ValidUntilUtc of {validUntilUtc}", blobData.Name, blobData.ValidUntilUtc);
 
         var validUntilUtc = DataBusBlobTimeoutCalculator.ToUtcDateTime(blobData.ValidUntilUtc);
 
@@ -27,7 +26,7 @@ public class DataBusCleanupOrchestrator(ILogger<DataBusCleanupOrchestrator> logg
         {
             timeoutUntil = validUntilUtc > context.CurrentUtcDateTime.AddDays(6) ? context.CurrentUtcDateTime.AddDays(6) : validUntilUtc;
 
-            logger.LogInformation($"Waiting until {timeoutUntil}/{validUntilUtc} for blob at {blobData.Name}. Currently {context.CurrentUtcDateTime}.");
+            logger.LogInformation("Waiting until {timeoutUntil}/{validUntilUtc} for blob at {blobData.Name}. Currently {context.CurrentUtcDateTime}.", timeoutUntil, validUntilUtc, blobData.Name, context.CurrentUtcDateTime);
 
             await context.CreateTimer(DataBusBlobTimeoutCalculator.ToUtcDateTime(blobData.ValidUntilUtc), CancellationToken.None);
         } while (validUntilUtc > timeoutUntil);

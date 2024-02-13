@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using System.Net;
-using System.Threading;
 using Azure.Storage.Blobs;
 using Azure.Storage.Blobs.Models;
 using Microsoft.AspNetCore.Http;
@@ -22,7 +21,7 @@ public class DataBusOrchestrateExistingBlobs(BlobContainerClient blobContainerCl
 
         try
         {
-            var segment = blobContainerClient.GetBlobsAsync(BlobTraits.Metadata).AsPages();
+            var segment = blobContainerClient.GetBlobsAsync(traits: BlobTraits.Metadata, cancellationToken: cancellationToken).AsPages();
 
             await foreach (var blobPage in segment)
             {
@@ -30,11 +29,11 @@ public class DataBusOrchestrateExistingBlobs(BlobContainerClient blobContainerCl
                 {
                     var instanceId = blobItem.Name;
 
-                    var existingInstance = await durableTaskClient.GetInstanceAsync(instanceId);
+                    var existingInstance = await durableTaskClient.GetInstanceAsync(instanceId, cancellationToken);
 
                     if (existingInstance != null)
                     {
-                        logger.LogInformation($"{nameof(DataBusCleanupOrchestrator)} has already been started for blob {blobItem.Name}.");
+                        logger.LogInformation("{name} has already been started for blob {blobItemName}.", nameof(DataBusCleanupOrchestrator), blobItem.Name);
                         continue;
                     }
 
@@ -42,7 +41,7 @@ public class DataBusOrchestrateExistingBlobs(BlobContainerClient blobContainerCl
 
                     if (validUntilUtc == DateTime.MaxValue)
                     {
-                        logger.LogError($"Could not parse the 'ValidUntilUtc' value for blob {blobItem.Name}. Cleanup will not happen on this blob. You may consider manually removing this entry if non-expiry is incorrect.");
+                        logger.LogError("Could not parse the 'ValidUntilUtc' value for blob {name}. Cleanup will not happen on this blob. You may consider manually removing this entry if non-expiry is incorrect.", blobItem.Name);
                         continue;
                     }
 
