@@ -49,7 +49,7 @@ As of version 4.21.8, the following options can be used to enable [Managed Ident
   * When specifying managed identity for the connection string, a [`ManagedIdentityCredential`](https://docs.microsoft.com/en-us/dotnet/api/azure.identity.managedidentitycredential) will be used.
   * Set the `ClientId=some-client-id` connectionstring option to use a specific [user-assigned identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview#managed-identity-types)
  
-As of version 4.33.x and 5.x support for partitioned entities can be added by using the following option:
+As of version 4.33.3 and 5.0.5 support for partitioned entities can be enabled by adding the following connection string parameter:
 
 * `EnablePartitioning=<True|False>` — Configures the transport to create entities with partitions support. The default value is `false`.
 
