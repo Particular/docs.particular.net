@@ -22,6 +22,7 @@ To install a license for all endpoints and Particular Service Platform applicati
 
 * Windows: `%LOCALAPPDATA%\ParticularSoftware\license.xml`
 * Linux/macOS: `${XDG_DATA_HOME:-$HOME/.local/share}/ParticularSoftware/license.xml`
+* macOS (.NET 8): `$HOME/Library/Application Support/ParticularSoftware/license.xml`
 
 
 ### Machine-wide license location
