@@ -687,7 +687,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.3.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.3.0) | 2023-09-21     | -                 | -                                 |
+| [4.3.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.3.1) | 2023-09-21     | -                 | -                                 |
 | [~~4.2.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.2.0) | ~~2023-06-28~~ | ~~2023-12-21~~    | ~~Superseded by 4.3.x~~           |
 | [~~4.1.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.1.1) | ~~2022-12-21~~ | ~~2023-09-28~~    | ~~Superseded by 4.2.x~~           |
 | [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.0.1) | ~~2022-11-17~~ | ~~2023-03-21~~    | ~~Superseded by 4.1.x~~           |
@@ -1003,7 +1003,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/Particular.PlatformSample/3.0.7) | 2023-12-01     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/Particular.PlatformSample/3.0.8) | 2023-12-01     | -                 | -                                 |
 | [2.40.x](https://www.nuget.org/packages/Particular.PlatformSample/2.40.0) | 2023-11-15     | 2024-12-01        | Superseded by 3.0.x               |
 | [~~2.39.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.39.0) | ~~2023-11-06~~ | ~~2024-02-15~~    | ~~Superseded by 2.40.x~~          |
 | [~~2.38.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.38.0) | ~~2023-08-16~~ | ~~2024-02-06~~    | ~~Superseded by 2.39.x~~          |
