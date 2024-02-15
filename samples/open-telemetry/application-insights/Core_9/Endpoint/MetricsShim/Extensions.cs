@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using NServiceBus;
-using NServiceBus.Settings;
 
 static class Extensions
 {
@@ -41,14 +40,5 @@ static class Extensions
         }
         processedMessageType = null;
         return false;
-    }
-
-    public static void ThrowIfSendOnly(this IReadOnlySettings settings)
-    {
-        var isSendOnly = settings.GetOrDefault<bool>("Endpoint.SendOnly");
-        if (isSendOnly)
-        {
-            throw new Exception("Metrics are not supported on send only endpoints.");
-        }
     }
 }
