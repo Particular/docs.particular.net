@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Features;
 
+#region metrics-shim
 class EmitNServiceBusMetrics : Feature
 {
     public EmitNServiceBusMetrics()
@@ -57,3 +58,4 @@ class EmitNServiceBusMetrics : Feature
         public const string MessageType = "nservicebus.message_type";
     }
 }
+#endregion

@@ -45,6 +45,8 @@ Note: Although the sample uses Azure Application Insights, the solution itself d
   - `nservicebus.messaging.successes`
   - `nservicebus.messaging.failures`
   - `nservicebus.messaging.fetches`
+  - `nservicebus.messaging.processingtime`
+  - `nservicebus.messaging.criticaltime`
 
 ![Graph tracking success and failed metrics in Application Insights](metrics-dashboard.png)
 
@@ -58,12 +60,18 @@ snippet: enable-open-telemetry
 
 ### Tracing
 
-The endpoint configures an OpenTelemetry trace provider that includes the `NServiceBus.Core` source and exports traces to Azure Monitor.
+The endpoint configures an OpenTelemetry trace provider that includes the `NServiceBus.Core` source and export traces to Azure Monitor.
 
 snippet: enable-tracing
 
 ### Meters
 
-The endpoint also configures an OpenTelemetry meter provider that includes the `NServiceBus.Core` meter and exports data to Azure Monitor.
+The endpoint also configures an OpenTelemetry meter provider that includes the `NServiceBus.Core` meter and export data to Azure Monitor.
 
 snippet: enable-meters
+
+#### Critical time and processing time
+
+[Critical time and processing time captured by the metrics package](/monitoring/metrics/definitions.md#metrics-captured) is not yet included in the built-in open telemetry support so a shim is needed to make sure that the endpoint exposes them as open telemetry metrics.
+
+snippet: metrics-shim
