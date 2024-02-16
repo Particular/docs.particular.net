@@ -17,17 +17,7 @@ class Program
         #region PostgreSqlConfig
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        var password = Environment.GetEnvironmentVariable("PostgreSqlPassword");
-        if (string.IsNullOrWhiteSpace(password))
-        {
-            throw new Exception("Could not extract 'PostgreSqlPassword' from Environment variables.");
-        }
-        var username = Environment.GetEnvironmentVariable("PostgreSqlUserName");
-        if (string.IsNullOrWhiteSpace(username))
-        {
-            throw new Exception("Could not extract 'PostgreSqlUserName' from Environment variables.");
-        }
-        var connection = $"Host=localhost;Username={username};Password={password};Database=NsbSamplesSqlSagaFinder";
+        var connection = $"Host=localhost;Username=PostgreSqlUserName;Password=yourStrong(!)Password;Database=NsbSamplesSqlSagaFinder";
         persistence.TablePrefix("Finder");
         var dialect = persistence.SqlDialect<SqlDialect.PostgreSql>();
         dialect.JsonBParameterModifier(
