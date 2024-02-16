@@ -2,7 +2,7 @@
 title: Steps, Stages and Connectors
 summary: The pipeline is composed of a number of Stages that communicate via Connectors
 component: Core
-reviewed: 2020-12-07
+reviewed: 2024-02-16
 related:
 - nservicebus/pipeline/manipulate-with-behaviors
 ---

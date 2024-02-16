@@ -30,8 +30,4 @@
     }
 
     #endregion
-
-    public class SharedData
-    {
-    }
 }
