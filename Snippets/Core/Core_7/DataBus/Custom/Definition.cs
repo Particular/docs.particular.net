@@ -7,9 +7,7 @@
     class CustomDatabusDefinition : DataBusDefinition
     {
         protected override Type ProvidedByFeature()
-        {
-            return typeof(CustomDatabusFeature);
-        }
+            => typeof(CustomDatabusFeature);
     }
     #endregion
 }
