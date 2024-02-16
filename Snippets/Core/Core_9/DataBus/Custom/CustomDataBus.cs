@@ -19,11 +19,9 @@
 
         public async Task<string> Put(Stream stream, TimeSpan timeToBeReceived, CancellationToken cancellationToken)
         {
-            using (var destination = File.OpenWrite("blob.dat"))
-            {
-                await stream.CopyToAsync(destination, 81920, cancellationToken)
-                    .ConfigureAwait(false);
-            }
+            await using var destination = File.OpenWrite("blob.dat");
+            await stream.CopyToAsync(destination, 81920, cancellationToken)
+                .ConfigureAwait(false);
             return "the-key-of-the-stored-file-such-as-the-full-path";
         }
 

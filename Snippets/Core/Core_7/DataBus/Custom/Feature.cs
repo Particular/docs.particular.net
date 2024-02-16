@@ -7,14 +7,11 @@
     class CustomDatabusFeature : Feature
     {
         public CustomDatabusFeature()
-        {
-            DependsOn<DataBus>();
-        }
+            => DependsOn<DataBus>();
 
         protected override void Setup(FeatureConfigurationContext context)
         {
-            var dataBus = new CustomDataBus();
-            context.Container.ConfigureComponent(b => dataBus, DependencyLifecycle.SingleInstance);
+            context.Container.ConfigureComponent(typeof(CustomDataBus) , DependencyLifecycle.SingleInstance);
         }
     }
     #endregion

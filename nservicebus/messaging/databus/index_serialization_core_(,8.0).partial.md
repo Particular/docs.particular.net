@@ -1,6 +1,6 @@
 ## Serialization
 
-By default NServiceBus uses a `BinaryFormatter` to serialize and deserialize data bus properties.
+By default, NServiceBus uses a `BinaryFormatter` to serialize and deserialize data bus properties.
 
 WARN: `BinaryFormatter` [is not supported in .NET 5](https://docs.microsoft.com/en-us/dotnet/core/compatibility/core-libraries/5.0/binaryformatter-serialization-obsolete). For projects that target .NET 5, use a custom serializer as described below.
 

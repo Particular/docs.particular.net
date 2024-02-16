@@ -8,15 +8,10 @@
     class CustomDatabusFeature : Feature
     {
         public CustomDatabusFeature()
-        {
-            DependsOn<DataBus>();
-        }
+            => DependsOn<DataBus>();
 
         protected override void Setup(FeatureConfigurationContext context)
-        {
-            var dataBus = new CustomDataBus();
-            context.Services.AddSingleton<IDataBus>(dataBus);
-        }
+            => context.Services.AddSingleton<IDataBus, CustomDataBus>();
     }
     #endregion
 }
