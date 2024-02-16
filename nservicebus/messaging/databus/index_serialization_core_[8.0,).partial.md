@@ -16,4 +16,4 @@ To override the data bus property serializer, create a class that implements `ID
 
 NOTE: Implementations of `IDataBusSerializer` should not close `Stream` instances that NServiceBus provides. NServiceBus manages the lifecycle of these `Stream` instances and may attempt to manipulate them after the custom serializer has been called.
 
-WARNING: For security purposes, the type information loaded from the payload should not be used. Instead use the `Type` property provided to the `Deserialize` method.
+WARNING: For security purposes, the type information loaded from the payload should not be used. Instead, use the `Type` property provided to the `Deserialize` method.
