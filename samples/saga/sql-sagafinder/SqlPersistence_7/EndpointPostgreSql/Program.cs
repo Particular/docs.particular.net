@@ -17,7 +17,7 @@ class Program
         #region PostgreSqlConfig
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        var connection = $"Host=localhost;Username=PostgreSqlUserName;Password=yourStrong(!)Password;Database=NsbSamplesSqlSagaFinder";
+        var connection = $"Host=localhost;Username=db_user;Password= mysecretpassword;Database=NsbSamplesSqlSagaFinder";
         persistence.TablePrefix("Finder");
         var dialect = persistence.SqlDialect<SqlDialect.PostgreSql>();
         dialect.JsonBParameterModifier(

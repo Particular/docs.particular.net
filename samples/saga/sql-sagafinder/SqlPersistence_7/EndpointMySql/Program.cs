@@ -16,7 +16,7 @@ class Program
         #region MySqlConfig
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        var connection = $"server=localhost;user=MySqlUserName;database=sqlpersistencesample;port=3306;password=yourStrong(!)Password;AllowUserVariables=True;AutoEnlist=false";
+        var connection = $"server=localhost;user=db_user;database=sqlpersistencesample;port=3306;password= example;AllowUserVariables=True;AutoEnlist=false";
         persistence.SqlDialect<SqlDialect.MySql>();
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
