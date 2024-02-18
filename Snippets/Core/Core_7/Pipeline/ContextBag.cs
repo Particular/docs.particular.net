@@ -7,8 +7,6 @@ namespace Core7.Pipeline
 
     #region SetContextBetweenIncomingAndOutgoing
 
-    class SharedState { }
-
     public class SetContextBehavior :
         Behavior<IIncomingPhysicalMessageContext>
     {

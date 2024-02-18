@@ -1,2 +1,2 @@
 1. Using an Azure Durable Function
-2. Using the Blob Lifecycle Management policy
+1. Using the Blob Lifecycle Management policy

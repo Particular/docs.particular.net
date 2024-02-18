@@ -26,8 +26,6 @@ As an example, in larger systems, there may be dozens of event types for various
 
 partial: hierarchy
 
-Since multiple rules per subscription are used, topics cannot be partitioned.
-
 #### Subscription rule matching
 
 ```sql

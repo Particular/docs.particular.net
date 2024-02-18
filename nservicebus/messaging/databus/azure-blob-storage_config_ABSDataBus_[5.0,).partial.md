@@ -1,6 +1,6 @@
 ### Configuring the BlobServiceClient
 
-There are several ways to configure the `BlobServiceClient`. 
+There are several ways to configure the `BlobServiceClient`.
 
 #### Using a preconfigured BlobServiceClient
 

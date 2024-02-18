@@ -2,7 +2,7 @@
 title: SQL Persistence Saga Finding Logic
 summary: Perform custom saga finding logic based on custom query logic when the Saga storage is the native SQL Persistence
 component: SqlPersistence
-reviewed: 2020-12-02
+reviewed: 2024-02-16
 related:
 - nservicebus/sagas
 - persistence/sql

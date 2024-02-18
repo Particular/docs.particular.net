@@ -1,13 +1,12 @@
-﻿using System;
-using System.Globalization;
-using Microsoft.Azure.Storage.Blob;
+﻿using System.Globalization;
 
 public static class DataBusBlobTimeoutCalculator
 {
     #region GetValidUntil
-    public static DateTime GetValidUntil(CloudBlockBlob blockBlob)
+
+    public static DateTime GetValidUntil(IDictionary<string, string> blobMetadata)
     {
-        if (blockBlob.Metadata.TryGetValue("ValidUntilUtc", out var validUntilUtcString))
+        if (blobMetadata.TryGetValue("ValidUntilUtc", out var validUntilUtcString))
         {
             return ToUtcDateTime(validUntilUtcString);
         }

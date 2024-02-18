@@ -9,7 +9,7 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
-The BinaryFormatter serializer that was used internally in NServiceBus version 7 is moved to a separate package. The BinaryFormatter is unsafe by nature and could cause security vulnerabilities and as a result is being phased out by Microsoft.
+The BinaryFormatter serializer that was used internally in NServiceBus version 7 is moved to a separate package. The BinaryFormatter is [unsafe by nature and could cause security vulnerabilities](https://aka.ms/binaryformatter) and as a result is being phased out by Microsoft.
 
 ## Seralizer configuration made mandatory
 

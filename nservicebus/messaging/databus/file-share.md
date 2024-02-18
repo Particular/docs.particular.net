@@ -1,7 +1,7 @@
 ---
 title: File Share Data Bus
 summary: An implementation of data bus using file shares
-reviewed: 2022-09-30
+reviewed: 2024-02-16
 component: FileShareDataBus
 related:
  - samples/databus/file-share-databus
@@ -19,7 +19,7 @@ snippet: FileShareDataBus
 
 WARNING: FileShareDataBus **does not** remove physical attachments once the message has been processed.
 
-The business requirements can indicate how a message and its corresponding file should be processed and when the files can safely be removed. One strategy to deal with these attachments is to set up a cleanup policy which removes any attachments after a certain number of days have passed based on business Service Level Agreements.
+The business requirements can indicate how a message and its corresponding file should be processed and when the files can safely be removed. One strategy to deal with these attachments is to set up a cleanup policy which removes any attachments after a certain number of days have passed based on business Service-Level Agreements.
 
 The file location used by the data bus is set during configuration time.
 
