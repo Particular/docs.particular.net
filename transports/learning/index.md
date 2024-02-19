@@ -1,7 +1,7 @@
 ---
 title: Learning Transport
 component: LearningTransport
-reviewed: 2020-12-07
+reviewed: 2024-02-19
 related:
  - persistence/learning
 redirects:
@@ -17,7 +17,7 @@ Added in Version 6.3.
 
 include: learning-usages
 
-[ServiceControl](/servicecontrol/) (and therefore [ServicePulse](/servicepulse/) and [ServiceInsight](/serviceinsight/)) are only supported for demonstration purposes through use of the [Platform Sample package](/platform/platform-sample-package.md).
+[ServiceControl](/servicecontrol/) (and therefore [ServicePulse](/servicepulse/) and [ServiceInsight](/serviceinsight/)) are only supported for demonstration purposes through the use of the [Platform Sample package](/platform/platform-sample-package.md).
 
 ## Transport at a glance
 
@@ -26,10 +26,10 @@ include: learning-usages
 |Transactions |None, ReceiveOnly, SendsWithAtomicReceive
 |Pub/Sub                    |Native
 |Timeouts                   |Native
-|Large message bodies       |LearningTransport can handle arbitrary message size within available resources
+|Large message bodies       |LearningTransport can handle arbitrary message sizes within available resources
 |Scale-out             |Competing consumer
 |Scripted Deployment        |Not supported
-|Installers                 |Not supported, the transport always create the required folder structure
+|Installers                 |Not supported, the transport always creates the required folder structure
 |Native integration         |Not supported
 
 ### Publish and subscribe
@@ -50,13 +50,13 @@ The transport supports the following [Transport Transaction Modes](/transports/t
 
 ### Concurrency
 
-By default the transport runs with concurrency limited to 1. See the [tuning](/nservicebus/operations/tuning.md) for details on how to configure concurrency levels.
+By default, the transport runs with concurrency limited to 1. See the [tuning](/nservicebus/operations/tuning.md) for details on how to configure concurrency levels.
 
-Note: Production transports will run with higher concurrency setting by default
+Note: Production transports will run with a higher concurrency setting by default
 
 ### Storage Directory
 
-By default all data is stored in a `.learningtransport` directory. The endpoint will traverse the folder hierarchy upwards in search for a `.learningtransport` directory or create one at the solution root folder if no matching folder has been found before.
+By default, all data is stored in a `.learningtransport` directory. The endpoint will traverse the folder hierarchy upwards in search for a `.learningtransport` directory or create one at the solution root folder if no matching folder has been found before.
 
 To manually configure the storage location:
 
@@ -91,16 +91,16 @@ The serialized contents of a message.
 
 #### Metadata File
 
-A serialized representation of a messages metadata.
+A serialized representation of a message's metadata.
 
- * First line is the path to the Message Body File.
- * Remaining lines are the json serialized headers of the message.
+ * The first line is the path to the Message Body File.
+ * The remaining lines are the json serialized headers of the message.
  * File convention is `[MessageId].metadata.txt`.
 
 
 ### Error Directory
 
-When a message fails processing both its metadata and body files will be moved to the "error" directory. The name of the directory will be derived from [configured error queue address](/nservicebus/recoverability/configure-error-handling.md#configure-the-error-queue-address). The default error queue name, and hence directory name, is "error".
+When a message fails processing both its metadata and body files will be moved to the "error" directory. The name of the directory will be derived from [configured error queue address](/nservicebus/recoverability/configure-error-handling.md#configure-the-error-queue-address). The default error queue name, and hence the directory name, is "error".
 
 
 ### Endpoint Structure
@@ -110,24 +110,24 @@ Each endpoint will have a corresponding directory under `.learningtransport` wit
 
 #### Metadata files
 
-Each incoming messages will have a corresponding Metadata File at the root of the endpoint directory.
+Each incoming message will have a corresponding Metadata File at the root of the endpoint directory.
 
 
 #### .bodies (directory)
 
-Each incoming messages will have a corresponding Body in this directory.
+Each incoming message will have a corresponding Body in this directory.
 
 
 #### .delayed (directory)
 
-Used to store messages that have been send with a [Delayed Delivery](/nservicebus/messaging/delayed-delivery.md). One directory per time stamp (of a second granularity) with the format `yyyyMMddHHmmss`. Each timestamp directory can contain multiple Metadata Files.
+Used to store messages that have been sent with a [Delayed Delivery](/nservicebus/messaging/delayed-delivery.md). One directory per timestamp (of a second granularity) with the format `yyyyMMddHHmmss`. Each timestamp directory can contain multiple Metadata Files.
 
 
 #### .pending (directory)
 
-Transaction directory used to mark a message as being processed. Also prevents duplicate processing.
+Transaction directory is used to mark a message as being processed. Also prevents duplicate processing.
 
 
 #### .committed (directory)
 
-Used to temporarily store outgoing message that are sent during the processing of another message.
+Used to temporarily store outgoing messages that are sent during the processing of another message.
