@@ -47,19 +47,19 @@ include: mssql-dtc-warning
 
 #### Atomicity and consistency guarantees
 
-In this mode, handlers will execute inside a `TransactionScope` created by the transport. This means that all the data updates and queue operations are all committed or all rolled back.
+In the Distributed Transaction mode, handlers will execute inside a `TransactionScope` created by the transport. This means that all the data updates and queue operations are committed or rolled back.
 
 **A distributed transaction between the queueing system and the persistent storage guarantees _atomic commits_ but guarantees only _eventual consistency_.**
 
 Consider a system using MSMQ transport and RavenDB persistence implementing the following message exchange scenario with a saga that models a simple order lifecycle:
 
  1. `OrderSaga` receives a `StartOrder` message
- 1. New `OrderSagaData` instance is created and stored in RavenDB.
+ 1. A new `OrderSagaData` instance is created and stored in RavenDB.
  1. `OrderSaga` sends `VerifyPayment` message to `PaymentService`.
  1. NServiceBus completes the distributed transaction and the DTC instructs MSMQ and RavenDB resource managers to commit their local transactions.
- 1. `StartOrder` message is removed from the input queue and `VerifyPayment` is immediately sent to `PaymentService`.
+ 1. The `StartOrder` message is removed from the input queue and `VerifyPayment` is immediately sent to `PaymentService`.
  1. RavenDB acknowledges the transaction commit and begins writing `OrderSagaData` to disk.
- 1. `PaymentService` receives `VerifyPayment` message and immediately responds with a `CompleteOrder` message to the originating `OrderSaga`.
+ 1. `PaymentService` receives a `VerifyPayment` message and immediately responds with a `CompleteOrder` message to the originating `OrderSaga`.
  1. `OrderSaga` receives the `CompleteOrder` message and attempts to complete the saga.
  1. `OrderSaga` queries RavenDB to find the `OrderSagaData` instance to complete.
  1. RavenDB has not finished writing `OrderSagaData` to disk and returns an empty result set.
@@ -69,9 +69,22 @@ In the example above the `TransactionScope` guarantees atomicity for the `OrderS
 
 NOTE: This mode requires the selected storage to support participating in distributed transactions.
 
+### Transport transaction - Sends atomic with Receive
+
+Some transports support enlisting outgoing operations in the current receive transaction. This prevents messages from being sent to downstream endpoints during retries.
+
+Use the following code to use this mode:
+
+snippet: TransportTransactionAtomicSendsWithReceive
+
+
+#### Consistency guarantees
+
+This mode has the same consistency guarantees as the *Receive Only* mode, but additionally, it prevents the occurrence of [ghost messages](/nservicebus/concepts/glossary.md#ghost-message) since all outgoing operations are atomic with the ongoing receive operation.
+
 ### Transport transaction - Receive Only
 
-In this mode the receive operation is wrapped in a transport's native transaction. This mode guarantees that the message is not permanently deleted from the incoming queue until at least one processing attempt (including storing user data and sending out messages) is finished successfully. See also [recoverability](/nservicebus/recoverability/) for more details on retries.
+In this mode, the receive operation is wrapped in a transport's native transaction. This mode guarantees that the message is not permanently deleted from the incoming queue until at least one processing attempt (including storing user data and sending out messages) is finished successfully. See also [recoverability](/nservicebus/recoverability/) for more details on retries.
 
 NOTE: [Sends and Publishes are batched](/nservicebus/messaging/batched-dispatch.md) and only transmitted until all handlers are successfully invoked. 
 Messages that are required to be sent immediately should use the [immediate dispatch option](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) which bypasses batching.
@@ -85,7 +98,7 @@ snippet: TransportTransactionReceiveOnly
 
 In this mode some (or all) handlers might get invoked multiple times and partial results might be visible:
 
- * partial updates - where one handler succeeded updating its data but the other didn't
+ * partial updates - where one handler succeeded in updating its data but the other didn't
  * partial sends - where some of the messages have been sent but others not
 
 When using this mode all handlers must be [idempotent](/nservicebus/concepts/glossary.md#idempotence), i.e. the result needs to be consistent from a business perspective even when the message is processed more than once.
@@ -93,25 +106,11 @@ When using this mode all handlers must be [idempotent](/nservicebus/concepts/glo
 See the `Outbox` section below for details on how NServiceBus can handle idempotency at the infrastructure level.
 
 
-### Transport transaction - Sends atomic with Receive
-
-Some transports support enlisting outgoing operations in the current receive transaction. This prevents messages being sent to downstream endpoints during retries.
-
-Use the following code to use this mode:
-
-snippet: TransportTransactionAtomicSendsWithReceive
-
-
-#### Consistency guarantees
-
-This mode has the same consistency guarantees as the *Receive Only* mode, but additionally it prevents occurrence of [ghost messages](/nservicebus/concepts/glossary.md#ghost-message) since all outgoing operations are atomic with the ongoing receive operation.
-
-
 ### Unreliable (Transactions Disabled)
 
 Disabling transactions is generally not recommended, because it might lead to message loss. It might be considered if losing some messages is not problematic and if the messages get outdated quickly, e.g. when sending readings from sensors at regular intervals.
 
-DANGER: In this mode, when encountering a critical failure such as system or endpoint crash, the message is **permanently lost**.
+DANGER: In this mode, when encountering a critical failure such as a system or endpoint crash, the message is **permanently lost**.
 
 snippet: TransactionsDisable
 
