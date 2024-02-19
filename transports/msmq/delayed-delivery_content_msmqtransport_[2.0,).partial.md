@@ -20,6 +20,38 @@ The message store is polled for due delayed messages in a background task which 
 
 When a due delayed message is returned by `FetchNextDueTimeout`, the message is sent to the destination queue and then removed from the store using the `Remove` method. In case of an unexpected exception during forwarding the failure is registered using `IncrementFailureCount`. If the configured number of retries is exhausted the message is forwarded to the configured `error` queue.
 
+## Configuration
+
+The settings described in this section allow changing the default behavior of the built-in delayed delivery store.
+
+### NumberOfRetries
+
+Number of retries when trying to forward due delayed messages.
+
+### TimeToTriggerStoreCircuitBreaker
+
+Time to wait before triggering the circuit breaker that monitors the storing of delayed messages in the database. 
+
+Defaults to `30` seconds.
+       
+### TimeToTriggerFetchCircuitBreaker
+
+Time to wait before triggering the circuit breaker that monitors the fetching of due delayed messages from the database. 
+
+Defaults to `30` seconds.
+    
+### TimeToTriggerDispatchCircuitBreaker
+
+Time to wait before triggering the circuit breaker that monitors the dispatching of due delayed messages to the destination. 
+
+Defaults to `30` seconds.
+
+### MaximumRecoveryFailuresPerSecond
+
+Maximum number of failed attempts per second to increment the per-message failure counter that triggers the recovery circuit breaker. 
+
+Defaults to `1` per sec.
+
 ## Using a custom delayed message store
 
 Create a class which implements the `IDelayedMessageStore` interface and pass an instance to the `DelayedDeliverySettings` constructor.
