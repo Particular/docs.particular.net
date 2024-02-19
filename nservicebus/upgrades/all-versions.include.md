@@ -44,7 +44,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [6.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.2.0) | 2023-11-20     | -                 | -                                 |
-| [6.1.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.1.2) | 2023-03-07     | 2024-02-20        | Superseded by 6.2.x               |
+| [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.1.2) | ~~2023-03-07~~ | ~~2024-02-20~~    | ~~Superseded by 6.2.x~~           |
 | [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.0.1) | ~~2022-11-17~~ | ~~2023-06-07~~    | ~~Superseded by 6.1.x~~           |
 | [5.7.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.7.3) | 2023-03-07     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~5.6.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.6.3) | ~~2022-01-14~~ | ~~2023-06-07~~    | ~~Superseded by 5.7.x~~           |
@@ -142,8 +142,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.SqlServer/7.0.4) | 2023-08-28     | -                 | -                                 |
-| [6.3.x](https://www.nuget.org/packages/NServiceBus.SqlServer/6.3.6) | 2021-06-23     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.SqlServer/7.0.5) | 2023-08-28     | -                 | -                                 |
+| [6.3.x](https://www.nuget.org/packages/NServiceBus.SqlServer/6.3.7) | 2021-06-23     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~6.2.x~~](https://www.nuget.org/packages/NServiceBus.SqlServer/6.2.0) | ~~2020-11-19~~ | ~~2021-09-23~~    | ~~Superseded by 6.3.x~~           |
 | [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.SqlServer/6.1.2) | ~~2020-06-24~~ | ~~2021-02-19~~    | ~~Superseded by 6.2.x~~           |
 | [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.SqlServer/6.0.1) | ~~2020-02-07~~ | ~~2020-09-24~~    | ~~Superseded by 6.1.x~~           |
@@ -201,8 +201,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/7.0.4) | 2023-08-28     | -                 | -                                 |
-| [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.3.6) | 2021-06-23     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/7.0.5) | 2023-08-28     | -                 | -                                 |
+| [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.3.7) | 2021-06-23     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~6.2.x~~](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.2.0) | ~~2020-11-19~~ | ~~2021-09-23~~    | ~~Superseded by 6.3.x~~           |
 | [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.1.2) | ~~2020-06-24~~ | ~~2021-02-19~~    | ~~Superseded by 6.2.x~~           |
 | [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.0.1) | ~~2020-02-07~~ | ~~2020-09-24~~    | ~~Superseded by 6.1.x~~           |
@@ -1003,7 +1003,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/Particular.PlatformSample/3.0.8) | 2023-12-01     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/Particular.PlatformSample/3.0.9) | 2023-12-01     | -                 | -                                 |
 | [2.40.x](https://www.nuget.org/packages/Particular.PlatformSample/2.40.0) | 2023-11-15     | 2024-12-01        | Superseded by 3.0.x               |
 | [~~2.39.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.39.0) | ~~2023-11-06~~ | ~~2024-02-15~~    | ~~Superseded by 2.40.x~~          |
 | [~~2.38.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.38.0) | ~~2023-08-16~~ | ~~2024-02-06~~    | ~~Superseded by 2.39.x~~          |
