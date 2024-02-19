@@ -50,7 +50,7 @@ class Program
         var meterProvider = Sdk.CreateMeterProviderBuilder()
             .SetResourceBuilder(resourceBuilder)
             .AddMeter("NServiceBus.Core")
-            .AddNServiceBusTelemetryClientExporter(telemetryClient)
+            .AddAzureMonitorMetricExporter(o => o.ConnectionString = appInsightsConnectionString)
             .AddConsoleExporter()
             .Build();
         #endregion
