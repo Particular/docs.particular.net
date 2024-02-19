@@ -1,7 +1,7 @@
-NServiceBus is the heart of a distributed system and the Particular Service Platform. It helps create systems that are scalable, reliable, and flexible. Adding NServiceBus to a project can be done via NuGet:
+NServiceBus is the heart of a distributed system and the Particular Service Platform. It helps create systems that are scalable, reliable, and flexible. Adding NServiceBus to a project can be done via .NET CLI:
 
 ```ps
-PM> Install-Package NServiceBus
+dotnet add package NServiceBus
 ```
 
 At its core, NServiceBus works by routing _messages_ between _endpoints_. [Messages](/nservicebus/concepts/glossary.md#message) are plain C# classes that contain meaningful data for the business process that is being modeled.
