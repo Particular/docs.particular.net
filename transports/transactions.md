@@ -6,10 +6,10 @@ versions: "[4,)"
 redirects:
  - nservicebus/messaging/transactions
  - nservicebus/transports/transactions
-reviewed: 2020-12-07
+reviewed: 2024-02-19
 ---
 
-This article covers various levels of consistency guarantees with regards to:
+This article covers various levels of consistency guarantees with regard to:
 
  * receiving messages
  * updating user data
@@ -20,7 +20,7 @@ It does not discuss the transaction isolation aspect. Transaction isolation appl
 
 ## Transactions
 
-Four levels of guarantees with regards to message processing are offered. A level's availability depends on the selected transport.
+Four levels of guarantees with regard to message processing are offered. A level's availability depends on the selected transport.
 
 
 ### Transaction levels supported by NServiceBus transports
@@ -34,7 +34,7 @@ partial: matrix
 
 In this mode the transport receive operation is wrapped in a [`TransactionScope`](https://docs.microsoft.com/en-us/dotnet/api/system.transactions.transactionscope). Other operations inside this scope, both sending messages and manipulating data, are guaranteed to be executed (eventually) as a whole or rolled back as a whole.
 
-If required, the transaction is escalated to a distributed transaction (following two-phase commit protocol coordinated by [MSDTC](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms684146(v=vs.85))) if both the transport and the persistence support it. A fully distributed transaction is not always required, for example when using [SQL Server transport](/transports/sql/) with [SQL persistence](/persistence/sql/), both using the same database connection string. In this case the ADO.NET driver guarantees that everything happens inside a single database transaction and ACID guarantees are held for the whole processing.
+If required, the transaction is escalated to a distributed transaction (following a two-phase commit protocol coordinated by [MSDTC](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms684146(v=vs.85))) if both the transport and the persistence support it. A fully distributed transaction is not always required, for example when using [SQL Server transport](/transports/sql/) with [SQL persistence](/persistence/sql/), both using the same database connection string. In this case, the ADO.NET driver guarantees that everything happens inside a single database transaction and ACID guarantees are held for the whole processing.
 
 NOTE: MSMQ will escalate to a distributed transaction right away since it doesn't support promotable transaction enlistments.
 
@@ -47,7 +47,7 @@ include: mssql-dtc-warning
 
 #### Atomicity and consistency guarantees
 
-In this mode handlers will execute inside a `TransactionScope` created by the transport. This means that all the data updates and queue operations are all committed or all rolled back.
+In this mode, handlers will execute inside a `TransactionScope` created by the transport. This means that all the data updates and queue operations are all committed or all rolled back.
 
 **A distributed transaction between the queueing system and the persistent storage guarantees _atomic commits_ but guarantees only _eventual consistency_.**
 
