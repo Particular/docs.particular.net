@@ -1,8 +1,8 @@
 ---
 title: Backwards Compatibility
-summary: Describes the requirements for backward compatibility with legacy Azure Service Bus
+summary: Describes the requirements for backward compatibility with the legacy Azure Service Bus
 component: ASBS
-reviewed: 2020-12-07
+reviewed: 2024-02-20
 ---
 
 The Azure Service Bus transport is backward compatible with the legacy Azure Service Bus transport under certain conditions.
@@ -11,7 +11,7 @@ The Azure Service Bus transport is backward compatible with the legacy Azure Ser
 
 ### Forwarding topology
 
-The Azure Service Bus transport only supports the [forwarding topology](/transports/azure-service-bus/topology.md), an entity layout where a topic is used for publishing between the endpoints.
+The Azure Service Bus transport only supports the [forwarding topology](/transports/azure-service-bus/topology.md).
 
 ### Single namespace
 
@@ -19,11 +19,11 @@ The Azure Service Bus transport only supports a single namespace.
 
 ### Topic path must match
 
-Both transports must be configured using the same topic path for publishing to work properly. This implies that the topic used by the endpoints using the Azure Service Bus transport must match the topic used by the endpoints on legacy Azure Service Bus.
+Both transports must be configured using the same topic path for publishing to work properly. The Azure Service Bus transport must use the same topic as the old Azure Service Bus transport. Also, only one topic path is allowed.
 
-In addition, only one topic path is supported. For publishers that are using the legacy Azure Service Bus transport version 7 or lower, the number of entities in a bundle must be restricted to one using:
+Therefore, for publishers that are using the legacy transport version 7 or lower, the number of entities in a bundle must be restricted to one using:
 
-```
+```csharp
 forwardingTopology.NumberOfEntitiesInBundle(1);
 ```
 
