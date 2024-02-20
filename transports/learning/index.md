@@ -91,7 +91,7 @@ The serialized contents of a message.
 
 #### Metadata File
 
-A serialized representation of a message's metadata.
+A serialized representation of the message metadata.
 
  * The first line is the path to the Message Body File.
  * The remaining lines are the json serialized headers of the message.
