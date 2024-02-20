@@ -125,7 +125,7 @@ Used to store messages that have been sent with a [Delayed Delivery](/nservicebu
 
 #### .pending (directory)
 
-Transaction directory is used to mark a message as being processed. Also prevents duplicate processing.
+Transaction directory that is used to mark a message as being processed. Also prevents duplicate processing.
 
 
 #### .committed (directory)
