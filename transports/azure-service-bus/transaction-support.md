@@ -24,7 +24,7 @@ The receive throughput of this transaction mode can be significantly slower due 
 
 The `ReceiveOnly` guarantee is based on the Azure Service Bus ['PeekLock' mode](https://learn.microsoft.com/en-us/azure/service-bus-messaging/message-transfers-locks-settlement#peeklock).
 
-The message is not removed from the queue directly after receive, but it's hidden for the duration of the peek-lock (5 minutes by default). This prevents other instances from receiving the message. If the receiver fails to process the message within that time frame and [auto-lock-renewal](configuration.md#lock-renewal) was not enabled or explicitly abandons the message, then the message will become visible again for the same or competing consumers.
+The message is not removed from the queue directly after receiving, but it's hidden for the duration of the peek-lock (5 minutes by default). This prevents other instances from receiving the message. If the receiver fails to process the message within that time frame and [auto-lock-renewal](configuration.md#lock-renewal) was not enabled or explicitly abandons the message, then the message will become visible again for the same or competing consumers.
 
 ## Unreliable (transactions disabled)
 
