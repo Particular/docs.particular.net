@@ -47,7 +47,7 @@ include: mssql-dtc-warning
 
 #### Atomicity and consistency guarantees
 
-In the Distributed Transaction mode, handlers will execute inside a `TransactionScope` created by the transport. This means that all the data updates and queue operations are committed or rolled back.
+When the `TransportTransactionMode` is set to `TransactionScope`, handlers will execute inside a `System.Transactions.TransactionScope` created by the transport. This means that all the data updates and queue operations are committed or rolled back.
 
 **A distributed transaction between the queueing system and the persistent storage guarantees _atomic commits_ but guarantees only _eventual consistency_.**
 
@@ -76,8 +76,6 @@ Some transports support enlisting outgoing operations in the current receive tra
 Use the following code to use this mode:
 
 snippet: TransportTransactionAtomicSendsWithReceive
-
-
 #### Consistency guarantees
 
 This mode has the same consistency guarantees as the *Receive Only* mode, but additionally, it prevents the occurrence of [ghost messages](/nservicebus/concepts/glossary.md#ghost-message) since all outgoing operations are atomic with the ongoing receive operation.
