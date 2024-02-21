@@ -2,12 +2,12 @@
 title: Managing Errors and Retries
 summary: View the details of failed messages with ServiceInsight and retry them
 component: ServiceInsight
-reviewed: 2020-12-16
+reviewed: 2024-02-21
 ---
 
-When a message fails during processing, NServiceBus will [automatically retry it](/nservicebus/recoverability/). If a message continues to fail it will be forwarded to the error queue and become visible within ServiceInsight.
+When a message fails during processing, NServiceBus will [automatically retry it](/nservicebus/recoverability/). If a message continues to fail, it will be forwarded to the error queue and become visible within ServiceInsight.
 
-The views in ServiceInsight show information about message processing failure with the message. No manual correlation of log files or accessing of remote servers is necessary to research the reasons for an error.
+The views in ServiceInsight show information about message processing failure with the message. No manual correlation of log files or access to remote servers is necessary to research the reasons for an error.
 
 ## Status in the message list
 
@@ -15,26 +15,25 @@ The status of an errant message is illustrated in the message window. A message 
 
 ![An error in the message window](images/overview-messagewindowerror.png 'width=500')
 
-**Successful processed message**: A message that was successfully processed. Requires [message auditing](/nservicebus/operations/auditing.md) to be enabled. ![Success icon](images/status-success-icon.png)
+**Successfully processed message**: A message that was successfully processed. Requires [message auditing](/nservicebus/operations/auditing.md) to be enabled. ![Success icon](images/status-success-icon.png)
 
-**Message failed one time**: A message that was moved to the error queue only one time. ![Single error icon](images/status-error-icon.png)
+**Message failed one time**: A message moved to the error queue only once. ![Single error icon](images/status-error-icon.png)
 
 **Message failed multiple times**: A message that has been retried at least once using tools like ServiceInsight or ServicePulse, and for which retries weren't able to process the message successfully. ![Multiple errors icon](images/status-multiple-error-icon.png)
 
-**Retry requested for message**: A failed message, for which a retry was requested from ServiceInsight or ServicePulse. If a message remains with this status, there is no further information about that message, neither failure nor audit for a successful processing. Once the message is re-processed, the status will change to resolved successfully, failed once, or failed multiple times. ![Retry icon](images/status-retry-icon.png)
+**Retry requested for message**: A failed message for which a retry was requested from ServiceInsight or [ServicePulse](/servicepulse/index.md). If a message remains with this status, there is no further information about that message, neither failure nor audit for a successful processing. Once the message is re-processed, the status will change to resolved successfully, failed once, or failed multiple times. ![Retry icon](images/status-retry-icon.png)
 
 **Resolved successfully**: The message was successfully processed after failure(s). ![Retry icon](images/status-resolved-successfully.png)
 
 ## Clock drift
 
-If the status icon has an exclamation sign overlay (⚠) is shown when the calculated [critical time](/monitoring/metrics/definitions.md#metrics-captured-critical-time) is *negative* usually caused by [clock drift](https://en.wikipedia.org/wiki/Clock_drift). Clock drift can be migitated by frequently syncing against the same shared time source via NTP.
+If the status icon has an exclamation sign overlay (⚠), it is shown when the calculated [critical time](/monitoring/metrics/definitions.md#metrics-captured-critical-time) is *negative* usually caused by [clock drift](https://en.wikipedia.org/wiki/Clock_drift). Clock drift can be mitigated by frequently syncing against the same shared time source via NTP.
 
 ## The flow diagram
 
 The flow diagram highlights errors in red and provides details with access to the stack trace.
 
 ![Error in the flow diagram](images/overview-flowdiagramwitherror.png 'width=500')
-
 
 ## The sequence diagram
 
