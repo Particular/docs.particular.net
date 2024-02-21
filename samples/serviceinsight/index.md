@@ -1,5 +1,5 @@
 ---
 title: ServiceInsight Samples
-reviewed: 2020-12-17
+reviewed: 2024-02-21
 component: ServiceInsight
 ---
