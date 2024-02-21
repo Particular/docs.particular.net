@@ -1,14 +1,14 @@
 ---
 title: Host platform tools using Docker for Windows
 summary: Host the ServicePulse and ServiceControl platform tools using Docker Windows Containers for Server and Desktops
-reviewed: 2020-12-14
+reviewed: 2024-02-21
 component: ServiceControl
 hidden: true
 related:
 - samples/hosting/docker
 ---
 
-NOTE: This sample is **not production ready**. Ports in the containers are remotely accessible and the sample is targeted to developers.
+NOTE: This sample is **not production ready**. Ports in the containers are remotely accessible, and the sample is targeted to developers.
 
 This sample shows how to host the [ServicePulse](/servicepulse/) and [ServiceControl](/servicecontrol/) platform tools in Docker Windows Containers for Server and Desktops . It makes use of `docker-compose` to set up all platform tool components.
 
@@ -20,13 +20,13 @@ This sample shows how to host the [ServicePulse](/servicepulse/) and [ServiceCon
 
 ## Windows vs Linux
 
-Currently Linux is unsupported as ServiceControl has a technical dependency on ESENT storage which is only available on Windows.
+Currently, [Linux is unsupported](https://github.com/Particular/ServiceControl/issues/3651) as ServiceControl has a technical dependency on ESENT storage, which is only available on Windows.
 
-A compose file cannot setup both Windows and Linux containers. [ServicePulse supports both Windows and Linux containerization](/servicepulse/containerization/).
+A compose file cannot set up both Windows and Linux containers. [ServicePulse supports both Windows and Linux containerization](/servicepulse/containerization/).
 
 ## Memory
 
-For this sample the containers will use the default limit of 1GB for containers used by Docker for Windows. This is sufficient for demo purposes but not when ServiceControl is under load or when the database grows in size. This limit can be adjusted by uncommenting the text `#mem_limit: 8192m` in the Docker Compose files.
+For this sample, the containers will use the default limit of 1GB for containers used by Docker for Windows. This is sufficient for demo purposes, but not when ServiceControl is under load or when the database grows. This limit can be adjusted by uncommenting the text `#mem_limit: 8192m` in the Docker Compose files.
 
 ## License
 
@@ -34,17 +34,17 @@ As the platform tools are licensed software, a license file is required to run t
 
 ## Storage
 
-ServiceControl requires storage for its database. Data stored by ServiceControl must be persistent and not stored in the container itself as containers often need to be rebuilt. ServiceControl data is stored via [docker volumes](https://docs.docker.com/storage/volumes/) which are resilient to container rebuilds so that data is not lost. This sample writes logs to a docker volume as well to ensure logs are not lost.
+ServiceControl requires storage for its database. Data stored by ServiceControl must be persistent and not stored in the container itself, as containers often need to be rebuilt. ServiceControl data is stored via [docker volumes,](https://docs.docker.com/storage/volumes/) which are resilient to container rebuilds so that data is not lost. This sample writes logs to a docker volume as well to ensure logs are not lost.
 
 ## Transport
 
-The [Azure Service Bus Transport](/transports/azure-service-bus/) is used but Docker works with all supported [broker-based transports](/transports/selecting.md#broker-versus-federated).
+The [Azure Service Bus Transport](/transports/azure-service-bus/) is used, but Docker works with all supported [broker-based transports](/transports/selecting.md#broker-versus-federated).
 
 Set the Azure Service Bus connection string in the `.env` file (value `Endpoint=sb://xxx.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=xxx`).
 
 ## Init and runtime containers
 
-ServiceControl has a setup and a run-time stage. During the setup stage, queues are created but no messages are ingested and processed while during the run-time stage no setup is performed and messages are ingested. In a production environment often the setup stage is run with administrative access to resources and the runtime stage is run with least privilege.
+ServiceControl has a setup and a run-time stage. During the setup stage, queues are created, but no messages are ingested and processed, while during the run-time stage no setup is performed and messages are ingested. In a production environment, often the setup stage is run with administrative access to resources and the runtime stage is run with least-privilege.
 
 The same stages are applied to Docker. The `docker-compose.init.yml` Docker Compose file executes the [ServiceControl init containers](/servicecontrol/containerization/#init-containers).
 
@@ -66,7 +66,7 @@ docker-compose --file docker-compose.init.yml up
 
 ### Run
 
-Runs Docker Compose and launch ServicePulse via the configured default browser. This uses the default Docker Compose file `docker-compose.yml`.
+Runs Docker Compose and launches ServicePulse via the configured default browser. This uses the default Docker Compose file `docker-compose.yml`.
 
 ```cmd
 docker-compose up --detach
@@ -91,7 +91,7 @@ The Docker images follow [semantic versioning](https://semver.org/). In other wo
 
 NOTE: Following the `latest` tag is recommended only for developers in combination with recreating Docker volumes via `docker compose up -d -V`.
 
-In order to update all containers to their latest versions:
+To update all containers to their latest versions:
 
 ```cmd
 docker pull particular/servicecontrol.azureservicebus.init-windows:4
