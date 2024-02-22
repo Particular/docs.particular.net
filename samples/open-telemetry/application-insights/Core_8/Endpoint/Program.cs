@@ -60,10 +60,6 @@ class Program
         endpointConfiguration.EnableOpenTelemetry();
         #endregion
 
-        #region enable-metrics-shim
-        endpointConfiguration.EnableMetricsShim();
-        #endregion
-
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();
         var cancellation = new CancellationTokenSource();

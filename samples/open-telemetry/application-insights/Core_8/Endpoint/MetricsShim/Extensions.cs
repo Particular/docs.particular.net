@@ -1,32 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Threading.Tasks;
 using NServiceBus;
-using static Meters;
 
 static class Extensions
 {
-    public static void EnableMetricsShim(this EndpointConfiguration endpointConfiguration)
-    {
-        endpointConfiguration.Recoverability().Immediate(i => i.OnMessageBeingRetried((m, _) => RecordRetry(m.Headers)));
-        endpointConfiguration.Recoverability().Delayed(i => i.OnMessageBeingRetried((m, _) => RecordRetry(m.Headers)));
-    }
-
-    static Task RecordRetry(Dictionary<string, string> headers)
-    {
-        headers.TryGetMessageType(out var messageType);
-
-        var tags = new TagList(new KeyValuePair<string, object>[]
-        {
-            new(Tags.MessageType, messageType ?? ""),
-        });
-
-        Meters.Retries.Add(1, tags);
-
-        return Task.CompletedTask;
-    }
-
     public static bool TryGetTimeSent(this ReceivePipelineCompleted completed, out DateTimeOffset timeSent)
     {
         var headers = completed.ProcessedMessage.Headers;
