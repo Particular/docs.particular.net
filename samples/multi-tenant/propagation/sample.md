@@ -1,14 +1,14 @@
 ---
 title: Propagating Tenant Information to Downstream Endpoints
-summary: How to configure the pipeline to automatically propagate tenant information to downstream endpoints
-reviewed: 2020-12-07
+summary: How to configure the pipeline to propagate tenant information to downstream endpoints automatically
+reviewed: 2024-02-22
 component: Core
 related:
 - nservicebus/pipeline/manipulate-with-behaviors
 ---
 
 
-This sample shows how to configure the NServiceBus pipeline to automatically propagate tenant information to downstream endpoints. The sample assumes that the tenant information is passed as a message header.
+This sample shows how to configure the NServiceBus pipeline to propagate tenant information to downstream endpoints automatically. The sample assumes that the tenant information is passed as a message header.
 
 
 ## Code walk-through
@@ -53,7 +53,7 @@ The `OrderPlaced` message handler in the Sales endpoint publishes an `OrderAccep
 
 snippet: message-handler
 
-In addition to that, both `OrderAccepted` and `OrderPlaced` message handlers log the tenant ID header value extracted from the incoming message.
+In addition to that, both the `OrderAccepted` and `OrderPlaced` message handlers log the tenant ID header value extracted from the incoming message.
 
 
 ## Running the sample
