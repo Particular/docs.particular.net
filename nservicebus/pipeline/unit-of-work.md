@@ -13,7 +13,7 @@ related:
 
 ## Using a transaction scope
 
-If a business transaction is spread across multiple handlers there is always a risk of partial updates since one handler might succeed in updating the data while other won't. To avoid this use a unit of work that wraps all handlers in a `TransactionScope` and makes sure that there are no partial updates. Use following code to enable a wrapping scope:
+If a business transaction is spread across multiple handlers there is always a risk of partial updates since one handler might succeed in updating the data while other won't. To avoid this it is possible to use a unit of work that wraps all handlers in a `TransactionScope` and makes sure that there are no partial updates. Use following code to enable a wrapping scope:
 
 snippet: UnitOfWorkWrapHandlersInATransactionScope
 
