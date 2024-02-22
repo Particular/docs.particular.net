@@ -23,8 +23,8 @@ class EmitNServiceBusMetrics : Feature
 
         var recoverabilitySettings = (RecoverabilitySettings)typeof(RecoverabilitySettings).GetConstructor(
               BindingFlags.NonPublic | BindingFlags.Instance,
-              null, new Type[] { typeof(SettingsHolder) },
-              null).Invoke(new object[] { (SettingsHolder)context.Settings });
+              null, [typeof(SettingsHolder)],
+              null).Invoke([(SettingsHolder)context.Settings]);
 
         recoverabilitySettings.Immediate(i => i.OnMessageBeingRetried((m, _) => RecordRetry(m.Headers, queueName, discriminator)));
         recoverabilitySettings.Delayed(i => i.OnMessageBeingRetried((m, _) => RecordRetry(m.Headers, queueName, discriminator)));
@@ -33,12 +33,12 @@ class EmitNServiceBusMetrics : Feature
         {
             e.TryGetMessageType(out var messageType);
 
-            var tags = new TagList(new KeyValuePair<string, object>[]
-            {
-                    new(Tags.QueueName, queueName ?? ""),
-                    new(Tags.EndpointDiscriminator, discriminator ?? ""),
-                    new(Tags.MessageType, messageType ?? "")
-            });
+            var tags = new TagList(
+            [
+                new(Tags.QueueName, queueName ?? ""),
+                new(Tags.EndpointDiscriminator, discriminator ?? ""),
+                new(Tags.MessageType, messageType ?? "")
+            ]);
 
             ProcessingTime.Record((e.CompletedAt - e.StartedAt).TotalMilliseconds, tags);
 
@@ -55,12 +55,12 @@ class EmitNServiceBusMetrics : Feature
     {
         headers.TryGetMessageType(out var messageType);
 
-        var tags = new TagList(new KeyValuePair<string, object>[]
-        {
-                    new(Tags.QueueName, queueName ?? ""),
-                    new(Tags.EndpointDiscriminator, discriminator ?? ""),
-                    new(Tags.MessageType, messageType ?? "")
-        });
+        var tags = new TagList(
+        [
+            new(Tags.QueueName, queueName ?? ""),
+            new(Tags.EndpointDiscriminator, discriminator ?? ""),
+            new(Tags.MessageType, messageType ?? "")
+        ]);
 
         Retries.Add(1, tags);
 
