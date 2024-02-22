@@ -53,6 +53,7 @@ class Program
             .AddAzureMonitorMetricExporter(o => o.ConnectionString = appInsightsConnectionString)
             .AddConsoleExporter()
             .Build();
+
         #endregion
 
         #region enable-open-telemetry
