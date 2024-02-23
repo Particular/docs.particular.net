@@ -713,7 +713,7 @@
       Title: Decommissioning Endpoints
     - Url: nservicebus/operations/nservicebus-analyzer
       Title: NServiceBus Analyzer
-  - Title: Bridge
+  - Title: Messaging Bridge
     Articles:
     - Url: nservicebus/bridge
       Title: NServiceBus messaging bridge
