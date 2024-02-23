@@ -9,7 +9,7 @@ public class API
 
         #region bridgeconfiguration
 
-        var msmq = new BridgeTransport(new MsmqBridgeTransport());
+        var msmq = new BridgeTransport(new MsmqTransport());
         var asb = new BridgeTransport(new AzureServiceBusTransport(connectionString));
 
         msmq.HasEndpoint("Sales");
