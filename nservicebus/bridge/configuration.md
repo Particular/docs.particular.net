@@ -39,8 +39,6 @@ snippet: register-publisher-legacy
 
 INFO: Using the overloads that accept a type instead of a string value is recommended. Passing types can be problematic when not using [naming conventions for messages via unobtrusive mode](/nservicebus/messaging/conventions.md).
 
-## Registering multiple publishers for the same event
-
 partial: multiple-publishers
 
 ### Referencing event types
@@ -115,3 +113,7 @@ WARN: The endpoint name used when creating a `BridgeEndpoint` is case-sensitive,
 Special considerations are required for the audit queue due to potentially high message volume. For example, a [dedicated ServiceControl audit instance](/servicecontrol/audit-instances/) could be created for each bridged transport, to make audit ingestion more efficient.
 
 partial: monitoring
+
+
+
+
