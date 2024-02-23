@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using System;
 using System.Threading.Tasks;
 
 public class Configuration
@@ -192,6 +193,44 @@ public class Configuration
 
         var endpoint = new BridgeEndpoint("Sales", "sales@another-machine");
         transport.HasEndpoint(endpoint);
+
+        #endregion
+    }
+
+    public void DoNotEnforceBestPractices()
+    {
+        var bridgeConfiguration = new BridgeConfiguration();
+
+        #region do-not-enforce-best-practices
+
+        bridgeConfiguration.DoNotEnforceBestPractices();
+
+        #endregion
+    }
+
+    public void ConfigureHeartbeats()
+    {
+        var bridgeTransport = new BridgeTransport(new AzureServiceBusTransport(connectionString));
+
+        #region configure-heartbeats
+
+        bridgeTransport.SendHeartbeatTo(
+            serviceControlQueue: "ServiceControl_Queue",
+            frequency: TimeSpan.FromSeconds(15),
+            timeToLive: TimeSpan.FromSeconds(30));
+
+        #endregion
+    }
+
+    public void ConfigureCustomChecks()
+    {
+        var bridgeTransport = new BridgeTransport(new AzureServiceBusTransport(connectionString));
+
+        #region configure-custom-checks
+
+        bridgeTransport.ReportCustomChecksTo(
+            serviceControlQueue: "ServiceControl_Queue",
+            timeToLive: TimeSpan.FromSeconds(30));
 
         #endregion
     }

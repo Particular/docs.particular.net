@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using System;
 using System.Threading.Tasks;
 
 public class Configuration
@@ -53,7 +54,7 @@ public class Configuration
         await Host.CreateDefaultBuilder()
             .UseNServiceBusBridge((ctx, bridgeConfiguration) =>
             {
-                var msmq = new BridgeTransport(new MsmqBridgeTransport());
+                var msmq = new BridgeTransport(new MsmqTransport());
                 msmq.HasEndpoint("Sales");
                 msmq.HasEndpoint("Shipping");
 
@@ -74,7 +75,7 @@ public class Configuration
     {
         #region register-publisher
 
-        var msmq = new BridgeTransport(new MsmqBridgeTransport());
+        var msmq = new BridgeTransport(new MsmqTransport());
         msmq.HasEndpoint("Sales");
         msmq.HasEndpoint("Finance.Billing");
 
@@ -105,7 +106,7 @@ public class Configuration
     {
         #region auto-create-queues
 
-        var msmq = new BridgeTransport(new MsmqBridgeTransport())
+        var msmq = new BridgeTransport(new MsmqTransport())
         {
             AutoCreateQueues = true
         };
@@ -122,7 +123,7 @@ public class Configuration
     {
         #region custom-concurrency
 
-        var msmq = new BridgeTransport(new MsmqBridgeTransport())
+        var msmq = new BridgeTransport(new MsmqTransport())
         {
             Concurrency = 10
         };
@@ -139,7 +140,7 @@ public class Configuration
     {
         #region custom-error-queue
 
-        var msmq = new BridgeTransport(new MsmqBridgeTransport())
+        var msmq = new BridgeTransport(new MsmqTransport())
         {
             ErrorQueue = "my-msmq-bridge-error-queue"
         };
@@ -173,7 +174,7 @@ public class Configuration
     {
         #region platform-bridging
 
-        var transportWhereServiceControlIsInstalled = new BridgeTransport(new MsmqBridgeTransport());
+        var transportWhereServiceControlIsInstalled = new BridgeTransport(new MsmqTransport());
 
         transportWhereServiceControlIsInstalled.HasEndpoint("Particular.ServiceControl");
         transportWhereServiceControlIsInstalled.HasEndpoint("Particular.Monitoring");
@@ -187,7 +188,7 @@ public class Configuration
     {
         #region custom-address
 
-        var transport = new BridgeTransport(new MsmqBridgeTransport());
+        var transport = new BridgeTransport(new MsmqTransport());
         transport.HasEndpoint("Finance", "finance@machinename");
 
         var endpoint = new BridgeEndpoint("Sales", "sales@another-machine");
@@ -203,6 +204,33 @@ public class Configuration
         #region do-not-enforce-best-practices
 
         bridgeConfiguration.DoNotEnforceBestPractices();
+
+        #endregion
+    }
+
+    public void ConfigureHeartbeats()
+    {
+        var bridgeTransport = new BridgeTransport(new AzureServiceBusTransport(connectionString));
+
+        #region configure-heartbeats
+
+        bridgeTransport.SendHeartbeatTo(
+            serviceControlQueue: "ServiceControl_Queue",
+            frequency: TimeSpan.FromSeconds(15),
+            timeToLive: TimeSpan.FromSeconds(30));
+
+        #endregion
+    }
+
+    public void ConfigureCustomChecks()
+    {
+        var bridgeTransport = new BridgeTransport(new AzureServiceBusTransport(connectionString));
+
+        #region configure-custom-checks
+
+        bridgeTransport.ReportCustomChecksTo(
+            serviceControlQueue: "ServiceControl_Queue",
+            timeToLive: TimeSpan.FromSeconds(30));
 
         #endregion
     }
