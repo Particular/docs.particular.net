@@ -113,3 +113,5 @@ WARN: The endpoint name used when creating a `BridgeEndpoint` is case-sensitive,
 ### Audit queue
 
 Special considerations are required for the audit queue due to potentially high message volume. For example, a [dedicated ServiceControl audit instance](/servicecontrol/audit-instances/) could be created for each bridged transport, to make audit ingestion more efficient.
+
+partial: monitoring
