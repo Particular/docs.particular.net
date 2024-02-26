@@ -32,7 +32,7 @@ The Custom Checks feature can be enabled per bridge transport by using `ReportCu
 
 snippet: configure-custom-checks
 
-NOTE: Each custom check is executed once and the result is sent to each bridge transport that is configured to report custom checks. When configured to [Bridge platform queues](#bridging-platform-queues), it is only necesary to report custom checks on one of the bridge transports, otherwise a custom check result will be reported multiple times to the same platform instance.
+NOTE: Each custom check is executed once, and the result is sent to each bridge transport configured to report custom checks. When configured to [Bridge platform queues](#bridging-platform-queues), it is only necessary to report custom checks on one of the bridge transports. Otherwise, a custom check result will be reported multiple times to the same platform instance.
 
 #### Time-To-Live (TTL)
 
