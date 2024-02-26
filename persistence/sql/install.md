@@ -4,10 +4,10 @@ summary: Things to consider when installing and deploying endpoints that use SQL
 component: SqlPersistence
 related:
  - persistence/sql/installer-workflow
-reviewed: 2021-01-04
+reviewed: 2024-02-26
 ---
 
-The SQL persistence package generates scripts to create necessary database assets. It's recommended to run those scripts as part of the deployment process. See [Installer Workflow](installer-workflow.md) for more information.
+The SQL persistence package generates scripts to create necessary database assets. It is recommended to run those scripts as part of the deployment process. See [Installer Workflow](installer-workflow.md) for more information.
 
 
 ## Script execution during development
@@ -38,7 +38,7 @@ A table prefix is used at runtime and install time.
 
 NOTE: While the default table prefix can be inferred by code at runtime, it cannot be inferred when [running deployment scripts manually](#manual-installation) and as such must be passed in as a parameter.
 
-When using the default approach to installation (execute at startup), the value configured in code will be used.
+When using the default approach to installation (execute at startup), the value configured in the code will be used.
 
 snippet: TablePrefix
 
@@ -54,7 +54,7 @@ NOTE: The same value must be passed to the installation scripts as a parameter.
 
 When performing a custom script execution the table prefix is required. See also [Installer Workflow](installer-workflow.md).
 
-Note that `scriptDirectory` can be either the root directory for all scripts, or the specific locations for a given storage type i.e. Saga, Outbox, Subscription and Timeout scripts.
+Note that `scriptDirectory` can be either the root directory for all scripts or the specific locations for a given storage type i.e. Saga, Outbox, Subscription and Timeout scripts.
 
 
 ### SQL Server
