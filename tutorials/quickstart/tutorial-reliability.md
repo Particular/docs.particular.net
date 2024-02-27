@@ -98,11 +98,11 @@ snippet: ThrowFatalException
 Next, let's enable the Particular Service Platform tools and see what they do.
 
 1. In the **Platform** project, locate and open the **Program.cs** file.
-2. Uncomment the code inside the **Main** method shown here. This will cause the platform to launch when we start our project.
+2. Ensure the code inside the **Main** method shown here is uncommented. This is responsible for launching the platform when we start our project.
 
 snippet: PlatformMain
 
-With those two changes made, start the solution without debugging (<kbd>Ctrl</kbd>+<kbd>F5</kbd>). This will make it easier to observe the exceptions and retries without being interrupted by Visual Studio's Exception Assistant dialog.
+With any necessary changes made, start the solution without debugging (<kbd>Ctrl</kbd>+<kbd>F5</kbd>). This will make it easier to observe the exceptions and retries without being interrupted by Visual Studio's Exception Assistant dialog.
 
 Along with the windows from before, two new windows will now launch. The first is the **Particular Service Platform Launcher** window, which looks like this:
 
