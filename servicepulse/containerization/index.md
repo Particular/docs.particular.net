@@ -1,9 +1,9 @@
 ---
 title: Running ServicePulse in containers
-reviewed: 2020-12-17
+reviewed: 2024-02-26
 ---
 
-Docker images for ServicePulse exist on Dockerhub under the [Particular organization](https://hub.docker.com/u/particular) and available for Windows and Linux.
+Docker images for ServicePulse exist on Docker Hub under the [Particular organization](https://hub.docker.com/u/particular) and are available for Windows and Linux.
 
 ## Containers overview
 
@@ -11,11 +11,11 @@ ServicePulse is stateless and requires no volume mapping. The UI fully runs in t
 
 ## Ports
 
-Port 80 is used for serving the ServicePulse web application
+Port 80 is used for serving the ServicePulse web application.
 
 ## Environment
 
-ServicePulse is available as a Linux and as a Windows image
+ServicePulse is available as a Linux and a Windows image.
 
 Linux:
 
