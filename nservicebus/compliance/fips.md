@@ -2,17 +2,16 @@
 title: FIPS Compliance
 summary: Describes NServiceBus compliance with FIPS
 component: Core
-reviewed: 2021-01-04
-isLearningPath: true
+reviewed: 2024-02-28
 ---
 
-The [Federal Information Processing Standards](https://en.wikipedia.org/wiki/Federal_Information_Processing_Standards) or FIPS are standards developed by the United States government for computer systems that sets requirements for, among other things, crytography.
+The [Federal Information Processing Standards](https://en.wikipedia.org/wiki/Federal_Information_Processing_Standards) or FIPS are standards developed by the United States government for computer systems that set requirements for, among other things, cryptography.
 
 Microsoft [does not recommend enabling FIPS](https://blogs.technet.microsoft.com/secguide/2014/04/07/why-were-not-recommending-fips-mode-anymore/) unless it is required by government regulations.
 
-NOTE: FIPS policy enforcement does not exist at all in .NET Core.
+NOTE: FIPS policy enforcement does only exist on .NET Framework.
 
-The Particular Software Platform is not FIPS compatible, and no testing is done to ensure components will work properly on FIPS-enabled hardware. In general, the platform uses `System.Security.Cryptography` classes only for hashing, and not for data security purposes.
+The Particular Software Platform is not FIPS compatible, and no testing is done to ensure components will work properly on FIPS-enabled hardware. The platform currently uses `System.Security.Cryptography`classes only for hashing, and not for data security purposes.
 
 There are workarounds that allow running NServiceBus and the Particular Service Platform on the .NET Framework on servers with FIPS enforcement enabled, but these workarounds are also not tested or verified in any way.
 
@@ -20,11 +19,11 @@ There are workarounds that allow running NServiceBus and the Particular Service 
 
 NServiceBus uses the MD5 hash algorithm to generate deterministic unique identifiers for endpoints, also known as HostIds. MD5 is not FIPS compliant. Using a FIPS compliant hashing algorithm method to generate a HostId will allow an NServiceBus endpoint to run under a FIPS policy.
 
-First a replacement for the MD5 based DeterministicGuid utility within the NServiceBus framework will have to be provided:
+First, a replacement for the MD5 based DeterministicGuid utility within the NServiceBus framework will have to be provided:
 
 snippet: SHA1DeterministicGuid
 
-Next [set the HostId](/nservicebus/hosting/override-hostid.md) as part of the endpoint configuration:
+Next, [set the HostId](/nservicebus/hosting/override-hostid.md) as part of the endpoint configuration:
 
 snippet: HostIdFixer
 
@@ -32,7 +31,7 @@ snippet: HostIdFixer
 
 The following packages use MD5 and cannot be used with FIPS enforcement enabled:
 
-* NServiceBus.RavenDB - Uses MD5 to create create shortened keys for subscriptions and saga lookup properties.
+* NServiceBus.RavenDB - Uses MD5 to create shortened keys for subscriptions and saga lookup properties.
 * NServiceBus.Gateway - Uses MD5 to ensure integrity of received data.
 * NServiceBus.Distributor.Msmq: Uses MD5 to shorten long queue names.
 
