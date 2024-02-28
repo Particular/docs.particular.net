@@ -98,7 +98,7 @@ To share messages between endpoints, they need to be self-contained in a separat
 
 ### Create a message
 
-We'll create our first command in a folder called **Commands**.
+Let's create our first command.
 
  1. In the **Messages** project, create a new class named `PlaceOrder`.
  1. Mark `PlaceOrder` as `public` and implement `ICommand`.
