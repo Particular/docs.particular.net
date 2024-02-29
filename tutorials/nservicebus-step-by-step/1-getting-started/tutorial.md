@@ -33,10 +33,10 @@ First, let's create a basic solution and include the dependencies we need.
  3. Set the project name to **ClientUI**.
  4. Set the solution name to **RetailDemo**.
 
-Next, add the NServiceBus NuGet package as a dependency. From the [NuGet Package Manager Console](https://docs.microsoft.com/en-us/nuget/tools/package-manager-console), type the following:
+Next, add the NServiceBus NuGet package as a dependency. Using Powershell or another terminal alternative, navigate to the ClientUI project directory and run the following command:
 
 ```
-Install-Package NServiceBus -ProjectName ClientUI
+dotnet add package NServiceBus
 ```
 
 This adds an NServiceBus.Core assembly reference to the ClientUI project. Now we're ready to start writing code.

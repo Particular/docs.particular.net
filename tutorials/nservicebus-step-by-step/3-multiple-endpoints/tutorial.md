@@ -80,9 +80,9 @@ Let's split apart the endpoint we created in the previous lesson. We'll reconfig
 First, let's create a project for our new endpoint.
 
  1. Create a new **Console Application** project named **Sales**.
- 1. In the **Sales** project, add the NServiceBus NuGet package:
+ 1. In the same directory as the **Sales** project, add the NServiceBus NuGet package using the .NET CLI:
       ```
-      Install-Package NServiceBus -ProjectName Sales
+    dotnet add package NServiceBus
       ```
  1. Rename **Messages** project to **Sales.Messages**
  1. In the **Sales** project, add a reference to the **Sales.Messages** project, so that we have access to the `PlaceOrder` message.
