@@ -66,14 +66,6 @@ NOTE: If TLS is to be applied to ServicePulse then ServiceControl also must be c
           <match url="^a/js/app.constants.js(.*)" />
           <action type="Rewrite" url="/js/app.constants.js{R:1}" />
         </rule>
-        <rule name="Handle Vue.js routing paths" stopProcessing="true">
-          <match url="(.*)" />
-          <conditions logicalGrouping="MatchAll">
-            <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
-            <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
-          </conditions>
-          <action type="Rewrite" url="/" />
-        </rule>
       </rules>
     </rewrite>
   </system.webServer>
@@ -93,14 +85,6 @@ It is possible to host ServicePulse within a subfolder. The `web.config` contain
         <rule name="Handle app.constants.js requests from AngularJs" stopProcessing="true">
           <match url="^SubFolder/a/js/app.constants.js(.*)" />
           <action type="Rewrite" url="/js/app.constants.js{R:1}" />
-        </rule>
-        <rule name="Handle Vue.js routing paths" stopProcessing="true">
-          <match url="(.*)" />
-          <conditions logicalGrouping="MatchAll">
-            <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
-            <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
-          </conditions>
-          <action type="Rewrite" url="/" />
         </rule>
       </rules>
     </rewrite>
