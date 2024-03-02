@@ -1,7 +1,7 @@
 ---
 title: Features
 summary: Implement a Feature for the advanced extension of NServiceBus.
-reviewed: 2024-02-19
+reviewed: 2024-03-01
 component: Core
 versions: '[5.0,)'
 related:
@@ -26,7 +26,7 @@ Features allow:
 To create a new feature create a class which inherits from `Feature`. This offers two basic extensibility points:
 
  * The constructor of the class will always be executed and should be used to determine whether to enable or disable the feature and configure default settings.
- * The `Setup` method is called if all defined conditions are met and the feature is marked as *enabled*. Use this method to configure and initialize all required components for the feature such as startup tasks.
+ * The `Setup` method is called if all the defined conditions are met and the feature is marked as *enabled*. Use this method to configure and initialize all required components for the feature such as startup tasks.
 
 snippet: MinimalFeature
 
@@ -46,7 +46,7 @@ The API also allows declaring optional dependencies on one or more listed featur
 
 ## Enabling, disabling and activation
 
-For a feature to take part in the endpoint construction, it has first to become *enabled* and then, only if it has been enabled, qualify for *activation*. By default, features are disabled unless explicitly enabled.
+For a feature to take part in the endpoint construction, it has to first be *enabled* and only then does it qualify for *activation*.   By default, features are disabled unless explicitly enabled.
 
 This can be overridden and a feature can be enabled by default, like most of NServiceBus's features are:
 
