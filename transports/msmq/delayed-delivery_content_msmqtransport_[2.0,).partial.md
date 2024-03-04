@@ -28,6 +28,8 @@ The settings described in this section allow changing the default behavior of th
 
 Number of retries when trying to forward due delayed messages.
 
+Defaults to `0`.
+
 ### TimeToTriggerStoreCircuitBreaker
 
 Time to wait before triggering the circuit breaker that monitors the storing of delayed messages in the database. 
