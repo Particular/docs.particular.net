@@ -28,7 +28,7 @@ jobs:
           path: |
              ~/.dotnet/tools/docstool
              ~/.dotnet/tools/.store/particular.docstool
-          key: docstool-${{ hashFiles('docstool-versions.json') }} 
+          key: docstool-${{ hashFiles('docstool-versions.json') }}
       - name: Install docstool
         if: steps.cache-docstool.outputs.cache-hit != 'true'
         run: dotnet tool install Particular.DocsTool --global --add-source https://f.feedz.io/particular-software/packages/nuget/index.json
@@ -63,7 +63,7 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - name: Run integrity tests
-        run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release
+        run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release --logger "GitHubActions;report-warnings=$reportWarnings"
       - name: Notify Slack on failure
         if: ${{ failure() }}
         shell: pwsh
