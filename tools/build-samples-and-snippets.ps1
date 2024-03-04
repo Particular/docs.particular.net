@@ -99,6 +99,7 @@ foreach($solution in $solutions) {
         if(Test-Path $msBuildMarkerFile)
         {
             Write-Output ("::warning::Using msbuild for solution using legacy csproj format: {0}" -f $solution.FullName)
+            Write-Output ("🟡 Using msbuild for solution using legacy csproj format: {0}" -f $solution.FullName) | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
             msbuild $solution.Name -maxCpuCount -verbosity:minimal -restore -property:RestorePackagesConfig=true
         }
         else
@@ -109,6 +110,7 @@ foreach($solution in $solutions) {
         if( -not $? ) {
             $exitCode = 1
             Write-Output ("::error::Build failed: {0}" -f $solution.FullName)
+            Write-Output ("🔴 Build failed: {0}" -f $solution.FullName) | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
             $failedSolutions.Add($solution.FullName)
         }
     }
