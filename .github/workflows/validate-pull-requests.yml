@@ -42,7 +42,7 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - name: Run integrity tests
-        run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release --logger "GitHubActions;report-warnings=$reportWarnings"
+        run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release --logger "GitHubActions;report-warnings=false"
   build-projects:
     name: Build samples & snippets
     runs-on: windows-2022

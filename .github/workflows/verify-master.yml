@@ -63,7 +63,7 @@ jobs:
         with:
           dotnet-version: 8.0.x
       - name: Run integrity tests
-        run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release --logger "GitHubActions;report-warnings=$reportWarnings"
+        run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release --logger "GitHubActions;report-warnings=false"
       - name: Notify Slack on failure
         if: ${{ failure() }}
         shell: pwsh
