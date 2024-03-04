@@ -21,7 +21,7 @@ The Particular Service Platform implements the [messaging patterns](/nservicebus
 
 ### Service boundaries
 
-Finding good service boundaries is one of the biggest challenges with the microservice architectural style. Suboptimal boundaries often lead to a lack of data isolation and excessive inter-service communication. This often leads to high coupling between services which implement a business processes, sometimes referred to as a distributed monolith. To define autonomous services, it is crucial to focus on business boundaries rather than technical boundaries.
+Finding good service boundaries is one of the biggest challenges with the microservice architectural style. Suboptimal boundaries often lead to a lack of data isolation and excessive inter-service communication. This often leads to high coupling between services which implement business processes, sometimes referred to as a distributed monolith. To define autonomous services, it is crucial to focus on business boundaries rather than technical boundaries.
 
 <iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="https://player.vimeo.com/video/113515335" webkitallowfullscreen width="400"></iframe>
 
