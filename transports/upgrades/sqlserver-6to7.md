@@ -19,7 +19,7 @@ To use the SQL Server transport for NServiceBus, create a new instance `SqlServe
 Instead of:
 
 ```csharp
-var transport = endpointConfiguration.UseTransport<SqlServerTransprot>();
+var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
 transport.ConnectionString(connectionString);
 ```
 
