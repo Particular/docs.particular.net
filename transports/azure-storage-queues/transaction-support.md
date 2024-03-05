@@ -6,7 +6,7 @@ versions: '[6,]'
 reviewed: 2022-12-23
 redirects:
  - nservicebus/azure-storage-queues/transaction-support
- ---
+---
 
 The following [`TransportTransactionMode` levels](/transports/transactions.md) are supported
 
