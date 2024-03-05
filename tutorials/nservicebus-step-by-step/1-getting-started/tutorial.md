@@ -22,7 +22,7 @@ Let's build something simple to give NServiceBus a try.
 
 This tutorial uses NServiceBus version 8, .NET 6, and assumes an up-to-date installation of [Visual Studio 2022](https://www.visualstudio.com/downloads/).
 
-NOTE: NServiceBus 8 also [supports .NET Framework 4.7.2 or higher](/nservicebus/operations/dotnet-framework-version-requirements.md), but [new applications should be built on .NET 6 or higher](https://devblogs.microsoft.com/dotnet/net-core-is-the-future-of-net/). 
+NOTE: NServiceBus 8 also [supports .NET Framework 4.7.2 or higher](/nservicebus/operations/dotnet-framework-version-requirements.md), but [new applications should be built on .NET 6 or higher](https://devblogs.microsoft.com/dotnet/net-core-is-the-future-of-net/).
 
 ### Create a solution
 
@@ -72,6 +72,7 @@ When running multiple console apps in the same solution, giving each a name make
 snippet: EndpointName
 
 The `EndpointConfiguration` class is where we define all the settings that determine how our endpoint will operate. The single string parameter `ClientUI` is the [**endpoint name**](/nservicebus/endpoints/specify-endpoint-name.md), which serves as the logical identity for our endpoint, and forms a naming convention by which other things will derive their names, such as the **input queue** where the endpoint will listen for messages to process.
+When setting up the endpoint configuration you can choose how you want to serialize your messages. For this tutorial, we will be configuring the endpoint to use `SystemJsonSerializer` which uses the .NET `System.Text.Json` serializer.
 
 #### Transport
 
