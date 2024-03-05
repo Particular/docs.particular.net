@@ -8,8 +8,7 @@ related:
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 7
- ---
-
+---
 
 ## .NET Framework 4.6.2.
 
