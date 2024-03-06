@@ -19,7 +19,7 @@ To use the SQL Server transport for NServiceBus, create a new instance `SqlServe
 Instead of:
 
 ```csharp
-var transport = endpointConfiguration.UseTransport<SqlServerTransprot>();
+var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
 transport.ConnectionString(connectionString);
 ```
 
@@ -42,7 +42,7 @@ The SQL Server transport configuration options have moved to the `SqlServerTrans
 | DefaultSchema | DefaultSchema |
 | NativeDelayedDelivery | DelayedDelivery|
 | PurgeExpiredMessagesOnStartup | ExpiredMessagesPurger.PurgeOnStartup |
-| WithPeekDealy | QueuePeeker |
+| WithPeekDelay | QueuePeeker |
 | SubscriptionSettings | Subscriptions |
 | TimeToWaitBeforeTriggeringCircuitBreaker | TimeToWaitBeforeTriggeringCircuitBreaker |
 | TransactionScopeOptions | TransactionScope |
