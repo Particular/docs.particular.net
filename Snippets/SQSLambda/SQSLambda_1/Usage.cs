@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-
 using Amazon.Lambda.Core;
 using Amazon.Lambda.SQSEvents;
-
 using NServiceBus;
 
 class Usage
@@ -82,6 +80,7 @@ class Usage
 
     #endregion
   }
+
   static void ConfigureSerializer(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
   {
     #region aws-custom-serializer

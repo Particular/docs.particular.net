@@ -1,12 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
-    <AWSProjectType>Lambda</AWSProjectType>
-    <RootNamespace />
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="NServiceBus.AwsLambda.SQS" Version="1.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.*" />
   </ItemGroup>
+
 </Project>

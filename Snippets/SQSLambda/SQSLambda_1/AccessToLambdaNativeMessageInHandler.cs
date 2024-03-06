@@ -1,7 +1,5 @@
 ﻿using System.Threading.Tasks;
-
 using Amazon.Lambda.SQSEvents;
-
 using NServiceBus;
 
 #region native-lambda-sqs-message
@@ -21,4 +19,3 @@ public class AccessToLambdaNativeMessageInHandler : IHandleMessages<TestMessage>
 public class TestMessage
 {
 }
-
