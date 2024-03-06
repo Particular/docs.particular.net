@@ -39,7 +39,7 @@ The configuration API exposes NServiceBus configuration options to allow customi
 
 ### Serializer
 
-Configuring the [serializer](/nservicebus/serialization/):
+Configure [serializer](/nservicebus/serialization/) to use:
 
 snippet: aws-custom-serializer
 
@@ -55,13 +55,11 @@ snippet: aws-configure-routing
 
 snippet: aws-custom-diagnostics
 
-### Delayed Retries
-
 partial: delayed-delivery
 
 ### Error handling
 
-Messages that fail all retries are moved to the default `error` queue. Alternatively, the endpoint may be configured to instead rethrow the error and let the native lambda error handling kick in:
+Messages that fail all retries are [moved to the default `error` queue](/nservicebus/recoverability/#fault-handling). Alternatively, the endpoint may be configured to instead use [the automatic AWS Lambda error handling](https://docs.aws.amazon.com/lambda/latest/dg/invocation-retries.html) by rethrowing the exception:
 
 snippet: aws-configure-dont-move-to-error
 
