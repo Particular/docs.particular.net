@@ -18,13 +18,14 @@ downloadbutton
 
 ## Prerequisites
 
-The sample includes a [`CloudFormation`](https://aws.amazon.com/cloudformation/aws-cloudformation-templates/) template, which will deploy the Lambda and create the necessary queues to run the sample.
+The sample includes a [`CloudFormation` template](https://aws.amazon.com/cloudformation/aws-cloudformation-templates/), which will deploy the Lambda and create the necessary queues.
 
 The [`Amazon.Lambda.Tools` CLI](https://github.com/aws/aws-lambda-dotnet) can be used to deploy the template to an AWS account.
 
 1. Install the [`Amazon.Lambda.Tools CLI`](https://github.com/aws/aws-lambda-dotnet#amazonlambdatools)
-1. Make sure an S3 bucket is available in the AWS region of choice
-1. Update the values of `stack-name` and `s3-bucket` settings in aws-lambda-tools-defaults.json file found in the **ServerlessEndpoint** project
+2. Make sure an S3 bucket is available in the AWS region of choice
+3. Update the `s3-bucket` settings in aws-lambda-tools-defaults.json file found in the **ServerlessEndpoint** project with the name of the bucket
+4. Optionally change the `stack-name` setting
 
 ## Running the sample
 

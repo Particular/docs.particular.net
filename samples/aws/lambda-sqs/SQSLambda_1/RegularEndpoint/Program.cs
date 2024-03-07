@@ -6,7 +6,6 @@ Console.Title = "RegularEndpoint";
 var endpointConfiguration = new EndpointConfiguration("RegularEndpoint");
 
 endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
-endpointConfiguration.EnableInstallers();
 endpointConfiguration.UseTransport<SqsTransport>();
 
 var endpointInstance = await Endpoint.Start(endpointConfiguration);
