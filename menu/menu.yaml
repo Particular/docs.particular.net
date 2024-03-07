@@ -627,8 +627,6 @@
       Title: Subscribing to notification events
     - Url: nservicebus/pipeline/features
       Title: Features
-    - Url: nservicebus/pipeline/customizing-error-handling
-      Title: Customizing Error Handling
     - Url: nservicebus/satellites
       Title: Satellites
   - Title: Serialization
