@@ -2,14 +2,14 @@
 title: Management using PowerShell
 summary: Install the infrastructure for NServiceBus on servers using PowerShell.
 reviewed: 2023-10-11
-isLearningPath: true
 related:
  - nservicebus/operations
 redirects:
 - nservicebus/managing-nservicebus-using-powershell
+- nservicebus/operations/management-using-powershell
 ---
 
-A PowerShell module that sets up a computer to run NServiceBus.
+A PowerShell module that sets up a computer to run NServiceBus with the MSMQ transport.
 
 The PowerShell module provides cmdlets to assist with:
 
