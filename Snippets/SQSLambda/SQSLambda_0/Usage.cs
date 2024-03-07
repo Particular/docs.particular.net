@@ -68,17 +68,6 @@ class Usage
         #endregion
     }
 
-    static void ConfigureErrorQueue(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
-    {
-        #region aws-configure-error-queue
-
-        var advanced = endpointConfiguration.AdvancedConfiguration;
-
-        advanced.SendFailedMessagesTo("<error-queue>");
-
-        #endregion
-    }
-
     static void ConfigureDontMoveToErrors(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
     {
         #region aws-configure-dont-move-to-error
