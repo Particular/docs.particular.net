@@ -5,7 +5,7 @@ reviewed: 2024-01-26
 component: PerfCounters
 related:
 - monitoring/metrics/performance-counters
-- nservicebus/operations/management-using-powershell
+- transports/msmq/management-using-powershell
 ---
 
 

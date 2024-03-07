@@ -12,7 +12,7 @@ related:
  - nservicebus/operations
  - nservicebus/recoverability
  - nservicebus/operations/auditing
- - nservicebus/operations/management-using-powershell
+ - transports/msmq/management-using-powershell
  - samples/performance-counters
 ---
 

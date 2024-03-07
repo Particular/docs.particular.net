@@ -7,7 +7,7 @@ redirects:
 ---
 
 
-The [NServiceBus.PowerShell modules](/nservicebus/operations/management-using-powershell.md) provide a simple mechanism for installing and configuring the MSMQ service to suit NServiceBus. Particular does not provide an uninstall for this as there are built-in removal options within the Windows operating system.
+The [NServiceBus.PowerShell modules](management-using-powershell.md) provide a simple mechanism for installing and configuring the MSMQ service to suit NServiceBus. Particular does not provide an uninstall for this as there are built-in removal options within the Windows operating system.
 
 The removal instructions vary depending on the operating system and are detailed below.
 
