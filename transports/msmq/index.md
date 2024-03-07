@@ -52,7 +52,7 @@ partial: default
 
 NServiceBus requires a specific MSMQ configuration to operate.
 
-The supported configuration is to have only the base MSMQ service installed with no optional features. To enable the supported configuration, use the `Install-NServiceBusMSMQ` cmdlet from the [NServiceBus PowerShell Module](/nservicebus/operations/management-using-powershell.md).
+The supported configuration is to have only the base MSMQ service installed with no optional features. To enable the supported configuration, use the `Install-NServiceBusMSMQ` cmdlet from the [NServiceBus PowerShell Module](management-using-powershell.md).
 
 Alternatively, the MSMQ service can be installed manually. When installing manually **do not** enable the following components:
 
@@ -157,7 +157,7 @@ See also [Message Queuing Security Overview](https://docs.microsoft.com/en-us/pr
 
 ## Distributed Transaction Coordinator
 
-NServiceBus makes use of the Microsoft Distributed Transaction Coordinator (MSDTC) to synchronize transactions between MSMQ and the database in order to support [guaranteed once delivery of messages](/nservicebus/operations/transactions-message-processing.md). For this to work, MSDTC must be started and configured correctly. This can be done manually or using the [NServiceBus PowerShell module](/nservicebus/operations/management-using-powershell.md).
+NServiceBus makes use of the Microsoft Distributed Transaction Coordinator (MSDTC) to synchronize transactions between MSMQ and the database in order to support [guaranteed once delivery of messages](/nservicebus/operations/transactions-message-processing.md). For this to work, MSDTC must be started and configured correctly. This can be done manually or using the [NServiceBus PowerShell module](management-using-powershell.md).
 
 Alternatively, there is a _non-MSDTC mode of operation available. In this mode NServiceBus uses the _outbox_, a message store backed by the same database as the user code, to temporarily store messages that must be sent as a result of processing an incoming message. To read more about this subject see [Outbox](/nservicebus/outbox/).
 

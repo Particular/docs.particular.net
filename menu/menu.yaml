@@ -705,8 +705,6 @@
       Title: .NET Framework requirements
     - Url: nservicebus/operations/installers
       Title: Installers
-    - Url: nservicebus/operations/management-using-powershell
-      Title: PowerShell
     - Url: nservicebus/operations/tuning
       Title: Tuning endpoint message processing
     - Url: nservicebus/endpoints/decommissioning-endpoints
@@ -989,6 +987,8 @@
       Title: Troubleshooting
     - Url: transports/msmq/subscription-authorisation
       Title: Subscription Authorization
+    - Url: transports/msmq/management-using-powershell
+      Title: PowerShell
     - Url: transports/msmq/native-integration
       Title: Native integration
     - Url: transports/msmq/operations-scripting
