@@ -1,7 +1,7 @@
 ---
 title: Multi-tenant support
 summary: SQL Persistence support for multi-tenant systems using database per customer
-reviewed: 2021-01-11
+reviewed: 2024-03-07
 component: SqlPersistence
 versions: '[4.5,)'
 related:
@@ -72,9 +72,9 @@ To specify the connection builder for timeouts or subscriptions, refer to the us
 
 When using a transport with both native delayed delivery and native timeouts, this is not required and no exception will be thrown.
 
-## Cannot use installers
+## Installers are not supported
 
-Because tenant databases are not known at endpoint startup, it's impossible for NServiceBus to run installers to create table structures in each tenant database.
+Tenant databases are not known at endpoint startup and therfore it is not possible for NServiceBus to run installers to create table structures in each tenant database.
 
 When using multi-tenant endpoints it's advisable to:
 
