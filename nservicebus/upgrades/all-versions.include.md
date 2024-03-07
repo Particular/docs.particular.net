@@ -797,7 +797,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/4.0.1) | 2023-03-08     | -                 | -                                 |
-| [3.1.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/3.1.1) | 2023-03-08     | 2024-03-08        | Superseded by 4.0.x               |
+| [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/3.1.1) | ~~2023-03-08~~ | ~~2024-03-08~~    | ~~Superseded by 4.0.x~~           |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/3.0.0) | ~~2022-11-17~~ | ~~2023-06-08~~    | ~~Superseded by 3.1.x~~           |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/2.0.1) | 2018-05-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/1.0.0) | ~~2017-02-09~~ | ~~2020-05-29~~    | ~~Extended by NServiceBus 6.5.x~~ |

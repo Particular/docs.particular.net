@@ -358,7 +358,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/4.0.1) | 2023-03-08     | -                 | -                                 |
-| [3.1.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/3.1.1) | 2023-03-08     | 2024-03-08        | Superseded by 4.0.x               |
+| [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/3.1.1) | ~~2023-03-08~~ | ~~2024-03-08~~    | ~~Superseded by 4.0.x~~           |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/2.0.1) | 2018-05-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Gateway](/nuget/NServiceBus.Gateway)
@@ -502,7 +502,6 @@
 | [~~2.35.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.35.0) | ~~2023-06-22~~ | ~~2023-10-05~~    | ~~Superseded by 2.36.x~~          |
 | [~~2.34.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.34.0) | ~~2023-06-20~~ | ~~2023-09-22~~    | ~~Superseded by 2.35.x~~          |
 | [~~2.33.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.33.0) | ~~2023-06-07~~ | ~~2023-09-20~~    | ~~Superseded by 2.34.x~~          |
-| [~~2.32.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.32.0) | ~~2023-06-02~~ | ~~2023-09-07~~    | ~~Superseded by 2.33.x~~          |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 
