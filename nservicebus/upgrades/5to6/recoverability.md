@@ -243,7 +243,7 @@ In NServiceBus version 6, the only reason that the `.Retries` queue exists is so
 
 The `IManageMessageFailures` interface was the extension point to customize the handling of second level retries before a message failure is forwarded to the error queue.
 
-This same functionality and more can be achieved using the [message processing pipeline](/nservicebus/pipeline/). See also: [Customizing error handling with the pipeline](/nservicebus/pipeline/customizing-error-handling.md).
+This same functionality and more can be achieved using the [message processing pipeline](/nservicebus/pipeline/). See also: [Customizing error handling with with custom retry policies](/nservicebus/recoverability/custom-recoverability-policy.md).
 
 
 ## RepeatedFailuresOverTimeCircuitBreaker has been made internal
