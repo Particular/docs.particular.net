@@ -1,7 +1,7 @@
 ---
 title: Simple Saga Usage
 summary: How build and use a saga.
-reviewed: 2021-01-11
+reviewed: 2024-03-07
 component: Core
 redirects:
 - samples/saga/complexfindinglogic
@@ -16,7 +16,7 @@ related:
 
 This sample shows a simple saga to manage an order.
 
-Once the project is started, press <kbr>Enter</kbr> to send a `StartOrder` message with a randomly assigned `OrderId` that starts a new saga instance. This is a result of as configuration specified with the `IAmStartedByMessages` interface and mapping that [correlates](/nservicebus/sagas/message-correlation.md) `StartOrder.OrderId` property on the message with `OrderSagaData.OrderId` property on the saga data.
+Once the project is started, press <kbr>Enter</kbr> to send a `StartOrder` message with a randomly assigned `OrderId`. This message starts a new instance of the `OrderSaga` saga as specified  by the `IAmStartedByMessages` interface and mapping that [correlates](/nservicebus/sagas/message-correlation.md) `StartOrder.OrderId` property on the message with `OrderSagaData.OrderId` property on the saga data.
 
 When processing the `StartOrder` message each saga instance requests a 30-second `CancelOrder` timeout that will [mark the saga as complete](/nservicebus/sagas/#ending-a-saga) if the saga is not already complete.
 
