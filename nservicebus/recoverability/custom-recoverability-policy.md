@@ -8,6 +8,9 @@ related:
  - samples/faulttolerance
  - samples/custom-recoverability
  - samples/recoverabilitypolicytesting
+redirects:
+ - samples/message-error-handling
+ - nservicebus/pipeline/customizing-error-handling
 ---
 
 
