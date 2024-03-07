@@ -1,6 +1,6 @@
 ---
 title: Using NServiceBus in AWS Lambda with SQS
-reviewed: 2023-10-24
+reviewed: 2024-03-07
 component: SQSLambda
 related:
  - samples/aws/sqs-simple
@@ -24,7 +24,7 @@ The [`Amazon.Lambda.Tools` CLI](https://github.com/aws/aws-lambda-dotnet) can be
 
 1. Install the [`Amazon.Lambda.Tools CLI`](https://github.com/aws/aws-lambda-dotnet#amazonlambdatools)
 1. Make sure an S3 bucket is available in the AWS region of choice
-2. Update the values of `stack-name` and `s3-bucket` settings in aws-lambda-tools-defaults.json file found in the **ServerlessEndpoint** project
+1. Update the values of `stack-name` and `s3-bucket` settings in aws-lambda-tools-defaults.json file found in the **ServerlessEndpoint** project
 
 ## Running the sample
 
@@ -44,7 +44,7 @@ After that, running the sample will launch a single console window:
 To try the AWS Lambda
 
 1. From the **RegularEndpoint** window, press <kbd>Enter</kbd> to send a `TriggerMessage` to the ServerLessEndpoint queue.
-1. The AWS Lambda will receive the `TriggerMessage` and hand off its procesing to NServiceBus.
+1. The AWS Lambda will receive the `TriggerMessage` and hand off its processing to NServiceBus.
 1. The NServiceBus message handler for `TriggerMessage` on **ServerlessEndpoint** sends a `ResponseMessage` that will be handled by the **RegularEndpoint**
 
 ## Code walk-through
@@ -53,7 +53,7 @@ The static NServiceBus endpoint must be configured using details that come from 
 
 snippet: EndpointSetup
 
-The same class defines the AWS Lambda, which makes up the hosting for the NServiceBus endpoint. The `FunctionHandler` method hands off processing of messages to NServiceBus:
+The same class defines the AWS Lambda, which makes up the hosting for the NServiceBus endpoint. The `FunctionHandler` method hands-off processing of messages to NServiceBus:
 
 snippet: SqsFunctionHandler
 
@@ -65,7 +65,7 @@ snippet: TriggerMessageHandler
 
 There could be the need to dispatch a message after reacting to events other than messages being pushed to a queue. For example, responding to an S3 bucket file upload or to an HTTP request. This sample also demonstrates this use case.
 
-1. Open a browser and visit the URL produced during the execution of  `dotnet lambda deploy-serverless`. The command produces a list of outputs; note the value for `ApiURL`.
+1. Open a browser and visit the URL produced during the execution of `dotnet lambda deploy-serverless`. The command produces a list of outputs; note the value for `ApiURL`.
 1. The AWS Lambda will receive the HTTP call and send a `TriggerMessage` to the ServerlessEndpoint queue.
 1. As in the previous example, the AWS Lambda will receive the `TriggerMessage` and hand off its processing to NServiceBus.
 1. The NServiceBus message handler for `TriggerMessage` on **ServerlessEndpoint** sends a `ResponseMessage` that will be handled by the **RegularEndpoint**

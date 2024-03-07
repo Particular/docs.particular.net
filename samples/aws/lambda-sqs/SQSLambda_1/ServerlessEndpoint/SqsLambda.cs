@@ -20,9 +20,6 @@ namespace LambdaFunctions
         #endregion
 
         static readonly TimeSpan DefaultRemainingTimeGracePeriod = TimeSpan.FromSeconds(10);
-
-        private static readonly IAwsLambdaSQSEndpoint serverlessEndpoint = Endpoint.Configuration;
-
-
+        static readonly IAwsLambdaSQSEndpoint serverlessEndpoint = Endpoint.Configuration;
     }
 }

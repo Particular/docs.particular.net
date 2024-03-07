@@ -15,9 +15,6 @@ public static class Endpoint
         routing.RouteToEndpoint(typeof(TriggerMessage), "ServerlessEndpoint");
         routing.RouteToEndpoint(typeof(ResponseMessage), "RegularEndpoint");
 
-        var advanced = endpointConfiguration.AdvancedConfiguration;
-        advanced.SendFailedMessagesTo("error");
-
         return endpointConfiguration;
     });
     #endregion
