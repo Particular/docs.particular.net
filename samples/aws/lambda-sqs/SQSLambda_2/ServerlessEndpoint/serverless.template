@@ -41,7 +41,7 @@
       "Type": "AWS::Serverless::Function",
       "Properties": {
         "Handler": "ServerlessEndpoint::LambdaFunctions.SqsLambda::FunctionHandler",
-        "Runtime": "dotnet6",
+        "Runtime": "dotnet8",
         "CodeUri": "",
         "Description": "Function handling sqs events produced by pushing messages to the ServerlessEndpoint queue",
         "MemorySize": 256,
