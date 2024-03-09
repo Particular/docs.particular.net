@@ -304,8 +304,8 @@ Sometimes the [RavenDB logs](/servicecontrol/logging.md#ravendb-logging) could h
 System.IO.IOException: Error during flush for FailedMessageFacetsIndex ---> System.IO.IOException: The process cannot access the file 'D:\ServiceControl-Share\Particular.Servicecontrol\DB\Indexes\10\_49l.cfs' because it is being used by another process.
 ```
 
- or 
- 
+ or
+
 ```txt
  2023-06-01 16:58:02.9925|8|Error|Raven.Database.DocumentDatabase|Could not initialize transactional storage, not creating database
 System.InvalidOperationException: Could not write to location: C:\ProgramData\Particular\ServiceControl\Particular.servicecontrol.audit\DB\
@@ -362,17 +362,18 @@ Contact [Particular support](https://particular.net/support) for assistance.
 
 ## Low on storage space
 
-ServiceControl will halt ingestion when low on storage. This can happen if incorrect or no [capacity planning](/servicecontrol/capacity-and-planning.md) was done or that the system has grown and capacity planning wasn't re-evaluated.
+ServiceControl will halt ingestion when low on storage. [Capacity planning](/servicecontrol/capacity-and-planning.md) must be done initially and reviewed at regular intervals to prevent this.
 
 To mitigate growth or not having enough storage:
 
-1. Mount a new disk that is larger, stop instance, [move database](/servicecontrol/configure-ravendb-location.md), adjust drive letter or update location in configuration, start instance
-2. Enlarge storage partition if the environment supports this:
+1. Mount a new disk that is larger, stop the ServiceControl instance, [move the database](/servicecontrol/configure-ravendb-location.md) to the new disk, adjust the drive letter or update the location in the ServiceControl configuration, and re-start instance
+
+2. Enlarge the storage partition if the environment supports it:
 
    - Expand the partition if the drive has enough storage
    - Mount a new disk and join these with the existing disk ([JBOD](https://en.wikipedia.org/wiki/Non-RAID_drive_architectures#JBOD))
 
-5. Lower retention, optionally compact database:
+3. Lower retention and, optionally, compact database:
 
    - [ServiceControl - Error instance setting `ServiceControl/ErrorRetentionPeriod`](/servicecontrol/creating-config-file.md#data-retention-servicecontrolerrorretentionperiod)
    - [ServiceControl - Error instance setting `ServiceControl/EventRetentionPeriod`](/servicecontrol/creating-config-file.md#data-retention-servicecontroleventretentionperiod)
@@ -380,18 +381,18 @@ To mitigate growth or not having enough storage:
    - [ServiceControl - How to compact database](/servicecontrol/db-compaction.md)
    - [ServiceControl - How to purge expired data](/servicecontrol/how-purge-expired-data.md)
 
-6. Disable auditing on selecting endpoints if not all endpoint need auditing
+4. Disable auditing on endpoints that don't require it:
 
    - [NServiceBus - Message auditing](/nservicebus/operations/auditing.md#configuring-auditing)
 
-7. Filter which messages will be send to the audit queue using
+5. Use an audit filter to filter the messages to be sent to the audit queue:
 
    - [NServiceBus.AuditFilter](https://github.com/NServiceBusExtensions/NServiceBus.AuditFilter)
 
-8. Setup multiple audit instance with different retension periods if retension requirements can vary between endpoints
+6. Setup multiple audit instances with different retention periods if retention requirements can vary between endpoints:
 
    - [ServiceControl remote instances  Sharding audit messages with split audit queues](/servicecontrol/servicecontrol-instances/remotes.md#overview-sharding-audit-messages-with-split-audit-queues)
 
-9. Scale-out audit storage over multiple disks and/or machines
+7. Scale out audit storage over multiple disks and/or machines:
 
    - [ServiceControl remote instances  Sharding audit messages with split audit queues](/servicecontrol/servicecontrol-instances/remotes.md#overview-sharding-audit-messages-with-split-audit-queues)
