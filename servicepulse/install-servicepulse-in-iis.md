@@ -66,14 +66,6 @@ NOTE: If TLS is to be applied to ServicePulse then ServiceControl also must be c
           <match url="^a/js/app.constants.js(.*)" />
           <action type="Rewrite" url="/js/app.constants.js{R:1}" />
         </rule>
-        <rule name="Handle Vue.js routing paths" stopProcessing="true">
-          <match url="(.*)" />
-          <conditions logicalGrouping="MatchAll">
-            <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
-            <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
-          </conditions>
-          <action type="Rewrite" url="/" />
-        </rule>
       </rules>
     </rewrite>
   </system.webServer>
@@ -82,7 +74,7 @@ NOTE: If TLS is to be applied to ServicePulse then ServiceControl also must be c
 
 ###  Hosting ServicePulse within a subfolder
 
-It is possible to host ServicePulse within a subfolder, but this requires changes to the configuration.  The first change is that the URL Rewrite configuration must be aware of the subfolder. The rewrite must include the SubFolder name in both the match as well as the rewrite action.
+It is possible to host ServicePulse within a subfolder. The `web.config` containing the URL Rewrite rules must be placed in the subfolder containing the ServicePulse files. Secondly, the URL Rewrite configuration must be aware of the subfolder i.e the rewrite **must include the SubFolder name in the match part** of the rule.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -92,15 +84,7 @@ It is possible to host ServicePulse within a subfolder, but this requires change
       <rules>
         <rule name="Handle app.constants.js requests from AngularJs" stopProcessing="true">
           <match url="^SubFolder/a/js/app.constants.js(.*)" />
-          <action type="Rewrite" url="/SubFolder/js/app.constants.js{R:1}" />
-        </rule>
-        <rule name="Handle Vue.js routing paths" stopProcessing="true">
-          <match url="(.*)" />
-          <conditions logicalGrouping="MatchAll">
-            <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
-            <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
-          </conditions>
-          <action type="Rewrite" url="/" />
+          <action type="Rewrite" url="/js/app.constants.js{R:1}" />
         </rule>
       </rules>
     </rewrite>
