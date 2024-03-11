@@ -82,4 +82,4 @@ When hosting NServiceBus with the [Microsoft Generic Host](https://docs.microsof
 
 It is recommended to follow the [dependency injection guidelines](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection-guidelines) for .NET. Be aware of the following special cases with NServiceBus:
 
-- [Injecting dependencies into behaviors](/nservicebus/pipeline/manipulate-with-behaviors)
+- [Injecting dependencies into behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md)
