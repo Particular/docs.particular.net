@@ -93,7 +93,9 @@ snippet: InjectingDependencies
 
 Dependencies injected into the constructor of a behavior become singletons regardless of their actual scope on the dependency injection container. In order to create instances per request or scoped dependencies it is required to use the builder that is available on the context.
 
-The builder on the context can vary depending on the pipeline stage it is being used in. For every [pipeline stage used within the context of an incoming message](/nservicebus/pipeline/steps-stages-connectors.md#stages-incoming-pipeline-stages) the builder exposes the child service provider created for the incoming message. For all other cases the builder exposes the root service provider. Behaviors in the [outgoing pipeline stage](/nservicebus/pipeline/steps-stages-connectors.md#stages-outgoing-pipeline-stages) exhibit different behaviors depending on how they are invoked. For example when an outgoing behavior is invoked from the context of a message session the builder exposes the root service provider. In cases when the same outgoing behavior is invoked from a message operation within the scope of an incoming message, the builder will be the child service provider for the incoming message.
+The service provider available via the context varies depending on the pipeline stage. [Pipeline stages used within the context of an incoming message](/nservicebus/pipeline/steps-stages-connectors.md#stages-incoming-pipeline-stages) exposes a new child service provider created for each incoming message. All other use cases exposes the root service provider. 
+
+Behaviors in the [outgoing pipeline stage](/nservicebus/pipeline/steps-stages-connectors.md#stages-outgoing-pipeline-stages) exhibit different behaviors depending on how they are invoked. For example, when an outgoing behavior is invoked within the context of a message session the root service provider is exposed while when the same outgoing behavior is invoked within the scope of an incoming message, the child service provider for the incoming message will be used.
 
 partial: options
 
