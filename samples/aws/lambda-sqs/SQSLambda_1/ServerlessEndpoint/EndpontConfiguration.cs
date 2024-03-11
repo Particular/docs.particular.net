@@ -8,7 +8,7 @@ public static class Endpoint
     public static IAwsLambdaSQSEndpoint Configuration => new AwsLambdaSQSEndpoint(context =>
     {
         var endpointConfiguration = new AwsLambdaSQSEndpointConfiguration("ServerlessEndpoint");
-        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var routing = endpointConfiguration.RoutingSettings;
 

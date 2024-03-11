@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="NServiceBus.AwsLambda.SQS" Version="1.*" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.*" />
+    <PackageReference Include="NServiceBus" Version="8.*" />
   </ItemGroup>
 
 </Project>

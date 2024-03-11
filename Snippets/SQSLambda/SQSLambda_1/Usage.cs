@@ -7,87 +7,87 @@ using NServiceBus;
 
 class Usage
 {
-  #region aws-endpoint-creation
+    #region aws-endpoint-creation
 
-  static readonly AwsLambdaSQSEndpoint endpoint = new AwsLambdaSQSEndpoint(context =>
-  {
-    var endpointConfiguration = new AwsLambdaSQSEndpointConfiguration("AwsLambdaSQSTrigger");
-
-    //customize configuration here
-
-    return endpointConfiguration;
-  });
-
-  #endregion
-
-  #region aws-function-definition
-
-  public async Task FunctionHandler(SQSEvent evnt, ILambdaContext context)
-  {
-    var cancellationDelay = context.RemainingTime.Subtract(TimeSpan.FromSeconds(10));
-    using var cancellationTokenSource = new CancellationTokenSource(cancellationDelay);
-
-    await endpoint.Process(evnt, context, cancellationTokenSource.Token);
-  }
-
-  #endregion
-
-  static void CustomDiagnostics(AwsLambdaSQSEndpointConfiguration endpointConfiguration, ILambdaContext context)
-  {
-    #region aws-custom-diagnostics
-
-    var advanced = endpointConfiguration.AdvancedConfiguration;
-
-    advanced.CustomDiagnosticsWriter((diagnostics, token) =>
+    static readonly AwsLambdaSQSEndpoint endpoint = new AwsLambdaSQSEndpoint(context =>
     {
-      context.Logger.LogLine(diagnostics);
-      return Task.CompletedTask;
+        var endpointConfiguration = new AwsLambdaSQSEndpointConfiguration("AwsLambdaSQSTrigger");
+
+        //customize configuration here
+
+        return endpointConfiguration;
     });
 
     #endregion
-  }
 
-  static void Recoverability(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
-  {
-    #region aws-delayed-retries
+    #region aws-function-definition
 
-    var recoverability = endpointConfiguration.AdvancedConfiguration.Recoverability();
-    recoverability.Delayed(customization =>
+    public async Task FunctionHandler(SQSEvent evnt, ILambdaContext context)
     {
-      customization.NumberOfRetries(5);
-      customization.TimeIncrease(TimeSpan.FromSeconds(15));
-    });
+        var cancellationDelay = context.RemainingTime.Subtract(TimeSpan.FromSeconds(10));
+        using var cancellationTokenSource = new CancellationTokenSource(cancellationDelay);
+
+        await endpoint.Process(evnt, context, cancellationTokenSource.Token);
+    }
 
     #endregion
-  }
 
-  static void ConfigureDontMoveToErrors(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
-  {
-    #region aws-configure-dont-move-to-error
+    static void CustomDiagnostics(AwsLambdaSQSEndpointConfiguration endpointConfiguration, ILambdaContext context)
+    {
+        #region aws-custom-diagnostics
 
-    endpointConfiguration.DoNotSendMessagesToErrorQueue();
+        var advanced = endpointConfiguration.AdvancedConfiguration;
 
-    #endregion
-  }
+        advanced.CustomDiagnosticsWriter((diagnostics, token) =>
+        {
+            context.Logger.LogLine(diagnostics);
+            return Task.CompletedTask;
+        });
 
-  static void ConfigureSerializer(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
-  {
-    #region aws-custom-serializer
+        #endregion
+    }
 
-    endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+    static void Recoverability(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
+    {
+        #region aws-delayed-retries
 
-    #endregion
-  }
+        var recoverability = endpointConfiguration.AdvancedConfiguration.Recoverability();
+        recoverability.Delayed(customization =>
+        {
+            customization.NumberOfRetries(5);
+            customization.TimeIncrease(TimeSpan.FromSeconds(15));
+        });
 
-  static void RoutingConfiguration(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
-  {
-    #region aws-configure-routing
+        #endregion
+    }
 
-    var routing = endpointConfiguration.RoutingSettings;
-    routing.RouteToEndpoint(typeof(ACommand), "<destination>");
+    static void ConfigureDontMoveToErrors(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
+    {
+        #region aws-configure-dont-move-to-error
 
-    #endregion
-  }
+        endpointConfiguration.DoNotSendMessagesToErrorQueue();
 
-  class ACommand { }
+        #endregion
+    }
+
+    static void ConfigureSerializer(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
+    {
+        #region aws-custom-serializer
+
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
+        #endregion
+    }
+
+    static void RoutingConfiguration(AwsLambdaSQSEndpointConfiguration endpointConfiguration)
+    {
+        #region aws-configure-routing
+
+        var routing = endpointConfiguration.RoutingSettings;
+        routing.RouteToEndpoint(typeof(ACommand), "<destination>");
+
+        #endregion
+    }
+
+    class ACommand { }
 }

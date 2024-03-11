@@ -11,4 +11,4 @@ upgradeGuideCoreVersions:
 
 ## Delayed retries enabled by default
 
-In Version 2 delayed retries are enabled by default. See the [delayed retries documentation for more details](/nservicebus/recoverability/configure-delayed-retries.md#disabling-through-code).
+In Version 2, delayed retries are enabled by default. See the [delayed retries documentation for more details](/nservicebus/recoverability/configure-delayed-retries.md#disabling-through-code).

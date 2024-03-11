@@ -37,11 +37,7 @@ Transport installers are not supported. The creation of the required queues may 
 
 The configuration API exposes NServiceBus configuration options to allow customization; however, not all options will [apply to execution within AWS Lambda](./analyzers.md).
 
-### Serializer
-
-Configure [serializer](/nservicebus/serialization/) to use:
-
-snippet: aws-custom-serializer
+partial: serializer
 
 ### Routing
 
@@ -59,7 +55,7 @@ partial: delayed-delivery
 
 ### Error handling
 
-Messages that fail all retries are [moved to the default `error` queue](/nservicebus/recoverability/#fault-handling). Alternatively, the endpoint may be configured to instead use [the automatic AWS Lambda error handling](https://docs.aws.amazon.com/lambda/latest/dg/invocation-retries.html) by rethrowing the exception:
+Messages that fail all retries are [moved to the error queue](/nservicebus/recoverability/configure-error-handling.md#configure-the-error-queue-address). Alternatively, to enable the use of [AWS Lambda error handling](https://docs.aws.amazon.com/lambda/latest/dg/invocation-retries.html), the endpoint can be configured to not move messages to the error queue:
 
 snippet: aws-configure-dont-move-to-error
 
