@@ -93,6 +93,10 @@ snippet: InjectingDependencies
 
 Dependencies injected into the constructor of a behavior become singletons regardless of their actual scope on the dependency injection container. In order to create instances per request or scoped dependencies it is required to use the builder that is available on the context.
 
+The service provider available via the context varies depending on the pipeline stage. [Pipeline stages used within the context of an incoming message](/nservicebus/pipeline/steps-stages-connectors.md#stages-incoming-pipeline-stages) exposes a new child service provider created for each incoming message. All other use cases exposes the root service provider. 
+
+Behaviors in the [outgoing pipeline stage](/nservicebus/pipeline/steps-stages-connectors.md#stages-outgoing-pipeline-stages) exhibit different behaviors depending on how they are invoked. For example, when an outgoing behavior is invoked within the context of a message session the root service provider is exposed while when the same outgoing behavior is invoked within the scope of an incoming message, the child service provider for the incoming message will be used.
+
 partial: options
 
 include: mutators-versus-behaviors
