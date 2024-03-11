@@ -16,10 +16,9 @@ Child containers are a snapshot of the main container providing an additional in
 
 NServiceBus creates a child container for each transport message that is received. During message processing, all `InstancePerUnitOfWork` scoped instances that are created are resolved as singletons within the context of the same message. This is helpful to support the sharing of database sessions and other resources with lifetimes specific to the processed message.
 
-Objects can be configured in a child container scope using the `InstancePerUnitOfWork` lifetime:
+Objects can be configured in a child container scope using the scoped lifetime:
 
 snippet: InstancePerUnitOfWorkRegistration
-
 
 ## Deterministic disposal
 
