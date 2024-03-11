@@ -77,3 +77,9 @@ The [NServiceBus.Extensions.DependencyInjection Usage sample](/samples/dependenc
 ## Microsoft Generic Host
 
 When hosting NServiceBus with the [Microsoft Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) using the `NServiceBus.Extensions.Hosting` package, refer to the [configure custom containers documentation](/nservicebus/hosting/extensions-hosting.md#dependency-injection-integration-configure-custom-containers) for further details.
+
+## Resolving dependencies
+
+It is recommended to follow the [dependency injection guidelines](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection-guidelines) for .NET. Be aware of the following special cases with NServiceBus:
+
+- [Injecting dependencies into behaviors](/nservicebus/pipeline/manipulate-with-behaviors)
