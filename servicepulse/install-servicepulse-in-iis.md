@@ -83,8 +83,8 @@ It is possible to host ServicePulse within a subfolder. The `web.config` contain
     <rewrite>
       <rules>
         <rule name="Handle app.constants.js requests from AngularJs" stopProcessing="true">
-          <match url="^SubFolder/a/js/app.constants.js(.*)" />
-          <action type="Rewrite" url="/js/app.constants.js{R:1}" />
+          <match url="^/a/js/app.constants.js(.*)" />
+          <action type="Rewrite" url="/SubFolder/js/app.constants.js{R:1}" />
         </rule>
       </rules>
     </rewrite>
