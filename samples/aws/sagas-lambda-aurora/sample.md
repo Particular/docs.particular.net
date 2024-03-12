@@ -24,7 +24,7 @@ The [`Amazon.Lambda.Tools` CLI](https://github.com/aws/aws-lambda-dotnet) can be
 1. Create a publicly accessible Aurora MySql database (see [AWS documentation](https://repost.aws/knowledge-center/aurora-mysql-connect-outside-vpc) for more information)
 1. Update the connection string in the `DeployDatabase` project and run it to deploy the database schema
 
-INFO: A publicly accessible Aurora cluster is only required for the purpose of running this sample but this is not required for the production code. Make sure to configure the appropriate access to the database cluster.
+INFO: A publicly accessible Aurora cluster is only required for the purpose of running this sample but not required for production scenarios. Make sure to configure the appropriate access to the database cluster.
 
 ## Running the sample
 
