@@ -13,6 +13,10 @@ upgradeGuideCoreVersions:
 
 NServiceBus 9 no longer supports any version of the .NET Framework. Instead, it targets .NET 8 only (Read more about the [supported frameworks and platforms](/nservicebus/upgrades/supported-platforms.md)). Any component in NServiceBus 8 that is .NET Framework only (for example, the MSMQ transport)will not have a version that is compatible with NServiceBus 9. NServiceBus 8 will continue to be supported for use on the .NET Framework.
 
+## Serializer choice is now mandatory
+
+The XML serializer is no longer the default serializer, so a [serializer must always be configured](/nservicebus/serialization/#configuring-a-serializer).
+
 ## SendOptions immediate dispatch changes
 
 The method used to determine if [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) has been requested for a message has been renamed.
