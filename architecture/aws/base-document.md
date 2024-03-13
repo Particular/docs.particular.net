@@ -212,7 +212,7 @@ Systems using layered architectures are often limited in their technology choice
 
 ## Queue Worker Architecture (or Queue-Based Architecture to align with AWS docs?)
 
-The AWS Well-Architected framework describes the [queue-worker architecture style](https://docs.aws.amazon.com/wellarchitected/latest/high-performance-computing-lens/queue-based-architecture.html) as a way to offload compute intensive operations from clients. The architecture would be composed of any client sending commands to a queue which will be processed by a dedicated worker.
+The AWS Well-Architected framework describes the [queue-worker architecture style](https://docs.aws.amazon.com/wellarchitected/latest/high-performance-computing-lens/queue-based-architecture.html) as a way to offload compute intensive operations from clients. It is ideal as a model to quickly scale and respond to quick bursts of client requests in a short period of time, to support processing of periodic tasks, background jobs and asynchronous flows. The architecture would be composed of any client sending commands to a queue which will be processed by a dedicated worker.
 
 The following diagram is an example of what a queue based architecture would look like.
 
@@ -223,17 +223,12 @@ The following diagram is an example of what a queue based architecture would loo
 
 ### Components
 
-
-
 * Users initiate requests through their **frontend system**. This frontend system can be a web application, a terminal, a mobile device, or a third party system. For the purpose of this example, it will be responsible for handling authentication and authorization.
 * An AWS CLI or **Amazon SDK** that allows you to interact with Amazon SQS and other AWS products within your ecosystem.
-* Requests are queued as messages in Amazon SQS through the Amazon SDK
-* Workers hosted in EC2 instances running within an autoscaling group using NServiceBus to pull data from the Amazon SQS queue, process and store it on Amazon DB. Please see the technology choices section for other component alternatives.
-
+* Requests are stored and queued as messages in Amazon SQS through the Amazon SDK
+* Workers are hosted in EC2 instances running within an autoscaling group. The workers use NServiceBus to pull data from the Amazon SQS queue, process and store it on Amazon DB. Please see the technology choices section for other component alternatives.
 
 ### Challenges
-
-
 
 * In a system composed of multiple components, not every operation on the database has to go through a worker. Workers are designed for resource-intensive tasks or long-running workflows.
 * This style is suitable for simple business domains. Without careful design, the front end systems and the worker can become complex, monolithic components that are difficult to maintain. Consider event-driven and microservices architectural styles for more complex business domains.
