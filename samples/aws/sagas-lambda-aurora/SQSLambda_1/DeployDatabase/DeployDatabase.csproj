@@ -9,8 +9,8 @@
         <RootNamespace>DeployDBSchema</RootNamespace>
     </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="MySql.Data" Version="8.2.0" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="7.0.2" />
+    <PackageReference Include="MySql.Data" Version="8.*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="7.*" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sales\Sales.csproj" />
