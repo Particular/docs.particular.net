@@ -11,6 +11,8 @@ NOTE: PowerShell must be used to install individual instances. Example scripts a
 
 NOTE: For scenarios where retaining audit message data is not required (e.g. transient data that does not merit effort to retain), this process is not necessary -- the audit instance can simply be deleted and recreated with the same name.
 
+WARN: This zero downtime upgrade process is only suitable for use with ServiceControl Audit instances. To upgrade ServiceControl Error instances to version 5 see the [version 4 to 5](/servicecontrol/upgrades/4to5/) upgrade guide.
+
 ## Audit instances
 
 The process follows these steps:
