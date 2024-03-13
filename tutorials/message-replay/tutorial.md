@@ -1,11 +1,11 @@
 ---
 title: Message replay tutorial
-reviewed: 2021-01-12
+reviewed: 2024-03-12
 summary: In this tutorial, you'll learn how to replay a failed message using the Particular Service Platform tools.
 previewImage: failed-message-groups.png
 ---
 
-One of the most powerful features of NServiceBus is the ability to replay a message that has failed. By the time a message reaches the error queue, it will have already progressed through multiple retries via the [immediate retries](/nservicebus/recoverability/#immediate-retries) and [delayed retries](/nservicebus/recoverability/#delayed-retries) process, so you can be sure that the exception is systemic.
+One of the most powerful features of NServiceBus is the ability to replay a message that has failed. By the time a message reaches the error queue, it will have already progressed through multiple retries via the [immediate retries](/nservicebus/recoverability/#immediate-retries) and [delayed retries](/nservicebus/recoverability/#delayed-retries) process, so you can be sure that the exception requires manual intervention.
 
 Often, this type of failure can be introduced by a bug that isn't found until the code is deployed. When this happens, many errors can flood into the error queue all at once. At these times, it's incredibly valuable to be able to roll back to the old version of the endpoint, and then replay the failed messages through proven code. Then you can take the time to properly troubleshoot and fix the issue before attempting a new deployment.
 
@@ -30,7 +30,11 @@ INFO: In a real system, the **Shipping** endpoint should be able to take some ac
 
 ## Running the solution
 
-The solution is configured to have [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx), so when you run the solution it should open a console window for each messaging endpoint, a console window for the Particular Platform tools, and a browser window for the ServicePulse application.
+The solution is configured to have [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx), so when you run the solution it should open:
+
+* A console window for each messaging endpoint
+* A console window for the Particular Platform tools
+* A browser window for the ServicePulse application
 
 In the **ClientUI** application, press <kbd>P</kbd> to place an order, and watch what happens in other windows.
 
@@ -43,7 +47,7 @@ INFO  Shipping.OrderBilledHandler Received OrderBilled, OrderId = 96dfd084-2bb0-
 
 ## Throwing an exception
 
-Now, let's throw an exception that will make its way to the error queue. For the purposes of this exercise, we'll create a specific bug in the Sales endpoint and watch what happens when we run the endpoint.
+Now, let's throw an exception that will cause a message to make its way to the error queue. For the purposes of this exercise, we'll create a specific bug in the Sales endpoint and watch what happens when we run the endpoint.
 
  1. In the **Sales** endpoint, locate the **PlaceOrderHandler**.
  1. Uncomment the line that throws the exception. The code in the project contains a `#pragma` directive to prevent Visual Studio from interpreting the unreachable code after the `throw` statement as a build error.
@@ -53,13 +57,13 @@ Now, run the solution.
  1. In Visual Studio's **Debug** menu, select **Detach All** so that the system keeps running, but does not break into the debugger when we throw our exception.
  1. In the **ClientUI** window, place an order by pressing <kbd>P</kbd>.
 
-In the **Sales** window, you will see a wall of text culminating in a red error trace. This is where NServiceBus gives up on the message and sends it to the error queue.
+In the **Sales** window, you will see a wall of text ending with an error trace in red. This is where NServiceBus gives up on the message and forwards it to the error queue.
 
 ```
 INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e927667c-b949-47ee-8ea2-f29523909784
 ERROR NServiceBus.RecoverabilityExecutor Moving message '53ac6836-48ef-49dd-aabb-a67c0104a2a5' to the error queue 'error' because processing failed due to an exception:
 System.Exception: BOOM
-   at < stack trace>
+   at <stack trace>
 ```
 
 Note that the **Sales** endpoint did not peform any delayed retries. This is because retries have been [disabled](/nservicebus/recoverability/configure-delayed-retries.md) in the **Sales** endpoint's **Program.cs** file:
