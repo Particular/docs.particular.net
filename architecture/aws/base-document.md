@@ -434,8 +434,9 @@ AWS offers a number of [data storage services](https://aws.amazon.com/getting-st
 * It may incur additional costs for using other AWS services, such as SQS, Lambda, or S3, to process or store the messages delivered by SNS.
 * It may have compatibility issues with some third-party services or applications, as it only supports a subset of protocols and format.
 
+---
 Call to action??
-
+---
 
 #### When to use Amazon SNS?
 
@@ -466,21 +467,19 @@ Amazon SNS should be used when you are looking for a solution to achieve higher 
 
 
 
-* Limited message size (256Kb per message)
+* Limited message size (256Kb per message). NServiceBus mitigates this by allowing you to take advantage, in a seamless way, of S3 to work with larger payloads. For more information review the documentation for the [Amazon SQS transport topology](https://docs.particular.net/transports/sqs/topology#s3) and [Amazon SQS configuration options](https://docs.particular.net/transports/sqs/configuration-options).
 * Limited control over retry policies which forces delegation of handling retries to consumers increasing the overall complexity of the system
 * Messages are only visible for a configurable period of time which can lead to challenges when failures occur
 * As your system grows in complexity, managing a large number of queues can be challenging
 * Even with FIFO (First-In-First-Out) queues, strict message ordering can be a challenge increasing complexity and impact system performance
 * SQS supports a subset of protocols and formats which can originate compatibility issues with third party applications
 
- \
+---
 Call to action
-
-
 
 * [Simple AmazonSQS Transport usage • Amazon SQS Transport Samples • Particular Docs](https://docs.particular.net/samples/aws/sqs-simple/) (include DataBus properties info)
 * [https://docs.particular.net/samples/aws/sagas-lambda-aurora/](https://docs.particular.net/samples/aws/sagas-lambda-aurora/)
-
+---
 
 #### When to use Amazon SQS?
 
