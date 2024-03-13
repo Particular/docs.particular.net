@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.Logging;
+﻿using NServiceBus.Logging;
 
 #region OrderSaga
 

@@ -1,11 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.Logging;
+﻿using NServiceBus.Logging;
 
 public class BillCustomerHandler : IHandleMessages<OrderReceived>
 {
-    ILog log = LogManager.GetLogger<BillCustomerHandler>();
+    readonly ILog log = LogManager.GetLogger<BillCustomerHandler>();
 
     public async Task Handle(OrderReceived message, IMessageHandlerContext context)
     {

@@ -1,6 +1,4 @@
-﻿using NServiceBus;
-
-public class InventoryStaged : IEvent
+﻿public class InventoryStaged : IEvent
 {
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }

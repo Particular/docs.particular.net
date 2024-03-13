@@ -1,16 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFramework>net8.0</TargetFramework>
-    <LangVersion>12.0</LangVersion>
+    <OutputType>Exe</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>DeployDBSchema</RootNamespace>
+    <Nullable>enable</Nullable>
+    <LangVersion>12.0</LangVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="MySql.Data" Version="8.*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="8.0.0-alpha.1" />
-  </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\Sales\Sales.csproj" />
   </ItemGroup>

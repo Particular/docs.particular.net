@@ -1,6 +1,4 @@
-﻿using NServiceBus;
-
-public class CustomerBilled : IEvent
+﻿public class CustomerBilled : IEvent
 {
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }

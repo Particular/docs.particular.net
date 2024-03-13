@@ -24,7 +24,7 @@ The [`Amazon.Lambda.Tools` CLI](https://github.com/aws/aws-lambda-dotnet) can be
 1. Create a publicly accessible Aurora MySQL database (see [AWS documentation](https://repost.aws/knowledge-center/aurora-mysql-connect-outside-vpc) for more information)
 1. Update the connection string in the `DeployDatabase` project and run it to deploy the database schema
 
-INFO: A publicly accessible Aurora cluster is only required for the purpose of running this sample but not required for production scenarios. Make sure to configure the appropriate access to the database cluster.
+INFO: A publicly accessible Aurora cluster is required for the purpose of running this sample, but is not required for production scenarios. Make sure to configure the appropriate access to the database cluster.
 
 ## Running the sample
 
@@ -58,11 +58,11 @@ The **Sales** project is hosted using AWS Lambda. The static NServiceBus endpoin
 
 snippet: EndpointSetup
 
-The same class defines the AWS Lambda, which hosts the NServiceBus endpoint. The `ProcessOrder` method hands-off processing of the message to NServiceBus:
+The same class defines the AWS Lambda, which hosts the NServiceBus endpoint. The `ProcessOrder` method hands processing of the message to NServiceBus:
 
 snippet: FunctionHandler
 
-Meanwhile, the `OrderSaga` hosted within the AWS Lambda project is a regular NServiceBus saga which is also capable of sending messages and receiving messages itself.
+Meanwhile, the `OrderSaga` hosted within the AWS Lambda project is a regular NServiceBus saga which is also capable of sending and receiving messages itself.
 
 snippet: OrderSaga
 

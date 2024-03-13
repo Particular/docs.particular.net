@@ -1,11 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.Logging;
+﻿using NServiceBus.Logging;
 
 public class StageInventoryHandler : IHandleMessages<OrderReceived>
 {
-    ILog log = LogManager.GetLogger<StageInventoryHandler>();
+    readonly ILog log = LogManager.GetLogger<StageInventoryHandler>();
 
     public async Task Handle(OrderReceived message, IMessageHandlerContext context)
     {

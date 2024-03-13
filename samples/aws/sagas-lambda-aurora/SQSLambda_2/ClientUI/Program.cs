@@ -1,7 +1,4 @@
-﻿using System;
-using NServiceBus;
-
-var endpointConfiguration = new EndpointConfiguration("Samples.Aurora.Lambda.ClientUI");
+﻿var endpointConfiguration = new EndpointConfiguration("Samples.Aurora.Lambda.ClientUI");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
 var transport = endpointConfiguration.UseTransport<SqsTransport>();
