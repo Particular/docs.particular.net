@@ -1,7 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
-using NServiceBus;
 using NServiceBus.Persistence.Sql;
-
 
 var connectionString =
     "server=localhost;user=root;database=dbname;port=3306;password=pass;AllowUserVariables=True;AutoEnlist=false";

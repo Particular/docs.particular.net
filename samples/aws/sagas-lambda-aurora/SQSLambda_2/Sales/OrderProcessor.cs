@@ -14,6 +14,8 @@ public class OrderProcessor
     {
         var endpointConfiguration = new AwsLambdaSQSEndpointConfiguration("Samples.Aurora.Lambda.Sales");
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
         var connection = Environment.GetEnvironmentVariable("AuroraLambda_ConnectionString");
 
         var persistence = endpointConfiguration.AdvancedConfiguration.UsePersistence<SqlPersistence>();
