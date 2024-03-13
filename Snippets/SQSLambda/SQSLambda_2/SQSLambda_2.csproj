@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.AwsLambda.SQS" Version="2.0.0-alpha.1" />
+  </ItemGroup>
+
+</Project>

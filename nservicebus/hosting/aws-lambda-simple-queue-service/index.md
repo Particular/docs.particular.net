@@ -4,7 +4,7 @@ component: SQSLambda
 summary: Hosting NServiceBus endpoints with AWS Lambda triggered by Simple Queue Service
 related:
  - samples/aws/lambda-sqs
-reviewed: 2023-04-28
+reviewed: 2024-03-06
 redirects:
  - previews/aws-lambda-simple-queue-service
 ---
@@ -35,7 +35,9 @@ Transport installers are not supported. The creation of the required queues may 
 
 ## Configuration
 
-The configuration API exposes NServiceBus configuration options to allow customization; however, not all options will be [applicable to execution within AWS Lambda](./analyzers.md).
+The configuration API exposes NServiceBus configuration options to allow customization; however, not all options will [apply to execution within AWS Lambda](./analyzers.md).
+
+partial: serializer
 
 ### Routing
 
@@ -49,25 +51,13 @@ snippet: aws-configure-routing
 
 snippet: aws-custom-diagnostics
 
-### Delayed Retries
-
 partial: delayed-delivery
 
-### Error queue
+### Error handling
 
-Messages which fail all retries are moved to the error queue, which must be defined as follows:
-
-snippet: aws-configure-error-queue
-
-Alternatively, the endpoint may be configured to never move failing messages to the error queue as follows:
+Messages that fail all retries are [moved to the error queue](/nservicebus/recoverability/configure-error-handling.md#configure-the-error-queue-address). Alternatively, to enable the use of [AWS Lambda error handling](https://docs.aws.amazon.com/lambda/latest/dg/invocation-retries.html), the endpoint can be configured to not move messages to the error queue:
 
 snippet: aws-configure-dont-move-to-error
-
-### Serializer
-
-The default serializer is the [XmlSerializer](/nservicebus/serialization/xml.md). A different serializer can be configured:
-
-snippet: aws-custom-serializer
 
 ### Licenses
 
