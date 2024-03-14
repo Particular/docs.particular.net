@@ -37,11 +37,11 @@
         static async Task InspectMessagesUntilFound(IAmazonSQS client, string messageId, string queueUrl)
         {
             var receivedMessages = await client.ReceiveMessageAsync(new ReceiveMessageRequest
-                {
-                    QueueUrl = queueUrl,
-                    WaitTimeSeconds = 20,
-                    MaxNumberOfMessages = 10,
-                });
+            {
+                QueueUrl = queueUrl,
+                WaitTimeSeconds = 20,
+                MaxNumberOfMessages = 10,
+            });
 
             if (receivedMessages.Messages.Count == 0)
             {
@@ -57,7 +57,7 @@
                 var failedQueueUrlResponse = await client.GetQueueUrlAsync(failedQueueName);
                 var failedQueueUrl = failedQueueUrlResponse.QueueUrl;
                 // Large message don't need to be handled separately since the S3BodyKey is preserved
-                await client.SendMessageAsync(new SendMessageRequest(failedQueueUrl, foundMessage.Body)) // what to do with the attributes?;
+                await client.SendMessageAsync(new SendMessageRequest(failedQueueUrl, foundMessage.Body)); // what to do with the attributes?
                 await client.DeleteMessageAsync(queueUrl, foundMessage.ReceiptHandle);
 
                 return;

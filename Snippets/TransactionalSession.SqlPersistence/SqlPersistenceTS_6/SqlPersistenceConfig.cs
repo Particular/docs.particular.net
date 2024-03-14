@@ -1,7 +1,7 @@
-﻿using NServiceBus;
+﻿using System.Threading.Tasks;
+using NServiceBus;
 using NServiceBus.ObjectBuilder;
 using NServiceBus.TransactionalSession;
-using System.Threading.Tasks;
 
 public class SqlPersistenceConfig
 {
@@ -39,7 +39,7 @@ public class SqlPersistenceConfig
         await session.Open(
                 new SqlPersistenceOpenSessionOptions((
                             "MyTenantIdHeader", // Name of the header configured in this endpoint to carry the tenant ID
-                            "TenantA"))) // The value of the tenant ID header;
+                            "TenantA"))); // The value of the tenant ID header
 
         // use the session
 
