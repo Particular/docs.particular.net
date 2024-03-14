@@ -6,7 +6,7 @@
     "ErrorQueue": {
       "Type": "AWS::SQS::Queue",
       "Properties": {
-        "QueueName": "Samples-Aurora-Lambda-Error"
+        "QueueName": "error"
       }
     },
     "ClientQueue": {

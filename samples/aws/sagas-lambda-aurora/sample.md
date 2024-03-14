@@ -1,7 +1,7 @@
 ---
 title: Using NServiceBus Sagas with AWS Lambda, SQS, and Aurora
 summary: A sample demonstrating the AWS Aurora persistence, AWS Lambda, and AWS SQS with NServiceBus sagas
-reviewed: 2024-11-02
+reviewed: 2024-03-12
 component: SQSLambda
 related:
  - nservicebus/sagas
@@ -21,10 +21,10 @@ The [`Amazon.Lambda.Tools` CLI](https://github.com/aws/aws-lambda-dotnet) can be
 
 1. Install the [`Amazon.Lambda.Tools CLI`](https://github.com/aws/aws-lambda-dotnet#amazonlambdatools) using `dotnet tool install -g Amazon.Lambda.Tools`
 1. Create an S3 bucket in the AWS region of choice
-1. Create a publicly accessible Aurora MySql database (see [AWS documentation](https://repost.aws/knowledge-center/aurora-mysql-connect-outside-vpc) for more information)
+1. Create a publicly accessible Aurora MySQL database (see [AWS documentation](https://repost.aws/knowledge-center/aurora-mysql-connect-outside-vpc) for more information)
 1. Update the connection string in the `DeployDatabase` project and run it to deploy the database schema
 
-INFO: A publicly accessible Aurora cluster is only required for the purpose of running this sample but this is not required for the production code. Make sure to configure appropiate limited access to the database cluster.
+INFO: A publicly accessible Aurora cluster is required for the purpose of running this sample, but is not required for production scenarios. Make sure to configure the appropriate access to the database cluster.
 
 ## Running the sample
 
@@ -48,7 +48,7 @@ To try the AWS Lambda:
 3. The `OrderSaga` will publish an `OrderReceived` event and a business SLA message `OrderDelayed`.
 4. The AWS Lambda receives the `OrderReceived` event which is handled by the `BillCustomerHandler` and the `StageInventoryHandler`. After a delay, each handler publishes an event, `CustomerBilled` and `InventoryStaged`, respectively.
 5. The AWS Lambda will receive the events. Once both events are received, the `OrderSaga` publishes an `OrderShipped` event. In case it took longer than the defined business SLA to bill and stage the order the client is informed about the order being delayed by publishing `OrderDelayed`.
-6. The **ClientUI** will handle the `OrderShipped` event and log a message to the console. It might occasionally also handle the `OrderDelayed` event and handout 10% coupon codes.
+6. The **ClientUI** will handle the `OrderShipped` event and log a message to the console. It might occasionally also handle the `OrderDelayed` event and hand out 10% coupon codes.
 
 ## Code walk-through
 
@@ -58,11 +58,11 @@ The **Sales** project is hosted using AWS Lambda. The static NServiceBus endpoin
 
 snippet: EndpointSetup
 
-The same class defines the AWS Lambda, which hosts the NServiceBus endpoint. The `ProcessOrder` method hands off processing of the message to NServiceBus:
+The same class defines the AWS Lambda, which hosts the NServiceBus endpoint. The `ProcessOrder` method hands processing of the message to NServiceBus:
 
 snippet: FunctionHandler
 
-Meanwhile, the `OrderSaga` hosted within the AWS Lambda project, is a regular NServiceBus saga which is also capable of sending messages receiving messages itself.
+Meanwhile, the `OrderSaga` hosted within the AWS Lambda project is a regular NServiceBus saga which is also capable of sending and receiving messages itself.
 
 snippet: OrderSaga
 
