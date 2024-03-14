@@ -28,4 +28,5 @@ The following diagram is an example of what a queue based architecture would loo
 The queue-worker architecture style can make use of AWS managed services like AWS Fargate, AWS App Runner, AWS Amplify Hosting, AWS AppSync, AWS Lambda, Amazon Cloud Watch, Amazon EC2 Instances, Amazon DynamoDB, Amazon DocumentDB, Amazon Aurora, Amazon S3, Amazon SNS/SQS, Amazon MQ, Amazon Event Bridge and AWS Kinesis amongst others. When relying on a Infrastructure-as-a-Service model, queue-worker architectures might provide fewer benefits.
 
 ### References
+
 [Queue-Based Architecture - High Performance Computing Lens (amazon.com)](https://docs.aws.amazon.com/wellarchitected/latest/high-performance-computing-lens/queue-based-architecture.html)
