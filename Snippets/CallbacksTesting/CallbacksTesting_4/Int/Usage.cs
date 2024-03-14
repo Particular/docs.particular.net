@@ -21,8 +21,7 @@
                 },
                 response: simulatedResponse);
 
-            var result = await session.Request<int>(request)
-                .ConfigureAwait(false);
+            var result = await session.Request<int>(request);
 
             Assert.AreEqual(simulatedResponse, result);
 

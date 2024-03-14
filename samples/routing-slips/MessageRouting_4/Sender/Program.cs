@@ -20,8 +20,7 @@ class Program
         endpointConfiguration.EnableFeature<RoutingSlips>();
         #endregion
 
-        var endpoint = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpoint = await Endpoint.Start(endpointConfiguration);
 
 
         Console.WriteLine("Press Enter to send a message");
@@ -37,18 +36,17 @@ class Program
             }
             if (toggle)
             {
-                await SendToABC(endpoint).ConfigureAwait(false);
+                await SendToABC(endpoint);
             }
             else
             {
-                await SendToAC(endpoint).ConfigureAwait(false);
+                await SendToAC(endpoint);
             }
 
             toggle = !toggle;
         }
         #endregion
-        await endpoint.Stop()
-            .ConfigureAwait(false);
+        await endpoint.Stop();
     }
     #region SendAC
     static Task SendToAC(IEndpointInstance endpoint)

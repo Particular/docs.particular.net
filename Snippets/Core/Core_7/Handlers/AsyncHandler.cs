@@ -78,8 +78,7 @@
     {
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            await SomeLibrary.SomeAsyncMethod(message)
-                .ConfigureAwait(false);
+            await SomeLibrary.SomeAsyncMethod(message);
         }
     }
     #endregion
@@ -93,8 +92,7 @@
             for (var i = 0; i < 100; i++)
             {
                 var myMessage = new MyMessage();
-                await context.Send(myMessage)
-                    .ConfigureAwait(false);
+                await context.Send(myMessage);
             }
         }
     }
@@ -136,8 +134,7 @@
                     var myMessage = new MyMessage();
                     tasks[j] = context.Send(myMessage, options);
                 }
-                await Task.WhenAll(tasks)
-                    .ConfigureAwait(false);
+                await Task.WhenAll(tasks);
             }
         }
     }
@@ -154,13 +151,11 @@
             var tasks = new Task[10000];
             for (var i = 0; i < 10000; i++)
             {
-                await semaphore.WaitAsync()
-                    .ConfigureAwait(false);
+                await semaphore.WaitAsync();
 
                 tasks[i] = Send(context, semaphore);
             }
-            await Task.WhenAll(tasks)
-                .ConfigureAwait(false);
+            await Task.WhenAll(tasks);
         }
 
         static async Task Send(IMessageHandlerContext context, SemaphoreSlim semaphore)
@@ -170,8 +165,7 @@
                 var options = new SendOptions();
                 options.RequireImmediateDispatch();
                 var message = new MyMessage();
-                await context.Send(message, options)
-                    .ConfigureAwait(false);
+                await context.Send(message, options);
             }
             finally
             {

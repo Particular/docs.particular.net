@@ -53,17 +53,13 @@
                     command.Invoke();
                 }
 
-                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, maxTimeToLive, delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
+                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, maxTimeToLive, delayedDeliveryMethod: delayedDeliveryMethod);
             }
             finally
             {
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(errorQueueName)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(auditQueueName)
-                    .ConfigureAwait(false);
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName);
+                await QueueDeletionUtils.DeleteQueue(auditQueueName);
             }
         }
 
@@ -85,30 +81,23 @@
                 await CreateEndpointQueues.CreateQueuesForEndpoint(
                         endpointName: endpointName,
                         maxTimeToLive: maxTimeToLive,
-                        delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
+                        delayedDeliveryMethod: delayedDeliveryMethod);
 
                 await QueueCreationUtils.CreateQueue(
                         queueName: errorQueueName,
-                        maxTimeToLive: maxTimeToLive)
-                    .ConfigureAwait(false);
+                        maxTimeToLive: maxTimeToLive);
 
                 await QueueCreationUtils.CreateQueue(
                         queueName: auditQueueName,
-                        maxTimeToLive: maxTimeToLive)
-                    .ConfigureAwait(false);
+                        maxTimeToLive: maxTimeToLive);
 
-                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, maxTimeToLive, delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
+                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, maxTimeToLive, delayedDeliveryMethod: delayedDeliveryMethod);
             }
             finally
             {
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(errorQueueName)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(auditQueueName)
-                    .ConfigureAwait(false);
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName);
+                await QueueDeletionUtils.DeleteQueue(auditQueueName);
             }
         }
 
@@ -144,17 +133,13 @@
                     command.Invoke();
                 }
 
-                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
+                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), delayedDeliveryMethod: delayedDeliveryMethod);
             }
             finally
             {
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(errorQueueName)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(auditQueueName)
-                    .ConfigureAwait(false);
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName);
+                await QueueDeletionUtils.DeleteQueue(auditQueueName);
             }
         }
 
@@ -171,28 +156,21 @@
 
             try
             {
-                await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
+                await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod);
 
                 await QueueCreationUtils.CreateQueue(
-                        queueName: errorQueueName)
-                    .ConfigureAwait(false);
+                        queueName: errorQueueName);
 
                 await QueueCreationUtils.CreateQueue(
-                        queueName: auditQueueName)
-                    .ConfigureAwait(false);
+                        queueName: auditQueueName);
 
-                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
+                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), delayedDeliveryMethod: delayedDeliveryMethod);
             }
             finally
             {
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(errorQueueName)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(auditQueueName)
-                    .ConfigureAwait(false);
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName);
+                await QueueDeletionUtils.DeleteQueue(auditQueueName);
             }
         }
 
@@ -212,30 +190,23 @@
 
             try
             {
-                await CreateEndpointQueuesCloudFormation.CreateQueuesForEndpoint(endpointName, endpointTemplatePath, delayedDeliveryMethod:delayedDeliveryMethod)
-                    .ConfigureAwait(false);
+                await CreateEndpointQueuesCloudFormation.CreateQueuesForEndpoint(endpointName, endpointTemplatePath, delayedDeliveryMethod:delayedDeliveryMethod);
 
                 await QueueCreationUtilsCloudFormation.CreateQueue(
                         queueName: errorQueueName,
-                        templatePath: queueCreationTemplatePath)
-                    .ConfigureAwait(false);
+                        templatePath: queueCreationTemplatePath);
 
                 await QueueCreationUtilsCloudFormation.CreateQueue(
                         queueName: auditQueueName,
-                        templatePath: queueCreationTemplatePath)
-                    .ConfigureAwait(false);
+                        templatePath: queueCreationTemplatePath);
 
-                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
+                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), delayedDeliveryMethod: delayedDeliveryMethod);
             }
             finally
             {
-                await DeleteEndpointQueuesCloudFormation.DeleteQueuesForEndpoint(endpointName)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtilsCloudFormation.DeleteQueue(errorQueueName)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtilsCloudFormation.DeleteQueue(auditQueueName)
-                    .ConfigureAwait(false);
+                await DeleteEndpointQueuesCloudFormation.DeleteQueuesForEndpoint(endpointName);
+                await QueueDeletionUtilsCloudFormation.DeleteQueue(errorQueueName);
+                await QueueDeletionUtilsCloudFormation.DeleteQueue(auditQueueName);
             }
         }
 
@@ -275,17 +246,13 @@
                     command.Invoke();
                 }
 
-                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), queueNamePrefix: "DEV")
-                    .ConfigureAwait(false);
+                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), queueNamePrefix: "DEV");
             }
             finally
             {
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(errorQueueName, queueNamePrefix: "DEV")
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(auditQueueName, queueNamePrefix: "DEV")
-                    .ConfigureAwait(false);
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName, queueNamePrefix: "DEV");
+                await QueueDeletionUtils.DeleteQueue(auditQueueName, queueNamePrefix: "DEV");
             }
         }
 
@@ -302,30 +269,23 @@
 
             try
             {
-                await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
+                await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod);
 
                 await QueueCreationUtils.CreateQueue(
-                        queueName: errorQueueName, 
-                        queueNamePrefix: "DEV")
-                    .ConfigureAwait(false);
+                        queueName: errorQueueName,
+                        queueNamePrefix: "DEV");
 
                 await QueueCreationUtils.CreateQueue(
-                        queueName: auditQueueName, 
-                        queueNamePrefix: "DEV")
-                    .ConfigureAwait(false);
+                        queueName: auditQueueName,
+                        queueNamePrefix: "DEV");
 
-                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
+                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod);
             }
             finally
             {
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(errorQueueName, queueNamePrefix: "DEV")
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(auditQueueName, queueNamePrefix: "DEV")
-                    .ConfigureAwait(false);
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName, queueNamePrefix: "DEV");
+                await QueueDeletionUtils.DeleteQueue(auditQueueName, queueNamePrefix: "DEV");
             }
         }
 
@@ -358,17 +318,13 @@
                     command.Invoke();
                 }
 
-                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), includeRetries: true)
-                    .ConfigureAwait(false);
+                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), includeRetries: true);
             }
             finally
             {
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(errorQueueName)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(auditQueueName)
-                    .ConfigureAwait(false);
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName);
+                await QueueDeletionUtils.DeleteQueue(auditQueueName);
             }
         }
 
@@ -382,28 +338,21 @@
 
             try
             {
-                await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, includeRetries: true)
-                    .ConfigureAwait(false);
+                await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, includeRetries: true);
 
                 await QueueCreationUtils.CreateQueue(
-                        queueName: errorQueueName)
-                    .ConfigureAwait(false);
+                        queueName: errorQueueName);
 
                 await QueueCreationUtils.CreateQueue(
-                        queueName: auditQueueName)
-                    .ConfigureAwait(false);
+                        queueName: auditQueueName);
 
-                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), includeRetries: true)
-                    .ConfigureAwait(false);
+                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), includeRetries: true);
             }
             finally
             {
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(errorQueueName)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(auditQueueName)
-                    .ConfigureAwait(false);
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName);
+                await QueueDeletionUtils.DeleteQueue(auditQueueName);
             }
         }
 
@@ -415,8 +364,7 @@
 
             var exception = Assert.ThrowsAsync<ArgumentException>(async () =>
             {
-                await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, includeRetries: true)
-                    .ConfigureAwait(false);
+                await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, includeRetries: true);
             });
 
             Assert.IsTrue(exception.Message.Contains("is longer than 80 characters and therefore cannot be used to create an SQS queue."));
@@ -437,30 +385,23 @@
 
             try
             {
-                await CreateEndpointQueuesCloudFormation.CreateQueuesForEndpoint(endpointName, endpointTemplatePath, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
+                await CreateEndpointQueuesCloudFormation.CreateQueuesForEndpoint(endpointName, endpointTemplatePath, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod);
 
                 await QueueCreationUtilsCloudFormation.CreateQueue(
                         queueName: errorQueueName,
-                        templatePath: queueCreationTemplatePath)
-                    .ConfigureAwait(false);
+                        templatePath: queueCreationTemplatePath);
 
                 await QueueCreationUtilsCloudFormation.CreateQueue(
                         queueName: auditQueueName,
-                        templatePath: queueCreationTemplatePath)
-                    .ConfigureAwait(false);
+                        templatePath: queueCreationTemplatePath);
 
-                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), includeRetries: true, delayedDeliveryMethod:delayedDeliveryMethod)
-                    .ConfigureAwait(false);
+                await AssertQueuesExist(endpointName, errorQueueName, auditQueueName, TimeSpan.FromDays(4), includeRetries: true, delayedDeliveryMethod:delayedDeliveryMethod);
             }
             finally
             {
-                await DeleteEndpointQueuesCloudFormation.DeleteQueuesForEndpoint(endpointName)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtilsCloudFormation.DeleteQueue(errorQueueName)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtilsCloudFormation.DeleteQueue(auditQueueName)
-                    .ConfigureAwait(false);
+                await DeleteEndpointQueuesCloudFormation.DeleteQueuesForEndpoint(endpointName);
+                await QueueDeletionUtilsCloudFormation.DeleteQueue(errorQueueName);
+                await QueueDeletionUtilsCloudFormation.DeleteQueue(auditQueueName);
             }
         }
 
@@ -532,7 +473,7 @@
                 QueueAttributeName.MessageRetentionPeriod
             })).MessageRetentionPeriod);
         }
-        
+
         [Test]
         [TestCase("Native")]
         [TestCase("UnrestrictedDelayedDelivery")]
@@ -547,36 +488,30 @@
             IEndpointInstance endpoint = null;
             try
             {
-                await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
+                await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod);
 
                 await QueueCreationUtils.CreateQueue(
-                        queueName: errorQueueName)
-                    .ConfigureAwait(false);
+                        queueName: errorQueueName);
 
                 await QueueCreationUtils.CreateQueue(
-                        queueName: auditQueueName)
-                    .ConfigureAwait(false);
+                        queueName: auditQueueName);
 
-                endpoint = await StartEndpoint(state, endpointName, errorQueueName, auditQueueName, delayedDeliveryMethod).ConfigureAwait(false);
+                endpoint = await StartEndpoint(state, endpointName, errorQueueName, auditQueueName, delayedDeliveryMethod);
                 var messageToSend = new MessageToSend();
-                await endpoint.SendLocal(messageToSend).ConfigureAwait(false);
+                await endpoint.SendLocal(messageToSend);
 
-                Assert.IsTrue(await state.Signal.Task.ConfigureAwait(false));
+                Assert.IsTrue(await state.Signal.Task);
             }
             finally
             {
                 if (endpoint != null)
                 {
-                    await endpoint.Stop().ConfigureAwait(false);
+                    await endpoint.Stop();
                 }
 
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(errorQueueName)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(auditQueueName)
-                    .ConfigureAwait(false);
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName);
+                await QueueDeletionUtils.DeleteQueue(auditQueueName);
             }
         }
 
@@ -614,25 +549,22 @@
                     command.Invoke();
                 }
 
-                endpoint = await StartEndpoint(state, endpointName, errorQueueName, auditQueueName, delayedDeliveryMethod).ConfigureAwait(false);
+                endpoint = await StartEndpoint(state, endpointName, errorQueueName, auditQueueName, delayedDeliveryMethod);
                 var messageToSend = new MessageToSend();
-                await endpoint.SendLocal(messageToSend).ConfigureAwait(false);
+                await endpoint.SendLocal(messageToSend);
 
-                Assert.IsTrue(await state.Signal.Task.ConfigureAwait(false));
+                Assert.IsTrue(await state.Signal.Task);
             }
             finally
             {
                 if (endpoint != null)
                 {
-                    await endpoint.Stop().ConfigureAwait(false);
+                    await endpoint.Stop();
                 }
 
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(errorQueueName)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(auditQueueName)
-                    .ConfigureAwait(false);
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName);
+                await QueueDeletionUtils.DeleteQueue(auditQueueName);
             }
         }
 
@@ -653,7 +585,7 @@
             {
                 transport.UnrestrictedDurationDelayedDelivery();
             }
-            
+
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             var recoverabilitySettings = endpointConfiguration.Recoverability();
             recoverabilitySettings.Immediate(customizations => customizations.NumberOfRetries(0));

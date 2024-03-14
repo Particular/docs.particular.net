@@ -16,14 +16,12 @@ class ShipOrderHandler :
     public async Task Handle(ShipOrder message, IMessageHandlerContext context)
     {
         log.Info($"Shipping order {message.OrderId} for {message.Value}");
-        await chaos.Invoke()
-            .ConfigureAwait(false);
+        await chaos.Invoke();
         var orderShipped = new OrderShipped
         {
             OrderId = message.OrderId,
             Value = message.Value
         };
-        await context.Reply(orderShipped)
-            .ConfigureAwait(false);
+        await context.Reply(orderShipped);
     }
 }

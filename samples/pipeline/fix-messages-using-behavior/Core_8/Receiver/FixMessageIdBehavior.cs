@@ -15,7 +15,7 @@ public class FixMessageIdBehavior : Behavior<IIncomingLogicalMessageContext>
             context.UpdateMessageInstance(message);
         }
 
-        await next().ConfigureAwait(false);
+        await next();
     }
 }
 

@@ -27,10 +27,8 @@ namespace EntityFramework
             using (var dbContext = new SubmittedOrderDbContext(session.Connection))
             {
                 dbContext.Database.UseTransaction(session.Transaction);
-                await dbContext.SubmittedOrder.AddAsync(order)
-                    .ConfigureAwait(false);
-                await dbContext.SaveChangesAsync()
-                    .ConfigureAwait(false);
+                await dbContext.SubmittedOrder.AddAsync(order);
+                await dbContext.SaveChangesAsync();
             }
 
             #endregion

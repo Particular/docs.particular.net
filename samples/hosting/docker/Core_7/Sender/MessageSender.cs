@@ -26,8 +26,7 @@ namespace Sender
                 Data = "String property value"
             };
 
-            await messageSession.Send(message)
-                .ConfigureAwait(false);
+            await messageSession.Send(message);
 
             logger.LogInformation($"Message sent, requesting to get data by id: {guid:N}");
             logger.LogInformation("Use 'docker-compose down' to stop containers.");

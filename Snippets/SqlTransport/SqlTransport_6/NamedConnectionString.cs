@@ -26,8 +26,7 @@ class NamedConnectionString
                 var connection = new SqlConnection("SomeConnectionString");
                 try
                 {
-                    await connection.OpenAsync()
-                        .ConfigureAwait(false);
+                    await connection.OpenAsync();
 
                     // perform custom operations
 

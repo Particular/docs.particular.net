@@ -17,8 +17,7 @@ public class InterfaceMessageTests
         var messageMapper = new MessageMapper();
         var myMessage = messageMapper.CreateInstance<IMyMessage>(message => { /* ... */ });
 
-        await handler.Handle(myMessage, context)
-            .ConfigureAwait(false);
+        await handler.Handle(myMessage, context);
         #endregion
 
     }

@@ -16,15 +16,13 @@
 
         protected override async Task OnStart(IMessageSession session, CancellationToken cancellationToken = default)
         {
-            await session.Publish(new MyEvent(), cancellationToken)
-                .ConfigureAwait(false);
+            await session.Publish(new MyEvent(), cancellationToken);
             resetEvent.Set();
         }
 
         protected override async Task OnStop(IMessageSession session, CancellationToken cancellationToken = default)
         {
-            await session.Publish(new MyEvent(), cancellationToken)
-                .ConfigureAwait(false);
+            await session.Publish(new MyEvent(), cancellationToken);
             resetEvent.Reset();
         }
 

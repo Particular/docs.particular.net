@@ -27,8 +27,7 @@ static class Program
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press enter to send a message that will throw an exception.");
         Console.WriteLine("Press any key to exit");
 
@@ -43,10 +42,8 @@ static class Program
             {
                 Id = Guid.NewGuid()
             };
-            await endpointInstance.SendLocal(myMessage)
-                .ConfigureAwait(false);
+            await endpointInstance.SendLocal(myMessage);
         }
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

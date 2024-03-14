@@ -26,13 +26,11 @@ namespace Sender
                 var round = 0;
                 while (!stoppingToken.IsCancellationRequested)
                 {
-                    await messageSession.Send(new Ping { Round = round++ })
-                        .ConfigureAwait(false);
+                    await messageSession.Send(new Ping { Round = round++ });
 
                     logger.LogInformation($"Message #{round}");
 
-                    await Task.Delay(1_000, stoppingToken)
-                        .ConfigureAwait(false);
+                    await Task.Delay(1_000, stoppingToken);
                 }
             }
             catch (OperationCanceledException)

@@ -25,8 +25,7 @@ class ThirdPartyMonitor :
     {
         try
         {
-            using (var response = await client.GetAsync(url)
-                .ConfigureAwait(false))
+            using (var response = await client.GetAsync(url))
             {
                 if (response.IsSuccessStatusCode)
                 {

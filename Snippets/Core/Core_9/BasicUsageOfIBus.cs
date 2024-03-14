@@ -9,11 +9,9 @@
         {
             #region BasicSend
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration);
             var message = new MyMessage();
-            await endpointInstance.Send(message)
-                .ConfigureAwait(false);
+            await endpointInstance.Send(message);
 
             #endregion
         }
@@ -38,8 +36,7 @@
 
             var options = new SendOptions();
             options.SetDestination("MyDestination");
-            await endpoint.Send(new MyMessage(), options)
-                .ConfigureAwait(false);
+            await endpoint.Send(new MyMessage(), options);
 
             #endregion
         }
@@ -51,8 +48,7 @@
             var options = new SendOptions();
             options.RouteToSpecificInstance("MyInstance");
             var message = new MyMessage();
-            await endpoint.Send(message, options)
-                .ConfigureAwait(false);
+            await endpoint.Send(message, options);
 
             #endregion
         }
@@ -63,11 +59,9 @@
 
             var options = new SendOptions();
             options.RouteToThisEndpoint();
-            await endpoint.Send(new MyMessage(), options)
-                .ConfigureAwait(false);
+            await endpoint.Send(new MyMessage(), options);
             // or
-            await endpoint.SendLocal(new MyMessage())
-                .ConfigureAwait(false);
+            await endpoint.SendLocal(new MyMessage());
 
             #endregion
         }
@@ -79,8 +73,7 @@
             var options = new SendOptions();
             options.RouteToThisInstance();
             var message = new MyMessage();
-            await endpoint.Send(message, options)
-                .ConfigureAwait(false);
+            await endpoint.Send(message, options);
 
             #endregion
         }
@@ -92,8 +85,7 @@
             var options = new SendOptions();
             options.RouteReplyToThisInstance();
             var message = new MyMessage();
-            await endpoint.Send(message, options)
-                .ConfigureAwait(false);
+            await endpoint.Send(message, options);
 
             #endregion
         }
@@ -105,8 +97,7 @@
             var options = new SendOptions();
             options.RouteReplyToAnyInstance();
             var message = new MyMessage();
-            await endpoint.Send(message, options)
-                .ConfigureAwait(false);
+            await endpoint.Send(message, options);
 
             #endregion
         }
@@ -118,8 +109,7 @@
             var options = new SendOptions();
             options.RouteReplyTo("MyDestination");
             var message = new MyMessage();
-            await endpoint.Send(message, options)
-                .ConfigureAwait(false);
+            await endpoint.Send(message, options);
 
             #endregion
         }
@@ -131,8 +121,7 @@
             var options = new ReplyOptions();
             options.RouteReplyToThisInstance();
             var myMessage = new MyMessage();
-            await context.Reply(myMessage, options)
-                .ConfigureAwait(false);
+            await context.Reply(myMessage, options);
 
             #endregion
         }
@@ -144,8 +133,7 @@
             var options = new ReplyOptions();
             options.RouteReplyToAnyInstance();
             var myMessage = new MyMessage();
-            await context.Reply(myMessage, options)
-                .ConfigureAwait(false);
+            await context.Reply(myMessage, options);
 
             #endregion
         }
@@ -157,8 +145,7 @@
             var options = new ReplyOptions();
             options.RouteReplyTo("MyDestination");
             var myMessage = new MyMessage();
-            await context.Reply(myMessage, options)
-                .ConfigureAwait(false);
+            await context.Reply(myMessage, options);
 
             #endregion
         }

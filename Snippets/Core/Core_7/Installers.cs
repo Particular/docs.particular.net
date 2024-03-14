@@ -15,8 +15,7 @@ namespace Core7
             endpointConfiguration.EnableInstallers();
 
             // this will run the installers
-            await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
+            await Endpoint.Start(endpointConfiguration);
 
             #endregion
         }
@@ -36,8 +35,7 @@ namespace Core7
             {
                 endpointConfiguration.EnableInstallers();
                 // This will run the installers but not start the instance.
-                await Endpoint.Create(endpointConfiguration)
-                    .ConfigureAwait(false);
+                await Endpoint.Create(endpointConfiguration);
                 Environment.Exit(0);
             }
 

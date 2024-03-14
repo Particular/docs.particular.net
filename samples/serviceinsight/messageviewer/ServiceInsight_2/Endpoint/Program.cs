@@ -18,22 +18,18 @@ class Program
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
-        
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+
         var completeOrder = new CompleteOrder
         {
             CreditCard = "123-456-789"
         };
-        await endpointInstance.SendLocal(completeOrder)
-            .ConfigureAwait(false);
+        await endpointInstance.SendLocal(completeOrder);
         Console.WriteLine("Message sent");
-        
+
         Console.WriteLine("Launching platform...");
-        await Particular.PlatformLauncher.Launch()
-             .ConfigureAwait(false);
-        
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await Particular.PlatformLauncher.Launch();
+
+        await endpointInstance.Stop();
     }
 }

@@ -10,8 +10,7 @@ public class ConversationIdHeaderOverride
         #region override-conversation-id
         var sendOptions = new SendOptions();
         sendOptions.SetHeader(Headers.ConversationId, "MyCustomConversationId/" + System.Guid.NewGuid());
-        await context.Send(new MyMessage(), sendOptions)
-            .ConfigureAwait(false);
+        await context.Send(new MyMessage(), sendOptions);
         #endregion
     }
 

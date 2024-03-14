@@ -19,8 +19,7 @@ class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press 'D' to send a databus large message");
         Console.WriteLine("Press 'N' to send a normal large message exceed the size limit and throw");
         Console.WriteLine("Press any other key to exit");
@@ -32,21 +31,18 @@ class Program
 
             if (key.Key == ConsoleKey.N)
             {
-                await SendMessageTooLargePayload(endpointInstance)
-                    .ConfigureAwait(false);
+                await SendMessageTooLargePayload(endpointInstance);
                 continue;
             }
 
             if (key.Key == ConsoleKey.D)
             {
-                await SendMessageLargePayload(endpointInstance)
-                    .ConfigureAwait(false);
+                await SendMessageLargePayload(endpointInstance);
                 continue;
             }
             break;
         }
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 
 
@@ -59,8 +55,7 @@ class Program
             SomeProperty = "This message contains a large blob that will be sent on the data bus",
             LargeBlob = new DataBusProperty<byte[]>(new byte[1024*1024*5]) //5MB
         };
-        await endpointInstance.Send("Samples.DataBus.Receiver", message)
-            .ConfigureAwait(false);
+        await endpointInstance.Send("Samples.DataBus.Receiver", message);
 
         #endregion
 
@@ -75,8 +70,7 @@ class Program
         {
             LargeBlob = new byte[1024*1024*5] //5MB
         };
-        await endpointInstance.Send("Samples.DataBus.Receiver", message)
-            .ConfigureAwait(false);
+        await endpointInstance.Send("Samples.DataBus.Receiver", message);
 
         #endregion
     }

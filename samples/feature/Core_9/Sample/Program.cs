@@ -12,12 +12,9 @@ class Program
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
-        await Run(endpointInstance)
-            .ConfigureAwait(false);
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        await Run(endpointInstance);
+        await endpointInstance.Stop();
     }
 
     static async Task Run(IEndpointInstance endpointInstance)
@@ -31,14 +28,12 @@ class Program
             var key = Console.ReadKey();
             if (key.Key == ConsoleKey.H)
             {
-                await SendHandlerMessage(endpointInstance)
-                    .ConfigureAwait(false);
+                await SendHandlerMessage(endpointInstance);
                 continue;
             }
             if (key.Key == ConsoleKey.S)
             {
-                await SendSagaMessage(endpointInstance)
-                    .ConfigureAwait(false);
+                await SendSagaMessage(endpointInstance);
                 continue;
             }
             return;

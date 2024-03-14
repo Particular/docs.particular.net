@@ -11,14 +11,10 @@ namespace Testing_8.Saga
     {
         public async Task Handle(StartsSaga message, IMessageHandlerContext context)
         {
-            await ReplyToOriginator(context, new MyResponse())
-                .ConfigureAwait(false);
-            await context.Publish(new MyEvent())
-                .ConfigureAwait(false);
-            await context.Send(new MyCommand())
-                .ConfigureAwait(false);
-            await RequestTimeout(context, TimeSpan.FromDays(7), message)
-                .ConfigureAwait(false);
+            await ReplyToOriginator(context, new MyResponse());
+            await context.Publish(new MyEvent());
+            await context.Send(new MyCommand());
+            await RequestTimeout(context, TimeSpan.FromDays(7), message);
         }
 
         public Task Timeout(StartsSaga state, IMessageHandlerContext context)

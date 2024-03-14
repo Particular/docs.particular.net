@@ -17,19 +17,16 @@ class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendOnly();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         var typeToUnscubscribe = typeof(SomethingHappened);
         var unsubscribeMessage = new ManualUnsubscribe
         {
             MessageTypeName = typeToUnscubscribe.AssemblyQualifiedName,
             SubscriberEndpoint = "Samples.ManualUnsubscribe.Subscriber"
         };
-        await endpointInstance.Send("Samples.ManualUnsubscribe.Publisher", unsubscribeMessage)
-            .ConfigureAwait(false);
+        await endpointInstance.Send("Samples.ManualUnsubscribe.Publisher", unsubscribeMessage);
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
         Console.WriteLine("Unsubscribe message sent. Press any other key to exit");
         Console.ReadKey();
 

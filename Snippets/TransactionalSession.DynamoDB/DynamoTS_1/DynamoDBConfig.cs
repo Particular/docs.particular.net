@@ -22,13 +22,11 @@ public class DynamoDBConfig
 
         using var childScope = serviceProvider.CreateScope();
         var session = childScope.ServiceProvider.GetService<ITransactionalSession>();
-        await session.Open(new DynamoOpenSessionOptions())
-            .ConfigureAwait(false);
+        await session.Open(new DynamoOpenSessionOptions());
 
         // use the session
 
-        await session.Commit()
-            .ConfigureAwait(false);
+        await session.Commit();
 
         #endregion
     }
@@ -36,18 +34,15 @@ public class DynamoDBConfig
     public async Task UseSession(ITransactionalSession session)
     {
         #region use-transactional-session-dynamo
-        await session.Open(new DynamoOpenSessionOptions())
-            .ConfigureAwait(false);
+        await session.Open(new DynamoOpenSessionOptions());
 
         // add messages to the transaction:
-        await session.Send(new MyMessage())
-            .ConfigureAwait(false);
+        await session.Send(new MyMessage());
 
         // access the database:
         var dynamoSession = session.SynchronizedStorageSession.DynamoPersistenceSession();
 
-        await session.Commit()
-            .ConfigureAwait(false);
+        await session.Commit();
         #endregion
     }
 }

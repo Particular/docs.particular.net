@@ -21,10 +21,9 @@ class Worker : BackgroundService
             var number = 0;
             while (!stoppingToken.IsCancellationRequested)
             {
-                await messageSession.SendLocal(new MyMessage {Number = number++})
-                    .ConfigureAwait(false);
+                await messageSession.SendLocal(new MyMessage {Number = number++});
 
-                await Task.Delay(1000, stoppingToken).ConfigureAwait(false);
+                await Task.Delay(1000, stoppingToken);
             }
         }
         catch (OperationCanceledException)

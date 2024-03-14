@@ -30,10 +30,9 @@ class SimulateWorkHostedService : IHostedService
             while (!cancellationToken.IsCancellationRequested)
             {
                 // sending here to simulate work
-                await messageSession.SendLocal(new MyMessage())
-                    .ConfigureAwait(false);
+                await messageSession.SendLocal(new MyMessage());
 
-                await Task.Delay(1000, cancellationToken).ConfigureAwait(false);
+                await Task.Delay(1000, cancellationToken);
             }
         }
         catch (OperationCanceledException)

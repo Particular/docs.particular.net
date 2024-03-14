@@ -32,22 +32,15 @@ static class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.MefExtensionEndpoint");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
-        await RunCustomizeConfiguration(compositionHost, endpointConfiguration)
-            .ConfigureAwait(false);
-        await RunBeforeEndpointStart(compositionHost)
-            .ConfigureAwait(false);
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
-        await RunAfterEndpointStart(compositionHost, endpointInstance)
-            .ConfigureAwait(false);
+        await RunCustomizeConfiguration(compositionHost, endpointConfiguration);
+        await RunBeforeEndpointStart(compositionHost);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        await RunAfterEndpointStart(compositionHost, endpointInstance);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await RunBeforeEndpointStop(compositionHost, endpointInstance)
-            .ConfigureAwait(false);
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
-        await RunAfterEndpointStop(compositionHost)
-            .ConfigureAwait(false);
+        await RunBeforeEndpointStop(compositionHost, endpointInstance);
+        await endpointInstance.Stop();
+        await RunAfterEndpointStop(compositionHost);
     }
 
     static Task RunBeforeEndpointStart(CompositionHost compositionHost)

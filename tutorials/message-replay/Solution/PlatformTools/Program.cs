@@ -6,8 +6,7 @@
     {
         static async Task Main()
         {
-            await Particular.PlatformLauncher.Launch()
-                .ConfigureAwait(false);
+            await Particular.PlatformLauncher.Launch();
         }
     }
 }

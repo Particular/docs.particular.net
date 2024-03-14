@@ -49,7 +49,7 @@ namespace Bridge
                     // more configuration...
                 })
                 .Build()
-                .RunAsync().ConfigureAwait(false);
+                .RunAsync();
         }
     }
 }

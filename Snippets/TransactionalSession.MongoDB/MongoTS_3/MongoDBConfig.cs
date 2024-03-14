@@ -22,13 +22,11 @@ public class MongoDBConfig
 
         using var childScope = serviceProvider.CreateScope();
         var session = childScope.ServiceProvider.GetService<ITransactionalSession>();
-        await session.Open()
-            .ConfigureAwait(false);
+        await session.Open();
 
         // use the session
 
-        await session.Commit()
-            .ConfigureAwait(false);
+        await session.Commit();
 
         #endregion
     }
@@ -36,18 +34,15 @@ public class MongoDBConfig
     public async Task UseSession(ITransactionalSession session)
     {
         #region use-transactional-session-mongo
-        await session.Open()
-            .ConfigureAwait(false);
+        await session.Open();
 
         // add messages to the transaction:
-        await session.Send(new MyMessage())
-            .ConfigureAwait(false);
+        await session.Send(new MyMessage());
 
         // access the database:
         var mongoSession = session.SynchronizedStorageSession.MongoPersistenceSession();
 
-        await session.Commit()
-            .ConfigureAwait(false);
+        await session.Commit();
         #endregion
     }
 }

@@ -28,7 +28,7 @@ public class AcceptOrderController :
     {
         using (var connection = connectionFactory())
         {
-            await connection.OpenAsync().ConfigureAwait(false);
+            await connection.OpenAsync();
             using (var transaction = connection.BeginTransaction())
             {
                 var dataContext = new FrontendDataContext(connection);
@@ -48,9 +48,9 @@ public class AcceptOrderController :
                 transportTransaction.Set(connection);
                 transportTransaction.Set(transaction);
                 options.GetExtensions().Set(transportTransaction);
-                await messageSession.Publish(message, options).ConfigureAwait(false);
+                await messageSession.Publish(message, options);
 
-                await dataContext.SaveChangesAsync().ConfigureAwait(false);
+                await dataContext.SaveChangesAsync();
                 transaction.Commit();
             }
         }

@@ -53,14 +53,12 @@ class Program
         var database = cosmosClient.GetDatabase("Samples.CosmosDB.Container");
         await database.CreateContainerIfNotExistsAsync("ShipOrderSagaData", "/id");
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 
     static readonly ILog Log = LogManager.GetLogger<Program>();

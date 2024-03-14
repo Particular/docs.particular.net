@@ -34,15 +34,13 @@ Stop the endpoint now to see the saga data in:
         var sendOptions = new SendOptions();
         sendOptions.DelayDeliveryWith(TimeSpan.FromSeconds(10));
         sendOptions.RouteToThisEndpoint();
-        await context.Send(completeOrder, sendOptions)
-            .ConfigureAwait(false);
+        await context.Send(completeOrder, sendOptions);
 
         var timeout = DateTimeOffset.UtcNow.AddSeconds(30);
         log.Info($@"Requesting a CancelOrder that will be executed in 30 seconds.
 Stop the endpoint now to see the timeout data in the delayed directory
 {LearningLocationHelper.TransportDelayedDirectory(timeout)}");
-        await RequestTimeout<CancelOrder>(context, timeout)
-            .ConfigureAwait(false);
+        await RequestTimeout<CancelOrder>(context, timeout);
     }
 
     public Task Handle(CompleteOrder message, IMessageHandlerContext context)

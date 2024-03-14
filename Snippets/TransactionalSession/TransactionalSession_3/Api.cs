@@ -34,8 +34,7 @@ class Api
 
         var session = scope.ServiceProvider.GetRequiredService<ITransactionalSession>();
         await session.Open(new MyPersistenceOpenSessionOptions(),
-            cancellationToken: cancellationToken)
-            .ConfigureAwait(false);
+            cancellationToken: cancellationToken);
 
         #endregion
 
@@ -45,8 +44,7 @@ class Api
         {
             MaximumCommitDuration = TimeSpan.FromSeconds(15)
         },
-                cancellationToken: cancellationToken)
-            .ConfigureAwait(false);
+                cancellationToken: cancellationToken);
 
         #endregion
 
@@ -59,8 +57,7 @@ class Api
                         { "SomeKey", "SomeValue" }
                     }
         },
-                cancellationToken: cancellationToken)
-            .ConfigureAwait(false);
+                cancellationToken: cancellationToken);
 
         #endregion
     }
@@ -69,8 +66,7 @@ class Api
     {
         #region sending-transactional-session
 
-        await session.SendLocal(new MyMessage(), cancellationToken)
-            .ConfigureAwait(false);
+        await session.SendLocal(new MyMessage(), cancellationToken);
 
         #endregion
 
@@ -80,8 +76,7 @@ class Api
     {
         #region committing-transactional-session
 
-        await session.Commit(cancellationToken)
-            .ConfigureAwait(false);
+        await session.Commit(cancellationToken);
 
         #endregion
     }

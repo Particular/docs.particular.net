@@ -34,17 +34,14 @@ static class Program
 
         using (var serviceProvider = serviceCollection.BuildServiceProvider())
         {
-            var endpoint = await endpointWithExternallyManagedContainer.Start(serviceProvider)
-                .ConfigureAwait(false);
+            var endpoint = await endpointWithExternallyManagedContainer.Start(serviceProvider);
 
             var sender = serviceProvider.GetRequiredService<MessageSender>();
-            await sender.SendMessage()
-                .ConfigureAwait(false);
+            await sender.SendMessage();
 
             Console.WriteLine("Press any key to exit");
             Console.ReadKey();
-            await endpoint.Stop()
-                .ConfigureAwait(false);
+            await endpoint.Stop();
         }
     }
 }

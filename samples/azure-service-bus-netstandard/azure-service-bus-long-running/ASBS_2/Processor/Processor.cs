@@ -28,8 +28,7 @@ public class Processor
 
         var cloudTableClient = StorageHelper.GetTableClient();
         table = cloudTableClient.GetTableReference(Constants.TableName);
-        await table.CreateIfNotExistsAsync(cancellationToken)
-            .ConfigureAwait(false);
+        await table.CreateIfNotExistsAsync(cancellationToken);
 
         #region tasks
         pollingTask = Task.Run(() => StartPolling(cancellationToken));
@@ -40,8 +39,7 @@ public class Processor
     public async Task Stop()
     {
         cancellationTokenSource.Cancel();
-        await Task.WhenAll(pollingTask, processingTask)
-            .ConfigureAwait(false);
+        await Task.WhenAll(pollingTask, processingTask);
         cancellationTokenSource.Dispose();
     }
 
@@ -50,10 +48,8 @@ public class Processor
         // should handle TaskCanceledException
         while (!token.IsCancellationRequested)
         {
-            await LoadRequests(token)
-                .ConfigureAwait(false);
-            await Task.Delay(Constants.PollingFrequency, token)
-                .ConfigureAwait(false);
+            await LoadRequests(token);
+            await Task.Delay(Constants.PollingFrequency, token);
         }
     }
 
@@ -80,36 +76,31 @@ public class Processor
 
                     // process
                     var estimatedProcessingTime = TimeSpan.Parse(request.EstimatedProcessingTime);
-                    await Task.Delay(estimatedProcessingTime, token)
-                        .ConfigureAwait(false);
+                    await Task.Delay(estimatedProcessingTime, token);
                     log.Info($"Request with ID {request.RequestId} processed.");
 
                     request.Status = Status.Finished.ToString();
                     request.FinishedAt = DateTime.UtcNow;
-                    await table.ExecuteAsync(TableOperation.Merge(request), token)
-                        .ConfigureAwait(false);
+                    await table.ExecuteAsync(TableOperation.Merge(request), token);
                     toProcess.TryDequeue(out request);
                     var processingFinished = new LongProcessingFinished
                     {
                         Id = request.RequestId
                     };
-                    await endpoint.Publish(processingFinished)
-                        .ConfigureAwait(false);
+                    await endpoint.Publish(processingFinished);
                 }
                 catch (Exception ex)
                 {
                     log.Info($"Request with ID {request.RequestId} threw an exception.");
                     request.Status = Status.Failed.ToString();
-                    await table.ExecuteAsync(TableOperation.Merge(request), token)
-                        .ConfigureAwait(false);
+                    await table.ExecuteAsync(TableOperation.Merge(request), token);
                     toProcess.TryDequeue(out request);
                     var processingFailed = new LongProcessingFailed
                     {
                         Id = request.RequestId,
                         Reason = ex.Message
                     };
-                    await endpoint.Publish(processingFailed)
-                        .ConfigureAwait(false);
+                    await endpoint.Publish(processingFailed);
                 }
             }
         }
@@ -127,8 +118,7 @@ public class Processor
         TableContinuationToken continuationToken = null;
         do
         {
-            var tableQuerySegment = await table.ExecuteQuerySegmentedAsync(query, continuationToken, token)
-                .ConfigureAwait(false);
+            var tableQuerySegment = await table.ExecuteQuerySegmentedAsync(query, continuationToken, token);
             continuationToken = tableQuerySegment.ContinuationToken;
             records.AddRange(tableQuerySegment);
         } while (continuationToken != null);

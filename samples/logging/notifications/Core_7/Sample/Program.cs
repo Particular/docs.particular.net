@@ -37,17 +37,14 @@ class Program
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         var message = new MyMessage
         {
             Property = "PropertyValue"
         };
-        await endpointInstance.SendLocal(message)
-            .ConfigureAwait(false);
+        await endpointInstance.SendLocal(message);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

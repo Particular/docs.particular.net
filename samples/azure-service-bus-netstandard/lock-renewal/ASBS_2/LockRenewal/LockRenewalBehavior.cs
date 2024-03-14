@@ -42,7 +42,7 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
 
             try
             {
-                await next().ConfigureAwait(false);
+                await next();
             }
             finally
             {
@@ -75,11 +75,11 @@ class LockRenewalBehavior : Behavior<ITransportReceiveContext>
                     var buffer = TimeSpan.FromTicks(Math.Min(remaining.Ticks / 2, MaximumRenewBufferDuration.Ticks));
                     var renewAfter = remaining - buffer;
 
-                    await Task.Delay(renewAfter, cancellationToken).ConfigureAwait(false);
+                    await Task.Delay(renewAfter, cancellationToken);
 
                     try
                     {
-                        await messageReceiver.RenewMessageLockAsync(message, cancellationToken).ConfigureAwait(false);
+                        await messageReceiver.RenewMessageLockAsync(message, cancellationToken);
                         attempts = 0;
                         Log.Info($"{message.MessageId}: Lock renewed until {message.LockedUntil:s}Z.");
                     }

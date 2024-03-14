@@ -39,7 +39,7 @@ class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
 
         Log.Info($"Found partition key '{context.Extensions.Get<TableEntityPartitionKey>().PartitionKey}' from '{nameof(IProvideOrderId)}'");
 
-        await next().ConfigureAwait(false);
+        await next();
     }
 
     public class Registration : RegisterStep

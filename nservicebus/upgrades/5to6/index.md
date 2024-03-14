@@ -47,21 +47,19 @@ Most of the other method calls on `EndpointConfiguration` work the same way as t
 
 Once the instance of `EndpointConfiguration` has been created, it can be used to create an `IEndpointInstance`. In versions 5 and below, this step is accomplished using the `Bus` static class. In version 6, this has been replaced with an `Endpoint` static class that works in a similar manner.
 
-In NServiceBus version 6 and above, any operation that interacts with the transport is asynchronous and returns a `Task`. This includes the `Start` method on the static `Endpoint` class and the `Stop` method on `IEndpointInstance`. Ideally these methods are called from within an `async` method and the results can simply be `awaited` (with `ConfigureAwait(false)` applied to them).
+In NServiceBus version 6 and above, any operation that interacts with the transport is asynchronous and returns a `Task`. This includes the `Start` method on the static `Endpoint` class and the `Stop` method on `IEndpointInstance`. Ideally these methods are called from within an `async` method and the results can simply be `awaited`.
 
 ```csharp
 async Task Run(EndpointConfiguration endpointConfiguration)
 {
     // pre startup
-    var endpointInstance = await Endpoint.Start(endpointConfiguration)
-        .ConfigureAwait(false);
+    var endpointInstance = await Endpoint.Start(endpointConfiguration);
     // post startup
 
     // block process
 
     // pre shutdown
-    await endpointInstance.Stop()
-        .ConfigureAwait(false);
+    await endpointInstance.Stop();
     // post shutdown
 }
 ```
@@ -77,15 +75,13 @@ void Run(EndpointConfiguration endpointConfiguration)
 async Task RunAsync(EndpointConfiguration endpointConfiguration)
 {
     // pre startup
-    var endpointInstance = await Endpoint.Start(endpointConfiguration)
-        .ConfigureAwait(false);
+    var endpointInstance = await Endpoint.Start(endpointConfiguration);
     // post startup
 
     // block process
 
     // pre shutdown
-    await endpointInstance.Stop()
-        .ConfigureAwait(false);
+    await endpointInstance.Stop();
     // post shutdown
 }
 ```
@@ -114,7 +110,7 @@ To update a handler to NServiceBus version 6 follow this process:
 
  1. As the signature of `IHandleMessages<T>` has changed, Visual Studio will show an error that the handler is not implementing the interface. To correctly implement the handler interface, change the return type of the `Handle` method from `void` to `async Task`. Next add a second parameter to the `Handle` method `IMessageHandlerContext context`.
  1. If the handler has an instance of `IBus` injected into it, it must be removed. Prior to removing it, rename it to `context` as all operations that previously relied on `IBus` will now go through the passed in instance of `IMessageHandlerContext`.
- 1. Finally, the methods on `IMessageHandlerContext` all return tasks. It is important to `await` each of these tasks and to add `.ConfigureAwait(false)` to each method call.
+ 1. Finally, the methods on `IMessageHandlerContext` all return tasks. It is important to `await` each of these tasks.
 
 youtube: https://www.youtube.com/watch?v=QolL1Oum72Q
 
@@ -137,7 +133,7 @@ Check the implementation of `ConfigureHowToFindSaga()`. NServiceBus will be able
 
 Remove the `[Unique]` attribute from the saga data class. NServiceBus automatically makes correlated saga properties unique in version 6.
 
-Note that calls to `RequestTimeout()` now require an instance of `IMessageHandlerContext` to be passed in. Pass in the context parameter that was passed in to the `Handle()` method. Additionally, this method returns a `Task` which should have `ConfigureAwait(false)` applied and then wait for the response with `await`.
+Note that calls to `RequestTimeout()` now require an instance of `IMessageHandlerContext` to be passed in. Pass in the context parameter that was passed in to the `Handle()` method. Additionally, this method returns a `Task` which should wait for the response with `await`.
 
 See also:
 

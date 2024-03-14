@@ -15,13 +15,13 @@ class MyUowBehavior :
 
         try
         {
-            await next().ConfigureAwait(false);
+            await next();
 
-            await session.Commit().ConfigureAwait(false);
+            await session.Commit();
         }
         catch (Exception)
         {
-            await session.Rollback().ConfigureAwait(false);
+            await session.Rollback();
 
             throw;
         }

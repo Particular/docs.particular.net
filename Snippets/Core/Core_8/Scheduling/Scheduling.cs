@@ -21,8 +21,7 @@
                         // use the pipelineContext parameter to send messages
                         var message = new CallLegacySystem();
                         return pipelineContext.Send(message);
-                    })
-                .ConfigureAwait(false);
+                    });
 
             // Name a schedule task and invoke it every 5 minutes
             await endpointInstance.ScheduleEvery(
@@ -32,8 +31,7 @@
                     {
                         log.Info("Custom Task executed");
                         return Task.CompletedTask;
-                    })
-                .ConfigureAwait(false);
+                    });
 
             #endregion
         }

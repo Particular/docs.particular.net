@@ -47,11 +47,9 @@ class DistributeSubscriptions : IBehavior<IIncomingPhysicalMessageContext, IInco
                     tasks.Add(context.ForwardCurrentMessageTo(destination));
                 }
             }
-            await Task.WhenAll(tasks)
-                .ConfigureAwait(false);
+            await Task.WhenAll(tasks);
         }
-        await next(context)
-            .ConfigureAwait(false);
+        await next(context);
     }
 
     public class Register :

@@ -17,8 +17,7 @@ class Program
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine();
         Console.WriteLine("Storage locations:");
@@ -41,12 +40,10 @@ class Program
             {
                 OrderId = orderId
             };
-            await endpointInstance.SendLocal(startOrder)
-                .ConfigureAwait(false);
+            await endpointInstance.SendLocal(startOrder);
             Console.WriteLine($"Sent StartOrder with OrderId {orderId}.");
         }
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

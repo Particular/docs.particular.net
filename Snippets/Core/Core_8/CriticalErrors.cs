@@ -26,7 +26,7 @@ namespace Core8
             {
                 // To leave the process active, stop the endpoint.
                 // When it is stopped, attempts to send messages will cause an ObjectDisposedException.
-                await context.Stop(cancellationToken).ConfigureAwait(false);
+                await context.Stop(cancellationToken);
                 // Perform custom actions here, e.g.
                 // NLog.LogManager.Shutdown();
             }

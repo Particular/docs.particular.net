@@ -16,8 +16,7 @@
             var message = new Message();
             try
             {
-                var response = await endpoint.Request<int>(message, cancellationTokenSource.Token)
-                    .ConfigureAwait(false);
+                var response = await endpoint.Request<int>(message, cancellationTokenSource.Token);
             }
             catch (OperationCanceledException)
             {

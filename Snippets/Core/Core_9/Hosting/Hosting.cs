@@ -13,8 +13,7 @@
             var endpointConfiguration = new EndpointConfiguration("EndpointName");
             endpointConfiguration.SendOnly();
             // Apply other necessary endpoint configuration, e.g. transport
-            var endpointInstance = await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
             #endregion
         }
@@ -24,21 +23,18 @@
             #region Hosting-Startup
             var endpointConfiguration = new EndpointConfiguration("EndpointName");
             // Apply other necessary endpoint configuration, e.g. transport
-            var startableEndpoint = await Endpoint.Create(endpointConfiguration)
-                .ConfigureAwait(false);
-            var endpointInstance = await startableEndpoint.Start()
-                .ConfigureAwait(false);
+            var startableEndpoint = await Endpoint.Create(endpointConfiguration);
+            var endpointInstance = await startableEndpoint.Start();
 
             // Shortcut
-            var endpointInstance2 = await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
+            var endpointInstance2 = await Endpoint.Start(endpointConfiguration);
             #endregion
         }
 
         async Task Shutdown(IEndpointInstance endpointInstance)
         {
             #region Hosting-Shutdown
-            await endpointInstance.Stop().ConfigureAwait(false);
+            await endpointInstance.Stop();
             #endregion
         }
 

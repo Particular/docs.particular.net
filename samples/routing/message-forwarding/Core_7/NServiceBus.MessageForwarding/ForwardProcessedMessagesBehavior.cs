@@ -22,8 +22,7 @@ class ForwardProcessedMessagesBehavior : ForkConnector<IIncomingPhysicalMessageC
             new Dictionary<string, string>(context.Message.Headers),
             context.Message.Body);
 
-        await next()
-            .ConfigureAwait(false);
+        await next();
 
         var forwardingRoutingStrategy = new UnicastRoutingStrategy(forwardingAddress);
 
@@ -32,8 +31,7 @@ class ForwardProcessedMessagesBehavior : ForkConnector<IIncomingPhysicalMessageC
             forwardingRoutingStrategy,
             context);
 
-        await fork(routingContext)
-            .ConfigureAwait(false);
+        await fork(routingContext);
     }
 }
 #endregion

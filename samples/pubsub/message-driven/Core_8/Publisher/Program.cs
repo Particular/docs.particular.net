@@ -15,12 +15,9 @@ static class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
-        await PublishOrderEvent(endpointInstance)
-            .ConfigureAwait(false);
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        await PublishOrderEvent(endpointInstance);
+        await endpointInstance.Stop();
     }
 
     static async Task PublishOrderEvent(IEndpointInstance endpointInstance)
@@ -42,8 +39,7 @@ static class Program
                 {
                     OrderId = orderReceivedId
                 };
-                await endpointInstance.Publish(orderReceived)
-                    .ConfigureAwait(false);
+                await endpointInstance.Publish(orderReceived);
                 Console.WriteLine($"Published OrderReceived Event with Id {orderReceivedId}.");
             }
             else

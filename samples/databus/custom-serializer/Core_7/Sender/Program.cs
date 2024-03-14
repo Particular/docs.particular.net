@@ -27,8 +27,7 @@ class Program
 
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press Enter to send a databus large message");
         Console.WriteLine("Press any other key to exit");
 
@@ -39,14 +38,12 @@ class Program
 
             if (key.Key == ConsoleKey.Enter)
             {
-                await SendMessageLargePayload(endpointInstance)
-                    .ConfigureAwait(false);
+                await SendMessageLargePayload(endpointInstance);
                 continue;
             }
             break;
         }
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 
     static Task SendMessageLargePayload(IEndpointInstance endpointInstance)

@@ -23,8 +23,7 @@
 
             options.DoNotEnforceBestPractices();
 
-            await context.Send(new MyEvent(), options)
-                .ConfigureAwait(false);
+            await context.Send(new MyEvent(), options);
 
             #endregion
         }

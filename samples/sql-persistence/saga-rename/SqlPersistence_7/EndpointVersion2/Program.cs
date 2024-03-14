@@ -21,20 +21,17 @@ var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlPers
 
 using var connection = new SqlConnection(connectionString);
 
-await connection.OpenAsync()
-    .ConfigureAwait(false);
+await connection.OpenAsync();
 
 using var renameReplySaga = connection.CreateCommand();
 
 renameReplySaga.CommandText = "exec sp_rename 'Samples_RenameSaga_MyReplySagaVersion1', 'Samples_RenameSaga_MyReplySagaVersion2'";
-await renameReplySaga.ExecuteNonQueryAsync()
-    .ConfigureAwait(false);
+await renameReplySaga.ExecuteNonQueryAsync();
 
 using var renameTimeoutSaga = connection.CreateCommand();
 
 renameTimeoutSaga.CommandText = "exec sp_rename 'Samples_RenameSaga_MyTimeoutSagaVersion1', 'Samples_RenameSaga_MyTimeoutSagaVersion2'";
-await renameTimeoutSaga.ExecuteNonQueryAsync()
-    .ConfigureAwait(false);
+await renameTimeoutSaga.ExecuteNonQueryAsync();
 
 #endregion
 
@@ -47,12 +44,10 @@ endpointConfiguration.RegisterMessageMutator(new ReplyMutator());
 
 #endregion
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration)
-    .ConfigureAwait(false);
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
 Console.WriteLine("Waiting to receive timeout and reply. Should happen within 10 seconds");
 Console.WriteLine("Press any key to exit");
 Console.ReadKey();
 
-await endpointInstance.Stop()
-    .ConfigureAwait(false);
+await endpointInstance.Stop();

@@ -24,8 +24,7 @@ public class StartUpDiagnosticsWriter
             return Task.CompletedTask;
         });
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         var jsonFormatted = JToken.Parse(diagnostics).ToString(Formatting.Indented);
         var substring = string.Join("\r", jsonFormatted.Split('\r').Take(20)) + "\r\n...";
         SnippetLogger.Write(substring);

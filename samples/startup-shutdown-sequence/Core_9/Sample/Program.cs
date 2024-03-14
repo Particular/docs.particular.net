@@ -18,16 +18,13 @@ class Program
         endpointConfiguration.UseTransport(new LearningTransport());
 
         Logger.WriteLine("Calling Endpoint.Start");
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         // simulate some activity
-        await Task.Delay(500)
-            .ConfigureAwait(false);
+        await Task.Delay(500);
 
         Logger.WriteLine("Endpoint is processing messages");
         Logger.WriteLine("Calling IEndpointInstance.Stop");
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
         Logger.WriteLine("Finished");
         #endregion
         Console.WriteLine($"Logged information to {Logger.OutputFilePath}");

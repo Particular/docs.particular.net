@@ -32,8 +32,7 @@ class Program
 
         #region Configuration
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         JobManager.AddJob(
             new SendMessageJob(endpointInstance),
@@ -52,8 +51,7 @@ class Program
         #region shutdown
 
         JobManager.StopAndBlock();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
 
         #endregion
     }

@@ -21,8 +21,7 @@
                 },
                 response: simulatedResponse);
 
-            var result = await session.Request<ResponseMessage>(request)
-                .ConfigureAwait(false);
+            var result = await session.Request<ResponseMessage>(request);
 
             Assert.AreEqual(simulatedResponse, result);
 
@@ -48,8 +47,7 @@
 
             var sendOptions = new SendOptions();
             sendOptions.SetHeader("Simulated.Header", "value");
-            var result = await session.Request<ResponseMessage>(request, sendOptions)
-                .ConfigureAwait(false);
+            var result = await session.Request<ResponseMessage>(request, sendOptions);
 
             Assert.AreEqual(simulatedResponse, result);
 

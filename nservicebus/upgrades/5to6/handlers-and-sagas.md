@@ -63,10 +63,8 @@ public class SendAndPublishHandler :
 {
     public async Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        await context.Send(new MyOtherMessage())
-            .ConfigureAwait(false);
-        await context.Publish(new MyEvent())
-            .ConfigureAwait(false);
+        await context.Send(new MyOtherMessage());
+        await context.Publish(new MyEvent());
     }
 }
 ```
@@ -113,7 +111,7 @@ See [header manipulation](/nservicebus/messaging/header-manipulation.md) for one
 
 ### HandleCurrentMessageLater and the Outbox
 
-The `HandleCurrentMessageLater` method can no longer be used in conjunction with the [Outbox](/nservicebus/outbox/). 
+The `HandleCurrentMessageLater` method can no longer be used in conjunction with the [Outbox](/nservicebus/outbox/).
 
 When this scenario is detected an exception with the following message is thrown:
 
@@ -194,7 +192,7 @@ public class MigrationStep3 :
 }
 ```
 
-Fix the compiler warnings by introducing the `await` statement and optionally followed by `ConfigureAwait(false)` to each asynchronous method call.
+Fix the compiler warnings by introducing the `await` statement to each asynchronous method call.
 
 NOTE: Visual Studio 2015 and higher has the capability to automatically fix those warnings with the [`Ctrl+.`](https://msdn.microsoft.com/en-us/library/dn872466.aspx) (depending on the keybindings) shortcut. It is even possible to fix it in the whole solution if desired.
 
@@ -204,10 +202,8 @@ public class MigrationStep4 :
 {
     public async Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        await context.Send(new MyOtherMessage())
-            .ConfigureAwait(false);
-        await context.Publish(new MyEvent())
-            .ConfigureAwait(false);
+        await context.Send(new MyOtherMessage());
+        await context.Publish(new MyEvent());
     }
 }
 ```
@@ -258,7 +254,7 @@ protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData>
 
 Version 6 automatically correlates incoming message properties to its saga data counterparts. Any saga data correlation in the message handler code can be safely removed. Correlated properties (for existing saga instances) do not change once set.
 
-{{NOTE: Correlated properties must have a non [default](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default-values-table) value, i.e., not null and not empty, assigned when persisted. If not the following exception is thrown: 
+{{NOTE: Correlated properties must have a non [default](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default-values-table) value, i.e., not null and not empty, assigned when persisted. If not the following exception is thrown:
 
 ```
 The correlated property 'MyPropery' on Saga 'MySaga' does not have a value.

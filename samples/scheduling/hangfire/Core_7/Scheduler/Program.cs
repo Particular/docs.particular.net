@@ -14,8 +14,7 @@ class Program
 
         #region Configuration
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         // store the endpointInstance in a static helper class
         EndpointHelper.Instance = endpointInstance;
@@ -44,8 +43,7 @@ class Program
         #region shutdown
 
         scheduler.Dispose();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
 
         #endregion
     }

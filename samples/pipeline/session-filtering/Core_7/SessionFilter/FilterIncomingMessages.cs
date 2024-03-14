@@ -18,7 +18,7 @@ public class FilterIncomingMessages : Behavior<ITransportReceiveContext>
     {
         if (IsFromCurrentSession(context.Message))
         {
-            await next().ConfigureAwait(false);
+            await next();
         }
         else
         {

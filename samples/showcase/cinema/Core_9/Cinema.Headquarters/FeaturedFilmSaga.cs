@@ -46,7 +46,7 @@ namespace Cinema.Headquarters
                 await context.Publish(new FeaturedFilmChanged
                 {
                     FeaturedFilmName = featuredFilmAfterSale
-                }).ConfigureAwait(false);
+                });
             }
 
             log.LogInformation(

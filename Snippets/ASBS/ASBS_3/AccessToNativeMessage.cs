@@ -33,12 +33,12 @@ public class AccessToNativeMessage
             // send a command
             var sendOptions = new SendOptions();
             sendOptions.CustomizeNativeMessage(m => m.Subject = "custom-label");
-            await context.Send(new MyCommand(), sendOptions).ConfigureAwait(false);
+            await context.Send(new MyCommand(), sendOptions);
 
             // publish an event
             var publishOptions = new PublishOptions();
             publishOptions.CustomizeNativeMessage(m => m.Subject = "custom-label");
-            await context.Publish(new MyEvent(), publishOptions).ConfigureAwait(false);
+            await context.Publish(new MyEvent(), publishOptions);
             #endregion
         }
 

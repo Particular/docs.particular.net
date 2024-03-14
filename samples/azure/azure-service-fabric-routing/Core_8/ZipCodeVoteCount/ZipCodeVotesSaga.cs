@@ -19,8 +19,7 @@ public class ZipCodeVotesSaga :
     {
         if (!Data.Started)
         {
-            await RequestTimeout<CloseVoting>(context, DateTime.UtcNow.AddMinutes(1))
-                .ConfigureAwait(false);
+            await RequestTimeout<CloseVoting>(context, DateTime.UtcNow.AddMinutes(1));
             Data.ZipCode = message.ZipCode;
             Data.Started = true;
         }
@@ -32,8 +31,7 @@ public class ZipCodeVotesSaga :
             ZipCode = Data.ZipCode,
             CurrentCount = Data.Count
         };
-        await context.Reply(trackZipCodeReply)
-            .ConfigureAwait(false);
+        await context.Reply(trackZipCodeReply);
     }
 
     public Task Timeout(CloseVoting state, IMessageHandlerContext context)

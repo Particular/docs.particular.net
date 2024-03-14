@@ -15,10 +15,8 @@ var routingSettings = endpointConfiguration.UseTransport(transport);
 routingSettings.DisablePublishing();
 endpointConfiguration.UsePersistence<LearningPersistence>();
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration)
-    .ConfigureAwait(false);
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
 Console.WriteLine("Press any key to exit");
 Console.ReadKey();
-await endpointInstance.Stop()
-    .ConfigureAwait(false);
+await endpointInstance.Stop();
 

@@ -10,10 +10,9 @@
             #region sqs-delete-queues-endpoint-usage
 
             await DeleteQueuesForEndpoint(
-                endpointName: "myendpoint", 
+                endpointName: "myendpoint",
                 queueNamePrefix: "PROD",
-                includeRetries: true /* required for V5 and below */)
-            .ConfigureAwait(false);
+                includeRetries: true /* required for V5 and below */);
 
             #endregion
         }
@@ -27,31 +26,26 @@
                 case "TimeoutManager":
 
                     // timeout queue
-                    await QueueDeletionUtils.DeleteQueue($"{endpointName}.Timeouts", queueNamePrefix)
-                        .ConfigureAwait(false);
+                    await QueueDeletionUtils.DeleteQueue($"{endpointName}.Timeouts", queueNamePrefix);
 
                     // timeout dispatcher queue
-                    await QueueDeletionUtils.DeleteQueue($"{endpointName}.TimeoutsDispatcher", queueNamePrefix)
-                        .ConfigureAwait(false);
+                    await QueueDeletionUtils.DeleteQueue($"{endpointName}.TimeoutsDispatcher", queueNamePrefix);
 
                     break;
                 case "UnrestrictedDelayedDelivery":
 
-                    await QueueDeletionUtils.DeleteQueue($"{endpointName}-delay.fifo", queueNamePrefix)
-                        .ConfigureAwait(false);
+                    await QueueDeletionUtils.DeleteQueue($"{endpointName}-delay.fifo", queueNamePrefix);
 
                     break;
             }
 
             // main queue
-            await QueueDeletionUtils.DeleteQueue(endpointName, queueNamePrefix)
-                .ConfigureAwait(false);
+            await QueueDeletionUtils.DeleteQueue(endpointName, queueNamePrefix);
 
             // retries queue
             if (includeRetries)
             {
-                await QueueDeletionUtils.DeleteQueue($"{endpointName}.Retries", queueNamePrefix)
-                    .ConfigureAwait(false);
+                await QueueDeletionUtils.DeleteQueue($"{endpointName}.Retries", queueNamePrefix);
             }
         }
 

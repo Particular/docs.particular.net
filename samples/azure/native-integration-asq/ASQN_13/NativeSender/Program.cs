@@ -4,7 +4,7 @@ using Azure.Storage.Queues;
 
 var queueClient = new QueueClient("UseDevelopmentStorage=true", "native-integration-asq");
 
-await queueClient.CreateIfNotExistsAsync().ConfigureAwait(false);
+await queueClient.CreateIfNotExistsAsync();
 
 Console.WriteLine("Press Enter to send a native message.");
 Console.WriteLine("Press any other key to exit.");
@@ -28,7 +28,7 @@ while (true)
 
     var serializedMessage = JsonSerializer.Serialize(nativeMessage);
 
-    await queueClient.SendMessageAsync(serializedMessage).ConfigureAwait(false);
+    await queueClient.SendMessageAsync(serializedMessage);
 
     #endregion
 

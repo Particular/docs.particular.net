@@ -12,18 +12,15 @@
         {
             var sendOptions = new SendOptions();
             sendOptions.SetHeader("MyCustomHeader", "My custom value");
-            await context.Send(new SomeOtherMessage(), sendOptions)
-                .ConfigureAwait(false);
+            await context.Send(new SomeOtherMessage(), sendOptions);
 
             var replyOptions = new ReplyOptions();
             replyOptions.SetHeader("MyCustomHeader", "My custom value");
-            await context.Reply(new SomeOtherMessage(), replyOptions)
-                .ConfigureAwait(false);
+            await context.Reply(new SomeOtherMessage(), replyOptions);
 
             var publishOptions = new PublishOptions();
             publishOptions.SetHeader("MyCustomHeader", "My custom value");
-            await context.Publish(new SomeOtherMessage(), publishOptions)
-                .ConfigureAwait(false);
+            await context.Publish(new SomeOtherMessage(), publishOptions);
         }
     }
 

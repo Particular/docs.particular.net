@@ -26,8 +26,7 @@ public class EndpointCommunicationListener :
     {
         Logger.Log = m => ServiceEventSource.Current.ServiceMessage(context, m);
 
-        var partitionInfo = await ServicePartitionQueryHelper.QueryServicePartitions(context.ServiceName, context.PartitionId)
-            .ConfigureAwait(false);
+        var partitionInfo = await ServicePartitionQueryHelper.QueryServicePartitions(context.ServiceName, context.PartitionId);
 
         endpointConfiguration = new EndpointConfiguration("ZipCodeVoteCount");
 
@@ -54,16 +53,13 @@ public class EndpointCommunicationListener :
             throw new Exception(message);
         }
 
-        var zipcodeVotes = await stateManager.TryGetAsync<IReliableDictionary<Guid, SagaEntry>>("zipcode-votes")
-            .ConfigureAwait(false);
+        var zipcodeVotes = await stateManager.TryGetAsync<IReliableDictionary<Guid, SagaEntry>>("zipcode-votes");
         if (zipcodeVotes.HasValue)
         {
-            await zipcodeVotes.Value.ClearAsync()
-                .ConfigureAwait(false);
+            await zipcodeVotes.Value.ClearAsync();
         }
 
-        endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        endpointInstance = await Endpoint.Start(endpointConfiguration);
     }
 
     public Task CloseAsync(CancellationToken cancellationToken)

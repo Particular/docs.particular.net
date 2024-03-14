@@ -17,8 +17,7 @@ endpointConfiguration.RegisterMessageMutator(new MessageBodyWriter());
 
 endpointConfiguration.UseTransport(new LearningTransport());
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration)
-    .ConfigureAwait(false);
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
 #region message
 var message = new CreateOrder
@@ -41,8 +40,7 @@ var message = new CreateOrder
             }
 };
 
-await endpointInstance.SendLocal(message)
-    .ConfigureAwait(false);
+await endpointInstance.SendLocal(message);
 
 #endregion
 
@@ -50,5 +48,4 @@ Console.WriteLine("Order Sent");
 Console.WriteLine("Press any key to exit");
 Console.ReadKey();
 
-await endpointInstance.Stop()
-    .ConfigureAwait(false);
+await endpointInstance.Stop();

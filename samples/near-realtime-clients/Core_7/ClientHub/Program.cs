@@ -35,14 +35,12 @@ static class Program
         {
             Console.WriteLine($"SignalR server running at {url}");
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration);
             Console.WriteLine("NServiceBus subscriber running");
             Console.WriteLine("Press any key to exit");
             Console.ReadKey(true);
 
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
+            await endpointInstance.Stop();
         }
     }
     class OwinStartup

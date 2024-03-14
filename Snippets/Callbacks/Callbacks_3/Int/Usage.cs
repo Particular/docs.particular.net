@@ -12,8 +12,7 @@
             #region IntCallback
 
             var message = new Message();
-            var response = await endpoint.Request<int>(message)
-                .ConfigureAwait(false);
+            var response = await endpoint.Request<int>(message);
             log.Info($"Callback received with response:{response}");
 
             #endregion

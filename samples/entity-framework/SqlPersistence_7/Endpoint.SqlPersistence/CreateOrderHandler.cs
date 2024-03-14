@@ -23,7 +23,7 @@ public class CreateOrderHandler :
             Value = message.Value
         };
         dataContext.Orders.Add(order);
-        await dataContext.SaveChangesAsync(context.CancellationToken).ConfigureAwait(false);
+        await dataContext.SaveChangesAsync(context.CancellationToken);
 
         #endregion
 

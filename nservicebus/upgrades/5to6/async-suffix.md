@@ -19,7 +19,7 @@ Starting with NServiceBus version 6, all APIs that contain potentially I/O-bound
  * [Endpoint Start and Stop](/nservicebus/upgrades/5to6/endpoint.md#interface-changes-self-hosting).
  * [Message mutators](/nservicebus/pipeline/message-mutators.md).
 
-None of the above APIs have an *Async* suffix as recommended by the [Microsoft convention](https://docs.microsoft.com/en-us/dotnet/csharp/async), which states: 
+None of the above APIs have an *Async* suffix as recommended by the [Microsoft convention](https://docs.microsoft.com/en-us/dotnet/csharp/async), which states:
 
 > The name of an async method, by convention, ends with an *Async* suffix.
 
@@ -42,7 +42,7 @@ There is already non-trivial verbosity that is added to a codebase when asynchro
 
 ### NServiceBus APIs do not follow Hungarian notation
 
-No other NServiceBus APIs follow [Hungarian notation](https://en.wikipedia.org/wiki/Hungarian_notation). For example: 
+No other NServiceBus APIs follow [Hungarian notation](https://en.wikipedia.org/wiki/Hungarian_notation). For example:
 
  * Methods are not suffixed with the name of the type they return.
  * Classes are not suffixed with "Instance" or "Static".
@@ -140,7 +140,7 @@ In these scenarios, there are other possible solutions, such as writing a [Rosly
 
 ### Async not necessary when reading code
 
-The above examples show how difficult it is to incorrectly use async APIs. As such, async API usage is clearly identifiable in code by the associated `await`, `.ConfigureAwait()` usage that is required.
+The above examples show how difficult it is to incorrectly use async APIs. As such, async API usage is clearly identifiable in code by the associated `await` usage that is required.
 
 
 ## Other libraries with no Async suffix.

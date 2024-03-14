@@ -15,19 +15,16 @@ class Program
         endpointConfiguration.NotifyDispatch(new SampleDispatchWatcher());
         #endregion
 
-        var endpoint = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpoint = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press any key to send a message");
         Console.WriteLine("Press Escape to exit");
 
         while (Console.ReadKey(true).Key != ConsoleKey.Escape)
         {
-            await endpoint.SendLocal(new SomeMessage())
-                .ConfigureAwait(false);
+            await endpoint.SendLocal(new SomeMessage());
         }
 
-        await endpoint.Stop()
-            .ConfigureAwait(false);
+        await endpoint.Stop();
     }
 }

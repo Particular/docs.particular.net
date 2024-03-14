@@ -29,8 +29,7 @@ class Program
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press enter to send a message");
         Console.WriteLine("Press any key to exit");
 
@@ -43,11 +42,9 @@ class Program
                 break;
             }
             var command = new DoSomething { SequenceId = ++sequenceId };
-            await endpointInstance.Send(command)
-                .ConfigureAwait(false);
+            await endpointInstance.Send(command);
             Console.WriteLine($"Message {command.SequenceId} Sent");
         }
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

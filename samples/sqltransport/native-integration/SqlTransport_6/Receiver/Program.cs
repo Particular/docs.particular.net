@@ -68,8 +68,7 @@ static async Task PlaceOrder(string connectionString)
                                values (@Id, @Recoverable, @Headers, @Body)";
     using (var connection = new SqlConnection(connectionString))
     {
-        await connection.OpenAsync()
-            .ConfigureAwait(false);
+        await connection.OpenAsync();
 
         using (var command = new SqlCommand(insertSql, connection))
         {
@@ -80,8 +79,7 @@ static async Task PlaceOrder(string connectionString)
             parameters.Add("Body", SqlDbType.VarBinary).Value = body;
             parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
 
-            await command.ExecuteNonQueryAsync()
-                .ConfigureAwait(false);
+            await command.ExecuteNonQueryAsync();
         }
     }
 

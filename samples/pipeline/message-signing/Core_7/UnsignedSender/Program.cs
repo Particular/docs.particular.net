@@ -18,8 +18,7 @@ class Program
         // This endpoint does not sign messages.
         // Do not call endpointConfiguration.RegisterSigningBehaviors() here.
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         var key = default(ConsoleKeyInfo);
 
@@ -31,11 +30,9 @@ class Program
             var options = new SendOptions();
             options.SetHeader("X-Message-Header", "Fake signature, obviously not correct!");
             var message = new MyMessage { Contents = Guid.NewGuid().ToString() };
-            await endpointInstance.Send(message, options)
-                .ConfigureAwait(false);
+            await endpointInstance.Send(message, options);
         }
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

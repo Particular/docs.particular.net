@@ -25,8 +25,7 @@ class Program
         });
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         var key = default(ConsoleKeyInfo);
 
@@ -40,12 +39,10 @@ class Program
                 var options = new SendOptions();
                 options.SetHeader("tenant", "tenant" + i);
                 options.RouteToThisEndpoint();
-                await endpointInstance.Send(new MyMessage(), options)
-                    .ConfigureAwait(false);
+                await endpointInstance.Send(new MyMessage(), options);
             }
         }
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

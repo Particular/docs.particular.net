@@ -24,8 +24,7 @@ class Program
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         #region send-message
 
@@ -35,17 +34,15 @@ class Program
             principalAccessor.CurrentPrincipal = new GenericPrincipal(identity, new string[0]);
 
             var message = new MyMessage();
-            await endpointInstance.Send("Samples.UsernameHeader.Endpoint2", message)
-                .ConfigureAwait(false);
+            await endpointInstance.Send("Samples.UsernameHeader.Endpoint2", message);
         }
 
-        await Task.WhenAll(SendMessage(1), SendMessage(2)).ConfigureAwait(false);
+        await Task.WhenAll(SendMessage(1), SendMessage(2));
 
         #endregion
 
         Console.WriteLine("Message sent. Press any key to exit");
         Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

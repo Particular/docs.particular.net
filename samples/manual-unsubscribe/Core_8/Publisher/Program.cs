@@ -24,8 +24,7 @@ class Program
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press 'enter' to publish the SomethingHappened event");
         Console.WriteLine("Press any other key to exit");
@@ -37,8 +36,7 @@ class Program
             if (key.Key == ConsoleKey.Enter)
             {
                 var somethingHappened = new SomethingHappened();
-                await endpointInstance.Publish(somethingHappened)
-                    .ConfigureAwait(false);
+                await endpointInstance.Publish(somethingHappened);
                 Console.WriteLine("Published SomethingHappened Event.");
             }
             else
@@ -47,7 +45,6 @@ class Program
             }
         }
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

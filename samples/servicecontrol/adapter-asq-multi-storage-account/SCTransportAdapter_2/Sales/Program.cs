@@ -67,8 +67,7 @@ class Program
         endpointConfiguration.AuditProcessedMessagesTo("audit");
         endpointConfiguration.EnableInstallers();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press enter to exit");
         Console.WriteLine("Press 'o' to generate order");
         Console.WriteLine("Press 'f' to toggle simulating of message processing failure");
@@ -91,8 +90,7 @@ class Program
                 };
                 var sendOptions = new SendOptions();
                 sendOptions.SetDestination("Samples-ServiceControl-ASQAdapter-Shipping");
-                await endpointInstance.Send(shipOrder, sendOptions)
-                    .ConfigureAwait(false);
+                await endpointInstance.Send(shipOrder, sendOptions);
             }
             if (lowerInvariant == 'f')
             {
@@ -101,7 +99,6 @@ class Program
                 ConsoleHelper.ToggleTitle(endpointName);
             }
         }
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

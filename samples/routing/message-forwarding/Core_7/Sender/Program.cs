@@ -19,8 +19,7 @@ class Program
 
         #endregion
 
-        var endpoint = await Endpoint.Start(config)
-            .ConfigureAwait(false);
+        var endpoint = await Endpoint.Start(config);
 
         Console.WriteLine("Endpoint Started. Press s to send a very important message. Any other key to exit");
 
@@ -32,11 +31,9 @@ class Program
             {
                 Text = $"Hello there: {i++}"
             };
-            await endpoint.Send(message)
-                .ConfigureAwait(false);
+            await endpoint.Send(message);
         }
 
-        await endpoint.Stop()
-            .ConfigureAwait(false);
+        await endpoint.Stop();
     }
 }

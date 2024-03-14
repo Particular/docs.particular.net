@@ -26,19 +26,16 @@
             endpointConfiguration.UseTransport<LearningTransport>();
             endpointConfiguration.RegisterMessageMutator(new Mutator());
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
             var messageToSend = new MessageToSend
             {
                 LargeProperty1 = new DataBusProperty<byte[]>(new byte[10]),
                 LargeProperty2 = new DataBusProperty<byte[]>(new byte[10])
             };
-            await endpointInstance.SendLocal(messageToSend)
-                .ConfigureAwait(false);
+            await endpointInstance.SendLocal(messageToSend);
             ManualResetEvent.WaitOne();
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
+            await endpointInstance.Stop();
         }
 
         class MessageToSend :

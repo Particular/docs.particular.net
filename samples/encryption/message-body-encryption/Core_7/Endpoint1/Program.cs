@@ -16,18 +16,15 @@ class Program
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         var completeOrder = new CompleteOrder
         {
             CreditCard = "123-456-789"
         };
-        await endpointInstance.Send("Samples.MessageBodyEncryption.Endpoint2", completeOrder)
-            .ConfigureAwait(false);
+        await endpointInstance.Send("Samples.MessageBodyEncryption.Endpoint2", completeOrder);
         Console.WriteLine("Message sent");
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

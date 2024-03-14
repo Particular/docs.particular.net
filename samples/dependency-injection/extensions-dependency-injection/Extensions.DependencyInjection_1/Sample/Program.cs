@@ -26,16 +26,13 @@ static class Program
         #endregion
 
         await using var serviceProvider = serviceCollection.BuildServiceProvider();
-        var endpoint = await endpointWithExternallyManagedServiceProvider.Start(serviceProvider)
-            .ConfigureAwait(false);
+        var endpoint = await endpointWithExternallyManagedServiceProvider.Start(serviceProvider);
 
         var senderService = serviceProvider.GetRequiredService<MessageSenderService>();
-        await senderService.SendMessage()
-            .ConfigureAwait(false);
+        await senderService.SendMessage();
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpoint.Stop()
-            .ConfigureAwait(false);
+        await endpoint.Stop();
     }
 }

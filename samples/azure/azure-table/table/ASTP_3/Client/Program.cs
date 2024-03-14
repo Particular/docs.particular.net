@@ -11,8 +11,7 @@ class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press 'S' to send a StartOrder message to the server endpoint");
 
@@ -30,15 +29,13 @@ class Program
             };
             if (key.Key == ConsoleKey.S)
             {
-                await endpointInstance.Send("Samples.AzureTable.Table.Server", startOrder)
-                    .ConfigureAwait(false);
+                await endpointInstance.Send("Samples.AzureTable.Table.Server", startOrder);
                 Console.WriteLine($"StartOrder Message sent to Server with OrderId {orderId}");
                 continue;
             }
             break;
         }
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

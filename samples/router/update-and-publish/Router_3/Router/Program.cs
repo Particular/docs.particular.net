@@ -35,11 +35,11 @@ static class Program
 
         var router = Router.Create(routerConfig);
 
-        await router.Start().ConfigureAwait(false);
+        await router.Start();
 
         Console.WriteLine("Press <enter> to exit");
         Console.ReadLine();
 
-        await router.Stop().ConfigureAwait(false);
+        await router.Stop();
     }
 }

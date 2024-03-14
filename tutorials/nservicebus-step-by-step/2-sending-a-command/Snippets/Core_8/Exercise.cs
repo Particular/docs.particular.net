@@ -24,19 +24,16 @@ namespace Exercise
         {
             #region AddRunLoopToMain
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
             // Remove these two lines
             Console.WriteLine("Press Enter to exit...");
             Console.ReadLine();
 
             // Replace with:
-            await RunLoop(endpointInstance)
-                .ConfigureAwait(false);
+            await RunLoop(endpointInstance);
 
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
+            await endpointInstance.Stop();
 
             #endregion
         }

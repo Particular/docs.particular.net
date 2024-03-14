@@ -8,6 +8,6 @@ public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
     {
         Console.WriteLine($"Received PlaceOrder Command with Id {message.OrderId}");
 
-        await context.Reply(new OrderResponse { OrderId = message.OrderId }).ConfigureAwait(false);
+        await context.Reply(new OrderResponse { OrderId = message.OrderId });
     }
 }

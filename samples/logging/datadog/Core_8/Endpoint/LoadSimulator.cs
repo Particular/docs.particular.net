@@ -31,11 +31,9 @@ class LoadSimulator
         {
             while (true)
             {
-                await Work()
-                    .ConfigureAwait(false);
+                await Work();
                 var delay = NextDelay();
-                await Task.Delay(delay, tokenSource.Token)
-                    .ConfigureAwait(false);
+                await Task.Delay(delay, tokenSource.Token);
             }
         }
         catch (OperationCanceledException)

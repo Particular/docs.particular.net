@@ -44,8 +44,7 @@ class Program
             }
         };
 
-        await serviceBusSender.SendMessageAsync(message)
-            .ConfigureAwait(false);
+        await serviceBusSender.SendMessageAsync(message);
 
         Console.WriteLine("Native message sent");
         Console.WriteLine("Press any key to exit");

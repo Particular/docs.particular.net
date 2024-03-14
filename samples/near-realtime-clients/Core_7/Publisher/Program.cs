@@ -22,12 +22,9 @@ static class Program
 
         endpointConfiguration.EnableInstallers();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
-        await Start(endpointInstance)
-            .ConfigureAwait(false);
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        await Start(endpointInstance);
+        await endpointInstance.Stop();
     }
 
     static async Task Start(IEndpointInstance endpointInstance)
@@ -48,11 +45,9 @@ static class Program
                     Symbol = stockSymbol,
                     Timestamp = DateTime.UtcNow
                 };
-                await endpointInstance.Publish(stockTick)
-                    .ConfigureAwait(false);
+                await endpointInstance.Publish(stockTick);
 
-                await Task.Delay(500)
-                    .ConfigureAwait(false);
+                await Task.Delay(500);
 
                 Console.WriteLine($"Published StockTick Event with Symbol {stockSymbol}. Press escape to stop publishing events.");
             }

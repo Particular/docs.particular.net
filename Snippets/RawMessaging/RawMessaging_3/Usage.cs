@@ -19,8 +19,7 @@ public class Usage
             poisonMessageQueue: "error");
         senderConfig.UseTransport<MsmqTransport>();
 
-        var sender = await RawEndpoint.Start(senderConfig)
-            .ConfigureAwait(false);
+        var sender = await RawEndpoint.Start(senderConfig);
 
         #endregion
 
@@ -43,8 +42,7 @@ public class Usage
         await sender.Dispatch(
                 outgoingMessages: new TransportOperations(operation),
                 transaction: new TransportTransaction(),
-                context: new ContextBag())
-            .ConfigureAwait(false);
+                context: new ContextBag());
 
         #endregion
     }

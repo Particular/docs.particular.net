@@ -9,8 +9,7 @@ public static class ServicePartitionQueryHelper
     {
         using (var client = new FabricClient())
         {
-            var servicePartitionList = await client.QueryManager.GetPartitionListAsync(serviceName)
-                .ConfigureAwait(false);
+            var servicePartitionList = await client.QueryManager.GetPartitionListAsync(serviceName);
 
             var partitionInformations =
                 servicePartitionList.Select(x => new {

@@ -14,8 +14,7 @@ class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press enter to send a message");
         Console.WriteLine("Press any key to exit");
 
@@ -38,12 +37,10 @@ class Program
                 DataId = guid,
                 String = "String property value"
             };
-            await endpointInstance.Send("Samples.FullDuplex.Server", message)
-                .ConfigureAwait(false);
+            await endpointInstance.Send("Samples.FullDuplex.Server", message);
         }
 
         #endregion
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

@@ -24,13 +24,10 @@
             endpointConfiguration.UseTransport<LearningTransport>();
             endpointConfiguration.RegisterMessageMutator(new Mutator());
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
-            await endpointInstance.SendLocal(new MessageToSend())
-                .ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration);
+            await endpointInstance.SendLocal(new MessageToSend());
             ManualResetEvent.WaitOne();
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
+            await endpointInstance.Stop();
         }
 
         class MessageToSend :

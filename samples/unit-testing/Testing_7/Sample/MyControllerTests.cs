@@ -12,8 +12,7 @@ public class MyControllerTests
         var endpointInstance = new TestableEndpointInstance();
         var handler = new MyController(endpointInstance);
 
-        await handler.HandleRequest()
-            .ConfigureAwait(false);
+        await handler.HandleRequest();
 
         var sentMessages = endpointInstance.SentMessages;
         Assert.AreEqual(1, sentMessages.Length);

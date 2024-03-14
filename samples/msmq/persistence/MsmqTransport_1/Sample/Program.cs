@@ -20,26 +20,23 @@ class Program
 
         endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.Timeouts>();
         endpointConfiguration.UsePersistence<MsmqPersistence, StorageType.Subscriptions>();
-        
+
         #endregion
 
         var routing = transport.Routing();
         routing.RegisterPublisher(typeof(MyEvent), "Samples.Msmq.Persistence");
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press any key to publish");
         Console.ReadKey();
 
         var myMessage = new MyEvent();
-        await endpointInstance.Publish(myMessage)
-            .ConfigureAwait(false);
+        await endpointInstance.Publish(myMessage);
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

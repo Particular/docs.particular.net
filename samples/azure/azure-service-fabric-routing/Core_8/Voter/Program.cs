@@ -39,8 +39,7 @@ class Program
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press Enter to start election");
         Console.WriteLine("Press Esc to stop election");
@@ -64,11 +63,9 @@ class Program
                     Candidate = candidate,
                     ZipCode = zipcode
                 };
-                await endpointInstance.Publish(votePlaced)
-                .ConfigureAwait(false);
+                await endpointInstance.Publish(votePlaced);
 
-                await Task.Delay(1000)
-                    .ConfigureAwait(false);
+                await Task.Delay(1000);
             }
         } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
 
@@ -78,19 +75,16 @@ class Program
         {
             Candidate = remotePartitions[0]
         };
-        await endpointInstance.Send(closeElection1)
-            .ConfigureAwait(false);
+        await endpointInstance.Send(closeElection1);
         var closeElection2 = new CloseElection
         {
             Candidate = remotePartitions[1]
         };
-        await endpointInstance.Send(closeElection2)
-            .ConfigureAwait(false);
+        await endpointInstance.Send(closeElection2);
 
         Console.WriteLine("Press any key to exit the sample");
         Console.ReadKey(true);
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

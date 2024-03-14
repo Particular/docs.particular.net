@@ -10,8 +10,7 @@ namespace Platform
         static async Task Main()
         {
             Console.Title = "Particular Service Platform Launcher";
-            await Particular.PlatformLauncher.Launch()
-                .ConfigureAwait(false);
+            await Particular.PlatformLauncher.Launch();
         }
 
         #endregion

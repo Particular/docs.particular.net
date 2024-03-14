@@ -24,10 +24,8 @@ class ManualUnsubscribeHandler :
         var emptyContext = new ContextBag();
         var type = Type.GetType(message.MessageTypeName, true);
         var messageType = new MessageType(type);
-        var addressesForEndpoint = await GetAddressesForEndpoint(message.SubscriberEndpoint, messageType, emptyContext)
-            .ConfigureAwait(false);
-        await UnsubscribeFromEndpoint(addressesForEndpoint, messageType, emptyContext)
-            .ConfigureAwait(false);
+        var addressesForEndpoint = await GetAddressesForEndpoint(message.SubscriberEndpoint, messageType, emptyContext);
+        await UnsubscribeFromEndpoint(addressesForEndpoint, messageType, emptyContext);
     }
     #endregion
 
@@ -39,8 +37,7 @@ class ManualUnsubscribeHandler :
         {
             messageType
         };
-        var addressesForMessage = await subscriptionStorage.GetSubscriberAddressesForMessage(messageTypes, emptyContext)
-            .ConfigureAwait(false);
+        var addressesForMessage = await subscriptionStorage.GetSubscriberAddressesForMessage(messageTypes, emptyContext);
         return addressesForMessage
             .Where(subscriber =>
             {

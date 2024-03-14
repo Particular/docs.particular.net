@@ -15,19 +15,19 @@ class MyUowBehavior :
 
     public override async Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
     {
-        using (var session = await sessionProvider.Open().ConfigureAwait(false))
+        using (var session = await sessionProvider.Open())
         {
             context.Extensions.Set<IMySession>(session);
 
             try
             {
-                await next().ConfigureAwait(false);
+                await next();
 
-                await session.Commit().ConfigureAwait(false);
+                await session.Commit();
             }
             catch (Exception)
             {
-                await session.Rollback().ConfigureAwait(false);
+                await session.Rollback();
 
                 throw;
             }

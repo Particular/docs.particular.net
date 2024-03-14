@@ -11,8 +11,7 @@ class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         #region newrelic-load-simulator
 
@@ -34,18 +33,15 @@ class Program
                     case ConsoleKey.Escape:
                         return;
                     case ConsoleKey.Enter:
-                        await endpointInstance.SendLocal(new SomeCommand())
-                            .ConfigureAwait(false);
+                        await endpointInstance.SendLocal(new SomeCommand());
                         break;
                 }
             }
         }
         finally
         {
-            await simulator.Stop()
-                .ConfigureAwait(false);
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
+            await simulator.Stop();
+            await endpointInstance.Stop();
         }
     }
 }

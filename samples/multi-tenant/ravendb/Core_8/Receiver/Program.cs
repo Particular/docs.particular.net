@@ -57,19 +57,16 @@ class Program
         pipeline.Register(new StoreTenantIdBehavior(), "Stores tenant ID in the session");
         pipeline.Register(new PropagateTenantIdBehavior(), "Propagates tenant ID to outgoing messages");
 
-        var startableEndpoint = await Endpoint.Create(endpointConfiguration)
-            .ConfigureAwait(false);
+        var startableEndpoint = await Endpoint.Create(endpointConfiguration);
 
 
-        var endpointInstance = await startableEndpoint.Start()
-            .ConfigureAwait(false);
+        var endpointInstance = await startableEndpoint.Start();
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
         if (endpointInstance != null)
         {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
+            await endpointInstance.Stop();
         }
     }
 

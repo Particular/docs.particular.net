@@ -35,8 +35,7 @@ public class MvcApplication :
                 routing.RegisterPublisher(typeof(OrderPlaced), "Store-Sales");
             });
 
-        EndpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        EndpointInstance = await Endpoint.Start(endpointConfiguration);
 
         AreaRegistration.RegisterAllAreas();
         FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

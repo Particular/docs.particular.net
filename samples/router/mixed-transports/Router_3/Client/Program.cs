@@ -31,8 +31,7 @@ class Program
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press <enter> to send a message");
         while (true)
         {
@@ -42,8 +41,7 @@ class Program
             {
                 Id = id
             };
-            await endpointInstance.Send(message)
-                .ConfigureAwait(false);
+            await endpointInstance.Send(message);
         }
     }
 }

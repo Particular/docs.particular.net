@@ -18,12 +18,12 @@ public class OrderSubmittedHandler :
         };
         var session = context.SynchronizedStorageSession.RavenSession();
 
-        await session.StoreAsync(order).ConfigureAwait(false);
+        await session.StoreAsync(order);
 
         var orderAccepted = new OrderAccepted
         {
             OrderId = message.OrderId,
         };
-        await context.Reply(orderAccepted).ConfigureAwait(false);
+        await context.Reply(orderAccepted);
     }
 }

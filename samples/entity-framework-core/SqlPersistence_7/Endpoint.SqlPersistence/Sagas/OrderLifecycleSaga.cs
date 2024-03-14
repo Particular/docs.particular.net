@@ -21,8 +21,7 @@ public class OrderLifecycleSaga :
     public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
         var orderTimeout = new OrderTimeout();
-        await RequestTimeout(context, TimeSpan.FromSeconds(5), orderTimeout)
-            .ConfigureAwait(false);
+        await RequestTimeout(context, TimeSpan.FromSeconds(5), orderTimeout);
 
         var orderAccepted = new OrderAccepted
         {
@@ -31,8 +30,7 @@ public class OrderLifecycleSaga :
 
         log.Info($"Order process {message.OrderId} started.");
 
-        await context.Reply(orderAccepted)
-            .ConfigureAwait(false);
+        await context.Reply(orderAccepted);
     }
 
     public Task Timeout(OrderTimeout state, IMessageHandlerContext context)

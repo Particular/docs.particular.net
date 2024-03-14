@@ -61,8 +61,7 @@ class Program
         endpointConfiguration.SendHeartbeatTo("Particular-ServiceControl");
         endpointConfiguration.EnableInstallers();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press enter to exit");
         Console.WriteLine("Press 'f' to toggle simulating of message processing failure");
         while (true)
@@ -81,7 +80,6 @@ class Program
                 ConsoleHelper.ToggleTitle(endpointName);
             }
         }
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

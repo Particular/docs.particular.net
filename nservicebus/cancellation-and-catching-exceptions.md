@@ -11,7 +11,7 @@ When catching exceptions from cancellable operations, a distinction should be ma
 A cancellable operation is one that is passed a [`CancellationToken`](https://docs.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken) as an argument. For example:
 
 ```csharp
-await foo.Bar(cancellationToken).ConfigureAwait(false);
+await foo.Bar(cancellationToken);
 ```
 
 An exception thrown by this operation represents _cancellation_ only when its type inherits from [`OperationCanceledException`](https://docs.microsoft.com/en-us/dotnet/api/system.operationcanceledexception) and when the [`CancellationToken.IsCancellationRequested`](https://docs.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken.iscancellationrequested) property is `true`.  Conversely, the exception does _not_ represent cancellation when its type does not inherit from `OperationCanceledException` or when the `CancellationToken.IsCancellationRequested` property is `false`.
@@ -25,7 +25,7 @@ Most of the time, when `System.Exception` is caught, the assumption is that the 
 ```csharp
 try
 {
-    await foo.Bar(cancellationToken).ConfigureAwait(false);
+    await foo.Bar(cancellationToken);
 }
 catch (Exception ex) when (ex is not OperationCanceledException || !cancellationToken.IsCancellationRequested)
 {
@@ -42,7 +42,7 @@ In most cases, exceptions which represent cancellation should not be caught, and
 ```csharp
 try
 {
-    await foo.Bar(cancellationToken).ConfigureAwait(false);
+    await foo.Bar(cancellationToken);
 }
 catch (OperationCanceledException ex) when (cancellationToken.IsCancellationRequested)
 {
@@ -74,7 +74,7 @@ Using this method, the `catch` filters are much simpler in both cases:
 ```csharp
 try
 {
-    await foo.Bar(cancellationToken).ConfigureAwait(false);
+    await foo.Bar(cancellationToken);
 }
 catch (Exception ex) when (!ex.IsCausedBy(cancellationToken))
 {
@@ -85,7 +85,7 @@ catch (Exception ex) when (!ex.IsCausedBy(cancellationToken))
 ```csharp
 try
 {
-    await foo.Bar(cancellationToken).ConfigureAwait(false);
+    await foo.Bar(cancellationToken);
 }
 catch (Exception ex) when (ex.IsCausedBy(cancellationToken))
 {

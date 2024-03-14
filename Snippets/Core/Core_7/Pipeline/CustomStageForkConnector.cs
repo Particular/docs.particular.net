@@ -20,8 +20,7 @@
             var physicalMessageContext = this.CreateIncomingPhysicalMessageContext(context.Message, context);
 
             // Start the next stage
-            await stage(physicalMessageContext)
-                .ConfigureAwait(false);
+            await stage(physicalMessageContext);
 
             TransportOperation[] operations =
             {
@@ -29,8 +28,7 @@
             var batchDispatchContext = this.CreateBatchDispatchContext(operations, physicalMessageContext);
 
             // Fork into new pipeline
-            await fork(batchDispatchContext)
-                .ConfigureAwait(false);
+            await fork(batchDispatchContext);
         }
     }
 

@@ -10,8 +10,7 @@ class SomeCommandHandler : IHandleMessages<SomeCommand>
 
     public async Task Handle(SomeCommand message, IMessageHandlerContext context)
     {
-        await Task.Delay(random.Next(50, 250))
-            .ConfigureAwait(false);
+        await Task.Delay(random.Next(50, 250));
 
         if (random.Next(10) <= 1)
         {

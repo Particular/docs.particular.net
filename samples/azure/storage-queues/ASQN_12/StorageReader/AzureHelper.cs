@@ -16,8 +16,7 @@ public class AzureHelper
     {
         #region UsingHelpers
 
-        await WriteOutQueue("samples-azure-storagequeues-endpoint2")
-            .ConfigureAwait(false);
+        await WriteOutQueue("samples-azure-storagequeues-endpoint2");
 
         #endregion
     }
@@ -27,8 +26,7 @@ public class AzureHelper
     static async Task WriteOutQueue(string queueName)
     {
         var queueClient = new QueueClient("UseDevelopmentStorage=true", queueName);
-        PeekedMessage[] message = await queueClient.PeekMessagesAsync(1)
-            .ConfigureAwait(false);
+        PeekedMessage[] message = await queueClient.PeekMessagesAsync(1);
         if (message != null)
         {
             Debug.WriteLine("Message contents");

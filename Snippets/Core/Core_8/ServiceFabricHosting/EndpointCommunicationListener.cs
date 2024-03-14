@@ -24,8 +24,7 @@ namespace Core8.ServiceFabricHosting
             var endpointConfiguration = new EndpointConfiguration(endpointName);
 
             // endpoint configuration
-            endpointInstance = await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
+            endpointInstance = await Endpoint.Start(endpointConfiguration);
 
             return endpointName;
         }
@@ -70,8 +69,7 @@ namespace Core8.ServiceFabricHosting
 
         public async Task RunAsync()
         {
-            endpointInstance = await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
+            endpointInstance = await Endpoint.Start(endpointConfiguration);
         }
 
         public Task CloseAsync(CancellationToken cancellationToken)

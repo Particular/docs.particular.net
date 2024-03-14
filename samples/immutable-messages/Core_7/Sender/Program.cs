@@ -20,12 +20,9 @@ class Program
 
         endpointConfiguration.ApplyCustomConventions();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
-        await MessageSender.Start(endpointInstance)
-            .ConfigureAwait(false);
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        await MessageSender.Start(endpointInstance);
+        await endpointInstance.Stop();
     }
 }
 

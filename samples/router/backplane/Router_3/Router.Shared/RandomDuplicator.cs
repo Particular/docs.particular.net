@@ -20,8 +20,7 @@ class RandomDuplicator : ChainTerminator<PostroutingContext>
     {
         if (random.Next(2) == 0)
         {
-            await dispatcher.Dispatch(new TransportOperations(Copy(context.Messages)), context.Get<TransportTransaction>(), context)
-                .ConfigureAwait(false);
+            await dispatcher.Dispatch(new TransportOperations(Copy(context.Messages)), context.Get<TransportTransaction>(), context);
             return true;
         }
         return false;

@@ -105,6 +105,5 @@ var operation = new TransportOperation(
     requiredDispatchConsistency: DispatchConsistency.Default,
     deliveryConstraints: constraints);
 var operations = new TransportOperations(operation);
-await dispatcher.Dispatch(operations, new TransportTransaction(), new ContextBag())
-    .ConfigureAwait(false);
+await dispatcher.Dispatch(operations, new TransportTransaction(), new ContextBag());
 ```

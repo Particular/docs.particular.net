@@ -48,7 +48,7 @@ internal class Program
 
         try
         {
-            await context.Stop(cancellationToken).ConfigureAwait(false);
+            await context.Stop(cancellationToken);
         }
         finally
         {

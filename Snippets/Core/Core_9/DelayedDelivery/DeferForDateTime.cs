@@ -12,11 +12,9 @@ namespace Core9.DelayedDelivery
             var options = new SendOptions();
             options.DoNotDeliverBefore(new DateTime(2016, 12, 25));
 
-            await handlerContext.Send(new MessageToBeSentLater(), options)
-                .ConfigureAwait(false);
+            await handlerContext.Send(new MessageToBeSentLater(), options);
             // OR
-            await endpoint.Send(new MessageToBeSentLater(), options, handlerContext.CancellationToken)
-                .ConfigureAwait(false);
+            await endpoint.Send(new MessageToBeSentLater(), options, handlerContext.CancellationToken);
             #endregion
         }
 

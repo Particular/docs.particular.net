@@ -17,8 +17,7 @@ endpointConfiguration.UseTransport(new SqlServerTransport(connectionString)
 endpointConfiguration.EnableInstallers();
 
 await SqlHelper.EnsureDatabaseExists(connectionString);
-var endpointInstance = await Endpoint.Start(endpointConfiguration)
-    .ConfigureAwait(false);
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
 Console.WriteLine("Press any key to exit");
 Console.WriteLine("Waiting for message from the Sender");
 Console.ReadKey();

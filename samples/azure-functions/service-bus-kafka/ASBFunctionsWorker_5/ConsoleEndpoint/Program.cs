@@ -22,8 +22,7 @@ class Program
         var transport = new AzureServiceBusTransport(connectionString);
         endpointConfiguration.UseTransport(transport);
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         var config = new ProducerConfig
         {
@@ -68,7 +67,6 @@ class Program
             }
         }
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

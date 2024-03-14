@@ -28,11 +28,9 @@ namespace EntityFramework
             {
                 dbContext.Database.UseTransaction(session.Transaction);
 
-                await dbContext.SubmittedOrder.AddAsync(order, context.CancellationToken)
-                    .ConfigureAwait(false);
+                await dbContext.SubmittedOrder.AddAsync(order, context.CancellationToken);
 
-                await dbContext.SaveChangesAsync(context.CancellationToken)
-                    .ConfigureAwait(false);
+                await dbContext.SaveChangesAsync(context.CancellationToken);
             }
 
             #endregion

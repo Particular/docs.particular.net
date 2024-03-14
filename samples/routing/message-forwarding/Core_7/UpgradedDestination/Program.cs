@@ -10,14 +10,12 @@ class Program
         var config = new EndpointConfiguration("UpgradedDestination");
         config.UseTransport<LearningTransport>();
 
-        var endpoint = await Endpoint.Start(config)
-            .ConfigureAwait(false);
+        var endpoint = await Endpoint.Start(config);
 
         Console.WriteLine("Endpoint Started. Press any key to exit");
 
         Console.ReadKey();
 
-        await endpoint.Stop()
-            .ConfigureAwait(false);
+        await endpoint.Stop();
     }
 }

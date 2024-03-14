@@ -29,8 +29,7 @@ subscriptions.SubscriptionTableName(
 
 await SqlHelper.CreateSchema(connectionString, "sender");
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration)
-    .ConfigureAwait(false);
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
 Console.WriteLine("Press enter to send a message");
 Console.WriteLine("Press any key to exit");
 

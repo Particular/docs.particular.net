@@ -32,12 +32,9 @@ class Program
         persistence.UseConfiguration(hibernateConfig);
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
-        await Start(endpointInstance)
-            .ConfigureAwait(false);
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        await Start(endpointInstance);
+        await endpointInstance.Stop();
     }
 
     static async Task Start(IMessageSession messageSession)
@@ -55,8 +52,7 @@ class Program
             {
                 return;
             }
-            await messageSession.Publish(new SomethingHappened())
-                .ConfigureAwait(false);
+            await messageSession.Publish(new SomethingHappened());
             Console.WriteLine("SomethingHappened Event published");
         }
         #endregion

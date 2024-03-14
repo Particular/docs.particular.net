@@ -39,11 +39,9 @@
                 settings.NumberOfRetries(0);
             });
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-            await endpointInstance.SendLocal(new MessageToSend())
-                .ConfigureAwait(false);
+            await endpointInstance.SendLocal(new MessageToSend());
             ManualResetEvent.WaitOne();
         }
 

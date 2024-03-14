@@ -10,10 +10,8 @@ public class CompleteOrderHandler(ReceiverDataContext dataContext)
 
     public async Task Handle(CompleteOrder message, IMessageHandlerContext context)
     {
-        var order = await dataContext.Orders.FindAsync(message.OrderId, context.CancellationToken)
-            .ConfigureAwait(false);
-        var shipment = await dataContext.Shipments.FirstAsync(x => x.Order.OrderId == order.OrderId, context.CancellationToken)
-            .ConfigureAwait(false);
+        var order = await dataContext.Orders.FindAsync(message.OrderId, context.CancellationToken);
+        var shipment = await dataContext.Shipments.FirstAsync(x => x.Order.OrderId == order.OrderId, context.CancellationToken);
 
         log.Info($"Completing order {order.OrderId} worth {order.Value} by shipping to {shipment.Location}.");
     }

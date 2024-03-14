@@ -14,8 +14,7 @@ var endpointConfiguration = new EndpointConfiguration("Samples.RenameSaga");
 SharedConfiguration.Apply(endpointConfiguration);
 
 endpointConfiguration.PurgeOnStartup(true);
-var endpointInstance = await Endpoint.Start(endpointConfiguration)
-    .ConfigureAwait(false);
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
 Console.WriteLine("Version1 of Sagas starting. Will exit in 5 seconds. After exit, start Phase 2 Endpoint.");
 
@@ -25,20 +24,16 @@ var startReplySaga = new StartReplySaga
     TheId = Guid.NewGuid()
 };
 
-await endpointInstance.SendLocal(startReplySaga)
-    .ConfigureAwait(false);
+await endpointInstance.SendLocal(startReplySaga);
 
 var startTimeoutSaga = new StartTimeoutSaga
 {
     TheId = Guid.NewGuid()
 };
 
-await endpointInstance.SendLocal(startTimeoutSaga)
-    .ConfigureAwait(false);
+await endpointInstance.SendLocal(startTimeoutSaga);
 #endregion
 
-await Task.Delay(TimeSpan.FromSeconds(5))
-    .ConfigureAwait(false);
+await Task.Delay(TimeSpan.FromSeconds(5));
 
-await endpointInstance.Stop()
-    .ConfigureAwait(false);
+await endpointInstance.Stop();

@@ -33,8 +33,7 @@ class Program
         endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.EnableInstallers();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press 'enter' to send a message");
         Console.WriteLine("Press any other key to exit");
 
@@ -52,11 +51,9 @@ class Program
             {
                 Property = "Hello from Endpoint1"
             };
-            await endpointInstance.Send("Samples-Azure-StorageQueues-Endpoint2", message)
-                .ConfigureAwait(false);
+            await endpointInstance.Send("Samples-Azure-StorageQueues-Endpoint2", message);
             Console.WriteLine("Message1 sent");
         }
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

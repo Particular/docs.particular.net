@@ -13,7 +13,7 @@
         {
             // custom logic before calling the next step in the pipeline.
 
-            await next().ConfigureAwait(false);
+            await next();
 
             // custom logic after all inner steps in the pipeline completed.
         }

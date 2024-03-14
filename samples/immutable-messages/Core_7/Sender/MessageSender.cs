@@ -19,12 +19,10 @@ class MessageSender
             switch (key.Key)
             {
                 case ConsoleKey.C:
-                    await SendMessageAsClass(endpointInstance)
-                        .ConfigureAwait(false);
+                    await SendMessageAsClass(endpointInstance);
                     continue;
                 case ConsoleKey.I:
-                    await SendMessageAsInterface(endpointInstance)
-                        .ConfigureAwait(false);
+                    await SendMessageAsInterface(endpointInstance);
                     continue;
             }
             return;

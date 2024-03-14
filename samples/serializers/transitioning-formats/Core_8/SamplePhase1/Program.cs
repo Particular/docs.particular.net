@@ -20,20 +20,16 @@ serializationV1.ContentTypeKey("jsonv1");
 
 #endregion
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration)
-    .ConfigureAwait(false);
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
 var message = MessageCreator.NewOrder();
 
-await endpointInstance.SendLocal(message)
-    .ConfigureAwait(false);
+await endpointInstance.SendLocal(message);
 
-await endpointInstance.Send("Samples.Serialization.TransitionPhase2", message)
-    .ConfigureAwait(false);
+await endpointInstance.Send("Samples.Serialization.TransitionPhase2", message);
 
 Console.WriteLine("Order Sent");
 Console.WriteLine("Press any key to exit");
 Console.ReadKey();
 
-await endpointInstance.Stop()
-    .ConfigureAwait(false);
+await endpointInstance.Stop();

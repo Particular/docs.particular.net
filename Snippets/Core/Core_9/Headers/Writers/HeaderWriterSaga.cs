@@ -24,10 +24,8 @@
             endpointConfiguration.UseTransport(new LearningTransport());
             endpointConfiguration.RegisterMessageMutator(new Mutator());
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
-            await endpointInstance.SendLocal(new StartSaga1Message { Guid = Guid.NewGuid() })
-                .ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration);
+            await endpointInstance.SendLocal(new StartSaga1Message { Guid = Guid.NewGuid() });
             CountdownEvent.Wait();
         }
 
@@ -86,13 +84,10 @@
             {
                 Data.Guid = message.Guid;
                 var replyFromSagaMessage = new ReplyFromSagaMessage();
-                await context.Reply(replyFromSagaMessage)
-                    .ConfigureAwait(false);
+                await context.Reply(replyFromSagaMessage);
                 var replyToOriginatorFromSagaMessage = new ReplyToOriginatorFromSagaMessage();
-                await ReplyToOriginator(context, replyToOriginatorFromSagaMessage)
-                    .ConfigureAwait(false);
-                await RequestTimeout(context, TimeSpan.FromMilliseconds(1), new TimeoutFromSaga())
-                    .ConfigureAwait(false);
+                await ReplyToOriginator(context, replyToOriginatorFromSagaMessage);
+                await RequestTimeout(context, TimeSpan.FromMilliseconds(1), new TimeoutFromSaga());
             }
 
             public class SagaData :

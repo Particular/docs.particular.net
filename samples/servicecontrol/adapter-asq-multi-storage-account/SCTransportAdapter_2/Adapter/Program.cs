@@ -97,13 +97,11 @@ class Program
 
         var adapter = TransportAdapter.Create(transportAdapterConfig);
 
-        await adapter.Start()
-            .ConfigureAwait(false);
+        await adapter.Start();
 
         Console.WriteLine("Press <enter> to shutdown adapter.");
         Console.ReadLine();
 
-        await adapter.Stop()
-            .ConfigureAwait(false);
+        await adapter.Stop();
     }
 }

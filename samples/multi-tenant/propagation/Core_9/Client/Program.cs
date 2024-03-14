@@ -19,8 +19,7 @@ class Program
         var routing = endpointConfiguration.UseTransport(new LearningTransport());
         routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.MultiTenant.Propagation.Sales");
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press <enter> to send messages");
         while (true)
@@ -32,8 +31,7 @@ class Program
 
             var options = new SendOptions();
             options.SetHeader("tenant_id", tenantId);
-            await endpointInstance.Send(new PlaceOrder(), options)
-                .ConfigureAwait(false);
+            await endpointInstance.Send(new PlaceOrder(), options);
 
             #endregion
 

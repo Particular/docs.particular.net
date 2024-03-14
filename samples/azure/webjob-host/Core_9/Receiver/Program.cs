@@ -9,6 +9,5 @@ var host = Host.CreateDefaultBuilder()
 var cancellationToken = new WebJobsShutdownWatcher().Token;
 using (host)
 {
-    await host.RunAsync(cancellationToken)
-        .ConfigureAwait(false);
+    await host.RunAsync(cancellationToken);
 }

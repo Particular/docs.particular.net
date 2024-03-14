@@ -21,7 +21,7 @@ class Program
         var mapper = new ModelMapper();
         mapper.AddMapping<OrderMap>();
         config.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());
-        
+
         #endregion
 
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Receiver");
@@ -48,8 +48,7 @@ class Program
         pipeline.Register(new StoreTenantIdBehavior(), "Stores tenant ID in the session");
         pipeline.Register(new PropagateTenantIdBehavior(), "Propagates tenant ID to outgoing messages");
 
-        var startableEndpoint = await Endpoint.Create(endpointConfiguration)
-            .ConfigureAwait(false);
+        var startableEndpoint = await Endpoint.Create(endpointConfiguration);
 
         #region CreateSchema
 
@@ -81,15 +80,13 @@ create synonym OutboxRecord FOR [NHibernateMultiTenantReceiver].[dbo].[OutboxRec
 
         #endregion
 
-        var endpointInstance = await startableEndpoint.Start()
-            .ConfigureAwait(false);
+        var endpointInstance = await startableEndpoint.Start();
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
         if (endpointInstance != null)
         {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
+            await endpointInstance.Stop();
         }
     }
 
@@ -106,7 +103,7 @@ create synonym OutboxRecord FOR [NHibernateMultiTenantReceiver].[dbo].[OutboxRec
 
             x.Dialect<MsSql2012Dialect>();
             x.Driver<MicrosoftDataSqlClientDriver>();
-            x.ConnectionString = Connections.Shared;            
+            x.ConnectionString = Connections.Shared;
         });
 
         return hibernateConfig;

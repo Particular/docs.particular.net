@@ -23,7 +23,7 @@ public class CreateOrderHandler :
             Value = message.Value
         };
         dataContext.Orders.Add(order);
-        await dataContext.SaveChangesAsync().ConfigureAwait(false);
+        await dataContext.SaveChangesAsync();
 
         #endregion
 

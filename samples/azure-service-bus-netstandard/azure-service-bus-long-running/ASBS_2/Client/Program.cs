@@ -20,8 +20,7 @@ class Program
         endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.EnableInstallers();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press 'enter' to send a message");
         Console.WriteLine("Press any other key to exit");
 
@@ -46,12 +45,10 @@ class Program
 
             #endregion
 
-            await endpointInstance.Send("Samples.Azure.ServiceBus.Server", message)
-                .ConfigureAwait(false);
+            await endpointInstance.Send("Samples.Azure.ServiceBus.Server", message);
 
             Console.WriteLine($"LongProcessingRequest with ID {message.Id} and estimated processing time {message.EstimatedProcessingTime} sent.");
         }
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

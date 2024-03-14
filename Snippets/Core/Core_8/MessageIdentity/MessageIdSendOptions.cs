@@ -12,8 +12,7 @@
             var options = new SendOptions();
             options.SetMessageId(messageId);
 
-            await handlerContext.Send(new SomeMessage(), options)
-                .ConfigureAwait(false);
+            await handlerContext.Send(new SomeMessage(), options);
 
             #endregion
         }

@@ -15,7 +15,7 @@ namespace Core7.Pipeline
             // set the state
             context.Extensions.Set(new SharedData());
 
-            await next().ConfigureAwait(false);
+            await next();
         }
     }
 
@@ -30,7 +30,7 @@ namespace Core7.Pipeline
                 // work with the state
             }
 
-            await next().ConfigureAwait(false);
+            await next();
         }
     }
 

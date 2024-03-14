@@ -38,12 +38,12 @@ namespace ASBS_1
                 // send a command
                 var sendOptions = new SendOptions();
                 sendOptions.CustomizeNativeMessage(context, m => m.Label = "custom-label");
-                await context.Send(new MyCommand(), sendOptions).ConfigureAwait(false);
+                await context.Send(new MyCommand(), sendOptions);
 
                 // publish an event
                 var publishOptions = new PublishOptions();
                 publishOptions.CustomizeNativeMessage(context, m => m.Label = "custom-label");
-                await context.Publish(new MyEvent(), publishOptions).ConfigureAwait(false);
+                await context.Publish(new MyEvent(), publishOptions);
                 #endregion
             }
 
@@ -53,12 +53,12 @@ namespace ASBS_1
                 // send a command
                 var sendOptions = new SendOptions();
                 sendOptions.CustomizeNativeMessage(m => m.Label = "custom-label");
-                await messageSession.Send(new MyCommand(), sendOptions).ConfigureAwait(false);
+                await messageSession.Send(new MyCommand(), sendOptions);
 
                 // publish an event
                 var publishOptions = new PublishOptions();
                 publishOptions.CustomizeNativeMessage(m => m.Label = "custom-label");
-                await messageSession.Publish(new MyEvent(), publishOptions).ConfigureAwait(false);
+                await messageSession.Publish(new MyEvent(), publishOptions);
                 #endregion
             }
 

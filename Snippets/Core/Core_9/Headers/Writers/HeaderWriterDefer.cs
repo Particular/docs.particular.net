@@ -27,16 +27,13 @@
             var routing = endpointConfiguration.UseTransport(new LearningTransport());
             routing.RouteToEndpoint(GetType().Assembly, EndpointName);
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
             var options = new SendOptions();
             options.DelayDeliveryWith(TimeSpan.FromMilliseconds(10));
-            await endpointInstance.Send(new MessageToSend(), options)
-                .ConfigureAwait(false);
+            await endpointInstance.Send(new MessageToSend(), options);
             ManualResetEvent.WaitOne();
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
+            await endpointInstance.Stop();
         }
 
         class MessageToSend :

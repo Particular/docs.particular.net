@@ -20,8 +20,7 @@ public class SendMessageController : ControllerBase
     public async Task<string> Get()
     {
         var message = new MyMessage();
-        await messageSession.Send(message)
-            .ConfigureAwait(false);
+        await messageSession.Send(message);
         return "Message sent to endpoint";
     }
     #endregion

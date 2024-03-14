@@ -12,8 +12,7 @@ public class MessageHandlerTests
         var handler = new MyReplyingHandler();
         var context = new TestableMessageHandlerContext();
 
-        await handler.Handle(new MyRequest(), context)
-            .ConfigureAwait(false);
+        await handler.Handle(new MyRequest(), context);
 
         var repliedMessages = context.RepliedMessages;
         Assert.AreEqual(1, repliedMessages.Length);

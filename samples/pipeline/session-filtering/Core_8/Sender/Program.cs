@@ -24,16 +24,13 @@ class Program
 
         endpointConfiguration.ApplySessionFilter(sessionKeyProvider);
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         #endregion
 
-        await MainLoop(endpointInstance, sessionKeyProvider)
-            .ConfigureAwait(false);
+        await MainLoop(endpointInstance, sessionKeyProvider);
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 
     static async Task MainLoop(IEndpointInstance endpoint, RotatingSessionKeyProvider sessionKeyProvider)
@@ -54,8 +51,7 @@ class Program
                 case ConsoleKey.Escape:
                     return;
                 default:
-                    await endpoint.Send(new SomeMessage { Counter = index })
-                        .ConfigureAwait(false);
+                    await endpoint.Send(new SomeMessage { Counter = index });
                     Console.WriteLine($"Sent message {index++}");
                     break;
             }

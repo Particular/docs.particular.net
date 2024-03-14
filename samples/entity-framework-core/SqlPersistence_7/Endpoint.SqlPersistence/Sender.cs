@@ -34,14 +34,12 @@ public class Sender
                     Value = random.Next(100),
                     ShipTo = shipTo
                 };
-                await endpointInstance.SendLocal(orderSubmitted)
-                    .ConfigureAwait(false);
+                await endpointInstance.SendLocal(orderSubmitted);
             }
         }
         finally
         {
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
+            await endpointInstance.Stop();
         }
     }
 }
