@@ -1,5 +1,5 @@
 ---
-title: Queue Based Architecture Style on AWS
+title: Queue based architecture style on AWS
 summary:
 reviewed: 2024-03-14
 callsToAction: ['solution-architect', 'ADSD']

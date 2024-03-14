@@ -1,5 +1,5 @@
 ---
-title: Multi Tier Architecture Style on AWS
+title: Multi tier architecture style on AWS
 summary:
 reviewed: 2024-03-14
 callsToAction: ['solution-architect', 'ADSD']
