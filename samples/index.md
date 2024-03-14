@@ -44,7 +44,7 @@ Most samples are made available for multiple frameworks, available through a dro
 
 ### ConfigureAwait
 
-Samples only call `ConfigureAwait(bool)` when it is required. If any code is copied from samples, appropriate calls to `ConfigureAwait(bool)` should be added.
+Samples only call `ConfigureAwait(bool)` when it is required. If any code is copied from samples, appropriate calls to `ConfigureAwait(bool)` should be added if it might be used in an environment that requires it.
 
 For example, to help avoid deadlocks and improve performance, it is [recommended](https://docs.microsoft.com/en-us/dotnet/fundamentals/code-analysis/quality-rules/ca2007) to call `ConfigureAwait(false)` whenever possible, in case the code is used in a context which requires it<sup>1</sup>. The code in samples is _not_ designed to be used anywhere else as-is, so it does not contain these calls.
 

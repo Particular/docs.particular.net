@@ -28,8 +28,7 @@ bus.Send(requestMessage)
 
 // For Callbacks version 1.x
 var message = new RequestMessage();
-var response = await endpoint.Request<ResponseMessage>(message)
-    .ConfigureAwait(false);
+var response = await endpoint.Request<ResponseMessage>(message);
 ```
 
 In order to use callbacks, the endpoint must be uniquely addressable:

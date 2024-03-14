@@ -39,15 +39,13 @@ When self-hosting, call any startup code after `Endpoint.Start` and cleanup code
 var endpointConfiguration = new EndpointConfiguration("EndpointName");
 
 // Custom code before start
-var endpointInstance = await Endpoint.Start(endpointConfiguration)
-    .ConfigureAwait(false);
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
 // Custom code after start
 
 // Block the process
 
 // Custom code before stop
-await endpointInstance.Stop()
-    .ConfigureAwait(false);
+await endpointInstance.Stop();
 // Custom code after stop
 
 // For NServiceBus version 5.x

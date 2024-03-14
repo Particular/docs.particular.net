@@ -38,15 +38,13 @@ In previous versions to start a new instance of an endpoint, either the `Bus` st
 var endpointConfiguration = new EndpointConfiguration("EndpointName");
 
 // Custom code before start
-var endpointInstance = await Endpoint.Start(endpointConfiguration)
-    .ConfigureAwait(false);
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
 // Custom code after start
 
 // Block the process
 
 // Custom code before stop
-await endpointInstance.Stop()
-    .ConfigureAwait(false);
+await endpointInstance.Stop();
 // Custom code after stop
 
 // For NServiceBus version 5.x
@@ -95,10 +93,8 @@ public class SendAndPublishHandler :
 {
     public async Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        await context.Send(new MyOtherMessage())
-            .ConfigureAwait(false);
-        await context.Publish(new MyEvent())
-            .ConfigureAwait(false);
+        await context.Send(new MyOtherMessage());
+        await context.Publish(new MyEvent());
     }
 }
 ```
@@ -108,11 +104,9 @@ public class SendAndPublishHandler :
 A common use of `IBus` is to invoke bus operations outside of the pipeline (e.g., in handlers, sagas and pipeline extensions), such as sending a message from an ASP.NET request or a client application. Instead of an `IBus,` the `IMessageSession` offers all available messaging operations outside the message processing pipeline. For example:
 
 ```csharp
-var endpointInstance = await Endpoint.Start(endpointConfiguration)
-    .ConfigureAwait(false);
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
 IMessageSession messageSession = endpointInstance;
-await messageSession.Send(new SomeMessage())
-    .ConfigureAwait(false);
+await messageSession.Send(new SomeMessage());
 ```
 
 In this example, a message is being sent during the startup of an Endpoint. Hence the `IMessageSession` is available via the `IEndpointInstance` class from `Endpoint.Start`. Note that implicitly converting from `IEndpointInstance` to `IMessageSession` is optional but it is preferred as `IMessageSession` offers a more concise API for messaging interactions.
@@ -224,8 +218,7 @@ public class HandlerWithDependencyWhichReturns :
     {
         foreach (var customerName in dependency.Do())
         {
-            await context.Publish(new CustomerChanged { Name = customerName })
-                .ConfigureAwait(false);
+            await context.Publish(new CustomerChanged { Name = customerName });
         }
     }
 }
@@ -240,8 +233,7 @@ public class MyContextAccessingDependency
     {
         foreach (var changedCustomer in LoadChangedCustomers())
         {
-            await context.Publish(new CustomerChanged { Name = changedCustomer.Name })
-                .ConfigureAwait(false);
+            await context.Publish(new CustomerChanged { Name = changedCustomer.Name });
         }
     }
 
@@ -264,8 +256,7 @@ public class HandlerWithDependencyWhichAccessesContext :
     public async Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         // float the context into the dependency via method injection
-        await dependency.Do(context)
-            .ConfigureAwait(false);
+        await dependency.Do(context);
     }
 }
 ```

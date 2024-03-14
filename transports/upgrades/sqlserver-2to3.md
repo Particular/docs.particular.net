@@ -48,8 +48,7 @@ transport.UseCustomSqlConnectionFactory(
         var connection = new SqlConnection("SomeConnectionString");
         try
         {
-            await connection.OpenAsync()
-                .ConfigureAwait(false);
+            await connection.OpenAsync();
 
             // perform custom operations
 
@@ -163,8 +162,7 @@ transport.EnableLegacyMultiInstanceMode(
             connectionString = "SomeOtherConnectionString";
         }
         var connection = new SqlConnection(connectionString);
-        await connection.OpenAsync()
-            .ConfigureAwait(false);
+        await connection.OpenAsync();
         return connection;
     });
 

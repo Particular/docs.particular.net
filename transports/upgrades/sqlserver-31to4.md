@@ -32,8 +32,7 @@ transport.EnableLegacyMultiInstanceMode(async address =>
         ? "Data Source=SQL; Database=RemoteEndpoint; Integrated Security=True"
         : "Data Source=SQL; Database=ThisEndpoint; Integrated Security=True";
     var connection = new SqlConnection(connectionString);
-    await connection.OpenAsync()
-        .ConfigureAwait(false);
+    await connection.OpenAsync();
     return connection;
 });
 ```

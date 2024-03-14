@@ -88,8 +88,6 @@ At the end of the `Main` method, after the configuration code, add the following
 
 snippet: Startup
 
-NOTE: In this tutorial we will always use `.ConfigureAwait(false)` when awaiting tasks in order to [avoid capturing and restoring the `SynchronizationContext`](https://docs.microsoft.com/en-us/archive/msdn-magazine/2013/march/async-await-best-practices-in-asynchronous-programming).
-
 The endpoint is initialized according to the settings defined by the `EndpointConfiguration` class. Once the endpoint starts, changes to the configuration information are no longer applied.
 
 When you run the endpoint for the first time, the endpoint will:
