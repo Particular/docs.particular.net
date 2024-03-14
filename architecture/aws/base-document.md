@@ -5,9 +5,6 @@
 - [https://docs.particular.net/samples/aws/](https://docs.particular.net/samples/aws/)
 
 
-# Architectural styles
-
-
 ## Messaging
 
 ### Amazon SNS
