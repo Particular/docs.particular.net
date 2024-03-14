@@ -36,16 +36,14 @@ namespace Cinema.TicketSales
                             {
                                 MonthId = MonthId,
                                 FilmName = "Barbie"
-                            }, cancellationToken)
-                        .ConfigureAwait(false);
+                            }, cancellationToken);
                             break;
                         case ConsoleKey.O:
                             await messageSession.Send(new RecordTicketSale
                             {
                                 MonthId = MonthId,
                                 FilmName = "Oppenheimer"
-                            }, cancellationToken)
-                        .ConfigureAwait(false);
+                            }, cancellationToken);
                             break;
                         default:
                             break;

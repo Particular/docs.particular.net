@@ -53,7 +53,7 @@ public class RouterConfigurator
 
             foreach (var router in otherRouters)
             {
-                sqlInterface.EnableDeduplication("Backplane", router, 
+                sqlInterface.EnableDeduplication("Backplane", router,
                     () => new SqlConnection(sqlConnectionString), 10);
             }
 
@@ -70,12 +70,12 @@ public class RouterConfigurator
             staticRouting.AddRoute(
                 destinationFilter: (@interface, dest) =>
                 {
-                    return @interface == "SQL" 
-                           && dest.Endpoint != null 
+                    return @interface == "SQL"
+                           && dest.Endpoint != null
                            && dest.Endpoint.StartsWith(router);
-                }, 
-                destinationFilterDescription: $"To {router}", 
-                gateway: router, 
+                },
+                destinationFilterDescription: $"To {router}",
+                gateway: router,
                 iface: "Backplane");
         }
 
@@ -84,7 +84,7 @@ public class RouterConfigurator
 
         #endregion
 
-        await backplaneSubscriptionStorage.Install().ConfigureAwait(false);
+        await backplaneSubscriptionStorage.Install();
 
         return routerConfig;
     }

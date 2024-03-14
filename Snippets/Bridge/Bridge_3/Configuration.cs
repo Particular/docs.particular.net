@@ -42,7 +42,7 @@ public class Configuration
                 // more configuration...
             })
             .Build()
-            .RunAsync().ConfigureAwait(false);
+            .RunAsync();
 
         #endregion
     }
@@ -66,7 +66,7 @@ public class Configuration
                 bridgeConfiguration.AddTransport(asb);
             })
             .Build()
-            .RunAsync().ConfigureAwait(false);
+            .RunAsync();
 
         #endregion
     }

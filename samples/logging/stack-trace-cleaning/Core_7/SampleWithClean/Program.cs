@@ -54,12 +54,9 @@ class Program
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
-        await Run(endpointInstance)
-            .ConfigureAwait(false);
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        await Run(endpointInstance);
+        await endpointInstance.Stop();
     }
 
     static void DisableRetries(EndpointConfiguration endpointConfiguration)
@@ -94,8 +91,7 @@ class Program
                 return;
             }
             var message = new Message();
-            await endpointInstance.SendLocal(message)
-                .ConfigureAwait(false);
+            await endpointInstance.SendLocal(message);
             Console.WriteLine();
             Console.WriteLine("Message sent");
         }

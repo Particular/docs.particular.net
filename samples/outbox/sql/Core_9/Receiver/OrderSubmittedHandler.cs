@@ -27,8 +27,7 @@ public class OrderSubmittedHandler :
             var parameters = command.Parameters;
             parameters.AddWithValue("Id", message.OrderId);
             parameters.AddWithValue("Value", message.Value);
-            await command.ExecuteNonQueryAsync(context.CancellationToken)
-                .ConfigureAwait(false);
+            await command.ExecuteNonQueryAsync(context.CancellationToken);
         }
 
         #endregion
@@ -39,8 +38,7 @@ public class OrderSubmittedHandler :
         {
             OrderId = message.OrderId,
         };
-        await context.Reply(orderAccepted)
-            .ConfigureAwait(false);
+        await context.Reply(orderAccepted);
 
         #endregion
     }

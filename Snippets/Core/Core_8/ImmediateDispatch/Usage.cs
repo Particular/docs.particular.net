@@ -11,8 +11,7 @@
             var options = new SendOptions();
             options.RequireImmediateDispatch();
             var message = new MyMessage();
-            await context.Send(message, options)
-                .ConfigureAwait(false);
+            await context.Send(message, options);
             #endregion
         }
 

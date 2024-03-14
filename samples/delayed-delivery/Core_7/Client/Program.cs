@@ -11,12 +11,9 @@ class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
-        await SendOrder(endpointInstance)
-            .ConfigureAwait(false);
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        await SendOrder(endpointInstance);
+        await endpointInstance.Stop();
     }
 
     static async Task SendOrder(IEndpointInstance endpointInstance)
@@ -40,8 +37,7 @@ class Program
                         Product = "New shoes",
                         Id = id
                     };
-                    await endpointInstance.Send("Samples.DelayedDelivery.Server", placeOrder)
-                        .ConfigureAwait(false);
+                    await endpointInstance.Send("Samples.DelayedDelivery.Server", placeOrder);
                     Console.WriteLine($"[Defer Message Handling] Sent a PlaceOrder message with id: {id.ToString("N")}");
                     #endregion
                     continue;
@@ -56,8 +52,7 @@ class Program
 
                     options.SetDestination("Samples.DelayedDelivery.Server");
                     options.DelayDeliveryWith(TimeSpan.FromSeconds(5));
-                    await endpointInstance.Send(placeDelayedOrder, options)
-                        .ConfigureAwait(false);
+                    await endpointInstance.Send(placeDelayedOrder, options);
                     Console.WriteLine($"[Defer Message Delivery] Deferred a PlaceDelayedOrder message with id: {id.ToString("N")}");
                     #endregion
                     continue;

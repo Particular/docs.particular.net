@@ -14,15 +14,13 @@ namespace Core8.Pipeline
         public override async Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next, Func<IAuditContext, Task> fork)
         {
             // Finalize the work in the current stage
-            await next()
-                .ConfigureAwait(false);
+            await next();
 
             OutgoingMessage message = null;
             var auditAddress = "AuditAddress";
 
             // Fork into new pipeline
-            await fork(this.CreateAuditContext(message, auditAddress, TimeSpan.FromHours(1), context))
-                .ConfigureAwait(false);
+            await fork(this.CreateAuditContext(message, auditAddress, TimeSpan.FromHours(1), context));
         }
     }
 

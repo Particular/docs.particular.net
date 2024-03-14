@@ -16,8 +16,7 @@ class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         var message = new MessageWithSecretData
         {
             EncryptedSecret = "betcha can't guess my secret",
@@ -39,12 +38,10 @@ class Program
                 }
             }
         };
-        await endpointInstance.Send("Samples.Encryption.Endpoint2", message)
-            .ConfigureAwait(false);
+        await endpointInstance.Send("Samples.Encryption.Endpoint2", message);
 
         Console.WriteLine("MessageWithSecretData sent. Press any key to exit");
         Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

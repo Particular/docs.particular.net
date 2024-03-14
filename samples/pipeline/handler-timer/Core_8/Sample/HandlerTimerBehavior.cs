@@ -15,8 +15,7 @@ class HandlerTimerBehavior :
         var stopwatch = Stopwatch.StartNew();
         try
         {
-            await next()
-                .ConfigureAwait(false);
+            await next();
         }
         finally
         {

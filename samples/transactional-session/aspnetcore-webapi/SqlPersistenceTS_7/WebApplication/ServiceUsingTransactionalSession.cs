@@ -20,8 +20,7 @@ public class ServiceUsingTransactionalSession
         await dataContext.MyEntities.AddAsync(new MyEntity { Id = id, Processed = false });
 
         var message = new MyMessage { EntityId = id };
-        await messageSession.SendLocal(message)
-            .ConfigureAwait(false);
+        await messageSession.SendLocal(message);
 
         return id;
     }

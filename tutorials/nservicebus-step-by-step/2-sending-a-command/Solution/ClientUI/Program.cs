@@ -18,14 +18,11 @@ namespace ClientUI
 
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-            await RunLoop(endpointInstance)
-                .ConfigureAwait(false);
+            await RunLoop(endpointInstance);
 
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
+            await endpointInstance.Stop();
         }
 
         #region RunLoop
@@ -51,8 +48,7 @@ namespace ClientUI
 
                         // Send the command to the local endpoint
                         log.Info($"Sending PlaceOrder command, OrderId = {command.OrderId}");
-                        await endpointInstance.SendLocal(command)
-                            .ConfigureAwait(false);
+                        await endpointInstance.SendLocal(command);
 
                         break;
 

@@ -14,8 +14,7 @@
 
             await DeleteQueuesForEndpoint(
                     endpointName: "myendpoint",
-                    queueNamePrefix: "PROD")
-                .ConfigureAwait(false);
+                    queueNamePrefix: "PROD");
 
             #endregion
         }
@@ -34,8 +33,7 @@
                 };
 
 
-                await client.DeleteStackAsync(request)
-                    .ConfigureAwait(false);
+                await client.DeleteStackAsync(request);
 
 
                 var describeRequest = new DescribeStacksRequest
@@ -47,8 +45,7 @@
                 {
                     try
                     {
-                        var response = await client.DescribeStacksAsync(describeRequest)
-                            .ConfigureAwait(false);
+                        var response = await client.DescribeStacksAsync(describeRequest);
                         var stack = response.Stacks.SingleOrDefault();
                         currentStatus = stack?.StackStatus;
                         await Task.Delay(1000);

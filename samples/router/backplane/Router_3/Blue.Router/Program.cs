@@ -8,18 +8,18 @@ class Program
     {
         Console.Title = "Blue.Router";
 
-        var routerConfig = await RouterConfigurator.Prepare(ConnectionStrings.Blue, "Blue").ConfigureAwait(false);
+        var routerConfig = await RouterConfigurator.Prepare(ConnectionStrings.Blue, "Blue");
 
         SqlHelper.EnsureDatabaseExists(ConnectionStrings.Blue);
         SqlHelper.CreateReceivedMessagesTable(ConnectionStrings.Blue);
 
         var router = Router.Create(routerConfig);
 
-        await router.Start().ConfigureAwait(false);
+        await router.Start();
 
         Console.WriteLine("Press <enter> to exit");
         Console.ReadLine();
 
-        await router.Stop().ConfigureAwait(false);
+        await router.Stop();
     }
 }

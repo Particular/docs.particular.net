@@ -17,16 +17,14 @@ class Program
         var pipeline = endpointConfiguration.Pipeline;
         pipeline.Register(new StoreTenantIdBehavior(), "Stores tenant ID in the session");
         pipeline.Register(new PropagateTenantIdBehavior(), "Propagates tenant ID to outgoing messages");
-        
+
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press <enter> to exit.");
         Console.ReadLine();
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

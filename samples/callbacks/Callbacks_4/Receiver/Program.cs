@@ -9,16 +9,14 @@ class Program
     {
         Console.Title = "Samples.Callbacks.Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.Callbacks.Receiver");
-        endpointConfiguration.UsePersistence<LearningPersistence>();     
+        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.EnableCallbacks(makesRequests: false);
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

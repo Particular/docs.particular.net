@@ -22,7 +22,7 @@ namespace NativeSender
                     EnableDeadLetteringOnFilterEvaluationExceptions = false,
                     MaxDeliveryCount = int.MaxValue,
                     EnableBatchedOperations = true,
-                }, new CreateRuleOptions(ruleName, sqlFilter)).ConfigureAwait(false);
+                }, new CreateRuleOptions(ruleName, sqlFilter));
 
                 #endregion
             }

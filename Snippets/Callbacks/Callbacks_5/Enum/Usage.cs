@@ -11,8 +11,7 @@
             #region EnumCallback
 
             var message = new Message();
-            var response = await endpoint.Request<Status>(message)
-                .ConfigureAwait(false);
+            var response = await endpoint.Request<Status>(message);
             log.Info($"Callback received with response:{response}");
 
             #endregion

@@ -49,6 +49,6 @@ class Program
                 #endregion
             })
             .Build()
-            .RunAsync().ConfigureAwait(false);
+            .RunAsync();
     }
 }

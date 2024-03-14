@@ -13,32 +13,26 @@ namespace Core_8
 
             #region SendLocal
             // From endpoint startup code
-            await endpointInstance.SendLocal(command)
-                .ConfigureAwait(false);
+            await endpointInstance.SendLocal(command);
 
             // From a message handler
-            await context.SendLocal(command)
-                .ConfigureAwait(false);
+            await context.SendLocal(command);
             #endregion
 
             #region Send
             // From endpoint startup code
-            await endpointInstance.Send(command)
-                .ConfigureAwait(false);
+            await endpointInstance.Send(command);
 
             // From a message handler
-            await context.Send(command)
-                .ConfigureAwait(false);
+            await context.Send(command);
             #endregion
 
             #region SendDestination
             // Not recommended, most of the time
-            await endpointInstance.Send("Destination", command)
-                .ConfigureAwait(false);
+            await endpointInstance.Send("Destination", command);
 
             // On the IMessageHandlerContext too, but still not recommended
-            await context.Send("Destination", command)
-                .ConfigureAwait(false);
+            await context.Send("Destination", command);
 
             #endregion
 

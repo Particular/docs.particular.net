@@ -14,8 +14,7 @@ public class SendMessageJob :
         {
             var endpointInstance = context.EndpointInstance();
             var message = new MyMessage();
-            await endpointInstance.Send("Samples.QuartzScheduler.Receiver", message)
-                .ConfigureAwait(false);
+            await endpointInstance.Send("Samples.QuartzScheduler.Receiver", message);
         }
         catch (Exception exception)
         {

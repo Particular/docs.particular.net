@@ -29,7 +29,7 @@ public class API
 
         var routerConfig = new RouterConfiguration("MyRouter");
 
-        routerConfig.AddInterface<MsmqTransport>("Msmq", 
+        routerConfig.AddInterface<MsmqTransport>("Msmq",
             customization: transportExtensions => { });
 
         routerConfig.AddInterface<RabbitMQTransport>("Rabbit",
@@ -60,9 +60,9 @@ public class API
 
         var router = Router.Create(routerConfig);
 
-        await router.Start().ConfigureAwait(false);
+        await router.Start();
 
-        await router.Stop().ConfigureAwait(false);
+        await router.Stop();
 
         #endregion
     }
@@ -81,12 +81,12 @@ public class API
         //Send all messages to endpoints which name starts with Sales via interface A
         staticRouting.AddRoute(
             destinationFilter: (iface, destination) => destination.Endpoint.StartsWith("Sales."),
-            destinationFilterDescription: "To Sales", 
-            gateway: null, 
+            destinationFilterDescription: "To Sales",
+            gateway: null,
             iface: "A");
 
         staticRouting.AddRoute(
-            (iface, destination) => destination.Endpoint.StartsWith("Shipping."), 
+            (iface, destination) => destination.Endpoint.StartsWith("Shipping."),
             "To Shipping", null, "B");
 
         staticRouting.AddRoute(

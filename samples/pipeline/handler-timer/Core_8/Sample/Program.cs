@@ -16,12 +16,9 @@ class Program
         endpointConfiguration.Pipeline.Register(typeof(HandlerTimerBehavior), "Logs a warning if a handler take more than a specified time");
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
-        await Run(endpointInstance)
-            .ConfigureAwait(false);
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        await Run(endpointInstance);
+        await endpointInstance.Stop();
     }
 
     static async Task Run(IEndpointInstance endpointInstance)
@@ -34,8 +31,7 @@ class Program
             var key = Console.ReadKey();
             if (key.Key == ConsoleKey.Enter)
             {
-                await SendMessage(endpointInstance)
-                    .ConfigureAwait(false);
+                await SendMessage(endpointInstance);
                 continue;
             }
             return;

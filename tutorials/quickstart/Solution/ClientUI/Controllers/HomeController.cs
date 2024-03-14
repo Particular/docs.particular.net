@@ -36,8 +36,7 @@ namespace ClientUI.Controllers
             var command = new PlaceOrder { OrderId = orderId };
 
             // Send the command
-            await _messageSession.Send(command)
-                .ConfigureAwait(false);
+            await _messageSession.Send(command);
 
             _log.LogInformation($"Sending PlaceOrder, OrderId = {orderId}");
 

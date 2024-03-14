@@ -20,14 +20,11 @@ namespace ClientUI
             routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
             routing.RouteToEndpoint(typeof(CancelOrder), "Sales");
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-            await RunLoop(endpointInstance)
-                .ConfigureAwait(false);
+            await RunLoop(endpointInstance);
 
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
+            await endpointInstance.Stop();
         }
 
         static ILog log = LogManager.GetLogger<Program>();
@@ -53,8 +50,7 @@ namespace ClientUI
 
                         // Send the command
                         log.Info($"Sending PlaceOrder command, OrderId = {command.OrderId}");
-                        await endpointInstance.Send(command)
-                            .ConfigureAwait(false);
+                        await endpointInstance.Send(command);
 
                         lastOrder = command.OrderId; // Store order identifier to cancel if needed.
                         break;
@@ -64,8 +60,7 @@ namespace ClientUI
                         {
                             OrderId = lastOrder
                         };
-                        await endpointInstance.Send(cancelCommand)
-                            .ConfigureAwait(false);
+                        await endpointInstance.Send(cancelCommand);
                         log.Info($"Sent a correlated message to {cancelCommand.OrderId}");
                         break;
 

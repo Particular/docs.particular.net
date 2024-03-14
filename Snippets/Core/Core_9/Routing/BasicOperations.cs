@@ -12,7 +12,7 @@
             await endpoint.Send<IMyMessage>(message =>
             {
                 message.SomeProperty = "Hello world";
-            }).ConfigureAwait(false);
+            });
 
             #endregion
         }
@@ -71,11 +71,9 @@
         {
             #region ExplicitSubscribe
 
-            await endpoint.Subscribe<MyEvent>()
-                .ConfigureAwait(false);
+            await endpoint.Subscribe<MyEvent>();
 
-            await endpoint.Unsubscribe<MyEvent>()
-                .ConfigureAwait(false);
+            await endpoint.Unsubscribe<MyEvent>();
 
             #endregion
         }

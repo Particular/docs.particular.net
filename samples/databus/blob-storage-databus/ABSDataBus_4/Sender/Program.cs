@@ -16,19 +16,16 @@ class Program
         var dataBus = endpointConfiguration.UseDataBus<AzureDataBus>()
             .Container("testcontainer")
             .UseBlobServiceClient(blobServiceClient);
-        
+
         #endregion
 
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.EnableInstallers();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
-        await Run(endpointInstance)
-            .ConfigureAwait(false);
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        await Run(endpointInstance);
+        await endpointInstance.Stop();
     }
 
     static async Task Run(IMessageSession messageSession)
@@ -42,8 +39,7 @@ class Program
 
             if (key.Key == ConsoleKey.Enter)
             {
-                await SendMessageLargePayload(messageSession)
-                    .ConfigureAwait(false);
+                await SendMessageLargePayload(messageSession);
             }
             else
             {
@@ -63,8 +59,7 @@ class Program
             Description = "This message contains a large payload that will be sent on the Azure data bus",
             LargePayload = new DataBusProperty<byte[]>(new byte[1024*1024*5]) // 5MB
         };
-        await messageSession.Send("Samples.AzureBlobStorageDataBus.Receiver", message)
-            .ConfigureAwait(false);
+        await messageSession.Send("Samples.AzureBlobStorageDataBus.Receiver", message);
 
         #endregion
 

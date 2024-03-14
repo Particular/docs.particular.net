@@ -25,8 +25,7 @@ namespace SqsAll.NativeSend
                     {"NServiceBus.EnclosedMessageTypes", "MessageTypeToSend"},
                     {"NServiceBus.MessageId", "99C7320B-A645-4C74-95E8-857EAB98F4F9"}
                 }
-            )
-            .ConfigureAwait(false);
+            );
 
             #endregion
 
@@ -44,8 +43,7 @@ namespace SqsAll.NativeSend
                         {"NServiceBus.EnclosedMessageTypes", "MessageTypeToSend"},
                         {"NServiceBus.MessageId", "99C7320B-A645-4C74-95E8-857EAB98F4F9"}
                     }
-                )
-                .ConfigureAwait(false);
+                );
 
             #endregion
         }
@@ -61,10 +59,8 @@ namespace SqsAll.NativeSend
                 Headers = headers,
                 Body = base64Body,
             });
-            var queueUrlResponse = await sqsClient.GetQueueUrlAsync(QueueNameHelper.GetSqsQueueName(queue))
-                .ConfigureAwait(false);
-            await sqsClient.SendMessageAsync(queueUrlResponse.QueueUrl, serializedMessage)
-                .ConfigureAwait(false);
+            var queueUrlResponse = await sqsClient.GetQueueUrlAsync(QueueNameHelper.GetSqsQueueName(queue));
+            await sqsClient.SendMessageAsync(queueUrlResponse.QueueUrl, serializedMessage);
         }
 
         #endregion
@@ -82,7 +78,7 @@ namespace SqsAll.NativeSend
                     BucketName = bucketName,
                     InputStream = bodyStream,
                     Key = key
-                }).ConfigureAwait(false);
+                });
             }
             var serializedMessage = Newtonsoft.Json.JsonConvert.SerializeObject(new
             {
@@ -90,10 +86,8 @@ namespace SqsAll.NativeSend
                 Body = string.Empty,
                 S3BodyKey = key
             });
-            var queueUrlResponse = await sqsClient.GetQueueUrlAsync(QueueNameHelper.GetSqsQueueName(queue))
-                .ConfigureAwait(false);
-            await sqsClient.SendMessageAsync(queueUrlResponse.QueueUrl, serializedMessage)
-                .ConfigureAwait(false);
+            var queueUrlResponse = await sqsClient.GetQueueUrlAsync(QueueNameHelper.GetSqsQueueName(queue));
+            await sqsClient.SendMessageAsync(queueUrlResponse.QueueUrl, serializedMessage);
         }
 
         #endregion

@@ -21,13 +21,11 @@ public class MongoDBConfig
 
         using var childBuilder = builder.CreateChildBuilder();
         var session = childBuilder.Build<ITransactionalSession>();
-        await session.Open()
-            .ConfigureAwait(false);
+        await session.Open();
 
         // use the session
 
-        await session.Commit()
-            .ConfigureAwait(false);
+        await session.Commit();
 
         #endregion
     }
@@ -36,18 +34,15 @@ public class MongoDBConfig
     {
         #region use-transactional-session-mongo
 
-        await session.Open()
-            .ConfigureAwait(false);
+        await session.Open();
 
         // add messages to the transaction:
-        await session.Send(new MyMessage())
-            .ConfigureAwait(false);
+        await session.Send(new MyMessage());
 
         // access the database:
         var mongoSession = session.SynchronizedStorageSession.MongoPersistenceSession();
 
-        await session.Commit()
-            .ConfigureAwait(false);
+        await session.Commit();
 
         #endregion
     }

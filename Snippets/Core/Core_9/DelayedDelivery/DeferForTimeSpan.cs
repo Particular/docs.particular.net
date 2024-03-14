@@ -20,11 +20,9 @@
 
             sendOptions.DelayDeliveryWith(TimeSpan.FromMinutes(30));
 
-            await handlerContext.Send(new MessageToBeSentLater(), sendOptions)
-                .ConfigureAwait(false);
+            await handlerContext.Send(new MessageToBeSentLater(), sendOptions);
             // OR
-            await endpoint.Send(new MessageToBeSentLater(), sendOptions, handlerContext.CancellationToken)
-                .ConfigureAwait(false);
+            await endpoint.Send(new MessageToBeSentLater(), sendOptions, handlerContext.CancellationToken);
 
             #endregion
         }

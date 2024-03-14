@@ -11,7 +11,7 @@
         public override async Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
         {
             //no action taken. empty behavior
-            await next().ConfigureAwait(false);
+            await next();
         }
     }
     #endregion

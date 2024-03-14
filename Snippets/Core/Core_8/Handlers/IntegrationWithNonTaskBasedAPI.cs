@@ -33,8 +33,7 @@
                     taskCompletionSource.TrySetResult(null);
                 };
 
-                await taskCompletionSource.Task
-                    .ConfigureAwait(false);
+                await taskCompletionSource.Task;
             }
         }
     }
@@ -72,8 +71,7 @@
                         var d = (DependencyWhichUsesAPM)asyncResult.AsyncState;
                         return d.EndCall(asyncResult);
                     },
-                    state: dependency)
-                .ConfigureAwait(false);
+                    state: dependency);
 
             // Use the result in some way
             Trace.WriteLine(result);
@@ -103,8 +101,7 @@
         public async Task Handle(MyMessage message, IMessageHandlerContext context)
         {
             var asyncClient = new AsyncClient();
-            var result = await asyncClient.Run()
-                .ConfigureAwait(false);
+            var result = await asyncClient.Run();
             // Use the result in some way
             Trace.WriteLine(result);
         }
@@ -155,8 +152,7 @@
                 {
                     var remoteService = new RemoteService();
                     return remoteService.TimeConsumingRemoteCall();
-                })
-                .ConfigureAwait(false);
+                });
             // Use the result in some way
             Trace.WriteLine(result);
         }

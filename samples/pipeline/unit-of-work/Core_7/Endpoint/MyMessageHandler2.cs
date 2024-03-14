@@ -9,8 +9,7 @@ class MyMessageHandler2 :
 
     public async Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        await context.Store(new MyOtherEntity())
-            .ConfigureAwait(false);
+        await context.Store(new MyOtherEntity());
 
         log.Info($"{context.MessageId} got UoW instance {context.GetSession().GetHashCode()}");
     }

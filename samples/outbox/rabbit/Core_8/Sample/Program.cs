@@ -47,8 +47,7 @@ class Program
 
         Helper.EnsureDatabaseExists(connectionString);
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Endpoint started. Press Enter to send 5 sets of duplicate messages...");
         Console.ReadLine();
@@ -62,7 +61,6 @@ class Program
         await Task.Delay(5000);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

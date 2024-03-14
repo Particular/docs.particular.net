@@ -29,19 +29,16 @@ class Program
         endpointConfiguration.AddHeaderToAllOutgoingMessages("AllOutgoing", "ValueAllOutgoing");
 
         #endregion
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         #region sending
 
         var myMessage = new MyMessage();
-        await endpointInstance.SendLocal(myMessage)
-            .ConfigureAwait(false);
+        await endpointInstance.SendLocal(myMessage);
 
         #endregion
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

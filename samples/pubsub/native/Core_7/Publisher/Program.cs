@@ -11,12 +11,9 @@ static class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
-        await Start(endpointInstance)
-            .ConfigureAwait(false);
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        await Start(endpointInstance);
+        await endpointInstance.Stop();
     }
 
     static async Task Start(IEndpointInstance endpointInstance)
@@ -38,8 +35,7 @@ static class Program
                 {
                     OrderId = orderReceivedId
                 };
-                await endpointInstance.Publish(orderReceived)
-                    .ConfigureAwait(false);
+                await endpointInstance.Publish(orderReceived);
                 Console.WriteLine($"Published OrderReceived Event with Id {orderReceivedId}.");
             }
             else

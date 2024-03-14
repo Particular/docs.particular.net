@@ -20,15 +20,13 @@ public class Runner
                 case ConsoleKey.S:
 
                     var successMessage = new MessageThatWillSucceed();
-                    await endpointInstance.SendLocal(successMessage)
-                        .ConfigureAwait(false);
+                    await endpointInstance.SendLocal(successMessage);
 
                     break;
                 case ConsoleKey.T:
 
                     var throwMessage = new MessageThatWillThrow();
-                    await endpointInstance.SendLocal(throwMessage)
-                        .ConfigureAwait(false);
+                    await endpointInstance.SendLocal(throwMessage);
 
                     break;
                 default:

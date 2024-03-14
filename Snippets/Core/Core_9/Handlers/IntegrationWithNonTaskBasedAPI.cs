@@ -31,8 +31,7 @@
                     taskCompletionSource.TrySetResult(null);
                 };
 
-                await taskCompletionSource.Task
-                    .ConfigureAwait(false);
+                await taskCompletionSource.Task;
             }
         }
     }

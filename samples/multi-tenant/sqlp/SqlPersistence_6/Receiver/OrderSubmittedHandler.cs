@@ -23,12 +23,12 @@ public class OrderSubmittedHandler :
         dataContext.Database.UseTransaction(session.Transaction);
 
         dataContext.Orders.Add(order);
-        await dataContext.SaveChangesAsync().ConfigureAwait(false);
+        await dataContext.SaveChangesAsync();
 
         var orderAccepted = new OrderAccepted
         {
             OrderId = message.OrderId,
         };
-        await context.Reply(orderAccepted).ConfigureAwait(false);
+        await context.Reply(orderAccepted);
     }
 }

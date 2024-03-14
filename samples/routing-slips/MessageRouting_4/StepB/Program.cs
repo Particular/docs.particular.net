@@ -14,12 +14,10 @@ class Program
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.EnableFeature<RoutingSlips>();
 
-        var endpoint = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpoint = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpoint.Stop()
-            .ConfigureAwait(false);
+        await endpoint.Stop();
     }
 }

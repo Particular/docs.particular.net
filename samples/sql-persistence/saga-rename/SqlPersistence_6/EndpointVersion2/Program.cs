@@ -24,19 +24,16 @@ class Program
         var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlPersistenceRenameSaga;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
         using (var connection = new SqlConnection(connectionString))
         {
-            await connection.OpenAsync()
-                .ConfigureAwait(false);
+            await connection.OpenAsync();
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = "exec sp_rename 'Samples_RenameSaga_MyReplySagaVersion1', 'Samples_RenameSaga_MyReplySagaVersion2'";
-                await command.ExecuteNonQueryAsync()
-                    .ConfigureAwait(false);
+                await command.ExecuteNonQueryAsync();
             }
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = "exec sp_rename 'Samples_RenameSaga_MyTimeoutSagaVersion1', 'Samples_RenameSaga_MyTimeoutSagaVersion2'";
-                await command.ExecuteNonQueryAsync()
-                    .ConfigureAwait(false);
+                await command.ExecuteNonQueryAsync();
             }
         }
 
@@ -51,13 +48,11 @@ class Program
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Waiting to receive timeout and reply. Should happen within 10 seconds");
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

@@ -32,13 +32,13 @@ public static class HostBuilderExtensions
         hostBuilder.UseNServiceBus(ctx =>
         {
             var endpointConfiguration = new EndpointConfiguration("receiver");
-            endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);            
+            endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
             endpointConfiguration.UsePersistence<NonDurablePersistence>();
             endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
             endpointConfiguration.EnableInstallers();
 
             var transportConnectionString = ctx.Configuration.GetConnectionString("TransportConnectionString");
-            endpointConfiguration.UseTransport( new AzureStorageQueueTransport(transportConnectionString));         
+            endpointConfiguration.UseTransport( new AzureStorageQueueTransport(transportConnectionString));
 
             return endpointConfiguration;
         });
@@ -57,11 +57,11 @@ public static class HostBuilderExtensions
     static async Task OnCriticalError(ICriticalErrorContext context,CancellationToken cancellationToken)
     {
         var fatalMessage =
-            $"The following critical error was encountered:{Environment.NewLine}{context.Error}{Environment.NewLine}Process is shutting down. StackTrace: {Environment.NewLine}{context.Exception.StackTrace}";       
+            $"The following critical error was encountered:{Environment.NewLine}{context.Error}{Environment.NewLine}Process is shutting down. StackTrace: {Environment.NewLine}{context.Exception.StackTrace}";
 
         try
         {
-            await context.Stop(cancellationToken).ConfigureAwait(false);
+            await context.Stop(cancellationToken);
         }
         finally
         {

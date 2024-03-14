@@ -18,7 +18,7 @@ class Program
         endpointConfiguration.UseTransport(new LearningTransport
         {
             StorageDirectory = $"{LearningTransportInfrastructure.FindStoragePath()}2"
-        });        
+        });
 
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.Immediate(
@@ -34,8 +34,7 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.EnableMetrics().SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromSeconds(1));
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press enter to exit");
         Console.WriteLine("Press 'o' to send a message");
         Console.WriteLine("Press 'f' to toggle simulating of message processing failure");
@@ -55,8 +54,7 @@ class Program
                 {
                     Id = id,
                 };
-                await endpointInstance.SendLocal(message)
-                    .ConfigureAwait(false);
+                await endpointInstance.SendLocal(message);
             }
             if (lowerInvariant == 'f')
             {
@@ -64,7 +62,6 @@ class Program
                 Console.WriteLine("Failure simulation is now turned " + (FailureSimulator.Enabled ? "on" : "off"));
             }
         }
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

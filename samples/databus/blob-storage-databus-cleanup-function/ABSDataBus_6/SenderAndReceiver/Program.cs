@@ -16,14 +16,11 @@ class Program
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.EnableInstallers();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-        await Run(endpointInstance)
-            .ConfigureAwait(false);
+        await Run(endpointInstance);
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 
     static async Task Run(IMessageSession messageSession)
@@ -37,8 +34,7 @@ class Program
 
             if (key.Key == ConsoleKey.Enter)
             {
-                await SendMessageLargePayload(messageSession)
-                    .ConfigureAwait(false);
+                await SendMessageLargePayload(messageSession);
             }
             else
             {
@@ -57,8 +53,7 @@ class Program
             LargePayload = new DataBusProperty<byte[]>(new byte[1024 * 1024 * 5]) // 5MB
         };
 
-        await messageSession.SendLocal(message)
-            .ConfigureAwait(false);
+        await messageSession.SendLocal(message);
 
         Console.WriteLine("Message sent.");
     }

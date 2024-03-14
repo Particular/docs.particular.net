@@ -14,14 +14,12 @@
             await QueueCreationUtils.CreateQueue(
                     queueName: "error",
                     maxTimeToLive: TimeSpan.FromDays(2),
-                    queueNamePrefix: "PROD")
-                .ConfigureAwait(false);
+                    queueNamePrefix: "PROD");
 
             await QueueCreationUtils.CreateQueue(
                     queueName: "audit",
                     maxTimeToLive: TimeSpan.FromDays(2),
-                    queueNamePrefix: "PROD")
-                .ConfigureAwait(false);
+                    queueNamePrefix: "PROD");
 
             #endregion
 
@@ -31,15 +29,13 @@
                     queueName: "error",
                     templatePath: @".\QueueCreation.json",
                     maxTimeToLive: TimeSpan.FromDays(2),
-                    queueNamePrefix: "PROD")
-                .ConfigureAwait(false);
+                    queueNamePrefix: "PROD");
 
             await QueueCreationUtilsCloudFormation.CreateQueue(
                     queueName: "audit",
                     templatePath: @".\QueueCreation.json",
                     maxTimeToLive: TimeSpan.FromDays(2),
-                    queueNamePrefix: "PROD")
-                .ConfigureAwait(false);
+                    queueNamePrefix: "PROD");
 
             #endregion
         }

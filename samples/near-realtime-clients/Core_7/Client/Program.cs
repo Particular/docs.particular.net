@@ -19,8 +19,7 @@ static class Program
                 {
                     Console.WriteLine($"Stock update for {stock.Symbol} at {stock.Timestamp:O}. Press any key to exit.");
                 });
-            await hubConnection.Start()
-                .ConfigureAwait(false);
+            await hubConnection.Start();
 
             Console.WriteLine("Press any key to exit.");
             Console.ReadKey(true);

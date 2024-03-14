@@ -12,22 +12,15 @@ static class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomExtensionEndpoint");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
-        await RunCustomizeConfiguration(endpointConfiguration)
-            .ConfigureAwait(false);
-        await RunBeforeEndpointStart()
-            .ConfigureAwait(false);
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
-        await RunAfterEndpointStart(endpointInstance)
-            .ConfigureAwait(false);
+        await RunCustomizeConfiguration(endpointConfiguration);
+        await RunBeforeEndpointStart();
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        await RunAfterEndpointStart(endpointInstance);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await RunBeforeEndpointStop( endpointInstance)
-            .ConfigureAwait(false);
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
-        await RunAfterEndpointStop()
-            .ConfigureAwait(false);
+        await RunBeforeEndpointStop( endpointInstance);
+        await endpointInstance.Stop();
+        await RunAfterEndpointStop();
     }
 
     static Task RunBeforeEndpointStart()

@@ -9,21 +9,19 @@ class Program
     {
         Console.Title = "Samples.AzureBlobStorageDataBus.Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.AzureBlobStorageDataBus.Receiver");
-        
+
         var blobServiceClient = new BlobServiceClient("UseDevelopmentStorage=true");
         var dataBus = endpointConfiguration.UseDataBus<AzureDataBus>()
             .Container("testcontainer")
             .UseBlobServiceClient(blobServiceClient);
-        
+
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.EnableInstallers();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

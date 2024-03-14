@@ -16,15 +16,13 @@
 
         protected override async Task OnStart(IMessageSession session)
         {
-            await session.Publish(new MyEvent())
-                .ConfigureAwait(false);
+            await session.Publish(new MyEvent());
             resetEvent.Set();
         }
 
         protected override async Task OnStop(IMessageSession session)
         {
-            await session.Publish(new MyEvent())
-                .ConfigureAwait(false);
+            await session.Publish(new MyEvent());
             resetEvent.Reset();
         }
 

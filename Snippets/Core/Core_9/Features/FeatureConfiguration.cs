@@ -32,8 +32,7 @@ namespace Core9.Features
             // disable features not in use
             endpointConfiguration.DisableFeature<Sagas>();
 
-            var startableEndpoint = await Endpoint.Create(endpointConfiguration)
-                .ConfigureAwait(false);
+            var startableEndpoint = await Endpoint.Create(endpointConfiguration);
             #endregion
         }
 

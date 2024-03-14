@@ -17,13 +17,11 @@ class Program
         var routingConfig = endpointConfiguration.UseTransport(new MsmqTransport());
         routingConfig.RegisterPublisher(typeof(OtherEvent), "Samples.MessagingBridge.AsbEndpoint");
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

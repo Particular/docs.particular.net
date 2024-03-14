@@ -23,8 +23,7 @@ class ExtractTenantConnectionStringBehavior :
         ConnectionStringHolder.Value = connectionString;
         try
         {
-            await next()
-                .ConfigureAwait(false);
+            await next();
         }
         finally
         {

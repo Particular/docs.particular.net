@@ -20,8 +20,7 @@
         {
             using (var destination = File.OpenWrite("blob.dat"))
             {
-                await stream.CopyToAsync(destination)
-                    .ConfigureAwait(false);
+                await stream.CopyToAsync(destination);
             }
             return "the-key-of-the-stored-file-such-as-the-full-path";
         }

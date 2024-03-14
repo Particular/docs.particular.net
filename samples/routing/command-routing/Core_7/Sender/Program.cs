@@ -14,14 +14,13 @@ class Program
         var routing = transport.Routing();
 
         routing.RouteToEndpoint(
-            messageType: typeof(PlaceOrder), 
+            messageType: typeof(PlaceOrder),
             destination: "Samples.CommandRouting.Receiver"
         );
         #endregion
 
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press S to send an order");
         Console.WriteLine("Press C to cancel an order");
@@ -34,19 +33,16 @@ class Program
             switch (keyPressed)
             {
                 case ConsoleKey.S:
-                    await PlaceOrder(endpointInstance, Guid.NewGuid().ToString(), 25m)
-                        .ConfigureAwait(false);
+                    await PlaceOrder(endpointInstance, Guid.NewGuid().ToString(), 25m);
                     break;
                 case ConsoleKey.C:
-                    await CancelOrder(endpointInstance, Guid.NewGuid().ToString())
-                        .ConfigureAwait(false);
+                    await CancelOrder(endpointInstance, Guid.NewGuid().ToString());
                     break;
             }
             keyPressed = Console.ReadKey(true).Key;
         }
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 
     static async Task PlaceOrder(IEndpointInstance endpointInstance, string orderId, decimal value)
@@ -58,8 +54,7 @@ class Program
             Value = value
         };
 
-        await endpointInstance.Send(command)
-            .ConfigureAwait(false);
+        await endpointInstance.Send(command);
         #endregion
     }
 
@@ -71,8 +66,7 @@ class Program
             OrderId = orderId
         };
 
-        await endpointInstance.Send("Samples.CommandRouting.Receiver", command)
-            .ConfigureAwait(false);
+        await endpointInstance.Send("Samples.CommandRouting.Receiver", command);
         #endregion
     }
 }

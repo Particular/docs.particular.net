@@ -27,16 +27,14 @@ namespace Rabbit_All.NativeSend
         [Test]
         public async Task Send()
         {
-            var endpointInstance = await StartBus()
-                .ConfigureAwait(false);
+            var endpointInstance = await StartBus();
             var headers = new Dictionary<string, object>
             {
                 {"NServiceBus.EnclosedMessageTypes", "Rabbit_All.NativeSend.Tests+MessageToSend"},
             };
             NativeSend.SendMessage("localhost", endpointName, "guest", "guest", @"{""Property"": ""Value"",}", headers);
-            await tcs.Task.ConfigureAwait(false);
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
+            await tcs.Task;
+            await endpointInstance.Stop();
         }
 
         Task<IEndpointInstance> StartBus()

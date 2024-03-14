@@ -16,8 +16,7 @@ class Program
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         await endpointInstance.SendLocal(new LongRunningMessage { DataId = Guid.NewGuid() });
 

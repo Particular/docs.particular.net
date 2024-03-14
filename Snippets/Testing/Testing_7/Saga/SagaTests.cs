@@ -26,8 +26,7 @@ public class SagaTests
         };
 
         // act
-        await saga.Handle(discountOrder, context)
-            .ConfigureAwait(false);
+        await saga.Handle(discountOrder, context);
 
 
         // assert

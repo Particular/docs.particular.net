@@ -22,8 +22,7 @@ public class HomeController : Controller
         var message = new EnumMessage();
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        var status = await messageSession.Request<Status>(message, sendOptions)
-            .ConfigureAwait(false);
+        var status = await messageSession.Request<Status>(message, sendOptions);
         return View("SendEnumMessage", status);
     }
 
@@ -36,8 +35,7 @@ public class HomeController : Controller
         var message = new IntMessage();
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        var status = await messageSession.Request<int>(message, sendOptions)
-            .ConfigureAwait(false);
+        var status = await messageSession.Request<int>(message, sendOptions);
         return View("SendIntMessage", status);
     }
 
@@ -50,8 +48,7 @@ public class HomeController : Controller
         var message = new ObjectMessage();
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        var status = await messageSession.Request<ObjectResponseMessage>(message, sendOptions)
-            .ConfigureAwait(false);
+        var status = await messageSession.Request<ObjectResponseMessage>(message, sendOptions);
         return View("SendObjectMessage", status);
     }
 

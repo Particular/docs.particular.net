@@ -15,12 +15,12 @@ class MyMessageHandler :
         await context.Publish(new MyEvent
         {
             Id = message.Id
-        }).ConfigureAwait(false);
+        });
 
         await context.Reply(new MyReply
         {
             Id = message.Id
-        }).ConfigureAwait(false);
+        });
 
         #endregion
     }

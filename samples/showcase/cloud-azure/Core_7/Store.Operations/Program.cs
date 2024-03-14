@@ -26,16 +26,13 @@ public class Program
         Console.Title = "Samples.Store.Operations";
         var endpointConfiguration = new EndpointConfiguration("Store-Operations");
         endpointConfiguration.ApplyCommonConfiguration();
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         while (!cancellationToken.IsCancellationRequested)
         {
-            await Task.Delay(3000, cancellationToken)
-                .ConfigureAwait(false);
+            await Task.Delay(3000, cancellationToken);
         }
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

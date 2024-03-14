@@ -18,8 +18,7 @@
                     templatePath: @".\CreateQueuesEndpoint.json",
                     maxTimeToLive: TimeSpan.FromDays(2),
                     queueNamePrefix: "PROD",
-                    includeRetries: true /* required for V5 and below */)
-                .ConfigureAwait(false);
+                    includeRetries: true /* required for V5 and below */);
 
             #endregion
         }
@@ -60,8 +59,7 @@
                     TemplateBody = CloudFormationHelper.ConvertToValidJson(templatePath)
                 };
 
-                await client.CreateStackAsync(request)
-                    .ConfigureAwait(false);
+                await client.CreateStackAsync(request);
 
                 var describeRequest = new DescribeStacksRequest
                 {
@@ -71,8 +69,7 @@
                 StackStatus currentStatus = string.Empty;
                 while (currentStatus != StackStatus.CREATE_COMPLETE)
                 {
-                    var response = await client.DescribeStacksAsync(describeRequest)
-                        .ConfigureAwait(false);
+                    var response = await client.DescribeStacksAsync(describeRequest);
                     var stack = response.Stacks.SingleOrDefault();
                     currentStatus = stack?.StackStatus;
                     await Task.Delay(1000);

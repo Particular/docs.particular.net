@@ -41,8 +41,7 @@ public class TransportMessageCompressionMutator :
         using (var bigStream = new GZipStream(memoryStream, CompressionMode.Decompress))
         {
             var bigStreamOut = new MemoryStream();
-            await bigStream.CopyToAsync(bigStreamOut, 81920, context.CancellationToken)
-                .ConfigureAwait(false);
+            await bigStream.CopyToAsync(bigStreamOut, 81920, context.CancellationToken);
             context.Body = bigStreamOut.ToArray();
         }
     }

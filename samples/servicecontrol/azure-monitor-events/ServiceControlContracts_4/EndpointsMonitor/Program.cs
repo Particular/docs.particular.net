@@ -40,7 +40,7 @@ class Program
         }
 
         Console.WriteLine("Using application insights application key: {0}", instrumentationKey);
-        
+
         var telemetryConfiguration = TelemetryConfiguration.CreateDefault();
         telemetryConfiguration.ConnectionString = appInsightsConnectionString;
         var telemetryClient = new TelemetryClient(telemetryConfiguration);
@@ -48,11 +48,9 @@ class Program
 
         endpointConfiguration.RegisterComponents(cc => cc.AddSingleton(telemetryClient));
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press any key to finish.");
         Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

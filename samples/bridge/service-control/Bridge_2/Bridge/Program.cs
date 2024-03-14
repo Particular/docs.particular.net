@@ -54,6 +54,6 @@ static class Program
                 bridgeConfiguration.AddTransport(endpointsTransport);
             })
             .Build()
-            .RunAsync().ConfigureAwait(false);
+            .RunAsync();
     }
 }

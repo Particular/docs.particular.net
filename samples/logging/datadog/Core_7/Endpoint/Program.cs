@@ -10,12 +10,10 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.Metrics.Tracing.Endpoint");
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         var simulator = new LoadSimulator(endpointInstance, TimeSpan.Zero, TimeSpan.FromSeconds(10));
-        await simulator.Start()
-            .ConfigureAwait(false);
+        await simulator.Start();
 
         try
         {
@@ -30,14 +28,12 @@ class Program
                     break;
                 }
 
-                await endpointInstance.SendLocal(new SomeCommand())
-                    .ConfigureAwait(false);
+                await endpointInstance.SendLocal(new SomeCommand());
             }
         }
         finally
         {
-            await simulator.Stop()
-                .ConfigureAwait(false);
+            await simulator.Stop();
             await endpointInstance.Stop();
         }
     }

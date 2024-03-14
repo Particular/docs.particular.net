@@ -32,8 +32,7 @@ namespace Raw
                 parameters.AddWithValue("Id", $"Raw-{message.OrderId}");
                 parameters.AddWithValue("Value", message.Value);
 
-                await command.ExecuteNonQueryAsync(context.CancellationToken)
-                    .ConfigureAwait(false);
+                await command.ExecuteNonQueryAsync(context.CancellationToken);
             }
 
             #endregion

@@ -14,7 +14,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration(
             "Samples.ServiceControl.MixedTransportAdapter.Endpoint");
 
-        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();        
+        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
         // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=transport_adapter;Integrated Security=True;Encrypt=false;Max Pool Size=100;Min Pool Size=10
         var connectionString = @"Server=localhost,1433;Initial Catalog=transport_adapter;User Id=SA;Password=yourStrong(!)Password;Encrypt=false;Max Pool Size=100;Min Pool Size=10";
         transport.ConnectionString(connectionString);
@@ -40,8 +40,7 @@ class Program
         endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
         endpointConfiguration.EnableInstallers();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press enter to exit");
         Console.WriteLine("Press 'o' to send a message");
         Console.WriteLine("Press 'f' to toggle simulating of message processing failure");
@@ -61,8 +60,7 @@ class Program
                 {
                     Id = id,
                 };
-                await endpointInstance.SendLocal(message)
-                    .ConfigureAwait(false);
+                await endpointInstance.SendLocal(message);
             }
             if (lowerInvariant == 'f')
             {
@@ -70,7 +68,6 @@ class Program
                 Console.WriteLine("Failure simulation is now turned " + (chaos.IsFailing ? "on" : "off"));
             }
         }
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

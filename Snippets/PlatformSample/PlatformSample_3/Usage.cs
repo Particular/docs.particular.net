@@ -6,8 +6,7 @@ class Usage
     {
         #region Launch
 
-        await Particular.PlatformLauncher.Launch()
-            .ConfigureAwait(false);
+        await Particular.PlatformLauncher.Launch();
 
         #endregion
     }
@@ -16,8 +15,7 @@ class Usage
     {
         #region ShowConsoleOutput
 
-        await Particular.PlatformLauncher.Launch(showPlatformToolConsoleOutput: true)
-            .ConfigureAwait(false);
+        await Particular.PlatformLauncher.Launch(showPlatformToolConsoleOutput: true);
 
         #endregion
     }
@@ -26,8 +24,7 @@ class Usage
     {
         #region ServicePulseDefaultRoute
 
-        await Particular.PlatformLauncher.Launch(servicePulseDefaultRoute: "/monitoring")
-            .ConfigureAwait(false);
+        await Particular.PlatformLauncher.Launch(servicePulseDefaultRoute: "/monitoring");
 
         #endregion
     }

@@ -18,7 +18,7 @@ class Program
             .UseSqlServer(connectionString)
             .Options))
         {
-            await receiverDataContext.Database.EnsureCreatedAsync().ConfigureAwait(false);
+            await receiverDataContext.Database.EnsureCreatedAsync();
         }
 
         var endpointConfiguration = new EndpointConfiguration("Samples.EntityFrameworkUnitOfWork.SQL");
@@ -62,8 +62,7 @@ class Program
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         await Sender.Start(endpointInstance);
     }

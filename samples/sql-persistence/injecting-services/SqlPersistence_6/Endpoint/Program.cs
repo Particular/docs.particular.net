@@ -45,15 +45,13 @@ class Program
 
         SqlHelper.EnsureDatabaseExists(connectionString);
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press S to send a message, or Enter to exit");
 
         await RunLoop(endpointInstance);
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 
     static async Task RunLoop(IMessageSession messageSession)

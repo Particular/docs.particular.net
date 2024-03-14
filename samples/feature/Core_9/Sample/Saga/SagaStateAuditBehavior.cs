@@ -16,8 +16,7 @@ class SagaStateAuditBehavior :
 
     public override async Task Invoke(IInvokeHandlerContext context, Func<Task> next)
     {
-        await next()
-            .ConfigureAwait(false);
+        await next();
         if (context.Extensions.TryGet(out ActiveSagaInstance activeSagaInstance))
         {
             var instance = activeSagaInstance.Instance.Entity;

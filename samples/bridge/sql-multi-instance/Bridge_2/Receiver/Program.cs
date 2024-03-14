@@ -27,13 +27,11 @@ class Program
 
         SqlHelper.EnsureDatabaseExists(ConnectionString);
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press any key to exit");
         Console.WriteLine("Waiting for Order messages from the Sender");
         Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

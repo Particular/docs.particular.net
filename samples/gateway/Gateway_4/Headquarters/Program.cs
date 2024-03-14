@@ -20,8 +20,7 @@ class Program
         gatewayConfig.AddSite("RemoteSite", "http://localhost:25899/RemoteSite/");
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press 'Enter' to send a message to RemoteSite which will reply.");
         Console.WriteLine("Press any other key to exit");
 
@@ -44,12 +43,10 @@ class Program
                 NewPrice = 100.0,
                 ValidFrom = DateTime.Today,
             };
-            await endpointInstance.SendToSites(siteKeys, priceUpdated)
-                .ConfigureAwait(false);
+            await endpointInstance.SendToSites(siteKeys, priceUpdated);
 
             Console.WriteLine("Message sent, check the output in RemoteSite");
         }
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

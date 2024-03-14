@@ -46,7 +46,7 @@ internal class Program
 
         try
         {
-            await context.Stop().ConfigureAwait(false);
+            await context.Stop();
         }
         finally
         {

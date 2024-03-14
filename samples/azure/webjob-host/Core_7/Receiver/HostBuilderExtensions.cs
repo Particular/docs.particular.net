@@ -63,7 +63,7 @@ public static class HostBuilderExtensions
 
         try
         {
-            await context.Stop().ConfigureAwait(false);
+            await context.Stop();
         }
         finally
         {

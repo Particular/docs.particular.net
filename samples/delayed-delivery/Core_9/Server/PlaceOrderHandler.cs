@@ -19,8 +19,7 @@ public class PlaceOrderHandler :
 
             options.DelayDeliveryWith(TimeSpan.FromSeconds(5));
             options.RouteToThisEndpoint();
-            await context.Send(message, options)
-                .ConfigureAwait(false);
+            await context.Send(message, options);
             log.Info($"[Defer Message Handling] Deferring Message with Id: {message.Id}");
             return;
         }

@@ -14,7 +14,7 @@ class PartitionKeyTransportReceiveContextBehavior
     {
         context.Extensions.Set(new TableEntityPartitionKey("PartitionKeyValue"));
 
-        await next().ConfigureAwait(false);
+        await next();
     }
 }
 #endregion
@@ -27,7 +27,7 @@ class PartitionKeyIncomingLogicalMessageContextBehavior
     {
         context.Extensions.Set(new TableEntityPartitionKey("PartitionKeyValue"));
 
-        await next().ConfigureAwait(false);
+        await next();
     }
 }
 #endregion
@@ -57,7 +57,7 @@ class ContainerInfoTransportReceiveContextBehavior
             new TableInformation(
                 tableName: "tableName"));
 
-        await next().ConfigureAwait(false);
+        await next();
     }
 }
 
@@ -74,7 +74,7 @@ class ContainerInfoLogicalReceiveContextBehavior
             new TableInformation(
                 tableName: "tableName"));
 
-        await next().ConfigureAwait(false);
+        await next();
     }
 }
 
@@ -98,8 +98,7 @@ class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
             correlationProperty = new SagaCorrelationProperty("OrderId", provideOrderId.OrderId);
         }
 
-        await partitionKeyFromSagaId.SetPartitionKey<OrderSagaData>(context, correlationProperty)
-            .ConfigureAwait(false);
+        await partitionKeyFromSagaId.SetPartitionKey<OrderSagaData>(context, correlationProperty);
 
         Log.Debug($"Partition key: {context.Extensions.Get<TableEntityPartitionKey>().PartitionKey}");
 
@@ -113,7 +112,7 @@ class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
             Log.Debug($"Table name: {tableInformation.TableName}");
         }
 
-        await next().ConfigureAwait(false);
+        await next();
     }
 
     public class Registration : RegisterStep

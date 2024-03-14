@@ -22,7 +22,7 @@ class FeatureToggleBehavior :
     {
         if (toggles.All(toggle => toggle(context)))
         {
-            await next().ConfigureAwait(false);
+            await next();
         }
         else
         {

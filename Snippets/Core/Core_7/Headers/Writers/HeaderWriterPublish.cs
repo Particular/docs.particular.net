@@ -26,17 +26,13 @@
             endpointConfiguration.RegisterMessageMutator(new Mutator());
             var routing = endpointConfiguration.UseTransport<LearningTransport>().Routing();
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
             // give time for the subscription to happen
-            await Task.Delay(3000)
-                .ConfigureAwait(false);
-            await endpointInstance.Publish(new MessageToPublish())
-                .ConfigureAwait(false);
+            await Task.Delay(3000);
+            await endpointInstance.Publish(new MessageToPublish());
             ManualResetEvent.WaitOne();
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
+            await endpointInstance.Stop();
         }
 
         class MessageToPublish :

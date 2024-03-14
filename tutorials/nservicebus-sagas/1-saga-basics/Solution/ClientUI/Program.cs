@@ -19,14 +19,11 @@ namespace ClientUI
             var routing = transport.Routing();
             routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-            await RunLoop(endpointInstance)
-                .ConfigureAwait(false);
+            await RunLoop(endpointInstance);
 
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
+            await endpointInstance.Stop();
         }
 
         static ILog log = LogManager.GetLogger<Program>();
@@ -50,8 +47,7 @@ namespace ClientUI
 
                         // Send the command
                         log.Info($"Sending PlaceOrder command, OrderId = {command.OrderId}");
-                        await endpointInstance.Send(command)
-                            .ConfigureAwait(false);
+                        await endpointInstance.Send(command);
 
                         break;
 

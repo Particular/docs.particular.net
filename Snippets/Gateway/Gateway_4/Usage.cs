@@ -79,8 +79,7 @@ class Usage
             {
                 "SiteA",
                 "SiteB"
-            }, new MyMessage())
-            .ConfigureAwait(false);
+            }, new MyMessage());
 
         #endregion
     }

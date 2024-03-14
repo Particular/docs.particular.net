@@ -18,8 +18,7 @@ class HandlerTimerBehavior :
         var handlerName = context.MessageHandler.Instance.GetType().Name;
         using (logger.StartTimer(handlerName))
         {
-            await next()
-                .ConfigureAwait(false);
+            await next();
         }
     }
 }

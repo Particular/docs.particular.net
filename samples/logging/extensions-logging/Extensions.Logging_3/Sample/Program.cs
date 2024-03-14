@@ -41,14 +41,11 @@ class Program
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         var myMessage = new MyMessage();
-        await endpointInstance.SendLocal(myMessage)
-            .ConfigureAwait(false);
+        await endpointInstance.SendLocal(myMessage);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

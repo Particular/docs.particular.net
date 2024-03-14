@@ -31,8 +31,7 @@ public class Program
 
         SqlHelper.EnsureDatabaseExists(ConnectionString);
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press <enter> to send a message");
         Console.WriteLine("Press any other key to exit");
@@ -42,11 +41,9 @@ public class Program
             {
                 break;
             }
-            await PlaceOrder(endpointInstance)
-                .ConfigureAwait(false);
+            await PlaceOrder(endpointInstance);
         }
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 
     static async Task PlaceOrder(IEndpointInstance endpoint)
@@ -57,8 +54,7 @@ public class Program
         {
             OrderId = Guid.NewGuid()
         };
-        await endpoint.Send(order)
-            .ConfigureAwait(false);
+        await endpoint.Send(order);
 
         #endregion
 

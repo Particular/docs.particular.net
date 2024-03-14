@@ -29,8 +29,7 @@ class Program
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press <enter> to send a message");
         while (true)
         {
@@ -40,8 +39,7 @@ class Program
             var options = new SendOptions();
             options.SendToSites("SiteB");
             options.SetMessageId(id);
-            await endpointInstance.Send(message, options)
-                .ConfigureAwait(false);
+            await endpointInstance.Send(message, options);
         }
     }
 }

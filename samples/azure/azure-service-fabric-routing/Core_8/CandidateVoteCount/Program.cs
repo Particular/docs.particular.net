@@ -11,8 +11,7 @@ static class Program
         try
         {
            await ServiceRuntime.RegisterServiceAsync("CandidateVoteCountType",
-                context => new CandidateVoteCountService(context))
-                .ConfigureAwait(false);
+                context => new CandidateVoteCountService(context));
 
             ServiceEventSource.Current.ServiceTypeRegistered(Process.GetCurrentProcess().Id, typeof(CandidateVoteCountService).Name);
 

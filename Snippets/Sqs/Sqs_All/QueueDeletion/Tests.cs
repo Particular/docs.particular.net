@@ -27,12 +27,10 @@
                 creationTasks[10] = RetryCreateOnThrottle(client, "deleteprefix-10", TimeSpan.FromSeconds(10), 6);
                 creationTasks[11] = Task.Delay(TimeSpan.FromSeconds(60));
 
-                await Task.WhenAll(creationTasks)
-                    .ConfigureAwait(false);
+                await Task.WhenAll(creationTasks);
             }
 
-            await QueueDeletionUtils.DeleteAllQueues(queueNamePrefix: "DEV")
-                .ConfigureAwait(false);
+            await QueueDeletionUtils.DeleteAllQueues(queueNamePrefix: "DEV");
 
             Assert.IsTrue(await QueueExistenceUtils.Exists("deleteprefix-10"));
 
@@ -56,12 +54,10 @@
 
                 creationTasks[10] = Task.Delay(TimeSpan.FromSeconds(60));
 
-                await Task.WhenAll(creationTasks)
-                    .ConfigureAwait(false);
+                await Task.WhenAll(creationTasks);
             }
 
-            await QueueDeletionUtils.DeleteAllQueues()
-                .ConfigureAwait(false);
+            await QueueDeletionUtils.DeleteAllQueues();
 
             for (var i = 0; i < 10; i++)
             {
@@ -82,12 +78,10 @@
 
                 creationTasks[2000] = Task.Delay(TimeSpan.FromSeconds(60));
 
-                await Task.WhenAll(creationTasks)
-                    .ConfigureAwait(false);
+                await Task.WhenAll(creationTasks);
             }
 
-            await QueueDeletionUtils.DeleteAllQueues()
-                .ConfigureAwait(false);
+            await QueueDeletionUtils.DeleteAllQueues();
 
             for (var i = 0; i < 2000; i++)
             {
@@ -99,7 +93,7 @@
         {
             try
             {
-                await client.CreateQueueAsync(QueueNameHelper.GetSqsQueueName(queueName, queueNamePrefix)).ConfigureAwait(false);
+                await client.CreateQueueAsync(QueueNameHelper.GetSqsQueueName(queueName, queueNamePrefix));
             }
             catch (AmazonServiceException ex) when (ex.ErrorCode == "RequestThrottled")
             {
@@ -107,8 +101,8 @@
                 {
                     var attempts = TimeSpan.FromMilliseconds(Convert.ToInt32(delay.TotalMilliseconds * (retryAttempts + 1)));
                     Console.WriteLine($"Retry {queueName} {retryAttempts}/{maxRetryAttempts} with delay {attempts}.");
-                    await Task.Delay(attempts).ConfigureAwait(false);
-                    await RetryCreateOnThrottle(client, queueName, delay, maxRetryAttempts, retryAttempts: ++retryAttempts).ConfigureAwait(false);
+                    await Task.Delay(attempts);
+                    await RetryCreateOnThrottle(client, queueName, delay, maxRetryAttempts, retryAttempts: ++retryAttempts);
                 }
                 else
                 {
@@ -132,12 +126,9 @@
             var errorQueueName = $"mydeleteerror-{randomName}-powershell";
             var auditQueueName = $"mydeleteaudit-{randomName}-powershell";
 
-            await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod)
-                .ConfigureAwait(false);
-            await QueueCreationUtils.CreateQueue(errorQueueName)
-                .ConfigureAwait(false);
-            await QueueCreationUtils.CreateQueue(auditQueueName)
-                .ConfigureAwait(false);
+            await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod);
+            await QueueCreationUtils.CreateQueue(errorQueueName);
+            await QueueCreationUtils.CreateQueue(auditQueueName);
 
             try
             {
@@ -160,17 +151,13 @@
                     command.Invoke();
                 }
 
-                await AssertQueuesDeleted(endpointName, errorQueueName, auditQueueName, delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
+                await AssertQueuesDeleted(endpointName, errorQueueName, auditQueueName, delayedDeliveryMethod: delayedDeliveryMethod);
             }
             finally
             {
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(errorQueueName)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(auditQueueName)
-                    .ConfigureAwait(false);
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName);
+                await QueueDeletionUtils.DeleteQueue(auditQueueName);
             }
         }
 
@@ -185,24 +172,17 @@
             var errorQueueName = $"mydeleteerror-{randomName}";
             var auditQueueName = $"mydeleteaudit-{randomName}";
 
-            await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod)
-                .ConfigureAwait(false);
-            await QueueCreationUtils.CreateQueue(errorQueueName)
-                .ConfigureAwait(false);
-            await QueueCreationUtils.CreateQueue(auditQueueName)
-                .ConfigureAwait(false);
+            await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod);
+            await QueueCreationUtils.CreateQueue(errorQueueName);
+            await QueueCreationUtils.CreateQueue(auditQueueName);
 
 
-            await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod)
-                .ConfigureAwait(false);
-            await QueueDeletionUtils.DeleteQueue(errorQueueName)
-                .ConfigureAwait(false);
-            await QueueDeletionUtils.DeleteQueue(auditQueueName)
-                .ConfigureAwait(false);
+            await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, delayedDeliveryMethod: delayedDeliveryMethod);
+            await QueueDeletionUtils.DeleteQueue(errorQueueName);
+            await QueueDeletionUtils.DeleteQueue(auditQueueName);
 
 
-            await AssertQueuesDeleted(endpointName, errorQueueName, auditQueueName)
-                .ConfigureAwait(false);
+            await AssertQueuesDeleted(endpointName, errorQueueName, auditQueueName);
         }
 
         [Test]
@@ -216,12 +196,9 @@
             var errorQueueName = $"mydeleteprefixerror-{randomName}-powershell";
             var auditQueueName = $"mydeleteprefixaudit-{randomName}-powershell";
 
-            await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod)
-                .ConfigureAwait(false);
-            await QueueCreationUtils.CreateQueue(errorQueueName, queueNamePrefix: "DEV")
-                .ConfigureAwait(false);
-            await QueueCreationUtils.CreateQueue(auditQueueName, queueNamePrefix: "DEV")
-                .ConfigureAwait(false);
+            await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod);
+            await QueueCreationUtils.CreateQueue(errorQueueName, queueNamePrefix: "DEV");
+            await QueueCreationUtils.CreateQueue(auditQueueName, queueNamePrefix: "DEV");
 
             try
             {
@@ -247,17 +224,13 @@
                     command.Invoke();
                 }
 
-                await AssertQueuesDeleted(endpointName, errorQueueName, auditQueueName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
+                await AssertQueuesDeleted(endpointName, errorQueueName, auditQueueName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod);
             }
             finally
             {
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(errorQueueName, queueNamePrefix: "DEV")
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(auditQueueName, queueNamePrefix: "DEV")
-                    .ConfigureAwait(false);
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName, queueNamePrefix: "DEV");
+                await QueueDeletionUtils.DeleteQueue(auditQueueName, queueNamePrefix: "DEV");
             }
         }
 
@@ -272,24 +245,17 @@
             var errorQueueName = $"mydeleteprefixerror-{randomName}";
             var auditQueueName = $"mydeleteprefixaudit-{randomName}";
 
-            await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod)
-                .ConfigureAwait(false);
-            await QueueCreationUtils.CreateQueue(errorQueueName, queueNamePrefix: "DEV")
-                .ConfigureAwait(false);
-            await QueueCreationUtils.CreateQueue(auditQueueName, queueNamePrefix: "DEV")
-                .ConfigureAwait(false);
+            await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod);
+            await QueueCreationUtils.CreateQueue(errorQueueName, queueNamePrefix: "DEV");
+            await QueueCreationUtils.CreateQueue(auditQueueName, queueNamePrefix: "DEV");
 
 
-            await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod)
-                .ConfigureAwait(false);
-            await QueueDeletionUtils.DeleteQueue(errorQueueName, queueNamePrefix: "DEV")
-                .ConfigureAwait(false);
-            await QueueDeletionUtils.DeleteQueue(auditQueueName, queueNamePrefix: "DEV")
-                .ConfigureAwait(false);
+            await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod);
+            await QueueDeletionUtils.DeleteQueue(errorQueueName, queueNamePrefix: "DEV");
+            await QueueDeletionUtils.DeleteQueue(auditQueueName, queueNamePrefix: "DEV");
 
 
-            await AssertQueuesDeleted(endpointName, errorQueueName, auditQueueName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod)
-                .ConfigureAwait(false);
+            await AssertQueuesDeleted(endpointName, errorQueueName, auditQueueName, queueNamePrefix: "DEV", delayedDeliveryMethod: delayedDeliveryMethod);
         }
 
         [Test]
@@ -303,12 +269,9 @@
             var errorQueueName = $"mydeleteretrieserror-{randomName}-powershell";
             var auditQueueName = $"mydeleteretriesaudit-{randomName}-powershell";
 
-            await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod)
-                .ConfigureAwait(false);
-            await QueueCreationUtils.CreateQueue(errorQueueName)
-                .ConfigureAwait(false);
-            await QueueCreationUtils.CreateQueue(auditQueueName)
-                .ConfigureAwait(false);
+            await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod);
+            await QueueCreationUtils.CreateQueue(errorQueueName);
+            await QueueCreationUtils.CreateQueue(auditQueueName);
 
             var scriptPath = Path.Combine(TestContext.CurrentContext.TestDirectory, "QueueDeletion/QueueDeletion.ps1");
             using (var powerShell = PowerShell.Create())
@@ -330,8 +293,7 @@
                 command.Invoke();
             }
 
-            await AssertQueuesDeleted(endpointName, errorQueueName, auditQueueName, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod)
-                .ConfigureAwait(false);
+            await AssertQueuesDeleted(endpointName, errorQueueName, auditQueueName, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod);
         }
 
         [Test]
@@ -345,24 +307,17 @@
             var errorQueueName = $"mydeleteretrieserror-{randomName}";
             var auditQueueName = $"mydeleteretriesaudit-{randomName}";
 
-            await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod)
-                .ConfigureAwait(false);
-            await QueueCreationUtils.CreateQueue(errorQueueName)
-                .ConfigureAwait(false);
-            await QueueCreationUtils.CreateQueue(auditQueueName)
-                .ConfigureAwait(false);
+            await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod);
+            await QueueCreationUtils.CreateQueue(errorQueueName);
+            await QueueCreationUtils.CreateQueue(auditQueueName);
 
 
-            await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod)
-                .ConfigureAwait(false);
-            await QueueDeletionUtils.DeleteQueue(errorQueueName)
-                .ConfigureAwait(false);
-            await QueueDeletionUtils.DeleteQueue(auditQueueName)
-                .ConfigureAwait(false);
+            await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod);
+            await QueueDeletionUtils.DeleteQueue(errorQueueName);
+            await QueueDeletionUtils.DeleteQueue(auditQueueName);
 
 
-            await AssertQueuesDeleted(endpointName, errorQueueName, auditQueueName, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod)
-                .ConfigureAwait(false);
+            await AssertQueuesDeleted(endpointName, errorQueueName, auditQueueName, includeRetries: true, delayedDeliveryMethod: delayedDeliveryMethod);
         }
 
         static async Task AssertQueuesDeleted(string endpointName, string errorQueueName, string auditQueueName, string queueNamePrefix = null, bool includeRetries = false, string delayedDeliveryMethod = "native")

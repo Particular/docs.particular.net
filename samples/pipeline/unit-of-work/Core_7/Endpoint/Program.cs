@@ -19,8 +19,7 @@ class Program
         pipeline.Register(new MyUowBehavior(sessionProvider), "Manages the session");
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         var key = default(ConsoleKeyInfo);
 
@@ -31,11 +30,9 @@ class Program
 
             var options = new SendOptions();
             options.RouteToThisEndpoint();
-            await endpointInstance.Send(new MyMessage(), options)
-                .ConfigureAwait(false);
+            await endpointInstance.Send(new MyMessage(), options);
         }
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

@@ -39,15 +39,13 @@
             endpointConfiguration.UseTransport<LearningTransport>();
             endpointConfiguration.RegisterMessageMutator(new Mutator());
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration);
             var messageToSend = new MessageToSend
             {
                 EncryptedProperty1 = "String 1",
                 EncryptedProperty2 = "String 2"
             };
-            await endpointInstance.SendLocal(messageToSend)
-                .ConfigureAwait(false);
+            await endpointInstance.SendLocal(messageToSend);
             ManualResetEvent.WaitOne();
         }
 

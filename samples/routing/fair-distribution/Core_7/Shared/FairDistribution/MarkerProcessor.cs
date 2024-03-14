@@ -19,8 +19,7 @@ class MarkerProcessor :
     #region ProcessMarkers
     public override async Task Invoke(ITransportReceiveContext context, Func<Task> next, Func<IRoutingContext, Task> fork)
     {
-        await next()
-            .ConfigureAwait(false);
+        await next();
 
         var headers = context.Message.Headers;
         if (!headers.TryGetValue("NServiceBus.FlowControl.Marker", out var markerString) ||
@@ -37,8 +36,7 @@ class MarkerProcessor :
             updateValueFactory: (k, v) => v.OnNewMarker(sessionId, marker));
         if (tracker.ShouldAcknowledge(maxAckBatchSize))
         {
-            await SendAcknowledgement(context, fork, tracker.Marker, controlAddress, sessionId)
-                .ConfigureAwait(false);
+            await SendAcknowledgement(context, fork, tracker.Marker, controlAddress, sessionId);
         }
     }
     #endregion

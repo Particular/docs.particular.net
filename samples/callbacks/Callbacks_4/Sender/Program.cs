@@ -9,14 +9,13 @@ class Program
     {
         Console.Title = "Samples.Callbacks.Sender";
         var endpointConfiguration = new EndpointConfiguration("Samples.Callbacks.Sender");
-        endpointConfiguration.UsePersistence<LearningPersistence>();     
+        endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.MakeInstanceUniquelyAddressable("1");
         endpointConfiguration.EnableCallbacks();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press 'E' to send a message with an enum return");
         Console.WriteLine("Press 'I' to send a message with an int return");
         Console.WriteLine("Press 'O' to send a message with an object return");
@@ -29,26 +28,22 @@ class Program
 
             if (key.Key == ConsoleKey.E)
             {
-                await SendEnumMessage(endpointInstance)
-                    .ConfigureAwait(false);
+                await SendEnumMessage(endpointInstance);
                 continue;
             }
             if (key.Key == ConsoleKey.I)
             {
-                await SendIntMessage(endpointInstance)
-                    .ConfigureAwait(false);
+                await SendIntMessage(endpointInstance);
                 continue;
             }
             if (key.Key == ConsoleKey.O)
             {
-                await SendObjectMessage(endpointInstance)
-                    .ConfigureAwait(false);
+                await SendObjectMessage(endpointInstance);
                 continue;
             }
             break;
         }
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 
 
@@ -61,8 +56,7 @@ class Program
         var message = new EnumMessage();
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        var status = await endpointInstance.Request<Status>(message, sendOptions)
-            .ConfigureAwait(false);
+        var status = await endpointInstance.Request<Status>(message, sendOptions);
         Console.WriteLine($"Callback received with status:{status}");
 
         #endregion
@@ -77,8 +71,7 @@ class Program
         var message = new IntMessage();
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        var response = await endpointInstance.Request<int>(message, sendOptions)
-            .ConfigureAwait(false);
+        var response = await endpointInstance.Request<int>(message, sendOptions);
         Console.WriteLine($"Callback received with response:{response}");
 
         #endregion
@@ -93,8 +86,7 @@ class Program
         var message = new ObjectMessage();
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.Callbacks.Receiver");
-        var response = await endpointInstance.Request<ObjectResponseMessage>(message, sendOptions)
-            .ConfigureAwait(false);
+        var response = await endpointInstance.Request<ObjectResponseMessage>(message, sendOptions);
         Console.WriteLine($"Callback received with response property value:{response.Property}");
 
         #endregion

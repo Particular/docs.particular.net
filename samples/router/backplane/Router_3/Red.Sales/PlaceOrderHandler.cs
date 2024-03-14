@@ -13,7 +13,7 @@ class PlaceOrderHandler :
         {
             OrderId = message.OrderId,
             Value = message.Value
-        }).ConfigureAwait(false);
+        });
 
         await context.Reply(new PlaceOrderResponse
         {

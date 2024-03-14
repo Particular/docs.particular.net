@@ -23,13 +23,11 @@ class Program
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         transport.Topology = TopicTopology.Single("bundle-to-publish-to");
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

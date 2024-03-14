@@ -28,8 +28,7 @@ public class Runner
                         ListPrice = 4,
                         Image = new byte[1024 * 1024 * 7]
                     };
-                    await endpointInstance.SendLocal(smallMessage)
-                        .ConfigureAwait(false);
+                    await endpointInstance.SendLocal(smallMessage);
 
                     #endregion
 
@@ -46,8 +45,7 @@ public class Runner
                             ListPrice = 15,
                             Image = new byte[1024 * 1024 * 7]
                         };
-                        await endpointInstance.SendLocal(largeMessage)
-                            .ConfigureAwait(false);
+                        await endpointInstance.SendLocal(largeMessage);
 
                         #endregion
                     }

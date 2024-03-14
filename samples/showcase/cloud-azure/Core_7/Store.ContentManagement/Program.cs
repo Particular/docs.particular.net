@@ -36,16 +36,13 @@ public class Program
             });
 
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         while (!cancellationToken.IsCancellationRequested)
         {
-            await Task.Delay(3000, cancellationToken)
-                .ConfigureAwait(false);
+            await Task.Delay(3000, cancellationToken);
         }
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

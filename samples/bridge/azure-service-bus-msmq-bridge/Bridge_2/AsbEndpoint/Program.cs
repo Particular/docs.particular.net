@@ -26,8 +26,7 @@ class Program
         var sendOptions = new SendOptions();
         sendOptions.SetDestination("Samples.MessagingBridge.MsmqEndpoint");
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press Enter to send a command");
         Console.WriteLine("Press any other key to exit");
@@ -41,11 +40,10 @@ class Program
             }
 
             var prop = new string(Enumerable.Range(0, 3).Select(i => letters[random.Next(letters.Length)]).ToArray());
-            await endpointInstance.Send(new MyCommand { Property = prop }, sendOptions).ConfigureAwait(false);
+            await endpointInstance.Send(new MyCommand { Property = prop }, sendOptions);
             Console.WriteLine($"\nCommand with value '{prop}' sent");
         }
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

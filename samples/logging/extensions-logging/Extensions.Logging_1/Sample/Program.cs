@@ -29,7 +29,7 @@ class Program
         #region MicrosoftExtensionsLoggingNLog
 
         Microsoft.Extensions.Logging.ILoggerFactory extensionsLoggerFactory = new NLogLoggerFactory();
-        
+
         NServiceBus.Logging.ILoggerFactory nservicebusLoggerFactory = new ExtensionsLoggerFactory(loggerFactory: extensionsLoggerFactory);
 
         NServiceBus.Logging.LogManager.UseFactory(loggerFactory:nservicebusLoggerFactory);
@@ -41,14 +41,11 @@ class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         var myMessage = new MyMessage();
-        await endpointInstance.SendLocal(myMessage)
-            .ConfigureAwait(false);
+        await endpointInstance.SendLocal(myMessage);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

@@ -23,20 +23,16 @@ public class CommandSender
             switch (key.Key)
             {
                 case ConsoleKey.C:
-                    await SendCommand(endpointInstance)
-                        .ConfigureAwait(false);
+                    await SendCommand(endpointInstance);
                     continue;
                 case ConsoleKey.R:
-                    await SendRequest(endpointInstance)
-                        .ConfigureAwait(false);
+                    await SendRequest(endpointInstance);
                     continue;
                 case ConsoleKey.D:
-                    await Data(endpointInstance)
-                        .ConfigureAwait(false);
+                    await Data(endpointInstance);
                     continue;
                 case ConsoleKey.X:
-                    await Expiration(endpointInstance)
-                        .ConfigureAwait(false);
+                    await Expiration(endpointInstance);
                     continue;
             }
             return;

@@ -16,8 +16,7 @@ partial class Program
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         #region ScheduleUsingTimer
         var interval = TimeSpan.FromSeconds(5);
@@ -42,7 +41,6 @@ partial class Program
 
         timer.Dispose();
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

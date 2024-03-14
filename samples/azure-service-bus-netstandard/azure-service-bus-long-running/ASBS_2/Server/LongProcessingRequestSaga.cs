@@ -32,8 +32,7 @@ public class LongProcessingRequestSaga :
         {
             Id = message.Id
         };
-        await RequestTimeout(context, timeoutToBeInvokedAt, timeoutMessage)
-            .ConfigureAwait(false);
+        await RequestTimeout(context, timeoutToBeInvokedAt, timeoutMessage);
 
         #endregion
 
@@ -49,15 +48,13 @@ public class LongProcessingRequestSaga :
         // sending a message to a handler instead and not handled in the saga.
 
         var request = new RequestRecord(message.Id, Status.Pending, message.EstimatedProcessingTime);
-        await table.ExecuteAsync(TableOperation.Insert(request))
-            .ConfigureAwait(false);
+        await table.ExecuteAsync(TableOperation.Insert(request));
 
         var processingReply = new LongProcessingReply
         {
             Id = message.Id
         };
-        await context.Reply(processingReply)
-            .ConfigureAwait(false);
+        await context.Reply(processingReply);
 
         #endregion
 

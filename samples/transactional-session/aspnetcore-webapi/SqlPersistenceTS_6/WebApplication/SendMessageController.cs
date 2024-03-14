@@ -25,8 +25,7 @@ public class SendMessageController : Controller
         await dataContext.MyEntities.AddAsync(new MyEntity { Id = id, Processed = false });
 
         var message = new MyMessage { EntityId = id };
-        await messageSession.SendLocal(message)
-            .ConfigureAwait(false);
+        await messageSession.SendLocal(message);
 
         return $"Message with entity ID '{id}' sent to endpoint";
     }

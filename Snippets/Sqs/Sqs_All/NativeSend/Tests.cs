@@ -31,7 +31,7 @@
             IEndpointInstance endpoint = null;
             try
             {
-                endpoint = await StartEndpoint(state, endpointName, errorQueueName).ConfigureAwait(false);
+                endpoint = await StartEndpoint(state, endpointName, errorQueueName);
 
                 var message = @"{ Property: 'Value' }";
 
@@ -43,23 +43,20 @@
 
                 using (var client = ClientFactory.CreateSqsClient())
                 {
-                    await NativeSend.SendMessage(client, endpointName, message, headers)
-                        .ConfigureAwait(false);
+                    await NativeSend.SendMessage(client, endpointName, message, headers);
                 }
 
-                Assert.AreEqual("Value", await state.Signal.Task.ConfigureAwait(false));
+                Assert.AreEqual("Value", await state.Signal.Task);
             }
             finally
             {
                 if (endpoint != null)
                 {
-                    await endpoint.Stop().ConfigureAwait(false);
+                    await endpoint.Stop();
                 }
 
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(errorQueueName)
-                    .ConfigureAwait(false);
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName);
             }
         }
 
@@ -74,7 +71,7 @@
             IEndpointInstance endpoint = null;
             try
             {
-                endpoint = await StartEndpoint(state, endpointName, errorQueueName).ConfigureAwait(false);
+                endpoint = await StartEndpoint(state, endpointName, errorQueueName);
 
                 var message = @"{ Property: 'Value' }";
 
@@ -96,19 +93,17 @@
                     command.Invoke();
                 }
 
-                Assert.AreEqual("Value", await state.Signal.Task.ConfigureAwait(false));
+                Assert.AreEqual("Value", await state.Signal.Task);
             }
             finally
             {
                 if (endpoint != null)
                 {
-                    await endpoint.Stop().ConfigureAwait(false);
+                    await endpoint.Stop();
                 }
 
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(errorQueueName)
-                    .ConfigureAwait(false);
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName);
             }
         }
 
@@ -118,12 +113,12 @@
             var randomName = Path.GetFileNameWithoutExtension(Path.GetRandomFileName());
             var endpointName = $"sendlarge-{randomName}";
             var errorQueueName = $"sendlarge-{randomName}-error";
-            
+
             var state = new State();
             IEndpointInstance endpoint = null;
             try
             {
-                endpoint = await StartEndpoint(state, endpointName, errorQueueName).ConfigureAwait(false);
+                endpoint = await StartEndpoint(state, endpointName, errorQueueName);
 
                 var message = @"{ Property: 'Value' }";
 
@@ -136,23 +131,20 @@
                 using(var s3Client = ClientFactory.CreateS3Client())
                 using (var client = ClientFactory.CreateSqsClient())
                 {
-                    await NativeSend.SendLargeMessage(client, s3Client, endpointName, "test", SqsTransportConfigurationExtensions.S3BucketName, message, headers)
-                        .ConfigureAwait(false);
+                    await NativeSend.SendLargeMessage(client, s3Client, endpointName, "test", SqsTransportConfigurationExtensions.S3BucketName, message, headers);
                 }
 
-                Assert.AreEqual("Value", await state.Signal.Task.ConfigureAwait(false));
+                Assert.AreEqual("Value", await state.Signal.Task);
             }
             finally
             {
                 if (endpoint != null)
                 {
-                    await endpoint.Stop().ConfigureAwait(false);
+                    await endpoint.Stop();
                 }
 
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(errorQueueName)
-                    .ConfigureAwait(false);
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName);
             }
         }
 
@@ -167,7 +159,7 @@
             IEndpointInstance endpoint = null;
             try
             {
-                endpoint = await StartEndpoint(state, endpointName, errorQueueName).ConfigureAwait(false);
+                endpoint = await StartEndpoint(state, endpointName, errorQueueName);
 
                 var message = @"{ Property: 'Value' }";
 
@@ -191,19 +183,17 @@
                     command.Invoke();
                 }
 
-                Assert.AreEqual("Value", await state.Signal.Task.ConfigureAwait(false));
+                Assert.AreEqual("Value", await state.Signal.Task);
             }
             finally
             {
                 if (endpoint != null)
                 {
-                    await endpoint.Stop().ConfigureAwait(false);
+                    await endpoint.Stop();
                 }
 
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(errorQueueName)
-                    .ConfigureAwait(false);
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName);
             }
         }
 

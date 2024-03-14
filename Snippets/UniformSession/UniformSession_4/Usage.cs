@@ -35,8 +35,7 @@ class MyController :
     [HttpPost]
     public async Task<IActionResult> Create([FromBody] Input input)
     {
-        await component.Do()
-            .ConfigureAwait(false);
+        await component.Do();
 
         return Ok();
     }

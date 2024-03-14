@@ -11,8 +11,7 @@ class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press enter to send a message");
         Console.WriteLine("Press any key to exit");
 
@@ -28,12 +27,10 @@ class Program
             {
                 Id = id
             };
-            await endpointInstance.Send("Samples.CustomRecoverability.Server", myMessage)
-                .ConfigureAwait(false);
+            await endpointInstance.Send("Samples.CustomRecoverability.Server", myMessage);
 
             Console.WriteLine($"Sent a message with id: {id:N}");
         }
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

@@ -19,8 +19,7 @@ class CommandSender
             switch (key.Key)
             {
                 case ConsoleKey.E:
-                    await PublishEvent(endpointInstance)
-                        .ConfigureAwait(false);
+                    await PublishEvent(endpointInstance);
                     continue;
             }
             return;

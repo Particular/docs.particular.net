@@ -29,8 +29,7 @@
 
                 try
                 {
-                    var createQueueResponse = await client.CreateQueueAsync(sqsRequest)
-                        .ConfigureAwait(false);
+                    var createQueueResponse = await client.CreateQueueAsync(sqsRequest);
                 }
                 catch (QueueNameExistsException)
                 {

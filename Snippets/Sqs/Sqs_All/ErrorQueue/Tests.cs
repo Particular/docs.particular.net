@@ -32,31 +32,28 @@
             IEndpointInstance endpoint = null;
             try
             {
-                endpoint = await StartEndpoint(state, endpointName, errorQueueName).ConfigureAwait(false);
+                endpoint = await StartEndpoint(state, endpointName, errorQueueName);
                 var messageToSend = new MessageToSend();
-                await endpoint.SendLocal(messageToSend).ConfigureAwait(false);
-                var messageId = await GetMessageId(errorQueueName).ConfigureAwait(false);
+                await endpoint.SendLocal(messageToSend);
+                var messageId = await GetMessageId(errorQueueName);
 
                 state.ShouldHandlerThrow = false;
 
                 await ErrorQueue.ReturnMessageToSourceQueue(
                         errorQueueName: errorQueueName,
-                        messageId: messageId)
-                    .ConfigureAwait(false);
+                        messageId: messageId);
 
-                Assert.IsTrue(await state.Signal.Task.ConfigureAwait(false));
+                Assert.IsTrue(await state.Signal.Task);
             }
             finally
             {
                 if (endpoint != null)
                 {
-                    await endpoint.Stop().ConfigureAwait(false);
+                    await endpoint.Stop();
                 }
 
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true)
-                    .ConfigureAwait(false);
-                await QueueDeletionUtils.DeleteQueue(errorQueueName)
-                    .ConfigureAwait(false);
+                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true);
+                await QueueDeletionUtils.DeleteQueue(errorQueueName);
             }
         }
 
@@ -99,8 +96,7 @@
             var path = QueueNameHelper.GetSqsQueueName($"{errorQueueName}");
             using (var client = ClientFactory.CreateSqsClient())
             {
-                var getQueueUrlResponse = await client.GetQueueUrlAsync(path)
-                    .ConfigureAwait(false);
+                var getQueueUrlResponse = await client.GetQueueUrlAsync(path);
 
                 var messages = await client.ReceiveMessageAsync(
                         new ReceiveMessageRequest(getQueueUrlResponse.QueueUrl)
@@ -108,8 +104,7 @@
                             MaxNumberOfMessages = 1,
                             WaitTimeSeconds = 20,
                             VisibilityTimeout = 0, // message needs to be immediately visible again to be seen by the ReturnToSourceQueue algorithm
-                        })
-                    .ConfigureAwait(false);
+                        });
 
                 var message = messages.Messages.Single();
                 return message.MessageId;

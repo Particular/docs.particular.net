@@ -10,8 +10,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.RavenDB.Client");
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press 'enter' to send a StartOrder messages");
         Console.WriteLine("Press any other key to exit");
@@ -31,12 +30,10 @@ class Program
             {
                 OrderId = orderId
             };
-            await endpointInstance.Send("Samples.RavenDB.Server", startOrder)
-                .ConfigureAwait(false);
+            await endpointInstance.Send("Samples.RavenDB.Server", startOrder);
             Console.WriteLine($"StartOrder Message sent with OrderId {orderId}");
         }
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

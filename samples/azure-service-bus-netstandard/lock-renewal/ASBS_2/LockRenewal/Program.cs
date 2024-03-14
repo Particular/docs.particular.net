@@ -24,25 +24,25 @@ class Program
         var transport = endpointConfiguration.UseTransport<AzureServiceBusTransport>().ConnectionString(connectionString);
         transport.PrefetchCount(0);
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-        await OverrideQueueLockDuration("Samples.ASB.SendReply.LockRenewal", connectionString, TimeSpan.FromSeconds(30)).ConfigureAwait(false);
+        await OverrideQueueLockDuration("Samples.ASB.SendReply.LockRenewal", connectionString, TimeSpan.FromSeconds(30));
 
         await endpointInstance.SendLocal(new LongProcessingMessage { ProcessingDuration = TimeSpan.FromSeconds(45) });
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
 
-        await endpointInstance.Stop().ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 
     static async Task OverrideQueueLockDuration(string queuePath, string connectionString, TimeSpan lockDuration)
     {
         var managementClient = new ServiceBusAdministrationClient(connectionString);
-        var queueDescription = await managementClient.GetQueueAsync(queuePath).ConfigureAwait(false);
+        var queueDescription = await managementClient.GetQueueAsync(queuePath);
         queueDescription.Value.LockDuration = lockDuration;
 
-        await managementClient.UpdateQueueAsync(queueDescription.Value).ConfigureAwait(false);
+        await managementClient.UpdateQueueAsync(queueDescription.Value);
     }
 
     #region override-transaction-manager-timeout-net-core

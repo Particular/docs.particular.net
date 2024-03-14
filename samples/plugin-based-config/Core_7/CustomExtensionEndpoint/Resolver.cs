@@ -39,8 +39,7 @@ public static class Resolver
             foreach (var type in assembly.GetImplementationTypes<T>())
             {
                 var instance = (T)Activator.CreateInstance(type);
-                await action(instance)
-                    .ConfigureAwait(false);
+                await action(instance);
             }
         }
     }

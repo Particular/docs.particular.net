@@ -21,8 +21,7 @@ class Program
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         var key = default(ConsoleKeyInfo);
 
@@ -32,11 +31,9 @@ class Program
             key = Console.ReadKey();
 
             var message = new MyMessage { Contents = Guid.NewGuid().ToString() };
-            await endpointInstance.Send(message)
-                .ConfigureAwait(false);
+            await endpointInstance.Send(message);
         }
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

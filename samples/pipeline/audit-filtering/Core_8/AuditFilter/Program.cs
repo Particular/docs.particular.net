@@ -31,8 +31,7 @@ class Program
             behavior: typeof(AuditFilterContextBehavior),
             description: "adds a shared state for the rules and filter behaviors");
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         #endregion
 
@@ -40,19 +39,16 @@ class Program
         {
             Content = "See you in the audit queue!"
         };
-        await endpointInstance.SendLocal(auditThisMessage)
-            .ConfigureAwait(false);
+        await endpointInstance.SendLocal(auditThisMessage);
 
         var doNotAuditThisMessage = new DoNotAuditThisMessage
         {
             Content = "Don't look for me!"
         };
-        await endpointInstance.SendLocal(doNotAuditThisMessage)
-            .ConfigureAwait(false);
+        await endpointInstance.SendLocal(doNotAuditThisMessage);
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

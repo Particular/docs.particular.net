@@ -31,8 +31,7 @@
             Assert.ThrowsAsync<OperationCanceledException>(
                 @delegate: async () =>
                 {
-                    await session.Request<int>(request, tokenSource.Token)
-                        .ConfigureAwait(false);
+                    await session.Request<int>(request, tokenSource.Token);
                 });
 
             #endregion

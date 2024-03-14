@@ -21,8 +21,7 @@ class Program
 
         #endregion
 
-        var endpoint = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpoint = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Endpoint Started");
         Console.WriteLine("Press [d] to send a message to the Dead Letter Queue");
@@ -34,7 +33,6 @@ class Program
             Console.WriteLine("Sent message to Dead Letter Queue");
         }
 
-        await endpoint.Stop()
-            .ConfigureAwait(false);
+        await endpoint.Stop();
     }
 }

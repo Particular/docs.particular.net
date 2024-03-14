@@ -13,7 +13,7 @@ class Program
 
         endpointConfiguration.ReportCustomChecksTo("Particular.ServiceControl");
 
-        await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
+        await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();

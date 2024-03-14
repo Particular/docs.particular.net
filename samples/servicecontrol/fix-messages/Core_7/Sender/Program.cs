@@ -11,8 +11,7 @@ class Program
         var routing = endpointConfiguration.UseTransport<LearningTransport>().Routing();
         routing.RouteToEndpoint(typeof(SimpleMessage), "FixMalformedMessages.Receiver");
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press 'Enter' to send a new message. Press any other key to finish.");
         while (true)
@@ -30,14 +29,12 @@ class Program
             {
                 Id = guid.ToString().ToLowerInvariant()
             };
-            await endpointInstance.Send(simpleMessage)
-                .ConfigureAwait(false);
+            await endpointInstance.Send(simpleMessage);
 
             Console.WriteLine($"Sent a new message with Id = {guid}.");
 
             Console.WriteLine("Press 'Enter' to send a new message. Press any other key to finish.");
         }
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

@@ -17,11 +17,9 @@ class DispatchNotificationBehavior :
 
     public override async Task Invoke(IDispatchContext context, Func<Task> next)
     {
-        await next()
-            .ConfigureAwait(false);
+        await next();
         var tasks = watches.Select(watch => watch.Notify(context.Operations));
-        await Task.WhenAll(tasks)
-            .ConfigureAwait(false);
+        await Task.WhenAll(tasks);
     }
 }
 #endregion

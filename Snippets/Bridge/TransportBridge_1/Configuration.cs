@@ -43,7 +43,7 @@
                     // more configuration...
                 })
                 .Build()
-                .RunAsync().ConfigureAwait(false);
+                .RunAsync();
 
             #endregion
         }
@@ -67,7 +67,7 @@
                     bridgeConfiguration.AddTransport(asb);
                 })
                 .Build()
-                .RunAsync().ConfigureAwait(false);
+                .RunAsync();
 
             #endregion
         }
@@ -98,7 +98,7 @@
             invoicing.RegisterPublisher("CreditApproved, CreditScoring.Messages, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null", "Sales");
             // Type.AssemblyQualifiedName Property but trimmed without Culture and PublicKeyToken as these are ignored by the message driven pub/sub feature
             invoicing.RegisterPublisher("CreditApproved, CreditScoring.Messages, Version=1.0.0.0", "Sales");
-            
+
 
             #endregion
         }

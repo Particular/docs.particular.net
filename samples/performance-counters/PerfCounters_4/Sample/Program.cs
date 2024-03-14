@@ -18,8 +18,7 @@ class Program
         performanceCounters.EnableSLAPerformanceCounters(TimeSpan.FromSeconds(100));
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press enter to send 10 messages with random sleep");
         Console.WriteLine("Press any key to exit");
 
@@ -35,11 +34,9 @@ class Program
             for (var i = 0; i < 10; i++)
             {
                 var myMessage = new MyMessage();
-                await endpointInstance.SendLocal(myMessage)
-                    .ConfigureAwait(false);
+                await endpointInstance.SendLocal(myMessage);
             }
         }
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

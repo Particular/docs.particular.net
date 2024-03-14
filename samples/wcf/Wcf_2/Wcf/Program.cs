@@ -36,8 +36,7 @@ class Program
 
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press <enter> to send a message");
         Console.WriteLine("Press <escape> to send a message which will time out");
         Console.WriteLine("Press any key to exit");
@@ -81,8 +80,7 @@ class Program
                 {
                     Info = key.Key == ConsoleKey.Enter ? "Hello from handler" : "Cancel"
                 };
-                var response = await pipeProxy.Process(request)
-                    .ConfigureAwait(false);
+                var response = await pipeProxy.Process(request);
 
                 #endregion
 
@@ -93,7 +91,6 @@ class Program
                 Console.Error.WriteLine($"Request failed due to: '{faultException.Message}'");
             }
         }
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

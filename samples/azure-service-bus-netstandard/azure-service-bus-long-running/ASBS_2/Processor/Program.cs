@@ -20,20 +20,16 @@ class Program
 
         endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         var processor = new Processor();
 
-        await processor.Start(endpointInstance)
-            .ConfigureAwait(false);
+        await processor.Start(endpointInstance);
 
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
 
-        await processor.Stop()
-            .ConfigureAwait(false);
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await processor.Stop();
+        await endpointInstance.Stop();
     }
 }

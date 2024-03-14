@@ -44,8 +44,7 @@ public class LoggingTests
     {
         var handler = new MyHandlerWithLogging();
 
-        await handler.Handle(new MyRequest(), new TestableMessageHandlerContext())
-            .ConfigureAwait(false);
+        await handler.Handle(new MyRequest(), new TestableMessageHandlerContext());
 
         StringAssert.Contains("Some log message", LoggingSetupFixture.LogStatements);
     }

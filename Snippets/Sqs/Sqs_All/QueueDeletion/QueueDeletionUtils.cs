@@ -17,10 +17,8 @@
                 using (var client = ClientFactory.CreateSqsClient())
                 {
                     var sqsQueueName = QueueNameHelper.GetSqsQueueName(queueName, queueNamePrefix);
-                    var queueUrlResponse = await client.GetQueueUrlAsync(sqsQueueName)
-                        .ConfigureAwait(false);
-                    await client.DeleteQueueAsync(queueUrlResponse.QueueUrl)
-                        .ConfigureAwait(false);
+                    var queueUrlResponse = await client.GetQueueUrlAsync(sqsQueueName);
+                    await client.DeleteQueueAsync(queueUrlResponse.QueueUrl);
                 }
             }
             catch (QueueDoesNotExistException)
@@ -36,15 +34,13 @@
         {
             using (var client = ClientFactory.CreateSqsClient())
             {
-                await DeleteQueues(client, queueNamePrefix)
-                    .ConfigureAwait(false);
+                await DeleteQueues(client, queueNamePrefix);
             }
         }
 
         static async Task DeleteQueues(IAmazonSQS client, string queueNamePrefix = null)
         {
-            var queuesToDelete = await client.ListQueuesAsync(queueNamePrefix)
-                .ConfigureAwait(false);
+            var queuesToDelete = await client.ListQueuesAsync(queueNamePrefix);
             var numberOfQueuesFound = queuesToDelete.QueueUrls.Count;
             var deletionTasks = new Task[numberOfQueuesFound + 1];
 
@@ -56,13 +52,11 @@
             // queue deletion can take up to 60 seconds
             deletionTasks[numberOfQueuesFound] = numberOfQueuesFound > 0 ? Task.Delay(TimeSpan.FromSeconds(60)) : Task.CompletedTask;
 
-            await Task.WhenAll(deletionTasks)
-                .ConfigureAwait(false);
+            await Task.WhenAll(deletionTasks);
 
             if (numberOfQueuesFound == 1000)
             {
-                await DeleteQueues(client)
-                    .ConfigureAwait(false);
+                await DeleteQueues(client);
             }
         }
 
@@ -70,7 +64,7 @@
         {
             try
             {
-                await client.DeleteQueueAsync(queueUrl).ConfigureAwait(false);
+                await client.DeleteQueueAsync(queueUrl);
             }
             catch (AmazonServiceException ex) when (ex.ErrorCode == "AWS.SimpleQueueService.NonExistentQueue")
             {
@@ -82,8 +76,8 @@
                 {
                     var attempts = TimeSpan.FromMilliseconds(Convert.ToInt32(delay.TotalMilliseconds * (retryAttempts + 1)));
                     Console.WriteLine($"Retry {queueUrl} {retryAttempts}/{maxRetryAttempts} with delay {attempts}.");
-                    await Task.Delay(attempts).ConfigureAwait(false);
-                    await RetryDeleteOnThrottle(client, queueUrl, delay, maxRetryAttempts, ++retryAttempts).ConfigureAwait(false);
+                    await Task.Delay(attempts);
+                    await RetryDeleteOnThrottle(client, queueUrl, delay, maxRetryAttempts, ++retryAttempts);
                 }
                 else
                 {

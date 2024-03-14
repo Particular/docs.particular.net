@@ -37,8 +37,7 @@ namespace SqsAll.QueueCreation
                     TemplateBody = CloudFormationHelper.ConvertToValidJson(templatePath)
                 };
 
-                await client.CreateStackAsync(request)
-                    .ConfigureAwait(false);
+                await client.CreateStackAsync(request);
 
                 var describeRequest = new DescribeStacksRequest
                 {
@@ -47,8 +46,7 @@ namespace SqsAll.QueueCreation
                 StackStatus currentStatus = string.Empty;
                 while (currentStatus != StackStatus.CREATE_COMPLETE)
                 {
-                    var response = await client.DescribeStacksAsync(describeRequest)
-                        .ConfigureAwait(false);
+                    var response = await client.DescribeStacksAsync(describeRequest);
                     var stack = response.Stacks.SingleOrDefault();
                     currentStatus = stack?.StackStatus;
                     await Task.Delay(1000);

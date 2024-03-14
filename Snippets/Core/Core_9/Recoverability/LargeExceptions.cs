@@ -12,7 +12,7 @@
         {
             try
             {
-                await next().ConfigureAwait(false);
+                await next();
             }
             catch (WebException webException)
             {

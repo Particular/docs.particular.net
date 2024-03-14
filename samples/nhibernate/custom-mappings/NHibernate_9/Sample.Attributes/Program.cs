@@ -33,18 +33,15 @@ class Program
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseConfiguration(hibernateConfig);
 
-        var endpoint = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpoint = await Endpoint.Start(endpointConfiguration);
         var startOrder = new StartOrder
         {
             OrderId = "123"
         };
-        await endpoint.SendLocal(startOrder)
-            .ConfigureAwait(false);
+        await endpoint.SendLocal(startOrder);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpoint.Stop()
-            .ConfigureAwait(false);
+        await endpoint.Stop();
     }
 
     #region AttributesConfiguration

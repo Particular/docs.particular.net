@@ -63,8 +63,7 @@ class MapperUsageWithoutKeyMapping
             TableName = "someTable"
         };
 
-        var getCustomerResponse = await client.GetItemAsync(getCustomer, context.CancellationToken)
-            .ConfigureAwait(false);
+        var getCustomerResponse = await client.GetItemAsync(getCustomer, context.CancellationToken);
 
         var customer = Mapper.ToObject<Customer>(getCustomerResponse.Item);
         customer.CustomerPreferred = true;
@@ -122,8 +121,7 @@ class MapperUsageWithKeyMapping
             TableName = "someTable"
         };
 
-        var getCustomerResponse = await client.GetItemAsync(getCustomer, context.CancellationToken)
-            .ConfigureAwait(false);
+        var getCustomerResponse = await client.GetItemAsync(getCustomer, context.CancellationToken);
 
         #region DynamoDBMapperUsageWithKeyMapping
 
@@ -169,8 +167,7 @@ class DynamoDBContextUsage
         var message = new Message();
 
         #region DynamoDBMapperContextUsage
-        var customer = await dynamoDbContext.LoadAsync<Customer>(message.CustomerId, context.CancellationToken)
-            .ConfigureAwait(false);
+        var customer = await dynamoDbContext.LoadAsync<Customer>(message.CustomerId, context.CancellationToken);
 
         customer.CustomerPreferred = true;
 

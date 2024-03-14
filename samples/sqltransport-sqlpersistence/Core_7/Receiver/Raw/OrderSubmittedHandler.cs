@@ -30,8 +30,7 @@ namespace Raw
                 var parameters = command.Parameters;
                 parameters.AddWithValue("Id", $"Raw-{message.OrderId}");
                 parameters.AddWithValue("Value", message.Value);
-                await command.ExecuteNonQueryAsync()
-                    .ConfigureAwait(false);
+                await command.ExecuteNonQueryAsync();
             }
 
             #endregion

@@ -16,21 +16,18 @@ class Program
 
         #region Configuration
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         LogProvider.SetCurrentLogProvider(new QuartzConsoleLogProvider());
 
         var schedulerFactory = new StdSchedulerFactory();
 
-        var scheduler = await schedulerFactory.GetScheduler()
-            .ConfigureAwait(false);
+        var scheduler = await schedulerFactory.GetScheduler();
 
         // inject the endpointInstance into the scheduler context
         scheduler.SetEndpointInstance(endpointInstance);
 
-        await scheduler.Start()
-            .ConfigureAwait(false);
+        await scheduler.Start();
         #endregion
 
         #region scheduleJob
@@ -54,8 +51,7 @@ class Program
             .Build();
 
         // Tell quartz to schedule the job using the trigger
-        await scheduler.ScheduleJob(job, trigger)
-            .ConfigureAwait(false);
+        await scheduler.ScheduleJob(job, trigger);
 
         #endregion
 
@@ -64,10 +60,8 @@ class Program
 
         #region shutdown
 
-        await scheduler.Shutdown()
-            .ConfigureAwait(false);
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await scheduler.Shutdown();
+        await endpointInstance.Stop();
 
         #endregion
     }

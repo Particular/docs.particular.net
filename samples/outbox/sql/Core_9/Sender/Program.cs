@@ -52,8 +52,7 @@ class Program
         #endregion
 
         SqlHelper.CreateSchema(connectionString, "sender");
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press enter to send a message");
         Console.WriteLine("Press any key to exit");
@@ -72,10 +71,8 @@ class Program
                 OrderId = Guid.NewGuid(),
                 Value = random.Next(100)
             };
-            await endpointInstance.Publish(orderSubmitted)
-                .ConfigureAwait(false);
+            await endpointInstance.Publish(orderSubmitted);
         }
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

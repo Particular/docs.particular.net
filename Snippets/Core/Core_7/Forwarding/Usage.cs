@@ -17,8 +17,7 @@
             {
                 #region ForwardingMessageFromHandler
 
-                await context.ForwardCurrentMessageTo("destinationQueue@machine")
-                    .ConfigureAwait(false);
+                await context.ForwardCurrentMessageTo("destinationQueue@machine");
 
                 #endregion
             });

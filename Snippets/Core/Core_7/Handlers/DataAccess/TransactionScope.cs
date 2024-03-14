@@ -26,7 +26,7 @@
         {
             var connection = new SqlConnection(Configuration.ConnectionString);
             var command = CreateStoreOrderCommand(message);
-            await command.ExecuteReaderAsync().ConfigureAwait(false);
+            await command.ExecuteReaderAsync();
         }
 
         #endregion

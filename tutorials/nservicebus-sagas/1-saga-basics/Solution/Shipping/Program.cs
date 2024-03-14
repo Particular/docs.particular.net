@@ -15,14 +15,12 @@ namespace Shipping
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
             var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration)
-                .ConfigureAwait(false);
+            var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
             Console.WriteLine("Press Enter to exit.");
             Console.ReadLine();
 
-            await endpointInstance.Stop()
-                .ConfigureAwait(false);
+            await endpointInstance.Stop();
         }
     }
 }

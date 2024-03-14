@@ -22,8 +22,7 @@ class Program
 
         AddFairDistributionClient(endpointConfiguration);
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("Press enter to send a message");
         Console.WriteLine("Press any key to exit");
 
@@ -43,12 +42,10 @@ class Program
                 OrderId = orderId,
                 Value = random.Next(100)
             };
-            await endpointInstance.Send(message)
-                .ConfigureAwait(false);
+            await endpointInstance.Send(message);
         }
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 
     static void AddFairDistributionClient(EndpointConfiguration endpointConfiguration)

@@ -9,8 +9,7 @@ public static class MefExtensions
     {
         foreach (var export in compositionHost.GetExports<T>())
         {
-            await action(export)
-                .ConfigureAwait(false);
+            await action(export);
         }
     }
 }

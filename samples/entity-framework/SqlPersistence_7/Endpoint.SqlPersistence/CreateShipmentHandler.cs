@@ -28,7 +28,7 @@ public class CreateShipmentHandler :
             Location = message.ShipTo
         };
         dataContext.Shipments.Add(shipment);
-        await dataContext.SaveChangesAsync(context.CancellationToken).ConfigureAwait(false);
+        await dataContext.SaveChangesAsync(context.CancellationToken);
 
         #endregion
 

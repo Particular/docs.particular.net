@@ -28,7 +28,7 @@ class Program
         case ConsoleKey.Enter:
           {
             var orderId = Guid.NewGuid().ToString("N");
-            await endpoint.Send(new PlaceOrder() { OrderId = orderId }).ConfigureAwait(false);
+            await endpoint.Send(new PlaceOrder() { OrderId = orderId });
             Console.WriteLine($"Order {orderId} was placed.");
 
             break;

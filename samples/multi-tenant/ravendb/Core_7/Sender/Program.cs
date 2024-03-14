@@ -15,8 +15,7 @@ class Program
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.EnableInstallers();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press A or B to publish a message (A and B are tenant IDs)");
         Console.WriteLine("Press Escape to exit");
@@ -46,15 +45,13 @@ class Program
                 var options = new PublishOptions();
                 options.SetHeader("tenant_id", uppercaseKey.ToString());
 
-                await endpointInstance.Publish(message, options)
-                    .ConfigureAwait(false);
+                await endpointInstance.Publish(message, options);
             }
             else
             {
                 Console.WriteLine($"[{uppercaseKey}] is not a valid tenant identifier.");
             }
         }
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

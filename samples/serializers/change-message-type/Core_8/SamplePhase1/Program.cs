@@ -12,22 +12,19 @@ static class Program
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         var newOrder = new CreateOrderPhase1
         {
             OrderDate = DateTime.Now
         };
 
-        await endpointInstance.Send("ChangeMessageIdentity.Phase2", newOrder)
-            .ConfigureAwait(false);
+        await endpointInstance.Send("ChangeMessageIdentity.Phase2", newOrder);
 
         Console.WriteLine("CreateOrderPhase1 Sent");
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

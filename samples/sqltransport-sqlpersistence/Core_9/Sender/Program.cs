@@ -53,8 +53,7 @@ while (true)
         OrderId = Guid.NewGuid(),
         Value = Random.Shared.Next(100)
     };
-    await endpointInstance.Publish(orderSubmitted)
-        .ConfigureAwait(false);
+    await endpointInstance.Publish(orderSubmitted);
     Console.WriteLine("Published OrderSubmitted message");
 }
 

@@ -17,13 +17,11 @@ class Program
 
         endpointConfiguration.ApplySessionFilter(sessionKeyProvider);
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         MainLoop(sessionKeyProvider);
 
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 
     static void MainLoop(RotatingSessionKeyProvider sessionKeyProvider)

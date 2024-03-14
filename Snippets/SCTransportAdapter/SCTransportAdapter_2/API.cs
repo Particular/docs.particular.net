@@ -148,10 +148,10 @@ namespace SCTransportAdapter_0
             var adapter = TransportAdapter.Create(config);
 
             //Starting up
-            await adapter.Start().ConfigureAwait(false);
+            await adapter.Start();
 
             //Shutting down
-            await adapter.Stop().ConfigureAwait(false);
+            await adapter.Stop();
 
             #endregion
         }

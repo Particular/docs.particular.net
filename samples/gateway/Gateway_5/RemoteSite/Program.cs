@@ -18,11 +18,9 @@ class Program
         gatewayConfig.AddReceiveChannel("http://localhost:25899/RemoteSite/");
         #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
         Console.WriteLine("\r\nPress any key to stop program\r\n");
         Console.ReadKey();
-        await endpointInstance.Stop()
-            .ConfigureAwait(false);
+        await endpointInstance.Stop();
     }
 }

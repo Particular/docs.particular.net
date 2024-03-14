@@ -31,8 +31,7 @@ public class Usage
                     usePublishSubscribe: false,
                     purgeOnStartup: false,
                     errorQueue: "error")
-            }, new string[0])
-            .ConfigureAwait(false);
+            }, new string[0]);
 
         var sender = infrastructure.Dispatcher;
 
@@ -56,8 +55,7 @@ public class Usage
 
         await sender.Dispatch(
                 outgoingMessages: new TransportOperations(operation),
-                transaction: new TransportTransaction())
-            .ConfigureAwait(false);
+                transaction: new TransportTransaction());
 
         #endregion
 
@@ -72,14 +70,14 @@ public class Usage
             },
             onError: (context, token) => Task.FromResult(ErrorHandleResult.RetryRequired));
 
-        await receiver.StartReceive().ConfigureAwait(false);
+        await receiver.StartReceive();
 
         #endregion
 
         #region Shutdown
 
-        await receiver.StopReceive().ConfigureAwait(false);
-        await infrastructure.Shutdown().ConfigureAwait(false);
+        await receiver.StopReceive();
+        await infrastructure.Shutdown();
 
         #endregion
     }

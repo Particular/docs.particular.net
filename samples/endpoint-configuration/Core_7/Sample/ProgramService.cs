@@ -122,8 +122,7 @@ class ProgramService :
                 // Log the critical error
                 log.Fatal($"CRITICAL: {context.Error}", context.Exception);
 
-                await context.Stop()
-                    .ConfigureAwait(false);
+                await context.Stop();
 
                 // Kill the process on a critical error
                 var output = $"NServiceBus critical error:\n{context.Error}\nShutting down.";
@@ -135,14 +134,12 @@ class ProgramService :
         #region start-bus
 
         endpointConfiguration.EnableInstallers();
-        endpointInstance = await Endpoint.Start(endpointConfiguration)
-            .ConfigureAwait(false);
+        endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         #endregion
 
         var myMessage = new MyMessage();
-        await endpointInstance.SendLocal(myMessage)
-            .ConfigureAwait(false);
+        await endpointInstance.SendLocal(myMessage);
     }
 
 
