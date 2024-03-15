@@ -66,17 +66,17 @@ In this presentation, Laila Bougria discusses the need for distributed tracing i
 
 ### Concepts - Observability (or monitoring)
 
-Observability is the idea that we should be able to understand our system’s behavior by investigating telemetry information, without the need to change any code or configuration, or investigate any system-specific data stores which may not be accessible and/or contain sensitive information. By collecting telemetry data from our systems, we’re able to query and analyze that information, with the end-goal of extracting actionable insights that can help us improve our systems.
+Observability is the idea that one should be able to understand our system’s behavior by investigating telemetry information, without the need to change any code or configuration, or investigate any system-specific data stores which may not be accessible and/or contain sensitive information. By collecting telemetry data from our systems, one is able to query and analyze that information, with the end-goal of extracting actionable insights that can help us improve our systems.
 
 Observability can help address multiple concerns in a system:
 
 #### Root-cause analysis
 
-Distributed systems are complex system landscapes where multiple components interact with each other through different mechanisms in different time frames (asynchronous and synchronous communication). This makes it a lot harder to pinpoint the root cause of failures, as multiple components and infrastructure may be involved. It’s quite common in message-based systems, that the cause of a failure observed in one component, is caused by another component further upstream. By collecting traces and logs from our systems, we can gather insights into what’s happening in the system and make it easier to pinpoint the root cause of failures.
+Distributed systems are complex system landscapes where multiple components interact with each other through different mechanisms in different time frames (asynchronous and synchronous communication). This makes it a lot harder to pinpoint the root cause of failures, as multiple components and infrastructure may be involved. It’s quite common in message-based systems, that the cause of a failure observed in one component, is caused by another component further upstream. By collecting traces and logs from our systems, one can gather insights into what’s happening in the system and make it easier to pinpoint the root cause of failures.
 
 #### Health monitoring
 
-Is my system healthy and operable? The ability to answer this question becomes more complex in distributed systems as our system is composed of multiple components that operate autonomously. This requires us to pay more attention to the health and operability of individual components. By emitting telemetry (in the form of metrics or otherwise) from all components that make up our systems, we can understand the health of our system and gain insights into individual components that may be struggling.
+Is my system healthy and operable? The ability to answer this question becomes more complex in distributed systems as our system is composed of multiple components that operate autonomously. This requires us to pay more attention to the health and operability of individual components. By emitting telemetry (in the form of metrics or otherwise) from all components that make up our systems, one can understand the health of our system and gain insights into individual components that may be struggling.
 
 #### Performance monitoring
 
@@ -84,7 +84,7 @@ One component of performance monitoring that is harder to understand in producti
 
 #### OpenTelemetry
 
-With the increasing need for observability, multiple standards started emerging in the industry to standardize the collection of telemetry data from distributed systems, including Google’s [OpenCensus standard](https://opencensus.io/) and [OpenTracing](https://opentracing.io/). In an effort to standardize in a cross-platform, cross-runtime, cross-language manner, the [Cloud Native Computing Foundation](https://www.cncf.io/) set up the [OpenTelemetry project](https://opentelemetry.io), effectively merging the OpenCensus and OpenTracing standards into one. Its goal is to help standardize how we instrument, generate, collect, and export telemetry data from our applications, by providing multiple tools and SDK for multiple languages and platforms. Most observability vendors have adopted the OpenTelemetry standard, enabling customers to store their telemetry data in a vendor-agnostic format.
+With the increasing need for observability, multiple standards started emerging in the industry to standardize the collection of telemetry data from distributed systems, including Google’s [OpenCensus standard](https://opencensus.io/) and [OpenTracing](https://opentracing.io/). In an effort to standardize in a cross-platform, cross-runtime, cross-language manner, the [Cloud Native Computing Foundation](https://www.cncf.io/) set up the [OpenTelemetry project](https://opentelemetry.io), effectively merging the OpenCensus and OpenTracing standards into one. Its goal is to help standardize how one instruments, generates, collects, and exports telemetry data from our applications, by providing multiple tools and SDK for multiple languages and platforms. Most observability vendors have adopted the OpenTelemetry standard, enabling customers to store their telemetry data in a vendor-agnostic format.
 
 Video: [Message processing failed, but what’s the root cause?](https://www.youtube.com/watch?v=U8Aame0akl4&pp=ygUSbGFpbGEgYm91Z3JpYSBvc2xv)
 
