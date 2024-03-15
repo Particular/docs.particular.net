@@ -9,14 +9,14 @@ AWS offers several observability solutions which can be used with the Particular
 
 #### Amazon CloudWatch
 
-[Amazon CloudWatch]([https://aws.amazon.com/cloudwatch/](https://aws.amazon.com/cloudwatch/)) is a monitoring and observability service that allows you to collect and access performance and operational data in the form of logs and metrics on a single platform.
+[Amazon CloudWatch]([https://aws.amazon.com/cloudwatch/](https://aws.amazon.com/cloudwatch/)) is a monitoring and observability service that allows one to collect and access performance and operational data in the form of logs and metrics on a single platform.
 
 :heavy_plus_sign: Pros:
 
-- A single tool to visualize metrics and logs emitted by your system
+- A single tool to visualize metrics and logs emitted by the system
 - Fully managed service
 - Tightly integrated with other AWS services, such as AWS Lambda and Amazon EC2
-- Supports querying data from multiple sources, allowing you to monitor metrics on AWS, on premises or other clouds
+- Supports querying data from multiple sources, allowing one to monitor metrics on AWS, on premises or other clouds
 - Customizable dashboards and automated alarms and actions
 - Real-time telemetry
 
@@ -40,7 +40,7 @@ Try the Amazon CloudWatch sample for NServiceBus metrics and logs →
 
 #### Amazon X-Ray
 
-[Amazon X-Ray]([https://aws.amazon.com/xray/](https://aws.amazon.com/xray/)) is a service that can collect trace data from your applications, providing insights that can help identify issues or bottlenecks that could benefit from optimization.
+[Amazon X-Ray]([https://aws.amazon.com/xray/](https://aws.amazon.com/xray/)) is a service that can collect trace data from the applications, providing insights that can help identify issues or bottlenecks that could benefit from optimization.
 
 :heavy_plus_sign: Pros:
 
@@ -56,7 +56,7 @@ Try the Amazon CloudWatch sample for NServiceBus metrics and logs →
 - AWS X-Ray is designed to work within the AWS ecosystem
 - AWS X-Ray’s `traceId` format differs from the [W3C format](https://www.w3.org/TR/trace-context/#trace-id), and requires mapping for compatibility reasons which should be considered when using [OpenTelemetry](link-to-otel-section-under-observability)
 
-The Particular Service Platform allows you to capture spans emitted by NServiceBus, providing insights into message processing, retries, and more.
+The Particular Service Platform allows observability tools to capture spans emitted by NServiceBus, providing insights into message processing, retries, and more.
 
 &lt;link to presentation> [https://particular.net/videos/message-processing-failed](https://particular.net/videos/message-processing-failed)
 
@@ -86,8 +86,8 @@ One component of performance monitoring that is harder to understand in producti
 
 With the increasing need for observability, multiple standards started emerging in the industry to standardize the collection of telemetry data from distributed systems, including Google’s [OpenCensus standard](https://opencensus.io/) and [OpenTracing](https://opentracing.io/). In an effort to standardize in a cross-platform, cross-runtime, cross-language manner, the [Cloud Native Computing Foundation](https://www.cncf.io/) set up the [OpenTelemetry project](https://opentelemetry.io), effectively merging the OpenCensus and OpenTracing standards into one. Its goal is to help standardize how we instrument, generate, collect, and export telemetry data from our applications, by providing multiple tools and SDK for multiple languages and platforms. Most observability vendors have adopted the OpenTelemetry standard, enabling customers to store their telemetry data in a vendor-agnostic format.
 
-Video: Message processing failed, but what’s the root cause? https://www.youtube.com/watch?v=U8Aame0akl4&pp=ygUSbGFpbGEgYm91Z3JpYSBvc2xv
+Video: [Message processing failed, but what’s the root cause?](https://www.youtube.com/watch?v=U8Aame0akl4&pp=ygUSbGFpbGEgYm91Z3JpYSBvc2xv)
 
 #### The Particular Service Platform
 
-The Particular Service Platform offers multiple capabilities that allow you to observe the message flows that are occurring in the system. ServiceInsight has an endpoint explorer view, allowing you to understand all components that are sending and receiving messages in the system. More importantly, ServiceInsight offers multiple views that offer insights into message and [saga flows](https://docs.particular.net/architecture/workflows#orchestration-implementing-orchestrated-workflows), based on audit messages. These message-based conversations that are occurring in the systems, are visualized in [flow diagrams](https://docs.particular.net/serviceinsight/#flow-diagram), [sequence diagrams](https://docs.particular.net/serviceinsight/#sequence-diagram), and [saga views](https://docs.particular.net/serviceinsight/#the-saga-view).
+The Particular Service Platform offers multiple capabilities that allow one to observe the message flows that are occurring in the system. ServiceInsight has an endpoint explorer view, allowing one to understand all components that are sending and receiving messages in the system. More importantly, ServiceInsight offers multiple views that offer insights into message and [saga flows](https://docs.particular.net/architecture/workflows#orchestration-implementing-orchestrated-workflows), based on audit messages. These message-based conversations that are occurring in the systems, are visualized in [flow diagrams](https://docs.particular.net/serviceinsight/#flow-diagram), [sequence diagrams](https://docs.particular.net/serviceinsight/#sequence-diagram), and [saga views](https://docs.particular.net/serviceinsight/#the-saga-view).
