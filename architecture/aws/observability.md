@@ -9,7 +9,7 @@ AWS offers several observability solutions which can be used with the Particular
 
 #### Amazon CloudWatch
 
-[Amazon CloudWatch]([https://aws.amazon.com/cloudwatch/](https://aws.amazon.com/cloudwatch/)) is a monitoring and observability service that allows one to collect and access performance and operational data in the form of logs and metrics on a single platform.
+[Amazon CloudWatch](https://aws.amazon.com/cloudwatch/) is a monitoring and observability service that allows one to collect and access performance and operational data in the form of logs and metrics on a single platform.
 
 :heavy_plus_sign: Pros:
 
@@ -40,7 +40,7 @@ Try the Amazon CloudWatch sample for NServiceBus metrics and logs →
 
 #### Amazon X-Ray
 
-[Amazon X-Ray]([https://aws.amazon.com/xray/](https://aws.amazon.com/xray/)) is a service that can collect trace data from the applications, providing insights that can help identify issues or bottlenecks that could benefit from optimization.
+[Amazon X-Ray](https://aws.amazon.com/xray/) is a service that can collect trace data from the applications, providing insights that can help identify issues or bottlenecks that could benefit from optimization.
 
 :heavy_plus_sign: Pros:
 
@@ -58,7 +58,7 @@ Try the Amazon CloudWatch sample for NServiceBus metrics and logs →
 
 The Particular Service Platform allows observability tools to capture spans emitted by NServiceBus, providing insights into message processing, retries, and more.
 
-&lt;link to presentation> [https://particular.net/videos/message-processing-failed](https://particular.net/videos/message-processing-failed)
+&lt;link to presentation> [https:&#47;/particular.net/videos/message-processing-failed](https://particular.net/videos/message-processing-failed)
 
 In this presentation, Laila Bougria discusses the need for distributed tracing in distributed systems, as well as the [ADOT collector (AWS Distro for OpenTelemetry Collector)](https://aws-otel.github.io/docs/getting-started/collector), AWS’ OpenTelemetry Collector implementation that simplifies the export of distributed traces from applications to AWS X-Ray, amongst others.
 
@@ -90,4 +90,4 @@ Video: [Message processing failed, but what’s the root cause?](https://www.you
 
 #### The Particular Service Platform
 
-The Particular Service Platform offers multiple capabilities that allow one to observe the message flows that are occurring in the system. ServiceInsight has an endpoint explorer view, allowing one to understand all components that are sending and receiving messages in the system. More importantly, ServiceInsight offers multiple views that offer insights into message and [saga flows](https://docs.particular.net/architecture/workflows#orchestration-implementing-orchestrated-workflows), based on audit messages. These message-based conversations that are occurring in the systems, are visualized in [flow diagrams](https://docs.particular.net/serviceinsight/#flow-diagram), [sequence diagrams](https://docs.particular.net/serviceinsight/#sequence-diagram), and [saga views](https://docs.particular.net/serviceinsight/#the-saga-view).
+The Particular Service Platform offers multiple capabilities that allow one to observe the message flows that are occurring in the system. ServiceInsight has an endpoint explorer view, allowing one to understand all components that are sending and receiving messages in the system. More importantly, ServiceInsight offers multiple views that offer insights into message and [saga flows](/architecture/workflows#orchestration-implementing-orchestrated-workflows), based on audit messages. These message-based conversations that are occurring in the systems, are visualized in [flow diagrams](/serviceinsight/#flow-diagram), [sequence diagrams](/serviceinsight/#sequence-diagram), and [saga views](/serviceinsight/#the-saga-view).
