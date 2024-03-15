@@ -57,7 +57,7 @@ Amazon SNS should be used when the organization is looking for a solution to ach
 
 :heavy_minus_sign: Cons:
 
-- Limited message size (256Kb per message). NServiceBus mitigates this by allowing one to take advantage, in a seamless way, of S3 to work with larger payloads. For more information review the documentation for the [Amazon SQS transport topology](https://docs.particular.net/transports/sqs/topology#s3) and [Amazon SQS configuration options](https://docs.particular.net/transports/sqs/configuration-options).
+- Limited message size (256Kb per message). NServiceBus mitigates this by allowing one to take advantage, in a seamless way, of S3 to work with larger payloads. For more information review the documentation for the [Amazon SQS transport topology](/transports/sqs/topology#s3) and [Amazon SQS configuration options](/transports/sqs/configuration-options).
 - Limited control over retry policies which forces delegation of handling retries to consumers increasing the overall complexity of the system
 - Messages are only visible for a configurable period of time which can lead to challenges when failures occur
 - As the system grows in complexity, managing a large number of queues can be challenging
@@ -67,8 +67,8 @@ Amazon SNS should be used when the organization is looking for a solution to ach
 ---
 Call to action
 
-- [Simple AmazonSQS Transport usage • Amazon SQS Transport Samples • Particular Docs](https://docs.particular.net/samples/aws/sqs-simple/) (include DataBus properties info)
-- [https://docs.particular.net/samples/aws/sagas-lambda-aurora/](https://docs.particular.net/samples/aws/sagas-lambda-aurora/)
+- [Simple AmazonSQS Transport usage • Amazon SQS Transport Samples • Particular Docs](/samples/aws/sqs-simple/) (include DataBus properties info)
+- [https://docs.particular.net/samples/aws/sagas-lambda-aurora/](/samples/aws/sagas-lambda-aurora/)
 ---
 
 #### When to use Amazon SQS
