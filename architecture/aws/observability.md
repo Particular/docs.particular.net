@@ -76,11 +76,11 @@ Distributed systems are complex system landscapes where multiple components inte
 
 #### Health monitoring
 
-Is my system healthy and operable? The ability to answer this question becomes more complex in distributed systems as the system is composed of multiple components that operate autonomously. This requires us to pay more attention to the health and operability of individual components. By emitting telemetry (in the form of metrics or otherwise) from all components that make up the systems, one can understand the health of the system and gain insights into individual components that may be struggling.
+Is my system healthy and operable? The ability to answer this question becomes more complex in distributed systems as the system is composed of multiple components that operate autonomously. This requires more attention to be paid to the health and operability of individual components. By emitting telemetry (in the form of metrics or otherwise) from all components that make up the systems, one can understand the health of the system and gain insights into individual components that may be struggling.
 
 #### Performance monitoring
 
-One component of performance monitoring that is harder to understand in production environments, is latency. Latency can severely affect the performance of the overall system, even when individual components have been performance-tested during development. Emitting telemetry, specifically traces, can help us gain insight into the entire request execution, across all the relevant components in the system.
+One component of performance monitoring that is harder to understand in production environments, is latency. Latency can severely affect the performance of the overall system, even when individual components have been performance-tested during development. Emitting telemetry, specifically traces, can help one gain insight into the entire request execution, across all the relevant components in the system.
 
 #### OpenTelemetry
 
