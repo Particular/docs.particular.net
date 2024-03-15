@@ -21,7 +21,7 @@ The Particular Service Platform can be hosted using:
 
 [Platform as a Service (PaaS)](https://en.wikipedia.org/wiki/Platform_as_a_service) models provide managed hosting environments where applications can be deployed without having to manage the underlying infrastructure, operating system, or runtime environments.
 
-[AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) allows you to deploy your .NET web applications to either IIS or Nginx and have Beanstalk provision and manage your infrastructure. NServiceBus applications can be integrated into these .NET Core web applications.
+[AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) allows one to deploy ones' .NET web applications to either IIS or Nginx and have Beanstalk provision and manage the infrastructure. NServiceBus applications can be integrated into these .NET Core web applications.
 
 ##### Containers
 
