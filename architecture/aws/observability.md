@@ -36,7 +36,7 @@ Try the Amazon CloudWatch sample for NServiceBus metrics and logs →
 
 1. Create a sample that uses NSB metrics, which integrates with Cloudwatch
     1. Collect NSB metrics, send to cloudwatch
-    2. Collect [NLog logs with extensions.logging](https://docs.particular.net/samples/logging/extensions-logging/), [send to Cloudwatch](https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/configure-logging-for-net-applications-in-amazon-cloudwatch-logs-by-using-nlog.html)
+    2. Collect [NLog logs with extensions.logging](/samples/logging/extensions-logging/), [send to Cloudwatch](https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/configure-logging-for-net-applications-in-amazon-cloudwatch-logs-by-using-nlog.html)
 
 #### Amazon X-Ray
 
