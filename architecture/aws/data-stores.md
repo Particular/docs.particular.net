@@ -61,4 +61,4 @@ AWS offers a number of [data storage services](https://aws.amazon.com/getting-st
 - Can be more expensive than self-managed solutions for smaller applications
 - May not update to the latest version of database engines right away
 
-[**See how to use NServiceBus sagas with the relational database of your choice →**](https://docs.particular.net/samples/sql-persistence/simple/)
+[**See how to use NServiceBus sagas using a preferred relational database →**](https://docs.particular.net/samples/sql-persistence/simple/)
