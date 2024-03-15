@@ -28,4 +28,4 @@ Intro...
 
 ## Additional resources
 
-* [https://docs.particular.net/samples/aws/](https://docs.particular.net/samples/aws/)
+* [https://docs.particular.net/samples/aws/](/samples/aws/)
