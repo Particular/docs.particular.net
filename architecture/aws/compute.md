@@ -15,7 +15,7 @@ The Particular Service Platform can be hosted using:
 
 [AWS Lambda](https://aws.amazon.com/lambda/) is a serverless compute service offered by AWS that allows developers to run code in response to events without the need to manage servers. NServiceBus supports AWS Lambda so that new or existing applications can directly consume messages from [SQS queues](https://aws.amazon.com/sqs/).
 
-[Host NServiceBus applications on AWS Lambda](https://docs.particular.net/nservicebus/hosting/aws-lambda-simple-queue-service/).
+[Host NServiceBus applications on AWS Lambda](/nservicebus/hosting/aws-lambda-simple-queue-service/).
 
 #### PaaS
 
@@ -36,11 +36,11 @@ Infrastructure as a Service (IaaS) provides virtualized computing resources like
 
 NServiceBus applications can easily be hosted on virtual machines. Popular techniques include:
 
-- [Integrating NServiceBus with the Microsoft Generic Host](https://docs.particular.net/nservicebus/hosting/extensions-hosting)
-- [Custom hosted web applications](https://docs.particular.net/nservicebus/hosting/web-application)
-- [Installing NServiceBus endpoints as Windows Services](https://docs.particular.net/nservicebus/hosting/windows-service)
-- [Manually controlling NServiceBus lifecycle in an executable (e.g. Console or GUI applications)](https://docs.particular.net/nservicebus/hosting/#self-hosting)
-- [Custom-managed Kubernetes clusters hosting container applications](https://docs.particular.net/nservicebus/hosting/docker-host/)
+- [Integrating NServiceBus with the Microsoft Generic Host](/nservicebus/hosting/extensions-hosting)
+- [Custom hosted web applications](/nservicebus/hosting/web-application)
+- [Installing NServiceBus endpoints as Windows Services](/nservicebus/hosting/windows-service)
+- [Manually controlling NServiceBus lifecycle in an executable (e.g. Console or GUI applications)](/nservicebus/hosting/#self-hosting)
+- [Custom-managed Kubernetes clusters hosting container applications](/nservicebus/hosting/docker-host/)
 
 #### Choosing a hosting model
 
