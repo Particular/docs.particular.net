@@ -9,7 +9,7 @@ The AWS Well-Architected framework describes the [queue-worker architecture styl
 
 The following diagram is an example of what a queue based architecture would look like.
 
-![alt_text](images/image2.png "image_tooltip")
+![alt_text](/architecture/aws/images/queue-based-architecture.png "Queue based architecture sample")
 
 ### Components
 
