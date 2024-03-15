@@ -5,7 +5,7 @@ reviewed: 2024-03-14
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
-AWS provides a few messaging options that you can take advantage of when using NServiceBus.
+AWS provides a few messaging options that one can take advantage of when using NServiceBus.
 
 The Particular Service Platform already offers in NServiceBus the Amazon SQS transport that leverages the technologies highlighted below.
 
@@ -35,7 +35,7 @@ Call to action??
 
 #### When to use Amazon SNS?
 
-Amazon SNS should be used when you are looking for a solution to achieve higher decoupling between your publishers and your topic subscribers.
+Amazon SNS should be used when the organization is looking for a solution to achieve higher decoupling between the publishers and the topic subscribers.
 
 ### Amazon SQS
 
@@ -50,17 +50,17 @@ Amazon SNS should be used when you are looking for a solution to achieve higher 
 - Easy integration with other AWS services
 - Enables decoupling and scalability of microservices, distributed systems and serverless applications
 - Cost effective as charges are based on usage with no upfront costs easing up the need to do capacity planning and pre-provisioning
-- Secure as it allows you to send sensitive data between applications either by managing your keys using AWS Key management (AWS KMS) and by using Amazon SQS server side encryption (SSE)
+- Secure as it allows components to send sensitive data between applications either by managing keys using AWS Key management (AWS KMS) and by using Amazon SQS server side encryption (SSE)
 - Durable as messages are stored on multiple servers
 - Supports message deduplication
 - Queues can be fully customizable
 
 :heavy_minus_sign: Cons:
 
-- Limited message size (256Kb per message). NServiceBus mitigates this by allowing you to take advantage, in a seamless way, of S3 to work with larger payloads. For more information review the documentation for the [Amazon SQS transport topology](https://docs.particular.net/transports/sqs/topology#s3) and [Amazon SQS configuration options](https://docs.particular.net/transports/sqs/configuration-options).
+- Limited message size (256Kb per message). NServiceBus mitigates this by allowing one to take advantage, in a seamless way, of S3 to work with larger payloads. For more information review the documentation for the [Amazon SQS transport topology](https://docs.particular.net/transports/sqs/topology#s3) and [Amazon SQS configuration options](https://docs.particular.net/transports/sqs/configuration-options).
 - Limited control over retry policies which forces delegation of handling retries to consumers increasing the overall complexity of the system
 - Messages are only visible for a configurable period of time which can lead to challenges when failures occur
-- As your system grows in complexity, managing a large number of queues can be challenging
+- As the system grows in complexity, managing a large number of queues can be challenging
 - Even with FIFO (First-In-First-Out) queues, strict message ordering can be a challenge increasing complexity and impact system performance
 - SQS supports a subset of protocols and formats which can originate compatibility issues with third party applications
 
@@ -73,11 +73,11 @@ Call to action
 
 #### When to use Amazon SQS?
 
-Use Amazon SQS when you want a solution:
+Use Amazon SQS when there is a need for a solution:
 
-- To decouple your microservices and facilitate asynchronous communication between them
-- Where you don’t need replay your events or commands to understand current state of your entities/processes
-- When you need to manage workloads that require data processing in batches
-- When you need to send notifications or alerts within an application
-- When you need to do data ingestion and use it as a buffer for incoming requests
-- You’d want to fanout and send identical copies of a message to multiple queues in parallel - combined with Amazon SNS.
+- To decouple microservices and facilitate asynchronous communication between them
+- Where there isn't a need replay events or commands to understand current state of entities/processes
+- When there is a need to manage workloads that require data processing in batches
+- When there is a need to send notifications or alerts within an application
+- When there is a need to do data ingestion and use it as a buffer for incoming requests
+- That requires a fanout to send identical copies of a message to multiple queues in parallel - combined with Amazon SNS.
