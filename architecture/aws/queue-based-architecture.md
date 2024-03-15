@@ -14,7 +14,7 @@ The following diagram is an example of what a queue based architecture would loo
 ### Components
 
 - Users initiate requests through their **frontend system**. This frontend system can be a web application, a terminal, a mobile device, or a third party system. For the purpose of this example, it will be responsible for handling authentication and authorization.
-- An AWS CLI or **Amazon SDK** that allows you to interact with Amazon SQS and other AWS products within your ecosystem.
+- An AWS CLI or **Amazon SDK** that allows the system to interact with Amazon SQS and other AWS products within company's ecosystem.
 - Requests are stored and queued as messages in Amazon SQS through the Amazon SDK
 - Workers are hosted in EC2 instances running within an autoscaling group. The workers use NServiceBus to pull data from the Amazon SQS queue, process and store it on Amazon DB. Please see the [technology choices section]() for other component alternatives.
 
