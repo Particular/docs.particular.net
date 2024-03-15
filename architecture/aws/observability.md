@@ -5,7 +5,7 @@ reviewed: 2024-03-14
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
-AWS offers several observability solutions which can be used with the Particular Service Platform. They provide native monitoring, logging, alarming, and dashboards with Amazon CloudWatch, tracing through AWS X-Ray, as well as other open-source based managed services, together providing [three pillars observability signals](https://opentelemetry.io/docs/concepts/signals/).
+AWS offers several observability solutions which can be used with the Particular Service Platform. They provide native monitoring, logging, alarming, and dashboards with Amazon CloudWatch, tracing through AWS X-Ray, as well as other open-s&#111;urce based managed services, together providing [three pillars observability signals](https://opentelemetry.io/docs/concepts/signals/).
 
 #### Amazon CloudWatch
 
@@ -16,7 +16,7 @@ AWS offers several observability solutions which can be used with the Particular
 - A single tool to visualize metrics and logs emitted by the system
 - Fully managed service
 - Tightly integrated with other AWS services, such as AWS Lambda and Amazon EC2
-- Supports querying data from multiple sources, allowing one to monitor metrics on AWS, on premises or other clouds
+- Supports querying data from multiple s&#111;urces, allowing one to monitor metrics on AWS, on premises or other clouds
 - Customizable dashboards and automated alarms and actions
 - Real-time telemetry
 
@@ -66,25 +66,25 @@ In this presentation, Laila Bougria discusses the need for distributed tracing i
 
 ### Concepts - Observability (or monitoring)
 
-Observability is the idea that one should be able to understand our system’s behavior by investigating telemetry information, without the need to change any code or configuration, or investigate any system-specific data stores which may not be accessible and/or contain sensitive information. By collecting telemetry data from our systems, one is able to query and analyze that information, with the end-goal of extracting actionable insights that can help us improve our systems.
+Observability is the idea that one should be able to understand the system’s behavior by investigating telemetry information, without the need to change any code or configuration, or investigate any system-specific data stores which may not be accessible and/or contain sensitive information. By collecting telemetry data from systems, one is able to query and analyze that information, with the end-goal of extracting actionable insights that can help improve one's systems.
 
 Observability can help address multiple concerns in a system:
 
 #### Root-cause analysis
 
-Distributed systems are complex system landscapes where multiple components interact with each other through different mechanisms in different time frames (asynchronous and synchronous communication). This makes it a lot harder to pinpoint the root cause of failures, as multiple components and infrastructure may be involved. It’s quite common in message-based systems, that the cause of a failure observed in one component, is caused by another component further upstream. By collecting traces and logs from our systems, one can gather insights into what’s happening in the system and make it easier to pinpoint the root cause of failures.
+Distributed systems are complex system landscapes where multiple components interact with each other through different mechanisms in different time frames (asynchronous and synchronous communication). This makes it a lot harder to pinpoint the root cause of failures, as multiple components and infrastructure may be involved. It’s quite common in message-based systems, that the cause of a failure observed in one component, is caused by another component further upstream. By collecting traces and logs from systems, one can gather insights into what’s happening in the system and make it easier to pinpoint the root cause of failures.
 
 #### Health monitoring
 
-Is my system healthy and operable? The ability to answer this question becomes more complex in distributed systems as our system is composed of multiple components that operate autonomously. This requires us to pay more attention to the health and operability of individual components. By emitting telemetry (in the form of metrics or otherwise) from all components that make up our systems, one can understand the health of our system and gain insights into individual components that may be struggling.
+Is my system healthy and operable? The ability to answer this question becomes more complex in distributed systems as the system is composed of multiple components that operate autonomously. This requires us to pay more attention to the health and operability of individual components. By emitting telemetry (in the form of metrics or otherwise) from all components that make up the systems, one can understand the health of the system and gain insights into individual components that may be struggling.
 
 #### Performance monitoring
 
-One component of performance monitoring that is harder to understand in production environments, is latency. Latency can severely affect the performance of our overall system, even when individual components have been performance-tested during development. Emitting telemetry, specifically traces, can help us gain insight into the entire request execution, across all the relevant components in the system.
+One component of performance monitoring that is harder to understand in production environments, is latency. Latency can severely affect the performance of the overall system, even when individual components have been performance-tested during development. Emitting telemetry, specifically traces, can help us gain insight into the entire request execution, across all the relevant components in the system.
 
 #### OpenTelemetry
 
-With the increasing need for observability, multiple standards started emerging in the industry to standardize the collection of telemetry data from distributed systems, including Google’s [OpenCensus standard](https://opencensus.io/) and [OpenTracing](https://opentracing.io/). In an effort to standardize in a cross-platform, cross-runtime, cross-language manner, the [Cloud Native Computing Foundation](https://www.cncf.io/) set up the [OpenTelemetry project](https://opentelemetry.io), effectively merging the OpenCensus and OpenTracing standards into one. Its goal is to help standardize how one instruments, generates, collects, and exports telemetry data from our applications, by providing multiple tools and SDK for multiple languages and platforms. Most observability vendors have adopted the OpenTelemetry standard, enabling customers to store their telemetry data in a vendor-agnostic format.
+With the increasing need for observability, multiple standards started emerging in the industry to standardize the collection of telemetry data from distributed systems, including Google’s [OpenCensus standard](https://opencensus.io/) and [OpenTracing](https://opentracing.io/). In an effort to standardize in a cross-platform, cross-runtime, cross-language manner, the [Cloud Native Computing Foundation](https://www.cncf.io/) set up the [OpenTelemetry project](https://opentelemetry.io), effectively merging the OpenCensus and OpenTracing standards into one. Its goal is to help standardize how one instruments, generates, collects, and exports telemetry data from applications, by providing multiple tools and SDK for multiple languages and platforms. Most observability vendors have adopted the OpenTelemetry standard, enabling customers to store their telemetry data in a vendor-agnostic format.
 
 Video: [Message processing failed, but what’s the root cause?](https://www.youtube.com/watch?v=U8Aame0akl4&pp=ygUSbGFpbGEgYm91Z3JpYSBvc2xv)
 
