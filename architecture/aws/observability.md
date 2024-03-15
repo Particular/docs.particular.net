@@ -54,7 +54,7 @@ Try the Amazon CloudWatch sample for NServiceBus metrics and logs →
 - AWS X-Ray offers a [free tier](https://aws.amazon.com/xray/pricing/), but costs may escalate with increases usage, requiring dedicated monitoring
 - Pricing is based on the amount and the type of telemetry collected
 - AWS X-Ray is designed to work within the AWS ecosystem
-- AWS X-Ray’s `traceId` format differs from the [W3C format](https://www.w3.org/TR/trace-context/#trace-id), and requires mapping for compatibility reasons which should be considered when using [OpenTelemetry](#opentelemetry)
+- AWS X-Ray’s `traceId` format differs from the [W3C format](https://www.w3.org/TR/trace-context/#trace-id), and requires mapping for compatibility reasons which should be considered when using [OpenTelemetry](#concepts-observability-or-monitoring-opentelemetry)
 
 The Particular Service Platform allows observability tools to capture spans emitted by NServiceBus, providing insights into message processing, retries, and more.
 
@@ -90,4 +90,4 @@ Video: [Message processing failed, but what’s the root cause?](https://www.you
 
 #### The Particular Service Platform
 
-The Particular Service Platform offers multiple capabilities that allow one to observe the message flows that are occurring in the system. ServiceInsight has an endpoint explorer view, allowing one to understand all components that are sending and receiving messages in the system. More importantly, ServiceInsight offers multiple views that offer insights into message and [saga flows](/architecture/workflows#orchestration-implementing-orchestrated-workflows), based on audit messages. These message-based conversations that are occurring in the systems, are visualized in [flow diagrams](/serviceinsight/#flow-diagram), [sequence diagrams](/serviceinsight/#sequence-diagram), and [saga views](/serviceinsight/#the-saga-view).
+The Particular Service Platform offers multiple capabilities that allow one to observe the message flows that are occurring in the system. ServiceInsight has an endpoint explorer view, allowing one to understand all components that are sending and receiving messages in the system. More importantly, ServiceInsight offers multiple views that offer insights into message and [saga flows](/architecture/workflows.md#orchestration-implementing-orchestrated-workflows), based on audit messages. These message-based conversations that are occurring in the systems, are visualized in [flow diagrams](/serviceinsight/#flow-diagram), [sequence diagrams](/serviceinsight/#sequence-diagram), and [saga views](/serviceinsight/#the-saga-view).

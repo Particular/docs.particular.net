@@ -18,10 +18,10 @@ The Particular Service Platform implements [pub/sub](/nservicebus/messaging/publ
 ### Challenges
 
 - Events order: Subscribers cannot rely on the order they receive published events, which may be affected by many factors such as concurrency, scaling, retries, partitioning, etc. Events and subscribers should be designed so that they [do not rely on strict ordering to execute business processes](https://particular.net/blog/you-dont-need-ordered-delivery).
-- Event data: Putting too much data on messages couples publishers and subscribers, defeating one of the main benefits of messaging in the first place. Bloated event contracts indicate sub-optimal service boundaries, perhaps drawn along technical constraints rather than business rules, or [data distribution](/nservicebus/concepts/data-distribution) over messaging. Well designed events are [lightweight contracts](https://particular.net/blog/putting-your-events-on-a-diet), focusing on sharing IDs rather than data.
+- Event data: Putting too much data on messages couples publishers and subscribers, defeating one of the main benefits of messaging in the first place. Bloated event contracts indicate sub-optimal service boundaries, perhaps drawn along technical constraints rather than business rules, or [data distribution](/nservicebus/concepts/data-distribution.md) over messaging. Well designed events are [lightweight contracts](https://particular.net/blog/putting-your-events-on-a-diet), focusing on sharing IDs rather than data.
 
 ### Technology choices
 
-In event-driven architectures, components are decoupled, allowing choice of the most suitable [compute](/architecture/aws/compute) and [data store](/architecture/aws/data-stores) options for a specific component or set of components.
+In event-driven architectures, components are decoupled, allowing choice of the most suitable [compute](/architecture/aws/compute.md) and [data store](./data-stores.md) options for a specific component or set of components.
 
-An event-driven approach requires support for the publish-subscribe model. NServiceBus supports the publish-subscribe model for [AWS SQS](/architecture/aws/messaging), independent of the underlying service capabilities.
+An event-driven approach requires support for the publish-subscribe model. NServiceBus supports the publish-subscribe model for [AWS SQS](./messaging.md), independent of the underlying service capabilities.

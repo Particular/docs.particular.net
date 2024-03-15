@@ -85,6 +85,32 @@
         Url: architecture/azure/data-stores
       - Title: Messaging
         Url: architecture/azure/messaging
+  - Title: AWS
+    Articles:
+    - Title: Introduction
+      Url: architecture/aws
+    - Title: Well-Architected Framework
+      Url: architecture/aws/well-architected
+    - Title: Architectural styles
+      Articles:
+      - Title: Event-driven
+        Url: architecture/aws/event-driven-architecture
+      - Title: Microservices
+        Url: architecture/aws/microservices
+      - Title: Multi-tier
+        Url: architecture/aws/multi-tier-architecture
+      - Title: Queue-based
+        Url: architecture/aws/queue-based-architecture
+    - Title: Technology choices
+      Articles:
+      - Title: Compute
+        Url: architecture/aws/compute
+      - Title: Data stores
+        Url: architecture/aws/data-stores
+      - Title: Messaging
+        Url: architecture/aws/messaging
+      - Title: Observability
+        Url: architecture/aws/observability
 
 - Name: NServiceBus
   Topics:

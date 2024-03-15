@@ -9,8 +9,6 @@ AWS provides a range of hosting options, spanning the range from Serverless all 
 
 The Particular Service Platform can be hosted using:
 
-![alt_text](images/image3.png "image_tooltip")
-
 #### Serverless
 
 [AWS Lambda](https://aws.amazon.com/lambda/) is a serverless compute service offered by AWS that allows developers to run code in response to events without the need to manage servers. NServiceBus supports AWS Lambda so that new or existing applications can directly consume messages from [SQS queues](https://aws.amazon.com/sqs/).
@@ -36,9 +34,9 @@ Infrastructure as a Service (IaaS) provides virtualized computing resources like
 
 NServiceBus applications can easily be hosted on virtual machines. Popular techniques include:
 
-- [Integrating NServiceBus with the Microsoft Generic Host](/nservicebus/hosting/extensions-hosting)
-- [Custom hosted web applications](/nservicebus/hosting/web-application)
-- [Installing NServiceBus endpoints as Windows Services](/nservicebus/hosting/windows-service)
+- [Integrating NServiceBus with the Microsoft Generic Host](/nservicebus/hosting/extensions-hosting.md)
+- [Custom hosted web applications](/nservicebus/hosting/web-application.md)
+- [Installing NServiceBus endpoints as Windows Services](/nservicebus/hosting/windows-service.md)
 - [Manually controlling NServiceBus lifecycle in an executable (e.g. Console or GUI applications)](/nservicebus/hosting/#self-hosting)
 - [Custom-managed Kubernetes clusters hosting container applications](/nservicebus/hosting/docker-host/)
 

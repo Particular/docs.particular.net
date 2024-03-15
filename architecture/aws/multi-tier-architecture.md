@@ -9,8 +9,6 @@ The AWS documentation describes [Multi-Tier architectures](https://docs.aws.amaz
 
 From https:&#47;/docs.aws.amazon.com/whitepapers/latest/serverless-multi-tier-architectures-api-gateway-lambda/three-tier-architecture-overview.html
 
-![alt_text](/architecture/aws/images/image1.png "image_tooltip")
-
 Messaging can help evolving and modernizing existing applications that have been built using layered architectures:
 
 - Use asynchronous communication and clearly defined message contracts to more clearly separate layers.
@@ -34,7 +32,7 @@ Messaging can help evolving and modernizing existing applications that have been
 
 ### Technology choices
 
-Systems using layered architectures are often limited in their technology choices due to existing dependencies. [Infrastructure-as-a-Service services](/architecture/azure/compute#infrastructure-as-a-service) offer flexibility for creating environments that meet these requirements. Web-focused front-end or API layers might use managed hosted options like [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk) or [LightSail](https://aws.amazon.com/lightsail) without major changes. AWS also offers [multiple data store options](/architecture/aws/data-stores.md) which allow moving data persistence to the cloud with little effort, unlocking more flexible scaling opportunities.
+Systems using layered architectures are often limited in their technology choices due to existing dependencies. [Infrastructure-as-a-Service services](/architecture/azure/compute.md#infrastructure-as-a-service) offer flexibility for creating environments that meet these requirements. Web-focused front-end or API layers might use managed hosted options like [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk) or [LightSail](https://aws.amazon.com/lightsail) without major changes. AWS also offers [multiple data store options](/architecture/aws/data-stores.md) which allow moving data persistence to the cloud with little effort, unlocking more flexible scaling opportunities.
 
 ### Related content
 

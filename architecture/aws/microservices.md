@@ -9,9 +9,11 @@ According to the [AWS guidance](https://aws.amazon.com/microservices/), microser
 
 The Particular Service Platform makes it easy to use microservices by defining [NServiceBus endpoints](/nservicebus/endpoints/) that act as one of these independent services. These endpoints use [messaging patterns](/nservicebus/messaging/) to ensure the services remain autonomous.
 
+![Microservices on AWS with NServiceBus](images/aws-microservices.png)
+
 ## Components
 
-- [NServiceBus endpoint](/nservicebus/endpoints/) (service): Each service is an autonomously deployable and scalable unit with a private [data store](/architecture/azure/data-stores).
+- [NServiceBus endpoint](/nservicebus/endpoints/) (service): Each service is an autonomously deployable and scalable unit with a private [data store](./data-stores.md).
 - Message bus: The message bus provides an asynchronous, reliable, and fault-tolerant communication channel which decouples the services.
 - Gateway: A gateway is a facade which allows user technologies such as web browsers to decouple from service implementations. Gateways may also provide further operational facilities, but do not contain business logic. In AWS, APIs can be managed with [AWS API Gateway](https://aws.amazon.com/api-gateway/).
 
@@ -21,7 +23,7 @@ The Particular Service Platform makes it easy to use microservices by defining [
 
 Finding good service boundaries is one of the biggest challenges with the microservice architectural style. Suboptimal boundaries often lead to a lack of data isolation and excessive inter-service communication. This often leads to high coupling between services that implement business processes, sometimes referred to as a distributed monolith. To define autonomous services, it is crucial to focus on business boundaries rather than technical boundaries.
 
-– EMBED UDI’S PRESENTATION HERE
+<iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="https://player.vimeo.com/video/113515335" webkitallowfullscreen width="400"></iframe>
 
 In this presentation, Udi Dahan demonstrates the process of finding good service boundaries. He explains the challenges of traditional layered architectures and covers an approach that cuts across all application layers, outlining the natural lines of loose and tight coupling. Finally, Udi shows how these vertical slices collaborate using events, enabling flexible and high performance business processes.
 
