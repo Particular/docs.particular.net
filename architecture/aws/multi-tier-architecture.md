@@ -7,9 +7,9 @@ callsToAction: ['solution-architect', 'ADSD']
 
 The AWS documentation describes [Multi-Tier architectures](https://docs.aws.amazon.com/whitepapers/latest/serverless-multi-tier-architectures-api-gateway-lambda/), a well-known architecture pattern which divides applications into physical, logical and presentation tiers.
 
-From https://docs.aws.amazon.com/whitepapers/latest/serverless-multi-tier-architectures-api-gateway-lambda/three-tier-architecture-overview.html
+From https:&#47;/docs.aws.amazon.com/whitepapers/latest/serverless-multi-tier-architectures-api-gateway-lambda/three-tier-architecture-overview.html
 
-![alt_text](images/image1.png "image_tooltip")
+![alt_text](/architecture/aws/images/image1.png "image_tooltip")
 
 Messaging can help evolving and modernizing existing applications that have been built using layered architectures:
 
@@ -34,9 +34,9 @@ Messaging can help evolving and modernizing existing applications that have been
 
 ### Technology choices
 
-Systems using layered architectures are often limited in their technology choices due to existing dependencies. [Infrastructure-as-a-Service services](https://docs.particular.net/architecture/azure/compute#infrastructure-as-a-service) offer flexibility for creating environments that meet these requirements. Web-focused front-end or API layers might use managed hosted options like [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk) or [LightSail](https://aws.amazon.com/lightsail) without major changes. AWS also offers [multiple data store options](link-to-data-stores) which allow moving data persistence to the cloud with little effort, unlocking more flexible scaling opportunities.
+Systems using layered architectures are often limited in their technology choices due to existing dependencies. [Infrastructure-as-a-Service services](/architecture/azure/compute#infrastructure-as-a-service) offer flexibility for creating environments that meet these requirements. Web-focused front-end or API layers might use managed hosted options like [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk) or [LightSail](https://aws.amazon.com/lightsail) without major changes. AWS also offers [multiple data store options](link-to-data-stores) which allow moving data persistence to the cloud with little effort, unlocking more flexible scaling opportunities.
 
 ### Related content
 
-- [https://docs.aws.amazon.com/whitepapers/latest/serverless-multi-tier-architectures-api-gateway-lambda/welcome.html](https://docs.aws.amazon.com/whitepapers/latest/serverless-multi-tier-architectures-api-gateway-lambda/welcome.html)
-- [https://aws.amazon.com/cloud-migration/how-to-migrate/](https://aws.amazon.com/cloud-migration/how-to-migrate/)
+- [https:&#47;/docs.aws.amazon.com/whitepapers/latest/serverless-multi-tier-architectures-api-gateway-lambda/welcome.html](https://docs.aws.amazon.com/whitepapers/latest/serverless-multi-tier-architectures-api-gateway-lambda/welcome.html)
+- [https:&#47;/aws.amazon.com/cloud-migration/how-to-migrate/](https://aws.amazon.com/cloud-migration/how-to-migrate/)
