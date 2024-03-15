@@ -33,7 +33,7 @@ The Particular Service Platform already offers in NServiceBus the Amazon SQS tra
 Call to action??
 ---
 
-#### When to use Amazon SNS?
+#### When to use Amazon SNS
 
 Amazon SNS should be used when the organization is looking for a solution to achieve higher decoupling between the publishers and the topic subscribers.
 
@@ -71,7 +71,7 @@ Call to action
 - [https://docs.particular.net/samples/aws/sagas-lambda-aurora/](https://docs.particular.net/samples/aws/sagas-lambda-aurora/)
 ---
 
-#### When to use Amazon SQS?
+#### When to use Amazon SQS
 
 Use Amazon SQS when there is a need for a solution:
 
