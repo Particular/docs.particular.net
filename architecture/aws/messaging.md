@@ -20,7 +20,7 @@ The Particular Service Platform already offers in NServiceBus the Amazon SQS tra
 - It provides instantaneous, push-based delivery of messages, which eliminates the need to poll for new information and updates.
 - It has simple APIs and easy integration with applications, which reduces the development effort and complexity.
 - It supports flexible message delivery over multiple transport protocols, such as HTTP, email, SMS, and mobile push notifications.
-- It has an inexpensive, pay-as-you-go model with no up-front costs, which lowers the operational expenses.
+- It has an inexpensive, pay-as-&#121;ou-go model with no up-front costs, which lowers the operational expenses.
 
 :heavy_minus_sign: Cons:
 
