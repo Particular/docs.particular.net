@@ -24,7 +24,7 @@ AWS offers a number of [data storage services](https://aws.amazon.com/getting-st
 - Limited storage capacity for individual items
 - Can not query if no indexes are available
 
-[**Try the NServiceBus DynamoDB sample →**](https://docs.particular.net/samples/aws/dynamodb-simple/)
+[**Try the NServiceBus DynamoDB sample →**](/samples/aws/dynamodb-simple/)
 
 ## Amazon Aurora
 
@@ -42,7 +42,7 @@ AWS offers a number of [data storage services](https://aws.amazon.com/getting-st
 - Can be more expensive than traditional relational databases for smaller applications.
 - More complex to manage for users that aren’t familiar with distributed and replicated database systems
 
-[**Try NServiceBus sagas with Aurora, SQS, and Lambda →**](https://docs.particular.net/samples/aws/sagas-lambda-aurora/)
+[**Try NServiceBus sagas with Aurora, SQS, and Lambda →**](/samples/aws/sagas-lambda-aurora/)
 
 ## Amazon RDS
 
@@ -61,4 +61,4 @@ AWS offers a number of [data storage services](https://aws.amazon.com/getting-st
 - Can be more expensive than self-managed solutions for smaller applications
 - May not update to the latest version of database engines right away
 
-[**See how to use NServiceBus sagas using a preferred relational database →**](https://docs.particular.net/samples/sql-persistence/simple/)
+[**See how to use NServiceBus sagas using a preferred relational database →**](/samples/sql-persistence/simple/)
