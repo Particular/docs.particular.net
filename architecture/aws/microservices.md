@@ -7,11 +7,11 @@ callsToAction: ['solution-architect', 'ADSD']
 
 According to the [AWS guidance](https://aws.amazon.com/microservices/), microservices are an architectural approach where software is composed of small, independent services communicating over well-defined APIs.
 
-The Particular Service Platform makes it easy to use microservices by defining [NServiceBus endpoints](https://docs.particular.net/nservicebus/endpoints/) that act as one of these independent services. These endpoints use [messaging patterns](https://docs.particular.net/nservicebus/messaging/) to ensure the services remain autonomous.
+The Particular Service Platform makes it easy to use microservices by defining [NServiceBus endpoints](/nservicebus/endpoints/) that act as one of these independent services. These endpoints use [messaging patterns](/nservicebus/messaging/) to ensure the services remain autonomous.
 
 ## Components
 
-- [NServiceBus endpoint](https://docs.particular.net/nservicebus/endpoints/) (service): Each service is an autonomously deployable and scalable unit with a private [data store](https://docs.particular.net/architecture/azure/data-stores).
+- [NServiceBus endpoint](/nservicebus/endpoints/) (service): Each service is an autonomously deployable and scalable unit with a private [data store](/architecture/azure/data-stores).
 - Message bus: The message bus provides an asynchronous, reliable, and fault-tolerant communication channel which decouples the services.
 - Gateway: A gateway is a facade which allows user technologies such as web browsers to decouple from service implementations. Gateways may also provide further operational facilities, but do not contain business logic. In AWS, APIs can be managed with [AWS API Gateway](https://aws.amazon.com/api-gateway/).
 
