@@ -24,4 +24,4 @@ The Particular Service Platform implements [pub/sub](/nservicebus/messaging/publ
 
 In event-driven architectures, components are decoupled, allowing choice of the most suitable [compute](/architecture/aws/compute) and [data store](/architecture/aws/data-stores) options for a specific component or set of components.
 
-An event-driven approach requires support for the publish-subscribe model. NServiceBus supports the publish-subscribe model for [AWS SQS](/architecture/AWS/messaging), independent of the underlying service capabilities.
+An event-driven approach requires support for the publish-subscribe model. NServiceBus supports the publish-subscribe model for [AWS SQS](/architecture/aws/messaging), independent of the underlying service capabilities.
