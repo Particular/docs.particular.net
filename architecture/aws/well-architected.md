@@ -9,7 +9,7 @@ callsToAction: ['solution-architect', 'ADSD']
 
 The [AWS Well-Architected](https://aws.amazon.com/architecture/well-architected) Framework helps cloud architects build secure, high-performing, resilient, and efficient infrastructure for a variety of applications and workloads. It’s built around six pillars: operational excellence, security, reliability, performance efficiency, cost optimization, and sustainability. The framework provides a consistent approach for customers and partners to evaluate architectures and implement scalable designs.
 
-NServiceBus helps you achieve the six pillars of the AWS Well-architected Framework in a number of ways.
+NServiceBus helps your organization achieve the six pillars of the AWS Well-architected Framework in a number of ways.
 
 ### Reliability
 
@@ -41,6 +41,6 @@ NServiceBus helps you achieve the six pillars of the AWS Well-architected Framew
 
 ### Sustainability
 
-- By abstracting you from the underlying [technology choices of AWS](https://docs.particular.net/architecture/aws/#technology-choices), NServiceBus allows you to change to more efficient hardware and software offerings when they become available with minimal changes.
+- By abstracting the components of the system from the underlying [technology choices of AWS](https://docs.particular.net/architecture/aws/#technology-choices), NServiceBus allows one to change to more efficient hardware and software offerings when they become available with minimal changes.
 
-By integrating NServiceBus with AWS services according to well-architected principles, you can build a robust, scalable, and reliable distributed system that delivers optimal performance, security, and cost efficiency on the AWS cloud platform.
+By integrating NServiceBus with AWS services according to well-architected principles, one can build a robust, scalable, and reliable distributed system that delivers optimal performance, security, and cost efficiency on the AWS cloud platform.
