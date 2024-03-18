@@ -26,8 +26,9 @@ class EmitNServiceBusMetrics : Feature
               null, [typeof(SettingsHolder)],
               null).Invoke([(SettingsHolder)context.Settings]);
 
-        recoverabilitySettings.Immediate(i => i.OnMessageBeingRetried((m, _) => RecordRetry(m.Headers, queueName, discriminator)));
-        recoverabilitySettings.Delayed(i => i.OnMessageBeingRetried((m, _) => RecordRetry(m.Headers, queueName, discriminator)));
+        recoverabilitySettings.Immediate(i => i.OnMessageBeingRetried((m, _) => RecordRetry(m.Headers, queueName, discriminator, "immediate")));
+        recoverabilitySettings.Delayed(d => d.OnMessageBeingRetried((m, _) => RecordRetry(m.Headers, queueName, discriminator, "delayed")));
+        recoverabilitySettings.Failed(f => f.OnMessageSentToErrorQueue((m, _) => RecordFailure(m.Headers, queueName, discriminator)));
 
         context.Pipeline.OnReceivePipelineCompleted((e, _) =>
         {
@@ -37,7 +38,7 @@ class EmitNServiceBusMetrics : Feature
             [
                 new(Tags.QueueName, queueName ?? ""),
                 new(Tags.EndpointDiscriminator, discriminator ?? ""),
-                new(Tags.MessageType, messageType ?? "")
+                new(Tags.MessageType, messageType ?? ""),
             ]);
 
             ProcessingTime.Record((e.CompletedAt - e.StartedAt).TotalMilliseconds, tags);
@@ -51,7 +52,24 @@ class EmitNServiceBusMetrics : Feature
         });
     }
 
-    static Task RecordRetry(Dictionary<string, string> headers, string queueName, string discriminator)
+    static Task RecordRetry(Dictionary<string, string> headers, string queueName, string discriminator, string retryType)
+    {
+        headers.TryGetMessageType(out var messageType);
+
+        var tags = new TagList(
+        [
+            new(Tags.QueueName, queueName ?? ""),
+            new(Tags.EndpointDiscriminator, discriminator ?? ""),
+            new(Tags.MessageType, messageType ?? ""),
+            new("retry-type", retryType)
+        ]);
+
+        Retries.Add(1, tags);
+
+        return Task.CompletedTask;
+    }
+
+    static Task RecordFailure(Dictionary<string, string> headers, string queueName, string discriminator)
     {
         headers.TryGetMessageType(out var messageType);
 
@@ -62,7 +80,7 @@ class EmitNServiceBusMetrics : Feature
             new(Tags.MessageType, messageType ?? "")
         ]);
 
-        Retries.Add(1, tags);
+        MessageSentToErrorQueue.Add(1, tags);
 
         return Task.CompletedTask;
     }
@@ -71,6 +89,9 @@ class EmitNServiceBusMetrics : Feature
 
     public static readonly Counter<long> Retries =
         NServiceBusMeter.CreateCounter<long>("nservicebus.messaging.retries", description: "Number of retries performed by the endpoint.");
+
+    public static readonly Counter<long> MessageSentToErrorQueue =
+        NServiceBusMeter.CreateCounter<long>("nservicebus.messaging.sent-to-error", description: "Number of messages sent to the error queue.");
 
     public static readonly Histogram<double> ProcessingTime =
         NServiceBusMeter.CreateHistogram<double>("nservicebus.messaging.processingtime", "ms", "The time in milliseconds between when the message was pulled from the queue until processed by the endpoint.");
