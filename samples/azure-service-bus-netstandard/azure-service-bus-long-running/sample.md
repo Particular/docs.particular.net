@@ -5,7 +5,6 @@ component: ASBS
 reviewed: 2021-05-18
 related:
 - transports/azure-service-bus
-- samples/azure-service-bus-netstandard/lock-renewal
 redirects:
 - samples/azure/azure-service-bus-long-running
 ---

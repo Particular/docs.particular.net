@@ -77,6 +77,6 @@ The configuration options for controlling connectivity as well as the physical a
   * `NamespacePartitioning`
   * `Composition`
 
-The message lock renewal feature was removed. A custom pipeline behavior may be used instead. See the [message lock renewal sample](/samples/azure-service-bus-netstandard/lock-renewal) for more details.
+The message lock renewal feature was removed as it was not possible with the new client. At a later date, the feature was [added in version 3.0 of the new Azure Service Bus transport](/transports/azure-service-bus/configuration.md#lock-renewal).
 
 NOTE: Some legacy transport features, such as namespace partitioning for high availability, were removed in favor of the native broker features. Customers are advised to evaluate the Service Bus Premium tier to take advantage of those native features.
