@@ -37,20 +37,37 @@ Note: Although the sample uses Azure Application Insights, the solution itself d
 
 ### Reviewing meters
 
-1. Open the Azure portal dashboard for the configured Application Insight instance
-2. Navigate to _Monitoring_ → _Metrics_
-3. Add metrics with the following information:
-- Metric Namespace: `azure.applicationinsights`
-- Metrics:
-  - `nservicebus.messaging.successes`
-  - `nservicebus.messaging.failures`
-  - `nservicebus.messaging.fetches`
-  - `nservicebus.messaging.processingtime`
-  - `nservicebus.messaging.criticaltime`
-
-![Graph tracking success and failed metrics in Application Insights](metrics-dashboard.png)
+Navigate to _Monitoring_ → _Metrics_ on the Azure portal dashboard for the configured Application Insight instance to start creating graphs.
 
 NOTE: It may take a few minutes for the meter data to populate to Azure. Meters will only appear on the dashboard once they have reported at least one value.
+
+#### Message processing counters
+
+To monitor the rate of messages being fetched from the queuing system, processed successfully, retried, and failed for the endpoint add the following metrics to a line chart.
+
+- `nservicebus.messaging.fetches`
+- `nservicebus.messaging.successes`
+- `nservicebus.messaging.failures`
+
+![Graph showing fetched, success, and failed counters in Application Insights](metrics-counters.png)
+
+#### Recoverability
+
+To monitor [recoverability](/nservicebus/recoverability/) metrics add a line graph with the following metrics.
+
+- `nservicebus.messaging.retries`
+- `nservicebus.messaging.sent-to-error`
+
+![Graph showing recoverability metrics in Application Insights](metrics-recoverability.png)
+
+#### Critical time and processing time
+
+To monitor [critical time and processing time](/monitoring/metrics/definitions.md#metrics-captured) (in milliseconds) for messages being successfully processed by the endpoint add a line graph with the following metrics.
+
+- `nservicebus.messaging.processingtime`
+- `nservicebus.messaging.criticaltime`
+
+![Graph showing processing time and critical time metrics in Application Insights](metrics-timing.png)
 
 ## Code walk-through
 
