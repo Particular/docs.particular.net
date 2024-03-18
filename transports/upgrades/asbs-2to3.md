@@ -73,18 +73,8 @@ snippet: 2to3-custom-auto-lock-renewal
 
 ### Transaction timeout
 
-The transport now allows transactions to take longer than the default [`TransactionManager.MaximumTimeout`](https://learn.microsoft.com/en-us/dotnet/api/system.transactions.transactionmanager.maximumtimeout). It is no longer required to [override the maximum timeout](/samples/azure-service-bus-netstandard/lock-renewal/?version=asbs_2#overriding-the-transactionmanager-maxtimeout-value).
+The transport now allows transactions to take longer than the default [`TransactionManager.MaximumTimeout`](https://learn.microsoft.com/en-us/dotnet/api/system.transactions.transactionmanager.maximumtimeout). It is no longer required to override the maximum timeout.
 
 ### Advanced/custom lock renewal
 
-Previous versions of the transport required custom lock renewal logic to extend the renewal beyond five minutes, as outlined by the [lock renewal sample](/samples/azure-service-bus-netstandard/lock-renewal/). While this scenario still works as expected, it is encouraged to leverage the built-in lock renewal mechanism. Existing custom lock renewal implementations are required to change from
-
-```csharp
-context.Extensions<ServiceBusReceiver>();
-```
-
-to
-
-```csharp
-context.Extensions<ProcessMessageEventArgs>();
-```
+Previous versions of the transport did not support extending the message lock past five minutes, though custom code may have attempted to implement this functionality. Custom implementations should be removed and the built-in [lock renewal feature](/transports/azure-service-bus/configuration.md#lock-renewal) should be used instead.
