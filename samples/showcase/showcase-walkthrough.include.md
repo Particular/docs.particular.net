@@ -5,7 +5,7 @@ Users can order products from the website. Once orders are submitted, there is a
 
 ### Sales
 
-The web application hosts the **ECommerce** endpoint. When a user presses <kbd>Place Order</kbd> on the website, the ECommerce endpoint sends a `SubmitOrder` command to the Sales endpoint. Upon receiving a `SubmitOrder` command the **Sales** endpoint will immediately publish an `OrderPlaced` event with a request to be called back in 20 seconds (`BuyersRemorseIsOver`). If the user does not cancel the order before the end of the buyer's remorse period, the **Sales** endpoint will publish an `OrderAccepted` event.
+The web application hosts the **ECommerce** endpoint. When a user presses <kbd>Place Order</kbd> on the website, the **ECommerce** endpoint sends a `SubmitOrder` command to the Sales endpoint. Upon receiving a `SubmitOrder` command the **Sales** endpoint will immediately publish an `OrderPlaced` event with a request to be called back in 20 seconds (`BuyersRemorseIsOver`). If the user does not cancel the order before the end of the buyer's remorse period, the **Sales** endpoint will publish an `OrderAccepted` event.
 
 The **ECommerce** endpoint subscribes to the `OrderPlaced` and `OrderAccepted` events in order to update the web page. It does this by forwarding events to the client using SignalR.
 
