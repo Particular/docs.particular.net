@@ -127,8 +127,6 @@ If you like, you can experiment with changing the configuration for immediate an
 
 You can [configure immediate retries](/nservicebus/recoverability/configure-immediate-retries.md) to either change the number of retries, or disable them altogether. The default value is `5`, but you may want to set it to a higher or lower number. Many developers prefer to set it to `0` during development so that they can limit the "wall of text" effect when an exception is thrown, and then set it to a higher number for production use.
 
-INFO: For further strategies to limit the "wall of text" effect in stack traces, especially with async code, check out the [Stack Trace Cleaning](/samples/logging/stack-trace-cleaning/) sample.
-
 The number of retries supplied to the immediate retries API can be pulled from an appSetting to allow changing configuration between development/test/staging/production environments.
 
 You can also [configure delayed retries](/nservicebus/recoverability/configure-delayed-retries.md) in much the same way. In addition to the number of rounds of delayed retries, you can also modify the time increase used for the delay between each round of retries.
