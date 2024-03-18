@@ -1,18 +1,14 @@
 ---
 title: SQL Server Native Delayed Delivery
 summary: Describes the native delayed delivery implementation in the SQL Server transport
-reviewed: 2021-01-12
+reviewed: 2023-03-15
 component: SqlTransport
 versions: '[3,)'
 ---
 
-The SQL Server transport can take advantage of native [delayed delivery](/nservicebus/messaging/delayed-delivery.md) without the need to run the [timeout manager](/nservicebus/messaging/timeout-manager.md). Instead, the transport creates dedicated infrastructure which delays messages using native SQL Server transport features.
-
-When a message delay time lapses, SQL Server transport moves a batch of messages to the destination queue. Note that this means the exact time of delivering a delayed message is always an approximation.
+The SQL Server transport supports [delayed delivery]/nservicebus/messaging/delayed-delivery.md) by storing the delayed messages in a dedicated table. When a message delay time lapses, SQL Server transport moves messages to the destination queues in batches. Note that this means the exact time of delivering a delayed message is always an approximation.
 
 NOTE: The native delayed delivery feature of the SQL Server transport is not available to [send-only](/nservicebus/hosting/#self-hosting-send-only-hosting) endpoints.
-
-From version 5 of the transport, [native delayed delivery is always enabled](/transports/upgrades/sqlserver-4to5.md#native-delayed-delivery).
 
 ## Configuration
 
