@@ -11,7 +11,7 @@ include: bridge-to-router-note
 ## Running the project
 
  1. Start the projects in debug mode.
- 1. Press <kbd>Enter</kbd> a couple of times.
+ 1. Press <kbd>Enter</kbd> a few times.
  1. Observe the `PingHandler` logging processed message IDs in the **Server** window.
  1. Observe the `PongHandler` logging processed message IDs in the **Client** window.
 
