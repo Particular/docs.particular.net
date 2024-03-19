@@ -39,5 +39,57 @@ namespace IntegrityTests
                     return (true, null);
                 });
         }
+
+        [Test]
+        public void TargetFrameworksInDescendingOrder()
+        {
+            new TestRunner("*.csproj", "Multi-targeted projects should have target frameworks in descending order to make future search/replace operations easier")
+                .IgnoreSnippets()
+                .IgnoreTutorials()
+                .Run(path =>
+                {
+                    var text = File.ReadAllText(path);
+                    var match = Regex.Match(text, "<TargetFrameworks>([^<]+)</TargetFrameworks>");
+
+                    if (match.Success)
+                    {
+                        var frameworks = match.Groups[1].Value;
+                        var frameworkMajors = frameworks.Split(';')
+                            .Select(GetMajorFromTargetFramework)
+                            .ToArray();
+
+                        for (var i = 0; i < frameworkMajors.Length - 1; i++)
+                        {
+                            if (frameworkMajors[i] <= frameworkMajors[i + 1])
+                            {
+                                return (false, $"'{frameworks}' is not in descending order");
+                            }
+                        }
+                    }
+
+                    return (true, null);
+                });
+        }
+
+        static int GetMajorFromTargetFramework(string tfm)
+        {
+            if (tfm.StartsWith("net4"))
+            {
+                return 4;
+            }
+
+            var dotIndex = tfm.IndexOf('.');
+
+            if (dotIndex > 0 && tfm.StartsWith("net"))
+            {
+                var majorText = tfm.Substring(3, dotIndex - 3);
+                if (int.TryParse(majorText, out var major))
+                {
+                    return major;
+                }
+            }
+
+            throw new Exception($"Couldn't figure out major version from target framework '{tfm}'");
+        }
     }
 }
