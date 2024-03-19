@@ -1,5 +1,7 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.AspNet.SignalR;
+using Microsoft.AspNetCore.SignalR;
+
+namespace ClientHub;
 
 #region StockTickHub
 
