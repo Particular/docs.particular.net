@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Threading.Tasks;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Configuration;
@@ -59,7 +58,6 @@ public static class HostBuilderExtensions
     {
         var fatalMessage =
             $"The following critical error was encountered:{Environment.NewLine}{context.Error}{Environment.NewLine}Process is shutting down. StackTrace: {Environment.NewLine}{context.Exception.StackTrace}";
-        EventLog.WriteEntry(".NET Runtime", fatalMessage, EventLogEntryType.Error);
 
         try
         {
