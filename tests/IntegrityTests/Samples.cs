@@ -9,7 +9,7 @@ using NUnit.Framework.Internal;
 
 namespace IntegrityTests
 {
-    internal class Samples
+    internal partial class Samples
     {
         [Test]
         public void NoMinorSamples()
@@ -91,5 +91,37 @@ namespace IntegrityTests
 
             throw new Exception($"Couldn't figure out major version from target framework '{tfm}'");
         }
+
+        [Test]
+        public void ConstrainConsoleTitlesForWindowsTerminal()
+        {
+            var regex = ConsoleTitleRegex();
+
+            new TestRunner("Program.cs", "Console.Title values should be simple like 'Client' not 'Samples.SampleName.Client' and <= 26 characters to fit in Windows Terminal tabs")
+                .IgnoreSnippets()
+                .Run(path =>
+                {
+                    var text = File.ReadAllText(path);
+
+                    foreach (var match in regex.Matches(text).OfType<Match>())
+                    {
+                        var value = match.Groups[1].Value;
+
+                        if (value.Contains('.'))
+                        {
+                            return (false, $"'{value}' should not contain namespaced segments");
+                        }
+                        else if (value.Length > 26)
+                        {
+                            return (false, $"'{value}' is longer than 26 characters");
+                        }
+                    }
+
+                    return (true, null);
+                });
+        }
+
+        [GeneratedRegex(@"Console\.Title\s+=\s+""([^""]+)""", RegexOptions.Compiled)]
+        private static partial Regex ConsoleTitleRegex();
     }
 }
