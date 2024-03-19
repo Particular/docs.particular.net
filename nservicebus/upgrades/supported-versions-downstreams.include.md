@@ -160,15 +160,15 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/3.0.2) | 2022-11-17     | -                 | -                                 |
-| [2.3.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/2.3.2) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/3.0.3) | 2022-11-17     | -                 | -                                 |
+| [2.3.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/2.3.3) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Storage.MongoDB.TransactionalSession](/nuget/NServiceBus.Storage.MongoDB.TransactionalSession)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/3.0.2) | 2022-11-17     | -                 | -                                 |
-| [2.3.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/2.3.2) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/3.0.3) | 2022-11-17     | -                 | -                                 |
+| [2.3.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/2.3.3) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Transport.Msmq](/nuget/NServiceBus.Transport.Msmq)
 
@@ -451,7 +451,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.Testing/8.1.0) | 2023-06-19     | -                 | -                                 |
-| [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.Testing/8.0.1) | ~~2022-11-17~~ | ~~2023-09-19~~    | ~~Superseded by 8.1.x~~           |
 | [7.4.x](https://www.nuget.org/packages/NServiceBus.Testing/7.4.2) | 2022-03-11     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.TransactionalSession](/nuget/NServiceBus.TransactionalSession)
