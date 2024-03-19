@@ -8,7 +8,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.FluentScheduler.Scheduler";
+        Console.Title = "Scheduler";
         var endpointConfiguration = new EndpointConfiguration("Samples.FluentScheduler.Scheduler");
         endpointConfiguration.UseTransport(new LearningTransport());
 

@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.SenderSideScaleOut.Client";
+        Console.Title = "Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.SenderSideScaleOut.Client");
         endpointConfiguration.UsePersistence<NonDurablePersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");

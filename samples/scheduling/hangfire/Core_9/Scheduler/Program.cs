@@ -8,7 +8,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.HangfireScheduler.Scheduler";
+        Console.Title = "Scheduler";
         var endpointConfiguration = new EndpointConfiguration("Samples.HangfireScheduler.Scheduler");
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();

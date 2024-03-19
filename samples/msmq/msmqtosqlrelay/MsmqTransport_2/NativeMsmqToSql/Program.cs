@@ -15,7 +15,7 @@ class Program
 {
     static void Main()
     {
-        Console.Title = "Samples.MsmqToSqlRelay.NativeMsmqToSql";
+        Console.Title = "NativeMsmqToSql";
 
         #region receive-from-msmq-using-native-messaging
 

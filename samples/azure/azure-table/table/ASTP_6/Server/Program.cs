@@ -4,7 +4,7 @@ using Azure.Data.Tables;
 
 using NServiceBus;
 
-Console.Title = "Samples.AzureTable.Table.Server";
+Console.Title = "Server";
 
 #region AzureTableConfig
 

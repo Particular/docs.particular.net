@@ -11,7 +11,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.CustomNhMappings.Loquacious";
+        Console.Title = "Loquacious";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.Loquacious");
         endpointConfiguration.EnableInstallers();

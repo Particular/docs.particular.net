@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.SenderSideScaleOut.Server2";
+        Console.Title = "Server2";
         var endpointConfiguration = new EndpointConfiguration("Samples.SenderSideScaleOut.Server");
         var discriminator = ConfigurationManager.AppSettings["InstanceId"];
         endpointConfiguration.MakeInstanceUniquelyAddressable(discriminator);

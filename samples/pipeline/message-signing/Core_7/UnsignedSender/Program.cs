@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Pipeline.SigningAndEncryption.UnsignedSender";
+        Console.Title = "UnsignedSender";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Pipeline.SigningAndEncryption.UnsignedSender");
         endpointConfiguration.UsePersistence<LearningPersistence>();

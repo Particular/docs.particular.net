@@ -11,7 +11,7 @@ class Program
     {
         const string tablePrefix = "";
 
-        Console.Title = "Samples.MultiTenant.Receiver";
+        Console.Title = "Receiver";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Receiver");
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);

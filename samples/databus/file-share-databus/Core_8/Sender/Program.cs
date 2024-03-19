@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.DataBus.Sender";
+        Console.Title = "Sender";
         var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Sender");
 
         #region ConfigureDataBus

@@ -11,7 +11,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.CustomNhMappings.Fluent";
+        Console.Title = "Fluent";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.Fluent");
         endpointConfiguration.EnableInstallers();

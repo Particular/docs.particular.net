@@ -10,7 +10,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.RavenDB.Server";
+        Console.Title = "Server";
 
         #region Config
 

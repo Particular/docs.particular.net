@@ -7,7 +7,7 @@ using NServiceBus.Logging;
 var defaultFactory = LogManager.Use<DefaultFactory>();
 defaultFactory.Level(LogLevel.Warn);
 
-Console.Title = "Samples.RenameSaga.Version1";
+Console.Title = "Version1";
 
 var endpointConfiguration = new EndpointConfiguration("Samples.RenameSaga");
 

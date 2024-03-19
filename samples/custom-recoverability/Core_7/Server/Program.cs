@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.CustomRecoverability.Server";
+        Console.Title = "Server";
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomRecoverability.Server");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();

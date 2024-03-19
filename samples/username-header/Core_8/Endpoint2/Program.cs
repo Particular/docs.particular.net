@@ -8,7 +8,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.UsernameHeader.Endpoint2";
+        Console.Title = "Endpoint2";
         var endpointConfiguration = new EndpointConfiguration("Samples.UsernameHeader.Endpoint2");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());

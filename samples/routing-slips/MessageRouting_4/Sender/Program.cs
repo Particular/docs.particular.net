@@ -10,7 +10,7 @@ class Program
 
     static async Task Main()
     {
-        Console.Title = "Samples.RoutingSlips.Sender";
+        Console.Title = "Sender";
         var endpointConfiguration = new EndpointConfiguration("Samples.RoutingSlips.Sender");
 
         endpointConfiguration.UsePersistence<LearningPersistence>();

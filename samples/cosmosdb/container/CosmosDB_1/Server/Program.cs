@@ -9,7 +9,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.CosmosDB.Container.Server";
+        Console.Title = "Server";
 
         #region CosmosDBConfig
 

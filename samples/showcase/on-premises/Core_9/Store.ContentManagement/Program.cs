@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Store.ContentManagement";
+        Console.Title = "ContentManagement";
         var endpointConfiguration = new EndpointConfiguration("Store.ContentManagement");
         endpointConfiguration.ApplyCommonConfiguration(routing =>
         {

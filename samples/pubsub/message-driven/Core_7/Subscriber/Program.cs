@@ -6,7 +6,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.PubSub.MessageDrivenSubscriber";
+        Console.Title = "MessageDrivenSubscriber";
         var endpointConfiguration = new EndpointConfiguration("Samples.PubSub.MessageDrivenSubscriber");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 

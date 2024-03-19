@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Sqs.SimpleReceiver";
+        Console.Title = "SimpleReceiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.Sqs.SimpleReceiver");
         endpointConfiguration.EnableInstallers();
         var transport = endpointConfiguration.UseTransport<SqsTransport>();

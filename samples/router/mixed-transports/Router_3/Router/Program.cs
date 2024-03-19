@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Router.MixedTransports.Router";
+        Console.Title = "Router";
 
         #region RouterConfig
 

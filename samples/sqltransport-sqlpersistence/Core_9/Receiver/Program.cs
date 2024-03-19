@@ -4,7 +4,7 @@ using Microsoft.Data.SqlClient;
 using NServiceBus;
 using NServiceBus.Transport.SqlServer;
 
-Console.Title = "Samples.Sql.Receiver";
+Console.Title = "Receiver";
 
 #region ReceiverConfiguration
 

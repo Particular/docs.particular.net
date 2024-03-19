@@ -1,7 +1,7 @@
 using System;
 using NServiceBus;
 
-Console.Title = "Samples.SqlServer.SimpleReceiver";
+Console.Title = "SimpleReceiver";
 
 var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.SimpleReceiver");
 var transport = endpointConfiguration.UseTransport<SqlServerTransport>();

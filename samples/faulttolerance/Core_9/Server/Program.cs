@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.FaultTolerance.Server";
+        Console.Title = "Server";
         var endpointConfiguration = new EndpointConfiguration("Samples.FaultTolerance.Server");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();

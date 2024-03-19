@@ -9,7 +9,7 @@ namespace Receiver
     {
         static async Task Main()
         {
-            Console.Title = "Samples.RabbitMQ.SimpleReceiver";
+            Console.Title = "SimpleReceiver";
             var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.SimpleReceiver");
             var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
             transport.UseConventionalRoutingTopology(QueueType.Quorum);

@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.DelayedDelivery.Client";
+        Console.Title = "Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.DelayedDelivery.Client");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();

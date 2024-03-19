@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Encryption.Endpoint1";
+        Console.Title = "Endpoint1";
         var endpointConfiguration = new EndpointConfiguration("Samples.Encryption.Endpoint1");
         endpointConfiguration.Conventions().DefiningMessagesAs(type => type.Name.Contains("Message"));
         #region enableEncryption

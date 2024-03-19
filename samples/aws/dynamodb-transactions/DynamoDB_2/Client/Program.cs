@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.DynamoDB.Transactions.Client";
+        Console.Title = "Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Transactions.Client");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();

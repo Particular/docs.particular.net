@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.FullDuplex.Client";
+        Console.Title = "Client";
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Info);
         var endpointConfiguration = new EndpointConfiguration("Samples.FullDuplex.Client");

@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.ConsumerDrivenContracts.Producer";
+        Console.Title = "Producer";
         var endpointConfiguration = new EndpointConfiguration("Samples.ConsumerDrivenContracts.Producer");
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();

@@ -3,7 +3,7 @@
 using NServiceBus;
 
 
-Console.Title = "Samples.AzureTable.Simple.Client";
+Console.Title = "Client";
 var endpointConfiguration = new EndpointConfiguration("Samples.AzureTable.Simple.Client");
 endpointConfiguration.UsePersistence<LearningPersistence>();
 endpointConfiguration.UseTransport(new LearningTransport());

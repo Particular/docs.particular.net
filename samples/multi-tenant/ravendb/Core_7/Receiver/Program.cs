@@ -14,7 +14,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.MultiTenant.Receiver";
+        Console.Title = "Receiver";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Receiver");
 

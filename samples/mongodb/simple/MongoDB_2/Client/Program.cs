@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.MongoDB.Client";
+        Console.Title = "Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.MongoDB.Client");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();

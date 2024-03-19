@@ -11,7 +11,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.DynamoDB.Simple.Server";
+        Console.Title = "Server";
 
         #region DynamoDBConfig
 

@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Store.Operations";
+        Console.Title = "Operations";
         var endpointConfiguration = new EndpointConfiguration("Store.Operations");
         endpointConfiguration.ApplyCommonConfiguration();
         var endpointInstance = await Endpoint.Start(endpointConfiguration);

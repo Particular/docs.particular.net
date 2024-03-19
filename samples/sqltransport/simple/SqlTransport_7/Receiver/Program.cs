@@ -2,7 +2,7 @@ using System;
 using NServiceBus;
 
 
-Console.Title = "Samples.SqlServer.SimpleReceiver";
+Console.Title = "SimpleReceiver";
 var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.SimpleReceiver");
 
 // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=SqlServerSimple;Integrated Security=True;Max Pool Size=100;Encrypt=false

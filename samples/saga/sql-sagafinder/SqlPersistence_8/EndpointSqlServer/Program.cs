@@ -8,7 +8,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.SqlSagaFinder.SqlServer";
+        Console.Title = "SqlServer";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlSagaFinder.SqlServer");
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.UseSerialization<XmlSerializer>();

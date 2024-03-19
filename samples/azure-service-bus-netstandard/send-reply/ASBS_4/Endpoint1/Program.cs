@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.ASBS.SendReply.Endpoint1";
+        Console.Title = "Endpoint1";
 
         #region config
 

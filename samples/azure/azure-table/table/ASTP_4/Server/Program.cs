@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.AzureTable.Table.Server";
+        Console.Title = "Server";
 
         #region AzureTableConfig
 

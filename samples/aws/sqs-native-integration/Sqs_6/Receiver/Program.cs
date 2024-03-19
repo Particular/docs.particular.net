@@ -2,7 +2,7 @@ using System;
 using Newtonsoft.Json;
 using NServiceBus;
 
-Console.Title = "Samples.Sqs.SimpleReceiver";
+Console.Title = "SimpleReceiver";
 
 var endpointConfiguration = new EndpointConfiguration("Samples.Sqs.SimpleReceiver");
 endpointConfiguration.EnableInstallers();

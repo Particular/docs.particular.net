@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Unobtrusive.Server";
+        Console.Title = "Server";
         var endpointConfiguration = new EndpointConfiguration("Samples.Unobtrusive.Server");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());

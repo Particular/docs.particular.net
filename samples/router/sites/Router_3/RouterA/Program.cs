@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Router.Sites.RouterA";
+        Console.Title = "RouterA";
 
         var routerConfig = new RouterConfiguration("SiteA");
         routerConfig.AddInterface<LearningTransport>("Local", t => { });

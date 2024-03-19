@@ -7,7 +7,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.MultipleDeserializers.ExternalNewtonsoftBsonEndpoint";
+        Console.Title = "ExternalNewtonsoftBsonEndpoint";
 
         #region configExternalNewtonsoftBson
         var endpointConfiguration = new EndpointConfiguration("Samples.MultipleDeserializers.ExternalNewtonsoftBsonEndpoint");
