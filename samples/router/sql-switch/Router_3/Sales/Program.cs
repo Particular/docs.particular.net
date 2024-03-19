@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Red.Sales";
+        Console.Title = "RedSales";
         var endpointConfiguration = new EndpointConfiguration("Red.Sales");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");

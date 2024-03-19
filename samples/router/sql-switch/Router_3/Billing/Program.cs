@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Green.Billing";
+        Console.Title = "GreenBilling";
         var endpointConfiguration = new EndpointConfiguration("Green.Billing");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.SendFailedMessagesTo("error");

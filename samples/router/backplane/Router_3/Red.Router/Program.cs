@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Red.Router";
+        Console.Title = "RedRouter";
 
         var routerConfig = await RouterConfigurator.Prepare(ConnectionStrings.Red, "Red");
 
