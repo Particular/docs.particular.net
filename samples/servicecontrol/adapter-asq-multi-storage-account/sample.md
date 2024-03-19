@@ -10,6 +10,7 @@ related:
  - transports/azure-storage-queues
 ---
 
+WARN: [ServiceControl.TransportAdapter](https://docs.particular.net/nuget/ServiceControl.TransportAdapter) is obsolete. Instead, use the [`NServiceBus.Transport.Bridge`](/nservicebus/bridge).
 
 This sample shows how to configure ServiceControl to monitor endpoints and retry messages when using the advanced features of the Azure Storage Queues transport [not natively supported by ServiceControl](/servicecontrol/transport-adapter/incompatible-features.md#azure-storage-queues-transport).
 

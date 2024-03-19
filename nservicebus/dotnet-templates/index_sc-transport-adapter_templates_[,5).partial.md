@@ -1,6 +1,6 @@
 ## ServiceControl Transport Adapter Windows Service
 
-NOTE: Transport adapters are no longer recommended. Instead, use the [`NServiceBus.Transport.Bridge`](/nservicebus/bridge).
+WARN: [ServiceControl.TransportAdapter](https://docs.particular.net/nuget/ServiceControl.TransportAdapter) is obsolete. Instead, use the [`NServiceBus.Transport.Bridge`](/nservicebus/bridge).
 
 This template makes it easier to create a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) host for a [ServiceControl Transport Adapter](/servicecontrol/transport-adapter/).
 
