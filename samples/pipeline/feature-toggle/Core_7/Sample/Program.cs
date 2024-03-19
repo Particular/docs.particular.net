@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.PipelineFeatureToggle";
+        Console.Title = "PipelineFeatureToggle";
         var endpointConfiguration = new EndpointConfiguration("Samples.PipelineFeatureToggle");
 
         endpointConfiguration.UseTransport<LearningTransport>();

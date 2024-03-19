@@ -10,7 +10,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Logging.ExtensionsLogging";
+        Console.Title = "ExtensionsLogging";
 
         #region NLogConfiguration
         var config = new LoggingConfiguration();

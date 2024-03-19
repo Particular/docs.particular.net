@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.StartupShutdown";
+        Console.Title = "StartupShutdown";
         LogManager.Use<DefaultFactory>().Level(LogLevel.Error);
         #region Program
         Logger.WriteLine("Starting configuration");

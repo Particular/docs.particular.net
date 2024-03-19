@@ -6,7 +6,7 @@ class Program
 {
     public static async Task Main()
     {
-        var endpointConfiguration = new EndpointConfiguration(Console.Title = "Samples.AsyncPages.Server");
+        var endpointConfiguration = new EndpointConfiguration(Console.Title = "AsyncPagesServer");
         endpointConfiguration.EnableCallbacks(makesRequests: false);
         endpointConfiguration.UseTransport(new LearningTransport());
 

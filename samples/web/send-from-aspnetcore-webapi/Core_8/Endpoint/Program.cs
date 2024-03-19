@@ -6,7 +6,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.ASPNETCore.Endpoint";
+        Console.Title = "ASPNETCoreEndpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.ASPNETCore.Endpoint");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport(new LearningTransport());

@@ -8,7 +8,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Autofac";
+        Console.Title = "Autofac";
 
         #region ContainerConfiguration
 

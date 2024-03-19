@@ -7,7 +7,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.NServiceBus.ExternallyManagedContainer";
+        Console.Title = "ExternallyManagedContainer";
 
         var endpointConfiguration = new EndpointConfiguration("Sample");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();

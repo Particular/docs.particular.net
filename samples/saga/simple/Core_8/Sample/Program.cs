@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.SimpleSaga";
+        Console.Title = "SimpleSaga";
         var endpointConfiguration = new EndpointConfiguration("Samples.SimpleSaga");
 
         #region config

@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.AuditFilter";
+        Console.Title = "AuditFilter";
         var endpointConfiguration = new EndpointConfiguration("Samples.AuditFilter");
 
         endpointConfiguration.UsePersistence<LearningPersistence>();

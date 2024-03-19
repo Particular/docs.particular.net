@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Headers";
+        Console.Title = "Headers";
         var endpointConfiguration = new EndpointConfiguration("Samples.Headers");
 
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();

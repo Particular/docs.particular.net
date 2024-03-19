@@ -7,7 +7,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.NServiceBus.Extensions.DependencyInjection";
+        Console.Title = "DependencyInjection";
 
         var endpointConfiguration = new EndpointConfiguration("Sample");
         endpointConfiguration.UseTransport<LearningTransport>();

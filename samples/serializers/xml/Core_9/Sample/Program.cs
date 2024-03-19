@@ -4,7 +4,7 @@ using NServiceBus;
 using NServiceBus.MessageMutator;
 
 
-Console.Title = "Samples.Serialization.Xml";
+Console.Title = "Xml";
 
 #region config
 var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.Xml");

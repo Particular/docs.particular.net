@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Mvc.Server";
+        Console.Title = "MvcServer";
         var endpointConfiguration = new EndpointConfiguration("Samples.Mvc.Server");
         endpointConfiguration.EnableCallbacks(makesRequests: false);
         endpointConfiguration.UseTransport(new LearningTransport());

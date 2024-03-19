@@ -7,7 +7,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Spring";
+        Console.Title = "Spring";
 
         #region ContainerConfiguration
 

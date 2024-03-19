@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.MessageMutators";
+        Console.Title = "MessageMutators";
         var endpointConfiguration = new EndpointConfiguration("Samples.MessageMutators");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();

@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Pipeline.UnitOfWork.Endpoint";
+        Console.Title = "UnitOfWorkEndpoint";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Pipeline.UnitOfWork.Endpoint");
         endpointConfiguration.UsePersistence<LearningPersistence>();

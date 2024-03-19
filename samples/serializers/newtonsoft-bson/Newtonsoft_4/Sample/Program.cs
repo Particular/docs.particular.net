@@ -4,7 +4,7 @@ using Newtonsoft.Json.Bson;
 using NServiceBus;
 using NServiceBus.MessageMutator;
 
-Console.Title = "Samples.Serialization.ExternalBson";
+Console.Title = "ExternalBson";
 
 #region config
 

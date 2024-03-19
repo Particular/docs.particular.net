@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.ASB.Publisher";
+        Console.Title = "Publisher";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.ASB.Publisher");
 

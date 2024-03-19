@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.ServiceInsightCustomViewer.Endpoint";
+        Console.Title = "ServiceInsightCustomViewerEndpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.ServiceInsightCustomViewer.Endpoint");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();

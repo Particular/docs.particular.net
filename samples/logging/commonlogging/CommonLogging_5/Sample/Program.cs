@@ -8,7 +8,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Logging.CommonLogging";
+        Console.Title = "CommonLogging";
 
         #region ConfigureLogging
 

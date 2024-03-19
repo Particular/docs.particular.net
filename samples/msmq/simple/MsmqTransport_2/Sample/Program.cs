@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Msmq.Simple";
+        Console.Title = "MsmqSimple";
         #region ConfigureMsmqEndpoint
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Msmq.Simple");

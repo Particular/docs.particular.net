@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.UnitOfWork";
+        Console.Title = "UnitOfWork";
         var endpointConfiguration = new EndpointConfiguration("Samples.UnitOfWork");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());

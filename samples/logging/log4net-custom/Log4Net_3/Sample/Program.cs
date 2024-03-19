@@ -12,7 +12,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Logging.Log4NetCustom";
+        Console.Title = "Log4NetCustom";
         #region ConfigureLog4Net
         var layout = new PatternLayout
         {

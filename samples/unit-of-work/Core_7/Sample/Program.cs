@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.UnitOfWork";
+        Console.Title = "UnitOfWork";
         var endpointConfiguration = new EndpointConfiguration("Samples.UnitOfWork");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();

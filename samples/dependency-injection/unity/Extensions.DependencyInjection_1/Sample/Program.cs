@@ -8,7 +8,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Unity";
+        Console.Title = "Unity";
 
         #region ContainerConfiguration
 

@@ -9,7 +9,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Serialization.ExternalBson";
+        Console.Title = "ExternalBson";
 
         #region config
 
