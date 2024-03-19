@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.AmazonSQS" Version="7.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.AmazonSQS" Version="7.*" />
   </ItemGroup>
 
 </Project>

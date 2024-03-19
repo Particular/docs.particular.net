@@ -8,6 +8,6 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="4.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="4.*" />
   </ItemGroup>
 </Project>

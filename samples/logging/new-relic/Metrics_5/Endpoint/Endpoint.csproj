@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NewRelic.Agent.Api" Version="10.*" />
-    <PackageReference Include="NServiceBus" Version="9.0.0-alpha.10" />
-    <PackageReference Include="NServiceBus.Metrics" Version="5.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus" Version="9.*" />
+    <PackageReference Include="NServiceBus.Metrics" Version="5.*" />
   </ItemGroup>
 </Project>

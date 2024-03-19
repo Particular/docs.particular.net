@@ -6,7 +6,7 @@
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Persistence.DynamoDB" Version="2.0.0-alpha.2" />
+    <PackageReference Include="NServiceBus.Persistence.DynamoDB" Version="2.*" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SharedMessages\SharedMessages.csproj" />

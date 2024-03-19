@@ -10,10 +10,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="9.0.0-alpha.8" />
-    <PackageReference Include="NServiceBus.Callbacks" Version="5.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="5.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="5.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus" Version="9.*" />
+    <PackageReference Include="NServiceBus.Callbacks" Version="5.*" />
+    <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="5.*" />
+    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="5.*" />
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NUnit" Version="3.*" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />

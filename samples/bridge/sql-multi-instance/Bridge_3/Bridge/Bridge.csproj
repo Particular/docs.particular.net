@@ -6,8 +6,8 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Helpers\Helpers.csproj" />
-    <PackageReference Include="NServiceBus" Version="9.0.0-alpha.9" />
-    <PackageReference Include="NServiceBus.MessagingBridge" Version="3.0.0-alpha.2" />
-    <PackageReference Include="NServiceBus.SqlServer" Version="8.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus" Version="9.*" />
+    <PackageReference Include="NServiceBus.MessagingBridge" Version="3.*" />
+    <PackageReference Include="NServiceBus.SqlServer" Version="8.*" />
   </ItemGroup>
 </Project>

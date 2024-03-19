@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="8.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="8.*" />
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.1" />
   </ItemGroup>
