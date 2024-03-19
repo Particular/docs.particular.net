@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.InstanceMappingFile.Billing";
+        Console.Title = "Billing";
         var endpointConfiguration = new EndpointConfiguration("Samples.InstanceMappingFile.Billing");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
         endpointConfiguration.EnableInstallers();

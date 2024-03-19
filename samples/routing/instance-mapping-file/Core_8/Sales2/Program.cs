@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.InstanceMappingFile.Sales.2";
+        Console.Title = "Sales2";
         var endpointConfiguration = new EndpointConfiguration("Samples.InstanceMappingFile.Sales");
         endpointConfiguration.OverrideLocalAddress("Samples.InstanceMappingFile.Sales-2");
         endpointConfiguration.UsePersistence<NonDurablePersistence>();

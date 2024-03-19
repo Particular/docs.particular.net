@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.FairDistribution.Server.1";
+        Console.Title = "Server1";
         var endpointConfiguration = new EndpointConfiguration("Samples.FairDistribution.Server");
         endpointConfiguration.OverrideLocalAddress("Samples.FairDistribution.Server-1");
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
