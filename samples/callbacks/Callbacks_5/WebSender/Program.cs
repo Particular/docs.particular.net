@@ -1,18 +1,14 @@
-using NServiceBus;
-
 var builder = WebApplication.CreateBuilder(args);
 
-builder.UseNServiceBus(() =>
-{
-    var endpointConfiguration = new EndpointConfiguration("Samples.Callbacks.WebSender");
-    endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-    endpointConfiguration.UseTransport<LearningTransport>();
+var endpointConfiguration = new EndpointConfiguration("Samples.Callbacks.WebSender");
 
-    endpointConfiguration.MakeInstanceUniquelyAddressable("1");
-    endpointConfiguration.EnableCallbacks();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport<LearningTransport>();
 
-    return endpointConfiguration;
-});
+endpointConfiguration.MakeInstanceUniquelyAddressable("1");
+endpointConfiguration.EnableCallbacks();
+
+builder.UseNServiceBus(endpointConfiguration);
 
 builder.Services.AddControllersWithViews();
 
