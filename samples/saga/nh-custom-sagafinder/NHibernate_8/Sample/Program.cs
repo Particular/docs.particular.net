@@ -28,8 +28,7 @@ class Program
             x.Dialect<MsSql2012Dialect>();
             x.Driver<MicrosoftDataSqlClientDriver>();
         });
-
-        persistence.ConnectionString(connectionString);
+        persistence.UseConfiguration(hibernateConfig);;
 
         #endregion
 
