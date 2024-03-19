@@ -1,6 +1,6 @@
 ---
 title: ServicePulse
-reviewed: 2021-01-19
+reviewed: 2024-04-19
 component: ServicePulse
 isLearningPath: true
 related:
@@ -38,9 +38,7 @@ The dashboard provides a visual overview of the current state of the monitored N
 
 ## Endpoint health
 
-ServicePulse automatically detects existing endpoints in the system by analyzing metadata from [audited messages](/nservicebus/operations/auditing.md). By default, all detected endpoints will be listed in the Endpoints tab, but will not be automatically monitored.
-
-NOTE: Endpoints will not appear unless messages from the endpoint have been successfully processed by ServiceControl.
+ServicePulse automatically detects existing endpoints in the system by analyzing metadata from [audited messages](/nservicebus/operations/auditing.md). By default all detected endpoints will be listed in the Endpoints tab but will not be automatically monitored.
 
 In order to monitor an endpoint's health and activity, it is necessary to [configure it for monitoring](/servicepulse/how-to-configure-endpoints-for-monitoring.md).
 
@@ -81,9 +79,9 @@ The Failed Messages tab allows inspection of failed messages in more detail and 
 
 ## Custom checks
 
-Endpoint health monitoring ensures that the endpoint is functional, i.e. it can receive, process and send messages. However, in some situations, the system's operation might depend on other factors, such as a 3rd party webservice.
+Endpoint health monitoring ensures that the endpoint is functional, i.e. it can receive, process and send messages. However, in some situations, the system's operation might depend on other factors, such as a third party webservice.
 
-ServicePulse allows development of custom and period checks that can verify any required condition using custom .NET code. If the specified condition cannot be satisfied, ServicePulse will raise alerts.
+ServicePulse allows development of custom checks that can verify any required condition using custom .NET code. If the specified condition cannot be satisfied, ServicePulse will raise alerts.
 
 **Learn more:**
 
