@@ -4,6 +4,6 @@
   </PropertyGroup>
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.0-alpha.3" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.*" />
   </ItemGroup>
 </Project>

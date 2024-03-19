@@ -4,6 +4,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.1.0" />
-    <PackageReference Include="NServiceBus.AzureFunctions.Worker.ServiceBus" Version="5.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.AzureFunctions.Worker.ServiceBus" Version="5.*" />
   </ItemGroup>
 </Project>

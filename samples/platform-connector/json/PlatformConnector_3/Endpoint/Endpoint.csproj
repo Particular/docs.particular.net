@@ -9,8 +9,8 @@
     <None Update="platformConnection.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="9.0.0-alpha.10" />
-    <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="2.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.ServicePlatform.Connector" Version="3.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus" Version="9.*" />
+    <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="2.*" />
+    <PackageReference Include="NServiceBus.ServicePlatform.Connector" Version="3.*" />
   </ItemGroup>
 </Project>

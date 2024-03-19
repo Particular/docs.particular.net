@@ -10,7 +10,7 @@
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Kafka" Version="3.10.0" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.15.1" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.1.0" />
-    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="4.0.0-alpha.2" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="4.*" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AzureFunctions.Messages\AzureFunctions.Messages.csproj" />

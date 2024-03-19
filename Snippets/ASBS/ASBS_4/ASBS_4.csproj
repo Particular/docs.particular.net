@@ -4,6 +4,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Azure.Identity" Version="1.10.2" />
-    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="4.0.0-alpha.2" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="4.*" />
   </ItemGroup>
 </Project>

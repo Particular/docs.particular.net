@@ -11,13 +11,11 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(containerBuilder => containerBuilder.RegisterType<MyService>().SingleInstance());
 #endregion
 
-builder.UseNServiceBus(() =>
-{
-    var endpointConfiguration = new EndpointConfiguration("Sample.Core");
-    endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-    endpointConfiguration.UseTransport<LearningTransport>();
-    return endpointConfiguration;
-});
+var endpointConfiguration = new EndpointConfiguration("Sample.Core");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport<LearningTransport>();
+
+builder.UseNServiceBus(endpointConfiguration);
 
 var app = builder.Build();
 

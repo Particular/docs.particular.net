@@ -2,13 +2,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 #region ContainerConfiguration
 builder.Services.AddSingleton<MyService>();
-builder.UseNServiceBus(() =>
-{
-    var endpointConfiguration = new EndpointConfiguration("Sample.Core");
-    endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-    endpointConfiguration.UseTransport<LearningTransport>();
-    return endpointConfiguration;
-});
+
+var endpointConfiguration = new EndpointConfiguration("Sample.Core");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport<LearningTransport>();
+
+builder.UseNServiceBus(endpointConfiguration);
 #endregion
 
 var app = builder.Build();

@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="4.0.0-alpha.2" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.0-alpha.2" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="4.*" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.*" />
   </ItemGroup>
 
   <ItemGroup>

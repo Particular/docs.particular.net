@@ -5,10 +5,10 @@
     <LangVersion>12.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="9.0.0-alpha.10" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="4.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.RabbitMQ" Version="9.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.0-alpha.2" />
+    <PackageReference Include="NServiceBus" Version="9.*" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="4.*" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="9.*" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.*" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Messages\Messages.csproj" />

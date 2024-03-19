@@ -14,8 +14,8 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Net.Build.Containers" Version="8.*" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.0-alpha.3" />
-    <PackageReference Include="NServiceBus.RabbitMQ" Version="9.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.*" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="9.*" />
     <PackageReference Include="RabbitMQ.Client" Version="6.*" />
   </ItemGroup>
 

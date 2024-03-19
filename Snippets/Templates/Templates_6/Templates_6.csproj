@@ -3,6 +3,6 @@
     <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="ParticularTemplates" Version="6.0.0-alpha.1" />
+    <PackageReference Include="ParticularTemplates" Version="6.*" />
   </ItemGroup>
 </Project>
