@@ -6,7 +6,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "ExternalNewtonsoftJsonEndpoint";
+        Console.Title = "SystemJsonEndpoint";
 
         #region configSystemJson
         var endpointConfiguration = new EndpointConfiguration("Samples.MultipleDeserializers.SystemJsonEndpoint");
