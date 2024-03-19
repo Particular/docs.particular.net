@@ -472,6 +472,7 @@ Do not write a sample when:
 * Samples targeting .NET Core should be able to run across Windows, macOS, and Linux. To ensure that's the case, you can run the sample using WSL (Windows Subsystem for Linux) in VS Code. VS Code can be [configured to use WSL as the default development environment](https://code.visualstudio.com/docs/remote/wsl). If a sample cannot be designed to support one or more platforms add a note to the `sample.md`-file with the platforms that are unsupported and the reasoning.
 * Samples contain no calls to `ConfigureAwait(bool)` unless they are explicitly required.
 * Samples should define the `LangVersion` property to match the [default version](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/configure-language-version#defaults) of the lowest .NET TFM used in the solution.
+* Only one sample should be defined for a major version, multiple samples for minor versions within a major should not be used. Users can update to a minor to use a new feature, so it's not worth the maintenance cost to maintain multiple projects.
 
 #### References
 
