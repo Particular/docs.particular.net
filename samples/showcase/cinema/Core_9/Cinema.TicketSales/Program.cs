@@ -14,33 +14,29 @@ Console.Title = endpointName;
 
 var builder = Host.CreateApplicationBuilder(args);
 
-builder.UseNServiceBus(() =>
-{
-    // TODO: consider moving common endpoint configuration into a shared project
-    // for use by all endpoints in the system
+// TODO: consider moving common endpoint configuration into a shared project
+// for use by all endpoints in the system
+var endpointConfiguration = new EndpointConfiguration(endpointName);
 
-    var endpointConfiguration = new EndpointConfiguration(endpointName);
+// Learning Transport: https://docs.net/transports/learning/
+var routing = endpointConfiguration.UseTransport(new LearningTransport());
 
-    // Learning Transport: https://docs.net/transports/learning/
-    var routing = endpointConfiguration.UseTransport(new LearningTransport());
+// Define routing for commands: https://docs.net/nservicebus/messaging/routing#command-routing
+routing.RouteToEndpoint(typeof(RecordTicketSale), "Cinema.Headquarters");
 
-    // Define routing for commands: https://docs.net/nservicebus/messaging/routing#command-routing
-    routing.RouteToEndpoint(typeof(RecordTicketSale), "Cinema.Headquarters");
+// Learning Persistence: https://docs.net/persistence/learning/
+endpointConfiguration.UsePersistence<LearningPersistence>();
 
-    // Learning Persistence: https://docs.net/persistence/learning/
-    endpointConfiguration.UsePersistence<LearningPersistence>();
+// Message serialization
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-    // Message serialization
-    endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
 
-    endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
+// Installers are useful in development. Consider disabling in production.
+// https://docs.net/nservicebus/operations/installers
+endpointConfiguration.EnableInstallers();
 
-    // Installers are useful in development. Consider disabling in production.
-    // https://docs.net/nservicebus/operations/installers
-    endpointConfiguration.EnableInstallers();
-
-    return endpointConfiguration;
-});
+builder.UseNServiceBus(endpointConfiguration);
 
 builder.Services.AddHostedService<ConsoleSalesDesk>();
 
