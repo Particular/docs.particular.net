@@ -16,9 +16,9 @@ downloadbutton
 
 Running the sample will result in three different NServiceBus message endpoints, each running within their own console window:
 
-1. **Samples.Pipeline.SigningAndEncryption.ReceivingEndpoint**: Receives messages from the other two endpoints, but only successfully processing messages with a valid signature.
-1. **Samples.Pipeline.SigningAndEncryption.SignedSender**: Sends messages to the ReceivingEndpoint with a proper signature.
-1. **Samples.Pipeline.SigningAndEncryption.UnsignedSender**: Sends messages to the ReceivingEndpoint with a fake, invalid signature.
+1. **ReceivingEndpoint**: Receives messages from the other two endpoints, but only successfully processing messages with a valid signature.
+1. **SignedSender**: Sends messages to the ReceivingEndpoint with a proper signature.
+1. **UnsignedSender**: Sends messages to the ReceivingEndpoint with a fake, invalid signature.
 
 Pressing any key from the **SignedSender** window will result in a message sent to the **ReceivingEndpoint** that is successfully processed:
 
