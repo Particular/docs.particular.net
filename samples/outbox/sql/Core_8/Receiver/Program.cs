@@ -9,7 +9,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.SQLOutboxEF.Receiver";
+        Console.Title = "Receiver";
 
         // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlOutbox;Integrated Security=True;Max Pool Size=100;Encrypt=false
         var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlOutbox;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";

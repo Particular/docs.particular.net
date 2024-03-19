@@ -2,7 +2,7 @@
 using Microsoft.Data.SqlClient;
 using NServiceBus;
 
-Console.Title = "Samples.SqlPersistence.EndpointSqlServer";
+Console.Title = "EndpointSqlServer";
 
 #region sqlServerConfig
 

@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.SqlPersistence.EndpointSqlServer";
+        Console.Title = "EndpointSqlServer";
 
         #region sqlServerConfig
 

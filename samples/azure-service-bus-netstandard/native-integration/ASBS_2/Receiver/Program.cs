@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.ASB.NativeIntegration";
+        Console.Title = "NativeIntegration";
 
         #region EndpointName
 
