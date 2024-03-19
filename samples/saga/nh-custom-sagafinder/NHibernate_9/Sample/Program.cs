@@ -32,8 +32,6 @@ class Program
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>()
             .UseConfiguration(hibernateConfig);
 
-        persistence.ConnectionString(connectionString);
-
         #endregion
 
         SqlHelper.EnsureDatabaseExists(connectionString);
