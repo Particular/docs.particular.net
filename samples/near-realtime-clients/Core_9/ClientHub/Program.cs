@@ -4,20 +4,17 @@ Console.Title = "Samples.NearRealTimeClients.ClientHub";
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.UseNServiceBus(() =>
-{
-    var endpointConfiguration = new EndpointConfiguration("Samples.NearRealTimeClients.ClientHub");
+var endpointConfiguration = new EndpointConfiguration("Samples.NearRealTimeClients.ClientHub");
 
-    endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-    endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-    endpointConfiguration.SendFailedMessagesTo("error");
+endpointConfiguration.SendFailedMessagesTo("error");
 
-    var conventions = endpointConfiguration.Conventions();
-    conventions.DefiningEventsAs(type => type == typeof(StockTick));
+var conventions = endpointConfiguration.Conventions();
+conventions.DefiningEventsAs(type => type == typeof(StockTick));
 
-    return endpointConfiguration;
-});
+builder.UseNServiceBus(endpointConfiguration);
 
 builder.Services.AddSignalR();
 
