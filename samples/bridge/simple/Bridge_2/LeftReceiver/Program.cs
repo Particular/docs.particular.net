@@ -6,7 +6,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Bridge.LeftReceiver";
+        Console.Title = "LeftReceiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.Bridge.LeftReceiver");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();

@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.MessagingBridge.MsmqEndpoint";
+        Console.Title = "MsmqEndpoint";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.MessagingBridge.MsmqEndpoint");
         endpointConfiguration.EnableInstallers();

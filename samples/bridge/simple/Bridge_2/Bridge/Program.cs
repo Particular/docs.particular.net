@@ -9,7 +9,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Bridge";
+        Console.Title = "Bridge";
 
         await Host.CreateDefaultBuilder()
             .ConfigureLogging(logging =>

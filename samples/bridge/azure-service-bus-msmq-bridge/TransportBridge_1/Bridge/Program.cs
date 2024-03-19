@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main(string[] args)
     {
-        Console.Title = "Samples.MessagingBridge.Bridge";
+        Console.Title = "Bridge";
 
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))

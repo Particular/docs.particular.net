@@ -7,7 +7,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Bridge.RightReceiver";
+        Console.Title = "RightReceiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.Bridge.RightReceiver");
         endpointConfiguration.UsePersistence<LearningPersistence>();
 
