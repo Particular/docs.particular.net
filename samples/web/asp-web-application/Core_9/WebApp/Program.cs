@@ -1,18 +1,13 @@
-﻿using NServiceBus;
-
-#region ApplicationStart
+﻿#region ApplicationStart
 var builder = WebApplication.CreateBuilder(args);
 
-builder.UseNServiceBus(() =>
-{
-    var endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.WebApplication");
-    endpointConfiguration.MakeInstanceUniquelyAddressable("1");
-    endpointConfiguration.EnableCallbacks();
-    endpointConfiguration.UseTransport(new LearningTransport());
-    endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+var endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.WebApplication");
+endpointConfiguration.MakeInstanceUniquelyAddressable("1");
+endpointConfiguration.EnableCallbacks();
+endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-    return endpointConfiguration;
-});
+builder.UseNServiceBus(endpointConfiguration);
 #endregion
 
 builder.Services.AddRazorPages();
