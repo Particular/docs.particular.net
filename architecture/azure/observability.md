@@ -9,7 +9,7 @@ Azure’s main observability solution is [Azure Monitor](https://azure.microsoft
 
 :heavy_plus_sign: Pros:
 
-- A single tool to visualize traces, metrics and logs emitted by your applications, infrastructure, and networks
+- A single tool to visualize traces, metrics and logs emitted by an applications, infrastructure, and networks
 - Fully managed service
 - Tightly integrated with the Azure ecosystem enabling [auto-instrumentation for multiple environments and services](https://learn.microsoft.com/en-us/azure/azure-monitor/app/codeless-overview#supported-environments-languages-and-resource-providers)
 - Customizable dashboards and automated alarms and actions
@@ -28,4 +28,4 @@ The Particular Service Platform collects metrics in two forms:
 - OpenTelemetry-based metrics, which can be collected by enabling OpenTelemetry and exporting the metrics to Amazon CloudWatch
 - Custom metrics with [NServiceBus.Metrics](/monitoring/metrics) which can be exported to Azure Monitor Application Insights.
 
-[**Try the Azure Application Insights sample for monitoring NServiceBus applications →**](https://docs.particular.net/samples/open-telemetry/application-insights/)
+[**Try the Azure Application Insights sample for monitoring NServiceBus applications →**](/samples/open-telemetry/application-insights)
