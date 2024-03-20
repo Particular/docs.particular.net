@@ -27,7 +27,7 @@ AWS offers several observability solutions which can be used with the Particular
 
 The Particular Service Platform collects metrics in two forms:
 
-1. OpenTelemetry-based metrics - can be collected by [enabling OpenTelemetry](https://docs.particular.net/nservicebus/operations/opentelemetry) and exporting the metrics to Amazon CloudWatch.
+1. OpenTelemetry-based metrics - can be collected by [enabling OpenTelemetry](/nservicebus/operations/opentelemetry) and exporting the metrics to Amazon CloudWatch.
 1. Custom metrics with `NServiceBus.Metrics` - can be exported to Amazon CloudWatch - TODO: Link this to TODO2 below.
 
 Try the Amazon CloudWatch sample for OpenTelemetry → TODO: Link this to TODO1 below.
