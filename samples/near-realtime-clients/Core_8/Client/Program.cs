@@ -6,7 +6,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.NearRealTimeClients.Client";
+        Console.Title = "Client";
 
         Console.WriteLine("Press any key to connect.");
         Console.ReadKey(true);

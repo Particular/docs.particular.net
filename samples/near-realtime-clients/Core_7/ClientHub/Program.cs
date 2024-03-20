@@ -1,54 +1,49 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
-using Microsoft.Owin.Cors;
-using Microsoft.Owin.Hosting;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
-using Owin;
+
+namespace ClientHub;
 
 static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.NearRealTimeClients.ClientHub";
+        Console.Title = "ClientHub";
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.NearRealTimeClients.ClientHub");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
+        var builder = WebApplication.CreateBuilder();
 
-        var transport = endpointConfiguration.UseTransport<MsmqTransport>();
-
-        var routing = transport.Routing();
-
-        routing.RegisterPublisher(
-            eventType: typeof(StockTick),
-            publisherEndpoint: "Samples.NearRealTimeClients.Publisher");
-
-        endpointConfiguration.SendFailedMessagesTo("error");
-
-        var conventions = endpointConfiguration.Conventions();
-        conventions.DefiningEventsAs(type => type == typeof(StockTick));
-
-        endpointConfiguration.EnableInstallers();
-
-        var url = "http://localhost:9756";
-
-        using (WebApp.Start<OwinStartup>(url))
+        builder.Host.UseNServiceBus(hostBuilderContext =>
         {
-            Console.WriteLine($"SignalR server running at {url}");
+            var endpointConfiguration = new EndpointConfiguration("Samples.NearRealTimeClients.ClientHub");
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
-            Console.WriteLine("NServiceBus subscriber running");
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey(true);
+            endpointConfiguration.UseTransport<LearningTransport>();
 
-            await endpointInstance.Stop();
-        }
-    }
-    class OwinStartup
-    {
-        public void Configuration(IAppBuilder app)
-        {
-            app.UseCors(CorsOptions.AllowAll);
-            app.MapSignalR();
-        }
+            endpointConfiguration.SendFailedMessagesTo("error");
+
+            var conventions = endpointConfiguration.Conventions();
+            conventions.DefiningEventsAs(type => type == typeof(StockTick));
+
+            return endpointConfiguration;
+        });
+
+        builder.Services.AddSignalR();
+
+        var app = builder.Build();
+        app.MapHub<StockTicksHub>("/StockTicksHub");
+
+        var url = "http://localhost:9756/";
+
+        var webAppTask = app.RunAsync(url);
+
+        Console.WriteLine($"SignalR server running at {url}");
+        Console.WriteLine("NServiceBus subscriber running");
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey(true);
+
+        await Task.WhenAll(
+            app.StopAsync(),
+            webAppTask);
     }
 }

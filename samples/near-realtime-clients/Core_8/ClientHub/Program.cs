@@ -1,8 +1,8 @@
+using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
-using System;
-using System.Threading.Tasks;
 
 namespace ClientHub;
 
@@ -10,7 +10,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.NearRealTimeClients.ClientHub";
+        Console.Title = "ClientHub";
 
         var builder = WebApplication.CreateBuilder();
 

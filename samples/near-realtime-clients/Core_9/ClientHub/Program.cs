@@ -1,6 +1,6 @@
 using ClientHub;
 
-Console.Title = "Samples.NearRealTimeClients.ClientHub";
+Console.Title = "ClientHub";
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -6,10 +6,9 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.NearRealTimeClients.Publisher";
+        Console.Title = "Publisher";
         var endpointConfiguration = new EndpointConfiguration("Samples.NearRealTimeClients.Publisher");
-        endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.UseTransport<MsmqTransport>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         endpointConfiguration.SendFailedMessagesTo("error");
 
@@ -54,7 +53,7 @@ static class Program
         } while (Console.ReadKey(true).Key != ConsoleKey.Escape);
     }
 
-    static string[] Symbols =
+    static readonly string[] Symbols =
     {
         "MSFT",
         "AAPL",
