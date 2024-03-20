@@ -63,6 +63,8 @@
       Url: architecture/workflows
     - Title: Hybrid systems
       Url: architecture/hybrid-systems
+    - Title: Observability
+      Url: architecture/observability
   - Title: Azure
     Articles:
     - Title: Introduction
@@ -85,6 +87,8 @@
         Url: architecture/azure/data-stores
       - Title: Messaging
         Url: architecture/azure/messaging
+      - Title: Observability
+        Url: architecture/azure/observability
   - Title: AWS
     Articles:
     - Title: Introduction
