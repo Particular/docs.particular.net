@@ -13,7 +13,7 @@ This sample shows how to extend the OpenTelemetry activities in different ways.
 
 The code consists of a single endpoint project that sends messages to itself.
 
-Press <kbd>O</kdb> to send a `CreateOrder` message with a randomized `OrderId`. When the message is handled, two more messages are created: `BillOrder` and `ShipOrder`.
+Press <kbd>O</kbd> to send a `CreateOrder` message with a randomized `OrderId`. When the message is handled, two more messages are created: `BillOrder` and `ShipOrder`.
 
 As the messages are sent and processed, trace data is exported to the console. Some of the trace data originates from NServiceBus and some from custom code in the sample.
 
