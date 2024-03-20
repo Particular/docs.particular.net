@@ -5,7 +5,6 @@ component: SCTransportAdapter
 reviewed: 2021-02-22
 related:
  - nservicebus/dotnet-templates
- - samples/servicecontrol/adapter-mixed-transports
 ---
 
 WARN: [ServiceControl.TransportAdapter](/nservicebus/upgrades/supported-versions.md#other-packages-servicecontrol-transportadapter) is obsolete. Instead, use the [`NServiceBus.Transport.Bridge`](/nservicebus/bridge).
