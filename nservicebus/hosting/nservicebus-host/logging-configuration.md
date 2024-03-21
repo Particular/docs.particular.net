@@ -6,7 +6,6 @@ reviewed: 2024-01-02
 related:
  - nservicebus/logging
  - samples/logging/hostcustom
- - samples/logging/hostprofiles
 ---
 
 include: host-deprecated-warning
