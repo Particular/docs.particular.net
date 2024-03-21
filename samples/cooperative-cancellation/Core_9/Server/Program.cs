@@ -8,7 +8,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Cooperative.Cancellation";
+        Console.Title = "Cancellation";
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Info);
         var endpointConfiguration = new EndpointConfiguration("Samples.Cooperative.Cancellation");

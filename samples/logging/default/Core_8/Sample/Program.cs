@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Logging.Default";
+        Console.Title = "LoggingDefault";
         #region ConfigureLogging
 
         var defaultFactory = NServiceBus.Logging.LogManager.Use<NServiceBus.Logging.DefaultFactory>();

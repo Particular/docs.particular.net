@@ -11,7 +11,7 @@ class Program
 
     static async Task Main()
     {
-        Console.Title = "Samples.MultiTenant.Sender";
+        Console.Title = "Sender";
 
         var random = new Random();
 

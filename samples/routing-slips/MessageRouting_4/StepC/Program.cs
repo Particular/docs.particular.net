@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.RoutingSlips.StepC";
+        Console.Title = "StepC";
         var endpointConfiguration = new EndpointConfiguration("Samples.RoutingSlips.StepC");
 
         endpointConfiguration.UsePersistence<LearningPersistence>();

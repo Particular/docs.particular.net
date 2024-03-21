@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.CommandRouting.Receiver";
+        Console.Title = "Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.CommandRouting.Receiver");
         endpointConfiguration.UseTransport<LearningTransport>();
 

@@ -11,7 +11,7 @@ using NServiceBus;
 // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlNativeIntegration;Integrated Security=True;Max Pool Size=100;Encrypt=false
 var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlNativeIntegration;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
 
-Console.Title = "Samples.SqlServer.NativeIntegration";
+Console.Title = "NativeIntegration";
 
 #region EndpointConfiguration
 var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.NativeIntegration");

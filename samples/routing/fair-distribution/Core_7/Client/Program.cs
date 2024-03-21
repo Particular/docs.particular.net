@@ -8,7 +8,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.FairDistribution.Client";
+        Console.Title = "Client";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         var random = new Random();
 

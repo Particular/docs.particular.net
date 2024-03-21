@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.DispatchNotification";
+        Console.Title = "DispatchNotification";
 
         #region endpoint-configuration
         var endpointConfiguration = new EndpointConfiguration("Samples.DispatchNotification");

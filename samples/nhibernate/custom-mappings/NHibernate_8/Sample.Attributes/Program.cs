@@ -11,7 +11,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.CustomNhMappings.Attributes";
+        Console.Title = "Attributes";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.Attributes");
         endpointConfiguration.EnableInstallers();

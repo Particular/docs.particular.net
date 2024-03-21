@@ -3,7 +3,7 @@ using System.IO;
 using Microsoft.Data.SqlClient;
 using NServiceBus;
 
-Console.Title = "Samples.Sql.Receiver";
+Console.Title = "Receiver";
 
 #region ReceiverConfiguration
 

@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.ASBS.SendReply.Endpoint2";
+        Console.Title = "Endpoint2";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.SendReply.Endpoint2");
         endpointConfiguration.EnableInstallers();

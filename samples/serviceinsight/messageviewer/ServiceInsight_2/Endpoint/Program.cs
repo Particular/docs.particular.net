@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.ServiceInsightCustomViewer.Endpoint";
+        Console.Title = "CustomViewerEndpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.ServiceInsightCustomViewer.Endpoint");
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.AuditProcessedMessagesTo("audit");

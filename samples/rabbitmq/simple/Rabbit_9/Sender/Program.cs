@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.RabbitMQ.SimpleSender";
+        Console.Title = "SimpleSender";
 
         #region ConfigureRabbit
         var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.SimpleSender");

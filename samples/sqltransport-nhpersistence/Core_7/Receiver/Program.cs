@@ -7,7 +7,7 @@ using NHibernate.Tool.hbm2ddl;
 using NServiceBus;
 using NServiceBus.Persistence;
 
-Console.Title = "Samples.SqlNHibernate.Receiver";
+Console.Title = "Receiver";
 
 // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlNHibernate;Integrated Security=True;Max Pool Size=100;Encrypt=false
 var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlNHibernate;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";

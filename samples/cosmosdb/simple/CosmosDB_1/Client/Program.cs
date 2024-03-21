@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.CosmosDB.Simple.Client";
+        Console.Title = "Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.CosmosDB.Simple.Client");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();

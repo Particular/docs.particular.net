@@ -6,7 +6,7 @@ class Program
 {
     public static async Task Main()
     {
-        var endpointConfiguration = new EndpointConfiguration(Console.Title = "Samples.Blazor.Server");
+        var endpointConfiguration = new EndpointConfiguration(Console.Title = "BlazorServer");
         endpointConfiguration.EnableCallbacks(makesRequests: false);
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());

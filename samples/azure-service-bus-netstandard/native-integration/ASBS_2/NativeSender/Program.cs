@@ -8,7 +8,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.ASB.NativeIntegration.Sender";
+        Console.Title = "Sender";
         var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
         if (string.IsNullOrWhiteSpace(connectionString))
         {

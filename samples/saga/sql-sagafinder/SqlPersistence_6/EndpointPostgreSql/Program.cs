@@ -9,7 +9,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.SqlSagaFinder.PostgreSql";
+        Console.Title = "PostgreSql";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlSagaFinder.PostgreSql");
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.SendFailedMessagesTo("error");

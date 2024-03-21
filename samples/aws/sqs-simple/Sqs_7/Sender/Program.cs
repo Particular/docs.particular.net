@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
-Console.Title = "Samples.Sqs.SimpleSender";
+Console.Title = "SimpleSender";
 #region ConfigureEndpoint
 
 var endpointConfiguration = new EndpointConfiguration("Samples.Sqs.SimpleSender");

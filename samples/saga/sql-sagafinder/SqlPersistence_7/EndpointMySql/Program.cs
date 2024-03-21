@@ -8,7 +8,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.SqlSagaFinder.MySql";
+        Console.Title = "MySql";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlSagaFinder.MySql");
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.SendFailedMessagesTo("error");

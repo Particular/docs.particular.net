@@ -5,7 +5,7 @@ using NServiceBus;
 using NServiceBus.MessageMutator;
 
 
-Console.Title = "Samples.Serialization.ExternalJson";
+Console.Title = "ExternalJson";
 
 #region config
 

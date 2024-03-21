@@ -6,7 +6,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "ChangeMessageIdentity.Phase1";
+        Console.Title = "Phase1";
 
         var endpointConfiguration = new EndpointConfiguration("ChangeMessageIdentity.Phase1");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();

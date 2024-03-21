@@ -6,7 +6,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.PubSub.Subscriber";
+        Console.Title = "Subscriber";
         var endpointConfiguration = new EndpointConfiguration("Samples.PubSub.Subscriber");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();

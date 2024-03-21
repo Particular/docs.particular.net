@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.NHibernate.Client";
+        Console.Title = "Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.NHibernate.Client");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UseTransport(new LearningTransport());

@@ -1,7 +1,7 @@
 using System;
 using NServiceBus;
 
-Console.Title = "Samples.Sqs.SimpleReceiver";
+Console.Title = "SimpleReceiver";
 var endpointConfiguration = new EndpointConfiguration("Samples.Sqs.SimpleReceiver");
 endpointConfiguration.EnableInstallers();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();

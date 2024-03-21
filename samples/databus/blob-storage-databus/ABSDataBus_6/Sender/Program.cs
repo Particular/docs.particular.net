@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.AzureBlobStorageDataBus.Sender";
+        Console.Title = "Sender";
         var endpointConfiguration = new EndpointConfiguration("Samples.AzureBlobStorageDataBus.Sender");
 
         #region ConfiguringDataBusLocation

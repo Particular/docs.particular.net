@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-Console.Title = "Samples.Serialization.SystemJson";
+Console.Title = "SystemJson";
 
 var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.SystemJson");
 

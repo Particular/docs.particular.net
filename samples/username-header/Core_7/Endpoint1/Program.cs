@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.UsernameHeader.Endpoint1";
+        Console.Title = "Endpoint1";
         var endpointConfiguration = new EndpointConfiguration("Samples.UsernameHeader.Endpoint1");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();

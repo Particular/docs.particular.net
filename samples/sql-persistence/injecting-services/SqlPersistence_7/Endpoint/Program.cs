@@ -5,7 +5,7 @@ using System;
 using System.Threading.Tasks;
 
 
-Console.Title = "Samples.SqlPersistence.InjectingServices";
+Console.Title = "InjectingServices";
 
 var endpointConfiguration = new EndpointConfiguration("Samples.SqlPersistence.InjectingServices");
 endpointConfiguration.EnableInstallers();

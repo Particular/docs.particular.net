@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.ImmutableMessages.UsingInterfaces.Receiver";
+        Console.Title = "Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.ImmutableMessages.UsingInterfaces.Receiver");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();

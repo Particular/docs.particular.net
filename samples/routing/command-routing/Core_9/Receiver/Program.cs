@@ -1,7 +1,7 @@
 using System;
 using NServiceBus;
 
-Console.Title = "Samples.CommandRouting.Receiver";
+Console.Title = "Receiver";
 
 var endpointConfiguration = new EndpointConfiguration("Samples.CommandRouting.Receiver");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();

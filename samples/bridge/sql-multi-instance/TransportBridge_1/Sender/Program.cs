@@ -10,7 +10,7 @@ public class Program
 
     static async Task Main()
     {
-        Console.Title = "Samples.SqlServer.MultiInstanceSender";
+        Console.Title = "MultiInstanceSender";
 
         #region SenderConfiguration
 

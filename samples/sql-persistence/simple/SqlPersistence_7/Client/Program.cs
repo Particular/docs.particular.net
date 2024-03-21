@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.SqlPersistence.Client";
+        Console.Title = "Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlPersistence.Client");
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();

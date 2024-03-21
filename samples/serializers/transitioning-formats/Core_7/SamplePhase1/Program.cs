@@ -7,7 +7,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Serialization.TransitionPhase1";
+        Console.Title = "TransitionPhase1";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.TransitionPhase1");
         endpointConfiguration.SharedConfig();

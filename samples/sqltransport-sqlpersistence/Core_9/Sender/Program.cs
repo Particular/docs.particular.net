@@ -2,7 +2,7 @@ using System;
 using NServiceBus;
 using NServiceBus.Transport.SqlServer;
 
-Console.Title = "Samples.Sql.Sender";
+Console.Title = "Sender";
 
 var endpointConfiguration = new EndpointConfiguration("Samples.Sql.Sender");
 endpointConfiguration.SendFailedMessagesTo("error");

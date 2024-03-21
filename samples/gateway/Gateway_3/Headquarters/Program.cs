@@ -8,7 +8,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Gateway.Headquarters";
+        Console.Title = "Headquarters";
         var endpointConfiguration = new EndpointConfiguration("Samples.Gateway.Headquarters");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UseTransport<LearningTransport>();

@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Throttling.Limited";
+        Console.Title = "Limited";
 
         #region LimitConcurrency
 

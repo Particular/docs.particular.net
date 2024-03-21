@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Router.MixedTransports.Server";
+        Console.Title = "Server";
         var endpointConfiguration = new EndpointConfiguration(
             "Samples.Router.MixedTransports.Server");
 

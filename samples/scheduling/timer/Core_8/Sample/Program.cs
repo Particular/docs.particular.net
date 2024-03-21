@@ -10,7 +10,7 @@ partial class Program
 
     static async Task Main()
     {
-        Console.Title = "Samples.Scheduling.Timer";
+        Console.Title = "SchedulingTimer";
         var endpointConfiguration = new EndpointConfiguration("Samples.Scheduling.Timer");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();

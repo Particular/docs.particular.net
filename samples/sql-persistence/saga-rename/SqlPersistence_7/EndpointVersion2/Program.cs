@@ -8,7 +8,7 @@ using NServiceBus.MessageMutator;
 var defaultFactory = LogManager.Use<DefaultFactory>();
 defaultFactory.Level(LogLevel.Warn);
 
-Console.Title = "Samples.RenameSaga.Version2";
+Console.Title = "Version2";
 
 Console.WriteLine("Renaming SQL tables:");
 Console.WriteLine("    from Samples_RenameSaga_MyReplySagaVersion1 to Samples_RenameSaga_MyReplySagaVersion2");

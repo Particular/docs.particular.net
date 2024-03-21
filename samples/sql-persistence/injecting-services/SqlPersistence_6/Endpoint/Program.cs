@@ -8,7 +8,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.SqlPersistence.InjectingServices";
+        Console.Title = "InjectingServices";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlPersistence.InjectingServices");
         endpointConfiguration.EnableInstallers();

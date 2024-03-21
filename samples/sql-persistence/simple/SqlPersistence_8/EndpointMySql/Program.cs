@@ -2,7 +2,7 @@
 using MySql.Data.MySqlClient;
 using NServiceBus;
 
-Console.Title = "Samples.SqlPersistence.EndpointMySql";
+Console.Title = "EndpointMySql";
 
 #region MySqlConfig
 

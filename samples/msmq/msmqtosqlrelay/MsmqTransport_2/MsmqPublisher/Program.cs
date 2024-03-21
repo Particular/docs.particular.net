@@ -11,7 +11,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.MsmqToSqlRelay.MsmqPublisher";
+        Console.Title = "MsmqPublisher";
         #region publisher-config
 
         var endpointConfiguration = new EndpointConfiguration("MsmqPublisher");

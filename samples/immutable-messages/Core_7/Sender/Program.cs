@@ -8,7 +8,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.ImmutableMessages.UsingInterfaces.Sender";
+        Console.Title = "Sender";
         var endpointConfiguration = new EndpointConfiguration("Samples.ImmutableMessages.UsingInterfaces.Sender");
         endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.UsePersistence<LearningPersistence>();

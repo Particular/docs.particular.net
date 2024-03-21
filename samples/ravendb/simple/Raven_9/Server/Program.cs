@@ -6,7 +6,7 @@ using Raven.Client.Exceptions;
 using Raven.Client.ServerWide;
 using Raven.Client.ServerWide.Operations;
 
-Console.Title = "Samples.RavenDB.Server";
+Console.Title = "Server";
 
 #region Config
 

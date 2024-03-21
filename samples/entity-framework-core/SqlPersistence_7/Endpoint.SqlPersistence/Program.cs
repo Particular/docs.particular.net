@@ -12,7 +12,7 @@ class Program
     {
         // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesEfCoreUowSql;Integrated Security=True;Encrypt=false
         var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesEfCoreUowSql;User Id=SA;Password=yourStrong(!)Password;Encrypt=false;Max Pool Size=100";
-        Console.Title = "Samples.EntityFrameworkUnitOfWork.SQL";
+        Console.Title = "EntityFrameworkUnitOfWork";
 
         using (var receiverDataContext = new ReceiverDataContext(new DbContextOptionsBuilder<ReceiverDataContext>()
             .UseSqlServer(connectionString)

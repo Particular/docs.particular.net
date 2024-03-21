@@ -9,7 +9,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Serialization.Xml";
+        Console.Title = "Xml";
         #region config
         var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.Xml");
         // this is optional since Xml is the default serializer

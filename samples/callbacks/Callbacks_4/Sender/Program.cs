@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Callbacks.Sender";
+        Console.Title = "Sender";
         var endpointConfiguration = new EndpointConfiguration("Samples.Callbacks.Sender");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();

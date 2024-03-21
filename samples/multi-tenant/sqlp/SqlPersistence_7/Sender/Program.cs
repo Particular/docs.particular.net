@@ -8,7 +8,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.MultiTenant.Sender";
+        Console.Title = "Sender";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         var random = new Random();
         var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Sender");

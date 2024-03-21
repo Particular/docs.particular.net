@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
-Console.Title = "Samples.SqlServer.SimpleSender";
+Console.Title = "SimpleSender";
 var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.SimpleSender");
 endpointConfiguration.EnableInstallers();
 

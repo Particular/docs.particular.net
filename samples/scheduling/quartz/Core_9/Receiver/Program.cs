@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.QuartzScheduler.Receiver";
+        Console.Title = "Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.QuartzScheduler.Receiver");
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();

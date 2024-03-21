@@ -6,7 +6,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.PubSub.Publisher";
+        Console.Title = "Publisher";
         var endpointConfiguration = new EndpointConfiguration("Samples.PubSub.Publisher");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());

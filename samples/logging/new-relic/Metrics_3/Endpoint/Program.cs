@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Metrics.Tracing.Endpoint";
+        Console.Title = "TracingEndpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.Metrics.Tracing.Endpoint");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();

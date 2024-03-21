@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.RavenDB.Client";
+        Console.Title = "Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.RavenDB.Client");
         endpointConfiguration.UseTransport<LearningTransport>();
 

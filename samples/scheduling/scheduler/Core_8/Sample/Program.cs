@@ -10,7 +10,7 @@ class Program
     [Obsolete]
     static async Task Main()
     {
-        Console.Title = "Samples.Scheduling";
+        Console.Title = "Scheduling";
         var endpointConfiguration = new EndpointConfiguration("Samples.Scheduling");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();

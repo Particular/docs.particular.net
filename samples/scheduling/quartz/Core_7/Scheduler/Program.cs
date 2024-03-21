@@ -9,7 +9,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.QuartzScheduler.Scheduler";
+        Console.Title = "Scheduler";
         var endpointConfiguration = new EndpointConfiguration("Samples.QuartzScheduler.Scheduler");
         endpointConfiguration.UseTransport<LearningTransport>();
 

@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Wcf.Endpoint";
+        Console.Title = "WcfEndpoint";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Wcf.Endpoint");
         endpointConfiguration.UseTransport<LearningTransport>();

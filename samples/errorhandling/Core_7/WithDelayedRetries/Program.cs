@@ -7,7 +7,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.ErrorHandling.WithDelayedRetries";
+        Console.Title = "WithDelayedRetries";
         LogManager.Use<DefaultFactory>()
             .Level(LogLevel.Warn);
 

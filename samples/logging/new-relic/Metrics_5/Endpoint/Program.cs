@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        var endpointConfiguration = new EndpointConfiguration(Console.Title = "Samples.Metrics.Tracing.Endpoint");
+        var endpointConfiguration = new EndpointConfiguration(Console.Title = "TracingEndpoint");
 
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();

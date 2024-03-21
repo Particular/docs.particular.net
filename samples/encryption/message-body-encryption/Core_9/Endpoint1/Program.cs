@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.MessageBodyEncryption.Endpoint2";
+        Console.Title = "Endpoint2";
         var endpointConfiguration = new EndpointConfiguration("Samples.MessageBodyEncryption.Endpoint1");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());

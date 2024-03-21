@@ -10,7 +10,7 @@ class Program
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         var random = new Random();
 
-        Console.Title = "Samples.MessagingBridge.AsbEndpoint";
+        Console.Title = "AsbEndpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.MessagingBridge.AsbEndpoint");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<NonDurablePersistence>();

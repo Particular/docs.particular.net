@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Logging.CustomFactory";
+        Console.Title = "CustomFactory";
         #region ConfigureLogging
 
         var loggerDefinition = LogManager.Use<ConsoleLoggerDefinition>();

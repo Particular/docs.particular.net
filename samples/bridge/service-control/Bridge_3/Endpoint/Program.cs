@@ -8,7 +8,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Bridge.Endpoint";
+        Console.Title = "Endpoint";
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         var random = new Random();
         var endpointConfiguration = new EndpointConfiguration(

@@ -7,7 +7,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.StructureMap";
+        Console.Title = "StructureMap";
 
         #region ContainerConfiguration
 

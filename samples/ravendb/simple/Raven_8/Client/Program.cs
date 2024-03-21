@@ -1,7 +1,7 @@
 using System;
 using NServiceBus;
 
-Console.Title = "Samples.RavenDB.Client";
+Console.Title = "Client";
 var endpointConfiguration = new EndpointConfiguration("Samples.RavenDB.Client");
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();

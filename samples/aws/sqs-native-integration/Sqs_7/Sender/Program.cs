@@ -8,7 +8,7 @@ using Amazon.SQS.Model;
 var MessageToSend = @"{""$type"" : ""NativeIntegration.Receiver.SomeNativeMessage, Receiver"", ""ThisIsTheMessage"": ""Hello world!""}";
 #endregion
 
-Console.Title = "Samples.Sqs.NativeIntegration";
+Console.Title = "NativeIntegration";
 
 while (true)
 {

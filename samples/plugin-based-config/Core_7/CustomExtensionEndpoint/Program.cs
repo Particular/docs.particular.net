@@ -8,7 +8,7 @@ static class Program
 
     static async Task Main()
     {
-        Console.Title = "Samples.CustomExtensionEndpoint";
+        Console.Title = "CustomExtensionEndpoint";
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomExtensionEndpoint");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();

@@ -10,7 +10,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.CustomNhMappings.Default";
+        Console.Title = "Default";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.Default");
         endpointConfiguration.EnableInstallers();

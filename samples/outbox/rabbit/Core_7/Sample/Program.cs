@@ -8,7 +8,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.RabbitMQ.Outbox";
+        Console.Title = "RabbitMQOutbox";
 
         #region ConfigureTransport
         var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.Outbox");

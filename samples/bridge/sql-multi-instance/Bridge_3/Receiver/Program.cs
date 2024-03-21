@@ -10,7 +10,7 @@ class Program
 
     static async Task Main()
     {
-        Console.Title = "Samples.SqlServer.MultiInstanceReceiver";
+        Console.Title = "MultiInstanceReceiver";
 
         #region ReceiverConfiguration
 

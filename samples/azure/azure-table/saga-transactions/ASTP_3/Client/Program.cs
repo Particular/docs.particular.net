@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.AzureTable.Transactions.Client";
+        Console.Title = "Client";
         var endpointConfiguration = new EndpointConfiguration("Samples.AzureTable.Transactions.Client");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();

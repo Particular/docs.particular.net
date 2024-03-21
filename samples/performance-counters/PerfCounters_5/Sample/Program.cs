@@ -1,5 +1,5 @@
 
-Console.Title = "Samples.PerfCounters";
+Console.Title = "PerfCounters";
 var endpointConfiguration = new EndpointConfiguration("Samples.PerfCounters");
 endpointConfiguration.EnableInstallers();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();

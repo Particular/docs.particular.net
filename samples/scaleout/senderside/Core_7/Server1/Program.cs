@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.SenderSideScaleOut.Server1";
+        Console.Title = "Server1";
         var endpointConfiguration = new EndpointConfiguration("Samples.SenderSideScaleOut.Server");
 
         #region Server-Set-InstanceId

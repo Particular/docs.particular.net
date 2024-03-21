@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.CustomChecks.Monitor3rdParty";
+        Console.Title = "Monitor3rdParty";
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomChecks.Monitor3rdParty");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();

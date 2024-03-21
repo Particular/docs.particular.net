@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main(string[] args)
     {
-        Console.Title = "Samples.SessionFilter.Receiver";
+        Console.Title = "Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.SessionFilter.Receiver");
 
         endpointConfiguration.UsePersistence<LearningPersistence>();

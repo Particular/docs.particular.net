@@ -2,7 +2,7 @@
 using Newtonsoft.Json;
 using NServiceBus;
 
-Console.Title = "Samples.Serialization.TransitionPhase4";
+Console.Title = "TransitionPhase4";
 
 var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.TransitionPhase4");
 endpointConfiguration.SharedConfig();

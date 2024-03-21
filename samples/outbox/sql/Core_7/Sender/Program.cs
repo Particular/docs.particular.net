@@ -7,7 +7,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.SqlOutbox.Sender";
+        Console.Title = "Sender";
         var random = new Random();
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlOutbox.Sender");

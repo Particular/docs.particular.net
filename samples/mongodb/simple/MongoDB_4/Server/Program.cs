@@ -6,7 +6,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.MongoDB.Server";
+        Console.Title = "Server";
 
         #region mongoDbConfig
 

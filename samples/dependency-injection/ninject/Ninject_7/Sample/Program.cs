@@ -7,7 +7,7 @@ public class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.Ninject";
+        Console.Title = "Ninject";
 
         #region ContainerConfiguration
 

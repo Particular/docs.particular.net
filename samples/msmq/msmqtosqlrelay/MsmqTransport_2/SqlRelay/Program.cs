@@ -10,7 +10,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.MsmqToSqlRelay.SqlRelay";
+        Console.Title = "SqlRelay";
         #region sqlrelay-config
         var endpointConfiguration = new EndpointConfiguration("SqlRelay");
         endpointConfiguration.SendFailedMessagesTo("error");

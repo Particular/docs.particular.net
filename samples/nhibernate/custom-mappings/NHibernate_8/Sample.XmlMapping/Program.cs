@@ -11,7 +11,7 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "Samples.CustomNhMappings.XmlMapping";
+        Console.Title = "XmlMapping";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.CustomNhMappings.XmlMapping");
         endpointConfiguration.EnableInstallers();
