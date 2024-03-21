@@ -17,7 +17,7 @@ AWS offers several observability solutions which can be used with the Particular
 - Fully managed service
 - Tightly integrated with other AWS services
 - Supports querying data from multiple sources
-- Customizable dashboards with automated alarms and actions
+- Customizable dashboards with automated alarms and remediating actions
 - Real-time telemetry
 
 :heavy_minus_sign: Cons:
