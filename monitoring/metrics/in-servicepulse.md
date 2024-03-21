@@ -30,7 +30,6 @@ The second breakdown view is by instance. Each logical endpoint can be running o
 
 NOTE: Each physical instance should be configured with its own instance id, which is shown here. See [Installing the plugin](install-plugin.md) for more information about instance ids.
 
-
 ## Reporting period
 
 The monitoring tab and the endpoint details page both contain an option to change the reporting period.
@@ -40,7 +39,6 @@ The monitoring tab and the endpoint details page both contain an option to chang
 All graphs present the data collected during this reporting period. Where an average is shown, it is the average over the selected reporting period.
 
 NOTE: The screen is refreshed more frequently when a shorter reporting period is selected.
-
 
 ## Managing the list of endpoints
 
@@ -56,10 +54,9 @@ Grouping can be applied in order to group endpoints that share similar prefixes 
 
 Results can be sorted by clicking the respective column label. If clicked again, sorting is toggled between ascending and descending order. When sorting by any of the metrics, the average metric value will be used for sorting. If the list switches sorting positions too quickly, then a longer period of time may need to be selected to obtain more stable averages.
 
-NOTE: Sorting can only be used if no endpoint grouping is applied.
+NOTE: When endpoints are grouped, sorting is only available based on the endpoint name.
 
 ![Sorting endpoints in the monitoring view](monitored-endpoints-sorting.png)
-
 
 ## Data retention
 
@@ -88,7 +85,6 @@ If the endpoint instance should be removed from the set of instances for a logic
 ![Remove endpoint](remove-endpoint-instance.png)
 
 This removes the endpoint instance from the list of tracked endpoint instances for that logical endpoint.
-
 
 ## Endpoints with failed messages
 
