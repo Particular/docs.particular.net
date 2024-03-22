@@ -5,7 +5,7 @@ reviewed: 2024-03-14
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
-AWS offers several observability solutions which can be used with the Particular Service Platform. They provide native monitoring, logging, alarming, and dashboards with Amazon CloudWatch, tracing through AWS X-Ray, as well as other open-source based managed services. Together these provide the three pillars of [observability signals](https://opentelemetry.io/docs/concepts/signals/).
+AWS offers several observability solutions that can be used with the Particular Service Platform. They provide native monitoring, logging, alarming, and dashboards with Amazon CloudWatch, tracing through AWS X-Ray, and other open-source-based managed services. Together, these provide the three pillars of [observability signals](https://opentelemetry.io/docs/concepts/signals/).
 
 ## Amazon CloudWatch
 
