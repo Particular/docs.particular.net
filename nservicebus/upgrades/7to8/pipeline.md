@@ -21,8 +21,6 @@ This documentation provides information on breaking changes affecting maintainer
 
 Message mutators that operate on serialized messages (`IMutateIncomingTransportMessages` and `IMutateOutgoingTransportMessages`) in NServiceBus version 8 represent the message payload as `ReadOnlyMemory<byte>` instead of `byte[]`. As a result, the messages are immutable and it is no longer possible to change their content. Instead, a modified copy of the payload must be provided and assigned to the `Body` property of the context.
 
-In NServiceBus version 7 and below message mutators could be registered in two ways: using a dedicated `endpointConfiguration.RegisterMessageMutator` API or via a dependency injection container. In version 8 only the dedicated API is supported. Mutators registered in the container are ignored.
-
 ## Removing a behavior from the pipeline is obsolete
 
 The `Remove` method is no longer available in `PipelineSettings`. In order to disable a behavior, [replace the behavior](/nservicebus/pipeline/manipulate-with-behaviors.md?version=core_8#disable-an-existing-step) with an empty one.
