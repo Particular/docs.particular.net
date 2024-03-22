@@ -327,7 +327,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [5.0.x](https://www.nuget.org/packages/ParticularTemplates/5.0.0) | 2023-06-19     | -                 | -                                 |
+| [5.0.x](https://www.nuget.org/packages/ParticularTemplates/5.0.1) | 2023-06-19     | -                 | -                                 |
 | [4.1.x](https://www.nuget.org/packages/ParticularTemplates/4.1.0) | 2020-08-14     | 2024-06-19        | Superseded by 5.0.x               |
 
 ### Other packages
@@ -500,7 +500,6 @@
 | [~~2.37.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.37.0) | ~~2023-07-21~~ | ~~2023-11-16~~    | ~~Superseded by 2.38.x~~          |
 | [~~2.36.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.36.0) | ~~2023-07-05~~ | ~~2023-10-21~~    | ~~Superseded by 2.37.x~~          |
 | [~~2.35.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.35.0) | ~~2023-06-22~~ | ~~2023-10-05~~    | ~~Superseded by 2.36.x~~          |
-| [~~2.34.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.34.0) | ~~2023-06-20~~ | ~~2023-09-22~~    | ~~Superseded by 2.35.x~~          |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 
