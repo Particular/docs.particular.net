@@ -1,16 +1,28 @@
 using NServiceBus;
 using OpenTelemetry;
 using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
 using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
 public class Program
 {
+    const string EndpointName = "Samples.OpenTelemetry.Metrics";
     public static async Task Main()
     {
+        var attributes = new Dictionary<string, object>
+        {
+            ["service.name"] = EndpointName,
+            ["service.instance.id"] = Guid.NewGuid().ToString(),
+        };
+
+        var resourceBuilder = ResourceBuilder.CreateDefault().AddAttributes(attributes);
+
         #region enable-opentelemetry-metrics
         var meterProviderBuilder = Sdk.CreateMeterProviderBuilder()
+            .SetResourceBuilder(resourceBuilder)
             .AddMeter("NServiceBus.Core");
         #endregion
 
@@ -21,9 +33,10 @@ public class Program
         var meterProvider = meterProviderBuilder.Build();
 
         #region enable-opentelemetry
-        var config = new EndpointConfiguration("Samples.OpenTelemetry.Metrics");
+        var config = new EndpointConfiguration(EndpointName);
         config.EnableOpenTelemetry();
         #endregion
+
         config.UseSerialization<SystemJsonSerializer>();
         config.UseTransport<LearningTransport>();
 
