@@ -21,7 +21,7 @@ This issue causes performance degradation if the table contains a large number o
 
 ## Compatibility
 
-This issue has been resolved in the following patch versions of the [NHibernate Persistence](/persistence/nhibernate/) as defined in the NServiceBus [support policy](/nservicebus/upgrades/support-policy.md):
+This issue has been resolved in the following patch versions of the [NHibernate Persistence](/persistence/nhibernate/) as defined in the NServiceBus [support policy](/nservicebus/support):
 
  * [7.1.4](https://github.com/Particular/NServiceBus.NHibernate/releases/tag/7.1.4)
  * [7.0.6](https://github.com/Particular/NServiceBus.NHibernate/releases/tag/7.0.6)
