@@ -20,12 +20,12 @@ This issue may cause multiple rows in saga data tables that represent the same l
 
 ## Compatibility
 
-This issue has been resolved in the following patch versions of the [NHibernate Persistence](/persistence/nhibernate/) as defined in the NServiceBus [support policy](/nservicebus/upgrades/support-policy.md):
+This issue has been resolved in the following patch versions of the [NHibernate Persistence](/persistence/nhibernate/) as defined in the NServiceBus [support policy](/nservicebus/support):
 
  * [7.2.1](https://github.com/Particular/NServiceBus.NHibernate/releases/tag/7.2.1)
  * [7.1.6](https://github.com/Particular/NServiceBus.NHibernate/releases/tag/7.1.6)
 
-Affected versions (7.1 and later) that are still [supported](/nservicebus/upgrades/supported-versions.md#persistence-packages-nservicebus-nhibernate) should be updated to the latest patch release.
+Affected versions (7.1 and later) that are still [supported](/nservicebus/support/supported-versions.md#persistence-packages-nservicebus-nhibernate) should be updated to the latest patch release.
 
 
 ## Upgrade steps
