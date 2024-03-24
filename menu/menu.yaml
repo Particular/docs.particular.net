@@ -1363,6 +1363,8 @@
       Url: servicecontrol/license
     - Title: Support policy
       Url: servicecontrol/support-policy
+    - Title: Supported versions
+      Url: servicecontrol/supported-versions
   - Title: Upgrade Guides
     Articles:
     - Title: Upgrade tips
