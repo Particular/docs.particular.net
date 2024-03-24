@@ -85,4 +85,4 @@ As NServiceBus is layered over the top of existing data stores and queuing techn
 
 ## Security Advisories
 
-All releases that are security related are listed under [Security Advisories](/security-advisories/).
+All releases that are security related are listed under [Security Advisories](/nservicebus/security-advisories).
