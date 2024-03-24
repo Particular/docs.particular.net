@@ -4,7 +4,7 @@ summary: Instructions on how to patch SQL injection vulnerability in SQL Server 
 reviewed: 2022-06-28
 component: SqlTransport
 related:
- - security-advisories/sqlserver-sqlinjection
+ - nservicebus/security-advisories/sqlserver-sqlinjection
 redirects:
  - nservicebus/upgrades/sqlserver-2.x-2.2.4
 isUpgradeGuide: true
