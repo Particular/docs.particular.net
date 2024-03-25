@@ -53,7 +53,7 @@ Try the Amazon CloudWatch sample for OpenTelemetry → TODO: Link this to TODO1 
 :heavy_minus_sign: Cons:
 
 - [Costs](https://aws.amazon.com/xray/pricing/) can escalate with increased usage
-- [OpenTelemetry](/architecture/observability.md) compatibility is not guaranteed due to `traceId` format differences from the [W3C specification](https://www.w3.org/TR/trace-context/#trace-id)
+- **TODO** Validate that this is still accurate [OpenTelemetry](/architecture/observability.md) compatibility is not guaranteed due to `traceId` format differences from the [W3C specification](https://www.w3.org/TR/trace-context/#trace-id)
 
 The Particular Service Platform allows observability tools to capture spans emitted by NServiceBus, providing insights into how messages are being processed.
 
