@@ -41,7 +41,7 @@ Try the Amazon CloudWatch sample for OpenTelemetry → TODO: Link this to TODO1 
 
 ## Amazon X-Ray
 
-[Amazon X-Ray](https://aws.amazon.com/xray/) is a service that can receive trace data from applications. The trace data can provide insights that can help identify performance bottlenecks, edge case errors, and other hard to detect issues.
+[Amazon X-Ray](https://aws.amazon.com/xray/) is a service that can receive trace data from applications. The trace data can provide insights to help identify the root cause of failures, hard-to-detect issues or side effects, and performance bottlenecks.
 
 :heavy_plus_sign: Pros:
 
