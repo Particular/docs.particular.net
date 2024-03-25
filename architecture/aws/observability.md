@@ -16,7 +16,7 @@ AWS offers several observability solutions that can be used with the Particular 
 - Single tool to visualize metrics and logs emitted by the system
 - Fully managed service
 - Tightly integrated with other AWS services
-- Supports querying data from multiple sources, allowing to monitor metrics on AWS, on-premises, or other cloud providers
+- Supports querying data from multiple sources, allowing you to monitor metrics from AWS, on-premises, or other cloud providers
 - Customizable dashboards with automated alarms and remediating actions
 - Real-time telemetry
 
