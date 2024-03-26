@@ -5,7 +5,7 @@ reviewed: 2024-03-14
 callsToAction: ['solution-architect', 'ADSD']
 ---
 
-The AWS Well-Architected framework describes the [queue-worker architecture style](https://docs.aws.amazon.com/wellarchitected/latest/high-performance-computing-lens/queue-based-architecture.html) as a way to offload compute intensive operations from clients. It is ideal as a model to quickly scale and respond to quick bursts of client requests in a short period of time, to support processing of periodic tasks, background jobs and asynchronous flows. The architecture would be composed of any client sending commands to a queue which will be processed by a dedicated worker.
+The AWS [Well-Architected Framework](well-architected.md) describes the [queue-based architectural style](https://docs.aws.amazon.com/wellarchitected/latest/high-performance-computing-lens/queue-based-architecture.html) as a way to offload compute intensive operations from clients. It is ideal as a model to quickly scale and respond to bursts of requests in a short period of time to support processing of periodic tasks, background jobs, asynchronous flows, etc. The architecture is composed of clients sending commands to a queue which are processed by a dedicated worker.
 
 The following diagram is an example of what a queue based architecture would look like.
 
@@ -25,8 +25,9 @@ The following diagram is an example of what a queue based architecture would loo
 
 ### Technology choices
 
-The queue-worker architecture style can make use of AWS managed services like AWS Fargate, AWS App Runner, AWS Amplify Hosting, AWS AppSync, AWS Lambda, Amazon Cloud Watch, Amazon EC2 Instances, Amazon DynamoDB, Amazon DocumentDB, Amazon Aurora, Amazon S3, Amazon SNS/SQS, Amazon MQ, Amazon Event Bridge and AWS Kinesis amongst others. When relying on a Infrastructure-as-a-Service model, queue-worker architectures might provide fewer benefits.
+The queue-based architecture style can make use of AWS managed services like AWS Fargate, AWS App Runner, AWS Amplify Hosting, AWS AppSync, AWS Lambda, Amazon Cloud Watch, Amazon EC2 Instances, Amazon DynamoDB, Amazon DocumentDB, Amazon Aurora, Amazon S3, Amazon SNS/SQS, Amazon MQ, Amazon Event Bridge and AWS Kinesis amongst others. When relying on a Infrastructure-as-a-Service model, queue-based architectures might provide fewer benefits.
 
 ## Additional resources
 
 * [Queue-Based Architecture - High Performance Computing Lens (amazon.com)](https://docs.aws.amazon.com/wellarchitected/latest/high-performance-computing-lens/queue-based-architecture.html)
+* [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/)
