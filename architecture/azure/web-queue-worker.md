@@ -19,12 +19,11 @@ The Azure Architecture Center describes the [web-queue-worker architecture style
 
 ### Challenges
 
-* Not every operation on the database has to go through the worker. The web front end can perform simple read/write or time-sensitive operations directly. Workers are designed for resource-intensive tasks or long-running workflows.
-* This style is suitable for simple business domains. Without careful design, the front end and the worker can become complex, monolithic components that are difficult to maintain. Consider [event-driven](event-driven-architecture.md) and [microservices](microservices.md) architectural styles for more complex business domains.
+This style is suitable for simple business domains. Without careful design, the front end and the worker can become complex, monolithic components that are difficult to maintain. Consider [event-driven](event-driven-architecture.md) and [microservices](microservices.md) architectural styles for more complex business domains.
 
 ### Technology choices
 
-The web-queue-worker architecture style can make use of Azure's managed services like [Azure App Services](/architecture/azure/compute.md#platform-as-a-service-azure-app-services), [Azure Static Web Apps](https://azure.microsoft.com/en-us/products/app-service/static), [Azure Functions](/architecture/azure/compute.md#platform-as-a-service-azure-app-services), and [Cosmos DB](/architecture/azure/data-stores.md#azure-cosmos-db). [Azure Service Bus](/architecture/azure/messaging.md#azure-service-bus) is powerful messaging technology choice. When relying on a Infrastructure-as-a-Service model, web-queue-worker architectures might provide fewer benefits.
+The web-queue-worker architecture style can make use of Azure's managed services like [Azure App Services](/architecture/azure/compute.md#platform-as-a-service-azure-app-services), [Azure Static Web Apps](https://azure.microsoft.com/en-us/products/app-service/static), [Azure Functions](/architecture/azure/compute.md#platform-as-a-service-azure-app-services), and [Cosmos DB](/architecture/azure/data-stores.md#azure-cosmos-db). [Azure Storage Queues](https://learn.microsoft.com/en-us/azure/storage/queues/) is a good messaging queuing service if all you only send small messages. [Azure Service Bus](/architecture/azure/messaging.md#azure-service-bus) is a powerful alternative which caters for larger messages and provides other advanced features.
 
 ## Additional resources
 
