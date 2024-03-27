@@ -23,7 +23,7 @@ This style is suitable for simple business domains. Without careful design, the 
 
 ### Technology choices
 
-The web-queue-worker architecture style can make use of Azure's managed services like [Azure App Services](/architecture/azure/compute.md#platform-as-a-service-azure-app-services), [Azure Static Web Apps](https://azure.microsoft.com/en-us/products/app-service/static), [Azure Functions](/architecture/azure/compute.md#platform-as-a-service-azure-app-services), and [Cosmos DB](/architecture/azure/data-stores.md#azure-cosmos-db). [Azure Storage Queues](https://learn.microsoft.com/en-us/azure/storage/queues/) is a good messaging queuing service if all you only send small messages. [Azure Service Bus](/architecture/azure/messaging.md#azure-service-bus) is a powerful alternative which caters for larger messages and provides other advanced features.
+The web-queue-worker architecture style can make use of Azure's managed services like [Azure App Services](/architecture/azure/compute.md#platform-as-a-service-azure-app-services), [Azure Static Web Apps](https://azure.microsoft.com/en-us/products/app-service/static), [Azure Functions](/architecture/azure/compute.md#platform-as-a-service-azure-app-services), and [Cosmos DB](/architecture/azure/data-stores.md#azure-cosmos-db). [Azure Storage Queues](https://learn.microsoft.com/en-us/azure/storage/queues/) is a good messaging queuing solution for sending small messages. [Azure Service Bus](/architecture/azure/messaging.md#azure-service-bus) is a powerful alternative which caters to larger messages and provides other advanced features.
 
 ## Additional resources
 
