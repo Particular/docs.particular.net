@@ -333,8 +333,6 @@
         Title: ServiceControl.Plugin.X.CustomChecks to NServiceBus.CustomChecks
       - Url: nservicebus/upgrades/nservicebus.heartbeat
         Title: ServiceControl.Plugin.X.Heartbeat to NServiceBus.Heartbeat
-    - Title: Upgrade NServiceBus.Wormhole to NServiceBus.Router
-      Url: nservicebus/upgrades/wormhole-router
   - Title: Messaging
     Articles:
     - Url: nservicebus/messaging
@@ -422,17 +420,6 @@
         Title: Troubleshooting
       - Url: nservicebus/gateway/scale-out
         Title: Scale-Out
-    - Url: nservicebus/router
-      Title: Router
-      Articles:
-      - Url: nservicebus/router/direct
-        Title: Direct topology
-      - Url: nservicebus/router/multi-way
-        Title: Multi-way topology
-      - Url: nservicebus/router/backplane
-        Title: Backplane topology
-    - Url: nservicebus/rawmessaging
-      Title: Raw messaging
     - Url: nservicebus/outbox
       Title: Outbox
     - Url: nservicebus/transactional-session

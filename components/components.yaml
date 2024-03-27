@@ -596,7 +596,7 @@
 
 - Key: Wormhole
   Name: Wormhole Gateway
-  DocsUrl: /nservicebus/upgrades/wormhole-router
+  DocsUrl: https://github.com/SzymonPobiega/NServiceBus.Wormhole
   GitHubOwner: SzymonPobiega
   Category: Other
   SupportLevel: Community
@@ -608,7 +608,7 @@
 
 - Key: Router
   Name: NServiceBus.Router
-  DocsUrl: /nservicebus/router
+  DocsUrl: https://github.com/SzymonPobiega/NServiceBus.Router
   GitHubOwner: SzymonPobiega
   Category: Other
   SupportLevel: Community

@@ -93,6 +93,12 @@ Enables identifying NServiceBus messages, commands, and events by conventions us
 
 Created by [Mauro Servienti](https://milestone.topics.it/).
 
+## [NServiceBus.Router](https://github.com/SzymonPobiega/NServiceBus.Router)
+
+NServiceBus.Router is a universal component that is cross-transport, cross-site and cross-cloud router component for NServiceBus.
+
+Created by [Szymon Pobiega](https://simon-says-architecture.com/).
+
 ## [Rabbit Operations](http://rabbitoperations.southsidesoft.com/)
 
 Provides operations support for RabbitMQ applications that run on NServiceBus via a graphical user interface.
