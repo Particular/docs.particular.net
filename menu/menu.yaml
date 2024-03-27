@@ -114,8 +114,6 @@
         Title: Connecting endpoints
       - Url: platform/json-schema
         Title: Connection schema
-    - Url: samples/endpoint-configuration
-      Title: Configuration choices Sample
     - Url: nservicebus/dotnet-templates
       Title: dotnet new Templates
     - Url: nservicebus/platform-nuget-packages
@@ -585,8 +583,6 @@
     Articles:
     - Url: nservicebus/testing
       Title: About testing NServiceBus
-    - Url: samples/unit-testing
-      Title: AAA style tests
     - Url: nservicebus/testing/saga-scenario-testing
       Title: Saga scenario testing
     - Url: nservicebus/testing/fluent
