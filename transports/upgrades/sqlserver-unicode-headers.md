@@ -15,7 +15,7 @@ This document explains how to patch a system using the SQL Server transport to [
 
 ## Compatibility
 
-This issue has been resolved in the following patch versions of the [SQL Server transport](/transports/sql/) as defined in the NServiceBus [support policy](/nservicebus/upgrades/support-policy.md):
+This issue has been resolved in the following patch versions of the [SQL Server transport](/transports/sql/) as defined in the NServiceBus [support policy](/nservicebus/support):
 
  * [3.1.1](https://github.com/Particular/NServiceBus.SqlServer/releases/tag/3.1.1)
  * [3.0.3](https://github.com/Particular/NServiceBus.SqlServer/releases/tag/3.0.3)

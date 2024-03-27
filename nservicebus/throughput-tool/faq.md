@@ -100,7 +100,7 @@ The tool queries the monitoring instance once every hour to get the per-endpoint
 
 For endpoints not configured to [send metrics data to ServiceControl](/monitoring/metrics/install-plugin.md), the tool inspect Audit information to find how many messages have been successfully processed.
 
-See the [technical details](service-control.md#what-the-tool-does) for more information.
+See the [technical details](/nservicebus/throughput-tool/service-control.md#what-the-tool-does) for more information.
 
 ## What if my system's queue names contain proprietary information I don't want on the report
 
