@@ -149,7 +149,7 @@
   - Title: Security Advisories
     Articles:
     - Url: nservicebus/security-advisories
-      Title: Security Advisories
+      Title: About
     - Url: nservicebus/security-advisories/cryptography-xml-vulnerability
       Title: 2022-12-06
     - Url: nservicebus/security-advisories/servicepulse-directorytraversal
