@@ -35,7 +35,7 @@ The following walkthrough shows how to identify changes in an endpoint's backlog
 
 **Run the sample solution. Open ServicePulse to the Monitoring tab.**
 
-![Service Pulse monitoring tab showing sample endpoints](servicepulse-monitoring-tab-sample-low-throughput.png)
+![Service Pulse monitoring tab showing sample endpoints](servicepulse-monitoring-tab-sample-low-throughput.png "width=500")
 
 Look at the queue length and critical times for each endpoint. By default, the ClientUI endpoint is sending one order per second into the system, and the system can keep up. Queue lengths are hovering around zero as messages are not waiting around in input queues. Critical times remain very similar to processing times since most of a message's critical time is the amount of time it takes to process. 
 
@@ -43,7 +43,7 @@ Let's see what happens when we apply more pressure to the system.
 
 **Find the ClientUI endpoint window and toggle High-Throughput mode. Now go back to the ServicePulse Monitoring tab.**
 
-![Service Pulse monitoring tab showing sample endpoints in high throughput mode](servicepulse-monitoring-tab-sample-high-throughput.png)
+![Service Pulse monitoring tab showing sample endpoints in high throughput mode](servicepulse-monitoring-tab-sample-high-throughput.png "width=500")
 
 Now, look at the queue length and critical time for each endpoint. Notice that there isn't that much change for the Billing and Shipping endpoints. The Sales endpoint is quickly running into difficulties though. Once it hits its throughput limit, the Sales queue length starts to ramp up. As it does, the critical time also starts to climb. The Sales endpoint is becoming less responsive as its backlog of work increases.
 
@@ -69,7 +69,7 @@ Once you have more than one instance of an endpoint running, ServicePulse will s
 
 In this view, you can see all of the instances that are running.
 
-![ServicePulse Details tab showing instances of scaled-out Sales endpoint](servicepulse-monitoring-details-scaled-out-sales.png)
+![ServicePulse Details tab showing instances of scaled-out Sales endpoint](servicepulse-monitoring-details-scaled-out-sales.png "width=500")
 
 Each instance provides its own breakdown of metric data. If one particular instance is having a problem, you'll be able to see it here. 
 
@@ -77,7 +77,7 @@ Each instance provides its own breakdown of metric data. If one particular insta
 
 When an endpoint instance stops sending data, it will be displayed with an error icon in ServicePulse.
 
-![ServicePulse Monitoring tab showing the instance of Sales endpoint has stopped sending data](servicepulse-monitoring-tab-instance-stopped.png)
+![ServicePulse Monitoring tab showing the instance of Sales endpoint has stopped sending data](servicepulse-monitoring-tab-instance-stopped.png "width=500")
 
 ### Critical time is going up, but so is processing time
 

@@ -36,7 +36,7 @@ By default, the ClientUI endpoint sends a steady stream of 1 `PlaceOrder` messag
 
 The endpoints are also configured to send monitoring data to the Particular Software Platform, which you can see in ServicePulse.
 
-![Service Pulse monitoring tab showing sample endpoints](servicepulse-monitoring-tab-sample-low-throughput.png)
+![Service Pulse monitoring tab showing sample endpoints](servicepulse-monitoring-tab-sample-low-throughput.png "width=500")
 
 ## Explore the demo further
 
