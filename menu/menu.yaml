@@ -420,6 +420,8 @@
         Title: Troubleshooting
       - Url: nservicebus/gateway/scale-out
         Title: Scale-Out
+      - Url: nservicebus/rawmessaging
+        Title: Raw messaging
     - Url: nservicebus/outbox
       Title: Outbox
     - Url: nservicebus/transactional-session
