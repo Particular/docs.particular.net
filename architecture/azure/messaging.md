@@ -66,16 +66,19 @@ SQL transport is an NServiceBus feature that can use existing SQL Server databas
 
 - Runs on infrastructure which often already exists
 - Strong transaction integration with business data operations
-- Runs on cloud hosted and on-premises SQL Server-compatible data stores (including SQL Server Express for development, testing, and CI)
+- Runs on cloud-hosted and on-premises SQL Server-compatible data stores (including SQL Server Express for development, testing, and CI)
 - Arbitrary message sizes
+- Can cater for exactly-once processing if business data and message data are in the same database
+- Ease of backup and recovery as business data and messages are backed up in the same database
 
 :heavy_minus_sign: Cons:
 
+- Not an actual message queue
 - More expensive and laborious to scale
 - Impacts overall database performance
 - Lower message throughput compared to specialized message queuing technologies
 
-[**Try the SQL transport sample →**](/samples/azure/storage-queues/)
+[**Try the SQL transport sample →**](/samples/sqltransport/simple/)
 
 #### When to use SQL transport
 
