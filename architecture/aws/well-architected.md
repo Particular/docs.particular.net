@@ -27,7 +27,7 @@ NServiceBus helps the organization achieve the six pillars of the AWS Well-archi
 
 ### Cost optimization
 
-- Costs may be optimized by the most appropriate [choice of technology](/architecture/aws/#technology-choices).
+- Costs may be optimized by the most appropriate [technology choice](/architecture/aws/#technology-choices).
 
 ### Operational excellence
 
