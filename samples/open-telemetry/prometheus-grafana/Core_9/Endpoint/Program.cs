@@ -1,16 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using NServiceBus;
 using OpenTelemetry;
 using OpenTelemetry.Metrics;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
+using OpenTelemetry.Resources;
 
 public class Program
 {
+    const string EndpointName = "Samples.OpenTelemetry.Metrics";
     public static async Task Main()
     {
+        Console.Title = EndpointName;
+
+        var attributes = new Dictionary<string, object>
+        {
+            ["service.name"] = EndpointName,
+            ["service.instance.id"] = Guid.NewGuid().ToString(),
+        };
+
+        var resourceBuilder = ResourceBuilder.CreateDefault().AddAttributes(attributes);
+
         #region enable-opentelemetry-metrics
         var meterProviderBuilder = Sdk.CreateMeterProviderBuilder()
+            .SetResourceBuilder(resourceBuilder)
             .AddMeter("NServiceBus.Core");
         #endregion
 
@@ -21,14 +35,15 @@ public class Program
         var meterProvider = meterProviderBuilder.Build();
 
         #region enable-opentelemetry
-        var config = new EndpointConfiguration("Samples.OpenTelemetry.Metrics");
-        config.EnableOpenTelemetry();
+        var endpointConfiguration = new EndpointConfiguration(EndpointName);
+        endpointConfiguration.EnableOpenTelemetry();
         #endregion
-        config.UseSerialization<SystemJsonSerializer>();
-        config.UseTransport<LearningTransport>();
+
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
         var cancellation = new CancellationTokenSource();
-        var endpointInstance = await Endpoint.Start(config, cancellation.Token);
+        var endpointInstance = await Endpoint.Start(endpointConfiguration, cancellation.Token);
 
         #region prometheus-load-simulator
 
@@ -39,18 +54,12 @@ public class Program
 
         try
         {
-            Console.WriteLine("Endpoint started. Press 'enter' to send a message");
-            Console.WriteLine("Press ESC key to quit");
+            Console.WriteLine("Endpoint started. Press any key to send a message. Press ESC to stop");
 
-            while (true)
+            while (Console.ReadKey(true).Key != ConsoleKey.Escape)
             {
-                var key = Console.ReadKey(true);
-                if (key.Key == ConsoleKey.Escape)
-                {
-                    break;
-                }
 
-                await endpointInstance.SendLocal(new SomeCommand(), cancellation.Token);
+                await endpointInstance.SendLocal(new SomeMessage(), cancellation.Token);
             }
         }
         finally
