@@ -9,7 +9,7 @@ The Azure Architecture Center describes the [microservice architecture style](ht
 
 The Particular Service Platform implements the [messaging patterns](/nservicebus/messaging/) required to allow each [NServiceBus endpoint](/nservicebus/endpoints) to act as one of these autonomous services.
 
-![](azure-microservices.png)
+![Microservices on Azure with NServiceBus](azure-microservices.png)
 
 ## Components
 
