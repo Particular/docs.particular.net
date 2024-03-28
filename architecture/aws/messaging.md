@@ -29,7 +29,7 @@ Cost-effective: charges are based on usage easing up the need to do capacity pla
 
 NServiceBus addresses some of these limitations:
 - Limited message size: NServiceBus allows the use of S3 to work with larger payloads. For more information, review the documentation for the [Amazon SQS transport topology](/transports/sqs/topology.md#s3) and [Amazon SQS configuration options](/transports/sqs/configuration-options.md).
-- Limited control over retry policies: NServiceBus provides customizable [immediate](/nservicebus/recoverability/configure-immediate-retries.md) and [delayed](https://docs.particular.net/nservicebus/recoverability/configure-delayed-retries.md) retry policies.
+- Limited control over retry policies: NServiceBus provides customizable [immediate](/nservicebus/recoverability/configure-immediate-retries.md) and [delayed](/nservicebus/recoverability/configure-delayed-retries.md) retry policies.
 
 [**Try the SQS transport sample →**](/samples/aws/sqs-simple/)
 
