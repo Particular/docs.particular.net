@@ -1,15 +1,13 @@
 ---
-title: Multi tier architecture style on AWS
-summary:
-reviewed: 2024-03-14
+title: Multi-tier architecture style on AWS
+summary: Multi-tier architecture syle on AWS with indication of challenges and possible technology choices
+reviewed: 2024-03-28
 callsToAction: ['solution-architect', 'ADSD']
 ---
 
-The AWS documentation describes [Multi-Tier architectures](https://docs.aws.amazon.com/whitepapers/latest/serverless-multi-tier-architectures-api-gateway-lambda/), a well-known architecture pattern which divides applications into physical, logical and presentation tiers.
+The AWS documentation describes [multi-tier architectures](https://docs.aws.amazon.com/whitepapers/latest/serverless-multi-tier-architectures-api-gateway-lambda/), a well-known architecture pattern which divides applications into physical, logical and presentation tiers.
 
-From https:&#47;/docs.aws.amazon.com/whitepapers/latest/serverless-multi-tier-architectures-api-gateway-lambda/three-tier-architecture-overview.html
-
-Messaging can help evolving and modernizing existing applications that have been built using layered architectures:
+Messaging can help evolve and modernize existing applications that have been built using layered architectures:
 
 - Use asynchronous communication and clearly defined message contracts to more clearly separate layers.
 - Use messaging to route existing messages to [extracted components](https://codeopinion.com/splitting-up-a-monolith-into-microservices/) running in separate processes.
