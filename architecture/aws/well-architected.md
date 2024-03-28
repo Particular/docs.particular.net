@@ -39,6 +39,6 @@ NServiceBus helps the organization achieve the six pillars of the AWS Well-archi
 
 ### Sustainability
 
-- By abstracting the system components from the underlying [AWS technology choices](/architecture/aws/#technology-choices), NServiceBus allows the shift to more efficient hardware and software offerings when they become available with minimal changes.
+- By abstracting the system components from the underlying [AWS technology choices](/architecture/aws/#technology-choices), NServiceBus allows shifting to more efficient hardware and software offerings when they become available with minimal changes.
 
 By integrating NServiceBus with AWS services according to well-architected principles, you can build a robust, scalable, and reliable distributed system that delivers optimal performance, security, and cost efficiency on the AWS cloud platform.
