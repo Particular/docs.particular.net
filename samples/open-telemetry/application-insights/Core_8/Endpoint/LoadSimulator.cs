@@ -24,7 +24,7 @@ class LoadSimulator
         {
             while (!cancellationToken.IsCancellationRequested)
             {
-                await Work();
+                await Work(cancellationToken);
                 var delay = NextDelay();
                 await Task.Delay(delay, cancellationToken);
             }
@@ -43,9 +43,23 @@ class LoadSimulator
         return delay;
     }
 
-    Task Work()
+    Task Work(CancellationToken cancellationToken)
     {
-        return endpointInstance.SendLocal(new SomeMessage());
+        var sendOptions = new SendOptions();
+
+        sendOptions.RouteToThisEndpoint();
+
+        if (Random.Shared.Next(100) <= 10)
+        {
+            sendOptions.SetHeader("simulate-immediate-retry", bool.TrueString);
+        }
+
+        if (Random.Shared.Next(100) <= 5)
+        {
+            sendOptions.SetHeader("simulate-failure", bool.TrueString);
+        }
+
+        return endpointInstance.Send(new SomeMessage(), sendOptions, cancellationToken);
     }
 
     public Task Stop(CancellationToken cancellationToken)
