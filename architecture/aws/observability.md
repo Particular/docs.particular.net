@@ -1,7 +1,7 @@
 ---
 title: AWS observability services
 summary:
-reviewed: 2024-03-14
+reviewed: 2024-03-28
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
@@ -28,16 +28,7 @@ AWS offers several observability solutions that can be used with the Particular 
 The Particular Service Platform collects metrics in two forms:
 
 1. OpenTelemetry-based metrics - can be collected by [enabling OpenTelemetry](/nservicebus/operations/opentelemetry.md) and exporting the metrics to Amazon CloudWatch.
-1. Custom metrics with `NServiceBus.Metrics` - can be exported to Amazon CloudWatch - TODO: Link this to TODO2 below.
-
-Try the Amazon CloudWatch sample for OpenTelemetry → TODO: Link this to TODO1 below.
-
-**TODO**:
-
-1. Create a sample that uses Otel and integrates with CloudWatch
-1. Create a sample that uses NSB metrics, which integrates with CloudWatch
-    1. Collect NSB metrics, send to cloudwatch
-    2. Collect [NLog logs with extensions.logging](/samples/logging/extensions-logging/), [send to Cloudwatch](https://docs.aws.amazon.com/prescriptive-guidance/latest/patterns/configure-logging-for-net-applications-in-amazon-cloudwatch-logs-by-using-nlog.html)
+1. Custom metrics with `NServiceBus.Metrics` - can be exported to Amazon CloudWatch.
 
 ## Amazon X-Ray
 
