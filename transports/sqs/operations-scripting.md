@@ -2,16 +2,16 @@
 title: SQS Transport Scripting
 summary: Example code and scripts to facilitate deployment and operational actions against the SQS Transport.
 component: SQS
-reviewed: 2021-02-17
+reviewed: 2024-03-27
 related:
  - nservicebus/operations
 ---
 
-The following are example code and scripts to facilitate deployment and operations against the SQS Transport.
+The following are example code and scripts in C# and PowerShell to facilitate deployment and operations against the SQS Transport.
 
 ## Requirements
 
-The PowerShell scripts require the PowerShell SDK installed and properly configured. For more information refer to the [PowerShell Getting setup guide](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-getting-set-up.html).
+If using PowerShell, the [AWS Tools for PowerShell](https://docs.aws.amazon.com/powershell/latest/userguide/pstools-getting-set-up.html) must be installed and properly configured.
 
 For all operations that create resources in AWS the corresponding rights must be granted. For more information refer to the [IAM policies guide](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html).
 
