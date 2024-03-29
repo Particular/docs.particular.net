@@ -10,7 +10,7 @@ redirects:
  - transports/sqlserver/operations-scripting
 ---
 
-The following include both C# code examples and PowerShell scripts to facilitate deployment and operations against the SQL Server Transport.
+The following includes SQL scripts, C# code examples, and PowerShell scripts to facilitate deployment and operations against the SQL Server Transport.
 
 ## Inspecting messages in the queue
 
