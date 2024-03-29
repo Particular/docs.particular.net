@@ -65,7 +65,7 @@ The message timing measurements include:
 
 ### Sorting
 
-Messages can be assorted in ascending or descending order using the column headers. The sorting operation is applied to all the relevant messages in the underlying ServiceControl instance, not just the currently displayed messages.
+Messages can be sorted in ascending or descending order using the column headers. The sorting operation is applied to all the relevant messages in the underlying ServiceControl instance, not just the currently displayed messages.
 
 ### Detailed view 
 
