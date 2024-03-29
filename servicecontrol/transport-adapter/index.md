@@ -7,7 +7,7 @@ related:
  - nservicebus/dotnet-templates
 ---
 
-WARN: [ServiceControl.TransportAdapter](/nservicebus/upgrades/supported-versions.md#other-packages-servicecontrol-transportadapter) is obsolete. Instead, use the [`NServiceBus.Transport.Bridge`](/nservicebus/bridge).
+WARN: [ServiceControl.TransportAdapter](/nservicebus/upgrades/supported-versions.md#other-packages-servicecontrol-transportadapter) is obsolete. Instead, use the [`NServiceBus.MessagingBridge`](/nservicebus/bridge).
 
 The ServiceControl Transport Adapter decouples ServiceControl from the specifics of the business endpoint's transport to support scenarios where the endpoint's transport uses physical routing features [not compatible with ServiceControl](/servicecontrol/transport-adapter/incompatible-features.md) or where endpoints use mixed transports or multiple instances of a message broker.
 
