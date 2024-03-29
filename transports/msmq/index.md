@@ -6,7 +6,6 @@ related:
  - samples/msmq/simple
  - samples/msmq/persistence
  - samples/msmq/dlq-customcheck
- - samples/msmq/msmqtosqlrelay
 reviewed: 2022-10-07
 redirects:
  - nservicebus/msmq-information
