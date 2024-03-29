@@ -42,17 +42,17 @@ The Messages window is a detailed grid view indicating message [status](managing
 
 ![Message List View](images/overview-messagedetailwindow.png 'width=500')
 
-ServicePulse also supports opening ServiceInsight to a specific message to allow drill down for more detail.
+[ServicePulse](/servicepulse) also supports opening ServiceInsight to a specific message to allow drill down for more detail.
 
 NOTE: A message's body is searchable only if the body size is under 85kB, under the [`ServiceControl.Audit/MaxBodySizeToStore`](/servicecontrol/audit-instances/creating-config-file.md#performance-tuning-servicecontrol-auditmaxbodysizetostore) size limit, and is a non-binary content type.
 
 ### Refresh and Auto-refresh
 
-The Refresh and Auto-refresh toolbar buttons enable allow updating the displayed information with the latest updates from the ServiceControl database.
+The Refresh and Auto-refresh toolbar buttons update the displayed information with the latest updates from the ServiceControl database.
 
 Auto-refresh keeps the information in ServiceInsight automatically refreshed, delivering near real-time information to the views.
 
-The auto-refresh rate can be specified in the `View -> Options -> Auto-Refresh Timer` setting (default is auto-refresh every 15 seconds), or specify the auto-refresh rate using the ServiceInsight invocation parameter (see [ServiceInsight Invocation](application-invocation.md))
+The auto-refresh rate can be specified in the `View -> Options -> Auto-Refresh Timer` setting (default is every 15 seconds), or by using the ServiceInsight invocation parameter (see [ServiceInsight Application Invocation](application-invocation.md)).
 
 
 ### Timing and performance
@@ -63,10 +63,13 @@ The message timing measurements include:
 
  * **Processing Time**: the amount of time taken to process the message within the processing endpoint by the message processing handler method
 
-Using the messages window column headers the messages can be sorted in ascending or descending order (the sorting operation applies on all the relevant messages in the underlying ServiceControl instance, and is not limited to the currently displayed messages).
+### Sorting
 
-Select a specific message; the related properties window and flow diagram change to illustrate details of the selected message.
+Messages can be assorted in ascending or descending order using the column headers. The sorting operation is applied to all the relevant messages in the underlying ServiceControl instance, not just the currently displayed messages.
 
+### Detailed view 
+
+Select a specific message to view the details for that message.
 
 ## Endpoint Explorer
 
@@ -78,7 +81,7 @@ Select endpoints to filter the message list. Select the root ServiceControl conn
 
 ### Multiple ServiceControl connections
 
-Starting with version 2.4.0, ServiceInsight can be connected to more than one ServiceControl instance at a time. Each ServiceControl connected instance will be displayed in the Endpoint Explorer and endpoints belonging to each instance will be grouped under the instance node. Selecting an instance allows to disconnect ServiceInsight from that ServiceControl instance.
+Starting with version 2.4.0, ServiceInsight can be connected to more than one ServiceControl instance at a time. Each connected ServiceControl instance will be displayed in the Endpoint Explorer and endpoints belonging to each instance will be grouped under the instance node. Selecting an instance gives the option to disconnect ServiceInsight from that ServiceControl instance.
 
 ## Flow diagram
 
@@ -98,11 +101,11 @@ Each message in NServiceBus contains extensive detail. As messages are selected 
 
 ## The Saga view
 
-Sagas play a critical role in NServiceBus systems. As coordinators of processes they are started by certain messages and interact with a variety of messages and services. To open a graphical view of Sagas, click a message in the flow diagram that is handled by a saga.
+Sagas play a critical role in NServiceBus systems. As coordinators of processes, they are started by certain messages and interact with a variety of messages and services. To open a graphical view of sagas, click a message in the flow diagram that is handled by a saga.
 
 ![The Saga View](images/overview-sagaview.png 'width=500')
 
-The saga illustrates how the saga was initiated and other messages that were sent or handled, with detailed message data, time information, and details on saga data changes.
+The saga diagram illustrates how the saga was initiated and other messages that were sent or handled, with detailed message data, time information, and details on saga data changes.
 
 
 ## Sequence diagram
@@ -111,18 +114,18 @@ While a flow diagram is useful for showing *why* each message in a conversation 
 
 ![The Sequence Diagram](images/overview-sequence-diagram.png 'width=500')
 
-Read more about the [Sequence Diagram](/serviceinsight/sequence-diagram/)
+Read more about the [Sequence Diagram](/serviceinsight/sequence-diagram/).
 
 
 ## Body view
 
-ServiceInsight can show the body of a message in either `XML` or `JSON` format, and in raw `HEX`.
+ServiceInsight can show the body of a message in either `XML` or `JSON` format, as well as raw `HEX`.
 
 ![Body Tab](images/overview-bodyview.png 'width=500')
 
 ## Custom message viewers
 
-ServiceInsight has an extensibility point that allows creating custom message viewers. These are suitable when a custom serializer is used or when the message is partially or fully encrypted and access to messages in in clear text is required in ServiceInsight.
+ServiceInsight has an extensibility point for custom message viewers. These are useful when a custom serializer is used or when the message is partially or fully encrypted and access to messages in clear text is required in ServiceInsight.
 
 Read more about the [custom message viewers](/serviceinsight/custom-message-viewers.md) and the plugin model.
 
