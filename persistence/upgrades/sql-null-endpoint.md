@@ -21,7 +21,7 @@ This issue makes it impossible for subscriber endpoints using NServiceBus versio
 
 ## Compatibility
 
-This issue has been resolved in the following patch versions of [SQL Persistence](/persistence/sql/) as defined in the NServiceBus [support policy](/nservicebus/support):
+This issue has been resolved in the following patch versions of [SQL Persistence](/persistence/sql/) as defined in the NServiceBus [support policy](/nservicebus/upgrades/support-policy.md):
 
  * [2.1.2](https://github.com/Particular/NServiceBus.Persistence.Sql/releases/tag/2.1.2)
  * [2.0.1](https://github.com/Particular/NServiceBus.Persistence.Sql/releases/tag/2.0.1)

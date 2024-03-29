@@ -6,8 +6,8 @@ versions: '[6,)'
 reviewed: 2022-01-05
 related:
  - nservicebus/licensing
- - nservicebus/support/release-policy
- - nservicebus/support/supported-versions
+ - nservicebus/upgrades/release-policy
+ - nservicebus/upgrades/supported-versions
 ---
 
 Supported frameworks can be used for production workloads with technical support available from Particular Software.

@@ -8,7 +8,7 @@ related:
  - nservicebus/licensing
 ---
 
-NServiceBus and the entire Particular Service Platform are designed as a collection of components, each released with regular cadence. Important bug fixes are backported to all [supported versions](/nservicebus/support), enabling users to upgrade with minimal risk.
+NServiceBus and the entire Particular Service Platform are designed as a collection of components, each released with regular cadence. Important bug fixes are backported to all [supported versions](/nservicebus/upgrades/support-policy.md), enabling users to upgrade with minimal risk.
 
 While this may result in a large number of releases, only a small fraction usually affect any given system.
 
@@ -33,9 +33,9 @@ Given a version number `{major}.{minor}.{patch}`, increment the:
 
 ## Backporting important bug fixes
 
-Although not stipulated by SemVer, important bug fixes are backported to all [supported versions](/nservicebus/support).
+Although not stipulated by SemVer, important bug fixes are backported to all [supported versions](/nservicebus/upgrades/support-policy.md).
 
-A system using a supported version may receive important bug fixes by upgrading to new patch versions, without the increased risk and effort of upgrading to a new minor or major version. It is strongly recommended to [upgrade](/nservicebus/support/#upgrading) frequently enough to stay on a supported version.
+A system using a supported version may receive important bug fixes by upgrading to new patch versions, without the increased risk and effort of upgrading to a new minor or major version. It is strongly recommended to [upgrade](support-policy.md#upgrading) frequently enough to stay on a supported version.
 
 Particular Software [support](https://particular.net/support) should be contacted if a bug fix backport is missing.
 

@@ -4,13 +4,13 @@ summary: Versions of ServicePulse that are currently supported
 reviewed: 2022-08-05
 related:
  - nservicebus/licensing
- - nservicebus/support/all-versions
- - nservicebus/support
- - nservicebus/support/release-policy
- - nservicebus/support/supported-versions
- - nservicebus/support/supported-platforms
- - servicecontrol/support-policy
- - servicecontrol/supported-versions
+ - nservicebus/upgrades/all-versions
+ - nservicebus/upgrades/support-policy
+ - nservicebus/upgrades/release-policy
+ - nservicebus/upgrades/supported-versions
+ - nservicebus/upgrades/supported-platforms
+ - servicecontrol/upgrades/support-policy
+ - servicecontrol/upgrades/supported-versions
 ---
 
 Only the latest version of ServicePulse is supported.  The latest version can be found on the [downloads page](https://particular.net/downloads).
@@ -21,4 +21,4 @@ Only the latest version of ServicePulse is supported.  The latest version can be
 
 ## ServiceControl compatibility
 
-ServicePulse is compatible with supported versions of [ServiceControl](/servicecontrol/supported-versions.md).
+ServicePulse is compatible with supported versions of [ServiceControl](/servicecontrol/upgrades/supported-versions.md).

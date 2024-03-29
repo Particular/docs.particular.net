@@ -186,4 +186,4 @@ Invoke-ServiceControlInstanceUpgrade -Name <InstanceName> -Force
 
 ## Support for version 4
 
-Version 4 is supported for one year after version 5 is released as defined by the [ServiceControl support policy](/servicecontrol/support-policy.md). The ServiceControl support end-date is available at [ServiceControl supported versions](/servicecontrol/supported-versions.md).
+Version 4 is supported for one year after version 5 is released as defined by the [ServiceControl support policy](/servicecontrol/upgrades/support-policy.md). The ServiceControl support end-date is available at [ServiceControl supported versions](/servicecontrol/upgrades/supported-versions.md).

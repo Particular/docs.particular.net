@@ -10,7 +10,7 @@ The Particular throughput tool can be installed locally and run against a produc
 
 This article details how to collect endpoint and throughput data using data from [ServiceControl](/servicecontrol/). Refer to the [throughput counter main page](./) for information how to install/uninstall the tool or for other data collection options.
 
-The tool should be used with a [supported version of ServiceControl](/servicecontrol/supported-versions.md).
+The tool should be used with a [supported version of ServiceControl](/servicecontrol/upgrades/supported-versions.md).
 
 NOTE: Do not attempt to install ServiceControl just to run the throughput tool on an MSMQ or Azure Storage Queues system. In order to successfully collect any data, every system endpoint must be modified to send data to the new ServiceControl installation or there will be no data to collect. Instead, reach out to a licensing specialist to suggest alternate ways to estimate the system throughput needed for licensing.
 

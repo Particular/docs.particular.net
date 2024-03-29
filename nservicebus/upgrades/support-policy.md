@@ -4,7 +4,10 @@ summary: Versions of NServiceBus and component packages that are currently suppo
 reviewed: 2023-06-25
 related:
  - nservicebus/licensing
- - servicecontrol/support-policy
+ - nservicebus/upgrades/release-policy
+ - nservicebus/upgrades/supported-versions
+ - nservicebus/upgrades/supported-platforms
+ - servicecontrol/upgrades/support-policy
 redirects:
  - previews/support-policy
 ---
@@ -30,15 +33,15 @@ Supported versions of NServiceBus and its associated packages are determined by 
 
 Particular will apply critical bug fixes to all supported versions. If a bug also impacts a non-supported version, the recommended approach is to upgrade to a supported version which contains the fix.
 
-To be supported by Particular, NServiceBus must be run on a [supported version of .NET](https://dotnet.microsoft.com/en-us/platform/support/policy). See [supported frameworks and platforms](/nservicebus/support/supported-platforms.md) for more information.
+To be supported by Particular, NServiceBus must be run on a [supported version of .NET](https://dotnet.microsoft.com/en-us/platform/support/policy). See [supported frameworks and platforms](supported-platforms.md) for more information.
 
 If support is required for a version that is not listed or has expired, contact [Particular Software Support](https://particular.net/contactus).
 
-For more information refer to [the release policy](/nservicebus/support/release-policy.md).
+For more information refer to [the release policy](/nservicebus/upgrades/release-policy.md).
 
 include: supported-versions-nservicebus
 
-For other NServiceBus packages, refer to [the list of supported versions of all packages](/nservicebus/support/supported-versions.md).
+For other NServiceBus packages, refer to [the list of supported versions of all packages](supported-versions.md).
 
 ## Extended support
 
@@ -81,7 +84,7 @@ Therefore the recommended approach is to upgrade *one* major version at a time, 
 
 No, the policy applies only to the supported NServiceBus packages listed on the [NServiceBus Packages Supported Versions](supported-versions.md) page. ServiceControl, ServicePulse and ServiceInsight are governed by their own support policy, linked below.
 
-- [ServiceControl support policy](/servicecontrol/support-policy.md)
+- [ServiceControl support policy](/servicecontrol/upgrades/support-policy.md)
 - [ServicePulse support policy](/servicepulse/support-policy.md)
 - [ServiceInsight support policy](/serviceinsight/support-policy.md)
 
