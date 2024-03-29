@@ -8,7 +8,7 @@ related:
 - nservicebus/messaging/callbacks
 ---
 
-Shows the usage of the `NServiceBus.Callbacks.Testing` package used for testing [Callbacks](/callbacks.md).
+Shows the usage of the `NServiceBus.Callbacks.Testing` package used for testing [Callbacks](callbacks.md).
 
 
 ## Prerequisites for callback testing functionality
