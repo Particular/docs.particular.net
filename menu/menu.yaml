@@ -150,21 +150,23 @@
     - Url: nservicebus/security-advisories/sqlserver-sqlinjection
       Title: 2016-07-05
 
+  - Title: Support Policy
+    Articles:
+    - Url: nservicebus/upgrades/support-policy
+      Title: About
+    - Url: nservicebus/upgrades/supported-versions
+      Title: Supported versions
+    - Url: nservicebus/upgrades/all-versions
+      Title: All versions
+    - Url: nservicebus/upgrades/supported-platforms
+      Title: Supported frameworks and platforms
+    - Url: nservicebus/upgrades/release-policy
+      Title: Release Policy
+
   - Title: Upgrade Guides
     Articles:
     - Url: nservicebus/upgrades
-      Title: About upgrading NServiceBus
-    - Url: nservicebus/upgrades/support-policy
-      Title: Support Policy
-      Articles:
-      - Url: nservicebus/upgrades/supported-versions
-        Title: Supported versions
-      - Url: nservicebus/upgrades/all-versions
-        Title: All versions
-      - Url: nservicebus/upgrades/supported-platforms
-        Title: Supported frameworks and platforms
-    - Url: nservicebus/upgrades/release-policy
-      Title: Release Policy
+      Title: About upgrading NServiceBus   
     - Url: nservicebus/upgrades/third-party-licenses
       Title: Third-party licenses
     - Url: nservicebus/upgrades/callbacks-1to2
