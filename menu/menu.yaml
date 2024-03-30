@@ -1365,6 +1365,10 @@
         Url: servicecontrol/powershell-cmdlets
     - Title: Licensing
       Url: servicecontrol/license
+    - Title: Support policy
+      Url: servicecontrol/upgrades/support-policy
+    - Title: Supported versions
+      Url: servicecontrol/upgrades/supported-versions
   - Title: Upgrade Guides
     Articles:
     - Title: Upgrade tips
@@ -1373,8 +1377,6 @@
       Url: servicecontrol/upgrades/new-persistence
     - Title: Zero downtime
       Url: servicecontrol/upgrades/zero-downtime
-    - Title: Support policy
-      Url: servicecontrol/upgrades/support-policy
     - Title: Version 4 to 5
       Url: servicecontrol/upgrades/4to5
     - Title: Version 3 to 4
