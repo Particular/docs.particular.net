@@ -148,6 +148,8 @@ snippet: AddingRouting
 
 This establishes that commands of type `PlaceOrder` should be sent to the **Sales** endpoint.
 
+1. Ensure that the serializer between endpoints match. Since the **Sales** endpoint is using `.UseSerialization<SystemJsonSerializer>()', add in the same serializer for the **ClientUI** endpoint as well.
+
 ### Running the solution
 
 Now when we run the solution, we get two console windows, one for ClientUI and one for Sales. After moving the windows around so that we can see both, we can try to place an order by pressing <kbd>P</kbd> in the **ClientUI** window.
