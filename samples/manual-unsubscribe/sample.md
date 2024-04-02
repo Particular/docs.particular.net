@@ -55,14 +55,19 @@ Participant Publisher
 Participant Persistence
 SubscriptionManager ->> Publisher: Send "ManualUnsubscribe" command for "SomethingHappened" 
 Publisher ->> Persistence: Store "unsubscribe from SomethingHappened"
+```
+
+Now hit `enter` in `Publisher` and `SomethingHappened` will *not* be published since the endpoint has unsubscribed due to the previous command.
+
+```mermaid
+sequenceDiagram
+Participant Publisher
+Participant Persistence
 Note over Publisher: Publish SomethingHappened
 Publisher ->> Persistence: Requests "who wants SomethingHappened"
 Persistence ->> Publisher: "No Endpoints"
 Note over Publisher: No Send
 ```
-
-Now hit `enter` in `Publisher` and `SomethingHappened` will *not* be published since the endpoint has unsubscribed due to the previous command.
-
 
 ## Solution structure
 
