@@ -41,12 +41,12 @@ Persistence ->> Publisher: "Subscribe"
 Publisher ->> Subscriber: Send SomethingHappened
 ```
 
-The `SomethingHappened` event will be received by Subscriber.
+The `SomethingHappened` event will be received by `Subscriber`.
 
 
 ### Unsubscribe
 
-Hit enter on SubscriptionManager. A `ManualUnsubscribe` message for `SomethingHappened` will be sent to Publisher.
+Hit enter on `SubscriptionManager`. A `ManualUnsubscribe` command for `SomethingHappened` will be sent to `Publisher`.
 
 ```mermaid
 sequenceDiagram
@@ -61,7 +61,7 @@ Persistence ->> Publisher: "No Endpoints"
 Note over Publisher: No Send
 ```
 
-Now hit `enter` in Publisher and no `SomethingHappened` will be published.
+Now hit `enter` in `Publisher` and `SomethingHappened` will *not* be published since the endpoint has unsubscribed due to the previous command.
 
 
 ## Solution structure
