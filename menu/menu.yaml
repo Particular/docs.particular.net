@@ -137,17 +137,17 @@
 
   - Title: Security Advisories
     Articles:
-    - Url: nservicebus/security-advisories
+    - Url: security-advisories
       Title: About
-    - Url: nservicebus/security-advisories/cryptography-xml-vulnerability
+    - Url: security-advisories/cryptography-xml-vulnerability
       Title: 2022-12-06
-    - Url: nservicebus/security-advisories/servicepulse-directorytraversal
+    - Url: security-advisories/servicepulse-directorytraversal
       Title: 2020-03-11
-    - Url: nservicebus/security-advisories/asq-alias-for-default-connectionstring
+    - Url: security-advisories/asq-alias-for-default-connectionstring
       Title: 2018-01-19
-    - Url: nservicebus/security-advisories/msmq-permissions
+    - Url: security-advisories/msmq-permissions
       Title: 2017-01-10
-    - Url: nservicebus/security-advisories/sqlserver-sqlinjection
+    - Url: security-advisories/sqlserver-sqlinjection
       Title: 2016-07-05
 
   - Title: Upgrade Guides

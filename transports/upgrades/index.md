@@ -7,6 +7,6 @@ related:
  - nservicebus/upgrades/support-policy
  - nservicebus/upgrades/supported-versions
  - nservicebus/upgrades/release-policy
- - nservicebus/security-advisories
+ - security-advisories
 ---
 
