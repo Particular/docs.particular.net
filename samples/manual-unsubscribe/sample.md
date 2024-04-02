@@ -21,14 +21,14 @@ INFO: While this sample uses the [MSMQ transport](/transports/msmq), the concept
 
 ### Initial State
 
-Run the sample and all three endpoints will start.
+Run the sample and the three endpoints (`SubscriptionManager`, `Subscriber`, and `Publisher`) will start. 
 
-Subscriber initially subscribes to the `SomethingHappened` message in Publisher.
+`Subscriber` initially subscribes to the `SomethingHappened` message in `Publisher`.
 
 
 ### Publish event
 
-Hit `enter` in Publisher and a `SomethingHappened` will be published via the following process:
+Hit `enter` in `Publisher` and a `SomethingHappened` event will be published via the following process:
 
 ```mermaid
 sequenceDiagram
