@@ -11,7 +11,7 @@ NServiceBus supports using interfaces as messages to allow dynamic dispatch and 
 
 ## Using NServiceBus for dynamic dispatch
 
-Consider the following handlers stub for a `UserCreated` message which inherits from the `IEvent` stub interface:
+Consider the following handler stubs for a `UserCreated` message which inherits from the `IEvent` stub interface:
 
 ```csharp
 public class SaveUser : IHandleMessages<UserCreated>
@@ -66,7 +66,7 @@ public class SaveUser : IHandleMessages<UserCreated>
 public class RecordCampaignActivity : IHandleMessages<CampaignActivityOccurred>
 {
     public async Task Handle(CampaignActivityOccurred message, IMessageHandlerContext) {
-        // Do stuff when the user is created
+        // Do stuff when an event related to a campaign happened 
     }
 }
 ```
@@ -91,7 +91,7 @@ public interface UserCreatedFromCampaign : UserCreated, CampaignActivityOccurred
 
 When a user is created from a campaign, the publisher can publish the latter event. It will get handled by the `SaveUser` and `RecordCampaignActivity` handlers defined earlier, and perhaps another handler that explicitly handles `UserCreatedFromCampaign` events. Furthermore, other campaign events can be created that inherit from `CampaignActivityOccurred` without interfering with any functionality around creating users as part of a campaign.
 
-With this approach, events can support multiple inheritance and the system can create messages on the fly that implement these interfaces as described below.
+With this approach, events can support multiple inheritance and the system can create messages on the fly that implement these interfaces as described above.
 
 ## Sending interface messages
 
