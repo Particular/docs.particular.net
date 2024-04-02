@@ -57,8 +57,6 @@ NOTE: The ServiceControl Audit instance sends a control message to the ServiceCo
 
 If the ServiceControl Error instance cannot process a message, a copy is forwarded to this error queue.
 
-`<>`
-
 - Template: &lt;instance name&gt;.Error
 - Default: _Particular.ServiceControl.Error_
 
