@@ -37,11 +37,11 @@ Participant Publisher
 Participant Persistence
 Note over Publisher: Publish SomethingHappened
 Publisher ->> Persistence: Requests "who wants SomethingHappened"
-Persistence ->> Publisher: "Subscribe"
+Persistence ->> Publisher: "Subscriber"
 Publisher ->> Subscriber: Send SomethingHappened
 ```
 
-The `SomethingHappened` event will be received by `Subscriber`.
+The publisher queries the persistence to see if there are any subscribers for the event. The persistence returns the list of subscribers for the `SomethingHappened` event, in this case `Subscriber`. `Publisher` sends the `SomethingHappened` event to `Subscriber`.
 
 
 ### Unsubscribe
@@ -53,7 +53,7 @@ sequenceDiagram
 Participant SubscriptionManager AS SubscriptionManager
 Participant Publisher
 Participant Persistence
-SubscriptionManager ->> Publisher: Send unsubscribe "SomethingHappened"
+SubscriptionManager ->> Publisher: Send "ManualUnsubscribe" command for "SomethingHappened" 
 Publisher ->> Persistence: Store "unsubscribe from SomethingHappened"
 Note over Publisher: Publish SomethingHappened
 Publisher ->> Persistence: Requests "who wants SomethingHappened"
