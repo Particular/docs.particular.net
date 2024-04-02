@@ -1349,6 +1349,9 @@
       Url: servicecontrol
     - Title: Installation
       Url: servicecontrol/installation
+      Articles:
+      - Title: Queues
+        Url: servicecontrol/queues
     - Title: How does it work
       Url: servicecontrol/how
     - Title: Transport support
