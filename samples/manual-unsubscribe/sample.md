@@ -1,7 +1,7 @@
 ---
 title: Manual unsubscribe
 summary: Shows how to manually remove subscriptions when subscribers are decommissioned.
-reviewed: 2021-03-02
+reviewed: 2024-04-02
 component: Core
 related:
 - transports
@@ -11,9 +11,9 @@ related:
 - transports/sqs
 ---
 
-This sample shows how to manually remove subscriptions when subscribers are decommissioned. The solution comprises of 4 projects.
+This sample shows how to remove subscriptions from message transports that do not have native pub/sub support. 
 
-WARNING: While this sample uses the [MSMQ transport](/transports/msmq), the concepts shown are valid for all transports based on message driven subscriptions. The approach shown in this sample is not applicable to transports that support native pub/sub. For more information see [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/).
+INFO: While this sample uses the [MSMQ transport](/transports/msmq), the concepts shown are valid for all transports based on message-driven subscriptions except those that support native pub/sub. For more information see [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/).
 
 
 ## Running the sample
