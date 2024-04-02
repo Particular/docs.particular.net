@@ -135,20 +135,7 @@
     - Url: nservicebus/biztalk
       Title: NServiceBus and Biztalk
 
-  - Title: Security Advisories
-    Articles:
-    - Url: security-advisories
-      Title: About
-    - Url: security-advisories/cryptography-xml-vulnerability
-      Title: 2022-12-06
-    - Url: security-advisories/servicepulse-directorytraversal
-      Title: 2020-03-11
-    - Url: security-advisories/asq-alias-for-default-connectionstring
-      Title: 2018-01-19
-    - Url: security-advisories/msmq-permissions
-      Title: 2017-01-10
-    - Url: security-advisories/sqlserver-sqlinjection
-      Title: 2016-07-05
+
 
   - Title: Upgrade Guides
     Articles:
@@ -690,6 +677,23 @@
       Title: About security and NServiceBus
     - Url: nservicebus/security/generating-encryption-keys
       Title: Generating secure random strong encryption keys
+
+  - Title: Security Advisories
+    Articles:
+    - Url: security-advisories
+      Title: About
+    - Url: security-advisories/cryptography-xml-vulnerability
+      Title: 2022-12-06
+    - Url: security-advisories/servicepulse-directorytraversal
+      Title: 2020-03-11
+    - Url: security-advisories/asq-alias-for-default-connectionstring
+      Title: 2018-01-19
+    - Url: security-advisories/msmq-permissions
+      Title: 2017-01-10
+    - Url: security-advisories/sqlserver-sqlinjection
+      Title: 2016-07-05
+
+
   - Title: Operations
     Articles:
     - Url: nservicebus/hosting/startup-diagnostics
