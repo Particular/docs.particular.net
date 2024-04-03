@@ -26,7 +26,7 @@ These queues are required by ServiceControl Error instances.
 
 If an NServiceBus endpoint is unable to process a message, after the configured number of retries, it will forward a copy of the message to this queue. The ServiceControl error instance will read these messages and add them to its database.
 
-- Default value: _error_
+- Default name: **_error_**
 
 | Component                          | Access<br/>requirements | Configuration                                                                                                                        |
 | ---------------------------------- | :---------------------: | ------------------------------------------------------------------------------------------------------------------------------------ |
@@ -41,8 +41,8 @@ Each ServiceControl Error instance has an input queue which accepts control mess
 
 If the heartbeats or custom checks plugins are in use, they should be configured to send messages to this queue.
 
-- Template: &lt;instance name&gt;
-- Default value: _Particular.ServiceControl_
+- Template: `<instance name>`
+- Default name: **_Particular.ServiceControl_**
 
 | Component                          | Access<br/>requirements | Configuration                                                                                                                                                       |
 | ---------------------------------- | :---------------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -51,14 +51,14 @@ If the heartbeats or custom checks plugins are in use, they should be configured
 | ServiceControl Audit instance      |          Write          | [ServiceControl.Audit/ServiceControlQueueAddress](/servicecontrol/audit-instances/creating-config-file.md#transport-servicecontrol-auditservicecontrolqueueaddress) |
 | ServiceControl Monitoring instance |            -            |
 
-NOTE: The ServiceControl Audit instance sends a control message to the ServiceControl Error instance when it encounters an endpoint for the first time, and when retried message has been audited, indicating that the retry was a success.
+NOTE: The ServiceControl Audit instance sends a control message to the ServiceControl Error instance when it encounters an endpoint for the first time, and when a retried message has been audited to indicate that the retry was a success.
 
 ### Error queue
 
 If the ServiceControl Error instance cannot process a message, a copy is forwarded to this error queue.
 
-- Template: &lt;instance name&gt;.Error
-- Default: _Particular.ServiceControl.Error_
+- Template: `<instance name>.Error`
+- Default name: **_Particular.ServiceControl.Error_**
 
 | Component                          | Access<br/>requirements | Configuration                |
 | ---------------------------------- | :---------------------: | ---------------------------- |
@@ -73,8 +73,8 @@ NOTE: The ServiceControl Error instance includes a custom check to see if there 
 
 This queue is used by ServiceControl Error instances during the retry process.
 
-- Template: &lt;instance name&gt;.staging
-- Default: _Particular.ServiceControl.staging_
+- Template: `<instance name>.staging`
+- Default name: **_Particular.ServiceControl.staging_**
 
 | Component                          | Access<br/>requirements | Configuration                |
 | ---------------------------------- | :---------------------: | ---------------------------- |
@@ -87,8 +87,8 @@ This queue is used by ServiceControl Error instances during the retry process.
 
 If [configured to do so](/servicecontrol/creating-config-file.md#transport-servicecontrolforwarderrormessages), the ServiceControl Error instance will forward a copy of every message it processes from the Failed messages queue.
 
-- Template: &lt;failed messages queue&gt;.log
-- Default value: _error.log_
+- Template: `<failed messages queue>.log`
+- Default name: **_error.log_**
 
 | Component                          | Access<br/>requirements | Configuration                                                                                         |
 | ---------------------------------- | :---------------------: | ----------------------------------------------------------------------------------------------------- |
@@ -104,7 +104,7 @@ During retry operations, the ServiceControl Error instance will forward messages
 | Component                          | Access<br/>requirements | Configuration                                                                                                                                         |
 | ---------------------------------- | :---------------------: | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | NServiceBus endpoints              |          Read           | [Endpoint name](/nservicebus/endpoints/specify-endpoint-name.md)                                                                                      |
-| ServiceControl Error instance      |          Write          | Configured via the []`NServiceBus.FailedQ` header](/nservicebus/messaging/headers.md#error-forwarding-headers-nservicebus-failedq) on failed messages |
+| ServiceControl Error instance      |          Write          | Configured via the [`NServiceBus.FailedQ` header](/nservicebus/messaging/headers.md#error-forwarding-headers-nservicebus-failedq) on failed messages |
 | ServiceControl Audit instance      |            -            |
 | ServiceControl Monitoring instance |            -            |
 
@@ -118,7 +118,7 @@ If configured to do so, NServiceBus endpoints send a copy of every message proce
 
 If the Saga Audit plugin is used, it should be configured to send messages to the audit queue as well.
 
-- Default value: _audit_
+- Default name: **_audit_**
 
 | Component                          | Access<br/>requirements | Configuration                                                                                                                      |
 | ---------------------------------- | :---------------------: | ---------------------------------------------------------------------------------------------------------------------------------- |
@@ -131,8 +131,8 @@ If the Saga Audit plugin is used, it should be configured to send messages to th
 
 Each ServiceControl Audit instance includes an input queue. This is currently not used.
 
-- Template: &lt;instance name&gt;
-- Default value: _Particular.ServiceControl.Audit_
+- Template: `<instance name>`
+- Default value: **_Particular.ServiceControl.Audit_**
 
 | Component                          | Access<br/>requirements | Configuration                                                                                                                                         |
 | ---------------------------------- | :---------------------: | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -145,8 +145,8 @@ Each ServiceControl Audit instance includes an input queue. This is currently no
 
 If a ServiceControl Audit instance is unable to process a message, it will forward it to the configured error queue.
 
-- Template: &lt;instance name&gt;.Error
-- Default value: _Particular.ServiceControl.Audit.Error_
+- Template: `<instance name>.Error`
+- Default name: **_Particular.ServiceControl.Audit.Error_**
 
 | Component                          | Access<br/>requirements | Configuration                |
 | ---------------------------------- | :---------------------: | ---------------------------- |
@@ -159,8 +159,8 @@ If a ServiceControl Audit instance is unable to process a message, it will forwa
 
 If [Audit Forwarding is enabled](/servicecontrol/audit-instances/creating-config-file.md#transport-servicecontrol-auditforwardauditmessages), after the ServiceControl Audit instance processes a message from the audit queue, it will forward a copy to this queue.
 
-- Template: &lt;audit queue name&gt;.log
-- Default value: _audit.log_
+- Template: `<audit queue name>.log`
+- Default name: **_audit.log_**
 
 | Component                          | Access<br/>requirements | Configuration                                                                                                         |
 | ---------------------------------- | :---------------------: | --------------------------------------------------------------------------------------------------------------------- |
@@ -177,8 +177,8 @@ These queues are required by ServiceControl Monitoring instances.
 
 Endpoints send monitoring information to the monitoring queue and the monitoring instance reads them.
 
-- Template: &lt;instance name&gt;
-- Default value: _Particular.Monitoring_
+- Template: `<instance name>`
+- Default value: **_Particular.Monitoring_**
 
 | Component                          | Access<br/>requirements | Configuration                                                                                                                             |
 | ---------------------------------- | :---------------------: | ----------------------------------------------------------------------------------------------------------------------------------------- |
@@ -191,7 +191,7 @@ Endpoints send monitoring information to the monitoring queue and the monitoring
 
 When the ServiceControl Monitoring instance cannot process a message it is forwarded to this queue.
 
-- Default value: _error_
+- Default name: **_error_**
 - Configure via:
 
 | Component                          | Access<br/>requirements | Configuration                                                                                                                     |
