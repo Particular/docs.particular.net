@@ -44,7 +44,7 @@ NOTE: It may take a few minutes for the meter data to populate to Azure. Meters 
 
 #### Message processing counters
 
-Add the following metrics to a line chart to monitor the rate of messages being fetched from the queuing system, processed successfully, retried, and failed for the endpoint:
+To monitor the rate of messages being fetched from the queuing system, processed successfully, retried, and failed for the endpoint use:
 
 - `nservicebus.messaging.fetches`
 - `nservicebus.messaging.successes`
@@ -54,16 +54,18 @@ Add the following metrics to a line chart to monitor the rate of messages being 
 
 #### Recoverability
 
-To monitor [recoverability](/nservicebus/recoverability/) metrics, add a line graph with the following metrics:
+To monitor [recoverability](/nservicebus/recoverability/) metrics use:
 
-- `nservicebus.messaging.retries`
-- `nservicebus.messaging.sent-to-error`
+- `nservicebus.recoverability.immediate_retries`
+- `nservicebus.recoverability.delayed_retries`
+- `nservicebus.recoverability.retries`
+- `nservicebus.recoverability.sent_to_error`
 
 ![Graph showing recoverability metrics in Application Insights](metrics-recoverability.png)
 
 #### Critical time and processing time
 
-To monitor [critical time and processing time](/monitoring/metrics/definitions.md#metrics-captured) (in milliseconds) for successfully processed messages, add a line graph with the following metrics:
+To monitor [critical time and processing time](/monitoring/metrics/definitions.md#metrics-captured) (in milliseconds) for successfully processed messages use:
 
 - `nservicebus.messaging.processingtime`
 - `nservicebus.messaging.criticaltime`
