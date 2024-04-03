@@ -89,6 +89,8 @@ First, let's create a project for our new endpoint.
 
 NOTE: To take advantage of the `Async Main` feature and avoid boilerplate code, [enable C# 7.1 features](https://www.meziantou.net/2017/08/24/3-ways-to-enable-c-7-1-features).
 
+### Configuring an endpoint
+
 Now that we have a project for our Sales endpoint, we need to add similar code to configure and start an NServiceBus endpoint:
 
 snippet: SalesProgram
@@ -147,6 +149,8 @@ Now we need to change the ClientUI so that it is sending `PlaceOrder` to the Sal
 snippet: AddingRouting
 
 This establishes that commands of type `PlaceOrder` should be sent to the **Sales** endpoint.
+
+Reminder: As noted in [configuring an endpoint](#exercise-configuring-an-endpoint), ensure the configuration (e.g. message transport and serializers used) between endpoints match.
 
 ### Running the solution
 
