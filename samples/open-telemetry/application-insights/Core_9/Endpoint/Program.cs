@@ -20,7 +20,7 @@ var attributes = new Dictionary<string, object>
     ["service.instance.id"] = Guid.NewGuid().ToString(),
 };
 
-var appInsightsConnectionString = "<YOUR CONNECTION STRING HERE>";
+var appInsightsConnectionString = "InstrumentationKey=b3a59738-2e0c-4897-be2e-7d3425615574;IngestionEndpoint=https://westeurope-5.in.applicationinsights.azure.com/;LiveEndpoint=https://westeurope.livediagnostics.monitor.azure.com/";
 
 var resourceBuilder = ResourceBuilder.CreateDefault().AddAttributes(attributes);
 
@@ -58,6 +58,7 @@ endpointConfiguration.EnableOpenTelemetry();
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport<LearningTransport>();
+
 var cancellation = new CancellationTokenSource();
 var endpointInstance = await Endpoint.Start(endpointConfiguration, cancellation.Token);
 
