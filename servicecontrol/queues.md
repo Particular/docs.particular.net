@@ -129,7 +129,7 @@ If the Saga Audit plugin is used, it should be configured to send messages to th
 
 ### Input queue
 
-Each ServiceControl Audit instance includes an input queue. This is currently not used.
+Each ServiceControl Audit instance includes an input queue. This is currently not used but is required for the ServiceControl Audit instance to run.
 
 - Template: `<instance name>`
 - Default value: **_Particular.ServiceControl.Audit_**
