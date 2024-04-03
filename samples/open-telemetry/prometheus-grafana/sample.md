@@ -36,18 +36,42 @@ Opt into a specific metric, either by name or by wildcard:
 
 snippet: enable-opentelemetry-metrics
 
-There are three metrics reported as a Counter, with the following keys:
-
-* Number of fetched messages via `nservicebus_messaging_fetches_total`
-* Number of failed messages via `nservicebus_messaging_failures_total`
-* Number of successfully processed messages via `nservicebus_messaging_successes_total`
-
 Each reported metric is tagged with the following additional information:
 
 * the queue name of the endpoint
 * the uniquely addressable address for the endpoint (if set)
 * the .NET fully qualified type information for the message being processed
 * the exception type name (if applicable)
+
+### Additional metrics
+
+Recoverability and processing-related metrics currently emitted [by the metrics package](/monitoring/metrics/definitions.md#metrics-captured) are not yet supported in OpenTelemetry's native format (using System.Diagnostics), so a shim is required to expose them as OpenTelemetry metrics.
+
+snippet: metrics-shim
+
+### Message processing counters
+
+To monitor the rate of messages being fetched from the queuing system, processed successfully, retried, and failed for the endpoint use:
+
+- `nservicebus.messaging.fetches`
+- `nservicebus.messaging.successes`
+- `nservicebus.messaging.failures`
+
+### Recoverability
+
+To monitor [recoverability](/nservicebus/recoverability/) metrics use:
+
+- `nservicebus.recoverability.immediate_retries`
+- `nservicebus.recoverability.delayed_retries`
+- `nservicebus.recoverability.retries`
+- `nservicebus.recoverability.sent_to_error`
+
+### Critical time and processing time
+
+To monitor [critical time and processing time](/monitoring/metrics/definitions.md#metrics-captured) (in milliseconds) for successfully processed messages use:
+
+- `nservicebus.messaging.processingtime`
+- `nservicebus.messaging.criticaltime`
 
 ## Exporting metrics
 
