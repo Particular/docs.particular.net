@@ -694,8 +694,6 @@
       Title: 2017-01-10
     - Url: security-advisories/sqlserver-sqlinjection
       Title: 2016-07-05
-
-
   - Title: Operations
     Articles:
     - Url: nservicebus/hosting/startup-diagnostics
