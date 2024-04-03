@@ -44,7 +44,7 @@ NOTE: It may take a few minutes for the meter data to populate to Azure. Meters 
 
 #### Message processing counters
 
-To monitor the rate of messages being fetched from the queuing system, processed successfully, retried, and failed for the endpoint add the following metrics to a line chart.
+Add the following metrics to a line chart to monitor the rate of messages being fetched from the queuing system, processed successfully, retried, and failed for the endpoint:
 
 - `nservicebus.messaging.fetches`
 - `nservicebus.messaging.successes`
@@ -54,7 +54,7 @@ To monitor the rate of messages being fetched from the queuing system, processed
 
 #### Recoverability
 
-To monitor [recoverability](/nservicebus/recoverability/) metrics add a line graph with the following metrics.
+To monitor [recoverability](/nservicebus/recoverability/) metrics, add a line graph with the following metrics:
 
 - `nservicebus.messaging.retries`
 - `nservicebus.messaging.sent-to-error`
@@ -63,7 +63,7 @@ To monitor [recoverability](/nservicebus/recoverability/) metrics add a line gra
 
 #### Critical time and processing time
 
-To monitor [critical time and processing time](/monitoring/metrics/definitions.md#metrics-captured) (in milliseconds) for messages being successfully processed by the endpoint add a line graph with the following metrics.
+To monitor [critical time and processing time](/monitoring/metrics/definitions.md#metrics-captured) (in milliseconds) for successfully processed messages, add a line graph with the following metrics:
 
 - `nservicebus.messaging.processingtime`
 - `nservicebus.messaging.criticaltime`
@@ -78,18 +78,18 @@ snippet: enable-open-telemetry
 
 ### Tracing
 
-The endpoint configures an OpenTelemetry trace provider that includes the `NServiceBus.Core` source and export traces to Azure Monitor.
+The endpoint configures an OpenTelemetry trace provider that includes the `NServiceBus.Core` source and exports collected traces to Azure Monitor.
 
 snippet: enable-tracing
 
 ### Meters
 
-The endpoint also configures an OpenTelemetry meter provider that includes the `NServiceBus.Core` meter and export data to Azure Monitor.
+The endpoint configures an OpenTelemetry meter provider that includes the `NServiceBus.Core` meter and exports metric data to Azure Monitor.
 
 snippet: enable-meters
 
 #### Critical time and processing time
 
-[Critical time and processing time captured by the metrics package](/monitoring/metrics/definitions.md#metrics-captured) is not yet included in the built-in open telemetry support so a shim is needed to make sure that the endpoint exposes them as open telemetry metrics.
+[Critical time and processing time captured by the metrics package](/monitoring/metrics/definitions.md#metrics-captured) is not yet supported in OpenTelemetry's native format (using System.Diagnostics), so a shim is required to expose them as OpenTelemetry metrics.
 
 snippet: metrics-shim
