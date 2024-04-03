@@ -3,6 +3,7 @@ title: Monitoring NServiceBus endpoints with Application Insights
 summary: How to configure NServiceBus to export OpenTelemetry traces and meters to Application Insights
 reviewed: 2024-01-17
 component: Core
+previewImage: trace-timeline.png
 related:
   - nservicebus/operations/opentelemetry
 redirects:
@@ -37,18 +38,39 @@ Note: Although the sample uses Azure Application Insights, the solution itself d
 
 ### Reviewing meters
 
-1. Open the Azure portal dashboard for the configured Application Insight instance
-2. Navigate to _Monitoring_ → _Metrics_
-3. Add metrics with the following information:
-- Metric Namespace: `azure.applicationinsights`
-- Metrics:
-  - `nservicebus.messaging.successes`
-  - `nservicebus.messaging.failures`
-  - `nservicebus.messaging.fetches`
-
-![Graph tracking success and failed metrics in Application Insights](metrics-dashboard.png)
+Navigate to _Monitoring_ → _Metrics_ on the Azure portal dashboard for the configured Application Insight instance to start creating graphs.
 
 NOTE: It may take a few minutes for the meter data to populate to Azure. Meters will only appear on the dashboard once they have reported at least one value.
+
+#### Message processing counters
+
+To monitor the rate of messages being fetched from the queuing system, processed successfully, retried, and failed for the endpoint use:
+
+- `nservicebus.messaging.fetches`
+- `nservicebus.messaging.successes`
+- `nservicebus.messaging.failures`
+
+![Graph showing fetched, success, and failed counters in Application Insights](metrics-counters.png)
+
+#### Recoverability
+
+To monitor [recoverability](/nservicebus/recoverability/) metrics use:
+
+- `nservicebus.recoverability.immediate_retries`
+- `nservicebus.recoverability.delayed_retries`
+- `nservicebus.recoverability.retries`
+- `nservicebus.recoverability.sent_to_error`
+
+![Graph showing recoverability metrics in Application Insights](metrics-recoverability.png)
+
+#### Critical time and processing time
+
+To monitor [critical time and processing time](/monitoring/metrics/definitions.md#metrics-captured) (in milliseconds) for successfully processed messages use:
+
+- `nservicebus.messaging.processingtime`
+- `nservicebus.messaging.criticaltime`
+
+![Graph showing processing time and critical time metrics in Application Insights](metrics-timing.png)
 
 ## Code walk-through
 
@@ -58,26 +80,20 @@ snippet: enable-open-telemetry
 
 ### Tracing
 
-The endpoint configures an OpenTelemetry trace provider that includes the `NServiceBus.Core` source and exports traces to Azure Monitor.
+The endpoint configures an OpenTelemetry trace provider that includes the `NServiceBus.Core` source and exports collected traces to Azure Monitor.
 
 snippet: enable-tracing
 
 ### Meters
 
-The endpoint also configures an OpenTelemetry meter provider that includes the `NServiceBus.Core` meter and exports data to Azure Monitor.
+The endpoint configures an OpenTelemetry meter provider that includes the `NServiceBus.Core` meter and exports metric data to Azure Monitor.
 
 snippet: enable-meters
 
-#### Meter shim
+#### Critical time and processing time
 
-NOTE: The Azure Monitor exporter package does not currently support exporting meter data. The sample includes custom code to collect the meter.
+[Critical time and processing time captured by the metrics package](/monitoring/metrics/definitions.md#metrics-captured) are not yet supported in OpenTelemetry's native format (using System.Diagnostics), so a shim is required to expose them as OpenTelemetry metrics.
 
-The custom meter exporter captures all meters that begin with `nservicebus.` of the `long` sum type, and forwards them to a `TelemetryClient`.
-
-snippet: custom-meter-exporter
-
-This exporter is installed into the meter provider builder with a custom extension method. The exporter is wrapped by a `PeriodicExportingMetricReader` instance that executes the exporter once every 10 seconds.
-
-snippet: custom-meter-exporter-installation
+snippet: metrics-shim
 
 NOTE: The shim passes `QueueName` as a custom dimension which allows filtering the graphs in Application Insights. Multi-dimensional metrics are not enabled by default. Check [the Azure Monitor documentation](https://docs.microsoft.com/en-us/azure/azure-monitor/app/get-metric#enable-multi-dimensional-metrics) for instructions on how to enable this feature.
