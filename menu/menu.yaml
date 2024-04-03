@@ -679,7 +679,6 @@
       Title: About security and NServiceBus
     - Url: nservicebus/security/generating-encryption-keys
       Title: Generating secure random strong encryption keys
-
   - Title: Security Advisories
     Articles:
     - Url: security-advisories
