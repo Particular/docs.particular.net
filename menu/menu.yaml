@@ -134,36 +134,28 @@
       Title: Scaling out
     - Url: nservicebus/biztalk
       Title: NServiceBus and Biztalk
+
+
+
+  - Title: Support Policy
+    Articles:
+    - Url: nservicebus/upgrades/support-policy
+      Title: About
+    - Url: nservicebus/upgrades/supported-versions
+      Title: Supported versions
+    - Url: nservicebus/upgrades/all-versions
+      Title: All versions
+    - Url: nservicebus/upgrades/supported-platforms
+      Title: Supported frameworks and platforms
+    - Url: nservicebus/upgrades/release-policy
+      Title: Release Policy
+
   - Title: Upgrade Guides
     Articles:
     - Url: nservicebus/upgrades
-      Title: About upgrading NServiceBus
-    - Url: nservicebus/upgrades/support-policy
-      Title: Support Policy
-      Articles:
-      - Url: nservicebus/upgrades/supported-versions
-        Title: Supported versions
-      - Url: nservicebus/upgrades/all-versions
-        Title: All versions
-      - Url: nservicebus/upgrades/supported-platforms
-        Title: Supported frameworks and platforms
-    - Url: nservicebus/upgrades/release-policy
-      Title: Release Policy
+      Title: About upgrading NServiceBus   
     - Url: nservicebus/upgrades/third-party-licenses
       Title: Third-party licenses
-    - Url: security-advisories
-      Title: Security Advisories
-      Articles:
-      - Url: security-advisories/cryptography-xml-vulnerability
-        Title: 2022-12-06
-      - Url: security-advisories/servicepulse-directorytraversal
-        Title: 2020-03-11
-      - Url: security-advisories/asq-alias-for-default-connectionstring
-        Title: 2018-01-19
-      - Url: security-advisories/msmq-permissions
-        Title: 2017-01-10
-      - Url: security-advisories/sqlserver-sqlinjection
-        Title: 2016-07-05
     - Url: nservicebus/upgrades/callbacks-1to2
       Title: Callbacks 1 to 2
     - Url: nservicebus/upgrades/sqs-lambda-1to2
@@ -687,6 +679,20 @@
       Title: About security and NServiceBus
     - Url: nservicebus/security/generating-encryption-keys
       Title: Generating secure random strong encryption keys
+  - Title: Security Advisories
+    Articles:
+    - Url: security-advisories
+      Title: About
+    - Url: security-advisories/cryptography-xml-vulnerability
+      Title: 2022-12-06
+    - Url: security-advisories/servicepulse-directorytraversal
+      Title: 2020-03-11
+    - Url: security-advisories/asq-alias-for-default-connectionstring
+      Title: 2018-01-19
+    - Url: security-advisories/msmq-permissions
+      Title: 2017-01-10
+    - Url: security-advisories/sqlserver-sqlinjection
+      Title: 2016-07-05
   - Title: Operations
     Articles:
     - Url: nservicebus/hosting/startup-diagnostics
@@ -1363,6 +1369,10 @@
         Url: servicecontrol/powershell-cmdlets
     - Title: Licensing
       Url: servicecontrol/license
+    - Title: Support policy
+      Url: servicecontrol/upgrades/support-policy
+    - Title: Supported versions
+      Url: servicecontrol/upgrades/supported-versions
   - Title: Upgrade Guides
     Articles:
     - Title: Upgrade tips
@@ -1371,8 +1381,6 @@
       Url: servicecontrol/upgrades/new-persistence
     - Title: Zero downtime
       Url: servicecontrol/upgrades/zero-downtime
-    - Title: Support policy
-      Url: servicecontrol/upgrades/support-policy
     - Title: Version 4 to 5
       Url: servicecontrol/upgrades/4to5
     - Title: Version 3 to 4
