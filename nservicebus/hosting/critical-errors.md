@@ -1,11 +1,11 @@
 ---
 title: Critical Errors
-summary: How to handle critical errors which adversely affect messaging in an endpoint.
-reviewed: 2021-03-19
+summary: How to handle critical errors in NServiceBus that adversely affect messaging in an endpoint.
+reviewed: 2024-04-03
 component: Core
 ---
 
-NServiceBus has built-in [recoverability](/nservicebus/recoverability/) but in certain scenarios, it is not possible to handle errors in a graceful way. The reason for this is that NServiceBus does not have enough context to make a sensible decision on how to proceed after these errors have occurred.
+NServiceBus has built-in [recoverability](/services/recoverability/) to handle message processing failures. However, there are other types of errors that NServiceBus does not have enough context in order to handle gracefully.  
 
 Examples of **critical errors** include:
 
