@@ -5,7 +5,7 @@ reviewed: 2024-04-03
 component: Core
 ---
 
-NServiceBus has built-in [recoverability](/services/recoverability/) to handle message processing failures. However, there are other types of errors that NServiceBus does not have enough context in order to handle gracefully.  
+NServiceBus has built-in [recoverability](/services/recoverability/) to handle message processing failures. However, there are other types of errors that NServiceBus does not have enough context in order to handle gracefully. Sometimes these are considered critical errors.
 
 Examples of **critical errors** include:
 
@@ -19,15 +19,17 @@ partial: default
 
 ## Custom handling
 
-A custom critical error handler can be provided to override the default behavior.
+//A custom critical error handler can be provided to override the default behavior.
 
-Examples of reasons to consider implementating a custom critical error action include:
+It's possible to provide a custom Critical Error Action handler to override the default behavior. 
 
-* Restarting the endpoint and resetting the transport connection may resolve underlying issues in receiving or dispatching messages.
+Some situations where custom critial error handling might be useful are:
+
+* To restart the endpoint and reset the transport connection to attempt to resolve underlying issues in receiving or dispatching messages.
 * To notify support personnel when the endpoint has raised a critical error.
-* The endpoint contains a handler which must not be executed beyond the configured recoverability policy.
+* To stop an endpoint handler from executing beyond the configured recoverability policy.
 
-Define a custom handler using the following code.
+To define a custom handler use the following code.
 
 snippet: DefiningCustomHostErrorHandlingAction
 
