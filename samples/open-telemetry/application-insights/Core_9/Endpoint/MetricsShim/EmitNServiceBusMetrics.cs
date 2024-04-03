@@ -34,12 +34,7 @@ class EmitNServiceBusMetrics : Feature
         {
             e.TryGetMessageType(out var messageType);
 
-            var tags = new TagList(
-            [
-                new(Tags.QueueName, queueName ?? ""),
-                new(Tags.EndpointDiscriminator, discriminator ?? ""),
-                new(Tags.MessageType, messageType ?? ""),
-            ]);
+            var tags = CreateTags(queueName, discriminator, messageType);
 
             ProcessingTime.Record((e.CompletedAt - e.StartedAt).TotalMilliseconds, tags);
 
@@ -56,12 +51,7 @@ class EmitNServiceBusMetrics : Feature
     {
         headers.TryGetMessageType(out var messageType);
 
-        var tags = new TagList(
-        [
-            new(Tags.QueueName, queueName ?? ""),
-            new(Tags.EndpointDiscriminator, discriminator ?? ""),
-            new(Tags.MessageType, messageType ?? ""),
-        ]);
+        var tags = CreateTags(queueName, discriminator, messageType);
 
         if (immediate)
         {
@@ -80,16 +70,29 @@ class EmitNServiceBusMetrics : Feature
     {
         headers.TryGetMessageType(out var messageType);
 
-        var tags = new TagList(
-        [
-            new(Tags.QueueName, queueName ?? ""),
-            new(Tags.EndpointDiscriminator, discriminator ?? ""),
-            new(Tags.MessageType, messageType ?? "")
-        ]);
-
-        MessageSentToErrorQueue.Add(1, tags);
+        MessageSentToErrorQueue.Add(1, CreateTags(queueName, discriminator, messageType));
 
         return Task.CompletedTask;
+    }
+
+    static TagList CreateTags(string queueName, string discriminator, string messageType)
+    {
+        var tags = new TagList(
+        [
+            new(Tags.QueueName, queueName)
+        ]);
+
+        if (!string.IsNullOrWhiteSpace(discriminator))
+        {
+            tags.Add(Tags.EndpointDiscriminator, discriminator);
+        }
+
+        if (!string.IsNullOrWhiteSpace(messageType))
+        {
+            tags.Add(Tags.MessageType, messageType);
+        }
+
+        return tags;
     }
 
     static readonly Meter NServiceBusMeter = new Meter("NServiceBus.Core", "0.1.0");
