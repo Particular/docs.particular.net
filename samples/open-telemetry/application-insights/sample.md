@@ -92,7 +92,7 @@ snippet: enable-meters
 
 #### Critical time and processing time
 
-[Critical time and processing time captured by the metrics package](/monitoring/metrics/definitions.md#metrics-captured) is not yet supported in OpenTelemetry's native format (using System.Diagnostics), so a shim is required to expose them as OpenTelemetry metrics.
+[Critical time and processing time captured by the metrics package](/monitoring/metrics/definitions.md#metrics-captured) are not yet supported in OpenTelemetry's native format (using System.Diagnostics), so a shim is required to expose them as OpenTelemetry metrics.
 
 snippet: metrics-shim
 
