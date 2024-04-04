@@ -1,12 +1,12 @@
 ---
 title: ServiceControl integration
-reviewed: 2021-04-09
+reviewed: 2024-04-04
 component: ServiceControl
 ---
 
 ServiceControl is the backend service for [ServicePulse](/servicepulse) and [ServiceInsight](/serviceinsight). It can also be used as the back-end for third-party integrations. It collects and stores information from monitored NServiceBus endpoints and exposes it via an HTTP API.
 
-NOTE: In systems that don't use ServiceControl, failed messages remain in the configured error queue and audit messages remain in the configured audit queue. If ServiceControl is introduced into an existing environment, ServiceControl consumes the messages so they are no longer in their respective queues. 
+NOTE: In systems that don't use ServiceControl, failed messages remain in the configured error queue and audit messages remain in the configured audit queue. If ServiceControl is introduced into an existing environment, ServiceControl consumes the messages so they are no longer in their respective queues.
 
 ServiceControl provides monitoring capabilities by analyzing the configured error and audit queues. It can extract information like endpoint name, queue name and, in case of error messages, the exception stack trace, etc. This information is stored in an internal database.
 
@@ -14,33 +14,34 @@ ServiceControl provides monitoring capabilities by analyzing the configured erro
 
 To allow ServiceControl to monitor endpoints:
 
-1. ServiceControl must be [installed](/servicecontrol/installation.md) and at least one instance must be configured to use the same transport as the endpoints.
-2. Every endpoint must be [configured for auditing](/nservicebus/operations/auditing.md#configuring-auditing) with the same audit queue as ServiceControl.
+1. ServiceControl must be [installed](/servicecontrol/installation.md).
+2. An instance of ServiceControl must be configured to use the same transport as the endpoints being monitored.
+3. Every endpoint must be [configured for auditing](/nservicebus/operations/auditing.md#configuring-auditing) with the same audit queue as the instance of ServiceControl.
 
    ```mermaid
    graph LR
 
-   EndpointA --> AuditQ 
-   EndpointB --> AuditQ
-   EndpointC --> AuditQ
- 
-   AuditQ[audit] --> ServiceControl 
+   EndpointA --- AuditQ
+   EndpointB --- AuditQ
+   EndpointC --- AuditQ
 
-   ServiceControl .-> AuditLog[audit.log]
+   AuditQ[audit queue] --- ServiceControl
+
+   ServiceControl .- AuditLog[audit.log queue]
    ```
 
-3. Every endpoint must be configured for [recoverability](/nservicebus/recoverability/) with the same error queue as ServiceControl.
+4. Every endpoint must be configured for [recoverability](/nservicebus/recoverability/) with the same error queue as ServiceControl.
 
    ```mermaid
    graph LR
 
-   EndpointA --> ErrorQ 
-   EndpointB --> ErrorQ
-   EndpointC --> ErrorQ
+   EndpointA --- ErrorQ
+   EndpointB --- ErrorQ
+   EndpointC --- ErrorQ
 
-   ErrorQ[error] --> ServiceControl 
+   ErrorQ[error queue] --- ServiceControl
 
-   ServiceControl .-> ErrorLog[error.log]
+   ServiceControl .- ErrorLog[error.log]
    ```
 
 ## Configuring other monitoring and debugging capabilities
@@ -58,12 +59,8 @@ Endpoints must be configured appropriately to allow ServiceControl to gather thi
 - [Recoverability](/nservicebus/recoverability) must be enabled to store information about message processing failures.
 - [Heartbeats](/monitoring/heartbeats/install-plugin.md), [custom checks](/monitoring/custom-checks/install-plugin.md), and [other plugins](/servicecontrol/plugins/) must be installed in endpoints.
 
-NOTE: All endpoints in a given environment must be configured to forward to the same audit, error, and ServiceControl plugin queues.
+NOTE: All endpoints in a given environment must be configured to send messages to the same ServiceControl plugin, audit, and error queues for ServiceControl to work.
 
 ## Event notifications
 
 ServiceControl detects important system events and publishes them as [integration events](/servicecontrol/contracts.md) to subscribed endpoints.
-
-## Transport Adapter
-
-The [ServiceControl Transport Adapter](/servicecontrol/transport-adapter/) decouples ServiceControl from the specifics of endpoint transport configuration to support scenarios where endpoints use physical routing features [not compatible with ServiceControl](/servicecontrol/transport-adapter/incompatible-features.md) or where endpoints use mixed transports or multiple instances of a message broker.
