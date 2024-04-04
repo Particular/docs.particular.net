@@ -18,21 +18,24 @@ Messaging can help evolving and modernizing existing applications that have been
 
 ### Components
 
-* Front end layer: Often these are web applications or Desktop UIs physically separated from the other layers.
-* Business logic layer: Contains the business logic.
-* Data layer: One or more databases containing all data models of the application.
-* Message queue: used for sending commands or publishing events between layers.
+Typical components within an n-tier application are:
+
+- Front end: Examples of these are web applications, desktop UIs, or mobile applications.
+- Business logic: The business rules that model the solution space.
+- Data: One or more databases containing all data models of the application.
+- Message queue: Used for sending commands or publishing events between tiers.
 
 ### Challenges
 
-* Physically separating the tiers improves scalability of the application but also introduces higher exposure to network related issues that might affect availability. Message queues help to decouple the tiers and increase resiliency across the layers.
-* The tiers in an N-tier architecture style often communicate synchronously to execute business processes. Long-running or heavy workloads can negatively impact the user experience and overall system performance. Asynchronous communication, using messaging, decouples the tiers interacting with the user from the tiers processing the workload.
-* Front end tiers often need to reflect changes made by other users or processes. Notifications from lower layers must respect the constraint that lower layer must not reference upper layers, and may be hosted separately from upper layers. Messaging may be used to provide event-based notifications from lower layers to upper layers, while following these constraints.
-* As a technically partitioned architecture, business logic is spread across layers. Changes to business logic are more difficult as often more than one layer has to be changed. Therefore, this architectural style may not work well with domain-driven design.
+N-tier architectures come with many benefits, but there are also trade-offs involved in adopting it:
+
+- Physically separating the tiers introduces higher exposure to network related issues that might affect availability. The use of message queues helps to mitigate some of this by decoupling the tiers and increasing resilience across the layers.
+- The tiers in a n-tier architecture style often communicate synchronously to execute business processes. Long-running or heavy workloads can negatively impact the user experience and overall system performance. Asynchronous communication using messaging decouples the tiers interacting with the user from the tiers processing the workload.
+- Front end tiers often need to reflect changes made by other users or processes. Communication is generally initiated from front end layers to back end layers, but not the other way around. The use of messaging may be used to provide event-based notifications from the back end to the front end without introducing exceptions to this communication flow.
 
 ### Technology choices
 
-Systems using layered architectures are often limited in their technology choices due to existing dependencies. [Infrastructure-as-a-Service services](/architecture/azure/compute.md#infrastructure-as-a-service) offer flexibility for creating environments that meet these requirements. Web-focused front-end or API layers might use managed hosted options like [Azure App Services](/architecture/azure/compute.md#platform-as-a-service-azure-app-services) without major changes. [Azure SQL services](/architecture/azure/data-stores.md#azure-sql-database) are a great way to move data persistence to the cloud with little effort, unlocking more flexible scaling opportunities.
+Systems using n-tier architectures are often limited in their technology choices due to existing dependencies. [Infrastructure-as-a-Service services](/architecture/azure/compute.md#infrastructure-as-a-service) offer flexibility for creating environments that meet these requirements. Web-focused front-end or API layers might use managed hosted options like [Azure App Services](/architecture/azure/compute.md#platform-as-a-service-azure-app-services) without major changes. [Azure SQL services](/architecture/azure/data-stores.md#azure-sql-database) are a great way to move data persistence to the cloud with little effort, unlocking more flexible scaling opportunities.
 
 ## Related content
 
