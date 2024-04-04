@@ -339,7 +339,9 @@
       - Url: nservicebus/messaging/message-type-detection
         Title: Message type detection
       - Url: nservicebus/messaging/messages-as-interfaces
-        Title: Messages as Interfaces
+        Title: Interfaces as messages
+      - Url: nservicebus/messaging/dynamic-dispatch-and-routing
+        Title: Dynamic dispatch and polymorphic routing
       - Url: nservicebus/messaging/conventions
         Title: Conventions
       - Url: nservicebus/messaging/unobtrusive-mode

@@ -1,4 +1,4 @@
-﻿namespace Core8.DynamicDispatch
+﻿namespace Core7.DynamicDispatch
 {
     using System.Threading.Tasks;
     using NServiceBus;
