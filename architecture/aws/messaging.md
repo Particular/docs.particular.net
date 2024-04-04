@@ -5,13 +5,11 @@ reviewed: 2024-03-28
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
-AWS offers [multiple messaging services](https://aws.amazon.com/messaging/). The Particular Service Platform offers support for messaging within AWS by using [Amazon SQS](https://aws.amazon.com/sqs/) or through a [SQL Server-based transport](#sql-transport).
+AWS offers [multiple messaging services](https://aws.amazon.com/messaging/). The Particular Service Platform offers messaging support within AWS through [Amazon SQS](https://aws.amazon.com/sqs/) or a [SQL Server-based transport](#sql-transport).
 
 ### Amazon SQS
 
 [Amazon Simple Queue Service](https://aws.amazon.com/sqs/) (Amazon SQS) is a scalable and managed message queuing service provided by AWS that enables the decoupling of application components. This service is designed to help developers build robust distributed applications, making it easier to manage traffic, system failures, and complex workflows. Amazon SQS provides a reliable and secure platform for sending, storing, and receiving messages at any volume, thereby streamlining the process of building and scaling microservices, distributed systems, and serverless applications.
-
-Cost-effective: charges are based on usage easing up the need to do capacity planning and pre-provisioning
 
 :heavy_plus_sign: Pros:
 
@@ -19,6 +17,7 @@ Cost-effective: charges are based on usage easing up the need to do capacity pla
 - Highly reliable
 - Easy integration with other AWS services
 - Sensitive data is secured through server-side encryption (SSE)
+- Cost-effective: charges are based on usage reducing the need for capacity planning and pre-provisioning
 
 :heavy_minus_sign: Cons:
 
@@ -33,13 +32,13 @@ NServiceBus addresses some of these limitations:
 
 [**Try the SQS transport sample →**](/samples/aws/sqs-simple/)
 
-#### When to use Amazon SQS
+#### When to use the Amazon SQS transport
 
-Amazon SQS should be considered the default messaging choice for Amazon. Alternatives should be considered only when if SQS cannot be used for organizational reasons.
+The Amazon SQS transport should be considered the default choice for AWS-based systems. Alternatives should be considered only if SQS cannot be used for organizational reasons.
 
-### SQL transport
+### SQL Server transport
 
-SQL transport is an NServiceBus feature that can use existing SQL Server databases as feature-complete message queues.
+SQL Server transport is an NServiceBus feature that can use existing SQL Server databases as feature-complete message queues.
 
 :heavy_plus_sign: Pros:
 
@@ -47,12 +46,11 @@ SQL transport is an NServiceBus feature that can use existing SQL Server databas
 - Strong transaction integration with business data operations
 - Runs on cloud-hosted and on-premises SQL Server-compatible data stores (including Amazon RDS)
 - Arbitrary message sizes
-- Can cater for exactly-once processing if business data and message data are in the same database
+- Allows for exactly-once processing if business data and message data are in the same database
 - Ease of backup and recovery as business data and messages are backed up in the same database
 
 :heavy_minus_sign: Cons:
 
-- Not an actual message queue
 - More expensive and laborious to scale
 - Impacts overall database performance
 - Lower message throughput compared to specialized message queuing technologies
