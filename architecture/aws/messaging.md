@@ -34,7 +34,7 @@ NServiceBus addresses some of these limitations:
 
 #### When to use the Amazon SQS transport
 
-The Amazon SQS transport should be considered the default choice for AWS-based systems. Alternatives should be considered only if SQS cannot be used for organizational reasons.
+The Amazon SQS transport should be considered the default choice for AWS-based systems. Alternatives should be considered only if SQS cannot be used for organizational reasons. The Amazon SQS transport uses Amazon SNS and S3 under the hood.
 
 ### SQL Server transport
 
