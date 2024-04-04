@@ -5,7 +5,7 @@ reviewed: 2024-03-28
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
-AWS offers [multiple messaging services](https://aws.amazon.com/messaging/). The Particular Service Platform offers messaging support within AWS through [Amazon SQS](https://aws.amazon.com/sqs/) or a [SQL Server-based transport](#sql-transport).
+AWS offers [multiple messaging services](https://aws.amazon.com/messaging/). The Particular Service Platform offers messaging support within AWS through [Amazon SQS](https://aws.amazon.com/sqs/) or a [SQL Server-based transport](#sql-server-transport).
 
 ### Amazon SQS
 
@@ -57,6 +57,6 @@ SQL Server transport is an NServiceBus feature that can use existing SQL Server 
 
 [**Try the SQL transport sample →**](/samples/sqltransport/simple/)
 
-#### When to use SQL transport
+#### When to use SQL Server transport
 
 Consider SQL transport if an existing application already uses a SQL Server-compatible data store and limited amount of messaging is being introduced. SQL transport can be a good stepping-stone when introducing messaging into an existing system without the introduction of new infrastructure.
