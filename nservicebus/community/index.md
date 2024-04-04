@@ -48,15 +48,15 @@ redirects:
  - samples/routing/file-based-routing
  - nservicebus/messaging/file-based-routing
  - nservicebus/upgrades/wormhole-router
- - nservicebus/router/
+ - nservicebus/router
  - nservicebus/router/backplane
  - nservicebus/router/direct
  - nservicebus/router/multi-way
- - samples/router/backplane/
- - samples/router/sql-switch/
- - samples/router/update-and-publish/
- - samples/router/mixed-transports/
- - samples/router/sites/
+ - samples/router/backplane
+ - samples/router/sql-switch
+ - samples/router/update-and-publish
+ - samples/router/mixed-transports
+ - samples/router/sites
 ---
 
 This is a curated list of community-developed extensions and integrations for the NServiceBus ecosystem.
