@@ -1,83 +1,62 @@
 ---
 title: AWS messaging services
 summary:
-reviewed: 2024-03-14
+reviewed: 2024-03-28
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
-AWS provides a few messaging options that one can take advantage of when using NServiceBus.
-
-The Particular Service Platform already offers in NServiceBus the Amazon SQS transport that leverages the technologies highlighted below.
-
-### Amazon SNS
-
-[https://aws.amazon.com/sns/](https://aws.amazon.com/sns/)
-
-[Amazon Simple Notification Service](https://aws.amazon.com/sns/) (Amazon SNS)  is a fully managed web service that enables publishers to send messages to subscribers using various endpoint types. Publishers can communicate asynchronously with subscribers by sending messages to a topic, which is a logical access point and communication channel. Subscribers can receive messages using a supported endpoint type, such as Amazon Data Firehose, Amazon SQS, AWS Lambda, HTTP, email, mobile push notifications, and mobile text messages (SMS). Amazon SNS can be used for application-to-application (A2A) messaging, where messages are delivered from one application to another, or for application-to-person (A2P) messaging, where messages are delivered to customers with SMS texts, push notifications, and email. Amazon SNS provides features such as message filtering, batching, ordering, deduplication, encryption, and delivery retries to help developers build reliable, scalable, and secure applications.
-
-:heavy_plus_sign: Pros:
-
-- It provides instantaneous, push-based delivery of messages, which eliminates the need to poll for new information and updates.
-- It has simple APIs and easy integration with applications, which reduces the development effort and complexity.
-- It supports flexible message delivery over multiple transport protocols, such as HTTP, email, SMS, and mobile push notifications.
-- It has an inexpensive, pay-as-&#121;ou-go model with no up-front costs, which lowers the operational expenses.
-
-:heavy_minus_sign: Cons:
-
-- It is not suitable for ordered message processing, as it does not guarantee the order of delivery or the number of deliveries for each message.
-- It has limitations in fine-grained control over retry policies, as it only allows configuring the number of retries and the delay between retries for each endpoint type.
-- It may incur additional costs for using other AWS services, such as SQS, Lambda, or S3, to process or store the messages delivered by SNS.
-- It may have compatibility issues with some third-party services or applications, as it only supports a subset of protocols and format.
-
----
-Call to action??
----
-
-#### When to use Amazon SNS
-
-Amazon SNS should be used when the organization is looking for a solution to achieve higher decoupling between the publishers and the topic subscribers.
+AWS offers [multiple messaging services](https://aws.amazon.com/messaging/). The Particular Service Platform offers messaging support within AWS through [Amazon SQS](https://aws.amazon.com/sqs/) or a [SQL Server-based transport](#sql-transport).
 
 ### Amazon SQS
 
-[https://aws.amazon.com/sqs/](https://aws.amazon.com/sqs/)
-
-[Amazon Simple Queue Service](https://aws.amazon.com/sqs/) (Amazon SQS) is a scalable and managed message queuing service provided by AWS that enables the decoupling of application components. This service is designed to help developers build robust, distributed applications with decoupled components, making it easier to manage traffic, system failures, and complex workflows. SQS provides a reliable and secure platform for sending, storing, and receiving messages at any volume, thereby streamlining the process of building and scaling microservices, distributed systems, and serverless applications.
+[Amazon Simple Queue Service](https://aws.amazon.com/sqs/) (Amazon SQS) is a scalable and managed message queuing service provided by AWS that enables the decoupling of application components. This service is designed to help developers build robust distributed applications, making it easier to manage traffic, system failures, and complex workflows. Amazon SQS provides a reliable and secure platform for sending, storing, and receiving messages at any volume, thereby streamlining the process of building and scaling microservices, distributed systems, and serverless applications.
 
 :heavy_plus_sign: Pros:
 
-- Highly scalable with an ability to handle large volumes of messages automatically
-- Highly reliable as messages are locked during processing to prevent loss and enable  concurrency.
+- Highly scalable
+- Highly reliable
 - Easy integration with other AWS services
-- Enables decoupling and scalability of microservices, distributed systems and serverless applications
-- Cost effective as charges are based on usage with no upfront costs easing up the need to do capacity planning and pre-provisioning
-- Secure as it allows components to send sensitive data between applications either by managing keys using AWS Key management (AWS KMS) and by using Amazon SQS server side encryption (SSE)
-- Durable as messages are stored on multiple servers
-- Supports message deduplication
-- Queues can be fully customizable
+- Sensitive data is secured through server-side encryption (SSE)
+- Cost-effective: charges are based on usage reducing the need for capacity planning and pre-provisioning
 
 :heavy_minus_sign: Cons:
 
-- Limited message size (256Kb per message). NServiceBus mitigates this by allowing one to take advantage, in a seamless way, of S3 to work with larger payloads. For more information review the documentation for the [Amazon SQS transport topology](/transports/sqs/topology.md#s3) and [Amazon SQS configuration options](/transports/sqs/configuration-options.md).
+- Limited message size (256Kb per message). 
 - Limited control over retry policies which forces delegation of handling retries to consumers increasing the overall complexity of the system
-- Messages are only visible for a configurable period of time which can lead to challenges when failures occur
-- As the system grows in complexity, managing a large number of queues can be challenging
-- Even with FIFO (First-In-First-Out) queues, strict message ordering can be a challenge increasing complexity and impact system performance
-- SQS supports a subset of protocols and formats which can originate compatibility issues with third party applications
+- SQS supports a subset of protocols and formats which can cause compatibility issues with third-party applications
+- No local store-and-forward mechanism available
 
----
-Call to action
+NServiceBus addresses some of these limitations:
+- Limited message size: NServiceBus allows the use of S3 to work with larger payloads. For more information, review the documentation for the [Amazon SQS transport topology](/transports/sqs/topology.md#s3) and [Amazon SQS configuration options](/transports/sqs/configuration-options.md).
+- Limited control over retry policies: NServiceBus provides customizable [immediate](/nservicebus/recoverability/configure-immediate-retries.md) and [delayed](/nservicebus/recoverability/configure-delayed-retries.md) retry policies.
 
-- [Simple AmazonSQS Transport usage • Amazon SQS Transport Samples • Particular Docs](/samples/aws/sqs-simple/) (include DataBus properties info)
-- [https://docs.particular.net/samples/aws/sagas-lambda-aurora/](/samples/aws/sagas-lambda-aurora/)
----
+[**Try the SQS transport sample →**](/samples/aws/sqs-simple/)
 
-#### When to use Amazon SQS
+#### When to use the Amazon SQS transport
 
-Use Amazon SQS when there is a need for a solution:
+The Amazon SQS transport should be considered the default choice for AWS-based systems. Alternatives should be considered only if SQS cannot be used for organizational reasons. The Amazon SQS transport uses Amazon SNS and S3 under the hood.
 
-- To decouple microservices and facilitate asynchronous communication between them
-- Where there isn't a need replay events or commands to understand current state of entities/processes
-- When there is a need to manage workloads that require data processing in batches
-- When there is a need to send notifications or alerts within an application
-- When there is a need to do data ingestion and use it as a buffer for incoming requests
-- That requires a fanout to send identical copies of a message to multiple queues in parallel - combined with Amazon SNS.
+### SQL Server transport
+
+SQL Server transport is an NServiceBus feature that can use existing SQL Server databases as feature-complete message queues.
+
+:heavy_plus_sign: Pros:
+
+- Runs on infrastructure which often already exists
+- Strong transaction integration with business data operations
+- Runs on cloud-hosted and on-premises SQL Server-compatible data stores (including Amazon RDS)
+- Arbitrary message sizes
+- Allows for exactly-once processing if business data and message data are in the same database
+- Ease of backup and recovery as business data and messages are backed up in the same database
+
+:heavy_minus_sign: Cons:
+
+- More expensive and laborious to scale
+- Impacts overall database performance
+- Lower message throughput compared to specialized message queuing technologies
+
+[**Try the SQL transport sample →**](/samples/sqltransport/simple/)
+
+#### When to use SQL transport
+
+Consider SQL transport if an existing application already uses a SQL Server-compatible data store and limited amount of messaging is being introduced. SQL transport can be a good stepping-stone when introducing messaging into an existing system without the introduction of new infrastructure.
