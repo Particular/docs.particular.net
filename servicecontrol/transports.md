@@ -1,6 +1,6 @@
 ---
 title: Transport support
-reviewed: 2021-09-01
+reviewed: 2024-04-05
 ---
 ServiceControl can be configured to use one of the supported [transports](/transports/) listed below using the ServiceControl Management application:
 
@@ -16,7 +16,7 @@ ServiceControl can be configured to use one of the supported [transports](/trans
 
 #### Transport adapters
 
-Certain transport features are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter). Contact support@particular.net for further guidance.
+Certain transport features are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter). Contact [support](https://particular.net/support) for further guidance.
 
 Configuring third-party transports through the ServiceControl Management application is not supported.
 
@@ -39,7 +39,7 @@ In addition to the [connection string options of the transport](/transports/azur
 * `TopicName=<topic-bundle-name>` - Specifies the [topic name](/transports/azure-service-bus/configuration.md#entity-creation) to be used by the instance. The default value is `bundle-1`.
 * `QueueLengthQueryDelayInterval=<value_in_milliseconds>` - Specifies the delay between queue length refresh queries for queue length monitoring. The default value is 500 ms.
 
-As of version 4.21.8, the following options can be used to enable [Managed Identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) authentication:
+As of version 4.21.8 of ServiceControl, the following options can be used to enable [Managed Identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) authentication:
 
 * Setting the connection string to a [fully-qualified namespace](https://docs.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.servicebusclient.fullyqualifiednamespace) (eg. `my-namespace.servicebus.windows.net`)
   * With this setting, a [`DefaultAzureCredential`](https://docs.microsoft.com/en-us/dotnet/api/azure.identity.defaultazurecredential) will be used.
@@ -49,7 +49,7 @@ As of version 4.21.8, the following options can be used to enable [Managed Ident
   * When specifying managed identity for the connection string, a [`ManagedIdentityCredential`](https://docs.microsoft.com/en-us/dotnet/api/azure.identity.managedidentitycredential) will be used.
   * Set the `ClientId=some-client-id` connectionstring option to use a specific [user-assigned identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview#managed-identity-types)
  
-As of version 4.33.3 and 5.0.5 support for partitioned entities can be enabled by adding the following connection string parameter:
+As of versions 4.33.3 and 5.0.5 of ServiceControl, support for partitioned entities can be enabled by adding the following connection string parameter:
 
 * `EnablePartitioning=<True|False>` — Configures the transport to create entities with partitions support. The default value is `false`.
 
@@ -59,6 +59,8 @@ In addition to the [connection string options of the transport](/transports/sql/
 
 * `Queue Schema=<schema_name>` - Specifies custom schema for the ServiceControl input queue.
 * `Subscriptions Table=<subscription_table_name>` - Specifies SQL subscription table name.
+  * *Optional* `Subscriptions Table=<subscription_table_name>@<schema>` - to specify the schema.
+  * *Optional* `Subscriptions Table=<subscription_table_name>@<schema>@<catalog>` - to specify the schema and catalog.
 
 #### Amazon SQS
 
