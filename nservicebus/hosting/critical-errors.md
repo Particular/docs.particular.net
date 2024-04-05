@@ -5,11 +5,11 @@ reviewed: 2024-04-03
 component: Core
 ---
 
-NServiceBus has built-in [recoverability](/services/recoverability/) to handle message processing failures. However, there are other types of errors that NServiceBus does not have enough context in order to handle gracefully. Sometimes these are considered critical errors.
+NServiceBus has built-in [recoverability](/services/recoverability/) to handle message processing failures. However, there may be other types of errors outside of messaging processing that NServiceBus does not have enough context in order to handle gracefully. These tend to be deeper infrastructure issues that cannot be caught by the recoverability feature of messages. NServiceBus raises these as critical errors.
 
 Examples of **critical errors** include:
 
-* An exception occurs when NServiceBus attempts to execute the recoverability policy, including moving a message to the error queue. The context will contain a specific error  `Failed to execute recoverability policy for message with native ID: \`{message.MessageId}\``
+* An exception occurs when NServiceBus attempts to execute the recoverability policy, including moving a message to the error queue. The context will contain a specific error `Failed to execute recoverability policy for message with native ID: \`{message.MessageId}\``
 * There are repeated failures in reading information from a required storage.
 * An exception occurs reading from the input queue.
 
