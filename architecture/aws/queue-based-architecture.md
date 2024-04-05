@@ -1,6 +1,6 @@
 ---
-title: Queue based architecture style on AWS
-summary:
+title: Queue-based architecture style on AWS
+summary: A description of queue-based architecture including the components, challenges, and technology options for AWS
 reviewed: 2024-03-14
 callsToAction: ['solution-architect', 'ADSD']
 ---

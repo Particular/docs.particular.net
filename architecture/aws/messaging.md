@@ -1,6 +1,6 @@
 ---
 title: AWS messaging services
-summary:
+summary: A description of the AWS messaging options available for the Particular Service Platform
 reviewed: 2024-03-28
 callsToAction: ['solution-architect', 'poc-help']
 ---
@@ -21,7 +21,7 @@ AWS offers [multiple messaging services](https://aws.amazon.com/messaging/). The
 
 :heavy_minus_sign: Cons:
 
-- Limited message size (256Kb per message). 
+- Limited message size (256Kb per message).
 - Limited control over retry policies which forces delegation of handling retries to consumers increasing the overall complexity of the system
 - SQS supports a subset of protocols and formats which can cause compatibility issues with third-party applications
 - No local store-and-forward mechanism available

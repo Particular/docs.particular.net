@@ -1,6 +1,6 @@
 ---
 title: AWS Architectures
-summary:
+summary: An overview of the architectural styles and technology options offered by AWS
 reviewed: 2024-03-14
 suppressRelated: true
 callsToAction: ['architecture-review']

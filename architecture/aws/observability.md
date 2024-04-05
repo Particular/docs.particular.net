@@ -1,6 +1,6 @@
 ---
 title: AWS observability services
-summary:
+summary: An overview of the observability options offered by AWS and how to use them with the Particular Service Platform
 reviewed: 2024-03-28
 callsToAction: ['solution-architect', 'poc-help']
 ---

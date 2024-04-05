@@ -1,6 +1,6 @@
 ---
 title: AWS compute services
-summary:
+summary: How to host the Particular Service Platform on the various options offered by AWS
 reviewed: 2024-03-14
 callsToAction: ['solution-architect', 'poc-help']
 ---
