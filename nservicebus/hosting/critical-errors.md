@@ -5,7 +5,7 @@ reviewed: 2024-04-03
 component: Core
 ---
 
-NServiceBus has built-in [recoverability](/services/recoverability/) to handle message processing failures. However, there may be other types of errors outside of messaging processing that NServiceBus does not have enough context in order to handle gracefully. These tend to be deeper infrastructure issues that cannot be caught by the recoverability feature of messages. NServiceBus raises these as critical errors.
+NServiceBus has built-in [recoverability](/nservicebus/recoverability/) to handle message processing failures. However, there may be other types of errors outside of messaging processing that NServiceBus does not have enough context to handle gracefully. These tend to be deeper infrastructure issues that cannot be caught by the recoverability feature of messages. NServiceBus raises these as critical errors.
 
 Examples of **critical errors** include:
 
@@ -19,9 +19,7 @@ partial: default
 
 ## Custom handling
 
-//A custom critical error handler can be provided to override the default behavior.
-
-It's possible to provide a custom Critical Error Action handler to override the default behavior. 
+It's possible to provide a custom Critical Error Action handler to override the default behavior.
 
 Some situations where custom critial error handling might be useful are:
 
