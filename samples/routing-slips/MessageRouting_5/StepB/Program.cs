@@ -7,11 +7,13 @@ class Program
 {
     static async Task Main()
     {
-        Console.Title = "ResultHost";
-        var endpointConfiguration = new EndpointConfiguration("Samples.RoutingSlips.ResultHost");
+        Console.Title = "StepB";
+        var endpointConfiguration = new EndpointConfiguration("Samples.RoutingSlips.StepB");
 
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
+        // Choose JSON to serialize and deserialize messages
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.EnableFeature<RoutingSlips>();
 
         var endpoint = await Endpoint.Start(endpointConfiguration);

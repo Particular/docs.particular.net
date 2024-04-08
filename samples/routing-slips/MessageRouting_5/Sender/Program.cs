@@ -1,7 +1,7 @@
-using NServiceBus.Logging;
 using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using NServiceBus.Logging;
 using NServiceBus.MessageRouting.RoutingSlips;
 
 class Program
@@ -15,10 +15,13 @@ class Program
 
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport<LearningTransport>();
+        // Choose JSON to serialize and deserialize messages
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         #region enableRoutingSlips
         endpointConfiguration.EnableFeature<RoutingSlips>();
         #endregion
+
 
         var endpoint = await Endpoint.Start(endpointConfiguration);
 
