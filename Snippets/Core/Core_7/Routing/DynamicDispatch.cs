@@ -1,20 +1,23 @@
 ﻿namespace Core7.DynamicDispatch
 {
+    using System;
     using System.Threading.Tasks;
     using NServiceBus;
 
     #region DynamicDispatchHandlerStubs
     public class SaveUser : IHandleMessages<UserCreated>
     {
-        public async Task Handle(UserCreated message, IMessageHandlerContext) {
+        public Task Handle(UserCreated message, IMessageHandlerContext context) {
             // Do stuff when the user is created
+            return Task.CompletedTask;
         }
     }
 
     public class Audit : IHandleMessages<IMessage>
     {
-        public async Task Handle(IMessage message, IMessageHandlerContext context) {
+        public Task Handle(IMessage message, IMessageHandlerContext context) {
             // Audit the message
+            return Task.CompletedTask;
         }
     }
     #endregion
@@ -27,8 +30,9 @@
 
     public class RecordStatistics : IHandleMessages<UserCreatedFromCampaign>
     {
-        public async Task Handle(UserCreatedFromCampaign, IMessageHandlerContext context) {
+        public Task Handle(UserCreatedFromCampaign message, IMessageHandlerContext context) {
             // Record statistics
+            return Task.CompletedTask;
         }
     }
     #endregion

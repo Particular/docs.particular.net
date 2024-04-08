@@ -1,20 +1,23 @@
 ﻿namespace Core8.PolymorphicRouting
 {
+    using System;
     using System.Threading.Tasks;
     using NServiceBus;
 
     #region PolymorphicRouting
     public class SaveUser : IHandleMessages<UserCreated>
     {
-        public async Task Handle(UserCreated message, IMessageHandlerContext) {
+        public Task Handle(UserCreated message, IMessageHandlerContext context) {
             // Do stuff when the user is created
+            return Task.CompletedTask;
         }
     }
 
     public class RecordCampaignActivity : IHandleMessages<CampaignActivityOccurred>
     {
-        public async Task Handle(CampaignActivityOccurred message, IMessageHandlerContext) {
+        public Task Handle(CampaignActivityOccurred message, IMessageHandlerContext context) {
             // Do stuff when an event related to a campaign happened
+            return Task.CompletedTask;
         }
     }
     #endregion
