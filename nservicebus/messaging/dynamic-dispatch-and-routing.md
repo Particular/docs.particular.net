@@ -1,13 +1,13 @@
 ---
 title: Dynamic dispatch and polymorphic routing
-summary: How to use NServiceBus to route messages dynamically based on their types
+summary: Implement polymorphic routing with NServiceBus-supported dynamic dispatch to route messages based on their types
 component: core
 reviewed: 2024-04-04
 related:
  - nservicebus/messaging/messages-as-interfaces
 ---
 
-NServiceBus makes it easy to support dynamic dispatch and polymorphic message routing scenarios. This technique makes systems more flexible and maintainable by encouraging messages and handlers to be decoupled from each other. It's useful for evolving systems to allow adding new features without affecting existing functionality. It's best described using an example.
+NServiceBus makes it easy to support dynamic dispatch and polymorphic message routing scenarios. This technique makes systems more flexible and maintainable by encouraging messages and handlers to be decoupled from each other. It's useful for evolving systems by allowing the addition of new features without affecting existing functionality. It's best described using an example.
 
 ## Using NServiceBus for dynamic dispatch
 
@@ -17,7 +17,7 @@ snippet: DynamicDispatchHandlerStubs
 
 When a message of type `UserCreated` is published, both handlers will be invoked independently which in itself is useful. However, this idea becomes more powerful as the system evolves and more functionality is added.
 
-Assume there is a separate process that needs to happen if a user is created as part of a campaign. For example, say the subscriber must register statistics about the campaign. In NServiceBus, this can be done by defining a new event and handler:
+Meanwhile, imagine there is a separate process that must happen if a user is created as part of an advertising campaign. For example, say the subscriber must register statistics about the campaign. In NServiceBus, this can be done by defining a new event and handler:
 
 snippet: DynamicDispatchEvolution
 

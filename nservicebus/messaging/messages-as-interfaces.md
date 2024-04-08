@@ -1,6 +1,6 @@
 ---
 title: Interfaces as messages
-summary: Define messages as interfaces in NServiceBus to support multiple inheritance scenarios
+summary: Define interfaces as messages in NServiceBus to support multiple inheritance scenarios
 component: core
 reviewed: 2024-04-04
 related:
