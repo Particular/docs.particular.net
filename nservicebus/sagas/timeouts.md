@@ -10,7 +10,7 @@ related:
 
 Assumptions can not be made in a message-driven environment regarding the order of received messages and exactly when they will arrive. While the connection-less nature of messaging prevents a system from consuming resources while waiting, there is usually an upper limit to a waiting period that the business dictates. 
 
-The upper wait time is modelled in NServiceBus as a `Timeout`:
+The upper wait time is modeled in NServiceBus as a `Timeout`:
 
 snippet: saga-with-timeout
 
