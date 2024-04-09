@@ -51,7 +51,7 @@ NOTE: If a saga is created with a previously used saga identifier, the timeout m
 
 ## Timeout state
 
-The state parameter provides a way to pass the state to the Sagas timeout handle method. This is useful when many timeouts of the same "type" will be active at the same time. One example of this would be to pass in some ID that uniquely identifies the timeout eg: `.RequestTimeout(new OrderNoLongerEligibleForBonus{OrderId = "xyz"})`. With this state passed to the timeout handler it can now decrement the bonus correctly by looking up the order value from the saga state using the provided id.
+The state parameter provides a way to pass state to the Sagas timeout handle method. This is useful when many timeouts of the same "type" will be active at the same time. One example of this would be to pass in some ID that uniquely identifies the timeout eg: `.RequestTimeout(new OrderNoLongerEligibleForBonus{OrderId = "xyz"})`. With this state passed to the timeout handler it can now decrement the bonus correctly by looking up the order value from the saga state using the provided id.
 
 ### Using the incoming message as a timeout state
 
