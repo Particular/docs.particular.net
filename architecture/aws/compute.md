@@ -1,6 +1,6 @@
 ---
 title: AWS compute services
-summary: How to host the Particular Service Platform on the various options offered by AWS
+summary: Describes multiple options (Serverless, PaaS, Containers, IaaS) offered by AWS to host the Particular Service Platform.
 reviewed: 2024-03-14
 callsToAction: ['solution-architect', 'poc-help']
 ---

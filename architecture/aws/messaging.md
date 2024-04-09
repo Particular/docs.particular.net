@@ -1,6 +1,6 @@
 ---
 title: AWS messaging services
-summary: A description of the AWS messaging options available for the Particular Service Platform
+summary: Describes the AWS messaging options available for the Particular Service Platform
 reviewed: 2024-03-28
 callsToAction: ['solution-architect', 'poc-help']
 ---

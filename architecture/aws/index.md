@@ -1,6 +1,6 @@
 ---
 title: AWS Architectures
-summary: An overview of the architectural styles and technology options offered by AWS
+summary: Gives an overview of the architectural styles (microservices, event-driven, multi-tier, queue-based) and technology options offered by AWS
 reviewed: 2024-03-14
 suppressRelated: true
 callsToAction: ['architecture-review']

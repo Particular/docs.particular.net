@@ -1,6 +1,6 @@
 ---
 title: Multi-tier architecture style on AWS
-summary: A description of multi-tier architecture including the components, challenges, and technology options for AWS
+summary: Gives a description of multi-tier architecture including the components, challenges, and technology options for AWS
 reviewed: 2024-04-04
 callsToAction: ['solution-architect', 'ADSD']
 ---
