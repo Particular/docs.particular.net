@@ -20,7 +20,7 @@ Amazon Web Services (AWS) offers a number of [data storage services](https://aws
 
 :heavy_minus_sign: Cons:
 
-- Data modeling as well as [saga design](https://docs.particular.net/nservicebus/sagas/concurrency#high-load-scenarios-redesign-the-sagas) can impact cost making it difficult to predict
+- Data modeling as well as [saga design](/nservicebus/sagas/concurrency.md#high-load-scenarios-redesign-the-sagas) can impact cost making it difficult to predict
 - Limited storage capacity for [individual items](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ServiceQuotas.html#limits-items)
 - Queries and scans require indexes to be created
 
