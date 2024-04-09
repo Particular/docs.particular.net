@@ -1,15 +1,15 @@
 ---
 title: AWS data stores
 summary: Gives an overview of the data storage options offered by AWS and how to use them with the Particular Service Platform
-reviewed: 2024-03-13
+reviewed: 2024-04-09
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
-AWS offers a number of [data storage services](https://aws.amazon.com/getting-started/decision-guides/databases-on-aws-how-to-choose/) that integrate well with the Particular Service Platform.
+Amazon Web Services (AWS) offers a number of [data storage services](https://aws.amazon.com/getting-started/decision-guides/databases-on-aws-how-to-choose/) that integrate well with the Particular Service Platform.
 
 ## Amazon DynamoDB
 
-[Amazon DynamoDB](https://aws.amazon.com/dynamodb/) is a fully managed, serverless, NoSQL database service. It is designed for high-performance and scalable applications, offering low-latency access to data regardless of the scale. DynamoDB supports both document and key-value data models and automatically scales to handle the throughput and storage requirements of applications. Its features include automatic partitioning, backup and restore, and global replication for data distribution across multiple regions.
+[Amazon DynamoDB](https://aws.amazon.com/dynamodb/) is a fully managed, serverless, NoSQL database service. It is designed for high-performance and scalable applications, offering low-latency access to data regardless of the scale. DynamoDB supports both document and key-value data models and automatically scales to handle the throughput and storage requirements of applications. Features include automatic partitioning, backup and restore, as well as global replication for data distribution across multiple regions.
 
 :heavy_plus_sign: Pros:
 
@@ -20,15 +20,15 @@ AWS offers a number of [data storage services](https://aws.amazon.com/getting-st
 
 :heavy_minus_sign: Cons:
 
-- Can be difficult to predict costs
-- Limited storage capacity for individual items
-- Can not query if no indexes are available
+- Data modeling as well as [saga design](https://docs.particular.net/nservicebus/sagas/concurrency#high-load-scenarios-redesign-the-sagas) can impact cost making it difficult to predict
+- Limited storage capacity for [individual items](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ServiceQuotas.html#limits-items)
+- Queries and scans require indexes to be created
 
 [**Try the NServiceBus DynamoDB sample →**](/samples/aws/dynamodb-simple/)
 
 ## Amazon Aurora
 
-[Amazon Aurora](https://aws.amazon.com/rds/aurora/) is a relational database service provided by Amazon Web Services (AWS), compatible with MySQL and PostgreSQL. It is designed to offer high performance, durability, and availability for database applications. Aurora uses a distributed and fault-tolerant architecture, providing automatic replication and failover capabilities to enhance data reliability and reduce downtime.
+[Amazon Aurora](https://aws.amazon.com/rds/aurora/) is a relational database service, compatible with MySQL and PostgreSQL. It is designed to offer high performance, durability, and availability for database applications. Aurora uses a distributed and fault-tolerant architecture, providing automatic replication and failover capabilities to enhance data reliability and reduce downtime.
 
 :heavy_plus_sign: Pros:
 
@@ -37,10 +37,10 @@ AWS offers a number of [data storage services](https://aws.amazon.com/getting-st
 - Can automatically scale both read and write operations to handle varying workloads
 - Fully managed
 
-:heavy_plus_sign: Pros:
+:heavy_minus_sign: Cons:
 
-- Can be more expensive than traditional relational databases for smaller applications.
-- More complex to manage for users that aren’t familiar with distributed and replicated database systems
+- Likely to be more expensive than other options
+- Only supports MySQL and PostgreSQL which could impact migration from other database systems
 
 [**Try NServiceBus sagas with Aurora, SQS, and Lambda →**](/samples/aws/sagas-lambda-aurora/)
 
@@ -52,13 +52,12 @@ AWS offers a number of [data storage services](https://aws.amazon.com/getting-st
 
 - Fully managed
 - Supports a variety of database engines
-- Easily scaled vertically or horizontally
-- Supports multi-AZ deployments for high availability
+- Scales easily
+- Supports high availability through Multi-AZ deployments
 
 :heavy_minus_sign: Cons:
 
 - Potential latency between primary instance and read replicas
 - Can be more expensive than self-managed solutions for smaller applications
-- May not update to the latest version of database engines right away
 
 [**See how to use NServiceBus sagas using a preferred relational database →**](/samples/sql-persistence/simple/)
