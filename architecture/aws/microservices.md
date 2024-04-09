@@ -27,7 +27,7 @@ Finding good service boundaries is one of the biggest challenges with the micros
 
 In this presentation, Udi Dahan demonstrates the process of finding good service boundaries. He explains the challenges of traditional layered architectures and covers an approach that cuts across all application layers, outlining the natural lines of loose and tight coupling. Finally, Udi shows how these vertical slices collaborate using events, enabling flexible and high performance business processes.
 
-[Blog post: Goodbye microservices, hello right-sized services →](https://particular.net/blog/goodbye-microservices-hello-right-sized-services)
+[**Blog post: Goodbye microservices, hello right-sized services →**](https://particular.net/blog/goodbye-microservices-hello-right-sized-services)
 
 ### RPC vs. messaging
 

@@ -38,7 +38,7 @@ In serverless (also referred to as "Functions as a service (FaaS)") models, code
 * [Azure Container Apps](https://azure.microsoft.com/en-us/products/container-apps/)
 * [Azure Kubernetes Services](https://azure.microsoft.com/en-us/products/kubernetes-service/)
 
-![](azure-container-host.png)
+![Azure Container Apps environment](azure-container-host.png)
 
 [**Host NServiceBus applications in Docker containers →**](/nservicebus/hosting/docker-host/)
 
