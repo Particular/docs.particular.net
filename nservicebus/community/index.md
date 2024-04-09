@@ -47,6 +47,16 @@ redirects:
  - transports/sql/sql-native
  - samples/routing/file-based-routing
  - nservicebus/messaging/file-based-routing
+ - nservicebus/upgrades/wormhole-router
+ - nservicebus/router
+ - nservicebus/router/backplane
+ - nservicebus/router/direct
+ - nservicebus/router/multi-way
+ - samples/router/backplane
+ - samples/router/sql-switch
+ - samples/router/update-and-publish
+ - samples/router/mixed-transports
+ - samples/router/sites
 ---
 
 This is a curated list of community-developed extensions and integrations for the NServiceBus ecosystem.
@@ -92,6 +102,12 @@ Created by [Hadi Eskandari](http://www.seesharpsoftware.com.au/).
 Enables identifying NServiceBus messages, commands, and events by conventions using attributes i.e. `[Command]` and `[Event]` instead of the built-in `ICommand` and `IEvent` marker interfaces.
 
 Created by [Mauro Servienti](https://milestone.topics.it/).
+
+## [NServiceBus.Router](https://github.com/SzymonPobiega/NServiceBus.Router)
+
+NServiceBus.Router is a universal component that is cross-transport, cross-site and cross-cloud router component for NServiceBus.
+
+Created by [Szymon Pobiega](https://simon-says-architecture.com/).
 
 ## [Rabbit Operations](http://rabbitoperations.southsidesoft.com/)
 

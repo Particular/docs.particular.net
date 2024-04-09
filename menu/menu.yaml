@@ -114,8 +114,6 @@
         Title: Connecting endpoints
       - Url: platform/json-schema
         Title: Connection schema
-    - Url: samples/endpoint-configuration
-      Title: Configuration choices Sample
     - Url: nservicebus/dotnet-templates
       Title: dotnet new Templates
     - Url: nservicebus/platform-nuget-packages
@@ -325,8 +323,6 @@
         Title: ServiceControl.Plugin.X.CustomChecks to NServiceBus.CustomChecks
       - Url: nservicebus/upgrades/nservicebus.heartbeat
         Title: ServiceControl.Plugin.X.Heartbeat to NServiceBus.Heartbeat
-    - Title: Upgrade NServiceBus.Wormhole to NServiceBus.Router
-      Url: nservicebus/upgrades/wormhole-router
   - Title: Messaging
     Articles:
     - Url: nservicebus/messaging
@@ -416,17 +412,8 @@
         Title: Troubleshooting
       - Url: nservicebus/gateway/scale-out
         Title: Scale-Out
-    - Url: nservicebus/router
-      Title: Router
-      Articles:
-      - Url: nservicebus/router/direct
-        Title: Direct topology
-      - Url: nservicebus/router/multi-way
-        Title: Multi-way topology
-      - Url: nservicebus/router/backplane
-        Title: Backplane topology
-    - Url: nservicebus/rawmessaging
-      Title: Raw messaging
+      - Url: nservicebus/rawmessaging
+        Title: Raw messaging
     - Url: nservicebus/outbox
       Title: Outbox
     - Url: nservicebus/transactional-session
@@ -577,8 +564,6 @@
     Articles:
     - Url: nservicebus/testing
       Title: About testing NServiceBus
-    - Url: samples/unit-testing
-      Title: AAA style tests
     - Url: nservicebus/testing/saga-scenario-testing
       Title: Saga scenario testing
     - Url: nservicebus/testing/fluent
