@@ -14,7 +14,7 @@ The upper wait time is modeled in NServiceBus as a `Timeout`:
 
 snippet: saga-with-timeout
 
-After calling `RequestTimeout<T>`, a timeout message will persist and be scheduled to run after a specified delay or at the specified time.
+`RequestTimeout<T>` sends a timeout message which is delivered after the specified delay or at the specified time.
 
 If a saga does not request a timeout then its corresponding timeout method will never be invoked.
 
