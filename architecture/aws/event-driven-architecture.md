@@ -1,6 +1,6 @@
 ---
 title: Event-driven architecture style on AWS
-summary:
+summary: Describes event-driven architecture including the components, challenges, and technology options for AWS
 reviewed: 2024-04-04
 callsToAction: ['solution-architect', 'ADSD']
 ---
@@ -12,7 +12,7 @@ The Particular Service Platform implements the [publish/subscribe model](/nservi
 ### Components
 
 - **NServiceBus publisher (event producer)**
-    
+
     Publishes events with business meaning in a reliable fire-and-forget style and has no knowledge of subscribers (there may be none).
 - **NServiceBus subscriber (event consumer)**
 
