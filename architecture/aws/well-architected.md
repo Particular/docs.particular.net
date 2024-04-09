@@ -1,6 +1,6 @@
 ---
 title: AWS Well-Architected Framework
-summary:
+summary: Gives an overview of the framework and how it can help build performant, resilient, and secure systems
 reviewed: 2024-03-27
 callsToAction: ['ADSD']
 ---

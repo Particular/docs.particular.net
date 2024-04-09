@@ -1,6 +1,6 @@
 ---
-title: Multi tier architecture style on AWS
-summary:
+title: Multi-tier architecture style on AWS
+summary: Gives a description of multi-tier architecture including the components, challenges, and technology options for AWS
 reviewed: 2024-04-04
 callsToAction: ['solution-architect', 'ADSD']
 ---
@@ -35,10 +35,10 @@ Multi-tier architectures come with many benefits, but there are also trade-offs 
 
 Technology choices are often dictated by the tier you are working in. For example:
 
- - [Infrastructure-as-a-Service](/architecture/azure/compute.md#infrastructure-as-a-service) services offer flexibility for creating environments.
- - Web-focused front-end or API layers might use managed hosted options like [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk) or [LightSail](https://aws.amazon.com/lightsail). 
- - [Multiple data store options](/architecture/aws/data-stores.md) exist within AWS which allow moving data persistence to the cloud with little effort.
- - [Messaging options](/architecture/aws/messaging.md) allow for asynchronous communication between tiers.
+- [Infrastructure-as-a-Service](/architecture/azure/compute.md#infrastructure-as-a-service) services offer flexibility for creating environments.
+- Web-focused front-end or API layers might use managed hosted options like [Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk) or [LightSail](https://aws.amazon.com/lightsail).
+- [Multiple data store options](/architecture/aws/data-stores.md) exist within AWS which allow moving data persistence to the cloud with little effort.
+- [Messaging options](/architecture/aws/messaging.md) allow for asynchronous communication between tiers.
 
 ### Related content
 
