@@ -1,6 +1,6 @@
 ---
 title: Event-driven architecture style on Azure
-summary:
+summary: Describes event-driven architecture including the components, challenges, and technology options for Azure
 reviewed: 2023-07-18
 callsToAction: ['solution-architect', 'ADSD']
 ---
@@ -20,7 +20,7 @@ The Particular Service Platform implements [pub/sub](/nservicebus/messaging/publ
 
     Subscribed to a specific event type and reacts to it. A subscriber may also be an event publisher, since processing an event may lead to publishing more events.
 * **Azure Service Bus**
-    
+
     The messaging service that brings together publisher and subscriber without explicitly referencing or depending on each other.
 
 ### Challenges

@@ -1,6 +1,6 @@
 ---
 title: Azure Architectures
-summary:
+summary: Gives an overview of the architectural styles (microservices, event-driven, n-tier, web-queue-worker) and technology options offered by Azure
 reviewed: 2023-07-18
 suppressRelated: true
 callsToAction: ['architecture-review']

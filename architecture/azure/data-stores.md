@@ -1,6 +1,6 @@
 ---
 title: Azure data stores
-summary:
+summary: Gives an overview of the data storage options offered by Azure and how to use them with the Particular Service Platform
 reviewed: 2023-07-18
 callsToAction: ['solution-architect', 'poc-help']
 ---
