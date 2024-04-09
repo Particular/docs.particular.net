@@ -9,27 +9,27 @@ The [AWS Well-Architected](https://aws.amazon.com/architecture/well-architected)
 
 NServiceBus helps the organization achieve the six pillars of the AWS Well-architected Framework in a number of ways.
 
-### Reliability
+## Reliability
 
 - NServiceBus handles unexpected failures and provides the [recoverability features](/nservicebus/recoverability/) required by self-healing systems.
 - NServiceBus provides health metrics which can be monitored using [ServicePulse](/servicepulse/) and [OpenTelemetry](/nservicebus/operations/opentelemetry.md).
 
-### Performance efficiency
+## Performance efficiency
 
 - NServiceBus endpoints can be scaled out easily using methods such as the built-in [competing consumers mechanism](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers) and scaled up while tuning for [concurrency](/nservicebus/operations/tuning.md).
 - NServiceBus is designed and tested for [high-performance and memory efficiency](https://particular.net/blog/pipeline-and-closure-allocations).
 - [Monitoring](/monitoring/) allows observation of individual endpoint performance and identification of bottlenecks.
 
-### Security
+## Security
 
 - NServiceBus provides data encryption in transit with [message encryption](/nservicebus/security/property-encryption.md).
 - NServiceBus supports the [least privilege](/nservicebus/operations/installers.md#when-to-run-installers) approach during application deployment and runtime.
 
-### Cost optimization
+## Cost optimization
 
 - Costs may be optimized by the most appropriate [technology choice](/architecture/aws/#technology-choices).
 
-### Operational excellence
+## Operational excellence
 
 - The Particular Service Platform [creates required infrastructure components](/nservicebus/operations/installers.md) using dedicated installation APIs or infrastructure scripting tools.
 - ServicePulse provides [detailed insight](/servicepulse/) into the operational health of a system.
@@ -37,7 +37,7 @@ NServiceBus helps the organization achieve the six pillars of the AWS Well-archi
 - [Messaging](/nservicebus/messaging/) allows loosely coupled architectures with autonomous and independent services.
 - NServiceBus APIs support good testing practices and are designed with [automated testing](/nservicebus/testing/) in mind.
 
-### Sustainability
+## Sustainability
 
 - By abstracting the system components from the underlying [AWS technology choices](/architecture/aws/#technology-choices), NServiceBus allows shifting to more efficient hardware and software offerings when they become available with minimal changes.
 

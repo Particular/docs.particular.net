@@ -9,26 +9,26 @@ AWS provides a wide range of hosting options, including serverless options, EC2 
 
 The Particular Service Platform can be hosted on AWS using:
 
-#### Serverless
+## Serverless
 
 [AWS Lambda](https://aws.amazon.com/lambda/) is a serverless compute service that allows developers to run their code in response to events without the need to manage servers. NServiceBus supports AWS Lambda so that new or existing applications can directly consume messages from [SQS queues](https://aws.amazon.com/sqs/).
 
 [**Host NServiceBus applications on AWS Lambda →**](/nservicebus/hosting/aws-lambda-simple-queue-service/).
 
-#### Platform as a Service
+## Platform as a Service
 
 [Platform as a Service (PaaS)](https://en.wikipedia.org/wiki/Platform_as_a_service) models provide managed hosting environments where applications can be deployed without having to manage the underlying infrastructure, operating system, or runtime environments.
 
 [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) allows developers to deploy .NET web applications to either IIS or Nginx and have Beanstalk provision and manage the infrastructure. NServiceBus applications can be integrated into .NET web applications hosted on Elastic Beanstalk.
 
-##### Containers
+### Containers
 
 [Containers](https://en.wikipedia.org/wiki/Containerization_(computing)) are a popular mechanism to deploy and host applications in PaaS services. NServiceBus can be used by containerized applications and deployed to services like:
 
 - [Amazon Elastic Container Service](https://aws.amazon.com/ecs/)
 - [Amazon Elastic Kubernetes Service](https://aws.amazon.com/eks/)
 
-#### Infrastructure as a Service
+## Infrastructure as a Service
 
 Infrastructure as a Service (IaaS) provides virtualized computing resources like virtual machines, storage, and networking that can be used to build and manage the required infrastructure.
 
@@ -40,7 +40,7 @@ NServiceBus applications can easily be hosted on virtual machines. Popular techn
 - [Manually controlling NServiceBus lifecycle in an executable (e.g. Console or GUI applications)](/nservicebus/hosting/#self-hosting)
 - [Custom-managed Kubernetes clusters hosting container applications](/nservicebus/hosting/docker-host/)
 
-#### Choosing a hosting model
+## Choosing a hosting model
 
 The best choice of hosting model depends on the desired characteristics, such as:
 

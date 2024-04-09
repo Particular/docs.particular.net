@@ -13,7 +13,7 @@ Within the context of a multi-tier application, messaging can help evolve and mo
 - Reduce the need for [batch jobs](https://particular.net/blog/death-to-the-batch-job).
 - Implement long-running or [time-dependent business processes](https://particular.net/webinars/got-the-time).
 
-### Components
+## Components
 
 Typical components within a multi-tier application are:
 
@@ -22,7 +22,7 @@ Typical components within a multi-tier application are:
 - Data: One or more databases containing all data models of the application.
 - Message queue: Used for sending commands or publishing events between tiers.
 
-### Challenges
+## Challenges
 
 Multi-tier architectures come with many benefits, but there are also trade-offs involved in adopting it:
 
@@ -31,7 +31,7 @@ Multi-tier architectures come with many benefits, but there are also trade-offs 
 - Front end tiers often need to reflect changes made by other users or processes. Communication is generally initiated from front end layers to back end layers, but not the other way around. The use of messaging may be used to provide event-based notifications from the back end to the front end without introducing exceptions to this communication flow.
 - Systems using multi-tier architectures are often limited in their technology choices due to existing dependencies.
 
-### Technology choices
+## Technology choices
 
 Technology choices are often dictated by the tier you are working in. For example:
 
@@ -40,7 +40,7 @@ Technology choices are often dictated by the tier you are working in. For exampl
 - [Multiple data store options](/architecture/aws/data-stores.md) exist within AWS which allow moving data persistence to the cloud with little effort.
 - [Messaging options](/architecture/aws/messaging.md) allow for asynchronous communication between tiers.
 
-### Related content
+## Related content
 
 - [AWS Serverless Multi-Tier Architectures with Amazon API Gateway and AWS Lambda](https://docs.aws.amazon.com/whitepapers/latest/serverless-multi-tier-architectures-api-gateway-lambda/welcome.html)
 - [Migrate and Modernize with AWS](https://aws.amazon.com/cloud-migration/how-to-migrate/)

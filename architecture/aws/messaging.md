@@ -7,7 +7,7 @@ callsToAction: ['solution-architect', 'poc-help']
 
 AWS offers [multiple messaging services](https://aws.amazon.com/messaging/). The Particular Service Platform offers messaging support within AWS through [Amazon SQS](https://aws.amazon.com/sqs/) or a [SQL Server-based transport](#sql-server-transport).
 
-### Amazon SQS
+## Amazon SQS
 
 [Amazon Simple Queue Service](https://aws.amazon.com/sqs/) (Amazon SQS) is a scalable and managed message queuing service provided by AWS that enables the decoupling of application components. This service is designed to help developers build robust distributed applications, making it easier to manage traffic, system failures, and complex workflows. Amazon SQS provides a reliable and secure platform for sending, storing, and receiving messages at any volume, thereby streamlining the process of building and scaling microservices, distributed systems, and serverless applications.
 
@@ -32,11 +32,11 @@ NServiceBus addresses some of these limitations:
 
 [**Try the SQS transport sample →**](/samples/aws/sqs-simple/)
 
-#### When to use the Amazon SQS transport
+### When to use the Amazon SQS transport
 
 The Amazon SQS transport should be considered the default choice for AWS-based systems. Alternatives should be considered only if SQS cannot be used for organizational reasons. The Amazon SQS transport uses Amazon SNS and S3 under the hood.
 
-### SQL Server transport
+## SQL Server transport
 
 SQL Server transport is an NServiceBus feature that can use existing SQL Server databases as feature-complete message queues.
 
@@ -57,6 +57,6 @@ SQL Server transport is an NServiceBus feature that can use existing SQL Server 
 
 [**Try the SQL transport sample →**](/samples/sqltransport/simple/)
 
-#### When to use SQL Server transport
+### When to use SQL Server transport
 
 Consider SQL transport if an existing application already uses a SQL Server-compatible data store and limited amount of messaging is being introduced. SQL transport can be a good stepping-stone when introducing messaging into an existing system without the introduction of new infrastructure.

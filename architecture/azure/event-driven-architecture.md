@@ -11,7 +11,7 @@ The Particular Service Platform implements [pub/sub](/nservicebus/messaging/publ
 
 ![](azure-event-driven-architecture.png)
 
-### Components
+## Components
 
 * **NServiceBus publisher (event producer)**
 
@@ -23,7 +23,7 @@ The Particular Service Platform implements [pub/sub](/nservicebus/messaging/publ
 
     The messaging service that brings together publisher and subscriber without explicitly referencing or depending on each other.
 
-### Challenges
+## Challenges
 
 * **Events order**
 
@@ -32,7 +32,7 @@ The Particular Service Platform implements [pub/sub](/nservicebus/messaging/publ
 
     Putting too much data on messages couples publishers and subscribers, defeating one of the main benefits of messaging in the first place. Bloated event contracts indicate sub-optimal service boundaries, perhaps drawn along technical constraints rather than business rules, or [data distribution](/nservicebus/concepts/data-distribution.md) over messaging. Well designed events are [lightweight contracts](https://particular.net/blog/putting-your-events-on-a-diet), focusing on sharing IDs rather than data.
 
-### Technology choices
+## Technology choices
 
 In event-driven architectures, components are decoupled, allowing choice of the most suitable [compute](compute.md) and [data store](data-stores.md) options for a specific component or set of components.
 

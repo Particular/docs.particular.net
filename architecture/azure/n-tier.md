@@ -7,16 +7,16 @@ callsToAction: ['solution-architect', 'ADSD']
 
 The Azure Architecture Center describes the [N-tier architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/n-tier) (also referred to as the "layered" architecture style) as dividing an application into logical layers and physical tiers.
 
-![](azure-layered-architecture.png)
+![Layered architecture on Azure](azure-layered-architecture.png)
 
 Messaging can help evolving and modernizing existing applications that have been built using layered architectures:
 
-* Use asynchronous communication and clearly defined message contracts to more clearly separate layers.
-* Use messaging to route existing messages to [extracted components](https://codeopinion.com/splitting-up-a-monolith-into-microservices/) running in separate processes.
-* Use messaging to [get rid of batch jobs](https://particular.net/blog/death-to-the-batch-job).
-* Use messaging to implement long-running or [time-dependent business processes](https://particular.net/webinars/got-the-time).
+- Use asynchronous communication and clearly defined message contracts to more clearly separate layers.
+- Use messaging to route existing messages to [extracted components](https://codeopinion.com/splitting-up-a-monolith-into-microservices/) running in separate processes.
+- Use messaging to [get rid of batch jobs](https://particular.net/blog/death-to-the-batch-job).
+- Use messaging to implement long-running or [time-dependent business processes](https://particular.net/webinars/got-the-time).
 
-### Components
+## Components
 
 Typical components within an n-tier application are:
 
@@ -39,5 +39,5 @@ Systems using n-tier architectures are often limited in their technology choices
 
 ## Related content
 
-* [Azure Architecture Center—N-tier architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/n-tier)
-* [Azure migration guide overview](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/migrate/azure-migration-guide/)
+- [Azure Architecture Center—N-tier architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/n-tier)
+- [Azure migration guide overview](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/migrate/azure-migration-guide/)
