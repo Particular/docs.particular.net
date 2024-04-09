@@ -199,7 +199,7 @@ Default:
 * In ServiceControl version 4.11 and below: `10`
 #end-if
 
-#### ServiceControl.Audit/EnableFullTextSearchOnBodies
+### ServiceControl.Audit/EnableFullTextSearchOnBodies
 
 Version: 4.17.0+
 
@@ -210,6 +210,16 @@ Type: bool `true` or `false`
 Default: `true`.
 
 NOTE: If the audit instance uses RavenDB 5 persistence (available starting 4.26.0), changing the full-text search setting will cause indexes to be redeployed and rebuilt. Depending on the number of documents stored, this operation might take a long time and search results won't be available until completed.
+
+### ServiceControl.Audit/BulkInsertCommitTimeoutInSeconds
+
+Version: 5.0.6+
+
+Type: int
+
+Default: 60
+
+Use this setting to configure the maximum duration for processing a batch of audited messages.
 
 ## Transport
 
