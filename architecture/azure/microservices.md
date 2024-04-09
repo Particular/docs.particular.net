@@ -1,6 +1,6 @@
 ---
 title: Microservice architecture style on Azure
-summary:
+summary: Gives an overview of how the Particular Service Platform can help build microservices on Azure
 reviewed: 2023-07-18
 callsToAction: ['solution-architect', 'ADSD']
 ---

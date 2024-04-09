@@ -1,6 +1,6 @@
 ---
 title: N-tier architecture style on Azure
-summary:
+summary: Gives a description of n-tier architecture including the components, challenges, and technology options for Azure
 reviewed: 2023-07-18
 callsToAction: ['solution-architect', 'ADSD']
 ---

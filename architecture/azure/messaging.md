@@ -1,6 +1,6 @@
 ---
 title: Azure messaging
-summary:
+summary: Describes the Azure messaging options available for the Particular Service Platform
 reviewed: 2023-07-18
 callsToAction: ['solution-architect', 'poc-help']
 ---
