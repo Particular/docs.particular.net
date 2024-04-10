@@ -21,7 +21,7 @@ There is a single message type defined, `MyCommand`, which derives from `IComman
 
 ## Sending messages
 
-The `Sender` endpoint uses NServiceBus 8.2 on .NET Framework 4.8.1 and sends `MyCommand` messages to `Receiver`.
+The `Sender` endpoint uses NServiceBus 8.2 on .NET Framework and sends `MyCommand` messages to `Receiver`.
 
 ## Receiving messages
 
