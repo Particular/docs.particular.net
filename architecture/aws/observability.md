@@ -47,7 +47,7 @@ The Particular Service Platform collects metrics in two forms:
 
 The Particular Service Platform allows observability tools to capture spans emitted by NServiceBus, providing insights into how messages are being processed.
 
-[Try the OpenTelemetry sample with export to Amazon X-Ray →](https://github.com/lailabougria/talks/tree/main/message-processing-failed-but-whats-the-root-cause/samples/aws)
+[**Try the OpenTelemetry sample with export to Amazon X-Ray →**](https://github.com/lailabougria/talks/tree/main/message-processing-failed-but-whats-the-root-cause/samples/aws)
 
 ## Additional resources
 

@@ -28,6 +28,8 @@ The Particular Service Platform can be hosted on AWS using:
 - [Amazon Elastic Container Service](https://aws.amazon.com/ecs/)
 - [Amazon Elastic Kubernetes Service](https://aws.amazon.com/eks/)
 
+[**Host NServiceBus applications in Docker containers →**](/nservicebus/hosting/docker-host/)
+
 ## Infrastructure as a Service
 
 Infrastructure as a Service (IaaS) provides virtualized computing resources like virtual machines, storage, and networking that can be used to build and manage the required infrastructure.
