@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Quick Start"
-reviewed: 2024-01-31
+reviewed: 2024-04-09
 summary: See why software systems built on asynchronous messaging using NServiceBus are superior to traditional synchronous HTTP-based web services.
 extensions:
 - !!tutorial
@@ -10,13 +10,13 @@ extensions:
 
 Want to learn what NServiceBus is all about? You're in the right place.
 
-In less than an hour, the demo retail store project will show you how to:
+In less than an hour, the Demo retail store project will show you how to:
 
 * Connect different parts of a system using messages
 * Build a failure-resistant system using messages
 * Create a system that can be easily extended as new requirements are added
 
-If you've already experienced the benefits of messaging, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
+If you've already experienced the benefits of messaging, you can check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/) instead.
 
 {{NOTE:
 * If you haven't read about NServiceBus yet, we recommend to first [check this overview](https://particular.net/nservicebus).
@@ -25,7 +25,7 @@ If you've already experienced the benefits of messaging, check out our [NService
 
 ## Download demo
 
-The demo solution doesn't require any prerequisites — no message queue or database to install, just Visual Studio. To get started, download the solution, extract the archive, and then open the **RetailDemo.sln** file.
+The solution doesn't have any prerequisites — no message queue or database to install, just a compatible IDE. To get started, download the solution, extract the files, and then open the **RetailDemo.sln** file.
 
 downloadbutton
 
@@ -36,7 +36,7 @@ downloadbutton
 
 ## Project structure
 
-The solution contains five projects. The **ClientUI**, **Sales**, and **Billing** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages. The **ClientUI** endpoint is implemented as a web application and is the entry point to our system. The **Sales** and **Billing** endpoints, implemented as console applications, contain business logic related to processing and fulfilling orders. Each endpoint references the **Messages** assembly, which contains the definitions of messages as simple class files. The **Platform** project will provide a demonstration of the Particular Service Platform, but initially, its code is commented out.
+The solution contains five projects. The **ClientUI**, **Sales**, and **Billing** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages. The **ClientUI** endpoint is implemented as a web application and is the entry point to our system. The **Sales** and **Billing** endpoints, are console applications, that contain business logic related to processing and fulfilling orders. Each endpoint project references the **Messages** assembly, which contains the shared definitions of messages as class files. The **Platform** project will provide a demonstration of the Particular Service Platform, but initially, its code is commented out.
 
 ![Solution Explorer view](solution-explorer-2.png "width=300")
 
