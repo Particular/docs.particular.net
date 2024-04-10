@@ -13,6 +13,9 @@ Within the context of a multi-tier application, messaging can help evolve and mo
 - Reduce the need for [batch jobs](https://particular.net/blog/death-to-the-batch-job).
 - Implement long-running or [time-dependent business processes](https://particular.net/webinars/got-the-time).
 
+
+![Layered architecture on AWS](/architecture/aws/images/aws-multi-tier-architecture.png)
+
 ## Components
 
 Typical components within a multi-tier application are:

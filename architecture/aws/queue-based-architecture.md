@@ -9,7 +9,7 @@ The AWS [Well-Architected Framework](well-architected.md) describes the [queue-b
 
 The following diagram is an example of what a queue based architecture would look like.
 
-!["Queue based architecture sample"](/architecture/aws/images/queue-based-architecture.png)
+!["Queue based architecture sample"](/architecture/aws/images/aws-queue-based-architecture.png)
 
 ## Components
 
