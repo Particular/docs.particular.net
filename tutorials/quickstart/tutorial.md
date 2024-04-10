@@ -40,33 +40,37 @@ The solution contains five projects. The **ClientUI**, **Sales**, and **Billing*
 
 ![Solution Explorer view](solution-explorer-2.png "width=300")
 
-As shown in the diagram below, the **ClientUI** endpoint sends a **PlaceOrder** command to the **Sales** endpoint. As a result, the **Sales** endpoint will publish an **OrderPlaced** event using the publish/subscribe pattern, which will be received by the **Billing** endpoint.
+## Initial workflow
+The **ClientUI** endpoint sends a **PlaceOrder** command to the **Sales** endpoint. As a result, the **Sales** endpoint will publish an **OrderPlaced** event using the publish/subscribe pattern, which will be received by the **Billing** endpoint, as shown in the diagram below.
 
 ![Initial Solution](before.svg "width=680")
 
-The solution mimics a real-life retail system where [the command](/nservicebus/messaging/messages-events-commands.md) to place an order is sent as a result of customer interaction, and the processing occurs in the background. Publishing [an event](/nservicebus/messaging/messages-events-commands.md) allows us to further isolate the code to bill the credit card from the code to place the order, reducing coupling and making the system easier to maintain over the long term. Later in this tutorial, we'll see how to add a second subscriber to that event in a new **Shipping** endpoint which will begin the process of shipping the order.
+The solution mimics a real-life retail system where [the command](/nservicebus/messaging/messages-events-commands.md) to place an order is sent as a result of customer interaction, and the rest of the processing occurs in the background. Publishing [an event](/nservicebus/messaging/messages-events-commands.md) allows us to further isolate the component that bills the credit card from the one that places the order, reducing coupling and making the system easier to maintain in the long run. Later in this tutorial, you will see how to add a second subscriber to that event in a new **Shipping** endpoint which will begin the process of shipping the order.
 
 ## Running the solution
 
-The solution is configured to have [multiple startup projects](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects), so when we run the solution (**Debug** > **Start Debugging** or press <kbd>F5</kbd>) it should open three console applications, one for each messaging endpoint. One of these will open the web application in your browser. (The Particular Service Platform Launcher console app will also open but not do anything. Depending on your version of Visual Studio, it may persist or immediately close.)
+The solution is configured to have [multiple startup projects](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects), so when you run the solution (**Debug** > **Start Debugging** or press <kbd>F5</kbd>) it should open three console applications, one for each messaging endpoint. Additionally, one of these will open the web application in your browser. The Particular Service Platform Launcher console app will also open but not do anything. Depending on your IDE, it may persist or immediately close.
 
 ![3 console applications, one for endpoint implemented as a console app](3-console-windows.png)
 ![ClientUI Web Application](webapp-start-2.png)
 
 {{WARNING: Did all three windows appear?
   - For [Visual Studio Code](https://code.visualstudio.com/) users, ensure the _Debug All_ launch configuration is selected from the dropdown list under the _Run and Debug_ tab.
-  - In versions prior to Visual Studio 2019 16.1, there is a bug ([Link 1](https://developercommunity.visualstudio.com/content/problem/290091/unable-to-launch-the-previously-selected-debugger-1.html), [Link 2](https://developercommunity.visualstudio.com/content/problem/101400/unable-to-launch-the-previously-selected-debugger.html?childToView=583221#comment-583221)) that will sometimes prevent one or more projects from launching with an error message. If this is the case, stop debugging and try again. The problem usually happens only on the first attempt.}}
+  - In versions prior to Visual Studio 2019 16.1, there is a bug ([Link 1](https://developercommunity.visualstudio.com/content/problem/290091/unable-to-launch-the-previously-selected-debugger-1.html), [Link 2](https://developercommunity.visualstudio.com/content/problem/101400/unable-to-launch-the-previously-selected-debugger.html?childToView=583221#comment-583221)) that will sometimes prevent one or more projects from launching with an error message. If this is the case, stop debugging and try again. The problem usually happens only on the first attempt.
+  - For [Rider](https://www.jetbrains.com/rider/) users, follow the steps described on [their documentation](https://www.jetbrains.com/help/rider/Run_Debug_Multiple.html#multi_launch)}}
 
-In the **ClientUI** web application, click the **Place order** button to place an order, and watch what happens in other windows.
+In the **ClientUI** web application, click the **Place order** button to place an order, and watch what happens on the other windows.
 
-It may happen too quickly to see, but the **PlaceOrder** command will be sent to the **Sales** endpoint. In the **Sales** endpoint window we see:
+It may happen too quickly to see, but the **PlaceOrder** command will be sent to the **Sales** endpoint. 
+In the **Sales** endpoint window you will see:
 
 ```
 INFO Received PlaceOrder, OrderId = 9b16a5ce
 INFO Publishing OrderPlaced, OrderId = 9b16a5ce
 ```
 
-As shown in the log, the **Sales** endpoint then publishes an **OrderPlaced** event, which will be received by the **Billing** endpoint. In the **Billing** endpoint window we see:
+As shown, when the **Sales** endpoint receives an **PlaceOrder** command, it publishes an **OrderPlaced** event, which will be received by the **Billing** endpoint. 
+In the **Billing** endpoint window you will see:
 
 ```
 INFO Billing has received OrderPlaced, OrderId = 9b16a5ce
