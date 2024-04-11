@@ -5,7 +5,7 @@ reviewed: 2024-04-03
 component: Core
 ---
 
-NServiceBus has built-in [recoverability](/nservicebus/recoverability/) to handle message processing failures. However, there may be other types of errors outside of messaging processing that NServiceBus does not have enough context to handle gracefully. These tend to be deeper infrastructure issues that cannot be caught by the recoverability feature of messages. NServiceBus raises these as critical errors.
+NServiceBus has the ability to handle message processing failures through the [recoverability feature](/nservicebus/recoverability/). However, there may be other types of errors outside of message processing that NServiceBus does not have enough context to handle gracefully. These tend to be deeper infrastructure issues that cannot be caught by the recoverability feature of messages. NServiceBus raises these as critical errors.
 
 Examples of **critical errors** include:
 
@@ -13,21 +13,21 @@ Examples of **critical errors** include:
 * There are repeated failures in reading information from a required storage.
 * An exception occurs reading from the input queue.
 
-### Default behavior
+## Default behavior
 
 partial: default
 
-## Custom handling
+## How do I override critical error default behavior?
 
-It's possible to provide a custom Critical Error Action handler to override the default behavior.
+It's possible to provide a custom [Action](https://learn.microsoft.com/en-us/dotnet/api/system.action-1) to override the default behavior.
 
-Some situations where custom critial error handling might be useful are:
+Some situations where this might be useful are:
 
 * To restart the endpoint and reset the transport connection to attempt to resolve underlying issues in receiving or dispatching messages.
 * To notify support personnel when the endpoint has raised a critical error.
 * To stop an endpoint handler from executing beyond the configured recoverability policy.
 
-To define a custom handler use the following code.
+To override the default behavior, use the following code:
 
 snippet: DefiningCustomHostErrorHandlingAction
 
