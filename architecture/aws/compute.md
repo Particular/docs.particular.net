@@ -9,7 +9,7 @@ AWS provides a wide range of hosting options, including serverless options, EC2 
 
 The Particular Service Platform can be hosted on AWS using:
 
-![](/architecture/aws/images/aws-compute.png)
+![Overview of AWS Compute options for hosting the Particular Service Platform](/architecture/aws/images/aws-compute.png)
 
 ## Serverless
 
@@ -17,7 +17,7 @@ The Particular Service Platform can be hosted on AWS using:
 
 [**Host NServiceBus applications on AWS Lambda →**](/nservicebus/hosting/aws-lambda-simple-queue-service/).
 
-![](/architecture/aws/images/aws-serverless.png)
+![Host NServiceBus endpoints in a serverless environment on AWS](/architecture/aws/images/aws-serverless.png)
 
 ## Platform as a Service
 

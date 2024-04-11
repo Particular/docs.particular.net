@@ -9,7 +9,7 @@ The AWS Architecture Center describes [event-driven architecture](https://aws.am
 
 The Particular Service Platform implements the [publish/subscribe model](/nservicebus/messaging/publish-subscribe/), with each [NServiceBus endpoint](/nservicebus/endpoints/) acting as a publisher (event producer) and/or subscriber (endpoint consumer).
 
-![](/architecture/aws/images/aws-event-driven-architecture.png)
+![A depiction of an event-driven architecture using AWS and NServiceBus](/architecture/aws/images/aws-event-driven-architecture.png)
 
 ## Components
 
