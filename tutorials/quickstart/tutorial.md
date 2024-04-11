@@ -22,7 +22,7 @@ Want to quickly learn what NServiceBus is all about? You're in the right place. 
 
 ## About the **RetailDemo** solution
 
-The solution mimics a real-life retail system where a [command](/nservicebus/messaging/messages-events-commands.md) to place an order is sent as a result of customer interaction, and the rest of the processing occurs in the background. An [event](/nservicebus/messaging/messages-events-commands.md is published and using the [publish-subscribe pattern](/nservicebus/messaging/publish-subscribe.md) allows us to further isolate the component that performs billing from the one that places orders. This reduces coupling and makes the system easier to maintain in the long run. Later in this tutorial, you will learn how to add a second subscriber to that event in a new **Shipping** endpoint which will begin the process of shipping orders.
+The solution mimics a real-life retail system where a [command](/nservicebus/messaging/messages-events-commands.md) to place an order is sent as a result of customer interaction, and the rest of the processing occurs in the background. An [event](/nservicebus/messaging/messages-events-commands.md is published and using the [publish-subscribe pattern](/nservicebus/messaging/publish-subscribe/) allows us to further isolate the component that performs billing from the one that places orders. This reduces coupling and makes the system easier to maintain in the long run. Later in this tutorial, you will learn how to add a second subscriber to that event in a new **Shipping** endpoint which will begin the process of shipping orders.
 
 ## Download the **RetailDemo** solution
 
