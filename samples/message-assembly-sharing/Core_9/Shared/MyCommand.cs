@@ -1,6 +1,6 @@
-﻿using NServiceBus;
+﻿namespace Shared;
 
-namespace Shared;
+using NServiceBus;
 
 public class MyCommand : ICommand
 {
