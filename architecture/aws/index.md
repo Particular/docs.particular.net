@@ -6,11 +6,11 @@ suppressRelated: true
 callsToAction: ['architecture-review']
 ---
 
-Intro...
+The [AWS Architecture Center](https://aws.amazon.com/architecture/) highlights the [Well-Architected Framework](/architecture/aws/well-architected.md) as well as several best practices for building cloud solutions with Amazon.
 
 ## Architecture styles
 
-...
+The Particular Service Platform supports the messaging patterns recommended by the AWS Architecture Center for the following architectural styles:
 
 * [Event driven architecture](/architecture/aws/event-driven-architecture.md)
 * [Microservices architecture](/architecture/aws/microservices.md)
@@ -19,7 +19,7 @@ Intro...
 
 ## Technology choices
 
-...
+The Particular Service Platform supports the AWS services required to build distributed, message-driven systems. These articles help make informed technology choices for AWS-focused solutions:
 
 * [Compute](/architecture/aws/compute.md)
 * [Data stores](/architecture/aws/data-stores.md)
