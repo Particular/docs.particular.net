@@ -1,7 +1,7 @@
 ---
 title: Microservice architecture style on AWS
 summary: Gives an overview of how the Particular Service Platform can help build microservices on AWS
-reviewed: 2024-03-13
+reviewed: 2024-04-09
 callsToAction: ['solution-architect', 'ADSD']
 ---
 
@@ -13,15 +13,23 @@ The Particular Service Platform makes it easy to use microservices by defining [
 
 ## Components
 
-- [NServiceBus endpoint](/nservicebus/endpoints/) (service): Each service is an autonomously deployable and scalable unit with a private [data store](./data-stores.md).
-- Message bus: The message bus provides an asynchronous, reliable, and fault-tolerant communication channel which decouples the services.
-- Gateway: A gateway is a facade which allows user technologies such as web browsers to decouple from service implementations. Gateways may also provide further operational facilities, but do not contain business logic. In AWS, APIs can be managed with [AWS API Gateway](https://aws.amazon.com/api-gateway/).
+- **[NServiceBus endpoint](/nservicebus/endpoints/) (service)**
+
+    Each service is an autonomously deployable and scalable unit with a private [data store](./data-stores.md).
+
+- **Message bus**
+
+    The message bus provides an asynchronous, reliable, and fault-tolerant communication channel which decouples the services.
+
+- **Gateway**
+
+    A gateway is a facade which allows decoupling between different service layers and/or UI applications. Gateways may provide further operational features but do not contain business logic. In AWS, APIs can be managed with [AWS API Gateway](https://aws.amazon.com/api-gateway/).
 
 ## Challenges
 
 ### Service boundaries
 
-Finding good service boundaries is one of the biggest challenges with the microservice architectural style. Suboptimal boundaries often lead to a lack of data isolation and excessive inter-service communication. This often leads to high coupling between services that implement business processes, sometimes referred to as a distributed monolith. To define autonomous services, it is crucial to focus on business boundaries rather than technical boundaries.
+Finding good service boundaries is one of the biggest challenges within the microservice architectural style. Suboptimal boundaries often lead to a lack of data isolation and excessive inter-service communication. This often leads to high coupling between services that implement business processes,  leading to what is known as a ["distributed monolith"](https://particular.net/videos/microservices-and-distributed-monoliths). To define autonomous services, it is crucial to focus on business boundaries rather than technical boundaries.
 
 <iframe allowfullscreen frameborder="0" height="300" mozallowfullscreen src="https://player.vimeo.com/video/113515335" webkitallowfullscreen width="400"></iframe>
 
@@ -41,11 +49,11 @@ Users often need to see and interact with data aggregated from multiple services
 
 ## Microservice technologies
 
-A major benefit of the microservice architecture style, where each service is hosted independently, with its own private data store, is the ability for a team to choose the most appropriate technologies for a given service without impacting other services or the teams working on them. Endpoints built with the Particular Service Platform are generally hosted separately, and each may use a different data store technology. The Particular Service Platform also supports [cross-platform integration with systems or components which do not use NServiceBus](https://particular.net/blog/cross-platform-integration-with-nservicebus-native-message-processing).
+Since each service within a microservice architecture style is hosted independently and can use its own data store, one of the major benefits of this architecture is the ability for a team to choose the most appropriate technologies for a given service without impacting other services or the teams working on them. Endpoints built with the Particular Service Platform are generally hosted separately, and each may use a different data store technology. The Particular Service Platform also supports [cross-platform integration with systems or components which do not use NServiceBus](https://particular.net/blog/cross-platform-integration-with-nservicebus-native-message-processing).
 
 Some common technology options for building microservices in AWS include:
 
-- Fully managed services: Amazon Lambda and Amazon Elastic Beanstalk.
-- Container services: Amazon Elastic Container Service (ECS), Amazon Elastic Kubernetes Service (EKS)
-- Data stores: Amazon DynamoDB, Amazon Aurora, Amazon Relational Database Service (RDS)
-- Messaging: Amazon Simple Queue Service (SQS), Amazon Simple Notification Service (SNS)
+- Fully managed services like [AWS Lambda](https://aws.amazon.com/pm/lambda/) and [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) are popular choices for systems requiring scalable hosting environments with minimal management. These services also offer convenient solutions when building web-facing applications.
+- [Containerized applications](/architecture/aws/compute.md#platform-as-a-service-containers) can be hosted in managed container orchestration platforms like [Amazon Elastic Container Service (ECS)](https://aws.amazon.com/ecs/), [Amazon Elastic Kubernetes Service (EKS)](https://aws.amazon.com/eks/)
+- Data storage technologies for building microservices include [Amazon DynamoDB](https://aws.amazon.com/dynamodb/), [Amazon Aurora](https://aws.amazon.com/rds/aurora/), [Amazon Relational Database Service (RDS)](https://aws.amazon.com/rds/)
+- Messaging options, like [Amazon Simple Queue Service (SQS)](https://aws.amazon.com/sqs/) and [Amazon Simple Notification Service (SNS)](https://aws.amazon.com/sns/) are key for microservices to ensure services remain decoupled.
