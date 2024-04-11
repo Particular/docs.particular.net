@@ -9,11 +9,15 @@ AWS provides a wide range of hosting options, including serverless options, EC2 
 
 The Particular Service Platform can be hosted on AWS using:
 
+![Overview of AWS Compute options for hosting the Particular Service Platform](/architecture/aws/images/aws-compute.png)
+
 ## Serverless
 
 [AWS Lambda](https://aws.amazon.com/lambda/) is a serverless compute service that allows developers to run their code in response to events without the need to manage servers. NServiceBus supports AWS Lambda so that new or existing applications can directly consume messages from [SQS queues](https://aws.amazon.com/sqs/).
 
 [**Host NServiceBus applications on AWS Lambda →**](/nservicebus/hosting/aws-lambda-simple-queue-service/).
+
+![Host NServiceBus endpoints in a serverless environment on AWS](/architecture/aws/images/aws-serverless.png)
 
 ## Platform as a Service
 
@@ -27,6 +31,8 @@ The Particular Service Platform can be hosted on AWS using:
 
 - [Amazon Elastic Container Service](https://aws.amazon.com/ecs/)
 - [Amazon Elastic Kubernetes Service](https://aws.amazon.com/eks/)
+
+![AWS Container environment](/architecture/aws/images/aws-containers.png)
 
 [**Host NServiceBus applications in Docker containers →**](/nservicebus/hosting/docker-host/)
 
