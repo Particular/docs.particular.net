@@ -8,9 +8,7 @@ extensions:
   nextUrl: tutorials/quickstart/tutorial-reliability
 ---
 
-Want to quickly learn what NServiceBus is all about? You're in the right place.
-
-In less than one hour, learn how to:
+Want to quickly learn what NServiceBus is all about? You're in the right place. In less than one hour, learn how to:
 
 * Connect different parts of a system using messages
 * Build a failure-resistant system using messages
