@@ -1,8 +1,7 @@
 ---
-title: "NServiceBus Quick Start: Recovering from failure"
-reviewed: 2022-06-29
-isLearningPath: true
-summary: "Part 2: Learn how to handle exceptions and automatically retry them so they don't bring the whole system down."
+title: "NServiceBus Quickstart: Recovering from failure"
+reviewed: 2024-04-11
+summary: "Part 2: Learn how to handle exceptions with NServiceBus in distributed systems and automatically retry them"
 extensions:
 - !!tutorial
   nextText: "Next: Extending the system"
@@ -11,17 +10,17 @@ extensions:
 
 ## Recovering from failure
 
-In the [previous lesson](/tutorials/quickstart), we reviewed the project structure of a typical distributed system solution. Here, we'll talk about how to recover from failure.
+In [Part 1 of this tutorial](/tutorials/quickstart), we reviewed the project structure of a typical distributed system solution and showed how messages flow across [endpoints](/nservicebus/endpoints/). Here, we'll talk about how to recover when the flow is disrupted by a failure.
 
 One of the most powerful advantages of asynchronous messaging is reliability. Failures in one part of a system aren't propagated and won't bring the whole system down.
 
 {{NOTE:
-If you didn't already download the quick start project in the [previous lesson](/tutorials/quickstart), you can download it now:
+If you didn't already download the Quickstart solution in the [previous lesson](/tutorials/quickstart), you can download it now:
 
 downloadbutton
 }}
 
-See how that is achieved by following these steps:
+## How do NServiceBus systems recover?
 
 1. Stop the solution (if you haven't already) and then in Visual Studio's **Debug** menu, select **Start Without Debugging** or use <kbd>Ctrl</kbd>+<kbd>F5</kbd>. This will allow us to stop one endpoint without Visual Studio closing all three.
 2. Close the **Billing** window.

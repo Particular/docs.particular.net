@@ -1,7 +1,8 @@
 ---
-title: "NServiceBus Quickstart"
+title: "NServiceBus Quickstart: Sending your first messages"
 reviewed: 2024-04-09
-summary: See why software systems built on asynchronous messaging using NServiceBus are superior to traditional synchronous HTTP-based web services.
+isLearningPath: true
+summary: "Part 1: See why software systems built on asynchronous messaging using NServiceBus are superior to traditional synchronous HTTP-based web services."
 extensions:
 - !!tutorial
   nextText: "Next: Recovering from failure"
@@ -17,12 +18,12 @@ Want to quickly learn what NServiceBus is all about? You're in the right place. 
 {{NOTE:
 * If you're new here, check out the [overview of NServiceBus](https://particular.net/nservicebus).
 * The [Glossary of messaging terms](/nservicebus/concepts/glossary.md) may help as you go along this tutorial.
-* If you're already familar with the basic benefits of messaging, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/) for a deeper dive instead.
+* If you're already familiar with the basic benefits of messaging, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/) for a deeper dive instead.
 }}
 
 ## About the **RetailDemo** solution
 
-The solution mimics a real-life retail system where a [command](/nservicebus/messaging/messages-events-commands.md) to place an order is sent as a result of customer interaction, and the rest of the processing occurs in the background. An [event](/nservicebus/messaging/messages-events-commands.md is published and using the [publish-subscribe pattern](/nservicebus/messaging/publish-subscribe/) allows us to further isolate the component that performs billing from the one that places orders. This reduces coupling and makes the system easier to maintain in the long run. Later in this tutorial, you will learn how to add a second subscriber to that event in a new **Shipping** endpoint which will begin the process of shipping orders.
+The solution mimics a real-life retail system where a [command](/nservicebus/messaging/messages-events-commands.md) to place an order is sent as a result of customer interaction. An [event](/nservicebus/messaging/messages-events-commands.md) is published to kick off processes in the background. Using the [publish-subscribe pattern](/nservicebus/messaging/publish-subscribe/) allows us to isolate the component that performs billing from the one that places orders. This reduces coupling and makes the system easier to maintain in the long run. Later in this tutorial, you will learn how to add a second subscriber to that event in a new **Shipping** endpoint which will begin the process of shipping orders.
 
 ## Download the **RetailDemo** solution
 
@@ -39,7 +40,7 @@ downloadbutton
 
 The solution contains five projects: **Billing**, **ClientUI**, **Messages**, **Platform**, and **Sales**.
 
-The **Billing**, **ClientUI**, and **Sales** projects are [endpoints](/nservicebus/endpoints/). They communicate with each other using NServiceBus messages. The **ClientUI** endpoint is implemented as a web application and is the entry point to our system. The **Sales** and **Billing** endpoints, are console applications, that contain business logic related to processing and fulfilling orders. 
+The **Billing**, **ClientUI**, and **Sales** projects are [endpoints](/nservicebus/endpoints/). They communicate with each other using NServiceBus messages. The **ClientUI** endpoint is implemented as a web application and is the entry point to our system. The **Sales** and **Billing** endpoints, are console applications, that contain business logic related to processing and fulfilling orders.
 
 Each endpoint project references the **Messages** assembly, which contains the shared definitions of messages as class files. The **Platform** project will provide a demonstration of the Particular Service Platform, but initially, its code is commented out.
 
@@ -66,7 +67,7 @@ The solution is configured to have [multiple startup projects](https://docs.micr
 
 In the **ClientUI** web application, click the **Place order** button to place an order, and watch what happens on the other windows.
 
-It may happen too quickly to see, but the **PlaceOrder** command will be sent to the **Sales** endpoint. 
+It may happen too quickly to see, but the **PlaceOrder** command will be sent to the **Sales** endpoint.
 In the **Sales** endpoint window you will see:
 
 ```
@@ -74,7 +75,7 @@ INFO Received PlaceOrder, OrderId = 9b16a5ce
 INFO Publishing OrderPlaced, OrderId = 9b16a5ce
 ```
 
-As shown, when the **Sales** endpoint receives an **PlaceOrder** command, it publishes an **OrderPlaced** event, which will be received by the **Billing** endpoint. 
+As shown, when the **Sales** endpoint receives an **PlaceOrder** command, it publishes an **OrderPlaced** event, which will be received by the **Billing** endpoint.
 In the **Billing** endpoint window you will see:
 
 ```
