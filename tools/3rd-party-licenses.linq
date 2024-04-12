@@ -91,7 +91,7 @@ public static class TextWriterExtensions
     }
     public static void WritePackageDependencies(this TextWriter output, Package package)
     {
-        package.Dump();
+        //package.Dump();
         
         output.WriteLine("| Depencency | License | Project Site |");
         output.WriteLine("|:-----------|:-------:|:------------:|");
@@ -100,7 +100,7 @@ public static class TextWriterExtensions
         {
             if(dependency.ProjectUrl == null)
             {
-                package.Dump();
+                //package.Dump();
             }
             
             output.Write("| ");
