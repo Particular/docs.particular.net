@@ -6,7 +6,7 @@ suppressRelated: true
 callsToAction: ['architecture-review']
 ---
 
-The Azure Architecture Center organizes application architecture fundamentals guidance as a [series of steps](https://learn.microsoft.com/en-us/azure/architecture/guide/#how-this-guidance-is-structured):
+The Azure Architecture Center organizes application architecture fundamentals guidance as a [series of steps](https://learn.microsoft.com/en-us/azure/architecture/guide/#how-this-guidance-is-structured).
 
 ## Architecture styles
 
