@@ -1,7 +1,6 @@
 name: RunScripts
 on:
   workflow_dispatch:
-  pull_request:
 env:
   DOTNET_NOLOGO: true
   DOTNET_ROLL_FORWARD: Major
