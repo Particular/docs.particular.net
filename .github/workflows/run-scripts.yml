@@ -24,14 +24,25 @@ jobs:
         run: |
           git diff > ../changes.diff
           $changes = Get-Item ../changes.diff
+
           Write-Output "Diff size is $($changes.Length) bytes"
           if ($changes.Length -gt 20480) {
             throw "Changes diff is > 20KB - too much change to trust without verifying"
-            return 1;
+            return 1
+          }
+          if ($changes.Length -eq 0) {
+            Write-Output "No changes to commit"
+            return 0
           }
 
+          Write-Output "Staging changes"
           git add --all
 
+          Write-Output "Committing changes"
+          git commit -m "Updates from running scripts in the 'tools' directory"
+
+          Write-Output "Pushing changes to origin"
+          git push origin master
       # - name: Notify Slack on failure
       #   if: ${{ failure() }}
       #   shell: pwsh
