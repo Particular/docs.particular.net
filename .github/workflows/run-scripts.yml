@@ -20,12 +20,18 @@ jobs:
         run: lprun8 tools\coreDependencies.linq
       - name: Update 3rd-Party Licenses
         run: lprun8 tools\3rd-party-licenses.linq
-      - name: Git Status
-        run: git status
-      - name: Stage Changes
-        run: git add --all
-      - name: Git Status
-        run: git Status
+      - name: Commit changes
+        run: |
+          git diff > ../changes.diff
+          $changes = Get-Item ../changes.diff
+          Write-Output "Diff size is $($changes.Length)"
+          if ($changes.Length -gt 1024) {
+            throw "Too much change to trust without verifying."
+            return 1;
+          }
+
+          git add --all
+
       # - name: Notify Slack on failure
       #   if: ${{ failure() }}
       #   shell: pwsh
