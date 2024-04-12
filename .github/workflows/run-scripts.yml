@@ -15,16 +15,13 @@ jobs:
       - name: Install LINQPad
         run: choco install linqpad
       - name: Add LINQPad to PATH
-        run: |
-          echo "C:\Program Files\LinqPad8" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-          Get-ChildItem "C:\Program Files (x86)"
-          Get-ChildItem "C:\Program Files"
+        run: echo "C:\Program Files\LinqPad8" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
       - name: Update Core Dependencies
         run: lprun8 tools\coreDependencies.linq
       - name: Update 3rd-Party Licenses
         run: lprun8 tools\3rd-party-licenses.linq
       - name: Git Status
-        run: git Status
+        run: git status
       - name: Stage Changes
         run: git add --all
       - name: Git Status
