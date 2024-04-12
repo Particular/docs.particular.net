@@ -1,6 +1,8 @@
 name: RunScripts
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '0 1 * * 1-5' # 1am UTC every weekday
 env:
   DOTNET_NOLOGO: true
   DOTNET_ROLL_FORWARD: Major
@@ -49,21 +51,21 @@ jobs:
 
           Write-Output "Pushing changes to origin"
           git push origin master
-      # - name: Notify Slack on failure
-      #   if: ${{ failure() }}
-      #   shell: pwsh
-      #   run: |
-      #     $headers = @{
-      #         'Authorization' = "Bearer ${{ secrets.SLACK_TOKEN }}"
-      #     }
-      #     $body = @{
-      #       channel = 'docs'
-      #       text = "Failed to run scripts in Docs repo: https://github.com/Particular/docs.particular.net/actions/workflows/run-scripts.yml?query=branch%3Amaster"
-      #       username = 'Run Scripts'
-      #       icon_emoji = 'github_actions'
-      #       unfurl_links = false
-      #       unfurl_media = false
-      #     } | ConvertTo-Json
-      #     $result = Invoke-RestMethod -Method POST -Uri https://slack.com/api/chat.postMessage -ContentType "application/json; charset=utf-8" -Headers $headers -Body $body
-      #     Write-Output $result
-      #     exit $(If ($result.ok) { 0 } Else { 1 })
+      - name: Notify Slack on failure
+        if: ${{ failure() }}
+        shell: pwsh
+        run: |
+          $headers = @{
+              'Authorization' = "Bearer ${{ secrets.SLACK_TOKEN }}"
+          }
+          $body = @{
+            channel = 'docs'
+            text = "Failed to run scripts in Docs repo: https://github.com/Particular/docs.particular.net/actions/workflows/run-scripts.yml?query=branch%3Amaster"
+            username = 'Run Scripts'
+            icon_emoji = 'github_actions'
+            unfurl_links = false
+            unfurl_media = false
+          } | ConvertTo-Json
+          $result = Invoke-RestMethod -Method POST -Uri https://slack.com/api/chat.postMessage -ContentType "application/json; charset=utf-8" -Headers $headers -Body $body
+          Write-Output $result
+          exit $(If ($result.ok) { 0 } Else { 1 })
