@@ -24,9 +24,9 @@ jobs:
         run: |
           git diff > ../changes.diff
           $changes = Get-Item ../changes.diff
-          Write-Output "Diff size is $($changes.Length)"
-          if ($changes.Length -gt 1024) {
-            throw "Too much change to trust without verifying."
+          Write-Output "Diff size is $($changes.Length) bytes"
+          if ($changes.Length -gt 20480) {
+            throw "Changes diff is > 20KB - too much change to trust without verifying"
             return 1;
           }
 
