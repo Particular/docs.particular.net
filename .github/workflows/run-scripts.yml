@@ -9,13 +9,18 @@ jobs:
   run-scripts:
     name: Run scripts
     runs-on: windows-2022
+    permissions:
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install LINQPad
         run: choco install linqpad
-      - name: Add LINQPad to PATH
-        run: echo "C:\Program Files\LinqPad8" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+      - name: Set environment vars
+        run: |
+          echo "C:\Program Files\LinqPad8" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          echo "GIT_AUTHOR_NAME=internalautomation[bot]" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          echo "GIT_AUTHOR_EMAIL=85681268+internalautomation[bot]@users.noreply.github.com" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       - name: Update Core Dependencies
         run: lprun8 tools\coreDependencies.linq
       - name: Update 3rd-Party Licenses
@@ -26,6 +31,8 @@ jobs:
           $changes = Get-Item ../changes.diff
 
           Write-Output "Diff size is $($changes.Length) bytes"
+          Write-Output ../changes.diff
+
           if ($changes.Length -gt 20480) {
             throw "Changes diff is > 20KB - too much change to trust without verifying"
             return 1
