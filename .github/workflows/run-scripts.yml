@@ -18,8 +18,8 @@ jobs:
       - name: Set environment vars
         run: |
           echo "C:\Program Files\LinqPad8" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-          echo "GIT_AUTHOR_NAME=internalautomation[bot]" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-          echo "GIT_AUTHOR_EMAIL=85681268+internalautomation[bot]@users.noreply.github.com" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          git config user.email "85681268+internalautomation[bot]@users.noreply.github.com"
+          git config user.name "internalautomation[bot]"
       - name: Update Core Dependencies
         run: lprun8 tools\coreDependencies.linq
       - name: Update 3rd-Party Licenses
