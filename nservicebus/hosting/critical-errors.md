@@ -23,21 +23,9 @@ Once the cause of a critical error is resolved, the system will continue process
 
 ## How do I deal with persistent critical errors?
 
-When a critical error persists, there are a few common strategies for dealing with it. They may be used in combination.
+When a critical error persists, it is often unknown if the issue is recoverable. [Stopping the endpoint](#how-do-i-deal-with-persistent-critical-errors-stopping-the-endpoint) along with [terminating and restarting the process](#how-do-i-deal-with-persistent-critical-errors-terminate-and-restart-the-process) is recommended.
 
-### Critical error handling strategies
-
-#### Terminate and restart the process
-
-When a critical error occurs, it is often unknown if the issue is recoverable.
-
-1. Ensure the environment is configured to automatically restart processes when they stop.
-  * IIS: The IIS host will automatically spawn a new instance.
-  * Windows Service: The OS can restart the service after 1 minute if [Windows Service Recovery](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options) is enabled.
-  * Docker: Ensure that containers are configured with `restart=always`. See [Start containers automatically (Docker.com)](https://docs.docker.com/config/containers/start-containers-automatically/)
-2. Terminate the process. If using `Environment.FailFast` or `IHostApplicationLifetime.Stop`, the NServiceBus endpoint can attempt a graceful shutdown which can be useful in non-transactional processing environments.
-
-#### Stop the endpoint
+### Stopping the endpoint
 
 [Microsoft Generic Host's](/nservicebus/hosting/extensions-hosting.md) `IHostApplicationLifetime.Stop` method stops the NServiceBus endpoint gracefully.
 
@@ -45,24 +33,27 @@ Alternatively, a call to `criticalErrorContext.Stop` can be used.
 
 snippet: StopEndpointInCriticalError
 
-Warn: Calling `criticalErrorContext.Stop` without terminating the host process will only stop the NServiceBus endpoint without affecting the host process and other components running within the same process. Restarting the process after stopping the endpoint is generally recommended.
+Warn: Calling `criticalErrorContext.Stop` without terminating the host process will only stop the NServiceBus endpoint without affecting the host process and other components running within the same process. Restarting the process after stopping the endpoint is recommended.
 
-## What are some common alternatives to the default behavior?
+### Terminate and restart the process
 
-
-
+1. Terminate the process. If using `Environment.FailFast` or `IHostApplicationLifetime.Stop`, the NServiceBus endpoint can attempt a graceful shutdown which can be useful in non-transactional processing environments.
+2. Ensure the environment is configured to automatically restart processes when they stop.
+  * IIS: The IIS host will automatically spawn a new instance.
+  * Windows Service: The OS can restart the service after 1 minute if [Windows Service Recovery](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options) is enabled.
+  * Docker: Ensure that containers are configured with `restart=always`. See [Start containers automatically (Docker.com)](https://docs.docker.com/config/containers/start-containers-automatically/)
 
 ## What if I don't like the default behavior?
 
 The default behavior is often appropriate for the lifetime of most systems. However, it is possible to override the default behavior to accommodate business needs.
 
-For example, the default behavior can be replaced with:
+For example, the default behavior can be modified with:
 
 * Sending a real-time notification to support personnel when the endpoint has raised a critical error.
 * Limiting the retries of the endpoint handler, e.g. when it might affect costs.
 * Automatically restarting the endpoint and resetting the transport connection to attempt to resolve underlying issues in receiving or dispatching messages.
 
-Provide a custom [Action](https://learn.microsoft.com/en-us/dotnet/api/system.action-1) to override the default behavior:
+Provide a custom [action](https://learn.microsoft.com/en-us/dotnet/api/system.action-1) to override the default behavior:
 
 snippet: DefiningCustomHostErrorHandlingAction
 
@@ -84,7 +75,7 @@ When implementing a custom critical error callback:
 
 ## Raising a critical error
 
-Any code in the endpoint can invoke the Critical Error action.
+Any code in the endpoint can invoke the `criticalError` action.
 
 snippet: InvokeCriticalError
 
