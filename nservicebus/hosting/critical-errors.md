@@ -5,6 +5,8 @@ reviewed: 2024-04-03
 component: Core
 ---
 
+## What are critical errors?
+
 NServiceBus has the ability to handle message processing failures through the [recoverability feature](/nservicebus/recoverability/). However, there may be other types of errors outside of message processing that NServiceBus does not have enough context to handle gracefully. These tend to be deeper infrastructure issues that cannot be caught by the recoverability feature of messages. NServiceBus raises these as critical errors.
 
 Examples of **critical errors** include:
@@ -13,45 +15,47 @@ Examples of **critical errors** include:
 * There are repeated failures in reading information from a required storage.
 * An exception occurs reading from the input queue.
 
-## Default behavior
+## What happens when a critical error occurs in NServiceBus?
 
 partial: default
 
-## How do I override critical error default behavior?
+## How do I deal with critical errors?
 
-It's possible to provide a custom [Action](https://learn.microsoft.com/en-us/dotnet/api/system.action-1) to override the default behavior.
+Often, critical errors are transient (e.g. database is temporarily unavailable), and once resolved, the system will continue processing where it left off with no further action or intervention. Thus, the default behavior is often indefinitely sufficient for most systems. However, there may be situations when overriding the default behavior is preferred.
 
-Some situations where this might be useful are:
+## When should I override the default behavior?
 
-* To restart the endpoint and reset the transport connection to attempt to resolve underlying issues in receiving or dispatching messages.
+Some situations when overriding the default behavior might be useful are:
+
 * To notify support personnel when the endpoint has raised a critical error.
 * To stop an endpoint handler from executing beyond the configured recoverability policy.
+* To allow deliberate restarting of the endpoint and resetting the transport connection to attempt to resolve underlying issues in receiving or dispatching messages.
 
-To override the default behavior, use the following code:
+## How do I override the critical error default behavior?
+
+It's possible to provide a custom [Action](https://learn.microsoft.com/en-us/dotnet/api/system.action-1) to override the default behavior:
 
 snippet: DefiningCustomHostErrorHandlingAction
 
-### Stopping the endpoint
+### Critical error handling strategies
 
-When a critical error occurs, it is often unknown if the issue is recoverable. A sound strategy is to terminate the process (e.g. via `Environment.FailFast` or `IHostApplicationLifetime.Stop`) when a critical error occurs and rely on the process hosting environment to restart the process as a recovery mechanism. This is a resilient way to deal with critical errors.
+#### Terminate and restart the process
 
-Before terminating the process, the NServiceBus endpoint can attempt a graceful shutdown which can be useful in non-transactional processing environments:
+1. Ensure the environment is configured to automatically restart processes when they stop.
+  * IIS: The IIS host will automatically spawn a new instance.
+  * Windows Service: The OS can restart the service after 1 minute if [Windows Service Recovery](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options) is enabled.
+  * Docker: Ensure that containers are configured with `restart=always`. See [Start containers automatically (Docker.com)](https://docs.docker.com/config/containers/start-containers-automatically/)
+2. Terminate the process. If using `Environment.FailFast` or `IHostApplicationLifetime.Stop`, the NServiceBus endpoint can attempt a graceful shutdown which can be useful in non-transactional processing environments.
 
-snippet: StopEndpointInCriticalError
+#### Stop the endpoint
 
-Note: [The Microsoft Generic Host's](/nservicebus/hosting/extensions-hosting.md) `IHostApplicationLifetime.Stop` method also stops the NServiceBus endpoint gracefully.
+To only stop the endpoint without terminating the process, the [Microsoft Generic Host's](/nservicebus/hosting/extensions-hosting.md) `IHostApplicationLifetime.Stop` method stops the NServiceBus endpoint gracefully.
 
 Warn: Calling `criticalErrorContext.Stop` without terminating the host process will only stop the NServiceBus endpoint without affecting the host process and other components running within the same process. It is recommended to restart the process after stopping the endpoint.
 
-### Host OS recoverability
+snippet: StopEndpointInCriticalError
 
-Whenever possible rely on the environment hosting the endpoint process to automatically restart it:
-
-* IIS: The IIS host will automatically spawn a new instance.
-* Windows Service: The OS can restart the service after 1 minute if [Windows Service Recovery](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options) is enabled.
-* Docker: Ensure that containers are configured with `restart=always`. See [Start containers automatically (Docker.com)](https://docs.docker.com/config/containers/start-containers-automatically/)
-
-### A possible custom implementation
+### Example custom implementation
 
 NOTE: The following implementation assumes that the endpoint instance is hosted in isolation and that the hosting environment of the process will restart the process after it has been killed.
 
