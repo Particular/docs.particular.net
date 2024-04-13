@@ -19,27 +19,17 @@ Examples of **critical errors** include:
 
 partial: default
 
-## How do I deal with critical errors?
+Once the cause of a critical error is resolved, the system will continue processing where it left off. Often, critical errors are transient (e.g. a database was temporarily unavailable). An immediate retry can be successful in these cases. However, sometimes, critical errors are persistent.
 
-Often, critical errors are transient (e.g. database is temporarily unavailable), and once resolved, the system will continue processing where it left off with no further action or intervention. Thus, the default behavior is often indefinitely sufficient for most systems. However, there may be situations when overriding the default behavior is preferred.
+## How do I deal with persistent critical errors?
 
-## When should I override the default behavior?
-
-Some situations when overriding the default behavior might be useful are:
-
-* To notify support personnel when the endpoint has raised a critical error.
-* To stop an endpoint handler from executing beyond the configured recoverability policy.
-* To allow deliberate restarting of the endpoint and resetting the transport connection to attempt to resolve underlying issues in receiving or dispatching messages.
-
-## How do I override the critical error default behavior?
-
-It's possible to provide a custom [Action](https://learn.microsoft.com/en-us/dotnet/api/system.action-1) to override the default behavior:
-
-snippet: DefiningCustomHostErrorHandlingAction
+When a critical error persists, there are a few common strategies for dealing with it. They may be used in combination.
 
 ### Critical error handling strategies
 
 #### Terminate and restart the process
+
+When a critical error occurs, it is often unknown if the issue is recoverable.
 
 1. Ensure the environment is configured to automatically restart processes when they stop.
   * IIS: The IIS host will automatically spawn a new instance.
@@ -49,11 +39,32 @@ snippet: DefiningCustomHostErrorHandlingAction
 
 #### Stop the endpoint
 
-To only stop the endpoint without terminating the process, the [Microsoft Generic Host's](/nservicebus/hosting/extensions-hosting.md) `IHostApplicationLifetime.Stop` method stops the NServiceBus endpoint gracefully.
+[Microsoft Generic Host's](/nservicebus/hosting/extensions-hosting.md) `IHostApplicationLifetime.Stop` method stops the NServiceBus endpoint gracefully.
 
-Warn: Calling `criticalErrorContext.Stop` without terminating the host process will only stop the NServiceBus endpoint without affecting the host process and other components running within the same process. It is recommended to restart the process after stopping the endpoint.
+Alternatively, a call to `criticalErrorContext.Stop` can be used.
 
 snippet: StopEndpointInCriticalError
+
+Warn: Calling `criticalErrorContext.Stop` without terminating the host process will only stop the NServiceBus endpoint without affecting the host process and other components running within the same process. Restarting the process after stopping the endpoint is generally recommended.
+
+## What are some common alternatives to the default behavior?
+
+
+
+
+## What if I don't like the default behavior?
+
+The default behavior is often appropriate for the lifetime of most systems. However, it is possible to override the default behavior to accommodate business needs.
+
+For example, the default behavior can be replaced with:
+
+* Sending a real-time notification to support personnel when the endpoint has raised a critical error.
+* Limiting the retries of the endpoint handler, e.g. when it might affect costs.
+* Automatically restarting the endpoint and resetting the transport connection to attempt to resolve underlying issues in receiving or dispatching messages.
+
+Provide a custom [Action](https://learn.microsoft.com/en-us/dotnet/api/system.action-1) to override the default behavior:
+
+snippet: DefiningCustomHostErrorHandlingAction
 
 ### Example custom implementation
 
