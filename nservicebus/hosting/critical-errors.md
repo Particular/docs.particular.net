@@ -43,7 +43,7 @@ Warn: Calling `criticalErrorContext.Stop` without terminating the host process w
   * Windows Service: The OS can restart the service after 1 minute if [Windows Service Recovery](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options) is enabled.
   * Docker: Ensure that containers are configured with `restart=always`. See [Start containers automatically (Docker.com)](https://docs.docker.com/config/containers/start-containers-automatically/)
 
-## What if I don't like the default behavior?
+## What if I need to override the default behavior?
 
 The default behavior is often appropriate for the lifetime of most systems. However, it is possible to override the default behavior to accommodate business needs.
 
