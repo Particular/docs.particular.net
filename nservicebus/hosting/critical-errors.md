@@ -33,7 +33,7 @@ Alternatively, a call to `criticalErrorContext.Stop` can be used.
 
 snippet: StopEndpointInCriticalError
 
-Warn: Calling `criticalErrorContext.Stop` without terminating the host process will only stop the NServiceBus endpoint without affecting the host process and other components running within the same process. Restarting the process after stopping the endpoint is recommended.
+Warn: Calling `criticalErrorContext.Stop` without terminating the host process will only stop the NServiceBus endpoint without affecting the host process and other components running within the same process. This is why restarting the process after stopping the endpoint is the recommended approach.
 
 ### Terminate and restart the process
 
