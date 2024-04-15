@@ -75,7 +75,7 @@ When implementing a custom critical error callback:
 
 ## Raising a critical error
 
-Any code in the endpoint can invoke the `criticalError` action.
+Any part of the implementation of the endpoint can invoke the `criticalError` action.
 
 snippet: InvokeCriticalError
 
