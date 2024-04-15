@@ -7,7 +7,7 @@ component: Core
 
 ## What are critical errors?
 
-NServiceBus has the ability to handle message processing failures through the [recoverability feature](/nservicebus/recoverability/). However, there may be other types of errors outside of message processing that NServiceBus does not have enough context to handle gracefully. These tend to be deeper infrastructure issues that cannot be caught by the recoverability feature of messages. NServiceBus raises these as critical errors.
+NServiceBus has the ability to handle message processing failures through the [recoverability feature](/nservicebus/recoverability/). However, there may be other types of errors outside of message processing that NServiceBus does not have enough context to handle gracefully. These tend to be deeper infrastructure issues that cannot be caught by the recoverability feature of message processing. NServiceBus raises these as critical errors.
 
 Examples of **critical errors** include:
 
