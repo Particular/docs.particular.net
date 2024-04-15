@@ -25,7 +25,7 @@ However, sometimes, critical errors are persistent.
 
 ## How do I deal with persistent critical errors?
 
-When a critical error persists, it is often unknown if the issue is recoverable. [Stopping the endpoint](#how-do-i-deal-with-persistent-critical-errors-stopping-the-endpoint) along with [terminating and restarting the process](#how-do-i-deal-with-persistent-critical-errors-terminate-and-restart-the-process) is recommended.
+When a critical error persists, it is often unknown if the issue is recoverable. [Stopping the endpoint](#how-do-i-deal-with-persistent-critical-errors-stop-the-endpoint) along with [terminating and restarting the process](#how-do-i-deal-with-persistent-critical-errors-terminate-and-restart-the-process) is recommended.
 
 ### Stop the endpoint
 
