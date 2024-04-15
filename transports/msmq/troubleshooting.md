@@ -85,7 +85,7 @@ This exception may occur if the MSMQ service is stopped or crashed.
 
 - Ensure that [Windows Service Restart Recovery is enabled to restart Windows services automatically when they stop or crash](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options).
 - For every endpoint [configure dependencies on the MSMQ service](/nservicebus/hosting/windows-service.md#installation-specifying-service-dependencies). The endpoints will then be automatically stopped/restarted in case the MSMQ service is restarted. Note the endpoints will be restarted only if the MSMQ service is _restarted_, but not if it's only _stopped_ or only _started_.
-- If self-hosting, ensure that the [critical error handling is configured](/nservicebus/hosting/critical-errors.md#custom-handling) correctly and custom callback method has been provided.
+- If self-hosting, ensure that the [critical error handling is configured](/nservicebus/hosting/critical-errors.md) correctly and custom callback method has been provided.
 
 ## Virtual Private Networks (VPN)
 
