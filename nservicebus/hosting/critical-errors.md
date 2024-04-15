@@ -53,7 +53,7 @@ For example, the default behavior can be modified with:
 * Limiting the retries of the endpoint handler, e.g. when it might affect costs.
 * Automatically restarting the endpoint and resetting the transport connection to attempt to resolve underlying issues in receiving or dispatching messages.
 
-Provide a custom [action](https://learn.microsoft.com/en-us/dotnet/api/system.action-1) to override the default behavior:
+To override the default behavior a custom [action](https://learn.microsoft.com/en-us/dotnet/api/system.action-1) needs to be provided:
 
 snippet: DefiningCustomHostErrorHandlingAction
 
