@@ -1,6 +1,6 @@
 ---
 title: Azure data stores
-summary:
+summary: Gives an overview of the data storage options offered by Azure and how to use them with the Particular Service Platform
 reviewed: 2023-07-18
 callsToAction: ['solution-architect', 'poc-help']
 ---
@@ -52,7 +52,7 @@ Note: Applications built for Table Storage are compatible with Cosmos DB. See [t
 
 ## Azure SQL Database
 
-[Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/database/) is a fully managed database service based on the [Microsoft SQL Server database engine](https://learn.microsoft.com/en-us/sql/sql-server/?view=sql-server-ver16). 
+[Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/database/) is a fully managed database service based on the [Microsoft SQL Server database engine](https://learn.microsoft.com/en-us/sql/sql-server/?view=sql-server-ver16).
 
 :heavy_plus_sign: Pros:
 

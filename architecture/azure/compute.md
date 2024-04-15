@@ -1,11 +1,11 @@
 ---
 title: Azure compute services
-summary:
+summary: Describes multiple options (Serverless, PaaS, Containers, IaaS) offered by Azure to host the Particular Service Platform.
 reviewed: 2023-07-18
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
-Azure offers a [wide range of options](https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/compute-decision-tree) for hosting and running system components, ranging from full control of a virtual machine, including the operating system, to fully managed services.
+Azure offers a [wide variety of options](https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/compute-decision-tree) for hosting and running system components, ranging from full control of a virtual machine, including the operating system, to fully managed services.
 
 The Particular Service Platform may be hosted using several Azure hosting models:
 
@@ -38,7 +38,7 @@ In serverless (also referred to as "Functions as a service (FaaS)") models, code
 * [Azure Container Apps](https://azure.microsoft.com/en-us/products/container-apps/)
 * [Azure Kubernetes Services](https://azure.microsoft.com/en-us/products/kubernetes-service/)
 
-![](azure-container-host.png)
+![Azure Container Apps environment](azure-container-host.png)
 
 [**Host NServiceBus applications in Docker containers →**](/nservicebus/hosting/docker-host/)
 

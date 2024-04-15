@@ -1,13 +1,13 @@
 ---
 title: Azure messaging
-summary:
+summary: Describes the Azure messaging options available for the Particular Service Platform
 reviewed: 2023-07-18
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
 Azure offers [several messaging services](https://learn.microsoft.com/en-us/azure/service-bus-messaging/compare-messaging-services), each built for specific purposes. The Particular Service Platform supports [Azure Service Bus and Azure Storage Queues](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted).
 
-### Azure Service Bus
+## Azure Service Bus
 
 [Azure Service Bus](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-messaging-overview) is a fully-fledged enterprise messaging service with support for queuing, publish/subscribe, and more advanced integration patterns. It is designed to integrate applications or application components that may span multiple communication protocols, data contracts, trust domains, or network environments.
 
@@ -28,14 +28,13 @@ Azure Service Bus has two pricing tiers: [Standard and Premium](https://learn.mi
 - No cross-namespace communication
 - No emulator for local development or testing available
 
+Try the Azure Service Bus Tutorial →**](https://learn.microsoft.com/en-us/azure/service-bus-messaging/build-message-driven-apps-nservicebus?tabs=Sender)
 
-[**Try the Azure Service Bus Tutorial →**](https://learn.microsoft.com/en-us/azure/service-bus-messaging/build-message-driven-apps-nservicebus?tabs=Sender)
-
-#### When to use Azure Service Bus
+### When to use Azure Service Bus
 
 Azure Service Bus should be considered the default messaging choice for Azure. Alternatives should be considered only when the message size limitations are not sufficient or if a more portable queueing technology is required.
 
-### Azure Queue Storage
+## Azure Queue Storage
 
 [Azure Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/storage-queues-introduction) offers a simple, low-cost, and minimal messaging service based on the Azure Storage infrastructure.
 
@@ -54,11 +53,11 @@ Azure Service Bus should be considered the default messaging choice for Azure. A
 
 [**Try the Azure Storage Queues sample →**](/samples/azure/storage-queues/)
 
-#### When to use Azure Storage Queues
+### When to use Azure Storage Queues
 
 Azure Service Bus is recommended as the default messaging choice for Azure. Consider Azure Storage Queues when a managed message queuing technology is required for simple messaging needs or when Azure Service Bus doesn't meet critical requirements.
 
-### SQL transport
+## SQL transport
 
 SQL transport is an NServiceBus feature that can use existing SQL Server databases as feature-complete message queues.
 
@@ -66,18 +65,21 @@ SQL transport is an NServiceBus feature that can use existing SQL Server databas
 
 - Runs on infrastructure which often already exists
 - Strong transaction integration with business data operations
-- Runs on cloud hosted and on-premises SQL Server-compatible data stores (including SQL Server Express for development, testing, and CI)
+- Runs on cloud-hosted and on-premises SQL Server-compatible data stores (including SQL Server Express for development, testing, and CI)
 - Arbitrary message sizes
+- Can cater for exactly-once processing if business data and message data are in the same database
+- Ease of backup and recovery as business data and messages are backed up in the same database
 
 :heavy_minus_sign: Cons:
 
+- Not an actual message queue
 - More expensive and laborious to scale
 - Impacts overall database performance
 - Lower message throughput compared to specialized message queuing technologies
 
-[**Try the SQL transport sample →**](/samples/azure/storage-queues/)
+[**Try the SQL transport sample →**](/samples/sqltransport/simple/)
 
-#### When to use SQL transport
+### When to use SQL transport
 
 Consider SQL transport if an existing application already uses a SQL Server-compatible data store and limited amount of messaging is being introduced. SQL transport can be a good stepping-stone when introducing messaging into an existing system without the introduction of new infrastructure.
 
@@ -85,8 +87,8 @@ Consider SQL transport if an existing application already uses a SQL Server-comp
 
 Azure offers other messaging services focused on asynchronous communication. These services are not directly supported by the Particular Service Platform, however they might be combined in combination with supported message queueing systems to handle [data distribution](/nservicebus/concepts/data-distribution.md) needs by more specialized technologies.
 
-* [Azure Event Grid](https://learn.microsoft.com/en-us/azure/event-grid/overview) is an integration focused messaging system using the publish-subscribe model. Azure Event Grid can ingest and distribute events provided by applications, other Azure Services or IoT devices using HTTP protocols (MQTT support in public preview). By default, Event Grid uses a [push-model](https://learn.microsoft.com/en-us/azure/event-grid/push-delivery-overview) to forward events to all subscribers.
-* [Azure Event Hubs](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-about) is a data streaming platform specialized in large-scale event ingestion and data distribution. While data streaming platforms like Azure Event Hubs or Apache Kafka use shared or similar terminologies, they differ significantly from traditional message queuing systems and are designed to solve a different set of problems.   [Read more about the differences between event streaming and message queues](https://particular.net/blog/lets-talk-about-kafka).
+- [Azure Event Grid](https://learn.microsoft.com/en-us/azure/event-grid/overview) is an integration focused messaging system using the publish-subscribe model. Azure Event Grid can ingest and distribute events provided by applications, other Azure Services or IoT devices using HTTP protocols (MQTT support in public preview). By default, Event Grid uses a [push-model](https://learn.microsoft.com/en-us/azure/event-grid/push-delivery-overview) to forward events to all subscribers.
+- [Azure Event Hubs](https://learn.microsoft.com/en-us/azure/event-hubs/event-hubs-about) is a data streaming platform specialized in large-scale event ingestion and data distribution. While data streaming platforms like Azure Event Hubs or Apache Kafka use shared or similar terminologies, they differ significantly from traditional message queuing systems and are designed to solve a different set of problems.   [Read more about the differences between event streaming and message queues](https://particular.net/blog/lets-talk-about-kafka).
 
 ## Additional resources
 

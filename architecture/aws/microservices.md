@@ -1,29 +1,29 @@
 ---
-title: Microservice architecture style on Azure
-summary: Gives an overview of how the Particular Service Platform can help build microservices on Azure
-reviewed: 2023-07-18
+title: Microservice architecture style on AWS
+summary: Gives an overview of how the Particular Service Platform can help build microservices on AWS
+reviewed: 2024-04-09
 callsToAction: ['solution-architect', 'ADSD']
 ---
 
-The Azure Architecture Center describes the [microservice architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices) as consisting of a collection of small, autonomous services.
+According to the [AWS guidance](https://aws.amazon.com/microservices/), microservices are an architectural approach where software is composed of small, independent services communicating over well-defined APIs.
 
-The Particular Service Platform implements the [messaging patterns](/nservicebus/messaging/) required to allow each [NServiceBus endpoint](/nservicebus/endpoints) to act as one of these autonomous services.
+The Particular Service Platform makes it easy to use microservices by defining [NServiceBus endpoints](/nservicebus/endpoints/) that act as one of these independent services. These endpoints use [messaging patterns](/nservicebus/messaging/) to ensure the services remain autonomous.
 
-![Microservices on Azure with NServiceBus](azure-microservices.png)
+![Microservices on AWS with NServiceBus](images/aws-microservices.png)
 
 ## Components
 
-* **[NServiceBus endpoint](/nservicebus/endpoints) (service)**
+- **[NServiceBus endpoint](/nservicebus/endpoints/) (service)**
 
-    Each service is an autonomously deployable and scalable unit with a private [data store](data-stores.md).
+    Each service is an autonomously deployable and scalable unit with a private [data store](./data-stores.md).
 
-* **Message bus**
+- **Message bus**
 
     The message bus provides an asynchronous, reliable, and fault-tolerant communication channel which decouples the services.
 
-* **Gateway**
+- **Gateway**
 
-    A gateway is a facade which allows decoupling between different service layers and/or UI applications. Gateways may provide further operational features but do not contain business logic. Azure offers a [range of gateway services](https://learn.microsoft.com/en-us/azure/architecture/microservices/design/gateway).
+    A gateway is a facade which allows decoupling between different service layers and/or UI applications. Gateways may provide further operational features but do not contain business logic. In AWS, APIs can be managed with [AWS API Gateway](https://aws.amazon.com/api-gateway/).
 
 ## Challenges
 
@@ -51,12 +51,9 @@ Users often need to see and interact with data aggregated from multiple services
 
 Since each service within a microservice architecture style is hosted independently and can use its own data store, one of the major benefits of this architecture is the ability for a team to choose the most appropriate technologies for a given service without impacting other services or the teams working on them. Endpoints built with the Particular Service Platform are generally hosted separately, and each may use a different data store technology. The Particular Service Platform also supports [cross-platform integration with systems or components which do not use NServiceBus](https://particular.net/blog/cross-platform-integration-with-nservicebus-native-message-processing).
 
-In Azure, services following the microservice architecture style often use the following technology options:
+Some common technology options for building microservices in AWS include:
 
-* Fully managed service offerings like [Azure Functions](/architecture/azure/compute.md#serverless) and [Azure App Services](/architecture/azure/compute.md#platform-as-a-service-azure-app-services) are popular choices for systems requiring scalable hosting environments with minimal management. These services also offer convenient solutions when building web-facing applications.
-* [Containerized applications](/architecture/azure/compute.md#platform-as-a-service-containers) can be hosted in managed container orchestration platforms like Azure Container Apps, Azure Kubernetes Service, and more. They can also be hosted in custom managed Kubernetes clusters running on [Azure Virtual Machines](https://azure.microsoft.com/en-us/products/virtual-machines). Container-hosted systems may use serverless data stores like [Cosmos DB](/architecture/azure/data-stores.md#azure-cosmos-db) and serverless messaging technologies [Azure Service Bus](/architecture/azure/messaging.md#azure-service-bus).
-
-## Additional resources
-
-* [Azure Architecture Center—Microservice architecture style](https://learn.microsoft.com/en-us/azure/architecture/guide/architecture-styles/microservices)
-* [Video: Finding service boundaries—a practical guide](https://www.youtube.com/watch?v=655zq4Sdu2w)
+- Fully managed services like [AWS Lambda](https://aws.amazon.com/pm/lambda/) and [AWS Elastic Beanstalk](https://aws.amazon.com/elasticbeanstalk/) are popular choices for systems requiring scalable hosting environments with minimal management. These services also offer convenient solutions when building web-facing applications.
+- [Containerized applications](/architecture/aws/compute.md#platform-as-a-service-containers) can be hosted in managed container orchestration platforms like [Amazon Elastic Container Service (ECS)](https://aws.amazon.com/ecs/), [Amazon Elastic Kubernetes Service (EKS)](https://aws.amazon.com/eks/)
+- Data storage technologies for building microservices include [Amazon DynamoDB](https://aws.amazon.com/dynamodb/), [Amazon Aurora](https://aws.amazon.com/rds/aurora/), [Amazon Relational Database Service (RDS)](https://aws.amazon.com/rds/)
+- Messaging options, like [Amazon Simple Queue Service (SQS)](https://aws.amazon.com/sqs/) and [Amazon Simple Notification Service (SNS)](https://aws.amazon.com/sns/) are key for microservices to ensure services remain decoupled.
