@@ -1,7 +1,6 @@
 ---
 title: "NServiceBus Quick Start: Recovering from failure"
-reviewed: 2022-06-29
-isLearningPath: true
+reviewed: 2024-01-31
 summary: "Part 2: Learn how to handle exceptions and automatically retry them so they don't bring the whole system down."
 extensions:
 - !!tutorial
