@@ -19,13 +19,15 @@ Examples of **critical errors** include:
 
 partial: default
 
-Once the cause of a critical error is resolved, the system will continue processing where it left off. Often, critical errors are transient (e.g. a database was temporarily unavailable). An immediate retry can be successful in these cases. However, sometimes, critical errors are persistent.
+Often, critical errors are transient (e.g. a database was temporarily unavailable). An immediate retry can be successful in these cases where the system will continue processing where it.
+
+However, sometimes, critical errors are persistent.
 
 ## How do I deal with persistent critical errors?
 
 When a critical error persists, it is often unknown if the issue is recoverable. [Stopping the endpoint](#how-do-i-deal-with-persistent-critical-errors-stopping-the-endpoint) along with [terminating and restarting the process](#how-do-i-deal-with-persistent-critical-errors-terminate-and-restart-the-process) is recommended.
 
-### Stopping the endpoint
+### Stop the endpoint
 
 [Microsoft Generic Host's](/nservicebus/hosting/extensions-hosting.md) `IHostApplicationLifetime.Stop` method stops the NServiceBus endpoint gracefully.
 
