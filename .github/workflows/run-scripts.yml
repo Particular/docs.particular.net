@@ -1,0 +1,71 @@
+name: RunScripts
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 1 * * 1-5' # 1am UTC every weekday
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_ROLL_FORWARD: Major
+jobs:
+  run-scripts:
+    name: Run scripts
+    runs-on: windows-2022
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install LINQPad
+        run: choco install linqpad
+      - name: Set environment vars
+        run: |
+          echo "C:\Program Files\LinqPad8" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+          git config user.email "85681268+internalautomation[bot]@users.noreply.github.com"
+          git config user.name "internalautomation[bot]"
+      - name: Update Core Dependencies
+        run: lprun8 tools\coreDependencies.linq
+      - name: Update 3rd-Party Licenses
+        run: lprun8 tools\3rd-party-licenses.linq
+      - name: Commit changes
+        run: |
+          git diff > ../changes.diff
+          $changes = Get-Item ../changes.diff
+
+          Write-Output "Diff size is $($changes.Length) bytes"
+          Write-Output ../changes.diff
+
+          if ($changes.Length -gt 20480) {
+            throw "Changes diff is > 20KB - too much change to trust without verifying"
+            return 1
+          }
+          if ($changes.Length -eq 0) {
+            Write-Output "No changes to commit"
+            return 0
+          }
+
+          Write-Output "Staging changes"
+          git add --all
+
+          Write-Output "Committing changes"
+          git commit -m "Updates from running scripts in the 'tools' directory"
+
+          Write-Output "Pushing changes to origin"
+          git push origin master
+      - name: Notify Slack on failure
+        if: ${{ failure() }}
+        shell: pwsh
+        run: |
+          $headers = @{
+              'Authorization' = "Bearer ${{ secrets.SLACK_TOKEN }}"
+          }
+          $body = @{
+            channel = 'docs'
+            text = "Failed to run scripts in Docs repo: https://github.com/Particular/docs.particular.net/actions/workflows/run-scripts.yml?query=branch%3Amaster"
+            username = 'Run Scripts'
+            icon_emoji = 'github_actions'
+            unfurl_links = false
+            unfurl_media = false
+          } | ConvertTo-Json
+          $result = Invoke-RestMethod -Method POST -Uri https://slack.com/api/chat.postMessage -ContentType "application/json; charset=utf-8" -Headers $headers -Body $body
+          Write-Output $result
+          exit $(If ($result.ok) { 0 } Else { 1 })

@@ -1,7 +1,7 @@
 ---
 title: Saga Timeouts
 summary: Call back into a saga after a defined period of time.
-reviewed: 2022-08-23
+reviewed: 2024-04-08
 component: Core
 related:
 - samples/saga
@@ -14,11 +14,11 @@ The upper wait time is modeled in NServiceBus as a `Timeout`:
 
 snippet: saga-with-timeout
 
-After calling `RequestTimeout<T>`, a timeout message will be persisted and scheduled to run after a specified delay or at specified time.
+`RequestTimeout<T>` sends a timeout message which is delivered after the specified delay or at the specified time.
 
 If a saga does not request a timeout then its corresponding timeout method will never be invoked.
 
-WARNING: Don't assume that other messages haven't arrived in the meantime. If required, a Saga can store boolean flags in the SagaData and then check these flags to confirm that a incoming timeout message should be processed based on the current sate.
+WARNING: Don't assume that other messages haven't arrived in the meantime. If required, a Saga can store boolean flags in the SagaData and then check these flags to confirm that an incoming timeout message should be processed based on the current state.
 
 include: non-null-task
 
@@ -34,29 +34,28 @@ Multiple timeouts can be requested when processing a message. The individual tim
 
 snippet: saga-multiple-timeouts
 
+NOTE: Sending a timeout with the same data multiple times will result in that timeout being processed multiple times by the saga.
+
 ## Revoking timeouts
 
 A timeout that has been scheduled cannot be revoked. This means that when the timeout timestamp has elapsed then this timeout message will be queued and then processed.
 
 A timeout is a regular message and once requested, a timeout message can already be in transit or queued. Once that has happened there is no way to revoke (delete) a timeout. It is common to perform a state check in a timeout handler to see if the timeout is still applicable for processing.
 
-NOTE: Sending a timeout with the same data multiple times will result in that timeout being processed multiple times by the saga.
-
-
 ## Completed Sagas
 
-It is possible for a timeout to be queued after its saga has completed. Because a timeout is tied to a specific saga instance it will be ignored once the saga instance is completed.
+It is possible for a timeout to be queued after its saga has been completed. Because a timeout is tied to a specific saga instance it will be ignored once the saga instance is completed.
 
-NOTE: If a saga is created with a previously used saga identifier, the timeout mechanism will not treat it as the previous saga. As a result any residual timeout messages for the previous, now completed, saga will not be processed by this new saga instance that shares the same identifier. The existing timeout message will be ignored.
+NOTE: If a saga is created with a previously used saga identifier, the timeout mechanism will not treat it as the previous saga. As a result, any residual timeout messages for the previous, now completed, saga will not be processed by this new saga instance that shares the same identifier. The existing timeout message will be ignored.
 
 
 ## Timeout state
 
-The state parameter provides a way to pass state to the Sagas timeout handle method. This is useful when many timeouts of the same "type" that will be active at the same time. One example of this would be to pass in some ID that uniquely identifies the timeout eg: `.RequestTimeout(new OrderNoLongerEligibleForBonus{OrderId = "xyz"})`. With this state passed to the timeout handler it can now decrement the bonus correctly by looking up the order value from saga state using the provided id.
+The state parameter provides a way to pass state to the Sagas timeout handle method. This is useful when many timeouts of the same "type" will be active at the same time. One example of this would be to pass in some ID that uniquely identifies the timeout eg: `.RequestTimeout(new OrderNoLongerEligibleForBonus{OrderId = "xyz"})`. With this state passed to the timeout handler it can now decrement the bonus correctly by looking up the order value from the saga state using the provided id.
 
-### Using the incoming message as timeout state
+### Using the incoming message as a timeout state
 
-As a shortcut an incoming saga message can be re-used as timeout state by passing it to the `RequestTimeout` method and making the saga implement `IHandleTimeouts<TIncommingMessageType>`.
+As a shortcut, an incoming saga message can be re-used as a timeout state by passing it to the `RequestTimeout` method and making the saga implement `IHandleTimeouts<TIncomingMessageType>`.
 
 
 ### Persistence
