@@ -99,7 +99,7 @@
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos/" target="_blank">Microsoft.Azure.Cosmos</a> | <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos/3.38.1/license" target="_blank">View License</a> | <a href="https://github.com/Azure/azure-cosmos-dotnet-v3" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos/" target="_blank">Microsoft.Azure.Cosmos</a> | <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos/3.39.0/license" target="_blank">View License</a> | <a href="https://github.com/Azure/azure-cosmos-dotnet-v3" target="_blank">Project Site</a> |
 
 ### [NServiceBus.Persistence.DynamoDB](/nuget/NServiceBus.Persistence.DynamoDB)
 
