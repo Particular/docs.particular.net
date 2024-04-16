@@ -124,7 +124,7 @@ For now, let's focus on the **Failed Messages** view. It's not much to look at r
 1. Undock the ServicePulse browser tab into a new window to better see what's going on.
 2. In the **ClientUI** window, send one message while watching the **Sales** window.
 
-Immediately, we see an exception flash past, followed by an orange WARN message:
+Immediately, we see an exception flash past, followed by a WARN message:
 
 ```
 WARN  NServiceBus.RecoverabilityExecutor Delayed Retry will reschedule message 'ea962f05-7d82-4be1-926a-a9de01749767' after a delay of 00:00:02 because of an exception:
@@ -132,7 +132,7 @@ System.Exception: BOOM
    at <long stack trace>
 ```
 
-Two seconds later, text will flash past again, warning of a 4-second delay. Four seconds later, the text will flash again, warning of a 6-second delay. And finally, six seconds after that, text will flash by again, ending with a red ERROR message:
+Two seconds later, text will flash past again, warning of a 4-second delay. Four seconds later, the text will flash again, warning of a 6-second delay. And finally, six seconds after that, text will flash by again, ending with an ERROR message:
 
 ```
 ERROR NServiceBus.RecoverabilityExecutor Moving message 'ea962f05-7d82-4be1-926a-a9de01749767' to the error queue 'error' because processing failed due to an exception:
@@ -140,11 +140,11 @@ System.Exception: BOOM
    at <long stack trace>
 ```
 
-Once the red stack trace appears, check out the **Failed Messages** view in the **ServicePulse** window:
+Once the stack trace appears, check out the **Failed Messages** view in the **ServicePulse** window:
 
 ![ServicePulse: Failed Messages View](pulse-failed-messages.png)
 
-So what happened here? Due to the hard-coded exception, the message couldn't be successfully processed. And just like before in the [Transient failures](#transient-failures) section, NServiceBus immediately attempted a round of retries. When every retry attempt failed, before giving up all hope, the system attempted another round of retires after a delay. Failing that, NServiceBus repeated this cycle 2 more times, increasing the delay each time. After all of the retries and delays were exhausted, the message still couldn't be processed successfully and the system transferred the message to an **error queue**, a holding location for poison messages, so that other messages behind it can be processed.
+So what happened here? Due to the hard-coded exception, the message couldn't be successfully processed. And just like before in the [Transient failures](#transient-failures) section, NServiceBus immediately attempted a round of retries. When every retry attempt failed, before giving up all hope, the system attempted another round of retires after a delay. Failing that, NServiceBus repeated this cycle 2 more times, increasing the delay each time. After all of the retries and delays were exhausted, the message still couldn't be processed successfully and the system transferred the message to an **error queue**, a holding location for failed messages, so that other messages behind it can be processed.
 
 INFO: By default, NServiceBus will perform rounds of [immediate retries](/nservicebus/recoverability/#immediate-retries) separated by a series of [increasing delays](/nservicebus/recoverability/#delayed-retries). The endpoints here have been [configured for shorter delays](/nservicebus/recoverability/configure-delayed-retries.md) so that we can quickly see the endpoint arrive in the error queue.
 
@@ -169,13 +169,13 @@ Now our system has been fixed, and we can give that failed message another chanc
 1. Move the **Sales** and **Billing** windows around so you can see what happens when you retry the message.
 2. In the **ServicePulse** window, click the **Request Retry** link.
 3. In the confirmation dialog, click **Yes**, and watch the **Sales** and **Billing** windows.
-4. It may take several seconds to enqueue the batch, but eventually you will see the familiar log messages in **Sales** and **Billing**, showing the message being processed successfully as if nothing bad ever happened.
+4. It may take several seconds to enqueue the message, but eventually you will see the familiar log messages in **Sales** and **Billing**, showing it is being processed successfully as if nothing bad ever happened.
 
 This is a powerful feature. Many systemic failures are the result of bad deployments. A new version is rolled out with a bug, and errors suddenly start appearing that ultimately result in lost data.
 
 With a message-based system, no data is ever lost, because those failures result in messages being sent to an error queue, not lost to the ether. After a deployment, you can watch ServicePulse, and if messages start to pile up in the error queue, you can revert to the previous known good configuration while you diagnose the problem.
 
-The visual tools in ServicePulse provide a quick way to get to the root cause of a problem and develop a fix. Once deployed, all affected messages (even into the thousands) can be replayed with just a few mouse clicks.
+The visual tools in ServicePulse provide a quick way to get to the root cause of a problem and develop a fix. Once deployed, all affected messages (even into the thousands) can be replayed with just a few clicks.
 
 ## Up next
 
