@@ -1,7 +1,6 @@
 ---
 title: "NServiceBus Quickstart: Sending your first messages"
-reviewed: 2024-04-09
-isLearningPath: true
+reviewed: 2024-04-16
 summary: "Part 1: See why software systems built on asynchronous messaging using NServiceBus are superior to traditional synchronous HTTP-based web services."
 extensions:
 - !!tutorial
