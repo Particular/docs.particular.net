@@ -3,11 +3,7 @@
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/" target="_blank">Microsoft.Extensions.DependencyInjection</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/System.Diagnostics.DiagnosticSource/" target="_blank">System.Diagnostics.DiagnosticSource</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/System.Memory/" target="_blank">System.Memory</a> | <a href="https://github.com/dotnet/corefx/blob/master/LICENSE.TXT" target="_blank">View License</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/System.Security.Cryptography.Pkcs/" target="_blank">System.Security.Cryptography.Pkcs</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.Security.Cryptography.Xml/" target="_blank">System.Security.Cryptography.Xml</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/System.Text.Json/" target="_blank">System.Text.Json</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
 ## Transport packages
 
@@ -19,7 +15,6 @@
 | <a href="https://www.nuget.org/packages/AWSSDK.SQS/" target="_blank">AWSSDK.SQS</a> | <a href="https://licenses.nuget.org/Apache-2.0" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="https://licenses.nuget.org/Apache-2.0" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/BitFaster.Caching/" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.4.1/license" target="_blank">View License</a> | <i>None provided</i> |
-| <a href="https://www.nuget.org/packages/System.Text.Json/" target="_blank">System.Text.Json</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
 ### [NServiceBus.Azure.Transports.WindowsAzureServiceBus](/nuget/NServiceBus.Azure.Transports.WindowsAzureServiceBus)
 
@@ -100,13 +95,19 @@
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos/" target="_blank">Microsoft.Azure.Cosmos</a> | <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos/3.39.0/license" target="_blank">View License</a> | <a href="https://github.com/Azure/azure-cosmos-dotnet-v3" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Newtonsoft.Json/" target="_blank">Newtonsoft.Json</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://www.newtonsoft.com/json" target="_blank">Project Site</a> |
+
+### [NServiceBus.Persistence.CosmosDB.TransactionalSession](/nuget/NServiceBus.Persistence.CosmosDB.TransactionalSession)
+
+| Depencency | License | Project Site |
+|:-----------|:-------:|:------------:|
+| <a href="https://www.nuget.org/packages/Newtonsoft.Json/" target="_blank">Newtonsoft.Json</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://www.newtonsoft.com/json" target="_blank">Project Site</a> |
 
 ### [NServiceBus.Persistence.DynamoDB](/nuget/NServiceBus.Persistence.DynamoDB)
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2/" target="_blank">AWSSDK.DynamoDBv2</a> | <a href="https://licenses.nuget.org/Apache-2.0" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/System.Text.Json/" target="_blank">System.Text.Json</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
 ### [NServiceBus.Persistence.ServiceFabric](/nuget/NServiceBus.Persistence.ServiceFabric)
 
@@ -125,7 +126,6 @@
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection.Abstractions/" target="_blank">Microsoft.Extensions.DependencyInjection.Abstractions</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/NuGet.Versioning/" target="_blank">NuGet.Versioning</a> | <a href="https://licenses.nuget.org/Apache-2.0" target="_blank">Apache-2.0</a> | <a href="https://aka.ms/nugetprj" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/RavenDB.Client/" target="_blank">RavenDB.Client</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://ravendb.net/" target="_blank">Project Site</a> |
 
@@ -247,12 +247,6 @@
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/System.Diagnostics.PerformanceCounter/" target="_blank">System.Diagnostics.PerformanceCounter</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
-
-### [NServiceBus.ServicePlatform.Connector](/nuget/NServiceBus.ServicePlatform.Connector)
-
-| Depencency | License | Project Site |
-|:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/System.Text.Json/" target="_blank">System.Text.Json</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
 ### [NServiceBus.Transport.Bridge](/nuget/NServiceBus.Transport.Bridge)
 
