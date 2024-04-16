@@ -10,7 +10,7 @@ extensions:
 
 ## Recovering from failure
 
-In [Part 1 of this tutorial](/tutorials/quickstart), we reviewed the project structure of a typical distributed system solution and showed how messages flow across [endpoints](/nservicebus/endpoints/). Here, we'll talk about how to recover when the flow is disrupted by a failure.
+In [Part 1 of this tutorial](/tutorials/quickstart), you reviewed the project structure of a typical distributed system solution and saw how messages flow across [endpoints](/nservicebus/endpoints/). Here, you will learn how to recover when the flow is disrupted by a failure.
 
 One of the most powerful advantages of asynchronous messaging is reliability. Failures in one part of a system aren't propagated and won't bring the whole system down.
 
@@ -37,14 +37,13 @@ When the **Billing** endpoint starts, it will pick up messages published earlier
 
 ![Billing endpoint processing through backlog](billing-processing-backlog-2.png "width=600")
 
-Let's consider more carefully what happened. First, we had two processes communicating with each other with very little ceremony. The communication didn't break down even when the **Billing** service was unavailable. Had we implemented **Billing** as a REST service, for example, the **Sales** service would have thrown an HTTP exception when it was unable to communicate, *resulting in a lost request*. By using NServiceBus we get a guarantee that even if message processing endpoints are temporarily unavailable, every message will eventually get delivered and processed.
-
+Let's consider more carefully what happened. First, you had two processes communicating with each other with very little ceremony. The communication didn't break down even when the **Billing** service was unavailable. Had you implemented **Billing** as a REST service, for example, the **Sales** service would have thrown an HTTP exception when it was unable to communicate, *resulting in a lost request*. By using NServiceBus you get a guarantee that even if message processing endpoints are temporarily unavailable, every message will eventually get delivered and processed.
 
 ## Transient failures
 
 Have you ever had business processes get interrupted by transient errors like database deadlocks? Transient errors often leave a system in an inconsistent state. For example, an order could be persisted in the database but not yet submitted to the payment processor. In such a situation you may have to investigate the database like a forensic analyst, trying to figure out where the process went wrong, and how to manually jump-start it so the process can complete.
 
-With NServiceBus we don't need manual intervention. If an exception is thrown, the message handler will automatically attempt a retry. The automatic retry process addresses transient failures like database deadlocks, connection issues, file write access conflicts, etc.
+With NServiceBus you don't need manual intervention. If an exception is thrown, the message handler will automatically attempt a retry. The automatic retry process addresses transient failures like database deadlocks, connection issues, file write access conflicts, etc.
 
 Let's simulate a transient failure in the **Sales** endpoint and see the retry process in action:
 
@@ -58,7 +57,7 @@ snippet: ThrowTransientException
 
 ![Transient exceptions](transient-exceptions-2.png)
 
-As we can see in the **Sales** window, 80% of the messages will go through as normal, but when an exception occurs, the output will be different. The first attempt of `PlaceOrderHandler` will throw and log an exception, but then in the very next log entry, processing will be retried and likely succeed.
+As you can see in the **Sales** window, 80% of the messages will go through as normal, but when an exception occurs, the output will be different. The first attempt of `PlaceOrderHandler` will throw and log an exception, but then in the very next log entry, processing will be retried and likely succeed.
 
 ```
 INFO Immediate Retry is going to retry message '5154b012-4180-4b56-9952-a90a01325bfc' because of an exception:
@@ -71,7 +70,7 @@ NOTE: If you didn't detach the debugger, you must click the **Continue** button 
 
 5. Stop the solution and re-comment the code inside the **ThrowTransientException** region, so no exceptions are thrown in the future.
 
-Automatic retries allow us to avoid losing data or having our system left in an inconsistent state because of a random transient exception. We won't need to manually dig through the database to fix things anymore!
+Automatic retries allow you to avoid losing data or having you system left in an inconsistent state because of a random transient exception. We won't need to manually dig through the database to fix things anymore!
 
 Of course, there are other exceptions that may be harder to recover from than simple database deadlocks. Let's see what happens when a systemic failure occurs.
 
@@ -79,11 +78,11 @@ Of course, there are other exceptions that may be harder to recover from than si
 
 WARNING: In order to use the portable version of the Particular Service Platform included in this tutorial, you'll need to use a Windows operating system.
 
-A systemic failure is one that is simply unrecoverable, no matter how many times we retry. Usually these are just plain old bugs. Most of the time these kinds of failures require a redeployment with new code in order to fix. But what happens to the messages when this happens?
+A systemic failure is one that is simply unrecoverable, no matter how many times we retry. Usually these are just plain old bugs. Most of the time these kinds of failures require a redeployment with new code in order to fix them. But what happens to the messages in this case?
 
 NOTE: For a good introduction to different types of errors and how to handle them with message-based systems, see [I caught an exception. Now what?](https://particular.net/blog/but-all-my-errors-are-severe)
 
-Let's cause a systemic failure and see how we can use the Particular Service Platform tools to handle it.
+Let's cause a systemic failure and see how you can use the Particular Service Platform tools to handle it.
 
 First, let's simulate a systemic failure in the **Sales** endpoint:
 
@@ -111,9 +110,9 @@ The purpose of this app is to host different tools within a sandbox environment,
 
 ![Service Pulse: Dashboard View](pulse-dashboard.png)
 
-The screenshot shows how ServicePulse monitors the operational health of your system. It tracks **Heartbeats** from your messaging endpoints, ensuring that they are running and able to send messages. It tracks **Failed Messages** and allows you to retry them. It also supports **Custom Checks** allowing you to write code that checks the health of your external dependencies (such as connectivity to a web service or FTP server) so you can get a better idea of the overall health of your system.
+The screenshot shows how ServicePulse monitors the operational health of your system. It tracks **Heartbeats** from your messaging endpoints, ensuring that they are running and able to send messages. It tracks **Failed Messages** and allows you to retry them. It also supports **Custom Checks** allowing you to write code that verifies the health of your external dependencies (such as connectivity to a web service or FTP server) so you can get a better idea of the overall health of your system.
 
-Another feature of ServicePulse is the **Monitoring** view, which tracks performance statistics for your endpoints:
+Another feature of ServicePulse is the **Monitoring** view, which tracks performance statistics of your endpoints:
 
 ![ServicePulse: Monitoring View](pulse-monitoring.png)
 
@@ -150,13 +149,13 @@ INFO: By default, NServiceBus will perform rounds of [immediate retries](/nservi
 
 Once the message entered the error queue, ServicePulse took over, displaying all failed messages grouped by exception type and the location it was thrown from.
 
-If you click on the exception group, it will take you to the list of exceptions within that group. This is not very interesting since we currently only have one, but if you click again on the individual exception, you will get a rich exception detail view:
+If you click on the exception group, it will take you to the list of exceptions within that group. This is not very interesting since you currently only have one, but if you click again on the individual exception, you will get a rich exception detail view:
 
 ![ServicePulse: Exception Details](pulse-exception-details.png)
 
 No need to go digging through log files to find out what went wrong. ServicePulse provides the exception's stack trace, message headers, and message body right here.
 
-Armed with this information, it should be much easier to track down and fix our bug, so let's do that:
+Armed with this information, it should be much easier to track down and fix your bug, so let's do that:
 
 1. Close both browser windows and all console applications.
 1. In the **Sales** endpoint, locate and open the **PlaceOrderHandler.cs** file.
@@ -164,7 +163,7 @@ Armed with this information, it should be much easier to track down and fix our 
 1. Start the solution again. It won't throw any exceptions so it's okay to attach the debugger this time.
 2. Once the **ServicePulse** window launches, navigate to the **Failed Messages** view.
 
-Now our system has been fixed, and we can give that failed message another chance.
+Now your system has been fixed, and you can give that failed message another chance.
 
 1. Move the **Sales** and **Billing** windows around so you can see what happens when you retry the message.
 2. In the **ServicePulse** window, click the **Request Retry** link.
@@ -179,4 +178,4 @@ The visual tools in ServicePulse provide a quick way to get to the root cause of
 
 ## Up next
 
-In the last step of the tutorial, we'll extend the system by adding a new subscriber that needs to take action when an order is placed.
+In the last step of the tutorial, you will extend the system by adding a new subscriber that needs to take action when an order is placed.
