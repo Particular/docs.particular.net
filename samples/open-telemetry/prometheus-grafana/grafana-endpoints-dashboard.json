@@ -80,7 +80,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "sum without (messaging_type) (rate(nservicebus_messaging_successes[5m])*100)",
+          "expr": "sum without (messaging_type) (rate(nservicebus_messaging_successes_total[5m])*100)",
           "refId": "A"
         }
       ],
@@ -149,7 +149,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "rate(nservicebus_messaging_failures[5m])*100",
+          "expr": "rate(nservicebus_messaging_failures_total[5m])*100",
           "refId": "A"
         }
       ],
@@ -224,7 +224,7 @@
             "uid": "PBFA97CFB590B2093"
           },
           "editorMode": "code",
-          "expr": "rate(nservicebus_messaging_successes[5m])*100",
+          "expr": "rate(nservicebus_messaging_successes_total[5m])*100",
           "interval": "",
           "legendFormat": "{{nservicebus_message_type}}",
           "range": true,
@@ -287,7 +287,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "rate(nservicebus_messaging_successes[5m])*100",
+          "expr": "rate(nservicebus_messaging_successes_total[5m])*100",
           "refId": "A"
         }
       ],
@@ -371,7 +371,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "rate(nservicebus_messaging_successes[5m])*100",
+          "expr": "rate(nservicebus_messaging_successes_total[5m])*100",
           "refId": "A"
         }
       ],
@@ -459,7 +459,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "rate(nservicebus_messaging_fetches[5m])*100",
+          "expr": "rate(nservicebus_messaging_fetches_total[5m])*100",
           "refId": "A"
         }
       ],
@@ -563,7 +563,7 @@
             "type": "prometheus",
             "uid": "PBFA97CFB590B2093"
           },
-          "expr": "rate(nservicebus_messaging_failures[5m]) * 100",
+          "expr": "rate(nservicebus_messaging_failures_total[5m]) * 100",
           "refId": "A"
         }
       ],
