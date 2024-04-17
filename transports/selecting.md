@@ -1,7 +1,7 @@
 ---
 title: Selecting a transport
 summary: A guide for selecting the right NServicebus transport
-reviewed: 2023-11-07
+reviewed: 2024-04-17
 isLearningPath: true
 ---
 
@@ -67,7 +67,7 @@ Azure provides multiple messaging technologies. One of the most advanced and rel
 - Ease of scaling
 - Ease of feature selection
 - Supports message transactions. Other Azure queueing technologies do not
-- Up to 1MB message size
+- Up to 100MB message size on the Premium tier. See [Large messages support](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-premium-messaging#large-messages-support) for more information
 - More native capabilities, such as delayed message delivery, which requires an [outbox](/nservicebus/outbox) when using some other transports
 
 ### Disadvantages
