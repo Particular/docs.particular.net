@@ -870,7 +870,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Heartbeat/4.0.0) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.Heartbeat/5.0.0) | 2024-04-16     | -                 | -                                 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Heartbeat/4.0.0) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Heartbeat/3.0.1) | 2018-05-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.Heartbeat/2.0.1) | ~~2017-11-15~~ | ~~2020-05-29~~    | ~~Extended by NServiceBus 6.5.x~~ |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Heartbeat/1.0.0) | ~~2017-11-15~~ | ~~2018-10-11~~    | ~~Bounded by NServiceBus 5.2.x~~  |
