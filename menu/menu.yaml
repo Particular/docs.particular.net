@@ -65,6 +65,8 @@
       Url: architecture/hybrid-systems
     - Title: Observability
       Url: architecture/observability
+    - Title: Data distribution
+      Url: architecture/data-distribution
   - Title: Azure
     Articles:
     - Title: Introduction
@@ -131,8 +133,6 @@
         Title: Glossary
       - Url: nservicebus/concepts/priority-queues
         Title: Priority Queues
-      - Url: nservicebus/concepts/data-distribution
-        Title: Data distribution
     - Url: platform
       Title: Service Platform
       Articles:

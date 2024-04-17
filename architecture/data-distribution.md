@@ -1,11 +1,12 @@
 ---
 title: Data distribution
-summary: Why asynchronous messaging is not a good fit for data distribution scenarios
-reviewed: 2023-11-30
+summary: Data distribution concepts and how it differs from pub/sub
+reviewed: 2024-04-16
 redirects:
 - nservicebus/azure/data-distribution
 - samples/routing/data-distribution
 - nservicebus/messaging/data-distribution
+- nservicebus/concepts/data-distribution
 ---
 
 Data distribution refers to a pattern where asynchronous messages (e.g. using NServiceBus) are used to deliver data to multiple targets in some coordinated fashion.

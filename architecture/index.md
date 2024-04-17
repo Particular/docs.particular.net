@@ -19,6 +19,7 @@ Architectural concepts are generally applicable, regardless of which specific te
 - [Consistency](/architecture/consistency.md)
 - [Workflows](/architecture/workflows.md)
 - [Hybrid systems](/architecture/hybrid-systems.md)
+- [Data distribution](/architecture/data-distribution.md)
 
 ## Azure
 

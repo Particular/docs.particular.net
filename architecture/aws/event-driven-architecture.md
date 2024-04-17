@@ -30,7 +30,7 @@ The Particular Service Platform implements the [publish/subscribe model](/nservi
     Subscribers cannot rely on the order they receive published events, which may be affected by many factors such as concurrency, scaling, retries, partitioning, etc. Events and subscribers should be designed so that they [do not rely on strict ordering to execute business processes](https://particular.net/blog/you-dont-need-ordered-delivery).
 - **Event payload size**
 
-    Putting too much data on messages couples publishers and subscribers, defeating one of the main benefits of messaging in the first place. Bloated event contracts indicate sub-optimal service boundaries, perhaps drawn along technical constraints rather than business rules, or [data distribution](/nservicebus/concepts/data-distribution.md) over messaging. Well-designed events are [lightweight contracts](https://particular.net/blog/putting-your-events-on-a-diet), focusing on sharing IDs rather than data.
+    Putting too much data on messages couples publishers and subscribers, defeating one of the main benefits of messaging in the first place. Bloated event contracts indicate sub-optimal service boundaries, perhaps drawn along technical constraints rather than business rules, or [data distribution](/architecture/data-distribution.md) over messaging. Well-designed events are [lightweight contracts](https://particular.net/blog/putting-your-events-on-a-diet), focusing on sharing IDs rather than data.
 
 ## Technology choices
 
