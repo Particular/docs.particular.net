@@ -19,7 +19,7 @@ Examples of **critical errors** include:
 
 partial: default
 
-Often, critical errors are transient (e.g. a database was temporarily unavailable). An immediate retry can be successful in these cases where the system will continue processing where it.
+Often, critical errors are transient (e.g. a database was temporarily unavailable). An immediate retry can be successful in these cases where the system will continue processing where it left off.
 
 However, sometimes, critical errors are persistent.
 
