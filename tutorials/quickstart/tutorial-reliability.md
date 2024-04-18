@@ -110,7 +110,7 @@ The purpose of this app is to host different tools within a sandbox environment,
 
 ![Service Pulse: Dashboard View](pulse-dashboard.png)
 
-The screenshot shows how ServicePulse monitors the operational health of your system. It tracks **Heartbeats** from your messaging endpoints, ensuring that they are running and able to send messages. It tracks **Failed Messages** and allows you to retry them. It also supports **Custom Checks** allowing you to write code that verifies the health of your external dependencies (such as connectivity to a web service or FTP server) so you can get a better idea of the overall health of your system.
+The screenshot shows how ServicePulse monitors the operational health of your system. It tracks **Heartbeats** from your messaging endpoints, ensuring that they are running and able to send messages. It tracks **Failed Messages** and allows you to retry them. It also supports **Custom Checks** allowing you to write code that checks the health of your external dependencies (such as connectivity to a web service or FTP server) so you can get a better idea of the overall health of your system.
 
 Another feature of ServicePulse is the **Monitoring** view, which tracks performance statistics of your endpoints:
 
