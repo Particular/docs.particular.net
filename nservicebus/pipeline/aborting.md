@@ -14,7 +14,8 @@ snippet: AbortHandler
 
 Aborting the pipeline does not fail the message processing. The message that was processed will be marked as successfully completed.
 
-Warning: Handler execution order is non-deterministic by default. To configure the ordering see [Handler Ordering](/nservicebus/handlers/handler-ordering.md).
+> [!WARNING]
+> Handler execution order is non-deterministic by default. To configure the ordering see [Handler Ordering](/nservicebus/handlers/handler-ordering.md).
 
 
 ## Via a pipeline Behavior

@@ -212,7 +212,8 @@ If many indexes are affected it may be easier to rebuild all indexes, although t
 
 ## High CPU utilization
 
-Warn: Avoid forcibly terminating the ServiceControl process (e.g. through Task Manager) as this can cause index corruption and can trigger the index rebuilding process. In turn, this causes long and excessive resource utilization for large databases.
+> [!WARNING]
+> Avoid forcibly terminating the ServiceControl process (e.g. through Task Manager) as this can cause index corruption and can trigger the index rebuilding process. In turn, this causes long and excessive resource utilization for large databases.
 
 If a ServiceControl instance shows high CPU utilization, it's usually due to:
 
@@ -232,7 +233,8 @@ Resolution:
 - Ensure no custom checks shown in ServicePulse indicate index issues. The log file could indicate the type of index issues (See [stale indexes](#stale-indexes), [index errors](#index-errors), and [corrupted indexes](#corrupted-indexes))
 - Consider disabling message bodies and headers *Full-Text search* as this causes most resource utilization for CPU and disk IO. This can be disabled in the latest version of ServiceControl by configuring each ServiceControl instance: open configuration (gear icon), scroll down to Advanced Configuration and set "Full-Text Search On Message Bodies" to Off, finally select Save, and then restart the instance.
 
-Warning: Disabling *Full-Text Search* causes text search to be unavailable in ServiceInsight.
+> [!WARNING]
+> Disabling *Full-Text Search* causes text search to be unavailable in ServiceInsight.
 
 ## Saga audit data retention custom check failure
 
