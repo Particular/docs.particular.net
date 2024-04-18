@@ -98,4 +98,5 @@ Perhaps the message had a previously unexpected input value which caused the bug
 
 If you haven't yet, you should check out the [NServiceBus Step-by-step](/tutorials/nservicebus-step-by-step/) tutorial, where you'll learn how to build the solution this tutorial is based on from scratch, while learning the messaging concepts you'll need to know to build even more complex software systems with NServiceBus.
 
-SUCCESS: Now that you understand how powerful the ability to replay messages can be, take the next step and chat with one of our developers about how you can benefit from using NServiceBus in your next project. Just use the live chat in the bottom-right corner of the window.
+> [!TIP]
+> Now that you understand how powerful the ability to replay messages can be, take the next step and chat with one of our developers about how you can benefit from using NServiceBus in your next project. Just use the live chat in the bottom-right corner of the window.
