@@ -17,7 +17,8 @@ Callbacks enable the use of messaging behind a synchronous API that can't be cha
 > [!WARNING]
 > **Do not call the callback APIs from inside a `Handle` method in an `IHandleMessages<T>` class** as this can cause deadlocks or other unexpected behavior.
 
-DANGER: Because callbacks won't survive restarts, use callbacks when the data returned is **not business critical and data loss is acceptable**. Otherwise, use [request/response](/samples/fullduplex) with a message handler for the reply messages.
+> [!CAUTION]
+> Because callbacks won't survive restarts, use callbacks when the data returned is **not business critical and data loss is acceptable**. Otherwise, use [request/response](/samples/fullduplex) with a message handler for the reply messages.
 
 When using callbacks in an ASP.NET Web/MVC/Web API application, the NServiceBus callbacks can be used in combination with the async support in ASP.NET to avoid blocking the web server thread and allowing processing of other requests. When a response is received, it is handled and returned to the client. Web clients will still be blocked while waiting for response. This scenario is common when migrating from traditional blocking request/response to messaging.
 
@@ -25,7 +26,8 @@ When using callbacks in an ASP.NET Web/MVC/Web API application, the NServiceBus 
 
 When sending a message, a callback can be registered that will be invoked when a response arrives.
 
-DANGER: If the server process returns multiple responses, NServiceBus does not know which response message will be last. To prevent memory leaks, the callback is invoked only for the first response. Callbacks won't survive a process restart (e.g. a crash or an [IIS recycle](https://msdn.microsoft.com/en-us/library/ms525803.aspx)) as they are held in memory, so they are less suitable for server-side development where fault-tolerance is required. In those cases, [sagas are preferred](/nservicebus/sagas/).
+> [!CAUTION]
+> If the server process returns multiple responses, NServiceBus does not know which response message will be last. To prevent memory leaks, the callback is invoked only for the first response. Callbacks won't survive a process restart (e.g. a crash or an [IIS recycle](https://msdn.microsoft.com/en-us/library/ms525803.aspx)) as they are held in memory, so they are less suitable for server-side development where fault-tolerance is required. In those cases, [sagas are preferred](/nservicebus/sagas/).
 
 To handle responses from the processing endpoint, the sending endpoint must have its own queue. Therefore, the sending endpoint cannot be configured as a [SendOnly endpoint](/nservicebus/hosting/#self-hosting-send-only-hosting). Messages arriving in this queue are handled using a message handler, similar to that of the processing endpoint, as shown:
 

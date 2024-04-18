@@ -25,7 +25,8 @@ As part of this update, [NServiceBus Version 6](/nservicebus/upgrades/5to6/) wil
 
 Due to [changes in how NServiceBus Version 6 handles saga correlation properties](/nservicebus/upgrades/5to6/handlers-and-sagas.md#saga-api-changes-unique-attribute-no-longer-needed), solutions that previously used the `AllowStaleSagaReads()` option in RavenDB Persistence will not work properly and need to be migrated during upgrade.
 
-DANGER: Failure to migrate saga data when using the `AllowStaleSagaReads()` option will result in NServiceBus being unable to locate saga data, which will cause it to create duplicate saga data erroneously.
+> [!CAUTION]
+> Failure to migrate saga data when using the `AllowStaleSagaReads()` option will result in NServiceBus being unable to locate saga data, which will cause it to create duplicate saga data erroneously.
 
 To enable efficient saga loading in one server round-trip, RavenDB persistence will use a _pointer document_ to load the saga data document by the correlation property in an atomic and consistent manner, without using RavenDB indexes that are (by design) not updated atomically with the document store.
 

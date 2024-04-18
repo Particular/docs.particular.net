@@ -67,7 +67,8 @@ Finally, include the previously excluded instance in the sender-side distributio
 
 This process describes a faster way to migrate a scaled-out endpoint using the distributor to NServiceBus version 6. This approach can be applied only if the endpoint does not subscribe to events and only handles incoming commands. Do not use this approach when endpoints use `Reply` to send messages back to workers attached to a distributor.
 
-DANGER: Following this process when endpoints subscribe to events may cause duplicate events or message loss.
+> [!CAUTION]
+> Following this process when endpoints subscribe to events may cause duplicate events or message loss.
 
  * Upgrade all endpoints that interact with the distributor to version 6 first. At this stage, do not upgrade the workers to version 6.
   * Upgrade all endpoints that send command messages to the distributor endpoint to be distributed.

@@ -27,7 +27,8 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 snippet: ConfiguringNonDurable
 
-DANGER: All information stored is discarded when the process ends.
+> [!CAUTION]
+> All information stored is discarded when the process ends.
 
 > [!NOTE]
 > The [delayed retries](/nservicebus/recoverability/#delayed-retries) mechanism uses the [timeout manager](/nservicebus/messaging/timeout-manager.md) when a transport does not natively support delayed delivery.

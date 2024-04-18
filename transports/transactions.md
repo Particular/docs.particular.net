@@ -111,7 +111,8 @@ See the `Outbox` section below for details on how NServiceBus can handle idempot
 
 Disabling transactions is generally not recommended, because it might lead to message loss. It might be considered if losing some messages is not problematic and if the messages get outdated quickly, e.g. when sending readings from sensors at regular intervals.
 
-DANGER: In this mode, when encountering a critical failure such as a system or endpoint crash, the message is **permanently lost**.
+> [!CAUTION]
+> In this mode, when encountering a critical failure such as a system or endpoint crash, the message is **permanently lost**.
 
 snippet: TransactionsDisable
 

@@ -22,7 +22,8 @@ At startup, the host invokes all classes that implement the `IWantToRunWhenEndpo
 > [!NOTE]
 > The endpoint will not start processing messages until all instances of `IWantToRunWhenEndpointStartsAndStops.Start` are completed.
 
-DANGER: The `Start` and `Stop` methods will block start up and shut down of the endpoint. For any long running methods, use `Task.Run` so as not to block execution.
+> [!CAUTION]
+> The `Start` and `Stop` methods will block start up and shut down of the endpoint. For any long running methods, use `Task.Run` so as not to block execution.
 
 include: non-null-task
 

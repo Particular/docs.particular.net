@@ -106,7 +106,8 @@ class RuntimeProfile :
 
 An interface called [`IWantToRunWhenEndpointStartsAndStops`](/nservicebus/hosting/nservicebus-host/) has been added. This interface replaces the [`IWantToRunWhenBusStartsAndStops`](/nservicebus/lifecycle/endpointstartandstop.md) in NServiceBus core.
 
-DANGER: The `Start` and `Stop` methods will block start up and shut down of the endpoint.
+> [!CAUTION]
+> The `Start` and `Stop` methods will block start up and shut down of the endpoint.
 
 
 ### Interface in version 5 of NServiceBus
