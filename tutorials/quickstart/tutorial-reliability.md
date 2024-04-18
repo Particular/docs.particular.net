@@ -14,11 +14,9 @@ In [Part 1 of this tutorial](/tutorials/quickstart), you reviewed the project st
 
 One of the most powerful advantages of asynchronous messaging is reliability. Failures in one part of a system aren't propagated and won't bring the whole system down.
 
-{{NOTE:
-If you didn't already download the Quickstart solution in the [previous lesson](/tutorials/quickstart), you can download it now:
+If you didn't already download the Quick Start solution in the [previous lesson](/tutorials/quickstart), you can download it now:
 
 downloadbutton
-}}
 
 ## How do NServiceBus systems recover?
 
