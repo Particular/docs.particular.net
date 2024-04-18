@@ -52,7 +52,8 @@ The incorrect `Headers` column definition on existing queue tables needs to be u
 > [!NOTE]
 > This procedure does not require any downtime, and it can be executed when affected endpoints are processing messages.
 
-WARNING: Run this script on a testing or staging environment first to verify that it works as expected.
+> [!WARNING]
+> Run this script on a testing or staging environment first to verify that it works as expected.
 
 
 ```sql

@@ -1,6 +1,7 @@
 ## ServiceControl Transport Adapter Windows Service
 
-WARN: [ServiceControl.TransportAdapter](/nservicebus/upgrades/supported-versions.md#other-packages-servicecontrol-transportadapter) is obsolete. Instead, use the [`NServiceBus.Transport.Bridge`](/nservicebus/bridge).
+> [!WARNING]
+> [ServiceControl.TransportAdapter](/nservicebus/upgrades/supported-versions.md#other-packages-servicecontrol-transportadapter) is obsolete. Instead, use the [`NServiceBus.Transport.Bridge`](/nservicebus/bridge).
 
 This template makes it easier to create a [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/introduction-to-windows-service-applications) host for a [ServiceControl Transport Adapter](/servicecontrol/transport-adapter/).
 

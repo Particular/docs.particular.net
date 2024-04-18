@@ -20,7 +20,8 @@ snippet: SetDiagnosticsPath
 
 At every endpoint startup the current diagnostics will be written to `{endpointName}-configuration.txt`. If possible, attach this file to support requests.
 
-WARNING: The structure and format of the data produced should not be considered stable or parsable. Nodes may be added, removed, or moved in minor and patch versions.
+> [!WARNING]
+> The structure and format of the data produced should not be considered stable or parsable. Nodes may be added, removed, or moved in minor and patch versions.
 
 
 ### Sample content

@@ -15,7 +15,8 @@ upgradeGuideCoreVersions:
 
 ## Convert Outbox Index to Nonclustered
 
-WARNING: This upgrade is only required by Endpoints that are using both [Microsoft SQL Server](/persistence/sql/dialect-mssql.md) and [Outbox](/nservicebus/outbox/).
+> [!WARNING]
+> This upgrade is only required by Endpoints that are using both [Microsoft SQL Server](/persistence/sql/dialect-mssql.md) and [Outbox](/nservicebus/outbox/).
 
 > [!NOTE]
 > This is a optional performance optimization that is only necessary for high throughput endpoints. All new endpoints created with Version 1.0.1 and above will have this optimization applied.

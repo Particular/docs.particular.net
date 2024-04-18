@@ -39,7 +39,8 @@ For a description of each feature, see the [persistence at a glance legend](/per
 > [!NOTE]
 > When connecting to an Oracle Database, only the ODP.NET managed driver is supported. The driver is available via the [Oracle.ManagedDataAccess NuGet Package](https://www.nuget.org/packages/Oracle.ManagedDataAccess).
 
-WARNING: Although this persistence will run on the free version of the above engines, i.e. [SQL Server Express](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express) and [Oracle XE](https://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html), it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place from either [Microsoft Premier Support](https://www.microsoft.com/en-us/microsoftservices/support.aspx), [Oracle Support](https://www.oracle.com/support/index.html), or another third party support provider.
+> [!WARNING]
+> Although this persistence will run on the free version of the above engines, i.e. [SQL Server Express](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express) and [Oracle XE](https://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html), it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place from either [Microsoft Premier Support](https://www.microsoft.com/en-us/microsoftservices/support.aspx), [Oracle Support](https://www.oracle.com/support/index.html), or another third party support provider.
 
 
 ## Usage
@@ -82,7 +83,8 @@ To use a given NHibernate `Configuration` object for all the persistence concern
 snippet: CommonNHibernateConfiguration
 
 
-WARNING: When using the per-concern API to enable the NHibernate persistence, the `UseConfiguration` method still applies to the common configuration, not the specific concern being enabled. The following code will set up NHibernate persistence only for `Subscriptions` concern but will override the default configuration **for all the concerns**.
+> [!WARNING]
+> When using the per-concern API to enable the NHibernate persistence, the `UseConfiguration` method still applies to the common configuration, not the specific concern being enabled. The following code will set up NHibernate persistence only for `Subscriptions` concern but will override the default configuration **for all the concerns**.
 
 snippet: CustomCommonNhibernateConfigurationWarning
 

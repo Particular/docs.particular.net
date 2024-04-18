@@ -18,7 +18,8 @@ An [endpoint](/nservicebus/concepts/glossary.md#endpoint) may be configured to a
 
 To ensure consistency between saga state and messages, NServiceBus ensures that receiving a message, changing saga state, and sending new messages, occurs as a single, atomic operation, and that two message handlers for the same saga instance do not perform this operation simultaneously.
 
-WARNING: This level of consistency is provided automatically when using combinations of transports and persisters that can enlist in a transaction. When using other combinations of transports and persisters, the [outbox](/nservicebus/outbox/) must be used instead.
+> [!WARNING]
+> This level of consistency is provided automatically when using combinations of transports and persisters that can enlist in a transaction. When using other combinations of transports and persisters, the [outbox](/nservicebus/outbox/) must be used instead.
 
 Saga state is created when a saga is started by a message. It may be updated when the saga handles another message. It is deleted when the saga handles another message which completes the saga. In any of these cases, multiple messages may be received simultaneously.
 

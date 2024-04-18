@@ -20,7 +20,8 @@ Most of the timeouts that were registered through the legacy timeout manager mig
 
 The tool supports live migration in most cases so there's no need to shut down the endpoints before running the tool. The tool will hide the timeouts to be migrated from the legacy timeout manager to eliminate duplicate deliveries in the system.
 
-WARN: Migrating a high number of timeouts on RavenDB may require endpoints to be shutdown to improve performance. Run the `preview` command to find out if this is the case.
+> [!WARNING]
+> Migrating a high number of timeouts on RavenDB may require endpoints to be shutdown to improve performance. Run the `preview` command to find out if this is the case.
 
 It's important to note the definition of an endpoint to migrate in the context of the tool. The legacy [timeout manager](/nservicebus/messaging/timeout-manager.md) stored timeouts at the sending side and sent them out to the destination endpoint at delivery time. This means that the endpoint names listed by the tool is for the endpoints **sending** the delayed message and not the destination.
 
@@ -219,7 +220,8 @@ Even though the tool supports migrating all endpoints connected to the persister
 
 The tool will not delete any timeouts or storage artifacts in order to prevent data loss. This section describes how to clean up archived timeouts and remove storage artifacts that are no longer used.
 
-WARN: This is a destructive operation and should only be performed once a successful migration has been verified.
+> [!WARNING]
+> This is a destructive operation and should only be performed once a successful migration has been verified.
 
 ### RavenDB persistence
 

@@ -48,4 +48,5 @@ In Version 5.0 and above choosing a subscription versioning strategy is required
 
 snippet: LegacySubscriptionVersioning
 
-WARNING: If neither subscription versioning option is selected, an exception will be thrown.
+> [!WARNING]
+> If neither subscription versioning option is selected, an exception will be thrown.

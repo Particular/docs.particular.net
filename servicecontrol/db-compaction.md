@@ -20,7 +20,8 @@ ServiceControl's embedded RavenDB 3.5 database can be compacted in one of two wa
 * Stop the service from the action icons
 * Note the "DATA PATH" for the service(e.g. "C:\ProgramData\Particular\ServiceControl\Particular.ServiceControl\DB")   ![SCMU  instance data path](managementutil-instance-datapath.png 'width=500')
 
-WARNING: For the `esentutl` command line utility to work, the ServiceControl service must stop without any errors.
+> [!WARNING]
+> For the `esentutl` command line utility to work, the ServiceControl service must stop without any errors.
 
 ### Step 2: Back up the ServiceControl instance
 

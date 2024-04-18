@@ -82,7 +82,8 @@ subscriptions.SubscriptionTableName(
 	catalogName: "OptionalCatalog");
 ```
 
-WARNING: To prevent message-loss, all endpoints must be configured to use the same subscriptions table.
+> [!WARNING]
+> To prevent message-loss, all endpoints must be configured to use the same subscriptions table.
 
 If the endpoints use different schemas and/or catalogs, the subscription table name needs to be explicitly set to the same value in each endpoint.
 
@@ -145,7 +146,8 @@ transport.SubscriptionAuthorizer(
 incomingMessageContext => true);
 ```
 
-WARNING: This API only applies to subscribe messages sent by endpoints which still use message-driven publish-subscribe. Under native subscription management, each endpoint writes it's own subscription data into the shared subscription table directly.
+> [!WARNING]
+> This API only applies to subscribe messages sent by endpoints which still use message-driven publish-subscribe. Under native subscription management, each endpoint writes it's own subscription data into the shared subscription table directly.
 
 > [!NOTE]
 > The `routing.DisablePublishing()` API has been deprecated and should be removed. This API was created to allow an endpoint to run without a configured subscription persistence. In version 5 and above, a subscription persistence is not required unless the endpoint runs in backwards compatibility mode.

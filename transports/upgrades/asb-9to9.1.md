@@ -77,7 +77,8 @@ ServiceControl and Monitoring instances should now be switched to `Azure Service
 
 After all, the endpoints have been running in production for some time using the forwarding topology, the endpoint-oriented topology topics with their subscriptions can be removed.
 
-WARNING: Exercise caution when removing subscriptions. If it is unclear which subscriptions can be removed, contact [Support](https://particular.net/support).
+> [!WARNING]
+> Exercise caution when removing subscriptions. If it is unclear which subscriptions can be removed, contact [Support](https://particular.net/support).
 
 
 ## How it works

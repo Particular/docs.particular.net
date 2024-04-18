@@ -43,7 +43,8 @@ snippet: perfcounter-script-powershell
 
 As stated above, scripts are created in the target project output directory. Generally this directory will be excluded from source control. To add created scripts to source control they can be "promoted".
 
-WARNING: The target directory will be deleted and recreated as part of each build. Be sure to choose a path that is for script promotion only.
+> [!WARNING]
+> The target directory will be deleted and recreated as part of each build. Be sure to choose a path that is for script promotion only.
 
 Some token replacement using [MSBuild variables](https://msdn.microsoft.com/en-us/library/c02as0cs.aspx) is supported.
 

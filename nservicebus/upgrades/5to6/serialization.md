@@ -45,21 +45,22 @@ A null `BirthDate` would result in a message in the following:
 
 ```xml
 // For NServiceBus version 6.x
-<MessageWithNullable 
+<MessageWithNullable
   xmlns="http://tempuri.net/NServiceBus.Serializers.XML.Test">
   <FirstName>FirstName</FirstName>
   <BirthDate xsi:nil="true"></BirthDate>
 </MessageWithNullable>
 
 // For NServiceBus version 5.x
-<MessageWithNullable 
+<MessageWithNullable
   xmlns="http://tempuri.net/NServiceBus.Serializers.XML.Test">
   <FirstName>FirstName</FirstName>
   <BirthDate>null</BirthDate>
 </MessageWithNullable>
 ```
 
-WARNING: External integration systems need to ensure compatibility when receiving messages in the new format.
+> [!WARNING]
+> External integration systems need to ensure compatibility when receiving messages in the new format.
 
 
 ## BSON serializer deprecated

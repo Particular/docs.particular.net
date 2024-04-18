@@ -17,7 +17,8 @@ snippet: FileShareDataBus
 
 ## Cleanup strategy
 
-WARNING: FileShareDataBus **does not** remove physical attachments once the message has been processed.
+> [!WARNING]
+> FileShareDataBus **does not** remove physical attachments once the message has been processed.
 
 The business requirements can indicate how a message and its corresponding file should be processed and when the files can safely be removed. One strategy to deal with these attachments is to set up a cleanup policy which removes any attachments after a certain number of days have passed based on business Service-Level Agreements.
 

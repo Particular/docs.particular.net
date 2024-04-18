@@ -13,7 +13,8 @@ The configuration of a ServiceControl Audit instance can be adjusted via the Ser
 
 Anyone who can access the ServiceControl Audit instance URL has complete access to the audit data stored by the ServiceControl Audit instance. This is why the default is to only respond to `localhost`. Consider carefully the implications of exposing a ServiceControl Audit instance via a custom or wildcard URI.
 
-WARN: Changing the host name or port number of an existing ServiceControl Audit instance will break the link from the ServiceControl Error instance. See [Moving a remote instance](/servicecontrol/servicecontrol-instances/remotes.md) for guidelines on changing these settings.
+> [!WARNING]
+> Changing the host name or port number of an existing ServiceControl Audit instance will break the link from the ServiceControl Error instance. See [Moving a remote instance](/servicecontrol/servicecontrol-instances/remotes.md) for guidelines on changing these settings.
 
 ### ServiceControl.Audit/HostName
 
@@ -282,7 +283,8 @@ ServiceControl Audit stores its data in a RavenDB embedded instance. If direct a
 > [!NOTE]
 > [Maintenance mode](/servicecontrol/audit-instances/maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
 
-WARNING: The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl Audit and is not intended for external manipulation or modifications.
+> [!WARNING]
+> The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl Audit and is not intended for external manipulation or modifications.
 
 ### RavenDB 5
 

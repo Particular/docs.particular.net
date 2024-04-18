@@ -17,4 +17,5 @@ ServiceControl audit instances store their data in an embedded RavenDB database.
 
 ![ServiceControl Management Utility - Launch RavenDB Studio](../maintenance-mode.gif)
 
-WARNING: The ServiceControl Audit RavenDB embedded instance is used exclusively by ServiceControl and is not intended for external manipulation or modifications.
+> [!WARNING]
+> The ServiceControl Audit RavenDB embedded instance is used exclusively by ServiceControl and is not intended for external manipulation or modifications.

@@ -332,7 +332,8 @@ License files are now stored on the local file system so that they can accessed 
 
 Licenses can be shipped along with an endpoint's artifacts. By default, endpoints will look for a `license.xml` in the applications base directory (`AppDomain.CurrentDomain.BaseDirectory`).
 
-WARNING: The `{AppDomain.CurrentDomain.BaseDirectory}\License\License.xml` path will no longer be checked.
+> [!WARNING]
+> The `{AppDomain.CurrentDomain.BaseDirectory}\License\License.xml` path will no longer be checked.
 
 
 ### Registry-based license locations

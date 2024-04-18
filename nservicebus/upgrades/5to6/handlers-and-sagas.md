@@ -15,7 +15,8 @@ upgradeGuideCoreVersions:
 
 The handler method on `IHandleMessages<T>` now returns a Task. To leverage async code, add the `async` keyword to the handler method and use `await` for async methods. To convert the synchronous code add `return Task.FromResult(0);` or `return Task.CompletedTask` (.NET 4.6 and higher) to the handler methods.
 
-WARNING: Do not `return null` from the message handlers. Returning `null` will result in an Exception.
+> [!WARNING]
+> Do not `return null` from the message handlers. Returning `null` will result in an Exception.
 
 ```csharp
 // For NServiceBus version 6.x

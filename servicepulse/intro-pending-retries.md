@@ -60,7 +60,8 @@ Detailed information about the message, such as failure timestamp, endpoint, sta
 
 ### Retrying a message
 
-WARNING: Failed messages that are currently in the pending status can be retried; however this feature should be used with care. Retrying pending messages can cause the same message to be processed multiple times. Do not retry a message if it has been processed by the endpoint. In this context "processed" includes both the successful handling of the message and the failure state of it being sent to the error queue.
+> [!WARNING]
+> Failed messages that are currently in the pending status can be retried; however this feature should be used with care. Retrying pending messages can cause the same message to be processed multiple times. Do not retry a message if it has been processed by the endpoint. In this context "processed" includes both the successful handling of the message and the failure state of it being sent to the error queue.
 
 To retry a message that is pending a retry, select the failed message(s) in the list and click the `Retry Selected` button.
 
@@ -68,7 +69,8 @@ Alternatively a queue can be selected and the `Retry All` option can be used to 
 
 Retrying a message will use [message redirects](redirect.md) if the original endpoint has been redirected in ServicePulse.
 
-WARNING: A pending retry message that is retried will remain in the pending retry list until it is resolved or fails again.
+> [!WARNING]
+> A pending retry message that is retried will remain in the pending retry list until it is resolved or fails again.
 
 ### Mark as complete
 

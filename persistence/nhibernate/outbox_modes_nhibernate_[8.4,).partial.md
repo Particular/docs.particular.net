@@ -19,7 +19,8 @@ The trade-off is that each message processing attempt requires additional round 
 > [!NOTE]
 > The pessimistic mode depends on the locking behavior of the database when inserting rows. Consult the documentation of the database to check in which isolation modes the outbox pessimistic mode is appropriate.
 
-WARN: Even the pessimistic mode does not ensure that the message handling logic is always executed exactly once. Non-transactional side effects, such as sending e-mail, can still be duplicated in case of errors that cause handling logic to be retried.
+> [!WARNING]
+> Even the pessimistic mode does not ensure that the message handling logic is always executed exactly once. Non-transactional side effects, such as sending e-mail, can still be duplicated in case of errors that cause handling logic to be retried.
 
 ## Transactions
 

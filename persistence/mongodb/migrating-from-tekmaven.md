@@ -27,7 +27,8 @@ persistence.MongoClient(new MongoDB.Driver.MongoClient("mongodb://localhost"));
 persistence.DatabaseName("my-database");
 ```
 
-WARNING: A database name passed in the connection string to the `MongoClient` is **only used for authentication**. Use `persistence.DatabaseName(<database>)` to configure the database to be used.
+> [!WARNING]
+> A database name passed in the connection string to the `MongoClient` is **only used for authentication**. Use `persistence.DatabaseName(<database>)` to configure the database to be used.
 
 For more details about the MongoDB persistence configuration options, see the [MongoDB persistence documentation](/persistence/mongodb).
 
@@ -77,7 +78,8 @@ db.getCollectionNames().forEach(collectionName => {
 
 Replace `"Version"` with the name of the version property on the saga data which was previously decorated with the `[DocumentVersion]` attribute.
 
-WARNING: Be sure to create a backup of the database prior to migrating the saga data.
+> [!WARNING]
+> Be sure to create a backup of the database prior to migrating the saga data.
 
 
 ## Subscriptions

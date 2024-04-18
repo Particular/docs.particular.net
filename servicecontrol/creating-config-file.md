@@ -338,7 +338,8 @@ ServiceControl stores its data in a RavenDB embedded instance. By default, the R
 > [!NOTE]
 > [Maintenance mode](maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
 
-WARNING: The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl and is not intended for external manipulation or modifications.
+> [!WARNING]
+> The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl and is not intended for external manipulation or modifications.
 
 Type: bool
 

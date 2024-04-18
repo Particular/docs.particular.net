@@ -38,7 +38,8 @@ Behaviors can also be registered from a `Feature` as shown below:
 
 snippet: RegisterBehaviorFromFeature
 
-WARNING: Behaviors are only created once and the same instance is reused on every invocation of the pipeline. Consequently, every behavior dependency will also behave as a singleton, even if a different option was specified when registering it in [dependency injection](/nservicebus/dependency-injection/). Furthermore, the behavior and all dependencies called during the invocation phase must be concurrency-safe and possibly stateless. Storing state in a behavior instance should be avoided since it will cause the state to be shared across all message handling sessions. This could lead to unwanted side effects.
+> [!WARNING]
+> Behaviors are only created once and the same instance is reused on every invocation of the pipeline. Consequently, every behavior dependency will also behave as a singleton, even if a different option was specified when registering it in [dependency injection](/nservicebus/dependency-injection/). Furthermore, the behavior and all dependencies called during the invocation phase must be concurrency-safe and possibly stateless. Storing state in a behavior instance should be avoided since it will cause the state to be shared across all message handling sessions. This could lead to unwanted side effects.
 
 ## Replace an existing step
 
@@ -93,7 +94,7 @@ snippet: InjectingDependencies
 
 Dependencies injected into the constructor of a behavior become singletons regardless of their actual scope on the dependency injection container. In order to create instances per request or scoped dependencies it is required to use the builder that is available on the context.
 
-The service provider available via the context varies depending on the pipeline stage. [Pipeline stages used within the context of an incoming message](/nservicebus/pipeline/steps-stages-connectors.md#stages-incoming-pipeline-stages) exposes a new child service provider created for each incoming message. All other use cases exposes the root service provider. 
+The service provider available via the context varies depending on the pipeline stage. [Pipeline stages used within the context of an incoming message](/nservicebus/pipeline/steps-stages-connectors.md#stages-incoming-pipeline-stages) exposes a new child service provider created for each incoming message. All other use cases exposes the root service provider.
 
 Behaviors in the [outgoing pipeline stage](/nservicebus/pipeline/steps-stages-connectors.md#stages-outgoing-pipeline-stages) exhibit different behaviors depending on how they are invoked. For example, when an outgoing behavior is invoked within the context of a message session the root service provider is exposed while when the same outgoing behavior is invoked within the scope of an incoming message, the child service provider for the incoming message will be used.
 

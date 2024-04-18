@@ -1,6 +1,6 @@
 ---
 title: Upgrade from Estimated to Native Queue Length Metric
-summary: Instructions on how to upgrade an NServiceBus system from the estimated to the native queue length metric 
+summary: Instructions on how to upgrade an NServiceBus system from the estimated to the native queue length metric
 isUpgradeGuide: true
 reviewed: 2022-10-31
 ---
@@ -29,4 +29,5 @@ All endpoints that send monitoring data must be upgraded to the latest version o
 | 6.*       | [2.1.0, 3.0)|
 | 7.*       | [3.0,)|
 
-WARN: When running the MSMQ transport, it is necessary to install the latest [`NServiceBus.Metrics.ServiceControl.Msmq`](/monitoring/metrics/msmq-queue-length.md) package. 
+> [!WARNING]
+> When running the MSMQ transport, it is necessary to install the latest [`NServiceBus.Metrics.ServiceControl.Msmq`](/monitoring/metrics/msmq-queue-length.md) package.

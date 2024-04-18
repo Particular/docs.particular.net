@@ -9,7 +9,8 @@ redirects:
  - nservicebus/sql-persistence/oracle-design
 ---
 
-WARNING: SQL Persistence will run on [Oracle XE](https://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html). However it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place. See [Oracle Support](https://www.oracle.com/support/index.html) for details.
+> [!WARNING]
+> SQL Persistence will run on [Oracle XE](https://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html). However it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place. See [Oracle Support](https://www.oracle.com/support/index.html) for details.
 
 
 ## Supported database versions

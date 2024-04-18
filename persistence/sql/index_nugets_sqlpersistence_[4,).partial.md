@@ -6,7 +6,8 @@ The SQL Persister requires the [**NServiceBus.Persistence.Sql**](https://www.nug
  * **[Version 4.3+]** An MSBuild target that generates the required SQL installation scripts at compile time.
  * Optionally runs SQL installation scripts at endpoint startup for development purposes. See [Installer Workflow](installer-workflow.md).
 
-WARNING: In version 4.2 and below, The [NServiceBus.Persistence.Sql.MsBuild](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.MsBuild) package must also be referenced by any project that requires generating SQL installation scripts. This includes any project that contains saga classes or hosts an NServiceBus endpoint.
+> [!WARNING]
+> In version 4.2 and below, The [NServiceBus.Persistence.Sql.MsBuild](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.MsBuild) package must also be referenced by any project that requires generating SQL installation scripts. This includes any project that contains saga classes or hosts an NServiceBus endpoint.
 
 ### Other packages
 

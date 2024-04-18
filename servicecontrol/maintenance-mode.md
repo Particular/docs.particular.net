@@ -18,4 +18,5 @@ ServiceControl stores data in a RavenDB embedded instance. By default, the Raven
 
 ![ServiceControl Management Utility - Launch RavenDB Studio](maintenance-mode.gif)
 
-WARNING: The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl and is not intended for external manipulation or modifications.
+> [!WARNING]
+> The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl and is not intended for external manipulation or modifications.

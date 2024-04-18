@@ -32,7 +32,8 @@ The same instance will be returned each time.
 
 Represented by the enum value `DependencyLifecycle.SingleInstance`.
 
-WARNING: `SingleInstance` components that have dependencies that are scoped `InstancePerCall` or `InstancePerUnitOfWork` will still resolve. In effect, these dependencies, while not scoped as `SingleInstance`, will behave as if they are `SingleInstance` because the instances will exist inside the parent component.
+> [!WARNING]
+> `SingleInstance` components that have dependencies that are scoped `InstancePerCall` or `InstancePerUnitOfWork` will still resolve. In effect, these dependencies, while not scoped as `SingleInstance`, will behave as if they are `SingleInstance` because the instances will exist inside the parent component.
 
 snippet: SingleInstance
 

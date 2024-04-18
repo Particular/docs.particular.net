@@ -13,7 +13,8 @@ related:
 > [!NOTE]
 > Starting from NServiceBus version 6, the delayed retries policy (formerly known as second level retries policy) has been deprecated in favor of the new custom recoverability policy which allows more control over the recoverability behavior. This documentation shows how the previous delayed retries policies can be implemented with the new [recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md).
 
-WARNING: Delayed retries cannot be used when transport transactions are disabled or delayed delivery is not available. For more information about transport transactions, refer to [transport transactions](/transports/transactions.md). For more details on the caveats, see the [delayed delivery](/nservicebus/messaging/delayed-delivery.md#caveats) article.
+> [!WARNING]
+> Delayed retries cannot be used when transport transactions are disabled or delayed delivery is not available. For more information about transport transactions, refer to [transport transactions](/transports/transactions.md). For more details on the caveats, see the [delayed delivery](/nservicebus/messaging/delayed-delivery.md#caveats) article.
 
 ## Configuring delayed retries
 

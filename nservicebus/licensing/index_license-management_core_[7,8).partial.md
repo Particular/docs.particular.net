@@ -35,7 +35,8 @@ To install a license for all endpoints and Particular Service Platform applicati
 
 ### Application configuration file
 
-WARNING: This option not available when targeting .NET Core.
+> [!WARNING]
+> This option not available when targeting .NET Core.
 
 It is possible to specify the license in `app.config`:
 
@@ -64,7 +65,8 @@ license id=&quot;1222e1d1-2222-4a46-b1c6-943c442ca710&quot; expiration=&quot;201
 
 ### Windows Registry
 
-WARNING: This option not available when targeting .NET Core.
+> [!WARNING]
+> This option not available when targeting .NET Core.
 
 Licenses stored in a registry key named `License` in the following registry locations are automatically detected:
 * `HKEY_LOCAL_MACHINE\Software\ParticularSoftware`

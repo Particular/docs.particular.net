@@ -55,7 +55,8 @@ snippet: remove-audit-instance
 
 The cmdlets in this section are used to upgrade the binaries of an existing instance. If the instance is running when the upgrade starts, it will be shut down during the upgrade and restarted once the upgrade is complete.
 
-WARN: The `sc-upgrade` and `audit-upgrade` commands do not download the latest available ServiceControl version. These Powershell commandlets are bound to the version of the Particular.ServiceControl.Management module loaded.
+> [!WARNING]
+> The `sc-upgrade` and `audit-upgrade` commands do not download the latest available ServiceControl version. These Powershell commandlets are bound to the version of the Particular.ServiceControl.Management module loaded.
 
 Before the upgrade begins the configuration file of the existing version is examined to determine if all of the required settings are present. If a configuration setting is missing then the cmdlet will throw an error indicating the required additional parameter for the cmdlet.
 

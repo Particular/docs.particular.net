@@ -55,7 +55,8 @@ The [guest executable](https://docs.microsoft.com/en-us/azure/service-fabric/ser
 
 This option can be used as an interim solution for the endpoints that eventually need to be converted to Service Fabric services, but cannot be converted right away.
 
-WARNING: While executables can be packaged and deployed to Service Fabric without much effort, the Service Fabric hosting environment might not support all local dependencies. For example, endpoints running on the MSMQ transport should be migrated to another transport. The reason for this is that Service Fabric reallocates processes to different machines based on metrics such as CPU load, but these local dependencies will not move along with it.
+> [!WARNING]
+> While executables can be packaged and deployed to Service Fabric without much effort, the Service Fabric hosting environment might not support all local dependencies. For example, endpoints running on the MSMQ transport should be migrated to another transport. The reason for this is that Service Fabric reallocates processes to different machines based on metrics such as CPU load, but these local dependencies will not move along with it.
 
 
 ## Hosting NServiceBus in a standalone cluster

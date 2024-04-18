@@ -7,7 +7,8 @@ component: Rabbit
 
 [RabbitMQ quorum queues](https://www.rabbitmq.com/quorum-queues.html) are superior to classic queues for use cases where data safety is a top priority, and are recommended for all NServiceBus endpoints. In most cases, migration to quorum queues can be accomplished on a live system, without downtime for the whole system.
 
-WARN: Systems using the direct routing topology cannot be updated without system downtime. Contact [Particular support](https://particular.net/support) to discuss options for updating to quorum queues.
+> [!WARNING]
+> Systems using the direct routing topology cannot be updated without system downtime. Contact [Particular support](https://particular.net/support) to discuss options for updating to quorum queues.
 
 ## Migration steps
 

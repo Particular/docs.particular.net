@@ -8,7 +8,8 @@ redirects:
 - nservicebus/queuecreation
 ---
 
-WARNING: NServiceBus will automatically request the transport to create queues needed if the [installers](/nservicebus/operations/installers.md) are enabled. This also includes queues needed by all declared [satellites](/nservicebus/satellites). Prefer using scripts to create custom queues instead of relying on interfaces provided by NServiceBus.
+> [!WARNING]
+> NServiceBus will automatically request the transport to create queues needed if the [installers](/nservicebus/operations/installers.md) are enabled. This also includes queues needed by all declared [satellites](/nservicebus/satellites). Prefer using scripts to create custom queues instead of relying on interfaces provided by NServiceBus.
 
 The scripting guidelines show how to take full control over queue creation:
 

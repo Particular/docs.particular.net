@@ -21,7 +21,7 @@ include: learning-usages
 
 ## Transport at a glance
 
-|Feature                    |   |  
+|Feature                    |   |
 |:---                       |---
 |Transactions |None, ReceiveOnly, SendsWithAtomicReceive
 |Pub/Sub                    |Native
@@ -62,7 +62,8 @@ To manually configure the storage location:
 
 snippet: StorageDirectory
 
-WARNING: When using source control the storage directory should be excluded and never committed.
+> [!WARNING]
+> When using source control the storage directory should be excluded and never committed.
 
 
 ### Payload size restriction

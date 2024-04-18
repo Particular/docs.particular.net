@@ -136,7 +136,8 @@ Now that the handler is in the correct endpoint, what would happen if we started
 
 If you attempt to place an order in the ClientUI, an exception will be thrown because ClientUI no longer has a handler for it:
 
-WARNING: System.InvalidOperationException: No handlers could be found for message type: Messages.Commands.PlaceOrder
+> [!WARNING]
+> System.InvalidOperationException: No handlers could be found for message type: Messages.Commands.PlaceOrder
 
 In fact, you will probably get a giant wall of exception text, because the message is tried and retried, and then retried some more after successively longer delays, until finally failing for good sometime later. We'll cover this behavior in more detail in [Lesson 5: Retrying errors](../5-retrying-errors/).
 

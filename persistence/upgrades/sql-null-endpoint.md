@@ -47,7 +47,8 @@ The schema created on Oracle Database does not allow `NULL` in the `ENDPOINT` co
 > [!NOTE]
 > This procedure does not require any downtime. It is advisable to execute it when affected endpoint instances are not under heavy load.
 
-WARNING: Run this script on a testing or staging environment first to verify that it works as expected.
+> [!WARNING]
+> Run this script on a testing or staging environment first to verify that it works as expected.
 
 ```sql
 alter table PUBLISHER_SS modify ENDPOINT varchar2(200) null;

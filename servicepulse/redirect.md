@@ -9,7 +9,8 @@ reviewed: 2024-01-26
 
 When a failed message needs to be retried, but the destination endpoint no longer exists, and the message needs to be routed to a different endpoint than what is specified in the failed message headers, ServicePulse offers a redirect feature. This feature is available in ServicePulse version 1.6.6 and above.
 
-WARNING: Message redirects are a feature of ServicePulse/ServiceControl only; they do not alter the routing for NServiceBus endpoints.
+> [!WARNING]
+> Message redirects are a feature of ServicePulse/ServiceControl only; they do not alter the routing for NServiceBus endpoints.
 
 Redirects can be managed from the Configuration page by selecting the `Retry Redirects` tab.
 

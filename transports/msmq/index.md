@@ -12,7 +12,8 @@ redirects:
  - nservicebus/msmq
 ---
 
-WARNING: As Microsoft is not making MSMQ available for .NET Core, building new systems using MSMQ is not recommended.
+> [!WARNING]
+> As Microsoft is not making MSMQ available for .NET Core, building new systems using MSMQ is not recommended.
 
 ## Transport at a glance
 

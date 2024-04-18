@@ -10,7 +10,8 @@ By default the transport wraps outgoing messages in an envelope that contains al
 
 snippet: DoNotWrapOutgoingMessages
 
-WARN: This setting should only be enabled if all endpoints are running a version of the transport that contains this setting. ServiceControl should be on version 4.29.3 or above.
+> [!WARNING]
+> This setting should only be enabled if all endpoints are running a version of the transport that contains this setting. ServiceControl should be on version 4.29.3 or above.
 
 ### Message Attributes
 

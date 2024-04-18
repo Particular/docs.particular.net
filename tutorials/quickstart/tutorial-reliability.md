@@ -78,7 +78,8 @@ Of course, there are other exceptions that may be harder to recover from than si
 
 ## Systemic failures
 
-WARNING: In order to use the portable version of the Particular Service Platform included in this tutorial, you'll need to use a Windows operating system.
+> [!WARNING]
+> In order to use the portable version of the Particular Service Platform included in this tutorial, you'll need to use a Windows operating system.
 
 A systemic failure is one that is simply unrecoverable, no matter how many times we retry. Usually these are just plain old bugs. Most of the time these kinds of failures require a redeployment with new code in order to fix them. But what happens to the messages in this case?
 

@@ -61,7 +61,8 @@ MSMQ continuously checks the TimeToBeReceived of all queued messages. As soon as
 > [!NOTE]
 > MSMQ enforces a single TimeToBeReceived value for all messages in a transaction. To prevent message loss, `TimeToBeReceived` is not supported for endpoints with [transaction mode](/transports/transactions.md) `SendsAtomicWithReceive` or `TransactionScope` by default.
 
-WARNING: Due to a bug in Version 6 `TransportTransactionMode.ReceiveOnly` wrongly enlisted all outgoing messages in the same transaction causing the issues described above.
+> [!WARNING]
+> Due to a bug in Version 6 `TransportTransactionMode.ReceiveOnly` wrongly enlisted all outgoing messages in the same transaction causing the issues described above.
 
 For more details about how the MSMQ transport handles TimeToBeReceived, see [discarding expired messages in MSMQ](/transports/msmq/discard-expired-messages.md).
 

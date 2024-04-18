@@ -124,7 +124,8 @@ snippet: timeoutSaga2
 
 snippet: renameTables
 
-WARNING: In a production scenario this code would be executed as part of an endpoint migration prior to starting the new version of the endpoint.
+> [!WARNING]
+> In a production scenario this code would be executed as part of an endpoint migration prior to starting the new version of the endpoint.
 
 
 #### Mutator

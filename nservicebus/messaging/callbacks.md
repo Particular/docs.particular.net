@@ -14,7 +14,8 @@ Callbacks enable the use of messaging behind a synchronous API that can't be cha
 
 ## When to use callbacks
 
-WARNING: **Do not call the callback APIs from inside a `Handle` method in an `IHandleMessages<T>` class** as this can cause deadlocks or other unexpected behavior.
+> [!WARNING]
+> **Do not call the callback APIs from inside a `Handle` method in an `IHandleMessages<T>` class** as this can cause deadlocks or other unexpected behavior.
 
 DANGER: Because callbacks won't survive restarts, use callbacks when the data returned is **not business critical and data loss is acceptable**. Otherwise, use [request/response](/samples/fullduplex) with a message handler for the reply messages.
 
@@ -46,7 +47,8 @@ The callback functionality can be split into three categories based on the type 
 
 The integer response scenario allows any integer value to be returned in a strongly-typed manner.
 
-WARNING: This type of callback won't cause response messages to end up in the [error queue](/nservicebus/recoverability) if no callback is registered.
+> [!WARNING]
+> This type of callback won't cause response messages to end up in the [error queue](/nservicebus/recoverability) if no callback is registered.
 
 #### Send and callback
 

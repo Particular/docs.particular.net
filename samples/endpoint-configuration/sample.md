@@ -9,7 +9,8 @@ related:
 - nservicebus/hosting
 ---
 
-WARN: This sample is obsolete. Particular recommends using the [.NET Generic Host sample](/samples/hosting/generic-host/).
+> [!WARNING]
+> This sample is obsolete. Particular recommends using the [.NET Generic Host sample](/samples/hosting/generic-host/).
 
 ## Code walk-through
 
@@ -41,7 +42,8 @@ snippet: logging
 
 The following code will create the configuration instance and define the endpoint name.
 
-WARNING: In Versions 6 and above, the [endpoint](/nservicebus/endpoints/) name is mandatory.
+> [!WARNING]
+> In Versions 6 and above, the [endpoint](/nservicebus/endpoints/) name is mandatory.
 
 snippet: create-config
 

@@ -154,9 +154,11 @@ Installation steps:
 </configuration>
 ```
 
-WARNING: When combining these rules with the ones specified above in [Detailed steps](#basic-setup-detailed-steps), ensure the rule named "Handle Vue.js routing paths" (i.e. `<match url="(.*)" />`) rule occurs _last_ in the list of rewrite rules. Otherwise, it will override the rules specified here.
+> [!WARNING]
+> When combining these rules with the ones specified above in [Detailed steps](#basic-setup-detailed-steps), ensure the rule named "Handle Vue.js routing paths" (i.e. `<match url="(.*)" />`) rule occurs _last_ in the list of rewrite rules. Otherwise, it will override the rules specified here.
 
-WARNING: By exposing the REST API via the reverse proxy configuration, this protection is no longer in place. To address this, it is recommended that the IIS website be configured with one of the IIS authentication providers, such as Windows integration authentication.
+> [!WARNING]
+> By exposing the REST API via the reverse proxy configuration, this protection is no longer in place. To address this, it is recommended that the IIS website be configured with one of the IIS authentication providers, such as Windows integration authentication.
 
 It is also recommended that the IIS website be configured to use TLS if an authorization provider is used.
 

@@ -32,7 +32,8 @@ A single subscription table is used by all endpoints. By default this table will
 
 snippet: configure-subscription-table
 
-WARNING: All endpoints in the system must be configured to use the same subscription table. In a multi-schema or multi-catalog system the subscription table needs to be in a shared schema and catalog.
+> [!WARNING]
+> All endpoints in the system must be configured to use the same subscription table. In a multi-schema or multi-catalog system the subscription table needs to be in a shared schema and catalog.
 
 ## Backwards compatibility
 

@@ -183,7 +183,8 @@ topics.MaxSizeInMegabytes(SizeInMegabytes.Size5120);
 
 ## Securing Credentials
 
-WARN: All endpoints need to be upgraded to Version 7 prior to enabling this feature. Older versions of the transport cannot use namespace names.
+> [!WARNING]
+> All endpoints need to be upgraded to Version 7 prior to enabling this feature. Older versions of the transport cannot use namespace names.
 
 In order to enhance security and to avoid sharing sensitive information enable the `UseNamespaceNameInsteadOfConnectionString` feature using the following steps:
 

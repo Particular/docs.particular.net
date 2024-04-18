@@ -25,7 +25,8 @@ Specify `UseNServiceBus` before any other service (e.g. `ConfigureWebHostDefault
 
 NServiceBus logging is automatically configured to use the [logging configured](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/logging) for the [generic host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host); no NServiceBus specific logging configuration is needed.
 
-WARNING: [NServiceBus.Extensions.Logging](/nservicebus/logging/extensions-logging.md) or [NServiceBus.MicrosoftLogging.Hosting](https://www.nuget.org/packages/NServiceBus.MicrosoftLogging.Hosting) should not be used.
+> [!WARNING]
+> [NServiceBus.Extensions.Logging](/nservicebus/logging/extensions-logging.md) or [NServiceBus.MicrosoftLogging.Hosting](https://www.nuget.org/packages/NServiceBus.MicrosoftLogging.Hosting) should not be used.
 
 ## Dependency injection integration
 

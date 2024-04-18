@@ -45,7 +45,8 @@ snippet: ScheduleTask
 * Since the scheduler uses the queuing mechanism, it does have some side effects on the timelines of scheduled tasks. When a task is scheduled to be run at a given time it may not be executed at exactly that time, instead it becomes visible at that time and will be executed when it shows up in the queue. In most cases, this distinction will have no noticeable effect on the behavior of the scheduling API. However, in high load systems where the transport does not support native delayed delivery, the fact that a scheduled task is added to the back of the queue can result in a noticeable delay between the "time the task has been request to be run" and the "time the task is actually executed".
 * The Scheduler API does not support scaling out the endpoint or doing a side-by-side deployment of an endpoint. When there are multiple instances of the endpoint that are running on the same machine, while using a non-broker transport such as MSMQ, or when there are scaling out the endpoint instances while using a broker transport such as RabbitMQ, these endpoint instances share the same input queue. Since each endpoint maintains its own created tasks in memory, when the specified time is up and the task is queued at the endpoint, any of the endpoint instances that are currently running can dequeue that message. If an endpoint that did not originally create this task happened to dequeue this message in order to execute it, it will not find the task in its list.
 
-WARNING: This will result in the task not being executed but also not being rescheduled.
+> [!WARNING]
+> This will result in the task not being executed but also not being rescheduled.
 
 ## Exception handling
 

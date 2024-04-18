@@ -54,7 +54,8 @@ snippet: sagaPhase2
 
 snippet: sagadataPhase2
 
-WARNING: Prior to moving to Phase 3 it is necessary to verify that all existing sagas have the `Correlation_OrderId` column populated. This can either be inferred by the business knowledge (i.e. certain saga may have a known and constrained lifetime) or by querying the database.
+> [!WARNING]
+> Prior to moving to Phase 3 it is necessary to verify that all existing sagas have the `Correlation_OrderId` column populated. This can either be inferred by the business knowledge (i.e. certain saga may have a known and constrained lifetime) or by querying the database.
 
 ### Phase 3
 

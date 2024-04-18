@@ -50,7 +50,8 @@ snippet: MongoDBDatabaseName
 
 MongoDB [transactions](https://docs.mongodb.com/manual/core/transactions/) are enabled and required by default. This allows the persister to use pessimistic locking and to update multiple saga instances and commit them atomically during message processing.
 
-WARN: MongoDB transactions require a replica set or sharded cluster. Refer to the [MongoDB transaction documentation](https://docs.mongodb.com/manual/core/transactions/#transactions-and-atomicity) for more information about supported configurations and required MongoDB server versions.
+> [!WARNING]
+> MongoDB transactions require a replica set or sharded cluster. Refer to the [MongoDB transaction documentation](https://docs.mongodb.com/manual/core/transactions/#transactions-and-atomicity) for more information about supported configurations and required MongoDB server versions.
 
 > [!NOTE]
 > The MongoDB persister supports transactions on shared clusters starting from version 2.1.
@@ -71,13 +72,15 @@ To use the shared transaction in a message handler:
 
 snippet: MongoDBHandlerSharedTransaction
 
-WARN: In order to participate in the shared transaction the MongoDB session must be passed into collection API calls as demonstrated above.
+> [!WARNING]
+> In order to participate in the shared transaction the MongoDB session must be passed into collection API calls as demonstrated above.
 
 The shared session can also be accessed via dependency injection using the `IMongoSynchronizedStorageSession` interface:
 
 snippet: MongoDBSharedTransactionDI
 
-WARN: In order to participate in the shared transaction, the MongoDB session must be passed into collection API calls as demonstrated above.
+> [!WARNING]
+> In order to participate in the shared transaction, the MongoDB session must be passed into collection API calls as demonstrated above.
 
 > [!NOTE]
 > The `IMongoSynchronizedStorageSession` lifetime is scoped to the message processing pipeline. Do not resolve the shared session into dependencies with a _Singleton_ lifetime.

@@ -81,7 +81,8 @@ When encryption is enabled, SQL Server uses a certificate to encrypt communicati
 
 To fix this error, [the update the SQL Server installation with a valid certificate and update the ServiceControl machine to trust this certificate](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/enable-encrypted-connections-to-the-database-engine).
 
-WARNING: It is not recommended to eliminate this warning by adding `Encrypt=False` or `TrustServerCertificate=True` to the connection string. Both of these options leave the ServiceControl installation unsecure.
+> [!WARNING]
+> It is not recommended to eliminate this warning by adding `Encrypt=False` or `TrustServerCertificate=True` to the connection string. Both of these options leave the ServiceControl installation unsecure.
 
 ## Unable to connect to ServiceControl from either ServiceInsight or ServicePulse
 

@@ -16,7 +16,7 @@ The RabbitMQ transport has the concept of a routing topology, which controls how
 
 ## Conventional routing topology
 
-The conventional routing topology relies on [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html#exchange-fanout) to route messages. 
+The conventional routing topology relies on [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html#exchange-fanout) to route messages.
 
 Note: The recommended routing topology is the conventional routing topology. It was the default topology prior to NServiceBus.RabbitMQ version 5.
 
@@ -58,7 +58,8 @@ Every endpoint publishes an event using the `amq.topic` exchange with a *routing
 
 An endpoint that subscribes to a given event creates a binding to the default exchange with the appropriate *routing key*.
 
-WARNING: In accordance with the [AMQP 0.9.1 standard](https://www.rabbitmq.com/amqp-0-9-1-reference.html#basic.publish.routing-key) the *routing key* has a length limit of 255 characters.
+> [!WARNING]
+> In accordance with the [AMQP 0.9.1 standard](https://www.rabbitmq.com/amqp-0-9-1-reference.html#basic.publish.routing-key) the *routing key* has a length limit of 255 characters.
 
 
 ### Enabling the direct routing topology
@@ -73,7 +74,8 @@ The default conventions for exchange names and routing keys can be overridden by
 
 snippet: rabbitmq-config-usedirectroutingtopologywithcustomconventions
 
-WARNING: In some cases, the direct routing topology may not deliver message types with "non-system" interfaces in their inheritance hierarchy. A "non-system" interface is any interface which is not contained in a .NET Framework assembly (any assembly signed with the same public key as mscorlib), and is not one of the [interfaces](/nservicebus/messaging/messages-events-commands.md#identifying-messages). When using the direct routing topology, message types must not inherit from "non-system" interfaces. To guarantee delivery of message types which inherit from non-system interfaces, the conventional routing topology must be used.
+> [!WARNING]
+> In some cases, the direct routing topology may not deliver message types with "non-system" interfaces in their inheritance hierarchy. A "non-system" interface is any interface which is not contained in a .NET Framework assembly (any assembly signed with the same public key as mscorlib), and is not one of the [interfaces](/nservicebus/messaging/messages-events-commands.md#identifying-messages). When using the direct routing topology, message types must not inherit from "non-system" interfaces. To guarantee delivery of message types which inherit from non-system interfaces, the conventional routing topology must be used.
 
 partial: queue-type
 

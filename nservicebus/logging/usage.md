@@ -16,7 +16,8 @@ Set up a single static field to an `ILog` in the classes, and then use it in all
 
 snippet: UsingLogging
 
-WARNING: Make sure that logging is correctly initialized before resolving the `ILog` instance. Not doing so can result in a logger using an incorrect configuration
+> [!WARNING]
+> Make sure that logging is correctly initialized before resolving the `ILog` instance. Not doing so can result in a logger using an incorrect configuration
 
 > [!NOTE]
 > To avoid unnecessary processing, especially when logging more verbose messages, such as `Debug`, make sure to first check if logging at that level is enabled.

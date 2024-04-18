@@ -2,4 +2,5 @@ The MSMQ native TTBR implementation can be disabled for messages sent as part of
 
 snippet: disable-native-ttbr
 
-WARN: Messages sent without the native MSMQ TTBR property set cannot automatically be cleaned up by MSMQ. They will remain in a queue until they are read. If they are read by an endpoint running on NServiceBus.Transport.Msmq version 1.0.x or below, messages can be processed even if the TTBR header has expired.
+> [!WARNING]
+> Messages sent without the native MSMQ TTBR property set cannot automatically be cleaned up by MSMQ. They will remain in a queue until they are read. If they are read by an endpoint running on NServiceBus.Transport.Msmq version 1.0.x or below, messages can be processed even if the TTBR header has expired.

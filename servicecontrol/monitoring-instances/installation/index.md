@@ -19,7 +19,8 @@ Monitoring supports the same transports as [ServiceControl](/servicecontrol/tran
 
 ServiceControl Management provides a simple means of setting up one or more monitoring instances.
 
-WARNING: The ability to add multiple instances is primarily intended to assist development and test environments.
+> [!WARNING]
+> The ability to add multiple instances is primarily intended to assist development and test environments.
 
 ServiceControl Management can be launched automatically at the end of the installation process to enable adding or upgrading ServiceControl or monitoring instances.
 

@@ -149,7 +149,8 @@ See also:
 
 Once all handlers and sagas in an endpoint have been updated to NServiceBus version 6, there may still be places in the code that send and publish messages using an instance of `IBus` that need to be updated.
 
-WARNING: All message handlers and sagas that are included in the endpoint should be updated before taking this step. It is important that the techniques presented here are not used from inside message handlers or transactional consistency with the transport is not guaranteed.
+> [!WARNING]
+> All message handlers and sagas that are included in the endpoint should be updated before taking this step. It is important that the techniques presented here are not used from inside message handlers or transactional consistency with the transport is not guaranteed.
 
 The endpoint instance returned from `Endpoint.Create()` or `Endpoint.Start()` implements `IMessageSession` which contains `Send()` and `Publish()` methods that can be used outside of a message handler or saga. If the endpoint sends messages in the same part of the code that creates/starts the endpoint, call these methods on the returned endpoint instance directly.
 

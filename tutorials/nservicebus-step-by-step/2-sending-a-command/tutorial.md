@@ -105,7 +105,8 @@ Let's create our first command.
  1. Mark `PlaceOrder` as `public` and implement `ICommand`.
  1. Add a public property of type `string` named `OrderId`.
 
-WARNING: The .NET Framework contains its own interface named `ICommand` in the `System.Windows.Input` namespace. If you use tooling to resolve the namespace, be sure to select `NServiceBus.ICommand`. Most of the types you will need will reside in the `NServiceBus` namespace.
+> [!WARNING]
+> The .NET Framework contains its own interface named `ICommand` in the `System.Windows.Input` namespace. If you use tooling to resolve the namespace, be sure to select `NServiceBus.ICommand`. Most of the types you will need will reside in the `NServiceBus` namespace.
 
 When complete, your `PlaceOrder` class should look like the following:
 

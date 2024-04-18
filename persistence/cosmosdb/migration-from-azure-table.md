@@ -11,7 +11,8 @@ redirects:
 
 For existing system running in Azure and using [Azure Table Persistence](/persistence/azure-table), where a migration to Azure Cosmos DB SQL API is desired, a multi-step migration process is recommended, using Particular and Azure Cosmos DB tools.
 
-WARN: The endpoint being migrated must be offline while migrating saga data. The saga data must be using secondary indexes (introduced in Azure Table Persistence 2.x) or be stored with Azure Table Persistence Version 3 or higher for this upgrade guide to succeed. The migration scenario described assumes only saga data of a one saga is stored per table.
+> [!WARNING]
+> The endpoint being migrated must be offline while migrating saga data. The saga data must be using secondary indexes (introduced in Azure Table Persistence 2.x) or be stored with Azure Table Persistence Version 3 or higher for this upgrade guide to succeed. The migration scenario described assumes only saga data of a one saga is stored per table.
 
 For each Azure Table Persistence table containing saga data, the following four major steps must be performed:
 
@@ -83,7 +84,8 @@ where the following parameters must be adjusted:
 
 Due to the [limited types](https://docs.microsoft.com/en-us/rest/api/storageservices/understanding-the-table-service-data-model#property-types) supported by Azure Storage Tables, some types are stored in the table by the [Azure Storage persister](/persistence/azure-table) as serialized JSON strings. The export tool makes a _best effort_ to re-serialize these values for import into Cosmos DB. As a result, the data can and should be inspected for quality both before and after the import. The migrated endpoint and all saga types migrated should be thoroughly tested before moving into production to ensure the migration is correct.
 
-WARN: Dates stored using `DateTimeOffset` data type are susceptible to incorrect translation. Saga data storing properties using `DateTimeOffset` should be verified after saga data import is completed to ensure accurate conversion.
+> [!WARNING]
+> Dates stored using `DateTimeOffset` data type are susceptible to incorrect translation. Saga data storing properties using `DateTimeOffset` should be verified after saga data import is completed to ensure accurate conversion.
 
 ## Using migration mode
 
@@ -103,7 +105,8 @@ snippet: CosmosDBMigrationMode
 
 Migration mode can be disabled when all auto-correlated pre-migration messages have been processed, or when all migrated sagas have [ended](/nservicebus/sagas/#ending-a-saga).
 
-WARN: Inspecting the endpoint's queue may not be enough to determine if all pre-migration auto-correlated messages have been processed. Messages that are sent via [delayed delivery](/nservicebus/messaging/delayed-delivery.md), including all saga timeouts, may not be visible in the endpoint's queue.
+> [!WARNING]
+> Inspecting the endpoint's queue may not be enough to determine if all pre-migration auto-correlated messages have been processed. Messages that are sent via [delayed delivery](/nservicebus/messaging/delayed-delivery.md), including all saga timeouts, may not be visible in the endpoint's queue.
 
 ### Counting migrated sagas
 

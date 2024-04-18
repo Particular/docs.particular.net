@@ -9,7 +9,8 @@ redirects:
  - nservicebus/nhibernate/scripting
 ---
 
-WARNING: Ensure there is a backup of the database before executing any of the scripts on this page.
+> [!WARNING]
+> Ensure there is a backup of the database before executing any of the scripts on this page.
 
 
 ## Remove subscriptions

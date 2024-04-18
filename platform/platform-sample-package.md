@@ -7,7 +7,8 @@ reviewed: 2022-03-11
 
 The [Platform Sample package](https://www.nuget.org/packages/Particular.PlatformSample) is a portable version of the Particular Service Platform which can be used to demonstrate the platform without installing it. This is the easiest way to experience the Particular Service Platform.
 
-WARNING: The Platform Sample is not suited for production usage and should only be used for demonstrating the Platform during presentations or in samples.
+> [!WARNING]
+> The Platform Sample is not suited for production usage and should only be used for demonstrating the Platform during presentations or in samples.
 
 The Platform Sample package includes instances of ServiceControl, ServiceControl Monitoring, and ServicePulse. They are all configured to use the [Learning Transport](/transports/learning/). Other transports are not supported by the Platform Sample package. At this time, ServiceInsight is not included in the Platform Sample package.
 

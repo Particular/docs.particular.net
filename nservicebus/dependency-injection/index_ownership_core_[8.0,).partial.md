@@ -38,7 +38,8 @@ The same instance will be returned each time.
 
 Represented by the enum value `ServiceLifetime.Singleton`.
 
-WARNING: `Singleton` components with dependencies that are scoped `Transient` or `Scoped` will still resolve. In effect, these dependencies, while not scoped as `Singleton`, will behave as if they are `Singleton` because the instances will exist inside the parent component.
+> [!WARNING]
+> `Singleton` components with dependencies that are scoped `Transient` or `Scoped` will still resolve. In effect, these dependencies, while not scoped as `Singleton`, will behave as if they are `Singleton` because the instances will exist inside the parent component.
 
 snippet: SingleInstance
 
@@ -54,7 +55,8 @@ Third party or custom dependency injection containers can be used via the [exter
 
 In *externally managed* mode, NServiceBus registers its components in the container but does not own the container's lifecycle. NServiceBus uses the `Microsoft.Extensions.DependencyInjection` API to integrate with third party containers.
 
-WARN: Every NServiceBus endpoint requires its own dependency injection container. Sharing containers across multiple endpoints results in conflicting registrations and might cause incorrect behavior or runtime errors.
+> [!WARNING]
+> Every NServiceBus endpoint requires its own dependency injection container. Sharing containers across multiple endpoints results in conflicting registrations and might cause incorrect behavior or runtime errors.
 
 During the registration phase, an instance of `IServiceCollection` is passed to the `EndpointWithExternallyManagedContainer.Create` method. The following snippets show how to use Microsoft's default implementation from the `Microsoft.Extensions.DependencyInjection` NuGet package:
 

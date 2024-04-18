@@ -41,7 +41,8 @@ snippet: simple-saga-data
 
 Saga data types should not be shared across different sagas. Sharing types can result in persisters physically sharing the same storage structure which should be avoided.
 
-WARNING: Sharing property types should also be avoided. Depending on the persister implementation, sharing property types can result in storage structure being shared between endpoints.
+> [!WARNING]
+> Sharing property types should also be avoided. Depending on the persister implementation, sharing property types can result in storage structure being shared between endpoints.
 
 partial: disable-shared-state-check
 
@@ -165,7 +166,8 @@ The usual way is to correlate on some kind of ID and let the user control how to
 
 ## Accessing databases and other resources from a saga
 
-WARNING: Other than interacting with its own internal state, a saga should **not** access a database, call out to web services, or access other resources - neither directly nor indirectly by having such dependencies injected into it.
+> [!WARNING]
+> Other than interacting with its own internal state, a saga should **not** access a database, call out to web services, or access other resources - neither directly nor indirectly by having such dependencies injected into it.
 
 The main reason for avoiding accessing data from external resources is possible contention and inconsistency of saga state. Depending on persister, the saga state is retrieved and persisted with either pessimistic or optimistic locking. If the transaction takes too long, it's possible another message will come in that correlates to the same saga instance. It might be processed on a different (concurrent) thread (or perhaps a scaled out endpoint) and it will either fail immediately (pessimistic locking) or while trying to persist the state (optimistic locking). In both cases the message will be retried.
 

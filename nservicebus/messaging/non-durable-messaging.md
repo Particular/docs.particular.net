@@ -12,7 +12,8 @@ related:
 
 The use of non-durable messages involves relaxing message delivery guarantees in order to achieve better performance.
 
-WARNING: This can make an endpoint more susceptible to message loss during server crashes and restarts. See [effect on transports](#effect-on-transports) for more details.
+> [!WARNING]
+> This can make an endpoint more susceptible to message loss during server crashes and restarts. See [effect on transports](#effect-on-transports) for more details.
 
 partial: enable
 

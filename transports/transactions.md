@@ -138,7 +138,8 @@ snippet: TransactionsWrapHandlersExecutionInATransactionScope
 > [!NOTE]
 > This requires that all the data stores used by the handler support enlisting in a distributed transaction (e.g. SQL Server), including the saga store when using sagas.
 
-WARNING: This might escalate to a distributed transaction if data in different databases are updated.
+> [!WARNING]
+> This might escalate to a distributed transaction if data in different databases are updated.
 
 > [!NOTE]
 > This API must not be used in combination with transports running in a *transaction scope* mode.

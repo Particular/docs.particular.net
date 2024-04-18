@@ -14,7 +14,8 @@ Many features take advantage of message identity. For example, the [Outbox](/nse
 
 Message identity can be explicitly specified, overriding the default identity provided by NServiceBus.
 
-WARNING: It is important that the strategy used to generate message identities results in globally unique identifiers. If two messages ever have the same identity then some features will treat them as the same message. This will cause errors which are difficult to diagnose.
+> [!WARNING]
+> It is important that the strategy used to generate message identities results in globally unique identifiers. If two messages ever have the same identity then some features will treat them as the same message. This will cause errors which are difficult to diagnose.
 
 Specify message identity using the `SendOptions` class.
 

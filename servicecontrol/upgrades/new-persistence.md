@@ -9,7 +9,8 @@ Version 4.26 of ServiceControl introduced a new persistence format for audit ins
 
 New audit instances created with ServiceControl version 4.26 and above will use the new persistence format. Existing audit instances created with ServiceControl version 4.25 and below will continue to use the old persistence format, even if it is upgraded.
 
-WARN: Updating an existing audit instance to version 4.26 and above will _not_ automatically change the persistence format.
+> [!WARNING]
+> Updating an existing audit instance to version 4.26 and above will _not_ automatically change the persistence format.
 
 It is recommended to update to the new persistence format. The old persistence format will remain supported for a limited time to enable this transition.
 

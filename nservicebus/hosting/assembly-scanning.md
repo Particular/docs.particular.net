@@ -77,4 +77,5 @@ By default, exceptions occurred during assembly scanning will be re-thrown. Thos
 
 snippet: SwallowScanningExceptions
 
-WARNING: Ignoring assembly scanning exceptions can cause the endpoint to not load some features, behaviors, messages or message handlers and cause incorrect behavior.
+> [!WARNING]
+> Ignoring assembly scanning exceptions can cause the endpoint to not load some features, behaviors, messages or message handlers and cause incorrect behavior.

@@ -4,7 +4,8 @@ For NServiceBus versions 7 and above, a new interface called `IWantToRunWhenEndp
 
 At startup, the host invokes all classes that implement the `IWantToRunWhenEndpointStartsAndStops` interface.
 
-WARNING: Implementations of `IWantToRunWhenEndpointStartsAndStops` are not started and stopped on a dedicated thread. They are executed on the thread starting and disposing the endpoint. The implementing class is responsible for executing its operations in parallel if needed (i.e. for CPU bound work). Failure to do so will prevent the endpoint from being started and/or disposed.
+> [!WARNING]
+> Implementations of `IWantToRunWhenEndpointStartsAndStops` are not started and stopped on a dedicated thread. They are executed on the thread starting and disposing the endpoint. The implementing class is responsible for executing its operations in parallel if needed (i.e. for CPU bound work). Failure to do so will prevent the endpoint from being started and/or disposed.
 
  * Instances of `IWantToRunWhenEndpointStartsAndStops` are located by [assembly scanning](/nservicebus/hosting/assembly-scanning.md) and automatically registered into the [configured dependency injection](/nservicebus/dependency-injection/) during endpoint creation. These are registered as `Instance Per Call`.
  * They are started before the transport and any satellites have started. Therefore the endpoint will not receive any messages until this process has completed.

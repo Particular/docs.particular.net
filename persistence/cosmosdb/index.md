@@ -13,7 +13,8 @@ redirects:
 
 Uses the [Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/) NoSQL database service for storage.
 
-WARN: It is important to [read and understand](https://docs.microsoft.com/en-us/azure/cosmos-db/partitioning-overview) partitioning in Azure Cosmos DB before using `NServiceBus.Persistence.CosmosDB`.
+> [!WARNING]
+> It is important to [read and understand](https://docs.microsoft.com/en-us/azure/cosmos-db/partitioning-overview) partitioning in Azure Cosmos DB before using `NServiceBus.Persistence.CosmosDB`.
 
 ## Persistence at a glance
 
@@ -59,7 +60,8 @@ snippet: CosmosDBCustomClientProviderRegistration
 
 When using provisioned throughput it is possible for the CosmosDB service to rate-limit usage, resulting in "request rate too large" exceptions indicated by the 429 status code.
 
-WARN: When using the Cosmos DB persistence with the outbox enabled, "request rate too large" errors may result in handler re-execution and/or duplicate message dispatches depending on which operation is throttled.
+> [!WARNING]
+> When using the Cosmos DB persistence with the outbox enabled, "request rate too large" errors may result in handler re-execution and/or duplicate message dispatches depending on which operation is throttled.
 
 > [!NOTE]
 > Microsoft provides [guidance](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/troubleshoot-request-rate-too-large) on how to diagnose and troubleshoot request rate too large exceptions.

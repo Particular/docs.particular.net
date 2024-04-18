@@ -37,6 +37,7 @@ Select the identified messages in the right-hand pane, then right-click and sele
 
 Once all the subscription messages have been moved, delete the `NServiceBus.Subscriptions` queue.
 
-WARNING: If more than one endpoint is sharing the same queue, ensure that individual subscription queues are first created and all the relevant messages are either moved or copied to the appropriate newly-created queues before deleting the `NServiceBus.Subscriptions` queue. QueueExplorer can also be used to copy messages, if a copy of the same subscription message must be added to more subscription queues.
+> [!WARNING]
+> If more than one endpoint is sharing the same queue, ensure that individual subscription queues are first created and all the relevant messages are either moved or copied to the appropriate newly-created queues before deleting the `NServiceBus.Subscriptions` queue. QueueExplorer can also be used to copy messages, if a copy of the same subscription message must be added to more subscription queues.
 
 ![Moving Messages using QueueExplorer](moving-messages.png)

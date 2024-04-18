@@ -38,7 +38,8 @@ snippet: DependentFeature
 
 A feature might use either strongly or loosely typed API when declaring dependencies (the latter can be useful if a dependency is declared in an external assembly).
 
-WARNING: The feature name is derived from the name of the type. The `Feature` suffix must not be removed and dependency strings must be prefixed with the namespace of the target Feature.
+> [!WARNING]
+> The feature name is derived from the name of the type. The `Feature` suffix must not be removed and dependency strings must be prefixed with the namespace of the target Feature.
 
 The API also allows declaring optional dependencies on one or more listed features.
 

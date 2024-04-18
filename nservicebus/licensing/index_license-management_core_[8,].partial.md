@@ -34,7 +34,8 @@ To install a license for all endpoints and Particular Service Platform applicati
 
 ### Windows Registry
 
-WARNING: This option not available when targeting .NET Core.
+> [!WARNING]
+> This option not available when targeting .NET Core.
 
 Licenses stored in a registry key named `License` in the following registry locations are automatically detected:
 * `HKEY_LOCAL_MACHINE\Software\ParticularSoftware`

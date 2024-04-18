@@ -44,7 +44,8 @@ snippet: sqlserver-custom-connection-factory
 > [!NOTE]
 > If opening the connection fails, the custom connection factory must dispose the connection object and rethrow the exception.
 
-WARNING: When using custom schemas or catalogs, ensure the connection returned by the connection factory is granted sufficient permissions for the endpoint to perform its operations.
+> [!WARNING]
+> When using custom schemas or catalogs, ensure the connection returned by the connection factory is granted sufficient permissions for the endpoint to perform its operations.
 
 ## Circuit breaker
 

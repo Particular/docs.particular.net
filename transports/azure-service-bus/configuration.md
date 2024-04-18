@@ -25,7 +25,8 @@ partial: custom-token-credentials
 
 These settings control how the transport creates entities in the Azure Service Bus namespace.
 
-WARNING: Entity creation settings are applied only at creation time of the corresponding entities; they are not updated on subsequent startups.
+> [!WARNING]
+> Entity creation settings are applied only at creation time of the corresponding entities; they are not updated on subsequent startups.
 
 partial: access-rights
 
