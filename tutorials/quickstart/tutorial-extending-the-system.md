@@ -8,7 +8,7 @@ extensions:
   nextUrl: tutorials/nservicebus-step-by-step
 ---
 
-In [Part 1 of this tutorial](/tutorials/quickstart), you saw that publishing events using the [Publish-Subscribe pattern](/nservicebus/messaging/publish-subscribe/) reduces coupling and makes maintaining a system easier in the long run. Next, in [Part 2](/tutorials/quickstart/tutorial-reliability.md) you saw how to handle failures gracefully. Let's now look at how you can add an additional subscriber without needing to modify any existing code.
+In [Part 1 of this tutorial](/tutorials/quickstart), you saw that publishing events using the [Publish-Subscribe pattern](/nservicebus/messaging/publish-subscribe/) reduces coupling and makes maintaining a system easier in the long run. Then, in [Part 2](/tutorials/quickstart/tutorial-reliability.md) you saw how to handle failures gracefully. Now, let's look at how you can add an additional subscriber without needing to modify any existing code.
 
 {{NOTE:
 If you didn't already, download the quick start project in the [previous lesson](/tutorials/quickstart), you can download it now:
