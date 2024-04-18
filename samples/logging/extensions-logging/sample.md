@@ -26,7 +26,8 @@ NLog in this example is configured in code:
 
 snippet: NLogConfiguration
 
-INFO: There is no preference on how NLog is configured. Based on the NLog documentation the most used method is with an [NLog configuration file](https://github.com/nlog/nlog/wiki/Configuration-file#configuration).
+> [!NOTE]
+> There is no preference on how NLog is configured. Based on the NLog documentation the most used method is with an [NLog configuration file](https://github.com/nlog/nlog/wiki/Configuration-file#configuration).
 
 WARNING: It is important that the NLog, Microsoft.Extensions.Logging, and NServiceBus.Logging abstractions are initialized before `Endpoint.Create` or `Endpoint.Start` is invoked. If logging is not fully initialized it is not guaranteed that logging will work as expected.
 

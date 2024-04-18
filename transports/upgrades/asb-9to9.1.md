@@ -28,7 +28,8 @@ All namespaces used for development, testing, and production should be validated
 
 ## Side-by-side migration
 
-INFO: Endpoints with migration mode enabled require "manage" rights to create entities on the broker.
+> [!NOTE]
+> Endpoints with migration mode enabled require "manage" rights to create entities on the broker.
 
 Before migrating endpoints to the forwarding topology, all endpoints must have migration mode enabled. To enable migration mode:
 

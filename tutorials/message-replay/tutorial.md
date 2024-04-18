@@ -26,7 +26,8 @@ As shown in the diagram, the **ClientUI** endpoint sends a **PlaceOrder** comman
 
 ![Project Diagram](/tutorials/nservicebus-step-by-step/4-publishing-events/diagram.svg)
 
-INFO: In a real system, the **Shipping** endpoint should be able to take some action once it receives both an `OrderPlaced` and `OrderBilled` event for the same order. That is a good use case for a [Saga](/nservicebus/sagas/) and is outside of the scope of this tutorial.
+> [!NOTE]
+> In a real system, the **Shipping** endpoint should be able to take some action once it receives both an `OrderPlaced` and `OrderBilled` event for the same order. That is a good use case for a [Saga](/nservicebus/sagas/) and is outside of the scope of this tutorial.
 
 ## Running the solution
 
@@ -68,7 +69,7 @@ System.Exception: BOOM
 
 Note that the **Sales** endpoint did not peform any delayed retries. This is because retries have been [disabled](/nservicebus/recoverability/configure-delayed-retries.md) in the **Sales** endpoint's **Program.cs** file:
 
-snippet: NoDelayedRetries	
+snippet: NoDelayedRetries
 
 Since we are going to be causing a lot of messages to fail in this exercise, we'd prefer not to wait around for several rounds of delayed retries to complete.
 

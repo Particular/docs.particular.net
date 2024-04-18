@@ -159,7 +159,8 @@ Reminder: As noted in [configuring an endpoint](#exercise-configuring-an-endpoin
 
 Now when we run the solution, we get two console windows, one for ClientUI and one for Sales. After moving the windows around so that we can see both, we can try to place an order by pressing <kbd>P</kbd> in the **ClientUI** window.
 
-INFO: You can also keep console windows from showing up in random screen locations each time by right-clicking the console window's title bar, and in the **Layout** tab, unchecking the **Let system position window** checkbox.
+> [!NOTE]
+> You can also keep console windows from showing up in random screen locations each time by right-clicking the console window's title bar, and in the **Layout** tab, unchecking the **Let system position window** checkbox.
 
 In the **ClientUI** window, we see this output:
 

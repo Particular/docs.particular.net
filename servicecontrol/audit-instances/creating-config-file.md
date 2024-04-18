@@ -47,7 +47,8 @@ Type: string
 
 ### Raven/IndexStoragePath
 
-INFO: Only supported on the RavenDB 3.5 storage engine. Use [symbolic links (soft links) to map any RavenDB storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
+> [!NOTE]
+> Only supported on the RavenDB 3.5 storage engine. Use [symbolic links (soft links) to map any RavenDB storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
 
 The path for the indexes on disk.
 
@@ -296,7 +297,8 @@ to access the internal database via [the RavenDB studio interface](https://raven
 ### RavenDB 3.5
 
 #if-version [5,)
-INFO: Obsolete since version 5.0.0
+> [!NOTE]
+> Obsolete since version 5.0.0
 #end-if
 
 For instances running version 4.25 and below or using the old RavenDB 3.5 persistence the ServiceControl Audit instance can be configured to expose the RavenDB studio.

@@ -308,7 +308,8 @@ The timestamp when the message should be delivered. Used for more accurate calcu
 
 The endpoint name the message was sent from.
 
-INFO: Used for linking messages in ServiceInsight. See [NServiceBus.ConversationId](#messaging-interaction-headers-nservicebus-conversationid)
+> [!NOTE]
+> Used for linking messages in ServiceInsight. See [NServiceBus.ConversationId](#messaging-interaction-headers-nservicebus-conversationid)
 
 ### NServiceBus.OriginatingMachine
 
@@ -330,7 +331,8 @@ The timestamp when the processing of a message ended.
 
 Name of the endpoint where the message was processed.
 
-INFO: Used for linking messages in ServiceInsight. See [NServiceBus.ConversationId](#messaging-interaction-headers-nservicebus-conversationid)
+> [!NOTE]
+> Used for linking messages in ServiceInsight. See [NServiceBus.ConversationId](#messaging-interaction-headers-nservicebus-conversationid)
 
 ### NServiceBus.ProcessingMachine
 

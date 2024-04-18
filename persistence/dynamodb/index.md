@@ -77,7 +77,8 @@ When using [provisioned throughput](https://docs.aws.amazon.com/amazondynamodb/l
 
 WARN: When using the Dynamo DB persistence with the outbox enabled, "provisioned throughput exceeded" errors may result in handler re-execution and/or duplicate message dispatches depending on which operation is throttled.
 
-INFO: AWS provides [guidance](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughput.html#ProvisionedThroughput.Troubleshooting) on how to diagnose and troubleshoot provisioned throughput exceeded exceptions.
+> [!NOTE]
+> AWS provides [guidance](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughput.html#ProvisionedThroughput.Troubleshooting) on how to diagnose and troubleshoot provisioned throughput exceeded exceptions.
 
 The Dynamo DB SDK provides a mechanism to automatically retry operations when rate-limiting occurs. Besides changing the provisioned capacity or switching to autoscaling or the on-demand capacity mode, those settings can be adjusted to help prevent messages from failing during spikes in message volume.
 

@@ -37,7 +37,8 @@ snippet: ps-getversion
 > [!NOTE]
 > The majority of the cmdlets will only work if the PowerShell session is running with administrator privileges.
 #if-version [,5)
-INFO: The ServiceControl installer currently includes a legacy version of the PowerShell module called `ServiceControlMgmt` that is only supported on Windows PowerShell 5.1. It does not work with newer versions of PowerShell. The ServiceControl installer creates a shortcut in the Windows start menu to launch an administrative PowerShell Session with this legacy module automatically loaded. The legacy module is not signed, so the PowerShell execution policy needs to be set to `Unrestricted` to use it.
+> [!NOTE]
+> The ServiceControl installer currently includes a legacy version of the PowerShell module called `ServiceControlMgmt` that is only supported on Windows PowerShell 5.1. It does not work with newer versions of PowerShell. The ServiceControl installer creates a shortcut in the Windows start menu to launch an administrative PowerShell Session with this legacy module automatically loaded. The legacy module is not signed, so the PowerShell execution policy needs to be set to `Unrestricted` to use it.
 
 ### Troubleshooting
 

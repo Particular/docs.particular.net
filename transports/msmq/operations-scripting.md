@@ -15,7 +15,8 @@ These examples use the [System.Messaging](https://docs.microsoft.com/en-us/dotne
 
 WARNING: The `Systems.Messaging` namespace is not available in .NET Core.
 
-INFO: When using the C# code samples, be sure to add the proper includes for both the `System.Messaging` and `System.Transactions` assemblies in the program that's using these functions. When using the PowerShell scripts, include these assemblies by calling `Add-Type` in the script.
+> [!NOTE]
+> When using the C# code samples, be sure to add the proper includes for both the `System.Messaging` and `System.Transactions` assemblies in the program that's using these functions. When using the PowerShell scripts, include these assemblies by calling `Add-Type` in the script.
 
 
 ## Create queues

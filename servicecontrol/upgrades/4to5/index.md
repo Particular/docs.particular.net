@@ -85,7 +85,8 @@ These steps should be followed whether updating using ServiceControl Management 
    * Once the failed message list is "clean" there will be no data of any value left in the database, making it safe to upgrade.
 
 
-INFO: If data migration is not required for existing error messages, for example on developer workstations, the [forced upgrade procedure](#force-upgrading) can be used on instances with version 4.26.0 or later. This is the minimum version that can be upgraded to ServiceControl 5.
+> [!NOTE]
+> If data migration is not required for existing error messages, for example on developer workstations, the [forced upgrade procedure](#force-upgrading) can be used on instances with version 4.26.0 or later. This is the minimum version that can be upgraded to ServiceControl 5.
 
 ### Upgrading using ServiceControl Management
 

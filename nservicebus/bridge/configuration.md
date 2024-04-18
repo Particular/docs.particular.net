@@ -37,7 +37,8 @@ Legacy transport versions that use [message-driven pub/sub](/nservicebus/messagi
 
 snippet: register-publisher-legacy
 
-INFO: Using the overloads that accept a type instead of a string value is recommended. Passing types can be problematic when not using [naming conventions for messages via unobtrusive mode](/nservicebus/messaging/conventions.md).
+> [!NOTE]
+> Using the overloads that accept a type instead of a string value is recommended. Passing types can be problematic when not using [naming conventions for messages via unobtrusive mode](/nservicebus/messaging/conventions.md).
 
 partial: multiple-publishers
 

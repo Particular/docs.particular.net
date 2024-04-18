@@ -74,7 +74,8 @@ For each endpoint:
 1. Use the [`queue migrate-to-quorum`](/transports/rabbitmq/operations-scripting.md#queue-migrate-to-quorum) command provided by the command line tool to migrate all queues used by the endpoint to quorum queues. In addition to the queue with the same name as the endpoint, there may be queues named according to the pattern `{EndpointName}-{Discriminator}` which also need to be migrated.
 1. Deploy the new version of the endpoint code.
 
-INFO: If installers were previously disabled because endpoints were already updated to version 7.0.0, the installers can be re-enabled as part of the per-endpoint process here.
+> [!NOTE]
+> If installers were previously disabled because endpoints were already updated to version 7.0.0, the installers can be re-enabled as part of the per-endpoint process here.
 
 ## Step 8: Migrate delayed messages
 

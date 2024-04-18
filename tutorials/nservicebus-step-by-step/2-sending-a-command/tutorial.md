@@ -51,7 +51,8 @@ Messages are data contracts and as such, they are shared between multiple endpoi
 
 **Message assemblies** should be entirely self-contained, meaning they should contain only NServiceBus message types, and any supporting types required by the messages themselves. For example, if a message uses an enumeration type for one of its properties, that enumeration type should also be contained within the same message assembly.
 
-INFO: It is technically possible to embed messages within the endpoint assembly, but those messages can't be exchanged with other endpoints. Some of the samples in our documentation break this rule and embed the messages in the endpoint assembly in order to make the sample easier to understand. In this tutorial, we'll stick to keeping them in dedicated message assemblies.
+> [!NOTE]
+> It is technically possible to embed messages within the endpoint assembly, but those messages can't be exchanged with other endpoints. Some of the samples in our documentation break this rule and embed the messages in the endpoint assembly in order to make the sample easier to understand. In this tutorial, we'll stick to keeping them in dedicated message assemblies.
 
 Additionally, message assemblies should have no dependencies other than libraries included with the .NET Framework, and the NServiceBus core assembly, which is required to reference the `ICommand` interface.
 
@@ -131,7 +132,8 @@ When complete, your `PlaceOrderHandler` class should look like this:
 
 snippet: PlaceOrderHandler
 
-INFO: Because `LogManager.GetLogger(..);` is an expensive call, it's important to [implement loggers as static members](/nservicebus/logging/usage.md).
+> [!NOTE]
+> Because `LogManager.GetLogger(..);` is an expensive call, it's important to [implement loggers as static members](/nservicebus/logging/usage.md).
 
 
 ### Send a message

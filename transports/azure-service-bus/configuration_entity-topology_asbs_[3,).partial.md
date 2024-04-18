@@ -10,6 +10,7 @@ For large systems that are approaching the [topology limits](/transports/azure-s
 
 snippet: custom-topology-hierarchy
 
-INFO: Carefully read the [topology limitation guidelines](/transports/azure-service-bus/topology.md#quotas-and-limitations) before using topology hierarchies.
+> [!NOTE]
+> Carefully read the [topology limitation guidelines](/transports/azure-service-bus/topology.md#quotas-and-limitations) before using topology hierarchies.
 
 Topic names must adhere to the limits outlined in [the Microsoft documentation on topic creation](https://docs.microsoft.com/en-us/rest/api/servicebus/create-topic).

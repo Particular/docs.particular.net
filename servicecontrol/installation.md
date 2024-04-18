@@ -27,7 +27,8 @@ partial: prereqs
 
 ## Planning
 
-INFO: In production environments, make sure to review the [environment considerations](/servicecontrol/servicecontrol-instances/hardware.md) when setting up a machine with ServiceControl.
+> [!NOTE]
+> In production environments, make sure to review the [environment considerations](/servicecontrol/servicecontrol-instances/hardware.md) when setting up a machine with ServiceControl.
 
 The ServiceControl Management Utility provides a simple way to set up one or more ServiceControl instances (error, audit, and monitoring). For production systems, it is recommended to limit the number of instances per machine to one of each type. The ability to add multiple instances *of the same type on a single machine* is primarily intended to assist development and test environments.
 

@@ -13,7 +13,8 @@ related:
 
 This sample shows how to remove subscriptions from message transports that do not have native pub/sub support.
 
-INFO: While this sample uses the [MSMQ transport](/transports/msmq), the concepts shown are valid for all transports based on message-driven subscriptions except those that support native pub/sub. For more information see [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/).
+> [!NOTE]
+> While this sample uses the [MSMQ transport](/transports/msmq), the concepts shown are valid for all transports based on message-driven subscriptions except those that support native pub/sub. For more information see [Publish-Subscribe](/nservicebus/messaging/publish-subscribe/).
 
 
 ## Running the sample
