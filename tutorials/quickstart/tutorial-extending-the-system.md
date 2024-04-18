@@ -11,7 +11,7 @@ extensions:
 In [Part 1 of this tutorial](/tutorials/quickstart), you saw that publishing events using the [Publish-Subscribe pattern](/nservicebus/messaging/publish-subscribe/) reduces coupling and makes maintaining a system easier in the long run. Then, in [Part 2](/tutorials/quickstart/tutorial-reliability.md) you saw how to handle failures gracefully. Now, let's look at how you can add an additional subscriber without needing to modify any existing code.
 
 {{NOTE:
-If you didn't already, download the quick start project in the [previous lesson](/tutorials/quickstart), you can download it now:
+If you didn't already download the Quickstart solution in the [previous lesson](/tutorials/quickstart), you can download it now:
 
 downloadbutton
 }}
@@ -25,13 +25,13 @@ NOTE: In this tutorial, you will use terminal commands like [`dotnet new`](https
 ### Create a new endpoint
 On this step, you will create the **Shipping** project and set up its dependencies.
 
-First let's make sure both browser windows and all console applications are closed, and in the terminal,  you're in the root of the project where the **RetailDemo.sln** file is located:
+First, make sure both browser windows and all console applications are closed. Then, in the terminal, navigate to the root of the project where the **RetailDemo.sln** file is located:
 
 ```shell
 > cd tutorials-quickstart
 ```
 
-Next, you will create a new Console Application project named **Shipping** and add it to the solution:
+Next, create a new Console Application project named **Shipping** and add it to the solution:
 
 ```shell
 > dotnet new console --name Shipping --framework net6.0

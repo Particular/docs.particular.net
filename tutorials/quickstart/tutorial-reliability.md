@@ -70,7 +70,7 @@ NOTE: If you didn't detach the debugger, you must click the **Continue** button 
 
 5. Stop the solution and re-comment the code inside the **ThrowTransientException** region, so no exceptions are thrown in the future.
 
-Automatic retries allow you to avoid losing data or having you system left in an inconsistent state because of a random transient exception. We won't need to manually dig through the database to fix things anymore!
+Automatic retries allow you to avoid losing data or having your system left in an inconsistent state because of a random transient exception. You won't need to manually dig through the database to fix things anymore!
 
 Of course, there are other exceptions that may be harder to recover from than simple database deadlocks. Let's see what happens when a systemic failure occurs.
 
