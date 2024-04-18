@@ -14,11 +14,12 @@ Want to quickly learn what NServiceBus is all about? You're in the right place. 
 * Build a failure-resistant system using messages
 * Create a system that can be easily extended as new requirements are added
 
-{{NOTE:
-* If you're new here, check out the [overview of NServiceBus](https://particular.net/nservicebus).
-* The [Glossary of messaging terms](/nservicebus/concepts/glossary.md) may help as you go along this tutorial.
-* If you're already familiar with the basic benefits of messaging, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/) for a deeper dive instead.
-}}
+If you've already experienced the benefits of messaging, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
+
+> [!NOTE]
+> * If you're new here, check out the [overview of NServiceBus](https://particular.net/nservicebus).
+> * The [Glossary of messaging terms](/nservicebus/concepts/glossary.md) may help as you go along this tutorial.
+> * If you're already familiar with the basic benefits of messaging, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/) for a deeper dive instead.
 
 ## About the **RetailDemo** solution
 
@@ -59,10 +60,17 @@ The solution is configured to have [multiple startup projects](https://docs.micr
 ![3 console applications, one for endpoint implemented as a console app](3-console-windows.png)
 ![ClientUI Web Application](webapp-start-2.png)
 
+<<<<<<< HEAD
 {{WARNING: Did all three windows appear?
   - For [Visual Studio Code](https://code.visualstudio.com/) users, ensure the _Debug All_ launch configuration is selected from the dropdown list under the _Run and Debug_ tab.
   - In versions prior to Visual Studio 2019 16.1, there is a bug ([Link 1](https://developercommunity.visualstudio.com/content/problem/290091/unable-to-launch-the-previously-selected-debugger-1.html), [Link 2](https://developercommunity.visualstudio.com/content/problem/101400/unable-to-launch-the-previously-selected-debugger.html?childToView=583221#comment-583221)) that will sometimes prevent one or more projects from launching with an error message. If this is the case, stop debugging and try again. The problem usually happens only on the first attempt.
   - For [Rider](https://www.jetbrains.com/rider/) users, follow the steps described on [their documentation](https://www.jetbrains.com/help/rider/Run_Debug_Multiple.html#multi_launch)}}
+=======
+> [!WARNING]
+> Did all three windows appear?
+>   - For [Visual Studio Code](https://code.visualstudio.com/) users, ensure the _Debug All_ launch configuration is selected from the dropdown list under the _Run and Debug_ tab.
+>   - In versions prior to Visual Studio 2019 16.1, there is a bug ([Link 1](https://developercommunity.visualstudio.com/content/problem/290091/unable-to-launch-the-previously-selected-debugger-1.html), [Link 2](https://developercommunity.> visualstudio.com/content/problem/101400/unable-to-launch-the-previously-selected-debugger.html?childToView=583221#comment-583221)) that will sometimes prevent one or more projects from launching with an error message. If this is the case, stop > debugging and try again. The problem usually happens only on the first attempt.
+>>>>>>> a68f7e56fe (Easy multi-lines)
 
 In the **ClientUI** web application, click the **Place order** button to place an order, and watch what happens on the other windows.
 

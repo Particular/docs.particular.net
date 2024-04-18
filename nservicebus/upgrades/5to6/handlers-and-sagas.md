@@ -256,15 +256,16 @@ protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData>
 
 Version 6 automatically correlates incoming message properties to its saga data counterparts. Any saga data correlation in the message handler code can be safely removed. Correlated properties (for existing saga instances) do not change once set.
 
-{{NOTE: Correlated properties must have a non [default](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default-values-table) value, i.e., not null and not empty, assigned when persisted. If not the following exception is thrown:
+> [!NOTE]
+> Correlated properties must have a non [default](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default-values-table) value, i.e., not null and not empty, assigned when persisted. If not the following exception is thrown:
+>
+> ```
+> The correlated property 'MyPropery' on Saga 'MySaga' does not have a value.
+> A correlated property must have a non-default (i.e., non-null and non-empty) value assigned when a new saga instance is created.
+> ```
+>
+> Use a [custom finder](/nservicebus/sagas/saga-finding.md) for the received message to override this validation.
 
-```
-The correlated property 'MyPropery' on Saga 'MySaga' does not have a value.
-A correlated property must have a non-default (i.e., non-null and non-empty) value assigned when a new saga instance is created.
-```
-
-Use a [custom finder](/nservicebus/sagas/saga-finding.md) for the received message to override this validation.
-}}
 
 ```csharp
 // For NServiceBus version 6.x

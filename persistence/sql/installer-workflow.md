@@ -11,13 +11,13 @@ redirects:
 ---
 
 
-{{WARNING:
+> [!WARNING]
+>
+> The following pages should be reviewed prior to this page:
+>
+>  * [SQL Persistence NuGet Packages](/persistence/sql/#nuget-packages)
+>  * [Installation and deployment](/persistence/sql/install.md)
 
-The following pages should be reviewed prior to this page:
-
- * [SQL Persistence NuGet Packages](/persistence/sql/#nuget-packages)
- * [Installation and deployment](/persistence/sql/install.md)
-}}
 
 
 ## Contrasting Workflows

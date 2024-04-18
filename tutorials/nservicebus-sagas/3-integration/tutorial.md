@@ -89,11 +89,10 @@ snippet: HandleShipOrder
 
 We've sent a `ShipWithMaple` command and requested a `ShippingEscalation` timeout of 20 seconds so that if Maple doesn't respond within that time, we can ship with Alpine instead. Also, notice how we can use `Data.OrderId` immediately—because of the mapping in our `ConfigureHowToFindSaga` method, NServiceBus already knows that the saga data's `OrderId` property needs to be filled using the message's `OrderId` property, so it helpfully prefills this for us.
 
-{{NOTE:
-**Why 20 seconds?**
-
-In real life, timeouts like these would more likely be measured in hours, days, or even months. In this tutorial, we want to keep it to a matter of seconds so we can watch the entire process play out immediately.
-}}
+> [!NOTE]
+> **Why 20 seconds?**
+>
+> In real life, timeouts like these would more likely be measured in hours, days, or even months. In this tutorial, we want to keep it to a matter of seconds so we can watch the entire process play out immediately.
 
 Now that we've created this command and timeout, we need to do something with them, starting with the command.
 
@@ -101,13 +100,12 @@ Now that we've created this command and timeout, we need to do something with th
 
 We will use a separate message handler to communicate with the Maple web service—or at least, we would in real life. For this tutorial, we'll use a fake message handler.
 
-{{NOTE:
-**Why not contact the web service directly within the saga?**
-
-While the saga is processing the message, it holds a database lock on your saga data so that if multiple messages from the same saga try to modify the data simultaneously, only one of them will succeed. This presents two problems for a web service request. First, a web request can't be added to a database transaction, meaning that if a concurrency exception occurs, the web request can't be undone. The second is that the time it takes for the web request to complete will hold the saga database transaction open longer, making it even more likely that another message will be processed concurrently, creating more contention.
-
-This is why a saga should be only a message-driven state machine: a message comes in, decisions are made, and messages go out. Leave all the other processing to external message handlers, as shown in this tutorial.
-}}
+> [!NOTE]
+> **Why not contact the web service directly within the saga?**
+>
+> While the saga is processing the message, it holds a database lock on your saga data so that if multiple messages from the same saga try to modify the data simultaneously, only one of them will succeed. This presents two problems for a web service > request. First, a web request can't be added to a database transaction, meaning that if a concurrency exception occurs, the web request can't be undone. The second is that the time it takes for the web request to complete will hold the saga > database transaction open longer, making it even more likely that another message will be processed concurrently, creating more contention.
+>
+> This is why a saga should be only a message-driven state machine: a message comes in, decisions are made, and messages go out. Leave all the other processing to external message handlers, as shown in this tutorial.
 
 We'll need to create the message handler and configure the routing so the saga knows where to send the `ShipWithMaple` command.
 

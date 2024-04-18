@@ -33,14 +33,14 @@ To send a message from inside a message handler:
 
 snippet: SendFromHandler
 
-{{WARNING: Using `IMessageSession` or `IEndpointInstance` to send messages inside a handler instead of the provided `IMessageHandlerContext` should be avoided.
-
-Some of the dangers when using an `IMessageSession` or `IEndpointInstance` inside a message handler to send or publish messages are:
-
- * Those messages will not participate in the same transaction as that of the message handler. This could result in messages being dispatched or events published even if the message handler resulted in an exception and the operation was rolled back.
- * Those messages will not be part of the [batching operation](/nservicebus/messaging/batched-dispatch.md).
- * Those messages will not contain any important message header information that is available via the `IMessageHandlerContext` interface parameter, e.g., CorrelationId.
-}}
+> [!WARNING]
+> Using `IMessageSession` or `IEndpointInstance` to send messages inside a handler instead of the provided `IMessageHandlerContext` should be avoided.
+>
+> Some of the dangers when using an `IMessageSession` or `IEndpointInstance` inside a message handler to send or publish messages are:
+>
+> * Those messages will not participate in the same transaction as that of the message handler. This could result in messages being dispatched or events published even if the message handler resulted in an exception and the operation was rolled back.
+> * Those messages will not be part of the [batching operation](/nservicebus/messaging/batched-dispatch.md).
+> * Those messages will not contain any important message header information that is available via the `IMessageHandlerContext` interface parameter, e.g., CorrelationId.
 
 > [!NOTE]
 > `Send` is an asynchronous operation. When the invocation ends, it does not mean that the message has actually been sent. In scenarios where a large number of messages are sent in a short period, it might be beneficial, from a performance perspective, to limit the number of outstanding send operations pending for completion. Sample approaches that can be used to limit the number of send tasks can be found in [Writing Async Handlers](/nservicebus/handlers/async-handlers.md#concurrency-large-amount-of-concurrent-message-operations).

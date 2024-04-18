@@ -39,11 +39,10 @@ In NServiceBus, the DTC is used to guarantee consistency between messaging opera
 
 Instead of the DTC, the [Outbox feature](/nservicebus/outbox/) can be used to mimic this level of consistency without the need for distributed transactions. It does this by first storing any outgoing messages in the database, taking advantage of same (non-distributed) local transaction to ensure that the messaging operations are stored atomically with any changes to business data and NServiceBus data. Once that transaction is successfully committed, the data for the outgoing messages are dispatched to the message transport separately.
 
-{{WARNING:
-The Outbox relies upon the local RavenDB database transaction, this means that all business data and NServiceBus data for the transaction must be contained within the same RavenDB database.
-
-*Due to the one-database rule, the Outbox feature cannot guarantee consistency in a mixed-database environment. For example, when storing NServiceBus persistence data in RavenDB while storing business data in SQL Server, consistency cannot be achieved using the Outbox feature. In this type of situation, transitioning to a different persistence as described below is required.*
-}}
+> [!WARNING]
+> The Outbox relies upon the local RavenDB database transaction, this means that all business data and NServiceBus data for the transaction must be contained within the same RavenDB database.
+>
+> *Due to the one-database rule, the Outbox feature cannot guarantee consistency in a mixed-database environment. For example, when storing NServiceBus persistence data in RavenDB while storing business data in SQL Server, consistency cannot be achieved using the Outbox feature. In this type of situation, transitioning to a different persistence as described below is required.*
 
 To migrate away from DTC, refer to the [Outbox documentation](/nservicebus/outbox/), especially the section on [converting from DTC to Outbox](/nservicebus/outbox/#converting-from-dtc-to-outbox), as well as the [Outbox with RavenDB persistence](/persistence/ravendb/outbox.md) article, being sure to use the *Switch Version* button just below the article titles to customize the content for the versions of NServiceBus and NServiceBus.RavenDB currently in use.
 

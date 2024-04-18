@@ -14,10 +14,10 @@ For ServiceControl instances using RavenDB 5, refer to the [official RavenDB doc
 
 ## Instances using RavenDB 3.5
 
-{{INFO: Applies to:
-* ServiceControl 4.26.0 or newer instances using the RavenDB 3.5 engine
-* ServiceControl 4.25.x or lower
-}}
+> [!NOTE]
+> Applies to:
+> * ServiceControl 4.26.0 or newer instances using the RavenDB 3.5 engine
+> * ServiceControl 4.25.x or lower
 
 ### Backup
 

@@ -83,11 +83,10 @@ In the **Shipping** endpoint, let's create a new class called `ShippingPolicyDat
 
 snippet: BasicShippingPolicyData
 
-{{NOTE:
-**Where do I put the `ShippingPolicyData` class?**
-
-Saga data is private to the saga, since it stores state for a specific saga and cannot be used by any other component in the system. When designing a system, it is convenient to define saga data as a nested class inside the saga definition. This approach helps in strengthening the close relationship between the two artifacts. However, it is important to verify that your persistence and serialization choices support the use of nested classes.
-}}
+> [!NOTE]
+> **Where do I put the `ShippingPolicyData` class?**
+>
+> Saga data is private to the saga, since it stores state for a specific saga and cannot be used by any other component in the system. When designing a system, it is convenient to define saga data as a nested class inside the saga definition. This approach helps in strengthening the close relationship between the two artifacts. However, it is important to verify that your persistence and serialization choices support the use of nested classes.
 
 To tell the saga what class to use for its data, we inherit from `Saga<TData>` where `TData` is the saga data type. So for the `ShippingPolicy`, we'll inherit from `Saga<ShippingPolicyData>` like this:
 
@@ -167,9 +166,8 @@ In our case, we can use `OrderId` as our **correlation id**. Let's update our `C
 
 snippet: ShippingPolicyFinalMappings
 
-{{NOTE:
-Unlike the example here, the same property name doesn't have to be used on the message mapping expression, but it certainly makes everything easier if they all match. It is fairly common, especially when integrating events from different teams, to have different message property names that describe the same fundamental concept.
-}}
+> [!NOTE]
+> Unlike the example here, the same property name doesn't have to be used on the message mapping expression, but it certainly makes everything easier if they all match. It is fairly common, especially when integrating events from different teams, to have different message property names that describe the same fundamental concept.
 
 Our mappings specify that whenever a message of type `OrderPlaced` is received, the infrastructure needs to use the incoming message `OrderId` property value to look up the saga instance with the id that matches the given `OrderId`. If the saga instance doesn't exist and the message is configured to create a new one, NServiceBus will use the value of the `OrderId` property from the incoming message as a correlation id for the new saga.
 

@@ -2,20 +2,18 @@ DANGER: It is not recommended to use the NServiceBus Scheduler due to its [limit
 
 The scheduler is a lightweight/non-durable API that helps schedule a task that needs to be executed repeatedly at a specified interval. In order to benefit from NServiceBus features such as built-in retries and forwarding to the error queue, scheduled tasks should only `Send` or `SendLocal` a single message in order to perform the actual work. One example is to query the database for orders that need some action to be taken and emit individual messages for each order that is found.
 
-{{WARNING:
-
-Scheduling a task depends on [delayed delivery](/nservicebus/messaging/delayed-delivery.md). If the delayed delivery operation fails, the scheduler will be interrupted and a `ScheduledTask` message will be forwarded to the error queue. When this happens the scheduled task will stop executing unless the `ScheduledTask` message is retried or the endpoint instance is restarted.
-
-Whenever execution history, or timely or fully-reliable scheduling is needed, it is recommended to use dedicated scheduling technology. For example:
-
-* A [.NET Timer](https://msdn.microsoft.com/en-us/library/system.threading.timer.aspx).
-* [NServiceBus Sagas](/nservicebus/sagas/)
-* [Quartz.NET](https://www.quartz-scheduler.net/). See [Quartz.NET Sample](/samples/scheduling/quartz/).
-* OS task scheduler, like the Windows task scheduler or Linux cron jobs.
-* [Hangfire](https://www.hangfire.io/). See [Hangfire Sample](/samples/scheduling/hangfire/).
-* [FluentScheduler](https://github.com/fluentscheduler/FluentScheduler). See [FluentScheduler Sample](/samples/scheduling/fluentscheduler/).
-
-}}
+> [!WARNING]
+>
+> Scheduling a task depends on [delayed delivery](/nservicebus/messaging/delayed-delivery.md). If the delayed delivery operation fails, the scheduler will be interrupted and a `ScheduledTask` message will be forwarded to the error queue. When this happens the scheduled task will stop executing unless the `ScheduledTask` message is retried or the endpoint instance is restarted.
+>
+> Whenever execution history, or timely or fully-reliable scheduling is needed, it is recommended to use dedicated scheduling technology. For example:
+>
+> * A [.NET Timer](https://msdn.microsoft.com/en-us/library/system.threading.timer.aspx).
+> * [NServiceBus Sagas](/nservicebus/sagas/)
+> * [Quartz.NET](https://www.quartz-scheduler.net/). See [Quartz.NET Sample](/samples/scheduling/quartz/).
+> * OS task scheduler, like the Windows task scheduler or Linux cron jobs.
+> * [Hangfire](https://www.hangfire.io/). See [Hangfire Sample](/samples/scheduling/hangfire/).
+> * [FluentScheduler](https://github.com/fluentscheduler/FluentScheduler). See [FluentScheduler Sample](/samples/scheduling/fluentscheduler/).
 
 ## How the scheduler works
 

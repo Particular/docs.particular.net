@@ -5,8 +5,8 @@ related:
 reviewed: 2021-12-10
 ---
 
-{{WARNING: This persistence will run on the free version of the database engine i.e. [SQL Server Express](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express). However, it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place. See [Microsoft Premier Support](https://www.microsoft.com/en-us/microsoftservices/support.aspx) for details.
-}}
+> [!WARNING]
+> This persistence will run on the free version of the database engine i.e. [SQL Server Express](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express). However, it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place. See [Microsoft Premier Support](https://www.microsoft.com/en-us/microsoftservices/support.aspx) for details.
 
 
 ## Supported database versions
