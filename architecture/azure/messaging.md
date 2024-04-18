@@ -28,7 +28,7 @@ Azure Service Bus has two pricing tiers: [Standard and Premium](https://learn.mi
 - No cross-namespace communication
 - No emulator for local development or testing available
 
-Try the Azure Service Bus Tutorial →**](https://learn.microsoft.com/en-us/azure/service-bus-messaging/build-message-driven-apps-nservicebus?tabs=Sender)
+[**Try the Azure Service Bus Tutorial →**](https://learn.microsoft.com/en-us/azure/service-bus-messaging/build-message-driven-apps-nservicebus?tabs=Sender)
 
 ### When to use Azure Service Bus
 
