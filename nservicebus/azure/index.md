@@ -1,10 +1,10 @@
 ---
 title: NServiceBus and Azure
 summary: Using Azure for endpoint hosting and to provide Transports and Persistence
-reviewed: 2024-01-23
+reviewed: 2024-04-18
 ---
 
-NServiceBus helps create distributed .NET systems not only on premises but also in the Microsoft Azure cloud. It provides a variety of capabilities built for Microsoft Azure such as hosting, Azure specific transports, and persistence.
+NServiceBus helps create distributed .NET systems not only on premises but also in the Microsoft Azure cloud. It provides a variety of capabilities built for Microsoft Azure such as hosting, Azure-specific transports, and persistence.
 
 ## Hosting
 
@@ -24,7 +24,7 @@ NServiceBus helps create distributed .NET systems not only on premises but also 
 
 * [Azure Table Persistence](/persistence/azure-table/)
 * [Service Fabric Persistence](/persistence/service-fabric/)
-* [Azure CosmosBB Persistence](/persistence/cosmosdb/)
+* [Azure CosmosDB Persistence](/persistence/cosmosdb/)
 
 ## Cloud native extensions and samples
 
