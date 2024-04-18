@@ -54,7 +54,7 @@ Returning to the earlier example of a message handler that creates a `User` and 
 ```mermaid
 graph TD
   subgraph Phase 1
-  receiveMessage(1. Receive incoming message)  
+  receiveMessage(1. Receive incoming message)
   dedupe{2. Deduplication}
   createTx(3. Begin transaction)
   messageHandler(4. Execute message handler)
@@ -78,7 +78,7 @@ graph TD
   commitTx-->phase2
   phase2-->areSent
   send-->updateOutbox
-  updateOutbox-->ack 
+  updateOutbox-->ack
 
   dedupe-- Record found -->phase2
   areSent-- No -->send
@@ -114,7 +114,8 @@ There is no single transaction that spans all the operations. The operations occ
 
 In phase 1, outgoing messages are not immediately sent. They are serialized and persisted in outbox storage. This occurs in a single transaction (steps 3 to 6) which also includes changes to business data made by message handlers. This guarantees that changes to business data are not made without capturing outgoing messages, and vice-versa.
 
-NOTE: This guarantee does not apply to operations in message handlers that do not enlist in [an outbox transaction](/nservicebus/handlers/accessing-data.md#synchronized-storage-session), such as sending emails, changing the file system, etc.
+> [!NOTE]
+> This guarantee does not apply to operations in message handlers that do not enlist in [an outbox transaction](/nservicebus/handlers/accessing-data.md#synchronized-storage-session), such as sending emails, changing the file system, etc.
 
 In phase 2, outgoing messages are sent to the messaging infrastructure and outbox storage is updated to indicate that the outgoing messages have been sent (steps 1 to 3). Due to possible failures, a given message may be sent multiple times. For example, if an exception is thrown in step 3 (failure to update outbox storage) the message will be read from outbox storage again and will be sent again. As long as the receiving endpoints use the outbox feature, these duplicates will be handled by the deduplication in phase 1, step 2.
 
@@ -190,7 +191,8 @@ The amount of storage space required for the outbox can be calculated as follows
 
 A single outbox record, after all transport operations have been dispatched, usually requires less than 50 bytes, most of which are taken for storing the original message ID as this is a string value.
 
-NOTE: If the system is processing a high volume of messages, having a long deduplication time frame will increase the amount of storage space that is required by the outbox.
+> [!NOTE]
+> If the system is processing a high volume of messages, having a long deduplication time frame will increase the amount of storage space that is required by the outbox.
 
 ## Persistence
 

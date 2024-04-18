@@ -77,7 +77,8 @@ The SQS transport uses the default [retry and timeout](https://docs.aws.amazon.c
 | `RequestTimeout`   | 100s          |
 | `ReadWriteTimeout` | 300s          |
 
-NOTE: NServiceBus will perform [immediate](/nservicebus/recoverability/#immediate-retries) and [delayed](/nservicebus/recoverability/#delayed-retries) retries in addition to retries performed internally by the SQS client.
+> [!NOTE]
+> NServiceBus will perform [immediate](/nservicebus/recoverability/#immediate-retries) and [delayed](/nservicebus/recoverability/#delayed-retries) retries in addition to retries performed internally by the SQS client.
 
 ## Batching
 

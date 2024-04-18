@@ -57,7 +57,8 @@ The queues can be created using one of the following methods:
 
 ### Automatic queue provisioning
 
-NOTE: This option requires the bridge to have administrative privileges for the queuing systems used and is not recommended for production scenarios.
+> [!NOTE]
+> This option requires the bridge to have administrative privileges for the queuing systems used and is not recommended for production scenarios.
 
 Automatic queue creation is enabled by configuring the bridge as follows:
 
@@ -67,7 +68,8 @@ snippet: auto-create-queues
 
 The bridge provides the ability to change the address of the queue of incoming messages.
 
-NOTE: When forwarding messages to MSMQ endpoints that run on different servers than the bridge, the addresses of the queues that messages should be forwarded to _must_ be provided.
+> [!NOTE]
+> When forwarding messages to MSMQ endpoints that run on different servers than the bridge, the addresses of the queues that messages should be forwarded to _must_ be provided.
 
 snippet: custom-address
 

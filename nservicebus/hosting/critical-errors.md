@@ -61,7 +61,8 @@ snippet: DefiningCustomHostErrorHandlingAction
 
 ### Example of a custom implementation
 
-NOTE: The following implementation assumes that the endpoint instance is hosted in isolation and that the hosting environment of the process will restart the process after it has been killed.
+> [!NOTE]
+> The following implementation assumes that the endpoint instance is hosted in isolation and that the hosting environment of the process will restart the process after it has been killed.
 
 snippet: CustomHostErrorHandlingAction
 

@@ -11,7 +11,8 @@ redirects:
 
 To set a custom hostname and IP port for an instance of the Monitoring instance HTTP API:
 
-NOTE: Anyone who can access the Monitoring instance URL has complete access to the endpoint data stored by the Monitoring instance. This is why the default is to only respond on `localhost`. Carefully consider the implications before exposing a Monitoring instance via a custom or wildcard URI.
+> [!NOTE]
+> Anyone who can access the Monitoring instance URL has complete access to the endpoint data stored by the Monitoring instance. This is why the default is to only respond on `localhost`. Carefully consider the implications before exposing a Monitoring instance via a custom or wildcard URI.
 
 
 ### Using ServiceControl Management

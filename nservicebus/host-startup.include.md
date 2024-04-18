@@ -18,7 +18,8 @@ WARNING: Implementations of `IWantToRunWhenEndpointStartsAndStops` are not start
  * The instances will be stopped only after the transport and any satellites have stopped. While all instances of `IWantToRunWhenEndpointStartsAndStops` are being stopped, the endpoint will not handle any messages received.
  * The instances will be stopped asynchronously within the same method which disposed the endpoint.
 
-NOTE: The endpoint will not start processing messages until all instances of `IWantToRunWhenEndpointStartsAndStops.Start` are completed.
+> [!NOTE]
+> The endpoint will not start processing messages until all instances of `IWantToRunWhenEndpointStartsAndStops.Start` are completed.
 
 DANGER: The `Start` and `Stop` methods will block start up and shut down of the endpoint. For any long running methods, use `Task.Run` so as not to block execution.
 

@@ -8,13 +8,15 @@ Heartbeats can be configured on a per bridge transport basis.  For each bridge t
 
 snippet: configure-heartbeats
 
-NOTE: `ServiceControl_Queue` is a placeholder for the name of the ServiceControl input queue. The name of the ServiceControl input queue matches the [ServiceControl service name](/servicecontrol/installation.md#servicecontrol-plugins) configured in the ServiceControl Management application.
+> [!NOTE]
+> `ServiceControl_Queue` is a placeholder for the name of the ServiceControl input queue. The name of the ServiceControl input queue matches the [ServiceControl service name](/servicecontrol/installation.md#servicecontrol-plugins) configured in the ServiceControl Management application.
 
 #### Heartbeat interval
 
 Heartbeat messages are sent at a default frequency of 10 seconds. As shown above, the frequency may be overridden for each endpoint.
 
-NOTE: The frequency must be lower than the [`HeartbeatGracePeriod`](/servicecontrol/creating-config-file.md#plugin-specific-servicecontrolheartbeatgraceperiod) in ServiceControl.
+> [!NOTE]
+> The frequency must be lower than the [`HeartbeatGracePeriod`](/servicecontrol/creating-config-file.md#plugin-specific-servicecontrolheartbeatgraceperiod) in ServiceControl.
 
 #### Time-To-Live (TTL)
 
@@ -32,7 +34,8 @@ The custom checks feature can be enabled per bridge transport by using `ReportCu
 
 snippet: configure-custom-checks
 
-NOTE: Each custom check is executed once, and the result is sent to each bridge transport configured to report custom checks. When configured to [bridge platform queues](#bridging-platform-queues), it is only necessary to report custom checks on one of the bridge transports. Otherwise, a custom check result will be reported multiple times to the same platform instance.
+> [!NOTE]
+> Each custom check is executed once, and the result is sent to each bridge transport configured to report custom checks. When configured to [bridge platform queues](#bridging-platform-queues), it is only necessary to report custom checks on one of the bridge transports. Otherwise, a custom check result will be reported multiple times to the same platform instance.
 
 #### Time-To-Live (TTL)
 

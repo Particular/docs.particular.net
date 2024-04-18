@@ -28,7 +28,8 @@ snippet: delayed-delivery-override-name
 
 partial: disabling
 
-NOTE: When making use of the table name override, make sure the table is unique per endpoint and not shared across multiple endpoints.
+> [!NOTE]
+> When making use of the table name override, make sure the table is unique per endpoint and not shared across multiple endpoints.
 
 ## Backwards compatibility
 

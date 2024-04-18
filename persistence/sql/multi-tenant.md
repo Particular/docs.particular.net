@@ -26,7 +26,8 @@ In this example, the header `NewTenantHeaderName` is consulted first, with `OldT
 
 snippet: MultiTenantWithFunc
 
-NOTE: A null tenant id indicates a failure to propagate the tenant id from a previous message, rendering the message invalid. The recommended practice is to return null from the callback, rather than processing a message without proper tenant id. In such a case, SQL Persistence will throw an exception, and the message will be moved to the error queue.
+> [!NOTE]
+> A null tenant id indicates a failure to propagate the tenant id from a previous message, rendering the message invalid. The recommended practice is to return null from the callback, rather than processing a message without proper tenant id. In such a case, SQL Persistence will throw an exception, and the message will be moved to the error queue.
 
 ## Disabling Outbox cleanup
 

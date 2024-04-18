@@ -2,7 +2,8 @@
 
 The `nsbsaga` item template will create a C# class for a saga that includes the saga class, saga data class, handlers for two message types, a custom timeout class, and the `ConfigureHowToFindSaga` method.
 
-NOTE: Currently, Visual Studio does not support using item templates from the New Item dialog.
+> [!NOTE]
+> Currently, Visual Studio does not support using item templates from the New Item dialog.
 
 To create a saga:
 

@@ -19,4 +19,5 @@ The `DbContext` generated Entity Framework does not have a constructor with an `
 
 snippet: DbContextPartialWithEntityConnection
 
-NOTE: The code snippets above assume that the created entity data model is named `MySample`. The references should match the names used in the project.
+> [!NOTE]
+> The code snippets above assume that the created entity data model is named `MySample`. The references should match the names used in the project.

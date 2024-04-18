@@ -49,7 +49,8 @@ This will change the payload as follows:
 
 snippet: RawXmlNoWrapPayload
 
-NOTE: The name of the property on the message must match the name of the root node in the XML structure exactly in order to be able to correctly deserialize the no longer wrapped content.
+> [!NOTE]
+> The name of the property on the message must match the name of the root node in the XML structure exactly in order to be able to correctly deserialize the no longer wrapped content.
 
 ## Caveats
 

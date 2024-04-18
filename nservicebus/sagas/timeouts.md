@@ -8,7 +8,7 @@ related:
 - nservicebus/sagas
 ---
 
-Assumptions can not be made in a message-driven environment regarding the order of received messages and exactly when they will arrive. While the connection-less nature of messaging prevents a system from consuming resources while waiting, there is usually an upper limit to a waiting period that the business dictates. 
+Assumptions can not be made in a message-driven environment regarding the order of received messages and exactly when they will arrive. While the connection-less nature of messaging prevents a system from consuming resources while waiting, there is usually an upper limit to a waiting period that the business dictates.
 
 The upper wait time is modeled in NServiceBus as a `Timeout`:
 
@@ -26,7 +26,8 @@ include: non-null-task
 
 A timeout may be requested specifying either a `DateTime` or `TimeSpan`. When specifying a `DateTime`, the `Kind` property must be set. If the timeout specifies a time of day, the calculation must take into account any change to or from DST. Timezone and DST conversion may be done using [`TimeZoneInfo.ConvertTime`](https://docs.microsoft.com/en-us/dotnet/api/system.timezoneinfo.converttime).
 
-NOTE: Timezone and DST information may change in the future, for timeouts that are already set. A saga containing business logic which is dependent on such changes must react to those changes appropriately.
+> [!NOTE]
+> Timezone and DST information may change in the future, for timeouts that are already set. A saga containing business logic which is dependent on such changes must react to those changes appropriately.
 
 ## Requesting multiple timeouts
 
@@ -34,7 +35,8 @@ Multiple timeouts can be requested when processing a message. The individual tim
 
 snippet: saga-multiple-timeouts
 
-NOTE: Sending a timeout with the same data multiple times will result in that timeout being processed multiple times by the saga.
+> [!NOTE]
+> Sending a timeout with the same data multiple times will result in that timeout being processed multiple times by the saga.
 
 ## Revoking timeouts
 
@@ -46,7 +48,8 @@ A timeout is a regular message and once requested, a timeout message can already
 
 It is possible for a timeout to be queued after its saga has been completed. Because a timeout is tied to a specific saga instance it will be ignored once the saga instance is completed.
 
-NOTE: If a saga is created with a previously used saga identifier, the timeout mechanism will not treat it as the previous saga. As a result, any residual timeout messages for the previous, now completed, saga will not be processed by this new saga instance that shares the same identifier. The existing timeout message will be ignored.
+> [!NOTE]
+> If a saga is created with a previously used saga identifier, the timeout mechanism will not treat it as the previous saga. As a result, any residual timeout messages for the previous, now completed, saga will not be processed by this new saga instance that shares the same identifier. The existing timeout message will be ignored.
 
 
 ## Timeout state

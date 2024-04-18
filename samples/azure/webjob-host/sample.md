@@ -32,7 +32,8 @@ The `UseNServiceBus` method of [`NServiceBus.Extensions.Hosting`](/nservicebus/h
 
 snippet: WebJobHost_Start
 
-NOTE: If dependencies need to be shared between the service collection and NServiceBus infrastructure, such as message handlers, see the [ASP.NET Core sample](/samples/dependency-injection/#related-samples).
+> [!NOTE]
+> If dependencies need to be shared between the service collection and NServiceBus infrastructure, such as message handlers, see the [ASP.NET Core sample](/samples/dependency-injection/#related-samples).
 
 A critical error action must be defined to restart the host when a critical error is raised:
 

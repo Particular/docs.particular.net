@@ -49,7 +49,8 @@ A typical workflow on developers machine consists of the following steps:
 
 ### Higher Environment Workflow
 
-NOTE: "Higher Environment" is a general term to refer to any non-development environment. For example "Integration" or "Production".
+> [!NOTE]
+> "Higher Environment" is a general term to refer to any non-development environment. For example "Integration" or "Production".
 
 The workflow in a higher environment will differ based on the specifics of an organizations process. For example, it's possible to allow endpoints [to automatically execute scripts](/persistence/sql/install.md#script-execution-in-non-development-environments) or [to take full control and execute them using custom code](/persistence/sql/install.md#script-execution-in-non-development-environments).
 
@@ -60,7 +61,7 @@ In case of taking full control of script execution, it is necessary to plug-in t
 
 The generated scripts do not contain all variables, because some of them are gathered only at runtime, e.g. `@schema` and `@tablePrefix`. Those variables need to be explicitly provided when scripts are executed. Installers automatically gather that information from endpoint configuration (e.g. by default the endpoint name is used as a `@tablePrefix` value).
 
-Additionally, scripts assume the required databases and schemas already exist. Even when executed automatically by installers, scripts don't contain statements creating those elements, as they require additional configuration, such as appropriate security settings, taking into account redundancy and backup plans, etc. 
+Additionally, scripts assume the required databases and schemas already exist. Even when executed automatically by installers, scripts don't contain statements creating those elements, as they require additional configuration, such as appropriate security settings, taking into account redundancy and backup plans, etc.
 
 A sample workflow in that kind of environment can consist of the following steps:
 

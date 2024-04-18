@@ -18,7 +18,8 @@ The following script returns messages waiting in a given queue:
 
 snippet: inspect-queue
 
-NOTE: Some columns have been removed for clarity as they are only required for wire-level compatibility with previous versions of SQL Server transport.
+> [!NOTE]
+> Some columns have been removed for clarity as they are only required for wire-level compatibility with previous versions of SQL Server transport.
 
 The `BodyString` column is a computed value that allows inspecting of the message body when a text-based serializer is used (e.g. Json or XML).
 
@@ -97,7 +98,8 @@ A retry involves the following actions:
  * Read a message from the error queue table.
  * Forward that message to another queue table to be retried.
 
-NOTE: Since the connection information for the endpoint that failed is not contained in the error queue table, that information is explicitly passed in.
+> [!NOTE]
+> Since the connection information for the endpoint that failed is not contained in the error queue table, that information is explicitly passed in.
 
 snippet: sqlserver-return-to-source-queue
 

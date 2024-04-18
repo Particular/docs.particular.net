@@ -25,4 +25,5 @@ When `IMessageSession` has been registered as shown above, it may be injected in
 
 snippet: InjectingMessageSession
 
-NOTE: An `IMessageSession` may only be injected by the container _after the endpoint has been started_.
+> [!NOTE]
+> An `IMessageSession` may only be injected by the container _after the endpoint has been started_.

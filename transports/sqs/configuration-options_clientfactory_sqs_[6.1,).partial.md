@@ -10,7 +10,8 @@ By default the transport uses a parameterless constructor to build the SQS clien
 
 snippet: ClientFactory
 
-NOTE: If a custom SQS client is provided, it will not be disposed of when the endpoint is stopped.
+> [!NOTE]
+> If a custom SQS client is provided, it will not be disposed of when the endpoint is stopped.
 
 ## SNS Client
 
@@ -24,4 +25,5 @@ By default the transport uses a parameterless constructor to build the SNS clien
 
 snippet: SnsClientFactory
 
-NOTE: If a custom SNS client is provided, it will not be disposed of when the endpoint is stopped.
+> [!NOTE]
+> If a custom SNS client is provided, it will not be disposed of when the endpoint is stopped.

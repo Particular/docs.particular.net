@@ -25,7 +25,8 @@ The serializer interface `IDataBusSerializer` can no longer be resolved via the 
 
 snippet: 7to8-databus-custom-serializer
 
-NOTE: A runtime exception is thrown if a `IDataBusSerializer` is registered in the container.
+> [!NOTE]
+> A runtime exception is thrown if a `IDataBusSerializer` is registered in the container.
 
 ## Migration from BinaryFormatter
 

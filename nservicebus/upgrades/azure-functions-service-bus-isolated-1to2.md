@@ -37,7 +37,8 @@ The endpoint name can be inferred from `NServiceBusTriggerFunctionAttribute` if 
 functionsHostBuilder.UseNServiceBus(); // Will use the name MyEndpoint
 ```
 
-NOTE: The constructed instance of `NServiceBusTriggeredEndpointConfiguration` already contains a reference to an `IConfiguration` instance from the host environment. It is not required to pass one in.
+> [!NOTE]
+> The constructed instance of `NServiceBusTriggeredEndpointConfiguration` already contains a reference to an `IConfiguration` instance from the host environment. It is not required to pass one in.
 
 ### Routing
 

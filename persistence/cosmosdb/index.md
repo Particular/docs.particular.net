@@ -21,7 +21,8 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 partial: glance
 
-NOTE: The Outbox feature requires partition planning.
+> [!NOTE]
+> The Outbox feature requires partition planning.
 
 ## Usage
 
@@ -41,7 +42,8 @@ snippet: CosmosDBDatabaseName
 
 include: defaultcontainer
 
-NOTE: The [transactions](transactions.md) documentation details additional options on how to configure NServiceBus to specify the container using the incoming message headers or contents.
+> [!NOTE]
+> The [transactions](transactions.md) documentation details additional options on how to configure NServiceBus to specify the container using the incoming message headers or contents.
 
 ### Customizing the CosmosClient provider
 

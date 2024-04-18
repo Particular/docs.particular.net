@@ -17,7 +17,8 @@ NServiceBus.Host.exe /?
 
 ## Installing a Windows service
 
-NOTE: It is not advised to use sc.exe to register the host process as a Windows Service.
+> [!NOTE]
+> It is not advised to use sc.exe to register the host process as a Windows Service.
 
 To install the process as a Windows service, include `/install` as a command line argument to the host. Using `/install` also causes the host to invoke the [installers](/nservicebus/operations/installers.md).
 
@@ -40,7 +41,7 @@ NServiceBus.Host.exe /install
 Here is an example of the `/install` command line:
 
 ```dos
-NServiceBus.Host.exe /install 
+NServiceBus.Host.exe /install
 /serviceName:"MyPublisher"
 /displayName:"My Publisher Service"
 /description:"Service for publishing event messages"
@@ -82,12 +83,12 @@ Configures the name of the endpoint. By default, the endpoint name is the namesp
 
 ### ScannedAssemblies
 
-Configures NServiceBus to scan only the specified assemblies. The `scannedAssemblies` parameter must be provided for each assembly to include. E.g.: 
+Configures NServiceBus to scan only the specified assemblies. The `scannedAssemblies` parameter must be provided for each assembly to include. E.g.:
 
 ```dos
 NServiceBus.Host.exe /install
-/scannedAssemblies:"NServiceBus.Core" 
-/scannedAssemblies:"NServiceBus.Host" 
+/scannedAssemblies:"NServiceBus.Core"
+/scannedAssemblies:"NServiceBus.Host"
 /scannedAssemblies:"My.Endpoint.Assembly"
 ```
 
@@ -116,7 +117,8 @@ By default, Windows services start automatically when the operating system start
 
 To specify the account the service runs under, pass in the username of that account.
 
-NOTE: When installing the host using a custom user account, the user account is added to the `Performance Monitor Users` and is granted `run as a service` privileges. If the user needs to be changed at a later time, uninstall the host and re-install it in order to guarantee that the new user is correctly setup. The created privileges and `Performance Monitor Users` are not removed by the host when uninstalling and must be managed by the administrator.
+> [!NOTE]
+> When installing the host using a custom user account, the user account is added to the `Performance Monitor Users` and is granted `run as a service` privileges. If the user needs to be changed at a later time, uninstall the host and re-install it in order to guarantee that the new user is correctly setup. The created privileges and `Performance Monitor Users` are not removed by the host when uninstalling and must be managed by the administrator.
 
 NServiceBus version 7 and above supports [Group Managed Service Accounts (GMSA)](http://blog.windowsserversecurity.com/2015/01/27/step-by-step-guide-to-configure-group-managed-service-accounts/).  When specifying a GMSA,  the `/username` command line switch should include the trailing dollar sign e.g. `/username:"corp\gmsaaccount$"` and the `/password` command line switch should be omitted.
 

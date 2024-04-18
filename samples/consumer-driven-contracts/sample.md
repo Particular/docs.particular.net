@@ -20,10 +20,12 @@ Assuming that the producers `MyEvent` would satisfy both `Consumer1Contract` and
 
 snippet: publisher-contracts
 
-NOTE: One limitation of this approach is that two or more consumers can't require a property with the same name but different types because that wouldn't compile using C#.
+> [!NOTE]
+> One limitation of this approach is that two or more consumers can't require a property with the same name but different types because that wouldn't compile using C#.
 
 ## Running the sample
 
 Run the sample and notice how each consumer receives its contract when the producer publishes `MyEvent`.
 
-NOTE: Sharing contract types between endpoints is a larger topic, and this sample is using linked files for simplicity. See the [message contracts documentation](/nservicebus/messaging/evolving-contracts.md) for more details.
+> [!NOTE]
+> Sharing contract types between endpoints is a larger topic, and this sample is using linked files for simplicity. See the [message contracts documentation](/nservicebus/messaging/evolving-contracts.md) for more details.

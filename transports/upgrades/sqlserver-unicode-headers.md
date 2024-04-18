@@ -49,7 +49,8 @@ If this log event is written to the log file, the following guidance describes h
 
 The incorrect `Headers` column definition on existing queue tables needs to be updated manually using the following SQL statement for every queue table managed by a given endpoint:
 
-NOTE: This procedure does not require any downtime, and it can be executed when affected endpoints are processing messages.
+> [!NOTE]
+> This procedure does not require any downtime, and it can be executed when affected endpoints are processing messages.
 
 WARNING: Run this script on a testing or staging environment first to verify that it works as expected.
 

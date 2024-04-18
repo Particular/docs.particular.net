@@ -9,7 +9,8 @@ related:
 
 This sample illustrates an approach for transitioning between different [correlation IDs](/persistence/sql/saga.md#correlation-ids) in a way that requires no endpoint downtime or migration of saga data stored in sql.
 
-NOTE: The sample uses three "Phase" endpoint projects to illustrate the iterations of a single endpoint in one solution.
+> [!NOTE]
+> The sample uses three "Phase" endpoint projects to illustrate the iterations of a single endpoint in one solution.
 
 include: sqlpersistence-prereqs
 

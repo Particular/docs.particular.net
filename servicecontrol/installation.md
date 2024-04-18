@@ -100,7 +100,8 @@ A ServiceControl installation should be upgraded one major version at a time. Ch
 
 All versions are available at <https://github.com/Particular/ServiceControl/releases>
 
-NOTE: Upgrades might take a while to run. Account for the unavailability of ServiceControl and plan the upgrade during maintenance windows if necessary.
+> [!NOTE]
+> Upgrades might take a while to run. Account for the unavailability of ServiceControl and plan the upgrade during maintenance windows if necessary.
 
 ## ServiceControl plugins
 
@@ -121,7 +122,8 @@ To migrate an instance of ServiceControl to another host:
 1. Start the new service
 1. Remove the old instance of ServiceControl
 
-NOTE: If the database of the instance being migrated is very large, or no downtime can be tolerated, or the destination uses a different Windows version, or the instance uses a different name, then consider [scaling ServiceControl out via remote instances](/servicecontrol/servicecontrol-instances/remotes.md).
+> [!NOTE]
+> If the database of the instance being migrated is very large, or no downtime can be tolerated, or the destination uses a different Windows version, or the instance uses a different name, then consider [scaling ServiceControl out via remote instances](/servicecontrol/servicecontrol-instances/remotes.md).
 
 Things to remember:
 
@@ -160,7 +162,8 @@ Even after a ServiceControl instance has been removed, there are artifacts left 
 
 If the option to delete the database/log folders was not selected when removing the instance, then these folders and their contents are left on disk.
 
-NOTE: If the instance was configured to run under a service account then that account may have been granted _Logon as a Service_ privileges. This is not reversed when the instance is removed.
+> [!NOTE]
+> If the instance was configured to run under a service account then that account may have been granted _Logon as a Service_ privileges. This is not reversed when the instance is removed.
 
 #if-version [,5)
 
@@ -168,6 +171,7 @@ NOTE: If the instance was configured to run under a service account then that ac
 
 To uninstall the ServiceControl Management Utility, use the `Apps & features` settings in Windows.
 
-NOTE: Uninstalling the ServiceControl Management Utility will not remove existing instances. Remove all ServiceControl instances using the ServiceControl Management Utility before uninstalling the application itself.
+> [!NOTE]
+> Uninstalling the ServiceControl Management Utility will not remove existing instances. Remove all ServiceControl instances using the ServiceControl Management Utility before uninstalling the application itself.
 
 #end-if

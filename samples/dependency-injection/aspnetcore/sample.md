@@ -24,7 +24,8 @@ snippet: InjectingDependency
 
 It is also possible to configure ASP.NET Core to use a specific container and still share components between ASP.NET and NServiceBus message handlers. This sample demonstrates how to do this with Autofac using the `Autofac.Extensions.DependencyInjection` package
 
-NOTE: This can also be done using other [DI libraries](/nservicebus/dependency-injection/).
+> [!NOTE]
+> This can also be done using other [DI libraries](/nservicebus/dependency-injection/).
 
 First, ASP.NET Core is instructed to use a custom container:
 

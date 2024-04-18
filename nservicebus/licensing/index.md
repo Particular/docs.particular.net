@@ -50,7 +50,8 @@ Selected active license from C:\Users\XXX\AppData\Local\ParticularSoftware\licen
 License Expiration: 2021-01-01
 ```
 
-NOTE: Identify related log entries by searching/filtering on logger `LicenseManager` or the text `Looking for license in the following locations:`.
+> [!NOTE]
+> Identify related log entries by searching/filtering on logger `LicenseManager` or the text `Looking for license in the following locations:`.
 
 ### Failed to initialize the license
 

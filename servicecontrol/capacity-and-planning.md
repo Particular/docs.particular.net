@@ -57,7 +57,8 @@ See also: [Forwarding Queues](errorlog-auditlog-behavior.md).
 
 The ServiceControl HTTP API provides a JSON stream of audited and error messages (headers, body, and context) that can be imported into another database.
 
-NOTE: The ServiceControl HTTP API is subject to changes and enhancements that may not be backward compatible. Use of the HTTP API by third parties is discouraged at this time.
+> [!NOTE]
+> The ServiceControl HTTP API is subject to changes and enhancements that may not be backward compatible. Use of the HTTP API by third parties is discouraged at this time.
 
 
 ## Throughput

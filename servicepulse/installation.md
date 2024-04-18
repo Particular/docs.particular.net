@@ -7,7 +7,8 @@ related:
 - servicepulse/troubleshooting
 ---
 
-NOTE: It is also possible to run ServicePulse in a [container](containerization).
+> [!NOTE]
+> It is also possible to run ServicePulse in a [container](containerization).
 
 ## Prerequisites
 
@@ -35,7 +36,7 @@ Default : 9090
 - `INST_URI [uri]`
 Provides location of the ServiceControl Instance API
 Default : `http://localhost:33333/api/`
-- `INST_SC_MONITORING_URI [uri]` 
+- `INST_SC_MONITORING_URI [uri]`
 Provides location of the Monitoring Instance API
 Default : `http://localhost:33633/`
 
@@ -55,7 +56,8 @@ For details on ServiceControl, ServiceControl Monitoring and ServicePulse config
  * [ServiceControl Monitoring Guidance](/servicecontrol/monitoring-instances)
  * [Connection Configuration in ServicePulse](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui)
 
-NOTE: ServiceControl consumes messages from the Audit queue and stores it temporarily (by default, for 30 days) in its embedded database. Set the message storage timespan by [setting automatic expiration for ServiceControl data](/servicecontrol/how-purge-expired-data.md).
+> [!NOTE]
+> ServiceControl consumes messages from the Audit queue and stores it temporarily (by default, for 30 days) in its embedded database. Set the message storage timespan by [setting automatic expiration for ServiceControl data](/servicecontrol/how-purge-expired-data.md).
 
 ## Migrating / Moving
 

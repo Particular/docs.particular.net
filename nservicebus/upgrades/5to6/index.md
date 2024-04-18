@@ -28,7 +28,8 @@ See also:
  * [.NET Blog - Moving to .NET 4.5.2](https://blogs.msdn.microsoft.com/dotnet/2014/08/07/moving-to-the-net-framework-4-5-2/)
  * [Known issues for .NET 4.5.2](https://support.microsoft.com/en-us/kb/2962547)
 
-NOTE: While a minimum of .NET 4.5.2 is required, it is recommended to update to at least [.NET 4.6.1](https://www.microsoft.com/en-au/download/details.aspx?id=49981) since this gives access to [Task.CompletedTask](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.completedtask.aspx).
+> [!NOTE]
+> While a minimum of .NET 4.5.2 is required, it is recommended to update to at least [.NET 4.6.1](https://www.microsoft.com/en-au/download/details.aspx?id=49981) since this gives access to [Task.CompletedTask](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.completedtask.aspx).
 
 
 include: dependencies
@@ -39,7 +40,8 @@ include: dependencies
 
 In previous versions of NServiceBus, connecting a process to the transport required an instance of `IBus`. Starting from version 6, this concept has been deprecated and instead, an instance of `IEndpointInstance` is required. The code required to create and configure an `IEndpointInstance` is very similar to the code found in version 5 endpoints for creating and configuring `IBus` instances.
 
-NOTE: This section describes updating a self-hosted endpoint. For endpoints that rely on the NServiceBus Host, see: [NServiceBus Host Upgrade Version 6 to 7](../host-6to7.md).
+> [!NOTE]
+> This section describes updating a self-hosted endpoint. For endpoints that rely on the NServiceBus Host, see: [NServiceBus Host Upgrade Version 6 to 7](../host-6to7.md).
 
 First, change all mentions of `BusConfiguration` to `EndpointConfiguration`. Note that `EndpointConfiguration` has a required constructor parameter to set the endpoint name. In NServiceBus version 5, the name of the endpoint was provided via the `.EndpointName(name)` method on the `BusConfiguration` class. This call is no longer required in version 6 and the method is deprecated.
 
@@ -102,7 +104,8 @@ See also:
 
 In NServiceBus version 6, the signature of `IHandleMessages<T>` has been changed to support asynchronous processing. In versions 5 and below, each message is handled by a dedicated thread, so NServiceBus is able to take advantage of [thread static](https://msdn.microsoft.com/en-us/library/system.threadstaticattribute.aspx) state to keep track of the message being handled as well as the current transaction. In version 6, each message is handled by a task which may run on several threads before processing is completed. Rather than rely on thread context and state, each handler is explicitly passed in a context object with all of the information it needs to execute.
 
-NOTE: This context includes methods to send and publish new messages. As NServiceBus can no longer rely on thread static state to access information about the message and transaction being handled, it is not possible to rely on an injected copy of `IBus` to perform these operations. It is necessary to always send and publish new messages using the context object rather than an injected instance of the endpoint.
+> [!NOTE]
+> This context includes methods to send and publish new messages. As NServiceBus can no longer rely on thread static state to access information about the message and transaction being handled, it is not possible to rely on an injected copy of `IBus` to perform these operations. It is necessary to always send and publish new messages using the context object rather than an injected instance of the endpoint.
 
 As each handler is running in the context of a transport receive operation (an I/O context) and is likely to contain other asynchronous operations (such as sends and publishes), all handlers must return a [Task](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.aspx).
 
@@ -150,7 +153,8 @@ WARNING: All message handlers and sagas that are included in the endpoint should
 
 The endpoint instance returned from `Endpoint.Create()` or `Endpoint.Start()` implements `IMessageSession` which contains `Send()` and `Publish()` methods that can be used outside of a message handler or saga. If the endpoint sends messages in the same part of the code that creates/starts the endpoint, call these methods on the returned endpoint instance directly.
 
-NOTE: As the `Send` and `Publish` methods on the endpoint instance should not be used from within a handler or saga, there is no implementation of the interface injected into dependency injection. For recommendations on how to get access to `IMessageSession` in other locations, see [Dependency Injection](moving-away-from-ibus.md#dependency-injection).
+> [!NOTE]
+> As the `Send` and `Publish` methods on the endpoint instance should not be used from within a handler or saga, there is no implementation of the interface injected into dependency injection. For recommendations on how to get access to `IMessageSession` in other locations, see [Dependency Injection](moving-away-from-ibus.md#dependency-injection).
 
 See also:
 

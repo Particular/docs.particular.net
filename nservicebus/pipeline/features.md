@@ -72,7 +72,8 @@ When the enabling algorithm can't find any more features that should be enabled,
 
 snippet: FeatureWithPrerequisites
 
-NOTE: The differentiation between *explicit* settings and *default* settings becomes useful when determining if a given feature should be activated.
+> [!NOTE]
+> The differentiation between *explicit* settings and *default* settings becomes useful when determining if a given feature should be activated.
 
 
 ### Activation

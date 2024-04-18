@@ -6,9 +6,10 @@ reviewed: 2023-05-23
 versions: '[6.0.1,)'
 ---
 
-NOTE: Prior to NServiceBus.SqlServer [version 6.0.1](https://github.com/Particular/NServiceBus.SqlServer/releases/tag/6.0.1), the SQL Server transport used clustered indexes based on an identity column (sequence number). This structure was prone to high contention that caused severe issues in high-throughput scenarios, especially on Azure SQL. The [index migration guide](/transports/upgrades/sqlserver-non-clustered-idx.md) describes the details of upgrading to the new table schema. 
+> [!NOTE]
+> Prior to NServiceBus.SqlServer [version 6.0.1](https://github.com/Particular/NServiceBus.SqlServer/releases/tag/6.0.1), the SQL Server transport used clustered indexes based on an identity column (sequence number). This structure was prone to high contention that caused severe issues in high-throughput scenarios, especially on Azure SQL. The [index migration guide](/transports/upgrades/sqlserver-non-clustered-idx.md) describes the details of upgrading to the new table schema.
 
-Using SQL Server with Azure SQL allows building messaging systems that provide exactly-once message processing guarantees. The same instance of Azure SQL is used both as an application data store and as messaging infrastructure. 
+Using SQL Server with Azure SQL allows building messaging systems that provide exactly-once message processing guarantees. The same instance of Azure SQL is used both as an application data store and as messaging infrastructure.
 
 This article discusses throughput characteristics of the SQL Server transport in Azure SQL. Numbers presented here are *rough estimates* of what can be expected when running on Azure SQL. All measurements were made on a [Mananaged Instance](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-managed-instance) database running in [vCore General Purpose](https://docs.microsoft.com/en-us/azure/sql-database/sql-database-service-tiers-vcore?tabs=azure-portal) service tier.
 
@@ -43,7 +44,7 @@ Here are the CPU usage values:
 |25 | 15% IO, 15% CPU|
 |50 | 35% IO, 35% CPU|
 |75 | 50% IO, 60% CPU|
-|90 | 60% IO, 85% CPU| 
+|90 | 60% IO, 85% CPU|
 
 * 8 vCPU
 
@@ -87,7 +88,8 @@ In these scenarios the database is used both as a transport and as a data store 
 |750-1125 | 8  |
 |1125-1500 | 16  |
 
-NOTE: The exact values for a production system may vary but the table above should provide a basis for estimations. It is worth noting that the SQL Server transport scales better with number of endpoints than with throughput of each endpoint. That means that higher total throughput can be achieved with higher number of endpoints and lower per-endpoint throughput. In an extreme case, a 16 vCPU database can handle only around 800 messages with a single queue and well over 2000 messages when running with 15 queues.
+> [!NOTE]
+> The exact values for a production system may vary but the table above should provide a basis for estimations. It is worth noting that the SQL Server transport scales better with number of endpoints than with throughput of each endpoint. That means that higher total throughput can be achieved with higher number of endpoints and lower per-endpoint throughput. In an extreme case, a 16 vCPU database can handle only around 800 messages with a single queue and well over 2000 messages when running with 15 queues.
 
 When designing Software-as-a-Service systems, it is recommended to use separate databases and endpoint sets for groups of tenants rather than for vertical slices of a business flow. With this approach each database would support relatively high number (whole business flow end-to-end) of low-throughput endpoints (a portion of customer base) as opposed to low number of high-throughput endpoints.
 

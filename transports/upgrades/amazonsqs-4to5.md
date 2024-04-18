@@ -18,7 +18,8 @@ Before they are upgraded, endpoints running on older versions of the transport a
 
 The transport provides a compatibility mode that allows the endpoint to use both forms of publish-subscribe at the same time. When it is enabled and the endpoint publishes an event, the native subscription leveraging SNS and the message-driven subscription persistence are checked for subscriber information. This subscriber information is deduplicated before the event is published, so even if a subscriber appears in both places it will only receive a single copy of each event.
 
-NOTE: In version 5.4 a [mechanism was introduced](/transports/sqs/topology.md?version=sqs_5.4) to handle cases where the NServiceBus SQS transport is throttled by AWS.
+> [!NOTE]
+> In version 5.4 a [mechanism was introduced](/transports/sqs/topology.md?version=sqs_5.4) to handle cases where the NServiceBus SQS transport is throttled by AWS.
 
 ### Required [SNS permissions](https://docs.aws.amazon.com/sns/latest/dg/sns-access-policy-language-api-permissions-reference.html)
 
@@ -69,7 +70,8 @@ A subscriber endpoint running in backwards compatibility mode will send subscrip
 
 snippet: 4to5-configure-message-driven-pub-sub-routing
 
-NOTE: Once the publishing endpoint has been upgraded, this configuration can optionally be removed.
+> [!NOTE]
+> Once the publishing endpoint has been upgraded, this configuration can optionally be removed.
 
 A publisher endpoint running backwards compatibility mode will also handle incoming subscription related control messages to update both the native subscription table and the private subscription persistence.
 

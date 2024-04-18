@@ -236,7 +236,8 @@ Warning: The maximum concurrency level should be incremented only if there are n
 
 This setting sets an upper limit on body size to be stored.
 
-NOTE: This setting is not available in versions 4.4 and higher. It is still supported in Audit instances via [ServiceControl.Audit/MaxBodySizeToStore](/servicecontrol/audit-instances/creating-config-file.md#performance-tuning-servicecontrol-auditmaxbodysizetostore) setting
+> [!NOTE]
+> This setting is not available in versions 4.4 and higher. It is still supported in Audit instances via [ServiceControl.Audit/MaxBodySizeToStore](/servicecontrol/audit-instances/creating-config-file.md#performance-tuning-servicecontrol-auditmaxbodysizetostore) setting
 
 Type: int
 
@@ -298,7 +299,8 @@ Default: `<ErrorQueue>.log`
 
 ServiceControl creates the queue specified by this setting only if `ServiceControl/ForwardErrorMessages` is enabled.
 
-NOTE: Changing the configuration file directly will not result in the queue being created. Use ServiceControl Management to add or alter the forwarding queue.
+> [!NOTE]
+> Changing the configuration file directly will not result in the queue being created. Use ServiceControl Management to add or alter the forwarding queue.
 
 ### ServiceControl/ForwardErrorMessages
 
@@ -332,7 +334,8 @@ Note: When monitoring multiple endpoints, ensure that the heartbeat grace period
 
 ServiceControl stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If during troubleshooting, direct access to the RavenDB instance is required while ServiceControl is running, ServiceControl can be configured to expose the RavenDB studio.
 
-NOTE: [Maintenance mode](maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
+> [!NOTE]
+> [Maintenance mode](maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
 
 WARNING: The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl and is not intended for external manipulation or modifications.
 
@@ -346,7 +349,8 @@ After restarting the ServiceControl service, access the RavenDB studio locally a
 http://localhost:{configured ServiceControl instance maintenance port}/studio/index.html#databases/documents?&database=%3Csystem%3E
 ```
 
-NOTE: The ServiceControl embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access, the hostname must be [set to a fully qualified domain name](setting-custom-hostname.md).
+> [!NOTE]
+> The ServiceControl embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access, the hostname must be [set to a fully qualified domain name](setting-custom-hostname.md).
 
 ### ServiceControl/DataSpaceRemainingThreshold
 

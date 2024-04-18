@@ -64,7 +64,8 @@ Later, during the resolution phase, the `Start` method requires an instance of `
 
 snippet: ExternalStart
 
-NOTE: Refer to the container's documentation on how to use the container with the `Microsoft.Extensions.DependencyInjection` API.
+> [!NOTE]
+> Refer to the container's documentation on how to use the container with the `Microsoft.Extensions.DependencyInjection` API.
 
 ### Injecting the message session
 

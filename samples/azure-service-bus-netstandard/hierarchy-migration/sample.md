@@ -7,7 +7,8 @@ related:
 - transports/azure-service-bus
 ---
 
-NOTE: This sample is available to aid and gauge interest in this migration approach. Depending on the feedback, the functionality of migrating an endpoint could be built into the [operational scripting tool](/transports/azure-service-bus/operational-scripting.md) of the Azure Service Bus transport. Comment on [the issue](https://github.com/Particular/NServiceBus.Transport.AzureServiceBus/issues/718) or reach out using the [support options available](https://particular.net/support).
+> [!NOTE]
+> This sample is available to aid and gauge interest in this migration approach. Depending on the feedback, the functionality of migrating an endpoint could be built into the [operational scripting tool](/transports/azure-service-bus/operational-scripting.md) of the Azure Service Bus transport. Comment on [the issue](https://github.com/Particular/NServiceBus.Transport.AzureServiceBus/issues/718) or reach out using the [support options available](https://particular.net/support).
 
 ## Prerequisites
 

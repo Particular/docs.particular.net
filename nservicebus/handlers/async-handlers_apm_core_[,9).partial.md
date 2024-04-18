@@ -14,4 +14,5 @@ or use [`Task.Run`](https://msdn.microsoft.com/en-us/library/system.threading.ta
 
 snippet: HandlerWhichIntegratesWithRemotingWithTask
 
-NOTE: [`Task.Run`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.run.aspx) can have significantly less overhead than using a delegate with `BeginInvoke`/`EndInvoke`. By default, both APIs will use the worker thread pool as the underlying scheduling engine. Analyze and measure for the business scenarios involved.
+> [!NOTE]
+> [`Task.Run`](https://msdn.microsoft.com/en-us/library/system.threading.tasks.task.run.aspx) can have significantly less overhead than using a delegate with `BeginInvoke`/`EndInvoke`. By default, both APIs will use the worker thread pool as the underlying scheduling engine. Analyze and measure for the business scenarios involved.

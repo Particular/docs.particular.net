@@ -12,7 +12,8 @@ redirects:
 
 One ServiceControl Error instance is designated as the _primary_ instance. All other ServiceControl instances are _remote_ instances. The HTTP API of the primary instance aggregates data from the primary instance and from all the remote instances. ServiceInsight and ServicePulse are configured to connect to the primary instance.
 
-NOTE: The term _remote_ refers to the fact that remote instances are run in separate processes. The primary instance and one or more remote instances can run on the same machine.
+> [!NOTE]
+> The term _remote_ refers to the fact that remote instances are run in separate processes. The primary instance and one or more remote instances can run on the same machine.
 
 In ServiceControl version 4 and later, a ServiceControl Error instance can be configured with remote instances that are also [ServiceControl Error instances](/servicecontrol/servicecontrol-instances/) or are [ServiceControl Audit instances](/servicecontrol/audit-instances/). ServiceControl Audit instances cannot be configured as primary instances.
 
@@ -169,7 +170,8 @@ The remotes feature can be used to perform [zero downtime upgrades](/servicecont
 
 Remote instances are listed in the `ServiceControl/RemoteInstances` app setting in the primary instance [configuration file](/servicecontrol/creating-config-file.md). The value of this setting is a JSON array of remote instances. Each entry requires an `api_url` property specifying the API URL of the remote instance. For ServiceControl version 3 and earlier, each entry requires a `queue_address` property specifying the queue address of the remote instance.
 
-NOTE: Changes to the configuration file do not take effect until the primary instance is restarted.
+> [!NOTE]
+> Changes to the configuration file do not take effect until the primary instance is restarted.
 
 ### Version 4 and later
 
@@ -201,7 +203,8 @@ The following cmdlets are available in ServiceControl version 4 and above, for t
 | sc-deleteremote        | Remove-ServiceControlRemote                   |
 | sc-remotes             | Get-ServiceControlRemotes                     |
 
-NOTE: The names and addresses of instances are controlled by the [cmdlets](/servicecontrol/powershell-cmdlets.md) for managing ServiceControl and and ServiceControl Audit instances.
+> [!NOTE]
+> The names and addresses of instances are controlled by the [cmdlets](/servicecontrol/powershell-cmdlets.md) for managing ServiceControl and and ServiceControl Audit instances.
 
 ### Add a remote instance
 

@@ -45,16 +45,17 @@ The transport provides a compatibility mode that allows the endpoint to use both
 
 ### Upgrading
 
-Upgrade a single endpoint to version 5 at a time. Each upgraded endpoint should be configured to run in backwards compatibility mode and be deployed into production before upgrading the next endpoint. At startup, the upgraded endpoint will add it's subscription information to the native subscriptions table. It will also send subscribe control messages to each of it's configured publishers. 
+Upgrade a single endpoint to version 5 at a time. Each upgraded endpoint should be configured to run in backwards compatibility mode and be deployed into production before upgrading the next endpoint. At startup, the upgraded endpoint will add it's subscription information to the native subscriptions table. It will also send subscribe control messages to each of it's configured publishers.
 
-NOTE: The first endpoint to be deployed to each environment will need to create the shared native subscriptions table. This can be done by [enabling installers on the endpoint](/nservicebus/operations/installers.md) or by using the script found below.
+> [!NOTE]
+> The first endpoint to be deployed to each environment will need to create the shared native subscriptions table. This can be done by [enabling installers on the endpoint](/nservicebus/operations/installers.md) or by using the script found below.
 
 Once all endpoints in the system have been upgraded to version 5, the code that enables compatibility mode can be safely removed from each endpoint. It is recommended to run the entire system in backwards compatibility mode for a day or two before beginning to remove backwards compatibility mode. This allows all of the subscription control messages sent at endpoint startup to reach their destination and be fully processed. After removing backwards compatibility mode from all the endpoints the subscription data managed by the persisters is no longer needed and can be safely removed.
 
 
 #### Native subscriptions configuration
 
-The native publish-subscribe feature can be configured with a cache duration for subscription information or have the cache explicitly disabled. 
+The native publish-subscribe feature can be configured with a cache duration for subscription information or have the cache explicitly disabled.
 
 ```csharp
 var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
@@ -76,7 +77,7 @@ var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
 var subscriptions = transport.SubscriptionSettings();
 
 subscriptions.SubscriptionTableName(
-	tableName: "Subscriptions", 
+	tableName: "Subscriptions",
 	schemaName: "OptionalSchema",
 	catalogName: "OptionalCatalog");
 ```
@@ -99,16 +100,16 @@ A subscriber endpoint running in backwards compatibility mode will send subscrip
 ```csharp
 //For SQL Transport version 5.x
 pubSubCompatibilityMode.RegisterPublisher(
-	eventType: typeof(SomeEvent), 
+	eventType: typeof(SomeEvent),
 	publisherEndpoint: "PublisherEndpoint");
 
 pubSubCompatibilityMode.RegisterPublisher(
-	assembly: typeof(SomeEvent).Assembly, 
+	assembly: typeof(SomeEvent).Assembly,
 	publisherEndpoint: "PublisherEndpoint");
 
 pubSubCompatibilityMode.RegisterPublisher(
-	assembly: typeof(SomeEvent).Assembly, 
-	@namespace: "Namespace", 
+	assembly: typeof(SomeEvent).Assembly,
+	@namespace: "Namespace",
 	publisherEndpoint: "PublisherEndpoint");
 
 //For SQL Transport version 4.x
@@ -116,20 +117,21 @@ var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
 var routing = transport.Routing();
 
 routing.RegisterPublisher(
-	eventType: typeof(SomeEvent), 
+	eventType: typeof(SomeEvent),
 	publisherEndpoint: "PublisherEndpoint");
 
 routing.RegisterPublisher(
-	assembly: typeof(SomeEvent).Assembly, 
+	assembly: typeof(SomeEvent).Assembly,
 	publisherEndpoint: "PublisherEndpoint");
 
 routing.RegisterPublisher(
-	assembly: typeof(SomeEvent).Assembly, 
-	@namespace: "Namespace", 
+	assembly: typeof(SomeEvent).Assembly,
+	@namespace: "Namespace",
 	publisherEndpoint: "PublisherEndpoint");
 ```
 
-NOTE: Once the publishing endpoint has been upgraded, this configuration can optionally be removed. 
+> [!NOTE]
+> Once the publishing endpoint has been upgraded, this configuration can optionally be removed.
 
 A publisher endpoint running backwards compatibility mode will also handle incoming subscription related control messages to update both the native subscription table and the private subscription persistence. Incoming subscription related control messages can be authorized using an API that has moved from the transport component to the compatibility component.
 
@@ -143,9 +145,10 @@ transport.SubscriptionAuthorizer(
 incomingMessageContext => true);
 ```
 
-WARNING: This API only applies to subscribe messages sent by endpoints which still use message-driven publish-subscribe. Under native subscription management, each endpoint writes it's own subscription data into the shared subscription table directly. 
+WARNING: This API only applies to subscribe messages sent by endpoints which still use message-driven publish-subscribe. Under native subscription management, each endpoint writes it's own subscription data into the shared subscription table directly.
 
-NOTE: The `routing.DisablePublishing()` API has been deprecated and should be removed. This API was created to allow an endpoint to run without a configured subscription persistence. In version 5 and above, a subscription persistence is not required unless the endpoint runs in backwards compatibility mode.
+> [!NOTE]
+> The `routing.DisablePublishing()` API has been deprecated and should be removed. This API was created to allow an endpoint to run without a configured subscription persistence. In version 5 and above, a subscription persistence is not required unless the endpoint runs in backwards compatibility mode.
 
 
 ### Operations

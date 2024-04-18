@@ -36,7 +36,8 @@ In this mode the transport receive operation is wrapped in a [`TransactionScope`
 
 If required, the transaction is escalated to a distributed transaction (following a two-phase commit protocol coordinated by [MSDTC](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms684146(v=vs.85))) if both the transport and the persistence support it. A fully distributed transaction is not always required, for example when using [SQL Server transport](/transports/sql/) with [SQL persistence](/persistence/sql/), both using the same database connection string. In this case, the ADO.NET driver guarantees that everything happens inside a single database transaction and ACID guarantees are held for the whole processing.
 
-NOTE: MSMQ will escalate to a distributed transaction right away since it doesn't support promotable transaction enlistments.
+> [!NOTE]
+> MSMQ will escalate to a distributed transaction right away since it doesn't support promotable transaction enlistments.
 
 *Transaction scope* mode is enabled by default for the transports that support it (i.e. MSMQ and SQL Server transport). It can be enabled explicitly with the following code:
 
@@ -67,7 +68,8 @@ Consider a system using MSMQ transport and RavenDB persistence implementing the 
 
 In the example above the `TransactionScope` guarantees atomicity for the `OrderSaga`: consuming the incoming `StartOrder` message, storing `OrderSagaData` in RavenDB and sending the outgoing `VerifyPayment` message are _committed_ as one atomic operation. The saga data may not be immediately available for reading even though the incoming message has already been processed. `OrderSaga` is thus only _eventually consistent_. The `CompleteOrder` message needs to be [retried](/nservicebus/recoverability/) until RavenDB successfully returns an `OrderSagaData` instance.
 
-NOTE: This mode requires the selected storage to support participating in distributed transactions.
+> [!NOTE]
+> This mode requires the selected storage to support participating in distributed transactions.
 
 ### Transport transaction - Sends atomic with Receive
 
@@ -84,7 +86,8 @@ This mode has the same consistency guarantees as the *Receive Only* mode, but ad
 
 In this mode, the receive operation is wrapped in a transport's native transaction. This mode guarantees that the message is not permanently deleted from the incoming queue until at least one processing attempt (including storing user data and sending out messages) is finished successfully. See also [recoverability](/nservicebus/recoverability/) for more details on retries.
 
-NOTE: [Sends and Publishes are batched](/nservicebus/messaging/batched-dispatch.md) and only transmitted until all handlers are successfully invoked. 
+> [!NOTE]
+> [Sends and Publishes are batched](/nservicebus/messaging/batched-dispatch.md) and only transmitted until all handlers are successfully invoked.
 Messages that are required to be sent immediately should use the [immediate dispatch option](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) which bypasses batching.
 
 Use the following code to use this mode:
@@ -112,14 +115,16 @@ DANGER: In this mode, when encountering a critical failure such as a system or e
 
 snippet: TransactionsDisable
 
-NOTE: In this mode the transport doesn't wrap the receive operation in any kind of transaction. Should the message fail to process it will be moved straight to the error queue.
+> [!NOTE]
+> In this mode the transport doesn't wrap the receive operation in any kind of transaction. Should the message fail to process it will be moved straight to the error queue.
 
 
 ## Outbox
 
 The [Outbox](/nservicebus/outbox) feature provides idempotency at the infrastructure level and allows running in *transport transaction* mode while still getting the same semantics as *Transaction scope* mode.
 
-NOTE: Outbox data needs to be stored in the same database as business data to achieve the `exactly-once delivery`.
+> [!NOTE]
+> Outbox data needs to be stored in the same database as business data to achieve the `exactly-once delivery`.
 
 When using the Outbox, any messages resulting from processing a given received message are not sent immediately but rather stored in the persistence database and pushed out after the handling logic is done. This mechanism ensures that the handling logic can only succeed once so there is no need to design for idempotency.
 
@@ -130,11 +135,13 @@ In transaction modes lower than [TransactionScope](#transactions-transaction-sco
 
 snippet: TransactionsWrapHandlersExecutionInATransactionScope
 
-NOTE: This requires that all the data stores used by the handler support enlisting in a distributed transaction (e.g. SQL Server), including the saga store when using sagas.
+> [!NOTE]
+> This requires that all the data stores used by the handler support enlisting in a distributed transaction (e.g. SQL Server), including the saga store when using sagas.
 
 WARNING: This might escalate to a distributed transaction if data in different databases are updated.
 
-NOTE: This API must not be used in combination with transports running in a *transaction scope* mode.
+> [!NOTE]
+> This API must not be used in combination with transports running in a *transaction scope* mode.
 
 
 partial: scope-options

@@ -4,7 +4,8 @@ Every time the instance mapping file is loaded, it is validated against a schema
 
 If the instance mapping file cannot be validated against the stricter schema, the endpoint logs a warning and falls back to the old schema validation mechanism.
 
-NOTE: Schema validation fallback is only logged the first time it happens. Subsequent fallbacks are handled silently.
+> [!NOTE]
+> Schema validation fallback is only logged the first time it happens. Subsequent fallbacks are handled silently.
 
 The transport can be configured to throw an error if the instance mapping file fails the strict schema validation, rather than falling back:
 

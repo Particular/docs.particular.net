@@ -70,14 +70,14 @@ Windows has a Windows Service recovery mechanism that makes sure a crashed proce
 
 The endpoint can fail when self-hosting and implementing a critical error handler that exits the process in case a [critical error](critical-errors.md) occurs.
 
-If Windows Service Recovery is not configured, message processing will halt. Therefore it's important to configure recovery options when hosting an NServiceBus endpoint as a Windows Service. 
+If Windows Service Recovery is not configured, message processing will halt. Therefore it's important to configure recovery options when hosting an NServiceBus endpoint as a Windows Service.
 
 The recovery options can be adjusted via the Services dialog or via `sc.exe`. Note that the command line tool has advanced configuration options.
 
 
 #### Configuring Windows Service Recovery via sc.exe
 
-The default restart duration is 1 minute when enabling recovery via the Windows Service Management Console, but a different restart duration may be defined for the subsequent restarts using `sc.exe`. 
+The default restart duration is 1 minute when enabling recovery via the Windows Service Management Console, but a different restart duration may be defined for the subsequent restarts using `sc.exe`.
 
 The following example will restart the process after 5 seconds the first time, after 10 seconds the second time and then every 60 seconds. The Restart Service Count is reset after 1 hour (3600 seconds) of uninterrupted work since the last restart.
 
@@ -93,7 +93,8 @@ Open the services window, select the endpoint Windows Service and open its prope
 
 ![Windows Service properties Recovery tab](service-properties.png)
 
-NOTE: Restart durations are only configurable using `sc.exe`.
+> [!NOTE]
+> Restart durations are only configurable using `sc.exe`.
 
 
 ### Username and password

@@ -4,7 +4,8 @@ Incoming messages might refer to a message type that has not yet been loaded by 
 
 snippet: disable-dynamic-type-loading
 
-NOTE: When disabling dynamic type loading, all expected message types must be detected at endpoint startup time via [assembly scanning](/nservicebus/hosting/assembly-scanning.md).
+> [!NOTE]
+> When disabling dynamic type loading, all expected message types must be detected at endpoint startup time via [assembly scanning](/nservicebus/hosting/assembly-scanning.md).
 
 ### Message type inference
 

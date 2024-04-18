@@ -2,7 +2,8 @@
 
 The `NServiceBus.Metrics.PerformanceCounter` package installs itself into the MSBuild pipeline and generates all performance counter installation scripts at compile time. It does this by interrogating types (in the target assembly) to infer what scripts to create. It is required for any project where performance counter installation scripts are needed.
 
-NOTE: Performance Counters **versions 1.1 and above:** depend on `NServiceBus.Metrics` to calculate counter values.
+> [!NOTE]
+> Performance Counters **versions 1.1 and above:** depend on `NServiceBus.Metrics` to calculate counter values.
 
 ### Script creation
 
@@ -40,6 +41,7 @@ To list the installed counters:
 Get-Counter -ListSet NServiceBus | Select-Object -ExpandProperty Counter
 ```
 
-NOTE: Metrics are defined in the `NServiceBus.Metrics` NuGet package and will be dynamically turned into performance counters. When the `NServiceBus.Metrics` dependency is updated, new counters might be available in the installation script. Make sure the scripts are executed with elevated permissions on required machines when the scripts have been updated.
+> [!NOTE]
+> Metrics are defined in the `NServiceBus.Metrics` NuGet package and will be dynamically turned into performance counters. When the `NServiceBus.Metrics` dependency is updated, new counters might be available in the installation script. Make sure the scripts are executed with elevated permissions on required machines when the scripts have been updated.
 
 include: performance-counters-troubleshooting

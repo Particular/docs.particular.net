@@ -10,7 +10,8 @@ related:
 
 This sample demonstrates how to attach the current user identity (username) to all outgoing messages and how to extract that value when messages are received. User identity is accessed by a current principal accessor, registered through dependency injection.
 
-NOTE: This sample doesn't use `Thread.CurrentPrincipal`. When used in asynchronous code, `Thread.CurrentPrincipal` depends on the version of the .NET runtime. Refer to [the Microsoft guidelines](https://docs.microsoft.com/en-us/aspnet/core/migration/claimsprincipal-current) for more details.
+> [!NOTE]
+> This sample doesn't use `Thread.CurrentPrincipal`. When used in asynchronous code, `Thread.CurrentPrincipal` depends on the version of the .NET runtime. Refer to [the Microsoft guidelines](https://docs.microsoft.com/en-us/aspnet/core/migration/claimsprincipal-current) for more details.
 
 ### Fake principal
 

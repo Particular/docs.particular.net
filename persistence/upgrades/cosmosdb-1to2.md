@@ -58,10 +58,11 @@ public class RegisterMyBehavior : RegisterStep
         description: "Determines the PartitionKey from the logical message",
         factoryMethod: b => new PartitionKeyIncomingLogicalMessageContextBehavior())
     {
--        InsertBeforeIfExists(nameof(LogicalOutboxBehavior));    
+-        InsertBeforeIfExists(nameof(LogicalOutboxBehavior));
 +        InsertBeforeIfExists("LogicalOutboxBehavior");
     }
 }
 ```
 
-NOTE: It is recommended to move from using a behavior-based approach to using the [new Transactions API](/persistence/cosmosdb/transactions.md) instead.
+> [!NOTE]
+> It is recommended to move from using a behavior-based approach to using the [new Transactions API](/persistence/cosmosdb/transactions.md) instead.

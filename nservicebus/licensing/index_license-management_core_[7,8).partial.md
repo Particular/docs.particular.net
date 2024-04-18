@@ -10,7 +10,8 @@ A license can be configured via code-first configuration API:
 
 snippet: License
 
-NOTE: Licenses configured via code-first API take precendence over every other license source.
+> [!NOTE]
+> Licenses configured via code-first API take precendence over every other license source.
 
 ### Application-specific license location
 
@@ -75,9 +76,11 @@ To install a license as a registry key, use the following steps:
 * Create a new Multi-String Value (`REG_MULTI_SZ`) named `License`.
 * Paste the contents of the license file.
 
-NOTE: If `HKEY_LOCAL_MACHINE` is the chosen license location, and the operating system is 64-bit, then repeat the import process for the `HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\ParticularSoftware` key to support 32-bit clients.
+> [!NOTE]
+> If `HKEY_LOCAL_MACHINE` is the chosen license location, and the operating system is 64-bit, then repeat the import process for the `HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\ParticularSoftware` key to support 32-bit clients.
 
-NOTE: If the license is stored in `HKEY_CURRENT_USER`, NServiceBus processes must run as the user account used to add the license file to the registry in order to access the license.
+> [!NOTE]
+> If the license is stored in `HKEY_CURRENT_USER`, NServiceBus processes must run as the user account used to add the license file to the registry in order to access the license.
 
 It is safe to ignore any warnings regarding empty strings.
 

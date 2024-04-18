@@ -12,7 +12,8 @@ reviewed: 2021-08-19
 
 Uses the [MongoDB document database](https://www.mongodb.com/) for storage.
 
-NOTE: NServiceBus.Storage.MongoDB supports MongoDB server versions 3.6 and higher
+> [!NOTE]
+> NServiceBus.Storage.MongoDB supports MongoDB server versions 3.6 and higher
 
 ## Persistence at a glance
 
@@ -51,7 +52,8 @@ MongoDB [transactions](https://docs.mongodb.com/manual/core/transactions/) are e
 
 WARN: MongoDB transactions require a replica set or sharded cluster. Refer to the [MongoDB transaction documentation](https://docs.mongodb.com/manual/core/transactions/#transactions-and-atomicity) for more information about supported configurations and required MongoDB server versions.
 
-NOTE: The MongoDB persister supports transactions on shared clusters starting from version 2.1.
+> [!NOTE]
+> The MongoDB persister supports transactions on shared clusters starting from version 2.1.
 
 ### Disabling transactions
 
@@ -77,7 +79,8 @@ snippet: MongoDBSharedTransactionDI
 
 WARN: In order to participate in the shared transaction, the MongoDB session must be passed into collection API calls as demonstrated above.
 
-NOTE: The `IMongoSynchronizedStorageSession` lifetime is scoped to the message processing pipeline. Do not resolve the shared session into dependencies with a _Singleton_ lifetime.
+> [!NOTE]
+> The `IMongoSynchronizedStorageSession` lifetime is scoped to the message processing pipeline. Do not resolve the shared session into dependencies with a _Singleton_ lifetime.
 
 #### Testing
 

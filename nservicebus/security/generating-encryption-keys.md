@@ -61,4 +61,5 @@ Generates 32 random characters (256bits):
 openssl rand 32
 ```
 
-NOTE: Be aware that strings parsed by NServiceBus do not use extended ASCII which limits the key range to 7 bits per character.
+> [!NOTE]
+> Be aware that strings parsed by NServiceBus do not use extended ASCII which limits the key range to 7 bits per character.

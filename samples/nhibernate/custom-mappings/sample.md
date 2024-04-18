@@ -18,9 +18,11 @@ Custom mappings can be added by:
 
 There are other options, but these are the most frequently used. The performance difference between these options can have small variances, but those will occur during endpoint startup, not when the endpoint is processing messages.
 
-NOTE: There is no requirement to create a custom mapping for all sagas if a custom mapping is needed by only one saga.
+> [!NOTE]
+> There is no requirement to create a custom mapping for all sagas if a custom mapping is needed by only one saga.
 
-NOTE: When creating a custom mapping, the mapping of the **primary key** and **unique indexes** must be included.
+> [!NOTE]
+> When creating a custom mapping, the mapping of the **primary key** and **unique indexes** must be included.
 
 When using a custom mapping, ensure that a unique index exists for every column referenced by a `.ToSaga()` saga mapping expression. Not adding a unique constraint can result in duplicate saga entities as the second insert will **not** fail when inserting the same value if multiple messages are processed concurrently and they reference the same saga instance.
 

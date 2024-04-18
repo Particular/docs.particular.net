@@ -7,7 +7,8 @@ redirects:
 - nservicebus/full-duplex-sample
 ---
 
-NOTE: [Sagas](/nservicebus/sagas/) is a better approach when responses must be correlated to requests as they provide message-to-state correlation out of the box. 
+> [!NOTE]
+> [Sagas](/nservicebus/sagas/) is a better approach when responses must be correlated to requests as they provide message-to-state correlation out of the box.
 
 Run the solution. Two console applications start-up, `Client` and `Server.`
 

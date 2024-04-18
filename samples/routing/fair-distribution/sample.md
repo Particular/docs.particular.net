@@ -44,7 +44,8 @@ The Server application processes the `PlaceOrder` commands. On the server side, 
 
 snippet: FairDistributionServer
 
-NOTE: In real-world scenarios, NServiceBus endpoints are scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines. For simplicity, the scale-out in this sample is simulated by having two separate projects, Server and Server2.
+> [!NOTE]
+> In real-world scenarios, NServiceBus endpoints are scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines. For simplicity, the scale-out in this sample is simulated by having two separate projects, Server and Server2.
 
 ### Shared project
 

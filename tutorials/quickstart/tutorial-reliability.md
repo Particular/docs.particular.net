@@ -31,7 +31,8 @@ downloadbutton
 
 5. Restart the **Billing** application by right-clicking the **Billing** project in Visual Studio's Solution Explorer, then selecting **Debug** > **Start new instance**.
 
-NOTE: For Visual Studio Code users, the **Billing** endpoint can be started by navigating to the _Run and Debug_ tab and selecting the _Billing_ launch configuration from the dropdown list. Be sure to re-select the _Debug All_ configuration again after _Billing_ is running.
+> [!NOTE]
+> For Visual Studio Code users, the **Billing** endpoint can be started by navigating to the _Run and Debug_ tab and selecting the _Billing_ launch configuration from the dropdown list. Be sure to re-select the _Debug All_ configuration again after _Billing_ is running.
 
 When the **Billing** endpoint starts, it will pick up messages published earlier by **Sales** and will complete the process for orders that were waiting to be billed.
 
@@ -66,7 +67,8 @@ System.Exception: Oops
 INFO Received PlaceOrder, OrderId = e1d86cb9
 ```
 
-NOTE: If you didn't detach the debugger, you must click the **Continue** button in the Exception Assistant dialog before the message will be printed in the **Sales** window.
+> [!NOTE]
+> If you didn't detach the debugger, you must click the **Continue** button in the Exception Assistant dialog before the message will be printed in the **Sales** window.
 
 5. Stop the solution and re-comment the code inside the **ThrowTransientException** region, so no exceptions are thrown in the future.
 
@@ -80,7 +82,8 @@ WARNING: In order to use the portable version of the Particular Service Platform
 
 A systemic failure is one that is simply unrecoverable, no matter how many times we retry. Usually these are just plain old bugs. Most of the time these kinds of failures require a redeployment with new code in order to fix them. But what happens to the messages in this case?
 
-NOTE: For a good introduction to different types of errors and how to handle them with message-based systems, see [I caught an exception. Now what?](https://particular.net/blog/but-all-my-errors-are-severe)
+> [!NOTE]
+> For a good introduction to different types of errors and how to handle them with message-based systems, see [I caught an exception. Now what?](https://particular.net/blog/but-all-my-errors-are-severe)
 
 Let's cause a systemic failure and see how you can use the Particular Service Platform tools to handle it.
 

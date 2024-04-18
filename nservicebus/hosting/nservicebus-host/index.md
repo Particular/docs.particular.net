@@ -35,7 +35,8 @@ Versions of the host prior to 5.0 were aligned with NServiceBus core. Since vers
 
 The `NServiceBus.Host.exe` creates a separate *service* [Application Domain](https://docs.microsoft.com/en-us/dotnet/framework/app-domains/application-domains) to run NServiceBus and the user code. The new domain is assigned a configuration file named after the dll that contains the class implementing `IConfigureThisEndpoint`. All the configuration should be done in that file (as opposed to `NServiceBus.Host.exe.config`). In most cases that means just adding the `app.config` file to the project and letting MSBuild rename it while moving to the `bin` directory.
 
-NOTE: When the type that implements `IConfigureThisEndpoint` is not specified explicitly via an `EndpointConfigurationType` application setting key in the `NServiceBus.Host.exe.config`, the host scans all assemblies to locate this type. Scanning is done in the context of the *host* application domain, not the new *service* domain. Because of that, when [redirecting assembly versions](https://docs.microsoft.com/en-us/dotnet/framework/configure-apps/redirect-assembly-versions), the `assemblyBinding` element needs to be present in both `NServiceBus.Host.exe.config` and `app.config`. Also see [Assembly Scanning](#endpoint-configuration-assembly-scanning).
+> [!NOTE]
+> When the type that implements `IConfigureThisEndpoint` is not specified explicitly via an `EndpointConfigurationType` application setting key in the `NServiceBus.Host.exe.config`, the host scans all assemblies to locate this type. Scanning is done in the context of the *host* application domain, not the new *service* domain. Because of that, when [redirecting assembly versions](https://docs.microsoft.com/en-us/dotnet/framework/configure-apps/redirect-assembly-versions), the `assemblyBinding` element needs to be present in both `NServiceBus.Host.exe.config` and `app.config`. Also see [Assembly Scanning](#endpoint-configuration-assembly-scanning).
 
 ## Endpoint configuration
 
@@ -99,7 +100,8 @@ snippet: EndpointNameInCodeForHost
 
 Set the endpoint name using the `[EndpointName]` attribute on the endpoint configuration.
 
-NOTE: This will only work when using [NServiceBus host](/nservicebus/hosting/nservicebus-host/).
+> [!NOTE]
+> This will only work when using [NServiceBus host](/nservicebus/hosting/nservicebus-host/).
 
 snippet: EndpointNameByAttribute
 

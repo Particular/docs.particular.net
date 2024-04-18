@@ -25,7 +25,8 @@ As with [regular NServiceBus endpoints](/nservicebus/scaling.md#scaling-out-to-m
 
 The bridge accesses messages using NServiceBus transport packages, which ensure that only one instance processes a given message.
 
-NOTE: MSMQ is not a brokered transport and cannot benefit from the competing consumer pattern.
+> [!NOTE]
+> MSMQ is not a brokered transport and cannot benefit from the competing consumer pattern.
 
 ### Splitting up the bridge
 
@@ -33,7 +34,8 @@ It is possible to use multiple logical instances of the bridge. Each logical ins
 
 This can be useful when resources such as a CPU and disk are fully utilized and the competing consumers pattern isn't an appropriate solution.
 
-NOTE: It may be useful to split up logical endpoints to increase throughput for *specific messages*. For the bridge, this benefit is lost, as each endpoint that is mimicked by the bridge has its own message processing pipeline, separate from other mimicked endpoints.
+> [!NOTE]
+> It may be useful to split up logical endpoints to increase throughput for *specific messages*. For the bridge, this benefit is lost, as each endpoint that is mimicked by the bridge has its own message processing pipeline, separate from other mimicked endpoints.
 
 ```mermaid
 graph LR

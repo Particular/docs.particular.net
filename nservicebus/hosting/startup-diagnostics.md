@@ -10,7 +10,8 @@ INFO: This document does not apply to Azure Function hosts. For Azure Function h
 
 To make troubleshooting easier, diagnostic information is collected during endpoint startup and written to a `.diagnostics` sub-folder in the host output directory.
 
-NOTE: By default, the output directory is called `AppDomain.CurrentDomain.BaseDirectory`, except for web applications where `App_Data` is used instead.
+> [!NOTE]
+> By default, the output directory is called `AppDomain.CurrentDomain.BaseDirectory`, except for web applications where `App_Data` is used instead.
 
 To change the output path:
 

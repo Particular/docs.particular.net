@@ -23,4 +23,5 @@ Subscribing from a [feature](/nservicebus/pipeline/features.md) is shown below:
 
 snippet: ReceivePipelineCompletedSubscriptionFromFeature
 
-NOTE: A `ReceivePipelineCompleted` event being raised does not guarantee that the message has been removed from the incoming queue. Infrastructure exceptions can still cause the message to be rolled back and reprocessed.
+> [!NOTE]
+> A `ReceivePipelineCompleted` event being raised does not guarantee that the message has been removed from the incoming queue. Infrastructure exceptions can still cause the message to be rolled back and reprocessed.

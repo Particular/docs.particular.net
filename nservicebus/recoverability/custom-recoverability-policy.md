@@ -16,24 +16,25 @@ redirects:
 
 ## Default Recoverability
 
-The default Recoverability Policy is implemented in `DefaultRecoverabilityPolicy` class. It is publicly exposed in case the default recoverability behavior needs to be reused as part of a custom recoverability policy. The default policy takes into account the settings provided for Immediate Retries, Delayed Retries and the configured error queue. 
+The default Recoverability Policy is implemented in `DefaultRecoverabilityPolicy` class. It is publicly exposed in case the default recoverability behavior needs to be reused as part of a custom recoverability policy. The default policy takes into account the settings provided for Immediate Retries, Delayed Retries and the configured error queue.
 
 The default policy works in the following way:
 
- 1. If an unrecoverable exception is raised, then the `MoveToError` action is returned immediately with the default error queue. 
+ 1. If an unrecoverable exception is raised, then the `MoveToError` action is returned immediately with the default error queue.
  1. If the `ImmediateProcessingFailures` value is less or equal to the configured `MaxNumberOfRetries` for Immediate Retries, then the `ImmediateRetry` action is returned.
  1. If Immediate Retries are exceeded, then the Delayed Retries configuration is considered. If the `DelayedDeliveriesPerformed` is less than `MaxNumberOfRetries` and the message hasn't reached the maximum time allowed for retries (24 hours), then the `DelayedRetry` action is returned. The delay is calculated according to the following formula:
 
     `delay = DelayedRetry.TimeIncrease * (DelayedDeliveriesPerformed + 1)`.
 
  1. If `MaxNumberOfRetries` for both ImmediateRetries and DelayedRetries is exceeded, then the `MoveToError` action is returned with the default error queue.
- 
-NOTE: According to the default policy, only exceptions of type `MessageDeserializedException` are unrecoverable. It's possible to customize the policy and instruct NServiceBus to treat other types as unrecoverable exceptions. Refer to the [Unrecoverable exceptions](/nservicebus/recoverability/#unrecoverable-exceptions) section to learn more.
+
+> [!NOTE]
+> According to the default policy, only exceptions of type `MessageDeserializedException` are unrecoverable. It's possible to customize the policy and instruct NServiceBus to treat other types as unrecoverable exceptions. Refer to the [Unrecoverable exceptions](/nservicebus/recoverability/#unrecoverable-exceptions) section to learn more.
 
 
 ## Fallback
 
-As outlined in the [Recoverability introduction](/nservicebus/recoverability/), Immediate and Delayed Retries can only be performed under certain conditions. If a custom Recoverability Policy returns a recoverability action which cannot be fulfilled by the infrastructure, the decision will be overridden with the `MoveToError` action with the default error queue. 
+As outlined in the [Recoverability introduction](/nservicebus/recoverability/), Immediate and Delayed Retries can only be performed under certain conditions. If a custom Recoverability Policy returns a recoverability action which cannot be fulfilled by the infrastructure, the decision will be overridden with the `MoveToError` action with the default error queue.
 
 This behavior guarantees safety in edge cases and cannot be overridden.
 
@@ -50,7 +51,8 @@ This behavior guarantees safety in edge cases and cannot be overridden.
 
 The information provided in the configuration is static and will not change between subsequent executions of the policy.
 
-NOTE: In cases when Immediate and/or Delayed Retry capabilities have been turned off and/or are not available, the `MaxNumberOfRetries` exposed to recoverability policy will be set to 0 (zero).
+> [!NOTE]
+> In cases when Immediate and/or Delayed Retry capabilities have been turned off and/or are not available, the `MaxNumberOfRetries` exposed to recoverability policy will be set to 0 (zero).
 
 
 ## Error Context
@@ -66,12 +68,13 @@ NOTE: In cases when Immediate and/or Delayed Retry capabilities have been turned
 
 ## Implement a custom policy
 
-NOTE: New APIs were made available starting in version 6.2. The examples below show how to implement recovery customizations both prior to and after version 6.2. It is not necessary to implement both snippets for a given example.
+> [!NOTE]
+> New APIs were made available starting in version 6.2. The examples below show how to implement recovery customizations both prior to and after version 6.2. It is not necessary to implement both snippets for a given example.
 
 
 ### Partial customization
 
-Sometimes only part of the default Recoverability Policy needs to be customized. In these situations, the `DefaultRecoverabilityPolicy` needs to be called in the customized Recoverability Policy delegate. 
+Sometimes only part of the default Recoverability Policy needs to be customized. In these situations, the `DefaultRecoverabilityPolicy` needs to be called in the customized Recoverability Policy delegate.
 
 For example, the following custom policy will move the message directly to an error queue without retries when a `MyBusinessException` triggers the policy:
 
@@ -96,13 +99,14 @@ snippet: FullyCustomizedPolicyRecoverabilityConfigurationWithDiscard
 
 The snippet below shows a fully custom policy that does the following:
 
- * For unrecoverable exceptions, such as `MyBusinessException`, failed messages are immediately moved to a custom error queue. 
+ * For unrecoverable exceptions, such as `MyBusinessException`, failed messages are immediately moved to a custom error queue.
  * For exceptions where retrying is not required, such as `MyBusinessTimedOutException`, failed messages will be discarded as if they had not occurred. The discarded messages will neither be moved to the error queue nor forwarded to the audit queue. However, the reason for their failure will appear in the logs.
  * For `MyOtherBusinessException`, delayed retries are performed with a constant time increase of five seconds.
  * For all other cases, failed messages are immediately moved to the configured error queue.
 
 snippet: FullyCustomizedPolicyWithDiscard
 
-Note that the `RecoverabilityConfig` will be passed into the custom policy so the code can be fine-tuned based on the configured values. 
+Note that the `RecoverabilityConfig` will be passed into the custom policy so the code can be fine-tuned based on the configured values.
 
-NOTE: The custom error queue specified by `MoveToError` will not be created by NServiceBus and must be manually created.
+> [!NOTE]
+> The custom error queue specified by `MoveToError` will not be created by NServiceBus and must be manually created.

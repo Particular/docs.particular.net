@@ -39,7 +39,8 @@ snippet: NHibernateConcurrencyRowVersion
 
 That property will be included by NHibernate in the `SELECT` and `UPDATE` SQL statements causing a concurrency violation error to be raised in case of concurrent updates.
 
-NOTE: Marking a property with `RowVersion` **does not** disable the pessimistic locking optimization. All it does is replace the default optimistic concurrency validation that depends on values of all columns with one that is based on that single explicit version column. To switch to pure optimistic concurrency adjust the locking strategy to `Read`.
+> [!NOTE]
+> Marking a property with `RowVersion` **does not** disable the pessimistic locking optimization. All it does is replace the default optimistic concurrency validation that depends on values of all columns with one that is based on that single explicit version column. To switch to pure optimistic concurrency adjust the locking strategy to `Read`.
 
 {{NOTE:
 The `RowVersion` attribute is not supported when used on derived classes. To specify a custom row version property, don't inherit saga data from the `ContainSagaData` class; instead directly implement the `IContainSagaData` interface.

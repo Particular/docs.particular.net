@@ -13,7 +13,8 @@ related:
 
 An [endpoint](/nservicebus/concepts/glossary.md#endpoint) may be configured to allow [concurrent handling of messages](/nservicebus/operations/tuning.md). An endpoint may also be [scaled out](/nservicebus/scaling.md#scaling-out-to-multiple-nodes) to multiple nodes. In these scenarios, multiple messages may be received simultaneously which correlate to a single saga instance. Handling those messages may cause saga state to be created, updated, or deleted, and may cause new messages to be sent.
 
-NOTE: With respect to sagas, "handling" a message refers to the invocation of any saga method that processes a message, such as `IAmStartedByMessages<T>.Handle()`, `IHandleTimeouts<T>.Timeout()`, etc.
+> [!NOTE]
+> With respect to sagas, "handling" a message refers to the invocation of any saga method that processes a message, such as `IAmStartedByMessages<T>.Handle()`, `IHandleTimeouts<T>.Timeout()`, etc.
 
 To ensure consistency between saga state and messages, NServiceBus ensures that receiving a message, changing saga state, and sending new messages, occurs as a single, atomic operation, and that two message handlers for the same saga instance do not perform this operation simultaneously.
 
@@ -67,7 +68,8 @@ As described above, some [persisters](/persistence/) use pessimistic locking and
 
 When a persister uses pessimistic locking it will start a transaction which attempts to obtain an update lock on the saga instance data before the message handler is invoked. When handling messages simultaneously related to a given saga instance, one transaction will obtain the lock, and the others will wait until either the current lock is released or the transaction timeout period is reached. Messages in the queue that are not related to that saga instance may be delayed if the concurrency limit of the endpoints has been reached and all transactions are waiting to obtain a lock.
 
-NOTE: The transaction timeout is usually set between 1 and 10 minutes. Consult the DBA or operations for system- or environment-wide transactions settings.
+> [!NOTE]
+> The transaction timeout is usually set between 1 and 10 minutes. Consult the DBA or operations for system- or environment-wide transactions settings.
 
 The following saga persisters support pessimistic locking:
 
@@ -101,7 +103,8 @@ The following saga persisters support OCC:
 
 Because OCC conflicts should eventually be resolved through retries, a [full custom retry policy](/nservicebus/recoverability/custom-recoverability-policy.md#implement-a-custom-policy-full-customization) can be written to prevent moving a message to the error queue too early.
 
-NOTE: The saga concurrency documentation for each persister contains details of the exception type and/or exception message which indicate a concurrency conflict.
+> [!NOTE]
+> The saga concurrency documentation for each persister contains details of the exception type and/or exception message which indicate a concurrency conflict.
 
 ### Host the saga in a dedicated endpoint
 
@@ -111,7 +114,8 @@ To avoid impacting the processing of messages which are not related to the saga,
 
 The number of OCC conflicts can be reduced by [decreasing the concurrency limit](/nservicebus/operations/tuning.md). Message handling can even be made sequential by setting the concurrency limit to 1.
 
-NOTE: Sequential messaging handling when using OCC is only possible for a single endpoint instance. When an endpoint is [scaled out](/nservicebus/scaling.md#scaling-out-to-multiple-nodes), message handling cannot be made sequential when all instances are running. An alternative is to have only one instance running at a time, in an active/passive configuration.
+> [!NOTE]
+> Sequential messaging handling when using OCC is only possible for a single endpoint instance. When an endpoint is [scaled out](/nservicebus/scaling.md#scaling-out-to-multiple-nodes), message handling cannot be made sequential when all instances are running. An alternative is to have only one instance running at a time, in an active/passive configuration.
 
 The concurrency limit applies to an entire endpoint. If the endpoint hosts many handlers and sagas, they will all be subject to the concurrency limit. When decreasing the concurrency limit to reduce data contention for a given saga, consider hosting the saga in a dedicated endpoint.
 

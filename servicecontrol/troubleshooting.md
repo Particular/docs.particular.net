@@ -90,7 +90,8 @@ WARNING: It is not recommended to eliminate this warning by adding `Encrypt=Fals
  1. Click the URL under 'Host'. A valid response with JSON data will be received.
  1. If having issues remotely connecting to ServiceControl. Verify that firewall settings do not block access to the ServiceControl port specified in the URL.
 
-NOTE: Before changing firewall setting to expose ServiceControl read [Securing ServiceControl](securing-servicecontrol.md).
+> [!NOTE]
+> Before changing firewall setting to expose ServiceControl read [Securing ServiceControl](securing-servicecontrol.md).
 
 ## Method not found
 

@@ -15,7 +15,8 @@ Delayed delivery is used for:
 * [Delayed retries](/nservicebus/recoverability/#delayed-retries), to retry a message after successive delays when [immediate retries](/nservicebus/recoverability/#immediate-retries) don't result in successful processing
 * Explicitly sending a message with a delay, as described below
 
-NOTE: Only send operations can be deferred. Publish and reply operations cannot be deferred.
+> [!NOTE]
+> Only send operations can be deferred. Publish and reply operations cannot be deferred.
 
 ## Delaying message dispatching
 
@@ -46,11 +47,14 @@ Delayed delivery of messages is supported when one of the following requirements
 
 When deferring a message, it is sent to the Timeout Manager requesting it to deliver the message at a later time or deferred by using the transports native capability to defer messages.
 
-NOTE: The Timeout Manager is enabled by default. However, it is automatically disabled for send-only endpoints and transports that support delayed delivery natively (i.e. Azure Service Bus).
+> [!NOTE]
+> The Timeout Manager is enabled by default. However, it is automatically disabled for send-only endpoints and transports that support delayed delivery natively (i.e. Azure Service Bus).
 
-NOTE: When relying on Timeout Manager, the sending endpoint must be running when the timeout is reached in order for the message to be sent. If the endpoint is not running when the timeout is reached then the message will be sent when the endpoint is next started.
+> [!NOTE]
+> When relying on Timeout Manager, the sending endpoint must be running when the timeout is reached in order for the message to be sent. If the endpoint is not running when the timeout is reached then the message will be sent when the endpoint is next started.
 
-NOTE: If specifying a time that is in the past then the message will still be slightly delayed. The message will not be sent until the Timeout Manager has processed the request.
+> [!NOTE]
+> If specifying a time that is in the past then the message will still be slightly delayed. The message will not be sent until the Timeout Manager has processed the request.
 
 
 ## How it works

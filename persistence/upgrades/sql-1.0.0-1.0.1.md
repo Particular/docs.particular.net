@@ -17,7 +17,8 @@ upgradeGuideCoreVersions:
 
 WARNING: This upgrade is only required by Endpoints that are using both [Microsoft SQL Server](/persistence/sql/dialect-mssql.md) and [Outbox](/nservicebus/outbox/).
 
-NOTE: This is a optional performance optimization that is only necessary for high throughput endpoints. All new endpoints created with Version 1.0.1 and above will have this optimization applied.
+> [!NOTE]
+> This is a optional performance optimization that is only necessary for high throughput endpoints. All new endpoints created with Version 1.0.1 and above will have this optimization applied.
 
 As the `MessageId` is not guaranteed to be sequential a [nonclustered index](https://docs.microsoft.com/en-us/sql/relational-databases/indexes/clustered-and-nonclustered-indexes-described) gives better performance. Applying this change results in the table being treated as a [heap](https://docs.microsoft.com/en-us/sql/relational-databases/indexes/heaps-tables-without-clustered-indexes).
 
@@ -26,14 +27,16 @@ As the `MessageId` is not guaranteed to be sequential a [nonclustered index](htt
 
 Perform the steps described in this section for all endpoints that that are using [Microsoft SQL Server](/persistence/sql/dialect-mssql.md), [Outbox](/nservicebus/outbox/) and Sql Persistence Version 1.0.0.
 
-NOTE: Since Version 1.0.1 does not require the nonclustered index to function, the conversion of indexes over to nonclustered can be done before **or** after the upgrade to 1.0.1.
+> [!NOTE]
+> Since Version 1.0.1 does not require the nonclustered index to function, the conversion of indexes over to nonclustered can be done before **or** after the upgrade to 1.0.1.
 
 
 #### Stop endpoint
 
 Stop the affected endpoint.
 
-NOTE: This process can be done on a per-endpoint basis or in bulk for all affected endpoints.
+> [!NOTE]
+> This process can be done on a per-endpoint basis or in bulk for all affected endpoints.
 
 
 #### Convert to Nonclustered

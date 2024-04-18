@@ -23,7 +23,8 @@ The mapping rules are as follows:
    - [XML](/nservicebus/serialization/xml.md#inferring-message-type-from-root-node-name) via the root node name
    - [JSON.NET](/nservicebus/serialization/newtonsoft.md#inferring-message-type-from-type) via a custom `$type` property
 
-NOTE: Message type inference based on the message body content if the `NServiceBus.EnclosedMessageTypes` header is missing is only supported from NServiceBus version 7.4 or higher
+> [!NOTE]
+> Message type inference based on the message body content if the `NServiceBus.EnclosedMessageTypes` header is missing is only supported from NServiceBus version 7.4 or higher
 
 ## Custom type inference
 

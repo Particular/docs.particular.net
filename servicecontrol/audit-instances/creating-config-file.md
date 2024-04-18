@@ -159,7 +159,8 @@ Type: timespan
 
 Valid range for this setting is from 1 hour to 365 days.
 
-NOTE: Starting with version 4.26.0, new audit instances using RavenDB 5 will use the built-in RavenDB expiration process. Changing the audit retention setting will affect only newly ingested messages. Already ingested messages will expire according to the previous retention setting value.
+> [!NOTE]
+> Starting with version 4.26.0, new audit instances using RavenDB 5 will use the built-in RavenDB expiration process. Changing the audit retention setting will affect only newly ingested messages. Already ingested messages will expire according to the previous retention setting value.
 
 ## Performance tuning
 
@@ -209,7 +210,8 @@ Type: bool `true` or `false`
 
 Default: `true`.
 
-NOTE: If the audit instance uses RavenDB 5 persistence (available starting 4.26.0), changing the full-text search setting will cause indexes to be redeployed and rebuilt. Depending on the number of documents stored, this operation might take a long time and search results won't be available until completed.
+> [!NOTE]
+> If the audit instance uses RavenDB 5 persistence (available starting 4.26.0), changing the full-text search setting will cause indexes to be redeployed and rebuilt. Depending on the number of documents stored, this operation might take a long time and search results won't be available until completed.
 
 ### ServiceControl.Audit/BulkInsertCommitTimeoutInSeconds
 
@@ -255,7 +257,8 @@ Type: string
 
 Default: `<AuditQueue>.log`
 
-NOTE: Changing the configuration file directly will not result in the queue being created. Use ServiceControl Management to add or alter the forwarding queue.
+> [!NOTE]
+> Changing the configuration file directly will not result in the queue being created. Use ServiceControl Management to add or alter the forwarding queue.
 
 ### ServiceControl.Audit/ForwardAuditMessages
 
@@ -275,7 +278,8 @@ Type: string
 
 ServiceControl Audit stores its data in a RavenDB embedded instance. If direct access to the RavenDB instance is required for troubleshooting while ServiceControl Audit is running, use the following instructions.
 
-NOTE: [Maintenance mode](/servicecontrol/audit-instances/maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
+> [!NOTE]
+> [Maintenance mode](/servicecontrol/audit-instances/maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
 
 WARNING: The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl Audit and is not intended for external manipulation or modifications.
 
@@ -309,7 +313,8 @@ After restarting the ServiceControl Audit service, access the RavenDB studio loc
 http://localhost:{configured ServiceControl instance maintenance port}/studio/index.html#databases/documents?&database=%3Csystem%3E
 ```
 
-NOTE: The ServiceControl Audit embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access, the hostname must be [set to a fully qualified domain name](/servicecontrol/setting-custom-hostname.md).
+> [!NOTE]
+> The ServiceControl Audit embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access, the hostname must be [set to a fully qualified domain name](/servicecontrol/setting-custom-hostname.md).
 
 #### ServiceControl.Audit/DataSpaceRemainingThreshold
 

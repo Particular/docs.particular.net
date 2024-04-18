@@ -81,7 +81,8 @@ Create a handler class by implementing `IHandleMessages<T>` where `T` is the typ
 
 snippet: EventHandler
 
-NOTE: Since we are using the Learning Transport, which supports publish/subscribe natively, we don't have to do anything else to subscribe to an event other than create the event handler. Other transports do not support native publish/subscribe and require the extra step of [defining the publisher for an event](/nservicebus/messaging/routing.md#event-routing-message-driven). 
+> [!NOTE]
+> Since we are using the Learning Transport, which supports publish/subscribe natively, we don't have to do anything else to subscribe to an event other than create the event handler. Other transports do not support native publish/subscribe and require the extra step of [defining the publisher for an event](/nservicebus/messaging/routing.md#event-routing-message-driven).
 
 
 ## Exercise
@@ -127,7 +128,8 @@ Unlike the command, `PlaceOrder`, which is a request to do something, `OrderPlac
 
 When an order is placed, we want to charge the credit card for that order. So we will create a **Billing** service, which will subscribe to `OrderPlaced` so that it can handle the payment transaction.
 
-NOTE: Since this is the third endpoint we've created, the instructions will be a little more abbreviated. Refer back to [Lesson 2](../2-sending-a-command/) where we created the Sales endpoint for more detailed instructions.
+> [!NOTE]
+> Since this is the third endpoint we've created, the instructions will be a little more abbreviated. Refer back to [Lesson 2](../2-sending-a-command/) where we created the Sales endpoint for more detailed instructions.
 
  1. Create a new **Console Application** named **Billing**.
  1. Add references for the **NServiceBus NuGet package** and the **Sales.Messages** assembly.

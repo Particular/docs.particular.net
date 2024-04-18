@@ -27,7 +27,8 @@ The following code shows the configuration of a transport adapter in a mixed tra
 
 snippet: MixedTransports
 
-NOTE: If the adapter is run in conjunction with the NServiceBus endpoint, even though the adapter's transport configuration is similar to the endpoint transport (e.g. ConnectionStrings, etc.), it still needs to be done for both.
+> [!NOTE]
+> If the adapter is run in conjunction with the NServiceBus endpoint, even though the adapter's transport configuration is similar to the endpoint transport (e.g. ConnectionStrings, etc.), it still needs to be done for both.
 
 ### Advanced transport features
 
@@ -101,7 +102,8 @@ snippet: RetryRetries
 
 The transport adapter allows configuration of the addresses of the forwarded queues: audit, error, and control (input queue of ServiceControl). Both endpoint- and ServiceControl-side queues can be configured.
 
-NOTE: The default values are suitable only in cases where both sides of the adapter use different transports or at least different broker instances. In case the adapter runs on a single transport and instance, the queue names on one side must be altered.
+> [!NOTE]
+> The default values are suitable only in cases where both sides of the adapter use different transports or at least different broker instances. In case the adapter runs on a single transport and instance, the queue names on one side must be altered.
 
 
 ### Audit queues

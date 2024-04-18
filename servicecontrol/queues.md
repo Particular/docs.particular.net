@@ -16,7 +16,8 @@ These queues can be manually created before deploying a ServiceControl instance.
 - [RabbitMQ](/transports/rabbitmq/operations-scripting.md#endpoint-create)
 - [Amazon SQS](/transports/sqs/operations-scripting.md)
 
-NOTE: ServiceControl instances do not subscribe to any events, and so do not require any subscriptions to be configured.
+> [!NOTE]
+> ServiceControl instances do not subscribe to any events, and so do not require any subscriptions to be configured.
 
 ## Error instance
 
@@ -51,7 +52,8 @@ If the heartbeats or custom checks plugins are in use, they should be configured
 | ServiceControl Audit instance      |          Write          | [ServiceControl.Audit/ServiceControlQueueAddress](/servicecontrol/audit-instances/creating-config-file.md#transport-servicecontrol-auditservicecontrolqueueaddress) |
 | ServiceControl Monitoring instance |            -            |
 
-NOTE: The ServiceControl Audit instance sends a control message to the ServiceControl Error instance when it encounters an endpoint for the first time, and when a retried message has been audited to indicate that the retry was a success.
+> [!NOTE]
+> The ServiceControl Audit instance sends a control message to the ServiceControl Error instance when it encounters an endpoint for the first time, and when a retried message has been audited to indicate that the retry was a success.
 
 ### Error queue
 
@@ -67,7 +69,8 @@ If the ServiceControl Error instance cannot process a message, a copy is forward
 | ServiceControl Audit instance      |            -            |
 | ServiceControl Monitoring instance |            -            |
 
-NOTE: The ServiceControl Error instance includes a custom check to see if there are messages in this queue.
+> [!NOTE]
+> The ServiceControl Error instance includes a custom check to see if there are messages in this queue.
 
 ### Staging queue
 

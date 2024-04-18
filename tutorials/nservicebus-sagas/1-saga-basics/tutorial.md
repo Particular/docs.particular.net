@@ -74,7 +74,8 @@ We haven't done anything substantial yet, just reorganized two message handlers 
 
 Sagas store their state in a class that inherits from `ContainSagaData` which automatically gives it a few properties (including an `Id`) required by NServiceBus. All the saga's data is represented as properties on the saga data class.
 
-NOTE: We could implement `IContainSagaData` instead and create these required properties ourselves, but it's a lot easier to use the `ContainSagaData` convenience class.
+> [!NOTE]
+> We could implement `IContainSagaData` instead and create these required properties ourselves, but it's a lot easier to use the `ContainSagaData` convenience class.
 
 We need to track whether or not we've received `OrderPlaced` and `OrderBilled`. The easiest way to do that is with boolean properties.
 
@@ -107,7 +108,8 @@ snippet: HandleBasicImplementation
 
 Notice we didn't have to worry about loading and unloading this data — that's done for us. NServiceBus loads the saga state from storage whenever a message related to the particular saga instance is received by an endpoint and then stores any changes after the message is processed. Later in this lesson, we'll explain how NServiceBus can determine saga state based on incoming messages.
 
-NOTE: NServiceBus sagas are templates representing a process. At runtime, there can be multiple active instances, each representing the shipment process for a specific order. You can think about the distinction between saga and saga instance as similar to a class and object instance in C#. In this scenario there will be as many `ShippingPolicy` saga instances as there are shipments currently in progress.
+> [!NOTE]
+> NServiceBus sagas are templates representing a process. At runtime, there can be multiple active instances, each representing the shipment process for a specific order. You can think about the distinction between saga and saga instance as similar to a class and object instance in C#. In this scenario there will be as many `ShippingPolicy` saga instances as there are shipments currently in progress.
 
 Now, how do we determine how to start a saga?
 
@@ -135,7 +137,8 @@ snippet: ShippingPolicyStartedBy2Messages
 
 The `IAmStartedByMessages<T>` interface implements the `IHandleMessages<T>` interface already, so we don't need to make any other code changes to make the swap. Now the NServiceBus infrastructure knows that a message of *either* type can create a new saga instance if one doesn't already exist. The `IHandleMessages<T>` interface requires a saga instance to exist *already*. If no matching saga instance is found, then the incoming message will be ignored.
 
-NOTE: See [Sagas Not Found](/nservicebus/sagas/saga-not-found.md) for more details about what happens when NServiceBus can't find a saga instance for a message.
+> [!NOTE]
+> See [Sagas Not Found](/nservicebus/sagas/saga-not-found.md) for more details about what happens when NServiceBus can't find a saga instance for a message.
 
 #### Matching messages to sagas
 
@@ -192,7 +195,8 @@ Next, let's add a `ProcessOrder` method to the saga to handle the order delivery
 
 snippet: ShippingPolicyProcessOrder
 
-NOTE: While the more architecturally-clean approach would have been to `Send()` the `ShipOrder` command in this case, rather than use `SendLocal()`, that would have required us to add a routing rule to define where the message would be sent to, just as we did in the [step-by-step tutorial on multiple endpoints](/tutorials/nservicebus-step-by-step/3-multiple-endpoints/#exercise-sending-to-another-endpoint). The use of `SendLocal()` in this case was just to simplify the sample.
+> [!NOTE]
+> While the more architecturally-clean approach would have been to `Send()` the `ShipOrder` command in this case, rather than use `SendLocal()`, that would have required us to add a routing rule to define where the message would be sent to, just as we did in the [step-by-step tutorial on multiple endpoints](/tutorials/nservicebus-step-by-step/3-multiple-endpoints/#exercise-sending-to-another-endpoint). The use of `SendLocal()` in this case was just to simplify the sample.
 
 In the `ProcessOrder` method we check if both messages have been received. In such a case the saga will send a message to deliver the order. For this specific `OrderId` the shipment process is now complete. We don't need that saga instance anymore, so it can be safely deleted by invoking the `MarkAsComplete` method.
 

@@ -23,6 +23,7 @@ Once instantiated, `Customize(...)` is called on each instance. These calls are 
 
 Exceptions thrown by instances of `INeedInitialization` are not handled by NServiceBus and will bubble up to the caller creating the endpoint.
 
-NOTE: Instances of `INeedInitialization` are created after type-scanning has occurred. Do not attempt to alter the types to be scanned from an instance of `INeedInitialization`.
+> [!NOTE]
+> Instances of `INeedInitialization` are created after type-scanning has occurred. Do not attempt to alter the types to be scanned from an instance of `INeedInitialization`.
 
 snippet: lifecycle-ineedinitialization

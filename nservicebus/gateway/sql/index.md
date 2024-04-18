@@ -23,7 +23,8 @@ The following code shows how to customize the schema and table name:
 
 snippet: CustomizeSchemaAndTableName
 
-NOTE: While it is possible to use the same GatewayDeduplication table for all endpoints within a single logical site, the gateway assumes that _different_ logical sites (which are generally physically separated as well) will use separate storage infrastructure. Because sending a message to multiple sites will result in messages with the same message ID delivered to each site, if those sites share a single deduplication table, the deduplication will not work correctly. In that case, separate the storage by using different table names as shown above.
+> [!NOTE]
+> While it is possible to use the same GatewayDeduplication table for all endpoints within a single logical site, the gateway assumes that _different_ logical sites (which are generally physically separated as well) will use separate storage infrastructure. Because sending a message to multiple sites will result in messages with the same message ID delivered to each site, if those sites share a single deduplication table, the deduplication will not work correctly. In that case, separate the storage by using different table names as shown above.
 
 ### Using the endpoint name
 

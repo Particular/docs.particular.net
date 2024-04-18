@@ -194,7 +194,8 @@ public class MigrationStep3 :
 
 Fix the compiler warnings by introducing the `await` statement to each asynchronous method call.
 
-NOTE: Visual Studio 2015 and higher has the capability to automatically fix those warnings with the [`Ctrl+.`](https://msdn.microsoft.com/en-us/library/dn872466.aspx) (depending on the keybindings) shortcut. It is even possible to fix it in the whole solution if desired.
+> [!NOTE]
+> Visual Studio 2015 and higher has the capability to automatically fix those warnings with the [`Ctrl+.`](https://msdn.microsoft.com/en-us/library/dn872466.aspx) (depending on the keybindings) shortcut. It is even possible to fix it in the whole solution if desired.
 
 ```csharp
 public class MigrationStep4 :

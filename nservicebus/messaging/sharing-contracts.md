@@ -27,7 +27,8 @@ When [marker interfaces](/nservicebus/messaging/messages-events-commands.md#iden
 * Referencing the oldest used NServiceBus major version from message contracts projects. [NuGet dependency resolution](https://docs.microsoft.com/en-us/nuget/concepts/dependency-resolution) allows endpoints on newer major versions of NServiceBus to reference assemblies that target an older version of NServiceBus, but not vice versa.
 * Switching to [unobtrusive mode](/nservicebus/messaging/unobtrusive-mode.md). Unobtrusive mode allows an assembly to define message contracts without a dependency on the NServiceBus package, making it easy to share message contracts with endpoints targeting multiple versions of NServiceBus and running on various frameworks and platforms.
 
-NOTE: Starting with version 8, NServiceBus no longer targets .NET Standard. [Multi-targeting](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/cross-platform-targeting#multi-targeting) must be used to support multiple target frameworks.
+> [!NOTE]
+> Starting with version 8, NServiceBus no longer targets .NET Standard. [Multi-targeting](https://docs.microsoft.com/en-us/dotnet/standard/library-guidance/cross-platform-targeting#multi-targeting) must be used to support multiple target frameworks.
 
 ## Versioning
 

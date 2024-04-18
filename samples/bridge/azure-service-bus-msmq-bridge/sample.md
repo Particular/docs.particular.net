@@ -60,7 +60,8 @@ snippet: asb-bridge-configuration
 
 The MSMQ bridge endpoint is configured by using the name of the actual MSMQ endpoint where the message needs to be routed to:
 
-NOTE: The `QueueAddress` parameter is needed to create an MSMQ bridge endpoint when the actual MSMQ endpoint and the bridge are running on separate servers
+> [!NOTE]
+> The `QueueAddress` parameter is needed to create an MSMQ bridge endpoint when the actual MSMQ endpoint and the bridge are running on separate servers
 
 snippet: create-msmq-endpoint-of-bridge
 

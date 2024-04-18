@@ -8,7 +8,7 @@ There are a few options to add a license to ServiceControl.
 
 ## ServiceControl Management tool
 
-ServiceControl has a license user interface which can be accessed in ServiceControl Management. 
+ServiceControl has a license user interface which can be accessed in ServiceControl Management.
 
 #if-version [,5)
 ServiceControl Management is installed together with ServiceControl and can be found in the Windows Start Menu.
@@ -54,7 +54,8 @@ See the [ServiceInsight licensing page](/serviceinsight/license.md) for more inf
 
 In Versions 1.17 and below, a license can be applied to an individual instance rather than using a license installed in the registry. To do this, copy the `license.xml` file to a `license` directory under the installation path of the instance.
 
-NOTE: Instance Licensing is deprecated in Version 1.18 and above. Use ServiceControl Management or the ServiceControl PowerShell module to install the license file to the registry.
+> [!NOTE]
+> Instance Licensing is deprecated in Version 1.18 and above. Use ServiceControl Management or the ServiceControl PowerShell module to install the license file to the registry.
 
 ## Troubleshooting
 

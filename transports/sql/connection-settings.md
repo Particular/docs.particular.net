@@ -30,7 +30,8 @@ partial: custom-schema
 
 partial: custom-catalog
 
-NOTE: When subscribing to events between endpoints in different database schemas or catalogs, a [shared subscription table must be configured](/transports/sql/native-publish-subscribe.md#configure-subscription-table).
+> [!NOTE]
+> When subscribing to events between endpoints in different database schemas or catalogs, a [shared subscription table must be configured](/transports/sql/native-publish-subscribe.md#configure-subscription-table).
 
 ## Custom SQL Server transport connection factory
 
@@ -40,7 +41,8 @@ This can be done by passing a custom factory method to the transport which will 
 
 snippet: sqlserver-custom-connection-factory
 
-NOTE: If opening the connection fails, the custom connection factory must dispose the connection object and rethrow the exception.
+> [!NOTE]
+> If opening the connection fails, the custom connection factory must dispose the connection object and rethrow the exception.
 
 WARNING: When using custom schemas or catalogs, ensure the connection returned by the connection factory is granted sufficient permissions for the endpoint to perform its operations.
 

@@ -63,7 +63,8 @@ Use this command to verify broker requirements for using the v2 delay infrastruc
 rabbitmq-transport delays verify [options]
 ```
 
-NOTE: This command requires the [RabbitMQ management plugin](https://www.rabbitmq.com/management.html) to be installed on the broker.
+> [!NOTE]
+> This command requires the [RabbitMQ management plugin](https://www.rabbitmq.com/management.html) to be installed on the broker.
 
 #### Options
 
@@ -106,7 +107,8 @@ Use this command to migrate an existing classic queue to a quorum queue.
 rabbitmq-transport queue migrate-to-quorum <queueName> [options]
 ```
 
-NOTE: The migration command does not work with queues created by endpoints using the direct routing topology.
+> [!NOTE]
+> The migration command does not work with queues created by endpoints using the direct routing topology.
 
 #### Arguments
 

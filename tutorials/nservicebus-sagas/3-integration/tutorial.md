@@ -45,7 +45,8 @@ snippet: Creation-SagaStart
 
 This creates a saga that is started by `ShipOrder` messages and uses `ShipOrderData` to store its data. Because the saga data is tightly coupled to the saga implementation, we include it as an internal class. The `Handle` method is currently empty—we will need to complete that in just a bit.
 
-NOTE: For a more in-depth explanation of the basic saga concepts, see [NServiceBus sagas: Saga basics](/tutorials/nservicebus-sagas/1-saga-basics/).
+> [!NOTE]
+> For a more in-depth explanation of the basic saga concepts, see [NServiceBus sagas: Saga basics](/tutorials/nservicebus-sagas/1-saga-basics/).
 
 The `OrderId` is what makes the saga unique. We need to show the saga how to identify the unique **correlation property** `OrderId` in the incoming `ShipOrder` message and how to relate it to the `OrderId` property in the saga data.
 
@@ -79,7 +80,8 @@ snippet: ShippingEscalationTimeout
 
 Note that the `ShippingEscalation` timeout class should be **nested inside** the `ShipOrderWorkflow` class and marked as `internal`. It is very tightly coupled to the `ShipOrderWorkflow`—there's no need to use it anywhere else. It also doesn't need any special interface or content. A timeout, after all, is just an alarm clock—we get all we need to know just from the type name. Everything else will already exist in the saga's stored data.
 
-NOTE: For more on saga timeouts, see [NServiceBus sagas: Timeouts](/tutorials/nservicebus-sagas/3-integration/).
+> [!NOTE]
+> For more on saga timeouts, see [NServiceBus sagas: Timeouts](/tutorials/nservicebus-sagas/3-integration/).
 
 Now, in our `ShipOrderWorkflow` class, we can implement the `Handle` method as follows:
 

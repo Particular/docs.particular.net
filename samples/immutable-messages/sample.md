@@ -27,7 +27,8 @@ The internal class is then used by the sender endpoint at dispatch time
 
 snippet: immutable-messages-as-interface-sending
 
-NOTE: The class is compatible with any serializer that has public getters and setters.
+> [!NOTE]
+> The class is compatible with any serializer that has public getters and setters.
 
 ### Receiving messages
 

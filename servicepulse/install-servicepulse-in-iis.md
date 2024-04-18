@@ -50,9 +50,11 @@ Note: `ServicePulse.Host.exe` can be found in the ServicePulse installation dire
 netsh http delete urlacl http://+:9090/
 ```
 
-NOTE: Make sure that the ServicePulse Windows Service is not running and that the URLACL has been removed or else IIS will not be able to use port 9090.
+> [!NOTE]
+> Make sure that the ServicePulse Windows Service is not running and that the URLACL has been removed or else IIS will not be able to use port 9090.
 
-NOTE: If TLS is to be applied to ServicePulse then ServiceControl also must be configured for TLS. This can be achieved by reverse proxying ServiceControl through IIS as outlined below.
+> [!NOTE]
+> If TLS is to be applied to ServicePulse then ServiceControl also must be configured for TLS. This can be achieved by reverse proxying ServiceControl through IIS as outlined below.
 
 5. Install the [URL Rewrite](https://www.iis.net/downloads/microsoft/url-rewrite) module, then in the root directory of the IIS website, create a `web.config` file with the following content:
 
@@ -97,7 +99,8 @@ The second required configuration change is to specify the name of the subfolder
 1. Go to the root directory for the website created in the basic configuration.
 1. Edit `js\app.constants.js` file and set the `base_url` variable to be the name of the subfolder.
 
-NOTE: the `base_url` variable must have a `/` character both before and after the name of the subfolder. E.g. `/SubFolder`.
+> [!NOTE]
+> the `base_url` variable must have a `/` character both before and after the name of the subfolder. E.g. `/SubFolder`.
 
 e.g.
 
@@ -118,7 +121,8 @@ ServicePulse relies on the ServiceControl and ServiceControl Monitoring REST API
 
 ### ServiceControl
 
-NOTE: If ServiceControl is configured with a hostname other than `localhost` then change the hostname value back to `localhost`.
+> [!NOTE]
+> If ServiceControl is configured with a hostname other than `localhost` then change the hostname value back to `localhost`.
 
 Installation steps:
 
@@ -267,4 +271,5 @@ Extension | Mime Type
 .woff | application/font-woff
 .woff2 | application/font-woff2
 
-NOTE: Some of these MIME types will already be set up on newer versions of IIS. Verify that all the listed MIME types are present.
+> [!NOTE]
+> Some of these MIME types will already be set up on newer versions of IIS. Verify that all the listed MIME types are present.

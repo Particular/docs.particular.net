@@ -31,7 +31,8 @@ Disk, CPU, RAM, and network performance may be monitored using the Windows Resou
 * Disable disk write caching (read caching can remain enabled) to prevent data corruption if the (virtual) server or disk controller fails. This is a general best practice for databases.
 * [Database paths](/servicecontrol/creating-config-file.md#host-settings-servicecontroldbpath) should be located on disks suitable for low latency write operations (e.g. fiber, solid state drives, raid 10), with a recommended IOPS of at least 7500.
 
-NOTE: To measure disk performance, use a storage benchmark tool such as Windows System Assessment Tool (`winsat disk -drive g`), [CrystalDiskMark](https://crystalmark.info/en/software/crystaldiskmark/), or [DiskSpd](https://github.com/Microsoft/diskspd).
+> [!NOTE]
+> To measure disk performance, use a storage benchmark tool such as Windows System Assessment Tool (`winsat disk -drive g`), [CrystalDiskMark](https://crystalmark.info/en/software/crystaldiskmark/), or [DiskSpd](https://github.com/Microsoft/diskspd).
 
 Note: Do not use an ephemeral AWS or Azure disk for ServiceControl data because these disks will be erased when the virtual machine reboots.
 
@@ -64,7 +65,8 @@ Use [symbolic links (soft links) to map any RavenDB storage subfolder](https://r
 #end-if
 #if-version [,5)
 
-NOTE: Only applies to instances that use the RavenDB 3.5 storage engine
+> [!NOTE]
+> Only applies to instances that use the RavenDB 3.5 storage engine
 
 Use the [`Raven/IndexStoragePath`](/servicecontrol/creating-config-file.md?version=servicecontrol_4#host-settings-ravenindexstoragepath) setting to change the index storage location.
 

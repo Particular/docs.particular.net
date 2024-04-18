@@ -46,4 +46,5 @@ for S3 specify
 
 snippet: S3Proxy
 
-NOTE: It is discouraged to specify username and password in code.
+> [!NOTE]
+> It is discouraged to specify username and password in code.

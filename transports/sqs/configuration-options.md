@@ -7,7 +7,8 @@ redirects:
 - nservicebus/sqs/configuration-options
 ---
 
-NOTE: The transport does not support `transport.ConnectionString(...)` to specify the connection string via code.
+> [!NOTE]
+> The transport does not support `transport.ConnectionString(...)` to specify the connection string via code.
 
 partial: source
 
@@ -29,7 +30,8 @@ The maximum value is 14 days.
 
 snippet: MaxTTL
 
-NOTE: [Large message payloads stored in S3](topology.md#s3) are never deleted by the receiving endpoint, regardless of whether they were successfully handled. The S3 aging policy controls the deletion of the payload and will respect the configured TTL. Since message payloads stored in S3 are important for audited and failed messages stored in ServiceControl, it is crucial that the [ServiceControl message retention period](/servicecontrol/how-purge-expired-data.md) is aligned with the configured SQS and S3 TTL.
+> [!NOTE]
+> [Large message payloads stored in S3](topology.md#s3) are never deleted by the receiving endpoint, regardless of whether they were successfully handled. The S3 aging policy controls the deletion of the payload and will respect the configured TTL. Since message payloads stored in S3 are important for audited and failed messages stored in ServiceControl, it is crucial that the [ServiceControl message retention period](/servicecontrol/how-purge-expired-data.md) is aligned with the configured SQS and S3 TTL.
 
 ## Queue name prefix
 
@@ -87,7 +89,8 @@ By default the transport uses a parameterless constructor to build the S3 client
 snippet: S3ClientFactory
 
 #if-version [6.1,)
-NOTE: If a custom S3 client is provided, it will not be disposed of when the endpoint is stopped.
+> [!NOTE]
+> If a custom S3 client is provided, it will not be disposed of when the endpoint is stopped.
 #end-if
 
 ### Encryption

@@ -23,13 +23,14 @@ snippet: sample-dispatch-watcher
 
 An instance of this watcher is added to the endpoint:
 
-snippet: endpoint-configuration 
+snippet: endpoint-configuration
 
 This enables the underlying feature and adds the watcher to a list which is tracked in the config settings:
 
 snippet: config-extensions
 
-NOTE: Using `EnableByDefault` means that the feature can still be explicitly disabled in code.
+> [!NOTE]
+> Using `EnableByDefault` means that the feature can still be explicitly disabled in code.
 
 The feature (if enabled) is called during the endpoint startup:
 

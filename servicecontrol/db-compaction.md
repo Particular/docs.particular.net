@@ -94,7 +94,8 @@ Once ServiceControl is running in this mode, the following procedure can be used
 
 ### Step 3: Delete the existing database
 
-NOTE: At this point, it is advisable to take a backup copy of the existing database directory as re-importing can sometimes fail. To do this, ensure that ServiceControl is not running, then copy the contents of the database directory.
+> [!NOTE]
+> At this point, it is advisable to take a backup copy of the existing database directory as re-importing can sometimes fail. To do this, ensure that ServiceControl is not running, then copy the contents of the database directory.
 
 * Delete the database directory contents.
 * Start ServiceControl, again in maintenance mode. This will populate the database directory with a blank database.

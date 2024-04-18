@@ -56,7 +56,7 @@ sequenceDiagram
     participant S as Sender
     participant F as Destination-delay.fifo
     participant D as Destination
-    
+
     S ->> F:  NServiceBus.AmazonSQS.DelaySeconds = delay
     loop every 900sec
         alt remaining delay > 900sec
@@ -67,7 +67,8 @@ sequenceDiagram
     end
 ```
 
-NOTE: FIFO queues are used to implement this feature because of their native support for de-duplication.
+> [!NOTE]
+> FIFO queues are used to implement this feature because of their native support for de-duplication.
 
 WARNING: The transport uses timestamps from the broker to avoid clock skew, but a discrepancy between broker and endpoint clocks still has potential to cause inaccurate delay calculation.
 
@@ -155,7 +156,8 @@ To estimate the cost of a delayed message, the following formula can be used:
 **O**(perations) = **C** * 2 // dequeue and requeue<br>
 **T**(otal cost) = **O** * **P**<br>
 
-NOTE: The cost might be lower due to the transport optimizing dequeue operations by batching requests.
+> [!NOTE]
+> The cost might be lower due to the transport optimizing dequeue operations by batching requests.
 
 ### Example
 

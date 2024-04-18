@@ -19,7 +19,8 @@ The flow diagram provides a detailed visual overview of the messages, collated b
 
 As endpoints are selected, the other views within ServiceInsight respond and filter the information to show only messages pertaining to the selected endpoint.
 
-NOTE: Endpoint lists, message information, and message flows will not be populated until messages have been successfully processed by ServiceControl.
+> [!NOTE]
+> Endpoint lists, message information, and message flows will not be populated until messages have been successfully processed by ServiceControl.
 
 ### Relationship between ServiceInsight, ServiceControl, and Endpoints
 
@@ -44,7 +45,8 @@ The Messages window is a detailed grid view indicating message [status](managing
 
 [ServicePulse](/servicepulse) also supports opening ServiceInsight to a specific message to allow drill down for more detail.
 
-NOTE: A message's body is searchable only if the body size is under 85kB, under the [`ServiceControl.Audit/MaxBodySizeToStore`](/servicecontrol/audit-instances/creating-config-file.md#performance-tuning-servicecontrol-auditmaxbodysizetostore) size limit, and is a non-binary content type.
+> [!NOTE]
+> A message's body is searchable only if the body size is under 85kB, under the [`ServiceControl.Audit/MaxBodySizeToStore`](/servicecontrol/audit-instances/creating-config-file.md#performance-tuning-servicecontrol-auditmaxbodysizetostore) size limit, and is a non-binary content type.
 
 ### Refresh and Auto-refresh
 
@@ -67,7 +69,7 @@ The message timing measurements include:
 
 Messages can be sorted in ascending or descending order using the column headers. The sorting operation is applied to all the relevant messages in the underlying ServiceControl instance, not just the currently displayed messages.
 
-### Detailed view 
+### Detailed view
 
 Select a specific message to view the details for that message.
 

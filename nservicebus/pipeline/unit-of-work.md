@@ -17,7 +17,8 @@ If a business transaction is spread across multiple handlers there is always a r
 
 snippet: UnitOfWorkWrapHandlersInATransactionScope
 
-NOTE: This requires the selected [persistence](/persistence/) to support enlisting in transaction scopes.
+> [!NOTE]
+> This requires the selected [persistence](/persistence/) to support enlisting in transaction scopes.
 
 WARNING: This might escalate to a distributed transaction if data in different databases are updated.
 

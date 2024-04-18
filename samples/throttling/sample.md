@@ -62,4 +62,5 @@ Handles the detection of `Octokit.RateLimitExceededException` and defers the mes
 
 snippet: ThrottlingBehavior
 
-NOTE: The behavior sends a *copy* of the original message, but does not copy the headers of the original message. If the headers of the original message are required, they must be copied from `context.Headers` to `SendOptions`.
+> [!NOTE]
+> The behavior sends a *copy* of the original message, but does not copy the headers of the original message. If the headers of the original message are required, they must be copied from `context.Headers` to `SendOptions`.

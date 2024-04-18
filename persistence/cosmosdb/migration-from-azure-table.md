@@ -91,9 +91,11 @@ WARN: Dates stored using `DateTimeOffset` data type are susceptible to incorrect
 
 By enabling migration mode only for auto-correlated messages, the saga persister will attempt to query the collection using the [original saga ID in the saga metadata](#export-data-exported-saga-id) when the saga is not found. Messages [explicitly mapped using the `ConfigureHowToFindSaga` method](/nservicebus/sagas/message-correlation.md) do not require the additional query.
 
-NOTE: Querying by the original saga ID with migration mode will incur additional RU usage on the collection.
+> [!NOTE]
+> Querying by the original saga ID with migration mode will incur additional RU usage on the collection.
 
-NOTE: [Saga timeouts](/nservicebus/sagas/timeouts.md) always use auto-correlation.
+> [!NOTE]
+> [Saga timeouts](/nservicebus/sagas/timeouts.md) always use auto-correlation.
 
 To enable migration mode use the configuration option:
 

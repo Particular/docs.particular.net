@@ -86,14 +86,16 @@ The main ServiceControl installer includes a desktop utility called the `Service
 
 Download and run the latest [ServiceControl installer](https://particular.net/start-servicecontrol-download).
 
-NOTE: You should run the latest version of the installer, even if you already have ServiceControl installed. Only versions 1.43 and above of the ServiceControl Management Utility can create and manage monitoring instances.
+> [!NOTE]
+> You should run the latest version of the installer, even if you already have ServiceControl installed. Only versions 1.43 and above of the ServiceControl Management Utility can create and manage monitoring instances.
 
 Once it has finished installing, run the ServiceControl Management Utility.
 
 
 ### Create a ServiceControl instance
 
-NOTE: You can use an existing ServiceControl instance if it is version 1.43 or higher.
+> [!NOTE]
+> You can use an existing ServiceControl instance if it is version 1.43 or higher.
 
 In the `ServiceControl Management Utility`, click **+ New** and select **ServiceControl instance** from the list of options.
 
@@ -109,7 +111,8 @@ Click the Add button. Your ServiceControl instance will start and appear on the 
 
 The listing for the ServiceControl instance includes a URL. This URL will be needed when installing ServicePulse below.
 
-NOTE: Creating the ServiceControl instance will also create the audit and error queues if they did not already exist. By default these are called _audit_ and _error_ respectively.
+> [!NOTE]
+> Creating the ServiceControl instance will also create the audit and error queues if they did not already exist. By default these are called _audit_ and _error_ respectively.
 
 ### Create a ServiceControl monitoring instance
 
@@ -127,17 +130,20 @@ Click the Add button. Your monitoring instance will start and be listed on the m
 
 The listing for the monitoring instance includes a URL. This URL will be needed when installing ServicePulse below.
 
-NOTE: Creating the monitoring instance will also create the monitoring queue if it did not already exist. By default this queue is called _Particular.Monitoring_.
+> [!NOTE]
+> Creating the monitoring instance will also create the monitoring queue if it did not already exist. By default this queue is called _Particular.Monitoring_.
 
 ### Install ServicePulse
 
-NOTE: Make sure that ServiceControl and ServiceControl monitoring instances are added first.
+> [!NOTE]
+> Make sure that ServiceControl and ServiceControl monitoring instances are added first.
 
 [ServicePulse](/servicepulse/) is a web application for production monitoring and recoverability. It connects to a monitoring instance to display monitoring data and to a ServiceControl instance to display recoverability data.
 
 Download and run the latest [ServicePulse installer](https://github.com/Particular/ServicePulse/releases/).
 
-NOTE: In order to configure ServicePulse to connect to a ServiceControl monitoring instance you must download the latest version, then uninstall your current version and install the downloaded version.
+> [!NOTE]
+> In order to configure ServicePulse to connect to a ServiceControl monitoring instance you must download the latest version, then uninstall your current version and install the downloaded version.
 
 On the ServicePulse Configuration screen ensure that Recoverability is enabled and enter the URL of the ServiceControl instance API. Check the box marked Monitoring and enter the URL of the monitoring instance API.
 
@@ -151,7 +157,8 @@ Launch ServicePulse and navigate to the **Monitoring** tab.
 
 ![ServicePulse - Monitoring Tab - Empty](sp-monitoring-empty.png)
 
-NOTE: If monitoring was not enabled during installation, the monitoring tab will not be visible.
+> [!NOTE]
+> If monitoring was not enabled during installation, the monitoring tab will not be visible.
 
 ## Configure NServiceBus endpoints
 
@@ -169,7 +176,8 @@ Configure your endpoint to send failed messages to the error queue.
 
 partial: error-config
 
-NOTE: If you are using the MSMQ transport then you also need to specify the machine where the error queue is located. i.e. `error@MACHINENAME`. This should be the same machine where your ServiceControl instance is installed.
+> [!NOTE]
+> If you are using the MSMQ transport then you also need to specify the machine where the error queue is located. i.e. `error@MACHINENAME`. This should be the same machine where your ServiceControl instance is installed.
 
 ### Audit
 
@@ -181,7 +189,8 @@ Configure your endpoint to send processed messages to an audit queue.
 
 partial: audit-config
 
-NOTE: If you are using the MSMQ transport then you also need to specify the machine where the audit queue is located. i.e. `audit@MACHINENAME`. This should be the same machine where your ServiceControl instance is installed.
+> [!NOTE]
+> If you are using the MSMQ transport then you also need to specify the machine where the audit queue is located. i.e. `audit@MACHINENAME`. This should be the same machine where your ServiceControl instance is installed.
 
 ### Monitoring
 
@@ -197,9 +206,11 @@ You can then enable monitoring and configure the location of the monitoring queu
 
 snippet: SetupMonitoring-ConfigureMetrics
 
-NOTE: If you are using the MSMQ transport then you also need to specify the machine where the monitoring queue is located. i.e. `Particular.Monitoring@MACHINENAME`. This should be the same machine where your monitoring instance is installed.
+> [!NOTE]
+> If you are using the MSMQ transport then you also need to specify the machine where the monitoring queue is located. i.e. `Particular.Monitoring@MACHINENAME`. This should be the same machine where your monitoring instance is installed.
 
-NOTE: When using the MSMQ transport it is also necessary to install queue length metrics [reporter](/monitoring/metrics/msmq-queue-length.md) package. The queue length troubleshooting [guide](/monitoring/metrics/queue-length-troubleshooting.md) contains more details on possible problems with the monitoring setup.
+> [!NOTE]
+> When using the MSMQ transport it is also necessary to install queue length metrics [reporter](/monitoring/metrics/msmq-queue-length.md) package. The queue length troubleshooting [guide](/monitoring/metrics/queue-length-troubleshooting.md) contains more details on possible problems with the monitoring setup.
 
 ## Smoke Test
 

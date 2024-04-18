@@ -34,7 +34,7 @@ As a result, not all ServiceControl instances can be automatically upgraded from
 
 ## PowerShell Transport argument
 
-The value passed for the `-Transport` argument has changed in ServiceControl version 5. This value must now be a code which is shorter in length and does not have spaces. 
+The value passed for the `-Transport` argument has changed in ServiceControl version 5. This value must now be a code which is shorter in length and does not have spaces.
 
 To find the information for the transports supported by any particular release of the PowerShell plugin, use the cmdlet `Get-ServiceControlTransportTypes`.
 
@@ -65,7 +65,8 @@ The old audit instance database can be removed after the retention period has la
 
 Follow this procedure to upgrade all necessary ServiceControl 4 instances to version 5.
 
-NOTE: This procedure should first be run in a test environment.
+> [!NOTE]
+> This procedure should first be run in a test environment.
 
 ### Getting ready
 

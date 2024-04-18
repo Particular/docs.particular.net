@@ -6,7 +6,8 @@ redirects:
 - servicecontrol/installation-powershell
 ---
 
-NOTE: For general information about using PowerShell with ServiceControl, including troubleshooting and licensing guidance, see [Managing ServiceControl via PowerShell](/servicecontrol/powershell.md).
+> [!NOTE]
+> For general information about using PowerShell with ServiceControl, including troubleshooting and licensing guidance, see [Managing ServiceControl via PowerShell](/servicecontrol/powershell.md).
 
 ## ServiceControl instance Cmdlets and Aliases
 
@@ -34,7 +35,8 @@ Create a ServiceControl Audit instance to manage an audit queue:
 
 snippet: new-audit-instance
 
-NOTE: The ServiceControl Audit instance must be configured with the transport address of a ServiceControl instance.
+> [!NOTE]
+> The ServiceControl Audit instance must be configured with the transport address of a ServiceControl instance.
 
 ### Removing an instance
 
@@ -46,7 +48,8 @@ Use the `Remove-ServiceControlAuditInstance` cmdlet to remove a ServiceControl A
 
 snippet: remove-audit-instance
 
-NOTE: All connected ServiceControl Audit instances should be removed before removing the ServiceControl Error instance. Use the `Get-ServiceControlRemotes` cmdlet to find a list of connected ServiceControl Audit instances for a given ServiceControl instance.
+> [!NOTE]
+> All connected ServiceControl Audit instances should be removed before removing the ServiceControl Error instance. Use the `Get-ServiceControlRemotes` cmdlet to find a list of connected ServiceControl Audit instances for a given ServiceControl instance.
 
 ### Upgrading an instance
 

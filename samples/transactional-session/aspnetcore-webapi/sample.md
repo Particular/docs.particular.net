@@ -59,13 +59,15 @@ The lifecycle of the session is managed by the `MessageSessionFilter` which hook
 
 snippet: txsession-filter
 
-NOTE: The resource filter could be extended to return problem details (for example, with `context.Result = new ObjectResult(new ProblemDetails())`) in cases where the transactional session cannot be committed. This is omitted from the sample.
+> [!NOTE]
+> The resource filter could be extended to return problem details (for example, with `context.Result = new ObjectResult(new ProblemDetails())`) in cases where the transactional session cannot be committed. This is omitted from the sample.
 
 For controller actions that do not have `ITransactionalSession` parameter, navigate to `http://localhost:58118/all`, a data context with a dedicated connection is used.
 
 snippet: txsession-controller-query
 
-NOTE: The sample uses method injection as an opinionated way of expressing the need for having the transactional boundaries managed by the infrastructure. If it is preferred to express the transactional boundaries with an attribute to make sure even complex dependency chains get access to the transactional session, without needing to inject that into the controller action, an [action attribute](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?#action-filters) must be used to annotate controllers or actions.
+> [!NOTE]
+> The sample uses method injection as an opinionated way of expressing the need for having the transactional boundaries managed by the infrastructure. If it is preferred to express the transactional boundaries with an attribute to make sure even complex dependency chains get access to the transactional session, without needing to inject that into the controller action, an [action attribute](https://learn.microsoft.com/en-us/aspnet/core/mvc/controllers/filters?#action-filters) must be used to annotate controllers or actions.
 
 For example, navgiate to `http://localhost:58118/service` which injects a service that depends on `ITransactionalSession`.
 

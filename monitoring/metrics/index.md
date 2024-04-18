@@ -8,7 +8,8 @@ related:
  - samples/open-telemetry
 ---
 
-NOTE: This plugin can be enabled and configured with the [ServicePlatform Connector plugin](/platform/connecting.md).
+> [!NOTE]
+> This plugin can be enabled and configured with the [ServicePlatform Connector plugin](/platform/connecting.md).
 
 partial: opentelemetry
 
@@ -42,7 +43,8 @@ To enable collecting metrics in an environment:
 3. (**MSMQ Transport only**) [Install the MSMQ queue length reporter in each endpoint](msmq-queue-length.md)
 4. [View the performance data collected for endpoints in ServicePulse](in-servicepulse.md)
 
-NOTE: [NServiceBus monitoring setup tutorial](/tutorials/monitoring-setup/) is an in-depth, step-by-step tutorial about installing and configuring everything to get the most out of performance monitoring.
+> [!NOTE]
+> [NServiceBus monitoring setup tutorial](/tutorials/monitoring-setup/) is an in-depth, step-by-step tutorial about installing and configuring everything to get the most out of performance monitoring.
 
 
 ## Performance impact on system resources

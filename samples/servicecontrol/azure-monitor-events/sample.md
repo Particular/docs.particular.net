@@ -32,7 +32,8 @@ A `MessageFailed` event is emitted when processing a message fails and the messa
 
 To observe this in action, press <kbd>Enter</kbd> in the `NServiceBusEndpoint`console window. The application will generate a new `SimpleMessage` event that fails when processed.
 
-NOTE: The exception will cause the debugger to enter a breakpoint. Detach the debugger in order to better observe what's going on.
+> [!NOTE]
+> The exception will cause the debugger to enter a breakpoint. Detach the debugger in order to better observe what's going on.
 
 When a `MessageFailed` event is received, the `AzureMonitorConnector` prints the following message in its console window:
 
@@ -68,7 +69,8 @@ The `MessageFailed` event is published whenever ServiceControl detects a new mes
 
 In order to receive `HeartbeatStopped` and `HeartbeatRestored` events, the endpoint must use the [heartbeats plugin](/monitoring/heartbeats).
 
-NOTE: Heartbeat control messages are sent [every 30 seconds by default](/monitoring/heartbeats/install-plugin.md#heartbeat-interval) so there will be up to a 30 second delay before ServiceControl realizes that it lost or restored connection with the endpoint.
+> [!NOTE]
+> Heartbeat control messages are sent [every 30 seconds by default](/monitoring/heartbeats/install-plugin.md#heartbeat-interval) so there will be up to a 30 second delay before ServiceControl realizes that it lost or restored connection with the endpoint.
 
 ## Connect to Application Insights Azure Monitor
 

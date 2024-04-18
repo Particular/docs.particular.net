@@ -41,4 +41,5 @@ Supported: `net471`, `net47`, `net462`, `net461`, `net452`
 Supported: `net47`, `net462`, `net452`
 #end-if
 
-NOTE: When installing an endpoint created from this template as a service, the `--run-as-service` parameter must be set on the command line. See [Windows Service Installation](/nservicebus/hosting/windows-service.md) for details.
+> [!NOTE]
+> When installing an endpoint created from this template as a service, the `--run-as-service` parameter must be set on the command line. See [Windows Service Installation](/nservicebus/hosting/windows-service.md) for details.

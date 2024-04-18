@@ -9,7 +9,8 @@ The [Federal Information Processing Standards](https://en.wikipedia.org/wiki/Fed
 
 Microsoft [does not recommend enabling FIPS](https://blogs.technet.microsoft.com/secguide/2014/04/07/why-were-not-recommending-fips-mode-anymore/) unless it is required by government regulations.
 
-NOTE: FIPS policy enforcement does only exist on .NET Framework.
+> [!NOTE]
+> FIPS policy enforcement does only exist on .NET Framework.
 
 The Particular Software Platform is not FIPS compatible, and no testing is done to ensure components will work properly on FIPS-enabled hardware. The platform currently uses `System.Security.Cryptography`classes only for hashing, and not for data security purposes.
 

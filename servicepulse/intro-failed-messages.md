@@ -77,7 +77,8 @@ Individual failed messages can be viewed in one of the following two ways:
 
 Both of these message list views allow for taking actions on an individual message, on custom message selections or all messages contained in the view.
 
-NOTE: Retrying one or a few individual messages can be useful for testing system fixes before deciding to retry several messages in a group. This is because retrying several messages take a long time and queue other ServiceControl operations for longer than desired.
+> [!NOTE]
+> Retrying one or a few individual messages can be useful for testing system fixes before deciding to retry several messages in a group. This is because retrying several messages take a long time and queue other ServiceControl operations for longer than desired.
 
 The following actions can also be taken on each message or a selection of messages:
 

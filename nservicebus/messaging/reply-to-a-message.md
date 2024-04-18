@@ -31,7 +31,8 @@ It can also request the reply to be routed to a specified transport address inst
 
 snippet: BasicReplyReplyToDestination
 
-NOTE: Replies participate in the handler transaction and are not sent if the message rolls back. If the code requires a response whether or not message processing succeeds, use [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) on the reply options. Make sure exceptions are rethrown to rollback any transactions and use a [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md) to not retry non-transient errors.
+> [!NOTE]
+> Replies participate in the handler transaction and are not sent if the message rolls back. If the code requires a response whether or not message processing succeeds, use [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) on the reply options. Make sure exceptions are rethrown to rollback any transactions and use a [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md) to not retry non-transient errors.
 
 
 

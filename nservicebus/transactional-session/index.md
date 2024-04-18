@@ -60,7 +60,8 @@ snippet: committing-transactional-session
 
 Disposing the transactional session without committing will roll back any changes that were made.
 
-NOTE: The `Commit` operation may fail and throw an exception for reasons outlined in the [failure scenarios section](#failure-scenarios).
+> [!NOTE]
+> The `Commit` operation may fail and throw an exception for reasons outlined in the [failure scenarios section](#failure-scenarios).
 
 ### Advanced configuration
 
@@ -105,7 +106,8 @@ The transactional session feature requires a supported persistence package to st
 
 To guarantee atomic consistency across database and message operations, the transactional session requires the [outbox](/nservicebus/outbox) to be enabled. This combination of features provides the strongest consistency guarantees and is, therefore, the recommended, safe-by-default configuration.
 
-NOTE: The outbox must be [enabled explicitly](/nservicebus/outbox/#enabling-the-outbox) on the endpoint configuration.
+> [!NOTE]
+> The outbox must be [enabled explicitly](/nservicebus/outbox/#enabling-the-outbox) on the endpoint configuration.
 
 With the outbox disabled, database and message operations are not applied until the session is committed. All database operations share the same database transaction and are committed first. When the database operations complete successfully, the message operations are [batch-dispatched by the transport](/nservicebus/messaging/batched-dispatch.md). The message operations and the database changes are not guaranteed to be atomic. This might lead to zombie records or ghost messages in case of a failure during the commit phase.
 

@@ -44,7 +44,8 @@ Steps:
 
 The following query detects duplicate rows in the saga data table.
 
-NOTE: It requires providing values for `sagaDataTableName` and `correlationPropertyColumnName` variables.
+> [!NOTE]
+> It requires providing values for `sagaDataTableName` and `correlationPropertyColumnName` variables.
 
 Each row in the result set represents a single logical saga instance that was duplicated. The first column of the result will show the correlation property value for the logical saga instance.
 
@@ -78,17 +79,17 @@ begin
         from ' || sagaDataTableName || '
         group by ' || correlationPropertyColumnName || '
         having count(*) > 1';
-        
+
     open sagaCursor for detectDuplicates;
-    
+
     loop
       fetch sagaCursor into correlationProperty, instanceCount;
       exit when sagaCursor%NOTFOUND;
-      
+
       dbms_output.put_line(correlationProperty);
-      
+
     end loop;
-    
+
     close sagaCursor;
 end;
 ```
@@ -98,12 +99,14 @@ end;
 
 The unique constraint on the correlation property column can be added with following query.
 
-NOTE: It requires providing values for `sagaDataTableName` and `correlationPropertyColumnName` variables.
+> [!NOTE]
+> It requires providing values for `sagaDataTableName` and `correlationPropertyColumnName` variables.
 
 
 #### Microsoft SQL Server
 
-NOTE: If adding a unique constraint fails with the error `The CREATE UNIQUE INDEX statement terminated because a duplicate key was found for the object name ...`, ensure that all duplicated rows detected have been merged.
+> [!NOTE]
+> If adding a unique constraint fails with the error `The CREATE UNIQUE INDEX statement terminated because a duplicate key was found for the object name ...`, ensure that all duplicated rows detected have been merged.
 
 ```sql
 declare @sagaDataTableName nvarchar(max) = '...'
@@ -117,7 +120,8 @@ exec sp_executeSQL @sql
 
 #### Oracle
 
-NOTE: Oracle requires that a unique constraint has a name. Use the `uniqueConstraintName` variable to set the name of the constraint.
+> [!NOTE]
+> Oracle requires that a unique constraint has a name. Use the `uniqueConstraintName` variable to set the name of the constraint.
 
 ```sql
 declare
@@ -128,7 +132,7 @@ declare
 begin
     addUniqueConstraint :=
        'alter table ' || sagaDataTableName || ' add constraint ' || uniqueConstraintName || ' unique (' || correlationPropertyColumnName || ')';
-       
+
     execute immediate addUniqueConstraint;
 end;
 ```

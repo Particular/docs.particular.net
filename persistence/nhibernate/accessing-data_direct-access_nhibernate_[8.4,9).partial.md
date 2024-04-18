@@ -7,7 +7,8 @@ snippet: NHibernateAccessingDataViaContextHandler
 
 snippet: NHibernateAccessingDataViaDI
 
-NOTE: A helper type `INHibernateStorageSession` is used in the example above because by default `ISession` is not registered in the DI container. Users who wish to register `ISession` need to add the following line to the endpoint configuration:
+> [!NOTE]
+> A helper type `INHibernateStorageSession` is used in the example above because by default `ISession` is not registered in the DI container. Users who wish to register `ISession` need to add the following line to the endpoint configuration:
 
 snippet: AccessingDataConfigureISessionDI
 

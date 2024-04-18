@@ -5,7 +5,8 @@ component: SQS
 reviewed: 2023-05-02
 ---
 
-NOTE: It is difficult to give performance tuning guidelines that will be generally applicable. Results may vary greatly depending on many factors such as bandwidth, latency, client version, and much more. As always with performance tuning: Measure, don't assume.
+> [!NOTE]
+> It is difficult to give performance tuning guidelines that will be generally applicable. Results may vary greatly depending on many factors such as bandwidth, latency, client version, and much more. As always with performance tuning: Measure, don't assume.
 
 The Amazon SQS transport uses HTTP/S connections to send and receive messages from the AWS web services. The performance of the operations performed by the transport are subjected to the latency of the connection between the endpoint and SQS.
 
@@ -39,7 +40,8 @@ The following examples illustrate how the formula is applied when the concurrenc
 
 Each parallel message retrieval requires one long polling connection.
 
-NOTE: Changing the maximum concurrency will influence the total number of operations against SQS and can result in higher costs.
+> [!NOTE]
+> Changing the maximum concurrency will influence the total number of operations against SQS and can result in higher costs.
 
 ## Number of connections
 

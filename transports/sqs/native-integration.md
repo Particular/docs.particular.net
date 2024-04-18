@@ -10,7 +10,8 @@ related:
 
 This document describes how to consume messages from non-NServiceBus endpoints via Amazon SQS in integration scenarios.
 
-NOTE: To send messages to non-NServiceBus endpoints, configure the sender endpoint so that it does not wrap outgoing messages in a transport envelope. For more information refer to the [transport configuration options](configuration-options.md#do-not-wrap-message-payload-in-a-transport-envelope).
+> [!NOTE]
+> To send messages to non-NServiceBus endpoints, configure the sender endpoint so that it does not wrap outgoing messages in a transport envelope. For more information refer to the [transport configuration options](configuration-options.md#do-not-wrap-message-payload-in-a-transport-envelope).
 
 ### Accessing the native Amazon SQS message
 

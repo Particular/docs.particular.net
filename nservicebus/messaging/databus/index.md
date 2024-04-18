@@ -49,7 +49,8 @@ See the individual data bus implementations for details on enabling and configur
 
 By default, BLOBs are stored with no set expiration. If messages have a [time to be received](/nservicebus/messaging/discard-old-messages.md) set, the data bus will pass this along to the data bus storage implementation.
 
-NOTE: The value used should be aligned with the [ServiceContol audit retention period](/servicecontrol/how-purge-expired-data.md) if it is required that data bus BLOB keys in messages sent to the audit queue can still be fetched.
+> [!NOTE]
+> The value used should be aligned with the [ServiceContol audit retention period](/servicecontrol/how-purge-expired-data.md) if it is required that data bus BLOB keys in messages sent to the audit queue can still be fetched.
 
 ## Specifying data bus properties
 
@@ -96,7 +97,8 @@ Automatically removing these attachments can cause problems in many situations. 
 
 ## Alternatives
 
-NOTE: A combination of these techniques may be used.
+> [!NOTE]
+> A combination of these techniques may be used.
 
 - Use a different transport or different tier (e.g. Azure Service Bus _Premium_ instead of _Standard_).
 - Use message body compression, which works well on text-based payloads like XML and JSON or any payload (text or binary) that contains repetitive data.

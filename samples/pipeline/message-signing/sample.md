@@ -48,7 +48,8 @@ snippet: MessageSigningBehavior
 
 The call to `next()` invokes the remainder of the outgoing pipeline, eventually resulting in the message being dispatched to the message transport.
 
-NOTE: While this sample shows how to do message signing, the same pattern could be used to implement full encryption of the message body. In this case, a message signature would not be written to the message headers. Instead, the entire body of the message would be replaced using `IOutgoingPhysicalMessageContext`'s `UpdateMessage(byte[] newBody)` method.
+> [!NOTE]
+> While this sample shows how to do message signing, the same pattern could be used to implement full encryption of the message body. In this case, a message signature would not be written to the message headers. Instead, the entire body of the message would be replaced using `IOutgoingPhysicalMessageContext`'s `UpdateMessage(byte[] newBody)` method.
 
 
 ### SignatureVerificationBehavior

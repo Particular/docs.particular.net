@@ -145,7 +145,8 @@ Configuring endpoint mappings via the following APIs has been deprecated:
  * `UnicastBusConfig/MessageEndpointMappings` in an app.config `configSections`
  * Returning a `UnicastBusConfig` from an `IConfigurationSource`
 
-NOTE: **MSMQ**: [Machine names are set via the MSMQ transport routing configuration](/transports/msmq/routing.md).
+> [!NOTE]
+> **MSMQ**: [Machine names are set via the MSMQ transport routing configuration](/transports/msmq/routing.md).
 
 It can be replaced with a combination of the following methods:
 

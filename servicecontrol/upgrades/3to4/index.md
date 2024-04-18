@@ -45,7 +45,8 @@ When upgrading a ServiceControl instance to version 4, if it is configured to ma
 
 ![](scmu-upgrade.png)
 
-NOTE: If the ServiceControl instance being upgraded is not configured to manage an audit queue (by setting the audit queue name to `!disable`), then no new ServiceControl Audit instance will be created.
+> [!NOTE]
+> If the ServiceControl instance being upgraded is not configured to manage an audit queue (by setting the audit queue name to `!disable`), then no new ServiceControl Audit instance will be created.
 
 ### Upgrading with PowerShell
 
@@ -98,7 +99,8 @@ The following information is copied from the existing ServiceControl instance:
 - Host name
 - Service account
 
-NOTE: If this instance uses a domain account, the  account password must be supplied.
+> [!NOTE]
+> If this instance uses a domain account, the  account password must be supplied.
 
 The name of the new audit instance will be derived from the name of the original instance.
 
@@ -111,7 +113,8 @@ Upgrading a multi-instance ServiceControl deployment must be done in stages. Som
 
 The first step is to upgrade the primary ServiceControl instance. If the primary instance has audit ingestion enabled, then a new ServiceControl Audit instance will be created for it.
 
-NOTE: Once the primary instance has been upgraded, it will not subscribe to events being published by new secondary instances. All subscriptions to existing secondary instances will be retained. As the primary instance no longer requires the transport address of the secondary instances to send subscription requests, the `Queue_Address` property has been dropped from the `ServiceControl/RemoteInstances` configuration setting.
+> [!NOTE]
+> Once the primary instance has been upgraded, it will not subscribe to events being published by new secondary instances. All subscriptions to existing secondary instances will be retained. As the primary instance no longer requires the transport address of the secondary instances to send subscription requests, the `Queue_Address` property has been dropped from the `ServiceControl/RemoteInstances` configuration setting.
 
 ### Upgrade the secondary instances
 
@@ -166,4 +169,5 @@ New-ServiceControlAuditInstance `
   -Force
 ```
 
-NOTE: Service account details cannot be copied from the original instance. If the ServiceControl Audit instance must run under a service account, supply the `ServiceAccount` and `ServiceAccountPassword` parameters to the `New-ServiceControlAuditInstance` cmdlet.
+> [!NOTE]
+> Service account details cannot be copied from the original instance. If the ServiceControl Audit instance must run under a service account, supply the `ServiceAccount` and `ServiceAccountPassword` parameters to the `New-ServiceControlAuditInstance` cmdlet.

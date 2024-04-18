@@ -1,6 +1,6 @@
 ### Configuring the BlobServiceClient
 
-There are several ways to configure the `BlobServiceClient`. 
+There are several ways to configure the `BlobServiceClient`.
 
 #### Using a preconfigured BlobServiceClient
 
@@ -22,4 +22,5 @@ snippet: AzureDataBusInjectServiceClient
 
 snippet: AzureDataBusConnectionAndContainer
 
-NOTE: The container name is optional and will be set to the default when omitted.
+> [!NOTE]
+> The container name is optional and will be set to the default when omitted.

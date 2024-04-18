@@ -16,7 +16,8 @@ This sample illustrates an approach for changing a message type. This includes a
  * Renaming the assembly containing the message type.
  * Adding, removing or changing the [strong name](https://docs.microsoft.com/en-us/dotnet/framework/app-domains/strong-named-assemblies) of the assembly containing the message type
 
-NOTE: This sample uses 2 "Phase" Endpoint Projects to illustrate the iterations of a single endpoint in one solution.
+> [!NOTE]
+> This sample uses 2 "Phase" Endpoint Projects to illustrate the iterations of a single endpoint in one solution.
 
 
 ## Scenario
