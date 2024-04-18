@@ -31,17 +31,16 @@ With the buyer's remorse pattern, the purchase is kept in a holding state until 
 
 In this tutorial, we'll model the delay period using a saga timeout. We'll change the existing project so that when the **Sales** endpoint receives the `PlaceOrder` command, we don't instantly publish the `OrderPlaced` event. Instead, we'll store the order state in the saga and set a timeout and do that in the future. When the timeout is due, we'll publish the `OrderPlaced` event, unless we've received a `CancelOrder` command in the meantime.
 
-{{NOTE:
-**What if I didn't do the previous tutorial?**
-
-No problem! You can get started learning sagas with the completed solution from the [previous lesson](/tutorials/nservicebus-sagas/1-saga-basics/):
-
-downloadbutton(Download Previous Solution, /tutorials/nservicebus-sagas/1-saga-basics)
-
-The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Shipping** define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system. **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes that define the messages exchanged in our system. To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
-
-Although NServiceBus only requires .NET Framework 4.5.2, this tutorial assumes at least Visual Studio 2017 and .NET Framework 4.6.1.
-}}
+> [!NOTE]
+> **What if I didn't do the previous tutorial?**
+>
+> No problem! You can get started learning sagas with the completed solution from the [previous lesson](/tutorials/nservicebus-sagas/1-saga-basics/):
+>
+> downloadbutton(Download Previous Solution, /tutorials/nservicebus-sagas/1-saga-basics)
+>
+> The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Shipping** define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system. > **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes that define the messages exchanged in our system. > To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
+>
+> Although NServiceBus only requires .NET Framework 4.5.2, this tutorial assumes at least Visual Studio 2017 and .NET Framework 4.6.1.
 
 ### Saga storage
 

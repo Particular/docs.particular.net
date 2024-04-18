@@ -19,17 +19,16 @@ Let's orchestrate this business process using an NServiceBus saga. Then we'll se
 
 In the exercises so far, we had a `ShippingPolicy` saga that was rather passive — it waited for `OrderPlaced` and `OrderBilled` to arrive (which could happen out of order) and then the order is ready to ship. In this exercise, we'll continue by implementing the actual shipment via one of our fictional shipping carriers, Alpine or Maple.
 
-{{NOTE:
-**What if I didn't do the previous tutorial?**
-
-No problem! You can get started learning sagas with the completed solution from the [previous lesson](/tutorials/nservicebus-sagas/2-timeouts/):
-
-downloadbutton(Download Previous Solution, /tutorials/nservicebus-sagas/2-timeouts)
-
-The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Shipping** define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system. **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes that define the messages exchanged in our system. To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
-
-This tutorial assumes at least Visual Studio 2019 and .NET Framework 4.7.2.
-}}
+> [!NOTE]
+> **What if I didn't do the previous tutorial?**
+>
+> No problem! You can get started learning sagas with the completed solution from the [previous lesson](/tutorials/nservicebus-sagas/2-timeouts/):
+>
+> downloadbutton(Download Previous Solution, /tutorials/nservicebus-sagas/2-timeouts)
+>
+> The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Shipping** define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system. > **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes that define the messages exchanged in our system. > To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
+>
+> This tutorial assumes at least Visual Studio 2019 and .NET Framework 4.7.2.
 
 ### A new saga
 

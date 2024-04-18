@@ -29,19 +29,18 @@ Let's get started building a saga!!
 
 In this exercise we'll build a saga to handle the situation outlined above, where `OrderPlaced` and `OrderBilled` must both arrive before we can ship an order. We'll continue with the project from the [previous lesson](/tutorials/nservicebus-step-by-step/5-retrying-errors/) and extend it with an NServiceBus saga to handle the shipping process.
 
-{{NOTE:
-**What if I didn't do the previous tutorial?**
-
-No problem! You can get started learning sagas with the completed solution from the previous lesson:
-
-downloadbutton(Download Previous Solution, /tutorials/nservicebus-step-by-step/5-retrying-errors)
-
-The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Shipping** define endpoints that communicate with each other using NServiceBus messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system. **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes defining messages exchanged in our system.
-
-Check out the [NServiceBus step-by-step tutorial overview](/tutorials/nservicebus-step-by-step/) for a diagram of how the existing code works. Or,  if you like, you can complete those lessons first to learn the basics of sending messages and publishing events with NServiceBus and return to this lesson afterward.
-
-Although NServiceBus only requires .NET Framework 4.5.2, this tutorial assumes at least Visual Studio 2017 and .NET Framework 4.6.1.
-}}
+> [!NOTE]
+> **What if I didn't do the previous tutorial?**
+>
+> No problem! You can get started learning sagas with the completed solution from the previous lesson:
+>
+> downloadbutton(Download Previous Solution, /tutorials/nservicebus-step-by-step/5-retrying-errors)
+>
+> The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Shipping** define endpoints that communicate with each other using NServiceBus messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system. **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes defining messages exchanged in our system.
+>
+> Check out the [NServiceBus step-by-step tutorial overview](/tutorials/nservicebus-step-by-step/) for a diagram of how the existing code works. Or,  if you like, you can complete those lessons first to learn the basics of sending messages and publishing events with NServiceBus and return to this lesson afterward.
+>
+> Although NServiceBus only requires .NET Framework 4.5.2, this tutorial assumes at least Visual Studio 2017 and .NET Framework 4.6.1.
 
 We will create a saga in the **Shipping** endpoint that will handle the `OrderPlaced` and `OrderBilled` events. When it receives both, it'll send the `ShipOrder` command to initiate the delivery.
 
