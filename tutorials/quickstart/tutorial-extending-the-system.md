@@ -1,45 +1,44 @@
 ---
 title: "NServiceBus Quick Start: Extending the system"
-reviewed: 2024-01-31
+reviewed: 2024-04-16
 summary: "Part 3: Learn how easy it is to extend a distributed system by adding new functionality without affecting the other components of the system"
 extensions:
 - !!tutorial
-  nextText: "Next: NServiceBus from the ground up"
-  nextUrl: tutorials/nservicebus-step-by-step/1-getting-started
+  nextText: "NServiceBus Step-by-step tutorial"
+  nextUrl: tutorials/nservicebus-step-by-step
 ---
 
-In the [first part of the tutorial](/tutorials/quickstart), we saw that publishing events using the [Publish-Subscribe pattern](/nservicebus/messaging/publish-subscribe/) reduces coupling and makes maintaining a system easier in the long run. Next, we saw [how to react to failures](/tutorials/quickstart/tutorial-reliability.md) gracefully. Let's now look at how we can add an additional subscriber without needing to modify any existing code.
+In [Part 1 of this tutorial](/tutorials/quickstart), you saw that publishing events using the [Publish-Subscribe pattern](/nservicebus/messaging/publish-subscribe/) reduces coupling and makes maintaining a system easier in the long run. Then, in [Part 2](/tutorials/quickstart/tutorial-reliability.md) you saw how to handle failures gracefully. Now, let's look at how you can add an additional subscriber without needing to modify any existing code.
 
 {{NOTE:
-If you didn't already download the quick start project in the [previous lesson](/tutorials/quickstart), you can download it now:
+If you didn't already download the Quickstart solution in the [previous lesson](/tutorials/quickstart), you can download it now:
 
 downloadbutton
 }}
 
-As shown in the diagram, we'll be adding a new messaging endpoint called **Shipping** that will subscribe to the `OrderPlaced` event.
+As shown in the diagram, you will add a new messaging endpoint to the solution called **Shipping** that will subscribe to the `OrderPlaced` event.
 
 ![Completed Solution](after.svg "width=680")
 
-NOTE: In this tutorial, we'll use terminal commands like [`dotnet new`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new), [`dotnet add package`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-add-package), and [`dotnet add reference`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-add-reference), but you can do the same things using the graphical tools in Visual Studio if you prefer.
+NOTE: In this tutorial, you will use terminal commands like [`dotnet new`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-new), [`dotnet add package`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-add-package), and [`dotnet add reference`](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-add-reference), but you can do the same things using the graphical tools in your IDE if you prefer.
 
 ### Create a new endpoint
+On this step, you will create the **Shipping** project and set up its dependencies.
 
-First we'll create the **Shipping** project and set up its dependencies.
-
-First let's make sure both browser windows and all console applications are closed, and in the terminal,  we're in the root of the project where the **RetailDemo.sln** file is located:
+First, make sure both browser windows and all console applications are closed. Then, in the terminal, navigate to the root of the project where the **RetailDemo.sln** file is located:
 
 ```shell
 > cd tutorials-quickstart
 ```
 
-Next, we'll create a new Console Application project named **Shipping** and add it to the solution:
+Next, create a new Console Application project named **Shipping** and add it to the solution:
 
 ```shell
 > dotnet new console --name Shipping --framework net6.0
 > dotnet sln add Shipping
 ```
 
-Now, we need to add references to the **Messages** project, as well as the NuGet packages we will need.
+Now, add references to the **Messages** project, as well as the NuGet packages you will need.
 
 ```shell
 > dotnet add Shipping reference Messages
@@ -50,25 +49,24 @@ Now, we need to add references to the **Messages** project, as well as the NuGet
 > dotnet add Shipping package NServiceBus.Metrics.ServiceControl
 ```
 
-Now that we have a project for the Shipping endpoint, we need to add some code to configure and start an `NServiceBus` endpoint. In the **Shipping** project, find the auto-generated **Program.cs** file and replace its contents with the following.
+Now that you have a project for the **Shipping** endpoint, you need to add its implementation to configure and start it as an `NServiceBus` endpoint. In the **Shipping** project, find the auto-generated **Program.cs** file and replace its contents with the following.
+Take special note of the inline comments, which provide more context to each of the settings of NServiceBus being used.
 
 snippet: ShippingProgram
 
-Take special note of the comments in this code, which annotate the various parts of the NServiceBus configuration we're using.
-
-We want the **Shipping** endpoint to run when you debug the solution, so use Visual Studio's [multiple startup projects](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects) feature to configure the **Shipping** endpoint to start along with **ClientUI**, **Sales**, and **Billing**.
+You want the **Shipping** endpoint to run when you debug the solution, so use Visual Studio's [multiple startup projects](https://docs.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects) feature to configure the **Shipping** endpoint to start along with **ClientUI**, **Sales**, and **Billing**.
 
 NOTE:  To launch the Shipping endpoint with the rest of the solution when using Visual Studio Code, navigate to the _Run and Debug_ tab and select the _Debug All + Shipping_ launch configuration from the dropdown list.
 
 ### Create a new message handler
 
-Next, we need a message handler to process the `OrderPlaced` event. When NServiceBus starts, it will detect the message handler and handle subscribing to the event automatically.
+Next, you need a message handler to process the `OrderPlaced` event. When NServiceBus starts, it will detect the message handler and will subscribe to the event automatically.
 
 To create the message handler:
 
-1. In the **Shipping** project, create a new class named `OrderPlacedHandler`.
+1. In the **Shipping** project, create a new class named `OrderPlacedHandler.cs`.
 1. Mark the handler class as public, and implement the `IHandleMessages<OrderPlaced>` interface.
-1. Add a logger instance, which will allow us to take advantage of the logging system used by NServiceBus. This has an important advantage over `Console.WriteLine()`: the entries written with the logger will appear in the log file in addition to the console. Use this code to add the logger instance to the handler class:
+1. Add a logger instance, which will allow you to take advantage of the logging system used by NServiceBus. This has an important advantage over `Console.WriteLine()`: the entries written with the logger will appear in the log file in addition to the console. Use this code to add the logger instance to the handler class:
     ```cs
     static ILog log = LogManager.GetLogger<OrderPlacedHandler>();
     ```
@@ -76,7 +74,7 @@ To create the message handler:
     ```cs
     log.Info($"Shipping has received OrderPlaced, OrderId = {message.OrderId}");
     ```
-1. Since everything we have done in this handler method is synchronous, return `Task.CompletedTask`.
+1. Since everything in this handler method is synchronous, you can return `Task.CompletedTask`.
 
 When complete, the `OrderPlacedHandler` class should look like this:
 
@@ -100,15 +98,15 @@ NOTE: You may also want to take a look at the ServicePulse window, where you sho
 
 ## Summary
 
-In this tutorial, we explored the basics of how a messaging system using NServiceBus works.
+In this tutorial, you explored the basics of how a messaging system using NServiceBus works.
 
-We learned that asynchronous messaging failures in one part of a system can be isolated and prevent complete system failure. This level of resilience and reliability is not easy to achieve with traditional REST-based web services.
+You learned that asynchronous messaging failures in one part of a system can be isolated and prevent complete system failure. This level of resilience and reliability is not easy to achieve with traditional REST-based web services.
 
-We saw how automatic retries provide protection from transient failures like database deadlocks. If we implement a multi-step process as a series of message handlers, then each step will be executed independently and can be automatically retried in case of failures. This means that a stray exception won't abort an entire process, leaving the system in an inconsistent state.
+You saw how automatic retries provide protection from transient failures like database deadlocks. If you implement a multi-step process as a series of message handlers, then each step will be executed independently and can be automatically retried in case of failures. This means that a stray exception won't abort an entire process, leaving the system in an inconsistent state.
 
-We saw how the tooling in the Particular Service Platform makes running a distributed system much easier. ServicePulse gives us critical insights into the health of a system, and allows us to diagnose and fix systemic failures. We don't have to worry about data loss—once we redeploy our system, we can replay failed messages in batches as if the error had never occurred.
+You saw how the tooling in the Particular Service Platform makes running a distributed system much easier. ServicePulse gives you critical insights into the health of a system, and allows you to diagnose and fix systemic failures. You don't have to worry about data loss, once you redeploy your system, you can replay failed messages in batches as if the error had never occurred.
 
-We also implemented an additional event subscriber, showing how to decouple independent bits of business logic from each other. The ability to publish one event and then implement resulting steps in separate message handlers makes the system much easier to maintain and evolve.
+You also implemented an additional event subscriber, showing how to decouple independent bits of business logic from each other. The ability to publish one event and then implement resulting steps in separate message handlers makes the system much easier to maintain and evolve.
 
 SUCCESS: Now that you've seen what NServiceBus can do, take the next step and learn how to build a system like this one from the ground up. In the next tutorial, find out how to build the same solution starting from **File** > **New Project**.
 
