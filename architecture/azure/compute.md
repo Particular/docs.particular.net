@@ -9,7 +9,7 @@ Azure offers a [wide variety of options](https://learn.microsoft.com/en-us/azure
 
 The Particular Service Platform may be hosted using several Azure hosting models:
 
-![](azure-compute-overview.png)
+![Azure compute overview](azure-compute-overview.png)
 
 ## Serverless
 
@@ -17,7 +17,7 @@ In serverless (also referred to as "Functions as a service (FaaS)") models, code
 
 [Azure Functions](https://azure.microsoft.com/en-us/products/functions) is Azure's serverless hosting model. NServiceBus supports integration with Azure Functions that allows deployment of new or existing NServiceBus applications into serverless environments with minimal effort. NServiceBus applications on Azure Functions can directly consume messages from Azure Service Bus. [Other Azure Functions triggers](https://learn.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings?tabs=csharp) can also [use NServiceBus to send messages to Azure Service Bus](/nservicebus/hosting/azure-functions-service-bus/in-process/#basic-usage-dispatching-outside-a-message-handler.md).
 
-![](azure-functions-host.png)
+![Azure Function host](azure-functions-host.png)
 
 [**Host NServiceBus applications on Azure Functions →**](/nservicebus/hosting/azure-functions-service-bus/)
 
