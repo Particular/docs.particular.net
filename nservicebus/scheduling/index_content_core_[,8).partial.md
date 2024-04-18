@@ -1,4 +1,5 @@
-DANGER: It is not recommended to use the NServiceBus Scheduler due to its [limitations](#current-limitations).
+> [!CAUTION]
+> It is not recommended to use the NServiceBus Scheduler due to its [limitations](#current-limitations).
 
 The scheduler is a lightweight/non-durable API that helps schedule a task that needs to be executed repeatedly at a specified interval. In order to benefit from NServiceBus features such as built-in retries and forwarding to the error queue, scheduled tasks should only `Send` or `SendLocal` a single message in order to perform the actual work. One example is to query the database for orders that need some action to be taken and emit individual messages for each order that is found.
 

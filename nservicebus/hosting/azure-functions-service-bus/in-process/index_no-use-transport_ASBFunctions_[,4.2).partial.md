@@ -1,1 +1,2 @@
-WARN: Calling `AdvancedConfiguration.UseTransport(..)` is not supported and may prevent the endpoint from processing messages. Use the `.Transport` property to configure the transport. Use the `.Routing` property to configure transport routing.
+> [!WARNING]
+> Calling `AdvancedConfiguration.UseTransport(..)` is not supported and may prevent the endpoint from processing messages. Use the `.Transport` property to configure the transport. Use the `.Routing` property to configure transport routing.
