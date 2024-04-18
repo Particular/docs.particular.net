@@ -34,7 +34,8 @@ Disk, CPU, RAM, and network performance may be monitored using the Windows Resou
 > [!NOTE]
 > To measure disk performance, use a storage benchmark tool such as Windows System Assessment Tool (`winsat disk -drive g`), [CrystalDiskMark](https://crystalmark.info/en/software/crystaldiskmark/), or [DiskSpd](https://github.com/Microsoft/diskspd).
 
-Note: Do not use an ephemeral AWS or Azure disk for ServiceControl data because these disks will be erased when the virtual machine reboots.
+> [!NOTE]
+> Do not use an ephemeral AWS or Azure disk for ServiceControl data because these disks will be erased when the virtual machine reboots.
 
 ### Hosting in the cloud
 

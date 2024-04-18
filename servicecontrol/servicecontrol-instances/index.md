@@ -11,7 +11,8 @@ ServiceControl instances collect and analyze data about the endpoints that make 
 > [!NOTE]
 > The ServiceControl HTTP API is designed for use by ServicePulse and ServiceInsight only and may change at any time. Use of this HTTP API for other purposes is discouraged.
 
-Note: In versions of ServiceControl prior to 4.13.0, saga audit plugin data can only be processed by the ServiceControl Error instance using the input queue. Starting with version 4.13.0, saga audit plugin data can also be processed by a ServiceControl audit instance using the `audit` queue. The latter approach is recommended.
+> [!NOTE]
+> In versions of ServiceControl prior to 4.13.0, saga audit plugin data can only be processed by the ServiceControl Error instance using the input queue. Starting with version 4.13.0, saga audit plugin data can also be processed by a ServiceControl audit instance using the `audit` queue. The latter approach is recommended.
 
 All endpoints in the system should be [configured to send a copy of every message that is processed to a central audit queue](/nservicebus/operations/auditing.md). A ServiceControl instance consumes the messages from the audit queue and makes them available for visualization in ServiceInsight. If required, the messages may also be forwarded to an [audit log queue](/servicecontrol/errorlog-auditlog-behavior.md) for further processing.
 

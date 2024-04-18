@@ -24,7 +24,8 @@ If the location is not available upon sending, the send operation will fail. Whe
 
 The Data Bus may be used to send messages which exceed the transport's message size limit, which is determined by the message size limit of the underlying queuing/storage technologies.
 
-Note: Not all transports have message size limits and some technologies, such as Azure Service Bus, have increased over time. Current message size limits are stated in the documentation linked in the table below.
+> [!NOTE]
+> Not all transports have message size limits and some technologies, such as Azure Service Bus, have increased over time. Current message size limits are stated in the documentation linked in the table below.
 
 | Transport                         | Maximum size |
 | --------------------------------- | ------------:|
@@ -59,7 +60,8 @@ There are two ways to specify the message properties to be sent using the data b
  1. Using the `DataBusProperty<T>` type
  1. Message conventions
 
-Note: Data Bus properties must be top-level properties on a message class.
+> [!NOTE]
+> Data Bus properties must be top-level properties on a message class.
 
 ### Using `DataBusProperty<T>`
 

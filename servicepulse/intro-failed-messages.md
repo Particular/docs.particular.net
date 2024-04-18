@@ -50,7 +50,8 @@ The display of failed message groups can be changed via the "Group by" drop-down
  * **Endpoint Instance** - groups messages by endpoint instance identifier where the failure occurred.
  * **Endpoint Name** - groups messages by name of the endpoint where the failure occurred.
 
-Note: the number of listed groups may differ depending on the selected classifications type view.
+> [!NOTE]
+> the number of listed groups may differ depending on the selected classifications type view.
 
 ##### Managing failed message groups
 
@@ -130,7 +131,8 @@ The display of deleted message groups can be changed via the "Group by" drop-dow
  * **Endpoint Instance** - groups messages by endpoint instance identifier where the failure occurred.
  * **Endpoint Name** - groups messages by name of the endpoint where the failure occurred.
 
-Note: the number of listed groups may differ depending on the selected classifications type view.
+> [!NOTE]
+> the number of listed groups may differ depending on the selected classifications type view.
 
 ### Deleted Messages
 

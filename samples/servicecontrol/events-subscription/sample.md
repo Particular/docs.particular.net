@@ -51,7 +51,8 @@ The failed message can also be viewed in the ServicePulse browser window. Naviga
 
 The `HeartbeatStopped` event is emitted whenever an endpoint fails to send a control message within the expected interval. The `HeartbeatRestored` event is emitted whenever the endpoint successfully sends a control message again.
 
-Note: The monitor must receive at least one control message before it can observe that the endpoint stopped responding.
+> [!NOTE]
+> The monitor must receive at least one control message before it can observe that the endpoint stopped responding.
 
 To observe this in action, stop the `NServiceBusEndpoint` application and wait up to 30 seconds. When a `HeartbeatStopped` event is received, the `EndpointsMonitor` prints the following message in its console window:
 

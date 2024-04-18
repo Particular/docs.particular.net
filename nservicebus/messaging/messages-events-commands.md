@@ -28,7 +28,8 @@ Cannot be _published_. | Cannot be _sent_.
 _Cannot_ be subscribed to or unsubscribed from. | _Can_ be subscribed to and unsubscribed from.
 _Can_ be sent using the [gateway](/nservicebus/gateway). | _Cannot_ be sent using the [gateway](/nservicebus/gateway).
 
-Note: In a request and response pattern, _reply_ messages are neither a command nor an event.
+> [!NOTE]
+> In a request and response pattern, _reply_ messages are neither a command nor an event.
 
 ### Validation
 
@@ -54,7 +55,8 @@ Messages should:
 
 Types used for other purposes (e.g., domain objects, data access objects, or UI binding objects) should not be used as messages.
 
-Note: Prior to NServiceBus version 7.2, messages had to be defined as a `class`. Defining them as a `struct` would result in a runtime exception.
+> [!NOTE]
+> Prior to NServiceBus version 7.2, messages had to be defined as a `class`. Defining them as a `struct` would result in a runtime exception.
 
 Generic message definitions (e.g., `MyMessage<T>`) are not supported. It is recommended to use dedicated, simple types for each message or to use inheritance to reuse shared message characteristics.
 

@@ -10,7 +10,8 @@ When building systems using the [request/response pattern](/nservicebus/messagin
 
 The same `Reply` method can be used inside a `Saga` and it is important to understand that it can have a different semantic, otherwise it can lead to unexpected behavior.
 
-Note: The `Reply` method always delivers the message to the sender address of the incoming message.
+> [!NOTE]
+> The `Reply` method always delivers the message to the sender address of the incoming message.
 
 The following diagram details a scenario where two sagas and an integration endpoint utilize the request/response pattern to communicate. The replies are highlighted in red.
 

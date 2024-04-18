@@ -17,9 +17,11 @@ If handling an incoming message results in outgoing messages, those messages are
 
 Additional headers are used to determine endpoint names, message intent, and other factors. [Read more about headers](/nservicebus/messaging/headers.md).
 
-Note: The order of operations is critical to the correctness of the sequence diagram. When endpoints are running on more than one machine, it is crucial that those machines have synchronized clocks. This can be done using an NTP server.
+> [!NOTE]
+> The order of operations is critical to the correctness of the sequence diagram. When endpoints are running on more than one machine, it is crucial that those machines have synchronized clocks. This can be done using an NTP server.
 
-Note: Due to performance reasons, only the last 200 messages in a conversation are loaded. This limit can be controlled from ServiceInsight's application configuration file.
+> [!NOTE]
+> Due to performance reasons, only the last 200 messages in a conversation are loaded. This limit can be controlled from ServiceInsight's application configuration file.
 
 
 ## What is on the diagram

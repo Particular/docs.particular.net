@@ -8,7 +8,8 @@ redirects:
 
 Gathering metrics is important to know how a system works and if it works properly. When a system is broken down into multiple processes, each with its own queue, gathering and reporting metrics becomes vital. Below, there's a list of metrics that are captured and reported by NServiceBus.
 
-Note: Depending on the version of the reporting package and the way metrics are gathered, the set of available metrics may vary.
+> [!NOTE]
+> Depending on the version of the reporting package and the way metrics are gathered, the set of available metrics may vary.
 
 ## Metrics captured
 
@@ -19,7 +20,8 @@ NServiceBus and ServiceControl capture a number of different metrics about a run
 
 Processing time is the time it takes for an endpoint to **successfully** invoke all handlers and sagas for a single incoming message. Processing failures are not included in the processing time metric.
 
-Note: Processing time does not include the time to store the outbox operation, transmit outgoing messages to the transport, fetch the incoming message, and complete the incoming message (i.e. commit the transport transaction or acknowledge the message).
+> [!NOTE]
+> Processing time does not include the time to store the outbox operation, transmit outgoing messages to the transport, fetch the incoming message, and complete the incoming message (i.e. commit the transport transaction or acknowledge the message).
 
 
 ### Number of messages pulled from queue
@@ -50,7 +52,8 @@ Critical time does _not_ include:
 * The time to store the outbox operation, transmit messages to the transport, and complete the incoming message (i.e. commit the transport transaction or acknowledge) because the `TimeSent` header is added with the current time during the dispatch phase, after the outbox operation has completed.
 * The time a delayed message is held by a timeout mechanism. (NServiceBus version 7.7 and above.)
 
-Note: Due to the fact that the critical time is calculated based on timestamps taken on two different machines (the sender and the receiver of a message), it is affected by the [clock drift problem](https://en.wikipedia.org/wiki/Clock_drift). In cases where the clocks of the machines differ significantly, the critical time may be reported as a negative value. Use well-known clock synchronization solutions such as NTP to mitigate the issue.
+> [!NOTE]
+> Due to the fact that the critical time is calculated based on timestamps taken on two different machines (the sender and the receiver of a message), it is affected by the [clock drift problem](https://en.wikipedia.org/wiki/Clock_drift). In cases where the clocks of the machines differ significantly, the critical time may be reported as a negative value. Use well-known clock synchronization solutions such as NTP to mitigate the issue.
 
 ### Retries
 

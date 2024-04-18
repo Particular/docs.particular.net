@@ -16,7 +16,8 @@ Transient failures are temporary and are not caused by errors in business logic.
 
 [**Blog: I caught an exception. Now what? →**](https://particular.net/blog/but-all-my-errors-are-severe)
 
-Note: The nature of retries implies that messages might be processed in a different order under some circumstances.
+> [!NOTE]
+> The nature of retries implies that messages might be processed in a different order under some circumstances.
 
 > [!NOTE]
 > The Particular Platform simplifies the handling of transient errors:

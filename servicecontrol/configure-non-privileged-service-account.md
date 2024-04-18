@@ -64,7 +64,8 @@ These methods confirm that the service account has sufficient rights:
  * Configure the ServiceControl Windows service to run under the custom service account, start it and check the log files.
  * Interactively run ServiceControl under the custom service account.
 
-Note: When running `ServiceControl.exe` from the command line, it is important to use the same command line switches that are used when running the Windows service. The command line is visible from within the standard Windows Services user interface.
+> [!NOTE]
+> When running `ServiceControl.exe` from the command line, it is important to use the same command line switches that are used when running the Windows service. The command line is visible from within the standard Windows Services user interface.
 
 ![](servicedetailsview.png 'width=500')
 

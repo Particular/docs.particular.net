@@ -49,7 +49,8 @@ The Deleted Message Groups tab shows the deleted messages grouped by the followi
  * **Endpoint Instance** - groups messages by endpoint instance identifier where the failure occurred.
  * **Endpoint Name** - groups messages by name of the endpoint where the failure occurred.
 
-Note: the number of listed groups may differ depending on the selected classifications type view.
+> [!NOTE]
+> the number of listed groups may differ depending on the selected classifications type view.
 
 Clicking on a group of messages will navigate to the Deleted Messages page containing all the messages from that group.
 

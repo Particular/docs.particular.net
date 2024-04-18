@@ -27,7 +27,8 @@ Azure offers [several data stores](https://learn.microsoft.com/en-us/azure/archi
 
 [**Try the NServiceBus Cosmos DB sample →**](/samples/cosmosdb/simple/)
 
-Note: Cosmos DB offers _serverless_ and _provisioned throughput_ pricing models. When using _provisioned throughput_, Cosmos DB rejects further requests after the reserved Request Units are used. The [Cosmos DB pricing model documentation](https://learn.microsoft.com/en-us/azure/cosmos-db/how-pricing-works) has further information.
+> [!NOTE]
+> Cosmos DB offers _serverless_ and _provisioned throughput_ pricing models. When using _provisioned throughput_, Cosmos DB rejects further requests after the reserved Request Units are used. The [Cosmos DB pricing model documentation](https://learn.microsoft.com/en-us/azure/cosmos-db/how-pricing-works) has further information.
 
 ## Azure Table Storage
 
@@ -48,7 +49,8 @@ Note: Cosmos DB offers _serverless_ and _provisioned throughput_ pricing models.
 
 [**Try the NServiceBus Azure Table Storage sample →**](/samples/azure/azure-table/simple/)
 
-Note: Applications built for Table Storage are compatible with Cosmos DB. See [this table](https://learn.microsoft.com/en-us/azure/cosmos-db/table/support) for a more in-depth comparison.
+> [!NOTE]
+> Applications built for Table Storage are compatible with Cosmos DB. See [this table](https://learn.microsoft.com/en-us/azure/cosmos-db/table/support) for a more in-depth comparison.
 
 ## Azure SQL Database
 

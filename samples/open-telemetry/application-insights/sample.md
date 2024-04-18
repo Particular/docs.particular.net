@@ -19,7 +19,8 @@ This sample shows how to capture NServiceBus OpenTelemetry traces and export the
 
 This sample requires an App Insights connection string.
 
-Note: Although the sample uses Azure Application Insights, the solution itself does not require an Azure message transport. This example uses the [Learning Transport](/transports/learning/) but could be modified to run on any [transport](/transports/).
+> [!NOTE]
+> Although the sample uses Azure Application Insights, the solution itself does not require an Azure message transport. This example uses the [Learning Transport](/transports/learning/) but could be modified to run on any [transport](/transports/).
 
 ## Running the sample
 

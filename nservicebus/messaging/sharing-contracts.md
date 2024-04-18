@@ -10,7 +10,8 @@ related:
 
 To minimize the amount of information and dependencies shared between endpoints, it's recommended to use separate assemblies for message contracts. It's also recommended to use a separate message contract assembly for each service. This allows a service to [evolve its contracts](/nservicebus/messaging/evolving-contracts.md) without impacting other services in the system. A message contract should be declared in the message contracts assembly of the service which owns the message contract.
 
-Note: Message contracts should also follow the [general message design guidelines](/nservicebus/messaging/messages-events-commands.md#designing-messages).
+> [!NOTE]
+> Message contracts should also follow the [general message design guidelines](/nservicebus/messaging/messages-events-commands.md#designing-messages).
 
 ## Sharing contracts
 

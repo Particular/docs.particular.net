@@ -18,7 +18,8 @@ The RabbitMQ transport has the concept of a routing topology, which controls how
 
 The conventional routing topology relies on [fanout exchanges](https://www.rabbitmq.com/tutorials/amqp-concepts.html#exchange-fanout) to route messages.
 
-Note: The recommended routing topology is the conventional routing topology. It was the default topology prior to NServiceBus.RabbitMQ version 5.
+> [!NOTE]
+> The recommended routing topology is the conventional routing topology. It was the default topology prior to NServiceBus.RabbitMQ version 5.
 
 
 ### Sending using the conventional routing topology

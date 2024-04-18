@@ -12,9 +12,10 @@ In the past, message handlers used to be the only way to implement cross-cutting
 
 Warning: It is now recommended to plug into the [message handling pipeline](/nservicebus/pipeline/) to implement these cross-cutting concerns.
 
-If it is not possible to migrate this kind of functionality out of message handlers, there are a number of ways to specify the order in which they will be executed. 
+If it is not possible to migrate this kind of functionality out of message handlers, there are a number of ways to specify the order in which they will be executed.
 
-Note: All message handlers in the endpoint will execute in the same transaction scope. 
+> [!NOTE]
+> All message handlers in the endpoint will execute in the same transaction scope.
 
 ### Overview of the implementation
 

@@ -67,7 +67,8 @@ Type: string
 
 Default: `%LOCALAPPDATA%\Particular\ServiceControl.Audit\logs`
 
-Note: %LOCALAPPDATA% is a user-specific environment variable.
+> [!NOTE]
+> %LOCALAPPDATA% is a user-specific environment variable.
 
 ### ServiceControl.Audit/LogLevel
 

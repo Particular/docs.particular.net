@@ -52,7 +52,8 @@ The transport supports the following [Transport Transaction Modes](/transports/t
 
 By default, the transport runs with concurrency limited to 1. See the [tuning](/nservicebus/operations/tuning.md) for details on how to configure concurrency levels.
 
-Note: Production transports will run with a higher concurrency setting by default
+> [!NOTE]
+> Production transports will run with a higher concurrency setting by default
 
 ### Storage Directory
 

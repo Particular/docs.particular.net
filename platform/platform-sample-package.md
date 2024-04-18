@@ -54,4 +54,5 @@ The [message replay tutorial](/tutorials/message-replay) is a sample that uses t
 
 To use ServiceInsight with the sample, [download](https://github.com/Particular/serviceinsight/releases/latest) and install ServiceInsight. After starting ServiceInsight, connect to ServiceControl using the [Endpoint Explorer](/serviceinsight/#endpoint-explorer) at, for example, `http://localhost:49200/api`.
 
-Note: The Platform Sample package will search for available ports and then display the ports being used. The actual ServiceControl port that needs to be used in the Endpoint Explorer can be seen in the output.
+> [!NOTE]
+> The Platform Sample package will search for available ports and then display the ports being used. The actual ServiceControl port that needs to be used in the Endpoint Explorer can be seen in the output.

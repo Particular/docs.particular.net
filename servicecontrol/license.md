@@ -39,11 +39,13 @@ It is also possible to load the license from the file system but this must be do
 
 Add the `NServiceBus/LicensePath` application setting to the `ServiceControl.exe.config` configuration file.
 
-Note: The easiest way to find the configuration file is by launching the Service Control Management Utility (SCMU), navigate to the relavant instance and open its deployment paths.
+> [!NOTE]
+> The easiest way to find the configuration file is by launching the Service Control Management Utility (SCMU), navigate to the relavant instance and open its deployment paths.
 
 snippet: config-licensepath
 
-Note: This is the same setting to configure a license path for an NServiceBus 5 endpoint.
+> [!NOTE]
+> This is the same setting to configure a license path for an NServiceBus 5 endpoint.
 
 
 ## Using other platform tools

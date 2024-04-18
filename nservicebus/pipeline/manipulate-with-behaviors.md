@@ -51,7 +51,8 @@ In order to replace the existing step, it is necessary to provide a step ID. The
 
 Note that step IDs are hard-coded strings and may change in the future resulting in an unexpected behavior change. When replacing built-in steps, create automatic tests that will detect potential ID changes or step removal.
 
-Note: Steps can also be registered from a [feature](features.md).
+> [!NOTE]
+> Steps can also be registered from a [feature](features.md).
 
 partial: pipelinecheck
 
@@ -84,9 +85,11 @@ Sometimes a parent behavior might need to pass information to a child behavior a
 
 snippet: SharingBehaviorData
 
-Note: Contexts are not concurrency-safe.
+> [!NOTE]
+> Contexts are not concurrency-safe.
 
-Note: In NServiceBus version 6 and above, the context respects the stage hierarchy and only allows adding new entries in the scope of the current context. A child behavior (later in the pipeline chain) can read and even modify entries set by a parent behavior (earlier in the pipeline chain) but entries added by the child cannot be accessed from the parent.
+> [!NOTE]
+> In NServiceBus version 6 and above, the context respects the stage hierarchy and only allows adding new entries in the scope of the current context. A child behavior (later in the pipeline chain) can read and even modify entries set by a parent behavior (earlier in the pipeline chain) but entries added by the child cannot be accessed from the parent.
 
 ## Injecting dependencies into behaviors
 

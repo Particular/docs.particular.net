@@ -51,7 +51,8 @@ Some transports have access controls built into them. Ensure the service account
  1. Ensure the group or account specified in the URLACL covers the service account.
  1. Confirm that the service account has sufficient writes to manage the configured queues. See [Configuring a Non-Privileged Service Account](configure-non-privileged-service-account.md) for a breakdown of the queues to check.
 
-Note: To examine the configured URLACLs use either the PowerShell prompt and issue `Get-UrlAcls` or to examine the ACLS from a command prompt using the command line `netsh http show urlacl`.
+> [!NOTE]
+> To examine the configured URLACLs use either the PowerShell prompt and issue `Get-UrlAcls` or to examine the ACLS from a command prompt using the command line `netsh http show urlacl`.
 
 ## Service fails to start: EsentInstanceUnavailableException
 
@@ -221,7 +222,8 @@ If a ServiceControl instance shows high CPU utilization, it's usually due to:
 
 Usually this fixes itself over time as long as the process is not terminated. Again, do not forcibly terminate the process. Always use Windows Services, PowerShell, or the ServiceControl Management Utility to stop and start the service.
 
-Info: It is recommended to host ServiceControl instances on isolated (virtual) machines with dedicated (non-shared) resources not to affect any other process when ServiceControl requires a lot of system resources.
+> [!NOTE]
+> It is recommended to host ServiceControl instances on isolated (virtual) machines with dedicated (non-shared) resources not to affect any other process when ServiceControl requires a lot of system resources.
 
 Resolution:
 

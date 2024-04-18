@@ -53,7 +53,8 @@ Type: string
 
 Default: `empty`
 
-Note: This setting is provided for backward compatibility and should be considered obsolete.
+> [!NOTE]
+> This setting is provided for backward compatibility and should be considered obsolete.
 
 ### ServiceControl/DbPath
 
@@ -96,7 +97,8 @@ Type: string
 
 Default: `%LOCALAPPDATA%\Particular\ServiceControl\logs`
 
-Note: %LOCALAPPDATA% is a user-specific environment variable.
+> [!NOTE]
+> %LOCALAPPDATA% is a user-specific environment variable.
 
 ### ServiceControl/LogLevel
 
@@ -327,7 +329,8 @@ Default: `00:00:40` (40 secs)
 
 When configuring the heartbeat grace period, make sure it is greater than the [heartbeat interval defined by the plugin](/monitoring/heartbeats/install-plugin.md).
 
-Note: When monitoring multiple endpoints, ensure that the heartbeat grace period is larger than any individual heartbeat interval set by the endpoints.
+> [!NOTE]
+> When monitoring multiple endpoints, ensure that the heartbeat grace period is larger than any individual heartbeat interval set by the endpoints.
 
 ## Troubleshooting
 

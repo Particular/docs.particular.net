@@ -174,7 +174,8 @@ it is recommended to either:
 
 #### StructureMap
 
-Note: StructureMap has been sunsetted. The maintainers recommend to use [Lamar](https://jasperfx.github.io/lamar/) instead.
+> [!NOTE]
+> StructureMap has been sunsetted. The maintainers recommend to use [Lamar](https://jasperfx.github.io/lamar/) instead.
 
 The following snippet configures NServiceBus to use StructureMap as its dependency injection container. This requires the `StructureMap.Microsoft.DependencyInjection` NuGet package.
 

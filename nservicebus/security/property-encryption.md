@@ -99,7 +99,8 @@ partial: keyformat
 
 When encryption is enabled, the encryption and decryption keys must be configured.
 
-Note: Both the sending and the receiving side must use the same key to communicate encrypted information.
+> [!NOTE]
+> Both the sending and the receiving side must use the same key to communicate encrypted information.
 
 ## Key strength
 

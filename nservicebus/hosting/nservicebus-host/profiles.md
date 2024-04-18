@@ -11,7 +11,7 @@ reviewed: 2023-05-14
 
 include: host-deprecated-warning
 
-There are many configuration options for endpoints using the [NServiceBus host](/nservicebus/hosting/nservicebus-host/). The endpoint configuration specifies levels of logging, subscription, saga storage, and more. 
+There are many configuration options for endpoints using the [NServiceBus host](/nservicebus/hosting/nservicebus-host/). The endpoint configuration specifies levels of logging, subscription, saga storage, and more.
 
 Profiles enable tailoring endpoints configuration for different environments without recompiling code.
 
@@ -91,7 +91,8 @@ Refer to the [logging configuration](/nservicebus/hosting/nservicebus-host/loggi
 
 ## Persistence
 
-Note: In NServiceBus version 5 and above, persistence must be explicitly configured.
+> [!NOTE]
+> In NServiceBus version 5 and above, persistence must be explicitly configured.
 
 The built-in profiles use the following default persistence settings:
 

@@ -13,7 +13,8 @@ snippet: saga-not-found
 
 Note that in the example above the message will be considered successfully processed and sent to the audit queue even if no saga was found. Throw an exception from the `IHandleSagaNotFound` implementation to move the message to the error queue.
 
-Note: If there are multiple saga types that handle a given message type and one of them is found while others are not, the `IHandleSagaNotFound` handlers **will not be executed**. The `IHandleSagaNotFound` handlers are executed only if no saga instances are invoked. The following table illustrates when the `IHandleSagaNotFound` handlers are invoked in cases when a message is mapped to two different saga types, A and B.
+> [!NOTE]
+> If there are multiple saga types that handle a given message type and one of them is found while others are not, the `IHandleSagaNotFound` handlers **will not be executed**. The `IHandleSagaNotFound` handlers are executed only if no saga instances are invoked. The following table illustrates when the `IHandleSagaNotFound` handlers are invoked in cases when a message is mapped to two different saga types, A and B.
 
 | Saga A found | Saga B found | Not found handler invoked |
 |--------|--------|---------|
@@ -45,7 +46,8 @@ snippet: saga-not-found-unrecoverable-exception
 
 It's not always obvious when saga state does or does not exist. Most often the cause is due to race conditions.
 
-Note: Plan for delivery of messages in a different order than they were sent, and for messages to be processed more than once. These situations can occur regularly in a distributed system.
+> [!NOTE]
+> Plan for delivery of messages in a different order than they were sent, and for messages to be processed more than once. These situations can occur regularly in a distributed system.
 
 ### Out-of-order message processing
 

@@ -22,4 +22,5 @@ To use the customer serializer it must be registered as part of the endpoint con
 
 snippet: RegisterCustomSerializer
 
-Note: When using multiple deserializers make sure that there's only one type registered per given `ContentType`.
+> [!NOTE]
+> When using multiple deserializers make sure that there's only one type registered per given `ContentType`.

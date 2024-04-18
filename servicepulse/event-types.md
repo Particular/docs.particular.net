@@ -9,7 +9,8 @@ related:
 
 ServicePulse gives an overview of a system's health, based on endpoints heartbeats and custom checks, and a detailed view of failed messages.
 
-Note: The same information can be consumed not only via the ServicePulse web interface, but also by subscribing to [custom notifications and alerts from ServiceControl](/servicecontrol/contracts.md).
+> [!NOTE]
+> The same information can be consumed not only via the ServicePulse web interface, but also by subscribing to [custom notifications and alerts from ServiceControl](/servicecontrol/contracts.md).
 
 
 ### Heartbeats

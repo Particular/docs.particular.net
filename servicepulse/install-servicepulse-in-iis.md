@@ -38,7 +38,8 @@ It is possible to manually install ServicePulse using IIS following these steps:
 ServicePulse.Host.exe --extract --outPath="C:\inetpub\websites\ServicePulse"
 ```
 
-Note: `ServicePulse.Host.exe` can be found in the ServicePulse installation directory. The default location for this directory is `%programfiles(x86)%\Particular Software\ServicePulse`
+> [!NOTE]
+> `ServicePulse.Host.exe` can be found in the ServicePulse installation directory. The default location for this directory is `%programfiles(x86)%\Particular Software\ServicePulse`
 
 2. Once the ServicePulse files are successfully extracted, configure a new IIS website whose physical path points to the location where the files have been extracted. Configure it to use port `9090`.
 

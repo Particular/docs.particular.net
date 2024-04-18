@@ -26,7 +26,8 @@ To extend [command routing](/nservicebus/messaging/routing.md#command-routing), 
 
 snippet: RoutingExtensibility-RouteTableConfig
 
-Note: To access the `GetSettings()` method, include a `using` directive for the `NServiceBus.Configuration.AdvancedExtensibility` namespace.
+> [!NOTE]
+> To access the `GetSettings()` method, include a `using` directive for the `NServiceBus.Configuration.AdvancedExtensibility` namespace.
 
 The route table can be modified in the feature set up phase or can be passed further, e.g. to a `FeatureStartupTask`, and updated periodically when the source of the routing information changes.
 

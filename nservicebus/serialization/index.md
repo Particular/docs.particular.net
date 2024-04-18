@@ -35,7 +35,8 @@ To support sending and receiving messages between endpoints using different seri
 
 snippet: AdditionalDeserializers
 
-Note: When using multiple deserializers make sure that there's only one type registered per given `ContentType`.
+> [!NOTE]
+> When using multiple deserializers make sure that there's only one type registered per given `ContentType`.
 
 ## Immutable message types
 

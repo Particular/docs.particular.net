@@ -99,7 +99,8 @@ For a feature to be activated it needs to satisfy the following criteria:
 
 snippet: FeatureSetup
 
-Note: Features are automatically detected and registered by NServiceBus when the assembly is scanned.
+> [!NOTE]
+> Features are automatically detected and registered by NServiceBus when the assembly is scanned.
 
 
 ## Feature settings
@@ -137,7 +138,8 @@ snippet: FeatureStartupTaskRegistration
 
 The task will only be created and called if the feature is enabled. The `FeatureStartupTask`s are activated and started in random order.
 
-Note: Avoid long-running operations which will delay the endpoint startup time.
+> [!NOTE]
+> Avoid long-running operations which will delay the endpoint startup time.
 
 
 ### Accessing the Endpoint Instance

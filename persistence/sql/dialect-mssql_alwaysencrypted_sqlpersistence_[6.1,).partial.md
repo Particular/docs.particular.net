@@ -1,6 +1,7 @@
 The SQL Server dialect has support for [SQL Server Always Encrypted](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine).
 
-Note: Always Encrypted support works only with `Microsoft.Data.SqlClient`.
+> [!NOTE]
+> Always Encrypted support works only with `Microsoft.Data.SqlClient`.
 
 The steps to use SQL Always Encrypted are:
 
@@ -11,4 +12,5 @@ The steps to use SQL Always Encrypted are:
 
 The `Body` and `Operations` columns will now be readable only by clients that have the correct certificate or key stores configured.
 
-Note: Encrypting columns requires a few parameters including the type of encryption, the algorithm and the key. Installers currently do not support encryption. Therefore, [installers](/nservicebus/operations/installers.md) cannot be enabled in combination with SQL Server Always Encrypted.
+> [!NOTE]
+> Encrypting columns requires a few parameters including the type of encryption, the algorithm and the key. Installers currently do not support encryption. Therefore, [installers](/nservicebus/operations/installers.md) cannot be enabled in combination with SQL Server Always Encrypted.

@@ -14,7 +14,8 @@ related:
 1. Account for queue storage size. While ServiceControl is down, messages are not ingested but they will still build up in the queue. If the system has a high message throughput the queues act as a buffer. Ensure queues will not run out of storage (quota) space as when queues are full no new messages can be added which will cause application outage.
 1. Analyze the storage size for each ServiceControl instance and update starting from the smallest to the largest. This helps understand how smaller migrations run and can be used to extrapolate how long updating the larger instances will take which can help decided whether a side-by-side upgrade is necessary.
 
-Note: Upgrading the ServiceControl will not upgrade each of the individual error, monitoring or audit instances. Each of those instances will need to be upgraded separately if desired.
+> [!NOTE]
+> Upgrading the ServiceControl will not upgrade each of the individual error, monitoring or audit instances. Each of those instances will need to be upgraded separately if desired.
 
 ## Downgrading ServiceControl
 
@@ -24,9 +25,11 @@ This section contains information about downgrading ServiceControl instances and
 
 ServiceControl instances cannot be downgraded with the ServiceControl Management Utility. This is because the storage schema could have changed during a previous upgrade.
 
-Note: If a downgrade MUST be performed ensure that the storage schema is compatible.
+> [!NOTE]
+> If a downgrade MUST be performed ensure that the storage schema is compatible.
 
-Note: It is recommended to execute this procedure under the supervision of a Particular software support engineer.
+> [!NOTE]
+> It is recommended to execute this procedure under the supervision of a Particular software support engineer.
 
 1. Open the ServiceControl Management Utility
 2. Scroll to the instance that requires downgrading
@@ -46,4 +49,5 @@ There may be a need to setup a ServiceControl instance for an older version of S
 
 The ServiceControl Management Utility (SCMU) can now be used again to add instances based on the older version.
 
-Note: Downgrading the setup can results in SCMU not being able to manage newer instance versions.
+> [!NOTE]
+> Downgrading the setup can results in SCMU not being able to manage newer instance versions.

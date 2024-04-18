@@ -32,7 +32,8 @@ The following table mentions which containerization technology is currently supp
 | Amazon Elastic Container Services (ECS) | No        | Untested, guidance mentions AMIs available for Windows 2016        |
 | Amazon Elastic Kubernetes Service (EKS) | No        | EKS only supports Windows 2019                                     |
 
-Note: There is work in progress to enable ServiceControl to run in Linux containers. The details of the work are available on the [GitHub issue](https://github.com/Particular/ServiceControl/issues/3651).
+> [!NOTE]
+> There is work in progress to enable ServiceControl to run in Linux containers. The details of the work are available on the [GitHub issue](https://github.com/Particular/ServiceControl/issues/3651).
 
 ## Init containers
 

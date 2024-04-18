@@ -4,5 +4,6 @@ Messages are wrapped in a transport specific structure containing message metada
 
 snippet: SerializerAndMessageWrapperSerializer
 
-Note: All endpoints in the same system must use the same serializer for the message wrapper. This can be achieved by using the same serializer or the above `SerializeMessageWrapperWith` API.
+> [!NOTE]
+> All endpoints in the same system must use the same serializer for the message wrapper. This can be achieved by using the same serializer or the above `SerializeMessageWrapperWith` API.
 

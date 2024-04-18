@@ -23,9 +23,11 @@ Most message queues, and some data stores, do not support distributed transactio
 
 The NServiceBus **outbox** feature ensures consistency between business data and messages. It simulates an atomic transaction, distributed across both the data store used for business data and the message queue used for messaging.
 
-Note: Messages sent with [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) will be sent immediately and won't be handled by the outbox.
+> [!NOTE]
+> Messages sent with [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) will be sent immediately and won't be handled by the outbox.
 
-Note: Messages sent using `IMessageSession` won't be handled by the outbox. The outbox requires an incoming message context. Use the `IMessageHandlerContext` instance to dispatch messages handled by the outbox. Use the [Transactional Session](/nservicebus/transactional-session) when requiring outbox behavior without an incoming message.
+> [!NOTE]
+> Messages sent using `IMessageSession` won't be handled by the outbox. The outbox requires an incoming message context. Use the `IMessageHandlerContext` instance to dispatch messages handled by the outbox. Use the [Transactional Session](/nservicebus/transactional-session) when requiring outbox behavior without an incoming message.
 
 ## The consistency problem
 

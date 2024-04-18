@@ -29,7 +29,8 @@ snippet: SendMessage
 
 In this sample, XML is used to format the payload since NServiceBus is able to automatically detect the message type based on the root node of the XML document. The native sender will send a `MyMessage` XML string as the message payload.
 
-Note: The root node should be the fully qualified type name (including namespace if it has one) of the message.
+> [!NOTE]
+> The root node should be the fully qualified type name (including namespace if it has one) of the message.
 
 snippet: CreateNativePayload
 

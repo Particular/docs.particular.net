@@ -51,7 +51,8 @@ AuditQ --> ServiceControl
 SCQ --> ServiceControl
 ```
 
-Note: In versions of ServiceControl before 4.13.0, saga state change data can only be processed via the `ServiceControl Queue` (the input queue of the main ServiceControl instance). Starting with version 4.13.0, the saga state change data can also be processed by the ServiceControl audit instance via the `audit` queue. The latter approach is recommended.
+> [!NOTE]
+> In versions of ServiceControl before 4.13.0, saga state change data can only be processed via the `ServiceControl Queue` (the input queue of the main ServiceControl instance). Starting with version 4.13.0, the saga state change data can also be processed by the ServiceControl audit instance via the `audit` queue. The latter approach is recommended.
 
 All this information is sent to and stored in ServiceControl. Note that the saga state audit data is transmitted to ServiceControl via a separate message and is serialized using the built-in JSON Serializer of NServiceBus.
 

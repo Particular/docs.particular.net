@@ -81,7 +81,8 @@ The listener is available via the `OpenTelemetry.Exporter.Prometheus.HttpListene
 
 snippet: enable-prometheus-http-listener
 
-Note: `127.0.0.1` is used so that the Prometheus service running in Docker can reach it over the network.
+> [!NOTE]
+> `127.0.0.1` is used so that the Prometheus service running in Docker can reach it over the network.
 
 The raw metrics retrieved through the scraping endpoint look as follows:
 

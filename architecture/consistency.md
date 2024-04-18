@@ -58,7 +58,8 @@ The outbox pattern is implemented by storing outgoing messages in the same datab
 
 The nature of the outbox pattern may cause outgoing messages to be dispatched multiple times, which requires [idempotency](#idempotency) in receivers.
 
-Note: Implementing the outbox pattern is very risky and error-prone. Small mistakes can lead to unintended behavior and message or data loss. The [NServiceBus outbox feature](/nservicebus/outbox/) implements the outbox pattern, including built-in message deduplication when receiving messages, and is thoroughly tested and well-documented.
+> [!NOTE]
+> Implementing the outbox pattern is very risky and error-prone. Small mistakes can lead to unintended behavior and message or data loss. The [NServiceBus outbox feature](/nservicebus/outbox/) implements the outbox pattern, including built-in message deduplication when receiving messages, and is thoroughly tested and well-documented.
 
 ## Idempotency
 
@@ -80,7 +81,8 @@ Message deduplication is the easiest way to detect if a message has been process
 
 One advantage of this approach is its simplicity. However, it has downsides. Every message needs to be stored and searched for, which can reduce message throughput. Deduplication storage is not infinite, limiting the deduplication guarantees of this approach to the provided storage capacity. Identifiers for deduplication typically operate on technical IDs (e.g. message ID), which means this approach does not work for duplicate message _content_.
 
-Note: Implementing message deduplication is risky and error-prone. Small mistakes can lead to unintended behavior or message loss. The [NServiceBus Outbox feature](/nservicebus/outbox/) implements message deduplication and is thoroughly tested and well-documented.
+> [!NOTE]
+> Implementing message deduplication is risky and error-prone. Small mistakes can lead to unintended behavior or message loss. The [NServiceBus Outbox feature](/nservicebus/outbox/) implements message deduplication and is thoroughly tested and well-documented.
 
 ### Side effect checks
 

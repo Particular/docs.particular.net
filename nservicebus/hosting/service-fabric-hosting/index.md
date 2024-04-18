@@ -17,7 +17,8 @@ NServiceBus endpoints can be hosted in Service Fabric using any of these three o
 
 Refer to the [Service Fabric documentation](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-overview) for more information on when to use each option.
 
-Note: The Actor model is another Service Fabric programming model. It is not currently supported by NServiceBus.
+> [!NOTE]
+> The Actor model is another Service Fabric programming model. It is not currently supported by NServiceBus.
 
 ### Stateless service
 

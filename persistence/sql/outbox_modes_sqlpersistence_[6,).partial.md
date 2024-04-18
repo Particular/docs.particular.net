@@ -48,4 +48,5 @@ snippet: SqlPersistenceOutboxIsolationLevel
 
 A change in the isolation level affects all data access included in transactions. This should be done only if the business logic executed by message handlers within outbox transactions requires higher than the default isolation level (`Read Committed`) to guarantee correctness (e.g. `Repeatable Read` or `Serializable`). The isolation level may also be adjusted when not using `TransactionScope` mode.
 
-Note: Adjusting the isolation level requires SQL Persistence version 6.1 or higher.
+> [!NOTE]
+> Adjusting the isolation level requires SQL Persistence version 6.1 or higher.

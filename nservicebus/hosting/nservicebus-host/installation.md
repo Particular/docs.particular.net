@@ -55,7 +55,8 @@ NServiceBus.Host.exe /install
 
 To set the name of the Windows service in the registry, specify `/serviceName:ServiceName`. By default, the name of the service is the name of the endpoint and the endpoint name is the namespace of the endpoint configuration class.
 
-Note: The Windows service name is different from what is displayed in the Windows Service Manager. The Windows Service Manager shows the *DisplayName*.
+> [!NOTE]
+> The Windows service name is different from what is displayed in the Windows Service Manager. The Windows Service Manager shows the *DisplayName*.
 
 
 ### DisplayName
@@ -94,7 +95,8 @@ NServiceBus.Host.exe /install
 
 The host loads the assemblies by invoking the [`Assembly.Load`](https://msdn.microsoft.com/en-us/library/ky3942xh.aspx) method. This approach ensures that the specified assembly and its dependent assemblies will also be loaded.
 
-Note: When using the `/scannedAssemblies` parameter, be sure to include at least `NServiceBus.Host` as well as any other referenced NServiceBus plugins. There is no need to include `NServiceBus.Core`in the list since it is referenced by `NServiceBus.Host`.
+> [!NOTE]
+> When using the `/scannedAssemblies` parameter, be sure to include at least `NServiceBus.Host` as well as any other referenced NServiceBus plugins. There is no need to include `NServiceBus.Core`in the list since it is referenced by `NServiceBus.Host`.
 
 
 ### DependsOn

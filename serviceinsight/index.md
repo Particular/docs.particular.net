@@ -35,7 +35,8 @@ SCQ(ServiceControl Queue)-- Ingests -->SC
 SC[ServiceControl]-- HTTP API ---SI[ServiceInsight]
 ```
 
-Note: In versions of ServiceControl prior to version 4.13.0, saga state change (SagaAudit) information can only be processed via the `ServiceControl Queue` (the input queue of the main ServiceControl instance). Starting with version 4.13.0, the SagaAudit data can also be processed by the ServiceControl audit instance via the `audit` queue. The latter approach is recommended.
+> [!NOTE]
+> In versions of ServiceControl prior to version 4.13.0, saga state change (SagaAudit) information can only be processed via the `ServiceControl Queue` (the input queue of the main ServiceControl instance). Starting with version 4.13.0, the SagaAudit data can also be processed by the ServiceControl audit instance via the `audit` queue. The latter approach is recommended.
 
 ## The Messages window
 
