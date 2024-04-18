@@ -1,8 +1,7 @@
-{{NOTE:
-Depending on the operating system, the paths may be case sensitive.
-
-NServiceBus uses the [`Environment.GetFolderPath(SpecialFolder)`](https://docs.microsoft.com/en-us/dotnet/api/system.environment.getfolderpath) method to determine the locations of some paths on each OS.
-}}
+> [!NOTE]
+> Depending on the operating system, the paths may be case sensitive.
+>
+> NServiceBus uses the [`Environment.GetFolderPath(SpecialFolder)`](https://docs.microsoft.com/en-us/dotnet/api/system.environment.getfolderpath) method to determine the locations of some paths on each OS.
 
 ### Code-first configuration
 
