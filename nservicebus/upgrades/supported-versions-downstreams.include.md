@@ -271,7 +271,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.Logging/2.0.0) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.Logging/3.0.0) | 2024-04-18     | -                 | -                                 |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.Logging/2.0.0) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.Logging/1.0.0) | 2020-03-12     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Log4Net](/nuget/NServiceBus.Log4Net)
@@ -434,7 +435,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.2.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.2.1) | 2024-02-26     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/3.0.0) | 2024-04-18     | -                 | -                                 |
+| [2.2.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.2.1) | 2024-02-26     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [2.1.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.1.0) | 2023-07-25     | 2024-05-26        | Superseded by 2.2.x               |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.0.3) | ~~2023-06-20~~ | ~~2023-10-25~~    | ~~Superseded by 2.1.x~~           |
 
