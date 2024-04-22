@@ -21,6 +21,12 @@ snippet: opentelemetry-enablemeters
 
 See the [OpenTelemetry samples](/samples/open-telemetry/) for instructions on how to send metric information to different tools.
 
+### Emitted meters
+
+- `nservicebus.messaging.successes` - Total number of messages processed successfully by the endpoint
+- `nservicebus.messaging.fetches` - Total number of messages fetched from the queue by the endpoint
+- `nservicebus.messaging.failures` - Total number of messages processed unsuccessfully by the endpoint
+
 ## Logging
 
 NServiceBus supports logging out of the box. To collect OpenTelemetry-compatible logging in NServiceBus endpoints, it's possible to configure the endpoint to connect traces and logging when using `Microsoft.Extensions.Logging` package. See the [_Connecting OpenTelemetry traces and logs_ sample](/samples/open-telemetry/logging) for more details.
