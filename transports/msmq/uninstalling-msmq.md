@@ -14,7 +14,8 @@ The removal instructions vary depending on the operating system and are detailed
 
 ## Before proceeding
 
-DANGER: Removing the MSMQ Service is a destructive operation which can result in data loss
+> [!CAUTION]
+> Removing the MSMQ Service is a destructive operation which can result in data loss
 
 When the MSMQ service is uninstalled the following actions are also carried out:
 
@@ -28,7 +29,7 @@ Services in Microsoft Windows can be configured to depend on each other. Prior t
 
  * Load the Windows Services MMC snapin `Services.msc`,
  * Right click on `Message Queuing` in the list of services
- * Check the `Dependencies` tab in the window to see if any dependencies exist 
+ * Check the `Dependencies` tab in the window to see if any dependencies exist
 
 Alternatively this can be done from PowerShell with the following command:
 
@@ -70,7 +71,8 @@ Reboot to finalize the changes.
 
 `DISM.exe` requires admin privileges so all the commands listed should be run from an admin command prompt.
 
-NOTE: DISM command line options and feature names are all case-sensitive.
+> [!NOTE]
+> DISM command line options and feature names are all case-sensitive.
 
 To list which MSMQ features are enabled:
 

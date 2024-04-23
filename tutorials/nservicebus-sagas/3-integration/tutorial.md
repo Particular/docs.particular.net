@@ -19,17 +19,16 @@ Let's orchestrate this business process using an NServiceBus saga. Then we'll se
 
 In the exercises so far, we had a `ShippingPolicy` saga that was rather passive — it waited for `OrderPlaced` and `OrderBilled` to arrive (which could happen out of order) and then the order is ready to ship. In this exercise, we'll continue by implementing the actual shipment via one of our fictional shipping carriers, Alpine or Maple.
 
-{{NOTE:
-**What if I didn't do the previous tutorial?**
-
-No problem! You can get started learning sagas with the completed solution from the [previous lesson](/tutorials/nservicebus-sagas/2-timeouts/):
-
-downloadbutton(Download Previous Solution, /tutorials/nservicebus-sagas/2-timeouts)
-
-The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Shipping** define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system. **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes that define the messages exchanged in our system. To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
-
-This tutorial assumes at least Visual Studio 2019 and .NET Framework 4.7.2.
-}}
+> [!NOTE]
+> **What if I didn't do the previous tutorial?**
+>
+> No problem! You can get started learning sagas with the completed solution from the [previous lesson](/tutorials/nservicebus-sagas/2-timeouts/):
+>
+> downloadbutton(Download Previous Solution, /tutorials/nservicebus-sagas/2-timeouts)
+>
+> The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Shipping** define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system. > **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes that define the messages exchanged in our system. > To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
+>
+> This tutorial assumes at least Visual Studio 2019 and .NET Framework 4.7.2.
 
 ### A new saga
 
@@ -45,7 +44,8 @@ snippet: Creation-SagaStart
 
 This creates a saga that is started by `ShipOrder` messages and uses `ShipOrderData` to store its data. Because the saga data is tightly coupled to the saga implementation, we include it as an internal class. The `Handle` method is currently empty—we will need to complete that in just a bit.
 
-NOTE: For a more in-depth explanation of the basic saga concepts, see [NServiceBus sagas: Saga basics](/tutorials/nservicebus-sagas/1-saga-basics/).
+> [!NOTE]
+> For a more in-depth explanation of the basic saga concepts, see [NServiceBus sagas: Saga basics](/tutorials/nservicebus-sagas/1-saga-basics/).
 
 The `OrderId` is what makes the saga unique. We need to show the saga how to identify the unique **correlation property** `OrderId` in the incoming `ShipOrder` message and how to relate it to the `OrderId` property in the saga data.
 
@@ -79,7 +79,8 @@ snippet: ShippingEscalationTimeout
 
 Note that the `ShippingEscalation` timeout class should be **nested inside** the `ShipOrderWorkflow` class and marked as `internal`. It is very tightly coupled to the `ShipOrderWorkflow`—there's no need to use it anywhere else. It also doesn't need any special interface or content. A timeout, after all, is just an alarm clock—we get all we need to know just from the type name. Everything else will already exist in the saga's stored data.
 
-NOTE: For more on saga timeouts, see [NServiceBus sagas: Timeouts](/tutorials/nservicebus-sagas/3-integration/).
+> [!NOTE]
+> For more on saga timeouts, see [NServiceBus sagas: Timeouts](/tutorials/nservicebus-sagas/3-integration/).
 
 Now, in our `ShipOrderWorkflow` class, we can implement the `Handle` method as follows:
 
@@ -87,11 +88,10 @@ snippet: HandleShipOrder
 
 We've sent a `ShipWithMaple` command and requested a `ShippingEscalation` timeout of 20 seconds so that if Maple doesn't respond within that time, we can ship with Alpine instead. Also, notice how we can use `Data.OrderId` immediately—because of the mapping in our `ConfigureHowToFindSaga` method, NServiceBus already knows that the saga data's `OrderId` property needs to be filled using the message's `OrderId` property, so it helpfully prefills this for us.
 
-{{NOTE:
-**Why 20 seconds?**
-
-In real life, timeouts like these would more likely be measured in hours, days, or even months. In this tutorial, we want to keep it to a matter of seconds so we can watch the entire process play out immediately.
-}}
+> [!NOTE]
+> **Why 20 seconds?**
+>
+> In real life, timeouts like these would more likely be measured in hours, days, or even months. In this tutorial, we want to keep it to a matter of seconds so we can watch the entire process play out immediately.
 
 Now that we've created this command and timeout, we need to do something with them, starting with the command.
 
@@ -99,13 +99,12 @@ Now that we've created this command and timeout, we need to do something with th
 
 We will use a separate message handler to communicate with the Maple web service—or at least, we would in real life. For this tutorial, we'll use a fake message handler.
 
-{{NOTE:
-**Why not contact the web service directly within the saga?**
-
-While the saga is processing the message, it holds a database lock on your saga data so that if multiple messages from the same saga try to modify the data simultaneously, only one of them will succeed. This presents two problems for a web service request. First, a web request can't be added to a database transaction, meaning that if a concurrency exception occurs, the web request can't be undone. The second is that the time it takes for the web request to complete will hold the saga database transaction open longer, making it even more likely that another message will be processed concurrently, creating more contention.
-
-This is why a saga should be only a message-driven state machine: a message comes in, decisions are made, and messages go out. Leave all the other processing to external message handlers, as shown in this tutorial.
-}}
+> [!NOTE]
+> **Why not contact the web service directly within the saga?**
+>
+> While the saga is processing the message, it holds a database lock on your saga data so that if multiple messages from the same saga try to modify the data simultaneously, only one of them will succeed. This presents two problems for a web service > request. First, a web request can't be added to a database transaction, meaning that if a concurrency exception occurs, the web request can't be undone. The second is that the time it takes for the web request to complete will hold the saga > database transaction open longer, making it even more likely that another message will be processed concurrently, creating more contention.
+>
+> This is why a saga should be only a message-driven state machine: a message comes in, decisions are made, and messages go out. Leave all the other processing to external message handlers, as shown in this tutorial.
 
 We'll need to create the message handler and configure the routing so the saga knows where to send the `ShipWithMaple` command.
 

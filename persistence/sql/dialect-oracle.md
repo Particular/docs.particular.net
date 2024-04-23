@@ -9,7 +9,8 @@ redirects:
  - nservicebus/sql-persistence/oracle-design
 ---
 
-WARNING: SQL Persistence will run on [Oracle XE](https://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html). However it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place. See [Oracle Support](https://www.oracle.com/support/index.html) for details.
+> [!WARNING]
+> SQL Persistence will run on [Oracle XE](https://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html). However it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place. See [Oracle Support](https://www.oracle.com/support/index.html) for details.
 
 
 ## Supported database versions
@@ -31,7 +32,8 @@ persistence.SqlVariant(SqlVariant.Oracle);
 persistence.Schema("custom_schema");
 ```
 
-NOTE: The ODP.NET managed driver requires the `Enlist=false` or `Enlist=dynamic` setting in the [Oracle connection string](https://docs.oracle.com/database/121/ODPNT/featConnecting.htm) to allow the persister to enlist in a [Distributed Transaction](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681205.aspx) at the correct moment.
+> [!NOTE]
+> The ODP.NET managed driver requires the `Enlist=false` or `Enlist=dynamic` setting in the [Oracle connection string](https://docs.oracle.com/database/121/ODPNT/featConnecting.htm) to allow the persister to enlist in a [Distributed Transaction](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681205.aspx) at the correct moment.
 
 
 ## Unicode support
@@ -57,7 +59,8 @@ include: name-length-validation-on
 
 ### Table Names
 
-NOTE: For a complete example of the schema created by the SQL Persistence for Oracle, see [Oracle Scripts](oracle-scripts.md).
+> [!NOTE]
+> For a complete example of the schema created by the SQL Persistence for Oracle, see [Oracle Scripts](oracle-scripts.md).
 
 For storing subscriptions, timeouts, and outbox data, SQL Persistence will reserve 24 characters for the endpoint name, leaving 3 characters for the persistence type, and additional 3 characters for an index type. Names are then constructed as `{EndpointName}{PersistenceTypeSuffix}{KeyType}`.
 
@@ -94,7 +97,8 @@ from ALL_INDEXES
 where INDEX_NAME = 'SAGAIDX_525D1D4DC0C3DCD96947E1';
 ```
 
-NOTE: If saga name or correlation property name change, the name of the index will also change.
+> [!NOTE]
+> If saga name or correlation property name change, the name of the index will also change.
 
 If a saga name is longer than 27 characters, an exception will be thrown, and a [substitute table name must be specified](saga.md#table-structure-table-name).
 

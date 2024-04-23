@@ -16,7 +16,8 @@ The saga data table can be configured as follows:
 
 snippet: DynamoSagaTableConfiguration
 
-NOTE: When using the same table for saga and outbox data, use the [shared table configuration API](/persistence/dynamodb/#usage-customizing-the-table-used) instead.
+> [!NOTE]
+> When using the same table for saga and outbox data, use the [shared table configuration API](/persistence/dynamodb/#usage-customizing-the-table-used) instead.
 
 ## Saga data mapping
 
@@ -32,7 +33,8 @@ For more information, refer to the [saga concurrency documentation](/nservicebus
 
 ### Pessimistic locking configuration
 
-NOTE: The lease configuration options are advanced configuration options. It is recommended to change the default settings only when special requirements need to be met.
+> [!NOTE]
+> The lease configuration options are advanced configuration options. It is recommended to change the default settings only when special requirements need to be met.
 
 Pessimistic locking is implemented using [leases](https://en.wikipedia.org/wiki/Lease_(computer_science)). The lease duration determines the amount of time exclusive access is guaranteed before other readers are able to acquire a lease again. The default duration is 30 seconds. To change the lease duration:
 

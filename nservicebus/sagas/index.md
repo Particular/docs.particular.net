@@ -10,7 +10,8 @@ related:
 - nservicebus/messaging/header-manipulation
 ---
 
-NOTE: Want to learn how to build sagas step-by-step? Check out the [NServiceBus saga tutorials](/tutorials/nservicebus-sagas/).
+> [!NOTE]
+> Want to learn how to build sagas step-by-step? Check out the [NServiceBus saga tutorials](/tutorials/nservicebus-sagas/).
 
 Long-running business processes exist in many systems. Whether the steps are automated, manual, or a combination, effective handling of these processes is critical. NServiceBus employs event-driven architectural principles to bake fault-tolerance and scalability into these processes. The saga is a pattern that addresses the challenges uncovered by the relational database community years ago, packaged in NServiceBus for ease of use.
 
@@ -40,11 +41,13 @@ snippet: simple-saga-data
 
 Saga data types should not be shared across different sagas. Sharing types can result in persisters physically sharing the same storage structure which should be avoided.
 
-WARNING: Sharing property types should also be avoided. Depending on the persister implementation, sharing property types can result in storage structure being shared between endpoints.
+> [!WARNING]
+> Sharing property types should also be avoided. Depending on the persister implementation, sharing property types can result in storage structure being shared between endpoints.
 
 partial: disable-shared-state-check
 
-NOTE: If a saga property is a [record type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record), that record type must be mutable so it can be deserialized.
+> [!NOTE]
+> If a saga property is a [record type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record), that record type must be mutable so it can be deserialized.
 
 ## Adding behavior
 
@@ -54,19 +57,22 @@ The important part of a long-running process is its behavior. Just like regular 
 
 Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sagas are, in essence, a message driven state machine. The trigger to start this state machine is the arrival of one or more specified message types. In the previous example, a new saga is started every time a message of type `StartOrder` arrives. This is declared by adding `IAmStartedByMessages<StartOrder>` to the saga.
 
-NOTE: `IHandleMessages<StartOrder>` is redundant since `IAmStartedByMessages<StartOrder>` already implies that.
+> [!NOTE]
+> `IHandleMessages<StartOrder>` is redundant since `IAmStartedByMessages<StartOrder>` already implies that.
 
 This interface tells NServiceBus that the saga not only handles `StartOrder`, but that when that type of message arrives, a new instance of this saga should be created to handle it, if there isn't already an existing saga that correlates to the message. As a convenience, in NServiceBus version 6 and above, the message will set its mapped correlation property on the created saga data. In essence the semantics of `IAmStartedByMessages` is:
 
 > Create a new instance if an existing one can't be found
 
 
-NOTE: NServiceBus requires each saga to have at least one message that is able to start it.
+> [!NOTE]
+> NServiceBus requires each saga to have at least one message that is able to start it.
 
 
 ### Dealing with out of order delivery
 
-NOTE: Always assume that messages can be delivered out of order, e.g. due to error recovery, network latency, or concurrent message processing.
+> [!NOTE]
+> Always assume that messages can be delivered out of order, e.g. due to error recovery, network latency, or concurrent message processing.
 
 Sagas not designed to handle the arrival of messages out of order can result in some messages being discarded. In the previous example, this could happen if a `CompleteOrder` message is received before the `StartOrder` message has had a chance to create the saga.
 
@@ -93,7 +99,8 @@ To override the default saga not found behavior [implement `IHandleSagaNotFound`
 
 Correlation is needed in order to find existing saga instances based on data on the incoming message. See [Message Correlation](message-correlation.md) for more details.
 
-Note: The saga `Id` available via `IContainSagaData` or `ContainSagaData` is considered internal to NServiceBus and must not be used to correlate messages. Instead, add an additional property that contains a unique saga instance identifier.
+> [!NOTE]
+> The saga `Id` available via `IContainSagaData` or `ContainSagaData` is considered internal to NServiceBus and must not be used to correlate messages. Instead, add an additional property that contains a unique saga instance identifier.
 
 ## Discarding messages when saga is not found
 
@@ -103,7 +110,8 @@ If a saga handles a message, but no related saga instance is found, then that me
 
 When a saga instance is no longer needed it can be completed using the `MarkAsComplete()` API. This tells the saga infrastructure that the instance is no longer needed and can be cleaned up.
 
-NOTE: Instance cleanup is implemented differently by the various saga persisters and is not guaranteed to be immediate.
+> [!NOTE]
+> Instance cleanup is implemented differently by the various saga persisters and is not guaranteed to be immediate.
 
 ### Outstanding timeouts
 
@@ -159,7 +167,8 @@ The usual way is to correlate on some kind of ID and let the user control how to
 
 ## Accessing databases and other resources from a saga
 
-WARNING: Other than interacting with its own internal state, a saga should **not** access a database, call out to web services, or access other resources - neither directly nor indirectly by having such dependencies injected into it.
+> [!WARNING]
+> Other than interacting with its own internal state, a saga should **not** access a database, call out to web services, or access other resources - neither directly nor indirectly by having such dependencies injected into it.
 
 The main reason for avoiding accessing data from external resources is possible contention and inconsistency of saga state. Depending on persister, the saga state is retrieved and persisted with either pessimistic or optimistic locking. If the transaction takes too long, it's possible another message will come in that correlates to the same saga instance. It might be processed on a different (concurrent) thread (or perhaps a scaled out endpoint) and it will either fail immediately (pessimistic locking) or while trying to persist the state (optimistic locking). In both cases the message will be retried.
 

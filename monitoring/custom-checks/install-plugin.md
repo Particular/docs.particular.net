@@ -6,13 +6,15 @@ component: CustomChecks
 versions: 'CustomChecks:*'
 ---
 
-NOTE: This plugin can be enabled and configured with the [ServicePlatform Connector plugin](/platform/connecting.md).
+> [!NOTE]
+> This plugin can be enabled and configured with the [ServicePlatform Connector plugin](/platform/connecting.md).
 
 To install the custom checks plugin into an endpoint, reference the [NServiceBus.CustomChecks NuGet package](https://www.nuget.org/packages/NServiceBus.CustomChecks/) and add the following to the endpoint configuration:
 
 snippet: CustomCheckNew_Enable
 
-NOTE: `ServiceControl_Queue` is a placeholder for the actual ServiceControl Instance (Not a ServiceControl Audit instance) input queue. The ServiceControl input queue is equal to the [ServiceControl service name](/servicecontrol/installation.md#servicecontrol-plugins) as configured in the ServiceControl Management Utility.
+> [!NOTE]
+> `ServiceControl_Queue` is a placeholder for the actual ServiceControl Instance (Not a ServiceControl Audit instance) input queue. The ServiceControl input queue is equal to the [ServiceControl service name](/servicecontrol/installation.md#servicecontrol-plugins) as configured in the ServiceControl Management Utility.
 
 It may not make sense to enable the custom checks plugin in all environments. For instance, a development environment may not have a running ServiceControl instance to consume custom check messages. In these cases, enable the plugin conditionally, based on an environment variable or configuration setting.
 

@@ -19,7 +19,8 @@ The default content type used is `application/json` but can be changed using:
 
 snippet: SystemJsonContentType
 
-WARNING: Adding a suffix like `; systemjson` requires **all** endpoint involved to use this case-sensitive full key. See [NServiceBus.ContentType documentation](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-contenttype) for more information
+> [!WARNING]
+> Adding a suffix like `; systemjson` requires **all** endpoint involved to use this case-sensitive full key. See [NServiceBus.ContentType documentation](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-contenttype) for more information
 
 ### Customizing serialization options
 
@@ -35,6 +36,7 @@ If needed, both serializers can be used side-by-side during a transition period 
 
 ## Migration from the community version
 
-Note: Thanks to [Simon Cropp](https://github.com/SimonCropp) who built [the community version of the serializer](https://github.com/NServiceBusExtensions/NServiceBus.Json) and donated it to Particular Software.
+> [!NOTE]
+> Thanks to [Simon Cropp](https://github.com/SimonCropp) who built [the community version of the serializer](https://github.com/NServiceBusExtensions/NServiceBus.Json) and donated it to Particular Software.
 
 The serializer is mostly compatible with the community version, see the [upgrade guide](/nservicebus/upgrades/community-system-json.md) for more details.

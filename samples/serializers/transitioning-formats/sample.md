@@ -9,7 +9,8 @@ related:
 
 This sample illustrates an approach for introducing a breaking change to the [message serialization](/nservicebus/serialization/) format in a way that requires no endpoint downtime and no manipulation of message bodies.
 
-NOTE: This sample uses four "SamplePhase" endpoint projects to illustrate each iteration of a single endpoint over time.
+> [!NOTE]
+> This sample uses four "SamplePhase" endpoint projects to illustrate each iteration of a single endpoint over time.
 
 The [external Json.NET serializer](/nservicebus/serialization/newtonsoft.md) is used in this sample, but the phased upgrade approach is applicable to changing the format of any serializer or moving between different serializers.
 

@@ -35,4 +35,5 @@ include: azure-transports
 
 partial: endpointconfig
 
-Note: When using Azure Storage Queues transport, a serializer must be configured explicitly [by the `UseSerialization` API](/nservicebus/serialization/).
+> [!NOTE]
+> When using Azure Storage Queues transport, a serializer must be configured explicitly [by the `UseSerialization` API](/nservicebus/serialization/).

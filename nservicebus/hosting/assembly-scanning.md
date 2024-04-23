@@ -14,7 +14,8 @@ There are some cases where finer control over which assemblies are loaded is req
 * To limit the number of assemblies being scanned and hence provide improvements to startup time.
 * If hosting multiple endpoints out of the same directory each endpoint may require a subset of assemblies to be loaded.
 
-NOTE: NServiceBus extensions such as `NServiceBus.RavenDB.dll` are not considered a core assembly but still must be included when customizing the assembly scanning.
+> [!NOTE]
+> NServiceBus extensions such as `NServiceBus.RavenDB.dll` are not considered a core assembly but still must be included when customizing the assembly scanning.
 
 ## AppDomain assemblies
 
@@ -28,7 +29,8 @@ By default all assemblies in the endpoint's `bin` directory are scanned in searc
 
 ### Additional assembly scanning path
 
-NOTE: This configuration option is available only in NServiceBus version 7.4 and above.
+> [!NOTE]
+> This configuration option is available only in NServiceBus version 7.4 and above.
 
 Assembly scanning can be configured to scan an additional path for assemblies located outside of the default scanning path.
 
@@ -46,7 +48,8 @@ Scanning of assemblies deployed to the `bin` folder (and other configured scanni
 
 snippet: disable-file-scanning
 
-Warn: When disabling scanning of assembly files, ensure that all required assemblies are correctly loaded into the AppDomain at endpoint startup and that AppDomain assembly scanning is enabled.
+> [!WARNING]
+> When disabling scanning of assembly files, ensure that all required assemblies are correctly loaded into the AppDomain at endpoint startup and that AppDomain assembly scanning is enabled.
 
 ## Assemblies to scan
 
@@ -68,10 +71,12 @@ snippet: ScanningExcludeTypes
 
 ## Suppress scanning exceptions
 
-NOTE: This configuration option is only available in NServiceBus 6.2 and above.
+> [!NOTE]
+> This configuration option is only available in NServiceBus 6.2 and above.
 
 By default, exceptions occurred during assembly scanning will be re-thrown. Those exceptions can be ignored using the following:
 
 snippet: SwallowScanningExceptions
 
-WARNING: Ignoring assembly scanning exceptions can cause the endpoint to not load some features, behaviors, messages or message handlers and cause incorrect behavior.
+> [!WARNING]
+> Ignoring assembly scanning exceptions can cause the endpoint to not load some features, behaviors, messages or message handlers and cause incorrect behavior.

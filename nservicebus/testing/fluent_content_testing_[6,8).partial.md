@@ -1,6 +1,8 @@
-NOTE: Generally it is recommended to use the Arrange-Act-Assert (AAA) style rather than fluent style. To learn how to test NServiceBus using Arrange-Act-Assert, refer to the [sample](/samples/unit-testing/).
+> [!NOTE]
+> Generally it is recommended to use the Arrange-Act-Assert (AAA) style rather than fluent style. To learn how to test NServiceBus using Arrange-Act-Assert, refer to the [sample](/samples/unit-testing/).
 
-WARN: If the xUnit test parallelization feature is used, it is possible that the synchronous variants of `OnMessage` or `WhenXYZ` methods will deadlock under certain conditions. The synchronous methods are available for backward compatibility.
+> [!WARNING]
+> If the xUnit test parallelization feature is used, it is possible that the synchronous variants of `OnMessage` or `WhenXYZ` methods will deadlock under certain conditions. The synchronous methods are available for backward compatibility.
 
 ## Structure
 

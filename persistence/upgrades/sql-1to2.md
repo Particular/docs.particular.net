@@ -14,7 +14,7 @@ upgradeGuideCoreVersions:
 
 ## Subscription Caching configuration now required
 
-[Subscription Caching](/persistence/sql/subscriptions.md) is now a required configuration option. 
+[Subscription Caching](/persistence/sql/subscriptions.md) is now a required configuration option.
 
 Either configure a time to cache for:
 
@@ -157,7 +157,8 @@ var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
 persistence.TablePrefix("[My Schema].");
 ```
 
-WARNING: An exception will be thrown if any of ], [ or &grave; are detected in the `tablePrefix` or the schema.
+> [!WARNING]
+> An exception will be thrown if any of ], [ or &grave; are detected in the `tablePrefix` or the schema.
 
 
 ## Missing Indexes

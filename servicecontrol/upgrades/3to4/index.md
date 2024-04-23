@@ -27,11 +27,10 @@ ServiceControl Management Utility version 4 cannot be used to edit ServiceContro
 
 Upgrades that include the separate Audit embedded database will increase disk usage since databases are not automatically compacted. The new Audit embedded database will grow to the same peak storage usage as the original ServiceControl instance embedded audit message storage usage unless the original instance database is compacted after the data is removed via the audit retention process. This could result in as much as double the data usage.
 
-{{NOTE:
-After the upgrade is complete, the Audit information contained in the original ServiceControl instance will become read-only, but will continue to be deleted as it passes the time specified by the [retention policy](/servicecontrol/creating-config-file.md#data-retention). However, since the internal database does not release storage space back to the OS, the database will continue to be the same size. If saga data was being audited in the original instance and no retention policy is configured a custom check will fail, refer to the [troubleshooting guide](/servicecontrol/troubleshooting.md#saga-audit-data-retention-custom-check-failure) to resolve the issue.
-
-After one retention period after the upgrade has been completed, the original ServiceControl instance's database will be mostly empty. At that point, the original database can be compacted to a very small size. See [Compacting RavenDB](/servicecontrol/db-compaction.md) for instructions on compacting the database of the original ServiceControl instance once old audit messages have been cleaned up by the retention policy.
-}}
+> [!NOTE]
+> After the upgrade is complete, the Audit information contained in the original ServiceControl instance will become read-only, but will continue to be deleted as it passes the time specified by the [retention policy](/servicecontrol/> creating-config-file.md#data-retention). However, since the internal database does not release storage space back to the OS, the database will continue to be the same size. If saga data was being audited in the original instance and no retention > policy is configured a custom check will fail, refer to the [troubleshooting guide](/servicecontrol/troubleshooting.md#saga-audit-data-retention-custom-check-failure) to resolve the issue.
+>
+> After one retention period after the upgrade has been completed, the original ServiceControl instance's database will be mostly empty. At that point, the original database can be compacted to a very small size. See [Compacting RavenDB](/> servicecontrol/db-compaction.md) for instructions on compacting the database of the original ServiceControl instance once old audit messages have been cleaned up by the retention policy.
 
 ## ServiceControl Audit
 
@@ -45,7 +44,8 @@ When upgrading a ServiceControl instance to version 4, if it is configured to ma
 
 ![](scmu-upgrade.png)
 
-NOTE: If the ServiceControl instance being upgraded is not configured to manage an audit queue (by setting the audit queue name to `!disable`), then no new ServiceControl Audit instance will be created.
+> [!NOTE]
+> If the ServiceControl instance being upgraded is not configured to manage an audit queue (by setting the audit queue name to `!disable`), then no new ServiceControl Audit instance will be created.
 
 ### Upgrading with PowerShell
 
@@ -62,7 +62,8 @@ Invoke-ServiceControlInstanceUpgrade -Name Particular.ServiceControl
 
 If the ServiceControl instance being upgraded manages an audit queue, then additional parameters must be specified for the creation of a new ServiceControl Audit instance.
 
-WARN: The settings specified must not be for the current instance, but for the audit instance that will be created as part of this upgrade. Specifying settings that match the current instance will result in a failed upgrade.
+> [!WARNING]
+> The settings specified must not be for the current instance, but for the audit instance that will be created as part of this upgrade. Specifying settings that match the current instance will result in a failed upgrade.
 
 ```ps
 Invoke-ServiceControlInstanceUpgrade `
@@ -98,7 +99,8 @@ The following information is copied from the existing ServiceControl instance:
 - Host name
 - Service account
 
-NOTE: If this instance uses a domain account, the  account password must be supplied.
+> [!NOTE]
+> If this instance uses a domain account, the  account password must be supplied.
 
 The name of the new audit instance will be derived from the name of the original instance.
 
@@ -111,7 +113,8 @@ Upgrading a multi-instance ServiceControl deployment must be done in stages. Som
 
 The first step is to upgrade the primary ServiceControl instance. If the primary instance has audit ingestion enabled, then a new ServiceControl Audit instance will be created for it.
 
-NOTE: Once the primary instance has been upgraded, it will not subscribe to events being published by new secondary instances. All subscriptions to existing secondary instances will be retained. As the primary instance no longer requires the transport address of the secondary instances to send subscription requests, the `Queue_Address` property has been dropped from the `ServiceControl/RemoteInstances` configuration setting.
+> [!NOTE]
+> Once the primary instance has been upgraded, it will not subscribe to events being published by new secondary instances. All subscriptions to existing secondary instances will be retained. As the primary instance no longer requires the transport address of the secondary instances to send subscription requests, the `Queue_Address` property has been dropped from the `ServiceControl/RemoteInstances` configuration setting.
 
 ### Upgrade the secondary instances
 
@@ -166,4 +169,5 @@ New-ServiceControlAuditInstance `
   -Force
 ```
 
-NOTE: Service account details cannot be copied from the original instance. If the ServiceControl Audit instance must run under a service account, supply the `ServiceAccount` and `ServiceAccountPassword` parameters to the `New-ServiceControlAuditInstance` cmdlet.
+> [!NOTE]
+> Service account details cannot be copied from the original instance. If the ServiceControl Audit instance must run under a service account, supply the `ServiceAccount` and `ServiceAccountPassword` parameters to the `New-ServiceControlAuditInstance` cmdlet.

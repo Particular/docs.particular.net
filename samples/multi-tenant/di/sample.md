@@ -38,7 +38,8 @@ The following code is needed to register the behavior in the receive pipeline.
 
 snippet: configuration
 
-NOTE: The lifecycle has to be specified as `DependencyLifecycle.InstancePerUnitOfWork` in order to ensure there is a single instance of session created for each message being handled.
+> [!NOTE]
+> The lifecycle has to be specified as `DependencyLifecycle.InstancePerUnitOfWork` in order to ensure there is a single instance of session created for each message being handled.
 
 
 ### Message handlers

@@ -1,21 +1,20 @@
-DANGER: It is not recommended to use the NServiceBus Scheduler due to its [limitations](#current-limitations).
+> [!CAUTION]
+> It is not recommended to use the NServiceBus Scheduler due to its [limitations](#current-limitations).
 
 The scheduler is a lightweight/non-durable API that helps schedule a task that needs to be executed repeatedly at a specified interval. In order to benefit from NServiceBus features such as built-in retries and forwarding to the error queue, scheduled tasks should only `Send` or `SendLocal` a single message in order to perform the actual work. One example is to query the database for orders that need some action to be taken and emit individual messages for each order that is found.
 
-{{WARNING:
-
-Scheduling a task depends on [delayed delivery](/nservicebus/messaging/delayed-delivery.md). If the delayed delivery operation fails, the scheduler will be interrupted and a `ScheduledTask` message will be forwarded to the error queue. When this happens the scheduled task will stop executing unless the `ScheduledTask` message is retried or the endpoint instance is restarted.
-
-Whenever execution history, or timely or fully-reliable scheduling is needed, it is recommended to use dedicated scheduling technology. For example:
-
-* A [.NET Timer](https://msdn.microsoft.com/en-us/library/system.threading.timer.aspx).
-* [NServiceBus Sagas](/nservicebus/sagas/)
-* [Quartz.NET](https://www.quartz-scheduler.net/). See [Quartz.NET Sample](/samples/scheduling/quartz/).
-* OS task scheduler, like the Windows task scheduler or Linux cron jobs.
-* [Hangfire](https://www.hangfire.io/). See [Hangfire Sample](/samples/scheduling/hangfire/).
-* [FluentScheduler](https://github.com/fluentscheduler/FluentScheduler). See [FluentScheduler Sample](/samples/scheduling/fluentscheduler/).
-
-}}
+> [!WARNING]
+>
+> Scheduling a task depends on [delayed delivery](/nservicebus/messaging/delayed-delivery.md). If the delayed delivery operation fails, the scheduler will be interrupted and a `ScheduledTask` message will be forwarded to the error queue. When this happens the scheduled task will stop executing unless the `ScheduledTask` message is retried or the endpoint instance is restarted.
+>
+> Whenever execution history, or timely or fully-reliable scheduling is needed, it is recommended to use dedicated scheduling technology. For example:
+>
+> * A [.NET Timer](https://msdn.microsoft.com/en-us/library/system.threading.timer.aspx).
+> * [NServiceBus Sagas](/nservicebus/sagas/)
+> * [Quartz.NET](https://www.quartz-scheduler.net/). See [Quartz.NET Sample](/samples/scheduling/quartz/).
+> * OS task scheduler, like the Windows task scheduler or Linux cron jobs.
+> * [Hangfire](https://www.hangfire.io/). See [Hangfire Sample](/samples/scheduling/hangfire/).
+> * [FluentScheduler](https://github.com/fluentscheduler/FluentScheduler). See [FluentScheduler Sample](/samples/scheduling/fluentscheduler/).
 
 ## How the scheduler works
 
@@ -45,7 +44,8 @@ snippet: ScheduleTask
 * Since the scheduler uses the queuing mechanism, it does have some side effects on the timelines of scheduled tasks. When a task is scheduled to be run at a given time it may not be executed at exactly that time, instead it becomes visible at that time and will be executed when it shows up in the queue. In most cases, this distinction will have no noticeable effect on the behavior of the scheduling API. However, in high load systems where the transport does not support native delayed delivery, the fact that a scheduled task is added to the back of the queue can result in a noticeable delay between the "time the task has been request to be run" and the "time the task is actually executed".
 * The Scheduler API does not support scaling out the endpoint or doing a side-by-side deployment of an endpoint. When there are multiple instances of the endpoint that are running on the same machine, while using a non-broker transport such as MSMQ, or when there are scaling out the endpoint instances while using a broker transport such as RabbitMQ, these endpoint instances share the same input queue. Since each endpoint maintains its own created tasks in memory, when the specified time is up and the task is queued at the endpoint, any of the endpoint instances that are currently running can dequeue that message. If an endpoint that did not originally create this task happened to dequeue this message in order to execute it, it will not find the task in its list.
 
-WARNING: This will result in the task not being executed but also not being rescheduled.
+> [!WARNING]
+> This will result in the task not being executed but also not being rescheduled.
 
 ## Exception handling
 

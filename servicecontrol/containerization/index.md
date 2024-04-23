@@ -6,7 +6,8 @@ hidden: true
 
 Docker images for ServiceControl exist on Docker Hub under the [Particular organization](https://hub.docker.com/u/particular). These can be used to run ServiceControl in Docker containers. These Docker images are only available for Windows due to ServiceControl's current dependency on Windows ESENT storage.
 
-NOTE: ServiceControl cannot perform a graceful shutdown which can result in manual intervention to repair the underlying datastore. The base Windows operating system images do not support notifying the application that it is being shut down when running `docker stop`. 
+> [!NOTE]
+> ServiceControl cannot perform a graceful shutdown which can result in manual intervention to repair the underlying datastore. The base Windows operating system images do not support notifying the application that it is being shut down when running `docker stop`.
 
 ## Containers overview
 
@@ -18,7 +19,7 @@ ServiceControl is split into multiple docker images for each instance type. Thes
 
 The images for each of these containers are further split into an `init` container and a `runtime` container per transport.
 
-## Containerization support 
+## Containerization support
 
 The following table mentions which containerization technology is currently supported for running a production system.
 
@@ -31,7 +32,8 @@ The following table mentions which containerization technology is currently supp
 | Amazon Elastic Container Services (ECS) | No        | Untested, guidance mentions AMIs available for Windows 2016        |
 | Amazon Elastic Kubernetes Service (EKS) | No        | EKS only supports Windows 2019                                     |
 
-Note: There is work in progress to enable ServiceControl to run in Linux containers. The details of the work are available on the [GitHub issue](https://github.com/Particular/ServiceControl/issues/3651).
+> [!NOTE]
+> There is work in progress to enable ServiceControl to run in Linux containers. The details of the work are available on the [GitHub issue](https://github.com/Particular/ServiceControl/issues/3651).
 
 ## Init containers
 
@@ -71,7 +73,8 @@ The most common parameters used are likely to be:
 * Monitoring/ConnectionString
 * Monitoring/LicenseText
 
-NOTE: For hosting in Azure Container Instances parameter names are supported that use only underscores, e.g. ServiceControl_Audit_LicenseText
+> [!NOTE]
+> For hosting in Azure Container Instances parameter names are supported that use only underscores, e.g. ServiceControl_Audit_LicenseText
 
 These parameters can also be added by using a standard Docker environment file. Each parameter has its line and does not need to be enclosed by quotes. It can then be used by Docker as follows:
 
@@ -178,7 +181,7 @@ Volume mappings can be used with ServiceControl for configuration files, storing
 
 ### Configuration and Logging
 
-Every image has a folder in `c:\data\` that can be mapped to a folder outside of the container. 
+Every image has a folder in `c:\data\` that can be mapped to a folder outside of the container.
 
 ```cmd
 docker run -v d:\servicecontrol\:c:\data\ [imagename]
@@ -213,7 +216,7 @@ docker run --interactive --tty --detach -v d:\servicecontrol\:c:\data\ [imagenam
 
 ## Interactive shell
 
-To run tools like `ESENTUTL` to perform low-level maintenance tasks like [compacting the RavenDB database](/servicecontrol/db-compaction.md) the container can be started in interactive mode with an overridden entry point. 
+To run tools like `ESENTUTL` to perform low-level maintenance tasks like [compacting the RavenDB database](/servicecontrol/db-compaction.md) the container can be started in interactive mode with an overridden entry point.
 
 Docker for Windows:
 ```cmd

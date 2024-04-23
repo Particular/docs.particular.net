@@ -18,7 +18,8 @@ include: saga-business-data-access
 
 snippet: ServiceFabricPersistenceSynchronizedSession-Saga
 
-Warning: Shared transaction should not be committed (`CommitAsync()`) or disposed (`Dispose()`) in the handler or the saga. 
+> [!WARNING]
+> Shared transaction should not be committed (`CommitAsync()`) or disposed (`Dispose()`) in the handler or the saga.
 
 ### Using a custom transaction
 

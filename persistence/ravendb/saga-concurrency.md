@@ -29,7 +29,8 @@ Raven.Client.Exceptions.ConcurrencyException: Document OrderSagaData/OrderId/316
 
 partial: concurrency
 
-WARNING: When a message handler does not change saga data, the RavenDB client will not attempt to write the associated document to storage. If a consistency check is required, a property value must be changed. For example, a counter property may be incremented.
+> [!WARNING]
+> When a message handler does not change saga data, the RavenDB client will not attempt to write the associated document to storage. If a consistency check is required, a property value must be changed. For example, a counter property may be incremented.
 
 Example exception:
 

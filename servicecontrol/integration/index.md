@@ -6,7 +6,8 @@ component: ServiceControl
 
 ServiceControl is the backend service for [ServicePulse](/servicepulse) and [ServiceInsight](/serviceinsight). It can also be used as the back-end for third-party integrations. It collects and stores information from monitored NServiceBus endpoints and exposes it via an HTTP API.
 
-NOTE: In systems that don't use ServiceControl, failed messages remain in the configured error queue and audit messages remain in the configured audit queue. If ServiceControl is introduced into an existing environment, ServiceControl consumes the messages so they are no longer in their respective queues.
+> [!NOTE]
+> In systems that don't use ServiceControl, failed messages remain in the configured error queue and audit messages remain in the configured audit queue. If ServiceControl is introduced into an existing environment, ServiceControl consumes the messages so they are no longer in their respective queues.
 
 ServiceControl provides monitoring capabilities by analyzing the configured error and audit queues. It can extract information like endpoint name, queue name and, in case of error messages, the exception stack trace, etc. This information is stored in an internal database.
 
@@ -59,7 +60,8 @@ Endpoints must be configured appropriately to allow ServiceControl to gather thi
 - [Recoverability](/nservicebus/recoverability) must be enabled to store information about message processing failures.
 - [Heartbeats](/monitoring/heartbeats/install-plugin.md), [custom checks](/monitoring/custom-checks/install-plugin.md), and [other plugins](/servicecontrol/plugins/) must be installed in endpoints.
 
-NOTE: All endpoints in a given environment must be configured to send messages to the same ServiceControl plugin, audit, and error queues for ServiceControl to work.
+> [!NOTE]
+> All endpoints in a given environment must be configured to send messages to the same ServiceControl plugin, audit, and error queues for ServiceControl to work.
 
 ## Event notifications
 

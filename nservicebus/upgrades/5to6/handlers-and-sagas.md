@@ -15,7 +15,8 @@ upgradeGuideCoreVersions:
 
 The handler method on `IHandleMessages<T>` now returns a Task. To leverage async code, add the `async` keyword to the handler method and use `await` for async methods. To convert the synchronous code add `return Task.FromResult(0);` or `return Task.CompletedTask` (.NET 4.6 and higher) to the handler methods.
 
-WARNING: Do not `return null` from the message handlers. Returning `null` will result in an Exception.
+> [!WARNING]
+> Do not `return null` from the message handlers. Returning `null` will result in an Exception.
 
 ```csharp
 // For NServiceBus version 6.x
@@ -194,7 +195,8 @@ public class MigrationStep3 :
 
 Fix the compiler warnings by introducing the `await` statement to each asynchronous method call.
 
-NOTE: Visual Studio 2015 and higher has the capability to automatically fix those warnings with the [`Ctrl+.`](https://msdn.microsoft.com/en-us/library/dn872466.aspx) (depending on the keybindings) shortcut. It is even possible to fix it in the whole solution if desired.
+> [!NOTE]
+> Visual Studio 2015 and higher has the capability to automatically fix those warnings with the [`Ctrl+.`](https://msdn.microsoft.com/en-us/library/dn872466.aspx) (depending on the keybindings) shortcut. It is even possible to fix it in the whole solution if desired.
 
 ```csharp
 public class MigrationStep4 :
@@ -254,15 +256,16 @@ protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData>
 
 Version 6 automatically correlates incoming message properties to its saga data counterparts. Any saga data correlation in the message handler code can be safely removed. Correlated properties (for existing saga instances) do not change once set.
 
-{{NOTE: Correlated properties must have a non [default](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default-values-table) value, i.e., not null and not empty, assigned when persisted. If not the following exception is thrown:
+> [!NOTE]
+> Correlated properties must have a non [default](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/default-values-table) value, i.e., not null and not empty, assigned when persisted. If not the following exception is thrown:
+>
+> ```
+> The correlated property 'MyPropery' on Saga 'MySaga' does not have a value.
+> A correlated property must have a non-default (i.e., non-null and non-empty) value assigned when a new saga instance is created.
+> ```
+>
+> Use a [custom finder](/nservicebus/sagas/saga-finding.md) for the received message to override this validation.
 
-```
-The correlated property 'MyPropery' on Saga 'MySaga' does not have a value.
-A correlated property must have a non-default (i.e., non-null and non-empty) value assigned when a new saga instance is created.
-```
-
-Use a [custom finder](/nservicebus/sagas/saga-finding.md) for the received message to override this validation.
-}}
 
 ```csharp
 // For NServiceBus version 6.x

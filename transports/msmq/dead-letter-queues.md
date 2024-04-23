@@ -13,7 +13,8 @@ related:
 
 DLQ can be disabled for the entire endpoint using the [MSMQ connection string](/transports/msmq/connection-strings.md).
 
-NOTE: If DLQ is enabled messages will remain in the senders outgoing queue until processed and count towards disk space quota on the senders machine.
+> [!NOTE]
+> If DLQ is enabled messages will remain in the senders outgoing queue until processed and count towards disk space quota on the senders machine.
 
 
 partial: config
@@ -25,7 +26,8 @@ MSMQ moves messages that cannot be delivered to their destination to the DLQ. Th
 
 It is very important to monitor the DLQ in order to detect potential routing configuration errors or other situations that may lead to messages being moved to the dead-letter queue.
 
-NOTE: While there is usually a central error queue managed by NServiceBus, each machine has a separate dead-letter queue. This means that the DLQ on each machine has to be monitored individually.
+> [!NOTE]
+> While there is usually a central error queue managed by NServiceBus, each machine has a separate dead-letter queue. This means that the DLQ on each machine has to be monitored individually.
 
 
 #### Reading messages from DLQ
@@ -33,7 +35,7 @@ NOTE: While there is usually a central error queue managed by NServiceBus, each 
 The following addresses can be used to read messages from DLQ on a given machine:
 
 ```
-DIRECT=OS:{MACHINE-NAME}\SYSTEM$;DEADLETTER 
+DIRECT=OS:{MACHINE-NAME}\SYSTEM$;DEADLETTER
 DIRECT=OS:{MACHINE-NAME}\SYSTEM$;DEADXACT
 ```
 

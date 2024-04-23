@@ -9,7 +9,8 @@ related:
 
 This sample illustrates an approach for transitioning between different [correlation IDs](/persistence/sql/saga.md#correlation-ids) in a way that requires no endpoint downtime or migration of saga data stored in sql.
 
-NOTE: The sample uses three "Phase" endpoint projects to illustrate the iterations of a single endpoint in one solution.
+> [!NOTE]
+> The sample uses three "Phase" endpoint projects to illustrate the iterations of a single endpoint in one solution.
 
 include: sqlpersistence-prereqs
 
@@ -53,7 +54,8 @@ snippet: sagaPhase2
 
 snippet: sagadataPhase2
 
-WARNING: Prior to moving to Phase 3 it is necessary to verify that all existing sagas have the `Correlation_OrderId` column populated. This can either be inferred by the business knowledge (i.e. certain saga may have a known and constrained lifetime) or by querying the database.
+> [!WARNING]
+> Prior to moving to Phase 3 it is necessary to verify that all existing sagas have the `Correlation_OrderId` column populated. This can either be inferred by the business knowledge (i.e. certain saga may have a known and constrained lifetime) or by querying the database.
 
 ### Phase 3
 

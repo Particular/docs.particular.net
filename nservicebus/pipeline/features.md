@@ -38,7 +38,8 @@ snippet: DependentFeature
 
 A feature might use either strongly or loosely typed API when declaring dependencies (the latter can be useful if a dependency is declared in an external assembly).
 
-WARNING: The feature name is derived from the name of the type. The `Feature` suffix must not be removed and dependency strings must be prefixed with the namespace of the target Feature.
+> [!WARNING]
+> The feature name is derived from the name of the type. The `Feature` suffix must not be removed and dependency strings must be prefixed with the namespace of the target Feature.
 
 The API also allows declaring optional dependencies on one or more listed features.
 
@@ -72,7 +73,8 @@ When the enabling algorithm can't find any more features that should be enabled,
 
 snippet: FeatureWithPrerequisites
 
-NOTE: The differentiation between *explicit* settings and *default* settings becomes useful when determining if a given feature should be activated.
+> [!NOTE]
+> The differentiation between *explicit* settings and *default* settings becomes useful when determining if a given feature should be activated.
 
 
 ### Activation
@@ -97,7 +99,8 @@ For a feature to be activated it needs to satisfy the following criteria:
 
 snippet: FeatureSetup
 
-Note: Features are automatically detected and registered by NServiceBus when the assembly is scanned.
+> [!NOTE]
+> Features are automatically detected and registered by NServiceBus when the assembly is scanned.
 
 
 ## Feature settings
@@ -135,7 +138,8 @@ snippet: FeatureStartupTaskRegistration
 
 The task will only be created and called if the feature is enabled. The `FeatureStartupTask`s are activated and started in random order.
 
-Note: Avoid long-running operations which will delay the endpoint startup time.
+> [!NOTE]
+> Avoid long-running operations which will delay the endpoint startup time.
 
 
 ### Accessing the Endpoint Instance

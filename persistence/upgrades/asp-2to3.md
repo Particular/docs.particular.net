@@ -77,4 +77,5 @@ Timeout storage support was marked obsolete with a warning in version 2 because 
 - Any timeout-related configuration APIs can be safely removed.
 - Database tables must be manually removed from storage.
 
-NOTE: There is no automatic migration of timeout data. See [Migrating from timeout manager to native delivery](/nservicebus/tools/migrate-to-native-delivery.md).
+> [!NOTE]
+> There is no automatic migration of timeout data. See [Migrating from timeout manager to native delivery](/nservicebus/tools/migrate-to-native-delivery.md).

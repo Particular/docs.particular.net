@@ -1,8 +1,7 @@
-{{NOTE:
-Duplicate timeouts can be dispatched if the transport and persistence do not support [TransactionScope mode](/transports/transactions.md#transactions-transaction-scope-distributed-transaction), or are configured not to use it. Scaled-out environments, in particular, are vulnerable to duplicate timeouts. The receiving endpoint must account for this, for example with the [outbox](/nservicebus/outbox/) or another idempotent mechanism.
-
-Exactly-once timeouts are possible with [MSMQ](/transports/msmq/) or [SQL](/transports/sql/) transports with [NHibernate](/persistence/nhibernate/) or [SQL](/persistence/sql/) persistence **and** if they are configured to share the transactional context (either through distributed transactions or connection sharing).
-}}
+> [!NOTE]
+> Duplicate timeouts can be dispatched if the transport and persistence do not support [TransactionScope mode](/transports/transactions.md#transactions-transaction-scope-distributed-transaction), or are configured not to use it. Scaled-out > environments, in particular, are vulnerable to duplicate timeouts. The receiving endpoint must account for this, for example with the [outbox](/nservicebus/outbox/) or another idempotent mechanism.
+>
+> Exactly-once timeouts are possible with [MSMQ](/transports/msmq/) or [SQL](/transports/sql/) transports with [NHibernate](/persistence/nhibernate/) or [SQL](/persistence/sql/) persistence **and** if they are configured to share the transactional > context (either through distributed transactions or connection sharing).
 
 NServiceBus provides a delayed-delivery implementation for transports that don't support it natively. All transports except MSMQ support delayed delivery natively.
 
@@ -30,7 +29,8 @@ The default wait time can be changed:
 
 snippet: TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages
 
-NOTE: The timeout manager polls every minute. This means that it could take more time than the configured *TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages* value before an issue is detected.
+> [!NOTE]
+> The timeout manager polls every minute. This means that it could take more time than the configured *TimeToWaitBeforeTriggeringCriticalErrorOnTimeoutOutages* value before an issue is detected.
 
 When this happens the following critical error message will be raised:
 

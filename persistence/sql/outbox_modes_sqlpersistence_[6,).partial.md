@@ -1,6 +1,6 @@
 ## Concurrency control
 
-By default the outbox uses optimistic concurrency control. That means that when two copies of the same message arrive at the endpoint, both messages are picked up (if concurrency settings of the endpoint allow for it) and processing begins on both of them. When the message handlers are completed, both processing threads attempt to insert the outbox record as part of the transaction that includes the application state change. 
+By default the outbox uses optimistic concurrency control. That means that when two copies of the same message arrive at the endpoint, both messages are picked up (if concurrency settings of the endpoint allow for it) and processing begins on both of them. When the message handlers are completed, both processing threads attempt to insert the outbox record as part of the transaction that includes the application state change.
 
 At this point, one of the transactions succeeds and the other fails due to a unique index constraint violation. When the copy of the message that failed is picked up again, it is discarded as a duplicate.
 
@@ -16,9 +16,11 @@ In the pessimistic mode the outbox record is inserted before the handlers are ex
 
 The trade-off is that each message processing attempt requires additional round trip to the database.
 
-NOTE: The pessimistic mode depends on the locking behavior of the database when inserting rows. Consult the documentation of the database to check in which isolation modes the outbox pessimistic mode is appropriate. 
+> [!NOTE]
+> The pessimistic mode depends on the locking behavior of the database when inserting rows. Consult the documentation of the database to check in which isolation modes the outbox pessimistic mode is appropriate.
 
-WARN: Even the pessimistic mode does not ensure that the message handling logic is always executed exactly once. Non-transactional side effects, such as sending e-mail, can still be duplicated in case of errors that cause handling logic to be retried.
+> [!WARNING]
+> Even the pessimistic mode does not ensure that the message handling logic is always executed exactly once. Non-transactional side effects, such as sending e-mail, can still be duplicated in case of errors that cause handling logic to be retried.
 
 ## Transaction type
 
@@ -46,4 +48,5 @@ snippet: SqlPersistenceOutboxIsolationLevel
 
 A change in the isolation level affects all data access included in transactions. This should be done only if the business logic executed by message handlers within outbox transactions requires higher than the default isolation level (`Read Committed`) to guarantee correctness (e.g. `Repeatable Read` or `Serializable`). The isolation level may also be adjusted when not using `TransactionScope` mode.
 
-Note: Adjusting the isolation level requires SQL Persistence version 6.1 or higher.
+> [!NOTE]
+> Adjusting the isolation level requires SQL Persistence version 6.1 or higher.

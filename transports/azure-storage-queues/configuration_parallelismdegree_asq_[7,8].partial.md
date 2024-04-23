@@ -40,6 +40,8 @@ Degree of parallelism = square root of MaxConcurrency
 
 This means that `DegreeOfReceiveParallelism` message processing loops will receive up to the configured `BatchSize` number of messages in parallel. For example, using a `BatchSize` of 32 (the default) and parallelism set to 10 will allow the transport to receive 320 messages from the storage queue at the same time.
 
-WARNING: Changing the value of `DegreeOfReceiveParallelism` will influence the total number of storage operations against Azure Storage Services and can result in higher costs.
+> [!WARNING]
+> Changing the value of `DegreeOfReceiveParallelism` will influence the total number of storage operations against Azure Storage Services and can result in higher costs.
 
-WARNING: The values of `BatchSize` , `DegreeOfParallelism`, `Concurrency`, [ServicePointManager Settings](/persistence/azure-table/performance-tuning.md) and the other parameters like `MaximumWaitTimeWhenIdle` must be selected carefully to get the desired speed from the transport without exceeding [the boundaries](https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits) of the allowed number of operations per second.
+> [!WARNING]
+> The values of `BatchSize` , `DegreeOfParallelism`, `Concurrency`, [ServicePointManager Settings](/persistence/azure-table/performance-tuning.md) and the other parameters like `MaximumWaitTimeWhenIdle` must be selected carefully to get the desired speed from the transport without exceeding [the boundaries](https://docs.microsoft.com/en-us/azure/azure-subscription-service-limits) of the allowed number of operations per second.

@@ -52,7 +52,8 @@ For more information about how to configure delayed retries, refer to [configure
 
 For more information how delayed retries work internally, refer to the [Delayed delivery - how it works](/nservicebus/messaging/delayed-delivery.md#how-it-works) section.
 
-NOTE: Retrying messages for extended periods of time would hide failures from operators, thus preventing them from taking manual action to honor their Service Level Agreements. To avoid this, NServiceBus will make sure that the time between two consecutive delayed retries is no more than 24 hours before being sent the error queue.
+> [!NOTE]
+> Retrying messages for extended periods of time would hide failures from operators, thus preventing them from taking manual action to honor their Service Level Agreements. To avoid this, NServiceBus will make sure that the time between two consecutive delayed retries is no more than 24 hours before being sent the error queue.
 
 
 ### Transport transaction requirements
@@ -118,7 +119,8 @@ Given a variety of immediate and delayed configuration values here are the resul
 
 ### Scale-out multiplier
 
-NOTE: Retry behavior can be interpreted as if retries result in duplicates when scaled-out. Retry behavior can result in excessive processing attempts but no duplicate messages are created. Ensure that logging uses unique identifiers for each endpoint instance.
+> [!NOTE]
+> Retry behavior can be interpreted as if retries result in duplicates when scaled-out. Retry behavior can result in excessive processing attempts but no duplicate messages are created. Ensure that logging uses unique identifiers for each endpoint instance.
 
 If an endpoint is scaled-out the number of processing attempts increase if instances are retrieving messages from the same queue and the transport does not have a native delivery counter.
 
@@ -153,7 +155,7 @@ When taking the default values for immediate and delayed retries (five and three
 
 ### Event types
 
-NServiceBus logs processing failures via the logger **NServiceBus.RecoverabilityExecutor** with various log levels and messages. 
+NServiceBus logs processing failures via the logger **NServiceBus.RecoverabilityExecutor** with various log levels and messages.
 
 | Action          | Log level     | Log message                                                                                    |
 |-----------------|---------------|------------------------------------------------------------------------------------------------|

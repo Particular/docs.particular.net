@@ -23,4 +23,5 @@ It can also be useful to access the native Service Bus outgoing message from beh
 
 partial: snippets
 
-Note: Native outgoing messages cannot be customized when using the [outbox](/nservicebus/outbox/) as customizations are not persistent.
+> [!NOTE]
+> Native outgoing messages cannot be customized when using the [outbox](/nservicebus/outbox/) as customizations are not persistent.

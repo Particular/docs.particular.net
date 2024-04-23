@@ -27,7 +27,8 @@ Below is the list of connection string options. When constructing a connection s
 
 The host name of the broker.
 
-NOTE: The host name is required.
+> [!NOTE]
+> The host name is required.
 
 ### Port
 
@@ -67,7 +68,8 @@ Secure connections to the broker using [Transport Layer Security (TLS)](https://
 
 snippet: rabbitmq-connection-tls
 
-WARNING: TLS 1.2 must be enabled on the broker to establish a secure connection.
+> [!WARNING]
+> TLS 1.2 must be enabled on the broker to establish a secure connection.
 
 ### Client authentication
 
@@ -106,7 +108,8 @@ Alternatively, the whole calculation can be overridden by setting the prefetch c
 
 snippet: rabbitmq-config-prefetch-count
 
-NOTE: If the configured value is less than the maximum concurrency, the prefetch count will be set to the maximum concurrency value instead.
+> [!NOTE]
+> If the configured value is less than the maximum concurrency, the prefetch count will be set to the maximum concurrency value instead.
 
 ## Controlling behavior when the broker connection is lost
 

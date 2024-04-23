@@ -29,7 +29,8 @@ The [Microsoft Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundam
  * [Endpoint Lifecycle](/nservicebus/lifecycle/)
  * [Critical Error handling](critical-errors.md)
 
-Note: It is recommend to override the default critical error callback when self-hosting NServiceBus. Refer to the [Critical Errors](/nservicebus/hosting/critical-errors.md) article for more information.
+> [!NOTE]
+> It is recommend to override the default critical error callback when self-hosting NServiceBus. Refer to the [Critical Errors](/nservicebus/hosting/critical-errors.md) article for more information.
 
 When self-hosting, the user is responsible for creating and starting the endpoint instance:
 
@@ -39,7 +40,8 @@ The user is also responsible for properly shutting down the endpoint when it is 
 
 snippet: Hosting-Shutdown
 
-NOTE: The endpoint instance is not disposable due to the asynchronous nature of the pipeline. Call `Stop` in an async manner (see example above).
+> [!NOTE]
+> The endpoint instance is not disposable due to the asynchronous nature of the pipeline. Call `Stop` in an async manner (see example above).
 
 
 ### Windows Service hosting

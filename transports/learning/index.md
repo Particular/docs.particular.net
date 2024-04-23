@@ -21,7 +21,7 @@ include: learning-usages
 
 ## Transport at a glance
 
-|Feature                    |   |  
+|Feature                    |   |
 |:---                       |---
 |Transactions |None, ReceiveOnly, SendsWithAtomicReceive
 |Pub/Sub                    |Native
@@ -52,7 +52,8 @@ The transport supports the following [Transport Transaction Modes](/transports/t
 
 By default, the transport runs with concurrency limited to 1. See the [tuning](/nservicebus/operations/tuning.md) for details on how to configure concurrency levels.
 
-Note: Production transports will run with a higher concurrency setting by default
+> [!NOTE]
+> Production transports will run with a higher concurrency setting by default
 
 ### Storage Directory
 
@@ -62,7 +63,8 @@ To manually configure the storage location:
 
 snippet: StorageDirectory
 
-WARNING: When using source control the storage directory should be excluded and never committed.
+> [!WARNING]
+> When using source control the storage directory should be excluded and never committed.
 
 
 ### Payload size restriction

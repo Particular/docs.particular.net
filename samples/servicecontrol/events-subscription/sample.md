@@ -33,7 +33,8 @@ A `MessageFailed` event is emitted when processing a message fails and the messa
 
 To observe this in action, press <kbd>Enter</kbd> in the `NServiceBusEndpoint` console window to send a new `SimpleMessage` event. Processing of the message fails every time.
 
-NOTE: The exception will cause the debugger to enter a breakpoint. It may be preferable to detach the debugger in order to better observe what's going on.
+> [!NOTE]
+> The exception will cause the debugger to enter a breakpoint. It may be preferable to detach the debugger in order to better observe what's going on.
 
 When a `MessageFailed` event is received, the `EndpointsMonitor` prints the following message in its console window:
 
@@ -50,7 +51,8 @@ The failed message can also be viewed in the ServicePulse browser window. Naviga
 
 The `HeartbeatStopped` event is emitted whenever an endpoint fails to send a control message within the expected interval. The `HeartbeatRestored` event is emitted whenever the endpoint successfully sends a control message again.
 
-Note: The monitor must receive at least one control message before it can observe that the endpoint stopped responding.
+> [!NOTE]
+> The monitor must receive at least one control message before it can observe that the endpoint stopped responding.
 
 To observe this in action, stop the `NServiceBusEndpoint` application and wait up to 30 seconds. When a `HeartbeatStopped` event is received, the `EndpointsMonitor` prints the following message in its console window:
 
@@ -74,7 +76,8 @@ The `MessageFailed` event is published whenever ServiceControl detects a new mes
 
 In order to receive `HeartbeatStopped` and `HeartbeatRestored` events, the endpoint must use the [heartbeats plugin](/monitoring/heartbeats).
 
-NOTE: Heartbeat control messages are sent [every 30 seconds by default](/monitoring/heartbeats/install-plugin.md#heartbeat-interval) so there will be up to a 30 second delay before ServiceControl realizes that it lost or restored connection with the endpoint.
+> [!NOTE]
+> Heartbeat control messages are sent [every 30 seconds by default](/monitoring/heartbeats/install-plugin.md#heartbeat-interval) so there will be up to a 30 second delay before ServiceControl realizes that it lost or restored connection with the endpoint.
 
 
 ### EndpointsMonitor

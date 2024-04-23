@@ -30,7 +30,8 @@ Or in simpler terms
 
 Depending on the features provided by a given transport there are two possible implementations of Publish-Subscribe mechanics: message-driven (persistence-based) and native.
 
-Note: For simplicity these explanations refer to specific endpoints as "Subscribers" and "Publishers". However in reality any endpoint can be both a publisher and/or and a subscriber.
+> [!NOTE]
+> For simplicity these explanations refer to specific endpoints as "Subscribers" and "Publishers". However in reality any endpoint can be both a publisher and/or and a subscriber.
 
 ### All subscribers gets their own copy of the event
 

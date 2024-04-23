@@ -30,12 +30,14 @@ Heartbeat monitoring for endpoint instances can be configured in the configurati
 
 Setting the endpoint to "Off" will prevent it from appearing on the endpoints overview screen and from affecting the dashboard.
 
-NOTE: This is a configuration setting only and the endpoint itself may still be configured to send heartbeat messages.
+> [!NOTE]
+> This is a configuration setting only and the endpoint itself may still be configured to send heartbeat messages.
 
 ## Removing endpoints
 
 When an endpoint has been decommissioned and should no longer be displayed in ServicePulse it can be removed. From the Endpoint Heartbeats screen, click the trash bin icon next to an endpoint's name to remove it from ServicePulse. The trash icon is only visible when displaying endpoint instances. It is not shown when displaying logical endpoints.
 
-NOTE: This feature requires ServicePulse version 1.23 or higher and ServiceControl version 4.4 or higher.
+> [!NOTE]
+> This feature requires ServicePulse version 1.23 or higher and ServiceControl version 4.4 or higher.
 
 ![Remove endpoint](sp-remove-endpoint.png)

@@ -8,4 +8,5 @@ The same serializer must be used by the sending endpoint to serialize messages a
 
 The default serializer used in NServiceBus projects is the custom [XmlSerializer](xml.md). Unless explicitly configured otherwise, NServiceBus will use [XmlSerializer](xml.md) for serializing and deserializing all messages.
 
-WARN: In NServiceBus 8.1 and above, a runtime warning will encourage explicitly selecting a serializer. In a future version of NServiceBus, the XmlSerializer will no longer be selected by default.
+> [!WARNING]
+> In NServiceBus 8.1 and above, a runtime warning will encourage explicitly selecting a serializer. In a future version of NServiceBus, the XmlSerializer will no longer be selected by default.

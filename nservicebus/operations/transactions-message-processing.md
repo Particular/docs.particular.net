@@ -12,7 +12,7 @@ related:
  - nservicebus/recoverability
 ---
 
-NServiceBus offers four levels of consistency guarantees with regards to message processing, depending on the selected transport. The default consistency level is TransactionScope (Distributed Transaction), but a different level can be specified using code configuration API. 
+NServiceBus offers four levels of consistency guarantees with regards to message processing, depending on the selected transport. The default consistency level is TransactionScope (Distributed Transaction), but a different level can be specified using code configuration API.
 
 See the [Transports Transactions](/transports/transactions.md) article to learn more about NServiceBus consistency guarantees.
 
@@ -33,7 +33,8 @@ The [DTCPing](https://www.microsoft.com/en-us/download/details.aspx?id=2868) too
 
 For more information, refer to the [Troubleshooting MSDTC issues with the DTCPing tool](https://blogs.msdn.microsoft.com/puneetgupta/2008/11/12/troubleshooting-msdtc-issues-with-the-dtcping-tool/) article on MSDN.
 
-NOTE: If the `DTCPing WARNING: The CID Values for Both Test Machines Are the Same` message appears when running the DTCPing tool, check to see if the machine name is longer than 14 characters. For DTCPing and MSDTC to work, the machine name should be 14 characters or shorter.
+> [!NOTE]
+> If the `DTCPing WARNING: The CID Values for Both Test Machines Are the Same` message appears when running the DTCPing tool, check to see if the machine name is longer than 14 characters. For DTCPing and MSDTC to work, the machine name should be 14 characters or shorter.
 
 
 ## Message processing loop

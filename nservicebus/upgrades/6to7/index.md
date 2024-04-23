@@ -145,7 +145,8 @@ Configuring endpoint mappings via the following APIs has been deprecated:
  * `UnicastBusConfig/MessageEndpointMappings` in an app.config `configSections`
  * Returning a `UnicastBusConfig` from an `IConfigurationSource`
 
-NOTE: **MSMQ**: [Machine names are set via the MSMQ transport routing configuration](/transports/msmq/routing.md).
+> [!NOTE]
+> **MSMQ**: [Machine names are set via the MSMQ transport routing configuration](/transports/msmq/routing.md).
 
 It can be replaced with a combination of the following methods:
 
@@ -331,7 +332,8 @@ License files are now stored on the local file system so that they can accessed 
 
 Licenses can be shipped along with an endpoint's artifacts. By default, endpoints will look for a `license.xml` in the applications base directory (`AppDomain.CurrentDomain.BaseDirectory`).
 
-WARNING: The `{AppDomain.CurrentDomain.BaseDirectory}\License\License.xml` path will no longer be checked.
+> [!WARNING]
+> The `{AppDomain.CurrentDomain.BaseDirectory}\License\License.xml` path will no longer be checked.
 
 
 ### Registry-based license locations

@@ -7,7 +7,8 @@ component: Rabbit
 
 [RabbitMQ quorum queues](https://www.rabbitmq.com/quorum-queues.html) are superior to classic queues for use cases where data safety is a top priority, and are recommended for all NServiceBus endpoints. In most cases, migration to quorum queues can be accomplished on a live system, without downtime for the whole system.
 
-WARN: Systems using the direct routing topology cannot be updated without system downtime. Contact [Particular support](https://particular.net/support) to discuss options for updating to quorum queues.
+> [!WARNING]
+> Systems using the direct routing topology cannot be updated without system downtime. Contact [Particular support](https://particular.net/support) to discuss options for updating to quorum queues.
 
 ## Migration steps
 
@@ -23,11 +24,10 @@ The broker requirements can be verified with the [delays verify](/transports/rab
 
 Before starting the migration progress, all endpoints should be using version 6.1.X of the RabbitMQ transport. This specific version allows endpoints which have not yet been migrated to quorum queues to continue to work whether or not the error and audit queues have been migrated.
 
-{{WARN:
-Do not update endpoints to version 7.0.0 or higher of the transport at this time. Version 6.1.X will allow error and audit queues to be either classic or quorum queues, which allows updating one endpoint at a time.
-
-If endpoints have already been updated to version 7.0.0 while using classic queues, [disable installers](/nservicebus/operations/installers.md) on all endpoints before continuing the migration to prevent endpoints from failing to start after Step 4.
-}}
+> [!WARNING]
+> Do not update endpoints to version 7.0.0 or higher of the transport at this time. Version 6.1.X will allow error and audit queues to be either classic or quorum queues, which allows updating one endpoint at a time.
+>
+> If endpoints have already been updated to version 7.0.0 while using classic queues, [disable installers](/nservicebus/operations/installers.md) on all endpoints before continuing the migration to prevent endpoints from failing to start after Step 4.
 
 ### Step 3: Upgrade ServiceControl and update instances
 
@@ -74,7 +74,8 @@ For each endpoint:
 1. Use the [`queue migrate-to-quorum`](/transports/rabbitmq/operations-scripting.md#queue-migrate-to-quorum) command provided by the command line tool to migrate all queues used by the endpoint to quorum queues. In addition to the queue with the same name as the endpoint, there may be queues named according to the pattern `{EndpointName}-{Discriminator}` which also need to be migrated.
 1. Deploy the new version of the endpoint code.
 
-INFO: If installers were previously disabled because endpoints were already updated to version 7.0.0, the installers can be re-enabled as part of the per-endpoint process here.
+> [!NOTE]
+> If installers were previously disabled because endpoints were already updated to version 7.0.0, the installers can be re-enabled as part of the per-endpoint process here.
 
 ## Step 8: Migrate delayed messages
 

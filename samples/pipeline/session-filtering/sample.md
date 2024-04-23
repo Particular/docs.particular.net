@@ -10,7 +10,8 @@ related:
 
 This sample shows how to extend the NServiceBus message processing pipeline with custom behaviors to add session filters to an endpoint. An endpoint will accept messages only from a sending endpoint if they share a session key.
 
-NOTE: This technique can be useful in testing scenarios where left over messages from previous test runs should be ignored. 
+> [!NOTE]
+> This technique can be useful in testing scenarios where left over messages from previous test runs should be ignored.
 
 
 ## Code walk-through

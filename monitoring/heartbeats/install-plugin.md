@@ -6,19 +6,22 @@ component: Heartbeats
 versions: 'Heartbeats:*'
 ---
 
-NOTE: This plugin can be enabled and configured with the [ServicePlatform Connector plugin](/platform/connecting.md).
+> [!NOTE]
+> This plugin can be enabled and configured with the [ServicePlatform Connector plugin](/platform/connecting.md).
 
 To install the heartbeat plugin in an endpoint, reference the [NServiceBus.Heartbeat NuGet package](https://www.nuget.org/packages/NServiceBus.Heartbeat/) and configure the endpoint to send heartbeats:
 
 snippet: HeartbeatsNew_Enable
 
-NOTE: `ServiceControl_Queue` is a placeholder for the name of the ServiceControl input queue. The name of the ServiceControl input queue matches the [ServiceControl service name](/servicecontrol/installation.md#servicecontrol-plugins) configured in the ServiceControl Management application.
+> [!NOTE]
+> `ServiceControl_Queue` is a placeholder for the name of the ServiceControl input queue. The name of the ServiceControl input queue matches the [ServiceControl service name](/servicecontrol/installation.md#servicecontrol-plugins) configured in the ServiceControl Management application.
 
 ### Heartbeat interval
 
 The plugin sends heartbeat messages with a default frequency of 10 seconds. As shown above, the frequency may be overridden for each endpoint.
 
-NOTE: The frequency must be lower than the [`HeartbeatGracePeriod`](/servicecontrol/creating-config-file.md#plugin-specific-servicecontrolheartbeatgraceperiod) in ServiceControl.
+> [!NOTE]
+> The frequency must be lower than the [`HeartbeatGracePeriod`](/servicecontrol/creating-config-file.md#plugin-specific-servicecontrolheartbeatgraceperiod) in ServiceControl.
 
 ### Time-To-Live (TTL)
 

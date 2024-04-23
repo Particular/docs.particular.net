@@ -6,19 +6,22 @@ redirects:
 - samples/sqltransport/native-time-migration
 ---
 
-NOTE: Tools are designed for single or occasional use. Only the latest version of a given tool is supported. Users should consider upgrading to the latest version of a tool before each use.
+> [!NOTE]
+> Tools are designed for single or occasional use. Only the latest version of a given tool is supported. Users should consider upgrading to the latest version of a tool before each use.
 
 The timeout migration tool is designed to help system administrators migrate existing timeouts from the legacy [timeout manager](/nservicebus/messaging/timeout-manager.md) storage to the [native delayed delivery](/nservicebus/messaging/delayed-delivery.md) infrastructure of the currently used transport.
 
 [Native delayed delivery](/nservicebus/messaging/delayed-delivery.md) was introduced in NServiceBus version 7 across most supported transports and a hybrid mode was made available which is enabled by default. In hybrid mode, endpoints consume timeouts that were registered in the system using the legacy [timeout manager](/nservicebus/messaging/timeout-manager.md) while new delayed messages flow through the native implementation.
 
-NOTE: Be sure to use the `preview` option of the tool to make sure that the transport supports native delayed delivery before attempting a migration.
+> [!NOTE]
+> Be sure to use the `preview` option of the tool to make sure that the transport supports native delayed delivery before attempting a migration.
 
 Most of the timeouts that were registered through the legacy timeout manager might have been consumed by now. But there might be scenarios in which there are timeouts waiting to expire, and those are stored in the timeout storage. For those use cases, the timeout migration tool allows migrating timeouts to the native delayed delivery infrastructure so that the storage can be decommissioned.
 
 The tool supports live migration in most cases so there's no need to shut down the endpoints before running the tool. The tool will hide the timeouts to be migrated from the legacy timeout manager to eliminate duplicate deliveries in the system.
 
-WARN: Migrating a high number of timeouts on RavenDB may require endpoints to be shutdown to improve performance. Run the `preview` command to find out if this is the case.
+> [!WARNING]
+> Migrating a high number of timeouts on RavenDB may require endpoints to be shutdown to improve performance. Run the `preview` command to find out if this is the case.
 
 It's important to note the definition of an endpoint to migrate in the context of the tool. The legacy [timeout manager](/nservicebus/messaging/timeout-manager.md) stored timeouts at the sending side and sent them out to the destination endpoint at delivery time. This means that the endpoint names listed by the tool is for the endpoints **sending** the delayed message and not the destination.
 
@@ -91,7 +94,8 @@ To run a migration for selected endpoint(s) use the `migrate` command with the f
 - `--allEndpoints`(Optional): Whether to migrate all endpoints in one run
 - `--cutoffTime`(Optional): The time from which to start migrating timeouts. In general, it makes sense to start migrating timeouts that will expire at least one day in the future. The format in which to specify the `cutoffTime` is `yyyy-MM-dd HH:mm:ss`. The migration tool will convert the specified `cutoffTime` to UTC time.
 
-NOTE: `--endpoint` and `--allEndpoints` arguments are mutually exclusive. One of them must be provided.
+> [!NOTE]
+> `--endpoint` and `--allEndpoints` arguments are mutually exclusive. One of them must be provided.
 
 ```
 migrate-timeouts migrate [-c|--cutoffTime <cutoffTime>]
@@ -136,14 +140,16 @@ For SQL (`sqlp`) persistence:
 - `--source`: The connection string to the database
 - `--dialect`: The SQL dialect used to access the database. Supported dialects: `MsSqlServer`
 
-NOTE: The listed endpoints will be in the escaped format that is used to prefix the endpoints timeout table.
+> [!NOTE]
+> The listed endpoints will be in the escaped format that is used to prefix the endpoints timeout table.
 
 For NHibernate (`nhb`) persistence:
 
 - `--source`: The connection string to the database
 - `--dialect`: The SQL dialect used to access the database. Supported dialects: `MsSqlServer` and `Oracle`
 
-NOTE: The listed endpoints will be in the escaped format that is used to prefix the endpoints timeout table.
+> [!NOTE]
+> The listed endpoints will be in the escaped format that is used to prefix the endpoints timeout table.
 
 For Azure Storage (`asp`) persistence:
 
@@ -214,7 +220,8 @@ Even though the tool supports migrating all endpoints connected to the persister
 
 The tool will not delete any timeouts or storage artifacts in order to prevent data loss. This section describes how to clean up archived timeouts and remove storage artifacts that are no longer used.
 
-WARN: This is a destructive operation and should only be performed once a successful migration has been verified.
+> [!WARNING]
+> This is a destructive operation and should only be performed once a successful migration has been verified.
 
 ### RavenDB persistence
 

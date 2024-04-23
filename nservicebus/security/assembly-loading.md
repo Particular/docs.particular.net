@@ -20,4 +20,5 @@ Due to the various ways of defining, sharing, and deploying message contracts, a
 
 partial: disable-type-loading
 
-Note: Loading types does not automatically create instances of the loaded type. NServiceBus prevents instantiation of types that are not considered [valid message types](/nservicebus/messaging/conventions.md).
+> [!NOTE]
+> Loading types does not automatically create instances of the loaded type. NServiceBus prevents instantiation of types that are not considered [valid message types](/nservicebus/messaging/conventions.md).

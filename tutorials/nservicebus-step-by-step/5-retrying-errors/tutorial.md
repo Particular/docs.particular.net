@@ -29,7 +29,8 @@ Transient exceptions are those that, if immediately retried, would likely succee
 
 Let's consider a common scenario: code that updates a record in the database. Two threads attempt to lock the row at the same time, resulting in a deadlock. The database chooses one transaction to succeed and the other fails. The exception message Microsoft SQL Server returns for a deadlock is this:
 
-WARNING: Transaction (Process ID 58) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction.
+> [!WARNING]
+> Transaction (Process ID 58) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction.
 
 This is an example of a **transient exception**. Transient exceptions appear to be caused by random quantum fluctuations in the ether. If the failing code is immediately retried, it will probably succeed. Indeed, the exception message above tells us to do exactly that.
 
@@ -159,4 +160,5 @@ In this lesson, we explored different causes for exceptions and how NServiceBus 
 
 You've completed the last lesson in the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step). You've learned how to create endpoints, send and receive commands, publish events, and deal with message failures.
 
-SUCCESS: Now that you've learned how to build messaging systems with NServiceBus, continue your learning and see how replaying failed messages transforms the way you build software. When a message fails, our tools let you see the exception details as well as contents of the message so you can pinpoint and fix the problem. Then you can replay the message as if nothing ever happened. Start the tutorial to experience it for yourself!
+> [!TIP]
+> Now that you've learned how to build messaging systems with NServiceBus, continue your learning and see how replaying failed messages transforms the way you build software. When a message fails, our tools let you see the exception details as well as contents of the message so you can pinpoint and fix the problem. Then you can replay the message as if nothing ever happened. Start the tutorial to experience it for yourself!

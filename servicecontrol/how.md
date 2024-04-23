@@ -6,7 +6,8 @@ reviewed: 2022-10-19
 
 ServiceControl is a background process that will collect and store data and make it available via an HTTP API to ServicePulse and ServiceControl.
 
-NOTE: The ServiceControl HTTP API may change at any time. It is designed for use by ServicePulse and ServiceInsight only. The use of this HTTP API for other purposes is not supported.
+> [!NOTE]
+> The ServiceControl HTTP API may change at any time. It is designed for use by ServicePulse and ServiceInsight only. The use of this HTTP API for other purposes is not supported.
 
 ## How ServiceControl receives data
 
@@ -58,7 +59,8 @@ graph LR
 
 NServiceBus will move messages it cannot process to an [error queue](/nservicebus/recoverability/#fault-handling). This is where ServiceControl comes into play to consume these messages. ServiceControl will pick up the message and store it in an internal database. ServiceControl uses an embedded RavenDB instance for the internal database. After it is stored in the database, the message is made available to ServicePulse and ServiceInsight for visualization, retries, and other operations.
 
-NOTE: It is recommended not to provide end-users with the ability to retry messages. The message could fail again and end up in ServiceControl once again. It could be even more problematic when many messages are retried during a peak in message processing. This will result in even more messages being processed by an endpoint, causing valid messages to be delayed even longer.
+> [!NOTE]
+> It is recommended not to provide end-users with the ability to retry messages. The message could fail again and end up in ServiceControl once again. It could be even more problematic when many messages are retried during a peak in message processing. This will result in even more messages being processed by an endpoint, causing valid messages to be delayed even longer.
 
 Find out more about [failed messages](/servicepulse/intro-failed-messages.md) in ServicePulse.
 

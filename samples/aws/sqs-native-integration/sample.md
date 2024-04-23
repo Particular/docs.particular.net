@@ -20,7 +20,8 @@ snippet: SendingANativeMessage
 
 On the receiving end, an NServiceBus endpoint is listening to the queue and has a handler in place to handle messages of type `SomeNativeMessage`.
 
-NOTE: For the message to be successfully deserialized by NServiceBus, the sender must include the full name of the message class in the `$type` special attribute recognized by the Newtonsoft JSON serializer.
+> [!NOTE]
+> For the message to be successfully deserialized by NServiceBus, the sender must include the full name of the message class in the `$type` special attribute recognized by the Newtonsoft JSON serializer.
 
 snippet: NativeMessage
 
@@ -28,7 +29,8 @@ The serializer must be configured to handle this annotation:
 
 snippet: SerializerConfig
 
-NOTE: Custom serializers are also supported
+> [!NOTE]
+> Custom serializers are also supported
 
 First, the message will be intercepted in the incoming logical message context as there is a behavior in place:
 

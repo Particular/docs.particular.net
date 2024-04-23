@@ -29,7 +29,8 @@ The [`Amazon.Lambda.Tools` CLI](https://github.com/aws/aws-lambda-dotnet) can be
 
 ## Running the sample
 
-INFO: It is not possible at this stage to use the AWS .NET Mock Lambda Test Tool to run the sample locally.
+> [!NOTE]
+> It is not possible at this stage to use the AWS .NET Mock Lambda Test Tool to run the sample locally.
 
 Run the following command from the `ServerlessEndpoint` directory to deploy the Lambda project:
 

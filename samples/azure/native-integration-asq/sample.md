@@ -42,4 +42,5 @@ To process a native message, the native `QueueMessage` has to be adapted to the 
 
 snippet: Native-message-mapping
 
-Note: Message type could be determined dynamically by reading the payload if different message types are sent natively.
+> [!NOTE]
+> Message type could be determined dynamically by reading the payload if different message types are sent natively.

@@ -3,7 +3,8 @@ title: Managing ServiceControl Audit instances via PowerShell
 reviewed: 2021-08-06
 ---
 
-NOTE: For general information about ServiceControl PowerShell, including troubleshooting and licensing guidance, see [Managing ServiceControl via PowerShell](/servicecontrol/powershell.md).
+> [!NOTE]
+> For general information about ServiceControl PowerShell, including troubleshooting and licensing guidance, see [Managing ServiceControl via PowerShell](/servicecontrol/powershell.md).
 
 
 ## ServiceControl Audit instance Cmdlets and Aliases
@@ -50,7 +51,8 @@ $auditInstance New-ServiceControlAuditInstance `
 
 There are additional parameters available to set configuration options such as hostname and transport connection string.
 
-NOTE: The address of a ServiceControl instance must be provided to send notifications to.
+> [!NOTE]
+> The address of a ServiceControl instance must be provided to send notifications to.
 
 Once a ServiceControl Audit instance is created, it must be added to the ServiceControl Error instance as a remote to be included in results returned to ServiceInsight.
 

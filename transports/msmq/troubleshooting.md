@@ -71,7 +71,8 @@ Also, check the outgoing queues to see if messages sent to remote servers are re
 
 ![Disable MSMQ storage limit](troubleshooting-remove-storage-quota.gif)
 
-WARNING: On production servers, uninstalling MSMQ deletes all queues and messages, which may contain business data. Do not attempt uninstalling MSMQ unless message loss is acceptable.
+> [!WARNING]
+> On production servers, uninstalling MSMQ deletes all queues and messages, which may contain business data. Do not attempt uninstalling MSMQ unless message loss is acceptable.
 
 For more information on this error, see [John Breakwell's article in MSDN](https://blogs.msdn.microsoft.com/johnbreakwell/2006/09/18/insufficient-resources-run-away-run-away/).
 

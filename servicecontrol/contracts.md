@@ -18,7 +18,8 @@ ServiceControl events enable the construction of custom notifications and integr
 
 See [Monitor with ServiceControl events](/samples/servicecontrol/events-subscription/) for a sample.
 
-NOTE: External notification events are sent in batches. If a problem is encountered part way through a batch, the entire batch will be re-sent. This can result in receiving multiple events for a single notification.
+> [!NOTE]
+> External notification events are sent in batches. If a problem is encountered part way through a batch, the entire batch will be re-sent. This can result in receiving multiple events for a single notification.
 
 ### Alerting on FailedMessages events
 
@@ -49,7 +50,8 @@ snippet: ServiceControlEventsConfig
 
 snippet: MessageFailedHandler
 
-WARNING: Endpoints that subscribe to ServiceControl events should _not_ use the same `error` and `audit` queues as other endpoints. Using the same `error` queue could cause an infinite feedback loop if processing a `MessageFailed` message failed. Using the same `audit` queue will cause the processing of the `MessageFailed` messages to be included in the ServiceInsight search results. This could confuse users searching for a given failure since both the failure and the failure notification will be shown. See also: [Recoverability](/nservicebus/recoverability/) and [Audit Queue Settings](/nservicebus/operations/auditing.md).
+> [!WARNING]
+> Endpoints that subscribe to ServiceControl events should _not_ use the same `error` and `audit` queues as other endpoints. Using the same `error` queue could cause an infinite feedback loop if processing a `MessageFailed` message failed. Using the same `audit` queue will cause the processing of the `MessageFailed` messages to be included in the ServiceInsight search results. This could confuse users searching for a given failure since both the failure and the failure notification will be shown. See also: [Recoverability](/nservicebus/recoverability/) and [Audit Queue Settings](/nservicebus/operations/auditing.md).
 
 
 #### Registering the publisher for message-driven publish/subscribe
@@ -64,7 +66,8 @@ For NServiceBus version 5 and below, add the message mapping in the `UnicastBusC
 
 snippet: ServiceControlEventsXmlConfig
 
-NOTE: Transports that [natively support publish and subscribe](/transports/types.md#multicast-enabled-transports) do not require any additional configuration.
+> [!NOTE]
+> Transports that [natively support publish and subscribe](/transports/types.md#multicast-enabled-transports) do not require any additional configuration.
 
 
 ### Monitoring events
@@ -75,7 +78,8 @@ See [Heartbeat Notification Events](/monitoring/heartbeats/notification-events.m
 
 ## Other events
 
-NOTE: Events described in this section are published by ServiceControl starting with version 4.17.
+> [!NOTE]
+> Events described in this section are published by ServiceControl starting with version 4.17.
 
 ServiceControl will also publish events related to archiving and retrying messages:
 - `FailedMessagesArchived`: Event emitted for failed messages that were archived

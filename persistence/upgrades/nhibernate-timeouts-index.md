@@ -68,11 +68,14 @@ The approach to applying corrections depends on the database engine that is used
 
 This assumes that both the index column order and clustered index are incorrect. To resolve this, all existing indexes need to be dropped and recreated.
 
-NOTE: This procedure does not require any downtime. It is advisable to execute it when affected endpoint instances are not under heavy load.
+> [!NOTE]
+> This procedure does not require any downtime. It is advisable to execute it when affected endpoint instances are not under heavy load.
 
-NOTE: Make sure that the correct database is selected. If a custom schema name is used, then update the `dbo` schema with the custom schema identifier.
+> [!NOTE]
+> Make sure that the correct database is selected. If a custom schema name is used, then update the `dbo` schema with the custom schema identifier.
 
-WARNING: Run this script on a testing or staging environment first to verify that it works as expected.
+> [!WARNING]
+> Run this script on a testing or staging environment first to verify that it works as expected.
 
 ```sql
 declare @schema nvarchar(max) = 'dbo' -- Update 'dbo' with custom schema if needed
@@ -115,9 +118,11 @@ commit tran
 
 The incorrect index definition on Oracle only applies to the column order. An existing `TIMEOUTENTITY_ENDPOINTIDX` index has to be dropped, and a new index with correct column order needs to be created.
 
-NOTE: This procedure does not require any downtime. It is advisable to execute it when affected endpoint instances are not under heavy load.
+> [!NOTE]
+> This procedure does not require any downtime. It is advisable to execute it when affected endpoint instances are not under heavy load.
 
-WARNING: Run this script on a testing or staging environment first to verify that it works as expected.
+> [!WARNING]
+> Run this script on a testing or staging environment first to verify that it works as expected.
 
 ```sql
 drop index TIMEOUTENTITY_ENDPOINTIDX;

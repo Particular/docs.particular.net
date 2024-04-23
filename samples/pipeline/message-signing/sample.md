@@ -48,7 +48,8 @@ snippet: MessageSigningBehavior
 
 The call to `next()` invokes the remainder of the outgoing pipeline, eventually resulting in the message being dispatched to the message transport.
 
-NOTE: While this sample shows how to do message signing, the same pattern could be used to implement full encryption of the message body. In this case, a message signature would not be written to the message headers. Instead, the entire body of the message would be replaced using `IOutgoingPhysicalMessageContext`'s `UpdateMessage(byte[] newBody)` method.
+> [!NOTE]
+> While this sample shows how to do message signing, the same pattern could be used to implement full encryption of the message body. In this case, a message signature would not be written to the message headers. Instead, the entire body of the message would be replaced using `IOutgoingPhysicalMessageContext`'s `UpdateMessage(byte[] newBody)` method.
 
 
 ### SignatureVerificationBehavior
@@ -59,7 +60,8 @@ snippet: SignatureVerificationBehavior
 
 In this implementation, returning `Task.CompletedTask` without calling `next()` effectively stops the message processing pipeline, as further behaviors (including executing the message handlers) are not executed. This results in the message being consumed with an `ERROR` log message, but no exception thrown.
 
-WARNING: Consuming the message in this manner effectively deletes it. If an upstream message source were to begin accidentally signing messages incorrectly, the message would still be consumed, which would result in message loss. It is probably a good idea to audit these messages in some way.
+> [!WARNING]
+> Consuming the message in this manner effectively deletes it. If an upstream message source were to begin accidentally signing messages incorrectly, the message would still be consumed, which would result in message loss. It is probably a good idea to audit these messages in some way.
 
 Another strategy would be to throw an exception, rather than consuming the message. This would result in the message going to the error queue, which would prevent message loss. However, this would first result in repeated retry attempts, none of which would succeed with an invalid message signature. This could be avoided by using a custom exception type (i.e. `MessageSignatureInvalidException`) and then configuring that message type to be an [unrecoverable exception](/nservicebus/recoverability/#unrecoverable-exceptions).
 

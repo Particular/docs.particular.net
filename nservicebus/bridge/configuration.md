@@ -31,13 +31,15 @@ The result is duplicate subscriptions for any endpoint that subscribes to an eve
 
 snippet: register-publisher
 
-WARN: The endpoint name used when creating a `BridgeEndpoint` is case-sensitive, even if one or both transports don't require it. This is to accommodate all transports, some of which require a case-sensitive endpoint name. More details can be found on [this issue](https://github.com/Particular/NServiceBus.MessagingBridge/issues/175).
+> [!WARNING]
+> The endpoint name used when creating a `BridgeEndpoint` is case-sensitive, even if one or both transports don't require it. This is to accommodate all transports, some of which require a case-sensitive endpoint name. More details can be found on [this issue](https://github.com/Particular/NServiceBus.MessagingBridge/issues/175).
 
 Legacy transport versions that use [message-driven pub/sub](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based) require the fully qualified assembly type name value to be passed. Note that passing the culture and public key is not needed -- only the type name, assembly name, and assembly version are used in filtering subscribers by the message-driven pub/sub-feature.
 
 snippet: register-publisher-legacy
 
-INFO: Using the overloads that accept a type instead of a string value is recommended. Passing types can be problematic when not using [naming conventions for messages via unobtrusive mode](/nservicebus/messaging/conventions.md).
+> [!NOTE]
+> Using the overloads that accept a type instead of a string value is recommended. Passing types can be problematic when not using [naming conventions for messages via unobtrusive mode](/nservicebus/messaging/conventions.md).
 
 partial: multiple-publishers
 
@@ -57,7 +59,8 @@ The queues can be created using one of the following methods:
 
 ### Automatic queue provisioning
 
-NOTE: This option requires the bridge to have administrative privileges for the queuing systems used and is not recommended for production scenarios.
+> [!NOTE]
+> This option requires the bridge to have administrative privileges for the queuing systems used and is not recommended for production scenarios.
 
 Automatic queue creation is enabled by configuring the bridge as follows:
 
@@ -67,7 +70,8 @@ snippet: auto-create-queues
 
 The bridge provides the ability to change the address of the queue of incoming messages.
 
-NOTE: When forwarding messages to MSMQ endpoints that run on different servers than the bridge, the addresses of the queues that messages should be forwarded to _must_ be provided.
+> [!NOTE]
+> When forwarding messages to MSMQ endpoints that run on different servers than the bridge, the addresses of the queues that messages should be forwarded to _must_ be provided.
 
 snippet: custom-address
 
@@ -106,7 +110,8 @@ The bridge can be configured to allow a single ServiceControl installation to ma
 
 snippet: platform-bridging
 
-WARN: The endpoint name used when creating a `BridgeEndpoint` is case-sensitive, even if one or both transports don't require it. This is to accommodate all transports, some of which require a case-sensitive endpoint name. More details can be found on [this issue](https://github.com/Particular/NServiceBus.MessagingBridge/issues/175).
+> [!WARNING]
+> The endpoint name used when creating a `BridgeEndpoint` is case-sensitive, even if one or both transports don't require it. This is to accommodate all transports, some of which require a case-sensitive endpoint name. More details can be found on [this issue](https://github.com/Particular/NServiceBus.MessagingBridge/issues/175).
 
 ### Audit queue
 

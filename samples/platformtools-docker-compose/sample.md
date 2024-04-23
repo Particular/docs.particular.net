@@ -8,7 +8,8 @@ related:
 - samples/hosting/docker
 ---
 
-NOTE: This sample is **not production ready**. Ports in the containers are remotely accessible, and the sample is targeted to developers.
+> [!NOTE]
+> This sample is **not production ready**. Ports in the containers are remotely accessible, and the sample is targeted to developers.
 
 This sample shows how to host the [ServicePulse](/servicepulse/) and [ServiceControl](/servicecontrol/) platform tools in Docker Windows Containers and Docker Desktop. It makes use of `docker-compose` to set up all platform tool components.
 
@@ -48,7 +49,8 @@ ServiceControl has a setup and a run-time stage. During the setup stage, queues 
 
 The same stages are applied to Docker. The `docker-compose.init.yml` Docker Compose file executes the [ServiceControl init containers](/servicecontrol/containerization/#init-containers).
 
-NOTE: The init and runtime Docker Compose files should use different connection strings (administrative vs least privilege) in a non-developer environment.
+> [!NOTE]
+> The init and runtime Docker Compose files should use different connection strings (administrative vs least privilege) in a non-developer environment.
 
 ## Running the sample
 
@@ -58,7 +60,8 @@ The init containers must be run before the runtime containers.
 
 Runs Docker Compose and waits until all init containers have completed running. These should automatically exist after all setup logic is completed.
 
-NOTE: The command below omits the `-d, --detach` argument to ensure issues are written to the console. Alternatively, any issues are also visible in the container logs.
+> [!NOTE]
+> The command below omits the `-d, --detach` argument to ensure issues are written to the console. Alternatively, any issues are also visible in the container logs.
 
 ```cmd
 docker-compose --file docker-compose.init.yml up
@@ -89,7 +92,8 @@ Gracefully stops and removes the containers and the configured volumes.
 
 The Docker images follow [semantic versioning](https://semver.org/). In other words, breaking changes are introduced only in new major versions. Releases are pushed as `major.minor.patch`, and it is safe to follow a `major` tag to ensure updates.
 
-NOTE: Following the `latest` tag is recommended only for developers in combination with recreating Docker volumes via `docker compose up -d -V`.
+> [!NOTE]
+> Following the `latest` tag is recommended only for developers in combination with recreating Docker volumes via `docker compose up -d -V`.
 
 To update all containers to their latest versions:
 

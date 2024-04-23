@@ -8,7 +8,8 @@ related:
  - transports/msmq/sender-side-distribution
 ---
 
-NOTE: This sample is only relevant for the [MSMQ transport](/transports/msmq/). The other transports scale out using the [competing consumer pattern](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers).
+> [!NOTE]
+> This sample is only relevant for the [MSMQ transport](/transports/msmq/). The other transports scale out using the [competing consumer pattern](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers).
 
 Sometimes a single endpoint for handling messages is not enough, so there is a need to scale out. The following sample demonstrates how to scale out existing MSMQ message processing by distributing messages on the sender side.
 
@@ -31,7 +32,8 @@ snippet: Server-Set-InstanceId
 
 snippet: Server-InstanceId
 
-WARNING: Never hard-code instance IDs because they are mostly an operations concern, and operations staff should be able to modify them without the need to recompile the source code.
+> [!WARNING]
+> Never hard-code instance IDs because they are mostly an operations concern, and operations staff should be able to modify them without the need to recompile the source code.
 
 
 #### Handling code

@@ -28,7 +28,8 @@ All namespaces used for development, testing, and production should be validated
 
 ## Side-by-side migration
 
-INFO: Endpoints with migration mode enabled require "manage" rights to create entities on the broker.
+> [!NOTE]
+> Endpoints with migration mode enabled require "manage" rights to create entities on the broker.
 
 Before migrating endpoints to the forwarding topology, all endpoints must have migration mode enabled. To enable migration mode:
 
@@ -48,7 +49,8 @@ ServiceControl should now be upgraded to Version 3.5.0 or later, and both Servic
 
 After all the endpoints have been running in production for some time with migration mode enabled, they can be migrated to the forwarding topology by switching to the new Azure Service Bus transport as described in the next section.
 
-NOTE: Endpoints with migration mode enabled should be allowed to run for some time in production to ensure all existing messages have been forwarded to the input queue for the receiving endpoints.
+> [!NOTE]
+> Endpoints with migration mode enabled should be allowed to run for some time in production to ensure all existing messages have been forwarded to the input queue for the receiving endpoints.
 
 
 ## Migrating from the legacy transport
@@ -62,7 +64,8 @@ When all endpoints using the legacy transport are running in migration mode, the
 
 After applying the above steps to one or more endpoints, they should be deployed to production. This cycle should be repeated until all endpoints have been migrated to the new transport.
 
-NOTE: Endpoints using the endpoint-oriented topology with migration mode enabled can co-exist and seamlessly communicate with endpoints using both the legacy transport with forwarding topology and the new Azure Service Bus transport.
+> [!NOTE]
+> Endpoints using the endpoint-oriented topology with migration mode enabled can co-exist and seamlessly communicate with endpoints using both the legacy transport with forwarding topology and the new Azure Service Bus transport.
 
 
 ### Other Platform components
@@ -74,7 +77,8 @@ ServiceControl and Monitoring instances should now be switched to `Azure Service
 
 After all, the endpoints have been running in production for some time using the forwarding topology, the endpoint-oriented topology topics with their subscriptions can be removed.
 
-WARNING: Exercise caution when removing subscriptions. If it is unclear which subscriptions can be removed, contact [Support](https://particular.net/support).
+> [!WARNING]
+> Exercise caution when removing subscriptions. If it is unclear which subscriptions can be removed, contact [Support](https://particular.net/support).
 
 
 ## How it works

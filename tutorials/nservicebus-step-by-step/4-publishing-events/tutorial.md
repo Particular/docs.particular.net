@@ -20,11 +20,10 @@ In the next 25-30 minutes, you will learn how the publish/subscribe pattern can 
 
 An **event** is another type of message that is published to multiple receivers, unlike a command which is sent to one receiver. Let's take a look at the formal definitions for commands and events:
 
-{{INFO:
-A **command** is a message that can be sent from one or more senders and is processed by a single receiver.
-
-An **event** is a message that is published from a single sender, and is processed by (potentially) many receivers.
-}}
+> [!NOTE]
+> A **command** is a message that can be sent from one or more senders and is processed by a single receiver.
+>
+> An **event** is a message that is published from a single sender, and is processed by (potentially) many receivers.
 
 You can see that in many ways, commands and events are exact opposites, and the differences in their definition leads us to different uses for each.
 
@@ -46,7 +45,8 @@ Let's take a look at these differences side-by-side:
 
 From this comparison, it's clear that commands and events will sometimes come in pairs. A command will arrive, perhaps from a website UI, telling the system to `DoSomething`. The system does that work, and as a result, publishes a `SomethingHappened` event, which other components in the system can react to.
 
-INFO: For more details, see [Messages, Events and Commands](/nservicebus/messaging/messages-events-commands.md)
+> [!NOTE]
+> For more details, see [Messages, Events and Commands](/nservicebus/messaging/messages-events-commands.md)
 
 The loose coupling provided by publishing events gives us quite a bit of flexibility to design our software systems in a much more maintainable way.
 
@@ -81,7 +81,8 @@ Create a handler class by implementing `IHandleMessages<T>` where `T` is the typ
 
 snippet: EventHandler
 
-NOTE: Since we are using the Learning Transport, which supports publish/subscribe natively, we don't have to do anything else to subscribe to an event other than create the event handler. Other transports do not support native publish/subscribe and require the extra step of [defining the publisher for an event](/nservicebus/messaging/routing.md#event-routing-message-driven). 
+> [!NOTE]
+> Since we are using the Learning Transport, which supports publish/subscribe natively, we don't have to do anything else to subscribe to an event other than create the event handler. Other transports do not support native publish/subscribe and require the extra step of [defining the publisher for an event](/nservicebus/messaging/routing.md#event-routing-message-driven).
 
 
 ## Exercise
@@ -127,7 +128,8 @@ Unlike the command, `PlaceOrder`, which is a request to do something, `OrderPlac
 
 When an order is placed, we want to charge the credit card for that order. So we will create a **Billing** service, which will subscribe to `OrderPlaced` so that it can handle the payment transaction.
 
-NOTE: Since this is the third endpoint we've created, the instructions will be a little more abbreviated. Refer back to [Lesson 2](../2-sending-a-command/) where we created the Sales endpoint for more detailed instructions.
+> [!NOTE]
+> Since this is the third endpoint we've created, the instructions will be a little more abbreviated. Refer back to [Lesson 2](../2-sending-a-command/) where we created the Sales endpoint for more detailed instructions.
 
  1. Create a new **Console Application** named **Billing**.
  1. Add references for the **NServiceBus NuGet package** and the **Sales.Messages** assembly.

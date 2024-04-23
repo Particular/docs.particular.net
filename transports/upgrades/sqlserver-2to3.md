@@ -96,7 +96,8 @@ transport.Transactions(TransportTransactionMode.TransactionScope);
 
 The handler must open a connection to access the data, but assuming both handler and the transport are configured to use the same connection string, there is no DTC escalation. SQL Server 2008 and later can detect that both connections target the same resource and merge the two transactions into a single lightweight transaction.
 
-NOTE: The above statement does not apply when using the NHibernate persistence. NHibernate persistence opens its own connection within the context of the ambient transaction. See [access business data](/persistence/nhibernate/accessing-data.md) in context of processing a message with NHibernate persistence.
+> [!NOTE]
+> The above statement does not apply when using the NHibernate persistence. NHibernate persistence opens its own connection within the context of the ambient transaction. See [access business data](/persistence/nhibernate/accessing-data.md) in context of processing a message with NHibernate persistence.
 
 
 ### Multi-schema support

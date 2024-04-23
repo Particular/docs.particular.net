@@ -29,6 +29,7 @@ snippet: Program
 
 ### The resulting order
 
-Note: In some versions of NServiceBus, certain extension points are executed on separate threads.
+> [!NOTE]
+> In some versions of NServiceBus, certain extension points are executed on separate threads.
 
 snippet: StartupShutdownSequence

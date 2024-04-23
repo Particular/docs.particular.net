@@ -14,7 +14,8 @@ upgradeGuideCoreVersions:
  - 6
 ---
 
-WARNING: Upgrades from NServiceBus.Azure versions 6.2.3 and below will need to apply the [saga de-duplication patch](/persistence/upgrades/asp-saga-deduplication.md) followed by the [saga index patch](/persistence/upgrades/asp-saga-pruning.md) before completing the remainder of these upgrade steps.
+> [!WARNING]
+> Upgrades from NServiceBus.Azure versions 6.2.3 and below will need to apply the [saga de-duplication patch](/persistence/upgrades/asp-saga-deduplication.md) followed by the [saga index patch](/persistence/upgrades/asp-saga-pruning.md) before completing the remainder of these upgrade steps.
 
 
 ## Changing NuGet packages and namespaces

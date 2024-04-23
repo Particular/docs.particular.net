@@ -8,9 +8,11 @@ redirects:
  - servicecontrol/plugins/saga-audit
 ---
 
-NOTE: This plugin can be enabled and configured with the [ServicePlatform Connector plugin](/platform/connecting.md).
+> [!NOTE]
+> This plugin can be enabled and configured with the [ServicePlatform Connector plugin](/platform/connecting.md).
 
-WARN: This plugin will result in an increase in the load placed on ServiceControl and the endpoint it is installed in. Make sure the environment is prepared for the increased load. Consider [scaling out audit processing](/servicecontrol/servicecontrol-instances/remotes.md) if necessary.
+> [!WARNING]
+> This plugin will result in an increase in the load placed on ServiceControl and the endpoint it is installed in. Make sure the environment is prepared for the increased load. Consider [scaling out audit processing](/servicecontrol/servicecontrol-instances/remotes.md) if necessary.
 
 The SagaAudit plugin enables the [Saga View feature in ServiceInsight](/serviceinsight/#the-saga-view).
 
@@ -19,7 +21,8 @@ The SagaAudit plugin enables the [Saga View feature in ServiceInsight](/servicei
 It is built specifically to help developers verify saga logic during development. It does this by capturing saga message behavior and changes in saga data/state as the saga is being processed. It then sends this information to a ServiceControl instance set up in the development environment. The information is available in the *Saga* view in ServiceInsight.
 
 
-NOTE: Saga audit messages are only sent to ServiceControl when a message is processed successfully.
+> [!NOTE]
+> Saga audit messages are only sent to ServiceControl when a message is processed successfully.
 
 
 ## Implementation
@@ -48,7 +51,8 @@ AuditQ --> ServiceControl
 SCQ --> ServiceControl
 ```
 
-Note: In versions of ServiceControl before 4.13.0, saga state change data can only be processed via the `ServiceControl Queue` (the input queue of the main ServiceControl instance). Starting with version 4.13.0, the saga state change data can also be processed by the ServiceControl audit instance via the `audit` queue. The latter approach is recommended.
+> [!NOTE]
+> In versions of ServiceControl before 4.13.0, saga state change data can only be processed via the `ServiceControl Queue` (the input queue of the main ServiceControl instance). Starting with version 4.13.0, the saga state change data can also be processed by the ServiceControl audit instance via the `audit` queue. The latter approach is recommended.
 
 All this information is sent to and stored in ServiceControl. Note that the saga state audit data is transmitted to ServiceControl via a separate message and is serialized using the built-in JSON Serializer of NServiceBus.
 

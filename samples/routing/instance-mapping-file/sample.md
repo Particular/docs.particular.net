@@ -43,7 +43,8 @@ snippet: FileInstanceMapping
 
 The Sales application accepts client orders and publishes the `OrderAccepted` event.
 
-NOTE: In real-world scenarios, NServiceBus endpoints are scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines. For simplicity, the scale-out in this sample is simulated by having two separate projects, Sales and Sales2.
+> [!NOTE]
+> In real-world scenarios, NServiceBus endpoints are scaled out by deploying multiple physical instances of a single logical endpoint to multiple machines. For simplicity, the scale-out in this sample is simulated by having two separate projects, Sales and Sales2.
 
 ### Shipping and Billing
 

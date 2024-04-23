@@ -8,4 +8,5 @@ Once an endpoint has no more delayed messages in its persistence database, there
 
 At this point, all `.Timeouts` and `.TimeoutsDispatcher` tables for the endpoint can be deleted from the database. In addition, the endpoint no longer requires timeout persistence, so those storage entities can be removed from the persistence database as well.
 
-NOTE: Timeout Manager should also be disabled for newly created endpoints, i.e. endpoints that use the native delayed delivery implementation and haven't been deployed yet.
+> [!NOTE]
+> Timeout Manager should also be disabled for newly created endpoints, i.e. endpoints that use the native delayed delivery implementation and haven't been deployed yet.

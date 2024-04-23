@@ -36,7 +36,8 @@ It is recommended to actively monitor the ServiceControl `logfile.${shortdate}.t
 
 By default, ServiceControl logs to the event log and filesystem. Log files are named `logfile.${shortdate}.txt` and `ravenlog.${shortdate}.txt`. ServiceControl uses [NLog](https://nlog-project.org/) for logging and the configuration can be overridden by supplying a custom `nlog.config` configuration file in the ServiceControl, ServiceControl.Audit, and ServiceControl.Monitoring application folders. A variety of [NLog logging targets](https://nlog-project.org/config/?tab=targets) can be used to log to almost any destination.
 
-NOTE: Any logging related settings (i.e. `ServiceControl/LogLevel`, `ServiceControl/LogPath`, `ServiceControl/RavenDBLogLevel`) are ignored when overriding the NLog configuration.
+> [!NOTE]
+> Any logging related settings (i.e. `ServiceControl/LogLevel`, `ServiceControl/LogPath`, `ServiceControl/RavenDBLogLevel`) are ignored when overriding the NLog configuration.
 
 Example:
 ```xml
@@ -72,7 +73,8 @@ The current ServiceControl log file is named `logfile.<date>.txt`. The current R
 
 The logs are rolled based on date and size, any log exceeding 30MB will trigger the log to roll. If the log is rolled because of a date change the old log is named `<logname>.<date>.txt` where date is in the format `yyyyMMdd` and log name is either `ravenlog` or `logfile`. If the log is rolled based on size a sequence number is added e.g `<logname>.<date>.<sequence>.txt`. The sequence number starts at 0. Higher numbers indicate more recent log files. ServiceControl will retain 14 log files. Older logs are deleted automatically.
 
-NOTE: The change in log naming will result in logs produced prior to Version 1.10 being ignored by the log cleanup process. These old logs can safely be removed manually.
+> [!NOTE]
+> The change in log naming will result in logs produced prior to Version 1.10 being ignored by the log cleanup process. These old logs can safely be removed manually.
 
 ## Logging Levels
 

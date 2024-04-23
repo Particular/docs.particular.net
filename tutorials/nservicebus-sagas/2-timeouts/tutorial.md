@@ -20,7 +20,8 @@ In addition to sending and publishing messages, NServiceBus can also [delay mess
 
 There's no need to write batch jobs to query data every night. Instead, each instance is able to manage time in its own workflow, setting virtual alarm clocks to do something.
 
-NOTE: The delivery of a delayed message is not guaranteed to occur at the specified point in time. It may be delayed further if the system is very busy at that time.
+> [!NOTE]
+> The delivery of a delayed message is not guaranteed to occur at the specified point in time. It may be delayed further if the system is very busy at that time.
 
 The use cases for saga timeouts are too numerous to count, so in this tutorial we will focus on implementing the [buyer's remorse pattern](https://en.wikipedia.org/wiki/Buyer%27s_remorse). In this pattern, customers that purchased something are able to cancel their order within a certain amount of time after it was placed. This is an important software pattern that pops up in non-retail domains as well. For example, Gmail uses the same pattern for their [Undo Send feature](https://support.google.com/mail/answer/2819488?co=GENIE.Platform%3DDesktop&hl=en).
 
@@ -30,17 +31,16 @@ With the buyer's remorse pattern, the purchase is kept in a holding state until 
 
 In this tutorial, we'll model the delay period using a saga timeout. We'll change the existing project so that when the **Sales** endpoint receives the `PlaceOrder` command, we don't instantly publish the `OrderPlaced` event. Instead, we'll store the order state in the saga and set a timeout and do that in the future. When the timeout is due, we'll publish the `OrderPlaced` event, unless we've received a `CancelOrder` command in the meantime.
 
-{{NOTE:
-**What if I didn't do the previous tutorial?**
-
-No problem! You can get started learning sagas with the completed solution from the [previous lesson](/tutorials/nservicebus-sagas/1-saga-basics/):
-
-downloadbutton(Download Previous Solution, /tutorials/nservicebus-sagas/1-saga-basics)
-
-The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Shipping** define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system. **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes that define the messages exchanged in our system. To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
-
-Although NServiceBus only requires .NET Framework 4.5.2, this tutorial assumes at least Visual Studio 2017 and .NET Framework 4.6.1.
-}}
+> [!NOTE]
+> **What if I didn't do the previous tutorial?**
+>
+> No problem! You can get started learning sagas with the completed solution from the [previous lesson](/tutorials/nservicebus-sagas/1-saga-basics/):
+>
+> downloadbutton(Download Previous Solution, /tutorials/nservicebus-sagas/1-saga-basics)
+>
+> The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Shipping** define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system. > **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes that define the messages exchanged in our system. > To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
+>
+> Although NServiceBus only requires .NET Framework 4.5.2, this tutorial assumes at least Visual Studio 2017 and .NET Framework 4.6.1.
 
 ### Saga storage
 
@@ -74,11 +74,13 @@ Our next step is to tell our `BuyersRemorsePolicy` to schedule a message to tell
 
 snippet: BuyersRemorseTimeoutRequest
 
-NOTE: This tutorial uses 20 seconds as a timeout value for simplicity. In production, a business enforced rule should determine the length of this period.
+> [!NOTE]
+> This tutorial uses 20 seconds as a timeout value for simplicity. In production, a business enforced rule should determine the length of this period.
 
 Besides the `context`, the `RequestTimeout` method has two interesting parameters. One is the `TimeSpan` which tells us how long to wait before sending our timeout message. In this case, it's 20 seconds.
 
-NOTE: Instead of a `TimeSpan`, we could provide a `DateTime` instance, such as `DateTime.UtcNow.AddDays(10)`. When using this form, remember that local time is affected by Daylight Savings Time (DST) changes: use UTC dates to avoid DST conversion issues.
+> [!NOTE]
+> Instead of a `TimeSpan`, we could provide a `DateTime` instance, such as `DateTime.UtcNow.AddDays(10)`. When using this form, remember that local time is affected by Daylight Savings Time (DST) changes: use UTC dates to avoid DST conversion issues.
 
 The other interesting parameter is the message that will be sent when the timeout elapses. In this case, we are providing an instance of `BuyersRemorseIsOver`, a class which is not yet defined. Let's define it now. You can put it in the same file as our saga and leave it as an empty class:
 
@@ -114,13 +116,16 @@ snippet: BuyersRemorseCancelOrderHandling
 
 The `Handle` method is very similar to the saga's `Timeout` method. We log some information, execute some business logic, then mark the saga complete. This effectively cancels any outstanding timeouts currently in place for the saga. Remember, by calling `MarkAsComplete`, we tell this saga instance that there is no further work to be performed.
 
-NOTE: If the system is busy, the cancellation message may be processed *after* the timeout message, even though the cancellation message was sent before the timeout message was due. The shorter the timeout duration is, the higher the probability is of this occurring.
+> [!NOTE]
+> If the system is busy, the cancellation message may be processed *after* the timeout message, even though the cancellation message was sent before the timeout message was due. The shorter the timeout duration is, the higher the probability is of this occurring.
 
 Consider what happens when the buyer's remorse period has ended. The saga has been marked complete but maybe the Cancel button still appears on the user's screen and they click it. Assuming a `CancelOrder` command is fired, nothing will happen. The saga instance is already complete so the message is discarded. In effect, we can't cancel an order that has already been placed. Similarly, we can't complete an order that has already been processed. `MarkAsComplete` handles both of these scenarios for us.
 
-NOTE: Technically, it's not true that _nothing_ will happen when a saga message is received after the instance has completed. We can implement the `IHandleSagaNotFound` interface to [perform logic](/nservicebus/sagas/saga-not-found.md) in these scenarios. For example, we could inform the customer that the buyer's remorse period has ended so the order can no longer be cancelled.
+> [!NOTE]
+> Technically, it's not true that _nothing_ will happen when a saga message is received after the instance has completed. We can implement the `IHandleSagaNotFound` interface to [perform logic](/nservicebus/sagas/saga-not-found.md) in these scenarios. For example, we could inform the customer that the buyer's remorse period has ended so the order can no longer be cancelled.
 
-NOTE: Although we don't show it here, we may want to send an `OrderCancelled` event in the `Handle` method to indicate that an order has been cancelled. In this sample, we have no business process for cancelled orders, so we don't fire the event.
+> [!NOTE]
+> Although we don't show it here, we may want to send an `OrderCancelled` event in the `Handle` method to indicate that an order has been cancelled. In this sample, we have no business process for cancelled orders, so we don't fire the event.
 
 Finally, let's update the UI so that our customers can take advantage of our buyer's remorse policy.
 

@@ -24,11 +24,13 @@ The [`Amazon.Lambda.Tools` CLI](https://github.com/aws/aws-lambda-dotnet) can be
 1. Create a publicly accessible Aurora MySQL database (see [AWS documentation](https://repost.aws/knowledge-center/aurora-mysql-connect-outside-vpc) for more information)
 1. Update the connection string in the `DeployDatabase` project and run it to deploy the database schema
 
-INFO: A publicly accessible Aurora cluster is required for the purpose of running this sample, but is not required for production scenarios. Make sure to configure the appropriate access to the database cluster.
+> [!NOTE]
+> A publicly accessible Aurora cluster is required for the purpose of running this sample, but is not required for production scenarios. Make sure to configure the appropriate access to the database cluster.
 
 ## Running the sample
 
-INFO: It is not possible at this stage to use the AWS .NET Mock Lambda Test Tool to run the sample locally.
+> [!NOTE]
+> It is not possible at this stage to use the AWS .NET Mock Lambda Test Tool to run the sample locally.
 
 Open the file `serverless.template` in the `Sales` project and update the value of the environment variable `AuroraLambda_ConnectionString` with the database's connection string.
 

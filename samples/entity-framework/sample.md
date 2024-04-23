@@ -21,7 +21,8 @@ The database created by this sample is `NsbSamplesEfUowSql`.
  2. The text `Press <enter> to send a message` will appear in both console windows
  3. Press <kbd>enter</kbd> in both console windows
 
-NOTE: In case of exceptions when running the sample, delete the tables from the database used by the code. Entity Framework by default can't update table schemas. If tables use an old schema, the code won't execute properly.
+> [!NOTE]
+> In case of exceptions when running the sample, delete the tables from the database used by the code. Entity Framework by default can't update table schemas. If tables use an old schema, the code won't execute properly.
 
 
 ## Verifying that the sample works

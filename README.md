@@ -36,7 +36,8 @@ The repository contains a devcontainer that has all the necessary tools to devel
 
 For more information about devcontainers visit the [official documentation](https://code.visualstudio.com/docs/devcontainers/containers). Install the pre-requirements mentioned in the [getting started guide](https://code.visualstudio.com/docs/devcontainers/containers#_getting-started) and open the repository in Code (`> code .`).
 
-Note: The docstool is currently started in the foreground. While it is possible to run it in the background with `&` or the parallel execution feature of devcontainer it might be more cumbersome to inspect the log output of the tool. The downside of starting in the foreground is that Code will continuously show a spinner with "Configuring container".
+> [!NOTE]
+> The docstool is currently started in the foreground. While it is possible to run it in the background with `&` or the parallel execution feature of devcontainer it might be more cumbersome to inspect the log output of the tool. The downside of starting in the foreground is that Code will continuously show a spinner with "Configuring container".
 
 ### Building samples and snippets
 
@@ -932,70 +933,7 @@ The integrity tests include:
 
 ### Alerts
 
-Sometimes it is necessary to draw attention to items you want to call out in a document.
-
-This is achieved through [bootstrap alerts](https://getbootstrap.com/components/#alerts).
-
-There are several keys each of which map to a different colored alert
-
-| Key                 | Color  |
-|---------------------|--------|
-| `SUCCESS`           | green  |
-| `NOTE` or `INFO`    | blue   |
-| `WARNING` or `WARN` | yellow |
-| `DANGER`            | red    |
-
-Keys can be used in two manners
-
-#### Single-line
-
-This can be done with the following syntax
-
-```markdown
-KEY: the note text.
-```
-
-For example, this
-
-```markdown
-NOTE: Some sample note text.
-```
-
-will be rendered as
-
-```html
-<p class="alert alert-info">
-    Some sample note text.
-</p>
-```
-
-#### Multi-line
-
-Sometimes it is necessary to group markdown elements inside a note. This can be done with the following syntax
-
-```markdown
-{{KEY:
-Inner markdown elements
-}}
-```
-
-For example, this
-
-```markdown
-{{NOTE:
-* Point one
-* Point Two
-}}
-```
-
-will be rendered as
-
-```html
-<p class="alert alert-info">
-* Point One
-* Point Two
-</p>
-```
+[GitHub style alert boxes](https://github.com/orgs/community/discussions/16925) are supported and rendered as [bootstrap alerts](https://getbootstrap.com/docs/5.3/components/alerts/).
 
 ### Headings
 

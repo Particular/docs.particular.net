@@ -7,7 +7,8 @@ reviewed: 2022-03-11
 
 The [Platform Sample package](https://www.nuget.org/packages/Particular.PlatformSample) is a portable version of the Particular Service Platform which can be used to demonstrate the platform without installing it. This is the easiest way to experience the Particular Service Platform.
 
-WARNING: The Platform Sample is not suited for production usage and should only be used for demonstrating the Platform during presentations or in samples.
+> [!WARNING]
+> The Platform Sample is not suited for production usage and should only be used for demonstrating the Platform during presentations or in samples.
 
 The Platform Sample package includes instances of ServiceControl, ServiceControl Monitoring, and ServicePulse. They are all configured to use the [Learning Transport](/transports/learning/). Other transports are not supported by the Platform Sample package. At this time, ServiceInsight is not included in the Platform Sample package.
 
@@ -53,4 +54,5 @@ The [message replay tutorial](/tutorials/message-replay) is a sample that uses t
 
 To use ServiceInsight with the sample, [download](https://github.com/Particular/serviceinsight/releases/latest) and install ServiceInsight. After starting ServiceInsight, connect to ServiceControl using the [Endpoint Explorer](/serviceinsight/#endpoint-explorer) at, for example, `http://localhost:49200/api`.
 
-Note: The Platform Sample package will search for available ports and then display the ports being used. The actual ServiceControl port that needs to be used in the Endpoint Explorer can be seen in the output.
+> [!NOTE]
+> The Platform Sample package will search for available ports and then display the ports being used. The actual ServiceControl port that needs to be used in the Endpoint Explorer can be seen in the output.

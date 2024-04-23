@@ -14,4 +14,5 @@ If document expiration cannot be used, to improve efficiency it is advised to ru
 
 snippet: OutboxRavendBDisableCleanup
 
-WARN: If document expiration is not used when operating in [multi-tenant mode](/persistence/ravendb/#multi-tenant-support), cleanup must be handled manually, since NServiceBus is unaware of the databases in use.
+> [!WARNING]
+> If document expiration is not used when operating in [multi-tenant mode](/persistence/ravendb/#multi-tenant-support), cleanup must be handled manually, since NServiceBus is unaware of the databases in use.

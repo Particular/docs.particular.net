@@ -148,7 +148,8 @@ In NServiceBus version 8, the Scheduler API has been deprecated in favor of opti
 
 It is recommended to create a .NET Timer with the same interval as the scheduled task and use `IMessageSession.SendLocal` to send a message to process. Adopting a message processing approach has the benefit of using recoverability and a transactional context. If these benefits are not needed then do not send a message and directly invoke logic from the timer instead.
 
-INFO: The behavior in NServiceBus version 7 is to **not** retry the task on failures, so be sure to wrap the business logic in a `try-catch` statement to get the same behavior in NServiceBus version 8.
+> [!NOTE]
+> The behavior in NServiceBus version 7 is to **not** retry the task on failures, so be sure to wrap the business logic in a `try-catch` statement to get the same behavior in NServiceBus version 8.
 
 See the [scheduling with .NET Timers sample](/samples/scheduling/timer) for more details.
 

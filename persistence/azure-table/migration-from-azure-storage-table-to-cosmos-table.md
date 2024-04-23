@@ -6,11 +6,13 @@ related:
 reviewed: 2024-02-01
 ---
 
-WARN: The endpoint being migrated must be offline while migrating saga data. The saga data must be using secondary indexes (introduced in Azure Table Persistence 2.x) or be stored with Azure Table Persistence Version 3 or higher for this upgrade guide to succeed. The migration scenario described assumes only saga data of a one saga is stored per table.
+> [!WARNING]
+> The endpoint being migrated must be offline while migrating saga data. The saga data must be using secondary indexes (introduced in Azure Table Persistence 2.x) or be stored with Azure Table Persistence Version 3 or higher for this upgrade guide to succeed. The migration scenario described assumes only saga data of a one saga is stored per table.
 
 ## Import data
 
-NOTE: At the time of writing this guidance the Data migration tool did incorrectly project columns and thus would crash with `NullReferenceException`. The [Pullrequest](https://github.com/Azure/azure-documentdb-datamigrationtool/pull/126) has been merged but it is not confirmed yet when the tool will be released. If required build the latest master branch of the tool.
+> [!NOTE]
+> At the time of writing this guidance the Data migration tool did incorrectly project columns and thus would crash with `NullReferenceException`. The [Pullrequest](https://github.com/Azure/azure-documentdb-datamigrationtool/pull/126) has been merged but it is not confirmed yet when the tool will be released. If required build the latest master branch of the tool.
 
 The saga data can be imported into Cosmos DB Table API using the [Data migration tool](https://docs.microsoft.com/en-us/azure/cosmos-db/import-data#Install) provided by Microsoft. The import tool provides both [a UI and a command line](https://docs.microsoft.com/en-us/azure/cosmos-db/import-data#AzureTableSource) option. The general command looks like the following
 

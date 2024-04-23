@@ -4,7 +4,8 @@ summary: Troubleshooting ServiceControl installation and common issues
 reviewed: 2023-07-07
 ---
 
-INFO: Many issues can be resolved by upgrading to the [latest version of ServiceControl](https://particular.net/downloads) and by ensuring the host meets the minimum [general hardware considerations for ServiceControl](/servicecontrol/servicecontrol-instances/hardware.md#general-recommendations).
+> [!NOTE]
+> Many issues can be resolved by upgrading to the [latest version of ServiceControl](https://particular.net/downloads) and by ensuring the host meets the minimum [general hardware considerations for ServiceControl](/servicecontrol/servicecontrol-instances/hardware.md#general-recommendations).
 
 ## Check the configuration via ServiceControl Management
 
@@ -50,7 +51,8 @@ Some transports have access controls built into them. Ensure the service account
  1. Ensure the group or account specified in the URLACL covers the service account.
  1. Confirm that the service account has sufficient writes to manage the configured queues. See [Configuring a Non-Privileged Service Account](configure-non-privileged-service-account.md) for a breakdown of the queues to check.
 
-Note: To examine the configured URLACLs use either the PowerShell prompt and issue `Get-UrlAcls` or to examine the ACLS from a command prompt using the command line `netsh http show urlacl`.
+> [!NOTE]
+> To examine the configured URLACLs use either the PowerShell prompt and issue `Get-UrlAcls` or to examine the ACLS from a command prompt using the command line `netsh http show urlacl`.
 
 ## Service fails to start: EsentInstanceUnavailableException
 
@@ -80,7 +82,8 @@ When encryption is enabled, SQL Server uses a certificate to encrypt communicati
 
 To fix this error, [the update the SQL Server installation with a valid certificate and update the ServiceControl machine to trust this certificate](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/enable-encrypted-connections-to-the-database-engine).
 
-WARNING: It is not recommended to eliminate this warning by adding `Encrypt=False` or `TrustServerCertificate=True` to the connection string. Both of these options leave the ServiceControl installation unsecure.
+> [!WARNING]
+> It is not recommended to eliminate this warning by adding `Encrypt=False` or `TrustServerCertificate=True` to the connection string. Both of these options leave the ServiceControl installation unsecure.
 
 ## Unable to connect to ServiceControl from either ServiceInsight or ServicePulse
 
@@ -90,7 +93,8 @@ WARNING: It is not recommended to eliminate this warning by adding `Encrypt=Fals
  1. Click the URL under 'Host'. A valid response with JSON data will be received.
  1. If having issues remotely connecting to ServiceControl. Verify that firewall settings do not block access to the ServiceControl port specified in the URL.
 
-NOTE: Before changing firewall setting to expose ServiceControl read [Securing ServiceControl](securing-servicecontrol.md).
+> [!NOTE]
+> Before changing firewall setting to expose ServiceControl read [Securing ServiceControl](securing-servicecontrol.md).
 
 ## Method not found
 
@@ -208,7 +212,8 @@ If many indexes are affected it may be easier to rebuild all indexes, although t
 
 ## High CPU utilization
 
-Warn: Avoid forcibly terminating the ServiceControl process (e.g. through Task Manager) as this can cause index corruption and can trigger the index rebuilding process. In turn, this causes long and excessive resource utilization for large databases.
+> [!WARNING]
+> Avoid forcibly terminating the ServiceControl process (e.g. through Task Manager) as this can cause index corruption and can trigger the index rebuilding process. In turn, this causes long and excessive resource utilization for large databases.
 
 If a ServiceControl instance shows high CPU utilization, it's usually due to:
 
@@ -218,7 +223,8 @@ If a ServiceControl instance shows high CPU utilization, it's usually due to:
 
 Usually this fixes itself over time as long as the process is not terminated. Again, do not forcibly terminate the process. Always use Windows Services, PowerShell, or the ServiceControl Management Utility to stop and start the service.
 
-Info: It is recommended to host ServiceControl instances on isolated (virtual) machines with dedicated (non-shared) resources not to affect any other process when ServiceControl requires a lot of system resources.
+> [!NOTE]
+> It is recommended to host ServiceControl instances on isolated (virtual) machines with dedicated (non-shared) resources not to affect any other process when ServiceControl requires a lot of system resources.
 
 Resolution:
 
@@ -227,7 +233,8 @@ Resolution:
 - Ensure no custom checks shown in ServicePulse indicate index issues. The log file could indicate the type of index issues (See [stale indexes](#stale-indexes), [index errors](#index-errors), and [corrupted indexes](#corrupted-indexes))
 - Consider disabling message bodies and headers *Full-Text search* as this causes most resource utilization for CPU and disk IO. This can be disabled in the latest version of ServiceControl by configuring each ServiceControl instance: open configuration (gear icon), scroll down to Advanced Configuration and set "Full-Text Search On Message Bodies" to Off, finally select Save, and then restart the instance.
 
-Warning: Disabling *Full-Text Search* causes text search to be unavailable in ServiceInsight.
+> [!WARNING]
+> Disabling *Full-Text Search* causes text search to be unavailable in ServiceInsight.
 
 ## Saga audit data retention custom check failure
 

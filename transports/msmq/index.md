@@ -12,7 +12,8 @@ redirects:
  - nservicebus/msmq
 ---
 
-WARNING: As Microsoft is not making MSMQ available for .NET Core, building new systems using MSMQ is not recommended.
+> [!WARNING]
+> As Microsoft is not making MSMQ available for .NET Core, building new systems using MSMQ is not recommended.
 
 ## Transport at a glance
 
@@ -122,7 +123,8 @@ Although MSMQ has the concept of both [public and private queues](https://docs.m
 | Anonymous      | Send                | Versions 6.0.x and below | Workgroup mode           |
 | Everyone       | Send                | Versions 6.0.x and below | Workgroup mode           |
 
-NOTE: In NServiceBus version 6.1.0 and above, the NServiceBus installers will not automatically grant permissions to the `Anonymous` and `Everyone` group. The installer will respect the existing queue permissions that have been set up for the endpoint queue. The permissions granted to `Anonymous` and `Everyone` groups are based on standard Windows behavior.
+> [!NOTE]
+> In NServiceBus version 6.1.0 and above, the NServiceBus installers will not automatically grant permissions to the `Anonymous` and `Everyone` group. The installer will respect the existing queue permissions that have been set up for the endpoint queue. The permissions granted to `Anonymous` and `Everyone` groups are based on standard Windows behavior.
 
 Any endpoint that sends a message to a target endpoint requires the `Send` permission to be granted for the sending user account on the target queue. For example, if an `endpoint A` is running as `userA` and is sending a message to `endpoint B`, then `userA` requires the `Send` permission to be granted on `endpoint B`'s queue. When using messaging patterns like request-response or publish-subscribe, the queues for both endpoints will require `Send` permissions to be granted to each user account.
 
@@ -144,9 +146,11 @@ The [WellKnownSidType](https://docs.microsoft.com/en-us/dotnet/api/system.securi
 
 MSMQ permissions are defined in the [MessageQueueAccessRights](https://docs.microsoft.com/en-us/dotnet/api/system.messaging.messagequeueaccessrights?view=netframework-4.8) enumeration.
 
-NOTE: To increase security and further lock down MSMQ send/receive permissions, remove `Everyone` and `Anonymous` and grant specific permissions to the subset of accounts that need them.
+> [!NOTE]
+> To increase security and further lock down MSMQ send/receive permissions, remove `Everyone` and `Anonymous` and grant specific permissions to the subset of accounts that need them.
 
-NOTE: In NServiceBus version 6 and above, if the default queue permissions are set, a log message will be written during the endpoint startup indicating that the queue has default permissions and might require stricter permissions for production. During development, if running with an attached debugger, this message will be logged at an `INFO` level, otherwise `WARN`.
+> [!NOTE]
+> In NServiceBus version 6 and above, if the default queue permissions are set, a log message will be written during the endpoint startup indicating that the queue has default permissions and might require stricter permissions for production. During development, if running with an attached debugger, this message will be logged at an `INFO` level, otherwise `WARN`.
 
 An example of the warning that is logged:
 

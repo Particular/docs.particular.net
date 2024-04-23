@@ -54,7 +54,8 @@ Mutators are registered using:
 
 snippet: MutatorRegistration
 
-NOTE: Mutators are non-deterministic in terms of order of execution. If more fine-grained control is required over the pipeline see [Pipeline Introduction](/nservicebus/pipeline/manipulate-with-behaviors.md).
+> [!NOTE]
+> Mutators are non-deterministic in terms of order of execution. If more fine-grained control is required over the pipeline see [Pipeline Introduction](/nservicebus/pipeline/manipulate-with-behaviors.md).
 
 
 ## When a mutator throws an exception

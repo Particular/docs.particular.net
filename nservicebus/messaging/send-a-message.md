@@ -33,16 +33,17 @@ To send a message from inside a message handler:
 
 snippet: SendFromHandler
 
-{{WARNING: Using `IMessageSession` or `IEndpointInstance` to send messages inside a handler instead of the provided `IMessageHandlerContext` should be avoided.
+> [!WARNING]
+> Using `IMessageSession` or `IEndpointInstance` to send messages inside a handler instead of the provided `IMessageHandlerContext` should be avoided.
+>
+> Some of the dangers when using an `IMessageSession` or `IEndpointInstance` inside a message handler to send or publish messages are:
+>
+> * Those messages will not participate in the same transaction as that of the message handler. This could result in messages being dispatched or events published even if the message handler resulted in an exception and the operation was rolled back.
+> * Those messages will not be part of the [batching operation](/nservicebus/messaging/batched-dispatch.md).
+> * Those messages will not contain any important message header information that is available via the `IMessageHandlerContext` interface parameter, e.g., CorrelationId.
 
-Some of the dangers when using an `IMessageSession` or `IEndpointInstance` inside a message handler to send or publish messages are:
-
- * Those messages will not participate in the same transaction as that of the message handler. This could result in messages being dispatched or events published even if the message handler resulted in an exception and the operation was rolled back.
- * Those messages will not be part of the [batching operation](/nservicebus/messaging/batched-dispatch.md).
- * Those messages will not contain any important message header information that is available via the `IMessageHandlerContext` interface parameter, e.g., CorrelationId.
-}}
-
-NOTE: `Send` is an asynchronous operation. When the invocation ends, it does not mean that the message has actually been sent. In scenarios where a large number of messages are sent in a short period, it might be beneficial, from a performance perspective, to limit the number of outstanding send operations pending for completion. Sample approaches that can be used to limit the number of send tasks can be found in [Writing Async Handlers](/nservicebus/handlers/async-handlers.md#concurrency-large-amount-of-concurrent-message-operations).
+> [!NOTE]
+> `Send` is an asynchronous operation. When the invocation ends, it does not mean that the message has actually been sent. In scenarios where a large number of messages are sent in a short period, it might be beneficial, from a performance perspective, to limit the number of outstanding send operations pending for completion. Sample approaches that can be used to limit the number of send tasks can be found in [Writing Async Handlers](/nservicebus/handlers/async-handlers.md#concurrency-large-amount-of-concurrent-message-operations).
 
 ## Overriding the default routing
 
@@ -66,7 +67,8 @@ snippet: BasicSendToAnyInstance
 
 Or, it can request a message to be routed to itself, i.e. the same instance.
 
-NOTE: This option is only possible when an endpoint instance ID has been specified.
+> [!NOTE]
+> This option is only possible when an endpoint instance ID has been specified.
 
 Messages are sent via the queueing infrastructure just like a regular Send. This means that it will use batched dispatch and - if configured - outbox.
 
@@ -74,7 +76,7 @@ snippet: BasicSendToThisInstance
 
 ## Influencing the reply behavior
 
-When a receiving endpoint replies to a message, the reply message will be routed to any instance of the sending endpoint by default. The sender of the message can also control how reply messages are received. 
+When a receiving endpoint replies to a message, the reply message will be routed to any instance of the sending endpoint by default. The sender of the message can also control how reply messages are received.
 
 To send the reply message to the specific instance that sent the initial message:
 
@@ -98,7 +100,8 @@ This can be done by using the immediate dispatch API:
 
 snippet: RequestImmediateDispatch
 
-NOTE: The API behaves the same for `ITransactionalSession` but differently for `IMessageSession`. When invoking message operations on `IMessageSession` the `RequestImmediateDispatch` does not have any effect as messages will always be immediately dispatched.
+> [!NOTE]
+> The API behaves the same for `ITransactionalSession` but differently for `IMessageSession`. When invoking message operations on `IMessageSession` the `RequestImmediateDispatch` does not have any effect as messages will always be immediately dispatched.
 
 ### More-than-once side effects
 

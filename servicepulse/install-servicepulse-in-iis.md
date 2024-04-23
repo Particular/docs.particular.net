@@ -38,7 +38,8 @@ It is possible to manually install ServicePulse using IIS following these steps:
 ServicePulse.Host.exe --extract --outPath="C:\inetpub\websites\ServicePulse"
 ```
 
-Note: `ServicePulse.Host.exe` can be found in the ServicePulse installation directory. The default location for this directory is `%programfiles(x86)%\Particular Software\ServicePulse`
+> [!NOTE]
+> `ServicePulse.Host.exe` can be found in the ServicePulse installation directory. The default location for this directory is `%programfiles(x86)%\Particular Software\ServicePulse`
 
 2. Once the ServicePulse files are successfully extracted, configure a new IIS website whose physical path points to the location where the files have been extracted. Configure it to use port `9090`.
 
@@ -50,9 +51,11 @@ Note: `ServicePulse.Host.exe` can be found in the ServicePulse installation dire
 netsh http delete urlacl http://+:9090/
 ```
 
-NOTE: Make sure that the ServicePulse Windows Service is not running and that the URLACL has been removed or else IIS will not be able to use port 9090.
+> [!NOTE]
+> Make sure that the ServicePulse Windows Service is not running and that the URLACL has been removed or else IIS will not be able to use port 9090.
 
-NOTE: If TLS is to be applied to ServicePulse then ServiceControl also must be configured for TLS. This can be achieved by reverse proxying ServiceControl through IIS as outlined below.
+> [!NOTE]
+> If TLS is to be applied to ServicePulse then ServiceControl also must be configured for TLS. This can be achieved by reverse proxying ServiceControl through IIS as outlined below.
 
 5. Install the [URL Rewrite](https://www.iis.net/downloads/microsoft/url-rewrite) module, then in the root directory of the IIS website, create a `web.config` file with the following content:
 
@@ -97,7 +100,8 @@ The second required configuration change is to specify the name of the subfolder
 1. Go to the root directory for the website created in the basic configuration.
 1. Edit `js\app.constants.js` file and set the `base_url` variable to be the name of the subfolder.
 
-NOTE: the `base_url` variable must have a `/` character both before and after the name of the subfolder. E.g. `/SubFolder`.
+> [!NOTE]
+> the `base_url` variable must have a `/` character both before and after the name of the subfolder. E.g. `/SubFolder`.
 
 e.g.
 
@@ -118,7 +122,8 @@ ServicePulse relies on the ServiceControl and ServiceControl Monitoring REST API
 
 ### ServiceControl
 
-NOTE: If ServiceControl is configured with a hostname other than `localhost` then change the hostname value back to `localhost`.
+> [!NOTE]
+> If ServiceControl is configured with a hostname other than `localhost` then change the hostname value back to `localhost`.
 
 Installation steps:
 
@@ -150,9 +155,11 @@ Installation steps:
 </configuration>
 ```
 
-WARNING: When combining these rules with the ones specified above in [Detailed steps](#basic-setup-detailed-steps), ensure the rule named "Handle Vue.js routing paths" (i.e. `<match url="(.*)" />`) rule occurs _last_ in the list of rewrite rules. Otherwise, it will override the rules specified here.
+> [!WARNING]
+> When combining these rules with the ones specified above in [Detailed steps](#basic-setup-detailed-steps), ensure the rule named "Handle Vue.js routing paths" (i.e. `<match url="(.*)" />`) rule occurs _last_ in the list of rewrite rules. Otherwise, it will override the rules specified here.
 
-WARNING: By exposing the REST API via the reverse proxy configuration, this protection is no longer in place. To address this, it is recommended that the IIS website be configured with one of the IIS authentication providers, such as Windows integration authentication.
+> [!WARNING]
+> By exposing the REST API via the reverse proxy configuration, this protection is no longer in place. To address this, it is recommended that the IIS website be configured with one of the IIS authentication providers, such as Windows integration authentication.
 
 It is also recommended that the IIS website be configured to use TLS if an authorization provider is used.
 
@@ -267,4 +274,5 @@ Extension | Mime Type
 .woff | application/font-woff
 .woff2 | application/font-woff2
 
-NOTE: Some of these MIME types will already be set up on newer versions of IIS. Verify that all the listed MIME types are present.
+> [!NOTE]
+> Some of these MIME types will already be set up on newer versions of IIS. Verify that all the listed MIME types are present.

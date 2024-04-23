@@ -7,16 +7,17 @@ ServiceControl uses an embedded RavenDB for data storage. To backup or restore t
 
 ## Instances using RavenDB 5
 
-INFO: Applies to ServiceControl 4.26.0 or newer instances using the RavenDB 5 engine
+> [!NOTE]
+> Applies to ServiceControl 4.26.0 or newer instances using the RavenDB 5 engine
 
 For ServiceControl instances using RavenDB 5, refer to the [official RavenDB documentation on how to perform a backup and restore data](https://ravendb.net/docs/article-page/5.4/csharp/server/ongoing-tasks/backup-overview).
 
 ## Instances using RavenDB 3.5
 
-{{INFO: Applies to:
-* ServiceControl 4.26.0 or newer instances using the RavenDB 3.5 engine
-* ServiceControl 4.25.x or lower
-}}
+> [!NOTE]
+> Applies to:
+> * ServiceControl 4.26.0 or newer instances using the RavenDB 3.5 engine
+> * ServiceControl 4.25.x or lower
 
 ### Backup
 

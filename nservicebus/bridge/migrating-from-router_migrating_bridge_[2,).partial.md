@@ -61,7 +61,8 @@ In this scenario, the following steps may be taken to migrate from `NServiceBus.
 
 When the `Bridge` starts up, it will also create the subscription; it is not required to manually create the subscription in the message broker. However, be aware of when `Endpoint A` cannot be taken offline due to high availability, scaling out or service level agreements.
 
-NOTE: If Endpoint A cannot be taken offline, the time between step 3 and step 4 determines how many events will be lost.
+> [!NOTE]
+> If Endpoint A cannot be taken offline, the time between step 3 and step 4 determines how many events will be lost.
 
 #### Additional messages
 

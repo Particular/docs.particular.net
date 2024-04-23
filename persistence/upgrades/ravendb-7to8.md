@@ -19,4 +19,5 @@ The [timeout manager is removed from core](/nservicebus/upgrades/7to8/#timeout-m
 - Any configuration APIs can safely be removed.
 - Database tables must be manually removed from storage.
 
-NOTE: There is no automatic migration of timeout data. See [Timeout manager removed - Data migration](/nservicebus/upgrades/7to8/#timeout-manager-removed-data-migration).
+> [!NOTE]
+> There is no automatic migration of timeout data. See [Timeout manager removed - Data migration](/nservicebus/upgrades/7to8/#timeout-manager-removed-data-migration).

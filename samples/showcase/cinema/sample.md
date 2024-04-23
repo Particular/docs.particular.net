@@ -43,11 +43,10 @@ The TicketSales endpoint displays a message when the featured film is changed by
 
 snippet: featured-film-changed-handler
 
-{{INFO:
-  The project was created with the [NServiceBus Endpoint (Particular Software)](/nservicebus/dotnet-templates/#nservicebus-endpoint) template.
-  
-  The `FeaturedFilmChangedHandler` handler was created with the [NServiceBus Message Handler (Particular Software)](/nservicebus/dotnet-templates/#nservicebus-handler) template.
-}}
+> [!NOTE]
+> The project was created with the [NServiceBus Endpoint (Particular Software)](/nservicebus/dotnet-templates/#nservicebus-endpoint) template.
+>
+> The `FeaturedFilmChangedHandler` handler was created with the [NServiceBus Message Handler (Particular Software)](/nservicebus/dotnet-templates/#nservicebus-handler) template.
 
 ### Headquarters project
 
@@ -55,11 +54,10 @@ The Cinema.Headquarters project aggregates ticket sales and publishes an event w
 
 snippet: ticket-sales-handler
 
-{{NOTE:
-  The project was created with the [NServiceBus Endpoint (Particular Software)](/nservicebus/dotnet-templates/#nservicebus-endpoint) template.
-  
-  The `FeaturedFilmSaga` saga was created with the [NServiceBus Saga (Particular Software)](/nservicebus/dotnet-templates/#nservicebus-saga) template.
-}}
+> [!NOTE]
+> The project was created with the [NServiceBus Endpoint (Particular Software)](/nservicebus/dotnet-templates/#nservicebus-endpoint) template.
+>
+> The `FeaturedFilmSaga` saga was created with the [NServiceBus Saga (Particular Software)](/nservicebus/dotnet-templates/#nservicebus-saga) template.
 
 ### Messages project
 

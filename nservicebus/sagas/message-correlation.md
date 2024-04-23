@@ -35,9 +35,11 @@ partial: find-by-header
 
 A common usage of sagas is to have them send out a request message to get some work done and receive a response message back when the work is complete. To make this easier NServiceBus automatically correlates those response messages back to the correct saga instance.
 
-NOTE: If it's not clear if the message can be auto-correlated, it's better to provide the mappings. In cases where the message is auto-correlated, the mappings are ignored.
+> [!NOTE]
+> If it's not clear if the message can be auto-correlated, it's better to provide the mappings. In cases where the message is auto-correlated, the mappings are ignored.
 
-NOTE: A limitation of this feature is that it doesn't support auto-correlation between sagas. If the request is handled by another saga, relevant message properties must be added and mapped to the requesting saga using the syntax described above.
+> [!NOTE]
+> A limitation of this feature is that it doesn't support auto-correlation between sagas. If the request is handled by another saga, relevant message properties must be added and mapped to the requesting saga using the syntax described above.
 
 
 ## Custom saga finder

@@ -71,7 +71,8 @@ snippet: Behavior
 
 Retrieving the current connection/transaction information will depend on the transport and persistence in use. In this case, the SQL Server transport is managing the connection and transaction as part of receiving the message, so the necessary data resides in the `TransportTransaction` which is accessible as an extension point on the behavior's `context` variable.
 
-INFO: For help finding the correct ambient connection/transaction information in a specific scenario, [contact support](https://particular.net/support).
+> [!NOTE]
+> For help finding the correct ambient connection/transaction information in a specific scenario, [contact support](https://particular.net/support).
 
 Using `Behavior<IIncomingLogicalMessageContext>` ensures that the behavior will be run before the message handler is invoked. For more information on the ordering of pipeline stages see [Steps, stages, and connectors](/nservicebus/pipeline/steps-stages-connectors.md).
 

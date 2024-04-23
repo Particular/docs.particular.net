@@ -51,7 +51,8 @@ Messages are data contracts and as such, they are shared between multiple endpoi
 
 **Message assemblies** should be entirely self-contained, meaning they should contain only NServiceBus message types, and any supporting types required by the messages themselves. For example, if a message uses an enumeration type for one of its properties, that enumeration type should also be contained within the same message assembly.
 
-INFO: It is technically possible to embed messages within the endpoint assembly, but those messages can't be exchanged with other endpoints. Some of the samples in our documentation break this rule and embed the messages in the endpoint assembly in order to make the sample easier to understand. In this tutorial, we'll stick to keeping them in dedicated message assemblies.
+> [!NOTE]
+> It is technically possible to embed messages within the endpoint assembly, but those messages can't be exchanged with other endpoints. Some of the samples in our documentation break this rule and embed the messages in the endpoint assembly in order to make the sample easier to understand. In this tutorial, we'll stick to keeping them in dedicated message assemblies.
 
 Additionally, message assemblies should have no dependencies other than libraries included with the .NET Framework, and the NServiceBus core assembly, which is required to reference the `ICommand` interface.
 
@@ -104,7 +105,8 @@ Let's create our first command.
  1. Mark `PlaceOrder` as `public` and implement `ICommand`.
  1. Add a public property of type `string` named `OrderId`.
 
-WARNING: The .NET Framework contains its own interface named `ICommand` in the `System.Windows.Input` namespace. If you use tooling to resolve the namespace, be sure to select `NServiceBus.ICommand`. Most of the types you will need will reside in the `NServiceBus` namespace.
+> [!WARNING]
+> The .NET Framework contains its own interface named `ICommand` in the `System.Windows.Input` namespace. If you use tooling to resolve the namespace, be sure to select `NServiceBus.ICommand`. Most of the types you will need will reside in the `NServiceBus` namespace.
 
 When complete, your `PlaceOrder` class should look like the following:
 
@@ -131,7 +133,8 @@ When complete, your `PlaceOrderHandler` class should look like this:
 
 snippet: PlaceOrderHandler
 
-INFO: Because `LogManager.GetLogger(..);` is an expensive call, it's important to [implement loggers as static members](/nservicebus/logging/usage.md).
+> [!NOTE]
+> Because `LogManager.GetLogger(..);` is an expensive call, it's important to [implement loggers as static members](/nservicebus/logging/usage.md).
 
 
 ### Send a message
@@ -148,7 +151,8 @@ Let's take a closer look at the case when we want to place an order. In order to
 
 `SendLocal(object message)` is a method that is available on the `IEndpointInstance` interface, as we are using here, and also on the `IMessageHandlerContext` interface, which we saw when we were defining our message handler. The *Local* part means that we are not sending to an external endpoint (in a different process) so we intend to handle the message in the same endpoint that sent it. Using `SendLocal()`, we don't have to do anything special to tell the message where to go.
 
-NOTE: In this lesson, we're using `SendLocal` (rather than the more commonly used `Send` method) so that we can explore how to define, send, and process messages without needing a second endpoint to process them. With `SendLocal`, we also don't need to define routing rules to control where the sent messages go. We'll learn about these concepts [in the next lesson](../3-multiple-endpoints/).
+> [!NOTE]
+> In this lesson, we're using `SendLocal` (rather than the more commonly used `Send` method) so that we can explore how to define, send, and process messages without needing a second endpoint to process them. With `SendLocal`, we also don't need to define routing rules to control where the sent messages go. We'll learn about these concepts [in the next lesson](../3-multiple-endpoints/).
 
 Because `SendLocal()` returns a `Task`, we need to be sure to `await` it properly.
 

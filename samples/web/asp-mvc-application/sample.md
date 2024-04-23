@@ -17,7 +17,8 @@ This sample consists of a web application hosting MVC controllers and a console 
  * `SendAndBlock`: a method in synchronous `Controller` class
  * `SendAsync`: a method in asynchronous `AsyncController` class
 
-NOTE: In `SendAndBlock`, the web page renders synchronously. From the user's perspective, the interaction is synchronous and blocking, even though behind the scenes NServiceBus is messaging asynchronously.
+> [!NOTE]
+> In `SendAndBlock`, the web page renders synchronously. From the user's perspective, the interaction is synchronous and blocking, even though behind the scenes NServiceBus is messaging asynchronously.
 
 After running, the web application renders the following page:
 

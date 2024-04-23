@@ -72,7 +72,8 @@ Receiver\bin\Debug\net462\NServiceBus.Persistence.Sql
 
 When persisting data to the same database, it is recommended to use the same [DBConnection](https://msdn.microsoft.com/en-us/library/system.data.common.dbconnection.aspx) and [DBTransaction](https://msdn.microsoft.com/en-us/library/system.data.common.dbtransaction.aspx) that is used by the underlying persister and transport. The approach to this differs depending on the approach used to persist the data. Several approaches to data access, including raw ADO.NET and several ORMs, are listed below.
 
-NOTE: The connection and transaction are managed by NServiceBus, so there is no need to explicitly commit a transaction or dispose the connection. Using the database state managed by NServiceBus ensures that database interactions, both in handlers and sagas, execute in the same connection and transaction context.
+> [!NOTE]
+> The connection and transaction are managed by NServiceBus, so there is no need to explicitly commit a transaction or dispose the connection. Using the database state managed by NServiceBus ensures that database interactions, both in handlers and sagas, execute in the same connection and transaction context.
 
 #### Raw [ADO.NET](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview)
 

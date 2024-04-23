@@ -33,11 +33,14 @@ For a description of each feature, see the [persistence at a glance legend](/per
  * [Microsoft SQL Server](https://www.microsoft.com/en-au/sql-server/) ([Version 2012](https://docs.microsoft.com/en-us/sql/release-notes/sql-server-2012-release-notes) and above).
  * [Oracle Database](https://www.oracle.com/database/index.html) ([Version 11g Release 2](https://docs.oracle.com/cd/E11882_01/readmes.112/e41331/chapter11204.htm) and above).
 
-NOTE: SQL Server Always Encrypted feature is currently not supported by the persister when using Microsoft SQL Server
+> [!NOTE]
+> SQL Server Always Encrypted feature is currently not supported by the persister when using Microsoft SQL Server
 
-NOTE: When connecting to an Oracle Database, only the ODP.NET managed driver is supported. The driver is available via the [Oracle.ManagedDataAccess NuGet Package](https://www.nuget.org/packages/Oracle.ManagedDataAccess).
+> [!NOTE]
+> When connecting to an Oracle Database, only the ODP.NET managed driver is supported. The driver is available via the [Oracle.ManagedDataAccess NuGet Package](https://www.nuget.org/packages/Oracle.ManagedDataAccess).
 
-WARNING: Although this persistence will run on the free version of the above engines, i.e. [SQL Server Express](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express) and [Oracle XE](https://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html), it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place from either [Microsoft Premier Support](https://www.microsoft.com/en-us/microsoftservices/support.aspx), [Oracle Support](https://www.oracle.com/support/index.html), or another third party support provider.
+> [!WARNING]
+> Although this persistence will run on the free version of the above engines, i.e. [SQL Server Express](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express) and [Oracle XE](https://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html), it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place from either [Microsoft Premier Support](https://www.microsoft.com/en-us/microsoftservices/support.aspx), [Oracle Support](https://www.oracle.com/support/index.html), or another third party support provider.
 
 
 ## Usage
@@ -72,14 +75,16 @@ To specify configuration on a per-concern basis:
 
 snippet: SpecificNHibernateConfiguration
 
-NOTE: Combine both approaches to define a common configuration and override it for one specific concern.
+> [!NOTE]
+> Combine both approaches to define a common configuration and override it for one specific concern.
 
 To use a given NHibernate `Configuration` object for all the persistence concerns:
 
 snippet: CommonNHibernateConfiguration
 
 
-WARNING: When using the per-concern API to enable the NHibernate persistence, the `UseConfiguration` method still applies to the common configuration, not the specific concern being enabled. The following code will set up NHibernate persistence only for `Subscriptions` concern but will override the default configuration **for all the concerns**.
+> [!WARNING]
+> When using the per-concern API to enable the NHibernate persistence, the `UseConfiguration` method still applies to the common configuration, not the specific concern being enabled. The following code will set up NHibernate persistence only for `Subscriptions` concern but will override the default configuration **for all the concerns**.
 
 snippet: CustomCommonNhibernateConfigurationWarning
 
@@ -88,7 +93,8 @@ snippet: CustomCommonNhibernateConfigurationWarning
 
 NServiceBus picks up the connection setting from the `app.config` from `connectionStrings` and `appSettings` sections. The convention used for `appSettings` does not support defining settings specific for a single persistence concern. If this level of granularity is required, use a code-based approach.
 
-NOTE: When using SQL 2012 or later, change the dialect to `MsSql2012Dialect`. Additional dialects are available in the NHibernate.Dialect namespace, [NHibernate documentation.](https://nhibernate.info/doc/)
+> [!NOTE]
+> When using SQL 2012 or later, change the dialect to `MsSql2012Dialect`. Additional dialects are available in the NHibernate.Dialect namespace, [NHibernate documentation.](https://nhibernate.info/doc/)
 
 snippet: NHibernateAppConfig
 
@@ -102,7 +108,8 @@ The database schema can be changed by defining the `default_schema` NHibernate p
 
 The subscriptions can be cached when using NHibernate. This can improve the performance of publishing events as it is not required to request matching subscriptions from storage.
 
-NOTE: Publishing is performed on stale data. This is only advised in high volume environments where latency can be an issue.
+> [!NOTE]
+> Publishing is performed on stale data. This is only advised in high volume environments where latency can be an issue.
 
 snippet: NHibernateSubscriptionCaching
 

@@ -13,7 +13,8 @@ redirects:
 
 Uses the [Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/) NoSQL database service for storage.
 
-WARN: It is important to [read and understand](https://docs.microsoft.com/en-us/azure/cosmos-db/partitioning-overview) partitioning in Azure Cosmos DB before using `NServiceBus.Persistence.CosmosDB`.
+> [!WARNING]
+> It is important to [read and understand](https://docs.microsoft.com/en-us/azure/cosmos-db/partitioning-overview) partitioning in Azure Cosmos DB before using `NServiceBus.Persistence.CosmosDB`.
 
 ## Persistence at a glance
 
@@ -21,7 +22,8 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 partial: glance
 
-NOTE: The Outbox feature requires partition planning.
+> [!NOTE]
+> The Outbox feature requires partition planning.
 
 ## Usage
 
@@ -41,7 +43,8 @@ snippet: CosmosDBDatabaseName
 
 include: defaultcontainer
 
-NOTE: The [transactions](transactions.md) documentation details additional options on how to configure NServiceBus to specify the container using the incoming message headers or contents.
+> [!NOTE]
+> The [transactions](transactions.md) documentation details additional options on how to configure NServiceBus to specify the container using the incoming message headers or contents.
 
 ### Customizing the CosmosClient provider
 
@@ -57,9 +60,11 @@ snippet: CosmosDBCustomClientProviderRegistration
 
 When using provisioned throughput it is possible for the CosmosDB service to rate-limit usage, resulting in "request rate too large" exceptions indicated by the 429 status code.
 
-WARN: When using the Cosmos DB persistence with the outbox enabled, "request rate too large" errors may result in handler re-execution and/or duplicate message dispatches depending on which operation is throttled.
+> [!WARNING]
+> When using the Cosmos DB persistence with the outbox enabled, "request rate too large" errors may result in handler re-execution and/or duplicate message dispatches depending on which operation is throttled.
 
-INFO: Microsoft provides [guidance](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/troubleshoot-request-rate-too-large) on how to diagnose and troubleshoot request rate too large exceptions.
+> [!NOTE]
+> Microsoft provides [guidance](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/troubleshoot-request-rate-too-large) on how to diagnose and troubleshoot request rate too large exceptions.
 
 The Cosmos DB SDK provides a mechanism to automatically retry collection operations when rate-limiting occurs. Besides changing the provisioned RUs or switching to the serverless tier, those settings can be adjusted to help prevent messages from failing during spikes in message volume.
 

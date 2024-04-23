@@ -24,7 +24,8 @@ If the location is not available upon sending, the send operation will fail. Whe
 
 The Data Bus may be used to send messages which exceed the transport's message size limit, which is determined by the message size limit of the underlying queuing/storage technologies.
 
-Note: Not all transports have message size limits and some technologies, such as Azure Service Bus, have increased over time. Current message size limits are stated in the documentation linked in the table below.
+> [!NOTE]
+> Not all transports have message size limits and some technologies, such as Azure Service Bus, have increased over time. Current message size limits are stated in the documentation linked in the table below.
 
 | Transport                         | Maximum size |
 | --------------------------------- | ------------:|
@@ -49,7 +50,8 @@ See the individual data bus implementations for details on enabling and configur
 
 By default, BLOBs are stored with no set expiration. If messages have a [time to be received](/nservicebus/messaging/discard-old-messages.md) set, the data bus will pass this along to the data bus storage implementation.
 
-NOTE: The value used should be aligned with the [ServiceContol audit retention period](/servicecontrol/how-purge-expired-data.md) if it is required that data bus BLOB keys in messages sent to the audit queue can still be fetched.
+> [!NOTE]
+> The value used should be aligned with the [ServiceContol audit retention period](/servicecontrol/how-purge-expired-data.md) if it is required that data bus BLOB keys in messages sent to the audit queue can still be fetched.
 
 ## Specifying data bus properties
 
@@ -58,7 +60,8 @@ There are two ways to specify the message properties to be sent using the data b
  1. Using the `DataBusProperty<T>` type
  1. Message conventions
 
-Note: Data Bus properties must be top-level properties on a message class.
+> [!NOTE]
+> Data Bus properties must be top-level properties on a message class.
 
 ### Using `DataBusProperty<T>`
 
@@ -96,7 +99,8 @@ Automatically removing these attachments can cause problems in many situations. 
 
 ## Alternatives
 
-NOTE: A combination of these techniques may be used.
+> [!NOTE]
+> A combination of these techniques may be used.
 
 - Use a different transport or different tier (e.g. Azure Service Bus _Premium_ instead of _Standard_).
 - Use message body compression, which works well on text-based payloads like XML and JSON or any payload (text or binary) that contains repetitive data.

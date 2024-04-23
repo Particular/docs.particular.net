@@ -78,7 +78,8 @@ The message handler also writes the received MessageId to the **BusinessObject**
 | 9 | 1333e38d-b076-41e1-92d6-a2b7a699f62f |
 | 10 | 1333e38d-b076-41e1-92d6-a2b7a699f62f |
 
-NOTE: **TIP:** Between runs, it's helpful to execute `delete from BusinessObject` to clear out the table.
+> [!NOTE]
+> **TIP:** Between runs, it's helpful to execute `delete from BusinessObject` to clear out the table.
 
 
 ### Step 2: Outbox, 1 message at a time
@@ -159,7 +160,8 @@ The message handler:
 2. Retrieves the `SynchronizedStorageSession` in use by NServiceBus, containing the `DbConnection` and `DbTransaction` currently in use.
 3. Inserts the `MessageId` into the `BusinessObject` table.
 
-NOTE: It's absolutely essential that business data is manipulated using the same connection and transaction that NServiceBus opens to manage the Outbox data. The Outbox feature relies on combining the manipulation of Outbox and business data in the same local database transaction to guarantee consistency between messaging operations and database manipulations within the scope of processing a message.
+> [!NOTE]
+> It's absolutely essential that business data is manipulated using the same connection and transaction that NServiceBus opens to manage the Outbox data. The Outbox feature relies on combining the manipulation of Outbox and business data in the same local database transaction to guarantee consistency between messaging operations and database manipulations within the scope of processing a message.
 
 
 ## Cleaning up

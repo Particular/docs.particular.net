@@ -9,7 +9,8 @@ related:
 - samples/encryption
 ---
 
-INFO: Message property encryption is available as a [dedicated NuGet package](/nservicebus/security/property-encryption.md). The API documented on this page will continue to work for NServiceBus Version 6 but it will hint about its upcoming obsoletion with the following warning: *Message property encryption is released as a dedicated 'NServiceBus.Encryption.MessageProperty' package.*.
+> [!NOTE]
+> Message property encryption is available as a [dedicated NuGet package](/nservicebus/security/property-encryption.md). The API documented on this page will continue to work for NServiceBus Version 6 but it will hint about its upcoming obsoletion with the following warning: *Message property encryption is released as a dedicated 'NServiceBus.Encryption.MessageProperty' package.*.
 
 Property encryption operates on specific properties of a message. The data in the property is encrypted, but the rest of the message is clear text. This keeps the performance impact of encryption as low as possible.
 
@@ -49,7 +50,8 @@ snippet: EncryptionServiceSimple
 
 Each key needs an unique key ID (`KeyIdentifier`). The key ID is communicated in the message header and allows the receiving endpoint to use the correct decryption key.
 
-NOTE: If a key ID is not set then no messages with encrypted properties can be sent. When NServiceBus receives a message without a key ID header, it will attempt decryption using all keys in the configuration. If all decryption attempts fail, the message will be moved to the error queue.
+> [!NOTE]
+> If a key ID is not set then no messages with encrypted properties can be sent. When NServiceBus receives a message without a key ID header, it will attempt decryption using all keys in the configuration. If all decryption attempts fail, the message will be moved to the error queue.
 
 #### Troubleshooting
 
@@ -81,9 +83,11 @@ Bad strategies
 * Full hash of key (MD5, SHA-1, etc.)
 * Key fragment
 
-NOTE: Random named key IDs DO NOT improve security as the key ID is not encrypted.
+> [!NOTE]
+> Random named key IDs DO NOT improve security as the key ID is not encrypted.
 
-NOTE: Using a time-based key name does not weaken encryption. Messages already contain a timestamp that can be used to search for messages within a certain time range.
+> [!NOTE]
+> Using a time-based key name does not weaken encryption. Messages already contain a timestamp that can be used to search for messages within a certain time range.
 
 ## Using the same key with and without a key ID
 
@@ -95,7 +99,8 @@ partial: keyformat
 
 When encryption is enabled, the encryption and decryption keys must be configured.
 
-Note: Both the sending and the receiving side must use the same key to communicate encrypted information.
+> [!NOTE]
+> Both the sending and the receiving side must use the same key to communicate encrypted information.
 
 ## Key strength
 
@@ -110,7 +115,8 @@ Base64 32 bytes:   | 256^32     |  1.16e+77
 
 This means that a 16 character ASCII key is almost 100.000 times weaker then a 16 byte Base64 key.
 
-NOTE: Use Base64 key format if possible and ASCII 32 key format for backward compatibility only. ASCII 16 key format is no longer recommended.
+> [!NOTE]
+> Use Base64 key format if possible and ASCII 32 key format for backward compatibility only. ASCII 16 key format is no longer recommended.
 
 ## Configuration
 

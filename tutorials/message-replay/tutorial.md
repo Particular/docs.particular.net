@@ -26,7 +26,8 @@ As shown in the diagram, the **ClientUI** endpoint sends a **PlaceOrder** comman
 
 ![Project Diagram](/tutorials/nservicebus-step-by-step/4-publishing-events/diagram.svg)
 
-INFO: In a real system, the **Shipping** endpoint should be able to take some action once it receives both an `OrderPlaced` and `OrderBilled` event for the same order. That is a good use case for a [Saga](/nservicebus/sagas/) and is outside of the scope of this tutorial.
+> [!NOTE]
+> In a real system, the **Shipping** endpoint should be able to take some action once it receives both an `OrderPlaced` and `OrderBilled` event for the same order. That is a good use case for a [Saga](/nservicebus/sagas/) and is outside of the scope of this tutorial.
 
 ## Running the solution
 
@@ -68,7 +69,7 @@ System.Exception: BOOM
 
 Note that the **Sales** endpoint did not peform any delayed retries. This is because retries have been [disabled](/nservicebus/recoverability/configure-delayed-retries.md) in the **Sales** endpoint's **Program.cs** file:
 
-snippet: NoDelayedRetries	
+snippet: NoDelayedRetries
 
 Since we are going to be causing a lot of messages to fail in this exercise, we'd prefer not to wait around for several rounds of delayed retries to complete.
 
@@ -97,4 +98,5 @@ Perhaps the message had a previously unexpected input value which caused the bug
 
 If you haven't yet, you should check out the [NServiceBus Step-by-step](/tutorials/nservicebus-step-by-step/) tutorial, where you'll learn how to build the solution this tutorial is based on from scratch, while learning the messaging concepts you'll need to know to build even more complex software systems with NServiceBus.
 
-SUCCESS: Now that you understand how powerful the ability to replay messages can be, take the next step and chat with one of our developers about how you can benefit from using NServiceBus in your next project. Just use the live chat in the bottom-right corner of the window.
+> [!TIP]
+> Now that you understand how powerful the ability to replay messages can be, take the next step and chat with one of our developers about how you can benefit from using NServiceBus in your next project. Just use the live chat in the bottom-right corner of the window.

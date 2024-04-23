@@ -12,7 +12,8 @@ Evolving contracts over time is not an easy task and the appropriate strategy sh
 
 This article presents basic guidelines for choosing contracts evolution strategy, avoiding common mistakes, and ensuring that contracts will be easy to evolve over time.
 
-Note: Message contracts should also follow the [general message design guidelines](/nservicebus/messaging/messages-events-commands.md#designing-messages).
+> [!NOTE]
+> Message contracts should also follow the [general message design guidelines](/nservicebus/messaging/messages-events-commands.md#designing-messages).
 
 ## Common challenges
 

@@ -1,23 +1,25 @@
-Mapping the logical destination to the physical address containing the queue and host names is the responsibility of physical routing. 
+Mapping the logical destination to the physical address containing the queue and host names is the responsibility of physical routing.
 
 The preferred way of configuring the physical routing is via the instance mapping file.
 
 ## Instance mapping file
 
-{{NOTE: When using instance mapping:
-
-* The settings will have no effect on **audit and error queues**.
-* **publishing**: The publisher will publish messages only to endpoint instances that have subscribed to the events, ignoring the settings in the mapping file (the address of the subscriber that was provided in the subscription message will be used).
-* **subscribing**: Subscription messages will be sent to all publisher instances listed in the instance mapping file.
-}}
+> [!NOTE]
+> When using instance mapping:
+>
+> * The settings will have no effect on **audit and error queues**.
+> * **publishing**: The publisher will publish messages only to endpoint instances that have subscribed to the events, ignoring the settings in the mapping file (the address of the subscriber that was provided in the subscription message will be > used).
+> * **subscribing**: Subscription messages will be sent to all publisher instances listed in the instance mapping file.
 
 The instance mapping file is a simple XML file that has to be located either on a local hard drive or a network drive. When using MSMQ as the transport, NServiceBus will automatically look for an `instance-mapping.xml` file in `AppDomain.BaseDirectory`.
 
-NOTE: When running under ASP.NET the `instance-mapping.xml` file may not be located in `AppDomain.BaseDirectory`. In this case specify the path using the [`FilePath`](#instance-mapping-file-file-path) setting.
+> [!NOTE]
+> When running under ASP.NET the `instance-mapping.xml` file may not be located in `AppDomain.BaseDirectory`. In this case specify the path using the [`FilePath`](#instance-mapping-file-file-path) setting.
 
 snippet: InstanceMappingFile
 
-WARNING: The endpoint names are case sensitive e.g. if endpoint name is used in routing API and the instance mapping file, the file entries will be used only when there is a case sensitive match. 
+> [!WARNING]
+> The endpoint names are case sensitive e.g. if endpoint name is used in routing API and the instance mapping file, the file entries will be used only when there is a case sensitive match.
 
 The mapping file is processed before the endpoint starts up and then re-processed at regular intervals so the changes in the document are reflected in the behavior of NServiceBus automatically. If the document is not present in its configured location when endpoint starts up, NServiceBus will not search again for the file at runtime. If it is deleted when the endpoint is already running, it will continue to run normally with the last successfully read routes.
 

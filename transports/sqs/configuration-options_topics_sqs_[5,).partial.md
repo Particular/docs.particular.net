@@ -36,7 +36,8 @@ The `MapEvent` transport configuration API can be used to customize the way subs
 
 snippet: CustomTopicsMappingsTypeToType
 
-NOTE: The types are only used to determine the topic name; subscribers can define dummy empty types to use the strongly typed API shown above.
+> [!NOTE]
+> The types are only used to determine the topic name; subscribers can define dummy empty types to use the strongly typed API shown above.
 
 If the published type is not known at compilation time, the following API can be used:
 

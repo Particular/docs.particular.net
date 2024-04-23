@@ -41,7 +41,8 @@ include: throughput-tool-global-options
 
 <sup>1</sup> See [examples of SQL Server connection strings](https://www.connectionstrings.com/sql-server/). Authentication is often via username/password `User Id=myUsername;Password=myPassword`, integrated security `Integrated Security=true`, or active directory with MFA `Authentication=ActiveDirectoryInteractive;UID=user@domain.com`.
 
-NOTE: In recent versions of Microsoft's Sql Server drivers encryption has been enabled by default. When trying to connect to a Sql Server instance that uses a self-signed cerftificate, the tool may display an exception stating *[The certificate chain was issued by an authority that is not trusted](https://learn.microsoft.com/en-us/troubleshoot/sql/connect/certificate-chain-not-trusted?tabs=ole-db-driver-19)*. To bypass this exception update the connection string to include `;Trust Server Certificate=true`.
+> [!NOTE]
+> In recent versions of Microsoft's Sql Server drivers encryption has been enabled by default. When trying to connect to a Sql Server instance that uses a self-signed cerftificate, the tool may display an exception stating *[The certificate chain was issued by an authority that is not trusted](https://learn.microsoft.com/en-us/troubleshoot/sql/connect/certificate-chain-not-trusted?tabs=ole-db-driver-19)*. To bypass this exception update the connection string to include `;Trust Server Certificate=true`.
 
 ## What the tool does
 
@@ -53,7 +54,7 @@ The tool uses this query to discover what tables in a SQL database catalog have 
 
 ```sql
 SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
-  
+
 SELECT C.TABLE_SCHEMA as TableSchema, C.TABLE_NAME as TableName
 FROM [INFORMATION_SCHEMA].[COLUMNS] C
 WHERE

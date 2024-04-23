@@ -20,7 +20,8 @@ The analyzer points out missing `await` operators when using asynchronous method
 
 Failing to `await` or assign the tasks returned by these methods results in the following compile-time error:
 
-WARNING: **NSB0001**: A Task returned by an NServiceBus method is not awaited or assigned to a variable.
+> [!WARNING]
+> **NSB0001**: A Task returned by an NServiceBus method is not awaited or assigned to a variable.
 
 ## Limitations
 

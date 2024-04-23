@@ -5,31 +5,31 @@ component: ServicePulse
 reviewed: 2021-08-05
 ---
 
-If a message cannot be successfully retried it is possible to fix the malformed message prior to retrying it. Both the headers and the body of a message can be edited. This capability can be accessed when looking at an individual message. 
+If a message cannot be successfully retried it is possible to fix the malformed message prior to retrying it. Both the headers and the body of a message can be edited. This capability can be accessed when looking at an individual message.
 
 ![Edit Malformed Messages](images/edit-message-details.png 'width=500')
 
 ## Enabling the feature
 
-{{DANGER:
-Editing malformed messages is a potentially destructive operation, which if used improperly can have consequences that affect the correctness of the system. If a malformed message is edited improperly, it could still be processed successfully, without any way to undo the effects. The possible effects of editing a malformed message are system-specific and ServicePulse is unable to determine if a potential edit operation is safe for the system. Currently there is no way to limit failed message editing only to certain security groups or to specific message types.
+> [!CAUTION]
+> Editing malformed messages is a potentially destructive operation, which if used improperly can have consequences that affect the correctness of the system. If a malformed message is edited improperly, it could still be processed successfully, without any way to undo the effects. The possible effects of editing a malformed message are system-specific and ServicePulse is unable to determine if a potential edit operation is safe for the system. Currently there is no way to limit failed message editing only to certain security groups or to specific message types.
+>
+> System designers may prefer to disallow message editing in order to guarantee the correctness of the system. As a result, the message editing feature is currently considered experimental and is **disabled by default**.
+>
+> Before enabling the feature, carefully evaluate possible use cases for editing malformed messages and consider alternative solutions for those use cases such as [ServiceControl retry redirects](/samples/servicecontrol/fix-messages/), especially for use cases that are common and recurring. For help with alternatives for specific situations, contact [Particular Support](https://particular.net/support) for assistance.
 
-System designers may prefer to disallow message editing in order to guarantee the correctness of the system. As a result, the message editing feature is currently considered experimental and is **disabled by default**.
-
-Before enabling the feature, carefully evaluate possible use cases for editing malformed messages and consider alternative solutions for those use cases such as [ServiceControl retry redirects](/samples/servicecontrol/fix-messages/), especially for use cases that are common and recurring. For help with alternatives for specific situations, contact [Particular Support](https://particular.net/support) for assistance.
-}}
-
-NOTE: Editing malformed messages requires both ServiceControl 4.1.0+ and ServicePulse 1.21.0+.
+> [!NOTE]
+> Editing malformed messages requires both ServiceControl 4.1.0+ and ServicePulse 1.21.0+.
 
 The feature in ServicePulse is enabled via the configuration file for ServiceControl:
 
 1. Find the ServiceControl installation directory using ServiceControl Management Utility.
-1. Edit the ServiceControl configuration file `ServiceControl.exe.config` with elevated privileges. 
-1. Add the following entry in the `<appSettings>` section of the file:
+2. Edit the ServiceControl configuration file `ServiceControl.exe.config` with elevated privileges.
+3. Add the following entry in the `<appSettings>` section of the file:
     ```
     <add key="ServiceControl/AllowMessageEditing" value="true" />
     ```
-1. Restart ServiceControl.
+4. Restart ServiceControl.
 
 ## Headers
 
@@ -49,7 +49,8 @@ Message bodies can be edited before they are retried. This is only possible for 
 
 ## Retrying edited messages
 
-WARN: Retrying messages after editing the message headers can cause message processing failures and/or visualization issues in the ServicePulse and ServiceInsight.
+> [!WARNING]
+> Retrying messages after editing the message headers can cause message processing failures and/or visualization issues in the ServicePulse and ServiceInsight.
 
 When retrying an edited message it is possible that the original failed message will have been resolved by another user, retried successfully by another user, or [expired as part of the automated processes](/servicecontrol/how-purge-expired-data.md). In those scenarios, the retry of the edited message will fail.
 

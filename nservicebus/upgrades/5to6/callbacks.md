@@ -38,4 +38,5 @@ var instanceDiscriminator = ConfigurationManager.AppSettings["InstanceId"];
 endpointConfiguration.MakeInstanceUniquelyAddressable(instanceDiscriminator);
 ```
 
-NOTE: This ID should never be hard-coded; it can be read from a configuration file or from the environment (e.g. role ID in Azure) so that it can be changed without code changes and redeployment.
+> [!NOTE]
+> This ID should never be hard-coded; it can be read from a configuration file or from the environment (e.g. role ID in Azure) so that it can be changed without code changes and redeployment.

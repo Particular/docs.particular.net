@@ -18,7 +18,7 @@ include: monitoring-demo-walkthrough-solution
 
 One of the benefits of NServiceBus is that it can [handle transient errors](https://particular.net/blog/but-all-my-errors-are-severe) for you. If a network switch is being restarted or a web server is temporarily too busy to service requests, then an NServiceBus endpoint will roll the message it is processing back to its input queue and try again later. If the problem was short-lived and has since been corrected, then the message will process successfully when it is retried. If the problem is more permanent, the endpoint will eventually forward the message to an error queue.
 
-_Scheduled retry rate_ measures how often messages are failing and are marked to be retried. 
+_Scheduled retry rate_ measures how often messages are failing and are marked to be retried.
 
 _Processing time_ is the time it takes for the endpoint to process a single message. A higher processing time indicates a slower endpoint and a lower processing time indicates a faster endpoint. Processing time is only measured for messages that are successfully processed.
 
@@ -50,11 +50,12 @@ Watch the processing time on the shipping endpoint. As the (simulated) third-par
 
 This screen shows a breakdown of processing time by message type. Even though the Shipping endpoint processes two types of message, only one of them is slowing down. There is something that is slowing down the processing of `OrderPlaced` events that is not affecting the processing of `OrderBilled` events.
 
-NOTE: This example is a simulation, and there isn't a third party resource that is failing.  We're just simulating it with `Task.Delay`. 
+> [!NOTE]
+> This example is a simulation, and there isn't a third party resource that is failing.  We're just simulating it with `Task.Delay`.
 
 **Find the Shipping endpoint window and toggle the resource degradation simulation off. Return the ServicePulse Monitoring tab.**
 
-Now look at the processing time for the Shipping endpoint again. As soon as the remote resource recovers, the processing time snaps back to where it was before. This is what it looks like when a failing resource is restarted. 
+Now look at the processing time for the Shipping endpoint again. As soon as the remote resource recovers, the processing time snaps back to where it was before. This is what it looks like when a failing resource is restarted.
 
 
 ### Messages are being retried
@@ -65,9 +66,10 @@ If there are occasional network outages or database deadlocks, this works well. 
 
 **Find the Billing endpoint UI and increase the failure rate to 30%.**
 
-Now look at the scheduled retry rate for the Billing endpoint in the ServicePulse monitoring tab. Notice that even though the endpoint is encountering difficulties processing roughly a third of its messages, it is still able to process every message successfully after a couple of retries. 
+Now look at the scheduled retry rate for the Billing endpoint in the ServicePulse monitoring tab. Notice that even though the endpoint is encountering difficulties processing roughly a third of its messages, it is still able to process every message successfully after a couple of retries.
 
-NOTE: As the endpoint is wasting resources attempting to process a message that fails, the number of successfully processed messages (throughput) goes down. This has the effect of forcing messages to spend longer in the input queue which can impact queue length and critical time as well (to find out why, see [Which endpoints have the most work to do?](./walkthrough-2.md)).
+> [!NOTE]
+> As the endpoint is wasting resources attempting to process a message that fails, the number of successfully processed messages (throughput) goes down. This has the effect of forcing messages to spend longer in the input queue which can impact queue length and critical time as well (to find out why, see [Which endpoints have the most work to do?](./walkthrough-2.md)).
 
 If you are concerned about the number of messages that are being retried, check the endpoint logs. When messages are scheduled to be retried, details about the message and the failure are logged at the WARN log level.
 

@@ -16,7 +16,7 @@ At installation time the queue creation script is executed
 
 snippet: CreateQueueTextSql
 
-partial: create-subscriptions-table 
+partial: create-subscriptions-table
 
 
 ### Creating table structure in production
@@ -33,9 +33,9 @@ the user account under which the installation of the host is performed must have
 
 #### Scripted
 
-Using NServiceBus installers does not allow review of the actual T-SQL statements that are going be executed. For that reason, some prefer to store the actual scripts in a version control system.  
- 
-The script above is parametrized at execution time with the queue name so it cannot be used as-is. Alternatively, the scripts could be generated from the development or staging environments, then directly executed on a production environment by DBAs to replicate that table structure. 
+Using NServiceBus installers does not allow review of the actual T-SQL statements that are going be executed. For that reason, some prefer to store the actual scripts in a version control system.
+
+The script above is parametrized at execution time with the queue name so it cannot be used as-is. Alternatively, the scripts could be generated from the development or staging environments, then directly executed on a production environment by DBAs to replicate that table structure.
 
 To capture the script for later execution use SQL Server Management Studio. Connect to the server (e.g. development or staging) and right-click the database with the queue tables. From "Tasks" menu choose "Generate Scripts..." and generate the scripts for relevant tables.
 
@@ -72,13 +72,15 @@ snippet: PurgeTextSql
 
 ### Receive message
 
-NOTE: The T-SQL statements for sending and receiving messges execute with [`NOCOUNT ON`](https://docs.microsoft.com/en-us/sql/t-sql/statements/set-nocount-transact-sql) option. However, this does not affect the original value of this setting. The original value is saved at the beginning and restored after executing the statement.
+> [!NOTE]
+> The T-SQL statements for sending and receiving messges execute with [`NOCOUNT ON`](https://docs.microsoft.com/en-us/sql/t-sql/statements/set-nocount-transact-sql) option. However, this does not affect the original value of this setting. The original value is saved at the beginning and restored after executing the statement.
 
 Retrieves a message from the queue.
 
 snippet: ReceiveTextSql
 
-NOTE: The `CorrelationId`, `ReplyToAddress` and `Recoverable` columns are required for backwards compatibility with version 1 of the [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer) package. When receiving messages sent by endpoints that use later versions, the values of correlation ID and reply-to address should be read from the headers (`NServiceBus.CorrelationId` and `NServiceBus.ReplyToAddress`) instead. The value `Recoverable` can be ignored as it is always `true`/`1`.
+> [!NOTE]
+> The `CorrelationId`, `ReplyToAddress` and `Recoverable` columns are required for backwards compatibility with version 1 of the [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer) package. When receiving messages sent by endpoints that use later versions, the values of correlation ID and reply-to address should be read from the headers (`NServiceBus.CorrelationId` and `NServiceBus.ReplyToAddress`) instead. The value `Recoverable` can be ignored as it is always `true`/`1`.
 
 ### Send message
 
@@ -86,7 +88,8 @@ Places a message on the queue.
 
 snippet: SendTextSql
 
-NOTE: The `CorrelationId`, `ReplyToAddress` and `Recoverable` columns are required for backwards compatibility with version 1 of the [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer) package. When sending messages to endpoints that use later versions, the values of the correlation ID and reply-to address columns should be set to `NULL` and the actual values provided in the headers (`NServiceBus.CorrelationId` and `NServiceBus.ReplyToAddress`). The value `Recoverable` should always be `true`/`1`.
+> [!NOTE]
+> The `CorrelationId`, `ReplyToAddress` and `Recoverable` columns are required for backwards compatibility with version 1 of the [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer) package. When sending messages to endpoints that use later versions, the values of the correlation ID and reply-to address columns should be set to `NULL` and the actual values provided in the headers (`NServiceBus.CorrelationId` and `NServiceBus.ReplyToAddress`). The value `Recoverable` should always be `true`/`1`.
 
 partial: native-subscriptions
 

@@ -10,6 +10,7 @@ This feature can be enabled when configuring the `AzureStorageQueueTransport`:
 
 snippet: AzureStorageQueueUseAccountAliasesInsteadOfConnectionStrings
 
-NOTE: For the default connection string without an additional storage account specified, an empty string is the default alias.
+> [!NOTE]
+> For the default connection string without an additional storage account specified, an empty string is the default alias.
 
 See also [Using aliases instead of connection strings](/transports/azure-storage-queues/multi-storageaccount-support.md#cross-namespace-routing-aliases-instead-of-connection-strings) for multi-account support.

@@ -24,7 +24,8 @@ For solutions with many projects, the [Target Framework Migrator](https://market
 The transport is now compatible with both `System.Data.SqlClient` and `Microsoft.Data.SqlClient`. The existing NServiceBus.SqlServer package references `System.Data.SqlClient`, and it is the package that should be used when compatibility with `System.Data.SqlClient` is required.
 The new NServiceBus.Transport.SqlServer package references `Microsoft.Data.SqlClient`, and this is the recommended package for new projects, or if compatibility with `Microsoft.Data.SqlClient` is required in an existing project.
 
-NOTE: `System.Data.SqlClient` is in maintenance mode. Microsoft will bring new features and improvements to [`Microsoft.Data.SqlClient`](https://www.nuget.org/packages/Microsoft.Data.SqlClient/) only. For more information, read [Introduction to the new Microsoft.Data.SqlClient](https://devblogs.microsoft.com/dotnet/introducing-the-new-microsoftdatasqlclient/). It is recommended to switch to the new client if possible.
+> [!NOTE]
+> `System.Data.SqlClient` is in maintenance mode. Microsoft will bring new features and improvements to [`Microsoft.Data.SqlClient`](https://www.nuget.org/packages/Microsoft.Data.SqlClient/) only. For more information, read [Introduction to the new Microsoft.Data.SqlClient](https://devblogs.microsoft.com/dotnet/introducing-the-new-microsoftdatasqlclient/). It is recommended to switch to the new client if possible.
 
 ## Moved types from namespace `NServiceBus.Transport.SQLServer` to `NServiceBus.Transport.SqlServer`
 

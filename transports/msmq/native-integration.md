@@ -10,9 +10,11 @@ This document describes how to consume messages from and send messages to non-NS
 
 These examples use the [System.Messaging](https://docs.microsoft.com/en-us/dotnet/api/system.messaging?view=netframework-4.8) and [System.Transactions](https://docs.microsoft.com/en-us/dotnet/api/system.transactions?view=netframework-4.8) assemblies.
 
-WARNING: The `Systems.Messaging` namespace is not available in .NET Core.
+> [!WARNING]
+> The `Systems.Messaging` namespace is not available in .NET Core.
 
-INFO: When using the C# code samples, be sure to add the proper includes for both the `System.Messaging` and `System.Transactions` assemblies in the program that's using these functions. When using the PowerShell scripts, include these assemblies by calling `Add-Type` in the script.
+> [!NOTE]
+> When using the C# code samples, be sure to add the proper includes for both the `System.Messaging` and `System.Transactions` assemblies in the program that's using these functions. When using the PowerShell scripts, include these assemblies by calling `Add-Type` in the script.
 
 
 

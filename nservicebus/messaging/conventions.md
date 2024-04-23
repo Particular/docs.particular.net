@@ -23,7 +23,8 @@ Messages can be defined in a *Portable Class Library* (PCL) and shared across mu
 
 snippet: MessageConventions
 
-Note: Note that in .NET, the namespace is optional and hence can be null. If any conventions do partial string checks, for example using `EndsWith` or `StartsWith`, then a null check should be used. So include `.Namespace != null` at the start of the convention. Otherwise a null reference exception will occur during the type scanning.
+> [!NOTE]
+> Note that in .NET, the namespace is optional and hence can be null. If any conventions do partial string checks, for example using `EndsWith` or `StartsWith`, then a null check should be used. So include `.Namespace != null` at the start of the convention. Otherwise a null reference exception will occur during the type scanning.
 
 ## Using both default and custom conventions
 

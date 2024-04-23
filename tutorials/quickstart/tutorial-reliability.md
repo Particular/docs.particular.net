@@ -14,11 +14,9 @@ In [Part 1 of this tutorial](/tutorials/quickstart), you reviewed the project st
 
 One of the most powerful advantages of asynchronous messaging is reliability. Failures in one part of a system aren't propagated and won't bring the whole system down.
 
-{{NOTE:
-If you didn't already download the Quickstart solution in the [previous lesson](/tutorials/quickstart), you can download it now:
+If you didn't already download the Quick Start solution in the [previous lesson](/tutorials/quickstart), you can download it now:
 
 downloadbutton
-}}
 
 ## How do NServiceBus systems recover?
 
@@ -31,7 +29,8 @@ downloadbutton
 
 5. Restart the **Billing** application by right-clicking the **Billing** project in Visual Studio's Solution Explorer, then selecting **Debug** > **Start new instance**.
 
-NOTE: For Visual Studio Code users, the **Billing** endpoint can be started by navigating to the _Run and Debug_ tab and selecting the _Billing_ launch configuration from the dropdown list. Be sure to re-select the _Debug All_ configuration again after _Billing_ is running.
+> [!NOTE]
+> For Visual Studio Code users, the **Billing** endpoint can be started by navigating to the _Run and Debug_ tab and selecting the _Billing_ launch configuration from the dropdown list. Be sure to re-select the _Debug All_ configuration again after _Billing_ is running.
 
 When the **Billing** endpoint starts, it will pick up messages published earlier by **Sales** and will complete the process for orders that were waiting to be billed.
 
@@ -66,7 +65,8 @@ System.Exception: Oops
 INFO Received PlaceOrder, OrderId = e1d86cb9
 ```
 
-NOTE: If you didn't detach the debugger, you must click the **Continue** button in the Exception Assistant dialog before the message will be printed in the **Sales** window.
+> [!NOTE]
+> If you didn't detach the debugger, you must click the **Continue** button in the Exception Assistant dialog before the message will be printed in the **Sales** window.
 
 5. Stop the solution and re-comment the code inside the **ThrowTransientException** region, so no exceptions are thrown in the future.
 
@@ -76,11 +76,13 @@ Of course, there are other exceptions that may be harder to recover from than si
 
 ## Systemic failures
 
-WARNING: In order to use the portable version of the Particular Service Platform included in this tutorial, you'll need to use a Windows operating system.
+> [!WARNING]
+> In order to use the portable version of the Particular Service Platform included in this tutorial, you'll need to use a Windows operating system.
 
 A systemic failure is one that is simply unrecoverable, no matter how many times we retry. Usually these are just plain old bugs. Most of the time these kinds of failures require a redeployment with new code in order to fix them. But what happens to the messages in this case?
 
-NOTE: For a good introduction to different types of errors and how to handle them with message-based systems, see [I caught an exception. Now what?](https://particular.net/blog/but-all-my-errors-are-severe)
+> [!NOTE]
+> For a good introduction to different types of errors and how to handle them with message-based systems, see [I caught an exception. Now what?](https://particular.net/blog/but-all-my-errors-are-severe)
 
 Let's cause a systemic failure and see how you can use the Particular Service Platform tools to handle it.
 
@@ -145,7 +147,8 @@ Once the stack trace appears, check out the **Failed Messages** view in the **Se
 
 So what happened here? Due to the hard-coded exception, the message couldn't be successfully processed. And just like before in the [Transient failures](#transient-failures) section, NServiceBus immediately attempted a round of retries. When every retry attempt failed, before giving up all hope, the system attempted another round of retires after a delay. Failing that, NServiceBus repeated this cycle 2 more times, increasing the delay each time. After all of the retries and delays were exhausted, the message still couldn't be processed successfully and the system transferred the message to an **error queue**, a holding location for failed messages, so that other messages behind it can be processed.
 
-INFO: By default, NServiceBus will perform rounds of [immediate retries](/nservicebus/recoverability/#immediate-retries) separated by a series of [increasing delays](/nservicebus/recoverability/#delayed-retries). The endpoints here have been [configured for shorter delays](/nservicebus/recoverability/configure-delayed-retries.md) so that we can quickly see the endpoint arrive in the error queue.
+> [!NOTE]
+> By default, NServiceBus will perform rounds of [immediate retries](/nservicebus/recoverability/#immediate-retries) separated by a series of [increasing delays](/nservicebus/recoverability/#delayed-retries). The endpoints here have been [configured for shorter delays](/nservicebus/recoverability/configure-delayed-retries.md) so that we can quickly see the endpoint arrive in the error queue.
 
 Once the message entered the error queue, ServicePulse took over, displaying all failed messages grouped by exception type and the location it was thrown from.
 

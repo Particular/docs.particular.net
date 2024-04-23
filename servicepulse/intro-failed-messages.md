@@ -50,7 +50,8 @@ The display of failed message groups can be changed via the "Group by" drop-down
  * **Endpoint Instance** - groups messages by endpoint instance identifier where the failure occurred.
  * **Endpoint Name** - groups messages by name of the endpoint where the failure occurred.
 
-Note: the number of listed groups may differ depending on the selected classifications type view.
+> [!NOTE]
+> the number of listed groups may differ depending on the selected classifications type view.
 
 ##### Managing failed message groups
 
@@ -77,7 +78,8 @@ Individual failed messages can be viewed in one of the following two ways:
 
 Both of these message list views allow for taking actions on an individual message, on custom message selections or all messages contained in the view.
 
-NOTE: Retrying one or a few individual messages can be useful for testing system fixes before deciding to retry several messages in a group. This is because retrying several messages take a long time and queue other ServiceControl operations for longer than desired.
+> [!NOTE]
+> Retrying one or a few individual messages can be useful for testing system fixes before deciding to retry several messages in a group. This is because retrying several messages take a long time and queue other ServiceControl operations for longer than desired.
 
 The following actions can also be taken on each message or a selection of messages:
 
@@ -129,7 +131,8 @@ The display of deleted message groups can be changed via the "Group by" drop-dow
  * **Endpoint Instance** - groups messages by endpoint instance identifier where the failure occurred.
  * **Endpoint Name** - groups messages by name of the endpoint where the failure occurred.
 
-Note: the number of listed groups may differ depending on the selected classifications type view.
+> [!NOTE]
+> the number of listed groups may differ depending on the selected classifications type view.
 
 ### Deleted Messages
 

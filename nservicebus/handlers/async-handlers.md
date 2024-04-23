@@ -6,7 +6,8 @@ component: Core
 versions: '[6.0,)'
 ---
 
-WARNING: It is difficult to give generic advice on how asynchronous code should be structured. It is important to understand compute-bound vs. I/O-bound operations and avoid copying and pasting snippets without analysing the benefits they provide for a given business scenarios. Don't assume; measure it.
+> [!WARNING]
+> It is difficult to give generic advice on how asynchronous code should be structured. It is important to understand compute-bound vs. I/O-bound operations and avoid copying and pasting snippets without analysing the benefits they provide for a given business scenarios. Don't assume; measure it.
 
 [Handlers](/nservicebus/handlers/) and [sagas](/nservicebus/sagas/) are executed by threads from the thread pool. Depending on the transport implementation the worker thread pool thread or the I/O thread pool thread might be used. Typically message handlers and sagas issue I/O-bound work, such as sending or publishing messages, storing information into databases, and calling web services. In other cases, message handlers are used to schedule compute-bound work. To be able to write efficient message handlers and sagas, it is crucial to understand the difference between those scenarios.
 
@@ -63,7 +64,8 @@ For the majority of business scenarios, this approach is acceptable since many o
 
 ## Calling long-running, compute-bound code
 
-WARNING: This approach should be used only after a thorough analysis of the runtime behavior and the code involved in the call hierarchy of a handler. Wrapping code inside the handler with `Task.Run` or `Task.Factory.StartNew` can seriously harm the throughput if applied incorrectly. It should be used when multiple long-running compute-bound tasks need to be executed in parallel.
+> [!WARNING]
+> This approach should be used only after a thorough analysis of the runtime behavior and the code involved in the call hierarchy of a handler. Wrapping code inside the handler with `Task.Run` or `Task.Factory.StartNew` can seriously harm the throughput if applied incorrectly. It should be used when multiple long-running compute-bound tasks need to be executed in parallel.
 
 Long-running compute-bound code that is executed in a handler could be offloaded to the worker thread pool.
 

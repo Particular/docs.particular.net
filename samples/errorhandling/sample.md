@@ -25,7 +25,8 @@ snippet: Disable
 
 ## The output
 
-WARNING: This sample uses `Console.Writeline` instead of standard logging only for brevity and should not be used in production code.
+> [!WARNING]
+> This sample uses `Console.Writeline` instead of standard logging only for brevity and should not be used in production code.
 
 ### Without Delayed Retries
 
@@ -53,7 +54,7 @@ Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
 Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
 Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
 Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
-2016-12-14 13:33:18.790 WARN  NServiceBus.RecoverabilityExecutor Delayed Retry will reschedule message '05b97154-04b9-405a-92d7-a6dc0163273f' after a delay of 00:00:20 because of an exception: 
+2016-12-14 13:33:18.790 WARN  NServiceBus.RecoverabilityExecutor Delayed Retry will reschedule message '05b97154-04b9-405a-92d7-a6dc0163273f' after a delay of 00:00:20 because of an exception:
 System.Exception: An exception occurred in the handler.
 . . .
 Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f

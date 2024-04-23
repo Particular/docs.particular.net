@@ -23,9 +23,11 @@ Most message queues, and some data stores, do not support distributed transactio
 
 The NServiceBus **outbox** feature ensures consistency between business data and messages. It simulates an atomic transaction, distributed across both the data store used for business data and the message queue used for messaging.
 
-Note: Messages sent with [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) will be sent immediately and won't be handled by the outbox.
+> [!NOTE]
+> Messages sent with [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) will be sent immediately and won't be handled by the outbox.
 
-Note: Messages sent using `IMessageSession` won't be handled by the outbox. The outbox requires an incoming message context. Use the `IMessageHandlerContext` instance to dispatch messages handled by the outbox. Use the [Transactional Session](/nservicebus/transactional-session) when requiring outbox behavior without an incoming message.
+> [!NOTE]
+> Messages sent using `IMessageSession` won't be handled by the outbox. The outbox requires an incoming message context. Use the `IMessageHandlerContext` instance to dispatch messages handled by the outbox. Use the [Transactional Session](/nservicebus/transactional-session) when requiring outbox behavior without an incoming message.
 
 ## The consistency problem
 
@@ -54,7 +56,7 @@ Returning to the earlier example of a message handler that creates a `User` and 
 ```mermaid
 graph TD
   subgraph Phase 1
-  receiveMessage(1. Receive incoming message)  
+  receiveMessage(1. Receive incoming message)
   dedupe{2. Deduplication}
   createTx(3. Begin transaction)
   messageHandler(4. Execute message handler)
@@ -78,7 +80,7 @@ graph TD
   commitTx-->phase2
   phase2-->areSent
   send-->updateOutbox
-  updateOutbox-->ack 
+  updateOutbox-->ack
 
   dedupe-- Record found -->phase2
   areSent-- No -->send
@@ -114,7 +116,8 @@ There is no single transaction that spans all the operations. The operations occ
 
 In phase 1, outgoing messages are not immediately sent. They are serialized and persisted in outbox storage. This occurs in a single transaction (steps 3 to 6) which also includes changes to business data made by message handlers. This guarantees that changes to business data are not made without capturing outgoing messages, and vice-versa.
 
-NOTE: This guarantee does not apply to operations in message handlers that do not enlist in [an outbox transaction](/nservicebus/handlers/accessing-data.md#synchronized-storage-session), such as sending emails, changing the file system, etc.
+> [!NOTE]
+> This guarantee does not apply to operations in message handlers that do not enlist in [an outbox transaction](/nservicebus/handlers/accessing-data.md#synchronized-storage-session), such as sending emails, changing the file system, etc.
 
 In phase 2, outgoing messages are sent to the messaging infrastructure and outbox storage is updated to indicate that the outgoing messages have been sent (steps 1 to 3). Due to possible failures, a given message may be sent multiple times. For example, if an exception is thrown in step 3 (failure to update outbox storage) the message will be read from outbox storage again and will be sent again. As long as the receiving endpoints use the outbox feature, these duplicates will be handled by the deduplication in phase 1, step 2.
 
@@ -168,7 +171,8 @@ In order to gradually convert an entire system from the DTC to the outbox:
 1. Enable the outbox on any endpoints that only send or publish messages to already-converted endpoints, where the outbox will be able to properly handle any duplicate messages.
 1. Progress outward until all endpoints are converted.
 
-WARNING: When verifying outbox functionality, it can be helpful to temporarily [stop the MSDTC Service](https://technet.microsoft.com/en-us/library/cc770732.aspx). This ensures that the outbox is working as expected, and no other resources are enlisting in distributed transactions.
+> [!WARNING]
+> When verifying outbox functionality, it can be helpful to temporarily [stop the MSDTC Service](https://technet.microsoft.com/en-us/library/cc770732.aspx). This ensures that the outbox is working as expected, and no other resources are enlisting in distributed transactions.
 
 ## Message identity
 
@@ -190,7 +194,8 @@ The amount of storage space required for the outbox can be calculated as follows
 
 A single outbox record, after all transport operations have been dispatched, usually requires less than 50 bytes, most of which are taken for storing the original message ID as this is a string value.
 
-NOTE: If the system is processing a high volume of messages, having a long deduplication time frame will increase the amount of storage space that is required by the outbox.
+> [!NOTE]
+> If the system is processing a high volume of messages, having a long deduplication time frame will increase the amount of storage space that is required by the outbox.
 
 ## Persistence
 

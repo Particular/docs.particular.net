@@ -57,7 +57,8 @@ The following headers include information for the receiving endpoint on the [mes
 
 The type of serialization used for the message, for example `text/xml`, `text/json`, `application/json`, or `application/json; systemjson`. In some cases, it may be useful to use the `NServiceBus.Version` header to determine how to use the value in this header appropriately.
 
-WARNING: Although this header mimicks the [HTTP Content-Type header](https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type) the values are case-sensitive. The header value does not behave like HTTP headers where everything after `;` is used to order and match the best qualified (application/json) serializer. Adding a suffix like `; systemjson` requires **all** endpoints involved to use this full key (for example: `application/json; systemjson`).
+> [!WARNING]
+> Although this header mimicks the [HTTP Content-Type header](https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type) the values are case-sensitive. The header value does not behave like HTTP headers where everything after `;` is used to order and match the best qualified (application/json) serializer. Adding a suffix like `; systemjson` requires **all** endpoints involved to use this full key (for example: `application/json; systemjson`).
 
 ### NServiceBus.EnclosedMessageTypes
 
@@ -104,13 +105,15 @@ snippet: override-conversation-id
 
 partial: conversationid
 
-WARN: Attempting to override an existing Conversation ID is not supported and will produce the following error:
+> [!WARNING]
+> Attempting to override an existing Conversation ID is not supported and will produce the following error:
 
 ```
 Cannot set the NServiceBus.ConversationId header to 'XXXXX' as it cannot override the incoming header value ('2f4076a0-d8de-4297-9d18-a830015dd42a').
 ```
 
-NOTE: `Conversation Id` is very similar to `Correlation Id`. Both headers are copied to each new message that an endpoint produces. Whereas `Conversation Id` is always copied from the incoming message being handled, `Correlation Id` can come from another source (such as when replying from a saga using `ReplyToOriginator(...)`).
+> [!NOTE]
+> `Conversation Id` is very similar to `Correlation Id`. Both headers are copied to each new message that an endpoint produces. Whereas `Conversation Id` is always copied from the incoming message being handled, `Correlation Id` can come from another source (such as when replying from a saga using `ReplyToOriginator(...)`).
 
 partial: newconversationid
 
@@ -119,7 +122,8 @@ partial: newconversationid
 
 The `MessageId` that caused the current message to be sent. Whenever a message is sent or published from inside a message handler, its `RelatedTo` header is set to the `MessageId` of the incoming message that was being handled.
 
-NOTE: For a single request-response interaction `Correlation Id` and `RelatedTo` are very similar. Both headers are able to correlate the response message back to the request message. Once a _conversation_ is longer than a single request-response interaction, `Correlation Id` can be used to correlate a response to the original request. `RelatedTo` can only correlate a message back to the previous message in the same _conversation_.
+> [!NOTE]
+> For a single request-response interaction `Correlation Id` and `RelatedTo` are very similar. Both headers are able to correlate the response message back to the request message. Once a _conversation_ is longer than a single request-response interaction, `Correlation Id` can be used to correlate a response to the original request. `RelatedTo` can only correlate a message back to the previous message in the same _conversation_.
 
 
 ### NServiceBus.MessageIntent
@@ -306,7 +310,8 @@ The timestamp when the message should be delivered. Used for more accurate calcu
 
 The endpoint name the message was sent from.
 
-INFO: Used for linking messages in ServiceInsight. See [NServiceBus.ConversationId](#messaging-interaction-headers-nservicebus-conversationid)
+> [!NOTE]
+> Used for linking messages in ServiceInsight. See [NServiceBus.ConversationId](#messaging-interaction-headers-nservicebus-conversationid)
 
 ### NServiceBus.OriginatingMachine
 
@@ -328,7 +333,8 @@ The timestamp when the processing of a message ended.
 
 Name of the endpoint where the message was processed.
 
-INFO: Used for linking messages in ServiceInsight. See [NServiceBus.ConversationId](#messaging-interaction-headers-nservicebus-conversationid)
+> [!NOTE]
+> Used for linking messages in ServiceInsight. See [NServiceBus.ConversationId](#messaging-interaction-headers-nservicebus-conversationid)
 
 ### NServiceBus.ProcessingMachine
 
@@ -354,7 +360,8 @@ snippet: HeaderWriterAuditAudit
 
 Headers used to facilitate [retries](/nservicebus/recoverability/).
 
-Note: These headers only exist after the first round of immediate reties has finished and are removed before sending a message to the error queue after all allowed retry attempts are exhausted.
+> [!NOTE]
+> These headers only exist after the first round of immediate reties has finished and are removed before sending a message to the error queue after all allowed retry attempts are exhausted.
 
 
 ### NServiceBus.Retries

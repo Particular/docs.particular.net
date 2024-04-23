@@ -70,7 +70,8 @@ Testing a saga can be accomplished in one of two ways:
 
 Testing a saga uses the same `TestableMessageHandlerContext` as testing a handler. The same properties are used to perform assertions after a saga method is invoked.
 
-NOTE: Because timeouts are technically sent messages, any timeout requested from the saga will appear in both the `TimeoutMessages` and `SentMessages` collections of the `TestableMessageHandlerContext`.
+> [!NOTE]
+> Because timeouts are technically sent messages, any timeout requested from the saga will appear in both the `TimeoutMessages` and `SentMessages` collections of the `TestableMessageHandlerContext`.
 
 ### Example
 
@@ -88,7 +89,7 @@ snippet: SagaTest
 
 To determine the testable context for a behavior context, replace the `I` at the beginning of the interface name with `Testable`.
 
-For example: 
+For example:
 
 * A behavior using `IIncomingLogicalMessageContext` can be tested using `TestableIncomingLogicalMessageContext`.
 * A behavior using `IInvokeHandlerContext` can be tested using `TestableInvokeHandlerContext`.
@@ -113,7 +114,8 @@ To test that logging is performed correctly, use the `TestingLoggerFactory`. The
 
 ### Example
 
-NOTE: Using `WriteTo` or `Level` set the provided parameters to the statically cached factory for the lifetime of the application domain. For isolation of logging in concurrent scenarios it is recommended to use `BeginScope` that was introduced in Version 7.2.
+> [!NOTE]
+> Using `WriteTo` or `Level` set the provided parameters to the statically cached factory for the lifetime of the application domain. For isolation of logging in concurrent scenarios it is recommended to use `BeginScope` that was introduced in Version 7.2.
 
 The following code show how to verify that logging is performed by the message handler.
 

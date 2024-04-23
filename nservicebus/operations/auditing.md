@@ -11,11 +11,13 @@ redirects:
  - nservicebus/auditing-with-nservicebus
 ---
 
-NOTE: Auditing is required for optimum functionality of the platform tools. ServicePulse can work without auditing enabled but will show incorrect retry states on messages, and ServiceInsight will only show failures instead of complete conversations.
+> [!NOTE]
+> Auditing is required for optimum functionality of the platform tools. ServicePulse can work without auditing enabled but will show incorrect retry states on messages, and ServiceInsight will only show failures instead of complete conversations.
 
 The distributed nature of parallel, message-driven systems makes them more difficult to debug than their sequential, synchronous and centralized counterparts. For these reasons, NServiceBus provides built-in message auditing for every endpoint. Configure NServiceBus to audit and it will capture a copy of every received message and forward it to a specified audit queue.
 
-NOTE: By default, auditing is not enabled and must be configured for each endpoint where auditing is required.
+> [!NOTE]
+> By default, auditing is not enabled and must be configured for each endpoint where auditing is required.
 
 It is recommended to specify a central auditing queue for all related endpoints (i.e. endpoints that belong to the same system). This gives an overview of the entire system in one place and can help see how messages correlate. One can look at the audit queue as a central record of everything that happened in the system. A central audit queue is also required by the Particular Service Platform and especially [ServiceControl](/servicecontrol), which consumes messages from these auditing queues. For more information, see [ServicePulse documentation](/servicepulse/).
 
@@ -72,12 +74,12 @@ To force a [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md) on
 
 Note that while the phrasing is "forwarding a message" in the implementation it is actually "cloning and sending a new message". This is important when considering TimeToBeReceived since the time taken to receive and process the original message is not part of the TimeToBeReceived of the new audit message. In effect the audit message receives the full time allotment of whatever TimeToBeReceived is used.
 
-{{Warning: MSMQ forces the same TimeToBeReceived on all messages in a transaction. Therefore, OverrideTimeToBeReceived is not supported when using the [MSMQ Transport](/transports/msmq/). If OverrideTimeToBeReceived is detected when using MSMQ an exception will be thrown with the following text:
-
-```
-Setting a custom OverrideTimeToBeReceived for audits is not supported on transactional MSMQ
-```
-}}
+> [!WARNING]
+> MSMQ forces the same TimeToBeReceived on all messages in a transaction. Therefore, OverrideTimeToBeReceived is not supported when using the [MSMQ Transport](/transports/msmq/). If OverrideTimeToBeReceived is detected when using MSMQ an exception will be thrown with the following text:
+>
+> ```
+> Setting a custom OverrideTimeToBeReceived for audits is not supported on transactional MSMQ
+> ```
 
 #### Default Value
 
@@ -103,6 +105,7 @@ Additional information can be added to audit messages using a [custom behavior](
 
 snippet: AddAuditData
 
-Note: Message headers count towards the message size and the additional audit information has to honor the transport's message header limitations.
+> [!NOTE]
+> Message headers count towards the message size and the additional audit information has to honor the transport's message header limitations.
 
 partial: custom-audit-action

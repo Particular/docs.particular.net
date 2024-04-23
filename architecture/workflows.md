@@ -7,7 +7,8 @@ callsToAction: ['solution-architect']
 
 Business processes typically involve various distributed components that need to be invoked in a coordinated manner. The Particular Service Platform supports both choreography and orchestration of workflows.
 
-Note: Choreography and orchestration are not mutually exclusive. The patterns may be combined at different levels of business workflows.
+> [!NOTE]
+> Choreography and orchestration are not mutually exclusive. The patterns may be combined at different levels of business workflows.
 
 ## Choreography
 
@@ -46,7 +47,8 @@ _An orchestrated workflow implemented as an NServiceBus Saga, visualized by [Ser
 
 [**Tutorial: Introduction to NServiceBus sagas →**](/tutorials/nservicebus-sagas/1-saga-basics/)
 
-Note: NServiceBus sagas focus on providing a convenient and efficient way to manage message-based workflows as described by the [Process Manager pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html). The [_saga distributed transactions_ pattern](https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/saga/saga) is primarily concerned with managing long-lived transactions and ensuring consistency between multiple operations, especially in the presence of failures. The NServiceBus saga feature can be used to implement the _saga distributed transactions_ pattern.
+> [!NOTE]
+> NServiceBus sagas focus on providing a convenient and efficient way to manage message-based workflows as described by the [Process Manager pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/ProcessManager.html). The [_saga distributed transactions_ pattern](https://learn.microsoft.com/en-us/azure/architecture/reference-architectures/saga/saga) is primarily concerned with managing long-lived transactions and ensuring consistency between multiple operations, especially in the presence of failures. The NServiceBus saga feature can be used to implement the _saga distributed transactions_ pattern.
 
 ### Challenges
 

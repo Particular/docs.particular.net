@@ -15,12 +15,12 @@ The following are example scripts to facilitate operations against the Azure Sto
 
 These scripts require the Azure command line (Azure CLI) to be installed. For more information refer to the [Azure CLI installation guide](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli).
 
-For the scripts to be run against the Azure Storage Queue transport, a  valid connection string to the Azure Storage account must be present. For additional information, refer to the document on how to [create a storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal) 
+For the scripts to be run against the Azure Storage Queue transport, a  valid connection string to the Azure Storage account must be present. For additional information, refer to the document on how to [create a storage account](https://learn.microsoft.com/en-us/azure/storage/common/storage-account-create?tabs=azure-portal)
 
 For easier access, the connection string can be stored as an environment variable.
 
 ```
-#get the connection string, 
+#get the connection string,
 $connectionString=az storage account show-connection-string -n $storageAccount -g $resourceGroup --query connectionString -o tsv
 
 #set conn string as env variable
@@ -31,7 +31,8 @@ $env:AZURE_STORAGE_CONNECTION_STRING = $connectionString
 
 Queue creation can be done for a specific endpoint or queues shared between multiple endpoints.
 
-Note: The Azure Storage Queues Transport will fail to start if a queue name is longer than 63 characters. Refer to the [sanitization document](/transports/azure-storage-queues/sanitization.md) for more details.
+> [!NOTE]
+> The Azure Storage Queues Transport will fail to start if a queue name is longer than 63 characters. Refer to the [sanitization document](/transports/azure-storage-queues/sanitization.md) for more details.
 
 ```
 #check if queue exists
@@ -52,7 +53,7 @@ az storage queue delete -n "endpointname"
 
 ## Publish/Subscribe
 
-Azure Storage Queue transport implements the publish/subscribe (pub/sub) pattern. 
+Azure Storage Queue transport implements the publish/subscribe (pub/sub) pattern.
 
 
 #### Create the subscription routing table
@@ -81,7 +82,7 @@ az storage entity delete --partition-key  MyEvent.Full.Type.Name  --row-key  Sub
 
 ## Delayed delivery
 
-When delayed delivery is enabled at an endpoint, the transport creates a storage table to store the delayed messages. 
+When delayed delivery is enabled at an endpoint, the transport creates a storage table to store the delayed messages.
 
 By default, the storage table name is constructed using a naming scheme that starts with the word delays followed by SHA-1 hash of the endpoint's name.
 

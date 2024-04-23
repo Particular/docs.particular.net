@@ -84,7 +84,8 @@ var routing = endpointConfiguration.UseTransport(transportConfiguration);
 routing.SubscriptionAuthorizer(context => <...>);
 ```
 
-Note: Subscription Authorization is only available for transports using [message-driven publish-subscribe](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based)
+> [!NOTE]
+> Subscription Authorization is only available for transports using [message-driven publish-subscribe](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based)
 
 ## Renamed APIs
 
@@ -101,4 +102,5 @@ The following configuration operations are obsolete in NServiceBus version 8. Se
 * `EndpointConfiguration.DoNotCreateQueues`
 * `TransportExtensions.ConnectionString`
 
-Note: Queue creation can be controlled using the [installer configuration](/nservicebus/operations/installers.md).
+> [!NOTE]
+> Queue creation can be controlled using the [installer configuration](/nservicebus/operations/installers.md).

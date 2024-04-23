@@ -37,7 +37,8 @@ The life cycle of the bridge is managed by the .NET Generic Host.
 
 partial: errors
 
-NOTE: The messages in the `bridge.error` queue are not compatible with ServiceControl at this moment.
+> [!NOTE]
+> The messages in the `bridge.error` queue are not compatible with ServiceControl at this moment.
 
 ## Consistency
 

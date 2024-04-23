@@ -35,7 +35,8 @@ Alternatively, a call to `criticalErrorContext.Stop` can be used.
 
 snippet: StopEndpointInCriticalError
 
-Warn: Calling `criticalErrorContext.Stop` without terminating the host process will only stop the NServiceBus endpoint without affecting the host process and other components running within the same process. This is why restarting the process after stopping the endpoint is the recommended approach.
+> [!WARNING]
+> Calling `criticalErrorContext.Stop` without terminating the host process will only stop the NServiceBus endpoint without affecting the host process and other components running within the same process. This is why restarting the process after stopping the endpoint is the recommended approach.
 
 ### Terminate and restart the process
 
@@ -61,7 +62,8 @@ snippet: DefiningCustomHostErrorHandlingAction
 
 ### Example of a custom implementation
 
-NOTE: The following implementation assumes that the endpoint instance is hosted in isolation and that the hosting environment of the process will restart the process after it has been killed.
+> [!NOTE]
+> The following implementation assumes that the endpoint instance is hosted in isolation and that the hosting environment of the process will restart the process after it has been killed.
 
 snippet: CustomHostErrorHandlingAction
 

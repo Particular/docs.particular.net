@@ -15,4 +15,5 @@ There are several options available to execute custom code as part of the endpoi
 * Adding a custom [FeatureStartupTask](/nservicebus/pipeline/features.md#feature-startup-tasks).
 * [Using MEF or Reflection](/samples/plugin-based-config) to run code at startup and shutdown in a pluggable way.
 
-WARNING: The `IWantToRunWhenBusStartsAndStops` interface is no longer available as part of the `NServiceBus` package.
+> [!WARNING]
+> The `IWantToRunWhenBusStartsAndStops` interface is no longer available as part of the `NServiceBus` package.

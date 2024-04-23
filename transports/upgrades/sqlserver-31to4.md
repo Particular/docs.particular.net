@@ -17,7 +17,8 @@ upgradeGuideCoreVersions:
 
 To run the upgraded project on .NET Core the transport needs to be switched to one of the native transactions modes. Consider using the [Outbox](/nservicebus/outbox) to maintain the same *exactly-once processing* guarantees.
 
-NOTE: Transaction scope is supposed to be supported by `SqlConnection` in future versions of .NET Core.
+> [!NOTE]
+> Transaction scope is supposed to be supported by `SqlConnection` in future versions of .NET Core.
 
 
 ## Multi-instance mode

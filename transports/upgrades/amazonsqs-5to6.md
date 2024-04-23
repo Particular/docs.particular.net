@@ -43,7 +43,8 @@ snippet: 5to6-clients-new
 
 Enabling S3 for handling large messages is now configured via the `S3` property of the transport definition.
 
-NOTE: By default, the value is `null` which means S3 usage for sending large messages is disabled.
+> [!NOTE]
+> By default, the value is `null` which means S3 usage for sending large messages is disabled.
 
 Instead of:
 
@@ -57,7 +58,8 @@ snippet: 5to6-S3-new
 
 Message payload encryption is now configured via the `Encryption` property of the S3 settings object.
 
-NOTE: By default, the value is `null` which means the messages are not encrypted.
+> [!NOTE]
+> By default, the value is `null` which means the messages are not encrypted.
 
 Instead of:
 

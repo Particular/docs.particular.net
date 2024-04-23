@@ -43,11 +43,10 @@ This is **logical routing**, the mapping of specific message types to logical en
 
 We say *logical routing* because this is at a logical layer only, which isn't necessarily the same as *physical routing*. Within one *logical* endpoint, there may be many *physical* endpoint instances deployed to multiple servers.
 
-{{NOTE:
-An [**endpoint**](/nservicebus/concepts/glossary.md#endpoint) is a logical concept, defined by an endpoint name and associated code, that defines an owner responsible for processing messages.
-
-An [**endpoint instance**](/nservicebus/concepts/glossary.md#endpoint-instance) is a physical instance of the endpoint deployed to a single server. Many endpoint instances may be deployed to many servers in order to scale out the processing of a high-volume message to multiple servers.
-}}
+> [!NOTE]
+> An [**endpoint**](/nservicebus/concepts/glossary.md#endpoint) is a logical concept, defined by an endpoint name and associated code, that defines an owner responsible for processing messages.
+>
+> An [**endpoint instance**](/nservicebus/concepts/glossary.md#endpoint-instance) is a physical instance of the endpoint deployed to a single server. Many endpoint instances may be deployed to many servers in order to scale out the processing of a high-volume message to multiple servers.
 
 For now, we'll only concern ourselves with logical routing, and leave the rest of it (physical routing, scale-out, etc.) for a later time.
 
@@ -87,7 +86,8 @@ First, let's create a project for our new endpoint.
  1. Rename **Messages** project to **Sales.Messages**
  1. In the **Sales** project, add a reference to the **Sales.Messages** project, so that we have access to the `PlaceOrder` message.
 
-NOTE: To take advantage of the `Async Main` feature and avoid boilerplate code, [enable C# 7.1 features](https://www.meziantou.net/2017/08/24/3-ways-to-enable-c-7-1-features).
+> [!NOTE]
+> To take advantage of the `Async Main` feature and avoid boilerplate code, [enable C# 7.1 features](https://www.meziantou.net/2017/08/24/3-ways-to-enable-c-7-1-features).
 
 ### Configuring an endpoint
 
@@ -99,7 +99,8 @@ Most of this configuration looks exactly the same as our ClientUI endpoint. It's
 
 For example, if the ClientUI endpoint used `.UseSerialization<XmlSerializer>()` while the Sales endpoint used `.UseSerialization<JsonSerializer>()`, the Sales endpoint would not be able to understand the XML-serialized messages it received from ClientUI since it would be expecting JSON.
 
-NOTE: **ProTip:** It's also possible to specify [multiple deserializers](/nservicebus/serialization/#specifying-additional-deserializers) to enable receiving messages serialized in different formats, for instance, to enable integration between teams, or to enable the use of a high-performance serializer in a performance-critical subsystem.
+> [!NOTE]
+> **ProTip:** It's also possible to specify [multiple deserializers](/nservicebus/serialization/#specifying-additional-deserializers) to enable receiving messages serialized in different formats, for instance, to enable integration between teams, or to enable the use of a high-performance serializer in a performance-critical subsystem.
 
 To allow sending and receiving messages between endpoints using different serializers, additional deserialization capability may be specified. See [Serialization](/nservicebus/serialization)
 
@@ -111,7 +112,8 @@ The difference, of course, is the name "Sales" in the console title and `Endpoin
 
 This means that the Sales endpoint will create its own queue named `Sales` where it will listen for messages. We now have two processes that each have their own queues, so now we can send messages between them.
 
-NOTE: This is quite repetitive, but remember that this is still an introductory exercise. There are various methods, such as the [INeedInitialization interface](/nservicebus/lifecycle/ineedinitialization.md) which allow for centralizing the repetitive endpoint configuration code.
+> [!NOTE]
+> This is quite repetitive, but remember that this is still an introductory exercise. There are various methods, such as the [INeedInitialization interface](/nservicebus/lifecycle/ineedinitialization.md) which allow for centralizing the repetitive endpoint configuration code.
 
 ### Debugging multiple projects
 
@@ -121,7 +123,7 @@ However, it's common in NServiceBus solutions to run multiple projects (i.e. end
 
 If you run the project now, ClientUI will work just as it did before, and Sales will start up and wait for messages that will never arrive.
 
-### Moving the handler 
+### Moving the handler
 
 Now let's move the handler from ClientUI over to Sales where it belongs.
 
@@ -133,7 +135,8 @@ Now that the handler is in the correct endpoint, what would happen if we started
 
 If you attempt to place an order in the ClientUI, an exception will be thrown because ClientUI no longer has a handler for it:
 
-WARNING: System.InvalidOperationException: No handlers could be found for message type: Messages.Commands.PlaceOrder
+> [!WARNING]
+> System.InvalidOperationException: No handlers could be found for message type: Messages.Commands.PlaceOrder
 
 In fact, you will probably get a giant wall of exception text, because the message is tried and retried, and then retried some more after successively longer delays, until finally failing for good sometime later. We'll cover this behavior in more detail in [Lesson 5: Retrying errors](../5-retrying-errors/).
 
@@ -156,7 +159,8 @@ Reminder: As noted in [configuring an endpoint](#exercise-configuring-an-endpoin
 
 Now when we run the solution, we get two console windows, one for ClientUI and one for Sales. After moving the windows around so that we can see both, we can try to place an order by pressing <kbd>P</kbd> in the **ClientUI** window.
 
-INFO: You can also keep console windows from showing up in random screen locations each time by right-clicking the console window's title bar, and in the **Layout** tab, unchecking the **Let system position window** checkbox.
+> [!NOTE]
+> You can also keep console windows from showing up in random screen locations each time by right-clicking the console window's title bar, and in the **Layout** tab, unchecking the **Let system position window** checkbox.
 
 In the **ClientUI** window, we see this output:
 

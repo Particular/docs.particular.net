@@ -4,13 +4,15 @@ By default NServiceBus.RavenDB uses optimistic concurrency control. Pessimistic 
 
 snippet: ravendb-sagas-pessimistic-lock
 
-NOTE: Starting with NServiceBus.RavenDB version 7.0, pessimistic locking is the default option for concurrency control.
+> [!NOTE]
+> Starting with NServiceBus.RavenDB version 7.0, pessimistic locking is the default option for concurrency control.
 
 ### Pessimistic locking internals
 
 RavenDB does not support pessimistic locking natively and the persister uses a dedicated RavenDB document to enforce exclusive saga updates. In some scenarios, this can lead to an increase in I/O roundtrips, especially if many instances are competing for the same saga. However, in high concurrency scenarios, the overhead is still smaller than the cost of message retry that would be caused by optimistic concurrency failures.
 
-NOTE: It is recommended to choose pessimistic concurrency over optimistic concurrency whenever a saga is experiencing a high number of optimistic concurrency control errors.
+> [!NOTE]
+> It is recommended to choose pessimistic concurrency over optimistic concurrency whenever a saga is experiencing a high number of optimistic concurrency control errors.
 
 ### Pessimistic concurrency control settings
 

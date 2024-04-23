@@ -34,7 +34,8 @@ As an example, a delay of 10 seconds (`1010` in binary) on a message bound for t
 
 Each exchange/queue pair that makes up a level represents one bit of the total delay value. By having 28 of these levels, corresponding to `2^27` through `2^0`, the delay infrastructure can delay a message for any value that can be represented by a 28-bit number.
 
-NOTE: With 28 total levels, the maximum delay value is 268,435,455 seconds, or about 8.5 years.
+> [!NOTE]
+> With 28 total levels, the maximum delay value is 268,435,455 seconds, or about 8.5 years.
 
 A delay level is created by declaring a topic exchange that is bound to a queue with a routing key of `1`, and to the exchange corresponding to `level - 1` with a routing key of `0`. The queue for the delay level is declared with an [`x-message-ttl`](https://www.rabbitmq.com/ttl.html) value corresponding to `2^level` seconds. The queue is also declared with an [`x-dead-letter-exchange`](https://www.rabbitmq.com/dlx.html) value corresponding to the `level - 1` exchange, so that when a message in the queue expires, it will be routed to the `level - 1` exchange.
 

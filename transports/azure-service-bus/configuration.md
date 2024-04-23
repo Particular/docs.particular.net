@@ -25,7 +25,8 @@ partial: custom-token-credentials
 
 These settings control how the transport creates entities in the Azure Service Bus namespace.
 
-WARNING: Entity creation settings are applied only at creation time of the corresponding entities; they are not updated on subsequent startups.
+> [!WARNING]
+> Entity creation settings are applied only at creation time of the corresponding entities; they are not updated on subsequent startups.
 
 partial: access-rights
 
@@ -53,4 +54,5 @@ For all supported transport transaction modes (except `TransportTransactionMode.
 
 partial: lockrenewal
 
-NOTE: Message lock renewal is initiated by client code, not the broker. If the request to renew the lock fails after all the SDK built-in retries (.e.g due to a connection-loss), the lock won't be renewed, and the message will become unlocked and available for processing by competing consumers. Lock renewal should be treated as best-effort and not as a guaranteed operation.
+> [!NOTE]
+> Message lock renewal is initiated by client code, not the broker. If the request to renew the lock fails after all the SDK built-in retries (.e.g due to a connection-loss), the lock won't be renewed, and the message will become unlocked and available for processing by competing consumers. Lock renewal should be treated as best-effort and not as a guaranteed operation.

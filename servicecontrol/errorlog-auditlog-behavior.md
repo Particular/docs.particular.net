@@ -1,6 +1,6 @@
 ---
 title: ServiceControl Forwarding Log Queues
-summary: Details of the ServiceControl audit and error configuration and forwarding behavior 
+summary: Details of the ServiceControl audit and error configuration and forwarding behavior
 reviewed: 2023-07-08
 ---
 
@@ -41,4 +41,5 @@ This will prioritize the custom processor over ServiceControl for audit and erro
 The log queues retain a copy of the original messages ingested by ServiceControl.
 The queues are not directly managed by ServiceControl and are meant as points of external integration.
 
-Note: If external integration is not required, it is strongly recommended to turn forwarding to log queues off. Otherwise, messages will accumulate unprocessed in the forwarding log queue(s) until storage resource (message count limits, messages size limit, available disk space) are exhausted. When this happens new messages cannot be added.
+> [!NOTE]
+> If external integration is not required, it is strongly recommended to turn forwarding to log queues off. Otherwise, messages will accumulate unprocessed in the forwarding log queue(s) until storage resource (message count limits, messages size limit, available disk space) are exhausted. When this happens new messages cannot be added.

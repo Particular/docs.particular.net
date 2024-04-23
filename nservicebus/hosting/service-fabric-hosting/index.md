@@ -17,7 +17,8 @@ NServiceBus endpoints can be hosted in Service Fabric using any of these three o
 
 Refer to the [Service Fabric documentation](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-overview) for more information on when to use each option.
 
-Note: The Actor model is another Service Fabric programming model. It is not currently supported by NServiceBus.
+> [!NOTE]
+> The Actor model is another Service Fabric programming model. It is not currently supported by NServiceBus.
 
 ### Stateless service
 
@@ -27,7 +28,8 @@ With stateless services, the number of instances of a service can range from one
 
 snippet: StatelessEndpointCommunicationListener
 
-NOTE: If stateless services are used to host web application frameworks, such as ASP.NET, ASP.NET Core, or WebAPI, it is recommended to start the endpoint inside the service collection extensions instead of the communication listener, as shown in [using NServiceBus in an ASP.NET Core WebAPI application](/samples/web/send-from-aspnetcore-webapi/). This approach is simpler than having to coordinate multiple communication listeners since no coordination is needed between the listeners. If only stateless services are used to host web application frameworks, it might be useful to consider Azure AppServices. For more guidance, refer to the [Azure App Service, Virtual Machines, Service Fabric, and Cloud Services comparison](https://docs.microsoft.com/en-us/azure/app-service/choose-web-site-cloud-service-vm) guidance.
+> [!NOTE]
+> If stateless services are used to host web application frameworks, such as ASP.NET, ASP.NET Core, or WebAPI, it is recommended to start the endpoint inside the service collection extensions instead of the communication listener, as shown in [using NServiceBus in an ASP.NET Core WebAPI application](/samples/web/send-from-aspnetcore-webapi/). This approach is simpler than having to coordinate multiple communication listeners since no coordination is needed between the listeners. If only stateless services are used to host web application frameworks, it might be useful to consider Azure AppServices. For more guidance, refer to the [Azure App Service, Virtual Machines, Service Fabric, and Cloud Services comparison](https://docs.microsoft.com/en-us/azure/app-service/choose-web-site-cloud-service-vm) guidance.
 
 ### Stateful service
 
@@ -54,7 +56,8 @@ The [guest executable](https://docs.microsoft.com/en-us/azure/service-fabric/ser
 
 This option can be used as an interim solution for the endpoints that eventually need to be converted to Service Fabric services, but cannot be converted right away.
 
-WARNING: While executables can be packaged and deployed to Service Fabric without much effort, the Service Fabric hosting environment might not support all local dependencies. For example, endpoints running on the MSMQ transport should be migrated to another transport. The reason for this is that Service Fabric reallocates processes to different machines based on metrics such as CPU load, but these local dependencies will not move along with it.
+> [!WARNING]
+> While executables can be packaged and deployed to Service Fabric without much effort, the Service Fabric hosting environment might not support all local dependencies. For example, endpoints running on the MSMQ transport should be migrated to another transport. The reason for this is that Service Fabric reallocates processes to different machines based on metrics such as CPU load, but these local dependencies will not move along with it.
 
 
 ## Hosting NServiceBus in a standalone cluster

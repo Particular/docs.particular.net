@@ -68,7 +68,8 @@ snippet: OverrideLoggingDirectoryInCode
 
 partial: custom
 
-Note: Moving to custom logging means the [default logging](#default-logging) approaches are replaced.
+> [!NOTE]
+> Moving to custom logging means the [default logging](#default-logging) approaches are replaced.
 
 ## When to configure logging
 

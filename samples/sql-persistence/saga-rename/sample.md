@@ -124,7 +124,8 @@ snippet: timeoutSaga2
 
 snippet: renameTables
 
-WARNING: In a production scenario this code would be executed as part of an endpoint migration prior to starting the new version of the endpoint.
+> [!WARNING]
+> In a production scenario this code would be executed as part of an endpoint migration prior to starting the new version of the endpoint.
 
 
 #### Mutator
@@ -139,7 +140,8 @@ This is required to handle the following scenario
 
 snippet: mutator
 
-DANGER: This mutator must remain in place until all messages and timeouts that target the old saga versions are processed.
+> [!CAUTION]
+> This mutator must remain in place until all messages and timeouts that target the old saga versions are processed.
 
 For reply messages, the mutator should not be removed for at least [message discard time](/nservicebus/messaging/discard-old-messages.md) - if specified for those messages. Note that [messages in the error queue](/nservicebus/recoverability/configure-error-handling.md) might be stored by messaging infrastructure for even longer. If no discard period is specified, it is recommended to leave the mutator until it is reasonable to assume there are no more messages that need to be mutated.
 

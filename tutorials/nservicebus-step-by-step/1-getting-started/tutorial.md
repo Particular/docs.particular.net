@@ -22,7 +22,8 @@ Let's build something simple to give NServiceBus a try.
 
 This tutorial uses NServiceBus version 8, .NET 6, and assumes an up-to-date installation of [Visual Studio 2022](https://www.visualstudio.com/downloads/).
 
-NOTE: NServiceBus 8 also [supports .NET Framework 4.7.2 or higher](/nservicebus/operations/dotnet-framework-version-requirements.md), but [new applications should be built on .NET 6 or higher](https://devblogs.microsoft.com/dotnet/net-core-is-the-future-of-net/).
+> [!NOTE]
+> NServiceBus 8 also [supports .NET Framework 4.7.2 or higher](/nservicebus/operations/dotnet-framework-version-requirements.md), but [new applications should be built on .NET 6 or higher](https://devblogs.microsoft.com/dotnet/net-core-is-the-future-of-net/).
 
 ### Create a solution
 
@@ -49,11 +50,10 @@ In the **Program.cs** file, modify the code to look like the following:
 
 snippet: EmptyProgram
 
-{{NOTE:
-For the sake of brevity, code snippets in this tutorial do not contain the `using` statements needed to import namespaces. If you're using Visual Studio, unknown references such as `Task` or NServiceBus types will generate a "red squiggly" underline effect. If you hover or click on the red squiggly, you can click on the "light bulb" icon or press <span style="white-space: nowrap"><kbd>Ctrl</kbd> + <kbd>.</kbd></span> to see the available fixes and insert the appropriate `using` statements for the missing namespaces.
-
-Alternatively, in the code snippet's **Copy/Edit** menu you will find a **Copy usings** item that will copy the namespaces used by the snippet to your clipboard.
-}}
+> [!NOTE]
+> For the sake of brevity, code snippets in this tutorial do not contain the `using` statements needed to import namespaces. If you're using Visual Studio, unknown references such as `Task` or NServiceBus types will generate a "red squiggly" > underline effect. If you hover or click on the red squiggly, you can click on the "light bulb" icon or press <span style="white-space: nowrap"><kbd>Ctrl</kbd> + <kbd>.</kbd></span> to see the available fixes and insert the appropriate `using` > statements for the missing namespaces.
+>
+> Alternatively, in the code snippet's **Copy/Edit** menu you will find a **Copy usings** item that will copy the namespaces used by the snippet to your clipboard.
 
 Now that we have a `Main` method, let's take a look at the code we're going to add to it, then analyze the importance of each line. First, add the following code to the `Main` method:
 

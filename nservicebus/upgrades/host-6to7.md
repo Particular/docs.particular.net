@@ -42,7 +42,7 @@ class CustomizingHostUpgrade :
 
 ## IConfigureLogging and IConfigureLoggingForProfile<T> changes
 
-These interfaces will be removed in version 8 of NServiceBus.Host. The logging can still be configured in the constructor of the class that implements `IConfigureThisEndpoint`. 
+These interfaces will be removed in version 8 of NServiceBus.Host. The logging can still be configured in the constructor of the class that implements `IConfigureThisEndpoint`.
 
 ```csharp
 // For NServiceBus Host version 8.x
@@ -106,7 +106,8 @@ class RuntimeProfile :
 
 An interface called [`IWantToRunWhenEndpointStartsAndStops`](/nservicebus/hosting/nservicebus-host/) has been added. This interface replaces the [`IWantToRunWhenBusStartsAndStops`](/nservicebus/lifecycle/endpointstartandstop.md) in NServiceBus core.
 
-DANGER: The `Start` and `Stop` methods will block start up and shut down of the endpoint.
+> [!CAUTION]
+> The `Start` and `Stop` methods will block start up and shut down of the endpoint.
 
 
 ### Interface in version 5 of NServiceBus
@@ -159,7 +160,8 @@ The `IMessageSession` parameter provides all the necessary methods to send messa
 
 include: 5to6removePShelpers
 
-WARNING: If an `EndpointConfig.cs` file already exists in the project, be careful to not overwrite it when upgrading the `NServiceBus.Host` package. If Visual Studio detects a conflict, it will ask whether the file should be overwritten. To keep the old configuration, choose `No`.
+> [!WARNING]
+> If an `EndpointConfig.cs` file already exists in the project, be careful to not overwrite it when upgrading the `NServiceBus.Host` package. If Visual Studio detects a conflict, it will ask whether the file should be overwritten. To keep the old configuration, choose `No`.
 
 
 ## WCF integration

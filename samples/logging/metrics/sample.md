@@ -15,7 +15,8 @@ There are many ways to look at the trace log for example via the [DbgView utilit
 
 ![DbgView by Sysinternals](dbgview.png)
 
-Note: This shows the output of NServiceBus.Metrics 3.x variant.
+> [!NOTE]
+> This shows the output of NServiceBus.Metrics 3.x variant.
 
 ## Running the sample
 

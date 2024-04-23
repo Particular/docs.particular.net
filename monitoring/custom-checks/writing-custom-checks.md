@@ -16,4 +16,5 @@ All custom checks are executed when the endpoint starts up. If the optional inte
 
 snippet: PeriodicCheck
 
-NOTE: Custom checks are discovered at runtime using assembly scanning. This means they can also be deployed to endpoints as NuGet packages.
+> [!NOTE]
+> Custom checks are discovered at runtime using assembly scanning. This means they can also be deployed to endpoints as NuGet packages.

@@ -117,7 +117,8 @@ A new overload has been added to simplify this:
     message: new StartsSaga())
 ```
 
-WARNING: It's important to pass the context provided by the delegate arguments to the handle method.
+> [!WARNING]
+> It's important to pass the context provided by the delegate arguments to the handle method.
 
 ### Configuring a message ID
 

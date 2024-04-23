@@ -9,8 +9,8 @@ redirects:
  - nservicebus/sql-persistence/postgresql-design
 ---
 
-{{WARNING: Even though PostgreSQL is a free product, it is recommended to ensure that support agreements are in place when running the SQL persistence for PostgreSQL in production. For details see [PostgreSQL Commercial support](https://www.postgresql.org/support/professional_support/).
-}}
+> [!WARNING]
+> Even though PostgreSQL is a free product, it is recommended to ensure that support agreements are in place when running the SQL persistence for PostgreSQL in production. For details see [PostgreSQL Commercial support](https://www.postgresql.org/support/professional_support/).
 
 
 ## Supported database versions

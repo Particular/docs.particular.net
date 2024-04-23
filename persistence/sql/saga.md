@@ -30,7 +30,8 @@ The name used for a saga table consists of two parts:
 
 partial: tablesuffix-snippets
 
-NOTE: Using [delimited identifiers](https://technet.microsoft.com/en-us/library/ms176027.aspx) in the TableSuffix is currently **not** supported.
+> [!NOTE]
+> Using [delimited identifiers](https://technet.microsoft.com/en-us/library/ms176027.aspx) in the TableSuffix is currently **not** supported.
 
 
 ### Columns

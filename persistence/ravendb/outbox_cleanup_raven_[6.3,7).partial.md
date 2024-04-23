@@ -12,4 +12,5 @@ snippet: OutboxRavendBDisableCleanup
 
 If document expiration cannot be used, to improve efficiency it is advised to run cleanup on only one endpoint instance per RavenDB database, by disabling clean up on all other endpoint instances.
 
-WARN: If document expiration is not used when operating in [multi-tenant mode](/persistence/ravendb/#multi-tenant-support), cleanup must be handled manually, since NServiceBus is unaware of the databases in use.
+> [!WARNING]
+> If document expiration is not used when operating in [multi-tenant mode](/persistence/ravendb/#multi-tenant-support), cleanup must be handled manually, since NServiceBus is unaware of the databases in use.

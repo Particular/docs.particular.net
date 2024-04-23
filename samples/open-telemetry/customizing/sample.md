@@ -72,4 +72,5 @@ A behavior in the outgoing pipeline adds the size of the message as a tag for al
 
 snippet: add-tags-from-outgoing-behavior
 
-WARN: `Activity.Current` may be `null` if there are no configured trace listeners. Always check if the value is null before calling methods on an `Activity` instance, or use the null-conditional operator (`?.`).
+> [!WARNING]
+> `Activity.Current` may be `null` if there are no configured trace listeners. Always check if the value is null before calling methods on an `Activity` instance, or use the null-conditional operator (`?.`).

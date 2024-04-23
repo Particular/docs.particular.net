@@ -11,7 +11,8 @@ Archiving can be useful for failed messages that no longer have business value. 
 
 Archiving in ServicePulse means that the failed messages are marked as `Deleted`. Data from an deleted message is still available, but it is no longer displayed in the Failed Messages list in ServicePulse, is not counted by the Failed Messages indicator in the ServicePulse dashboard, nor will it appear in any failed message groups.
 
-NOTE: Deleted failed messages are still included in [ServiceInsight](/serviceinsight/) diagrams and search results.
+> [!NOTE]
+> Deleted failed messages are still included in [ServiceInsight](/serviceinsight/) diagrams and search results.
 
 ## Deleting messages
 
@@ -48,7 +49,8 @@ The Deleted Message Groups tab shows the deleted messages grouped by the followi
  * **Endpoint Instance** - groups messages by endpoint instance identifier where the failure occurred.
  * **Endpoint Name** - groups messages by name of the endpoint where the failure occurred.
 
-Note: the number of listed groups may differ depending on the selected classifications type view.
+> [!NOTE]
+> the number of listed groups may differ depending on the selected classifications type view.
 
 Clicking on a group of messages will navigate to the Deleted Messages page containing all the messages from that group.
 

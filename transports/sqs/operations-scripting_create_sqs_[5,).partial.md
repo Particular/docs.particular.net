@@ -39,7 +39,7 @@ sqs-transport endpoint create [name]
 `name` : Name of the endpoint (required)
 
 #### options
- 
+
 `-i` | `--access-key-id` : Overrides the environment variable 'AWS_ACCESS_KEY_ID'
 
 `-s` | `--secret` : Overrides the environment variable 'AWS_REGION'
@@ -68,7 +68,7 @@ sqs-transport endpoint add [name] delay-delivery-support
 `name` : Name of the endpoint (required)
 
 #### options
- 
+
 `-i` | `--access-key-id` : Overrides the environment variable 'AWS_ACCESS_KEY_ID'
 
 `-s` | `--secret` : Overrides the environment variable 'AWS_REGION'
@@ -98,7 +98,7 @@ sqs-transport endpoint add [name] large-message-support [bucket-name]
 `bucket-name` : Name of the s3 bucket (required)
 
 #### options
- 
+
 `-i` | `--access-key-id` : Overrides the environment variable 'AWS_ACCESS_KEY_ID'
 
 `-s` | `--secret` : Overrides the environment variable 'AWS_REGION'
@@ -121,7 +121,8 @@ sqs-transport endpoint subscribe [name] [event-type]
                                         [--prefix]
 ```
 
-NOTE: This command will only set up the subscription from the topic representing the event-type to the input queue of the endpoint. It will **not** set up the IAM policy which allows messages to flow from the topic to the input queue. To set up the IAM policy refer to the `sqs-transport endpoint set-policy events` or `sqs-transport endpoint set-policy wildcard` command.
+> [!NOTE]
+> This command will only set up the subscription from the topic representing the event-type to the input queue of the endpoint. It will **not** set up the IAM policy which allows messages to flow from the topic to the input queue. To set up the IAM policy refer to the `sqs-transport endpoint set-policy events` or `sqs-transport endpoint set-policy wildcard` command.
 
 #### arguments
 
@@ -130,7 +131,7 @@ NOTE: This command will only set up the subscription from the topic representing
 `event-type` : Full name of the event to subscribe to (e.g. MyNamespace.MyMessage) (required)
 
 #### options
- 
+
 `-i` | `--access-key-id` : Overrides the environment variable 'AWS_ACCESS_KEY_ID'
 
 `-s` | `--secret` : Overrides the environment variable 'AWS_REGION'
@@ -144,7 +145,7 @@ NOTE: This command will only set up the subscription from the topic representing
 Set the IAM policy on the input queue of an endpoint based on the event types the endpoint subscribed to using:
 
 ```
-sqs-transport endpoint set-policy [name] events 
+sqs-transport endpoint set-policy [name] events
                                          [--event-type]
                                          [--access-key-id]
                                          [--secret]
@@ -159,7 +160,7 @@ sqs-transport endpoint set-policy [name] events
 #### options
 
 `-evt` | `--event-type` : Full name of the event allowed through the IAM policy (e.g. MyNamespace.MyMessage); can be repeated multiple times to allow multiple event types to pass.
- 
+
 `-i` | `--access-key-id` : Overrides the environment variable 'AWS_ACCESS_KEY_ID'
 
 `-s` | `--secret` : Overrides the environment variable 'AWS_SECRET_ACCESS_KEY'
@@ -197,7 +198,7 @@ sqs-transport endpoint set-policy [name] wildcard
 `-nc` | `--namespace-condition` : Allow all messages from any message in the specified namespaces to pass
 
 `-revt` | `--remove-event-type` : Since existing event type conditions on the policy will not be removed by default, specify a value for this option to remove an existing event type condition in case they are covered by the wildcard policy implicitly. Can be repeated multiple times to remove multiple event types.
- 
+
 `-i` | `--access-key-id` : Overrides the environment variable 'AWS_ACCESS_KEY_ID'
 
 `-s` | `--secret` : Overrides the environment variable 'AWS_SECRET_ACCESS_KEY'
@@ -223,7 +224,7 @@ sqs-transport endpoint subscribe [name] list-policy
 `name` : Name of the endpoint (required)
 
 #### options
- 
+
 `-i` | `--access-key-id` : Overrides the environment variable 'AWS_ACCESS_KEY_ID'
 
 `-s` | `--secret` : Overrides the environment variable 'AWS_SECRET_ACCESS_KEY'

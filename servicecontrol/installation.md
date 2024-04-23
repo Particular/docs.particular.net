@@ -27,7 +27,8 @@ partial: prereqs
 
 ## Planning
 
-INFO: In production environments, make sure to review the [environment considerations](/servicecontrol/servicecontrol-instances/hardware.md) when setting up a machine with ServiceControl.
+> [!NOTE]
+> In production environments, make sure to review the [environment considerations](/servicecontrol/servicecontrol-instances/hardware.md) when setting up a machine with ServiceControl.
 
 The ServiceControl Management Utility provides a simple way to set up one or more ServiceControl instances (error, audit, and monitoring). For production systems, it is recommended to limit the number of instances per machine to one of each type. The ability to add multiple instances *of the same type on a single machine* is primarily intended to assist development and test environments.
 
@@ -100,7 +101,8 @@ A ServiceControl installation should be upgraded one major version at a time. Ch
 
 All versions are available at <https://github.com/Particular/ServiceControl/releases>
 
-NOTE: Upgrades might take a while to run. Account for the unavailability of ServiceControl and plan the upgrade during maintenance windows if necessary.
+> [!NOTE]
+> Upgrades might take a while to run. Account for the unavailability of ServiceControl and plan the upgrade during maintenance windows if necessary.
 
 ## ServiceControl plugins
 
@@ -121,7 +123,8 @@ To migrate an instance of ServiceControl to another host:
 1. Start the new service
 1. Remove the old instance of ServiceControl
 
-NOTE: If the database of the instance being migrated is very large, or no downtime can be tolerated, or the destination uses a different Windows version, or the instance uses a different name, then consider [scaling ServiceControl out via remote instances](/servicecontrol/servicecontrol-instances/remotes.md).
+> [!NOTE]
+> If the database of the instance being migrated is very large, or no downtime can be tolerated, or the destination uses a different Windows version, or the instance uses a different name, then consider [scaling ServiceControl out via remote instances](/servicecontrol/servicecontrol-instances/remotes.md).
 
 Things to remember:
 
@@ -131,9 +134,11 @@ Things to remember:
 
 ServiceControl configuration settings are accessible via the Service Control Management Utility or by navigating to the configuration files on the file system stored in `ServiceControl.exe.config`, `ServiceControl.Audit.exe.config`, and `ServiceControl.Monitoring.exe.config`.
 
-Note: If ServiceControl was previously installed via the ServiceControl Management Utility then all instances are installed on a single machine by default. If the system has considerable load or has a large retention period, consider installing a single instance type on a server to scale out. This can be done via Powershell.
+> [!NOTE]
+> If ServiceControl was previously installed via the ServiceControl Management Utility then all instances are installed on a single machine by default. If the system has considerable load or has a large retention period, consider installing a single instance type on a server to scale out. This can be done via Powershell.
 
-WARNING: Take care when planning to move ServiceControl from one server to another. Moving databases between servers can be challenging. The embedded RavenDB does not support moving from a new version of Windows back to older versions of Windows. See [Getting error while restoring backup file in raven DB](https://stackoverflow.com/questions/25625910/getting-error-while-restoring-backup-file-in-raven-db) for more details.
+> [!WARNING]
+> Take care when planning to move ServiceControl from one server to another. Moving databases between servers can be challenging. The embedded RavenDB does not support moving from a new version of Windows back to older versions of Windows. See [Getting error while restoring backup file in raven DB](https://stackoverflow.com/questions/25625910/getting-error-while-restoring-backup-file-in-raven-db) for more details.
 
 ## Removing ServiceControl
 
@@ -160,7 +165,8 @@ Even after a ServiceControl instance has been removed, there are artifacts left 
 
 If the option to delete the database/log folders was not selected when removing the instance, then these folders and their contents are left on disk.
 
-NOTE: If the instance was configured to run under a service account then that account may have been granted _Logon as a Service_ privileges. This is not reversed when the instance is removed.
+> [!NOTE]
+> If the instance was configured to run under a service account then that account may have been granted _Logon as a Service_ privileges. This is not reversed when the instance is removed.
 
 #if-version [,5)
 
@@ -168,6 +174,7 @@ NOTE: If the instance was configured to run under a service account then that ac
 
 To uninstall the ServiceControl Management Utility, use the `Apps & features` settings in Windows.
 
-NOTE: Uninstalling the ServiceControl Management Utility will not remove existing instances. Remove all ServiceControl instances using the ServiceControl Management Utility before uninstalling the application itself.
+> [!NOTE]
+> Uninstalling the ServiceControl Management Utility will not remove existing instances. Remove all ServiceControl instances using the ServiceControl Management Utility before uninstalling the application itself.
 
 #end-if

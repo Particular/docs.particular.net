@@ -109,7 +109,8 @@ The next message in the queue is handled by calling `HandleQueuedMessage()`:
 
 snippet: TestableSagaHandleQueuedMessage
 
-NOTE: Using `HandleQueuedMessage()` allows specific ordering of message processing in order to write tests related to specific ordering and race condition concerns. Whether or not a timeout or a reply message is handled first in a specific scenario is controlled by whether the test calls the `AdvanceTime()` or `HandleQueuedMessage()` method.
+> [!NOTE]
+> Using `HandleQueuedMessage()` allows specific ordering of message processing in order to write tests related to specific ordering and race condition concerns. Whether or not a timeout or a reply message is handled first in a specific scenario is controlled by whether the test calls the `AdvanceTime()` or `HandleQueuedMessage()` method.
 
 ## Additional examples
 

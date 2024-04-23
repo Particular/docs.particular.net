@@ -9,4 +9,5 @@ System.Data.SqlClient.SqlException
 
 To fix this, [the SQL Server installation must be updated with a valid certificate and the machine hosting the endpoint must be updated to trust this certificate](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/enable-encrypted-connections-to-the-database-engine).
 
-WARNING: It is not recommended to eliminate this warning by adding `Encrypt=False` or `TrustServerCertificate=True` to the connection string. Both of these options leave the endpoint unsecure.
+> [!WARNING]
+> It is not recommended to eliminate this warning by adding `Encrypt=False` or `TrustServerCertificate=True` to the connection string. Both of these options leave the endpoint unsecure.

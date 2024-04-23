@@ -184,7 +184,8 @@ This is a popular transport for systems hosted in AWS, the Amazon cloud offering
 
 ## MSMQ
 
-WARNING: Microsoft is not making MSMQ available for .NET Core; building new systems using MSMQ is not recommended.
+> [!WARNING]
+> Microsoft is not making MSMQ available for .NET Core; building new systems using MSMQ is not recommended.
 
 The MSMQ transport uses the native Windows queueing technology, MSMQ, to send and deliver messages. MSMQ is a distributed or "federated" system that consists of multiple processes, one on each machine. The client only interacts with the local MSMQ process, which stores the messages on disk. The messages are forwarded to the remote machine in the background.
 

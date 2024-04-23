@@ -79,7 +79,8 @@ Processing work order '420'
 
 Notice that while the work requests are generated in sequence, on the processing side the work can happen out of order. The total time taken the process to finish is also logged.
 
-NOTE: Metrics such as Critical Time may not be sufficient to monitor how long the end-to-end process takes. This is something to note and measure to ensure quality of service.
+> [!NOTE]
+> Metrics such as Critical Time may not be sufficient to monitor how long the end-to-end process takes. This is something to note and measure to ensure quality of service.
 
 ## The saga
 

@@ -15,7 +15,8 @@ Messages matching both of the following criteria will be auto-subscribed at star
  1. Defined as an event either using `IEvent` or by the `.DefiningEventsAs` convention.
  1. At least one [message handler and/or saga](/nservicebus/handlers/) exists for the given event.
 
-Note: If the selected transport [does not support publish-subscribe natively](/transports/types.md#unicast-only-transports), the publisher for that message must be specified via the [routing](/nservicebus/messaging/routing.md) API.
+> [!NOTE]
+> If the selected transport [does not support publish-subscribe natively](/transports/types.md#unicast-only-transports), the publisher for that message must be specified via the [routing](/nservicebus/messaging/routing.md) API.
 
 partial: missing-publisher-info-error
 
@@ -31,7 +32,8 @@ snippet: DoNotAutoSubscribeSagas
 
 ### Auto-subscribe to plain messages
 
-WARNING: This is a bad practice. Subscriptions should be based on events.
+> [!WARNING]
+> This is a bad practice. Subscriptions should be based on events.
 
 In NServiceBus version 6 and above, it is possible to subscribe to messages not defined as events by [manually subscribing](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#manually-subscribing-to-a-message) to the message type.
 

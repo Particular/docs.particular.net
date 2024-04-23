@@ -52,7 +52,8 @@ There are three upgrade paths to make these existing sagas work.
 3. Enforce NHibernate 4 backward-compatibility mode
 4. Set SQL compatibility mode to SQL Server 2014
 
-INFO: For saga tables it is advised to both **upgrade the database schemas to use `DateTime2(7)`** and to **use an explicit version column**.
+> [!NOTE]
+> For saga tables it is advised to both **upgrade the database schemas to use `DateTime2(7)`** and to **use an explicit version column**.
 
 
 ### Alter the schema to use the `DateTime2(7)` type

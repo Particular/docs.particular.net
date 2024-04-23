@@ -43,12 +43,14 @@ To install this configuration:
 1. Set up the primary ServiceControl instances and configure them to forward errors and audit messages to the backup queues.
 1. Set up the backup ServiceControl instances and configure them to use the backup queues.
 
-WARN: Make sure the names of the backup ServiceControl instances are named differently from the primary ServiceControl instances, otherwise unexpected behavior may result.
+> [!WARNING]
+> Make sure the names of the backup ServiceControl instances are named differently from the primary ServiceControl instances, otherwise unexpected behavior may result.
 
 ## How retrying works
 
 Retrying a message from the primary instance will work as usual, however the backup instances will now update the status of the failed messages to "retry pending". Once the successful audit message is received, the backup instance will be notified as well and the failed message record in both instances will reflect the messages as having been successfully retried.
 
-WARN: It is possible to duplicate messages when retrying from the backup instance if a retry has already been sent from the primary instance.
+> [!WARNING]
+> It is possible to duplicate messages when retrying from the backup instance if a retry has already been sent from the primary instance.
 
 

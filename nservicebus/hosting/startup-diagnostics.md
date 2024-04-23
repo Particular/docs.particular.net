@@ -6,11 +6,13 @@ versions: '[7,)'
 reviewed: 2023-01-03
 ---
 
-INFO: This document does not apply to Azure Function hosts. For Azure Function hosts, see [Azure Function In-process diagnostics](/nservicebus/hosting/azure-functions-service-bus/in-process/#configuration-custom-diagnostics) or [Azure Function Isolated Worker diagnostics](/nservicebus/hosting/azure-functions-service-bus/#custom-triggers-custom-diagnostics).
+> [!NOTE]
+> This document does not apply to Azure Function hosts. For Azure Function hosts, see [Azure Function In-process diagnostics](/nservicebus/hosting/azure-functions-service-bus/in-process/#configuration-custom-diagnostics) or [Azure Function Isolated Worker diagnostics](/nservicebus/hosting/azure-functions-service-bus/#custom-triggers-custom-diagnostics).
 
 To make troubleshooting easier, diagnostic information is collected during endpoint startup and written to a `.diagnostics` sub-folder in the host output directory.
 
-NOTE: By default, the output directory is called `AppDomain.CurrentDomain.BaseDirectory`, except for web applications where `App_Data` is used instead.
+> [!NOTE]
+> By default, the output directory is called `AppDomain.CurrentDomain.BaseDirectory`, except for web applications where `App_Data` is used instead.
 
 To change the output path:
 
@@ -18,7 +20,8 @@ snippet: SetDiagnosticsPath
 
 At every endpoint startup the current diagnostics will be written to `{endpointName}-configuration.txt`. If possible, attach this file to support requests.
 
-WARNING: The structure and format of the data produced should not be considered stable or parsable. Nodes may be added, removed, or moved in minor and patch versions.
+> [!WARNING]
+> The structure and format of the data produced should not be considered stable or parsable. Nodes may be added, removed, or moved in minor and patch versions.
 
 
 ### Sample content

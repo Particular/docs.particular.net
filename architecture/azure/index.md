@@ -27,7 +27,8 @@ The Particular Service Platform supports the Azure services required to build di
 
 Additional technology choices are described in [Technology choices for Azure solutions](https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/technology-choices-overview).
 
-Note: Azure services do not support distributed transactions. Read the [consistency guidance](/architecture/consistency.md) for more information about managing consistency in systems without distributed transactions.
+> [!NOTE]
+> Azure services do not support distributed transactions. Read the [consistency guidance](/architecture/consistency.md) for more information about managing consistency in systems without distributed transactions.
 
 ## Application architecture
 

@@ -6,7 +6,8 @@ redirects:
 - servicecontrol/installation-powershell
 ---
 
-NOTE: For general information about using PowerShell with ServiceControl, including troubleshooting and licensing guidance, see [Managing ServiceControl via PowerShell](/servicecontrol/powershell.md).
+> [!NOTE]
+> For general information about using PowerShell with ServiceControl, including troubleshooting and licensing guidance, see [Managing ServiceControl via PowerShell](/servicecontrol/powershell.md).
 
 ## ServiceControl instance Cmdlets and Aliases
 
@@ -34,7 +35,8 @@ Create a ServiceControl Audit instance to manage an audit queue:
 
 snippet: new-audit-instance
 
-NOTE: The ServiceControl Audit instance must be configured with the transport address of a ServiceControl instance.
+> [!NOTE]
+> The ServiceControl Audit instance must be configured with the transport address of a ServiceControl instance.
 
 ### Removing an instance
 
@@ -46,13 +48,15 @@ Use the `Remove-ServiceControlAuditInstance` cmdlet to remove a ServiceControl A
 
 snippet: remove-audit-instance
 
-NOTE: All connected ServiceControl Audit instances should be removed before removing the ServiceControl Error instance. Use the `Get-ServiceControlRemotes` cmdlet to find a list of connected ServiceControl Audit instances for a given ServiceControl instance.
+> [!NOTE]
+> All connected ServiceControl Audit instances should be removed before removing the ServiceControl Error instance. Use the `Get-ServiceControlRemotes` cmdlet to find a list of connected ServiceControl Audit instances for a given ServiceControl instance.
 
 ### Upgrading an instance
 
 The cmdlets in this section are used to upgrade the binaries of an existing instance. If the instance is running when the upgrade starts, it will be shut down during the upgrade and restarted once the upgrade is complete.
 
-WARN: The `sc-upgrade` and `audit-upgrade` commands do not download the latest available ServiceControl version. These Powershell commandlets are bound to the version of the Particular.ServiceControl.Management module loaded.
+> [!WARNING]
+> The `sc-upgrade` and `audit-upgrade` commands do not download the latest available ServiceControl version. These Powershell commandlets are bound to the version of the Particular.ServiceControl.Management module loaded.
 
 Before the upgrade begins the configuration file of the existing version is examined to determine if all of the required settings are present. If a configuration setting is missing then the cmdlet will throw an error indicating the required additional parameter for the cmdlet.
 

@@ -8,9 +8,11 @@ related:
  - samples/custom-recoverability
 ---
 
-NOTE: In order to get full control over Immediate Retries it is possible to override the default [Recoverability Policy](/nservicebus/recoverability/custom-recoverability-policy.md).
+> [!NOTE]
+> In order to get full control over Immediate Retries it is possible to override the default [Recoverability Policy](/nservicebus/recoverability/custom-recoverability-policy.md).
 
-WARNING: Immediate Retries cannot be used when [transport transactions](/transports/transactions.md) are disabled.
+> [!WARNING]
+> Immediate Retries cannot be used when [transport transactions](/transports/transactions.md) are disabled.
 
 
 ## Configuring
@@ -25,4 +27,5 @@ snippet: ImmediateRetriesConfiguration
 snippet: DisablingImmediateRetriesConfiguration
 
 
-NOTE: Configuration through app.config, `IProvideConfiguration` or `ConfigurationSource` is not available in Versions 6 and above.
+> [!NOTE]
+> Configuration through app.config, `IProvideConfiguration` or `ConfigurationSource` is not available in Versions 6 and above.

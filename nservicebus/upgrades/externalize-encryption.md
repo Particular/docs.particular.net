@@ -48,7 +48,8 @@ For a system with two or more endpoints, these are the steps to migrate to the `
  1. After all endpoints are deployed, update message contracts in all endpoints to use the `NServiceBus.Encryption.MessageProperty.EncryptedString` property type.
  1. Deploy all endpoints again.
 
-Note: All endpoints must be updated to the `NServiceBus.Encryption.MessageProperty` package _and deployed_ before updating any message contracts to use `NServiceBus.Encryption.MessageProperty.EncryptedString`. This is to prevent issues with [compatibility](#compatibility).
+> [!NOTE]
+> All endpoints must be updated to the `NServiceBus.Encryption.MessageProperty` package _and deployed_ before updating any message contracts to use `NServiceBus.Encryption.MessageProperty.EncryptedString`. This is to prevent issues with [compatibility](#compatibility).
 
 
 ## Enabling RijndaelEncryptionService

@@ -26,7 +26,8 @@ To extend [command routing](/nservicebus/messaging/routing.md#command-routing), 
 
 snippet: RoutingExtensibility-RouteTableConfig
 
-Note: To access the `GetSettings()` method, include a `using` directive for the `NServiceBus.Configuration.AdvancedExtensibility` namespace.
+> [!NOTE]
+> To access the `GetSettings()` method, include a `using` directive for the `NServiceBus.Configuration.AdvancedExtensibility` namespace.
 
 The route table can be modified in the feature set up phase or can be passed further, e.g. to a `FeatureStartupTask`, and updated periodically when the source of the routing information changes.
 
@@ -58,4 +59,5 @@ The publishers collection is thread-safe and all operations on that collection a
 
 If there's a need to adjust the routing based on criteria other than the message type, the [routing pipeline stage](/nservicebus/pipeline/steps-stages-connectors.md#stages-outgoing-pipeline-stages) allows routing customization for all messages emitted by the endpoint.
 
-NOTE: Be aware that this intercepts **any** message that is dispatched, including messages that are not known NServiceBus message types, e.g. an audit message.
+> [!NOTE]
+> Be aware that this intercepts **any** message that is dispatched, including messages that are not known NServiceBus message types, e.g. an audit message.

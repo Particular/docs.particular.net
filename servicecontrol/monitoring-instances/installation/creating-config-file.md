@@ -21,7 +21,8 @@ Type: string
 
 Default: `Particular.Monitoring`
 
-Warning: After changing this setting it's necessary to run the monitoring instance setup procedure by executing `ServiceControl.Monitoring.exe -s` in the command prompt. This ensures that all necessary queues are created and properly configured.
+> [!WARNING]
+> After changing this setting it's necessary to run the monitoring instance setup procedure by executing `ServiceControl.Monitoring.exe -s` in the command prompt. This ensures that all necessary queues are created and properly configured.
 
 ### Monitoring/HttpHostname
 
@@ -31,7 +32,8 @@ Type: string
 
 Default: `localhost`
 
-NOTE: This setting must have a value in order for the Monitoring instance API to be available from remote machines.
+> [!NOTE]
+> This setting must have a value in order for the Monitoring instance API to be available from remote machines.
 
 
 ### Monitoring/HttpPort
@@ -94,7 +96,7 @@ Default: `error`
 
 ### Monitoring/MaximumConcurrencyLevel
 
-The maximum concurrency that will be used for ingesting metric messages. 
+The maximum concurrency that will be used for ingesting metric messages.
 
 Type: int
 

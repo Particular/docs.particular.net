@@ -43,7 +43,8 @@ Watch this video for a better picture of how failures can lead to lost data, and
 
 youtube: https://www.youtube.com/watch?v=_Br9Me4tqPI
 
-NOTE: To see how NServiceBus prevents loss of data, adds failure recovery, and makes systems easier to extend, try the [NServiceBus Quick Start](/tutorials/quickstart/).
+> [!NOTE]
+> To see how NServiceBus prevents loss of data, adds failure recovery, and makes systems easier to extend, try the [NServiceBus Quick Start](/tutorials/quickstart/).
 
 ## Scalable
 

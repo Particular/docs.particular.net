@@ -13,7 +13,8 @@ reviewed: 2023-05-23
 
 It is possible to expose the message send+receive action as a WCF service. In effect, this allows a WCF service call to be "proxied" through to a message being sent, and then wait for the response to return the WCF result.
 
-NOTE: When doing a blocking send+receive inside a WCF service, the service implementation is a client of the [callback functionality](/nservicebus/messaging/callbacks.md).
+> [!NOTE]
+> When doing a blocking send+receive inside a WCF service, the service implementation is a client of the [callback functionality](/nservicebus/messaging/callbacks.md).
 
 
 ## Prerequisites for WCF functionality
@@ -75,7 +76,8 @@ The delegate is invoked for each service type discovered. The delegate needs to 
 
 The integer response scenario allows any integer value to be returned in a strong typed manner.
 
-NOTE: The receiving endpoint requires a reference to `NServiceBus.Callbacks`.
+> [!NOTE]
+> The receiving endpoint requires a reference to `NServiceBus.Callbacks`.
 
 
 #### Expose service
@@ -92,7 +94,8 @@ snippet: WcfIntCallbackResponse
 
 The enum response scenario allows any enum value to be returned in a strong typed manner.
 
-NOTE: The receiving endpoint requires a reference to `NServiceBus.Callbacks`.
+> [!NOTE]
+> The receiving endpoint requires a reference to `NServiceBus.Callbacks`.
 
 
 #### Expose service
@@ -109,7 +112,8 @@ snippet: WcfEnumCallbackResponse
 
 The Object response scenario allows an object instance to be returned.
 
-NOTE: The receiving endpoint does not require a reference to `NServiceBus.Callbacks`.
+> [!NOTE]
+> The receiving endpoint does not require a reference to `NServiceBus.Callbacks`.
 
 
 #### The Response message

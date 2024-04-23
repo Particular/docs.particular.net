@@ -4,9 +4,11 @@ summary: How to compact the RavenDB database backing ServiceControl for RavenDB 
 reviewed: 2022-10-26
 ---
 
-INFO: Compact the database only if the retention period, message throughput, or average message size have been reduced. If none of these have changed, compacting may not provide a significant reduction in database size, or it may have only a small, temporary effect.
+> [!NOTE]
+> Compact the database only if the retention period, message throughput, or average message size have been reduced. If none of these have changed, compacting may not provide a significant reduction in database size, or it may have only a small, temporary effect.
 
-INFO: The following documentation applies to ServiceControl Error and Audit instances using RavenDB 3.5 as the storage option. New audit instances created with version 4.26 and onward use by default RavenDB 5 and should follow a [different process](db-compaction-v5.md).
+> [!NOTE]
+> The following documentation applies to ServiceControl Error and Audit instances using RavenDB 3.5 as the storage option. New audit instances created with version 4.26 and onward use by default RavenDB 5 and should follow a [different process](db-compaction-v5.md).
 
 ServiceControl's embedded RavenDB 3.5 database can be compacted in one of two ways: with the  [Extensible Storage Engine Utility (esentutl)](https://technet.microsoft.com/en-us/library/hh875546.aspx), or by using the RavenDB management portal.
 
@@ -18,7 +20,8 @@ ServiceControl's embedded RavenDB 3.5 database can be compacted in one of two wa
 * Stop the service from the action icons
 * Note the "DATA PATH" for the service(e.g. "C:\ProgramData\Particular\ServiceControl\Particular.ServiceControl\DB")   ![SCMU  instance data path](managementutil-instance-datapath.png 'width=500')
 
-WARNING: For the `esentutl` command line utility to work, the ServiceControl service must stop without any errors.
+> [!WARNING]
+> For the `esentutl` command line utility to work, the ServiceControl service must stop without any errors.
 
 ### Step 2: Back up the ServiceControl instance
 
@@ -94,7 +97,8 @@ Once ServiceControl is running in this mode, the following procedure can be used
 
 ### Step 3: Delete the existing database
 
-NOTE: At this point, it is advisable to take a backup copy of the existing database directory as re-importing can sometimes fail. To do this, ensure that ServiceControl is not running, then copy the contents of the database directory.
+> [!NOTE]
+> At this point, it is advisable to take a backup copy of the existing database directory as re-importing can sometimes fail. To do this, ensure that ServiceControl is not running, then copy the contents of the database directory.
 
 * Delete the database directory contents.
 * Start ServiceControl, again in maintenance mode. This will populate the database directory with a blank database.

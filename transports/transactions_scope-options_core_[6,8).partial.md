@@ -2,7 +2,8 @@
 
 The following options for transaction scopes used during message processing can be configured.
 
-NOTE: The isolation level and timeout for transaction scopes are also configured at the transport level.
+> [!NOTE]
+> The isolation level and timeout for transaction scopes are also configured at the transport level.
 
 
 ### Isolation level
