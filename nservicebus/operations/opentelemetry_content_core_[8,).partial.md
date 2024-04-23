@@ -19,6 +19,12 @@ NServiceBus endpoints can be configured to expose metrics related to message pro
 
 snippet: opentelemetry-enablemeters
 
+### Emitted meters
+
+- `nservicebus.messaging.successes` - Total number of messages processed successfully by the endpoint
+- `nservicebus.messaging.fetches` - Total number of messages fetched from the queue by the endpoint
+- `nservicebus.messaging.failures` - Total number of messages processed unsuccessfully by the endpoint
+
 See the [OpenTelemetry samples](/samples/open-telemetry/) for instructions on how to send metric information to different tools.
 
 ## Logging
