@@ -8,7 +8,24 @@ var endpointConfiguration = new EndpointConfiguration("Samples.Hosting.GenericHo
 var routing = endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
-endpointConfiguration.EnableInstallers();
+
+
+//  It is recommended to run least priviledge and only run installers during deployment.
+//  This also reduces startup time / time to first message.
+
+var isDevelopment = Debugger.IsAttached;
+var isSetup = args.Contains("--setup");
+
+if (isSetup)
+{
+    // Provision resources like transport queue creation and persister schemas
+    await Installer.Setup(endpointConfiguration);
+    return; // Exit application 
+}
+else (isDevelopment)
+{
+    endpointConfiguration.EnableInstallers();
+}
 
 builder.UseNServiceBus(endpointConfiguration);
 
