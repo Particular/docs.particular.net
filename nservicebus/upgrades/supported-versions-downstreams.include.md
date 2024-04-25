@@ -438,7 +438,6 @@
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/3.0.0) | 2024-04-18     | -                 | -                                 |
 | [2.2.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.2.1) | 2024-02-26     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [2.1.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.1.0) | 2023-07-25     | 2024-05-26        | Superseded by 2.2.x               |
-| [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.0.3) | ~~2023-06-20~~ | ~~2023-10-25~~    | ~~Superseded by 2.1.x~~           |
 
 #### [NServiceBus.Metrics](/nuget/NServiceBus.Metrics)
 
