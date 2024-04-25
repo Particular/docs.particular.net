@@ -1,23 +1,14 @@
-﻿using System;
-using System.Threading.Tasks;
-using NServiceBus;
+﻿using NServiceBus;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Server";
-        var endpointConfiguration = new EndpointConfiguration("Samples.Unobtrusive.Server");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.UseDataBus<FileShareDataBus>()
-            .BasePath(@"..\..\..\..\DataBusShare\");
+Console.Title = "Server";
+var endpointConfiguration = new EndpointConfiguration("Samples.Unobtrusive.Server");
+endpointConfiguration.UsePersistence<LearningPersistence>();
+endpointConfiguration.UseTransport<LearningTransport>();
+endpointConfiguration.UseDataBus<FileShareDataBus>()
+    .BasePath(@"..\..\..\..\DataBusShare\");
 
-        endpointConfiguration.ApplyCustomConventions();
+endpointConfiguration.ApplyCustomConventions();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        await CommandSender.Start(endpointInstance);
-        await endpointInstance.Stop();
-    }
-}
-
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
+await CommandSender.Start(endpointInstance);
+await endpointInstance.Stop();

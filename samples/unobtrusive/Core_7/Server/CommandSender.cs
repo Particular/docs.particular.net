@@ -1,11 +1,8 @@
-using System;
-using System.Threading.Tasks;
 using Events;
 using NServiceBus;
 
 class CommandSender
 {
-
     public static async Task Start(IEndpointInstance endpointInstance)
     {
         Console.WriteLine("Press 'E' to publish an event");

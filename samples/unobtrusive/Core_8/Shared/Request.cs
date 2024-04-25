@@ -1,9 +1,6 @@
-﻿namespace Messages
-{
-    using System;
+﻿namespace Messages;
 
-    public class Request
-    {
-        public Guid RequestId { get; set; }
-    }
+public class Request
+{
+    public Guid RequestId { get; set; }
 }

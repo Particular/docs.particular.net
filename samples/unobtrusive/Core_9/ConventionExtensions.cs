@@ -1,35 +1,27 @@
-﻿using System;
-using NServiceBus;
-
-public static class ConventionExtensions
+﻿public static class ConventionExtensions
 {
     #region CustomConvention
 
     public static void ApplyCustomConventions(this EndpointConfiguration endpointConfiguration)
     {
         var conventions = endpointConfiguration.Conventions();
+
         conventions.DefiningCommandsAs(
             type =>
-            {
-                return type.Namespace != null &&
-                       type.Namespace.EndsWith("Commands");
-            });
+            type.Namespace != null &&
+            type.Namespace.EndsWith("Commands"));
+
         conventions.DefiningEventsAs(
             type =>
-            {
-                return type.Namespace != null &&
-                       type.Namespace.EndsWith("Events");
-            });
+            type.Namespace != null &&
+            type.Namespace.EndsWith("Events"));
+
         conventions.DefiningMessagesAs(
-            type =>
-            {
-                return type.Namespace == "Messages";
-            });
+            type => type.Namespace == "Messages");
+
         conventions.DefiningDataBusPropertiesAs(
-            property =>
-            {
-                return property.Name.EndsWith("DataBus");
-            });
+            property => property.Name.EndsWith("DataBus"));
+
         conventions.DefiningTimeToBeReceivedAs(
             type =>
             {

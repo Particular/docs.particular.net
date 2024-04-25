@@ -1,10 +1,6 @@
-﻿using NServiceBus;
+﻿namespace Shared;
 
-namespace Shared
+public class PriceUpdateAcknowledged : IMessage
 {
-    public class PriceUpdateAcknowledged :
-    IMessage
-    {
-        public string BranchOffice { get; set; }
-    }
+    public string? BranchOffice { get; set; }
 }

@@ -1,9 +1,8 @@
-﻿namespace Commands
-{
-    using System;
+﻿namespace Commands;
 
-    public class MyCommand
-    {
-        public Guid CommandId { get; set; }
-    }
+using System;
+
+public class MyCommand
+{
+    public Guid CommandId { get; set; }
 }

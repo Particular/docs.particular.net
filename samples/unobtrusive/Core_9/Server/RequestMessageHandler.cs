@@ -1,12 +1,9 @@
-﻿using System.Threading.Tasks;
-using Messages;
-using NServiceBus;
+﻿using Messages;
 using NServiceBus.Logging;
 
-public class RequestMessageHandler :
-    IHandleMessages<Request>
+public class RequestMessageHandler : IHandleMessages<Request>
 {
-    static ILog log = LogManager.GetLogger<RequestMessageHandler>();
+    static readonly ILog log = LogManager.GetLogger<RequestMessageHandler>();
 
     public Task Handle(Request message, IMessageHandlerContext context)
     {

@@ -1,13 +1,11 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
+﻿using NServiceBus;
 using NServiceBus.Logging;
 using Shared;
 
 #region PriceUpdatedHandler
-public class PriceUpdatedHandler :
-    IHandleMessages<PriceUpdated>
+public class PriceUpdatedHandler : IHandleMessages<PriceUpdated>
 {
-    static ILog log = LogManager.GetLogger<PriceUpdatedHandler>();
+    static readonly ILog log = LogManager.GetLogger<PriceUpdatedHandler>();
 
     public Task Handle(PriceUpdated message, IMessageHandlerContext context)
     {
@@ -21,5 +19,4 @@ public class PriceUpdatedHandler :
         return context.Reply(updateAcknowledged);
     }
 }
-
 #endregion

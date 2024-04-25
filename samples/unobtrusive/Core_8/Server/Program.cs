@@ -1,23 +1,12 @@
-using System;
-using System.Threading.Tasks;
-using NServiceBus;
+Console.Title = "Server";
+var endpointConfiguration = new EndpointConfiguration("Samples.Unobtrusive.Server");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>()
+    .BasePath(@"..\..\..\..\DataBusShare\");
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Server";
-        var endpointConfiguration = new EndpointConfiguration("Samples.Unobtrusive.Server");
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
-        endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>()
-            .BasePath(@"..\..\..\..\DataBusShare\");
+endpointConfiguration.ApplyCustomConventions();
 
-        endpointConfiguration.ApplyCustomConventions();
-
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        await CommandSender.Start(endpointInstance);
-        await endpointInstance.Stop();
-    }
-}
-
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
+await CommandSender.Start(endpointInstance);
+await endpointInstance.Stop();

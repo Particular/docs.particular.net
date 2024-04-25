@@ -1,12 +1,9 @@
-﻿using System.Threading.Tasks;
-using Events;
-using NServiceBus;
+﻿using Events;
 using NServiceBus.Logging;
 
-public class MyEventHandler :
-    IHandleMessages<MyEvent>
+public class MyEventHandler : IHandleMessages<MyEvent>
 {
-    static ILog log = LogManager.GetLogger<MyEventHandler>();
+    static readonly ILog log = LogManager.GetLogger<MyEventHandler>();
 
     public Task Handle(MyEvent message, IMessageHandlerContext context)
     {

@@ -1,9 +1,6 @@
-﻿namespace Events
-{
-    using System;
+﻿namespace Events;
 
-    public class MyEvent
-    {
-        public Guid EventId { get; set; }
-    }
+public class MyEvent
+{
+    public Guid EventId { get; set; }
 }

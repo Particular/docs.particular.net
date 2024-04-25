@@ -1,6 +1,6 @@
 ---
 title: Gateway
-reviewed: 2021-04-29
+reviewed: 2024-04-25
 component: Gateway
 related:
 - nservicebus/gateway
@@ -61,6 +61,6 @@ snippet: PriceUpdatedHandler
 
 ## WebClient
 
-This project represents an external integration point. It sends a `UpdatePrice` to the channel `http://localhost:25899/Headquarter/`.
+This project represents an external integration point. It sends a `UpdatePrice` to the channel `http://localhost:25899/Headquarters/`.
 
 snippet: SendUpdatePrice

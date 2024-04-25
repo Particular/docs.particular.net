@@ -1,12 +1,9 @@
-using System;
-using System.Threading.Tasks;
 using Commands;
 using Messages;
 using NServiceBus;
 
 public class CommandSender
 {
-
     public static async Task Start(IEndpointInstance endpointInstance)
     {
         Console.WriteLine("Press 'C' to send a command");
@@ -40,7 +37,6 @@ public class CommandSender
         }
     }
 
-
     // Shut down server before sending this message, after 30 seconds, the message will be moved to Transactional dead-letter messages queue.
     static Task Expiration(IEndpointInstance endpointInstance)
     {
@@ -59,7 +55,7 @@ public class CommandSender
         var largeMessage = new LargeMessage
         {
             RequestId = requestId,
-            LargeDataBus = new byte[1024*1024*5]
+            LargeDataBus = new byte[1024 * 1024 * 5]
         };
         Console.WriteLine($"Request sent id: {requestId}");
         return endpointInstance.Send("Samples.Unobtrusive.Server", largeMessage);
