@@ -1,16 +1,11 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.Extensibility;
+﻿using NServiceBus.Extensibility;
 using NServiceBus.Persistence;
 using NServiceBus.Sagas;
 
 #region finder
-class CompletePaymentTransactionSagaFinder :
-    ISagaFinder<OrderSagaData, CompletePaymentTransaction>
+class CompletePaymentTransactionSagaFinder : ISagaFinder<OrderSagaData, CompletePaymentTransaction>
 {
-    public Task<OrderSagaData> FindBy(CompletePaymentTransaction message, ISynchronizedStorageSession storageSession,
-        IReadOnlyContextBag context, CancellationToken cancellationToken = new CancellationToken())
+    public Task<OrderSagaData> FindBy(CompletePaymentTransaction message, ISynchronizedStorageSession storageSession, IReadOnlyContextBag context, CancellationToken cancellationToken = default)
     {
         var session = storageSession.Session();
         var orderSagaData = session.QueryOver<OrderSagaData>()

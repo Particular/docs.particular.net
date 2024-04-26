@@ -2,7 +2,7 @@
 title: NHibernate Custom Saga Finding Logic
 summary: Perform custom saga finding logic based on custom query logic when the Saga storage is a relational database using NHibernate as the ORM.
 component: NHibernate
-reviewed: 2021-04-30
+reviewed: 2024-04-26
 related:
 - nservicebus/sagas
 - persistence/nhibernate

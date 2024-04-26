@@ -5,8 +5,7 @@ using NServiceBus.Persistence;
 using NServiceBus.Sagas;
 
 #region finder
-class CompletePaymentTransactionSagaFinder :
-    IFindSagas<OrderSagaData>.Using<CompletePaymentTransaction>
+class CompletePaymentTransactionSagaFinder : IFindSagas<OrderSagaData>.Using<CompletePaymentTransaction>
 {
 
     public Task<OrderSagaData> FindBy(CompletePaymentTransaction message, SynchronizedStorageSession storageSession, ReadOnlyContextBag context)
