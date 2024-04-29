@@ -6,7 +6,7 @@ reviewed: 2022-03-28
 
 ServicePulse collects and displays performance monitoring data about running endpoints on the Monitoring tab.
 
-![ServicePulse monitoring tab](servicepulse-monitoring-tab.png)
+![ServicePulse monitoring tab](servicepulse-monitoring-tab.png 'width=500')
 
 > [!NOTE]
 > ServicePulse will only display the monitoring tab if it is configured to point to a ServiceControl monitoring instance.
@@ -17,17 +17,17 @@ The monitoring tab shows a list of logical endpoints as well as the performance 
 
 Clicking on an endpoint in the monitoring tab will open the endpoint details page.
 
-![ServicePulse monitoring details page](servicepulse-monitoring-details.png)
+![ServicePulse monitoring details page](servicepulse-monitoring-details.png 'width=500')
 
 The endpoint details page shows larger graphs for each of the performance metrics gathered for the logical endpoint. It also contains several breakdown views.
 
 The default breakdown view is by Message Type which shows performance metrics for each type of message that the endpoint processes
 
-![ServicePulse details breakdown by message type](servicepulse-messagetype-breakdown.png)
+![ServicePulse details breakdown by message type](servicepulse-messagetype-breakdown.png 'width=500')
 
 The second breakdown view is by instance. Each logical endpoint can be running one or more physical instances. This view shows a breakdown of performance metrics for each physical instance.
 
-![ServicePulse details breakdown by physical instance](servicepulse-physicalinstance-breakdown.png)
+![ServicePulse details breakdown by physical instance](servicepulse-physicalinstance-breakdown.png 'width=500')
 
 > [!NOTE]
 > Each physical instance should be configured with its own instance id, which is shown here. See [Installing the plugin](install-plugin.md) for more information about instance ids.
@@ -49,18 +49,18 @@ The list of endpoints in the monitoring view can be managed in several ways.
 
 Endpoints can be filtered using a keyword in the filter input:
 
-![Filtering endpoints in the monitoring view](monitored-endpoints-filtering.png)
+![Filtering endpoints in the monitoring view](monitored-endpoints-filtering.png 'width=500')
 
 Grouping can be applied in order to group endpoints that share similar prefixes in their names. The prefix of an endpoint is subdivided in segments delimited by periods (`.`). The number of segments available for grouping can be selected and can go up to the total number of segments detected in the prefix.
 
-![Grouping endpoints in the monitoring view](monitored-endpoints-grouping.png)
+![Grouping endpoints in the monitoring view](monitored-endpoints-grouping.png 'width=500')
 
 Results can be sorted by clicking the respective column label. If clicked again, sorting is toggled between ascending and descending order. When sorting by any of the metrics, the average metric value will be used for sorting. If the list switches sorting positions too quickly, then a longer period of time may need to be selected to obtain more stable averages.
 
 > [!NOTE]
 > When endpoints are grouped, sorting is only available based on the endpoint name.
 
-![Sorting endpoints in the monitoring view](monitored-endpoints-sorting.png)
+![Sorting endpoints in the monitoring view](monitored-endpoints-sorting.png 'width=500')
 
 ## Data retention
 
@@ -86,7 +86,7 @@ This connectivity warning indicator appears in the instances breakdown on the en
 
 If the endpoint instance should be removed from the set of instances for a logical endpoint, this can be done by hovering over the stale instance row and clicking the "Remove endpoint" icon.
 
-![Remove endpoint](remove-endpoint-instance.png)
+![Remove endpoint](remove-endpoint-instance.png 'width=500')
 
 This removes the endpoint instance from the list of tracked endpoint instances for that logical endpoint.
 
