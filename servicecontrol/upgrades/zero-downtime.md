@@ -116,7 +116,7 @@ Update the audit queue configuration on the original Audit instance and add the 
 > [!NOTE]
 > For versions 4.32.0 of ServiceControl and older use `!disable` as the [`AuditQueue`](/servicecontrol/audit-instances/creating-config-file.md#transport-servicebusauditqueue) name to disable the audit message ingestion.
 
-Alternatively, run the following PowerShell script to complete the procedure:
+Alternatively, run the following PowerShell script to make the changes:
 
 ```ps1
 $originalAuditInstanceName = "Particular.ServiceControl.Audit"
