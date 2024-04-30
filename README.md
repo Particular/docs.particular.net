@@ -1010,7 +1010,7 @@ It will also wrap the image in a clickable lightbox so the full image can be acc
 
 #### Maintaining images
 
-When creating images, strive to keep sources in order to update and re-create images later. Whenever possible use mermaid. When using LucidChart make sure to keep the sources.
+When creating images, strive to keep sources in order to update and re-create images later. Whenever possible use mermaid. When using Miro make sure to keep the sources.
 
 #### mermaid
 
@@ -1088,9 +1088,9 @@ There are two css classes (`event` and `message`) that should be applied to mess
     ```
 ```
 
-#### LucidChart
+#### Miro
 
-Another option is using [LucidChart](https://www.lucidchart.com). LucidChart allows to export and import Visio (VDX) formatted documents. Visio formatted documents can be used to generate images and should be committed along with the images. To generate images from LucidChart (or a Visio document), export the image as PNG, using the "Crop to content" option.
+Another option is using [Miro](https://miro.com/). Miro allows the creation of diagrams in a whiteboard that can be exported and imported as a backup file (RTB) by a board owner. Diagrams created in Miro can be used to generate images that should be committed along with whiteboard backup. The idea is that the whiteboard with the diagrams can be imported in Miro by any team and evolved along with the documentation. To generate diagram images from Miro board, surround the diagram with a frame, select the frame and select the "Export as image" option, export the image as PNG.
 
 ### Some Useful Characters
 
