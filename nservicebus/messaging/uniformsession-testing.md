@@ -1,7 +1,7 @@
 ---
 title: Uniform Session Testing
 summary: How to unit test code that uses Uniform Session.
-reviewed: 2021-03-30
+reviewed: 2024-04-26
 component: UniformSessionTesting
 related:
 - nservicebus/messaging/uniformsession
