@@ -1090,7 +1090,7 @@ There are two css classes (`event` and `message`) that should be applied to mess
 
 #### Miro
 
-Another option is using [Miro](https://miro.com/). Miro allows the creation of diagrams in a whiteboard that can be exported and imported as a backup file (RTB) by a board owner. Diagrams created in Miro can be used to generate images that should be committed along with whiteboard backup. The idea is that the whiteboard with the diagrams can be imported in Miro by any team and evolved along with the documentation. To generate diagram images from Miro board, surround the diagram with a frame, select the frame and select the "Export as image" option, export the image as PNG.
+Another option is using [Miro](https://miro.com/). Miro allows the creation of diagrams in a whiteboard that can be exported and imported as a backup file (RTB) by a board owner. Diagrams created in Miro can be used to generate images that should be committed along with whiteboard backup. The idea is that the whiteboard with the diagrams can be imported in Miro by any team and evolved along with the documentation. To generate diagram images from Miro board, surround the diagram with a frame, select the frame, select the "Export as image" option and export the image as PNG.
 
 ### Some Useful Characters
 
