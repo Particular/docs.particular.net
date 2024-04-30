@@ -31,19 +31,10 @@ class Program
 
         #region AppInsightsSdkSetup
 
-        var envInstrumentationKey = "ApplicationInsightKey";
-        var instrumentationKey = Environment.GetEnvironmentVariable(envInstrumentationKey);
-
-        if (string.IsNullOrEmpty(instrumentationKey))
-        {
-            throw new Exception($"Environment variable '{envInstrumentationKey}' required.");
-        }
-
-        Console.WriteLine("Using application insights application key: {0}", instrumentationKey);
-
         var telemetryConfiguration = TelemetryConfiguration.CreateDefault();
         telemetryConfiguration.ConnectionString = appInsightsConnectionString;
         var telemetryClient = new TelemetryClient(telemetryConfiguration);
+
         #endregion
 
         endpointConfiguration.RegisterComponents(cc => cc.AddSingleton(telemetryClient));

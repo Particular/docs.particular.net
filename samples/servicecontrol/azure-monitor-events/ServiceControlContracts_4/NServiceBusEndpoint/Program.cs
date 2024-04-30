@@ -12,6 +12,7 @@ class Program
         endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
 
         #region DisableRetries
 
