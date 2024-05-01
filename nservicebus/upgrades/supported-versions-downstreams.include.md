@@ -20,8 +20,8 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [9.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.0.0) | 2024-04-16     | -                 | -                                 |
-| [8.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/8.0.3) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/7.0.5) | 2022-07-14     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [8.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/8.0.4) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/7.0.6) | 2022-07-14     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.SqlServer](/nuget/NServiceBus.SqlServer)
 
@@ -34,8 +34,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.0.0) | 2024-04-16     | -                 | -                                 |
-| [3.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.2.2) | 2023-03-23     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.0.1) | 2024-04-16     | -                 | -                                 |
+| [3.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.2.3) | 2023-03-23     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/2.0.6) | 2021-10-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Transport.AzureStorageQueues](/nuget/NServiceBus.Transport.AzureStorageQueues)
