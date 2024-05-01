@@ -62,6 +62,7 @@ ServicePulse: ServicePulse
 ServiceInsight: ServiceInsight
 SqlPersistence: NServiceBus.Persistence.Sql
 SqlTransport: NServiceBus.Transport.SqlServer
+PostgreSqlTransport: NServiceBus.Transport.PostgreSql
 SqlTransportLegacySystemClient: NServiceBus.SqlServer
 SignalR: SignalR.NServiceBus
 Spring: NServiceBus.Spring

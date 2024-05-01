@@ -181,7 +181,7 @@
   - Title: Upgrade Guides
     Articles:
     - Url: nservicebus/upgrades
-      Title: About upgrading NServiceBus   
+      Title: About upgrading NServiceBus
     - Url: nservicebus/upgrades/third-party-licenses
       Title: Third-party licenses
     - Url: nservicebus/upgrades/callbacks-1to2
@@ -988,6 +988,10 @@
       Title: Azure SQL considerations
     - Url: transports/sql/troubleshooting
       Title: Troubleshooting
+  - Title: PostgreSQL
+    Articles:
+    - Url: transports/postgresql
+      Title: PostgreSQL transport
   - Title: MSMQ
     Articles:
     - Url: transports/msmq
