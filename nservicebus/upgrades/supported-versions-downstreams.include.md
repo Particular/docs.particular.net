@@ -330,7 +330,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [5.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.0.0) | 2024-04-16     | -                 | -                                 |
-| [4.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.2.3) | 2023-09-21     | 2025-04-16        | Superseded by 5.0.x               |
+| [4.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.2.3) | 2023-09-21     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [~~4.1.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.1.1) | ~~2022-12-21~~ | ~~2023-12-21~~    | ~~Superseded by 4.2.x~~           |
 | [3.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/3.1.2) | 2022-08-31     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
@@ -484,7 +484,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/3.0.0) | 2024-04-16     | -                 | -                                 |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/2.0.1) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/1.0.0) | 2021-11-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/1.0.0) | ~~2021-11-29~~ | ~~2023-11-17~~    | ~~Superseded by 2.0.x~~           |
 
 #### [NServiceBus.Testing](/nuget/NServiceBus.Testing)
 
