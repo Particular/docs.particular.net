@@ -97,6 +97,3 @@ In this tutorial, we saw how to use the Particular Service Platform tools, Servi
 Perhaps the message had a previously unexpected input value which caused the bug to go undetected until the code entered production. With this knowledge in hand, we can go fix the code to validate these inputs or take some other sort of corrective action. Once the new code is deployed with the fix, we can replay the message and everything will flow through the system as if the error had never happened.
 
 If you haven't yet, you should check out the [NServiceBus Step-by-step](/tutorials/nservicebus-step-by-step/) tutorial, where you'll learn how to build the solution this tutorial is based on from scratch, while learning the messaging concepts you'll need to know to build even more complex software systems with NServiceBus.
-
-> [!TIP]
-> Now that you understand how powerful the ability to replay messages can be, take the next step and chat with one of our developers about how you can benefit from using NServiceBus in your next project. Just use the live chat in the bottom-right corner of the window.
