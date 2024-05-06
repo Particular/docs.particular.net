@@ -1,7 +1,7 @@
 ---
 title: AWS data stores
 summary: Gives an overview of the data storage options offered by AWS and how to use them with the Particular Service Platform
-reviewed: 2024-04-09
+reviewed: 2024-05-06
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
@@ -19,8 +19,8 @@ Amazon Web Services (AWS) offers a number of [data storage services](https://aws
 - Fully managed
 
 :heavy_minus_sign: Cons:
-
-- Data modeling as well as [saga design](/nservicebus/sagas/concurrency.md#high-load-scenarios-redesign-the-sagas) can impact cost making it difficult to predict
+ 
+- Data modeling as well as [saga design](/nservicebus/sagas/concurrency.md#high-load-scenarios-redesign-the-sagas) can impact cost, making it difficult to plan financially
 - Limited storage capacity for [individual items](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ServiceQuotas.html#limits-items)
 - Queries and scans require indexes to be created
 
