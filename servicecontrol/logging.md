@@ -26,7 +26,7 @@ When Save is clicked the service will be restarted to apply the change.
 
 ## Windows Event Log
 
-As of version 4.19.0, all ServiceControl instances will log to the Windows Event Log as well as the ServiceControl log. The default level is `WARN` but this setting can be changed by [specifying an explicit log level](#logging-levels).
+As of version 4.19.0, all ServiceControl instances will log to the Windows Event Log as well as the ServiceControl log. The default level is `INFO` but this setting can be changed by [specifying an explicit log level](#logging-levels).
 
 ## Monitoring
 
