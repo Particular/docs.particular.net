@@ -131,6 +131,10 @@
       "PackageId": "NServiceBus.Callbacks.Testing",
       "Versions": [
         {
+          "Minor": "3.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
           "Minor": "4.0",
           "SupportLevel": "Mainstream"
         },
