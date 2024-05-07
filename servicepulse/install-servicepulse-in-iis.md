@@ -1,7 +1,7 @@
 ---
 title: Install ServicePulse in IIS
 summary: Describes how to manually install ServicePulse in IIS
-reviewed: 2023-03-16
+reviewed: 2024-05-07
 component: ServicePulse
 ---
 
@@ -22,7 +22,6 @@ Steps
  1. Extract the ServicePulse files
  1. Disable/Remove ServicePulse
  1. Remove the `netsh` url restriction
- 1. Make sure that [WebSocket support is enabled for IIS](https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/iis-80-websocket-protocol-support)
  1. Create a website in IIS referring to the ServicePulse directory
  1. Configure URL Rewrites
 
@@ -162,35 +161,6 @@ Installation steps:
 > By exposing the REST API via the reverse proxy configuration, this protection is no longer in place. To address this, it is recommended that the IIS website be configured with one of the IIS authentication providers, such as Windows integration authentication.
 
 It is also recommended that the IIS website be configured to use TLS if an authorization provider is used.
-
-#### Configuring SignalR rewrite rules
-
-Due to a [bug in SignalR](https://github.com/SignalR/SignalR/issues/3649) in Microsoft.AspNet.SignalR.JS version 2.2.0, usage of IIS as a reverse proxy requires an additional URL Rewrite Rule. This rule should look as follows:
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-    <system.webServer>
-        <rewrite>
-            <outboundRules>
-                <rule name="Update URL property" preCondition="JSON" enabled="true" stopProcessing="true">
-                    <match filterByTags="None" pattern="\&quot;Url\&quot;:\&quot;(.+?)\&quot;" />
-                    <conditions>
-                        <add input="{URL}" pattern="(.*)/api/" />
-                    </conditions>
-                    <action type="Rewrite" value="&quot;Url&quot;:&quot;{C:1}{R:1}&quot;" />
-                </rule>
-                <preConditions>
-                    <preCondition name="JSON">
-                        <add input="{URL}" pattern="/api/messagestream/negotiate" />
-                        <add input="{RESPONSE_CONTENT_TYPE}" pattern="application/json" />
-                    </preCondition>
-                </preConditions>
-            </outboundRules>
-        </rewrite>
-    </system.webServer>
-</configuration>
-```
 
 ### ServiceControl monitoring
 
