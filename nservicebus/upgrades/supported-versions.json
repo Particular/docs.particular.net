@@ -772,6 +772,10 @@
       "PackageId": "NServiceBus.ServicePlatform.Connector",
       "Versions": [
         {
+          "Minor": "1.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
           "Minor": "2.0",
           "SupportLevel": "Mainstream"
         },
