@@ -118,15 +118,15 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/2.0.0) | 2024-04-16     | -                 | -                                 |
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/1.0.0) | 2023-05-09     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/2.0.1) | 2024-04-16     | -                 | -                                 |
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/1.0.1) | 2023-05-09     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 
 #### [NServiceBus.Persistence.DynamoDB.TransactionalSession](/nuget/NServiceBus.Persistence.DynamoDB.TransactionalSession)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/2.0.0) | 2024-04-16     | -                 | -                                 |
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/1.0.0) | 2023-05-09     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/2.0.1) | 2024-04-16     | -                 | -                                 |
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/1.0.1) | 2023-05-09     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 
 #### [NServiceBus.Persistence.NonDurable](/nuget/NServiceBus.Persistence.NonDurable)
 
