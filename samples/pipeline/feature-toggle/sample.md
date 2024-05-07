@@ -24,14 +24,14 @@ snippet: FeatureToggleBehavior
 
 ## The feature
 
-The feature toggles [feature](/nservicebus/pipeline/features.md) creates the behavior and adds it to the pipeline. 
+The feature toggle's [feature](/nservicebus/pipeline/features.md) creates the behavior and adds it to the pipeline.
 
 snippet: FeatureToggles
 
 
 ## The configuration extension
 
-This method extends the endpoint configuration to enable the feature toggles feature and add the feature toggle settings to the configuration. These settings are returned to the caller for additional tweaking. The settings are also extracted by the feature toggles feature and used to construct the feature toggle behavior (see above). 
+This method extends the endpoint configuration to enable the feature toggle's feature and add the feature toggle settings to the configuration. These settings are returned to the caller for additional tweaking. The settings are also extracted by the feature toggle's feature and used to construct the feature toggle behavior (see above).
 
 snippet: FeatureToggleConfigurationExtensions
 
