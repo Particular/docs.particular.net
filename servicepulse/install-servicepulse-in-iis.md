@@ -22,8 +22,7 @@ Steps
  1. Extract the ServicePulse files
  1. Disable/Remove ServicePulse
  1. Remove the `netsh` url restriction
- 1. Create a website in IIS referring to the ServicePulse directory
- 1. Configure URL Rewrites
+ 1. Create a website in IIS referring to the ServicePulse directory 
 
 ### Detailed steps
 
@@ -56,45 +55,9 @@ netsh http delete urlacl http://+:9090/
 > [!NOTE]
 > If TLS is to be applied to ServicePulse then ServiceControl also must be configured for TLS. This can be achieved by reverse proxying ServiceControl through IIS as outlined below.
 
-5. Install the [URL Rewrite](https://www.iis.net/downloads/microsoft/url-rewrite) module, then in the root directory of the IIS website, create a `web.config` file with the following content:
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-  <system.webServer>
-    <rewrite>
-      <rules>
-        <rule name="Handle app.constants.js requests from AngularJs" stopProcessing="true">
-          <match url="^a/js/app.constants.js(.*)" />
-          <action type="Rewrite" url="/js/app.constants.js{R:1}" />
-        </rule>
-      </rules>
-    </rewrite>
-  </system.webServer>
-</configuration>
-```
-
 ###  Hosting ServicePulse within a subfolder
 
-It is possible to host ServicePulse within a subfolder. The `web.config` containing the URL Rewrite rules must be placed in the subfolder containing the ServicePulse files. Secondly, the URL Rewrite configuration must be aware of the subfolder i.e the rewrite **must include the SubFolder name in the match part** of the rule.
-
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<configuration>
-  <system.webServer>
-    <rewrite>
-      <rules>
-        <rule name="Handle app.constants.js requests from AngularJs" stopProcessing="true">
-          <match url="^/a/js/app.constants.js(.*)" />
-          <action type="Rewrite" url="/SubFolder/js/app.constants.js{R:1}" />
-        </rule>
-      </rules>
-    </rewrite>
-  </system.webServer>
-</configuration>
-```
-
-The second required configuration change is to specify the name of the subfolder in the `base_url`. This is done by:
+It is possible to host ServicePulse within a subfolder. The name of the subfolder has to be specified in the `base_url` app constant. This is done by:
 
 1. Go to the root directory for the website created in the basic configuration.
 1. Edit `js\app.constants.js` file and set the `base_url` variable to be the name of the subfolder.
@@ -143,19 +106,12 @@ Installation steps:
                  <rule name="Rewrite main instance API URL" stopProcessing="true">
                     <match url="^api/(.*)" />
                     <action type="Rewrite" url="http://localhost:33333/api/{R:1}" />
-                </rule>
-                <rule name="Legacy rewrite main instance API URL" stopProcessing="true">
-                    <match url="^a/api(.*)" />
-                    <action type="Rewrite" url="http://localhost:33333/api/{R:1}" />
-                </rule>
+                </rule>                
             </rules>
         </rewrite>
     </system.webServer>
 </configuration>
 ```
-
-> [!WARNING]
-> When combining these rules with the ones specified above in [Detailed steps](#basic-setup-detailed-steps), ensure the rule named "Handle Vue.js routing paths" (i.e. `<match url="(.*)" />`) rule occurs _last_ in the list of rewrite rules. Otherwise, it will override the rules specified here.
 
 > [!WARNING]
 > By exposing the REST API via the reverse proxy configuration, this protection is no longer in place. To address this, it is recommended that the IIS website be configured with one of the IIS authentication providers, such as Windows integration authentication.
@@ -185,11 +141,7 @@ Installation steps:
                 <rule name="Rewrite monitoring API URL" stopProcessing="true">
                     <match url="^monitoring/(.*)" />
                     <action type="Rewrite" url="http://localhost:33633/{R:1}" />
-                </rule>
-                <rule name="Legacy rewrite monitoring API URL" stopProcessing="true">
-                    <match url="^a/monitoring/(.*)" />
-                    <action type="Rewrite" url="http://localhost:33633/{R:1}" />
-                </rule>
+                </rule>                
             </rules>
         </rewrite>
     </system.webServer>
