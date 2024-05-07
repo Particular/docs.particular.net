@@ -1,13 +1,13 @@
 ---
 title: Monitoring Instance Configuration Settings
-summary: Categorized list of ServiceControl Monitoring instance configuration settings.
-reviewed: 2021-04-30
+summary: Categorized ServiceControl Monitoring instance configuration settings list.
+reviewed: 2024-05-07
 ---
 
 
 ## Configuration Settings
 
-The configuration of a Monitoring instance can be adjusted via ServiceControl Management or by directly modifying the `ServiceControl.Monitoring.exe.config` file. The settings listed are applicable to the app settings section of the configuration file unless otherwise specified.
+The configuration of a Monitoring instance can be adjusted via ServiceControl Management or by directly modifying the `ServiceControl.Monitoring.exe.config` file. Unless otherwise specified, the settings listed apply to the app settings section of the configuration file.
 
 
 ## Host Settings
@@ -81,7 +81,7 @@ Type: string
 
 ### NServiceBus/Transport
 
-The connection string for the transport. This setting should be placed in `connectionStrings` section of configuration file.
+The connection string for the transport. This setting should be placed in `connectionStrings` section of the configuration file.
 
 Type: string
 
@@ -104,7 +104,7 @@ Default: `32`
 
 ### Monitoring/EndpointUptimeGracePeriod
 
-The time period after which the endpoint is considered stale if it stops sending messages.
+The time after which the endpoint is considered stale if it stops sending messages.
 
 Type: timespan
 
