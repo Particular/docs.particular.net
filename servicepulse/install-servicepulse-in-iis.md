@@ -124,7 +124,7 @@ When using [monitoring capabilities](/monitoring) the following steps should be 
 
 Installation steps:
 
- 1. Install the IIS [Application Request Routing extension](https://www.iis.net/downloads/microsoft/application-request-routing).
+ 1. Install the IIS [URL Rewrite Module](https://www.iis.net/downloads/microsoft/url-rewrite).
  1. Go to the root directory for the website created in the basic configuration.
  1. Edit `js\app.constants.js` and change the `monitoring_urls` value from `http://localhost:33633/` to `monitoring/`.
  1. Open the IIS management tool.
