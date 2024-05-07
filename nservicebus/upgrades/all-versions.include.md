@@ -493,7 +493,7 @@
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.Autofac/3.1.1) | ~~2012-05-21~~ | ~~2012-08-22~~    | ~~Superseded by 3.2.x~~           |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Autofac/3.0.4) | ~~2012-03-08~~ | ~~2012-08-21~~    | ~~Superseded by 3.1.x~~           |
 | [~~2.6.x~~](https://www.nuget.org/packages/NServiceBus.Autofac/2.6.0.1511) | ~~2011-08-09~~ | ~~2013-03-08~~    | ~~Superseded by 3.0.x~~           |
-| [~~2.5.x~~](https://www.nuget.org/packages/NServiceBus.Autofac/2.5.0.1490) | ~~2011-07-06~~ | ~~2011-11-09~~    | ~~Superseded by 2.6.x~~           |
+| [~~2.5.x~~](https://www.nuget.org/packages/NServiceBus.Autofac/2.5.0.1490) | ~~2011-07-06~~ | ~~2014-03-08~~    | ~~Extended by NServiceBus 2.6.x~~ |
 
 #### [NServiceBus.CastleWindsor](/nuget/NServiceBus.CastleWindsor)
 
@@ -519,7 +519,7 @@
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.CastleWindsor/3.1.1) | ~~2012-05-21~~ | ~~2012-08-22~~    | ~~Superseded by 3.2.x~~           |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.CastleWindsor/3.0.4) | ~~2012-03-08~~ | ~~2012-08-21~~    | ~~Superseded by 3.1.x~~           |
 | [~~2.6.x~~](https://www.nuget.org/packages/NServiceBus.CastleWindsor/2.6.0.1511) | ~~2011-08-09~~ | ~~2013-03-08~~    | ~~Superseded by 3.0.x~~           |
-| [~~2.5.x~~](https://www.nuget.org/packages/NServiceBus.CastleWindsor/2.5.0.1490) | ~~2011-07-06~~ | ~~2011-11-09~~    | ~~Superseded by 2.6.x~~           |
+| [~~2.5.x~~](https://www.nuget.org/packages/NServiceBus.CastleWindsor/2.5.0.1490) | ~~2011-07-06~~ | ~~2014-03-08~~    | ~~Extended by NServiceBus 2.6.x~~ |
 
 #### [NServiceBus.Extensions.DependencyInjection](/nuget/NServiceBus.Extensions.DependencyInjection)
 
@@ -598,7 +598,7 @@
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.StructureMap/3.1.1) | ~~2012-05-21~~ | ~~2012-08-22~~    | ~~Superseded by 3.2.x~~           |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.StructureMap/3.0.4) | ~~2012-03-08~~ | ~~2012-08-21~~    | ~~Superseded by 3.1.x~~           |
 | [~~2.6.x~~](https://www.nuget.org/packages/NServiceBus.StructureMap/2.6.0.1511) | ~~2011-08-09~~ | ~~2013-03-08~~    | ~~Superseded by 3.0.x~~           |
-| [~~2.5.x~~](https://www.nuget.org/packages/NServiceBus.StructureMap/2.5.0.1490) | ~~2011-07-06~~ | ~~2011-11-09~~    | ~~Superseded by 2.6.x~~           |
+| [~~2.5.x~~](https://www.nuget.org/packages/NServiceBus.StructureMap/2.5.0.1490) | ~~2011-07-06~~ | ~~2014-03-08~~    | ~~Extended by NServiceBus 2.6.x~~ |
 
 #### [NServiceBus.Unity](/nuget/NServiceBus.Unity)
 
@@ -627,7 +627,7 @@
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.Unity/3.1.1) | ~~2012-05-21~~ | ~~2012-08-22~~    | ~~Superseded by 3.2.x~~           |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Unity/3.0.4) | ~~2012-03-08~~ | ~~2012-08-21~~    | ~~Superseded by 3.1.x~~           |
 | [~~2.6.x~~](https://www.nuget.org/packages/NServiceBus.Unity/2.6.0.1511) | ~~2011-08-09~~ | ~~2013-03-08~~    | ~~Superseded by 3.0.x~~           |
-| [~~2.5.x~~](https://www.nuget.org/packages/NServiceBus.Unity/2.5.0.1490) | ~~2011-07-06~~ | ~~2011-11-09~~    | ~~Superseded by 2.6.x~~           |
+| [~~2.5.x~~](https://www.nuget.org/packages/NServiceBus.Unity/2.5.0.1490) | ~~2011-07-06~~ | ~~2014-03-08~~    | ~~Extended by NServiceBus 2.6.x~~ |
 
 ### Logger packages
 
