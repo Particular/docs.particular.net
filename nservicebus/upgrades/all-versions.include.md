@@ -694,7 +694,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.DataBus.BinarySerializer/2.0.0) | 2024-04-16     | -                 | -                                 |
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.DataBus.BinarySerializer/1.0.0) | 2022-11-17     | 2025-04-16        | Superseded by 2.0.x               |
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.DataBus.BinarySerializer/1.0.0) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 
 ### Host packages
 
