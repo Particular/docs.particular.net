@@ -617,7 +617,7 @@
 | [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.Unity/6.0.2) | ~~2014-09-29~~ | ~~2015-01-28~~    | ~~Superseded by 6.1.x~~           |
 | [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.Unity/5.0.0) | ~~2014-04-09~~ | ~~2016-09-29~~    | ~~Extended by NServiceBus 4.7.x~~ |
 | [~~4.7.x~~](https://www.nuget.org/packages/NServiceBus.Unity/4.7.13) | ~~2016-03-02~~ | ~~2015-04-09~~    | ~~Superseded by 5.0.x~~           |
-| [~~4.4.x~~](https://www.nuget.org/packages/NServiceBus.Unity/4.4.3.1) | ~~2014-02-12~~ | ~~2015-04-09~~    | ~~Superseded by 5.0.x~~           |
+| [~~4.4.x~~](https://www.nuget.org/packages/NServiceBus.Unity/4.4.3.1) | ~~2014-02-12~~ | ~~2016-06-02~~    | ~~Superseded by 4.7.x~~           |
 | [~~4.3.x~~](https://www.nuget.org/packages/NServiceBus.Unity/4.3.10) | ~~2013-12-05~~ | ~~2014-05-12~~    | ~~Superseded by 4.4.x~~           |
 | [~~4.2.x~~](https://www.nuget.org/packages/NServiceBus.Unity/4.2.7) | ~~2013-11-05~~ | ~~2014-03-05~~    | ~~Superseded by 4.3.x~~           |
 | [~~4.1.x~~](https://www.nuget.org/packages/NServiceBus.Unity/4.1.8) | ~~2013-10-17~~ | ~~2014-02-05~~    | ~~Superseded by 4.2.x~~           |
@@ -642,7 +642,7 @@
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.CommonLogging/3.0.0) | ~~2016-10-11~~ | ~~2017-11-16~~    | ~~Superseded by 4.0.x~~           |
 | [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.CommonLogging/2.1.0) | ~~2015-02-18~~ | ~~2018-10-11~~    | ~~Extended by NServiceBus 5.2.x~~ |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.CommonLogging/2.0.0) | ~~2014-09-29~~ | ~~2015-05-18~~    | ~~Superseded by 2.1.x~~           |
-| [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.CommonLogging/1.0.0) | ~~2013-10-05~~ | ~~2015-09-29~~    | ~~Superseded by 2.0.x~~           |
+| [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.CommonLogging/1.0.0) | ~~2013-10-05~~ | ~~2016-09-29~~    | ~~Extended by NServiceBus 4.7.x~~ |
 
 #### [NServiceBus.Extensions.Logging](/nuget/NServiceBus.Extensions.Logging)
 
