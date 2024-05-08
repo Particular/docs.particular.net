@@ -56,7 +56,7 @@ netsh http delete urlacl http://+:9090/
 > Make sure that the ServicePulse Windows Service is not running and that the URLACL has been removed or else IIS will not be able to use port 9090.
 
 > [!NOTE]
-> If TLS is to be applied to ServicePulse then ServiceControl also must be configured for TLS. This can be achieved by reverse proxying ServiceControl through IIS as outlined [below](#servicecontrol).
+> If TLS is to be applied to ServicePulse then ServiceControl also must be configured for TLS. This can be achieved by reverse proxying ServiceControl through IIS as outlined [below](#advanced-configuration-servicecontrol).
 
 ###  Hosting ServicePulse within a subfolder
 
