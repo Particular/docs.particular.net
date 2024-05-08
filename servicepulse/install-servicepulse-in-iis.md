@@ -24,6 +24,9 @@ Steps
  1. Remove the `netsh` url restriction
  1. Create a website in IIS referring to the ServicePulse directory 
 
+> [!NOTE]
+> If you are upgrading from a previous version of Service Pulse, it is recommended to delete your existing environment and follow this document for a clean install. Follow this instructions [down below](#upgrading-servicepulse-hosted-in-iis).
+
 ### Detailed steps
 
 By default, ServicePulse is [installed](installation.md) as a Windows Service that will self-host the ServicePulse web application.
