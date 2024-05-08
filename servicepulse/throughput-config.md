@@ -11,21 +11,14 @@ Endpoint throughput summary and throughput report generation are available in th
 > [!NOTE]
 > Throughput requires ServicePulse version 1.39 or later, and ServiceControl version 5.3 or later.
 
-## Endpoints
+## Connection Settings
 
-### Viewing
+Need a section on each type of connection and an explanation of the parameters involved, with minimum access/permissions required on the broker
 
-### User selection
+### Azure Service Bus
 
-### Generating a throughput report
+### Amazon SQS
 
-## Setup
+### SQLServer
 
-### Connection Settings
-
-In most scenarios existing ServiceControl connection settings will be used to establish a connection to the broker.
-If there is a connection problem, [specific throughput settings](./throughput-config.md) can be provided.
-
-### Diagnostics
-
-### Report Masks
+### RabbitMQ
