@@ -1,7 +1,7 @@
 ---
 title: Endpoint throughput counter tool FAQ
 summary: Answers to frequently asked questions about the EndpointThroughputCounter tool
-reviewed: 2023-03-05
+reviewed: 2024-05-08
 related:
   - nservicebus/throughput-tool
 ---
@@ -14,7 +14,9 @@ The tool measures the number of endpoints used in a system, along with each endp
 
 ## Why should I run the tool
 
-The tool assists in gathering the information needed for licensing NServiceBus and the Particular Service Platform as required for production systems. Particular Software also uses the information in aggregate to better serve customer needs.
+The tool is available as a backup for customers who are not able to use the [inbuilt functionality of ServiceControl and ServicePulse](./../../servicepulse/throughput.md) to measure their endpoint throughput.
+
+It assists in gathering the information needed for licensing NServiceBus and the Particular Service Platform as required for production systems. Particular Software also uses the information in aggregate to better serve customer needs.
 
 ## Does the tool automatically submit the report to Particular Software
 
@@ -44,11 +46,11 @@ The tool was designed to be lightweight and non-intrusive. The load from running
 
 The technical details of how the tool will interact with a running system are documented on the respective pages for each data collection mechanism:
 
-* [Azure Service Bus](azure-service-bus.md?what-does-the-tool-do)
-* [Amazon SQS](amazon-sqs.md?what-does-the-tool-do)
-* [RabbitMQ](rabbitmq.md?what-does-the-tool-do)
-* [SQL Transport](sql-transport.md?what-does-the-tool-do)
-* [ServiceControl](service-control.md?what-does-the-tool-do)
+- [Azure Service Bus](azure-service-bus.md?what-does-the-tool-do)
+- [Amazon SQS](amazon-sqs.md?what-does-the-tool-do)
+- [RabbitMQ](rabbitmq.md?what-does-the-tool-do)
+- [SQL Transport](sql-transport.md?what-does-the-tool-do)
+- [ServiceControl](service-control.md?what-does-the-tool-do)
 
 ## How long will it take to run the tool
 
