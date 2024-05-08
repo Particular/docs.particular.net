@@ -4,18 +4,16 @@ component: mongodb
 versions: '[1,)'
 related:
  - persistence/mongodb/migrating-from-tekmaven
-reviewed: 2021-05-11
+reviewed: 2024-05-08
 ---
 
 This package was designed to be fully compatible with the community [`NServiceBus.MongoDB`](https://github.com/sbmako/NServiceBus.MongoDB) package with some minor configuration.
 
 include: migration-warning
 
-
 ## NServiceBus upgrade
 
 `NServiceBus.Storage.MongoDB` is available for NServiceBus Version 7 and later. It is recommended to upgrade endpoints to NServiceBus Version 7 before migrating to the `NServiceBus.Storage.MongoDB` package.
-
 
 ## Saga data class changes
 
@@ -37,7 +35,6 @@ include: migration-warning
 
 If the `ETag` property is not removed, it will no longer be updated by the persister.
 
-
 ### Saga data compatibility mode
 
 Use the following compatibility API to configure the package to work with existing saga data:
@@ -50,17 +47,15 @@ include: must-apply-conventions-for-version
 
 In addition, the collection naming convention for sagas must be configured to match the one used by `NServiceBus.MongoDB`, `type => type.Name`, as demonstrated in the above snippet.
 
-
 ## Subscriptions
 
 Subscriptions are recreated by restarting the subscribing endpoints. Alternatively, existing subscriptions can be migrated to the new data format.
-
 
 ## Migrating subscriptions
 
 In the [Carlos Sandoval](https://github.com/sbmako) implementation subscriptions are stored in the collection named `Subscription`. Each document maps to an event type containing a set of subscribers using the type `Subscriber` from the NServiceBus package.
 
-The following migration script iterates through the documents and insert each subscriber value as a new document.
+The following migration script iterates through the documents and inserts each subscriber value as a new document.
 
 ```javascript
 db.subscription.find().forEach(type => {
