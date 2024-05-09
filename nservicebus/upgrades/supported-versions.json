@@ -55,10 +55,6 @@
       "PackageId": "NServiceBus.AwsLambda.Sqs",
       "Versions": [
         {
-          "Minor": "0.6",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "1.1",
           "SupportLevel": "Mainstream"
         },
