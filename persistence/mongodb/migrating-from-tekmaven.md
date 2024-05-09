@@ -4,18 +4,16 @@ component: mongodb
 versions: '[1,)'
 related:
  - persistence/mongodb/migrating-from-sbmako
-reviewed: 2021-05-11
+reviewed: 2024-05-08
 ---
 
 The `NServiceBus.Storage.MongoDB` package was designed to be fully compatible with the community [`NServiceBus.Persistence.MongoDB`](https://github.com/tekmaven/NServiceBus.Persistence.MongoDb) package with some minor configuration.
 
 include: migration-warning
 
-
 ## NServiceBus upgrade
 
 `NServiceBus.Storage.MongoDB` is available for NServiceBus Version 7 and later. When migrating from `NServiceBus.Persistence.MongoDB` it is recommended to remove the persistence package and upgrade the endpoint to NServiceBus Version 7 before installing the `NServiceBus.Storage.MongoDB` package.
-
 
 ## Customizing the connection
 
@@ -59,7 +57,6 @@ The `VersionElementName` value must match the `BsonDocument` element name used b
 
 include: must-apply-conventions-for-version
 
-
 ### Migrating saga data
 
 As an alternative to compatibility mode, saga data created by the `NServiceBus.Persistence.MongoDB` package can be migrated to the data format used by the `NServiceBus.Storage.MongoDB` package. This approach requires the endpoint to be stopped during migration. Use the `mongo` shell to connect to the database and execute the following script:
@@ -76,7 +73,7 @@ db.getCollectionNames().forEach(collectionName => {
 });
 ```
 
-Replace `"Version"` with the name of the version property on the saga data which was previously decorated with the `[DocumentVersion]` attribute.
+Replace `"Version"` with the name of the version property on the saga data previously decorated with the `[DocumentVersion]` attribute.
 
 > [!WARNING]
 > Be sure to create a backup of the database prior to migrating the saga data.
@@ -85,7 +82,6 @@ Replace `"Version"` with the name of the version property on the saga data which
 ## Subscriptions
 
 Subscriptions are recreated by restarting the subscribing endpoints. Alternatively, existing subscriptions can be migrated to the new data format.
-
 
 ### Migrating subscriptions
 
