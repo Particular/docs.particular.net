@@ -107,7 +107,7 @@ foreach($solution in $solutions) {
         }
         else
         {
-            dotnet build $solution.Name -maxCpuCount --verbosity quiet | Tee-Object -Variable $out
+            dotnet build $solution.Name -maxCpuCount --verbosity quiet | Tee-Object -Variable out
         }
 
         if( -not $? ) {
