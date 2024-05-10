@@ -83,9 +83,11 @@ $executionDirectory = Get-Location
 
 $solutions = Get-BuildSolutions
 
-Write-Output "::group::Solutions to build"
-$solutions | ForEach-Object { Write-Output (" * {0}" -f $_.FullName) }
-Write-Output "::endgroup::"
+# Don't really need this polluting the console output when we have Actions Summary output for failed jobs
+# but leaving it commented here in case there's a problem in the future with the git diff logic
+#Write-Output "::group::Solutions to build"
+#$solutions | ForEach-Object { Write-Output (" * {0}" -f $_.FullName) }
+#Write-Output "::endgroup::"
 
 foreach($solution in $solutions) {
     Write-Output ("::group::Build Solution {0}" -f $solution.FullName)
@@ -96,21 +98,25 @@ foreach($solution in $solutions) {
     try
     {
         $msBuildMarkerFile = CombinePaths $solution.Directory "msbuild"
+        $out = ""
         if(Test-Path $msBuildMarkerFile)
         {
             Write-Output ("::warning::Using msbuild for solution using legacy csproj format: {0}" -f $solution.FullName)
             Write-Output ("🟡 Using msbuild for solution using legacy csproj format: {0}" -f $solution.FullName) | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
-            msbuild $solution.Name -maxCpuCount -verbosity:minimal -restore -property:RestorePackagesConfig=true
+            msbuild $solution.Name -maxCpuCount -verbosity:minimal -restore -property:RestorePackagesConfig=true | Tee-Object -Variable out
         }
         else
         {
-            dotnet build $solution.Name -maxCpuCount --verbosity minimal
+            dotnet build $solution.Name -maxCpuCount --verbosity quiet | Tee-Object -Variable out
         }
 
         if( -not $? ) {
             $exitCode = 1
             Write-Output ("::error::Build failed: {0}" -f $solution.FullName)
             Write-Output ("🔴 Build failed: {0}" -f $solution.FullName) | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
+            Write-Output ('```txt') | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
+            Write-Output $out | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
+            Write-Output ('```') | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
             $failedSolutions.Add($solution.FullName)
         }
     }

@@ -119,7 +119,7 @@ public class ScriptWriter
         public Guid OrderId { get; set; }
     }
 
-    class ExposeInternalMethods : DynamicObject 
+    class ExposeInternalMethods : DynamicObject
     {
         private object m_object;
 
