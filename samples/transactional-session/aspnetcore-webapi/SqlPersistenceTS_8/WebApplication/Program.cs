@@ -21,8 +21,10 @@ var hostBuilder = WebApplication.CreateBuilder();
 
 #region txsession-nsb-configuration
 var endpointConfiguration = new EndpointConfiguration("Samples.ASPNETCore.Sender");
-var transport = endpointConfiguration.UseTransport(new LearningTransport { TransportTransactionMode = TransportTransactionMode.ReceiveOnly });
+
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.EnableInstallers();
+endpointConfiguration.UseTransport(new LearningTransport { TransportTransactionMode = TransportTransactionMode.ReceiveOnly });
 
 var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
 persistence.SqlDialect<SqlDialect.MsSqlServer>();
