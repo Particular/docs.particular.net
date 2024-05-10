@@ -17,7 +17,7 @@ public class ScriptWriter
     [Test]
     public void Write()
     {
-        var directory = Path.Combine(TestContext.CurrentContext.TestDirectory, "../../../");
+        var directory = Path.Com(TestContext.CurrentContext.TestDirectory, "../../../");
         foreach (var variant in Enum.GetValues(typeof(BuildSqlDialect)).Cast<BuildSqlDialect>())
         {
             Write(directory, variant, "TimeoutCreate", TimeoutScriptBuilder.BuildCreateScript(variant));
@@ -119,7 +119,7 @@ public class ScriptWriter
         public Guid OrderId { get; set; }
     }
 
-    class ExposeInternalMethods : DynamicObject 
+    class ExposeInternalMethods : DynamicObject
     {
         private object m_object;
 
