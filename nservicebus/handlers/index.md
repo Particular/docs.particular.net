@@ -2,7 +2,7 @@
 title: Handlers
 summary: Write a class to handle messages in NServiceBus.
 component: Core
-reviewed: 2021-04-29
+reviewed: 2024-05-05
 redirects:
 - nservicebus/how-do-i-handle-a-message
 ---

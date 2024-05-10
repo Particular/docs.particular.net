@@ -1,18 +1,18 @@
 ---
 title: Supported frameworks and platforms
 summary: Frameworks and platforms supported by NServiceBus
-reviewed: 2024-04-12
+reviewed: 2024-05-06
 related:
  - nservicebus/licensing
  - nservicebus/upgrades/release-policy
  - nservicebus/upgrades/supported-versions
 ---
 
-Supported frameworks can be used for production workloads with technical support available from Particular Software.
+Particular software provides technical support for production environments based on [Microsoft support policy for .NET](https://dotnet.microsoft.com/en-us/platform/support/policy).
 
-Support for individual components requires using [supported component versions](supported-versions.md) on a [supported version of .NET](https://dotnet.microsoft.com/en-us/platform/support/policy).
+Support policies for individual NServiceBus components can be found in the [NServiceBus Packages Supported Versions documentation](supported-versions.md).
 
-1. Not all packages support all frameworks and versions, due to framework restrictions, obsolete APIs, or transitive dependencies.
+1. Not all packages support the available frameworks and versions, due to framework restrictions, obsolete APIs, or transitive dependencies.
 2. In this context, "supported" applies only to the framework runtime and doesn't necessarily indicate support for all languages features.
 
 ## NServiceBus 9

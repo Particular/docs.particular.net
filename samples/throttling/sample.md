@@ -1,6 +1,6 @@
 ---
 title: Message Throughput Throttling
-reviewed: 2021-04-17
+reviewed: 2024-05-05
 component: Core
 related:
 - nservicebus/pipeline/manipulate-with-behaviors

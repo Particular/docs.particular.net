@@ -2,21 +2,21 @@
 title: Deleted Message Management
 summary: Describes how ServicePulse monitors deleted failed messages, and allows restoring deleted failed messages.
 component: ServicePulse
-reviewed: 2023-10-11
+reviewed: 2024-05-03
 ---
 
 ## About deleting messages
 
 Archiving can be useful for failed messages that no longer have business value. Once a message is deleted it can be automatically cleaned up according to the configuration of the [retention policy](/servicecontrol/creating-config-file.md#data-retention-servicecontrolerrorretentionperiod).
 
-Archiving in ServicePulse means that the failed messages are marked as `Deleted`. Data from an deleted message is still available, but it is no longer displayed in the Failed Messages list in ServicePulse, is not counted by the Failed Messages indicator in the ServicePulse dashboard, nor will it appear in any failed message groups.
+Archiving in ServicePulse means that the failed messages are marked as `Deleted`. Data from a deleted message is still available, but it is no longer displayed in the Failed Messages list in ServicePulse, is not counted by the Failed Messages indicator in the ServicePulse dashboard, nor will it appear in any failed message groups.
 
 > [!NOTE]
 > Deleted failed messages are still included in [ServiceInsight](/serviceinsight/) diagrams and search results.
 
 ## Deleting messages
 
-Deleted messages can be found in ServicePulse in a tab in the Failed Messages page. From the Failed Messages page, messages can also be deleted from:
+Deleted messages can be found in ServicePulse in a tab on the Failed Messages page. From the Failed Messages page, messages can also be deleted from:
 
 * the Failed Groups tab
 * any failed group's contents view
@@ -64,4 +64,4 @@ If there are failed messages that were deleted by mistake, they can be restored 
 
 Deleted groups of failed messages can also be restored by clicking on the respective "Restore group" button in the Deleted Message Groups tab.
 
-![Restore group](images/deleted-group-restore.png)
+![Restore group](images/deleted-group-restore.png 'width=500')

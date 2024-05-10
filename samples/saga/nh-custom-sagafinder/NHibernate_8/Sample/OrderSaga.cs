@@ -1,7 +1,7 @@
-﻿using NServiceBus;
-using NServiceBus.Logging;
-using System;
+﻿using System;
 using System.Threading.Tasks;
+using NServiceBus;
+using NServiceBus.Logging;
 
 #region saga
 
@@ -11,11 +11,11 @@ public class OrderSaga :
     IHandleMessages<CompletePaymentTransaction>,
     IHandleMessages<CompleteOrder>
 {
-    static ILog log = LogManager.GetLogger<OrderSaga>();
+    static readonly ILog log = LogManager.GetLogger<OrderSaga>();
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
-        mapper.MapSaga(_=> _.OrderId)
+        mapper.MapSaga(_ => _.OrderId)
             .ToMessage<StartOrder>(_ => _.OrderId)
             .ToMessage<CompleteOrder>(_ => _.OrderId);
     }

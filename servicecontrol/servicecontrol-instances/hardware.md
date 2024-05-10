@@ -2,7 +2,7 @@
 title: ServiceControl Hardware Considerations
 summary: Hardware recommendations for running ServiceControl instances
 component: ServiceControl
-reviewed: 2023-11-30
+reviewed: 2024-05-06
 ---
 
 This article provides recommendations and performance benchmarks to help select resources for a ServiceControl production environment.
@@ -80,4 +80,7 @@ Using multiple 7500 IOPS disks in striped mode in Azure may not improve performa
 
 ### Turn off full-text search
 
-Updating the full-text index requires a considerable amount of CPU and disk space. If the ability to search for specific messages based on their content is not required, consider turning off full-text search in the ServiceControl Management Utility or by modifying the [ServiceControl.Audit/EnableFullTextSearchOnBodies](/servicecontrol/audit-instances/creating-config-file.md#performance-tuning-servicecontrol-auditenablefulltextsearchonbodies) setting in the configuration file.
+Updating the full-text index requires a considerable amount of CPU and disk space. If the full-text search on message bodies is not required, consider turning it off by doing either one of the following:
+
+- Turn off the 'FULL TEXT SEARCH ON MESSAGE BODIES' in the settings configuration of ServiceControl Management Utility
+- Modify the [ServiceControl.Audit/EnableFullTextSearchOnBodies](/servicecontrol/audit-instances/creating-config-file.md#performance-tuning-servicecontrol-auditenablefulltextsearchonbodies) setting in the configuration file

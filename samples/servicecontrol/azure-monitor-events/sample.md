@@ -2,7 +2,7 @@
 title: Monitor ServiceControl events with Azure Application Insights
 summary: A sample showing how to monitor events published by ServiceControl with Azure Application Insights
 component: ServiceControlContracts
-reviewed: 2021-04-16
+reviewed: 2024-04-26
 related:
  - servicecontrol
  - servicecontrol/contracts
@@ -10,11 +10,19 @@ related:
  - samples/servicecontrol/monitoring3rdparty
 ---
 
-This sample shows how to monitor a running NServiceBus system with ServiceControl and ServicePulse, as well as how to integrate with existing monitoring solutions. The sample uses the [learning transport](/transports/learning/) and a portable version of the Particular Service Platform tools. Installing ServiceControl is **not** required.
+This sample shows how to monitor a running NServiceBus system with ServiceControl and ServicePulse as well as how to integrate with existing monitoring solutions. The sample uses the [learning transport](/transports/learning/) and a portable version of the Particular Service Platform tools. Installing ServiceControl is **not** required.
 
 include: platformlauncher-windows-required
 
 downloadbutton
+
+## Connect to Application Insights Azure Monitor
+
+To connect the sample code to Application Insights, the instrumentation key must be provided. The key is loaded from the `ApplicationInsightKey` environment variable.
+
+The instrumentation key can be retrieved from the Azure Portal by locating the Application Insights instance, then navigating to the Properties view.
+
+snippet: AppInsightsSdkSetup
 
 ## Running the project
 
@@ -72,14 +80,6 @@ In order to receive `HeartbeatStopped` and `HeartbeatRestored` events, the endpo
 
 > [!NOTE]
 > Heartbeat control messages are sent [every 30 seconds by default](/monitoring/heartbeats/install-plugin.md#heartbeat-interval) so there will be up to a 30 second delay before ServiceControl realizes that it lost or restored connection with the endpoint.
-
-## Connect to Application Insights Azure Monitor
-
-To connect the sample code to Application Insights, the instrumentation key must be provided. The key is loaded from the `ApplicationInsightKey` environment variable.
-
-The instrumentation key can be retrieved from the Azure Portal by locating the Application Insights instance, then navigating to the Properties view.
-
-snippet: AppInsightsSdkSetup
 
 ### AzureMonitorConnector
 

@@ -31,10 +31,11 @@ To create a redirect, click `Create Redirect`. A dialog will appear.
 
 Choose a source queue from the dropdown. Enter the queue name for the target of the redirect in `To Physical Address`. To immediately retry all unresolved failed messages from the sources address, check the box with the label `Immediately retry any matching failed messages`.
 
+The `To Physical Address` tries to auto-complete the queue name listing all queue names known to ServiceControl. It allows entering arbitrary values to select a queue that is not yet known to ServiceControl. When that happens, a message is shown warning about possible message loss. 
+
 Any existing redirects can be deleted using the `End Redirect` link.
 
 To change the target of a redirect, click the `Modify Redirect` link. Only the target queue can be modified. The source queue remains read-only.
-
 
 ### Immediately retry any matching failed messages
 
