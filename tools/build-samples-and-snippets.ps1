@@ -116,9 +116,9 @@ foreach($solution in $solutions) {
             $exitCode = 1
             Write-Output ("::error::Build failed: {0}" -f $solution.FullName)
             Write-Output ("🔴 Build failed: {0}" -f $solution.FullName) | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
-            Write-Output ("```shell") | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
+            Write-Output ('```shell') | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
             Write-Output $out | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
-            Write-Output ("```") | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
+            Write-Output ('```') | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
             $failedSolutions.Add($solution.FullName)
         }
     }
