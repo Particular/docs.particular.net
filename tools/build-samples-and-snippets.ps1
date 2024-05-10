@@ -119,8 +119,6 @@ foreach($solution in $solutions) {
             Write-Output ('```') | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
             $failedSolutions.Add($solution.FullName)
         }
-
-        Write-Output $out
     }
     finally
     {
