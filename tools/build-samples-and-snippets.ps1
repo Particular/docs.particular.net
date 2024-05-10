@@ -103,14 +103,12 @@ foreach($solution in $solutions) {
         {
             Write-Output ("::warning::Using msbuild for solution using legacy csproj format: {0}" -f $solution.FullName)
             Write-Output ("🟡 Using msbuild for solution using legacy csproj format: {0}" -f $solution.FullName) | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
-            $out = $(msbuild $solution.Name -maxCpuCount -verbosity:minimal -restore -property:RestorePackagesConfig=true)
+            msbuild $solution.Name -maxCpuCount -verbosity:minimal -restore -property:RestorePackagesConfig=true | Tee-Object -Variable out
         }
         else
         {
-            $out = $(dotnet build $solution.Name -maxCpuCount --verbosity quiet)
+            dotnet build $solution.Name -maxCpuCount --verbosity quiet | Tee-Object -Variable $out
         }
-
-        Write-Output $out
 
         if( -not $? ) {
             $exitCode = 1
@@ -121,6 +119,8 @@ foreach($solution in $solutions) {
             Write-Output ('```') | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
             $failedSolutions.Add($solution.FullName)
         }
+
+        Write-Output $out
     }
     finally
     {
