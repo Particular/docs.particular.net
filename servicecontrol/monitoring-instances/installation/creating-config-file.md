@@ -33,7 +33,7 @@ Type: string
 Default: `localhost`
 
 > [!NOTE]
-> This setting must have a value in order for the Monitoring instance API to be available from remote machines.
+> This setting must have a value for the Monitoring instance API to be available from remote machines.
 
 
 ### Monitoring/HttpPort
@@ -81,7 +81,7 @@ Type: string
 
 ### NServiceBus/Transport
 
-The connection string for the transport. This setting should be placed in `connectionStrings` section of the configuration file.
+The connection string for the transport. This setting should be placed in the `connectionStrings` section of the configuration file.
 
 Type: string
 
