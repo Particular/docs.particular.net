@@ -51,7 +51,7 @@ As of version 4.21.8 of ServiceControl, the following options can be used to ena
  
 As of versions 4.33.3 and 5.0.5 of ServiceControl, support for partitioned entities can be enabled by adding the following connection string parameter:
 
-* `EnablePartitioning=<True|False>` — Configures the transport to create entities with partitions support. The default value is `false`.
+* `EnablePartitioning=<True|False>` — Configures the transport to create entities that support partitioning. The default value is `false`.
 
 #### SQL
 
