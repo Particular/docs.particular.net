@@ -8,4 +8,4 @@ component: ServiceControl
 
 ## ServicePulse compatibility
 
-ServiceControl version 5.2 requires a ServicePulse version greater or equal to <VERSION HERE>.
+ServiceControl version 5.2 requires a ServicePulse version greater or equal to 1.38.3.
