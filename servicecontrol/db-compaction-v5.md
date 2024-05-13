@@ -22,13 +22,12 @@ ServiceControl must be in maintenance mode in order to compact the database with
 
 ### Step 2: Compact the database in RavenDB Studio
 
-* Open RavenDB Studio: `http://localhost:{selected RavenDB port}/`. The default RavenDB port is 33334.
-* Select Stats in the left menu, then Storage Report
+* Open RavenDB Studio: `http://localhost:{selected RavenDB port}/`. The default RavenDB port is `33334`.
+* Select `Stats` in the left menu, then `Storage Report`
 * Ensure the correct ServiceControl database is selected in the dropdown in the top left
-* Click "Compact database", then Compact
+* Click `Compact database`, then `Compact`
 * Close the dialog when completed
-* Take ServiceControl out of maintenance mode
 
 ### Step 3: Take ServiceControl out of maintenance mode
 
-* In ServiceControl management utility advanced options for the selected instance, select "Stop Maintenance Mode"
+* In ServiceControl management utility advanced options for the selected instance, select `Stop Maintenance Mode`
