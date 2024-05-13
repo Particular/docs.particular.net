@@ -17,15 +17,15 @@ These queues can be manually created before deploying a ServiceControl instance.
 - [Amazon SQS](/transports/sqs/operations-scripting.md)
 
 > [!NOTE]
-> ServiceControl instances do not subscribe to any events, and so do not require any subscriptions to be configured.
+> ServiceControl instances do not subscribe to any events, so they do not require any subscriptions to be configured.
 
 ## Error instance
 
-These queues are required by ServiceControl Error instances.
+The following queues are required by ServiceControl Error instances.
 
 ### Failed messages queue
 
-If an NServiceBus endpoint is unable to process a message, after the configured number of retries, it will forward a copy of the message to this queue. The ServiceControl error instance will read these messages and add them to its database.
+If an NServiceBus endpoint is unable to process a message even after the configured number of retries, it will forward a copy of the message to this queue. The ServiceControl error instance will read these messages and add them to its database.
 
 - Default name: **_error_**
 
