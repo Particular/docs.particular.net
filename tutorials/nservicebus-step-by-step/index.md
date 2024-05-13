@@ -9,6 +9,10 @@ redirects:
 - samples/step-by-step
 - nservicebus/nservicebus-step-by-step-guide
 - nservicebus/nservicebus-step-by-step-publish-subscribe-communication-code-first
+extensions:
+- !!tutorial
+  nextText: "Next Lesson: Getting started"
+  nextUrl: tutorials/nservicebus-step-by-step/1-getting-started/
 ---
 
 include: nsb101-intro-paragraph
