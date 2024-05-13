@@ -19,10 +19,6 @@ ServiceControl can be installed in multiple ways. This article describes using t
 
 There is also a [community-managed puppet module](https://forge.puppet.com/tragiccode/nservicebusservicecontrol).
 
-## Prerequisites
-
-The ServiceControl installation has the following prerequisites:
-
 partial: prereqs
 
 ## Planning
