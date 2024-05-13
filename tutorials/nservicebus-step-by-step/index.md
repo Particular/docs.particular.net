@@ -1,8 +1,7 @@
 ---
 title: "NServiceBus Step-by-step"
 suppressRelated: true
-reviewed: 2023-07-23
-isLearningPath: true
+reviewed: 2024-05-13
 summary: Learn how to use NServiceBus quickly with this step-by-step tutorial, including the architectural concepts behind it.
 redirects:
 - tutorials/intro-to-nservicebus
