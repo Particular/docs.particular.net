@@ -1,5 +1,5 @@
 ---
-title: AWS observability services
+title: Azure observability services
 summary: Gives an overview of the observability options offered by Azure and how to use them with the Particular Service Platform
 reviewed: 2024-03-14
 callsToAction: ['solution-architect', 'poc-help']
