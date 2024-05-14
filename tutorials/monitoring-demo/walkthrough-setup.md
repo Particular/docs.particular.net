@@ -10,8 +10,7 @@ This document explains how to set up the [NServiceBus monitoring demo](/tutorial
 
 To run the demo, your system must meet the following requirements:
 
-- Windows 8 or higher
-- .NET Framework 4.6.1 or higher
+- .NET 8 or higher
 
 ## Running the demo
 
