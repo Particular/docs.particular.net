@@ -10,14 +10,13 @@ This document explains how to set up the [NServiceBus monitoring demo](/tutorial
 
 To run the demo, your system must meet the following requirements:
 
-- Windows 8 or higher
-- .NET Framework 4.6.1 or higher
+- .NET 8 or higher
 
 ## Running the demo
 
 The sample zip file includes 4 endpoints and the Particular Software Platform components, all of which have been configured to send messages using the [Learning Transport](/transports/learning).
 
-After downloading the zip file, extract its contents into a folder. Open the folder and double-click on `MonitoringDemo.exe`. This executable will:
+After downloading the zip file, extract its contents into a folder. Open the folder and double-click on `MonitoringDemo`. This executable will:
 
 1. Run the platform components.
     - A ServiceControl instance (binds to a free port in the 49200 range)
