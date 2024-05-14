@@ -6,19 +6,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\Content\app.js"/>
+    <None Include="wwwroot\Content\app.js" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="8.*"/>
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.*"/>
-    <PackageReference Include="NServiceBus.Heartbeat" Version="4.*"/>
-    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="4.*"/>
+    <PackageReference Include="NServiceBus" Version="8.*" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.*" />
+    <PackageReference Include="NServiceBus.Heartbeat" Version="4.*" />
+    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="4.*" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Messages\Messages.csproj"/>
+    <ProjectReference Include="..\Messages\Messages.csproj" />
   </ItemGroup>
-
 
 </Project>
