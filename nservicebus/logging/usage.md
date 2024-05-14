@@ -1,14 +1,13 @@
 ---
-title: Logging from the user code
+title: Logging using the NServiceBus logging abstraction
 reviewed: 2024-05-14
 component: Core
 redirects:
 - nservicebus/logging-writing
 ---
 
-Logging is done via the [`Microsoft.Extensions.Logging` abstraction](https://docs.microsoft.com/en-us/dotnet/core/extensions/logging) either by hosting using the [NServiceBus extension for the Microsoft Generic Host](/nservicebus/hosting/#microsoft-generic-host), or by using the [NServiceBus extensions for Microsoft logging](/nservicebus/logging/extensions-logging.md) when [self-hosting](/nservicebus/hosting/#self-hosting).
-
-## Using the NServiceBus logging abstraction
+> [!Note]
+> It is recommended to directly use the [`Microsoft.Extensions.Logging`](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/) to log entries as it also supports semantic logging. Please see [Logging in .NET Core and ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/) for further details.
 
 In legacy endpoints the NServiceBus logging abstraction is used for writing log messages from user code.
 

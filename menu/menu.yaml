@@ -679,17 +679,17 @@
     - Url: nservicebus/logging
       Title: About NServiceBus logging
     - Url: nservicebus/logging/extensions-logging
-      Title: Microsoft.Extensions.Logging
-    - Url: nservicebus/logging/message-contents
-      Title: Message contents
-    - Url: nservicebus/logging/usage
-      Title: Writing a log entry
+      Title: Extensions.Logging
     - Url: nservicebus/logging/log4net
       Title: Log4Net
     - Url: nservicebus/logging/nlog
       Title: NLog
     - Url: nservicebus/logging/common-logging
       Title: CommonLogging
+    - Url: nservicebus/logging/message-contents
+      Title: Message contents  
+    - Url: nservicebus/logging/usage
+      Title: Writing a log entry
     - Url: nservicebus/operations/auditing
       Title: Auditing Messages
   - Title: Security
