@@ -13,15 +13,15 @@
     - Url: tutorials/nservicebus-step-by-step
       Title: Introduction
     - Url: tutorials/nservicebus-step-by-step/1-getting-started
-      Title: "Lesson 1: Getting Started"
+      Title: "Part 1: Getting Started"
     - Url: tutorials/nservicebus-step-by-step/2-sending-a-command
-      Title: "Lesson 2: Sending a command"
+      Title: "Part 2: Sending a command"
     - Url: tutorials/nservicebus-step-by-step/3-multiple-endpoints
-      Title: "Lesson 3: Multiple endpoints"
+      Title: "Part 3: Multiple endpoints"
     - Url: tutorials/nservicebus-step-by-step/4-publishing-events
-      Title: "Lesson 4: Publishing events"
+      Title: "Part 4: Publishing events"
     - Url: tutorials/nservicebus-step-by-step/5-retrying-errors
-      Title: "Lesson 5: Retrying errors"
+      Title: "Part 5: Retrying errors"
   - Title: NServiceBus Sagas
     Articles:
     - Url: tutorials/nservicebus-sagas
