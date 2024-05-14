@@ -21,7 +21,7 @@ In order to run the demo, your system needs to meet the following requirements:
 
 ## Running the sample
 
-Once you have downloaded and extracted the zip package, open the extracted folder and double-click on `MonitoringDemo.exe`.
+Once you have downloaded and extracted the zip package, open the extracted folder and double-click on `MonitoringDemo`.
 
 The details on how the demo is set up can be found in the demo [setup walkthrough](walkthrough-setup.md).
 
