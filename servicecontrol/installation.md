@@ -136,12 +136,7 @@ ServiceControl configuration settings are accessible via the Service Control Man
 > [!WARNING]
 > Take care when planning to move ServiceControl from one server to another. Moving databases between servers can be challenging. The embedded RavenDB does not support moving from a new version of Windows back to older versions of Windows. See [Getting error while restoring backup file in raven DB](https://stackoverflow.com/questions/25625910/getting-error-while-restoring-backup-file-in-raven-db) for more details.
 
-## Removing ServiceControl
-
-To perform a clean uninstall of ServiceControl from a machine:
-
-1. Remove each ServiceControl instance using the ServiceControl Management Utility (or PowerShell)
-2. Uninstall the ServiceControl Management Utility using Add or Remove programs
+partial: removing
 
 ### Remove ServiceControl instances
 
