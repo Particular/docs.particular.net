@@ -254,14 +254,6 @@
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Microsoft.Extensions.Hosting/" target="_blank">Microsoft.Extensions.Hosting</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
-### [Particular.PlatformSample](/nuget/Particular.PlatformSample)
-
-| Depencency | License | Project Site |
-|:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.Server.Kestrel/" target="_blank">Microsoft.AspNetCore.Server.Kestrel</a> | <a href="https://raw.githubusercontent.com/aspnet/AspNetCore/2.0.0/LICENSE.txt" target="_blank">View License</a> | <a href="https://asp.net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/Microsoft.AspNetCore.StaticFiles/" target="_blank">Microsoft.AspNetCore.StaticFiles</a> | <a href="https://raw.githubusercontent.com/aspnet/AspNetCore/2.0.0/LICENSE.txt" target="_blank">View License</a> | <a href="https://asp.net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/System.Threading.Tasks.Extensions/" target="_blank">System.Threading.Tasks.Extensions</a> | <a href="https://github.com/dotnet/corefx/blob/master/LICENSE.TXT" target="_blank">View License</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
-
 ### [ServiceControl.TransportAdapter](/nuget/ServiceControl.TransportAdapter)
 
 | Depencency | License | Project Site |
