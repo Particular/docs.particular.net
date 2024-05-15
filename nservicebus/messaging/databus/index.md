@@ -12,7 +12,7 @@ related:
  - samples/databus/blob-storage-databus
 ---
 
-Although messaging systems work best with small message sizes, some scenarios require sending binary large objects ([BLOBs](https://en.wikipedia.org/wiki/Binary_large_object)) data along with a message (also known as a [_Claim Check_](https://learn.microsoft.com/en-us/azure/architecture/patterns/claim-check)). For this purpose, NServiceBus has a `DataBus` feature to overcome the message size limitations imposed by the underlying transport.
+Although messaging systems work best with small message sizes, some scenarios require sending binary large objects ([blobs](https://en.wikipedia.org/wiki/Binary_large_object)) data along with a message (also known as a [_Claim Check_](https://learn.microsoft.com/en-us/azure/architecture/patterns/claim-check)). For this purpose, NServiceBus has a `DataBus` feature to overcome the message size limitations imposed by the underlying transport.
 
 ## How it works
 
@@ -48,10 +48,10 @@ See the individual `DataBus` implementations for details on enabling and configu
 
 ## Cleanup
 
-By default, BLOBs are stored with no set expiration. If messages have a [time to be received](/nservicebus/messaging/discard-old-messages.md) set, the `DataBus` will pass this along to the data bus storage implementation.
+By default, blobs are stored with no set expiration. If messages have a [time to be received](/nservicebus/messaging/discard-old-messages.md) set, the `DataBus` will pass this along to the data bus storage implementation.
 
 > [!NOTE]
-> The value used should be aligned with the [ServiceContol audit retention period](/servicecontrol/how-purge-expired-data.md) if it is required that `DataBus` BLOB keys in messages sent to the audit queue can still be fetched.
+> The value used should be aligned with the [ServiceContol audit retention period](/servicecontrol/how-purge-expired-data.md) if it is required that `DataBus` blob keys in messages sent to the audit queue can still be fetched.
 
 ## Specifying `DataBus` properties
 
@@ -112,7 +112,7 @@ Automatically removing these attachments can cause problems in many situations. 
   - Read on demand: Attachments are only retrieved when read by a consumer.
   - Async enumeration: The package supports processing all data items using an `IAsyncEnumerable`.
   - No serialization: The serializer is not used, which may result in a significant reduction in memory usage.
-  - Direct stream access: This makes the package more suitable for [binary large objects (BLOBs](https://en.wikipedia.org/wiki/Binary_large_object) since stream contents do not necessarily have to be loaded into memory before storing them or when retrieving them.
+  - Direct stream access: This makes the package more suitable for [binary large objects (blobs](https://en.wikipedia.org/wiki/Binary_large_object) since stream contents do not necessarily have to be loaded into memory before storing them or when retrieving them.
 
 ## Other considerations
 
