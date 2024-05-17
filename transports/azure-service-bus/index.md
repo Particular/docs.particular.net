@@ -7,7 +7,7 @@ related:
  - samples/azure-service-bus-netstandard/native-integration-pub-sub
  - samples/azure-service-bus-netstandard/hierarchy-migration
  - samples/azure-service-bus-netstandard/send-receive-with-nservicebus
-reviewed: 2021-05-18
+reviewed: 2024-05-17
 ---
 
 The Azure Service Bus transport leverages the [Azure.Messaging.ServiceBus](https://www.nuget.org/packages/Azure.Messaging.ServiceBus/) client library for .NET.
@@ -28,4 +28,4 @@ The Azure Service Bus transport leverages the [Azure.Messaging.ServiceBus](https
 |Native integration         |[Supported](native-integration.md)
 
 > [!NOTE]
-> The Azure Service Bus transport only supports Standard and Premium tiers of the Microsoft Azure Service Bus service. Premium tier is recommended for production environments.
+> The Azure Service Bus transport only supports the Standard and Premium tiers of the Microsoft Azure Service Bus service. Premium tier is recommended for production environments.
