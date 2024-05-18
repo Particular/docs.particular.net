@@ -1016,7 +1016,7 @@ If you create an image using another tool, always keep the source so that the im
 
 #### Mermaid
 
-The support for [Mermaid](https://mermaid.js.org) is provided as an extension to [Markdig](https://github.com/lunet-io/markdig). Markdig converts the diagram definition from .md to HTML, and then mermaid JavaScript library converts the definition to SVG format on the fly.
+The support for [Mermaid](https://mermaid.js.org) is provided as an extension to [Markdig](https://github.com/lunet-io/markdig). Markdig converts the diagram definition from .md to HTML, and then the Mermaid JavaScript library converts the definition to SVG format on the fly.
 
 Diagram images are generated using the  using a pseudocode syntax like this:
 
