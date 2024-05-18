@@ -1100,7 +1100,7 @@ To create an image:
 - From the “three dots” (…) menu above the selection:
   - Click “Create frame”
   - Click “Export as image”
-- Click the appropriate size of JPG and click "Export"
+- Choose the appropriate JPG size and click "Export"
 
 To allow images to be updated later, they must be committed to this repo along with the board backup file(s) use to create them.
 
