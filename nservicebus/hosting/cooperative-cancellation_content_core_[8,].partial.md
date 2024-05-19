@@ -1,6 +1,6 @@
 ## Outside the message processing pipeline
 
-Methods used outside the message processing pipeline have an optional `CancellationToken` parameter. This includes methods for starting and stopping endpoints, and methods used to send or publish messages from outside a message processing pipeline, such as a web application.
+Methods used outside the message processing pipeline have an optional `CancellationToken` parameter. This includes methods for starting and stopping endpoints and methods used to send or publish messages from outside a message processing pipeline, such as a web application.
 
 `CancellationToken` parameters should be forwarded to any method that accepts one. For example, within a web application controller:
 
