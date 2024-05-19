@@ -1,7 +1,7 @@
 ---
 title: Cooperative cancellation
-summary: To participate in graceful shutdown initiated by the host
-reviewed: 2021-05-19
+summary: To participate in a graceful shutdown initiated by the host
+reviewed: 2024-05-19
 component: core
 related:
 - samples/cooperative-cancellation
