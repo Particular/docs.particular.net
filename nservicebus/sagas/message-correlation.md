@@ -2,13 +2,14 @@
 title: Message Correlation
 summary: Correlation is needed in order to find existing saga instances based on data in the incoming message
 component: Core
-reviewed: 2022-09-30
+reviewed: 2024-05-14
 related:
  - nservicebus/sagas/concurrency
 ---
 
-
 Correlation is the process of finding saga instances based on data in the incoming message. For example, an `OrderId ` property of a `CompleteOrder` message can be used to find the existing saga instance for that order.
+
+> **_NOTE:_** The correlation property may be case-sensitive, depending on the persistence and datastore settings.
 
 To declare this, use the `ConfigureHowToFindSaga` method and use the `Mapper` to specify which saga property each message maps to.
 
