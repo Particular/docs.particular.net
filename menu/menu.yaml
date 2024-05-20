@@ -1402,6 +1402,8 @@
           Url: servicecontrol/upgrades/new-persistence
         - Title: Zero downtime
           Url: servicecontrol/upgrades/zero-downtime
+        - Title: Version 5.2 to 5.3
+          Url: servicecontrol/upgrades/5.2to5.3
         - Title: Version 5.1 to 5.2
           Url: servicecontrol/upgrades/5.1to5.2
         - Title: Version 4 to 5

@@ -1,5 +1,5 @@
 ---
-title: Usage Config
+title: Configuring Usage Reporting
 summary: Viewing endpoint usage summary and generating a usage report
 component: ServicePulse
 reviewed: 2024-05-08
