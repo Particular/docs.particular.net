@@ -46,7 +46,7 @@ SQL Server transport is a NServiceBus feature that can use existing SQL Server d
 - Strong transaction integration with business data operations
 - Runs on cloud-hosted and on-premises SQL Server-compatible data stores (including Amazon RDS)
 - Arbitrary message sizes
-- Allows for exactly-once processing if business data and message data are in the same database
+- Allows for [exactly-once processing](https://particular.net/blog/what-does-idempotent-mean) if business data and message data are in the same database
 - Ease of backup and recovery as business data and messages are backed up in the same database
 
 :heavy_minus_sign: Cons:
