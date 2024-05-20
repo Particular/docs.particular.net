@@ -45,6 +45,6 @@ All endpoints/queues on screen will be updated to the selected endpoint type and
 
 ## Generating a usage report
 
-Clicking `Generate Report` generates a usage report file with the detected endpoints and queues. The report includes the endpoint type selections made on screen, and any specified [words to mask](./usage-config.md#report-masks) with be obfuscated.
+Clicking `Generate Report` generates a usage report file with the detected endpoints and queues. The report includes the endpoint type selections made on screen, and any specified [words to mask](./../servicepulse/usage-config.md#report-masks) with be obfuscated.
 
 The report **will not** be automatically uploaded or sent to Particular - it is a JSON file that needs to be provided to Particular upon request.
