@@ -27,7 +27,7 @@ The recommended method of measuring the usage of an NServiceBus system is via th
 This method provides the extra benefits of:
 
 - ability to [view the system usage](/servicepulse/usage.md#viewing-usage-summary) at any time
-- ability to optionally [specify if a detected queue should not be included in license pricing](/servicepulse/usage.md#setting-an-endpoint-type)
+- ability to optionally [specify if a detected queue should not be included in license pricing](/servicepulse/usage.md#viewing-usage-summary-setting-an-endpoint-type)
 - no requirement to run additional tools - [report is generated from a button click in ServicePulse](/servicepulse/usage.md#generating-a-usage-report)
 - more accurate data as it's accummulated over time
 
