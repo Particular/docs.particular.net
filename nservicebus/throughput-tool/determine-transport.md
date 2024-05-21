@@ -4,7 +4,7 @@ summary: How to determine what message transport a system uses to run the throug
 reviewed: 2023-07-06
 ---
 
-This article will help to determine what message transport an NServiceBus system uses so that the [system throughput tool](/nservicebus/throughput-tool/#running-the-tool) can be run to generate a report to send to Particular Software for licensing purposes.
+This article will help to determine what message transport an NServiceBus system uses so that the [system throughput tool](/nservicebus/throughput-tool/throughput-counter-tool.md#running-the-tool) can be run to generate a report to send to Particular Software for licensing purposes.
 
 Often, the original developer will know what message transport is in use, but this article makes the assumption that the original developer(s) of the system are not available.
 
@@ -18,9 +18,9 @@ There are various ways to find NServiceBus processes:
 
 1. Look for NServiceBus assemblies in the `bin` directory of any running web applications configured in IIS.
 2. Use <kbd>Windows</kbd> + <kbd>R</kbd> to run `services.msc` and look for services configured to **Log On As** either `Network Service` or a domain account. Ignore the typical services that ship with Windows.
-  1. Right-click the service and select **Properties**.
-  2. Copy the folder part of the **Path to executable** and look in that path for NServiceBus assemblies.
-3. Search the hard drive for `NServiceBus.Core.dll`. Any location where this is found is usually the runtime directory of an NServiceBus application.
+3. Right-click the service and select **Properties**.
+4. Copy the folder part of the **Path to executable** and look in that path for NServiceBus assemblies.
+5. Search the hard drive for `NServiceBus.Core.dll`. Any location where this is found is usually the runtime directory of an NServiceBus application.
 
 It's generally sufficient to find one NServiceBus application, as in most cases, the throughput tool will reveal how many exist in total.
 
@@ -28,19 +28,19 @@ It's generally sufficient to find one NServiceBus application, as in most cases,
 
 Examine the executable directory of the NServiceBus services. The presence of any of the DLLs listed below will determine what message transport is used, which in turn dictates the data collection mechansim.
 
-| DLL Name | Message Transport | Collection Method |
-|-|-|-|
-| `NServiceBus.Transport.AzureServiceBus.dll` | Azure Service Bus | [Azure Service Bus](azure-service-bus.md) |
-| `NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll` | Azure Service Bus | [Azure Service Bus](azure-service-bus.md) |
-| `NServiceBus.Transport.SQS.dll` | Amazon SQS | [Amazon SQS](amazon-sqs.md) |
-| `NServiceBus.AmazonSQS.dll` | Amazon SQS | [Amazon SQS](amazon-sqs.md) |
-| `NServiceBus.Transport.RabbitMQ.dll` | RabbitMQ | [RabbitMQ](rabbitmq.md) |
-| `NServiceBus.Transports.RabbitMQ.dll` | RabbitMQ | [RabbitMQ](rabbitmq.md) |
-| `NServiceBus.Transport.SQLServer.dll` | SQL Server Transport | [SQL Server Transport](sql-transport.md) |
-| `NServiceBus.Transports.SQLServer.dll` | SQL Server Transport | [SQL Server Transport](sql-transport.md) |
-| `NServiceBus.Transport.Msmq.dll` | MSMQ | See [For MSMQ or Azure Storage Queues](#for-msmq-or-azure-storage-queues) below |
+| DLL Name                                                     | Message Transport    | Collection Method                                                               |
+| ------------------------------------------------------------ | -------------------- | ------------------------------------------------------------------------------- |
+| `NServiceBus.Transport.AzureServiceBus.dll`                  | Azure Service Bus    | [Azure Service Bus](azure-service-bus.md)                                       |
+| `NServiceBus.Azure.Transports.WindowsAzureServiceBus.dll`    | Azure Service Bus    | [Azure Service Bus](azure-service-bus.md)                                       |
+| `NServiceBus.Transport.SQS.dll`                              | Amazon SQS           | [Amazon SQS](amazon-sqs.md)                                                     |
+| `NServiceBus.AmazonSQS.dll`                                  | Amazon SQS           | [Amazon SQS](amazon-sqs.md)                                                     |
+| `NServiceBus.Transport.RabbitMQ.dll`                         | RabbitMQ             | [RabbitMQ](rabbitmq.md)                                                         |
+| `NServiceBus.Transports.RabbitMQ.dll`                        | RabbitMQ             | [RabbitMQ](rabbitmq.md)                                                         |
+| `NServiceBus.Transport.SQLServer.dll`                        | SQL Server Transport | [SQL Server Transport](sql-transport.md)                                        |
+| `NServiceBus.Transports.SQLServer.dll`                       | SQL Server Transport | [SQL Server Transport](sql-transport.md)                                        |
+| `NServiceBus.Transport.Msmq.dll`                             | MSMQ                 | See [For MSMQ or Azure Storage Queues](#for-msmq-or-azure-storage-queues) below |
 | `NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll` | Azure Storage Queues | See [For MSMQ or Azure Storage Queues](#for-msmq-or-azure-storage-queues) below |
-| `NServiceBus.Transport.AzureStorageQueues.dll` | Azure Storage Queues | See [For MSMQ or Azure Storage Queues](#for-msmq-or-azure-storage-queues) below |
+| `NServiceBus.Transport.AzureStorageQueues.dll`               | Azure Storage Queues | See [For MSMQ or Azure Storage Queues](#for-msmq-or-azure-storage-queues) below |
 
 If one of the DLLs in the first column exists, follow the link in the third column to use that data collection mechanism.
 

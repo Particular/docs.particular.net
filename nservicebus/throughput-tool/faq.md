@@ -24,7 +24,7 @@ No, the tool does not automatically submit report data to Particular Software or
 
 ## How do I choose a data collection method from all of the options
 
-The data collection method to use depends on the message transport of the system being measured. Refer to the documentation on [Running the tool](/nservicebus/throughput-tool/#running-the-tool) to learn more about the data collection methods for different message transport configurations.
+The data collection method to use depends on the message transport of the system being measured. Refer to the documentation on [Running the tool](/nservicebus/throughput-tool/throughput-counter-tool.md#running-the-tool) to learn more about the data collection methods for different message transport configurations.
 
 ## Does the tool need to run on my production server
 
@@ -34,7 +34,7 @@ See [How does the tool measure throughput](#how-does-the-tool-measure-throughput
 
 ## How do I decide which data collection option to use
 
-Refer to the [Running the tool](/nservicebus/throughput-tool/#running-the-tool) section of the documentation to select the correct data collection option based on the message transport used by the system.
+Refer to the [Running the tool](/nservicebus/throughput-tool/throughput-counter-tool.md#running-the-tool) section of the documentation to select the correct data collection option based on the message transport used by the system.
 
 ## What if I have a hybrid system with multiple message transports
 
@@ -106,7 +106,7 @@ See the [technical details](service-control.md#what-the-tool-does) for more info
 
 ## What if my system's queue names contain proprietary information I don't want on the report
 
-System queue names can easily be masked on the report file. See [Masking private data](/nservicebus/throughput-tool/#masking-private-data) for details.
+System queue names can easily be masked on the report file. See [Masking private data](/nservicebus/throughput-tool/throughput-counter-tool.md#masking-private-data) for details.
 
 ## The report contains information that shouldn't be counted
 

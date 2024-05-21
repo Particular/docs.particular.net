@@ -19,13 +19,13 @@ The tool should be used with a [supported version of ServiceControl](/servicecon
 
 Once installed, execute the tool with the URLs for the ServiceControl and monitoring APIs.
 
-If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
+If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/throughput-counter-tool.md#installation-net-tool-recommended):
 
 ```shell
 throughput-counter servicecontrol [options] --serviceControlApiUrl http://localhost:33333/api/ --monitoringApiUrl http://localhost:33633/
 ```
 
-Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
+Or, if using the [self-contained executable](/nservicebus/throughput-tool/throughput-counter-tool.md#installation-self-contained-executable):
 
 ```shell
 Particular.EndpointThroughputCounter.exe servicecontrol [options] --serviceControlApiUrl http://localhost:33333/api/ --monitoringApiUrl http://localhost:33633/
@@ -37,10 +37,11 @@ For endpoints that do not have monitoring enabled, the tool will fall back to qu
 
 ## Options
 
-| Option | Description |
-|-|-|
+| Option                                | Description                                                                                                                                                                                                                                                            |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | <nobr>`--serviceControlApiUrl`</nobr> | **Required** – The URL of the ServiceControl API. In the [ServiceControl Management Utility](/servicecontrol/installation.md), find the instance identified as a **ServiceControl Instance** and use the value of the **URL** field, as shown in the screenshot below. |
-| <nobr>`--monitoringApiUrl`</nobr> | **Required** – The URL of the Monitoring API. In the [ServiceControl Management Utility](/servicecontrol/installation.md), find the instance identified as a **Monitoring Instance** and use the value of the **URL** field, as shown in the screenshot below. |
+| <nobr>`--monitoringApiUrl`</nobr>     | **Required** – The URL of the Monitoring API. In the [ServiceControl Management Utility](/servicecontrol/installation.md), find the instance identified as a **Monitoring Instance** and use the value of the **URL** field, as shown in the screenshot below.         |
+
 include: throughput-tool-global-options
 
 This screenshot shows how to identify the instance types and locate the required URLs:
@@ -55,14 +56,14 @@ The tool will send HTTP requests to both the [ServiceControl primary instance](/
 
 The following requests will be sent to the primary instance:
 
-* `<PrimaryUrl>`: Makes sure the URL is valid and that the ServiceControl version is compatible with the tool.
-* `<PrimaryUrl>/endpoints`: Discovers endpoint names.
-* `<PrimaryUrl>/configuration/remotes`: Discovers information about connected audit instances, and verifies that their versions are compatible with the tool.
-* `<PrimaryUrl>/endpoints/{EndpointName}/audit-count`: Requested only once per endpoint, and retrieves throughput information for endpoints with auditing enabled.
+- `<PrimaryUrl>`: Makes sure the URL is valid and that the ServiceControl version is compatible with the tool.
+- `<PrimaryUrl>/endpoints`: Discovers endpoint names.
+- `<PrimaryUrl>/configuration/remotes`: Discovers information about connected audit instances, and verifies that their versions are compatible with the tool.
+- `<PrimaryUrl>/endpoints/{EndpointName}/audit-count`: Requested only once per endpoint, and retrieves throughput information for endpoints with auditing enabled.
 
 ### Monitoring instance
 
 The following requests will be sent to the monitoring instance:
 
-* `<MonitoringUrl>`: Makes sure the URL is valid and that the ServiceControl version is compatible with the tool.
-* `<MonitoringUrl>/monitored-endpoints?history=60`: Retrieved once per hour to get throughput data for endpoints with monitoring enabled.
+- `<MonitoringUrl>`: Makes sure the URL is valid and that the ServiceControl version is compatible with the tool.
+- `<MonitoringUrl>/monitored-endpoints?history=60`: Retrieved once per hour to get throughput data for endpoints with monitoring enabled.

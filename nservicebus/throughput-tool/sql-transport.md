@@ -14,13 +14,13 @@ This article details how to collect endpoint and throughput data when the system
 
 Once installed, execute the tool with the database connection string used by SQL Server endpoints.
 
-If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
+If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/throughput-counter-tool.md#installation-net-tool-recommended):
 
 ```shell
 throughput-counter sqlserver [options] --connectionString "Server=SERVER;Database=DATABASE;User=USERNAME;Password=PASSWORD;"
 ```
 
-Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
+Or, if using the [self-contained executable](/nservicebus/throughput-tool/throughput-counter-tool.md#installation-self-contained-executable):
 
 ```shell
 Particular.EndpointThroughputCounter.exe sqlserver [options] --connectionString "Server=SERVER;Database=DATABASE;User=USERNAME;Password=PASSWORD;"
@@ -32,17 +32,18 @@ The tool will run for slightly longer than 24 hours in order to capture a beginn
 
 Either the `--connectionString` or `--connectionStringSource` must be used to provide the tool with connection string information.
 
-| Option | Description |
-|-|-|
-| <nobr>`--connectionString`</nobr> | A single database connection string<sup>1</sup> that will provide at least read access to all queue tables. |
-| <nobr>`--addCatalogs`</nobr> | When the `--connectionString` parameter points to a single database, but multiple database catalogs on the same server also contain NServiceBus message queues, the `--addCatalogs` parameter specifies additional database catalogs to search. The tool replaces the `Database` or `Initial Catalog` parameter in the connection string with the additional catalog and queries all of them. With this option, only a single database server is supported.<br/><br/>Example: `--connectionString <Catalog1String> --addCatalogs Catalog2 Catalog3 Catalog4` |
-| <nobr>`--connectionStringSource` | Provide a file containing database connection strings (one per line) instead of specifying a single connection string as a tool argument. The tool will scan the databases provided by all connection strings in the file for NServiceBus queue tables. With this option, multiple catalogs in multiple database servers are supported.<br/><br/>Example: `--connectionStringSource <PathToFile>` |
+| Option                            | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| <nobr>`--connectionString`</nobr> | A single database connection string<sup>1</sup> that will provide at least read access to all queue tables.                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| <nobr>`--addCatalogs`</nobr>      | When the `--connectionString` parameter points to a single database, but multiple database catalogs on the same server also contain NServiceBus message queues, the `--addCatalogs` parameter specifies additional database catalogs to search. The tool replaces the `Database` or `Initial Catalog` parameter in the connection string with the additional catalog and queries all of them. With this option, only a single database server is supported.<br/><br/>Example: `--connectionString <Catalog1String> --addCatalogs Catalog2 Catalog3 Catalog4` |
+| <nobr>`--connectionStringSource`  | Provide a file containing database connection strings (one per line) instead of specifying a single connection string as a tool argument. The tool will scan the databases provided by all connection strings in the file for NServiceBus queue tables. With this option, multiple catalogs in multiple database servers are supported.<br/><br/>Example: `--connectionStringSource <PathToFile>`                                                                                                                                                            |
+
 include: throughput-tool-global-options
 
 <sup>1</sup> See [examples of SQL Server connection strings](https://www.connectionstrings.com/sql-server/). Authentication is often via username/password `User Id=myUsername;Password=myPassword`, integrated security `Integrated Security=true`, or active directory with MFA `Authentication=ActiveDirectoryInteractive;UID=user@domain.com`.
 
 > [!NOTE]
-> In recent versions of Microsoft's Sql Server drivers encryption has been enabled by default. When trying to connect to a Sql Server instance that uses a self-signed cerftificate, the tool may display an exception stating *[The certificate chain was issued by an authority that is not trusted](https://learn.microsoft.com/en-us/troubleshoot/sql/connect/certificate-chain-not-trusted?tabs=ole-db-driver-19)*. To bypass this exception update the connection string to include `;Trust Server Certificate=true`.
+> In recent versions of Microsoft's Sql Server drivers encryption has been enabled by default. When trying to connect to a Sql Server instance that uses a self-signed cerftificate, the tool may display an exception stating _[The certificate chain was issued by an authority that is not trusted](https://learn.microsoft.com/en-us/troubleshoot/sql/connect/certificate-chain-not-trusted?tabs=ole-db-driver-19)_. To bypass this exception update the connection string to include `;Trust Server Certificate=true`.
 
 ## What the tool does
 

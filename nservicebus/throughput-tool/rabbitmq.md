@@ -16,13 +16,13 @@ To collect data from RabbitMQ, the [management plugin](https://www.rabbitmq.com/
 
 Execute the tool, providing the RabbitMQ management URL, as in this example where the RabbitMQ broker is running on localhost.
 
-If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
+If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/throughput-counter-tool.md#installation-net-tool-recommended):
 
 ```shell
 throughput-counter rabbitmq [options] --apiUrl http://localhost:15672
 ```
 
-Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
+Or, if using the [self-contained executable](/nservicebus/throughput-tool/throughput-counter-tool.md#installation-self-contained-executable):
 
 ```shell
 Particular.EndpointThroughputCounter.exe rabbitmq [options] --apiUrl http://localhost:15672
@@ -32,9 +32,10 @@ The tool will prompt for the username and password to access the RabbitMQ manage
 
 ### Options
 
-| Option | Description |
-|-|-|
+| Option                  | Description                                                                                                        |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------ |
 | <nobr>`--apiUrl`</nobr> | **Required** – The URL for the RabbitMQ management site. Generally this will be `http://<rabbitmq-hostname>:15672` |
+
 include: throughput-tool-global-options
 
 ## What the tool does

@@ -32,25 +32,25 @@ This screenshot shows how to copy the Service Bus Namespace's `Id` value:
 
 Execute the tool with the resource ID of the Azure Service Bus namespace.
 
-If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
+If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/throughput-counter-tool.md#installation-net-tool-recommended):
 
 ```shell
 throughput-counter azureservicebus [options] --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace
 ```
 
-Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
+Or, if using the [self-contained executable](/nservicebus/throughput-tool/throughput-counter-tool.md#installation-self-contained-executable):
 
 ```shell
 Particular.EndpointThroughputCounter.exe azureservicebus [options] --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace
 ```
 
-
 ## Options
 
-| Option | Description |
-|-|-|
-| <nobr>`--resourceId`</nobr> | **Required** – The resource ID of the Azure Service Bus namespace, which can be found in the Azure Portal as described above. |
+| Option                            | Description                                                                                                                                                                                     |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <nobr>`--resourceId`</nobr>       | **Required** – The resource ID of the Azure Service Bus namespace, which can be found in the Azure Portal as described above.                                                                   |
 | <nobr>`--serviceBusDomain`</nobr> | The Service Bus domain. Defaults to `servicebus.windows.net`. Only necessary for Azure customers using a [non-public/government cloud](https://learn.microsoft.com/en-us/rest/api/servicebus/). |
+
 include: throughput-tool-global-options
 
 ## What the tool does
