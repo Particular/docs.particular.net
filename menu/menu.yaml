@@ -762,22 +762,25 @@
         - Url: nservicebus/tools/migrate-to-native-delivery
           Title: Migrating timeouts
         - Url: nservicebus/throughput-tool
-          Title: Measuring system throughput
-          Articles:
-            - Url: nservicebus/throughput-tool/azure-service-bus
-              Title: using Azure Service Bus
-            - Url: nservicebus/throughput-tool/amazon-sqs
-              Title: using Amazon SQS
-            - Url: nservicebus/throughput-tool/rabbitmq
-              Title: using RabbitMQ
-            - Url: nservicebus/throughput-tool/sql-transport
-              Title: using SQL Transport
-            - Url: nservicebus/throughput-tool/service-control
-              Title: using ServiceControl
-            - Url: nservicebus/throughput-tool/determine-transport
-              Title: Determining message transport
-            - Url: nservicebus/throughput-tool/faq
-              Title: FAQ
+          Title: Measuring system usage
+        - Url: servicepulse/usage
+          Title: Usage via ServicePulse
+        - Url: nservicebus/throughput-tool/throughput-counter-tool
+          Title: Usage via endpoint throughput counter tool
+        - Url: nservicebus/throughput-tool/azure-service-bus
+          Title: using Azure Service Bus
+        - Url: nservicebus/throughput-tool/amazon-sqs
+          Title: using Amazon SQS
+        - Url: nservicebus/throughput-tool/rabbitmq
+          Title: using RabbitMQ
+        - Url: nservicebus/throughput-tool/sql-transport
+          Title: using SQL Transport
+        - Url: nservicebus/throughput-tool/service-control
+          Title: using ServiceControl
+        - Url: nservicebus/throughput-tool/determine-transport
+          Title: Determining message transport
+        - Url: nservicebus/throughput-tool/faq
+          Title: Endpoints counter tool FAQ
     - Title: Troubleshooting
       Articles:
         - Url: nservicebus/troubleshooting/message-loss
@@ -1350,7 +1353,7 @@
         - Url: servicepulse/health-check-notifications
           Title: Health check notifications
         - Url: servicepulse/usage
-          Title: Usage summary & reporting
+          Title: Usage
         - Url: servicepulse/endpoint-connection
           Title: Endpoint connection settings
         - Url: servicepulse/support-policy
@@ -1362,7 +1365,7 @@
         - Url: servicepulse/how-to-configure-endpoints-for-monitoring
           Title: Monitoring endpoints
         - Url: servicepulse/usage-config
-          Title: Usage settings
+          Title: Usage setup
         - Url: servicepulse/install-servicepulse-in-iis
           Title: Install in IIS
         - Url: servicepulse/troubleshooting
