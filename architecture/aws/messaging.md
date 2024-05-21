@@ -38,7 +38,7 @@ The Amazon SQS transport should be considered the default choice for AWS-based s
 
 ## SQL Server transport
 
-SQL Server transport is a NServiceBus feature that can use existing SQL Server databases as feature-complete message queues.
+SQL Server transport is an NServiceBus feature that can use existing SQL Server databases as feature-complete message queues.
 
 :heavy_plus_sign: Pros:
 
