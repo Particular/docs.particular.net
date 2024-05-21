@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Step-by-step: Retrying errors"
-reviewed: 2023-11-24
+reviewed: 2024-05-21
 summary: In this 25-30 minute tutorial, you'll learn the different causes of errors and how to manage them with NServiceBus.
 redirects:
 - tutorials/intro-to-nservicebus/5-retrying-errors
@@ -15,7 +15,7 @@ In software systems, exceptions will occur. Even with perfect, bug-free code, pr
 
 It's how we respond to exceptions that is important. When a database is deadlocked, or a web service is down, do we lose data, or do we have the ability to recover? Do our users get an error message and have to figure out how to recover on their own, or can we make it appear as though nothing ever went wrong?
 
-In the next 25-30 minutes, you will learn the different causes of errors and see how to manage them with NServiceBus.
+In the next 25-30 minutes, you will learn about some causes of errors and see how to manage them with NServiceBus.
 
 
 ## Causes of errors
@@ -27,7 +27,7 @@ Where connectivity is a major concern, there are generally three broad categorie
 
 Transient exceptions are those that, if immediately retried, would likely succeed.
 
-Let's consider a common scenario: code that updates a record in the database. Two threads attempt to lock the row at the same time, resulting in a deadlock. The database chooses one transaction to succeed and the other fails. The exception message Microsoft SQL Server returns for a deadlock is this:
+Let's consider a common scenario: code that updates a record in the database. Two threads attempt to lock the row at the same time, resulting in a deadlock. The database chooses one transaction to succeed and the other fails. The exception message Microsoft SQL Server returns for a deadlock looks like this:
 
 > [!WARNING]
 > Transaction (Process ID 58) was deadlocked on lock resources with another process and has been chosen as the deadlock victim. Rerun the transaction.
@@ -48,7 +48,7 @@ It can be difficult to deal with this type of failure, as it's often not possibl
 
 ### Systemic exceptions
 
-Outright flaws in your system cause **systemic exceptions**, which are straight-up bugs. They will fail every time given the same input data. These are our good friends NullReferenceException, ArgumentException, dividing by zero, and a host of other common mistakes we've all made.
+Outright flaws in your system cause **systemic exceptions**, which are straight-up bugs. They will fail every time given the same input data. These are our good friends `NullReferenceException`, `ArgumentException`, dividing by zero, and a host of other common mistakes we've all made.
 
 In short, these are the exceptions that a developer needs to look at, triage, and fix —- preferably without all the noise from the transient and semi-transient errors getting in the way of our investigation.
 
@@ -64,22 +64,23 @@ With this kind of protection in place, we're free to try to process a message as
 
 [**Immediate retries**](/nservicebus/recoverability/#immediate-retries) deal with transient exceptions like deadlocks. By default, messages will be immediately retried up to 5 times. If a handler method continues to throw an exception after 5 consecutive attempts, it is clearly not a transient exception.
 
-[**Delayed retries**](/nservicebus/recoverability/#delayed-retries) deal with semi-transient exceptions, like a flaky web service, or database failover. It uses a series of successively longer delays between retries in order to give the failing resource some breathing room. After immediate retries are exhausted, the message is moved aside for a short time – 10 seconds by default – and then another set of retries is attempted. If this fails, the time limit is increased and then the message handler will try again.
+[**Delayed retries**](/nservicebus/recoverability/#delayed-retries) deal with semi-transient exceptions, like a flaky web service, or database failover. It uses a series of successively longer delays between retries in order to give the failing resource some breathing room. After immediate retries are exhausted, the message is moved aside for a short time (10 seconds by default) and then another set of retries is attempted. If this fails, the time to wait is increased and then the message handler will try again.
 
 Between immediate and delayed retries, there can be [many attempts to process a message](/nservicebus/recoverability/#total-number-of-possible-retries) before NServiceBus gives up and moves the message to an error queue.
 
 The last step, moving the message to an error queue, is how NServiceBus deals with **systemic exceptions**. In a messaging system, systemic exceptions are the cause of **poison messages**, messages that cannot be processed successfully under any circumstances. Poison messages have to be moved aside, otherwise they will clog up the queue and prevent valid messages from being processed.
 
-We'll take a look at a few options for configuring retries in the exercise, but for all the details check out the [recoverability documentation](/nservicebus/recoverability/).
+We'll take a look at a few options for configuring retries in the exercise, but for more the details check out the [recoverability documentation](/nservicebus/recoverability/).
 
 
 ## Replaying messages
 
-Once a message is sent to the error queue, this indicates that a systemic failure has occurred. When this happens, a developer needs to look at the message and figure out *why*.
+Once a message is sent to the error queue, this indicates that a systemic failure has occurred. When this happens, a person needs to look at the message and figure out *why*.
 
 NServiceBus embeds the exception details and stack trace into the message that it forwards to the error queue, so you don't need to search through a log file to find the details. Once the underlying issue is fixed, the message can be replayed. **Replaying a message** sends it back to its original queue in order to retry message processing after an issue has been fixed.
 
-The [Particular Service Platform](/platform/), of which NServiceBus is a part, includes tools to make this kind of operational monitoring easy. If you'd like to learn more, check out the [message replay tutorial](/tutorials/message-replay/), which demonstrates how to use the platform tools to replay a failed message.
+> [!Note]
+> The [Particular Service Platform](/platform/), of which NServiceBus is a part, includes tools to make this kind of operational monitoring easy. If you'd like to learn more, check out the [message replay tutorial](/tutorials/message-replay/), which demonstrates how to use the platform tools to replay a failed message.
 
 Sometimes, a new release will contain a bug in handler logic that isn't found until the code is deployed. When this happens, many errors can flood into the error queue at once. At these times, it's incredibly useful to be able to roll back to the old version of the endpoint, and then replay the messages through proven code. Then you can take the time to properly troubleshoot and fix the issue before attempting a new deployment.
 
@@ -91,7 +92,7 @@ In this exercise we'll throw an exception inside a message handler, and see how 
 
 ### Throw an exception
 
-First, let's throw an exception. For the purposes of this exercise, we'll create a specific bug in the Sales endpoint and watch what happens when we run the endpoint.
+First, let's throw an exception. For the purposes of this exercise, we'll create a specific bug in the **Sales** endpoint and watch what happens when we run the endpoint.
 
 1. In the **Sales** endpoint, locate the **PlaceOrderHandler**.
 1. After logging receipt of the message, throw an exception:
@@ -135,7 +136,7 @@ You can also [configure delayed retries](/nservicebus/recoverability/configure-d
 
 ### Transient exceptions
 
-Throwing a big exception is an example of a systemic error. Let's see how NServiceBus reacts when we throw a more transient exception. To do this, let's introduce a random number generator so that we only throw an exception 20% of the time.
+Throwing a big exception is an example of a systemic error. Let's see how NServiceBus reacts when we throw more transient exception. To do this, let's introduce a random number generator so that we only throw an exception 20% of the time.
 
 1. In the **Sales** endpoint, locate the **PlaceOrderHandler**.
 1. Add a static **Random** instance to the class:
@@ -161,4 +162,4 @@ In this lesson, we explored different causes for exceptions and how NServiceBus 
 You've completed the last lesson in the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step). You've learned how to create endpoints, send and receive commands, publish events, and deal with message failures.
 
 > [!TIP]
-> Now that you've learned how to build messaging systems with NServiceBus, continue your learning and see how replaying failed messages transforms the way you build software. When a message fails, our tools let you see the exception details as well as contents of the message so you can pinpoint and fix the problem. Then you can replay the message as if nothing ever happened. Start the tutorial to experience it for yourself!
+> Now that you've learned how to build messaging systems with NServiceBus, you can continue your learning and see how replaying failed messages transforms the way you build software. When a message fails, our tools let you see the exception details as well as contents of the message so you can pinpoint and fix the problem. Then you can replay the message as if nothing ever happened. Start the next tutorial to experience it for yourself!
