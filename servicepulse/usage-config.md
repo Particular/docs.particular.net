@@ -1,5 +1,5 @@
 ---
-title: Configuring Usage Reporting
+title: Usage Setup
 summary: Viewing endpoint usage summary and generating a usage report
 component: ServicePulse
 reviewed: 2024-05-08
@@ -11,7 +11,7 @@ Specific settings for collecting usage data to generate a usage report.
 > [!NOTE]
 > Usage requires ServicePulse version 1.39 or later, and ServiceControl version 5.3 or later.
 
-## Connection Settings
+## Connection setup
 
 In most scenarios existing ServiceControl connection settings will be used to establish a connection to the broker.
 If there is a connection problem, specific usage settings can be provided via the Usage tab under Configuration.
@@ -76,9 +76,9 @@ User with monitoring tag and read permission.
 
 MSMQ and Azure Storage Queues do not support quering of metrics. To be able to report on usage in these systems, [Audit](./../servicecontrol/audit-instances) and/or [Monitoring](./../monitoring) need to be enabled on all NServiceBus endpoints.
 
-configure [auditing](./../nservicebus/operations/auditing.md) on all NServiceBus endpoints.
+Configure [auditing](./../nservicebus/operations/auditing.md) on all NServiceBus endpoints.
 
-configure [monitoring](./../monitoring/metrics) on all NServiceBus endpoints.
+Configure [monitoring](./../monitoring/metrics) on all NServiceBus endpoints.
 
 ## Diagnostics
 

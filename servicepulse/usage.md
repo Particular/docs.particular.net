@@ -40,7 +40,9 @@ If the system is using an [NServiceBus transport](./../transports) that allows q
 
 ### Setting an endpoint type
 
-The detected endpoints and queues screen provides an option to set the endpoint type if there is a valid reason as to why a queue should not be included in the licensing calculations. Any changes made to the endpoint type are automaically saved.
+The usage summary may contain detected queues that should not be counted as part of a license with Particular Software. The raw report data will be processed by a tool that will ignore throughput caused, for example, by ServiceControl and related tools that should not be counted for licensing purposes.
+
+In addition, the detected endpoints and queues screen provides an option to set the endpoint type which provides a reason as to why a queue should not be included in the licensing calculations. Any changes made to the endpoint type are automaically saved.
 
 #### Bulk endpoint updates
 
