@@ -9,13 +9,12 @@ The configuration of a ServiceControl instance can be adjusted via the ServiceCo
 
 ![image](https://github.com/Particular/docs.particular.net/assets/88632084/0b04d82b-6a77-427d-81f3-6e450544ff90)
 
-
 ## Host settings
 
 The following documents should be reviewed prior to modifying configuration settings:
 
-* [Setting a Custom Hostname](setting-custom-hostname.md) for guidance and details.
-* [Securing ServiceControl](securing-servicecontrol.md) for an overview of the security implications of changing the configuration.
+- [Setting a Custom Hostname](setting-custom-hostname.md) for guidance and details.
+- [Securing ServiceControl](securing-servicecontrol.md) for an overview of the security implications of changing the configuration.
 
 ### ServiceControl/HostName
 
@@ -320,6 +319,23 @@ This entry should be set to `false` if there is no external process reading mess
 
 See [Installation](installation.md) for details on how to set this at install time.
 
+## Usage Reporting
+
+### LicensingComponent/ServiceControlThroughputDataQueue
+
+The queue on which throughput data is received by ServiceControl. This setting must match the equivalent [`Monitoring/ServiceControlThroughputDataQueue`](./monitoring-instances/installation/creating-config-file.md#monitoringservicecontrolthroughputdataqueue) setting for the Monitoring instance.
+
+Type: string
+
+Default: `ServiceControl.ThroughputData`
+
+> [!NOTE]
+> These settings do not need to be modified unless MSMQ transport is used with the Monitoring instance installed on a different machine to the ServiceControl Error instance.
+
+### LicensingComponent/etc
+
+TODO all the broker settings
+
 ## Plugin-specific
 
 ### ServiceControl/HeartbeatGracePeriod
@@ -341,8 +357,7 @@ When configuring the heartbeat grace period, make sure it is greater than the [h
 
 ServiceControl stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If during troubleshooting, direct access to the RavenDB instance is required while ServiceControl is running, ServiceControl can be configured to expose the RavenDB studio.
 
-> [!NOTE]
-> [Maintenance mode](maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
+> [!NOTE] > [Maintenance mode](maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
 
 > [!WARNING]
 > The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl and is not intended for external manipulation or modifications.
