@@ -106,7 +106,7 @@ Default: 40 seconds
 
 ### Monitoring/ServiceControlThroughputDataQueue
 
-The queue on which throughput data is received by ServiceControl Error instance. This setting must match the equivalent [`LicensingComponent/ServiceControlThroughputDataQueue`](./../../creating-config-file.md#usage-reporting-licensingcomponentservicecontrolthroughputdataqueue) setting on the ServiceControl Error instance.
+The queue on which throughput data is received by ServiceControl Error instance. This setting must match the equivalent [`LicensingComponent/ServiceControlThroughputDataQueue`](/servicecontrol/creating-config-file.md#usage-reporting-licensingcomponentservicecontrolthroughputdataqueue) setting on the ServiceControl Error instance.
 
 Type: string
 

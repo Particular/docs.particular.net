@@ -323,7 +323,7 @@ See [Installation](installation.md) for details on how to set this at install ti
 
 ### LicensingComponent/ServiceControlThroughputDataQueue
 
-The queue on which throughput data is received by ServiceControl. This setting must match the equivalent [`Monitoring/ServiceControlThroughputDataQueue`](./monitoring-instances/installation/creating-config-file.md#usage-reporting-monitoringservicecontrolthroughputdataqueue) setting for the Monitoring instance.
+The queue on which throughput data is received by ServiceControl. This setting must match the equivalent [`Monitoring/ServiceControlThroughputDataQueue`](/servicecontrol/monitoring-instances/installation/creating-config-file.md#usage-reporting-monitoringservicecontrolthroughputdataqueue) setting for the Monitoring instance.
 
 Type: string
 
