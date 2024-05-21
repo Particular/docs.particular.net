@@ -8,7 +8,7 @@
       Title: "Part 2: Recovering from failure"
     - Url: tutorials/quickstart/tutorial-extending-the-system
       Title: "Part 3: Extending the system"
-  - Title: Introduction to NServiceBus
+  - Title: NServiceBus Step-by-step
     Articles:
     - Url: tutorials/nservicebus-step-by-step
       Title: Introduction
