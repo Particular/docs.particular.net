@@ -79,7 +79,7 @@ Once a message is sent to the error queue, this indicates that a systemic failur
 
 NServiceBus embeds the exception details and stack trace into the message that it forwards to the error queue, so you don't need to search through a log file to find the details. Once the underlying issue is fixed, the message can be replayed. **Replaying a message** sends it back to its original queue in order to retry message processing after an issue has been fixed.
 
-> [!Note]
+> [!NOTE]
 > The [Particular Service Platform](/platform/), of which NServiceBus is a part, includes tools to make this kind of operational monitoring easy. If you'd like to learn more, check out the [message replay tutorial](/tutorials/message-replay/), which demonstrates how to use the platform tools to replay a failed message.
 
 Sometimes, a new release will contain a bug in handler logic that isn't found until the code is deployed. When this happens, many errors can flood into the error queue at once. At these times, it's incredibly useful to be able to roll back to the old version of the endpoint, and then replay the messages through proven code. Then you can take the time to properly troubleshoot and fix the issue before attempting a new deployment.
