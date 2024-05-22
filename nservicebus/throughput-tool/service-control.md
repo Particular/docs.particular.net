@@ -8,7 +8,10 @@ related:
 
 The Particular throughput tool can be installed locally and run against a production system to discover the throughput of each endpoint in a system over a period of time.
 
-This article details how to collect endpoint and throughput data using data from [ServiceControl](/servicecontrol/). Refer to the [throughput counter main page](./) for information how to install/uninstall the tool or for other data collection options.
+This article details how to collect endpoint and throughput data using data from [ServiceControl](/servicecontrol/). Refer to the [throughput counter main page](throughput-counter-tool.md) for information how to install/uninstall the tool or for other data collection options.
+
+> [!NOTE]
+> If running ServiceControl version 5.3 or higher, use the [inbuilt functionality of ServiceControl and ServicePulse](./../../servicepulse/usage.md) to measure system usage.
 
 The tool should be used with a [supported version of ServiceControl](/servicecontrol/upgrades/supported-versions.md).
 

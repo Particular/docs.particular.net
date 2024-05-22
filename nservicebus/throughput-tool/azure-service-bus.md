@@ -8,7 +8,7 @@ related:
 
 The Particular throughput tool can be installed locally and run against a production system to discover the throughput of each endpoint in a system over a period of time.
 
-This article details how to collect endpoint and throughput data when the system uses the [Azure Service Bus transport](/transports/azure-service-bus/). Refer to the [throughput counter main page](./) for information how to install/uninstall the tool or for other data collection options.
+This article details how to collect endpoint and throughput data when the system uses the [Azure Service Bus transport](/transports/azure-service-bus/). Refer to the [throughput counter main page](throughput-counter-tool.md) for information how to install/uninstall the tool or for other data collection options.
 
 ## Prerequisites
 
