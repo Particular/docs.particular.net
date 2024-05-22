@@ -323,7 +323,7 @@ See [Installation](installation.md) for details on how to set this at install ti
 
 ### LicensingComponent/ServiceControlThroughputDataQueue
 
-The queue on which throughput data is received by ServiceControl. This setting must match the equivalent [`Monitoring/ServiceControlThroughputDataQueue`](/servicecontrol/monitoring-instances/installation/creating-config-file.md#usage-reporting-monitoringservicecontrolthroughputdataqueue) setting for the Monitoring instance.
+The queue on which throughput data is received by the ServiceControl Error instance. This setting must match the equivalent [`Monitoring/ServiceControlThroughputDataQueue`](/servicecontrol/monitoring-instances/installation/creating-config-file.md#usage-reporting-monitoringservicecontrolthroughputdataqueue) setting for the Monitoring instance.
 
 Type: string
 
@@ -332,9 +332,101 @@ Default: `ServiceControl.ThroughputData`
 > [!NOTE]
 > These settings do not need to be modified unless MSMQ transport is used with the Monitoring instance installed on a different machine to the ServiceControl Error instance.
 
-### LicensingComponent/etc
+### LicenseComponent/ASB/ServiceBusName
 
-TODO all the broker settings
+When using [Azure Service Bus transport](/transports/azure-service-bus/), this is the Azure Service Bus namespace.
+
+Type: string
+
+### LicenseComponent/ASB/ClientId
+
+When using [Azure Service Bus transport](/transports/azure-service-bus), this is the ClientId for an Azure login that has access to view metrics data for the Azure Service Bus namespace.
+
+Type: string
+
+### LicenseComponent/ASB/ClientSecret
+
+When using [Azure Service Bus transport](/transports/azure-service-bus), this is the ClientSecret for an Azure login that has access to view metrics data for the Azure Service Bus namespace.
+
+Type: string
+
+### LicenseComponent/ASB/TenantId
+
+When using [Azure Service Bus transport](/transports/azure-service-bus), this is the Azure Microsoft Extra ID.
+
+Type: string
+
+### LicenseComponent/ASB/SubscriptionId
+
+When using [Azure Service Bus transport](/transports/azure-service-bus), this is the Azure subscription ID.
+
+Type: string
+
+### LicenseComponent/ASB/ManagementUrl
+
+When using [Azure Service Bus transport](/transports/azure-service-bus), this is the Azure ManagementUrl URL.
+
+Type: string
+
+### LicenseComponent/AmazonSQS/AccessKey
+
+When using [Amazon SQS transport](/transports/sqs), this is the AWS Access Key ID to use to discover queue names and gather per-queue metrics.
+
+Type: string
+
+### LicenseComponent/AmazonSQS/SecretKey
+
+When using [Amazon SQS transport](/transports/sqs), this is the AWS Secret Access Key to use to discover queue names and gather per-queue metrics.
+
+Type: string
+
+### LicenseComponent/AmazonSQS/Profile
+
+When using [Amazon SQS transport](/transports/sqs), this is the name of a local AWS credentials profile to use to discover queue names and gather per-queue metrics.
+
+Type: string
+
+### LicenseComponent/AmazonSQS/Region
+
+When using [Amazon SQS transport](/transports/sqs), this is the AWS region to use when accessing AWS services.
+
+Type: string
+
+### LicenseComponent/AmazonSQS/Prefix
+
+When using [Amazon SQS transport](/transports/sqs), this specifies to report only on queues that begin with a specific prefix. This is commonly used when one AWS account must contain queues for multiple projects or multiple environments.
+
+Type: string
+
+### LicenseComponent/RabbitMQ/ApiUrl
+
+When using [RabbitMQ transport](/transports/rabbitmq), this is the RabbitMQ management URL.
+
+Type: string
+
+### LicenseComponent/RabbitMQ/UserName
+
+When using [RabbitMQ transport](/transports/rabbitmq), this is the username to access the RabbitMQ management interface.
+
+Type: string
+
+### LicenseComponent/RabbitMQ/Password
+
+When using [RabbitMQ transport](/transports/rabbitmq), this is the password to access the RabbitMQ management interface.
+
+Type: string
+
+### LicenseComponent/SqlServer/ConnectionString
+
+When using [SqlServer transport](/transports/sql), this is the single database connection string that will provide at least read access to all queue tables.
+
+Type: string
+
+### LicenseComponent/SqlServer/AdditionalCatalogs
+
+When using [SqlServer transport](/transports/sql), this is specifies additional database catalogs to search. Thsi is used when the ConnectionString setting points to a single database, but multiple database catalogs on the same server also contain NServiceBus message queues. The Database or Initial Catalog parameter in the connection string is replaced with the additional catalog to query them all.
+
+Type: string
 
 ## Plugin-specific
 

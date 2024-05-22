@@ -11,7 +11,7 @@ This section allows for viewing the endpoint usage summary of a system using NSe
 A usage report can be generated here at license renewal time.
 
 > [!NOTE]
-> The usage functionality requires ServicePulse version 1.39 or later, and ServiceControl version 5.3 or later.
+> The usage data collection functionality requires ServicePulse version 1.39 or later, and ServiceControl version 5.3 or later.
 
 > [!NOTE]
 > If no data is available, go to the [Usage Setup](usage-config.md) screen to diagnose connection problems.
@@ -20,7 +20,7 @@ A usage report can be generated here at license renewal time.
 
 Clicking `Generate Report` generates a usage report file with the detected [endpoints](#viewing-usage-summary-detected-endpoints) and [queues](#viewing-usage-summary-detected-broker-queues). The report includes the [endpoint type](#viewing-usage-summary-setting-an-endpoint-type) selections made on screen, and any specified [words to mask](usage-config.md#report-masks) with be obfuscated.
 
-The report **will not** be automatically uploaded or sent to Particular - it is a JSON file that needs to be provided to Particular upon request
+The report **will not** be automatically uploaded or sent to Particular - it is a JSON file that needs to be provided to Particular upon request.
 
 ## Viewing usage summary
 

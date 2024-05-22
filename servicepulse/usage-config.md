@@ -9,18 +9,31 @@ related:
 Specific settings for collecting usage data to generate a usage report.
 
 > [!NOTE]
-> Usage requires ServicePulse version 1.39 or later, and ServiceControl version 5.3 or later.
+> The usage data collection functionality requires ServicePulse version 1.39 or later, and ServiceControl version 5.3 or later.
 
 ## Connection setup
 
-In most scenarios existing ServiceControl connection settings will be used to establish a connection to the broker.
+In most scenarios existing ServiceControl Error instance connection settings will be used to establish a connection to the broker.
 If there is a connection problem, specific usage settings can be provided via the Usage tab under Configuration.
 
 Look at the [Diagnostics](#diagnostics) tab to diagnose connection issues.
 
-TODO: Need a section on each type of connection and an explanation of the parameters involved, with minimum access/permissions required on the broker
-
 ### Azure Service Bus
+
+#### Settings
+
+The follow settings are available to setup a connection to Azure Service Bus:
+
+- LicenseComponent/ASB/ServiceBusName
+- LicenseComponent/ASB/ClientId
+- LicenseComponent/ASB/ClientSecret
+- LicenseComponent/ASB/TenantId
+- LicenseComponent/ASB/SubscriptionId
+- LicenseComponent/ASB/ManagementUrl
+
+Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the Azure Service Bus specific settings.
+
+#### Permissions
 
 ```
 {
@@ -44,6 +57,20 @@ TODO: Need a section on each type of connection and an explanation of the parame
 
 ### Amazon SQS
 
+#### Settings
+
+The follow settings are available to setup a connection to Amazon SQS:
+
+- LicenseComponent/AmazonSQS/AccessKey
+- LicenseComponent/AmazonSQS/SecretKey
+- LicenseComponent/AmazonSQS/Profile
+- LicenseComponent/AmazonSQS/Region
+- LicenseComponent/AmazonSQS/Prefix
+
+Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the Amazon SQS specific settings.
+
+#### Permissions
+
 ```
 {
     "Version": "2012-10-17",
@@ -66,9 +93,32 @@ TODO: Need a section on each type of connection and an explanation of the parame
 
 ### SQLServer
 
+#### Settings
+
+The follow settings are available to setup a connection to SqlServer:
+
+- LicenseComponent/SqlServer/ConnectionString
+- LicenseComponent/SqlServer/AdditionalCatalogs
+
+Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the SqlServer specific settings.
+
+#### Permissions
+
 User with rights to query [INFORMATION_SCHEMA].[COLUMNS] table.
 
 ### RabbitMQ
+
+#### Settings
+
+The follow settings are available to setup a connection to RabbitMQ:
+
+- LicenseComponent/RabbitMQ/ApiUrl
+- LicenseComponent/RabbitMQ/UserName
+- LicenseComponent/RabbitMQ/Password
+
+Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the RabbitMQ specific settings.
+
+#### Permissions
 
 User with monitoring tag and read permission.
 

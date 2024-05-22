@@ -6,7 +6,7 @@ related:
   - nservicebus/throughput-tool
 ---
 
-This article covers questions that may arise about the [EndpointThroughputCounter tool](./).
+This article covers questions that may arise about the [EndpointThroughputCounter tool](throughput-counter-tool.md).
 
 ## What does the tool do
 
