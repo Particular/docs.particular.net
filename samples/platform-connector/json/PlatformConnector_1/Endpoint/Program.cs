@@ -15,7 +15,7 @@ public class Program
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
 
         #region loadConnectionDetails
-        var connectionPath = @".\platformConnection.json";
+        var connectionPath = Path.Combine(".", "platformConnection.json");
         var json = File.ReadAllText(connectionPath);
         var platformConnection = ServicePlatformConnectionConfiguration.Parse(json);
         #endregion

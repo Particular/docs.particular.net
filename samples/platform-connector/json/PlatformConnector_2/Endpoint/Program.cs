@@ -7,7 +7,7 @@ endpointConfiguration.UseTransport<LearningTransport>();
 endpointConfiguration.UsePersistence<NonDurablePersistence>();
 
 #region loadConnectionDetails
-var connectionPath = @".\platformConnection.json";
+var connectionPath = Path.Combine(".", "platformConnection.json");
 var json = File.ReadAllText(connectionPath);
 var platformConnection = ServicePlatformConnectionConfiguration.Parse(json);
 #endregion
