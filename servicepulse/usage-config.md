@@ -18,7 +18,7 @@ In most scenarios existing ServiceControl Error instance connection settings wil
 
 ![usage-setup-connections](images/usage-setup-connection.png "width=600")
 
-If there is a connection problem, specific usage settings can be provided via the Usage tab under Configuration.
+If there is a connection problem, specific usage settings can be provided via the Usage Setup tab under Configuration.
 
 Look at the [Diagnostics](#diagnostics) tab to diagnose connection issues.
 
@@ -37,25 +37,30 @@ The follow settings are available to setup a connection to Azure Service Bus:
 
 Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the Azure Service Bus specific settings.
 
-#### Permissions
+#### Minimum Permissions
 
-```
+```json
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": "cloudwatch:GetMetricStatistics",
-            "Resource": "*"
-        },
-        {
-            "Sid": "VisualEditor1",
-            "Effect": "Allow",
-            "Action": "sqs:ListQueues",
-            "Resource": "*"
-        }
-    ]
+    "properties": {
+        "roleName": "myrolename",
+        "description": "",
+        "assignableScopes": [
+            "/subscriptions/xxxxxxxxxxxxxxxxxxxxx"
+        ],
+        "permissions": [
+            {
+                "actions": [
+                    "Microsoft.ServiceBus/namespaces/read",
+                    "Microsoft.ServiceBus/namespaces/providers/Microsoft.Insights/metricDefinitions/read",
+                    "Microsoft.ServiceBus/namespaces/queues/read",
+                    "Microsoft.Resources/subscriptions/resources/read"
+                ],
+                "notActions": [],
+                "dataActions": [],
+                "notDataActions": []
+            }
+        ]
+    }
 }
 ```
 
@@ -73,9 +78,9 @@ The follow settings are available to setup a connection to Amazon SQS:
 
 Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the Amazon SQS specific settings.
 
-#### Permissions
+#### Minimum Permissions
 
-```
+```json
 {
     "Version": "2012-10-17",
     "Statement": [

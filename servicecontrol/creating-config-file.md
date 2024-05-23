@@ -340,13 +340,13 @@ Type: string
 
 ### LicenseComponent/ASB/ClientId
 
-When using [Azure Service Bus transport](/transports/azure-service-bus), this is the ClientId for an Azure login that has access to view metrics data for the Azure Service Bus namespace.
+When using [Azure Service Bus transport](/transports/azure-service-bus), this is the ClientId for an Azure login that has access to read metrics data for the Azure Service Bus namespace.
 
 Type: string
 
 ### LicenseComponent/ASB/ClientSecret
 
-When using [Azure Service Bus transport](/transports/azure-service-bus), this is the ClientSecret for an Azure login that has access to view metrics data for the Azure Service Bus namespace.
+When using [Azure Service Bus transport](/transports/azure-service-bus), this is the ClientSecret for an Azure login that has access to read metrics data for the Azure Service Bus namespace.
 
 Type: string
 
