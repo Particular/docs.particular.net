@@ -1,3 +1,3 @@
 ServicePulse is a web application designed for administrators. It provides a clear, near real-time, high-level overview of how a system is currently functioning. The UI also provides common failure recovery operations, such as retrying failed messages.
 
-ServicePulse also has a rich, graphical view of [detailed performance metrics](/monitoring/metrics/in-servicepulse.md). These are shown at the level of logical endpoints, physical instances, and even individual message types.
+ServicePulse provides a rich, graphical view of [detailed performance metrics](/monitoring/metrics/in-servicepulse.md). These are shown for logical endpoints, physical instances, and even individual message types.
