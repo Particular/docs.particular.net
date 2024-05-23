@@ -50,11 +50,14 @@ In addition, the detected endpoints and queues screen provides an option to set 
 If multiple endpoints or queues matching a certain naming pattern need to be set to an endpoint type, then this can be done in bulk using the filter option.
 
 1. Find the endpoints/queues that need to be bulk updated
-
-TODO: image
-
 2. Press the `Set displayed Endpoint Types to` button to select which endpoint type the filtered results should be set to.
 
-TODO: image
+![usage-endpoints-filter](images/usage-endpoints-filter.png "width=600")
 
-All endpoints/queues on screen will be updated to the selected endpoint type and automatically saved.
+3. A confirmation box appears - press `Yes` to proceed with the bulk update.
+
+![usage-endpoints-bulk-update](images/usage-endpoints-bulk-update.png "width=600")
+
+4. All endpoints/queues on screen will be updated to the selected endpoint type and automatically saved.
+
+![usage-endpoints-updated](images/usage-endpoints-updated.png "width=600")

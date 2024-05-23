@@ -4,6 +4,7 @@ summary: Viewing endpoint usage summary and generating a usage report
 component: ServicePulse
 reviewed: 2024-05-08
 related:
+  - nservicebus/throughput-tool
 ---
 
 Specific settings for collecting usage data to generate a usage report.
@@ -14,6 +15,9 @@ Specific settings for collecting usage data to generate a usage report.
 ## Connection setup
 
 In most scenarios existing ServiceControl Error instance connection settings will be used to establish a connection to the broker.
+
+![usage-setup-connections](images/usage-setup-connection.png "width=600")
+
 If there is a connection problem, specific usage settings can be provided via the Usage tab under Configuration.
 
 Look at the [Diagnostics](#diagnostics) tab to diagnose connection issues.
@@ -134,7 +138,14 @@ Configure [monitoring](./../monitoring/metrics) on all NServiceBus endpoints.
 
 The Diagnostics tab helps to diagnose any connection issues to the broker, as well as the Audit and Monitoring instances.
 
+![usage-setup-diagnostics](images/usage-setup-diagnostics.png "width=600")
+
+After making any setting changes, presss the `Refresh Connection Test` button to see if the problem is resolved.
+If unable to fix the issue, open a [non-critical support case](https://particular.net/support) and include the diagnostic output.
+
 ## Report Masks
 
-Information that can be considered sensitive can be obfuscated in the usage report.
+Information that is considered sensitive can be obfuscated in the usage report.
 All words to be retracted can be specified in the Masks tab - one word per line.
+
+![usage-setup-masks](images/usage-setup-masks.png "width=600")

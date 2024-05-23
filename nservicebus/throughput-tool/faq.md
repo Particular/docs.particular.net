@@ -1,7 +1,7 @@
 ---
 title: Endpoint throughput counter tool FAQ
 summary: Answers to frequently asked questions about the EndpointThroughputCounter tool
-reviewed: 2024-05-08
+reviewed: 2024-05-22
 related:
   - nservicebus/throughput-tool
 ---
