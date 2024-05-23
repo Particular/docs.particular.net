@@ -44,13 +44,13 @@ Or, if using the [self-contained executable](/nservicebus/throughput-tool/#insta
 Particular.EndpointThroughputCounter.exe azureservicebus [options] --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace
 ```
 
+
 ## Options
 
-| Option                            | Description                                                                                                                                                                                     |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <nobr>`--resourceId`</nobr>       | **Required** – The resource ID of the Azure Service Bus namespace, which can be found in the Azure Portal as described above.                                                                   |
+| Option | Description |
+|-|-|
+| <nobr>`--resourceId`</nobr> | **Required** – The resource ID of the Azure Service Bus namespace, which can be found in the Azure Portal as described above. |
 | <nobr>`--serviceBusDomain`</nobr> | The Service Bus domain. Defaults to `servicebus.windows.net`. Only necessary for Azure customers using a [non-public/government cloud](https://learn.microsoft.com/en-us/rest/api/servicebus/). |
-
 include: throughput-tool-global-options
 
 ## What the tool does

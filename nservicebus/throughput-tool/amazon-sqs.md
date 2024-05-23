@@ -32,12 +32,11 @@ Particular.EndpointThroughputCounter.exe sqs [options]
 
 ## Options
 
-| Option                   | Description                                                                                                                                                                                                                                                                     |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Option | Description |
+|-|-|
 | <nobr>`--profile`</nobr> | The name of a local [AWS credentials profile](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/keys-profiles-credentials.html). If not included, credentials can be read from the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables. |
-| <nobr>`--region`</nobr>  | The AWS region to use when accessing AWS services. If not provided, the default profile value or `AWS_REGION` environment variable will be used.                                                                                                                                |
-| <nobr>`--prefix`</nobr>  | Report only on queues that begin with a specific prefix. This is commonly used when one AWS account must contain queues for multiple projects or multiple environments.<br/><br/>Example: `--prefix "prod-"`                                                                    |
-
+| <nobr>`--region`</nobr> | The AWS region to use when accessing AWS services. If not provided, the default profile value or `AWS_REGION` environment variable will be used. |
+| <nobr>`--prefix`</nobr> | Report only on queues that begin with a specific prefix. This is commonly used when one AWS account must contain queues for multiple projects or multiple environments.<br/><br/>Example: `--prefix "prod-"` |
 include: throughput-tool-global-options
 
 ## What the tool does

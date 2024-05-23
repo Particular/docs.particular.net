@@ -32,10 +32,9 @@ The tool will prompt for the username and password to access the RabbitMQ manage
 
 ### Options
 
-| Option                  | Description                                                                                                        |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| Option | Description |
+|-|-|
 | <nobr>`--apiUrl`</nobr> | **Required** – The URL for the RabbitMQ management site. Generally this will be `http://<rabbitmq-hostname>:15672` |
-
 include: throughput-tool-global-options
 
 ## What the tool does
