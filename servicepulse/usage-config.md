@@ -4,7 +4,7 @@ summary: Viewing endpoint usage summary and generating a usage report
 component: ServicePulse
 reviewed: 2024-05-08
 related:
-  - nservicebus/throughput-tool
+  - nservicebus/usage
 ---
 
 Specific settings for collecting usage data to generate a usage report.

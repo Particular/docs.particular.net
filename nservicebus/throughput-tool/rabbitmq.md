@@ -8,7 +8,7 @@ related:
 
 The Particular throughput tool can be installed locally and run against a production system to discover the throughput of each endpoint in a system over a period of time.
 
-This article details how to collect endpoint and throughput data when the system uses the [RabbitMQ transport](/transports/rabbitmq/). Refer to the [throughput counter main page](throughput-counter-tool.md) for information how to install/uninstall the tool or for other data collection options.
+This article details how to collect endpoint and throughput data when the system uses the [RabbitMQ transport](/transports/rabbitmq/). Refer to the [throughput counter main page](./) for information how to install/uninstall the tool or for other data collection options.
 
 ## Running the tool
 
@@ -16,13 +16,13 @@ To collect data from RabbitMQ, the [management plugin](https://www.rabbitmq.com/
 
 Execute the tool, providing the RabbitMQ management URL, as in this example where the RabbitMQ broker is running on localhost.
 
-If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/throughput-counter-tool.md#installation-net-tool-recommended):
+If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
 
 ```shell
 throughput-counter rabbitmq [options] --apiUrl http://localhost:15672
 ```
 
-Or, if using the [self-contained executable](/nservicebus/throughput-tool/throughput-counter-tool.md#installation-self-contained-executable):
+Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
 
 ```shell
 Particular.EndpointThroughputCounter.exe rabbitmq [options] --apiUrl http://localhost:15672

@@ -8,7 +8,7 @@ related:
 
 The Particular throughput tool can be installed locally and run against a production system to discover the throughput of each endpoint in a system over a period of time.
 
-This article details how to collect endpoint and throughput data when the system uses the [Azure Service Bus transport](/transports/azure-service-bus/). Refer to the [throughput counter main page](throughput-counter-tool.md) for information how to install/uninstall the tool or for other data collection options.
+This article details how to collect endpoint and throughput data when the system uses the [Azure Service Bus transport](/transports/azure-service-bus/). Refer to the [throughput counter main page](./) for information how to install/uninstall the tool or for other data collection options.
 
 ## Prerequisites
 
@@ -32,13 +32,13 @@ This screenshot shows how to copy the Service Bus Namespace's `Id` value:
 
 Execute the tool with the resource ID of the Azure Service Bus namespace.
 
-If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/throughput-counter-tool.md#installation-net-tool-recommended):
+If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
 
 ```shell
 throughput-counter azureservicebus [options] --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace
 ```
 
-Or, if using the [self-contained executable](/nservicebus/throughput-tool/throughput-counter-tool.md#installation-self-contained-executable):
+Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
 
 ```shell
 Particular.EndpointThroughputCounter.exe azureservicebus [options] --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace

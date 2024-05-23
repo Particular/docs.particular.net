@@ -1,10 +1,10 @@
 ---
 title: Usage
-summary: Viewing endpoint usage summary and generating a usage report
+summary: Use ServicePulse and ServiceControl to view and measure the usage of an NServiceBus system.
 component: ServicePulse
 reviewed: 2024-05-08
 related:
-  - nservicebus/throughput-tool
+  - nservicebus/usage
 ---
 
 This section allows for viewing the endpoint usage summary of a system using NServiceBus.

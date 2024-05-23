@@ -761,11 +761,11 @@
       Articles:
         - Url: nservicebus/tools/migrate-to-native-delivery
           Title: Migrating timeouts
-        - Url: nservicebus/throughput-tool
+        - Url: nservicebus/usage
           Title: Measuring system usage
         - Url: servicepulse/usage
           Title: Usage via ServiceControl and ServicePulse
-        - Url: nservicebus/throughput-tool/throughput-counter-tool
+        - Url: nservicebus/throughput-tool
           Title: Usage via throughput tool
         - Url: nservicebus/throughput-tool/azure-service-bus
           Title: Throughput tool - using Azure Service Bus

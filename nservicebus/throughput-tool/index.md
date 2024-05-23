@@ -1,38 +1,96 @@
 ---
-title: Measuring system usage
-summary: Measure the usage of an NServiceBus system.
-reviewed: 2024-05-08
+title: Endpoint throughput counter tool
+summary: Use the Particular endpoint throughput counter tool to measure the usage of an NServiceBus system.
+reviewed: 2024-05-22
+related:
+  - nservicebus/usage
 ---
 
-There are two methods provided for measuring usage of an NServiceBus system:
-
-- [Inbuilt functionality of ServiceControl and ServicePulse](#inbuilt-functionality-of-servicecontrol-and-servicepulse)
-- [Endpoint throughput counter tool](#endpoint-throughput-counter-tool)
-
 > [!NOTE]
-> Requirements for both of the usage measuring methods:
->
-> - NServiceBus Transport: [Azure Service Bus](./../../transports/azure-service-bus), [RabbitMQ](./../../transports/rabbitmq), [Amazon SQS](./../../transports/sqs), [SqlServer](./../../transports/sql) OR
-> - NServiceBus Transport: [MSMQ](./../../transports/msmq/) or [Azure Storage Queues](./../../transports/azure-storage-queues/) with [Auditing](./../operations/auditing.md) or [Monitoring](./../../monitoring/metrics) enabled on all NServiceBus endpoints
+> The recommended method of measuring the throughput of an NServiceBus system is via the [inbuilt functionality of ServiceControl and ServicePulse](./../../servicepulse/usage.md).
+> The endpoint throughput counter tool is offered as an alternate option for customers who are constrained in running ServiceControl.
 
-The output of the measuring methods is a usage report containing NServiceBus endpoint count and throughput summary. The report is generated as a JSON file which needs to be sent to Particular upon request, usually at license renewal time.
+The Particular endpoint throughput counter tool can typically be installed on a [user's workstation](faq.md#does-the-tool-need-to-run-on-my-production-server) and run against a production system to measure the throughput of each endpoint over a period of time.
 
-## Inbuilt functionality of ServiceControl and ServicePulse
+## Installation
 
-The recommended method of measuring the usage of an NServiceBus system is via the [inbuilt functionality of ServiceControl and ServicePulse](/servicepulse/usage.md).
+The tool can be installed as a .NET tool for Windows/Linux or as a self-contained Windows executable.
 
-> [!NOTE]
-> This method requires ServicePulse version 1.39 or later, and ServiceControl version 5.3 or later.
+### .NET tool (recommended)
 
-This method provides the extra benefits of:
+1. Install [.NET 6.0](https://dotnet.microsoft.com/en-us/download).
+1. From a terminal window, use the following command to install the throughput counter:
 
-- ability to [view the system usage](/servicepulse/usage.md#viewing-usage-summary) at any time
-- ability to optionally [specify if a detected queue should not be included in license pricing](/servicepulse/usage.md#viewing-usage-summary-setting-an-endpoint-type)
-- no requirement to run additional tools - [report is generated from a button click in ServicePulse](/servicepulse/usage.md#generating-a-usage-report)
-- more accurate usage data
+   ```shell
+   dotnet tool install -g Particular.EndpointThroughputCounter --add-source https://f.feedz.io/particular-software/packages/nuget/index.json
+   ```
 
-## Endpoint throughput counter tool
+1. Run the tool by executing `throughput-counter`:
 
-Customers who are not able to use the latest ServiceControl version can use the [Endpoint throughput counter tool](throughput-counter-tool.md) to measure their system usage.
+   ```shell
+   throughput-counter [command] [options]
+   ```
 
-This is a standalone tool that can typically be installed on a [user's workstation](faq.md#does-the-tool-need-to-run-on-my-production-server).
+### Self-contained executable
+
+In this mode, the target system does not need any version of .NET preinstalled.
+
+1. Download the [self-contained Windows executable](https://s3.amazonaws.com/particular.downloads/EndpointThroughputCounter/Particular.EndpointThroughputCounter.zip).
+1. Unzip the downloaded file.
+1. Open a terminal window and navigate to folder to which it was downloaded.
+1. Execute the tool from the terminal by using its full name:
+
+   ```shell
+   Particular.EndpointThroughputCounter.exe [command] [options]
+   ```
+
+## Running the tool
+
+The tool can collect data using a variety of methods depending upon the system's configuration. To run the tool, select the relevant article based on the [message transport](/transports/) used in the system to be measured:
+
+- [Azure Service Bus](azure-service-bus.md)
+- [Amazon SQS](amazon-sqs.md)
+- [RabbitMQ](rabbitmq.md)
+- [SQL Transport](sql-transport.md)
+- Microsoft Message Queueing (MSMQ) – Use [ServiceControl data collection](service-control.md)
+- Azure Storage Queues – Use [ServiceControl data collection](service-control.md)
+- [Click here if unsure what message transport is used by the system](determine-transport.md)
+
+If the system uses MSMQ or Azure Storage Queues but does not use ServiceControl, this tool cannot be used to measure throughput. Email <a href="mailto:contact@particular.net">contact@particular.net</a> for instructions on estimating system throughput.
+
+## Masking private data
+
+The report that is generated will contain the names of endpoints/queues. If the queue names themselves contain confidential or proprietary information, certain strings can be masked in the report file.
+
+```shell
+throughput-counter [command] [options] --queueNameMasks Samples
+```
+
+This will result in a report file with masked data, such as:
+
+```json
+{
+  "QueueName": "***.RabbitMQ.SimpleReceiver",
+  "Throughput": 0
+}
+```
+
+## Updating
+
+To update the tool to the latest version, execute the following command in a terminal window:
+
+```shell
+dotnet tool update -g Particular.EndpointThroughputCounter --add-source https://f.feedz.io/particular-software/packages/nuget/index.json
+```
+
+## Uninstalling
+
+To uninstall the tool, execute the following command in a terminal window:
+
+```shell
+dotnet tool uninstall -g Particular.EndpointThroughputCounter
+```
+
+## Questions
+
+Check out [frequently asked questions (FAQ)](faq.md) about the endpoint throughput counter tool.
