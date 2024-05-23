@@ -1,7 +1,7 @@
 ---
 title: DTC not supported for RavenDB Persistence
 component: raven
-reviewed: 2021-06-14
+reviewed: 2024-05-23
 ---
 
 RavenDB's implementation of distributed transactions contains a bug that can cause an endpoint, in certain (rare) conditions, to lose data. The RavenDB team [has no further plans to address this issue](https://issues.hibernatingrhinos.com/issue/RavenDB-4431). Starting with RavenDB 4.0, RavenDB will not support the Distributed Transaction Coordinator (DTC), making this bug irrelevant beyond RavenDB 3.5.
