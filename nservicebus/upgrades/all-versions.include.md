@@ -971,9 +971,9 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/3.0.0) | 2024-04-16     | -                 | -                                 |
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/2.0.1) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/1.0.0) | 2021-11-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/3.0.1) | 2024-04-16     | -                 | -                                 |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/2.0.2) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/1.0.1) | 2021-11-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Testing](/nuget/NServiceBus.Testing)
 
