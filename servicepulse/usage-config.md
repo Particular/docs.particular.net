@@ -111,7 +111,7 @@ The follow settings are available to setup a connection to SqlServer:
 
 Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the SqlServer specific settings.
 
-#### Permissions
+#### Minimum Permissions
 
 User with rights to query [INFORMATION_SCHEMA].[COLUMNS] table.
 
@@ -127,13 +127,13 @@ The follow settings are available to setup a connection to RabbitMQ:
 
 Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the RabbitMQ specific settings.
 
-#### Permissions
+#### Minimum Permissions
 
 User with monitoring tag and read permission.
 
 ### MSMQ & Azure Storage Queues
 
-MSMQ and Azure Storage Queues do not support quering of metrics. To be able to report on usage in these systems, [Audit](./../servicecontrol/audit-instances) and/or [Monitoring](./../monitoring) need to be enabled on all NServiceBus endpoints.
+MSMQ and Azure Storage Queues do not support querying of metrics. To be able to report on usage in these systems, [Audit](./../servicecontrol/audit-instances) and/or [Monitoring](./../monitoring) need to be enabled on all NServiceBus endpoints.
 
 Configure [auditing](./../nservicebus/operations/auditing.md) on all NServiceBus endpoints.
 
@@ -145,7 +145,7 @@ The Diagnostics tab helps to diagnose any connection issues to the broker, as we
 
 ![usage-setup-diagnostics](images/usage-setup-diagnostics.png "width=600")
 
-After making any setting changes, presss the `Refresh Connection Test` button to see if the problem is resolved.
+After making any setting changes, press the `Refresh Connection Test` button to see if the problem is resolved.
 If unable to fix the issue, open a [non-critical support case](https://particular.net/support) and include the diagnostic output.
 
 ## Report Masks

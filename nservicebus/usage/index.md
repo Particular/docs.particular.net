@@ -9,8 +9,8 @@ related:
 
 There are two methods provided for measuring usage of an NServiceBus system:
 
-- [Inbuilt functionality of ServiceControl and ServicePulse](#inbuilt-functionality-of-servicecontrol-and-servicepulse)
-- [Endpoint throughput counter tool](#endpoint-throughput-counter-tool)
+- [Using ServicePulse](#using-servicepulse)
+- [Standalone Endpoint throughput tool](#standalone-endpoint-throughput-tool)
 
 > [!NOTE]
 > Requirements for both of the usage measuring methods:
@@ -20,9 +20,9 @@ There are two methods provided for measuring usage of an NServiceBus system:
 
 The output of the measuring methods is a usage report containing NServiceBus endpoint count and throughput summary. The report is generated as a JSON file which needs to be sent to Particular upon request, usually at license renewal time.
 
-## Inbuilt functionality of ServiceControl and ServicePulse
+## Using ServicePulse
 
-The recommended method of measuring the usage of an NServiceBus system is via the [inbuilt functionality of ServiceControl and ServicePulse](/servicepulse/usage.md).
+The recommended method of measuring the usage of an NServiceBus system is via [ServicePulse](/servicepulse/usage.md).
 
 > [!NOTE]
 > This method requires ServicePulse version 1.39 or later, and ServiceControl version 5.3 or later.
@@ -32,9 +32,9 @@ This method provides the extra benefits of:
 - ability to [view the system usage](/servicepulse/usage.md#viewing-usage-summary) at any time
 - ability to optionally [specify if a detected queue should not be included in license pricing](/servicepulse/usage.md#viewing-usage-summary-setting-an-endpoint-type)
 - no requirement to run additional tools - [report is generated from a button click in ServicePulse](/servicepulse/usage.md#generating-a-usage-report)
-- more accurate usage data
+- improved endpoint identification
 
-## Endpoint throughput counter tool
+## Standalone Endpoint throughput tool
 
 Customers who are not able to use the latest ServiceControl version can use the [Endpoint throughput counter tool](./../throughput-tool) to measure their system usage.
 

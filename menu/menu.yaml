@@ -764,23 +764,24 @@
         - Url: nservicebus/usage
           Title: Measuring system usage
         - Url: servicepulse/usage
-          Title: Usage via ServiceControl and ServicePulse
+          Title: System usage via ServicePulse
         - Url: nservicebus/throughput-tool
-          Title: Usage via throughput tool
-        - Url: nservicebus/throughput-tool/azure-service-bus
-          Title: Throughput tool - using Azure Service Bus
-        - Url: nservicebus/throughput-tool/amazon-sqs
-          Title: Throughput tool - using Amazon SQS
-        - Url: nservicebus/throughput-tool/rabbitmq
-          Title: Throughput tool - using RabbitMQ
-        - Url: nservicebus/throughput-tool/sql-transport
-          Title: Throughput tool - using SQL Transport
-        - Url: nservicebus/throughput-tool/service-control
-          Title: Throughput tool - using ServiceControl
-        - Url: nservicebus/throughput-tool/determine-transport
-          Title: Throughput tool - determining message transport
-        - Url: nservicebus/throughput-tool/faq
-          Title: Throughput tool FAQ
+          Title: System usage via Throughput Endpoint tool
+          Articles:
+            - Url: nservicebus/throughput-tool/azure-service-bus
+              Title: using Azure Service Bus
+            - Url: nservicebus/throughput-tool/amazon-sqs
+              Title: using Amazon SQS
+            - Url: nservicebus/throughput-tool/rabbitmq
+              Title: using RabbitMQ
+            - Url: nservicebus/throughput-tool/sql-transport
+              Title: using SQL Transport
+            - Url: nservicebus/throughput-tool/service-control
+              Title: using ServiceControl
+            - Url: nservicebus/throughput-tool/determine-transport
+              Title: Determining message transport
+            - Url: nservicebus/throughput-tool/faq
+              Title: FAQ
     - Title: Troubleshooting
       Articles:
         - Url: nservicebus/troubleshooting/message-loss

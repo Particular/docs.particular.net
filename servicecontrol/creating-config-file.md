@@ -330,7 +330,7 @@ Type: string
 Default: `ServiceControl.ThroughputData`
 
 > [!NOTE]
-> These settings do not need to be modified unless MSMQ transport is used with the Monitoring instance installed on a different machine to the ServiceControl Error instance.
+> This setting does not need to be modified unless MSMQ transport is used with the Monitoring instance installed on a different machine to the ServiceControl Error instance.
 
 ### LicenseComponent/ASB/ServiceBusName
 
