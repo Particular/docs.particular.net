@@ -47,7 +47,7 @@ class Usage
 
         var serviceClient = new BlobServiceClient(new Uri("https://<account-name>.blob.core.windows.net"), new DefaultAzureCredential());
         endpointConfiguration.UseDataBus<AzureDataBus, SystemJsonDataBusSerializer>()
-            .UseBlobServiceClient(serviceClient);
+                             .UseBlobServiceClient(serviceClient);
 
         #endregion
 
