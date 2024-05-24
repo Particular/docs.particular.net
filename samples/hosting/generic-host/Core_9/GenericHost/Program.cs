@@ -22,7 +22,7 @@ if (isSetup)
     await Installer.Setup(endpointConfiguration);
     return; // Exit application 
 }
-else (isDevelopment)
+else if (isDevelopment)
 {
     endpointConfiguration.EnableInstallers();
 }
