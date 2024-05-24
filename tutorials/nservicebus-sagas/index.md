@@ -25,4 +25,3 @@ This lessons make the most sense when tackled in order, but it's not required.
 1. [**Timeouts**](2-timeouts/) (20-25 minutes) - learn how to delay processing of an order to implement the *buyer's remorse* pattern.
 1. [**Third-party integration**](3-integration/) (20-25 minutes) - learn how to execute multiple steps in a workflow and use timeouts to trigger compensating actions.
 
-**Go to [Saga basics](1-saga-basics/) to begin.**
