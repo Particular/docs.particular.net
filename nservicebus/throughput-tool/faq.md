@@ -14,7 +14,7 @@ The tool measures the number of endpoints used in a system, along with each endp
 
 ## Why should I run the tool
 
-The tool is available as an alternate option for customers who are not able to use the [inbuilt functionality of ServiceControl and ServicePulse](./../../servicepulse/usage.md) to measure their endpoint throughput.
+The tool is available as an alternate option for customers who are not able to use [ServicePulse](./../../servicepulse/usage.md) to measure their endpoint throughput.
 
 It assists in gathering the information needed for licensing NServiceBus and the Particular Service Platform as required for production systems. Particular Software also uses the information in aggregate to better serve customer needs.
 
