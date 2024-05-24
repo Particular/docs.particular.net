@@ -1,5 +1,5 @@
 ---
-title: Endpoint throughput counter tool
+title: Endpoint throughput tool
 summary: Use the Particular endpoint throughput counter tool to measure the usage of an NServiceBus system.
 reviewed: 2024-05-22
 related:
@@ -7,7 +7,7 @@ related:
 ---
 
 > [!NOTE]
-> The recommended method of measuring the throughput of an NServiceBus system is via the [inbuilt functionality of ServiceControl and ServicePulse](./../../servicepulse/usage.md).
+> The recommended method of measuring the throughput of an NServiceBus system is via the [inbuilt functionality of ServicePulse](./../../servicepulse/usage.md).
 > The endpoint throughput counter tool is offered as an alternate option for customers who are constrained in running ServiceControl.
 
 The Particular endpoint throughput counter tool can typically be installed on a [user's workstation](faq.md#does-the-tool-need-to-run-on-my-production-server) and run against a production system to measure the throughput of each endpoint over a period of time.
