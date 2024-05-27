@@ -388,10 +388,6 @@
       "PackageId": "NServiceBus.MessagingBridge",
       "Versions": [
         {
-          "Minor": "2.1",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "2.2",
           "SupportLevel": "Mainstream"
         },
