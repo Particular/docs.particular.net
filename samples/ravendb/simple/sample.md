@@ -5,7 +5,7 @@ component: Raven
 related:
  - nservicebus/sagas
  - persistence/ravendb
-reviewed: 2021-06-12
+reviewed: 2024-05-23
 ---
 
 include: dtc-warning
@@ -44,9 +44,9 @@ snippet: sagadata
 snippet: thesaga
 
 
-### Handler Using Raven Session
+### Handler Using RavenDB Session
 
-The handler access the same Raven `ISession` via `ISessionProvider`.
+The handler access's the same RavenDB `ISession` via `ISessionProvider`.
 
 snippet: handler
 
