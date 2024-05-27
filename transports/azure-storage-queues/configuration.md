@@ -71,16 +71,15 @@ Note that multiple connection string formats apply when working with Azure stora
 
 For more details refer to [Configuring Azure Connection Strings](https://docs.microsoft.com/en-us/azure/storage/storage-configure-connection-string) document.
 
+partial: aliases
+
 ## Token-credentials
 
 Enables usage of Azure Active Directory (AAD) authentication such as [managed identities for Azure resources](https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-access-azure-active-directory) instead of the shared secret in the connection string.
 
 Use the corresponding `QueueServiceClient`, `BlobServiceClient` or `TableServiceClient` constructor overload when creating the clients passed to the transport.
 
-partial: aliases
-
 partial: sanitization
-
 
 ## Serialization
 
