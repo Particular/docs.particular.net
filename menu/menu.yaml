@@ -992,6 +992,16 @@
     Articles:
     - Url: transports/postgresql
       Title: PostgreSQL transport
+    - Url: transports/postgresql/design
+      Title: Design
+    - Url: transports/postgresql/native-publish-subscribe
+      Title: Native publish/subscribe
+    - Url: transports/postgresql/connection-settings
+      Title: Connection settings
+    - Url: transports/postgresql/addressing
+      Title: Addressing
+    - Url: transports/postgresql/transactions
+      Title: Transaction support
   - Title: MSMQ
     Articles:
     - Url: transports/msmq
