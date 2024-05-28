@@ -19,7 +19,7 @@ To set a custom hostname and IP port for an instance of the ServiceControl servi
 See also:
 
 - Setting [ServiceControl/HostName](/servicecontrol/creating-config-file.md#host-settings-servicecontrolhostname)
-- Setting [ServiceControl.Audit/HostName](/servicecontrol/audit-instances/creating-config-file.md#host-settings-servicecontrolhostname)
+- Setting [ServiceControl.Audit/HostName](/servicecontrol/audit-instances/creating-config-file.md#host-settings-servicecontrol-audithostname)
  
 ServiceControl Management will then validate the settings changes and restart the service to apply the changes.
 
