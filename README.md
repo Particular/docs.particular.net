@@ -1094,6 +1094,8 @@ There are two css classes (`event` and `message`) that should be applied to mess
 
 Another option is [Miro](https://miro.com/). Miro allows the creation of diagrams on a whiteboard. A board can be saved as a board backup file (.rtb) and can be used to create images.
 
+When creating diagram images consider **not** using transparent backgrounds. When using a transparent background, if users have a dark theme enabled, the lines in the diagram can become hard to see creating a bad user experience while reading our documentation.
+
 To create an image:
 
 - Drag a rectangle around the relevant objects on the board
@@ -1102,7 +1104,16 @@ To create an image:
   - Click “Export as image”
 - Choose the appropriate JPG size and click "Export"
 
-To allow images to be updated later, they must be committed to this repo along with the board backup file(s) use to create them.
+If you want to save it as a `.png`, copy the image to an image editing tool like "paint" and save it as a `.png`.
+
+Alternatively, if you choose to create a draw.io diagram, Miro will allow you to export to `.png`:
+- Double-click the draw.io diagram to edit the diagram
+- From the "File" menu:
+   - Click "Export as"
+   - Click "PNG.."
+ - Choose the file location and click "Export"
+
+To allow images to be updated later, they must be committed to this repository along with the board backup file(s) use to create them.
 
 ### Some Useful Characters
 
