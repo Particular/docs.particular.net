@@ -1107,6 +1107,7 @@ To create an image:
 If you want to save it as a `.png`, copy the image to an image editing tool like "paint" and save it as a `.png`.
 
 Alternatively, if you choose to create a draw.io diagram, Miro will allow you to export to `.png`:
+
 - Double-click the draw.io diagram to edit the diagram
 - From the "File" menu:
    - Click "Export as"
