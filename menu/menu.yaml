@@ -162,7 +162,8 @@
       Title: Scaling out
     - Url: nservicebus/biztalk
       Title: NServiceBus and Biztalk
-
+    - Url: nservicebus/azure
+      Title: NServiceBus and Azure
 
 
   - Title: Support Policy
