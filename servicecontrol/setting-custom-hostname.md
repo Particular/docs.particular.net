@@ -6,7 +6,7 @@ reviewed: 2024-05-28
 
 To set a custom hostname and IP port for an instance of the ServiceControl service:
 
-> [!WARN]
+> [!WARNING]
 > Anyone who can access the ServiceControl URL has complete access to the message data stored within ServiceControl. This is  why the default is to only respond to the localhost. Consider carefully the implications of exposing ServiceControl via a custom or wildcard URI.
 
 ## Using ServiceControl Management
