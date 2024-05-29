@@ -1,4 +1,6 @@
-﻿var builder = Host.CreateApplicationBuilder(args);
+﻿using System.Diagnostics;
+
+var builder = Host.CreateApplicationBuilder(args);
 
 builder.Services.AddWindowsService();
 
@@ -10,7 +12,7 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
 
 
-//  It is recommended to run least priviledge and only run installers during deployment.
+//  It is recommended to run least privilege and only run installers during deployment.
 //  This also reduces startup time / time to first message.
 
 var isDevelopment = Debugger.IsAttached;
@@ -19,7 +21,7 @@ var isSetup = args.Contains("--setup");
 if (isSetup)
 {
     // Provision resources like transport queue creation and persister schemas
-    await Installer.Setup(endpointConfiguration);
+    await NServiceBus.Installation.Installer.Setup(endpointConfiguration);
     return; // Exit application 
 }
 else if (isDevelopment)
