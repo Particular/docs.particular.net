@@ -13,7 +13,7 @@ To set a custom hostname and IP port for an instance of the ServiceControl servi
 
  1. Click the Configuration Icon for for the Service Instance to modify.
  1. Change the Host Name and Port number fields to the desired values.
-    - Set "*" for the host name to indicate that the server should listen for requests on any IP address or hostname using the specified port and protocol.
+    - Set `*` for the host name to indicate that the server should listen for requests on any IP address or hostname using the specified port and protocol.
  1. Click Save.
 
 See also:
