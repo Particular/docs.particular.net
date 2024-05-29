@@ -6,7 +6,8 @@ component: Extensions.Logging
 related:
 - samples/logging/extensions-logging
 ---
-> [!Note]
+
+> [!NOTE]
 > It is recommended to directly use the [`Microsoft.Extensions.Logging`](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/) to log entries as it also supports semantic logging. Please see [Logging in .NET Core and ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/) for further details.
 
 The `NServiceBus.Extensions.Logging` package provides support for writing NServiceBus log entries via the  [Microsoft.Extensions.Logging](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/) abstractions. With this common logging abstraction, it is possible to log to different logging providers. Some third-party frameworks can perform semantic logging, also known as structured logging.

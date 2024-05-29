@@ -6,7 +6,7 @@ redirects:
 - nservicebus/logging-writing
 ---
 
-> [!Note]
+> [!NOTE]
 > It is recommended to directly use the [`Microsoft.Extensions.Logging`](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/) to log entries as it also supports semantic logging. Please see [Logging in .NET Core and ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/) for further details.
 
 In legacy endpoints the NServiceBus logging abstraction is used for writing log messages from user code.
