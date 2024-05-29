@@ -42,3 +42,28 @@ partial: shutdown-timeout
 ## Stopping the endpoint
 
 When using the generic host, the `IEndpointInstance` interface to stop the endpoint is not directly exposed. To stop the endpoint, use the [`IApplicationLifetime`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.ihostapplicationlifetime) interface to gracefully stop the NServiceBus endpoint and other hosted services. See the [generic host application lifetime documentation](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host#ihostapplicationlifetime) for further information.
+
+## Installers
+
+It is not recommended to always run the [NServiceBus installers](/nservicebus/operations/installers.md) by invoking `.EnableInstallers()` as this delays startup time and might require more permissions.
+
+Instead of invoking `host.`
+
+Example:
+```c#
+var isSetup = args.Contains("-s") || args.Contains("/s");
+
+if (isSetup)
+{
+    // Installers are useful in development. Consider disabling in production.
+    // https://docs.particular.net/nservicebus/operations/installers
+    // endpointConfiguration.EnableInstallers();
+
+    await Installer.Setup(endpointConfiguration);
+    return;
+}
+
+// Continue and eventually invoke:
+// await host.RunAsync();
+```
+
