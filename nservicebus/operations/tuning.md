@@ -34,6 +34,17 @@ Infrastructure monitoring should be set up for the environment that hosts the en
 > [!NOTE]
 > The concurrency set in the endpoint configuration defines the concurrency of each endpoint instance, and not the aggregate concurrency across all endpoint instances. For example, if the endpoint configuration sets the concurrency to 4 and the endpoint is scaled-out to 3 instances, the combined concurrency will be 12 and not 4.
 
+## Parellism
+
+The configure allowed concurrency limit is the limit that NServiceBus enforces but NServiceBus will not enforce parellism.
+
+> [!NOTE]
+> Behavior can very between transports and between different versions of the same transport.
+
+For example, when handlers that invoke synchrounous code only will block when the transport has a fully asynchronous design and handler will be processed sequentially.
+
+Parellism can be enforces by wrapping the handler logic in `Task.Run` which will run the synchronous code on the `ThreadPool`.
+
 ## Sequential processing
 
 Set the concurrency limit value to `1` to process messages sequentially. Sequential processing is not a guarantee for ordered processing. For example, processing failures and [recoverability](/nservicebus/recoverability/) will result in out-of-order processing.
