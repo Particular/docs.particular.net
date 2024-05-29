@@ -19,6 +19,13 @@ public class Program
 }
 #endregion asb-function-isolated-configuration
 
+#region asb-function-isolated-identity-connection
+[assembly: NServiceBusTriggerFunction("WorkerDemoEndpoint", Connection="FooBar")]
+#endregion
+public class Program_with_connection
+{
+}
+
 class EnableDiagnostics
 {
     #region asb-function-isolated-enable-diagnostics
