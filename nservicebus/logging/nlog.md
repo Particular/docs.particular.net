@@ -7,6 +7,9 @@ related:
 - samples/logging/nlog-custom
 ---
 
+> [!NOTE]
+> It is recommended to directly use the [`Microsoft.Extensions.Logging`](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/) to log entries as it also supports semantic logging. Please see [Logging in .NET Core and ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/) for further details.
+
 Support for writing all NServiceBus log entries to [NLog](https://nlog-project.org/).
 
 
