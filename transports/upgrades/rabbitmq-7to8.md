@@ -39,5 +39,5 @@ The `type` parameter of the `SetupSubscription` and `TeardownSubscription` metho
 ## Invocation of handler code has changed
 
 The invocation of handler code has changed to use the RabbitMQ async consumer.  
-This has implications when it comes to parallel execution of handlers.  
-In order to achieve higher parallelism, handlers need to be modified according to [this](/nservicebus/handlers/async-handlers.md) documentation.  
+This has implications when it comes to parallel execution of handlers. For example synchronous handlers will run sequentially.  
+In order to achieve higher parallelism, handlers need to be modified according to the [asynchronous handlers documentation](/nservicebus/handlers/async-handlers.md).  
