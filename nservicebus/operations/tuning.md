@@ -34,6 +34,10 @@ Infrastructure monitoring should be set up for the environment that hosts the en
 > [!NOTE]
 > The concurrency set in the endpoint configuration defines the concurrency of each endpoint instance, and not the aggregate concurrency across all endpoint instances. For example, if the endpoint configuration sets the concurrency to 4 and the endpoint is scaled-out to 3 instances, the combined concurrency will be 12 and not 4.
 
+## Parallelism
+
+If you have long-running compute-bound code or synchronous code in your handler and want to achieve higher parallelism, refer to the [calling long-running code in async handlers](/nservicebus/handlers/async-handlers.md#calling-long-running-compute-bound-code) section of the documentation.
+
 ## Sequential processing
 
 Set the concurrency limit value to `1` to process messages sequentially. Sequential processing is not a guarantee for ordered processing. For example, processing failures and [recoverability](/nservicebus/recoverability/) will result in out-of-order processing.
