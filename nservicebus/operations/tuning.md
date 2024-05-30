@@ -39,7 +39,7 @@ Infrastructure monitoring should be set up for the environment that hosts the en
 The configured concurrency limit is the limit that NServiceBus enforces, but NServiceBus will not enforce parallelism.
 
 > [!NOTE]
-> Behavior can very between transports and between different versions of the same transport.
+> Behavior can vary between transports and different versions of the same transport.
 
 
 If you have long-running computed bound synchronous code in your handler and want to achieve higher parallelism, have a look at [this](/nservicebus/handlers/async-handlers#calling-long-running-compute-bound-code) section of the documentation. 
