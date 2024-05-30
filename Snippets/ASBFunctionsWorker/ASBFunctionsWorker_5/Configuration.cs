@@ -17,6 +17,7 @@ public class Program
         return host.RunAsync();
     }
 }
+#endregion asb-function-isolated-configuration
 
 class EnableDiagnostics
 {
