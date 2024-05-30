@@ -17,14 +17,6 @@ public class Program
         return host.RunAsync();
     }
 }
-#endregion asb-function-isolated-configuration
-
-#region asb-function-isolated-identity-connection
-[assembly: NServiceBusTriggerFunction("WorkerDemoEndpoint", Connection="FooBar")]
-#endregion
-public class Program_with_connection
-{
-}
 
 class EnableDiagnostics
 {
