@@ -41,7 +41,6 @@ The configured concurrency limit is the limit that NServiceBus enforces, but NSe
 > [!NOTE]
 > Behavior can very between transports and between different versions of the same transport.
 
-For example, when handlers that invoke synchrounous code only will block when the transport has a fully asynchronous design and handler will be processed sequentially.
 
 If you have long-running computed bound synchronous code in your handler and want to achieve higher parallelism, have a look at [this](/nservicebus/handlers/async-handlers#calling-long-running-compute-bound-code) section of the documentation. 
 
