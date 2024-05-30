@@ -36,7 +36,7 @@ Infrastructure monitoring should be set up for the environment that hosts the en
 
 ## Parallelism
 
-If you have long-running compute-bound code or synchronous code in your handler and want to achieve higher parallelism, refer to [this](/nservicebus/handlers/async-handlers#calling-long-running-compute-bound-code) section of the documentation. 
+If you have long-running compute-bound code or synchronous code in your handler and want to achieve higher parallelism, refer to [this](/nservicebus/handlers/async-handlers.md#calling-long-running-compute-bound-code) section of the documentation.
 
 ## Sequential processing
 
