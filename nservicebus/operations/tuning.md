@@ -43,7 +43,7 @@ The configured concurrency limit is the limit that NServiceBus enforces, but NSe
 
 For example, when handlers that invoke synchrounous code only will block when the transport has a fully asynchronous design and handler will be processed sequentially.
 
-Parellism can be enforces by wrapping the handler logic in `Task.Run` which will run the synchronous code on the `ThreadPool`.
+If you have long-running computed bound synchronous code in your handler and want to achieve higher parallelism, have a look at [this](/nservicebus/handlers/async-handlers#calling-long-running-compute-bound-code) section of the documentation. 
 
 ## Sequential processing
 
