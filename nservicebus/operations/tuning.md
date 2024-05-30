@@ -36,7 +36,7 @@ Infrastructure monitoring should be set up for the environment that hosts the en
 
 ## Parellism
 
-The configure allowed concurrency limit is the limit that NServiceBus enforces but NServiceBus will not enforce parellism.
+The configured concurrency limit is the limit that NServiceBus enforces, but NServiceBus will not enforce parallelism.
 
 > [!NOTE]
 > Behavior can very between transports and between different versions of the same transport.
