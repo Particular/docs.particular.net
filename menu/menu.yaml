@@ -118,6 +118,21 @@
       - Title: Observability
         Url: architecture/aws/observability
 
+- Name: Service Platform
+  Topics:
+  - Title: General
+    Articles: 
+    - Url: platform
+      Title: About Service Platform
+    - Url: platform/installation
+      Title: Platform Installation
+    - Url: platform/platform-sample-package
+      Title: Platform Sample Installation
+    - Url: platform/connecting
+      Title: Connecting endpoints
+    - Url: platform/json-schema
+      Title: Connection schema
+
 - Name: NServiceBus
   Topics:
   - Title: General
@@ -133,17 +148,6 @@
         Title: Glossary
       - Url: nservicebus/concepts/priority-queues
         Title: Priority Queues
-    - Url: platform
-      Title: Service Platform
-      Articles:
-      - Url: platform/installation
-        Title: Platform Installation
-      - Url: platform/platform-sample-package
-        Title: Platform Sample Installation
-      - Url: platform/connecting
-        Title: Connecting endpoints
-      - Url: platform/json-schema
-        Title: Connection schema
     - Url: nservicebus/dotnet-templates
       Title: dotnet new Templates
     - Url: nservicebus/platform-nuget-packages
@@ -1302,6 +1306,7 @@
       Title: Outbox
     - Url: persistence/dynamodb/transactions
       Title: Transactions
+
 - Name: ServiceInsight
   Topics:
   - Title: Introduction
@@ -1328,6 +1333,7 @@
       Title: Logging
     - Url: serviceinsight/troubleshooting
       Title: Troubleshooting
+
 - Name: ServicePulse
   Topics:
   - Title: Introduction
