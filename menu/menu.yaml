@@ -132,6 +132,11 @@
       Title: Connecting endpoints
     - Url: platform/json-schema
       Title: Connection schema
+    - Url: platform/contributing
+      Title: Contributing
+    - Url: nservicebus/release-notifications
+      Title: Release notifications
+
 
 - Name: NServiceBus
   Topics:
@@ -158,10 +163,6 @@
       Title: License
     - Url: nservicebus/community
       Title: Community extensions and integrations
-    - Url: nservicebus/release-notifications
-      Title: Release notifications
-    - Url: platform/contributing
-      Title: Contributing
     - Url: nservicebus/scaling
       Title: Scaling out
     - Url: nservicebus/biztalk
