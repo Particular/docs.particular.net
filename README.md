@@ -1094,7 +1094,7 @@ There are two css classes (`event` and `message`) that should be applied to mess
 
 Another option is [Miro](https://miro.com/). Miro allows the creation of diagrams on a whiteboard. A board can be saved as a board backup file (.rtb) and can be used to create images.
 
-When creating diagram images consider **not** using transparent backgrounds. When using a transparent background, if users have a dark theme enabled, the lines in the diagram can become hard to see creating a bad user experience while reading our documentation.
+Do not use a transparent background when creating an image, as this makes the visibility of elements in the image dependent on the user's theme (e.g. light or dark). Always choose a solid background which ensure the elements of the image are visible.
 
 To create an image:
 
