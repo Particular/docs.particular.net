@@ -23,11 +23,9 @@ The `Expires` column contains the optional date and time when the message is goi
 
 The `Headers` column contains a JSON representation of message headers.
 
-
 ### Body
 
 The `Body` column contains the serialized message body.
-
 
 ### BodyString
 
@@ -35,36 +33,31 @@ The `BodyString` column contains the message body formatted in a human-readable 
 
 snippet: MessageBodyString-config
 
-
 ### Seq
 
-The `Seq` column is used to define the FIFO order of the queue. It is auto-incremented by PostgreSQL. The receive message SQL query returns a message with the lowest value of `Seq` that is not locked by any other concurrent receive operation.
-
+The `Seq` column is used to define the FIFO order of the queue. It is auto-incremented by PostgreSQL(`serial`). The receive message SQL query returns a message with the lowest value of `Seq` that is not locked by any other concurrent receive operation.
 
 ## Behavior
 
 The following section describes the runtime behavior of PostgreSQL transport when sending and receiving messages.
 
-
 ### Sending
 
 Messages are sent by executing an `insert` command against the queue table.
 
-
 ### Receiving
 
 Messages are received by executing a `delete` command against the queue table. The `delete` is limited to a row with the lowest `Seq` not locked by other concurrent `delete`. This ensures that multiple threads within an endpoint instance and multiple instances of the same scaled-out endpoint can operate at full speed without conflicts.
- 
 
 PostgreSQL transport operates in two modes: *peek* and *receive*. It starts in the *peek* mode and checks via `max(seq) - min(seq)` the number of pending messages. If the number is greater then zero, it switches to the *receive* mode and starts spawning receive tasks that use the `delete` command to receive messages.
 
 The maximum number of concurrent receive tasks never exceeds the value set by `LimitMessageProcessingConcurrencyTo` (the number of tasks does not translate to the number of running threads which is controlled by the TPL scheduling mechanisms).
 
-When all tasks are done the transport switches back to the *peek* mode. 
+When all tasks are done the transport switches back to the *peek* mode.
 
 In certain conditions, the initial estimate of a number of pending messages might be wrong e.g. when there is more than one instance of a scaled-out endpoint consuming messages from the same queue. In this case, one of the received tasks is going to fail (`delete` returns no results). When this happens, the transport immediately switches back to the *peek* mode.
 
-The default peek interval, if there is has been no messages in the queue, is 1 second. The recommended range for this setting is between 100 milliseconds to 10 seconds. If a value higher than the maximum recommended settings is used, a warning message will be logged. While a value less than 100 milliseconds will put too much unnecessary stress on the database, a value larger than 10 seconds should also be used with caution as it may result in messages backing up in the queue. 
+The default peek interval, if there is has been no messages in the queue, is 1 second. The recommended range for this setting is between 100 milliseconds to 10 seconds. If a value higher than the maximum recommended settings is used, a warning message will be logged. While a value less than 100 milliseconds will put too much unnecessary stress on the database, a value larger than 10 seconds should also be used with caution as it may result in messages backing up in the queue.
 
 ### Queue peek settings
 
