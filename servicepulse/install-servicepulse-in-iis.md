@@ -118,7 +118,7 @@ Installation steps:
 ```
 
 > [!WARNING]
-> By exposing the REST API via the reverse proxy configuration, this protection is no longer in place. To address this, it is recommended that the IIS website be configured with one of the IIS authentication providers, such as Windows integration authentication.
+> When ServiceControl is configured to run on localhost:port, it is protected from being accessed via the server IP address. By exposing the REST API via the reverse proxy configuration, this protection is no longer in place. To address this, configuring the IIS website with an appropriate authentication provider, such as Windows Integrated Authentication, is recommended.
 
 It is also recommended that the IIS website be configured to use TLS if an authorization provider is used.
 
@@ -152,6 +152,8 @@ Installation steps:
     </system.webServer>
 </configuration>
 ```
+> [!WARNING]
+> When ServiceControl is configured to run on localhost:port, it is protected from being accessed via the server IP address. By exposing the REST API via the reverse proxy configuration, this protection is no longer in place. To address this, configuring the IIS website with an appropriate authentication provider, such as Windows Integrated Authentication, is recommended.
 
 ### Role-based security
 
