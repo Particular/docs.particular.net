@@ -1,6 +1,6 @@
 ---
-title: Unit of work using the pipeline
-summary: Shows how to use IoC and the pipeline to create a unit of work implementation.
+title: Unit of work using custom pipeline behavior
+summary: Shows how to use IoC and a pipeline behavior to create a custom unit of work implementation.
 reviewed: 2023-08-14
 component: Core
 related:
@@ -11,8 +11,21 @@ related:
 
 ## Introduction
 
-This sample leverages the pipeline provided unit of work management for message handlers. Using the pipeline abstraction is necessary when access to the incoming message and/or headers is required.
+This sample uses a custom pipeline behavior to manage a unit of work. The unit of work in this sample is a custom session object. In a real application this often is a database session represented by a low-level storage connection/transaction or session or an ORM session.
 
+Examples are:
+
+- a SQL Server or Postgresql connection and/or transaction object 
+- an ORM session like Entity Framework DbContext or an NHibernate session
+- a storage session provided by a storage SDK client like MongoDB, RavenDB, CosmosDB, etc.
+
+> [!INFO]
+> This is the recommended approach to managing an unit of work as`IManageUnitOfWork` is obsolete in NServiceBus version 9.
+
+Any information from the incoming message headers and body can be used to create or initialize the custom unit of work which is common in multi-tenant or partitioned environments
+
+- Use header/body information to use a specific connection string
+- Use header/body information to set a query filter on an ORM to only return data for a specific tenant
 
 ## Code walk-through
 
