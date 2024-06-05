@@ -36,6 +36,6 @@ Measuring throughput with ServicePulse offers the following advantages over the 
 
 ## Standalone Endpoint throughput tool
 
-Customers who are not able to use the latest ServiceControl version can use the [Endpoint throughput counter tool](./../throughput-tool) to measure their system usage.
+Customers who are not able to use a version of ServicePulse that supports throughput measurement can use the [endpoint throughput counter tool](./../throughput-tool) to measure their system usage.
 
 This is a standalone tool that can typically be installed on a [user's workstation](/nservicebus/throughput-tool/faq.md#does-the-tool-need-to-run-on-my-production-server).
