@@ -15,8 +15,8 @@ There are two methods provided for measuring usage of an NServiceBus system:
 > [!NOTE]
 > Requirements for both of the usage measuring methods:
 >
-> - NServiceBus Transport: [Azure Service Bus](./../../transports/azure-service-bus), [RabbitMQ](./../../transports/rabbitmq), [Amazon SQS](./../../transports/sqs), [SqlServer](./../../transports/sql) OR
-> - NServiceBus Transport: [MSMQ](./../../transports/msmq/) or [Azure Storage Queues](./../../transports/azure-storage-queues/) with [Auditing](./../operations/auditing.md) or [Monitoring](./../../monitoring/metrics) enabled on all NServiceBus endpoints
+> - NServiceBus Transport: [Azure Service Bus](/transports/azure-service-bus), [RabbitMQ](/transports/rabbitmq), [Amazon SQS](/transports/sqs), [SqlServer](/transports/sql) OR
+> - NServiceBus Transport: [MSMQ](/transports/msmq/) or [Azure Storage Queues](/transports/azure-storage-queues/) with [Auditing](./../operations/auditing.md) or [Monitoring](./../../monitoring/metrics) enabled on all NServiceBus endpoints
 
 The output of the measuring methods is a usage report containing NServiceBus endpoint count and throughput summary. The report is generated as a JSON file which needs to be sent to Particular upon request, usually at license renewal time.
 
