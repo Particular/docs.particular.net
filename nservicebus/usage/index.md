@@ -10,7 +10,7 @@ related:
 There are two methods provided for measuring usage of an NServiceBus system:
 
 - [Using ServicePulse](#using-servicepulse)
-- [Standalone Endpoint throughput tool](#standalone-endpoint-throughput-tool)
+- [Standalone endpoint throughput tool](#standalone-endpoint-throughput-tool)
 
 > [!NOTE]
 > Requirements for both of the usage measuring methods:
