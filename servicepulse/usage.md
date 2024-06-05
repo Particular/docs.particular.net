@@ -18,7 +18,7 @@ A usage report can be generated here at license renewal time.
 
 ## Generating a usage report
 
-Clicking `Generate Report` generates a usage report file with the detected [endpoints](#viewing-usage-summary-detected-endpoints) and [queues](#viewing-usage-summary-detected-broker-queues). The report includes the [endpoint type](#setting-an-endpoint-type) selections made on screen, and any specified [words to mask](usage-config.md#report-masks) with be obfuscated.
+Click `Generate Report` to generate a usage report file with the detected [endpoints](#viewing-usage-summary-detected-endpoints) and [queues](#viewing-usage-summary-detected-broker-queues). The report includes the [endpoint type](#setting-an-endpoint-type) selections made on screen, and any specified [words to mask](usage-config.md#report-masks) will be obfuscated.
 
 The report **will not** be automatically uploaded or sent to Particular - it is a JSON file that needs to be provided to Particular upon request.
 
@@ -29,7 +29,7 @@ At any time the system usage can be viewed on the Usage page. It is divided into
 - [Detected endpoints](#viewing-usage-summary-detected-endpoints)
 - [Detected broker queues](#viewing-usage-summary-detected-broker-queues)
 
-For each endpoint and queue, the maximum daily throughput is displayed. This can be helpful in seeing how the system is growing over time, and hence getting an understanding of which [tier](https://particular.net/pricing) the endpoint belongs to for licensing purposes.
+For each endpoint and queue, the maximum daily throughput is displayed. This can be helpful to see how the system is changing over time, and hence get an understanding of which [tier](https://particular.net/pricing) the endpoint belongs to for licensing purposes.
 
 ### Detected endpoints
 
@@ -37,7 +37,7 @@ Detected endpoints are those identified by the system as NServiceBus endpoints a
 
 ### Detected broker queues
 
-This option will not be displayed if the using a non-broker transport.
+This option will not be displayed for non-broker transports (e.g. MSMQ and Azure Storage Queues).
 
 If the system is using an [NServiceBus transport](./../transports) that allows querying of metrics, then any queues detected on the broker that cannot be automatically identified as NServiceBus endpoints will be listed in the `Detected Broker Queues` tab. These queues will be included in the usage report for NServiceBus licensing purposes.
 
@@ -51,7 +51,7 @@ In addition, the detected endpoints and queues screen provides an option to set 
 
 ### Bulk endpoint updates
 
-If multiple endpoints or queues matching a certain naming pattern need to be set to an endpoint type, then this can be done in bulk using the filter option.
+If multiple endpoints or queues matching a certain naming pattern need to be set to an endpoint type, this can be done in bulk using the filter option.
 
 1. Find the endpoints/queues that need to be bulk updated
 2. Press the `Set displayed Endpoint Types to` button to select which endpoint type the filtered results should be set to.

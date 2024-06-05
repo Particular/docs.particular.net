@@ -106,13 +106,13 @@ Default: 40 seconds
 
 ### Monitoring/ServiceControlThroughputDataQueue
 
-The queue on which throughput data is received by ServiceControl Error instance. This setting must match the equivalent [`LicensingComponent/ServiceControlThroughputDataQueue`](/servicecontrol/creating-config-file.md#usage-reporting-licensingcomponentservicecontrolthroughputdataqueue) setting on the ServiceControl Error instance.
+The queue on which throughput data is received by ServiceControl error instance. This setting must match the equivalent [`LicensingComponent/ServiceControlThroughputDataQueue`](/servicecontrol/creating-config-file.md#usage-reporting-licensingcomponentservicecontrolthroughputdataqueue) setting on the ServiceControl error instance.
 
 In most instances these settings do not need to be modified.
 
-If running multiple setups of the Platform Tools (i.e. multiple versions of ServiceControl Error and Monitoring instances) then modify these settings so that the queue on each Monitoring instance is matched to the queue of its Error instance.
+If running multiple setups of the Platform Tools (i.e. multiple versions of ServiceControl Error and monitoring instances) then modify these settings so that the queue on each Monitoring instance is matched to the queue of its error instance.
 
-If using [MSMQ transport](/transports/msmq) and the Monitoring instance is installed on a different machine to the ServiceControl Error instance, then only the Monitoring instance setting needs to be modified to include the machine name of the Error instance in the queue address.
+If using [MSMQ transport](/transports/msmq) and the monitoring instance is installed on a different machine to the ServiceControl error instance, then only the monitoring instance setting needs to be modified to include the machine name of the error instance in the queue address.
 
 Type: string
 

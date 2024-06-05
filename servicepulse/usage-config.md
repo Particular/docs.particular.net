@@ -14,7 +14,7 @@ Specific settings for collecting usage data to generate a usage report.
 
 ## Connection setup
 
-In most scenarios existing ServiceControl Error instance connection settings will be used to establish a connection to the broker.
+In most scenarios existing ServiceControl error instance connection settings will be used to establish a connection to the broker.
 
 ![usage-setup-connections](images/usage-setup-connection.png "width=600")
 
@@ -35,7 +35,7 @@ The follow settings are available to setup a connection to Azure Service Bus:
 - LicenseComponent/ASB/SubscriptionId
 - LicenseComponent/ASB/ManagementUrl
 
-Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the Azure Service Bus specific settings.
+Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the Azure Service Bus-specific settings.
 
 #### Minimum Permissions
 
@@ -76,7 +76,7 @@ The follow settings are available to setup a connection to Amazon SQS:
 - LicenseComponent/AmazonSQS/Region
 - LicenseComponent/AmazonSQS/Prefix
 
-Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the Amazon SQS specific settings.
+Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the Amazon SQS-specific settings.
 
 #### Minimum Permissions
 
@@ -109,7 +109,7 @@ The follow settings are available to setup a connection to SqlServer:
 - LicenseComponent/SqlServer/ConnectionString
 - LicenseComponent/SqlServer/AdditionalCatalogs
 
-Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the SqlServer specific settings.
+Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the SQL Server-specific settings.
 
 #### Minimum Permissions
 
@@ -125,15 +125,15 @@ The follow settings are available to setup a connection to RabbitMQ:
 - LicenseComponent/RabbitMQ/UserName
 - LicenseComponent/RabbitMQ/Password
 
-Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the RabbitMQ specific settings.
+Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the RabbitMQ-specific settings.
 
-#### Minimum Permissions
+#### Minimum permissions
 
 User with monitoring tag and read permission.
 
 ### MSMQ & Azure Storage Queues
 
-MSMQ and Azure Storage Queues do not support querying of metrics. To be able to report on usage in these systems, [Audit](./../servicecontrol/audit-instances) and/or [Monitoring](./../monitoring) need to be enabled on all NServiceBus endpoints.
+MSMQ and Azure Storage Queues do not support querying of metrics. To report on usage in these systems, the [Audit](./../servicecontrol/audit-instances) and/or [Monitoring](./../monitoring) features must be enabled on all NServiceBus endpoints.
 
 Configure [auditing](./../nservicebus/operations/auditing.md) on all NServiceBus endpoints.
 
@@ -141,16 +141,16 @@ Configure [monitoring](./../monitoring/metrics) on all NServiceBus endpoints.
 
 ## Diagnostics
 
-The Diagnostics tab helps to diagnose any connection issues to the broker, as well as the Audit and Monitoring instances.
+The Diagnostics tab helps to diagnose any connection issues to the broker, as well as the audit and monitoring instances.
 
 ![usage-setup-diagnostics](images/usage-setup-diagnostics.png "width=600")
 
 After making any setting changes, press the `Refresh Connection Test` button to see if the problem is resolved.
 If unable to fix the issue, open a [non-critical support case](https://particular.net/support) and include the diagnostic output.
 
-## Report Masks
+## Report masks
 
 Information that is considered sensitive can be obfuscated in the usage report.
-All words to be retracted can be specified in the Masks tab - one word per line.
+All words to be redacted can be specified in the Masks tab. Specify one word per line.
 
 ![usage-setup-masks](images/usage-setup-masks.png "width=600")

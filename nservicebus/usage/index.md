@@ -27,11 +27,11 @@ The recommended method of measuring the usage of an NServiceBus system is via [S
 > [!NOTE]
 > This method requires ServicePulse version 1.39 or later, and ServiceControl version 5.3 or later.
 
-This method provides the extra benefits of:
+Measuring throughput with ServicePulse offers the following advantages over the standalone throughput tool:
 
 - ability to [view the system usage](/servicepulse/usage.md#viewing-usage-summary) at any time
 - ability to optionally [specify if a detected queue should not be included in license pricing](/servicepulse/usage.md#setting-an-endpoint-type)
-- no requirement to run additional tools - [report is generated from a button click in ServicePulse](/servicepulse/usage.md#generating-a-usage-report)
+- no requirement to run additional tools - [the report can be generated directly from ServicePulse](/servicepulse/usage.md#generating-a-usage-report)
 - improved endpoint identification
 
 ## Standalone Endpoint throughput tool

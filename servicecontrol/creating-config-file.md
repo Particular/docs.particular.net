@@ -327,9 +327,9 @@ The queue on which throughput data is received by the ServiceControl Error insta
 
 In most instances these settings do not need to be modified.
 
-If running multiple setups of the Platform Tools (i.e. multiple versions of ServiceControl Error and Monitoring instances) then modify these settings so that the queue on each Monitoring instance is matched to the queue of its Error instance.
+If running multiple setups of the Platform Tools (i.e. multiple versions of ServiceControl error and monitoring instances) then modify these settings so that the queue on each monitoring instance is matched to the queue of its error instance.
 
-If using [MSMQ transport](/transports/msmq) and the Monitoring instance is installed on a different machine to the ServiceControl Error instance, then only the Monitoring instance setting needs to be modified to include the machine name of the Error instance in the queue address.
+If using [MSMQ transport](/transports/msmq) and the monitoring instance is installed on a different machine than the ServiceControl error instance, only the monitoring instance setting needs to be modified to include the machine name of the error instance in the queue address.
 
 Type: string
 
@@ -337,25 +337,25 @@ Default: `ServiceControl.ThroughputData`
 
 ### LicenseComponent/ASB/ServiceBusName
 
-When using [Azure Service Bus transport](/transports/azure-service-bus/), this is the Azure Service Bus namespace.
+When using the [Azure Service Bus transport](/transports/azure-service-bus/), this is the Azure Service Bus namespace.
 
 Type: string
 
 ### LicenseComponent/ASB/ClientId
 
-When using [Azure Service Bus transport](/transports/azure-service-bus), this is the ClientId for an Azure login that has access to read metrics data for the Azure Service Bus namespace.
+When using the [Azure Service Bus transport](/transports/azure-service-bus), this is the ClientId for an Azure login that has access to read metrics data for the Azure Service Bus namespace.
 
 Type: string
 
 ### LicenseComponent/ASB/ClientSecret
 
-When using [Azure Service Bus transport](/transports/azure-service-bus), this is the ClientSecret for an Azure login that has access to read metrics data for the Azure Service Bus namespace.
+When using the [Azure Service Bus transport](/transports/azure-service-bus), this is the ClientSecret for an Azure login that has access to read metrics data for the Azure Service Bus namespace.
 
 Type: string
 
 ### LicenseComponent/ASB/TenantId
 
-When using [Azure Service Bus transport](/transports/azure-service-bus), this is the Azure Microsoft Extra ID.
+When using the [Azure Service Bus transport](/transports/azure-service-bus), this is the Azure Microsoft Extra ID.
 
 Type: string
 
