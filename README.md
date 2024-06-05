@@ -1092,26 +1092,15 @@ There are two css classes (`event` and `message`) that should be applied to mess
 
 #### Miro
 
-Another option is [Miro](https://miro.com/). Miro allows the creation of diagrams on a whiteboard. A board can be saved as a board backup file (.rtb) and can be used to create images.
-
-Do not use a transparent background when creating an image, as this makes the visibility of elements in the image dependent on the user's theme (e.g. light or dark). Always choose a solid background which ensure the elements of the image are visible.
+Another option is [Miro](https://miro.com/). Miro allows the creation of diagrams on a whiteboard. A board can be saved as a board backup file (.rtb) and can be used to create images. Within Miro, we create draw.io diagrams, as these can be exported as PNG images.
 
 To create an image:
 
-- Drag a rectangle around the relevant objects on the board
-- From the “three dots” (…) menu above the selection:
-  - Click “Create frame”
-  - Click “Export as image”
-- Choose the appropriate JPG size and click "Export"
-
-If you want to save it as a `.png`, copy the image to an image editing tool like "paint" and save it as a `.png`.
-
-Alternatively, if you choose to create a draw.io diagram, Miro will allow you to export to `.png`:
-
-- Double-click the draw.io diagram to edit the diagram
+- Double-click the draw.io diagram to open the diagram in the draw.io editor
 - From the "File" menu:
    - Click "Export as"
    - Click "PNG.."
+   - Do NOT select "Transparent Background", as this makes the visibility of elements in the image dependent on the user's theme (e.g. light or dark).
  - Choose the file location and click "Export"
 
 To allow images to be updated later, they must be committed to this repository along with the board backup file(s) use to create them.
