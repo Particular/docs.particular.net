@@ -118,12 +118,12 @@
       - Title: Observability
         Url: architecture/aws/observability
 
-- Name: Service Platform
+- Name: Particular Service Platform
   Topics:
   - Title: General
     Articles: 
     - Url: platform
-      Title: About Service Platform
+      Title: About the Service Platform
     - Url: platform/installation
       Title: Platform Installation
     - Url: platform/platform-sample-package
