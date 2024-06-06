@@ -38,7 +38,8 @@ If you still have version 4.x instances:
 - Install the latest version 4 update which does not have this bug
 
 
-The lastest version 4.x release at this writing is 4.33.4 which is available for download at the following location:
+The latest version 4.x release at this writing is 4.33.4, which is available for download at the following location:
+
 
 
 - <https://github.com/Particular/ServiceControl/releases/download/4.33.4/Particular.ServiceControl-4.33.4.exe>
