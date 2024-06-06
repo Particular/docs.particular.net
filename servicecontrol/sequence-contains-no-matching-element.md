@@ -6,7 +6,10 @@ reviewed: 2024-06-06
 
 ## Symptoms
 
-The following error is shown when launching the ServiceControl Management Utility (SCMU):
+The following error is shown when either:
+ - launching the ServiceControl Management Utility (SCMU)
+ - upgrading an instance on version >= 5.x via the SCMU
+
 
 ```txt
 System.InvalidOperationException: Sequence contains no matching element
