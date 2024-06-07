@@ -15,7 +15,7 @@ This sample uses a custom pipeline behavior to manage a unit of work. The unit o
 
 Examples are:
 
-- a SQL Server or Postgresql connection and/or transaction object 
+- a SQL Server or PostgreSQL connection and/or transaction object 
 - an ORM session like Entity Framework DbContext or an NHibernate session
 - a storage session provided by a storage SDK client like MongoDB, RavenDB, CosmosDB, etc.
 
