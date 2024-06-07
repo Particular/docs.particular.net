@@ -11,7 +11,7 @@ related:
 
 ## Introduction
 
-This sample uses a custom pipeline behavior to manage a unit of work. The unit of work in this sample is a custom session object. In a real application this often is a database session represented by a low-level storage connection/transaction or session or an ORM session.
+This sample uses a custom pipeline behavior to manage a unit of work. The unit of work in this sample is a custom session object. In a real application this is often a database session represented by a low-level storage connection/transaction or session, or an ORM session.
 
 Examples are:
 
