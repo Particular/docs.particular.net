@@ -78,6 +78,10 @@ Some transports support enlisting outgoing operations in the current receive tra
 Use the following code to use this mode:
 
 snippet: TransportTransactionAtomicSendsWithReceive
+
+> [!WARNING]
+> If using SqlServer for [transport](/transports/sql/) and [persistence](/persistence/sql/dialect-mssql) with different connection strings, without [outbox](/nservicebus/outbox/) enabled, in this transaction mode [the persistence uses the connection and transaction context established by the transport when accessing saga data](https://docs.particular.net/persistence/sql/dialect-mssql#connection-sharing).
+
 #### Consistency guarantees
 
 This mode has the same consistency guarantees as the *Receive Only* mode, but additionally, it prevents the occurrence of [ghost messages](/nservicebus/concepts/glossary.md#ghost-message) since all outgoing operations are atomic with the ongoing receive operation.
@@ -89,6 +93,9 @@ In this mode, the receive operation is wrapped in a transport's native transacti
 > [!NOTE]
 > [Sends and Publishes are batched](/nservicebus/messaging/batched-dispatch.md) and only transmitted until all handlers are successfully invoked.
 Messages that are required to be sent immediately should use the [immediate dispatch option](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) which bypasses batching.
+
+> [!WARNING]
+> If using SqlServer for [transport](/transports/sql/) and [persistence](/persistence/sql/dialect-mssql) with different connection strings, without [outbox](/nservicebus/outbox/) enabled, in this transaction mode [the persistence uses the connection and transaction context established by the transport when accessing saga data](https://docs.particular.net/persistence/sql/dialect-mssql#connection-sharing).
 
 Use the following code to use this mode:
 
