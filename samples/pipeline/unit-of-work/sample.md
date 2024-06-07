@@ -20,7 +20,7 @@ Examples are:
 - a storage session provided by a storage SDK client like MongoDB, RavenDB, CosmosDB, etc.
 
 > [!NOTE]
-> This is the recommended approach to managing an unit of work as`IManageUnitOfWork` is obsolete in NServiceBus version 9.
+> This is the recommended approach for managing a unit of work as `IManageUnitOfWork` is obsolete in NServiceBus version 9.
 
 Any information from the incoming message headers and body can be used to create or initialize the custom unit of work which is common in multi-tenant or partitioned environments
 
