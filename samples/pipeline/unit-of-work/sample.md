@@ -24,7 +24,7 @@ Examples are:
 
 Any information from the incoming message headers and body can be used to create or initialize the custom unit of work which is common in multi-tenant or partitioned environments
 
-- Use header/body information to use a specific connection string
+- Use header/body information to utilize a specific connection string
 - Use header/body information to set a query filter on an ORM to only return data for a specific tenant
 
 ## Code walk-through
