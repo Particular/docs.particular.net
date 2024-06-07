@@ -80,7 +80,7 @@ Use the following code to use this mode:
 snippet: TransportTransactionAtomicSendsWithReceive
 
 > [!WARNING]
-> If using SqlServer for [transport](/transports/sql/) and [persistence](/persistence/sql/dialect-mssql) with different connection strings, without [outbox](/nservicebus/outbox/) enabled, in this transaction mode [the persistence uses the connection and transaction context established by the transport when accessing saga data](/persistence/sql/dialect-mssql.md#connection-sharing).
+> If using SqlServer for [transport](/transports/sql/) and [persistence](/persistence/sql/dialect-mssql.md) with different connection strings, without [outbox](/nservicebus/outbox/) enabled, in this transaction mode [the persistence uses the connection and transaction context established by the transport when accessing saga data](/persistence/sql/dialect-mssql.md#connection-sharing).
 
 #### Consistency guarantees
 
@@ -95,7 +95,7 @@ In this mode, the receive operation is wrapped in a transport's native transacti
 Messages that are required to be sent immediately should use the [immediate dispatch option](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) which bypasses batching.
 
 > [!WARNING]
-> If using SqlServer for [transport](/transports/sql/) and [persistence](/persistence/sql/dialect-mssql) with different connection strings, without [outbox](/nservicebus/outbox/) enabled, in this transaction mode [the persistence uses the connection and transaction context established by the transport when accessing saga data](/persistence/sql/dialect-mssql.md#connection-sharing).
+> If using SqlServer for [transport](/transports/sql/) and [persistence](/persistence/sql/dialect-mssql.md) with different connection strings, without [outbox](/nservicebus/outbox/) enabled, in this transaction mode [the persistence uses the connection and transaction context established by the transport when accessing saga data](/persistence/sql/dialect-mssql.md#connection-sharing).
 
 Use the following code to use this mode:
 
