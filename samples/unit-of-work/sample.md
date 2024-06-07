@@ -8,7 +8,7 @@ related:
 ---
 
 > [!WARNING]
-> Managing an unit of work via `IManageUnitOfWork` is obsolete in NServiceBus version 9. Instead, [use a pipeline behavior to manage a unit of work](/samples/pipeline/unit-of-work/sample.md).
+> Managing a unit of work via `IManageUnitOfWork` is obsolete in NServiceBus version 9. Instead, [use a pipeline behavior to manage a unit of work](/samples/pipeline/unit-of-work/sample.md).
 
 
 This sample shows how to create a custom [unit of work](/nservicebus/pipeline/unit-of-work.md).
