@@ -19,6 +19,10 @@ The alternative to using installers is to create the required resources before t
 
 partial: installer-api
 
+## What is not part of installers
+
+NServiceBus detects all events an endpoint handles and [auto subscribes to these events at startup](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#automatic-subscriptions). Auto subscribing to events can be disabled by [disabling the auto subscribe feature](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#disabling-auto-subscription).
+
 ## Running installers during endpoint startup
 
 partial: default-behavior
