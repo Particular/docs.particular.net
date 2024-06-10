@@ -22,6 +22,9 @@ snippet: SqlPersistenceUsageSqlServer
 
 include: mssql-dtc-warning
 
+## Token-credentials
+
+Microsoft Entra authentication is supported via the [standard connection string options](https://learn.microsoft.com/en-us/sql/connect/ado-net/sql/azure-active-directory-authentication).
 
 ## Unicode support
 
