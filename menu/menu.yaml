@@ -971,6 +971,8 @@
       Title: Addressing
     - Url: transports/sql/transactions
       Title: Transaction support
+    - Url: persistence/sql/sqlserver-combining-persistence-wth-transport
+      Title: Combining with SQL Server Persistence
     - Url: transports/sql/discard-expired-messages
       Title: Discarding expired messages
     - Url: transports/sql/native-integration
@@ -1159,6 +1161,8 @@
     - Url: persistence/sql/dialect-mssql
       Title: SQL Server
       Articles:
+      - Url: persistence/sql/sqlserver-combining-persistence-wth-transport
+        Title: Combining with SQL Server Transport
       - Url: persistence/sql/sqlserver-scripts
         Title: Scripts
     - Url: persistence/sql/dialect-mysql
