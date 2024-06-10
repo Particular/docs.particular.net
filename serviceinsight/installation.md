@@ -13,7 +13,7 @@ reviewed: 2024-06-05
 
 ## Installation
 
- 1. Download and install [ServiceControl](https://github.com/Particular/ServiceControl/releases)
- 1. Download and install [ServiceInsight](https://github.com/Particular/ServiceInsight/releases)
- 1. After accepting the license terms and conditions, click "Install" (the installer will require elevated privileges)
- 1. The installation process installs the "ServiceInsight" desktop application
+1. Install [ServiceControl](/servicecontrol/installation)—at a minimum, an [error instance](/servicecontrol/#servicecontrol-instance-types) is required.
+1. Download and run the [ServiceInsight installer](https://github.com/Particular/ServiceInsight/releases)
+1. After accepting the license terms and conditions, click "Install" (the installer will require elevated privileges)
+1. Validation the installation by launching the “ServiceInsight” desktop application and connecting to the ServiceControl error instance at the URL shown in the [ServiceControl Management application](/servicecontrol/installation#installing-servicecontrol-instances) (or the host and port specified when [installing ServiceControl using PowerShell](/servicecontrol/powershell)). 
