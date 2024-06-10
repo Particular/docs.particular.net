@@ -14,7 +14,7 @@
 | <a href="https://www.nuget.org/packages/AWSSDK.S3/" target="_blank">AWSSDK.S3</a> | <a href="https://licenses.nuget.org/Apache-2.0" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SQS/" target="_blank">AWSSDK.SQS</a> | <a href="https://licenses.nuget.org/Apache-2.0" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="https://licenses.nuget.org/Apache-2.0" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/BitFaster.Caching/" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.5.0/license" target="_blank">View License</a> | <i>None provided</i> |
+| <a href="https://www.nuget.org/packages/BitFaster.Caching/" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.5.1/license" target="_blank">View License</a> | <i>None provided</i> |
 
 ### [NServiceBus.Azure.Transports.WindowsAzureServiceBus](/nuget/NServiceBus.Azure.Transports.WindowsAzureServiceBus)
 
@@ -32,7 +32,7 @@
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/BitFaster.Caching/" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.5.0/license" target="_blank">View License</a> | <i>None provided</i> |
+| <a href="https://www.nuget.org/packages/BitFaster.Caching/" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.5.1/license" target="_blank">View License</a> | <i>None provided</i> |
 | <a href="https://www.nuget.org/packages/RabbitMQ.Client/" target="_blank">RabbitMQ.Client</a> | <a href="https://licenses.nuget.org/Apache-2.0 OR MPL-2.0" target="_blank">Apache-2.0 OR MPL-2.0</a> | <a href="https://www.rabbitmq.com/dotnet.html" target="_blank">Project Site</a> |
 
 ### [NServiceBus.SqlServer](/nuget/NServiceBus.SqlServer)
@@ -213,7 +213,7 @@
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Microsoft.Azure.Functions.Extensions/" target="_blank">Microsoft.Azure.Functions.Extensions</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="http://go.microsoft.com/fwlink/?LinkID=320972" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/Microsoft.Azure.WebJobs.Extensions.ServiceBus/" target="_blank">Microsoft.Azure.WebJobs.Extensions.ServiceBus</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Microsoft.Azure.WebJobs.Extensions.ServiceBus_5.15.1/sdk/servicebus/Microsoft.Azure.WebJobs.Extensions.ServiceBus/README.md" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Azure.WebJobs.Extensions.ServiceBus/" target="_blank">Microsoft.Azure.WebJobs.Extensions.ServiceBus</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Microsoft.Azure.WebJobs.Extensions.ServiceBus_5.16.0/sdk/servicebus/Microsoft.Azure.WebJobs.Extensions.ServiceBus/README.md" target="_blank">Project Site</a> |
 
 ### [NServiceBus.AzureFunctions.Worker.ServiceBus](/nuget/NServiceBus.AzureFunctions.Worker.ServiceBus)
 

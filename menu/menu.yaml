@@ -680,17 +680,17 @@
     - Url: nservicebus/logging
       Title: About NServiceBus logging
     - Url: nservicebus/logging/extensions-logging
-      Title: Microsoft.Extensions.Logging
-    - Url: nservicebus/logging/message-contents
-      Title: Message contents
-    - Url: nservicebus/logging/usage
-      Title: Writing a log entry
+      Title: Extensions.Logging
     - Url: nservicebus/logging/log4net
       Title: Log4Net
     - Url: nservicebus/logging/nlog
       Title: NLog
     - Url: nservicebus/logging/common-logging
       Title: CommonLogging
+    - Url: nservicebus/logging/message-contents
+      Title: Message contents  
+    - Url: nservicebus/logging/usage
+      Title: Writing a log entry
     - Url: nservicebus/operations/auditing
       Title: Auditing Messages
   - Title: Security
@@ -1214,6 +1214,8 @@
       Url: persistence/cosmosdb
     - Title: Saga concurrency
       Url: persistence/cosmosdb/saga-concurrency
+    - Title: Saga timeouts
+      Url: persistence/cosmosdb/saga-timeouts
     - Title: Transactions
       Url: persistence/cosmosdb/transactions
     - Title: Migration from Azure Table Persistence
@@ -1471,6 +1473,8 @@
         Url: servicecontrol/maintenance-mode
       - Title: Retry importing messages
         Url: servicecontrol/import-failed-messages
+      - Title: Sequence contains no matching element
+        Url: servicecontrol/sequence-contains-no-matching-element
   - Title: Audit instances
     Articles:
       - Title: ServiceControl Audit instances

@@ -92,7 +92,8 @@ ServicePulse relies on the ServiceControl and ServiceControl Monitoring REST API
 
 Installation steps:
 
- 1. Install IIS [URL Rewrite extension](https://www.iis.net/downloads/microsoft/url-rewrite).
+ 1. Install the IIS [Application Request Routing extension](https://www.iis.net/downloads/microsoft/application-request-routing).
+  1. In IIS Manager, click the server node in the Connections pane, double-click "Application Request Routing Cache", then in the Actions pane, click "Server Proxy Settings", and check "Enable proxy". Click "Apply" to save changes.
  1. Go to the root directory for the website created in the basic configuration.
  1. Edit `js\app.constants.js` and change the `serviceControlUrl` value from `http://localhost:33333/api` to `api/`.
  1. Open the IIS management tool.
@@ -117,7 +118,7 @@ Installation steps:
 ```
 
 > [!WARNING]
-> By exposing the REST API via the reverse proxy configuration, this protection is no longer in place. To address this, it is recommended that the IIS website be configured with one of the IIS authentication providers, such as Windows integration authentication.
+> When ServiceControl is configured to run on localhost:port, it is protected from being accessed via the server IP address. By exposing the REST API via the reverse proxy configuration, this protection is no longer in place. To address this, configuring the IIS website with an appropriate authentication provider, such as Windows Integrated Authentication, is recommended.
 
 It is also recommended that the IIS website be configured to use TLS if an authorization provider is used.
 
@@ -127,7 +128,8 @@ When using [monitoring capabilities](/monitoring) the following steps should be 
 
 Installation steps:
 
- 1. Install the IIS [URL Rewrite extension](https://www.iis.net/downloads/microsoft/url-rewrite).
+ 1. Install the IIS [Application Request Routing extension](https://www.iis.net/downloads/microsoft/application-request-routing).
+ 1. In IIS Manager, click the server node in the Connections pane, double-click "Application Request Routing Cache", then in the Actions pane, click "Server Proxy Settings", and check "Enable proxy". Click "Apply" to save changes.
  1. Go to the root directory for the website created in the basic configuration.
  1. Edit `js\app.constants.js` and change the `monitoring_urls` value from `http://localhost:33633/` to `monitoring/`.
  1. Open the IIS management tool.
@@ -150,6 +152,8 @@ Installation steps:
     </system.webServer>
 </configuration>
 ```
+> [!WARNING]
+> When ServiceControl is configured to run on localhost:port, it is protected from being accessed via the server IP address. By exposing the REST API via the reverse proxy configuration, this protection is no longer in place. To address this, configuring the IIS website with an appropriate authentication provider, such as Windows Integrated Authentication, is recommended.
 
 ### Role-based security
 

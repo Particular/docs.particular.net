@@ -35,3 +35,9 @@ The transport does not have any functional difference between `TransportTransact
 ## `IRoutingTopology` `SetupSubscription` and `TeardownSubscription` changes
 
 The `type` parameter of the `SetupSubscription` and `TeardownSubscription` methods of the `IRoutingTopology` interface has changed from `System.Type` to `NServiceBus.Unicast.Messages.MessageMetadata`. [Custom routing topology](/transports/rabbitmq/routing-topology.md#custom-routing-topology) implementations will need to be updated.
+
+## Invocation of handler code has changed
+
+The invocation of handler code has changed to use the RabbitMQ async consumer.  
+This has implications when it comes to parallel execution of handlers. For example synchronous handlers will run sequentially.  
+In order to achieve higher parallelism, handlers need to be modified according to the [asynchronous handlers documentation](/nservicebus/handlers/async-handlers.md).  

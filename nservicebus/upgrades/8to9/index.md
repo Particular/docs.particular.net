@@ -11,7 +11,7 @@ upgradeGuideCoreVersions:
 
 ## Removed support for .NET Framework
 
-NServiceBus 9 no longer supports any version of the .NET Framework. Instead, it targets .NET 8 only (Read more about the [supported frameworks and platforms](/nservicebus/upgrades/supported-platforms.md)). Any component in NServiceBus 8 that is .NET Framework only (for example, the MSMQ transport)will not have a version that is compatible with NServiceBus 9. NServiceBus 8 will continue to be supported for use on the .NET Framework.
+NServiceBus 9 no longer supports any version of the .NET Framework. Instead, it targets .NET 8 only (read more about the [supported frameworks and platforms](/nservicebus/upgrades/supported-platforms.md)). Any component in NServiceBus 8 that is .NET Framework only (for example, the MSMQ transport) will not have a version that is compatible with NServiceBus 9. NServiceBus 8 will continue to be supported for use on the .NET Framework.
 
 ## Serializer choice is now mandatory
 
