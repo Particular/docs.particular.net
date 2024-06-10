@@ -182,7 +182,7 @@
   - Title: Upgrade Guides
     Articles:
     - Url: nservicebus/upgrades
-      Title: About upgrading NServiceBus   
+      Title: About upgrading NServiceBus
     - Url: nservicebus/upgrades/third-party-licenses
       Title: Third-party licenses
     - Url: nservicebus/upgrades/callbacks-1to2
@@ -688,7 +688,7 @@
     - Url: nservicebus/logging/common-logging
       Title: CommonLogging
     - Url: nservicebus/logging/message-contents
-      Title: Message contents  
+      Title: Message contents
     - Url: nservicebus/logging/usage
       Title: Writing a log entry
     - Url: nservicebus/operations/auditing
@@ -1310,6 +1310,8 @@
     Articles:
     - Url: serviceinsight
       Title: About ServiceInsight
+    - Url: serviceinsight/installation
+      Title: Installation
     - Url: serviceinsight/license
       Title: Licensing
     - Url: serviceinsight/support-policy
