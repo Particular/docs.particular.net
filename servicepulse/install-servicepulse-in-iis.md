@@ -22,7 +22,7 @@ Steps
  1. Extract the ServicePulse files
  1. Disable/Remove ServicePulse
  1. Remove the `netsh` url restriction
- 1. Create a website in IIS referring to the ServicePulse directory 
+ 1. Create a website in IIS referring to the ServicePulse directory
 
 > [!NOTE]
 > When performing an upgrade, it is recommended to delete your existing environment and start with a clean install. See [Upgrading ServicePulse hosted in IIS](#upgrading-servicepulse-hosted-in-iis) for more details.
@@ -92,14 +92,14 @@ ServicePulse relies on the ServiceControl and ServiceControl Monitoring REST API
 
 Installation steps:
 
- 1. Install the IIS [Application Request Routing extension](https://www.iis.net/downloads/microsoft/application-request-routing).
-  1. In IIS Manager, click the server node in the Connections pane, double-click "Application Request Routing Cache", then in the Actions pane, click "Server Proxy Settings", and check "Enable proxy". Click "Apply" to save changes.
- 1. Go to the root directory for the website created in the basic configuration.
- 1. Edit `js\app.constants.js` and change the `serviceControlUrl` value from `http://localhost:33333/api` to `api/`.
- 1. Open the IIS management tool.
- 1. Select the root directory from within the IIS management tool.
- 1. Open or create a `web.config` file
- 1. Add the following rewrite rules to the top of the file:
+1. Install the IIS [Application Request Routing extension](https://www.iis.net/downloads/microsoft/application-request-routing).
+1. In IIS Manager, click the server node in the Connections pane, double-click "Application Request Routing Cache", then in the Actions pane, click "Server Proxy Settings", and check "Enable proxy". Click "Apply" to save changes.
+1. Go to the root directory for the website created in the basic configuration.
+1. Edit `js\app.constants.js` and change the `serviceControlUrl` value from `http://localhost:33333/api` to `api/`.
+1. Open the IIS management tool.
+1. Select the root directory from within the IIS management tool.
+1. Open or create a `web.config` file
+1. Add the following rewrite rules to the top of the file:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -110,7 +110,7 @@ Installation steps:
                  <rule name="Rewrite main instance API URL" stopProcessing="true">
                     <match url="^api/(.*)" />
                     <action type="Rewrite" url="http://localhost:33333/api/{R:1}" />
-                </rule>                
+                </rule>
             </rules>
         </rewrite>
     </system.webServer>
@@ -118,7 +118,7 @@ Installation steps:
 ```
 
 > [!WARNING]
-> When ServiceControl is configured to run on localhost:port, it is protected from being accessed via the server IP address. By exposing the REST API via the reverse proxy configuration, this protection is no longer in place. To address this, configuring the IIS website with an appropriate authentication provider, such as Windows Integrated Authentication, is recommended.
+> When ServiceControl is configured to run on localhost:port, it is protected from being accessed via the server IP address. By exposing the REST API via the reverse proxy configuration, this protection is no longer in place. To address this, it's recommended to configure the IIS website with an appropriate authentication provider, such as Windows Integrated Authentication.
 
 It is also recommended that the IIS website be configured to use TLS if an authorization provider is used.
 
@@ -146,14 +146,15 @@ Installation steps:
                 <rule name="Rewrite monitoring API URL" stopProcessing="true">
                     <match url="^monitoring/(.*)" />
                     <action type="Rewrite" url="http://localhost:33633/{R:1}" />
-                </rule>                
+                </rule>
             </rules>
         </rewrite>
     </system.webServer>
 </configuration>
 ```
+
 > [!WARNING]
-> When ServiceControl is configured to run on localhost:port, it is protected from being accessed via the server IP address. By exposing the REST API via the reverse proxy configuration, this protection is no longer in place. To address this, configuring the IIS website with an appropriate authentication provider, such as Windows Integrated Authentication, is recommended.
+> When ServiceControl is configured to run on localhost:port, it is protected from being accessed via the server IP address. By exposing the REST API via the reverse proxy configuration, this protection is no longer in place. To address this, it's recommend to configure the IIS website with an appropriate authentication provider, such as Windows Integrated Authentication.
 
 ### Role-based security
 

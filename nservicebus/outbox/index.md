@@ -130,7 +130,7 @@ In phase 2, outgoing messages are sent to the messaging infrastructure and outbo
 * Endpoints using the outbox feature should not send messages to endpoints using DTC (see below) as the DTC-enabled endpoints treat duplicates coming from outbox-enabled endpoints as multiple messages.
 
 > [!NOTE]
-> Endpoints that use a transport in a transaction mode less than [**TransactionScope**](/transports/transactions.md#transactions-transaction-scope-distributed-transaction) are vulnerable to receive the same message **more-than-once** regardless if the sender has Outbox enabled.
+> Endpoints that use a transport in a transaction mode less than [**TransactionScope**](/transports/transactions.md#transactions-transaction-scope-distributed-transaction) are vulnerable to receive the same message **more-than-once** regardless of whether the sender has the outbox feature enabled.
 
 ### Transaction scope
 
@@ -163,7 +163,7 @@ partial: configuration
 Each NServiceBus persistence package may contain specific configuration options, such as a time to keep deduplication data and a deduplication data cleanup interval. For details, refer to the specific page for each persistence package in the [persistence section](#persistence) below.
 
 > [!WARNING]
-> If outbox is turned off, no deduplication will take place. Therefore, the feature should be enabled on all endpoints that cannot perform an idempotency check.
+> If the outbox feature is turned off, no deduplication will take place. Therefore, the feature should be enabled on all endpoints that cannot perform an idempotency check.
 
 ## Converting from DTC to outbox
 
