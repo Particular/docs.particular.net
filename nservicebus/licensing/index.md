@@ -40,7 +40,7 @@ Sometimes the license must be embedded in a single line of text, for example, in
 
 ## Behavior
 
-The license is only read once at start. When the license expires the endpoint logs will contain a message indicating the license is expired. To resolve this the endpoint must be restarted so that it can read the updated license at start.
+The license is only read once at startup. When the license expires the endpoint logs will contain a message indicating the license is expired. To resolve this the endpoint must be restarted so that it can read the updated license at startup.
 
 ## Troubleshooting
 
