@@ -22,6 +22,10 @@ The connection string can be configured in several ways:
 
 partial: connection-string
 
+## Token-credentials
+
+Microsoft Entra authentication is supported via the [standard connection string options](https://learn.microsoft.com/en-us/sql/connect/ado-net/sql/azure-active-directory-authentication).
+
 ## Custom database schemas
 
 The SQL Server transport uses `dbo` as a default schema. It is used for every queue if no other schema is explicitly provided in a transport address. This includes all local queues, error, audit and remote queues of other endpoints.
