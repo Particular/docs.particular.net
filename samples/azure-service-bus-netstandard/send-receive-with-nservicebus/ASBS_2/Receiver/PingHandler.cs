@@ -19,11 +19,11 @@ namespace Receiver
         {
             logger.LogInformation($"Processing Ping message #{message.Round}");
 
+            // throw new Exception("BOOM");
+
             var reply = new Pong { Acknowledgement = $"Ping #{message.Round} processed at {DateTimeOffset.UtcNow:s}" };
 
             await context.Reply(reply);
-            
-            // throw new Exception("BOOM");
         }
     }
 }
