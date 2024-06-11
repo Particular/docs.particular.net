@@ -155,7 +155,7 @@ When taking the default values for immediate and delayed retries (five and three
 
 ### Event types
 
-NServiceBus logs processing failures via the logger **NServiceBus.RecoverabilityExecutor** with various log levels and messages.
+NServiceBus logs processing failures with various log levels and messages.
 
 | Action          | Log level     | Log message                                                                                    |
 |-----------------|---------------|------------------------------------------------------------------------------------------------|
@@ -163,7 +163,24 @@ NServiceBus logs processing failures via the logger **NServiceBus.Recoverability
 | Delayed retry   | Warning       | Delayed Retry will reschedule message 'XXX' after a delay of HH:MM:SS because of an exception: |
 | To error queue  | Error         | Moving message 'XXX' to the error queue 'error' because processing failed due to an exception: |
 
-This enables configuring alerts in a centralized logging solution. For example, when **NServiceBus.RecoverabilityExecutor** logs an ERROR entry, notifications can be sent to an administrator.
+This enables configuring alerts in a centralized logging solution. For example, when an ERROR entry is logged and the message is forwarded to the configured error queue, notifications can be sent to an administrator.
+
+#if-version [,X)
+
+Until version X the logger name used is **NServiceBus.RecoverabilityExecutor**
+
+#end-if
+
+#if-version [X,)
+
+From version X the logger name used is:
+
+* **NServiceBus.DelayedRetry** for delayed retries
+* **NServiceBus.ImmediateRetry** for immediate retries
+* **NServiceBus.MoveToError** for messages forwarded to the error queue
+
+#end-if
+
 
 ### Output example
 
