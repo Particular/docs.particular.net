@@ -106,7 +106,7 @@ snippet: custom-transport-name
 
 ## Bridging platform queues
 
-The bridge can be configured to allow a single ServiceControl installation to manage and monitor endpoints on all bridged transports. For example:
+The bridge can be configured to allow a [single ServiceControl installation to manage and monitor endpoints on all bridged transports](/servicecontrol/servicecontrol-instances/remotes.md#overview-multi-transport-deployments). For example:
 
 snippet: platform-bridging
 
