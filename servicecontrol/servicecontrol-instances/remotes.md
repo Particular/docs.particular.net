@@ -116,6 +116,56 @@ class ServiceControl ServiceControlPrimary
 class ServiceControlAudit1,ServiceControlAudit2 ServiceControlRemote
 ```
 
+### Multi-transport deployments
+
+When using multiple transports the ServiceControl can be setup together with the [MessagingBridge](/nservicebus/bridge/) to allow the entire system to be managed via a single ServicePulse/ServiceInsight installation.
+
+```mermaid
+graph TD
+primaryA -. connected to .-> auditA
+primaryA -. connected to .-> auditB
+primaryA -. connected to .-> auditC
+
+subgraph Transport A
+servicePulse[ServicePulse] -. connected to .-> primaryA
+serviceInsight[ServiceInsight] -. connected to .-> primaryA
+endpointsA[endpoints] -- send errors to --> errorQueueA[error queue]
+endpointsA -- send audits to --> auditQueueA[audit queue]
+errorQueueA -- ingested by --> primaryA[ServiceControl<br/>primary]
+auditQueueA -- ingested by --> auditA[ServiceControl Audit<br/>remote]
+end
+
+subgraph Transport B
+endpointsB[endpoints] -- send errors to --> errorQueueB[error queue]
+endpointsB -- send audits to --> auditQueueB[audit queue]
+errorQueueB -- ingested by --> bridgeB[Bridge]
+auditQueueB -- ingested by --> auditB[ServiceControl Audit<br/>remote]
+bridgeB -- forwards --> errorQueueA
+end
+
+subgraph Transport C
+endpointsC[endpoints] -- send errors to --> errorQueueC[error queue]
+endpointsC -- send audits to --> auditQueueC[audit queue]
+errorQueueC -- ingested by --> bridgeC[Bridge]
+auditQueueC -- ingested by --> auditC[ServiceControl Audit<br/>remote]
+bridgeC -- forwards --> errorQueueA
+end
+
+classDef Endpoints fill:#00A3C4,stroke:#00729C,color:#FFFFFF
+classDef Bridge fill:#a8a032,stroke:#00729C,color:#FFFFFF
+classDef ServiceInsight fill:#878CAA,stroke:#585D80,color:#FFFFFF
+classDef ServicePulse fill:#409393,stroke:#205B5D,color:#FFFFFF
+classDef ServiceControlPrimary fill:#A84198,stroke:#92117E,color:#FFFFFF,stroke-width:4px
+classDef ServiceControlRemote fill:#A84198,stroke:#92117E,color:#FFFFFF
+
+class endpointsA,endpointsB,endpointsC Endpoints
+class bridgeB,bridgeC Bridge
+class serviceInsight ServiceInsight
+class servicePulse ServicePulse
+class primaryA,primaryB ServiceControlPrimary
+class auditA,auditB,auditC ServiceControlRemote
+```
+
 ### Multi-region deployments
 
 It is possible to create a multi-region deployment using remotes.
