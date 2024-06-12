@@ -118,7 +118,7 @@ class ServiceControlAudit1,ServiceControlAudit2 ServiceControlRemote
 
 ### Multi-transport deployments
 
-When using multiple transports the ServiceControl can be setup together with the [MessagingBridge](/nservicebus/bridge/) to allow the entire system to be managed via a single ServicePulse/ServiceInsight installation.
+When a system uses multiple transports, the [Messaging Bridge](/nservicebus/bridge/) can be used to allow management of the entire system by single instances of ServicePulse and ServiceInsight.
 
 ```mermaid
 graph TD
