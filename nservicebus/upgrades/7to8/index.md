@@ -267,3 +267,13 @@ See the [OpenTelemetry samples](/samples/open-telemetry/) for more guidance on i
 ## Raw messaging
 
 NServiceBus version 8 supports [raw messaging](/nservicebus/rawmessaging/?version=core_8). Raw messaging allows the transport infrastructure to be used directly without the need to spin up a full NServiceBus endpoint. Raw messaging is useful when integrating with third-party systems, building message gateways or bridges, or performing other low-level sending and receiving tasks.
+
+## Logging NServiceBus.RecoverabilityExecutor
+
+The logger name used to report immediate retries, delayed retries, and messages forwarded to the error queue has changes.
+
+Previously the logger name used was **NServiceBus.RecoverabilityExecutor** and is now replaced with multiple different logger names:
+
+* **NServiceBus.DelayedRetry** for delayed retries
+* **NServiceBus.ImmediateRetry** for immediate retries
+* **NServiceBus.MoveToError** for messages forwarded to the error queue
