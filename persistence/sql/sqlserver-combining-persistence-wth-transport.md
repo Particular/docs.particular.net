@@ -16,8 +16,8 @@ When combining SQL Server transport and persistence using the Sql dialect, the c
 SQL Transport<br/>TransactionMode | SQL Persistence<br/>with Sql dialect | Connection sharing | Saga location
 :-:|:-:|:-:|:-:
 TransactionScope |  ✅| Connection sharing via SQLT storage context | Transport Db
-AtomicSendsWithReceive |  ✅| SQLP uses isolated transaction for send and receive | Persistence Db
-ReceiveOnly |  ✅| SQLP uses isolated transaction for receive | Persistence Db
+AtomicSendsWithReceive |  ✅| SQLT uses isolated transaction for send and receive | Transport DB
+ReceiveOnly |  ✅| SQLT uses isolated transaction for receive | Transport DB
 None |  ✅| No transactions | Persistence Db
 
 #### Explicitly opting out of connection sharing when not using the Outbox
@@ -32,5 +32,5 @@ SQL Transport<br/>TransactionMode | SQL Persistence<br/>with Sql dialect | Conne
 :-:|:-:|:-:|:-:
 TransactionScope |  ✅|  Not supported | N/A
 AtomicSendsWithReceive |  ✅| Not supported | N/A
-ReceiveOnly |  ✅| Connection sharing via SQLT storage context | Persistence Db
+ReceiveOnly |  ✅| Connection sharing via SQLT storage context | Persistence DB
 None |  ✅| Not supported | N/A
