@@ -127,8 +127,8 @@ primaryA -. connected to .-> auditB
 primaryA -. connected to .-> auditC
 
 subgraph Transport A
-servicePulse[ServicePulse] -. connected to .-> primaryA
-serviceInsight[ServiceInsight] -. connected to .-> primaryA
+ServicePulse[ServicePulse] -. connected to .-> primaryA
+ServiceInsight[ServiceInsight] -. connected to .-> primaryA
 endpointsA[endpoints] -- send errors to --> errorQueueA[error queue]
 endpointsA -- send audits to --> auditQueueA[audit queue]
 errorQueueA -- ingested by --> primaryA[ServiceControl<br/>primary]
@@ -160,8 +160,8 @@ classDef ServiceControlRemote fill:#A84198,stroke:#92117E,color:#FFFFFF
 
 class endpointsA,endpointsB,endpointsC Endpoints
 class bridgeB,bridgeC Bridge
-class serviceInsight ServiceInsight
-class servicePulse ServicePulse
+class ServiceInsight ServiceInsight
+class ServicePulse ServicePulse
 class primaryA,primaryB ServiceControlPrimary
 class auditA,auditB,auditC ServiceControlRemote
 ```
