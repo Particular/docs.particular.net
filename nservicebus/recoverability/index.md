@@ -165,15 +165,15 @@ NServiceBus logs processing failures with various log levels and messages.
 
 This enables configuring alerts in a centralized logging solution. For example, when an ERROR entry is logged and the message is forwarded to the configured error queue, notifications can be sent to an administrator.
 
-#if-version [,X)
+#if-version [,8)
 
-Until version X the logger name used is **NServiceBus.RecoverabilityExecutor**
+Until version 8 the logger name used is **NServiceBus.RecoverabilityExecutor**
 
 #end-if
 
-#if-version [X,)
+#if-version [8,)
 
-From version X the logger name used is:
+From version 8 the logger names used are:
 
 * **NServiceBus.DelayedRetry** for delayed retries
 * **NServiceBus.ImmediateRetry** for immediate retries
