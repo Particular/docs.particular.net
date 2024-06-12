@@ -15,10 +15,12 @@ When combining SQL Server transport and persistence using the Sql dialect, the c
 
 SQL Transport<br/>TransactionMode | SQL Persistence<br/>with Sql dialect | Connection sharing | Saga location
 :-:|:-:|:-:|:-:
-TransactionScope |  ✅| Connection sharing via SQLT storage context | Transport Db
+TransactionScope |  ✅| SQLT transaction is promoted to distributed transaction | Persistence DB <sup>1</sup>
 AtomicSendsWithReceive |  ✅| SQLT uses isolated transaction for send and receive | Transport DB
 ReceiveOnly |  ✅| SQLT uses isolated transaction for receive | Transport DB
-None |  ✅| No transactions | Persistence Db
+None |  ✅| No transactions | Persistence DB
+
+<sup>1</sup> - Requires .NET Framework, or .NET 8 with `System.Transactions.TransactionManager.ImplicitDistributedTransactions = true;`
 
 #### Explicitly opting out of connection sharing when not using the Outbox
 
