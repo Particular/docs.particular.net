@@ -29,6 +29,8 @@ The implementation details for each transport are discussed in the dedicated doc
 
 partial: matrix
 
+> [!WARNING]
+> When combining [SQL Server transport](/transports/sql/) and [SQL persistence with the Microsoft SQL Server dialect](/persistence/sql/dialect-mssql.md), be aware of the different [connection behaviors](/persistence/sql/sqlserver-combining-persistence-wth-transport.md).
 
 ### Transaction scope (Distributed transaction)
 
@@ -79,9 +81,6 @@ Use the following code to use this mode:
 
 snippet: TransportTransactionAtomicSendsWithReceive
 
-> [!WARNING]
-> If using [SQL Server transport](/transports/sql/) and [SQL persistence with the Microsoft SQL Server dialect](/persistence/sql/dialect-mssql.md) with different connection strings, without [outbox](/nservicebus/outbox/) enabled, in this transaction mode [the persistence uses the connection and transaction context established by the transport when accessing saga data](/persistence/sql/sqlserver-combining-persistence-wth-transport.md).
-
 #### Consistency guarantees
 
 This mode has the same consistency guarantees as the *Receive Only* mode, but additionally, it prevents the occurrence of [ghost messages](/nservicebus/concepts/glossary.md#ghost-message) since all outgoing operations are atomic with the ongoing receive operation.
@@ -93,9 +92,6 @@ In this mode, the receive operation is wrapped in a transport's native transacti
 > [!NOTE]
 > [Sends and Publishes are batched](/nservicebus/messaging/batched-dispatch.md) and only transmitted until all handlers are successfully invoked.
 Messages that are required to be sent immediately should use the [immediate dispatch option](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) which bypasses batching.
-
-> [!WARNING]
-> If using [SQL Server transport](/transports/sql/) and [SQL persistence with the Microsoft SQL Server dialect](/persistence/sql/dialect-mssql.md) with different connection strings, without [outbox](/nservicebus/outbox/) enabled, in this transaction mode [the persistence uses the connection and transaction context established by the transport when accessing saga data](/persistence/sql/sqlserver-combining-persistence-wth-transport.md).
 
 Use the following code to use this mode:
 

@@ -8,4 +8,4 @@ There are two available options within native transaction level:
  * **SendsAtomicWithReceive** - This mode is similar to the `ReceiveOnly`, but transaction is shared with sending operations. That means the message receive operation and any send or publish operations are committed atomically.
 
 > [!WARNING]
-> If using [SQL Server transport](/transports/sql/) and [SQL Persistence with the Microsoft SQL Server dialect](/persistence/sql/dialect-mssql.md) with different connection strings, without [outbox](/nservicebus/outbox/) enabled, in this transaction mode [the persistence uses the connection and transaction context established by the transport when accessing saga data](/persistence/sql/sqlserver-combining-persistence-wth-transport.md).
+> When combining [SQL Server transport](/transports/sql/) and [SQL persistence with the Microsoft SQL Server dialect](/persistence/sql/dialect-mssql.md), be aware of the different [connection behaviors](/persistence/sql/sqlserver-combining-persistence-wth-transport.md).
