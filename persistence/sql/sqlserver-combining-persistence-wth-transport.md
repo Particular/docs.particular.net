@@ -9,7 +9,7 @@ related:
 
 ## Connection behavior
 
-When combining SQL Server transport and persistence using the Sql dialect, the connection behaves differently based on whether the [Outbox](/nservicebus/outbox/) is used or not. This influences where the saga data is stored.
+When combining SQL Server transport and persistence using the Sql dialect, the connection behaves differently based on whether the [Outbox](/nservicebus/outbox/) is enabled or disabled. This influences where the saga data is stored.
 
 ### Without Outbox
 
