@@ -7,7 +7,7 @@ hidden: true
 related:
 - samples/hosting/docker
 ---
-
+<!-- //TODO: This needs updating for Linux containers -->
 > [!NOTE]
 > This sample is **not production ready**. Ports in the containers are remotely accessible, and the sample is targeted to developers.
 
@@ -47,7 +47,7 @@ Set the Azure Service Bus connection string in the `.env` file (value `Endpoint=
 
 ServiceControl has a setup and a run-time stage. During the setup stage, queues are created, but no messages are ingested and processed, while during the run-time stage, no setup is performed, and messages are ingested. In a production environment, the setup stage is often run with administrative access to resources, and the runtime stage is run with the least privilege.
 
-The same stages are applied to Docker. The `docker-compose.init.yml` Docker Compose file executes the [ServiceControl init containers](/servicecontrol/containerization/#init-containers).
+The same stages are applied to Docker. The `docker-compose.init.yml` Docker Compose file executes the ServiceControl init containers. <!-- //TODO: Link -->
 
 > [!NOTE]
 > The init and runtime Docker Compose files should use different connection strings (administrative vs least privilege) in a non-developer environment.

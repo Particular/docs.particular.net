@@ -1,11 +1,14 @@
 ---
-title: Managing ServiceControl Audit instances via PowerShell
+title: Deploying ServiceControl Audit instances using PowerShell
 reviewed: 2021-08-06
+component: ServiceControl
+redirects:
+ - servicecontrol/audit-instances/installation-powershell
 ---
 
-> [!NOTE]
-> For general information about ServiceControl PowerShell, including troubleshooting and licensing guidance, see [Managing ServiceControl via PowerShell](/servicecontrol/powershell.md).
+Using PowerShell, deploy the [ServiceControl Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) first, then deploy the ServiceControl Audit instance.
 
+include: installation-powershell-module
 
 ## ServiceControl Audit instance Cmdlets and Aliases
 
@@ -20,7 +23,6 @@ The following cmdlets and aliases are provided by the ServiceControl Management 
 | sc-help                | Get-ServiceControlMgmtCommands                |
 | sc-transportsinfo      | Get-ServiceControlTransportTypes              |
 
-
 ### Help
 
 All of the cmdlets have local help which can be accessed via the standard PowerShell help command.
@@ -28,7 +30,6 @@ All of the cmdlets have local help which can be accessed via the standard PowerS
 ```ps
 Get-Help Get-ServiceControlAuditInstances
 ```
-
 
 ### Adding an instance
 
@@ -60,7 +61,6 @@ Once a ServiceControl Audit instance is created, it must be added to the Service
 Add-ServiceControlRemote -Name $errorInstanceName -RemoteInstanceAddress $auditInstance.Url
 ```
 
-
 ### Removing an instance
 
 Before removing a ServiceControl Audit instance, it should be removed from the ServiceControl Error instances list of remotes.
@@ -77,7 +77,6 @@ Remove-ServiceControlAuditInstance -Name Test.ServiceControl.Audit -RemoveDB -Re
 
 To List existing instances of the ServiceControl Audit service use `Get-ServiceControlAuditInstances`.
 
-
 ### Upgrading an instance
 
 To upgrade an instance to the latest version of the binaries run.
@@ -93,3 +92,5 @@ Get-ServiceControlAuditInstances | Select Name, Version
 ```
 
 The upgrade will stop the service if it is running. Additional parameters for `Invoke-ServiceControlAuditInstanceUpgrade` may be required. The configuration file of the existing version is examined prior to determine if all the required settings are present. If a configuration setting is missing  then the cmdlet will throw an error indicating the required additional parameter.
+
+include: troubleshooting-powershell-module

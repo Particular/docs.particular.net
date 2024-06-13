@@ -1,11 +1,12 @@
 ---
-title: Managing Monitoring instances via PowerShell
-reviewed: 2024-05-07
+title: Deploying ServiceControl Monitoring instances using PowerShell
+reviewed: 2024-06-11
+component: ServiceControl
+redirects:
+ - servicecontrol/monitoring-instances/installation/installation-powershell
 ---
 
-> [!NOTE]
-> For general information about ServiceControl PowerShell, including troubleshooting and licensing guidance, see [Managing ServiceControl via PowerShell](/servicecontrol/powershell.md).
-
+include: installation-powershell-module
 
 ## Monitoring instance Cmdlets and Aliases
 
@@ -62,3 +63,5 @@ Invoke-MonitoringInstanceUpgrade -Name <Instance To upgrade>
 ```
 
 The upgrade will stop the service if it is running. Additional parameters for `Invoke-MonitoringInstanceUpgrade` may be required. The configuration file of the existing version is examined before determining if all required settings are present. If a configuration setting is missing the cmdlet will throw an error indicating the required additional parameter.
+
+include: troubleshooting-powershell-module

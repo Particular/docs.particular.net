@@ -1,8 +1,10 @@
 ---
 title: ServiceControl integration
-reviewed: 2024-04-04
+reviewed: 2024-06-24
 component: ServiceControl
 ---
+
+<!-- TODO: Editorial: Is this article needed? Isn't this described in the index and other places (assumption - verify)? Why is it called "integration"? Only the contracts thing at the end seems to fit that term, and it has a file. Mentioning the HTTP API, which isn't recommend user usage, seems wrong. Can this just be removed and the menu adjusted? -->
 
 ServiceControl is the backend service for [ServicePulse](/servicepulse) and [ServiceInsight](/serviceinsight). It can also be used as the back-end for third-party integrations. It collects and stores information from monitored NServiceBus endpoints and exposes it via an HTTP API.
 
@@ -15,9 +17,10 @@ ServiceControl provides monitoring capabilities by analyzing the configured erro
 
 To allow ServiceControl to monitor endpoints:
 
-1. ServiceControl must be [installed](/servicecontrol/installation.md).
-2. An instance of ServiceControl must be configured to use the same transport as the endpoints being monitored.
-3. Every endpoint must be [configured for auditing](/nservicebus/operations/auditing.md#configuring-auditing) with the same audit queue as the instance of ServiceControl.
+1. A ServiceControl Error instance must be [deployed](/servicecontrol/servicecontrol-instances/deployment/).
+2. A ServiceControl Audit instance must be [deployed](/servicecontrol/audit-instances/deployment/).
+3. An instance of ServiceControl must be [configured to use the same transport](/servicecontrol/transports.md) as the endpoints being monitored.
+4. Every endpoint must be [configured for auditing](/nservicebus/operations/auditing.md#configuring-auditing) with the same audit queue as the instance of ServiceControl.
 
    ```mermaid
    graph LR
@@ -31,7 +34,7 @@ To allow ServiceControl to monitor endpoints:
    ServiceControl .- AuditLog[audit.log queue]
    ```
 
-4. Every endpoint must be configured for [recoverability](/nservicebus/recoverability/) with the same error queue as ServiceControl.
+5. Every endpoint must be configured for [recoverability](/nservicebus/recoverability/) with the same error queue as ServiceControl.
 
    ```mermaid
    graph LR

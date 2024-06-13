@@ -1,6 +1,6 @@
 Mapping the logical destination to the physical address containing the queue and host names is the responsibility of physical routing.
 
-The preferred way of configuring the physical routing is via the instance mapping file.
+The preferred way of configuring the physical routing is via the [instance mapping file](#instance-mapping-file).
 
 ## Instance mapping file
 
@@ -53,3 +53,33 @@ Specifies a URI path of the instance mapping file. Relative paths are assumed to
 
 
 snippet: InstanceMappingFile-UriPath
+
+## When ServiceControl is installed on a different server
+
+The [instance mapping file](#instance-mapping-file) will have no effect on the error, audit, metrics, and plugin queues, so if a ServiceControl instance is installed on a different machine than the endpoint the physical mapping must be specified during configuration using `queuename@machinename` addresses:
+
+### Configuring recoverability
+
+snippet: ConfigureErrorRemoteQueue
+
+### Configuring auditing
+
+snippet: ConfigureAuditRemoteQueue
+
+### Configuring metrics
+
+snippet: ConfigureMetricsRemoteQueue
+
+### Configuring heartbeats
+
+snippet: ConfigureHeartbeatsRemoteQueue
+
+### Configuring custom checks
+
+snippet: ConfigureCustomChecksRemoteQueue
+
+## Overriding physical routing
+
+When [overriding the default routing](/nservicebus/messaging/send-a-message.md#overriding-the-default-routing) to a queue on a different server the machine name must also be provided:
+
+snippet: OverridingPhysicalRouting

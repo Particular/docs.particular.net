@@ -123,7 +123,7 @@ If certain messages are not scheduled for retry and the logs show the following 
 
 The internal *FailedMessageRetries* collection must be purged in order to restore retries for such messages.
 
-1. Upgrade to the [latest ServiceControl version](https://github.com/particular/servicecontrol/releases)
+1. Upgrade to the [latest ServiceControl version](https://particular.net/downloads)
 1. Ensure that currently there are no retry operations active
 1. Start the instance in Maintenance Mode
 1. Open the embedded RavenDB Management Studio
@@ -297,7 +297,7 @@ System.Exception: No destination specified for message: ServiceControl.Contracts
    at NServiceBus.UnicastSendRouter.RouteUsingTable(IOutgoingSendContext context) in /_/src/NServiceBus.Core/Routing/UnicastSendRouter.cs:line 108
 ```
 
-This error is caused if there is no setting for `ServiceControl.Audit/ServiceControlQueueAddress`. Check the audit instance config file in the audit installation path  and add in the missing key value.
+This error is caused if there is no setting for `ServiceControl.Audit/ServiceControlQueueAddress`. Check the audit instance config file in the audit installation path and add in the missing key value.
 
  ```xml
 <add key="ServiceControl.Audit/ServiceControlQueueAddress" value="[QUEUENAMEGOESHERE]"/>
@@ -335,7 +335,7 @@ Bad Request - Invalid Hostname
 HTTP Error 400. The request hostname is invalid.
 ```
 
-The hostname can be configured via the [config file 'ServiceControl/HostName' ](/servicecontrol/creating-config-file.md#host-settings-servicecontrolhostname) or the [SCMU hostname](/servicecontrol/setting-custom-hostname.md) setting.
+The hostname can be configured via the [config file 'ServiceControl/HostName' ](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolhostname) or the [SCMU hostname](/servicecontrol/setting-custom-hostname.md) setting.
 
 ## VoronUnrecoverableErrorException
 
@@ -382,9 +382,9 @@ To mitigate growth or not having enough storage:
 
 3. Lower retention and, optionally, compact database:
 
-   - [ServiceControl - Error instance setting `ServiceControl/ErrorRetentionPeriod`](/servicecontrol/creating-config-file.md#data-retention-servicecontrolerrorretentionperiod)
-   - [ServiceControl - Error instance setting `ServiceControl/EventRetentionPeriod`](/servicecontrol/creating-config-file.md#data-retention-servicecontroleventretentionperiod)
-   - [ServiceControl - Audit instance setting `ServiceControl.Audit/AuditRetentionPeriod`](/servicecontrol/audit-instances/creating-config-file.md#data-retention-servicecontrol-auditauditretentionperiod)
+   - [ServiceControl - Error instance setting `ServiceControl/ErrorRetentionPeriod`](/servicecontrol/servicecontrol-instances/configuration.md#data-retention-servicecontrolerrorretentionperiod)
+   - [ServiceControl - Error instance setting `ServiceControl/EventRetentionPeriod`](/servicecontrol/servicecontrol-instances/configuration.md#data-retention-servicecontroleventretentionperiod)
+   - [ServiceControl - Audit instance setting `ServiceControl.Audit/AuditRetentionPeriod`](/servicecontrol/audit-instances/configuration.md#data-retention-servicecontrol-auditauditretentionperiod)
    - [ServiceControl - How to compact database](/servicecontrol/db-compaction.md)
    - [ServiceControl - How to purge expired data](/servicecontrol/how-purge-expired-data.md)
 

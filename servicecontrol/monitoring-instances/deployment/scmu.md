@@ -1,6 +1,8 @@
 ---
-title: Installing ServiceControl Monitoring Instances
+title: Deploying ServiceControl Monitoring instances using SCMU
 reviewed: 2023-03-31
+redirects:
+ - servicecontrol/monitoring-instances/installation
 ---
 
 The ServiceControl installation package includes a utility to manage the installation, upgrade, and removal of ServiceControl instances, including monitoring instances. This utility is launched as the final step in the installation process and is also available via the Windows Start Menu.

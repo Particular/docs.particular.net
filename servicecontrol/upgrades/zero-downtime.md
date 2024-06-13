@@ -111,10 +111,10 @@ Although both ServiceControl Audit instances ingest messages from the audit queu
 
 ### Disable audit queue ingestion on the old instance
 
-Update the audit queue configuration on the original Audit instance and add the setting key [`ServiceControl/IngestAuditMessages`](/servicecontrol/audit-instances/creating-config-file.md#host-settings-servicecontrolingestauditmessages) with value `false`, save, and restart the instance.
+Update the audit queue configuration on the original Audit instance and add the setting key [`ServiceControl/IngestAuditMessages`](/servicecontrol/audit-instances/configuration.md#host-settings-servicecontrolingestauditmessages) with value `false`, save, and restart the instance.
 
 > [!NOTE]
-> For versions 4.32.0 of ServiceControl and older use `!disable` as the [`AuditQueue`](/servicecontrol/audit-instances/creating-config-file.md#transport-servicebusauditqueue) name to disable the audit message ingestion.
+> For versions 4.32.0 of ServiceControl and older use `!disable` as the [`AuditQueue`](/servicecontrol/audit-instances/configuration.md#transport-servicebusauditqueue) name to disable the audit message ingestion.
 
 Alternatively, run the following PowerShell script to make the changes:
 
