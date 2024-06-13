@@ -20,7 +20,7 @@ SendsAtomicWithReceive | SQL Transport uses isolated transaction for send and re
 ReceiveOnly | SQL Transport uses isolated transaction for receive | Transport DB
 None | No transactions | Persistence DB
 
-<sup>1</sup> - Requires .NET Framework, or .NET 8 with `System.Transactions.TransactionManager.ImplicitDistributedTransactions = true;`
+<sup>1</sup> - Requires .NET Framework, or .NET 8 [`ImplicitDistributedTransactions`](https://learn.microsoft.com/en-us/dotnet/api/system.transactions.transactionmanager.implicitdistributedtransactions?view=net-8.0) set to `true`.
 
 #### Explicitly opting out of connection sharing when not using the Outbox
 
