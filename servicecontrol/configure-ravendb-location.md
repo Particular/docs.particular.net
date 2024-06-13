@@ -20,7 +20,7 @@ ServiceControl Management does not provide a means of moving the ServiceControl 
  * The current database path is listed in the utility. Copy the contents of this directory to the new location
  * The new database location should not be a subfolder of one of the existing locations (e.g. Installation path, Log Path, etc)
  * Ensure that the service account used for ServiceControl has read/write access to the new location.
- * Manually edit the configuration and specify the new location by changing or adding the `ServiceControl\DBPath` setting. See [Configuration Settings](creating-config-file.md)
+ * Manually edit the configuration and specify the new location by changing or adding the `ServiceControl\DBPath` setting. See [Configuration Settings](/servicecontrol/servicecontrol-instances/configuration.md)
  * Restart the ServiceControl service
  * Remove the old database directory and contents
 

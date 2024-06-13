@@ -12,7 +12,7 @@ For more information on how ServiceControl, ServicePulse, and ServiceInsight wor
 
 ### ServiceControl instance types
 
-After [installation](/servicecontrol/installation.md), the ServiceControl Management Utility provides the ability to add, upgrade and delete ServiceControl instances. There are three types of instances that can be created:
+There are three types of instances that can be created:
 
 - [Error instances](/servicecontrol/servicecontrol-instances/)
   This is the most commonly used ServiceControl instance and indispensable to ensure the smooth operation of an NServiceBus system. Together with ServicePulse, it provides the ability to visualize and retry failed messages.
@@ -20,12 +20,6 @@ After [installation](/servicecontrol/installation.md), the ServiceControl Manage
   Audit instances provide valuable information about the message flow through a system. Among other things, this is used by ServiceInsight to help visualize a distributed system.
 - [Monitoring instances](/servicecontrol/monitoring-instances/)
   Monitoring instances performance monitoring and analyzing additional metrics and are useful for keeping track of the health of a distributed system.
-
-## Installation of ServiceControl instances
-
-After downloading ServiceControl, the ServiceControl Management utility is available in the Windows Start menu. The ServiceControl instances mentioned above must be installed and configured via the Management utility.
-
-Read more about how to [install and configure](/servicecontrol/installation.md) ServiceControl instances.
 
 ## Connect endpoints to ServiceControl
 

@@ -14,14 +14,14 @@ To install the heartbeat plugin in an endpoint, reference the [NServiceBus.Heart
 snippet: HeartbeatsNew_Enable
 
 > [!NOTE]
-> `ServiceControl_Queue` is a placeholder for the name of the ServiceControl input queue. The name of the ServiceControl input queue matches the [ServiceControl service name](/servicecontrol/installation.md#servicecontrol-plugins) configured in the ServiceControl Management application.
+> `ServiceControl_Queue` is a placeholder for the name of the ServiceControl input queue. The name of the ServiceControl input queue matches the [ServiceControl service name](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolinternalqueuename-servicecontrol-plugins) configured in the ServiceControl Management application.
 
 ### Heartbeat interval
 
 The plugin sends heartbeat messages with a default frequency of 10 seconds. As shown above, the frequency may be overridden for each endpoint.
 
 > [!NOTE]
-> The frequency must be lower than the [`HeartbeatGracePeriod`](/servicecontrol/creating-config-file.md#plugin-specific-servicecontrolheartbeatgraceperiod) in ServiceControl.
+> The frequency must be lower than the [`HeartbeatGracePeriod`](/servicecontrol/servicecontrol-instances/configuration.md#plugin-specific-servicecontrolheartbeatgraceperiod) in ServiceControl.
 
 ### Time-To-Live (TTL)
 

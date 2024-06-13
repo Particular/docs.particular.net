@@ -19,7 +19,10 @@ The distributed nature of parallel, message-driven systems makes them more diffi
 > [!NOTE]
 > By default, auditing is not enabled and must be configured for each endpoint where auditing is required.
 
-It is recommended to specify a central auditing queue for all related endpoints (i.e. endpoints that belong to the same system). This gives an overview of the entire system in one place and can help see how messages correlate. One can look at the audit queue as a central record of everything that happened in the system. A central audit queue is also required by the Particular Service Platform and especially [ServiceControl](/servicecontrol), which consumes messages from these auditing queues. For more information, see [ServicePulse documentation](/servicepulse/).
+It is recommended to specify a central auditing queue for all related endpoints (i.e. endpoints that belong to the same system). This gives an overview of the entire system in one place and can help see how messages correlate. One can look at the audit queue as a central record of everything that happened in the system. 
+
+> [!IMPORTANT]
+> When auditing NServiceBus messages it is important to have a capability processing messages sent to the audit queue. The Particular Service Platform, specifically [ServiceControl](/servicecontrol), processes messages from these auditing queues to provide diagnostic and visualization features. For more information, see the [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse/) documentation.
 
 ## Performance impact
 
@@ -42,6 +45,10 @@ Make sure the size limit is increased to allow for scheduled and unscheduled dow
 Perform capacity planning on the store where messages will be written.
 
 When using ServiceControl is it advised read [ServiceControl capacity planning](/servicecontrol/capacity-and-planning.md).
+
+## Filtering audit messages
+
+In some cases, it might be useful to exclude certain message types from being forwarded to the audit queue. This can be accomplished with a [custom behavior in the pipeline](/samples/pipeline/audit-filtering).
 
 ## Message headers
 

@@ -1,8 +1,10 @@
 ---
-title: Configuration Settings
-summary: Categorized list of ServiceControl configuration settings.
+title: Error Instance Configuration Settings
+summary: Categorized list of ServiceControl Error instance configuration settings.
 component: ServiceControl
-reviewed: 2023-11-30
+reviewed: 2024-06-24
+redirects:
+ - servicecontrol/creating-config-file
 ---
 
 The configuration of a ServiceControl instance can be adjusted via the ServiceControl Management utility or by directly modifying the `ServiceControl.exe.config` file. The settings listed are applicable to the `appSettings` section of the configuration file unless otherwise specified.
@@ -14,8 +16,8 @@ The configuration of a ServiceControl instance can be adjusted via the ServiceCo
 
 The following documents should be reviewed prior to modifying configuration settings:
 
-* [Setting a Custom Hostname](setting-custom-hostname.md) for guidance and details.
-* [Securing ServiceControl](securing-servicecontrol.md) for an overview of the security implications of changing the configuration.
+* [Setting a Custom Hostname](/servicecontrol/setting-custom-hostname.md) for guidance and details.
+* [Securing ServiceControl](/servicecontrol/securing-servicecontrol.md) for an overview of the security implications of changing the configuration.
 
 ### ServiceControl/HostName
 
@@ -28,7 +30,7 @@ Type: string
 Default: `localhost`
 
 > [!WARNING]
-> If the `ServiceControl/HostName` setting is changed, and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md).
+> If the `ServiceControl/HostName` setting is changed, and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/configure-ravendb-location.md).
 
 ### ServiceControl/Port
 
@@ -39,11 +41,11 @@ Type: int
 Default: `33333`.
 
 > [!WARNING]
-> If the `ServiceControl/Port` setting is changed, and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](configure-ravendb-location.md).
+> If the `ServiceControl/Port` setting is changed, and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/configure-ravendb-location.md).
 
 ### ServiceControl/DatabaseMaintenancePort
 
-The port to bind the RavenDB when in maintenance mode or [RavenDB is exposed](creating-config-file.md#troubleshooting-servicecontrolexposeravendb).
+The port to bind the RavenDB when in maintenance mode or [RavenDB is exposed](#troubleshooting).
 
 Type: int
 
@@ -118,7 +120,7 @@ This setting will default to `Info` if an invalid value is assigned.
 
 ### ServiceControl/RavenDBLogLevel
 
-Controls the LogLevel of the RavenDB logs. See [Logging](logging.md).
+Controls the LogLevel of the RavenDB logs. See [Logging](/servicecontrol/logging.md).
 
 Type: string
 
@@ -157,6 +159,10 @@ Type: string
 
 Default: The Service Name
 
+#### ServiceControl Plugins
+
+The [Custom Checks](/monitoring/custom-checks/install-plugin.md) and [Heartbeats](/monitoring/heartbeats/install-plugin.md) monitoring plugins target this queue to send their data.
+
 ### ServiceControl/IngestErrorMessages
 
 Version: 4.33.0+
@@ -193,7 +199,7 @@ Default: `65512`.
 
 ### ServiceControl/AuditRetentionPeriod
 
-This setting is deprecated in version 4.0.0. See [ServiceControl Audit configuration](/servicecontrol/audit-instances/creating-config-file.md).
+This setting is deprecated in version 4.0.0. See [ServiceControl Audit configuration](/servicecontrol/audit-instances/configuration.md).
 
 The period to keep an audit message before it is deleted.
 
@@ -245,7 +251,7 @@ In some cases, the ingestion rate can be too high and the underlying database ca
 This setting sets an upper limit on body size to be stored.
 
 > [!NOTE]
-> This setting is not available in versions 4.4 and higher. It is still supported in Audit instances via [ServiceControl.Audit/MaxBodySizeToStore](/servicecontrol/audit-instances/creating-config-file.md#performance-tuning-servicecontrol-auditmaxbodysizetostore) setting
+> This setting is not available in versions 4.4 and higher. It is still supported in Audit instances via [ServiceControl.Audit/MaxBodySizeToStore](/servicecontrol/audit-instances/configuration.md#performance-tuning-servicecontrol-auditmaxbodysizetostore) setting
 
 Type: int
 
@@ -320,7 +326,7 @@ Default: There is no default. This setting needs to be specified.
 
 This entry should be set to `false` if there is no external process reading messages from the `Error Forwarding Queue`.
 
-See [Installation](installation.md) for details on how to set this at install time.
+See [deployment](/servicecontrol/servicecontrol-instances/deployment/) for details on how to set this at install time. <!-- //TODO make this more elegant -->
 
 ## Plugin-specific
 
@@ -344,7 +350,7 @@ When configuring the heartbeat grace period, make sure it is greater than the [h
 ServiceControl stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If during troubleshooting, direct access to the RavenDB instance is required while ServiceControl is running, ServiceControl can be configured to expose the RavenDB studio.
 
 > [!NOTE]
-> [Maintenance mode](maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
+> [Maintenance mode](/servicecontrol/maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
 
 > [!WARNING]
 > The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl and is not intended for external manipulation or modifications.
@@ -360,11 +366,11 @@ http://localhost:{configured ServiceControl instance maintenance port}/studio/in
 ```
 
 > [!NOTE]
-> The ServiceControl embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access, the hostname must be [set to a fully qualified domain name](setting-custom-hostname.md).
+> The ServiceControl embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access, the hostname must be [set to a fully qualified domain name](/servicecontrol/setting-custom-hostname.md).
 
 ### ServiceControl/DataSpaceRemainingThreshold
 
-The percentage threshold for the [Message database storage space](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive), then the check will fail, alerting the user.
+The percentage threshold for the [Message database storage space](/servicecontrol/servicecontrol-instances/<!-- //TODO ServiceControl self monitoring via custom checks -->) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive), then the check will fail, alerting the user.
 
 Type: int
 
@@ -372,7 +378,7 @@ Default: 20
 
 ### ServiceControl/MinimumStorageLeftRequiredForIngestion
 
-This setting was introduced in version 4.28. The percentage threshold for the [Critical message database storage space](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-critical-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive), then the check will fail, alerting the user. The message ingestion will also be stopped to prevent data loss. Message ingestion will resume once more disk space is made available.
+This setting was introduced in version 4.28. The percentage threshold for the [Critical message database storage space](/servicecontrol/servicecontrol-instances/<!-- //TODO ServiceControl self monitoring via custom checks -->) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive), then the check will fail, alerting the user. The message ingestion will also be stopped to prevent data loss. Message ingestion will resume once more disk space is made available.
 
 Type: int
 

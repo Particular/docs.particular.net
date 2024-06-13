@@ -13,7 +13,7 @@ For information about how to subscribe to ServiceControl integration events, see
 
 ## `HeartbeatStopped`
 
-The `HeartbeatStopped` event is published if the ServiceControl instance does not receive a heartbeat from an active endpoint instance within a [configured grace period](/servicecontrol/creating-config-file.md#plugin-specific-servicecontrolheartbeatgraceperiod).
+The `HeartbeatStopped` event is published if the ServiceControl instance does not receive a heartbeat from an active endpoint instance within a [configured grace period](/servicecontrol/servicecontrol-instances/configuration.md#plugin-specific-servicecontrolheartbeatgraceperiod).
 
 ```csharp
 public class HeartbeatStopped

@@ -80,7 +80,7 @@ The logs are rolled based on date and size, any log exceeding 30MB will trigger 
 
 Instances of the ServiceControl service write logging information and failed message import stack traces to the Windows Event log and the file system.
 
-To configure logging for ServiceControl Audit and Monitoring instances, refer to the [ServiceControl Audit configuration settings](/servicecontrol/audit-instances/creating-config-file.md#host-settings-servicecontrol-auditloglevel) or [ServiceControl Monitoring configuration settings](/servicecontrol/monitoring-instances/installation/creating-config-file.md#logging-monitoringloglevel) documentation pages.
+To configure logging for ServiceControl Audit and Monitoring instances, refer to the [ServiceControl Audit configuration settings](/servicecontrol/audit-instances/configuration.md#logging-servicecontrol-auditloglevel) or [ServiceControl Monitoring configuration settings](/servicecontrol/monitoring-instances/configuration.md#logging-monitoringloglevel) documentation pages.
 
 ### Versions 1.8.3 and below
 
@@ -114,4 +114,4 @@ Log Level Options: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 
 ## Critical Exception Logging
 
-If ServiceControl experiences a critical exception when running as a Windows Service, the exception information will be logged to the Windows EventLog. If ServiceControl is running interactively, the error is shown on the console and not logged. Typically ServiceControl is only run interactively to conduct database maintenance. See [Compacting the ServiceControl RavenDB database](db-compaction-v5.md).
+If ServiceControl experiences a critical exception when running as a Windows Service, the exception information will be logged to the Windows EventLog. If ServiceControl is running interactively, the error is shown on the console and not logged. Typically ServiceControl is only run interactively to conduct database maintenance. See [Compacting the ServiceControl RavenDB database](/servicecontrol/db-compaction-v5.md).

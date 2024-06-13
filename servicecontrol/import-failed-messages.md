@@ -19,11 +19,11 @@ Messages can fail to be imported into the ServiceControl database for the follow
 
 Messages that fail to be imported are stored in the ServiceControl database in the `FailedAuditImports` and `FailedErrorImports` collections.
 
-In addition, a log with the failure reason is written for the message in the [`%ServiceControl/LogPath%`](/servicecontrol/creating-config-file.md#host-settings-servicecontrollogpath)`\FailedImports\{Audit|Error}\%failureid%.txt`. These messages will not be visible in ServiceInsight.
+In addition, a log with the failure reason is written for the message in the `%ServiceControl/LogPath%` ([error instances](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrollogpath)/[audit instances](/servicecontrol/audit-instances/configuration.md#logging-servicecontrol-auditlogpath)) `\FailedImports\{Audit|Error}\%failureid%.txt`. These messages will not be visible in ServiceInsight.
 
 ## Failed message custom check
 
-When a failed import is detected in the ServiceControl database, the [**Message Ingestion** custom check](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-failed-imports) is marked as failed to bring the failed import(s) to the administrator's attention.
+When a failed import is detected in the ServiceControl database, the [**Message Ingestion** custom check](/servicecontrol/servicecontrol-instances/) is marked as failed to bring the failed import(s) to the administrator's attention.
 
 ## How to reimport
 
