@@ -12,13 +12,13 @@ The PostgreSQL transport implements the publish-subscribe pattern. The transport
 
 Subscription information can be cached for a given period of time so that it does not have to be loaded every single time an event is being published. The longer the cache period is, the higher the chance that new subscribers miss some events.
 
-The default behavior is to cache subscription information for 5 seconds. This value is comparable to the average time it takes a subscription message to reach the destination endpoint when using message-driven publish-subscribe (as in versions 4 and below). On the other hand the value is high enough to prevent excessive database lookups in high throughput scenarios when hundreds of messages are published each second.
+The default behavior is to cache subscription information for 5 seconds. This value is comparable to the average time it takes a subscription message to reach the destination endpoint when using message-driven publish-subscribe (as in versions 4 and below). On the other hand, the value is high enough to prevent excessive database lookups in high throughput scenarios when hundreds of messages are published each second.
 
 If the default value is not suitable for a particular endpoint it can be changed. To configure it, use following API:
 
 snippet: configure-subscription-cache
 
-In systems where events are subscribed and unsubscribed regularly (e.g. desktop applications unsubscribe when shutting down) it makes sense to keep the caching period short or to disable the caching altogether:
+In systems where events are subscribed and unsubscribed regularly (e.g. desktop applications unsubscribe when shutting down), it makes sense to keep the caching period short or to disable the caching altogether:
 
 snippet: disable-subscription-cache
 

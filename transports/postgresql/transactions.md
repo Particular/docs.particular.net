@@ -8,9 +8,9 @@ component: PostgreSqlTransport
 
 The PostgreSQL transport supports the following [transport transaction modes](/transports/transactions.md):
 
- * Transport transaction - Send atomic with receive
- * Transport transaction - receive only
- * Unreliable (transactions disabled)
+* Transport transaction - Send atomic with receive
+* Transport transaction - receive only
+* Unreliable (transactions disabled)
 
 `TransactionScope` mode is particularly useful as it enables `exactly once` message processing with distributed transactions. However, when transport, persistence, and business data are all stored in a single PostgreSQL catalog, it is possible to achieve `exactly-once` message delivery without distributed transactions.
 
