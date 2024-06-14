@@ -57,7 +57,7 @@ snippet: EmptyProgram
 >
 > Alternatively, in the code snippet's **Copy/Edit** menu you will find a **Copy usings** item that will copy the namespaces used by the snippet to your clipboard.
 
-Now that we have a `Main` method, let's take a look at the code we're going to add, analyzing the importance of each line. First, add the following code to the `Main` method:
+Now that we have a `Main` method, let's discuss the importance of each line we're going to add to it. First, add the following code to the `Main` method:
 
 snippet: Main
 
