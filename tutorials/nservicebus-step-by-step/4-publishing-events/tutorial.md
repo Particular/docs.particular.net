@@ -18,7 +18,7 @@ In the next 25-30 minutes, you will learn how the publish/subscribe pattern can 
 
 ## Events
 
-An **event** is another type of message that is published to multiple receivers, unlike a command which is sent to only one receiver. Let's take a look at the formal definitions for commands and events:
+Unlike a **command** which is sent to only one receiver, an **event** is another type of message that is published to multiple receivers. Let's take a look at the formal definitions for commands and events:
 
 A **command** is a message that can be sent from one or more senders and is processed by a single receiver.
 
