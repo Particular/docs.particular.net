@@ -213,7 +213,7 @@
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Microsoft.Azure.Functions.Extensions/" target="_blank">Microsoft.Azure.Functions.Extensions</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="http://go.microsoft.com/fwlink/?LinkID=320972" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/Microsoft.Azure.WebJobs.Extensions.ServiceBus/" target="_blank">Microsoft.Azure.WebJobs.Extensions.ServiceBus</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Microsoft.Azure.WebJobs.Extensions.ServiceBus_5.16.0/sdk/servicebus/Microsoft.Azure.WebJobs.Extensions.ServiceBus/README.md" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Azure.WebJobs.Extensions.ServiceBus/" target="_blank">Microsoft.Azure.WebJobs.Extensions.ServiceBus</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Microsoft.Azure.WebJobs.Extensions.ServiceBus_5.16.1/sdk/servicebus/Microsoft.Azure.WebJobs.Extensions.ServiceBus/README.md" target="_blank">Project Site</a> |
 
 ### [NServiceBus.AzureFunctions.Worker.ServiceBus](/nuget/NServiceBus.AzureFunctions.Worker.ServiceBus)
 
