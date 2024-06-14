@@ -70,7 +70,7 @@ Between immediate and delayed retries, there can be [many attempts to process a 
 
 The last step, moving the message to an error queue, is how NServiceBus deals with **systemic exceptions**. In a messaging system, systemic exceptions are the cause of **poison messages**, messages that cannot be processed successfully under any circumstances. Poison messages have to be moved aside, otherwise they will clog up the queue and prevent valid messages from being processed.
 
-We'll take a look at a few options for configuring retries in the exercise, but for more the details check out the [recoverability documentation](/nservicebus/recoverability/).
+We'll take a look at a few options for configuring retries in the exercise, but for more details, check out the [recoverability documentation](/nservicebus/recoverability/).
 
 
 ## Replaying messages
