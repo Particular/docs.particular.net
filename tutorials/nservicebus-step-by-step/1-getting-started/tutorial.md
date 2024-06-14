@@ -86,7 +86,7 @@ Capturing the `transport` settings in a variable as shown will make things easie
 
 ### Starting up
 
-At the end of the `Main` method, after the configuration code, add the following lines which will: start the endpoint, keep it running until you press the <kbd>Enter</kbd> key, that will shut it down.
+At the end of the `Main` method, after the configuration code, add the following lines which will start the endpoint and keep it running until you press the <kbd>Enter</kbd> key to shut it down.
 
 snippet: Startup
 
