@@ -1,33 +1,32 @@
 ---
 title: "NServiceBus Step-by-step: Publishing Events"
-reviewed: 2023-11-24
+reviewed: 2024-05-21
 summary: In this 25-30 minute tutorial, you'll learn how to use the Publish/Subscribe pattern in NServiceBus to define, publish, and subscribe to an event.
 redirects:
 - tutorials/intro-to-nservicebus/4-publishing-events
 - tutorials/nservicebus-101/lesson-4
 extensions:
 - !!tutorial
-  nextText: "Next Lesson: Retrying errors"
+  nextText: "Next: Retrying errors"
   nextUrl: tutorials/nservicebus-step-by-step/5-retrying-errors
 ---
 
-So far in this tutorial, we have only sent **commands** – one-way messages from a sender to a specific receiver. There's another type of message we have yet to cover called an **event**. In many ways events are just like commands. They're simple classes and you deal with them in much the same way. But from an architectural standpoint, commands and events are *polar opposites*. This creates a useful dichotomy. We can take advantage of the properties of events to open up new possibilities in how we design software.
+So far in this tutorial, we have only sent **commands**, meaning one-way messages from a sender to a specific receiver. There's another type of message we have yet to cover called an **event**. In many ways events are just like commands. They're simple classes and you deal with them in much the same way. But from an architectural standpoint, commands and events are *polar opposites*. This creates a useful dichotomy. We can take advantage of the properties of events to open up new possibilities in how we design software.
 
 In the next 25-30 minutes, you will learn how the publish/subscribe pattern can help you create more maintainable code. Together, we'll learn to define, publish, and subscribe to an event.
 
 
 ## Events
 
-An **event** is another type of message that is published to multiple receivers, unlike a command which is sent to one receiver. Let's take a look at the formal definitions for commands and events:
+Unlike a **command** which is sent to only one receiver, an **event** is another type of message that is published to multiple receivers. Let's take a look at the formal definitions for commands and events:
 
-> [!NOTE]
-> A **command** is a message that can be sent from one or more senders and is processed by a single receiver.
->
-> An **event** is a message that is published from a single sender, and is processed by (potentially) many receivers.
+A **command** is a message that can be sent from one or more senders and is processed by a single receiver.
+
+An **event** is a message that is published from a single sender, and is processed by (potentially) many receivers.
 
 You can see that in many ways, commands and events are exact opposites, and the differences in their definition leads us to different uses for each.
 
-A command can be sent from anywhere, but is processed by one receiver. This is very similar to a web service, or any other [RPC](https://en.wikipedia.org/wiki/Remote_procedure_call)-style service. The big difference is that a one-way message does not have any return value like a web service would have. This means that the handler for the command is doing work for whomever is calling it, and that the sender has a very good idea about what it expects to happen as a result of sending the command. It is the sender saying "Will you please do something for me?" and so commands should be named in the [imperative tense](https://en.wikipedia.org/wiki/Imperative_mood), like `PlaceOrder` and `ChargeCreditCard`. This creates tight coupling between the sender and receiver, because while it is possible to reject a command, you can't have true autonomy if someone else can tell you what to do.
+A command can be sent from anywhere, but is processed by one receiver. This is very similar to a web service, or any other [RPC](https://en.wikipedia.org/wiki/Remote_procedure_call)-style service. The big difference is that a command does not have any return value like a web service would have. This means that the handler for the command is doing work for whomever is calling it, and that the sender has a very good idea about what it expects to happen as a result of sending the command. It is the sender saying "Will you please do something for me?" and so commands should be named in the [imperative tense](https://en.wikipedia.org/wiki/Imperative_mood), like `PlaceOrder` and `ChargeCreditCard`. This creates tight coupling between the sender and receiver, because while it is possible to reject a command, you can't have true autonomy if someone else can tell you what to do.
 
 An event, on the other hand, is sent by one logical sender, and received by many receivers, or maybe one receiver, or even zero receivers.  This makes it an announcement that something has already happened. A subscriber can't reject or cancel an event any more than you could stop the New York Times from delivering newspapers to all of their subscribers. The publisher has no idea (and doesn't care) what receivers choose to do with the event; it's just making an announcement. So events should be named in the [past tense](https://en.wikipedia.org/wiki/Past_tense), commonly ending with the **-ed** suffix, like `OrderPlaced` and `CreditCardCharged`. This creates loose coupling, because while the contract (the content of the message) must be agreed upon, there is no requirement that subscribers of an event do anything.
 
@@ -53,9 +52,9 @@ The loose coupling provided by publishing events gives us quite a bit of flexibi
 
 ## Better code through decoupling
 
-Imagine you are implementing the SubmitOrder method for an e-commerce website. To complete the sale, you need to retrieve the shopping cart, insert an Order and OrderLines into the database, authorize a credit card transaction and capture the authorization, and email the user a receipt. You also may need to notify a fulfillment agency via a web service, update a wish list or gift registry, or store "frequently bought together" information, all depending upon your specific business requirements.
+Imagine you are implementing a `SubmitOrder` method for an e-commerce website. To complete the sale, you need to retrieve the shopping cart, insert an Order and OrderLines into the database, authorize a credit card transaction and capture the authorization, and email the user their receipt. You also may need to notify a fulfillment agency via a web service, update a wish list or gift registry, or store "frequently bought together" information, all depending upon your specific business requirements.
 
-You could do all this work in one monolithic method with hundreds of lines of code. You could further organize it by making each task a separate method, and have the SubmitOrder method call into each one of them in turn; but while this makes each method more manageable, it doesn't reduce the risk of running all those processes in a chain.
+You could do all this work in one monolithic method with hundreds of lines of code. You could further organize it by making each task a separate method, and have the `SubmitOrder` method call into each one of them in turn; but while this makes each method more manageable, it doesn't reduce the risk of running all those processes in a chain.
 
 When one of the steps in that long chain fails, you're left with a partially completed process that requires manual intervention to fix, either by mucking around manually in the database, manually reconciling with a credit card processor, or manually sending confirmation emails.
 
@@ -70,7 +69,7 @@ Creating an event message is similar to creating a command. We create a class an
 
 snippet: Event
 
-All the other considerations for command messages apply to events as well. Properties can be simple types, complex types, or collections - whatever the message serializer supports.
+All the other considerations for command messages apply to events as well. Properties can be simple types, complex types, or collections, depending on what the message serializer supports.
 
 With events, you should be even more careful about putting too much information in an event message. Sometimes this complexity can't be avoided for commands, as the command receiver needs the information to do its job. That's manageable for commands because the sender and receiver are highly coupled already. For events, it's a different story. Since a publisher of an event does not know (or care) how many subscribers it has, it may not be possible to modify all of them if a change is required to the event.
 
@@ -87,13 +86,13 @@ snippet: EventHandler
 
 ## Exercise
 
-Now that we've learned about events and the publish/subscribe pattern, let's make use of it in our ordering system. When a user places an order, we're going to publish an OrderPlaced event, then subscribe to it from two brand new endpoints: Billing and Shipping.
+Now that we've learned about events and the publish/subscribe pattern, let's make use of it in our ordering system. When a user places an order, we're going to publish an `OrderPlaced` event, then subscribe to it from two brand new endpoints: **Billing** and **Shipping**.
 
-We'll also create a new OrderBilled event that will be published by the Billing endpoint once the credit card transaction is complete.
+We'll also create a new `OrderBilled` event that will be published by the **Billing** endpoint once the credit card transaction is complete.
 
 ![Lesson 4 Diagram](diagram.svg)
 
-When the Shipping endpoint receives both the OrderPlaced and OrderBilled events, it will know that it is time to ship the product to the customer. Because this requires stored state, we can't accomplish that with message handlers alone. To implement that functionality, we would need a [Saga](/nservicebus/sagas/), but that will not be covered in this lesson.
+When the **Shipping** endpoint receives both the `OrderPlaced` and `OrderBilled` events, it will know that it is time to ship the product to the customer. Because this requires stored state, we can't accomplish that with message handlers alone. To implement that functionality, we would need a [Saga](/nservicebus/sagas/), but that will not be covered in this lesson.
 
 
 ### Create an event
@@ -181,6 +180,6 @@ You'll note that in the sample solution, the message for each handler says "Shou
 
 ## Summary
 
-In this lesson we learned all about events, how they differ from commands, and how that enables us to create systems that are more decoupled and that adhere to the Single Responsibility Principle. We published an `OrderPlaced` event from the Sales endpoint, and created the Billing and Shipping endpoints to subscribe to that event. We also published the `OrderBilled` event from the Billing endpoint, and subscribed to it in Shipping.
+In this lesson we learned all about events, how they differ from commands, and how that enables us to create systems that are more decoupled and that adhere to the Single Responsibility Principle. We published an `OrderPlaced` event from the **Sales** endpoint, and created the **Billing** and **Shipping** endpoints to subscribe to that event. We also published the `OrderBilled` event from the **Billing** endpoint, and subscribed to it in **Shipping**.
 
 In the final lesson for this tutorial, we'll see what happens when we introduce errors into our system, and see how we can automatically retry those messages to make a truly resilient system.
