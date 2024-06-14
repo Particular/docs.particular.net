@@ -26,7 +26,7 @@ To define a command, create a class and mark it with the `ICommand` interface.
 
 snippet: Command
 
-By implementing this interface we let NServiceBus know that the class is a command so that it can build up some metadata about the message type when the endpoint starts up. Any properties you create within the message will constitute the message data.
+By implementing this interface, we let NServiceBus know that the class is a command so that it can build up some metadata about the message type when the endpoint starts up. Any properties you create within the message constitutes the message data.
 
 The name of your command classes it is important, as they allow to infer the intent of the class without looking at its content. A command is an order to do something, so it should be named in the [imperative tense](https://en.wikipedia.org/wiki/Imperative_mood). 
 `PlaceOrder` and `ChargeCreditCard` are good names for commands, because they are phrased as a command and are very specific. We could expect that `PlaceOrder` will place an order and `ChargeCreditCard` will charge money on a credit card. `CustomerMessage`, on the other hand, is not a good example. It is not in the imperative, and it's vague. Ideally another person should know exactly what a command's purpose is just by reading its name.
