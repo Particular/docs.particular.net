@@ -88,7 +88,7 @@ snippet: EventHandler
 
 Now that we've learned about events and the publish/subscribe pattern, let's make use of it in our ordering system. When a user places an order, we're going to publish an `OrderPlaced` event, then subscribe to it from two brand new endpoints: **Billing** and **Shipping**.
 
-We'll also create a new OrderBilled event that will be published by the **Billing** endpoint once the credit card transaction is complete.
+We'll also create a new `OrderBilled` event that will be published by the **Billing** endpoint once the credit card transaction is complete.
 
 ![Lesson 4 Diagram](diagram.svg)
 
