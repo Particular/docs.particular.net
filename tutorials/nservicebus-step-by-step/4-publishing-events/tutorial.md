@@ -69,7 +69,7 @@ Creating an event message is similar to creating a command. We create a class an
 
 snippet: Event
 
-All the other considerations for command messages apply to events as well. Properties can be simple types, complex types, or collections, it will depend on what the message serializer supports.
+All the other considerations for command messages apply to events as well. Properties can be simple types, complex types, or collections, depending on what the message serializer supports.
 
 With events, you should be even more careful about putting too much information in an event message. Sometimes this complexity can't be avoided for commands, as the command receiver needs the information to do its job. That's manageable for commands because the sender and receiver are highly coupled already. For events, it's a different story. Since a publisher of an event does not know (or care) how many subscribers it has, it may not be possible to modify all of them if a change is required to the event.
 
