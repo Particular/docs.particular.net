@@ -97,7 +97,7 @@ When you run the endpoint for the first time, the endpoint will:
  * Display its logging information, which is [written to a file, Trace, and the Console](/nservicebus/logging/#default-logging). NServiceBus also logs to multiple levels, so you can [change the log level](/nservicebus/logging/#default-logging-changing-the-defaults-changing-the-logging-level) from `INFO` to `DEBUG` in order to get more information.
  * Display the [status of your license](/nservicebus/licensing/).
  * Attempt to add the current user to the "Performance Monitor Users" group so that it can write [performance counters](/monitoring/metrics/performance-counters.md) to track its health and progress.
- * Create file-based "queues" in the `.learningtransport` directory inside your solution directory. This is why we recommend to add `.learningtransport` to your source control system's ignore file.
+ * Create file-based "queues" in the `.learningtransport` directory inside your solution directory. We recommend adding `.learningtransport` to your source control system's ignore file.
 
 ## Summary
 
