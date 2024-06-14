@@ -90,8 +90,7 @@ At the end of the `Main` method, after the configuration code, add the following
 
 snippet: Startup
 
-The endpoint is initialized according to the settings defined by the `EndpointConfiguration` class. Once the endpoint starts, any changes made to the configuration information won't be applied.
-In order to apply configuration changes, you will need to restart the endpoint.
+The endpoint is initialized according to the settings defined by the `EndpointConfiguration` class. Once the endpoint starts, any changes made to the configuration won't be applied until you restart the endpoint.
 
 When you run the endpoint for the first time, the endpoint will:
 
