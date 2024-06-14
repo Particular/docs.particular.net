@@ -27,7 +27,7 @@ snippet: AzureDataBusConnectionAndContainer
 
 #### Token-credentials
 
-Enables usage of Azure Active Directory (AAD) authentication such as [managed identities for Azure resources](https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-access-azure-active-directory) instead of the shared secret in the connection string.
+Enables usage of Microsoft Entra Id authentication such as [managed identities for Azure resources](https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-access-azure-active-directory) instead of the shared secret in the connection string.
 
 #### With a preconfigured BlobServiceClient
 
