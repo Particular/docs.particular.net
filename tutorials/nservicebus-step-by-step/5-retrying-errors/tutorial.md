@@ -136,7 +136,7 @@ You can also [configure delayed retries](/nservicebus/recoverability/configure-d
 
 ### Transient exceptions
 
-Throwing a big exception is an example of a systemic error. Let's see how NServiceBus reacts when we throw more transient exception. To do this, let's introduce a random number generator so that we only throw an exception 20% of the time.
+Throwing a big exception is an example of a systemic error. Let's see how NServiceBus reacts when we throw a transient exception. To do this, let's introduce a random number generator so that we only throw an exception 20% of the time.
 
 1. In the **Sales** endpoint, locate the **PlaceOrderHandler**.
 1. Add a static **Random** instance to the class:
