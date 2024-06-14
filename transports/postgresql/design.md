@@ -59,6 +59,9 @@ In certain conditions, the initial estimate of a number of pending messages migh
 
 The default peek interval, if there is has been no messages in the queue, is 1 second. The recommended range for this setting is between 100 milliseconds to 10 seconds. If a value higher than the maximum recommended settings is used, a warning message will be logged. While a value less than 100 milliseconds will put too much unnecessary stress on the database, a value larger than 10 seconds should also be used with caution as it may result in messages backing up in the queue.
 
+[!NOTE]
+In cases where the queue peek interval is configured, care should be taken to ensure that the peek interval is not bigger than the Time-To-Be-Received(TTBR) to ensure that such messages are not discarded.
+
 ### Queue peek settings
 
 #### Peek delay configuration
