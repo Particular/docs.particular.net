@@ -58,6 +58,8 @@ Defaults to `1` per sec.
 
 Create a class which implements the `IDelayedMessageStore` interface and pass an instance to the `DelayedDeliverySettings` constructor.
 
+If the custom store needs to set up some infrastructure (create tables, etc.) then it must implement `IDelayedMessageStoreWithInfrastructure`. This interface extends `IDelayedMessageStore` adding a method for setting up the infrastructure. This new method is called before `IDelayedMessageStore.Initialize()`.
+
 ### Consistency
 
 In `TransactionScope` [transaction mode](/transports/transactions.md), the delayed message store is expected to enlist in the `TransactionScope` to ensure **exactly once** behavior. `FetchNextDueTimeout`, `Remove`, and sending messages to their destination queues are all executed in a single distributed transaction. The built-in SQL Server store supports this mode of operation.
