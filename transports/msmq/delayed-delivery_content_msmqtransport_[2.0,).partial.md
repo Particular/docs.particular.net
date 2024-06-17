@@ -58,7 +58,7 @@ Defaults to `1` per sec.
 
 Create a class which implements the `IDelayedMessageStore` interface and pass an instance to the `DelayedDeliverySettings` constructor.
 
-If the custom store needs to set up some infrastructure (create tables, etc.) then it must implement `IDelayedMessageStoreWithInfrastructure`. This interface includes `IDelayedMessageStore` and adds a method for setting up the infrastructure. This method is called before `IDelayedMessageStore.Initialize()`.
+If the custom store needs to set up some infrastructure (create tables, etc.) then it must implement `IDelayedMessageStoreWithInfrastructure`. This interface extends `IDelayedMessageStore` adding a method for setting up the infrastructure. This new method is called before `IDelayedMessageStore.Initialize()`.
 
 ### Consistency
 
