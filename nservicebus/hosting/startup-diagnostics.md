@@ -7,7 +7,7 @@ reviewed: 2023-01-03
 ---
 
 > [!NOTE]
-> This document does not apply to Azure Function hosts. For Azure Function hosts, see [Azure Function In-process diagnostics](/nservicebus/hosting/azure-functions-service-bus/in-process/#configuration-custom-diagnostics) or [Azure Function Isolated Worker diagnostics](/nservicebus/hosting/azure-functions-service-bus/#custom-diagnostics).
+> This document does not apply to Azure Function hosts. For Azure Function hosts, see [Azure Function In-process diagnostics](/nservicebus/hosting/azure-functions-service-bus/in-process/#configuration-custom-diagnostics) or [Azure Function Isolated Worker diagnostics](/nservicebus/hosting/azure-functions-service-bus/#usage-custom-diagnostics).
 
 To make troubleshooting easier, diagnostic information is collected during endpoint startup and written to a `.diagnostics` sub-folder in the host output directory.
 
