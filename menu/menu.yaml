@@ -1002,7 +1002,7 @@
       Title: Addressing
     - Url: transports/postgresql/transactions
       Title: Transaction support
-    - Url:  persistence/sql/postgresql-combining-persistence-wth-transport
+    - Url:  persistence/sql/postgresql-combining-persistence-with-transport
       Title: Combining with PostgreSQL Persistence
   - Title: MSMQ
     Articles:
@@ -1191,7 +1191,7 @@
       Articles:
       - Url: persistence/sql/postgresql-scripts
         Title: Scripts
-      - Url:  persistence/sql/postgresql-combining-persistence-wth-transport
+      - Url:  persistence/sql/postgresql-combining-persistence-with-transport
         Title: Combining with PostgreSQL Transport
     - Url: persistence/sql/controlling-script-generation
       Title: Script generation

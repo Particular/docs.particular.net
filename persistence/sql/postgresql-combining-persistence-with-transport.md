@@ -9,7 +9,7 @@ related:
 
 ## Connection behavior
 
-When combining [PostgreSQL](/transports/postgresql) and [SQL persistence using the PostgreSQL dialect](persistence/sql/dialect-postgresql), the connection behaves differently based on whether the [Outbox](/nservicebus/outbox/) is enabled or disabled. This influences where the saga data is stored.
+When combining [PostgreSQL](/transports/postgresql) and [SQL persistence using the PostgreSQL dialect](/persistence/sql/dialect-postgresql.md), the connection behaves differently based on whether the [Outbox](/nservicebus/outbox/) is enabled or disabled. This influences where the saga data is stored.
 
 ### Without Outbox
 
