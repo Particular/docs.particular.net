@@ -62,7 +62,7 @@ To manually provision the entities in the namespace for the Function endpoint us
 
 ### Creating the endpoint queue
 
-```
+```cmd
 asb-transport endpoint create <queue name>
 ```
 
@@ -73,11 +73,10 @@ See the [operation scripting documentation](/transports/azure-service-bus/operat
 
 ### Subscribing to events
 
-```
+```cmd
 asb-transport endpoint subscribe <queue name> <eventtype>
 ```
 
 See the [operational scripting documentation](/transports/azure-service-bus/operational-scripting.md#operational-scripting-asb-transport-endpoint-subscribe) for the `asb-transport endpoint subscribe` command for more details.
-
 
 partial: package-requirements
