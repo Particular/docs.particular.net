@@ -1100,7 +1100,7 @@ To create an image:
 - From the "File" menu:
    - Click "Export as"
    - Click "PNG.."
-   - Set the Zoom setting to 200%, as this will cater for big resolution screens.
+   - Set the Zoom setting to 200% to cater for scaled-up for high resolution screens.
    - Do NOT select "Transparent Background", as this makes the visibility of elements in the image dependent on the user's theme (e.g. light or dark).
  - Choose the file location and click "Export"
 
