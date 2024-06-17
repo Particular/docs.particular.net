@@ -901,6 +901,8 @@
       Articles:
       - Url: transports/upgrades/msmq-1to2
         Title: Version 1 to 2
+       - Url: transports/upgrades/msmq-2to2.0.4
+        Title: Version 2 to 2.0.4
   - Title: Learning
     Articles:
     - Url: transports/learning
