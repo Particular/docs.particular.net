@@ -56,9 +56,11 @@ NServiceBus supports multiple message de-duplication strategies that suit a wide
 
 ### Local transactions
 
-[SQL Server transport](/transports/sql) is unique among NServiceBus transports as it allows using a single SQL Server transaction to modify the application state and send/receive messages. Both NHibernate and SQL persistence automatically detect if the message processing context contains an open transaction. If this transaction points to a database that the persister is configured to use, the synchronized storage session wraps that transport transaction. As a result, the state changes requested by the handlers are committed atomically when consuming the incoming message and sending all outgoing messages. This guarantees that no duplicate messages are created in the system.
+[SQL Server](/transports/sql) and [PostgreSQL](/transports/postgresql) transports allow using a single database transaction to modify the application state and send/receive messages. Persistence automatically detects if the message processing context contains an open transaction and the synchronized storage session joins that transaction. As a result, the state changes requested by the handlers are committed atomically when consuming the incoming message and sending all outgoing messages. This guarantees that no duplicate messages are created in the system.
 
-[SQL persistence](/persistence/sql/accessing-data.md) can be used in the shared local transaction mode in `SendsAtomicWithReceive` and `TransactionScope` [transaction modes](/transports/transactions.md). [NHibernate persistence](/persistence/nhibernate) can only share the transaction context with the transport if configured to use the `TransactionScope` transaction mode. However, the transaction **will not be escalated** to a distributed transaction.
+[SQL Server transport](/transports/sql) can share transaction context with [SQL persistence](/persistence/sql/accessing-data.md) in the `ReceiveOnly`, `SendsAtomicWithReceive`, and `TransactionScope` [transaction modes](/transports/transactions.md) and with [NHibernate persistence](/persistence/nhibernate) in the `TransactionScope` [transaction modes](/transports/transactions.md).
+
+[PostgreSQL transport](/transports/postgresql) can share transaction context with [SQL persistence](/persistence/postgresql/accessing-data.md) in the `ReceiveOnly` and `SendsAtomicWithReceive` [transaction modes](/transports/transactions.md).
 
 ### Distributed transactions
 
