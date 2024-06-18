@@ -995,6 +995,22 @@
       Title: Azure SQL considerations
     - Url: transports/sql/troubleshooting
       Title: Troubleshooting
+  - Title: PostgreSQL
+    Articles:
+    - Url: transports/postgresql
+      Title: PostgreSQL transport
+    - Url: transports/postgresql/design
+      Title: Design
+    - Url: transports/postgresql/native-publish-subscribe
+      Title: Native publish/subscribe
+    - Url: transports/postgresql/connection-settings
+      Title: Connection settings
+    - Url: transports/postgresql/addressing
+      Title: Addressing
+    - Url: transports/postgresql/transactions
+      Title: Transaction support
+    - Url:  persistence/sql/postgresql-combining-persistence-with-transport
+      Title: Combining with PostgreSQL Persistence
   - Title: MSMQ
     Articles:
     - Url: transports/msmq
@@ -1184,6 +1200,8 @@
       Articles:
       - Url: persistence/sql/postgresql-scripts
         Title: Scripts
+      - Url:  persistence/sql/postgresql-combining-persistence-with-transport
+        Title: Combining with PostgreSQL Transport
     - Url: persistence/sql/controlling-script-generation
       Title: Script generation
       Articles:

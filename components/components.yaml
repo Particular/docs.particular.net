@@ -530,6 +530,15 @@
     - NServiceBus.Transport.SqlServer
     - NServiceBus.SqlServer
 
+- Key: PostgreSqlTransport
+  Name: PostgreSql Transport
+  DocsUrl: /transports/postgresql
+  GitHubOwner: Particular
+  Category: Transport
+  ProjectUrl: https://github.com/Particular/NServiceBus.SqlServer
+  NugetOrder:
+    - NServiceBus.Transport.PostgreSql
+
 - Key: StructureMap
   Name: StructureMap Dependency Injection
   DocsUrl: /nservicebus/dependency-injection/structuremap
