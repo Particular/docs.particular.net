@@ -4,6 +4,8 @@ reviewed: 2024-06-18
 component: MsmqPersistence
 related:
 - persistence/msmq
+- transports/msmq/delayed-delivery
+- nservicebus/messaging/delayed-delivery
 ---
 
 This sample shows basic usage of MSMQ as storage for subscriptions.
@@ -25,4 +27,4 @@ snippet: ConfigureMsmqPersistenceEndpoint
 
 
 > [!NOTE]
-> MSMQ Persistence [only supports subscriptions](https://docs.particular.net/persistence/msmq/). A [different persistence is required for delayed delivery](https://docs.particular.net/transports/msmq/delayed-delivery) (e.g. for [saga timeouts](https://docs.particular.net/nservicebus/sagas/timeouts) or [delayed retries](https://docs.particular.net/nservicebus/recoverability/configure-delayed-retries)) since MSMQ doesn't have native delayed delivery support.
+> MSMQ Persistence [only supports subscriptions](https://docs.particular.net/persistence/msmq/). A [different persistence mechanism is required for delayed delivery](https://docs.particular.net/transports/msmq/delayed-delivery) since MSMQ doesn't have native delayed delivery support.
