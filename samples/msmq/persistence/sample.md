@@ -25,4 +25,4 @@ snippet: ConfigureMsmqPersistenceEndpoint
 
 
 > [!NOTE]
-> MSMQ Persistence only supports subscription storage. A different storage type is required for Timeouts since MSMQ doesn't have native timeout support.
+> MSMQ Persistence [only supports subscriptions](https://docs.particular.net/persistence/msmq/). A [different persistence is required for delayed delivery](https://docs.particular.net/transports/msmq/delayed-delivery) (e.g. for [saga timeouts](https://docs.particular.net/nservicebus/sagas/timeouts) or [delayed retries](https://docs.particular.net/nservicebus/recoverability/configure-delayed-retries)) since MSMQ doesn't have native delayed delivery support.
