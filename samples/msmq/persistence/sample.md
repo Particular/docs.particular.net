@@ -27,4 +27,4 @@ snippet: ConfigureMsmqPersistenceEndpoint
 
 
 > [!NOTE]
-> MSMQ Persistence [only supports subscriptions](https://docs.particular.net/persistence/msmq/). A [different persistence mechanism is required for delayed delivery](https://docs.particular.net/transports/msmq/delayed-delivery) since MSMQ doesn't have native delayed delivery support.
+> MSMQ Persistence [only supports subscriptions](/persistence/msmq/). A [different persistence mechanism is required for delayed delivery](/transports/msmq/delayed-delivery.md) since MSMQ doesn't have native delayed delivery support.
