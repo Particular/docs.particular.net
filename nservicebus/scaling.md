@@ -7,7 +7,7 @@ redirects:
 reviewed: 2024-06-17
 ---
 
-There are several reasons to scale out [logical endpoints](/nservicebus/endpoints/), such as to achieve higher message throughput, or to provide high availability to name a few.
+There are several reasons to scale out [logical endpoints](/nservicebus/endpoints/), such as to achieve higher message throughput, or to provide high availability to name a couple.
 
 ## Splitting message handlers
 
