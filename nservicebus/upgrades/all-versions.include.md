@@ -198,7 +198,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.3) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.4) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.4) | 2021-10-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.1) | ~~2020-06-24~~ | ~~2022-01-29~~    | ~~Superseded by 1.2.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.0.2) | ~~2018-05-29~~ | ~~2020-09-24~~    | ~~Superseded by 1.1.x~~           |
@@ -446,7 +446,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.3) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.4) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.4) | 2021-10-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.1) | ~~2020-06-24~~ | ~~2022-01-29~~    | ~~Superseded by 1.2.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.0.2) | ~~2018-05-29~~ | ~~2020-09-24~~    | ~~Superseded by 1.1.x~~           |
@@ -788,7 +788,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [6.0.x](https://www.nuget.org/packages/ParticularTemplates/6.0.0) | 2024-04-16     | -                 | -                                 |
 | [5.0.x](https://www.nuget.org/packages/ParticularTemplates/5.0.1) | 2023-06-19     | 2025-04-16        | Superseded by 6.0.x               |
-| [4.1.x](https://www.nuget.org/packages/ParticularTemplates/4.1.0) | 2020-08-14     | 2024-06-19        | Superseded by 5.0.x               |
+| [~~4.1.x~~](https://www.nuget.org/packages/ParticularTemplates/4.1.0) | ~~2020-08-14~~ | ~~2024-06-19~~    | ~~Superseded by 5.0.x~~           |
 | [~~4.0.x~~](https://www.nuget.org/packages/ParticularTemplates/4.0.0) | ~~2020-03-05~~ | ~~2020-11-14~~    | ~~Superseded by 4.1.x~~           |
 | [~~3.0.x~~](https://www.nuget.org/packages/ParticularTemplates/3.0.0) | ~~2018-11-29~~ | ~~2021-03-05~~    | ~~Superseded by 4.0.x~~           |
 | [~~2.0.x~~](https://www.nuget.org/packages/ParticularTemplates/2.0.0) | ~~2018-05-29~~ | ~~2019-11-29~~    | ~~Superseded by 3.0.x~~           |

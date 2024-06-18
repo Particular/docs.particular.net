@@ -50,7 +50,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.3) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.4) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.4) | 2021-10-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Transport.SqlServer](/nuget/NServiceBus.Transport.SqlServer)
@@ -191,7 +191,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.3) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.4) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.4) | 2021-10-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 ### Serializer packages
@@ -354,7 +354,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [6.0.x](https://www.nuget.org/packages/ParticularTemplates/6.0.0) | 2024-04-16     | -                 | -                                 |
 | [5.0.x](https://www.nuget.org/packages/ParticularTemplates/5.0.1) | 2023-06-19     | 2025-04-16        | Superseded by 6.0.x               |
-| [4.1.x](https://www.nuget.org/packages/ParticularTemplates/4.1.0) | 2020-08-14     | 2024-06-19        | Superseded by 5.0.x               |
+| [~~4.1.x~~](https://www.nuget.org/packages/ParticularTemplates/4.1.0) | ~~2020-08-14~~ | ~~2024-06-19~~    | ~~Superseded by 5.0.x~~           |
 
 ### Other packages
 
