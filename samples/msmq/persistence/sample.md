@@ -1,6 +1,6 @@
 ---
 title: MSMQ Subscription Persistence usage
-reviewed: 2021-07-23
+reviewed: 2024-06-18
 component: MsmqPersistence
 related:
 - persistence/msmq
@@ -25,4 +25,4 @@ snippet: ConfigureMsmqPersistenceEndpoint
 
 
 > [!NOTE]
-> MSMQ Persistence only supports subscription storage so another storage is needed for Timeouts since MSMQ doesn't have native timeout support.
+> MSMQ Persistence only supports subscription storage. A different storage type is required for Timeouts since MSMQ doesn't have native timeout support.
