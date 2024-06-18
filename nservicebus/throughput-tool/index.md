@@ -12,7 +12,7 @@ The tool can be installed as a .NET tool for Windows/Linux or as a self-containe
 
 ### .NET tool (recommended)
 
-1. Install [.NET 6.0](https://dotnet.microsoft.com/en-us/download).
+1. Install [.NET 8.0](https://dotnet.microsoft.com/en-us/download).
 1. From a terminal window, use the following command to install the throughput counter:
 
     ```shell
