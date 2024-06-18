@@ -60,7 +60,7 @@ NServiceBus supports multiple message de-duplication strategies that suit a wide
 
 [SQL Server transport](/transports/sql) can share transaction context with [SQL persistence](/persistence/sql/accessing-data.md) in the `ReceiveOnly`, `SendsAtomicWithReceive`, and `TransactionScope` [transaction modes](/transports/transactions.md) and with [NHibernate persistence](/persistence/nhibernate) in the `TransactionScope` [transaction modes](/transports/transactions.md).
 
-[PostgreSQL transport](/transports/postgresql) can share transaction context with [SQL persistence](/persistence/postgresql/accessing-data.md) in the `ReceiveOnly` and `SendsAtomicWithReceive` [transaction modes](/transports/transactions.md).
+[PostgreSQL transport](/transports/postgresql) can share transaction context with [SQL persistence](/persistence/sql/accessing-data.md) in the `ReceiveOnly` and `SendsAtomicWithReceive` [transaction modes](/transports/transactions.md).
 
 ### Distributed transactions
 
