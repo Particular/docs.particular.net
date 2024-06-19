@@ -289,7 +289,6 @@ snippet: HeaderWriterDefer
 
 Headers used to give visibility into "where", "when" and "by whom" of a message. They are used by [ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse/).
 
-
 ### $.diagnostics
 
 The [host details](/nservicebus/hosting/override-hostid.md) of the endpoint where the message was being processed. This header contains three parts:
@@ -320,6 +319,20 @@ The machine name the message was sent from.
 ### NServiceBus.Version
 
 The NServiceBus version number.
+
+## OpenTelemetry-related headers
+
+### traceparent
+
+The `traceparent`-header, in accordance with the [W3C TraceContext specification](https://www.w3.org/TR/trace-context/#traceparent-header).
+
+### tracestate
+
+The `tracestate`-header, in accordance with the [W3C TraceContext specification](https://www.w3.org/TR/trace-context/#tracestate-header).
+
+### baggage
+
+The `baggage`-header, in accordance with the [W3C TraceContext specification](https://www.w3.org/TR/baggage/#baggage-http-header-format).
 
 ## Audit headers
 
