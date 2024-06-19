@@ -298,6 +298,16 @@ class Usage
         #endregion
     }
 
+    void PostgreSqlDoNotShareConnection(EndpointConfiguration endpointConfiguration)
+    {
+        #region PostgreSqlDoNotShareConnection
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var dialect = persistence.SqlDialect<SqlDialect.PostgreSql>();
+        dialect.DoNotUsePostgreSqlTransportConnection();
+
+        #endregion
+    }
     void ExecuteScripts(string scriptDirectory, string tablePrefix)
     {
         #region ExecuteScriptsSqlServer
