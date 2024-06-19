@@ -505,8 +505,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Bridge/1.0.3) | 2022-12-19     | 2024-06-20        | Superseded by 2.0.x of NServiceBus.MessagingBridge |
-| [~~0.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Bridge/0.1.1) | ~~2022-11-17~~ | ~~2023-12-19~~    | ~~Superseded by 1.0.x~~           |
+| [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Bridge/1.0.3) | ~~2022-12-19~~ | ~~2024-06-20~~    | ~~Superseded by 2.0.x of NServiceBus.MessagingBridge~~ |
 
 #### [NServiceBus.UniformSession](/nuget/NServiceBus.UniformSession)
 
@@ -537,7 +536,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [3.2.x](https://www.nuget.org/packages/Particular.PlatformSample/3.2.3) | 2024-05-14     | -                 | -                                 |
 | [3.1.x](https://www.nuget.org/packages/Particular.PlatformSample/3.1.2) | 2024-03-20     | 2024-08-14        | Superseded by 3.2.x               |
-| [3.0.x](https://www.nuget.org/packages/Particular.PlatformSample/3.0.9) | 2023-12-01     | 2024-06-20        | Superseded by 3.1.x               |
+| [~~3.0.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.0.9) | ~~2023-12-01~~ | ~~2024-06-20~~    | ~~Superseded by 3.1.x~~           |
 | [2.40.x](https://www.nuget.org/packages/Particular.PlatformSample/2.40.0) | 2023-11-15     | 2024-12-01        | Superseded by 3.0.x               |
 | [~~2.39.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.39.0) | ~~2023-11-06~~ | ~~2024-02-15~~    | ~~Superseded by 2.40.x~~          |
 | [~~2.38.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.38.0) | ~~2023-08-16~~ | ~~2024-02-06~~    | ~~Superseded by 2.39.x~~          |

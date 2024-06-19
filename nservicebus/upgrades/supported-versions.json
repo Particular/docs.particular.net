@@ -966,6 +966,10 @@
       ]
     },
     {
+      "PackageId": "NServiceBus.Transport.PostgreSql",
+      "Versions": []
+    },
+    {
       "PackageId": "NServiceBus.Transport.SqlServer",
       "Versions": [
         {
@@ -1066,10 +1070,6 @@
     {
       "PackageId": "ParticularTemplates",
       "Versions": [
-        {
-          "Minor": "4.1",
-          "SupportLevel": "Mainstream"
-        },
         {
           "Minor": "5.0",
           "SupportLevel": "Mainstream"
