@@ -27,7 +27,7 @@ include: mssql-dtc-warning
 Microsoft Entra authentication is supported via the [standard connection string options](https://learn.microsoft.com/en-us/sql/connect/ado-net/sql/azure-active-directory-authentication).
 
 > [!NOTE]
-> Entra authentication is only supported when using [Microsoft.Data.SqlClient](https://learn.microsoft.com/en-us/sql/connect/ado-net/sql/azure-active-directory-authentication#overview)
+> Entra Id authentication is only supported when using [Microsoft.Data.SqlClient](https://learn.microsoft.com/en-us/sql/connect/ado-net/sql/azure-active-directory-authentication#overview)
 
 ## Unicode support
 
