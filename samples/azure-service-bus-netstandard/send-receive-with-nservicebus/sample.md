@@ -1,7 +1,7 @@
 ---
 title: Build message-driven business applications with NServiceBus
 summary: Build message-driven business applications with NServiceBus and Azure Service Bus
-reviewed: 2021-07-26
+reviewed: 2024-06-20
 component: ASBS
 related:
 - transports/azure-service-bus
