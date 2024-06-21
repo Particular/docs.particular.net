@@ -311,7 +311,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/2.0.0) | 2024-04-16     | -                 | -                                 |
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/1.1.1) | 2023-09-21     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
-| [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/1.0.1) | ~~2023-05-09~~ | ~~2023-12-21~~    | ~~Superseded by 1.1.x~~           |
 | [~~0.6.x~~](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/0.6.0) | ~~2023-04-27~~ | ~~2024-05-09~~    | ~~Superseded by 1.0.x~~           |
 
 #### [NServiceBus.AzureFunctions.InProcess.ServiceBus](/nuget/NServiceBus.AzureFunctions.InProcess.ServiceBus)
@@ -320,7 +319,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.4.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.4.0) | 2024-06-12     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
 | [4.3.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.3.1) | 2023-09-21     | 2024-09-12        | Superseded by 4.4.x               |
-| [~~4.2.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.2.0) | ~~2023-06-28~~ | ~~2023-12-21~~    | ~~Superseded by 4.3.x~~           |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/3.0.0) | 2022-01-12     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.AzureFunctions.Worker.ServiceBus](/nuget/NServiceBus.AzureFunctions.Worker.ServiceBus)
@@ -330,7 +328,6 @@
 | [5.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.1.0) | 2024-06-12     | -                 | -                                 |
 | [5.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.0.0) | 2024-04-16     | 2024-09-12        | Superseded by 5.1.x               |
 | [4.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.2.3) | 2023-09-21     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
-| [~~4.1.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.1.1) | ~~2022-12-21~~ | ~~2023-12-21~~    | ~~Superseded by 4.2.x~~           |
 | [3.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/3.1.2) | 2022-08-31     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Extensions.Hosting](/nuget/NServiceBus.Extensions.Hosting)
