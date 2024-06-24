@@ -118,6 +118,26 @@
       - Title: Observability
         Url: architecture/aws/observability
 
+- Name: Particular Service Platform
+  Topics:
+  - Title: General
+    Articles: 
+    - Url: platform
+      Title: About
+    - Url: platform/installation
+      Title: Platform installation
+    - Url: platform/platform-sample-package
+      Title: Platform Sample installation
+    - Url: platform/connecting
+      Title: Connecting endpoints
+    - Url: platform/json-schema
+      Title: Connection schema
+    - Url: platform/contributing
+      Title: Contributing
+    - Url: nservicebus/release-notifications
+      Title: Release notifications
+
+
 - Name: NServiceBus
   Topics:
   - Title: General
@@ -133,17 +153,6 @@
         Title: Glossary
       - Url: nservicebus/concepts/priority-queues
         Title: Priority Queues
-    - Url: platform
-      Title: Service Platform
-      Articles:
-      - Url: platform/installation
-        Title: Platform Installation
-      - Url: platform/platform-sample-package
-        Title: Platform Sample Installation
-      - Url: platform/connecting
-        Title: Connecting endpoints
-      - Url: platform/json-schema
-        Title: Connection schema
     - Url: nservicebus/dotnet-templates
       Title: dotnet new Templates
     - Url: nservicebus/platform-nuget-packages
@@ -154,10 +163,6 @@
       Title: License
     - Url: nservicebus/community
       Title: Community extensions and integrations
-    - Url: nservicebus/release-notifications
-      Title: Release notifications
-    - Url: platform/contributing
-      Title: Contributing
     - Url: nservicebus/scaling
       Title: Scaling out
     - Url: nservicebus/biztalk
@@ -1330,6 +1335,7 @@
       Title: Outbox
     - Url: persistence/dynamodb/transactions
       Title: Transactions
+
 - Name: ServiceInsight
   Topics:
   - Title: Introduction
@@ -1358,6 +1364,7 @@
       Title: Logging
     - Url: serviceinsight/troubleshooting
       Title: Troubleshooting
+
 - Name: ServicePulse
   Topics:
   - Title: Introduction
