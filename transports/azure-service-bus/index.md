@@ -16,16 +16,21 @@ The Azure Service Bus transport leverages the [Azure.Messaging.ServiceBus](https
 
 ## Transport at a glance
 
-|Feature                    |   |
-|:---                       |---
-|Transactions |None, ReceiveOnly, SendsWithAtomicReceive
-|Pub/Sub                    |Native
-|Timeouts                   |Native
-|Large message bodies       | with Premium tier or data bus
-|Scale-out             |Competing consumer
-|Scripted Deployment        |Supported using `NServiceBus.Transport.AzureServiceBus.CommandLine`
-|Installers                 |Optional
-|Native integration         |[Supported](native-integration.md)
+| Feature                                            |                                                                     |
+|:---------------------------------------------------|---------------------------------------------------------------------|
+| Transactions                                       | None, ReceiveOnly, SendsWithAtomicReceive                           |
+| Pub/Sub                                            | Native                                                              |
+| Timeouts                                           | Native                                                              |
+| Large message bodies                               | with Premium tier or data bus                                       |
+| Scale-out                                          | Competing consumer                                                  |
+| Scripted Deployment                                | Supported using `NServiceBus.Transport.AzureServiceBus.CommandLine` |
+| Installers                                         | Optional                                                            |
+| Native integration                                 | [Supported](native-integration.md)                                  |
+| [time-to-be-received](#time-to-be-received) (TTBR) | Once the message is fetched by the consumer                         |
 
 > [!NOTE]
 > The Azure Service Bus transport only supports the Standard and Premium tiers of the Microsoft Azure Service Bus service. Premium tier is recommended for production environments.
+
+## Time-to-be-received
+
+The Azure broker evaluate the TimeToBeReceived for a message only when the message is requested by the client. Expired messages are not removed from the queue and their disk space will not be reclaimed until they reach the front of the queue and a consumer tries to read them. Using TimeToBeReceived as a storage saving measure on the Azure transports is not a good choice for queues with long-lived messages like audit and forward.

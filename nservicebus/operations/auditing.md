@@ -60,34 +60,41 @@ Audit messages can be handled in a variety of ways: Save them in a database, do 
 
 partial: configuration
 
-## Audit configuration options
-
 There two settings that control auditing:
 
 ### Queue Name
 
 The queue name to forward audit messages.
 
-### OverrideTimeToBeReceived
+### Time-to-be-received
 
-To force a [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md) on audit messages by setting `OverrideTimeToBeReceived` use the configuration syntax below.
+The [Time-to-be-received (TTBR)](/nservicebus/messaging/discard-old-messages.md) for audit messages can be overriden.
 
-Note that while the phrasing is "forwarding a message" in the implementation it is actually "cloning and sending a new message". This is important when considering TimeToBeReceived since the time taken to receive and process the original message is not part of the TimeToBeReceived of the new audit message. In effect the audit message receives the full time allotment of whatever TimeToBeReceived is used.
-
-> [!WARNING]
-> MSMQ forces the same TimeToBeReceived on all messages in a transaction. Therefore, OverrideTimeToBeReceived is not supported when using the [MSMQ Transport](/transports/msmq/). If OverrideTimeToBeReceived is detected when using MSMQ an exception will be thrown with the following text:
->
-> ```
-> Setting a custom OverrideTimeToBeReceived for audits is not supported on transactional MSMQ
-> ```
+> [!NOTE]
+> What happens to messages for which the TTBR expires is different. Some transports will auto deleted expired message in the backlog of the queue while no messages are dequeued while others will only delete expired messages once the expired message reaches the front of the queue due to messages being requested. More details at [discarding old messages behavior](/nservicebus/messaging/discard-old-messages.md#behavior)
 
 #### Default Value
 
-If no OverrideTimeToBeReceived is defined then:
+#if-version [, 6.0)
 
-**Versions 5 and below**: TimeToBeReceived of the original message will be used.
+Until NServiceBus version 6.0 the TTBR of the original message will be used.
 
-**Versions 6 and above**: No TimeToBeReceived will be set.
+#end-if
+
+#if-version [6.0, )
+
+Audit message since NServiceBus 6.x by default will have no TTBR set.
+
+#end-if
+
+#### Override TimeToBeReceived
+
+The TimeToBeReceived (TTBR) on audit messages can be set using the following configuration syntax:
+
+snippet: audit-ttbr-override
+
+Note that while the phrasing is "forwarding a message" in the implementation it is actually "cloning and sending a new message". This is important when considering TimeToBeReceived since the time taken to receive and process the original message is not part of the TimeToBeReceived of the new audit message. In effect the audit message receives the full time allotment of whatever TimeToBeReceived is used.
+
 
 ## Filtering audit messages
 

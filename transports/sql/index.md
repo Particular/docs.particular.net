@@ -20,16 +20,17 @@ The SQL Server transport implements a message queuing mechanism on top of [Micro
 
 ## Transport at a glance
 
-|Feature                    |   |
-|:---                       |---
-|Transactions |None, ReceiveOnly, SendsAtomicWithReceive, TransactionScope
-|Pub/Sub                    |Native
-|Timeouts                   |Native
-|Large message bodies       |SqlServer can handle arbitrary message size within available resources, very large messages via data bus
-|Scale-out             |Competing consumer
-|Scripted Deployment        |Sql Scripts
-|Installers                 |Optional
-|Native integration         |[Supported](native-integration.md)
+| Feature                                            |                                                                                                          |
+|:---------------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| Transactions                                       | None, ReceiveOnly, SendsAtomicWithReceive, TransactionScope                                              |
+| Pub/Sub                                            | Native                                                                                                   |
+| Timeouts                                           | Native                                                                                                   |
+| Large message bodies                               | SqlServer can handle arbitrary message size within available resources, very large messages via data bus |
+| Scale-out                                          | Competing consumer                                                                                       |
+| Scripted Deployment                                | Sql Scripts                                                                                              |
+| Installers                                         | Optional                                                                                                 |
+| Native integration                                 | [Supported](native-integration.md)                                                                       |
+| [time-to-be-received](#time-to-be-received) (TTBR) | Storage reclaimed at most 5 minutes after expiration when receiving endpoint is running                  |
 
 partial: packages
 
@@ -134,3 +135,10 @@ When the SQL Server transport is used in combination with [NHibernate persistenc
 SQL Server transport supports all [transaction handling modes](/transports/transactions.md), i.e. Transaction scope, receive only, send atomic with receive, and no transactions.
 
 Refer to [transport transactions](/transports/transactions.md) for a detailed explanation of the supported transaction handling modes and available configuration options.
+
+## Time-to-be-received
+
+The SQL transport runs a periodic task that removes expired messages from the queue. The task is first executed when the endpoint starts and is subsequently scheduled to execute 5 minutes after the previous run when the task has been completed. Expired messages are not received from the queue and their disk space will be reclaimed when the periodic task executes.
+
+> [!NOTE]
+> The periodic tasks only purges expired messages for endpoint queues that for which an endpoint receives messages. If no receiving endpoint is running expired messages will not be deleted and no storage is not released.

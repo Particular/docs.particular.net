@@ -20,16 +20,17 @@ include: azure-transports
 
 ## Transport at a glance
 
-|Feature                    |   |
-|:---                       |---
-|Transactions |None, ReceiveOnly (Message visibility timeout)
-|Pub/Sub                    |Native (Requires Storage Table)
-|Timeouts                   |Native (Requires Storage Table)
-|Large message bodies       |Data bus
-|Scale-out             |Competing consumer
-|Scripted Deployment        |Not supported
-|Installers                 |Mandatory
-|Native integration         |[Supported](native-integration.md)
+| Feature                    |                                                   |
+|:---------------------------|---------------------------------------------------|
+| Transactions               | None, ReceiveOnly (Message visibility timeout)    |
+| Pub/Sub                    | Native (Requires Storage Table)                   |
+| Timeouts                   | Native (Requires Storage Table)                   |
+| Large message bodies       | Data bus                                          |
+| Scale-out                  | Competing consumer                                |
+| Scripted Deployment        | Not supported                                     |
+| Installers                 | Mandatory                                         |
+| Native integration         | [Supported](native-integration.md)                |
+| time-to-be-received (TTBR) | Deleted after expiration, TTL depends per version |
 
 ## Configuring the endpoint
 
@@ -37,3 +38,23 @@ partial: endpointconfig
 
 > [!NOTE]
 > When using Azure Storage Queues transport, a serializer must be configured explicitly [by the `UseSerialization` API](/nservicebus/serialization/).
+
+## Time-to-be-received
+
+The term [Azure Storage queues uses for time-to-be-received is time-to-live (TTL)](https://learn.microsoft.com/en-us/rest/api/storageservices/put-message#uri-parameters)
+
+Azure Storage Queues will automatically delete the message from the queue once the TTL value expires.
+
+#if-version ASQN [8.1,)
+
+Since Azure Storage Queues transport version 8.1.0 it will use a default TTL of 30 days
+
+#end-if
+
+#if-version ASQ [,9.0)
+
+Before Azure Storage Queues transport version 8.1.0 it will use the Azure Storage Queues default TTL which is 7 days.
+
+Since Azure Storage Queues transport version 8.1.0 it will use a default TTL of 30 days
+
+#end-if

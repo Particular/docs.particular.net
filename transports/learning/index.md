@@ -21,16 +21,17 @@ include: learning-usages
 
 ## Transport at a glance
 
-|Feature                    |   |
-|:---                       |---
-|Transactions |None, ReceiveOnly, SendsWithAtomicReceive
-|Pub/Sub                    |Native
-|Timeouts                   |Native
-|Large message bodies       |LearningTransport can handle arbitrary message sizes within available resources
-|Scale-out             |Competing consumer
-|Scripted Deployment        |Not supported
-|Installers                 |Not supported, the transport always creates the required folder structure
-|Native integration         |Not supported
+| Feature                    |                                                                                 |
+|:---------------------------|---------------------------------------------------------------------------------|
+| Transactions               | None, ReceiveOnly, SendsWithAtomicReceive                                       |
+| Pub/Sub                    | Native                                                                          |
+| Timeouts                   | Native                                                                          |
+| Large message bodies       | LearningTransport can handle arbitrary message sizes within available resources |
+| Scale-out                  | Competing consumer                                                              |
+| Scripted Deployment        | Not supported                                                                   |
+| Installers                 | Not supported, the transport always creates the required folder structure       |
+| Native integration         | Not supported                                                                   |
+| time-to-be-received (TTBR) | Not supported, ignored after fetching                                           |
 
 ### Publish and subscribe
 
