@@ -117,6 +117,13 @@ public class Configuration
         };
 
         #endregion
+
+        #region auto-create-queues-proxies
+
+        msmq.HasEndpoint("Sales");
+        azureServiceBus.HasEndpoint("Billing");
+
+        #endregion
     }
 
     public void CustomConcurrency()
