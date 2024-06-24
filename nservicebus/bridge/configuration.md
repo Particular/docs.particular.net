@@ -66,6 +66,28 @@ Automatic queue creation for proxied endpoints is enabled by configuring the bri
 
 snippet: auto-create-queues
 
+The diagram below shows a simple MSMQ-to-AzureServiceBus configuration involving two endpoints.
+
+```mermaid
+flowchart LR
+
+Br(Bridge)
+Sales[Endpoint Sales] <---> Br
+Br <---> Billing[Endpoint Billing]
+subgraph MSMQ
+  Sales
+end
+subgraph AzureServiceBus
+  Billing
+end
+```
+
+and the following bridge configuration
+
+snippet: auto-create-queues-proxies
+
+When automatic queue creation is enabled a "Sales" proxy endpoint is created on the AzureServiceBus transport and a "Billing" proxy endpoint is created on the MSMQ transport. These proxy endpoints represent the endpoint on the other side of the bridge. The "Sales" queue on the MSMQ transport and the "Billing" queue on the AzureServiceBus transport are assumed to be created by the endpoints connected on those transport and therefore are not owned by the bridge queue creation.
+
 ## Custom queue address
 
 The bridge provides the ability to change the address of the queue of incoming messages.
