@@ -55,14 +55,14 @@ The queues can be created using one of the following methods:
 
 - Provisioning them manually using the tooling provided by the queuing system.
 - Using the queue creation tooling provided by Particular Software if one exists for the transports being used. See the [individual transports documentation](/transports/) for more details.
-- Configuring the bridge to create queues automatically as described in the next section.
+- Configuring the bridge to create queues of proxied endpoints automatically as described in the next section.
 
 ### Automatic queue provisioning
 
 > [!NOTE]
 > This option requires the bridge to have administrative privileges for the queuing systems used and is not recommended for production scenarios.
 
-Automatic queue creation is enabled by configuring the bridge as follows:
+Automatic queue creation for proxied endpoints is enabled by configuring the bridge as follows:
 
 snippet: auto-create-queues
 
