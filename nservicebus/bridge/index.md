@@ -27,7 +27,7 @@ More details on these scenarios are provided in the [messaging bridge scenarios]
 
 partial: configuration
 
-The following snippet shows a simple MSMQ-to-AzureServiceBus configuration involving two endpoints. The two transports are used for demonstration purposes. The bridge supports [all transports](/transports/).
+The diagram below shows a simple MSMQ-to-AzureServiceBus configuration involving two endpoints. The two transports are used for demonstration purposes. The bridge supports [all transports](/transports/).
 
 ```mermaid
 flowchart LR
@@ -43,7 +43,7 @@ subgraph AzureServiceBus
 end
 ```
 
-the following code enables the Sales endpoint hosted on the MSMQ transport to communicate with the Billing endpoint hosted on the AzureServiceBus transport.
+The following code enables the Sales endpoint hosted on the MSMQ transport to communicate with the Billing endpoint hosted on the AzureServiceBus transport.
 
 snippet: bridgeconfiguration
 
