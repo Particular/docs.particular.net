@@ -86,7 +86,14 @@ and the following bridge configuration
 
 snippet: auto-create-queues-proxies
 
-When automatic queue creation is enabled a "Sales" proxy endpoint is created on the AzureServiceBus transport and a "Billing" proxy endpoint is created on the MSMQ transport. These proxy endpoints represent the endpoint on the other side of the bridge. The "Sales" queue on the MSMQ transport and the "Billing" queue on the AzureServiceBus transport are assumed to be created by the endpoints connected on those transport and therefore are not owned by the bridge queue creation.
+When automatic queue creation is enabled a "Sales" proxy endpoint is created on the AzureServiceBus transport and a "Billing" proxy endpoint is created on the MSMQ transport. These proxy endpoints represent the endpoint on the other side of the bridge.
+
+| MSMQ | AutoCreated | AzureServiceBus | AutoCreated |
+|---|---|---|---|
+| Sales | _False_ | Sales | _True_ |
+| Billing | _True_ | Billing | _False_ |
+
+The "Sales" queue on the MSMQ transport and the "Billing" queue on the AzureServiceBus transport are assumed to be created by the endpoints connected on those transport and therefore are not owned by the bridge queue creation.
 
 ## Custom queue address
 
