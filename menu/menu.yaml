@@ -765,6 +765,8 @@
       Title: Migrating timeouts
     - Url: nservicebus/usage
       Title: Measuring system usage
+    - Url: servicepulse/usage
+      Title: System usage via ServicePulse
     - Url: nservicebus/throughput-tool
       Title: System usage via Endpoint Throughput tool
       Articles:
@@ -1358,15 +1360,15 @@
     - Url: servicepulse/support-policy
       Title: Support Policy
     - Url: servicepulse/usage
-      Title: Usage
-    - Url: servicepulse/usage-config
-      Title: Usage Setup
+      Title: Usage    
   - Title: Configuration
     Articles:
     - Url: servicepulse/host-config
       Title: Hosting
     - Url: servicepulse/how-to-configure-endpoints-for-monitoring
       Title: Monitoring endpoints
+    - Url: servicepulse/usage-config
+      Title: Usage Setup
     - Url: servicepulse/install-servicepulse-in-iis
       Title: Install in IIS
     - Url: servicepulse/troubleshooting
