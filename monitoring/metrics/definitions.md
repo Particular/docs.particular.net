@@ -27,34 +27,30 @@ Processing failures are not included in the processing time metric.
 > [!NOTE]
 > Processing time does not include the time to store the outbox operation, transmit outgoing messages to the transport, fetch the incoming message, and complete the incoming message (i.e. commit the transport transaction or acknowledge the message).
 
-
 ### Number of messages pulled from queue
 
 This metric measures the total number of messages that the endpoint reads from its input queue regardless of whether message processing succeeds or fails.
-
 
 ### Number of messages successfully processed
 
 This metric measures the total number of messages that the endpoint successfully processes. In order for a message to be counted by this metric, all handlers must have executed without throwing an exception.
 
-
 ### Number of message processing failures
 
 This metric measures the total number of messages that the endpoint has failed to process. In order for a message to be counted by this metric, at least one handler must have thrown an exception.
-
 
 ### Critical time
 
 Critical time is the time between when a message is sent and when it is fully processed. It is a combination of:
 
- * Network send time: The time a message spends on the network before arriving in the destination queue
- * Queue wait time: The time a message spends in the destination queue before being picked up and processed
- * Processing time: The time it takes for the destination endpoint to process the message
+- Network send time: The time a message spends on the network before arriving in the destination queue
+- Queue wait time: The time a message spends in the destination queue before being picked up and processed
+- Processing time: The time it takes for the destination endpoint to process the message
 
 Critical time does _not_ include:
 
-* The time to store the outbox operation, transmit messages to the transport, and complete the incoming message (i.e. commit the transport transaction or acknowledge) because the `TimeSent` header is added with the current time during the dispatch phase, after the outbox operation has completed.
-* The time a delayed message is held by a timeout mechanism. (NServiceBus version 7.7 and above.)
+- The time to store the outbox operation, transmit messages to the transport, and complete the incoming message (i.e. commit the transport transaction or acknowledge) because the `TimeSent` header is added with the current time during the dispatch phase, after the outbox operation has completed.
+- The time a delayed message is held by a timeout mechanism. (NServiceBus version 7.7 and above.)
 
 > [!NOTE]
 > Due to the fact that the critical time is calculated based on timestamps taken on two different machines (the sender and the receiver of a message), it is affected by the [clock drift problem](https://en.wikipedia.org/wiki/Clock_drift). In cases where the clocks of the machines differ significantly, the critical time may be reported as a negative value. Use well-known clock synchronization solutions such as NTP to mitigate the issue.
