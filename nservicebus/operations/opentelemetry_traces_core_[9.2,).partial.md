@@ -19,11 +19,11 @@ A span is emitted for each message sent by an NServiceBus endpoint. When the mes
 
 ```mermaid
 flowchart LR;
-  subgraph PRODUCER
+  subgraph SENDER
   direction TB
    NSBM1[NServiceBus Send span]
   end
-  subgraph CONSUMER
+  subgraph RECEIVER
   direction TB
   PRM1[NServiceBus Process span]
 
