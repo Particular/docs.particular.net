@@ -15,10 +15,14 @@ Gathering metrics is important to know how a system works and if it works proper
 
 NServiceBus and ServiceControl capture a number of different metrics about a running endpoint including the processing time, the number of messages in each queue (differentiating between those pulled from the queue, those processed successfully, and those which failed processing), as well as "critical time".
 
-
 ### Processing time
 
-Processing time is the time it takes for an endpoint to **successfully** invoke all handlers and sagas for a single incoming message. Processing failures are not included in the processing time metric.
+Processing time is the time it takes for an endpoint to **successfully** process an incoming message. It includes:
+
+- Invoking all handlers and sagas for a single incoming message
+- Invoking the incoming message processing pipeline, which includes steps like deserialization or user defined pipeline behaviors.
+
+Processing failures are not included in the processing time metric.
 
 > [!NOTE]
 > Processing time does not include the time to store the outbox operation, transmit outgoing messages to the transport, fetch the incoming message, and complete the incoming message (i.e. commit the transport transaction or acknowledge the message).
