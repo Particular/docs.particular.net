@@ -24,6 +24,12 @@ snippet: opentelemetry-enablemeters
 - `nservicebus.messaging.successes` - Total number of messages processed successfully by the endpoint
 - `nservicebus.messaging.fetches` - Total number of messages fetched from the queue by the endpoint
 - `nservicebus.messaging.failures` - Total number of messages processed unsuccessfully by the endpoint
+- `nservicebus.messaging.handler_time` - The time the user handling code takes to handle a message
+- `nservicebus.messaging.processing_time` - The time the endpoint takes to process a message from when it's fetched from the input queue to when processing completes. It includes above-mentioned the handler time
+- `nservicebus.messaging.critical_time` - The time between when a message is sent and when it is fully processed. It is a combination of:
+  - Network send time: The time a message spends on the network before arriving in the destination queue
+  - Queue wait time: The time a message spends in the destination queue before being picked up and processed
+  - Processing time: The time it takes for the destination endpoint to process the message
 
 See the [OpenTelemetry samples](/samples/open-telemetry/) for instructions on how to send metric information to different tools.
 
@@ -31,7 +37,7 @@ See the [OpenTelemetry samples](/samples/open-telemetry/) for instructions on ho
 
 NServiceBus supports logging out of the box. To collect OpenTelemetry-compatible logging in NServiceBus endpoints, it's possible to configure the endpoint to connect traces and logging when using `Microsoft.Extensions.Logging` package. See the [_Connecting OpenTelemetry traces and logs_ sample](/samples/open-telemetry/logging) for more details.
 
-## Alignment of host identifier 
+## Alignment of host identifier
 
 It is recommended to align the instance identifier between NServiceBus and OpenTelemetry so all logs, metrics, traces and audit messages can be correlated by a host (instance) if needed.
 
@@ -40,7 +46,7 @@ It is recommended to align the instance identifier between NServiceBus and OpenT
 
 NServiceBus adds an [host identifier to all audit messages](/nservicebus/hosting/override-hostid.md) and this instance identifier is also used to show [performance metrics for each running instance in ServicePulse](/monitoring/metrics/in-servicepulse.md). The [instance identifier used for ServicePulse value can be overriden](/monitoring/metrics/install-plugin.md#configuration-instance-id).
 
-OpenTelemetry also allows to customize the instance id used for `service.instance.id` in various ways. 
+OpenTelemetry also allows to customize the instance id used for `service.instance.id` in various ways.
 
 Consider aligning the instance ID used by OpenTelemetry and ServiceControl metrics API.
 
