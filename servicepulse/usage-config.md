@@ -9,9 +9,6 @@ related:
 
 Specific settings for collecting usage data to generate a usage report.
 
-> [!NOTE]
-> The usage data collection functionality requires ServicePulse version 1.39 or later, and ServiceControl version 5.3 or later.
-
 ## Connection setup
 
 In most scenarios existing ServiceControl error instance connection settings will be used to establish a connection to the broker.
