@@ -7,14 +7,10 @@ related:
   - nservicebus/usage
 ---
 
-This section allows for viewing the endpoint usage summary of a system using NServiceBus.
-A usage report can be generated here at license renewal time.
+This page allows for viewing the endpoint usage summary of a system using NServiceBus.
+A usage report can be downloaded here at license renewal time.
 
-> [!NOTE]
-> The usage data collection functionality requires ServicePulse version 1.39 or later, and ServiceControl version 5.3 or later.
-
-> [!NOTE]
-> If no data is available, go to the [Usage Setup](usage-config.md) screen to diagnose connection problems.
+Usage page requires ServicePulse version 1.39 or later, and ServiceControl version 5.3 or later.
 
 ## Download a usage report
 
@@ -24,7 +20,7 @@ The report **will not** be automatically uploaded or sent to Particular.
 
 ## Viewing usage summary
 
-At any time the system usage can be viewed on the Usage page.  
+At any time the system usage can be viewed on the Usage page.
 This page is divided into two sections:
 
 - [Detected endpoints](#viewing-usage-summary-detected-endpoints)
@@ -66,3 +62,7 @@ If multiple endpoints or queues matching a certain naming pattern need to be set
 4. All endpoints/queues on screen will be updated to the selected endpoint type and automatically saved.
 
 ![usage-endpoints-updated](images/usage-endpoints-updated.png "width=600")
+
+## Troubleshooting connection to broker
+
+If no data is available, go to the [Usage Setup](usage-config.md) screen to diagnose connection problems.

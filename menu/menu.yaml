@@ -181,7 +181,7 @@
   - Title: Upgrade Guides
     Articles:
     - Url: nservicebus/upgrades
-      Title: About upgrading NServiceBus   
+      Title: About upgrading NServiceBus
     - Url: nservicebus/upgrades/third-party-licenses
       Title: Third-party licenses
     - Url: nservicebus/upgrades/callbacks-1to2
@@ -765,8 +765,6 @@
       Title: Migrating timeouts
     - Url: nservicebus/usage
       Title: Measuring system usage
-    - Url: servicepulse/usage
-      Title: System usage via ServicePulse
     - Url: nservicebus/throughput-tool
       Title: System usage via Endpoint Throughput tool
       Articles:
@@ -1359,7 +1357,9 @@
       Title: Endpoint connection settings
     - Url: servicepulse/support-policy
       Title: Support Policy
-    - Url: servicepulse/usage-cofig
+    - Url: servicepulse/usage
+      Title: Usage
+    - Url: servicepulse/usage-config
       Title: Usage Setup
   - Title: Configuration
     Articles:
