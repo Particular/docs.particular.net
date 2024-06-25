@@ -9,23 +9,14 @@ related:
 
 There are two methods provided for measuring usage of an NServiceBus system:
 
-- [Using ServicePulse](#using-servicepulse)
+- [Using ServicePulse](#using-servicepulse) (preferred method)
 - [Standalone endpoint throughput tool](#standalone-endpoint-throughput-tool)
 
-> [!NOTE]
-> Requirements for both of the usage measuring methods:
->
-> - NServiceBus Transport: [Azure Service Bus](/transports/azure-service-bus), [RabbitMQ](/transports/rabbitmq), [Amazon SQS](/transports/sqs), [SqlServer](/transports/sql) OR
-> - NServiceBus Transport: [MSMQ](/transports/msmq/) or [Azure Storage Queues](/transports/azure-storage-queues/) with [Auditing](./../operations/auditing.md) or [Monitoring](./../../monitoring/metrics) enabled on all NServiceBus endpoints
-
-The output of the measuring methods is a usage report containing NServiceBus endpoint count and throughput summary. The report is generated as a JSON file which needs to be sent to Particular upon request, usually at license renewal time.
+Both methods will generate a usage report containing NServiceBus endpoint count and throughput summary. The report is saved as a file onto the local machine, which needs to be sent to Particular upon request, usually at license renewal time.
 
 ## Using ServicePulse
 
 The recommended method of measuring the usage of an NServiceBus system is via [ServicePulse](/servicepulse/usage.md).
-
-> [!NOTE]
-> This method requires ServicePulse version 1.39 or later, and ServiceControl version 5.3 or later.
 
 Measuring throughput with ServicePulse offers the following advantages over the standalone throughput tool:
 
@@ -33,9 +24,17 @@ Measuring throughput with ServicePulse offers the following advantages over the 
 - ability to optionally [specify if a detected queue should not be included in license pricing](/servicepulse/usage.md#setting-an-endpoint-type)
 - no requirement to run additional tools - [the report can be generated directly from ServicePulse](/servicepulse/usage.md#generating-a-usage-report)
 - improved endpoint identification
+- once setup, there's no more work required, just a button press once a year to generate the report
+
+This method requires ServicePulse version 1.39 or later, and ServiceControl version 5.3 or later.  
+Additionally, If using RabbitMQ broker, version 3.10.0 or higher is required.
 
 ## Standalone Endpoint throughput tool
 
-Customers who are not able to use a version of ServicePulse that supports throughput measurement can use the [endpoint throughput counter tool](./../throughput-tool) to measure their system usage.
+Customers who are not able to use the preferred method above, can use the [endpoint throughput tool](./../throughput-tool) to measure their system usage.
 
-This is a standalone tool that can typically be installed on a [user's workstation](/nservicebus/throughput-tool/faq.md#does-the-tool-need-to-run-on-my-production-server).
+This is a standalone tool that is run on demand, and can typically be installed on a [user's workstation](/nservicebus/throughput-tool/faq.md#does-the-tool-need-to-run-on-my-production-server).
+
+## Requirements
+
+If you're measuring usage for NServiceBus endpoints running on [MSMQ](/transports/msmq/) or [Azure Storage Queues](/transports/azure-storage-queues/), then [Auditing](./../operations/auditing.md) or [Monitoring](./../../monitoring/metrics) need to be enabled on all NServiceBus endpoints.
