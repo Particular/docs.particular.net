@@ -1359,6 +1359,8 @@
       Title: Endpoint connection settings
     - Url: servicepulse/support-policy
       Title: Support Policy
+    - Url: servicepulse/usage-cofig
+      Title: Usage Setup
   - Title: Configuration
     Articles:
     - Url: servicepulse/host-config
