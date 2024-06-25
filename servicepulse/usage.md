@@ -26,7 +26,7 @@ This page is divided into two sections:
 - [Detected endpoints](#viewing-usage-summary-detected-endpoints)
 - [Detected broker queues](#viewing-usage-summary-detected-broker-queues)
 
-For each endpoint and queue, the maximum daily throughput is displayed. This can be helpful to see how the system is changing over time, and hence get an understanding of which [tier](https://particular.net/pricing) the endpoint belongs to for licensing purposes.
+For each endpoint and queue, the maximum daily throughput is displayed. This can be helpful to understand which [tier](https://particular.net/pricing) the endpoint belongs to for licensing purposes.
 
 ### Detected endpoints
 
@@ -34,14 +34,13 @@ Detected endpoints are those identified by the system as NServiceBus endpoints a
 
 ### Detected broker queues
 
-This option will not be displayed for non-broker transports.
-
 If the system is using an [NServiceBus transport](./../transports) that allows querying of metrics, then any queues detected on the broker that cannot be automatically identified as NServiceBus endpoints will be listed in the `Detected Broker Queues` tab. These queues will be included in the usage report for NServiceBus licensing purposes.
+
+This option will not be displayed for non-broker transports.
 
 ## Setting an endpoint type
 
 The usage summary may contain detected queues that should not be counted as part of a license with Particular Software.
-
 Once a report is submitted to Particular, it is reviewed and any system queues that should not be counted for licensing purposes are removed.
 
 In addition, the detected endpoints and queues screen provides an option to set the endpoint type, which provides a reason as to why a queue should not be included in the licensing calculations. Any changes made to the endpoint type are automatically saved.
@@ -52,16 +51,11 @@ If multiple endpoints or queues matching a certain naming pattern need to be set
 
 1. Find the endpoints/queues that need to be bulk updated
 2. Press the `Set Endpoint Type for all items below` button and select which endpoint type the filtered results should be set to.
-
-![usage-endpoints-filter](images/usage-endpoints-filter.png "width=600")
-
+    ![usage-endpoints-filter](images/usage-endpoints-filter.png "width=600")
 3. A confirmation box appears, press `Yes` to proceed with the bulk update.
-
-![usage-endpoints-bulk-update](images/usage-endpoints-bulk-update.png "width=600")
-
+    ![usage-endpoints-bulk-update](images/usage-endpoints-bulk-update.png "width=600")
 4. All endpoints/queues on screen will be updated to the selected endpoint type and automatically saved.
-
-![usage-endpoints-updated](images/usage-endpoints-updated.png "width=600")
+    ![usage-endpoints-updated](images/usage-endpoints-updated.png "width=600")
 
 ## Troubleshooting connection to broker
 
