@@ -22,11 +22,11 @@ Measuring usage with ServicePulse offers the following advantages over the stand
 
 - ability to [view the system usage](/servicepulse/usage.md#viewing-usage-summary) at any time
 - ability to [specify if a detected queue should not be included in license pricing](/servicepulse/usage.md#setting-an-endpoint-type)
-- incorporated into the existing Particular Platform - [the report can be generated directly from ServicePulse](/servicepulse/usage.md#generating-a-usage-report)
+- incorporated into the existing Particular Platform - [the report can be generated directly from ServicePulse](/servicepulse/usage.md#download-a-usage-report)
 - improved endpoint identification
 - once setup, there's no more work required, just a button press once a year to generate the usage report
 
-This method requires ServicePulse version 1.39 or later, and ServiceControl version 5.3 or later.  
+This method requires ServicePulse version 1.39 or later, and ServiceControl version 5.3 or later.
 Additionally, If using RabbitMQ broker, version 3.10.0 or higher is required.
 
 ## Standalone Endpoint throughput tool
