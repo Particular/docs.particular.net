@@ -18,4 +18,35 @@
             #endregion
         }
     }
+
+    class Usage
+    {
+        async Task RequestStartNewTrace(IPipelineContext context)
+        {
+            #region OpentelemetrySendoptionsStartNewTrace
+            var options = new SendOptions();
+            options.StartNewTraceOnReceive();
+            var message = new MyMessage();
+            await context.Send(message, options);
+            #endregion
+        }
+
+        async Task RequestContinueExistingTrace(IPipelineContext context)
+        {
+            #region OpentelemetryPublishoptionsContinueTrace
+            var options = new PublishOptions();
+            options.ContinueExistingTraceOnReceive();
+            var message = new MyEvent();
+            await context.Publish(message, options);
+            #endregion
+        }
+
+        class MyMessage
+        {
+        }
+
+        class MyEvent
+        {
+        }
+    }
 }
