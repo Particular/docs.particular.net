@@ -62,6 +62,12 @@
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/System.Threading.Channels/" target="_blank">System.Threading.Channels</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
+### [NServiceBus.Transport.PostgreSql](/nuget/NServiceBus.Transport.PostgreSql)
+
+| Depencency | License | Project Site |
+|:-----------|:-------:|:------------:|
+| <a href="https://www.nuget.org/packages/Npgsql/" target="_blank">Npgsql</a> | <a href="https://licenses.nuget.org/PostgreSQL" target="_blank">PostgreSQL</a> | <a href="https://github.com/npgsql/npgsql" target="_blank">Project Site</a> |
+
 ### [NServiceBus.Transport.SqlServer](/nuget/NServiceBus.Transport.SqlServer)
 
 | Depencency | License | Project Site |
