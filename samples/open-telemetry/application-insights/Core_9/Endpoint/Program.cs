@@ -51,7 +51,6 @@ endpointConfiguration.EnableOpenTelemetry();
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport<LearningTransport>();
-endpointConfiguration.SendOnly();
 var cancellation = new CancellationTokenSource();
 var endpointInstance = await Endpoint.Start(endpointConfiguration, cancellation.Token);
 
