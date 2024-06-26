@@ -1,8 +1,11 @@
-namespace Core9;
+using System.Threading.Tasks;
+using NServiceBus;
 
-public static ManageTraceDepthUsage
+namespace Core9_1;
+
+public static class ManageTraceDepthUsage
 {
-    async Task RequestStartNewTrace(IPipelineContext context)
+    async static Task RequestStartNewTrace(IPipelineContext context)
     {
         #region opentelemetry-sendoptions-start-new-trace
         var options = new SendOptions();
@@ -12,7 +15,7 @@ public static ManageTraceDepthUsage
         #endregion
     }
 
-    async Task RequestContinueExistingTrace(IPipelineContext context)
+    async static Task RequestContinueExistingTrace(IPipelineContext context)
     {
         #region opentelemetry-publishoptions-continue-trace
         var options = new PublishOptions();
