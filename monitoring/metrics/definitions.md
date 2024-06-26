@@ -19,8 +19,8 @@ NServiceBus and ServiceControl capture a number of different metrics about a run
 
 Processing time is the time it takes for an endpoint to **successfully** process an incoming message. It includes:
 
-- Invoking all handlers and sagas for a single incoming message
-- Invoking the incoming message processing pipeline, which includes steps like deserialization or user defined pipeline behaviors.
+- The execution of all handlers and sagas for the incoming message
+- The execution of the incoming message processing pipeline, which includes deserialization and where applicable, user-defined pipeline behaviors or saga-loading time.
 
 Processing failures are not included in the processing time metric.
 
