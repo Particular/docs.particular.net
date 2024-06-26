@@ -1,7 +1,7 @@
 ---
 title: FluentScheduler Usage
 summary: Using FluentScheduler to send messages from within an NServiceBus endpoint.
-reviewed: 2021-07-28
+reviewed: 2024-06-26
 component: Core
 related:
 - nservicebus/messaging/timeout-manager
