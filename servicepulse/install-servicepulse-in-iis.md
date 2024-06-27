@@ -1,10 +1,9 @@
 ---
 title: Install ServicePulse in IIS
 summary: Describes how to manually install ServicePulse in IIS
-reviewed: 2024-05-07
+reviewed: 2024-06-27
 component: ServicePulse
 ---
-
 
 ## Prerequisites
 
@@ -55,29 +54,6 @@ netsh http delete urlacl http://+:9090/
 
 > [!NOTE]
 > If TLS is to be applied to ServicePulse then ServiceControl also must be configured for TLS. This can be achieved by reverse proxying ServiceControl through IIS as outlined [below](#advanced-configuration-servicecontrol).
-
-###  Hosting ServicePulse within a subfolder
-
-It is possible to host ServicePulse within a subfolder. The name of the subfolder has to be specified in the `base_url` app constant. This is done by:
-
-1. Go to the root directory for the website created in the basic configuration.
-1. Edit `js\app.constants.js` file and set the `base_url` variable to be the name of the subfolder.
-
-> [!NOTE]
-> the `base_url` variable must have a `/` character both before and after the name of the subfolder. E.g. `/SubFolder`.
-
-e.g.
-
-```JavaScript
-window.defaultConfig = {
-    default_route: '/dashboard',
-    base_url: '/SubFolder/',
-    version: '1.34.0',
-    service_control_url: 'http://localhost:33333/api/',
-    monitoring_urls: [''],
-    showPendingRetry: false
-};
-```
 
 ## Advanced configuration
 
