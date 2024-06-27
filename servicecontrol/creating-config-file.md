@@ -321,6 +321,8 @@ See [Installation](installation.md) for details on how to set this at install ti
 
 ## Usage Reporting
 
+These settings are available on ServiceControl version 5.4 or higher.
+
 ### LicensingComponent/ServiceControlThroughputDataQueue
 
 The queue on which throughput data is received by the ServiceControl Error instance. This setting must match the equivalent [`Monitoring/ServiceControlThroughputDataQueue`](/servicecontrol/monitoring-instances/installation/creating-config-file.md#usage-reporting-monitoringservicecontrolthroughputdataqueue) setting for the Monitoring instance.
