@@ -10,7 +10,7 @@ related:
 This page allows for viewing the endpoint usage summary of a system using NServiceBus.
 A usage report can be downloaded here at license renewal time.
 
-Usage page requires ServicePulse version 1.39 or later, and ServiceControl version 5.3 or later.
+Usage page requires ServicePulse version 1.40 or later, and ServiceControl version 5.4 or later.
 
 ## Download a usage report
 

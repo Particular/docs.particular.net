@@ -26,7 +26,7 @@ Measuring usage with ServicePulse offers the following advantages over the stand
 - improved endpoint identification
 - once setup, there's no more work required, just a button press once a year to generate the usage report
 
-This method requires ServicePulse version 1.39 or later, and ServiceControl version 5.3 or later.
+This method requires ServicePulse version 1.40 or later, and ServiceControl version 5.4 or later.
 Additionally, If using RabbitMQ broker, version 3.10.0 or higher is required.
 
 ## Standalone Endpoint throughput tool
