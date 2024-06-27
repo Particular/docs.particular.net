@@ -421,13 +421,13 @@ Type: string
 
 ### LicenseComponent/SqlServer/ConnectionString
 
-When using [SqlServer transport](/transports/sql), this is the single database connection string that will provide at least read access to all queue tables.
+When using [SqlServer transport](/transports/sql), connection string that will provide at least read access to all queue tables.
 
 Type: string
 
 ### LicenseComponent/SqlServer/AdditionalCatalogs
 
-When using [SqlServer transport](/transports/sql), this is specifies additional database catalogs to search. Thsi is used when the ConnectionString setting points to a single database, but multiple database catalogs on the same server also contain NServiceBus message queues. The Database or Initial Catalog parameter in the connection string is replaced with the additional catalog to query them all.
+When using [SqlServer transport](/transports/sql), additional databases on the same server also contain NServiceBus message queues, the AdditionalCatalogs setting specifies additional database catalogs to search. The tool replaces the Database or Initial Catalog parameter in the connection string with the additional catalog and queries all of them.
 
 Type: string
 
