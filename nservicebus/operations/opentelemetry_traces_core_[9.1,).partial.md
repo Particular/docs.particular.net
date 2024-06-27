@@ -90,4 +90,11 @@ flowchart LR;
   NSBM1--child--> PRM1
 ```
 
+### Delayed messages
+
+In some cases, the user can choose to delay the delivery of a message to some point in the future. This is also the mechanism that's used for [delayed retries](/nservicebus/recoverability/index.md#delayed-retries).
+When a message is delayed, a new trace will always be created for the receive operation, as it happens at a different moment in time. Therefore, any delayed retry or delayed message, will automatically appear linked to the send or publish context.
+
+```mermaid
+
 See the [OpenTelemetry samples](/samples/open-telemetry/) for instructions on how to send trace information to different tools.
