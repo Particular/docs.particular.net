@@ -10,19 +10,19 @@ component: ServicePulse
 
 These instructions assume the following:
 
-* ServiceControl has been installed and is listening on `http://localhost:33333/api`.
-* A ServiceControl Monitoring instance has been installed and is listening on `http://localhost:33633`.
-* ServicePulse has been installed.
+- ServiceControl has been installed and is listening on `http://localhost:33333/api`.
+- A ServiceControl Monitoring instance has been installed and is listening on `http://localhost:33633`.
+- ServicePulse has been installed.
 
 ## Basic setup
 
 Steps
 
- 1. Create a directory for the ServicePulse files
- 1. Extract the ServicePulse files
- 1. Disable/Remove ServicePulse
- 1. Remove the `netsh` url restriction
- 1. Create a website in IIS referring to the ServicePulse directory
+1. Create a directory for the ServicePulse files
+1. Extract the ServicePulse files
+1. Disable/Remove ServicePulse
+1. Remove the `netsh` url restriction
+1. Create a website in IIS referring to the ServicePulse directory
 
 > [!NOTE]
 > When performing an upgrade, it is recommended to delete your existing environment and start with a clean install. See [Upgrading ServicePulse hosted in IIS](#upgrading-servicepulse-hosted-in-iis) for more details.
@@ -40,13 +40,11 @@ ServicePulse.Host.exe --extract --outPath="C:\inetpub\websites\ServicePulse"
 ```
 
 > [!NOTE]
-> `ServicePulse.Host.exe` can be found in the ServicePulse installation directory. The default location for this directory is `%programfiles(x86)%\Particular Software\ServicePulse`
+> The `ServicePulse.Host.exe` executable is located in the ServicePulse installation directory. By default, this directory can be found at `%programfiles(x86)%\Particular Software\ServicePulse`
 
-2. Once the ServicePulse files are successfully extracted, configure a new IIS website whose physical path points to the location where the files have been extracted. Configure it to use port `9090`.
-
-3. When using IIS to host ServicePulse, the ServicePulse.Host service is not used. To remove the service, uninstall ServicePulse using Add/Remove Programs.
-
-4. Use the following command on an elevated command prompt to remove the URLACL that was created by the ServicePulse installer to use port 9090 without any restrictions.
+1. Once the ServicePulse files are successfully extracted, configure a new IIS website whose physical path points to the location where the files have been extracted. Configure it to use port `9090`.
+1. When using IIS to host ServicePulse, the ServicePulse.Host service is not used. To remove the service, uninstall ServicePulse using Add/Remove Programs.
+1. Use the following command on an elevated command prompt to remove the URLACL that was created by the ServicePulse installer to use port 9090 without any restrictions.
 
 ```dos
 netsh http delete urlacl http://+:9090/
@@ -128,14 +126,14 @@ When using [monitoring capabilities](/monitoring) the following steps should be 
 
 Installation steps:
 
- 1. Install the IIS [Application Request Routing extension](https://www.iis.net/downloads/microsoft/application-request-routing).
- 1. In IIS Manager, click the server node in the Connections pane, double-click "Application Request Routing Cache", then in the Actions pane, click "Server Proxy Settings", and check "Enable proxy". Click "Apply" to save changes.
- 1. Go to the root directory for the website created in the basic configuration.
- 1. Edit `js\app.constants.js` and change the `monitoring_urls` value from `http://localhost:33633/` to `monitoring/`.
- 1. Open the IIS management tool.
- 1. Select the root directory from within the IIS management tool.
- 1. Open or create a `web.config` file
- 1. Add the following rewrite rules to the top of the file:
+1. Install the IIS [Application Request Routing extension](https://www.iis.net/downloads/microsoft/application-request-routing).
+1. In IIS Manager, click the server node in the Connections pane, double-click "Application Request Routing Cache", then in the Actions pane, click "Server Proxy Settings", and check "Enable proxy". Click "Apply" to save changes.
+1. Go to the root directory for the website created in the basic configuration.
+1. Edit `js\app.constants.js` and change the `monitoring_urls` value from `http://localhost:33633/` to `monitoring/`.
+1. Open the IIS management tool.
+1. Select the root directory from within the IIS management tool.
+1. Open or create a `web.config` file
+1. Add the following rewrite rules to the top of the file:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -166,9 +164,9 @@ snippet: RoleBasedSecurity
 
 There are three roles defined:
 
- * `SPReaders`: members can read all content but cannot trigger any actions.
- * `SPFailedMessages`: members can manage failed messages (retry, delete, groups etc.).
- * `SPMonitoring`: members can manage monitoring (e.g. enabling/disabling heartbeat monitoring for a particular endpoint).
+- `SPReaders`: members can read all content but cannot trigger any actions.
+- `SPFailedMessages`: members can manage failed messages (retry, delete, groups etc.).
+- `SPMonitoring`: members can manage monitoring (e.g. enabling/disabling heartbeat monitoring for a particular endpoint).
 
 ### Limitations
 
@@ -180,29 +178,30 @@ Older versions of ServiceInsight can still be used locally, bypassing the securi
 
 When ServicePulse is hosted in IIS, the upgrade process is as follows:
 
- 1. Go to the root directory of the IIS website.
- 1. View and record the current ServicePulse configuration, specifically the value of `serviceControlUrl`. For versions 1.3 and below, this parameter is set in `config.js`. Between versions 1.3 and 1.31.0, it is set in `app\js\app.constants.js`. For versions 1.31.1 and above, it is set in `js\app.constants.js`.
- 1. Remove everything from the root folder.
- 1. Install the new version of ServicePulse using the standard instructions.
- 1. Extract the files from the `ServicePulse.Host.exe` using the following command, but replace `<recordedvalue>` with the value saved from Step 2, and `<webroot>` with the path to the root directory of the IIS website.
+1. Go to the root directory of the IIS website.
+1. View and record the current ServicePulse configuration, specifically the value of `serviceControlUrl`. For versions 1.3 and below, this parameter is set in `config.js`. Between versions 1.3 and 1.31.0, it is set in `app\js\app.constants.js`. For versions 1.31.1 and above, it is set in `js\app.constants.js`.
+1. Remove everything from the root folder.
+1. Install the new version of ServicePulse using the standard instructions.
+1. Extract the files from the `ServicePulse.Host.exe` using the following command, but replace `<recordedvalue>` with the value saved from Step 2, and `<webroot>` with the path to the root directory of the IIS website.
+
 ```dos
 ServicePulse.Host.exe --extract --serviceControlUrl="<recordedvalue>" --outPath="<webroot>"
 ```
- 1. Optionally, remove or disable the unneeded Windows service by uninstalling ServicePulse via Add/Remove Programs.
- 1. The installer will add the URLACL which could restrict access and will need to be removed as described in the basic steps above.
 
+1. Optionally, remove or disable the unneeded Windows service by uninstalling ServicePulse via Add/Remove Programs.
+1. The installer will add the URLACL which could restrict access and will need to be removed as described in the basic steps above.
 
 ## Adding MIME types for web fonts
 
 If 404 errors occur when serving webfonts, it is possible the MIME type for web fonts have not been configured. Add the following MIME type declarations via IIS Manager (HTTP Headers tab of website properties):
 
-Extension | Mime Type
------------- | -------------
-.eot | application/vnd.ms-fontobject
-.ttf  | application/octet-stream
-.svg | image/svg+xml
-.woff | application/font-woff
-.woff2 | application/font-woff2
+| Extension | Mime Type                     |
+| --------- | ----------------------------- |
+| .eot      | application/vnd.ms-fontobject |
+| .ttf      | application/octet-stream      |
+| .svg      | image/svg+xml                 |
+| .woff     | application/font-woff         |
+| .woff2    | application/font-woff2        |
 
 > [!NOTE]
 > Some of these MIME types will already be set up on newer versions of IIS. Verify that all the listed MIME types are present.
