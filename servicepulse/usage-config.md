@@ -10,7 +10,7 @@ related:
 Specific settings for collecting usage data to generate a usage report.
 
 > [!NOTE]
-> The usage data collection functionality requires ServicePulse version 1.39 or later, and ServiceControl version 5.3 or later.
+> The usage data collection functionality requires ServicePulse version 1.40 or later, and ServiceControl version 5.4 or later.
 
 ## Connection setup
 
