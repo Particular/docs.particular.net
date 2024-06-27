@@ -1,12 +1,13 @@
 ## Transport at a glance
 
-|Feature                    |   |  
-|:---                       |---
-|Transactions |None, ReceiveOnly (Message visibility timeout)
-|Pub/Sub                    |Message driven
-|Timeouts                   |Native (Requires FIFO Queues)
-|Large message bodies       |Native (Requires S3)
-|Scale-out             |Competing consumer
-|Scripted Deployment        |PowerShell, CloudFormation, C#
-|Installers                 |Optional
-|Native integration         |Not supported
+| Feature                                            |                                                           |
+|:---------------------------------------------------|-----------------------------------------------------------|
+| Transactions                                       | None, ReceiveOnly (Message visibility timeout)            |
+| Pub/Sub                                            | Message driven                                            |
+| Timeouts                                           | Native (Requires FIFO Queues)                             |
+| Large message bodies                               | Native (Requires S3)                                      |
+| Scale-out                                          | Competing consumer                                        |
+| Scripted Deployment                                | PowerShell, CloudFormation, C#                            |
+| Installers                                         | Optional                                                  |
+| Native integration                                 | Not supported                                             |
+| [time-to-be-received](#time-to-be-received) (TTBR) | No native support, per queue via `MessageRetentionPeriod` |

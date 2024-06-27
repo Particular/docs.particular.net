@@ -83,3 +83,9 @@ The SQS transport uses the default [retry and timeout](https://docs.aws.amazon.c
 ## Batching
 
 Messages sent from within a handler are [batched](/nservicebus/messaging/batched-dispatch.md) with up to ten messages per batch depending on the size of the message. Messages sent outside a handler are not batched.
+
+## Time-to-be-received
+
+Amazon SQS does not support Time-to-be-received (TTBR) to be set per message. Instead, once the message is received by NServiceBus and the TTBR is expired the message will be ignored and not be processed.
+
+Amazon SQS supports queue retension, [review the retention period configuration option to review the default value and how to override the default](/transports/sqs/configuration-options.md#retention-period).

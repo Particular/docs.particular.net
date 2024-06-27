@@ -22,6 +22,8 @@ partial: donotwrapoutgoingmessages
 
 **Default**: 4 days
 
+Configure the [Amason SQS  `MessageRetentionPeriod` queue attribute](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_SetQueueAttributes.html).
+
 This is the maximum time that a message will be retained within SQS and S3. When a sent message is not received and successfully processed within the specified time, the message will be lost. This value applies to both SQS and S3 - messages in SQS will be deleted after this amount of time, and large message bodies stored in S3 will automatically be deleted after this amount of time.
 
 The maximum value is 14 days.

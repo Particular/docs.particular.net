@@ -19,16 +19,17 @@ partial: broker-compatibility
 
 ## Transport at a glance
 
-|Feature                    |   |
-|:---                       |---
-|Transactions |None, ReceiveOnly
-|Pub/Sub                    |Native
-|Timeouts                   |Native
-|Large message bodies       |Broker can handle arbitrary message size within available resources, very large messages via data bus
-|Scale-out             |Competing consumer
-|Scripted Deployment        |Not supported
-|Installers                 |Mandatory
-|Native integration         |[Supported](native-integration.md)
+| Feature                                            |                                                                                                       |
+|:---------------------------------------------------|-------------------------------------------------------------------------------------------------------|
+| Transactions                                       | None, ReceiveOnly                                                                                     |
+| Pub/Sub                                            | Native                                                                                                |
+| Timeouts                                           | Native                                                                                                |
+| Large message bodies                               | Broker can handle arbitrary message size within available resources, very large messages via data bus |
+| Scale-out                                          | Competing consumer                                                                                    |
+| Scripted Deployment                                | Not supported                                                                                         |
+| Installers                                         | Mandatory                                                                                             |
+| Native integration                                 | [Supported](native-integration.md)                                                                    |
+| [time-to-be-received](#time-to-be-received) (TTBR) | Once the message is fetched by the consumer                                                           |
 
 ## Configuring the endpoint
 
@@ -75,3 +76,7 @@ In AMQP [the `delivery_mode`](https://www.rabbitmq.com/amqp-0-9-1-reference.html
 > Any failure in transmission or issues in the broker will result in the message being lost
 
 partial: nonpersistent
+
+## Time-to-be-received
+
+The RabbitMQ broker continuously checks the Time-to-be-received (TTBR), but only for the first message in each queue. Expired messages are not removed from the queue, and their disk space is not reclaimed until they reach the front of the queue. Using Time-to-be-received as a disk-saving measure on RabbitMQ is recommended only when all messages in the queue use the same Time-to-be-received value. Otherwise, messages in front of the queue may prevent other, stale messages from being cleaned.

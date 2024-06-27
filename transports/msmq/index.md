@@ -17,16 +17,17 @@ redirects:
 
 ## Transport at a glance
 
-|Feature                    |   |
-|:---                       |---
-|Transactions |None, ReceiveOnly, SendsWithAtomicReceive, TransactionScope
-|Pub/Sub                    |message driven
-|Timeouts                   |via timeouts storage
-|Large message bodies       |via data bus
-|Scale-out             |[Sender-side distribution](sender-side-distribution.md)
-|Scripted Deployment        |C#, PowerShell
-|Installers                 |Optional
-|Native integration         |[Supported](native-integration.md)
+| Feature                                            |                                                             |
+|:---------------------------------------------------|-------------------------------------------------------------|
+| Transactions                                       | None, ReceiveOnly, SendsWithAtomicReceive, TransactionScope |
+| Pub/Sub                                            | message driven                                              |
+| Timeouts                                           | via timeouts storage                                        |
+| Large message bodies                               | via data bus                                                |
+| Scale-out                                          | [Sender-side distribution](sender-side-distribution.md)     |
+| Scripted Deployment                                | C#, PowerShell                                              |
+| Installers                                         | Optional                                                    |
+| Native integration                                 | [Supported](native-integration.md)                          |
+| [time-to-be-received](#time-to-be-received) (TTBR) | Dependant on transaction mode ⚠️                           |
 
 ## Configuring the endpoint
 
@@ -169,3 +170,7 @@ If neither the MSDTC nor the outbox is configured, an exception message will app
 ```
 Transaction mode is set to `TransactionScope`. This depends on Microsoft Distributed Transaction Coordinator (MSDTC) which is not available. Either enable MSDTC, enable Outbox, or lower the transaction mode to `SendsAtomicWithReceive`.
 ```
+
+## Time-to-be-received
+
+The behavior of time-to-be-received depends on various factors, see [MSMQ discard expired messages](discard-expired-messages.md) for details.

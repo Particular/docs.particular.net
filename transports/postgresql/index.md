@@ -11,16 +11,17 @@ The PostgreSQL transport implements a message queuing mechanism on top of [Postg
 
 ## Transport at a glance
 
-|Feature                    |   |
-|:---                       |---
-|Transactions |None, ReceiveOnly, SendsAtomicWithReceive |
-|Pub/Sub                    |Native |
-|Timeouts                   |Native |
-|Large message bodies       |PostgreSQL can handle arbitrary message size  within available resources, very large messages via data bus |
-|Scale-out                  |Competing consumer |
-|Scripted Deployment        |SQL Scripts |
-|Installers                 |Optional |
-|Native integration         |Supported, see [SQL statements used by the transport](https://github.com/Particular/NServiceBus.SqlServer/blob/master/src/NServiceBus.Transport.PostgreSql/PostgreSqlConstants.cs) |
+| Feature                                            |                                                                                                                                                                                    |
+|:---------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Transactions                                       | None, ReceiveOnly, SendsAtomicWithReceive                                                                                                                                          |
+| Pub/Sub                                            | Native                                                                                                                                                                             |
+| Timeouts                                           | Native                                                                                                                                                                             |
+| Large message bodies                               | PostgreSQL can handle arbitrary message size  within available resources, very large messages via data bus                                                                         |
+| Scale-out                                          | Competing consumer                                                                                                                                                                 |
+| Scripted Deployment                                | SQL Scripts                                                                                                                                                                        |
+| Installers                                         | Optional                                                                                                                                                                           |
+| Native integration                                 | Supported, see [SQL statements used by the transport](https://github.com/Particular/NServiceBus.SqlServer/blob/master/src/NServiceBus.Transport.PostgreSql/PostgreSqlConstants.cs) |
+| [time-to-be-received](#time-to-be-received) (TTBR) | Storage reclaimed at most 5 minutes after expiration when receiving endpoint is running                                                                                            |
 
 ## Usage
 
@@ -64,3 +65,10 @@ When an endpoint is scaled out to multiple instances, more retries may be observ
 ## Transactions
 
 PostgreSQL transport supports following [transaction handling modes](/transports/transactions.md): receive only, send atomic with receive, and no transactions. It does not support Transaction scope mode due to the limitations in the design of the PostgreSQL database and the System.Transactions library.
+
+## Time-to-be-received
+
+The SQL transport runs a periodic task that removes expired messages from the queue. The task is first executed when the endpoint starts and is subsequently scheduled to execute 5 minutes after the previous run when the task has been completed. Expired messages are not received from the queue and their disk space will be reclaimed when the periodic task executes.
+
+> [!NOTE]
+> The periodic tasks only purges expired messages for endpoint queues that for which an endpoint receives messages. If no receiving endpoint is running expired messages will not be deleted and no storage is not released.
