@@ -21,7 +21,7 @@ This sample illustrates the use of [`PeriodicTimer`](https://learn.microsoft.com
 
 ### Define the background service
 
-The [`BackgroundService`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.backgroundservice) defines the job to be run when the host starts. It sets up a `PeriodicTimer` which will tick every 3 seconds. Every time it ticks, a message using NServiceBus.
+The [`BackgroundService`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.hosting.backgroundservice) defines the job to be run when the host starts. It sets up a `PeriodicTimer` which will tick every 3 seconds. Every time it ticks, a message is sent using NServiceBus.
 
 snippet: SendMessageJob
 
