@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-<<<<<<< HEAD
     <PackageReference Include="NServiceBus" Version="9.*" />
     <PackageReference Include="NServiceBus.Callbacks" Version="5.*" />
     <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="5.*" />
@@ -22,9 +21,3 @@
   </ItemGroup>
 
 </Project>
-=======
-    <PackageReference Include="NServiceBus" Version="9.1.*" />
-  </ItemGroup>
-
-</Project>
->>>>>>> c2f9f26c58 (Document the new 9.1 OpenTelemetry meters)
