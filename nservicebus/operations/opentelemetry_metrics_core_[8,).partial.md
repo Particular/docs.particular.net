@@ -1,4 +1,4 @@
-## Meters
+## Metrics
 
 NServiceBus endpoints can be configured to expose metrics related to message processing. To capture meter information, add the `NServiceBus.Core` meter source to the OpenTelemetry configuration:
 
