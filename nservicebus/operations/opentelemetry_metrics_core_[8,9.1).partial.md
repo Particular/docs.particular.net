@@ -1,3 +1,9 @@
+## Meters
+
+NServiceBus endpoints can be configured to expose metrics related to message processing. To capture meter information, add the `NServiceBus.Core` meter source to the OpenTelemetry configuration:
+
+snippet: opentelemetry-enablemeters
+
 ### Emitted meters
 
 - `nservicebus.messaging.successes` - Total number of messages processed successfully by the endpoint
@@ -11,3 +17,5 @@
   - Network send time: The time a message spends on the network before arriving in the destination queue
   - Queue wait time: The time a message spends in the destination queue before being picked up and processed
   - Processing time: The time it takes for the destination endpoint to process the message
+
+See the [OpenTelemetry samples](/samples/open-telemetry/) for instructions on how to send metric information to different tools.
