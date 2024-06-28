@@ -7,4 +7,3 @@ Executing code at various intervals is a common need when building enterprise sy
 - OS task scheduler, like the Windows task scheduler or Linux cron jobs.
 - [Timer trigger for Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-bindings-timer)
 - [Hangfire](https://www.hangfire.io/). See the [Hangfire sample](/samples/scheduling/hangfire/).
-- [FluentScheduler](https://github.com/fluentscheduler/FluentScheduler). See the [FluentScheduler sample](/samples/scheduling/fluentscheduler/).
