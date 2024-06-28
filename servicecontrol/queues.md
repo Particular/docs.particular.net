@@ -32,7 +32,7 @@ If an NServiceBus endpoint is unable to process a message, after the configured 
 | Component                          | Access<br/>requirements | Configuration                                                                                                                        |
 | ---------------------------------- | :---------------------: | ------------------------------------------------------------------------------------------------------------------------------------ |
 | NServiceBus endpoints              |          Write          | [Failed message configuration](/nservicebus/recoverability/configure-error-handling.md#configure-the-error-queue-address-using-code) |
-| ServiceControl Error instance      |          Read           | [ServiceBus/ErrorQueue](/servicecontrol/creating-config-file.md#transport-servicebuserrorqueue)                                      |
+| ServiceControl Error instance      |          Read           | [ServiceBus/ErrorQueue](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicebuserrorqueue)                                      |
 | ServiceControl Audit instance      |            -            |
 | ServiceControl Monitoring instance |            -            |
 
@@ -49,7 +49,7 @@ If the heartbeats or custom checks plugins are in use, they should be configured
 | ---------------------------------- | :---------------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | NServiceBus endpoints              |          Write          | [Heartbeats plugin](/monitoring/heartbeats/install-plugin.md) and [Custom checks plugin](/monitoring/custom-checks/install-plugin.md)                               |
 | ServiceControl Error instance      |       Read/Write        | _Instance name_                                                                                                                                                     |
-| ServiceControl Audit instance      |          Write          | [ServiceControl.Audit/ServiceControlQueueAddress](/servicecontrol/audit-instances/creating-config-file.md#transport-servicecontrol-auditservicecontrolqueueaddress) |
+| ServiceControl Audit instance      |          Write          | [ServiceControl.Audit/ServiceControlQueueAddress](/servicecontrol/audit-instances/configuration.md#transport-servicecontrol-auditservicecontrolqueueaddress) |
 | ServiceControl Monitoring instance |            -            |
 
 > [!NOTE]
@@ -88,7 +88,7 @@ This queue is used by ServiceControl Error instances during the retry process.
 
 ### Failed messages forwarding queue
 
-If [configured to do so](/servicecontrol/creating-config-file.md#transport-servicecontrolforwarderrormessages), the ServiceControl Error instance will forward a copy of every message it processes from the Failed messages queue.
+If [configured to do so](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicecontrolforwarderrormessages), the ServiceControl Error instance will forward a copy of every message it processes from the Failed messages queue.
 
 - Template: `<failed messages queue>.log`
 - Default name: **_error.log_**
@@ -96,7 +96,7 @@ If [configured to do so](/servicecontrol/creating-config-file.md#transport-servi
 | Component                          | Access<br/>requirements | Configuration                                                                                         |
 | ---------------------------------- | :---------------------: | ----------------------------------------------------------------------------------------------------- |
 | NServiceBus endpoints              |            -            |
-| ServiceControl Error instance      |          Write          | [ServiceBus/ErrorLogQueue](/servicecontrol/creating-config-file.md#transport-servicebuserrorlogqueue) |
+| ServiceControl Error instance      |          Write          | [ServiceBus/ErrorLogQueue](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicebuserrorlogqueue) |
 | ServiceControl Audit instance      |            -            |
 | ServiceControl Monitoring instance |            -            |
 
@@ -127,7 +127,7 @@ If the Saga Audit plugin is used, it should be configured to send messages to th
 | ---------------------------------- | :---------------------: | ---------------------------------------------------------------------------------------------------------------------------------- |
 | NServiceBus endpoints              |          Write          | [Audit configuration](/nservicebus/operations/auditing.md) and [Saga Audit plugin](/nservicebus/sagas/saga-audit.md#configuration) |
 | ServiceControl Error instance      |            -            |
-| ServiceControl Audit instance      |          Read           | [ServiceBus/AuditQueue](/servicecontrol/audit-instances/creating-config-file.md#transport-servicebusauditqueue)                    |
+| ServiceControl Audit instance      |          Read           | [ServiceBus/AuditQueue](/servicecontrol/audit-instances/configuration.md#transport-servicebusauditqueue)                    |
 | ServiceControl Monitoring instance |            -            |
 
 ### Input queue
@@ -141,7 +141,7 @@ Each ServiceControl Audit instance includes an input queue. This is currently no
 | ---------------------------------- | :---------------------: | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | NServiceBus endpoints              |            -            |
 | ServiceControl Error instance      |            -            |
-| ServiceControl Audit instance      |          Read           | [ServiceControl.Audit/InternalQueueName](/servicecontrol/audit-instances/creating-config-file.md#host-settings-servicecontrol-auditinternalqueuename) |
+| ServiceControl Audit instance      |          Read           | [ServiceControl.Audit/InternalQueueName](/servicecontrol/audit-instances/configuration.md#recoverability-servicecontrol-auditinternalqueuename) |
 | ServiceControl Monitoring instance |            -            |
 
 ### Error queue
@@ -160,7 +160,7 @@ If a ServiceControl Audit instance is unable to process a message, it will forwa
 
 ### Audit forwarding queue
 
-If [Audit Forwarding is enabled](/servicecontrol/audit-instances/creating-config-file.md#transport-servicecontrol-auditforwardauditmessages), after the ServiceControl Audit instance processes a message from the audit queue, it will forward a copy to this queue.
+If [Audit Forwarding is enabled](/servicecontrol/audit-instances/configuration.md#transport-servicecontrol-auditforwardauditmessages), after the ServiceControl Audit instance processes a message from the audit queue, it will forward a copy to this queue.
 
 - Template: `<audit queue name>.log`
 - Default name: **_audit.log_**
@@ -169,7 +169,7 @@ If [Audit Forwarding is enabled](/servicecontrol/audit-instances/creating-config
 | ---------------------------------- | :---------------------: | --------------------------------------------------------------------------------------------------------------------- |
 | NServiceBus endpoints              |            -            |
 | ServiceControl Error instance      |            -            |
-| ServiceControl Audit instance      |          Write          | [ServiceBus/AuditLogQueue](/servicecontrol/audit-instances/creating-config-file.md#transport-servicebusauditlogqueue) |
+| ServiceControl Audit instance      |          Write          | [ServiceBus/AuditLogQueue](/servicecontrol/audit-instances/configuration.md#transport-servicebusauditlogqueue) |
 | ServiceControl Monitoring instance |            -            |
 
 ## Monitoring instance
@@ -188,7 +188,7 @@ Endpoints send monitoring information to the monitoring queue and the monitoring
 | NServiceBus endpoints              |          Write          | [Monitoring plugin](/monitoring/metrics/install-plugin.md#configuration-service-control-metrics-address)                                  |
 | ServiceControl Error instance      |            -            |
 | ServiceControl Audit instance      |            -            |
-| ServiceControl Monitoring instance |          Read           | [Monitoring/EndpointName](/servicecontrol/monitoring-instances/installation/creating-config-file.md#host-settings-monitoringendpointname) |
+| ServiceControl Monitoring instance |          Read           | [Monitoring/EndpointName](/servicecontrol/monitoring-instances/configuration.md#host-settings-monitoringendpointname) |
 
 ### Error queue
 
@@ -202,4 +202,4 @@ When the ServiceControl Monitoring instance cannot process a message it is forwa
 | NServiceBus endpoints              |            -            |
 | ServiceControl Error instance      |            -            |
 | ServiceControl Audit instance      |            -            |
-| ServiceControl Monitoring instance |          Write          | [Monitoring/ErrorQueue](/servicecontrol/monitoring-instances/installation/creating-config-file.md#transport-monitoringerrorqueue) |
+| ServiceControl Monitoring instance |          Write          | [Monitoring/ErrorQueue](/servicecontrol/monitoring-instances/configuration.md#transport-monitoringerrorqueue) |

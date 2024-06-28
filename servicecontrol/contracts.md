@@ -13,8 +13,8 @@ related:
  - monitoring/heartbeats/notification-events
  - monitoring/custom-checks/notification-events
 ---
-
-ServiceControl events enable the construction of custom notifications and integration that will alert when something goes wrong in the system. In addition to [monitoring the error queue](/nservicebus/recoverability/configure-error-handling.md), ServiceControl receives information from the [NServiceBus.Heartbeat](/monitoring/heartbeats/) and [NServiceBus.CustomChecks](/monitoring/custom-checks/) packages. When messages fail, heartbeats fail to arrive, or custom checks are reported, events published by ServiceControl enable a subscribing endpoint to notify operations personnel however the developer wishes.
+<!-- TODO: This could use some editorialization of the headers, especially related to the MessageFailed event. Fix or raise an issue. -->
+ServiceControl events enable the construction of custom notifications and integration that will alert when something goes wrong in the system. In addition to [monitoring the error queue](/nservicebus/recoverability/configure-error-handling.md), ServiceControl receives information from the [NServiceBus.Heartbeat](/monitoring/heartbeats/) and [NServiceBus.CustomChecks](/monitoring/custom-checks/) packages. When messages fail, heartbeats fail to arrive, or custom checks are reported, events are published by ServiceControl to enable a subscribing endpoint to process those events however the developer wishes, for instance to notify operations personnel.
 
 See [Monitor with ServiceControl events](/samples/servicecontrol/events-subscription/) for a sample.
 
@@ -53,7 +53,6 @@ snippet: MessageFailedHandler
 > [!WARNING]
 > Endpoints that subscribe to ServiceControl events should _not_ use the same `error` and `audit` queues as other endpoints. Using the same `error` queue could cause an infinite feedback loop if processing a `MessageFailed` message failed. Using the same `audit` queue will cause the processing of the `MessageFailed` messages to be included in the ServiceInsight search results. This could confuse users searching for a given failure since both the failure and the failure notification will be shown. See also: [Recoverability](/nservicebus/recoverability/) and [Audit Queue Settings](/nservicebus/operations/auditing.md).
 
-
 #### Registering the publisher for message-driven publish/subscribe
 
 Transports that use [message-driven publish-subscribe](/nservicebus/messaging/publish-subscribe/) must have the ServiceControl instance registered as the publisher of the `MessageFailed` event.
@@ -69,7 +68,6 @@ snippet: ServiceControlEventsXmlConfig
 > [!NOTE]
 > Transports that [natively support publish and subscribe](/transports/types.md#multicast-enabled-transports) do not require any additional configuration.
 
-
 ### Monitoring events
 
 ServiceControl will also publish events based on collected monitoring data.
@@ -82,23 +80,23 @@ See [Heartbeat Notification Events](/monitoring/heartbeats/notification-events.m
 > Events described in this section are published by ServiceControl starting with version 4.17.
 
 ServiceControl will also publish events related to archiving and retrying messages:
-- `FailedMessagesArchived`: Event emitted for failed messages that were archived
-- `FailedMessagesUnArchived`: Event emitted for failed messages that were un-archived
-- `MessageFailureResolvedByRetry`: Event emitted by ServiceControl for each failed message that was resolved by retry
-- `MessageFailureResolvedManually`: Event emitted by ServiceControl for each failed message that was resolved manually
 
+* `FailedMessagesArchived`: Event emitted for failed messages that were archived
+* `FailedMessagesUnArchived`: Event emitted for failed messages that were un-archived
+* `MessageFailureResolvedByRetry`: Event emitted by ServiceControl for each failed message that was resolved by retry
+* `MessageFailureResolvedManually`: Event emitted by ServiceControl for each failed message that was resolved manually
 
 ## Decommissioning subscribers to ServiceControl events
 
 ServiceControl uses [event publishing](/nservicebus/messaging/publish-subscribe/) to expose information to subscribers. When using a [persistence-based transport](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based) an internal reference will be kept to each subscriber. If a subscriber for an event cannot be contacted then a [log entry](logging.md) will be written with the following error:
 
-```
+```text
 Failed dispatching external integration event
 ```
 
 An event will also be published and displayed in the ServicePulse dashboard with the following text:
 
-```
+```text
 'EVENTTYPE' failed to be published to other integration points. Reason for failure: REASON.
 ```
 

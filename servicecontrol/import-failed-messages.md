@@ -7,7 +7,8 @@ redirects:
 - servicecontrol/import-failed-audits
 - servicecontrol/import-failed-audit
 ---
-
+<!-- TODO split error/audit. Fix or raise issue. -->
+<!-- TODO containerize -->
 Messages can fail to be imported into the ServiceControl database for the following reasons:
  * Messages are malformed (e.g. missing headers)
    * This can happen, for example, when an outdated version of NServiceBus that contained a bug was used to process the messages.
@@ -19,11 +20,11 @@ Messages can fail to be imported into the ServiceControl database for the follow
 
 Messages that fail to be imported are stored in the ServiceControl database in the `FailedAuditImports` and `FailedErrorImports` collections.
 
-In addition, a log with the failure reason is written for the message in the [`%ServiceControl/LogPath%`](/servicecontrol/creating-config-file.md#host-settings-servicecontrollogpath)`\FailedImports\{Audit|Error}\%failureid%.txt`. These messages will not be visible in ServiceInsight.
+In addition, a log with the failure reason is written for the message in the `%ServiceControl/LogPath%` ([error instances](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrollogpath)/[audit instances](/servicecontrol/audit-instances/configuration.md#logging-servicecontrol-auditlogpath)) `\FailedImports\{Audit|Error}\%failureid%.txt`. These messages will not be visible in ServiceInsight.
 
 ## Failed message custom check
 
-When a failed import is detected in the ServiceControl database, the [**Message Ingestion** custom check](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-failed-imports) is marked as failed to bring the failed import(s) to the administrator's attention.
+When a failed import is detected in the ServiceControl database, the [**Message Ingestion** custom check](/servicecontrol/servicecontrol-instances/) is marked as failed to bring the failed import(s) to the administrator's attention.
 
 ## How to reimport
 
@@ -32,7 +33,7 @@ To reimport the failed messages, the instance must be shut down and started from
 > [!NOTE]
 > The value to use for `--serviceName` is the instance name. It is available in the Windows Service information as well as the ServiceControl Management Utility.
 
-**ServiceControl instance:**
+**ServiceControl error instance:**
 
 
 ```cmd

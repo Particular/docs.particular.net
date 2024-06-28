@@ -1,5 +1,5 @@
 ---
-title: Installing ServiceControl
+title: Deploying ServiceControl Error instances using SCMU
 summary: How to install different types of ServiceControl instances
 reviewed: 2024-06-14
 component: ServiceControl
@@ -10,6 +10,8 @@ redirects:
  - servicecontrol/multi-transport-support
 ---
 
+//TODO: Review/Editorialize. Some of this should be in the index and less specific to SCMU deployments
+
 Every component in the Particular Service Platform (not including NServiceBus), including ServiceControl, must be [downloaded](https://particular.net/downloads) and installed.
 
 #if-version [,5)
@@ -18,11 +20,11 @@ After installation, there is no ServiceControl instance running yet. Instances c
 
 ## Install methods
 
-ServiceControl can be installed in multiple ways. This article describes using the visual ServiceControl Management application. Scripted installs and upgrades can be done via the [ServiceControl Management PowerShell module](powershell.md). Advanced installation guidance to support high-load and high-availability is available on [active/active remote setups](./servicecontrol-instances/remotes.md) and [active/passive clustering](deploying-servicecontrol-in-a-cluster.md).
+ServiceControl can be installed in multiple ways. This article describes using the visual ServiceControl Management application. Scripted installs and upgrades can be done via the [ServiceControl Management PowerShell module](powershell.md). Advanced installation guidance to support high-load and high-availability is available on [active/active remote setups](/servicecontrol/servicecontrol-instances/remotes.md) and [active/passive clustering](/servicecontrol/deploying-servicecontrol-in-a-cluster.md).
 
 There is also a [community-managed puppet module](https://forge.puppet.com/tragiccode/nservicebusservicecontrol).
 
-partial: prereqs
+partial: prereqs //TODO move file, appropriate here?
 
 ## Planning
 
@@ -31,7 +33,7 @@ partial: prereqs
 
 The ServiceControl Management Utility provides a simple way to set up one or more ServiceControl instances (error, audit, and monitoring). For production systems, it is recommended to limit the number of instances per machine to one of each type. The ability to add multiple instances *of the same type on a single machine* is primarily intended to assist development and test environments.
 
-See [ServiceControl Capacity Planning](capacity-and-planning.md) and [Hardware Considerations](/servicecontrol/servicecontrol-instances/hardware.md) for more guidance.
+See [ServiceControl Capacity Planning](/servicecontrol/capacity-and-planning.md) and [Hardware Considerations](/servicecontrol/servicecontrol-instances/hardware.md) for more guidance.
 
 ## Installing ServiceControl instances
 
@@ -47,14 +49,14 @@ There are [three types](/servicecontrol/#servicecontrol-instance-types) of Servi
       If a transport is not available, a [transport adapter](/servicecontrol/transport-adapter/incompatible-features.md) can be used.
 5. For additional instance settings, open the `ServiceControl` and `ServiceControl Audit` sections.
    1. The name of the instance can be modified; the defaults for error and audit are `Particular.ServiceControl` and `Particular.ServiceControl.Audit`.
-      1. The name of the error instance is especially important to [enable plugins to send information](/servicecontrol/installation.md#servicecontrol-plugins) to ServiceControl.
+      1. The name of the error instance is especially important to [enable plugins to send information](/servicecontrol/servicecontrol-instances/configuration.md<!-- //TODO #servicecontrolinternalqueuename -->) to ServiceControl.
       2. If multiple instances for different systems are installed on the same server, a name like `Particular.SystemName` is a common option.
    2. Select the appropriate user account.
       Note that ServiceControl instances will run as Windows Services in the background.
    3. Be aware of the port numbers as these are used by ServicePulse and ServiceInsight to connect to ServiceControl.
    4. Configure the [retention period](/servicecontrol/how-purge-expired-data.md) for each instance.
    5. Configure the name of the queue that messages should arrive in.
-      This queue is important to endpoints that send error and audit messages to these ServiceControl instances, as well as [plugins](/servicecontrol/installation.md#servicecontrol-plugins).
+      This queue is important to endpoints that send error and audit messages to these ServiceControl instances, as well as [plugins](/servicecontrol/servicecontrol-instances/configuration.md<!-- //TODO #servicecontrolinternalqueuename -->).
    6. If needed, configure [forwarding queues](/servicecontrol/errorlog-auditlog-behavior.md).
    7. Full-text search can be turned off for [performance reasons](/servicecontrol/capacity-and-planning.md#storage-performance) if it's not needed.
 
@@ -66,7 +68,7 @@ A monitoring instance differs from error and audit instances in its configuratio
 
 As an example, after configuring an error, audit and monitoring instance for the SQL Server transport, the ServiceControl Management Utility will look similar to this:
 
-![ServiceControl Management interface that shows the link for upgrading](managementutil.png 'width=500')
+![ServiceControl Management interface that shows the link for upgrading](/servicecontrol/managementutil.png 'width=500')
 
 ## Upgrading ServiceControl instances
 
@@ -74,7 +76,7 @@ ServicePulse will show a notification when a new version of ServiceControl is av
 
 The ServiceControl Management Utility displays the instances of the ServiceControl service installed on the current machine. If a ServiceControl instance is running on an outdated version, an upgrade link will be shown next to the version label.
 
-![ServiceControl Management interface that shows the link for upgrading](managementutil-upgradelink.png 'width=500')
+![ServiceControl Management interface that shows the link for upgrading](/servicecontrol/managementutil-upgradelink.png 'width=500')
 
 To upgrade the service, click the upgrade link next to the service name.
 
@@ -129,7 +131,7 @@ Things to remember:
 
 * Ensure the instance being migrated is on the [latest version](https://github.com/Particular/ServiceControl/releases).
 * Optionally, use the same installer as the current version. Database schemas are not guaranteed to be compatible between versions.
-* Optionally, [script ServiceControl installations via powershell](/servicecontrol/powershell.md) instead of running installers manually
+* Optionally, [script ServiceControl installations via powershell](/servicecontrol/servicecontrol-instances/deployment/powershell.md) instead of running installers manually
 
 ServiceControl configuration settings are accessible via the Service Control Management Utility or by navigating to the configuration files on the file system stored in `ServiceControl.exe.config`, `ServiceControl.Audit.exe.config`, and `ServiceControl.Monitoring.exe.config`.
 
@@ -139,7 +141,7 @@ ServiceControl configuration settings are accessible via the Service Control Man
 > [!WARNING]
 > Take care when planning to move ServiceControl from one server to another. Moving databases between servers can be challenging. The embedded RavenDB does not support moving from a new version of Windows back to older versions of Windows. See [Getting error while restoring backup file in raven DB](https://stackoverflow.com/questions/25625910/getting-error-while-restoring-backup-file-in-raven-db) for more details.
 
-partial: removing
+partial: removing //TODO: Move file, appropriate here?
 
 ### Remove ServiceControl instances
 

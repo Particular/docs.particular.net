@@ -1,7 +1,7 @@
 ---
 title: ServiceControl
 summary: An overview of ServiceControl and what it does
-reviewed: 2022-10-19
+reviewed: 2024-06-26
 component: ServiceControl
 isLearningPath: true
 ---
@@ -12,7 +12,7 @@ For more information on how ServiceControl, ServicePulse, and ServiceInsight wor
 
 ### ServiceControl instance types
 
-After [installation](/servicecontrol/installation.md), the ServiceControl Management Utility provides the ability to add, upgrade and delete ServiceControl instances. There are three types of instances that can be created:
+There are three types of instances that can be created:
 
 - [Error instances](/servicecontrol/servicecontrol-instances/)
   This is the most commonly used ServiceControl instance and indispensable to ensure the smooth operation of an NServiceBus system. Together with ServicePulse, it provides the ability to visualize and retry failed messages.
@@ -21,22 +21,16 @@ After [installation](/servicecontrol/installation.md), the ServiceControl Manage
 - [Monitoring instances](/servicecontrol/monitoring-instances/)
   Monitoring instances performance monitoring and analyzing additional metrics and are useful for keeping track of the health of a distributed system.
 
-## Installation of ServiceControl instances
-
-After downloading ServiceControl, the ServiceControl Management utility is available in the Windows Start menu. The ServiceControl instances mentioned above must be installed and configured via the Management utility.
-
-Read more about how to [install and configure](/servicecontrol/installation.md) ServiceControl instances.
-
 ## Connect endpoints to ServiceControl
 
 NServiceBus endpoints must be configured to send data about their operations to a set of centralized queues that are unique to the system. ServiceControl monitors these queues, then collects and processes the data from the NServiceBus endpoints.
 
 Note that the data is sent to queues, even when ServiceControl is down. When ServiceControl becomes available, it will process the messages that were stored in the queue while it was offline.
 
-To enable [ServiceControl](/servicecontrol) to gather this information, configure the endpoints appropriately:
+To enable ServiceControl instances to gather this information, configure the endpoints appropriately:
 
-- [Configure recoverability](/nservicebus/recoverability) to collect failed messages.
-- [Enable auditing](/nservicebus/operations/auditing.md) to collect all messages.
-- [Install plugins](/servicecontrol/plugins/) to monitor endpoint health, collect saga state changes, and use custom checks.
+- [Configure recoverability](/nservicebus/recoverability) <!-- TODO: Anchor link to error config --> to allow a ServiceControl [error instance](/servicecontrol/servicecontrol-instances/) to monitor and retry failed messages from [ServicePulse](/servicepulse/intro-failed-message-retries.md).
+- [Enable auditing](/nservicebus/operations/auditing.md) to allow a ServiceControl [audit instance](/servicecontrol/audit-instances/) to collect information about all successfully processed messages for inspection and  analysis in [ServiceInsight](/serviceinsight/).
+- [Install plugins](/servicecontrol/plugins/) to monitor endpoint [performance](/monitoring/metrics/) or [health](/monitoring/heartbeats/), collect [saga state changes](/nservicebus/sagas/saga-audit.md), and use [custom checks](/monitoring/custom-checks/).
 
 See [_Optimizing ServiceControl for use in different environments_](/servicecontrol/servicecontrol-in-practice.md) for more information about practical considerations.

@@ -1,5 +1,5 @@
 ---
-title: Deploying ServiceControl to a Cluster
+title: Deploying ServiceControl to a Windows Cluster
 summary: A guide to deploying ServiceControl on a Windows failover cluster
 related:
 - servicecontrol/troubleshooting
@@ -79,4 +79,4 @@ The following is a sample ServiceControl configuration file (ServiceControl.exe.
 </configuration>
 ```
 
-See [Customizing ServiceControl Configuration](/servicecontrol/creating-config-file.md) for more information.
+See [Customizing ServiceControl Configuration](/servicecontrol/servicecontrol-instances/configuration.md) for more information.

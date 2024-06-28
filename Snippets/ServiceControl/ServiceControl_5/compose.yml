@@ -1,0 +1,61 @@
+services:
+  servicecontrol:
+    image: ghcr.io/particular/servicecontrol:pr-4187
+    hostname: servicecontrol
+    environment:
+      - SERVICECONTROL_TRANSPORTTYPE=RabbitMQ.QuorumConventionalRouting
+      - SERVICECONTROL_CONNECTIONSTRING="host=rabbitmq"
+      - SERVICECONTROL_RAVENDB_CONNECTIONSTRING=http://ravendb:8080   
+    #Intentionally disabled so only containers can connect
+    #ports:
+    #  - 33333:33333
+
+  servicecontrol-audit:
+    image: ghcr.io/particular/servicecontrol-audit:pr-4187
+    hostname: audit
+    environment:
+      - SERVICECONTROL_AUDIT_TRANSPORTTYPE=RabbitMQ.QuorumConventionalRouting
+      - SERVICECONTROL_AUDIT_CONNECTIONSTRING="host=rabbitmq"
+      - SERVICECONTROL_AUDIT_RAVENDB_CONNECTIONSTRING=http://ravendb:8080
+    #Intentionally disabled so only containers can connect
+    #ports:
+    #  - 44444:44444
+
+  servicecontrol-monitoring:
+    image: ghcr.io/particular/servicecontrol-monitoring:pr-4187
+    hostname: monitoring
+    environment:
+      - MONITORING_TRANSPORTTYPE=RabbitMQ.QuorumConventionalRouting
+      - MONIGORING_CONNECTIONSTRING="host=rabbitmq"     
+    #Intentionally disabled so only containers can connect
+    #ports:
+    #  - 33633:33633
+
+  servicepulse:
+    image: particular/servicepulse:1
+    ports:
+      - 9090:90
+
+  ravendb:
+    image: ravendb/ravendb:ubuntu-latest
+    hostname: ravendb
+    environment:
+      - RAVEN_Setup_Mode='None'
+      - RAVEN_Security_UnsecuredAccessAllowed='PrivateNetwork'
+      - RAVEN_License_Eula_Accepted='true'
+      - RAVEN_ARGS='-n --log-to-console'
+    env_file:
+      - fileName
+    #Intentionally disabled so only containers can connect
+    #ports:
+    #  - 8080:8080 
+    #volumes:
+    #  - ravendatabases:/opt/RavenDb/Server/RavenData
+  
+  rabbitmq:
+    image: rabbitmq:management
+    hostname: rabbitmq
+
+volumes:
+  ravendb:
+    external: true

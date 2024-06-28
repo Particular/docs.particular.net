@@ -50,9 +50,9 @@ Example
 ServicePulse connects to and relies on ServiceControl and optionally ServiceControl Monitoring as its data source.
 For details on ServiceControl, ServiceControl Monitoring and ServicePulse configuration options, see:
 
- * [Configuring ServiceControl](/servicecontrol/creating-config-file.md)
+ * [Configuring ServiceControl](/servicecontrol/servicecontrol-instances/configuration.md)
  * [ServiceControl Guidance](/servicecontrol)
- * [Configuring ServiceControl Monitoring](/servicecontrol/monitoring-instances/installation/creating-config-file.md)
+ * [Configuring ServiceControl Monitoring](/servicecontrol/monitoring-instances/configuration.md)
  * [ServiceControl Monitoring Guidance](/servicecontrol/monitoring-instances)
  * [Connection Configuration in ServicePulse](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui)
 

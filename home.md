@@ -298,7 +298,7 @@ span.blue {
       <p></p>
       <ul>
         <li><a href="/servicecontrol/servicecontrol-in-practice.md">Optimizing use in different environments</a></li>
-        <li><a href="/servicecontrol/installation.md">Installing</a></li>
+        <li><a href="/servicecontrol/servicecontrol-instances/deployment/">Installing</a></li>
       </ul>
       <a href="/servicecontrol/"><h3>All ServiceControl articles</h3></a><br/>
       <div style="clear: both"></div>

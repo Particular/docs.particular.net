@@ -4,6 +4,7 @@ summary: How to configure a Monitoring instance to be exposed through a custom h
 reviewed: 2021-07-28
 redirects:
 - servicecontrol/monitoring-instances/installation/setting-custom-hostname
+- servicecontrol/monitoring-instances/installation/configure-the-uri
 ---
 
 

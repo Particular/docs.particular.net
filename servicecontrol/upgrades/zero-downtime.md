@@ -1,24 +1,26 @@
 ---
-title: Zero downtime upgrades
-summary: Instructions on how to upgrade ServiceControl instances with zero downtime
+title: Zero downtime upgrades of Audit instances
+summary: Instructions on how to upgrade ServiceControl Audit instances with zero downtime
 isUpgradeGuide: true
-reviewed: 2023-11-30
+reviewed: 2024-06-27
+related:
+- servicecontrol/audit-instances
 ---
-
-The [ServiceControl remotes feature](/servicecontrol/servicecontrol-instances/remotes.md) can be used to upgrade a ServiceControl installation without taking it offline.
-
-> [!NOTE]
-> PowerShell must be used to install individual instances. Example scripts are provided for each step.
+<!-- TODO: Update this with instructions for containers -->
+The [ServiceControl remotes feature](/servicecontrol/servicecontrol-instances/remotes.md) can be used to upgrade a [ServiceControl Audit instance](/servicecontrol/audit-instances/) deployment without taking it offline.
 
 > [!NOTE]
-> For scenarios where retaining audit message data is not required (e.g. transient data that does not merit effort to retain), this process is not necessary -- the audit instance can simply be deleted and recreated with the same name.
+> PowerShell must be used to install individual Audit instances. Example scripts are provided for each step. <!-- TODO: Is it just that it is safer for to only give instructions using PowerShell? -->
+
+> [!NOTE]
+> For scenarios where retaining audit message data is not required (e.g. transient data that does not merit effort to retain), this process is not necessary -- the Audit instance can simply be deleted and recreated with the same name.
 
 > [!WARNING]
 > This zero downtime upgrade process is only suitable for use with ServiceControl Audit instances. To upgrade ServiceControl Error instances to version 5 see the [version 4 to 5](/servicecontrol/upgrades/4to5/) upgrade guide.
 
 ## Audit instances
 
-The process follows these steps:
+The overall process follows these steps:
 
 1. Add a new audit instance as a remote
 1. Disable audit queue management on the old audit instance
@@ -111,10 +113,10 @@ Although both ServiceControl Audit instances ingest messages from the audit queu
 
 ### Disable audit queue ingestion on the old instance
 
-Update the audit queue configuration on the original Audit instance and add the setting key [`ServiceControl/IngestAuditMessages`](/servicecontrol/audit-instances/creating-config-file.md#host-settings-servicecontrolingestauditmessages) with value `false`, save, and restart the instance.
+Update the audit queue configuration on the original Audit instance and add the setting key [`ServiceControl/IngestAuditMessages`](/servicecontrol/audit-instances/configuration.md#host-settings-servicecontrolingestauditmessages) with value `false`, save, and restart the instance.
 
 > [!NOTE]
-> For versions 4.32.0 of ServiceControl and older use `!disable` as the [`AuditQueue`](/servicecontrol/audit-instances/creating-config-file.md#transport-servicebusauditqueue) name to disable the audit message ingestion.
+> For versions 4.32.0 of ServiceControl and older use `!disable` as the [`AuditQueue`](/servicecontrol/audit-instances/configuration.md#transport-servicebusauditqueue) name to disable the audit message ingestion.
 
 Alternatively, run the following PowerShell script to make the changes:
 
@@ -136,7 +138,7 @@ if ($null -eq $element) {
     $newElement.SetAttribute("key", "ServiceControl/IngestAuditMessages")
     $newElement.SetAttribute("value", "false")
     $appSettings.AppendChild($newElement)
-} else {   
+} else {
     $element.value = "false"
 }
 $configDoc.Save($configPath)
@@ -182,7 +184,7 @@ As the original audit instance is no longer ingesting messages, it will be empty
 3. If the instance is using RavenDB 3.5 for persistence, go to the `<system>` database. If the instance is using RavenDB 5, go to the `audit` database.
 4. Check the documents count in the `ProcessedMessages` collection.
 
-When the `ProcessedMessages` collection is empty, the audit instance can be decomissioned.
+When the `ProcessedMessages` collection is empty, the audit instance can be decommissioned.
 
 On the ServiceControl Error instance machine:
 
