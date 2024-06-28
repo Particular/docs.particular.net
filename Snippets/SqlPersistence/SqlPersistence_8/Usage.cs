@@ -110,7 +110,8 @@ class Usage
 
         #endregion
     }
-    void PostgreSqlEntraUsage(EndpointConfiguration endpointConfiguration)
+
+        void PostgreSqlEntraUsage(EndpointConfiguration endpointConfiguration)
     {
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         #region SqlPersistenceUsagePostgreSqlEntra
@@ -132,6 +133,7 @@ class Usage
 
         #endregion
     }
+
     void JsonBParameterModifier(EndpointConfiguration endpointConfiguration)
     {
         #region JsonBParameterModifier
