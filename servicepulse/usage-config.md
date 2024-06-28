@@ -28,14 +28,12 @@ Look at the [Diagnostics](#diagnostics) tab to diagnose connection issues.
 
 The follow settings are available to setup a connection to Azure Service Bus:
 
-- LicenseComponent/ASB/ServiceBusName
-- LicenseComponent/ASB/ClientId
-- LicenseComponent/ASB/ClientSecret
-- LicenseComponent/ASB/TenantId
-- LicenseComponent/ASB/SubscriptionId
-- LicenseComponent/ASB/ManagementUrl
-
-Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the Azure Service Bus-specific settings.
+- [LicenseComponent/ASB/TenantId](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport-licensecomponentasbtenantid)
+- [LicenseComponent/ASB/SubscriptionId](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport-licensecomponentasbsubscriptionid)
+- [LicenseComponent/ASB/ServiceBusName](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport-licensecomponentasbservicebusname)
+- [LicenseComponent/ASB/ClientId](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport-licensecomponentasbclientid)
+- [LicenseComponent/ASB/ClientSecret](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport-licensecomponentasbclientsecret)
+- [LicenseComponent/ASB/ManagementUrl](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport-licensecomponentasbmanagementurl)
 
 #### Minimum Permissions
 

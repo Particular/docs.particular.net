@@ -337,99 +337,119 @@ Type: string
 
 Default: `ServiceControl.ThroughputData`
 
-### LicenseComponent/ASB/ServiceBusName
-
-When using the [Azure Service Bus transport](/transports/azure-service-bus/), this is the Azure Service Bus namespace.
-
-Type: string
-
-### LicenseComponent/ASB/ClientId
-
-When using the [Azure Service Bus transport](/transports/azure-service-bus), this is the ClientId for an Azure login that has access to read metrics data for the Azure Service Bus namespace.
-
-Type: string
-
-### LicenseComponent/ASB/ClientSecret
-
-When using the [Azure Service Bus transport](/transports/azure-service-bus), this is the ClientSecret for an Azure login that has access to read metrics data for the Azure Service Bus namespace.
-
-Type: string
+## Usage Reporting when using the [Azure Service Bus transport](/transports/azure-service-bus/)
 
 ### LicenseComponent/ASB/TenantId
 
-When using the [Azure Service Bus transport](/transports/azure-service-bus), this is the Azure Microsoft Extra ID.
+The Azure [Tenant ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-microsoft-entra-tenant).
 
 Type: string
 
 ### LicenseComponent/ASB/SubscriptionId
 
-When using [Azure Service Bus transport](/transports/azure-service-bus), this is the Azure subscription ID.
+The Azure [subscription ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-azure-subscription).
 
 Type: string
+
+### LicenseComponent/ASB/ServiceBusName
+
+The name of the Azure Service Bus namespace.
+
+Type: string
+
+![Screenshot showing where the Azure Service Bus namespace name appears when viewing the Service Bus resource in Azure portal](asb-namespace-name.png)
+
+### LicenseComponent/ASB/ClientId
+
+The Client ID (aka Application ID) for an [Azure service principal](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser#service-principal-object) that has access to read metrics data for the Azure Service Bus namespace.
+
+Type: string
+
+Example Client ID from an Azure App Registration:
+![Screenshot showing where the Client ID appears in an App Registration](asb-app-service-principal.png)
+
+### LicenseComponent/ASB/ClientSecret
+
+The [client secret](https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-service-principal-portal#option-3-create-a-new-client-secret) for an Azure service principal that has access to read metrics data for the Azure Service Bus namespace.
+
+Type: string
+
+> [!NOTE]
+> Certificates and federated credentials are not supported at this time.
 
 ### LicenseComponent/ASB/ManagementUrl
 
-When using [Azure Service Bus transport](/transports/azure-service-bus), this is the Azure ManagementUrl URL.
+The Azure ManagementUrl URL.
 
 Type: string
 
+Default: https://management.azure.com
+
+This setting only needs to be configured if not using the public [Azure cloud environment](https://learn.microsoft.com/en-us/dotnet/api/azure.resourcemanager.armenvironment?view=azure-dotnet).
+
+## Usage Reporting when using the [Amazon SQS transport](/transports/sqs)
+
 ### LicenseComponent/AmazonSQS/AccessKey
 
-When using [Amazon SQS transport](/transports/sqs), this is the AWS Access Key ID to use to discover queue names and gather per-queue metrics.
+The AWS Access Key ID to use to discover queue names and gather per-queue metrics.
 
 Type: string
 
 ### LicenseComponent/AmazonSQS/SecretKey
 
-When using [Amazon SQS transport](/transports/sqs), this is the AWS Secret Access Key to use to discover queue names and gather per-queue metrics.
+The AWS Secret Access Key to use to discover queue names and gather per-queue metrics.
 
 Type: string
 
 ### LicenseComponent/AmazonSQS/Profile
 
-When using [Amazon SQS transport](/transports/sqs), this is the name of a local AWS credentials profile to use to discover queue names and gather per-queue metrics.
+The name of a local AWS credentials profile to use to discover queue names and gather per-queue metrics.
 
 Type: string
 
 ### LicenseComponent/AmazonSQS/Region
 
-When using [Amazon SQS transport](/transports/sqs), this is the AWS region to use when accessing AWS services.
+The AWS region to use when accessing AWS services.
 
 Type: string
 
 ### LicenseComponent/AmazonSQS/Prefix
 
-When using [Amazon SQS transport](/transports/sqs), this specifies to report only on queues that begin with a specific prefix. This is commonly used when one AWS account must contain queues for multiple projects or multiple environments.
+Report only on queues that begin with the specified prefix. This is commonly used when one AWS account must contain queues for multiple projects or multiple environments.
 
 Type: string
 
+## Usage Reporting when using the [RabbitMQ transport](/transports/rabbitmq)
+
 ### LicenseComponent/RabbitMQ/ApiUrl
 
-When using [RabbitMQ transport](/transports/rabbitmq), this is the RabbitMQ management URL.
+The RabbitMQ management URL.
 
 Type: string
 
 ### LicenseComponent/RabbitMQ/UserName
 
-When using [RabbitMQ transport](/transports/rabbitmq), this is the username to access the RabbitMQ management interface.
+The username to access the RabbitMQ management interface.
 
 Type: string
 
 ### LicenseComponent/RabbitMQ/Password
 
-When using [RabbitMQ transport](/transports/rabbitmq), this is the password to access the RabbitMQ management interface.
+The password to access the RabbitMQ management interface.
 
 Type: string
 
+## Usage Reporting when using the [SqlServer transport](/transports/sql)
+
 ### LicenseComponent/SqlServer/ConnectionString
 
-When using [SqlServer transport](/transports/sql), connection string that will provide at least read access to all queue tables.
+The connection string that will provide at least read access to all queue tables.
 
 Type: string
 
 ### LicenseComponent/SqlServer/AdditionalCatalogs
 
-When using [SqlServer transport](/transports/sql), additional databases on the same server also contain NServiceBus message queues, the AdditionalCatalogs setting specifies additional database catalogs to search. The tool replaces the Database or Initial Catalog parameter in the connection string with the additional catalog and queries all of them.
+Specifies any additional databases on the same server that also contain NServiceBus message queues.
 
 Type: string
 
