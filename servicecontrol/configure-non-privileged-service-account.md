@@ -4,7 +4,7 @@ summary: Using a low privilege account for ServiceControl
 reviewed: 2023-06-02
 ---
 
-<!-- TODO: Containerize! -->
+<!-- TODO: Containerize -->
 
 To use a low-privileged account as the service account for ServiceControl, the following should be considered:
 
@@ -34,7 +34,7 @@ If the connection string does not provide appropriate rights, the service will f
 
 The account under which the ServiceControl instance is running requires URL namespace reservations for the hostname and ports used by the instance. The reservations can be managed using the [ServiceControl Powershell commands](/servicecontrol/powershell.md#troubleshooting-via-powershell-checking-and-manipulating-urlacls) or from the command line using [netsh.exe](https://docs.microsoft.com/en-us/windows/desktop/http/add-urlacl). For example, to add url reservation for `http:\\localhost:33333\` to `LocalService` account the following command can be used `netsh http add urlacl url=http://localhost:33333/ user=LocalService listen=yes delegate=no`.
 
-For instructions on how to review and change the urls used by ServiceControl instance, refer to [Changing the ServiceControl URI](setting-custom-hostname.md). <!-- TODO: Why can't we say that instead of having all of the previous paragraph. Fix or raise an issue. -->
+For instructions on how to review and change the urls used by ServiceControl instance, refer to [Changing the ServiceControl URI](setting-custom-hostname.md). <!-- TODO: Is this necessary with the previous paragraph. Fix or raise an issue. -->
 
 > [!NOTE]
 > ServiceControl exposes endpoints on two different ports, each one requiring separate registration.

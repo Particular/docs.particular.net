@@ -4,7 +4,7 @@ summary: Instructions on how to upgrade ServiceControl Audit instances with zero
 isUpgradeGuide: true
 reviewed: 2024-06-27
 related:
-- /servicecontrol/audit-instances/
+- servicecontrol/audit-instances
 ---
 <!-- TODO: Update this with instructions for containers -->
 The [ServiceControl remotes feature](/servicecontrol/servicecontrol-instances/remotes.md) can be used to upgrade a [ServiceControl Audit instance](/servicecontrol/audit-instances/) deployment without taking it offline.

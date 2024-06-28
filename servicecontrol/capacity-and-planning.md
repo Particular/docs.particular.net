@@ -40,7 +40,7 @@ For this reason, it is best to store ServiceControl data on a disk with low late
 
 For more details, see [Hardware Considerations](servicecontrol-instances/hardware.md).
 
-## Accessing data and audited messages <!-- TODO: Does this belong in this document? Do we care. Perhaps raise an issue. -->
+## Accessing data and audited messages <!-- TODO: Does this belong in this document? If not, fix or raise an issue. -->
 
 ### Forwarding queues
 

@@ -9,7 +9,7 @@ reviewed: 2022-10-18
 ---
 <!-- TODO: Should this be split between error and audit? If so, fix or raise issue -->
 <!-- TODO: Link to/from configuration settings -->
-ServiceControl stores audit and error data. Any audit and error data that is older than the specified thresholds is deleted from the ServiceControl RavenDB. The expiration thresholds for both faulted and audited messages must be set during installation. These values can be modified later by launching ServiceControl Management and editing the configuration settings for the instance. <!-- TODO: containerize! powershellize too! -->
+ServiceControl stores audit and error data. Any audit and error data that is older than the specified thresholds is deleted from the ServiceControl RavenDB. The expiration thresholds for both faulted and audited messages must be set during installation. These values can be modified later by launching ServiceControl Management and editing the configuration settings for the instance. <!-- TODO: containerize. powershellize too. -->
 
 > [!NOTE]
 > The expiration process curates only the data in the ServiceControl RavenDB database. Audit and error forwarding queues are not curated or managed by ServiceControl. To turn these settings off, launch ServiceControl Management and edit the configuration settings for the instance.
