@@ -13,8 +13,8 @@ The primary job of ServiceControl is to collect information on system behavior i
 
 ### Location
 
+<!-- TODO: Reword since now it isn't only embedded RavenDB instances -->
 Each ServiceControl instance stores its data in a [RavenDB embedded](https://ravendb.net/docs/article-page/5.3/csharp/server/embedded) instance. The location of the database has a significant impact on overall system performance and throughput. The embedded database files should be located on a high-performance storage device with a high-throughput connection to the machine hosting ServiceControl.
-
 
 ### Size
 
@@ -28,23 +28,19 @@ To limit the rate at which the database grows, the body of an audit messages may
 
 See also: [Automatic Expiration of ServiceControl Data](how-purge-expired-data.md).
 
-**NOTE**
-
- * The maximum supported size of the RavenDB embedded database is 16 TB.
- * Failed messages *never* expire and are retained indefinitely in the ServiceControl database.
-
+> [!NOTE]
+> * The maximum supported size of the RavenDB embedded database is 16 TB. <!-- TODO: Something something containers have no limit or what is the limit? -->
+> * Failed messages *never* expire and are retained indefinitely in the ServiceControl database.
 
 ### Performance
-
+<!-- TODO: reword for external raven -->
 From a performance perspective, ServiceControl is similar to a database installation. It requires a significant amount of disk and network I/O due to process audit, error and monitoring messages. Each of these message-processing operations requires disk I/O. The higher the message throughput of an environment, the higher the required disk I/O.
 
 For this reason, it is best to store ServiceControl data on a disk with low latency for I/O operations. Indexes are continuously updated and keeping them in memory requires significant RAM. Indexes that cannot be stored fully in RAM are more likely to be stale. If full-text indexing is enabled, messages are added to full-text search, which requires the CPU to have sufficient capacity for updating indexes. Full-text search for ServiceControl error or audit instances can be configured in the ServiceControl Management Utility.
 
 For more details, see [Hardware Considerations](servicecontrol-instances/hardware.md).
 
-
-## Accessing data and audited messages
-
+## Accessing data and audited messages <!-- TODO: Does this belong in this document? Do we care. Perhaps raise an issue. -->
 
 ### Forwarding queues
 
@@ -52,25 +48,22 @@ ServiceControl may be configured to forward consumed messages to other queues fo
 
 See also: [Forwarding Queues](errorlog-auditlog-behavior.md).
 
-
-### HTTP API
+### HTTP API <!-- TODO: WTF -->
 
 The ServiceControl HTTP API provides a JSON stream of audited and error messages (headers, body, and context) that can be imported into another database.
 
 > [!NOTE]
 > The ServiceControl HTTP API is subject to changes and enhancements that may not be backward compatible. Use of the HTTP API by third parties is discouraged at this time.
 
-
-## Throughput
+## Throughput <!-- TODO: This should make distinctions between the different stuff, audits are a different animal than errors. Perhaps raise an issue. -->
 
 ServiceControl consumes audit, error, and control messages from all endpoints configured to forward those messages to it. This means the throughput (measured in received and processed messages per second) required by ServiceControl is the aggregate throughput of all endpoints forwarding messages to its queues.
 
 The throughput of ServiceControl depends on multiple factors. Message size and network bandwidth have a significant effect. Another factor is the transport type used by the system.
 
-
 ### Transport type
 
-Different transport types have different throughput capabilities.
+Different transport types have different throughput capabilities. <!-- TODO: Should the specifics for transports be moved to the transports.md? Fix now or raise an issue. -->
 
 The transports supported by ServiceControl provide varying levels of throughput. MSMQ and SQL Server typically provide the highest.
 

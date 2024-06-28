@@ -1,5 +1,5 @@
 ---
-title: Deploying ServiceControl to a Cluster
+title: Deploying ServiceControl to a Windows Cluster
 summary: A guide to deploying ServiceControl on a Windows failover cluster
 related:
 - servicecontrol/troubleshooting

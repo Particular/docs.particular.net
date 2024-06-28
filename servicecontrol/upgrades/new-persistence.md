@@ -2,7 +2,7 @@
 title: New persistence format
 summary: How to migrate ServiceControl Audit instances to the new persistence format introduced in version 4.26
 isUpgradeGuide: true
-reviewed: 2022-10-21
+reviewed: 2024-06-27
 ---
 
 Version 4.26 of ServiceControl introduced a new persistence format for audit instances. The new persistence format is faster and more efficient, using less space on disk.
@@ -24,7 +24,7 @@ To switch to the new persistence format, follow the steps for [zero downtime upg
 
 Audit instances created using ServiceControl version 4.25 and below use the old instance format. Even if this instance is upgraded to a newer version, it will continue to use the old format.
 
-The persistence format of an instance can be verified using ServiceControl Management or the `Get-ServiceControlAuditInstances` powershell cmdlet after installing ServiceControl 4.26 or above.
+The persistence format of an instance can be verified using ServiceControl Management or the `Get-ServiceControlAuditInstances` powershell cmdlet after installing ServiceControl 4.26 or above. <!-- TODO: How do containers users do this, assuming they can migrate from a SCMU or PowerShell deployments -->
 
 If the value is `RavenDB 5` (ServiceControl 4.x) or `RavenDB` (ServiceControl 5.x or later) then the instance is using the new persistence format and does not require upgrading.
 

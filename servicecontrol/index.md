@@ -1,7 +1,7 @@
 ---
 title: ServiceControl
 summary: An overview of ServiceControl and what it does
-reviewed: 2022-10-19
+reviewed: 2024-06-26
 component: ServiceControl
 isLearningPath: true
 ---
@@ -27,10 +27,10 @@ NServiceBus endpoints must be configured to send data about their operations to 
 
 Note that the data is sent to queues, even when ServiceControl is down. When ServiceControl becomes available, it will process the messages that were stored in the queue while it was offline.
 
-To enable [ServiceControl](/servicecontrol) to gather this information, configure the endpoints appropriately:
+To enable ServiceControl instances to gather this information, configure the endpoints appropriately:
 
-- [Configure recoverability](/nservicebus/recoverability) to collect failed messages.
-- [Enable auditing](/nservicebus/operations/auditing.md) to collect all messages.
-- [Install plugins](/servicecontrol/plugins/) to monitor endpoint health, collect saga state changes, and use custom checks.
+- [Configure recoverability](/nservicebus/recoverability) <!-- TODO: Anchor link to error config --> to allow a ServiceControl [error instance](/servicecontrol/servicecontrol-instances/) to monitor and retry failed messages from [ServicePulse](/servicepulse/intro-failed-message-retries.md).
+- [Enable auditing](/nservicebus/operations/auditing.md) to allow a ServiceControl [audit instance](/servicecontrol/audit-instances/) to collect information about all successfully processed messages for inspection and  analysis in [ServiceInsight](/serviceinsight/).
+- [Install plugins](/servicecontrol/plugins/) to monitor endpoint [performance](/monitoring/metrics/) or [health](/monitoring/heartbeats/), collect [saga state changes](/nservicebus/sagas/saga-audit.md), and use [custom checks](/monitoring/custom-checks/).
 
 See [_Optimizing ServiceControl for use in different environments_](/servicecontrol/servicecontrol-in-practice.md) for more information about practical considerations.

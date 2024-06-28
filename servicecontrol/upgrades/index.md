@@ -15,21 +15,18 @@ related:
 1. Analyze the storage size for each ServiceControl instance and update starting from the smallest to the largest. This helps understand how smaller migrations run and can be used to extrapolate how long updating the larger instances will take which can help decided whether a side-by-side upgrade is necessary.
 
 > [!NOTE]
-> Upgrading the ServiceControl will not upgrade each of the individual error, monitoring or audit instances. Each of those instances will need to be upgraded separately if desired.
+> Installing a newer version of the ServiceControl Management utility or PowerShell will not upgrade each of the individual error, monitoring or audit instances. Each of those instances will need to be upgraded in a subsequent step separately if desired.
 
 ## Downgrading ServiceControl
 
-This section contains information about downgrading ServiceControl instances and the ServiceControl Management Utility.
+This section contains information about downgrading ServiceControl.
 
-### Instances
+> [!WARNING]
+> ServiceControl instances can only be downgraded using a manual process. This is because the storage schema could have changed during a previous upgrade. If a downgrade MUST be performed ensure that the storage schema is compatible by reading the relevant [ServiceControl upgrade guides](/servicecontrol/upgrades/). It is recommended to perform downgrades under the supervision of a [Particular software support engineer](https://particular.net/support).
 
-ServiceControl instances cannot be downgraded with the ServiceControl Management Utility. This is because the storage schema could have changed during a previous upgrade.
+The method used to downgrade ServiceControl instances depends on the method used to deploy them:
 
-> [!NOTE]
-> If a downgrade MUST be performed ensure that the storage schema is compatible.
-
-> [!NOTE]
-> It is recommended to execute this procedure under the supervision of a Particular software support engineer.
+### Downgrading using the ServiceControl Management utility
 
 1. Open the ServiceControl Management Utility
 2. Scroll to the instance that requires downgrading
@@ -37,17 +34,18 @@ ServiceControl instances cannot be downgraded with the ServiceControl Management
 4. Copy the `ServiceControl.exe.config` and store the identical instance name
 5. Delete the instance but keep the database files
 6. Close ServiceControl Management Utility
-7. [Downgrade the installer](#downgrading-servicecontrol-installer)
-8. Add a new instance using the same identical name and configuration as the deleted instance
+7. Uninstall the current (newer) version of ServiceControl from Windows in "Add/remove programs"
+8. Download the `Particular.ServiceControl-<version>` exe file for the desired older version of the ServiceControl Management Utility from [the GitHub release note assets](https://github.com/Particular/ServiceControl/tags).
+9. Install the older version of the ServiceControl Management Utility using the downloaded exe file.
+10. Add a new instance using the same identical name and configuration as the deleted instance
 
-### Installer
-
-There may be a need to setup a ServiceControl instance for an older version of ServiceControl, in which case follow these steps:
-
-1. Uninstall the current (newer) version from Windows in "Add/remove programs"
-2. Install the previous version
-
-The ServiceControl Management Utility (SCMU) can now be used again to add instances based on the older version.
-
-> [!NOTE]
+> [!IMPORTANT]
 > Downgrading the setup can results in SCMU not being able to manage newer instance versions.
+
+### Downgrading using PowerShell
+
+<!-- TODO -->
+
+### Downgrading using containers
+
+<!-- TODO -->

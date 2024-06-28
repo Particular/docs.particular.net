@@ -7,7 +7,8 @@ redirects:
 - servicecontrol/import-failed-audits
 - servicecontrol/import-failed-audit
 ---
-
+<!-- TODO split error/audit. Fix or raise issue. -->
+<!-- TODO containerize! -->
 Messages can fail to be imported into the ServiceControl database for the following reasons:
  * Messages are malformed (e.g. missing headers)
    * This can happen, for example, when an outdated version of NServiceBus that contained a bug was used to process the messages.
@@ -32,7 +33,7 @@ To reimport the failed messages, the instance must be shut down and started from
 > [!NOTE]
 > The value to use for `--serviceName` is the instance name. It is available in the Windows Service information as well as the ServiceControl Management Utility.
 
-**ServiceControl instance:**
+**ServiceControl error instance:**
 
 
 ```cmd

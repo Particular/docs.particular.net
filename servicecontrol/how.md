@@ -1,10 +1,10 @@
 ---
 title: How does ServiceControl work?
 summary: An overview of how ServiceControl collects and processes messages and data from an NServiceBus system
-reviewed: 2022-10-19
+reviewed: 2024-06-27
 ---
 
-ServiceControl is a background process that will collect and store data and make it available via an HTTP API to ServicePulse and ServiceControl.
+ServiceControl is a suite of processes, deployed as [different instance types](/servicecontrol/#servicecontrol-instance-types), that will collect and store data and make it available via an HTTP API to ServicePulse and ServiceControl.
 
 > [!NOTE]
 > The ServiceControl HTTP API may change at any time. It is designed for use by ServicePulse and ServiceInsight only. The use of this HTTP API for other purposes is not supported.
@@ -53,27 +53,27 @@ graph LR
   class Monitoring Plugin
 ```
 
-### Error instances
+### [Error instances](/servicecontrol/servicecontrol-instances/)
 
 [Recoverability](/nservicebus/recoverability/) is an important feature in NServiceBus. It enables automatic retries and continuity within a system, as failed messages will be moved aside to allow other messages to be processed while the errors are investigated. Those error messages contain business data that must eventually be processed.
 
-NServiceBus will move messages it cannot process to an [error queue](/nservicebus/recoverability/#fault-handling). This is where ServiceControl comes into play to consume these messages. ServiceControl will pick up the message and store it in an internal database. ServiceControl uses an embedded RavenDB instance for the internal database. After it is stored in the database, the message is made available to ServicePulse and ServiceInsight for visualization, retries, and other operations.
+NServiceBus will move messages it cannot process to an [error queue](/nservicebus/recoverability/#fault-handling). The ServiceControl Error instance consume these messages from the error queue, storing them in a RavenDB database. After each message is stored and indexed in the database, the message is made available to ServicePulse and ServiceInsight for visualization, retries, and other operations.
 
 > [!NOTE]
 > It is recommended not to provide end-users with the ability to retry messages. The message could fail again and end up in ServiceControl once again. It could be even more problematic when many messages are retried during a peak in message processing. This will result in even more messages being processed by an endpoint, causing valid messages to be delayed even longer.
 
 Find out more about [failed messages](/servicepulse/intro-failed-messages.md) in ServicePulse.
 
-### Audit instances
+### [Audit instances](/servicecontrol/audit-instances/)
 
-To enable ServiceInsight to visualize the message flow through the system, it must have access to every message that has been successfully processed by the system. This requires endpoints to [enable auditing](/nservicebus/operations/auditing.md). ServiceControl consumes these messages and stores them in its internal database.
+To enable ServiceInsight to visualize the message flow through the system, it must have access to every message that has been successfully processed by the system. This requires endpoints to [enable auditing](/nservicebus/operations/auditing.md), which forwards successfully processed messages to an audit queue. ServiceControl Audit instances consume these messages from the audit queue, storing them in a RavenDB database. After each message is stored and indexed in the database, the message is made available to ServiceInsight for visualization.
 
-ServiceInsight will retrieve the data from ServiceControl via the HTTP API and use header information (added by NServiceBus during message processing) to figure out which message caused other messages to be sent, including which sagas were accessed when the [SagaAudit plugin](/nservicebus/sagas/saga-audit.md) is configured in an endpoint.
+ServiceInsight will retrieve the data from ServiceControl via the HTTP API and use header information (added by NServiceBus during message processing) to figure out [which message caused other messages to be sent](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-conversationid), including which sagas were accessed when the [SagaAudit plugin](/nservicebus/sagas/saga-audit.md) is configured in an endpoint.
 
-### Monitoring instances
+### [Monitoring instances](/servicecontrol/monitoring-instances/)
 
-For ServicePulse to report metrics on logical endpoints, endpoint instances and on specific messages, each endpoints needs to be [enabled to forward metrics](/monitoring/metrics/install-plugin.md) to ServiceControl. ServicePulse will then be able to retrieve the data from ServiceControl via the HTTP API.
+For ServicePulse to report metrics on logical endpoints, endpoint instances and on specific messages, each endpoint needs to be [enabled to forward metrics](/monitoring/metrics/install-plugin.md) to a ServiceControl Monitoring instance. ServicePulse will then be able to retrieve the data from ServiceControl via the HTTP API.
 
-## Forwarding
+## Forwarding <!-- TODO: If we have the errorlog-auditlog-behavior doco, should this this be here? If not, fix or raise issue. -->
 
 ServiceControl _consumes_ messages from the audit and error queues. That is, it removes all messages from those queues. If a copy of those messages is required for further processing, configure [audit forwarding](/servicecontrol/audit-instances/configuration.md#transport-servicecontrol-auditforwardauditmessages) and/or [error queue forwarding](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicecontrolforwarderrormessages).

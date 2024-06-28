@@ -3,7 +3,9 @@ title: ServiceControl Forwarding Log Queues
 summary: Details of the ServiceControl audit and error configuration and forwarding behavior
 reviewed: 2023-07-08
 ---
-
+<!-- TODO: Should this be split for Audits and Errors? If so, fix or raise issue. -->
+<!-- TODO: We show this in diagrams all over, should those diagrams be simplified instead of showing a configuration option most users shouldn't use if we have this document? Fix or raise issue. -->
+<!-- TODO: Link to/from config settings. Fix or raise issue. -->
 ## Audit and error queues
 
 ServiceControl consumes messages from the audit and error queues and stores these messages locally in its own embedded database. These input queues names are specified at install time.
