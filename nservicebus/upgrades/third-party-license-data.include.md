@@ -139,7 +139,7 @@
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/MongoDB.Driver/" target="_blank">MongoDB.Driver</a> | <a href="https://www.nuget.org/packages/MongoDB.Driver/2.26.0/license" target="_blank">View License</a> | <a href="https://www.mongodb.com/docs/drivers/csharp/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/MongoDB.Driver/" target="_blank">MongoDB.Driver</a> | <a href="https://licenses.nuget.org/Apache-2.0" target="_blank">Apache-2.0</a> | <a href="https://www.mongodb.com/docs/drivers/csharp/" target="_blank">Project Site</a> |
 
 ### [NServiceBus.Transport.Msmq](/nuget/NServiceBus.Transport.Msmq)
 
