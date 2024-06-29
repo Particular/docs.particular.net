@@ -20,6 +20,12 @@ The connection string is configured in the constructor of the transport object:
 
 snippet: postgresql-config-connectionstring
 
+### Token Authentication
+
+For connecting using token credentials, a User Id must still be supplied in the connection string with the password supplied from the access token. Given that the token is only short lived, a data source builder must be utilised to handle password refreshes. The following example uses Azure Entra Id.
+
+snippet: postgresql-config-entra
+
 ## Custom database schemas
 
 The PostgreSQL transport uses `public` as a default schema. It is used for every queue if no other schema is explicitly provided in a transport address. This includes all local queues, error, audit and remote queues of other endpoints.
@@ -45,7 +51,7 @@ snippet: postgresql-custom-connection-factory
 
 ## Circuit breaker
 
-A built-in circuit breaker is used to handle intermittent PostgreSQL connectivity problems. When a failure occurs while trying to connect, a circuit breaker enters an *armed* state. If the failure is not resolved before the configured *wait time* elapses, the circuit breaker triggers the [critical errors](/nservicebus/hosting/critical-errors.md) handling procedure.
+A built-in circuit breaker is used to handle intermittent PostgreSQL connectivity problems. When a failure occurs while trying to connect, a circuit breaker enters an _armed_ state. If the failure is not resolved before the configured _wait time_ elapses, the circuit breaker triggers the [critical errors](/nservicebus/hosting/critical-errors.md) handling procedure.
 
 ### Wait time
 
