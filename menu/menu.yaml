@@ -121,7 +121,7 @@
 - Name: Particular Service Platform
   Topics:
   - Title: General
-    Articles: 
+    Articles:
     - Url: platform
       Title: About
     - Url: platform/installation
@@ -1461,6 +1461,7 @@
     - Title: ServiceControl Error instances
       Url: servicecontrol/servicecontrol-instances
     - Title: Deployment
+      Url: servicecontrol/servicecontrol-instances/deployment
       Articles:
       - Title: Using Containers
         Url: servicecontrol/servicecontrol-instances/deployment/containers
@@ -1486,13 +1487,12 @@
         Url: servicecontrol/logging
       - Title: Forwarding queues
         Url: servicecontrol/errorlog-auditlog-behavior
-    - Title: Persistence
-      Url: servicecontrol/persistence
   - Title: Audit instances
     Articles:
       - Title: ServiceControl Audit instances
         Url: servicecontrol/audit-instances
       - Title: Deployment
+        Url: servicecontrol/audit-instances/deployment
         Articles:
         - Title: Using Containers
           Url: servicecontrol/audit-instances/deployment/containers
@@ -1525,6 +1525,7 @@
       - Title: ServiceControl monitoring instances
         Url: servicecontrol/monitoring-instances
       - Title: Deployment
+        Url: servicecontrol/monitoring-instances/deployment
         Articles:
         - Title: Using Containers
           Url: servicecontrol/monitoring-instances/deployment/containers

@@ -4,19 +4,31 @@ reviewed: 2023-06-11
 redirects:
 - servicecontrol/setting-custom-log-location
 ---
+<!-- TODO: Finish containerizing and correcting any missing/outdated information -->
+## Logging defaults
+
+<!-- TODO: I was thinking some sort of table to display this stuff to make the rest of the file terser. Didn't finish this idea. -->
+| | SCMU / PowerShell | Containers |
+| --- | --- | --- |
+| File Logging Location | `%ProgramData%\Particular\ServiceControl\<Instance Name>\logs` | N/A |
+| Windows Event Logs | Yes | N/A |
+| Console | Only when run as an exe | Yes |
+| Default Log Level | `Info` | `Info` |
 
 ## Logging Location
 
-The location of the ServiceControl logs are specified at install time or can also be modified later on by launching ServiceControl Management and editing the configuration settings for the instance.
+The location of the ServiceControl logs can be specified when deploying ServiceControl instances.
 
-The default logging location for instances created with ServiceControl Management is `%ProgramData%\Particular\ServiceControl\<Instance Name>\logs`.
+### Setting the logging location via ServiceControl Management
 
-### Changing logging location via ServiceControl Management
+The logging location can be set via the `Log Path` field when adding an instance or through the Configuration screen after deployment.
 
-To change the location ServiceControl stores logs:
+![ServiceControl Management Utility Log Path field](managementutil-logpath.png)
+
+To change the location ServiceControl stores logs after deployment:
 
  * Open ServiceControl Management
- * Click the Configuration icon for the instance to modify.
+ * Specify when adding an instance or click the Configuration icon to modify an existing instance.
 
 ![ServiceControl Management utility configuration screen](managementutil-configuration.png)
 
@@ -24,9 +36,22 @@ To change the location ServiceControl stores logs:
 
 When Save is clicked the service will be restarted to apply the change.
 
+### Setting the logging location via PowerShell
+
+### Setting the logging location when using containers
+
+Containers log to standard output, and the container host manages where log information is stored.
+
+<!-- TODO: I started this list. While as a user this would be awesome, it would be hard for the organization to maintain. Is there a test that confirms external URLs are not broken? -->
+- [Docker](https://docs.docker.com/config/containers/logging/configure/)
+- [Kubernetes / Azure Kubernetes Services (AKS)](https://kubernetes.io/docs/concepts/cluster-administration/logging/#log-location-node)
+- [Amazon EKS](https://docs.aws.amazon.com/prescriptive-guidance/latest/implementing-logging-monitoring-cloudwatch/kubernetes-eks-logging.html#eks-node-application-logging)
+- [Azure Container Instances](https://learn.microsoft.com/en-us/azure/container-instances/monitor-azure-container-instances#data-storage)
+- [OpenShift](https://docs.openshift.com/container-platform/4.10/logging/cluster-logging.html#cluster-logging-about-logstore_cluster-logging)
+
 ## Windows Event Log
 
-As of version 4.19.0, all ServiceControl instances will log to the Windows Event Log as well as the ServiceControl log. The default level is `INFO` but this setting can be changed by [specifying an explicit log level](#logging-levels).
+As of version 4.19.0, all ServiceControl instances, apart from those running in containers, will log to the Windows Event Log as well as the ServiceControl log. The default level is `INFO` but this setting can be changed by [specifying an explicit log level](#logging-levels).
 
 ## Monitoring
 

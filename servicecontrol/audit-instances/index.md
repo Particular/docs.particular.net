@@ -28,6 +28,8 @@ graph LR
 
 Data about audit messages is exposed via an HTTP API from a ServiceControl Error instance, which aggregates the data stored in [all connected ServiceControl Audit instances](/servicecontrol/servicecontrol-instances/remotes.md#overview-sharding-audit-messages-with-competing-consumers).
 
+The [saga audit plugin](/nservicebus/sagas/saga-audit.md) enriches audit messages with the details of saga state changes, for [visualization in ServiceInsight](/serviceinsight/#the-saga-view).
+
 > [!IMPORTANT]
 > Connecting ServiceInsight directly to a ServiceControl Audit instance is not supported.
 

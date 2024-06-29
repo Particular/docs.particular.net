@@ -1,4 +1,6 @@
-ServiceControl includes some basic self-monitoring implemented as [custom checks](/monitoring/custom-checks/). These checks are reported in ServicePulse along with other custom checks.
+### Self-monitoring via custom checks
+
+ServiceControl includes some basic self-monitoring implemented as [custom checks](/monitoring/custom-checks/). These checks are reported in [ServicePulse](/servicepulse/#custom-checks) along with other custom checks.
 
 #### MSMQ transactional dead letter queue
 
@@ -18,8 +20,10 @@ When ServiceControl has difficulty connecting to the configured transport, the e
 
 #### Message database storage space
 
-ServiceControl stores messages in an embedded database. If the drive containing the database runs out of storage space, message ingestion fails and the ServiceControl instance stops. This may cause instability in the database, even after storage space is increased. The remaining storage space on the drive is monitored. The check reports a failure if the drive has less than 20% remaining of its total capacity. This threshold is controlled by the [ServiceControl/DataSpaceRemainingThreshold](/servicecontrol/servicecontrol-instances/configuration.md#troubleshooting-servicecontroldataspaceremainingthreshold) setting.
+<!-- TODO: Not with containers. -->
+ServiceControl stores messages in a RavenDB database. If the drive containing the database runs out of storage space, message ingestion fails and the ServiceControl instance stops. This may cause instability in the database, even after storage space is increased. The remaining storage space on the drive is monitored. The check reports a failure if the drive has less than 20% remaining of its total capacity. This threshold is controlled by the [ServiceControl/DataSpaceRemainingThreshold](/servicecontrol/servicecontrol-instances/configuration.md#troubleshooting-servicecontroldataspaceremainingthreshold) setting.
 
 #### Critical message database storage space
 
-This is similar to the [Message database storage space check](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-message-database-storage-space). However, in this case, if the drive containing the database has less than 5% remaining of its total capacity, message ingestion on the ServiceControl instance is stopped to prevent data loss, and a failure is reported. This threshold is controlled by the [ServiceControl/MinimumStorageLeftRequiredForIngestion](/servicecontrol/servicecontrol-instances/configuration.md#troubleshooting-servicecontrolminimumstorageleftrequiredforingestion) (for the error instance) and [ServiceControl.Audit/MinimumStorageLeftRequiredForIngestion](/servicecontrol/audit-instances/configuration.md#troubleshooting-ravendb-3-5-servicecontrol-auditminimumstorageleftrequiredforingestion) (for the audit instance) settings.
+<!-- TODO: Not with containers. -->
+If the drive containing the database has less than 5% remaining of its total capacity, message ingestion on the ServiceControl instance is stopped to prevent data loss, and a failure is reported. This threshold is controlled by the [ServiceControl/MinimumStorageLeftRequiredForIngestion](/servicecontrol/servicecontrol-instances/configuration.md#troubleshooting-servicecontrolminimumstorageleftrequiredforingestion) (for the error instance) and [ServiceControl.Audit/MinimumStorageLeftRequiredForIngestion](/servicecontrol/audit-instances/configuration.md#troubleshooting-ravendb-3-5-servicecontrol-auditminimumstorageleftrequiredforingestion) (for the audit instance) settings.

@@ -5,7 +5,7 @@ reviewed: 2023-07-07
 redirects:
 - servicecontrol/use-ravendb-studio
 ---
-
+<!-- TODO: containerize -->
 > [!NOTE]
 > Requires a currently-supported version of Edge, Chrome, Firefox, or Safari. **Internet Explorer is not supported by RavenDB Management Studio.**
 

@@ -3,7 +3,7 @@ title: Configure the ServiceControl URI
 summary: How to configure ServiceControl to be exposed through a custom hostname and IP port
 reviewed: 2024-05-28
 ---
-
+<!-- TODO: Containerize -->
 To set a custom hostname and IP port for an instance of the ServiceControl service:
 
 > [!WARNING]

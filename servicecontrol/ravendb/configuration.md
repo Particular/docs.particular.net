@@ -3,7 +3,7 @@ title: ServiceControl RavenDB configuration
 reviewed: 2024-06-20
 component: ServiceControl
 ---
-
+<!-- TODO: Check this jives with the Raven base image -->
 #if-version [,5)
 
 ### Raven/IndexStoragePath

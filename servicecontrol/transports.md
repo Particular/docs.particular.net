@@ -13,7 +13,7 @@ ServiceControl can be configured to use one of the supported [transports](/trans
 * [RabbitMQ - Direct routing topology](/transports/rabbitmq/routing-topology.md#direct-routing-topology)
 * [SQL Server](/transports/sql/)
 
-## Transport-specific features
+## Transport-specific configuration
 
 ### Transport adapters
 
@@ -23,23 +23,29 @@ Configuring third-party transports is not supported.
 
 ### MSMQ
 
-To configure MSMQ as the transport, ensure the MSMQ service has been installed and configured as outlined in [MSMQ configuration](/transports/msmq/#msmq-configuration).
+Ensure the MSMQ service has been installed and configured as outlined in [MSMQ configuration](/transports/msmq/#msmq-configuration).
 
 > [!IMPORTANT]
 > When [ServiceControl instances are installed on a different machine than an endpoint](/transports/msmq/routing.md#when-servicecontrol-is-installed-on-a-different-server) `queuename@machinename` addresses must be used.
 
-#### Configuration using PowerShell or Containers
+#### Transport constant
 
-When managing ServiceControl via PowerShell or when using containers, the transport must be specified using the `MSMQ` constant.
+When using a method other than the ServiceControl Management Utility to deploy ServiceControl instances, the transport must be specified using the `MSMQ` constant.
 
-To do this in PowerShell set the `-Transport` option:
+#### PowerShell deployments
+
+To select the transport using PowerShell set the `-Transport` option:
 
 snippet: MSMQPowerShellTransport
 
-To do this in Docker or other container hosts set the `TRANSPORTTYPE` environment variable:
+#### Containers deployments
+
+#if-version [5,)
+To select the transport in Docker or other container hosts set the `TRANSPORTTYPE` environment variable:
 
 snippet: MSMQDockerTransport
 
+#end-if
 ### RabbitMQ
 
 In addition to the [connection string options of the transport](/transports/rabbitmq/connection-settings.md) the following ServiceControl specific options are available in versions 4.4 and above:
@@ -47,9 +53,9 @@ In addition to the [connection string options of the transport](/transports/rabb
 * `UseExternalAuthMechanism=true|false(default)` - Specifies that an [external authentication mechanism should be used for client authentication](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-external-authentication).
 * `DisableRemoteCertificateValidation=true|false(default)` - Allows ServiceControl to connect to the broker [even if the remote server certificate is invalid](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-remote-certificate-validation).
 
-#### Configuration using PowerShell or Containers
+#### Transport constants
 
-When managing ServiceControl via PowerShell or when using containers, the transport, queue type, and topology must be specified using the correct constant:
+When using a method other than the ServiceControl Management Utility to deploy ServiceControl instances, the transport, queue type, and topology are all configured together using a specific constant:
 
 | Queue Type | Topology | Constant |
 | --- | --- | --- |
@@ -58,23 +64,29 @@ When managing ServiceControl via PowerShell or when using containers, the transp
 | [Classic](https://www.rabbitmq.com/docs/classic-queues) | [Conventional](/transports/rabbitmq/routing-topology.md#conventional-routing-topology) | `RabbitMQ.ClassicConventionalRouting` |
 | [Classic](https://www.rabbitmq.com/docs/classic-queues) | [Direct](/transports/rabbitmq/routing-topology.md#direct-routing-topology) | `RabbitMQ.ClassicDirectRouting` |
 
-To do this in PowerShell set the `-Transport` option:
+#### PowerShell deployments
+
+To select the transport using PowerShell set the `-Transport` option:
 
 snippet: RabbitMQPowerShellTransport
 
-To do this in Docker or other container hosts set the `TRANSPORTTYPE` environment variable:
+#if-version [5,)
+#### Container deployments
+
+To select the transport in Docker or other container hosts set the `TRANSPORTTYPE` environment variable:
 
 snippet: RabbitMQDockerTransport
 
+#end-if
 ### Azure ServiceBus
 
-In addition to the [connection string options of the transport](/transports/azure-service-bus/configuration.md#configuring-an-endpoint) the following ServiceControl specific options are available in versions 4.4 and above:
+In addition to the [connection string options of the transport](/transports/azure-service-bus/configuration.md#configuring-an-endpoint) the following ServiceControl specific connection string options are available:
 
 * `TransportType=AmqpWebSockets` - Configures the transport to use [AMQP over websockets](/transports/azure-service-bus/configuration.md#connectivity).
 * `TopicName=<topic-bundle-name>` - Specifies the [topic name](/transports/azure-service-bus/configuration.md#entity-creation) to be used by the instance. The default value is `bundle-1`.
 * `QueueLengthQueryDelayInterval=<value_in_milliseconds>` - Specifies the delay between queue length refresh queries for queue length monitoring. The default value is 500 ms.
 
-As of version 4.21.8 of ServiceControl, the following options can be used to enable [Managed Identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) authentication:
+The following options can be used to enable [Managed Identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) authentication:
 
 * Setting the connection string to a [fully-qualified namespace](https://docs.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.servicebusclient.fullyqualifiednamespace) (eg. `my-namespace.servicebus.windows.net`)
   * With this setting, a [`DefaultAzureCredential`](https://docs.microsoft.com/en-us/dotnet/api/azure.identity.defaultazurecredential) will be used.
@@ -84,43 +96,55 @@ As of version 4.21.8 of ServiceControl, the following options can be used to ena
   * When specifying managed identity for the connection string, a [`ManagedIdentityCredential`](https://docs.microsoft.com/en-us/dotnet/api/azure.identity.managedidentitycredential) will be used.
   * Set the `ClientId=some-client-id` connectionstring option to use a specific [user-assigned identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview#managed-identity-types)
 
-As of versions 4.33.3 and 5.0.5 of ServiceControl, support for partitioned entities can be enabled by adding the following connection string parameter:
+Support for partitioned entities can be enabled by adding the following connection string parameter:
 
 * `EnablePartitioning=<True|False>` — Configures the transport to create entities that support partitioning. The default value is `false`.
 
-#### Configuration using PowerShell or Containers
+#### Transport constant
 
-When managing ServiceControl via PowerShell or when using containers, the transport must be specified using the `NetStandardAzureServiceBus` constant.
+When using a method other than the ServiceControl Management Utility to deploy ServiceControl instances, the transport must be specified using the `NetStandardAzureServiceBus` constant.
 
-To do this in PowerShell set the `-Transport` option:
+#### PowerShell deployments
+
+To select the transport using PowerShell set the `-Transport` option:
 
 snippet: AzureServiceBusPowerShellTransport
 
-To do this in Docker or other container hosts set the `TRANSPORTTYPE` environment variable:
+#if-version [5,)
+#### Container deployments
+
+To select the transport in Docker or other container hosts set the `TRANSPORTTYPE` environment variable:
 
 snippet: AzureServiceBusDockerTransport
 
+#end-if
 ### SQL
 
-In addition to the [connection string options of the transport](/transports/sql/connection-settings.md#connection-configuration) the following ServiceControl specific options are available in versions 4.4 and above:
+In addition to the [connection string options of the transport](/transports/sql/connection-settings.md#connection-configuration) the following ServiceControl specific options are available:
 
 * `Queue Schema=<schema_name>` - Specifies custom schema for the ServiceControl input queue.
 * `Subscriptions Table=<subscription_table_name>` - Specifies SQL subscription table name.
   * *Optional* `Subscriptions Table=<subscription_table_name>@<schema>` - to specify the schema.
   * *Optional* `Subscriptions Table=<subscription_table_name>@<schema>@<catalog>` - to specify the schema and catalog.
 
-#### Configuration using PowerShell or Containers
+#### Transport constant
 
-When managing ServiceControl via PowerShell or when using containers, the transport must be specified using the `SQLServer` constant.
+When using a method other than the ServiceControl Management Utility to deploy ServiceControl instances, the transport must be specified using the `SQLServer` constant.
 
-To do this in PowerShell set the `-Transport` option:
+#### PowerShell deployments
+
+To select the transport using PowerShell set the `-Transport` option:
 
 snippet: SQLServerPowerShellTransport
 
-To do this in Docker or other container hosts set the `TRANSPORTTYPE` environment variable:
+#if-version [5,)
+#### Container deployments
+
+To select the transport in Docker or other container hosts set the `TRANSPORTTYPE` environment variable:
 
 snippet: SQLServerDockerTransport
 
+#end-if
 ### Amazon SQS
 
 The following ServiceControl connection string options are available:
@@ -134,14 +158,21 @@ The following ServiceControl connection string options are available:
 * `S3KeyPrefix=<value>` - S3 key prefix [option](/transports/sqs/configuration-options.md#offload-large-messages-to-s3-key-prefix).
 * `DoNotWrapOutgoingMessages=true` - Do not wrap outgoing messages [option](/transports/sqs/configuration-options.md#do-not-wrap-message-payload-in-a-transport-envelope).
 
-#### Configuration using PowerShell or Containers
+#### Transport constant
 
-When managing ServiceControl via PowerShell or when using containers, the transport must be specified using the `AmazonSQS` constant.
+When using a method other than the ServiceControl Management Utility to deploy ServiceControl instances, the transport must be specified using the `AmazonSQS` constant.
 
-To do this in PowerShell set the `-Transport` option:
+#### PowerShell deployments
+
+To select the transport using PowerShell set the `-Transport` option:
 
 snippet: AmazonSQSPowerShellTransport
 
-To do this in Docker or other container hosts set the `TRANSPORTTYPE` environment variable:
+#if-version [5,)
+#### Container deployments
+
+To select the transport in Docker or other container hosts set the `TRANSPORTTYPE` environment variable:
 
 snippet: AmazonSQSDockerTransport
+
+#end-if

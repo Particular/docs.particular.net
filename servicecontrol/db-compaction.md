@@ -3,7 +3,7 @@ title: Compacting RavenDB 3.5 instances
 summary: How to compact the RavenDB database backing ServiceControl for RavenDB 3.5 instances
 reviewed: 2022-10-26
 ---
-
+<!-- TODO: Move to the RavenDB directory -->
 > [!NOTE]
 > Compact the database only if the retention period, message throughput, or average message size have been reduced. If none of these have changed, compacting may not provide a significant reduction in database size, or it may have only a small, temporary effect.
 

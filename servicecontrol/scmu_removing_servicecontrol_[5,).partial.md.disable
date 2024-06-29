@@ -1,3 +1,5 @@
+<!-- TODO: Move into SCMU doco for each instance type as partials that point common include -->
+
 ## Removing ServiceControl
 
 To perform a clean uninstall of ServiceControl from a machine, remove each ServiceControl instance using the ServiceControl Management Utility or PowerShell.

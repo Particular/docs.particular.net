@@ -1,3 +1,4 @@
+<!-- TODO: Containerize. Genericize. -->
 This ServiceControl instance type requires an external RavenDB server to connect to. You can install RavenDB server for use with audit instances using the `ServiceControl.RavenDB` container image.
 
 ```bash

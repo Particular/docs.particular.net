@@ -28,7 +28,8 @@ A copy of the imported license will be added to the `HKEY_LOCAL_MACHINE` registr
 
 To import a license using PowerShell:
 
- * Start PowerShell from the start menu, ensure [ServiceControl PowerShell Module](/servicecontrol/powershell.md) is loaded
+ * Ensure [ServiceControl PowerShell Module](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management) is installed.
+ * Start PowerShell
  * Execute the following cmdlet with the path to the license file.
 
 snippet: ps-importlicense

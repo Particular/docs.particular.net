@@ -4,6 +4,7 @@ summary: How to compact the RavenDB database backing ServiceControl for RavenDB 
 reviewed: 2024-02-12
 ---
 <!-- TODO: There is a link to the Raven docs, but then explain everything? Also, why isn't this a partial for db-compaction.md? -->
+<!-- TODO: Move to RavenDB directory -->
 > [!NOTE]
 > Compact the database only if the retention period, message throughput, or average message size have been reduced. If none of these have changed, compacting may not provide a significant reduction in database size, or it may have only a small, temporary effect.
 

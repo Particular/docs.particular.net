@@ -14,7 +14,6 @@ The information gathered, stored, and exposed by ServiceControl contains all the
 
 It is critical to limit access to the ServiceControl instance, including accessing its data through its clients (ServiceInsight and ServicePulse), and accessing directly through the HTTP API.
 
-
 ### Post-installation: secure and limited access by default
 
 When installing ServiceControl, the default installation will limit access from the local host only. Any attempt to access the service's HTTP API from outside the machines on which it is installed results in an `access denied` message.
@@ -63,7 +62,7 @@ For a more fine-grained limitation on message body visibility of specific proper
 
 An example of how to set encryption for specific message properties can be viewed in the [encryption sample](/samples/encryption/basic-encryption/).
 
-
+<!-- TODO: containerize -->
 ### Accessing the embedded RavenDB database
 
 ServiceControl uses an embedded RavenDB database to store its data. This database is managed internally by ServiceControl and it is not intended for direct access or usage. By default, the database is located on the same machine as the ServiceControl instance. A different location (local or network path) for the database files can be selected.

@@ -6,7 +6,15 @@ component: ServiceControl
 
 ServiceControl audit instances can be run as a container. They are hosted on the Docker hub. https://hub.docker.com/u/particular
 
-## Basic usage
+## Getting Started
+
+### Init containers
+
+Overriding the command for the image using the `--setup` option can be used to create or upgrade the infrastructure required for ServiceControl. This is based on the [Kubernetes `init` containers](https://kubernetes.io/docs/concepts/workloads/pods/init-containers/) concept. Once the container has been run, it will shut down the image can be run as a new container without arguments and the "init" container is no longer needed.
+
+```bash
+docker run -rm blah blah --setup
+```
 
 ```bash
 docker run -e TRANSPORTTYPE=ServiceControl.Transports.Learning particular/servicecontrol-audit:latest

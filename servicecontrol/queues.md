@@ -4,8 +4,8 @@ summary: A breakdown of all of the queues required by each ServiceControl instan
 reviewed: 2024-04-02
 component: ServiceControl
 ---
-
-ServiceControl relies on a number of queues to function. The simplest way to configure these queues is to use ServiceControl Management or Powershell to install each ServiceControl instance.
+<!-- TODO: Split into instance type specific doco -->
+ServiceControl relies on a number of queues to function. The simplest way to configure these queues is to use the ServiceControl Management Utility, Powershell, or an init container to create the queus for each ServiceControl instance.
 
 These queues can be manually created before deploying a ServiceControl instance. The technique used will differ depending on the transport in use:
 

@@ -1,6 +1,6 @@
 ---
 title: Deploying ServiceControl Error instances using SCMU
-summary: How to install different types of ServiceControl instances
+summary: How to deploy ServiceControl Error instances
 reviewed: 2024-06-14
 component: ServiceControl
 related:
@@ -8,40 +8,22 @@ related:
  - servicecontrol/capacity-and-planning
 redirects:
  - servicecontrol/multi-transport-support
+ - servicecontrol/installation
 ---
+<!-- TODO: Review/Editorialize. Some of this should be in the index and less specific to SCMU deployments -->
+The ServiceControl Management Utility provides a simple way to deploy one or more [ServiceControl instances](/servicecontrol/#servicecontrol-instance-types).
 
-//TODO: Review/Editorialize. Some of this should be in the index and less specific to SCMU deployments
+This article describes installing the visual ServiceControl Management Utility and using it to deploy ServiceControl Error instances.
 
-Every component in the Particular Service Platform (not including NServiceBus), including ServiceControl, must be [downloaded](https://particular.net/downloads) and installed.
+include: scmu-installation
 
-#if-version [,5)
-After installation, there is no ServiceControl instance running yet. Instances can be installed, upgraded, and removed using the ServiceControl Management Utility. This utility is launched as the final step in the installation process and is also available via the Windows start menu.
-#end-if
-
-## Install methods
-
-ServiceControl can be installed in multiple ways. This article describes using the visual ServiceControl Management application. Scripted installs and upgrades can be done via the [ServiceControl Management PowerShell module](powershell.md). Advanced installation guidance to support high-load and high-availability is available on [active/active remote setups](/servicecontrol/servicecontrol-instances/remotes.md) and [active/passive clustering](/servicecontrol/deploying-servicecontrol-in-a-cluster.md).
-
-There is also a [community-managed puppet module](https://forge.puppet.com/tragiccode/nservicebusservicecontrol).
-
-partial: prereqs //TODO move file, appropriate here?
-
-## Planning
-
-> [!NOTE]
-> In production environments, make sure to review the [environment considerations](/servicecontrol/servicecontrol-instances/hardware.md) when setting up a machine with ServiceControl.
-
-The ServiceControl Management Utility provides a simple way to set up one or more ServiceControl instances (error, audit, and monitoring). For production systems, it is recommended to limit the number of instances per machine to one of each type. The ability to add multiple instances *of the same type on a single machine* is primarily intended to assist development and test environments.
-
-See [ServiceControl Capacity Planning](/servicecontrol/capacity-and-planning.md) and [Hardware Considerations](/servicecontrol/servicecontrol-instances/hardware.md) for more guidance.
-
-## Installing ServiceControl instances
+## Deploying ServiceControl Error instances
 
 There are [three types](/servicecontrol/#servicecontrol-instance-types) of ServiceControl instances that can be installed using the ServiceControl Management utility. As the error and audit instance usually go side-by-side, they are installed and configured at the same time.
 
-1. Open the ServiceControl Management Utility.
+1. Run the ServiceControl Management Utility.
 2. Click the `New` button at the top-right and a popup window appears.
-3. Select either `Add ServiceControl and Audit instances` or `Add monitoring instance`.
+3. Select either `Add ServiceControl and Audit instances`<!--`Add ServiceControl and Audit instances` or `Add monitoring instance`. -->
 4. Provide a name and transport.
    1. The default name is `Particular.ServiceControl`.
       The name is used to derive names for the error and audit instances. The name of each instance can be adjusted from its default if required.

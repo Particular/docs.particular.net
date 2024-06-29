@@ -214,7 +214,7 @@ A new cross-region primary instance is added to allow ServiceInsight to show mes
 
 ### Zero downtime upgrades
 
-The remotes feature can be used to perform [zero downtime upgrades](/servicecontrol/upgrades/zero-downtime.md).
+The remotes feature can be used to perform [zero downtime upgrades](/servicecontrol/upgrades/zero-downtime.md) of Audit instances.
 
 ## Configuration
 
@@ -254,43 +254,37 @@ The following cmdlets are available in ServiceControl version 4 and above, for t
 | sc-remotes             | Get-ServiceControlRemotes                     |
 
 > [!NOTE]
-> The names and addresses of instances are controlled by the [cmdlets](/servicecontrol/powershell-cmdlets.md) for managing ServiceControl and and ServiceControl Audit instances.
+> The names and addresses of instances are controlled by the cmdlets for managing ServiceControl [Error](/servicecontrol/servicecontrol-instances/deployment/powershell.md) and [Audit](/servicecontrol/audit-instances/deployment/powershell.md) instances.
 
 ### Add a remote instance
 
 `Add-ServiceControlRemote` adds a remote instance to a primary instance.
 
-```ps
-Add-ServiceControlRemote -Name Particular.ServiceControl -RemoteInstanceAddress "http://localhost:44444/api"
-```
+snippet: ps-add-audit-remote
 
 ### Remove a remote instance
 
 `Remove-ServiceControlRemote` removes a remote instance from a primary instance.
 
-```ps
-Remove-ServiceControlRemote -Name Particular.ServiceControl -RemoteInstanceAddress "http://localhost:44444/api"
-```
+snippet: ps-remove-audit-remote
 
 ### List remote instances
 
 `Get-ServiceControlRemotes` gets a list of remote instances from a primary instance.
 
-```ps
-Get-ServiceControlRemotes -Name Particular.ServiceControl
-```
+snippet: ps-list-audit-remotes
 
 ### Changing the address of a remote instance
 
 To change the address of a remote instance to a new host and/or port number:
 
-1. Remove the current address from the list of remote instances:
+1. Remove the current address from the list of remote instances: <!-- TODO: Remove the following line and replace with an anchor -->
    - `Remove-ServiceControlRemote -Name $primaryServiceControl.Name -RemoteInstanceAddress $currentAddress`
 2. Restart the primary instance to refresh the list of remote instances
 3. Stop the remote instance
 4. Change the host and/or port number of the remote instance using the ServiceControl Management utility
 5. Start the remote instance at its new address
-6. Add the new address to the list of remote instances:
+6. Add the new address to the list of remote instances:  <!-- TODO: Remove the following line and replace with an anchor -->
    - `Add-ServiceControlRemote -Name $primaryServiceControl.Name -RemoteInstanceAddress $newAddress`
 7. Restart the primary instance to refresh the list of remote instances
 
