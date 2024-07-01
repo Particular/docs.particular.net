@@ -14,11 +14,11 @@ If both a connection string and Identity Based connection values are specified, 
 
 Example of a connection string based connection:
 
-include: connection-string-local-setting-file
+include: asb-connection-string-local-setting-file
 
 Example of an Identity Based connection:
 
-include: identity-local-setting-file
+include: asb-identity-local-setting-file
 
 snippet: asb-function-isolated-identity-connection
 
