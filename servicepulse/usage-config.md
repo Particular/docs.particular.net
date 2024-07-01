@@ -30,7 +30,6 @@ The follow settings are available to setup a connection to Azure Service Bus:
 
 - [LicenseComponent/ASB/TenantId](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport-licensecomponentasbtenantid)
 - [LicenseComponent/ASB/SubscriptionId](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport-licensecomponentasbsubscriptionid)
-- [LicenseComponent/ASB/ServiceBusName](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport-licensecomponentasbservicebusname)
 - [LicenseComponent/ASB/ClientId](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport-licensecomponentasbclientid)
 - [LicenseComponent/ASB/ClientSecret](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport-licensecomponentasbclientsecret)
 - [LicenseComponent/ASB/ManagementUrl](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport-licensecomponentasbmanagementurl)
@@ -149,6 +148,6 @@ If unable to fix the issue, open a [non-critical support case](https://particula
 ## Report masks
 
 Information that is considered sensitive can be obfuscated in the usage report.
-All words to be redacted can be specified in the Masks tab. Specify one word per line.
+All words to be redacted can be specified in the `Mask Report Data` tab. Specify one word per line.
 
 ![usage-setup-masks](images/usage-setup-masks.png "width=600")

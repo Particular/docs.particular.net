@@ -351,14 +351,6 @@ The Azure [subscription ID](https://learn.microsoft.com/en-us/azure/azure-portal
 
 Type: string
 
-### LicenseComponent/ASB/ServiceBusName
-
-The name of the Azure Service Bus namespace.
-
-Type: string
-
-![Screenshot showing where the Azure Service Bus namespace name appears when viewing the Service Bus resource in Azure portal](asb-namespace-name.png)
-
 ### LicenseComponent/ASB/ClientId
 
 The Client ID (aka Application ID) for an [Azure service principal](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser#service-principal-object) that has access to read metrics data for the Azure Service Bus namespace.
@@ -385,11 +377,12 @@ Type: string
 
 Default: https://management.azure.com
 
-This setting only needs to be configured if not using the public AzureCloud environment.  
-For other environments:  
-AzureGermanCloud - https://management.microsoftazure.de
-AzureUSGovernment - https://management.usgovcloudapi.net
-AzureChinaCloud - https://management.chinacloudapi.cn
+This setting only needs to be configured if not using the public AzureCloud environment.
+For other environments:
+
+- AzureGermanCloud - https://management.microsoftazure.de
+- AzureUSGovernment - https://management.usgovcloudapi.net
+- AzureChinaCloud - https://management.chinacloudapi.cn
 
 ## Usage Reporting when using the [Amazon SQS transport](/transports/sqs)
 
