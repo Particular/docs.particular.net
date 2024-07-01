@@ -29,5 +29,9 @@
 				"bierner.markdown-mermaid"
 			]
 		}
+	},
+	"hostRequirements": {
+		"cpus": 4,
+		"memory": "4gb"
 	}
 }
