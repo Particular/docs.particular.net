@@ -385,7 +385,11 @@ Type: string
 
 Default: https://management.azure.com
 
-This setting only needs to be configured if not using the public [Azure cloud environment](https://learn.microsoft.com/en-us/dotnet/api/azure.resourcemanager.armenvironment?view=azure-dotnet).
+This setting only needs to be configured if not using the public AzureCloud environment.  
+For other environments:  
+AzureGermanCloud - https://management.microsoftazure.de
+AzureUSGovernment - https://management.usgovcloudapi.net
+AzureChinaCloud - https://management.chinacloudapi.cn
 
 ## Usage Reporting when using the [Amazon SQS transport](/transports/sqs)
 
