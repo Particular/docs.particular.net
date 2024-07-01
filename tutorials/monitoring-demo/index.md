@@ -15,10 +15,7 @@ See how to use the monitoring features in the Particular Service Platform by try
 
 ## System requirements
 
-In order to run the demo, your system needs to meet the following requirements:
-
-- .NET 7.0.18 or higher
-- .NET 8 or higher
+In order to run the demo, the .NET 8 runtime must be installed.
 
 ## Running the sample
 
