@@ -1,7 +1,7 @@
 ---
 title: Measuring system throughput using Azure Service Bus
 summary: Use the Particular throughput tool to measure the throughput of an NServiceBus system.
-reviewed: 2022-11-09
+reviewed: 2024-05-22
 related:
   - nservicebus/throughput-tool
 ---

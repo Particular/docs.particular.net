@@ -2,20 +2,19 @@
 title: Configuration Settings
 summary: Categorized list of ServiceControl configuration settings.
 component: ServiceControl
-reviewed: 2023-11-30
+reviewed: 2024-05-22
 ---
 
 The configuration of a ServiceControl instance can be adjusted via the ServiceControl Management utility or by directly modifying the `ServiceControl.exe.config` file. The settings listed are applicable to the `appSettings` section of the configuration file unless otherwise specified.
 
 ![image](https://github.com/Particular/docs.particular.net/assets/88632084/0b04d82b-6a77-427d-81f3-6e450544ff90)
 
-
 ## Host settings
 
 The following documents should be reviewed prior to modifying configuration settings:
 
-* [Setting a Custom Hostname](setting-custom-hostname.md) for guidance and details.
-* [Securing ServiceControl](securing-servicecontrol.md) for an overview of the security implications of changing the configuration.
+- [Setting a Custom Hostname](setting-custom-hostname.md) for guidance and details.
+- [Securing ServiceControl](securing-servicecontrol.md) for an overview of the security implications of changing the configuration.
 
 ### ServiceControl/HostName
 
@@ -322,6 +321,120 @@ This entry should be set to `false` if there is no external process reading mess
 
 See [Installation](installation.md) for details on how to set this at install time.
 
+## Usage Reporting
+
+These settings are available on ServiceControl version 5.4 or higher.
+
+### LicensingComponent/ServiceControlThroughputDataQueue
+
+The queue on which throughput data is received by the ServiceControl Error instance. This setting must match the equivalent [`Monitoring/ServiceControlThroughputDataQueue`](/servicecontrol/monitoring-instances/installation/creating-config-file.md#usage-reporting-monitoringservicecontrolthroughputdataqueue) setting for the Monitoring instance.
+
+In most instances these settings do not need to be modified.
+
+If running multiple setups of the Platform Tools (i.e. multiple versions of ServiceControl error and monitoring instances) then modify these settings so that the queue on each monitoring instance is matched to the queue of its error instance.
+
+If using [MSMQ transport](/transports/msmq) and the monitoring instance is installed on a different machine than the ServiceControl error instance, only the monitoring instance setting needs to be modified to include the machine name of the error instance in the queue address.
+
+Type: string
+
+Default: `ServiceControl.ThroughputData`
+
+### LicenseComponent/ASB/ServiceBusName
+
+When using the [Azure Service Bus transport](/transports/azure-service-bus/), this is the Azure Service Bus namespace.
+
+Type: string
+
+### LicenseComponent/ASB/ClientId
+
+When using the [Azure Service Bus transport](/transports/azure-service-bus), this is the ClientId for an Azure login that has access to read metrics data for the Azure Service Bus namespace.
+
+Type: string
+
+### LicenseComponent/ASB/ClientSecret
+
+When using the [Azure Service Bus transport](/transports/azure-service-bus), this is the ClientSecret for an Azure login that has access to read metrics data for the Azure Service Bus namespace.
+
+Type: string
+
+### LicenseComponent/ASB/TenantId
+
+When using the [Azure Service Bus transport](/transports/azure-service-bus), this is the Azure Microsoft Extra ID.
+
+Type: string
+
+### LicenseComponent/ASB/SubscriptionId
+
+When using [Azure Service Bus transport](/transports/azure-service-bus), this is the Azure subscription ID.
+
+Type: string
+
+### LicenseComponent/ASB/ManagementUrl
+
+When using [Azure Service Bus transport](/transports/azure-service-bus), this is the Azure ManagementUrl URL.
+
+Type: string
+
+### LicenseComponent/AmazonSQS/AccessKey
+
+When using [Amazon SQS transport](/transports/sqs), this is the AWS Access Key ID to use to discover queue names and gather per-queue metrics.
+
+Type: string
+
+### LicenseComponent/AmazonSQS/SecretKey
+
+When using [Amazon SQS transport](/transports/sqs), this is the AWS Secret Access Key to use to discover queue names and gather per-queue metrics.
+
+Type: string
+
+### LicenseComponent/AmazonSQS/Profile
+
+When using [Amazon SQS transport](/transports/sqs), this is the name of a local AWS credentials profile to use to discover queue names and gather per-queue metrics.
+
+Type: string
+
+### LicenseComponent/AmazonSQS/Region
+
+When using [Amazon SQS transport](/transports/sqs), this is the AWS region to use when accessing AWS services.
+
+Type: string
+
+### LicenseComponent/AmazonSQS/Prefix
+
+When using [Amazon SQS transport](/transports/sqs), this specifies to report only on queues that begin with a specific prefix. This is commonly used when one AWS account must contain queues for multiple projects or multiple environments.
+
+Type: string
+
+### LicenseComponent/RabbitMQ/ApiUrl
+
+When using [RabbitMQ transport](/transports/rabbitmq), this is the RabbitMQ management URL.
+
+Type: string
+
+### LicenseComponent/RabbitMQ/UserName
+
+When using [RabbitMQ transport](/transports/rabbitmq), this is the username to access the RabbitMQ management interface.
+
+Type: string
+
+### LicenseComponent/RabbitMQ/Password
+
+When using [RabbitMQ transport](/transports/rabbitmq), this is the password to access the RabbitMQ management interface.
+
+Type: string
+
+### LicenseComponent/SqlServer/ConnectionString
+
+When using [SqlServer transport](/transports/sql), connection string that will provide at least read access to all queue tables.
+
+Type: string
+
+### LicenseComponent/SqlServer/AdditionalCatalogs
+
+When using [SqlServer transport](/transports/sql), additional databases on the same server also contain NServiceBus message queues, the AdditionalCatalogs setting specifies additional database catalogs to search. The tool replaces the Database or Initial Catalog parameter in the connection string with the additional catalog and queries all of them.
+
+Type: string
+
 ## Plugin-specific
 
 ### ServiceControl/HeartbeatGracePeriod
@@ -343,8 +456,7 @@ When configuring the heartbeat grace period, make sure it is greater than the [h
 
 ServiceControl stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If during troubleshooting, direct access to the RavenDB instance is required while ServiceControl is running, ServiceControl can be configured to expose the RavenDB studio.
 
-> [!NOTE]
-> [Maintenance mode](maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
+> [!NOTE] > [Maintenance mode](maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
 
 > [!WARNING]
 > The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl and is not intended for external manipulation or modifications.

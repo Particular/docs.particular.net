@@ -1,7 +1,7 @@
 ---
 title: Determining message transport
 summary: How to determine what message transport a system uses to run the throughput tool
-reviewed: 2023-07-06
+reviewed: 2024-05-22
 ---
 
 This article will help to determine what message transport an NServiceBus system uses so that the [system throughput tool](/nservicebus/throughput-tool/#running-the-tool) can be run to generate a report to send to Particular Software for licensing purposes.
