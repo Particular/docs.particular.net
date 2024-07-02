@@ -339,7 +339,7 @@ Default: `ServiceControl.ThroughputData`
 
 ## Usage Reporting when using the Azure Service Bus transport
 
-### LicenseComponent/ASB/TenantId
+### LicensingComponent/ASB/TenantId
 
 Version: 5.4.0+
 
@@ -347,7 +347,7 @@ The Azure [Tenant ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-s
 
 Type: string
 
-### LicenseComponent/ASB/SubscriptionId
+### LicensingComponent/ASB/SubscriptionId
 
 Version: 5.4.0+
 
@@ -355,7 +355,7 @@ The Azure [subscription ID](https://learn.microsoft.com/en-us/azure/azure-portal
 
 Type: string
 
-### LicenseComponent/ASB/ClientId
+### LicensingComponent/ASB/ClientId
 
 Version: 5.4.0+
 
@@ -366,7 +366,7 @@ Type: string
 Example Client ID from an Azure App Registration:
 ![Screenshot showing where the Client ID appears in an App Registration](asb-app-service-principal.png)
 
-### LicenseComponent/ASB/ClientSecret
+### LicensingComponent/ASB/ClientSecret
 
 Version: 5.4.0+
 
@@ -377,7 +377,7 @@ Type: string
 > [!NOTE]
 > Certificates and federated credentials are not supported at this time.
 
-### LicenseComponent/ASB/ManagementUrl
+### LicensingComponent/ASB/ManagementUrl
 
 Version: 5.4.0+
 
@@ -396,7 +396,7 @@ For other environments:
 
 ## Usage Reporting when using the Amazon SQS transport
 
-### LicenseComponent/AmazonSQS/AccessKey
+### LicensingComponent/AmazonSQS/AccessKey
 
 Version: 5.4.0+
 
@@ -404,7 +404,7 @@ The AWS Access Key ID to use to discover queue names and gather per-queue metric
 
 Type: string
 
-### LicenseComponent/AmazonSQS/SecretKey
+### LicensingComponent/AmazonSQS/SecretKey
 
 Version: 5.4.0+
 
@@ -412,7 +412,7 @@ The AWS Secret Access Key to use to discover queue names and gather per-queue me
 
 Type: string
 
-### LicenseComponent/AmazonSQS/Profile
+### LicensingComponent/AmazonSQS/Profile
 
 Version: 5.4.0+
 
@@ -420,7 +420,7 @@ The name of a local AWS credentials profile to use to discover queue names and g
 
 Type: string
 
-### LicenseComponent/AmazonSQS/Region
+### LicensingComponent/AmazonSQS/Region
 
 Version: 5.4.0+
 
@@ -428,7 +428,7 @@ The AWS region to use when accessing AWS services.
 
 Type: string
 
-### LicenseComponent/AmazonSQS/Prefix
+### LicensingComponent/AmazonSQS/Prefix
 
 Version: 5.4.0+
 
@@ -438,7 +438,7 @@ Type: string
 
 ## Usage Reporting when using the RabbitMQ transport
 
-### LicenseComponent/RabbitMQ/ApiUrl
+### LicensingComponent/RabbitMQ/ApiUrl
 
 Version: 5.4.0+
 
@@ -446,7 +446,7 @@ The RabbitMQ management URL.
 
 Type: string
 
-### LicenseComponent/RabbitMQ/UserName
+### LicensingComponent/RabbitMQ/UserName
 
 Version: 5.4.0+
 
@@ -454,7 +454,7 @@ The username to access the RabbitMQ management interface.
 
 Type: string
 
-### LicenseComponent/RabbitMQ/Password
+### LicensingComponent/RabbitMQ/Password
 
 Version: 5.4.0+
 
@@ -464,7 +464,7 @@ Type: string
 
 ## Usage Reporting when using the SqlServer transport
 
-### LicenseComponent/SqlServer/ConnectionString
+### LicensingComponent/SqlServer/ConnectionString
 
 Version: 5.4.0+
 
@@ -472,7 +472,7 @@ The connection string that will provide at least read access to all queue tables
 
 Type: string
 
-### LicenseComponent/SqlServer/AdditionalCatalogs
+### LicensingComponent/SqlServer/AdditionalCatalogs
 
 Version: 5.4.0+
 
