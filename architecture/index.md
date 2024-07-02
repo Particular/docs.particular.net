@@ -28,6 +28,7 @@ Architectural concepts are generally applicable, regardless of which specific te
 [**Explore the Azure Architectural guidance →**](/architecture/azure/)
 
 ## Amazon Web Services (AWS)
+
 [Amazon Web Services](https://aws.amazon.com/) provides cloud products and solutions for building and running distributed systems. The AWS architectural guidance provides information about integrating the Particular Service Platform with AWS technologies and architecture styles.
 
 [**Explore the AWS Architectural guidance →**](/architecture/aws/)
