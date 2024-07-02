@@ -104,11 +104,11 @@ Default: 40 seconds
 
 ## Usage Reporting
 
-These settings are available on ServiceControl version 5.4 or higher.
-
 ### Monitoring/ServiceControlThroughputDataQueue
 
-The queue on which throughput data is received by ServiceControl error instance. This setting must match the equivalent [`LicensingComponent/ServiceControlThroughputDataQueue`](/servicecontrol/creating-config-file.md#usage-reporting-licensingcomponentservicecontrolthroughputdataqueue) setting on the ServiceControl error instance.
+Version: 5.4.0+
+
+The queue on which throughput data is received by ServiceControl error instance. This setting must match the equivalent [`LicensingComponent/ServiceControlThroughputDataQueue`](/servicecontrol/creating-config-file.md#usage-reporting-when-using-servicecontrol-licensingcomponentservicecontrolthroughputdataqueue) setting on the ServiceControl error instance.
 
 In most instances these settings do not need to be modified.
 

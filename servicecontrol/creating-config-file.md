@@ -319,11 +319,11 @@ This entry should be set to `false` if there is no external process reading mess
 
 See [Installation](installation.md) for details on how to set this at install time.
 
-## Usage Reporting
-
-These settings are available on ServiceControl version 5.4 or higher.
+## Usage Reporting when using ServiceControl
 
 ### LicensingComponent/ServiceControlThroughputDataQueue
+
+Version: 5.4.0+
 
 The queue on which throughput data is received by the ServiceControl Error instance. This setting must match the equivalent [`Monitoring/ServiceControlThroughputDataQueue`](/servicecontrol/monitoring-instances/installation/creating-config-file.md#usage-reporting-monitoringservicecontrolthroughputdataqueue) setting for the Monitoring instance.
 
@@ -337,99 +337,146 @@ Type: string
 
 Default: `ServiceControl.ThroughputData`
 
-### LicenseComponent/ASB/ServiceBusName
-
-When using the [Azure Service Bus transport](/transports/azure-service-bus/), this is the Azure Service Bus namespace.
-
-Type: string
-
-### LicenseComponent/ASB/ClientId
-
-When using the [Azure Service Bus transport](/transports/azure-service-bus), this is the ClientId for an Azure login that has access to read metrics data for the Azure Service Bus namespace.
-
-Type: string
-
-### LicenseComponent/ASB/ClientSecret
-
-When using the [Azure Service Bus transport](/transports/azure-service-bus), this is the ClientSecret for an Azure login that has access to read metrics data for the Azure Service Bus namespace.
-
-Type: string
+## Usage Reporting when using the Azure Service Bus transport
 
 ### LicenseComponent/ASB/TenantId
 
-When using the [Azure Service Bus transport](/transports/azure-service-bus), this is the Azure Microsoft Extra ID.
+Version: 5.4.0+
+
+The Azure [Tenant ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-microsoft-entra-tenant).
 
 Type: string
 
 ### LicenseComponent/ASB/SubscriptionId
 
-When using [Azure Service Bus transport](/transports/azure-service-bus), this is the Azure subscription ID.
+Version: 5.4.0+
+
+The Azure [subscription ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-azure-subscription).
 
 Type: string
+
+### LicenseComponent/ASB/ClientId
+
+Version: 5.4.0+
+
+The Client ID (aka Application ID) for an [Azure service principal](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser#service-principal-object) that has access to read metrics data for the Azure Service Bus namespace.
+
+Type: string
+
+Example Client ID from an Azure App Registration:
+![Screenshot showing where the Client ID appears in an App Registration](asb-app-service-principal.png)
+
+### LicenseComponent/ASB/ClientSecret
+
+Version: 5.4.0+
+
+The [client secret](https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-service-principal-portal#option-3-create-a-new-client-secret) for an Azure service principal that has access to read metrics data for the Azure Service Bus namespace.
+
+Type: string
+
+> [!NOTE]
+> Certificates and federated credentials are not supported at this time.
 
 ### LicenseComponent/ASB/ManagementUrl
 
-When using [Azure Service Bus transport](/transports/azure-service-bus), this is the Azure ManagementUrl URL.
+Version: 5.4.0+
+
+The Azure ManagementUrl URL.
 
 Type: string
 
+Default: https://management.azure.com
+
+This setting only needs to be configured if not using the public AzureCloud environment.
+For other environments:
+
+- AzureGermanCloud - https://management.microsoftazure.de
+- AzureUSGovernment - https://management.usgovcloudapi.net
+- AzureChinaCloud - https://management.chinacloudapi.cn
+
+## Usage Reporting when using the Amazon SQS transport
+
 ### LicenseComponent/AmazonSQS/AccessKey
 
-When using [Amazon SQS transport](/transports/sqs), this is the AWS Access Key ID to use to discover queue names and gather per-queue metrics.
+Version: 5.4.0+
+
+The AWS Access Key ID to use to discover queue names and gather per-queue metrics.
 
 Type: string
 
 ### LicenseComponent/AmazonSQS/SecretKey
 
-When using [Amazon SQS transport](/transports/sqs), this is the AWS Secret Access Key to use to discover queue names and gather per-queue metrics.
+Version: 5.4.0+
+
+The AWS Secret Access Key to use to discover queue names and gather per-queue metrics.
 
 Type: string
 
 ### LicenseComponent/AmazonSQS/Profile
 
-When using [Amazon SQS transport](/transports/sqs), this is the name of a local AWS credentials profile to use to discover queue names and gather per-queue metrics.
+Version: 5.4.0+
+
+The name of a local AWS credentials profile to use to discover queue names and gather per-queue metrics.
 
 Type: string
 
 ### LicenseComponent/AmazonSQS/Region
 
-When using [Amazon SQS transport](/transports/sqs), this is the AWS region to use when accessing AWS services.
+Version: 5.4.0+
+
+The AWS region to use when accessing AWS services.
 
 Type: string
 
 ### LicenseComponent/AmazonSQS/Prefix
 
-When using [Amazon SQS transport](/transports/sqs), this specifies to report only on queues that begin with a specific prefix. This is commonly used when one AWS account must contain queues for multiple projects or multiple environments.
+Version: 5.4.0+
+
+Report only on queues that begin with the specified prefix. This is commonly used when one AWS account must contain queues for multiple projects or multiple environments.
 
 Type: string
 
+## Usage Reporting when using the RabbitMQ transport
+
 ### LicenseComponent/RabbitMQ/ApiUrl
 
-When using [RabbitMQ transport](/transports/rabbitmq), this is the RabbitMQ management URL.
+Version: 5.4.0+
+
+The RabbitMQ management URL.
 
 Type: string
 
 ### LicenseComponent/RabbitMQ/UserName
 
-When using [RabbitMQ transport](/transports/rabbitmq), this is the username to access the RabbitMQ management interface.
+Version: 5.4.0+
+
+The username to access the RabbitMQ management interface.
 
 Type: string
 
 ### LicenseComponent/RabbitMQ/Password
 
-When using [RabbitMQ transport](/transports/rabbitmq), this is the password to access the RabbitMQ management interface.
+Version: 5.4.0+
+
+The password to access the RabbitMQ management interface.
 
 Type: string
 
+## Usage Reporting when using the SqlServer transport
+
 ### LicenseComponent/SqlServer/ConnectionString
 
-When using [SqlServer transport](/transports/sql), connection string that will provide at least read access to all queue tables.
+Version: 5.4.0+
+
+The connection string that will provide at least read access to all queue tables.
 
 Type: string
 
 ### LicenseComponent/SqlServer/AdditionalCatalogs
 
-When using [SqlServer transport](/transports/sql), additional databases on the same server also contain NServiceBus message queues, the AdditionalCatalogs setting specifies additional database catalogs to search. The tool replaces the Database or Initial Catalog parameter in the connection string with the additional catalog and queries all of them.
+Version: 5.4.0+
+
+Specifies any additional databases on the same server that also contain NServiceBus message queues.
 
 Type: string
 

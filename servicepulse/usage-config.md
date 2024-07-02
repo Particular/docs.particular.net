@@ -26,18 +26,13 @@ Look at the [Diagnostics](#diagnostics) tab to diagnose connection issues.
 
 #### Settings
 
-The follow settings are available to setup a connection to Azure Service Bus:
-
-- LicenseComponent/ASB/ServiceBusName
-- LicenseComponent/ASB/ClientId
-- LicenseComponent/ASB/ClientSecret
-- LicenseComponent/ASB/TenantId
-- LicenseComponent/ASB/SubscriptionId
-- LicenseComponent/ASB/ManagementUrl
-
-Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the Azure Service Bus-specific settings.
+Refer to the [Usage Reporting when using the Azure Service Bus transport](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport) section of the ServiceControl config file for an explanation of the Azure Service Bus-specific settings.
 
 #### Minimum Permissions
+
+The built-in role [Monitoring Reader](https://learn.microsoft.com/en-us/azure/azure-monitor/roles-permissions-security#monitoring-reader) is sufficient to access the required Azure Service Bus metrics.
+
+To lock it down even further to the minimally required permissions, create a custom role with the following permissions:
 
 ```json
 {
@@ -68,15 +63,7 @@ Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-rep
 
 #### Settings
 
-The follow settings are available to setup a connection to Amazon SQS:
-
-- LicenseComponent/AmazonSQS/AccessKey
-- LicenseComponent/AmazonSQS/SecretKey
-- LicenseComponent/AmazonSQS/Profile
-- LicenseComponent/AmazonSQS/Region
-- LicenseComponent/AmazonSQS/Prefix
-
-Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the Amazon SQS-specific settings.
+Refer to the [Usage Reporting when using the Amazon SQS transport](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-amazon-sqs-transport) section of the ServiceControl config file for an explanation of the Amazon SQS-specific settings.
 
 #### Minimum Permissions
 
@@ -104,12 +91,7 @@ Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-rep
 
 #### Settings
 
-The follow settings are available to setup a connection to SqlServer:
-
-- LicenseComponent/SqlServer/ConnectionString
-- LicenseComponent/SqlServer/AdditionalCatalogs
-
-Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the SQL Server-specific settings.
+Refer to the [Usage Reporting when using the SqlServer transport](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-sqlserver-transport) section of the ServiceControl config file for an explanation of the SQL Server-specific settings.
 
 #### Minimum Permissions
 
@@ -119,13 +101,7 @@ User with rights to query [INFORMATION_SCHEMA].[COLUMNS] table.
 
 #### Settings
 
-The follow settings are available to setup a connection to RabbitMQ:
-
-- LicenseComponent/RabbitMQ/ApiUrl
-- LicenseComponent/RabbitMQ/UserName
-- LicenseComponent/RabbitMQ/Password
-
-Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the RabbitMQ-specific settings.
+Refer to the [Usage Reporting when using the RabbitMQ transport](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-rabbitmq-transport) section of the ServiceControl config file for an explanation of the RabbitMQ-specific settings.
 
 #### Minimum permissions
 
@@ -151,6 +127,6 @@ If unable to fix the issue, open a [non-critical support case](https://particula
 ## Report masks
 
 Information that is considered sensitive can be obfuscated in the usage report.
-All words to be redacted can be specified in the Masks tab. Specify one word per line.
+All words to be redacted can be specified in the `Mask Report Data` tab. Specify one word per line.
 
 ![usage-setup-masks](images/usage-setup-masks.png "width=600")
