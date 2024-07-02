@@ -1,0 +1,60 @@
+version: '3.8'
+
+volumes:
+
+  data-ravendb:
+  
+services:
+
+  ravendb:
+    image: particular/servicecontrol-ravendb:latest-x64
+    env_file: .env
+    ports:
+      - 8080:8080
+    volumes:
+      - data-ravendb:/opt/RavenDB/Server/RavenData
+
+  error:
+    depends_on:
+      - ravendb
+    image: particular/servicecontrol:latest
+    env_file: .env
+    ports:
+      - 33333:33333
+
+
+
+
+  #   env_file: .env
+  #   #mem_limit: 8192m
+  #   restart: unless-stopped
+
+
+  monitoring:
+    image: particular/servicecontrol-monitoring:latest
+    ports:
+      - 33633:33633
+
+
+    env_file: .env
+    restart: unless-stopped
+
+
+  audit:
+    depends_on:
+      - ravendb
+    image: particular/servicecontrol-audit:latest
+    ports:
+      - 44444:44444
+    restart: unless-stopped
+    env_file: .env
+    #mem_limit: 8192m
+
+  pulse:
+    depends_on:
+      - error
+      - monitoring
+    image: particular/servicepulse:latest
+    env_file: .env
+    ports:
+     - 9090:90
