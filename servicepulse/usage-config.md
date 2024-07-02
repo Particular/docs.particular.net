@@ -18,7 +18,8 @@ In most scenarios existing ServiceControl error instance connection settings wil
 
 ![usage-setup-connections](images/usage-setup-connection.png "width=600")
 
-If there is a connection problem, specific usage settings can be provided via the Usage Setup tab under Configuration.
+If there is a connection problem, specific usage settings can be provided as environment variables or directly in the [ServiceControl.exe.config](/servicecontrol/creating-config-file.md) file.
+The Usage Setup tab provides easy copy/paste functionality to obtain the required settings in the correct format, based on configuration type.
 
 Look at the [Diagnostics](#diagnostics) tab to diagnose connection issues.
 
@@ -109,11 +110,14 @@ User with monitoring tag and read permission.
 
 ### MSMQ & Azure Storage Queues
 
-MSMQ and Azure Storage Queues do not support querying of metrics. To report on usage in these systems, the [Audit](./../servicecontrol/audit-instances) and/or [Monitoring](./../monitoring) features must be enabled on all NServiceBus endpoints.
+MSMQ and Azure Storage Queues do not support querying of metrics. To enable the automatic usage reporting functionality for these systems, auditing and/or monitoring must be setup:
 
-Configure [auditing](./../nservicebus/operations/auditing.md) on all NServiceBus endpoints.
-
-Configure [monitoring](./../monitoring/metrics) on all NServiceBus endpoints.
+- Auditing
+  - install the [Audit](./../servicecontrol/audit-instances) instance
+  - configure [auditing](./../nservicebus/operations/auditing.md) on all NServiceBus endpoints
+- Monitoring  
+  - install the [Monitoring](./../monitoring) instance
+  - configure [metrics](./../monitoring/metrics) on all NServiceBus endpoints
 
 ## Diagnostics
 

@@ -23,7 +23,7 @@ Measuring usage with ServicePulse offers the following advantages over the stand
 - ability to [view the system usage](/servicepulse/usage.md#viewing-usage-summary) at any time
 - ability to [specify if a detected queue should not be included in license pricing](/servicepulse/usage.md#setting-an-endpoint-type)
 - incorporated into the existing Particular Platform - [the report can be generated directly from ServicePulse](/servicepulse/usage.md#download-a-usage-report)
-- improved endpoint identification
+- improved endpoint detection for endpoints that have Monitoring or Audit enabled
 - once setup, there's no more work required, just a button press once a year to generate the usage report
 
 This method requires ServicePulse version 1.40 or later, and ServiceControl version 5.4 or later.
@@ -37,4 +37,4 @@ This is a standalone tool that is run on demand, and can typically be installed 
 
 ## Requirements
 
-If you're measuring usage for NServiceBus endpoints using [MSMQ](/transports/msmq/) or [Azure Storage Queues](/transports/azure-storage-queues/) transport, [Auditing](./../operations/auditing.md) or [Monitoring](./../../monitoring/metrics) need to be enabled on all NServiceBus endpoints.
+If measuring usage for NServiceBus endpoints using [MSMQ](/transports/msmq/) or [Azure Storage Queues](/transports/azure-storage-queues/) transport, then [Auditing](./../operations/auditing.md) or [Monitoring](./../../monitoring/metrics) needs to be enabled on all NServiceBus endpoints.
