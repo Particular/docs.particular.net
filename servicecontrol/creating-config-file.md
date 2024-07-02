@@ -319,9 +319,7 @@ This entry should be set to `false` if there is no external process reading mess
 
 See [Installation](installation.md) for details on how to set this at install time.
 
-## Usage Reporting
-
-These settings are available on ServiceControl version 5.4 or higher.
+## Usage Reporting when using Monitoring
 
 ### LicensingComponent/ServiceControlThroughputDataQueue
 
@@ -333,11 +331,13 @@ If running multiple setups of the Platform Tools (i.e. multiple versions of Serv
 
 If using [MSMQ transport](/transports/msmq) and the monitoring instance is installed on a different machine than the ServiceControl error instance, only the monitoring instance setting needs to be modified to include the machine name of the error instance in the queue address.
 
+Version: 5.4+
+
 Type: string
 
 Default: `ServiceControl.ThroughputData`
 
-## Usage Reporting when using the [Azure Service Bus transport](/transports/azure-service-bus/)
+## Usage Reporting when using the Azure Service Bus transport
 
 ### LicenseComponent/ASB/TenantId
 
@@ -384,7 +384,7 @@ For other environments:
 - AzureUSGovernment - https://management.usgovcloudapi.net
 - AzureChinaCloud - https://management.chinacloudapi.cn
 
-## Usage Reporting when using the [Amazon SQS transport](/transports/sqs)
+## Usage Reporting when using the Amazon SQS transport
 
 ### LicenseComponent/AmazonSQS/AccessKey
 
@@ -416,7 +416,7 @@ Report only on queues that begin with the specified prefix. This is commonly use
 
 Type: string
 
-## Usage Reporting when using the [RabbitMQ transport](/transports/rabbitmq)
+## Usage Reporting when using the RabbitMQ transport
 
 ### LicenseComponent/RabbitMQ/ApiUrl
 
@@ -436,7 +436,7 @@ The password to access the RabbitMQ management interface.
 
 Type: string
 
-## Usage Reporting when using the [SqlServer transport](/transports/sql)
+## Usage Reporting when using the SqlServer transport
 
 ### LicenseComponent/SqlServer/ConnectionString
 

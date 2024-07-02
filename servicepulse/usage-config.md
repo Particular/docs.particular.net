@@ -26,15 +26,13 @@ Look at the [Diagnostics](#diagnostics) tab to diagnose connection issues.
 
 #### Settings
 
-The follow settings are available to setup a connection to Azure Service Bus:
-
-- [LicenseComponent/ASB/TenantId](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport-licensecomponentasbtenantid)
-- [LicenseComponent/ASB/SubscriptionId](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport-licensecomponentasbsubscriptionid)
-- [LicenseComponent/ASB/ClientId](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport-licensecomponentasbclientid)
-- [LicenseComponent/ASB/ClientSecret](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport-licensecomponentasbclientsecret)
-- [LicenseComponent/ASB/ManagementUrl](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport-licensecomponentasbmanagementurl)
+Refer to the [usage Reporting when using the Azure Service Bus transport](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport) section of the ServiceControl config file for an explanation of the Azure Service Bus-specific settings.
 
 #### Minimum Permissions
+
+The built-in role [Monitoring Reader](https://learn.microsoft.com/en-us/azure/azure-monitor/roles-permissions-security#monitoring-reader) is sufficient to access the required Azure Service Bus metrics.
+
+To lock it down even further to the minimally required permissions, create a custom role with the following permissions:
 
 ```json
 {
@@ -65,15 +63,7 @@ The follow settings are available to setup a connection to Azure Service Bus:
 
 #### Settings
 
-The follow settings are available to setup a connection to Amazon SQS:
-
-- LicenseComponent/AmazonSQS/AccessKey
-- LicenseComponent/AmazonSQS/SecretKey
-- LicenseComponent/AmazonSQS/Profile
-- LicenseComponent/AmazonSQS/Region
-- LicenseComponent/AmazonSQS/Prefix
-
-Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the Amazon SQS-specific settings.
+Refer to the [usage Reporting when using the Amazon SQS transport](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-amazon-sqs-transport) section of the ServiceControl config file for an explanation of the Amazon SQS-specific settings.
 
 #### Minimum Permissions
 
@@ -101,12 +91,7 @@ Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-rep
 
 #### Settings
 
-The follow settings are available to setup a connection to SqlServer:
-
-- LicenseComponent/SqlServer/ConnectionString
-- LicenseComponent/SqlServer/AdditionalCatalogs
-
-Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the SQL Server-specific settings.
+Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-sqlserver-transport) section of the ServiceControl config file for an explanation of the SQL Server-specific settings.
 
 #### Minimum Permissions
 
@@ -116,13 +101,7 @@ User with rights to query [INFORMATION_SCHEMA].[COLUMNS] table.
 
 #### Settings
 
-The follow settings are available to setup a connection to RabbitMQ:
-
-- LicenseComponent/RabbitMQ/ApiUrl
-- LicenseComponent/RabbitMQ/UserName
-- LicenseComponent/RabbitMQ/Password
-
-Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting) section of the ServiceControl config file for an explanation of the RabbitMQ-specific settings.
+Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-rabbitmq-transport) section of the ServiceControl config file for an explanation of the RabbitMQ-specific settings.
 
 #### Minimum permissions
 
