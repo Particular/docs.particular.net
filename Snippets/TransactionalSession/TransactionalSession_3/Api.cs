@@ -61,7 +61,7 @@ class Api
 
         #endregion
 
-        #region configuring-commit-delay-transactional-session
+        #region configuring-commit-delay-transactional-session 3.1
 
         await session.Open(new MyPersistenceOpenSessionOptions
             {
