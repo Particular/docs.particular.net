@@ -26,7 +26,7 @@ Look at the [Diagnostics](#diagnostics) tab to diagnose connection issues.
 
 #### Settings
 
-Refer to the [usage Reporting when using the Azure Service Bus transport](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport) section of the ServiceControl config file for an explanation of the Azure Service Bus-specific settings.
+Refer to the [Usage Reporting when using the Azure Service Bus transport](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport) section of the ServiceControl config file for an explanation of the Azure Service Bus-specific settings.
 
 #### Minimum Permissions
 
@@ -63,7 +63,7 @@ To lock it down even further to the minimally required permissions, create a cus
 
 #### Settings
 
-Refer to the [usage Reporting when using the Amazon SQS transport](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-amazon-sqs-transport) section of the ServiceControl config file for an explanation of the Amazon SQS-specific settings.
+Refer to the [Usage Reporting when using the Amazon SQS transport](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-amazon-sqs-transport) section of the ServiceControl config file for an explanation of the Amazon SQS-specific settings.
 
 #### Minimum Permissions
 
@@ -91,7 +91,7 @@ Refer to the [usage Reporting when using the Amazon SQS transport](/servicecontr
 
 #### Settings
 
-Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-sqlserver-transport) section of the ServiceControl config file for an explanation of the SQL Server-specific settings.
+Refer to the [Usage Reporting when using the SqlServer transport](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-sqlserver-transport) section of the ServiceControl config file for an explanation of the SQL Server-specific settings.
 
 #### Minimum Permissions
 
@@ -101,7 +101,7 @@ User with rights to query [INFORMATION_SCHEMA].[COLUMNS] table.
 
 #### Settings
 
-Refer to the [usage reporting](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-rabbitmq-transport) section of the ServiceControl config file for an explanation of the RabbitMQ-specific settings.
+Refer to the [Usage Reporting when using the RabbitMQ transport](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-rabbitmq-transport) section of the ServiceControl config file for an explanation of the RabbitMQ-specific settings.
 
 #### Minimum permissions
 

@@ -343,17 +343,23 @@ Default: `ServiceControl.ThroughputData`
 
 The Azure [Tenant ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-microsoft-entra-tenant).
 
+Version: 5.4+
+
 Type: string
 
 ### LicenseComponent/ASB/SubscriptionId
 
 The Azure [subscription ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-azure-subscription).
 
+Version: 5.4+
+
 Type: string
 
 ### LicenseComponent/ASB/ClientId
 
 The Client ID (aka Application ID) for an [Azure service principal](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser#service-principal-object) that has access to read metrics data for the Azure Service Bus namespace.
+
+Version: 5.4+
 
 Type: string
 
@@ -364,6 +370,8 @@ Example Client ID from an Azure App Registration:
 
 The [client secret](https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-service-principal-portal#option-3-create-a-new-client-secret) for an Azure service principal that has access to read metrics data for the Azure Service Bus namespace.
 
+Version: 5.4+
+
 Type: string
 
 > [!NOTE]
@@ -372,6 +380,8 @@ Type: string
 ### LicenseComponent/ASB/ManagementUrl
 
 The Azure ManagementUrl URL.
+
+Version: 5.4+
 
 Type: string
 
@@ -390,11 +400,15 @@ For other environments:
 
 The AWS Access Key ID to use to discover queue names and gather per-queue metrics.
 
+Version: 5.4+
+
 Type: string
 
 ### LicenseComponent/AmazonSQS/SecretKey
 
 The AWS Secret Access Key to use to discover queue names and gather per-queue metrics.
+
+Version: 5.4+
 
 Type: string
 
@@ -402,17 +416,23 @@ Type: string
 
 The name of a local AWS credentials profile to use to discover queue names and gather per-queue metrics.
 
+Version: 5.4+
+
 Type: string
 
 ### LicenseComponent/AmazonSQS/Region
 
 The AWS region to use when accessing AWS services.
 
+Version: 5.4+
+
 Type: string
 
 ### LicenseComponent/AmazonSQS/Prefix
 
 Report only on queues that begin with the specified prefix. This is commonly used when one AWS account must contain queues for multiple projects or multiple environments.
+
+Version: 5.4+
 
 Type: string
 
@@ -422,17 +442,23 @@ Type: string
 
 The RabbitMQ management URL.
 
+Version: 5.4+
+
 Type: string
 
 ### LicenseComponent/RabbitMQ/UserName
 
 The username to access the RabbitMQ management interface.
 
+Version: 5.4+
+
 Type: string
 
 ### LicenseComponent/RabbitMQ/Password
 
 The password to access the RabbitMQ management interface.
+
+Version: 5.4+
 
 Type: string
 
@@ -442,11 +468,15 @@ Type: string
 
 The connection string that will provide at least read access to all queue tables.
 
+Version: 5.4+
+
 Type: string
 
 ### LicenseComponent/SqlServer/AdditionalCatalogs
 
 Specifies any additional databases on the same server that also contain NServiceBus message queues.
+
+Version: 5.4+
 
 Type: string
 
