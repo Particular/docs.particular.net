@@ -319,7 +319,7 @@ This entry should be set to `false` if there is no external process reading mess
 
 See [Installation](installation.md) for details on how to set this at install time.
 
-## Usage Reporting when using Monitoring
+## Usage Reporting when using ServiceControl
 
 ### LicensingComponent/ServiceControlThroughputDataQueue
 
