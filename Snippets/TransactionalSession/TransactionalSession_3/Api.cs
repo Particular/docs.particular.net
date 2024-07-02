@@ -60,16 +60,6 @@ class Api
                 cancellationToken: cancellationToken);
 
         #endregion
-
-        #region configuring-commit-delay-transactional-session
-
-        await session.Open(new MyPersistenceOpenSessionOptions
-            {
-                CommitDelayIncrement = TimeSpan.FromSeconds(1)
-            },
-            cancellationToken: cancellationToken);
-
-        #endregion
     }
 
     public async Task Send(ITransactionalSession session, CancellationToken cancellationToken)
