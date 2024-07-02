@@ -323,6 +323,8 @@ See [Installation](installation.md) for details on how to set this at install ti
 
 ### LicensingComponent/ServiceControlThroughputDataQueue
 
+Version: 5.4.0+
+
 The queue on which throughput data is received by the ServiceControl Error instance. This setting must match the equivalent [`Monitoring/ServiceControlThroughputDataQueue`](/servicecontrol/monitoring-instances/installation/creating-config-file.md#usage-reporting-monitoringservicecontrolthroughputdataqueue) setting for the Monitoring instance.
 
 In most instances these settings do not need to be modified.
@@ -330,8 +332,6 @@ In most instances these settings do not need to be modified.
 If running multiple setups of the Platform Tools (i.e. multiple versions of ServiceControl error and monitoring instances) then modify these settings so that the queue on each monitoring instance is matched to the queue of its error instance.
 
 If using [MSMQ transport](/transports/msmq) and the monitoring instance is installed on a different machine than the ServiceControl error instance, only the monitoring instance setting needs to be modified to include the machine name of the error instance in the queue address.
-
-Version: 5.4+
 
 Type: string
 
@@ -341,25 +341,25 @@ Default: `ServiceControl.ThroughputData`
 
 ### LicenseComponent/ASB/TenantId
 
-The Azure [Tenant ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-microsoft-entra-tenant).
+Version: 5.4.0+
 
-Version: 5.4+
+The Azure [Tenant ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-microsoft-entra-tenant).
 
 Type: string
 
 ### LicenseComponent/ASB/SubscriptionId
 
-The Azure [subscription ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-azure-subscription).
+Version: 5.4.0+
 
-Version: 5.4+
+The Azure [subscription ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-azure-subscription).
 
 Type: string
 
 ### LicenseComponent/ASB/ClientId
 
-The Client ID (aka Application ID) for an [Azure service principal](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser#service-principal-object) that has access to read metrics data for the Azure Service Bus namespace.
+Version: 5.4.0+
 
-Version: 5.4+
+The Client ID (aka Application ID) for an [Azure service principal](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser#service-principal-object) that has access to read metrics data for the Azure Service Bus namespace.
 
 Type: string
 
@@ -368,9 +368,9 @@ Example Client ID from an Azure App Registration:
 
 ### LicenseComponent/ASB/ClientSecret
 
-The [client secret](https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-service-principal-portal#option-3-create-a-new-client-secret) for an Azure service principal that has access to read metrics data for the Azure Service Bus namespace.
+Version: 5.4.0+
 
-Version: 5.4+
+The [client secret](https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-service-principal-portal#option-3-create-a-new-client-secret) for an Azure service principal that has access to read metrics data for the Azure Service Bus namespace.
 
 Type: string
 
@@ -379,9 +379,9 @@ Type: string
 
 ### LicenseComponent/ASB/ManagementUrl
 
-The Azure ManagementUrl URL.
+Version: 5.4.0+
 
-Version: 5.4+
+The Azure ManagementUrl URL.
 
 Type: string
 
@@ -398,41 +398,41 @@ For other environments:
 
 ### LicenseComponent/AmazonSQS/AccessKey
 
-The AWS Access Key ID to use to discover queue names and gather per-queue metrics.
+Version: 5.4.0+
 
-Version: 5.4+
+The AWS Access Key ID to use to discover queue names and gather per-queue metrics.
 
 Type: string
 
 ### LicenseComponent/AmazonSQS/SecretKey
 
-The AWS Secret Access Key to use to discover queue names and gather per-queue metrics.
+Version: 5.4.0+
 
-Version: 5.4+
+The AWS Secret Access Key to use to discover queue names and gather per-queue metrics.
 
 Type: string
 
 ### LicenseComponent/AmazonSQS/Profile
 
-The name of a local AWS credentials profile to use to discover queue names and gather per-queue metrics.
+Version: 5.4.0+
 
-Version: 5.4+
+The name of a local AWS credentials profile to use to discover queue names and gather per-queue metrics.
 
 Type: string
 
 ### LicenseComponent/AmazonSQS/Region
 
-The AWS region to use when accessing AWS services.
+Version: 5.4.0+
 
-Version: 5.4+
+The AWS region to use when accessing AWS services.
 
 Type: string
 
 ### LicenseComponent/AmazonSQS/Prefix
 
-Report only on queues that begin with the specified prefix. This is commonly used when one AWS account must contain queues for multiple projects or multiple environments.
+Version: 5.4.0+
 
-Version: 5.4+
+Report only on queues that begin with the specified prefix. This is commonly used when one AWS account must contain queues for multiple projects or multiple environments.
 
 Type: string
 
@@ -440,25 +440,25 @@ Type: string
 
 ### LicenseComponent/RabbitMQ/ApiUrl
 
-The RabbitMQ management URL.
+Version: 5.4.0+
 
-Version: 5.4+
+The RabbitMQ management URL.
 
 Type: string
 
 ### LicenseComponent/RabbitMQ/UserName
 
-The username to access the RabbitMQ management interface.
+Version: 5.4.0+
 
-Version: 5.4+
+The username to access the RabbitMQ management interface.
 
 Type: string
 
 ### LicenseComponent/RabbitMQ/Password
 
-The password to access the RabbitMQ management interface.
+Version: 5.4.0+
 
-Version: 5.4+
+The password to access the RabbitMQ management interface.
 
 Type: string
 
@@ -466,17 +466,17 @@ Type: string
 
 ### LicenseComponent/SqlServer/ConnectionString
 
-The connection string that will provide at least read access to all queue tables.
+Version: 5.4.0+
 
-Version: 5.4+
+The connection string that will provide at least read access to all queue tables.
 
 Type: string
 
 ### LicenseComponent/SqlServer/AdditionalCatalogs
 
-Specifies any additional databases on the same server that also contain NServiceBus message queues.
+Version: 5.4.0+
 
-Version: 5.4+
+Specifies any additional databases on the same server that also contain NServiceBus message queues.
 
 Type: string
 
