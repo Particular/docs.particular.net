@@ -1,6 +1,5 @@
 ---
 title: Reliable WCF communication over messaging
-summary: Reliable WCF communication over messaging.
 component: Wcf
 reviewed: 2024-07-03
 related:
