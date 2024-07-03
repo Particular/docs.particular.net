@@ -44,6 +44,6 @@ The behavior notifies all of the notifiers after the transport operations have b
 
 ## Running the Code
 
- * Run the solution.
- * Press any key other than Escape to send a message
- * As the message is dispatched to the transport, the registered notifiers are invoked. One writes the details of the dispatch operations to the console.
+- Run the solution.
+- Press any key other than Escape to send a message
+- As the message is dispatched to the transport, the registered notifiers are invoked. One writes the details of the dispatch operations to the console.
