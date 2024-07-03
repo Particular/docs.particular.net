@@ -21,26 +21,20 @@ class Program
 
         var wcf = endpointConfiguration.Wcf();
         wcf.Binding(
-            provider: type =>
-            {
-                return new BindingConfiguration(
-                    binding: new NetNamedPipeBinding(),
-                    address: new Uri("net.pipe://localhost/MyService"));
-            });
+            provider: _ => new BindingConfiguration(
+                binding: new NetNamedPipeBinding(),
+                address: new Uri("net.pipe://localhost/MyService")));
         wcf.CancelAfter(
-            provider: type =>
-            {
-                return type.IsAssignableFrom(typeof(MyService))
-                    ? TimeSpan.FromSeconds(5)
-                    : TimeSpan.FromSeconds(60);
-            });
+            provider: type => type.IsAssignableFrom(typeof(MyService))
+                ? TimeSpan.FromSeconds(5)
+                : TimeSpan.FromSeconds(60));
 
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press <enter> to send a message");
-        Console.WriteLine("Press <escape> to send a message which will time out");
-        Console.WriteLine("Press any key to exit");
+        await Console.Out.WriteLineAsync("Press <enter> to send a message");
+        await Console.Out.WriteLineAsync("Press <escape> to send a message which will time out");
+        await Console.Out.WriteLineAsync("Press any key to exit");
 
         #region wcf-proxy
 
@@ -51,14 +45,14 @@ class Program
 
         #endregion
 
-        Console.WriteLine("Proxy initialized.");
+        await Console.Out.WriteLineAsync("Proxy initialized.");
 
         while (true)
         {
             var key = Console.ReadKey();
-            Console.WriteLine();
+            await Console.Out.WriteLineAsync();
 
-            if (!(key.Key == ConsoleKey.Enter || key.Key == ConsoleKey.Escape))
+            if (key.Key is not (ConsoleKey.Enter or ConsoleKey.Escape))
             {
                 break;
             }
@@ -67,12 +61,12 @@ class Program
             {
                 if (key.Key == ConsoleKey.Enter)
                 {
-                    Console.WriteLine("Sending request that will succeed over proxy.");
+                    await Console.Out.WriteLineAsync("Sending request that will succeed over proxy.");
                 }
 
                 if (key.Key == ConsoleKey.Escape)
                 {
-                    Console.WriteLine("Sending request that will fail over proxy.");
+                    await Console.Out.WriteLineAsync("Sending request that will fail over proxy.");
                 }
 
                 #region wcf-proxy-call
@@ -85,11 +79,11 @@ class Program
 
                 #endregion
 
-                Console.WriteLine($"Response '{response.Info}'");
+                await Console.Out.WriteLineAsync($"Response '{response.Info}'");
             }
             catch (FaultException faultException)
             {
-                Console.Error.WriteLine($"Request failed due to: '{faultException.Message}'");
+                await Console.Error.WriteLineAsync($"Request failed due to: '{faultException.Message}'");
             }
         }
         await endpointInstance.Stop();
