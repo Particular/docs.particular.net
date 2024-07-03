@@ -3,7 +3,7 @@ using NServiceBus.Transport;
 using System.Collections.Generic;
 
 #region watch-interface
-interface IWatchDispatches
+interface IDispatchNotifier
 {
     Task Notify(IEnumerable<TransportOperation> operations);
 }

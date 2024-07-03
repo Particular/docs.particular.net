@@ -5,21 +5,14 @@ using System.Threading.Tasks;
 using NServiceBus.Pipeline;
 
 #region dispatch-notification-behavior
-class DispatchNotificationBehavior :
+class DispatchNotificationBehavior(List<IDispatchNotifier> watches) :
     Behavior<IDispatchContext>
 {
-    List<IWatchDispatches> watches;
-
-    public DispatchNotificationBehavior(List<IWatchDispatches> watches)
-    {
-        this.watches = watches;
-    }
-
     public override async Task Invoke(IDispatchContext context, Func<Task> next)
     {
         await next();
-        var tasks = watches.Select(watch => watch.Notify(context.Operations));
-        await Task.WhenAll(tasks);
+
+        await Task.WhenAll(watches.Select(watch => watch.Notify(context.Operations)));
     }
 }
 #endregion

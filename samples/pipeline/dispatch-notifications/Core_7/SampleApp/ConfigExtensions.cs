@@ -6,11 +6,11 @@ using NServiceBus.Features;
 #region config-extensions
 static class ConfigExtensions
 {
-    public static void NotifyDispatch(this EndpointConfiguration endpointConfiguration, IWatchDispatches watch)
+    public static void NotifyDispatch(this EndpointConfiguration endpointConfiguration, IDispatchNotifier watch)
     {
         var settings = endpointConfiguration.GetSettings();
         settings.EnableFeatureByDefault<DispatchNotificationFeature>();
-        settings.GetOrCreate<List<IWatchDispatches>>().Add(watch);
+        settings.GetOrCreate<List<IDispatchNotifier>>().Add(watch);
     }
 }
 #endregion
