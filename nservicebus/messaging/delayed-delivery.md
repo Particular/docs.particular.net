@@ -37,6 +37,7 @@ Delays delivery of a message until a specified point in time.
 
 snippet: delayed-delivery-datetime
 
+#if-version [, 8)
 
 ## Caveats
 
@@ -56,7 +57,18 @@ When deferring a message, it is sent to the Timeout Manager requesting it to del
 > [!NOTE]
 > If specifying a time that is in the past then the message will still be slightly delayed. The message will not be sent until the Timeout Manager has processed the request.
 
+#end-if
 
 ## How it works
 
+#if-version [, 8)
+
 NServiceBus provides delayed delivery feature for transports that don't have native support for delayed message delivery. All Transports except MSMQ support delayed message delivery natively and therefore don't require persistence to store timeouts. To learn more about NServiceBus delayed message store refer to the [Timeout Manager](/nservicebus/messaging/timeout-manager.md) article.
+
+#end-if
+
+#if-version [8,]
+
+NServiceBus provides delayed delivery feature for transports that don't have native support for delayed message delivery. All Transports except MSMQ support delayed message delivery natively and therefore don't require persistence to store timeouts. To learn more about NServiceBus delayed message store refer to the [MSMQ transport delayed delivery](/transports/msmq/delayed-delivery.md) article.
+
+#end-if

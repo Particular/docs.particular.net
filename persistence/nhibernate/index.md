@@ -21,7 +21,7 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 |Feature                    |   |
 |:---                       |---
-|Supported storage types    |Sagas, Outbox, Subscriptions, Timeouts
+|Supported storage types    |Sagas, Outbox, Subscriptions
 |Transactions               |Local database transactions or distributed transactions when available
 |Concurrency control        |Optimistic concurrency for correctness + pessimistic concurrency for performance
 |Scripted deployment        |Not supported
