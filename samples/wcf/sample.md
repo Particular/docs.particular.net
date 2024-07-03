@@ -1,14 +1,13 @@
 ---
-title: WCF to messaging bridge
+title: Reliable WCF communication over messaging
 summary: Reliable WCF communication over messaging.
 component: Wcf
-reviewed: 2021-07-28
+reviewed: 2024-07-03
 related:
  - nservicebus/wcf
 ---
 
-This sample shows how the [NServiceBus.Wcf package](/nservicebus/wcf) may be used to achieve reliable WCF services by bridging WCF calls over messaging.
-
+This sample shows how the [NServiceBus.Wcf package](/nservicebus/wcf) may be used to achieve reliable WCF services by forwarding WCF calls over messaging.
 
 ## Running the sample
 
