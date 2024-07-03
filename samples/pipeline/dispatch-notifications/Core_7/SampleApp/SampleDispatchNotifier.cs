@@ -4,7 +4,7 @@ using NServiceBus.Routing;
 using NServiceBus.Transport;
 using System.Collections.Generic;
 
-#region sample-dispatch-watcher
+#region sample-dispatch-notifier
 
 class SampleDispatchNotifier :
     IDispatchNotifier
