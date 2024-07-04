@@ -8,4 +8,4 @@ If these persistence features are used, but a connection builder is not specifie
 
 To specify the connection builder for timeouts or subscriptions, refer to the usage documentation for [Microsoft SQL](dialect-mssql.md#usage), [MySQL](dialect-mysql.md#usage), [PostgreSQL](dialect-postgresql.md#usage), or [Oracle](dialect-oracle.md#usage).
 
-When using a transport with both native delayed delivery and native timeouts, this is not required and no exception will be thrown.
+When using a transport with both native delayed delivery and native publish/subscribe, this is not required and no exception will be thrown.
