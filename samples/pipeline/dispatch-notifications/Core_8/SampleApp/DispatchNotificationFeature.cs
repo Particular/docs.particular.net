@@ -7,9 +7,9 @@ class DispatchNotificationFeature :
 {
     protected override void Setup(FeatureConfigurationContext context)
     {
-        var watches = context.Settings.Get<List<IWatchDispatches>>();
+        var watches = context.Settings.Get<List<IDispatchNotifier>>();
         var behavior = new DispatchNotificationBehavior(watches);
-        context.Pipeline.Register(behavior, "Notifies watches after a dispatch operation");
+        context.Pipeline.Register(behavior, "Notifies dispatch notifiers when a message is dispatched");
     }
 }
 #endregion
