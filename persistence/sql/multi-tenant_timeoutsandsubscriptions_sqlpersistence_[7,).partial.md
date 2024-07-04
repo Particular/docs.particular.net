@@ -1,6 +1,6 @@
 ## Connections for subscriptions
 
-When using multi-tenant mode, [subscriptions](subscriptions.md) are stored in a single database if the message transport does not provide this feature (publish/subscribe) natively.
+When using multi-tenant mode, [subscriptions](subscriptions.md) are stored in a single database if the message transport does not provide native publish/subscribe.
 
 If this persistence feature is used, but a connection builder is not specified, the following exception will be thrown:
 
