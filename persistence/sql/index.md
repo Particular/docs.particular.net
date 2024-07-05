@@ -21,7 +21,7 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 |Feature                    |   |
 |:---                       |---
-|Storage Types              |Sagas, Outbox, Subscriptions, Timeouts
+|Storage Types              |Sagas, Outbox, Subscriptions
 |Transactions               |Local database transactions or distributed transactions when available
 |Concurrency control        |Pessimistic concurrency
 |Scripted deployment        |SQL scripts generated at compile time, can be [promoted outside build directory](controlling-script-generation.md#promotion).
