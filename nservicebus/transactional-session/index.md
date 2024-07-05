@@ -85,6 +85,8 @@ RemainingCommitDuration = RemainingCommitDuration -
 
 The default commit delay increment is set to `Timespan.FromSeconds(2)`and cannot be overridden.
 
+partial: config
+
 #### Metadata
 
 It is possible to add metadata (e.g. tenant information) transactional session control message via custom headers. These headers can be accessed by a [custom behavior](/nservicebus/pipeline/manipulate-with-behaviors.md#add-a-new-step) when the control message is received in the `TransportReceive` part of the pipeline.
