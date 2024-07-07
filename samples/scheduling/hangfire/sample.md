@@ -1,10 +1,9 @@
 ---
 title: Hangfire Usage
 summary: Using Hangfire to send messages from within an NServiceBus endpoint.
-reviewed: 2021-07-28
+reviewed: 2024-07-05
 component: Core
 related:
-- nservicebus/messaging/timeout-manager
 - nservicebus/scheduling
 ---
 
@@ -38,7 +37,7 @@ Hangfire also supports Dependency Injection (DI) via the [JobActivator API](http
 
 The endpoint is started, and the `IEndpointInstance` is stored in the static endpoint helper.
 
-This sample uses in-memory storage for the jobs. Production scenarios should use more robust alternatives: SqlServer, MSMQ or Redis.
+This sample uses in-memory storage for the jobs. Production scenarios should use more robust alternatives: e.g. SqlServer or Redis.
 
 Hangfire calls their scheduler a [BackgroundJobServer](https://docs.hangfire.io/en/latest/background-processing/processing-background-jobs.html). It is started automatically when an instance of the `BackgroundJobServer` class is instantiated.
 
