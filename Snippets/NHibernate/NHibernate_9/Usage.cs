@@ -75,7 +75,6 @@ class Usage
 
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseSubscriptionStorageConfiguration(nhConfiguration);
-        persistence.UseTimeoutStorageConfiguration(nhConfiguration);
 
         #endregion
     }

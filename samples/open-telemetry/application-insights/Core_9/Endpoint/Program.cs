@@ -6,8 +6,6 @@ using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using System.Collections.Generic;
 using System.Threading;
-using Microsoft.ApplicationInsights;
-using Microsoft.ApplicationInsights.Extensibility;
 using OpenTelemetry.Metrics;
 
 var endpointName = "Samples.OpenTelemetry.AppInsights";
@@ -37,11 +35,6 @@ var traceProvider = Sdk.CreateTracerProviderBuilder()
 
 #region enable-meters
 
-var telemetryConfiguration = TelemetryConfiguration.CreateDefault();
-telemetryConfiguration.ConnectionString = appInsightsConnectionString;
-var telemetryClient = new TelemetryClient(telemetryConfiguration);
-telemetryClient.Context.GlobalProperties["Endpoint"] = endpointName;
-
 var meterProvider = Sdk.CreateMeterProviderBuilder()
     .SetResourceBuilder(resourceBuilder)
     .AddMeter("NServiceBus.Core")
@@ -58,7 +51,6 @@ endpointConfiguration.EnableOpenTelemetry();
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport<LearningTransport>();
-endpointConfiguration.SendOnly();
 var cancellation = new CancellationTokenSource();
 var endpointInstance = await Endpoint.Start(endpointConfiguration, cancellation.Token);
 

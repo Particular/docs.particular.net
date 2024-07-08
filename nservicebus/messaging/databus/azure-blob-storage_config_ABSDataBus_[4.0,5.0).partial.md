@@ -24,3 +24,15 @@ snippet: AzureDataBusConnectionAndContainer
 
 > [!NOTE]
 > The container name is optional and will be set to the default when omitted.
+
+#### Token-credentials
+
+Enables usage of Microsoft Entra Id authentication such as [managed identities for Azure resources](https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-access-azure-active-directory) instead of the shared secret in the connection string.
+
+#### With a preconfigured BlobServiceClient
+
+snippet: AzureDataBusManagedIdentityServiceClient
+
+#### With Microsoft.Extensions.Azure
+
+snippet: AzureDataBusManagedIdentityExtensions

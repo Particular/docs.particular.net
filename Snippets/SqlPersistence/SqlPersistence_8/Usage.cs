@@ -10,6 +10,8 @@ using Npgsql;
 using NpgsqlTypes;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
+using Azure.Identity;
+using Azure.Core;
 
 class Usage
 {
@@ -108,6 +110,30 @@ class Usage
 
         #endregion
     }
+
+        void PostgreSqlEntraUsage(EndpointConfiguration endpointConfiguration)
+    {
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        #region SqlPersistenceUsagePostgreSqlEntra
+
+        var connection = "Server=test.postgres.database.azure.com;Database=postgres;Port=5432;User Id=<entra user id>;Ssl Mode=Require;";
+        var dataSourceBuilder = new NpgsqlDataSourceBuilder(connection);
+        if (string.IsNullOrEmpty(dataSourceBuilder.ConnectionStringBuilder.Password))
+        {
+            dataSourceBuilder.UsePeriodicPasswordProvider(async (_, ct) =>
+            {
+                var credentials = new DefaultAzureCredential();
+                var token = await credentials.GetTokenAsync(new TokenRequestContext(["https://ossrdbms-aad.database.windows.net/.default"]), ct);
+                return token.Token;
+            }, TimeSpan.FromHours(24), TimeSpan.FromSeconds(10));
+        }
+
+        var builder = dataSourceBuilder.Build();
+        persistence.ConnectionBuilder(connectionBuilder: () => builder.CreateConnection());
+
+        #endregion
+    }
+
     void JsonBParameterModifier(EndpointConfiguration endpointConfiguration)
     {
         #region JsonBParameterModifier
@@ -298,6 +324,16 @@ class Usage
         #endregion
     }
 
+    void PostgreSqlDoNotShareConnection(EndpointConfiguration endpointConfiguration)
+    {
+        #region PostgreSqlDoNotShareConnection
+
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        var dialect = persistence.SqlDialect<SqlDialect.PostgreSql>();
+        dialect.DoNotUsePostgreSqlTransportConnection();
+
+        #endregion
+    }
     void ExecuteScripts(string scriptDirectory, string tablePrefix)
     {
         #region ExecuteScriptsSqlServer

@@ -4,7 +4,9 @@
 		"dockerfile": "Dockerfile"
 	},
 	"features": {
-		"ghcr.io/devcontainers/features/powershell:1": {}
+		"ghcr.io/devcontainers/features/powershell:1": {
+			"version": "7.4.2"
+		}
 	},
 	"forwardPorts": [
 		55666
@@ -27,5 +29,9 @@
 				"bierner.markdown-mermaid"
 			]
 		}
+	},
+	"hostRequirements": {
+		"cpus": 4,
+		"memory": "4gb"
 	}
 }

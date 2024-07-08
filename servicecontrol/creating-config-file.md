@@ -18,7 +18,9 @@ The following documents should be reviewed prior to modifying configuration sett
 
 ### ServiceControl/HostName
 
-The hostname to bind the embedded HTTP server to; modify this setting to bind to a specific hostname, e.g. `sc.mydomain.com`.
+The hostname to bind the embedded HTTP server to; modify this setting to bind to a specific hostname, e.g. `sc.mydomain.com` and make the machine remotely accessible
+
+This field can also contain a `*` as a wildcard to allow remote connections that use any hostname.
 
 Type: string
 

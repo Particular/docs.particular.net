@@ -1010,11 +1010,13 @@ It will also wrap the image in a clickable lightbox so the full image can be acc
 
 #### Maintaining images
 
-When creating images, strive to keep sources in order to update and re-create images later. Whenever possible use mermaid. When using Miro make sure to keep the sources.
+Whenever possible, use Mermaid to create images, so that the source of the image is part of the document in which it appears.
 
-#### mermaid
+If you create an image using another tool, always keep the source so that the image can be updated later.
 
-The support for [mermaid](https://knsv.github.io/mermaid/) is provided as an extension to [Markdig](https://github.com/lunet-io/markdig). Markdig converts the diagram definition from .md to HTML, and then mermaid JavaScript library converts the definition to SVG format on the fly.
+#### Mermaid
+
+The support for [Mermaid](https://mermaid.js.org) is provided as an extension to [Markdig](https://github.com/lunet-io/markdig). Markdig converts the diagram definition from .md to HTML, and then the Mermaid JavaScript library converts the definition to SVG format on the fly.
 
 Diagram images are generated using the  using a pseudocode syntax like this:
 
@@ -1090,7 +1092,19 @@ There are two css classes (`event` and `message`) that should be applied to mess
 
 #### Miro
 
-Another option is using [Miro](https://miro.com/). Miro allows the creation of diagrams in a whiteboard that can be exported and imported as a backup file (RTB) by a board owner. Diagrams created in Miro can be used to generate images that should be committed along with whiteboard backup. The idea is that the whiteboard with the diagrams can be imported in Miro by any team and evolved along with the documentation. To generate diagram images from Miro board, surround the diagram with a frame, select the frame, select the "Export as image" option and export the image as PNG.
+Another option is [Miro](https://miro.com/). Miro allows the creation of diagrams on a whiteboard. A board can be saved as a board backup file (.rtb) and can be used to create images. Within Miro, we create draw.io diagrams, as these can be exported as PNG images.
+
+To create an image:
+
+- Double-click the draw.io diagram to open the diagram in the draw.io editor
+- From the "File" menu:
+   - Click "Export as"
+   - Click "PNG.."
+   - Set Zoom to 200% to cater for scaled-up high resolution screens.
+   - Do NOT select "Transparent Background", as this makes the visibility of elements in the image dependent on the user's theme (e.g. light or dark).
+ - Choose the file location and click "Export"
+
+To allow images to be updated later, they must be committed to this repository along with the board backup file(s) use to create them.
 
 ### Some Useful Characters
 

@@ -18,7 +18,7 @@ NServiceBus uses persisters to store the state of sagas, to enable the outbox, a
 - **Subscription storage**
   Transports that don’t support publish and subscribe natively use storage for the subscription data. See the [transport documentation](/transports/) for more details.
 - **Timeouts**
-  Unlike other transports, [MSMQ](/transports/msmq/) does not support native timeouts. Therefore, if MSMQ is selected as the transport, storage of timeout data is required.
+  Unlike other transports, [MSMQ](/transports/msmq/) does not support native timeouts. Therefore, if MSMQ is selected as the transport, [storage of timeout data](/transports/msmq/delayed-delivery.md) is required.
 
 ## Persister decision chart
 

@@ -9,36 +9,23 @@ Docker images for ServicePulse exist on Docker Hub under the [Particular organiz
 
 ServicePulse is stateless and requires no volume mapping. The UI fully runs in the client browser which connects directly to the ServiceControl API. Therefore it does not need any initialization.
 
+The [particular/servicepulse](https://hub.docker.com/r/particular/servicepulse) image is based on `nginx:stable-alpine`.
+
 ## Ports
 
-Port 80 is used for serving the ServicePulse web application.
-
-## Environment
-
-ServicePulse is available as a Linux and a Windows image.
-
-Linux:
-
-The [particular/servicepulse](https://hub.docker.com/r/particular/servicepulse) image is based on `Ubuntu:latest`.
-
-Windows:
-
-The  [particular/servicepulse-windows](https://hub.docker.com/r/particular/servicepulse-windows) image is based on `mcr.microsoft.com/windows/servercore/iis`.
+Port 90 is used for serving the ServicePulse web application.
 
 ## Running using Docker
-
-Linux:
 
 Host ServicePulse on Ubuntu Linux via Nginx run:
 
 ```cmd
-docker run -p 80:90 --detach particular/servicepulse:1
+docker run -p 9090:90 -e SERVICECONTROL_URL="http://servicecontrol:33333/api/" -e MONITORING_URLS="['http://servicecontrol-monitoring:33633']" particular/servicepulse:latest
 ```
 
-Windows:
+## Environment variables
 
-Host ServicePulse on Windows 2016 or later (Windows 10, Windows 2019) via IIS run:
-
-```cmd
-docker run -p 80:80 --detach particular/servicepulse-windows:1
-```
+- **`SERVICECONTROL_URL`**: _Default_: `http://localhost:33333/api/`. The url to your ServiceControl instance
+- **`MONITORING_URLS`**: _Default_: `['http://localhost:33633/']`. A JSON array of URLs to your monitoring instances
+- **`DEFAULT_ROUTE`**: _Default_: `/dashboard`. The default page that should be displayed when visiting the site
+- **`SHOW_PENDING_RETRY`** _Default_: `false`. Set to `true` to show details of pending retries

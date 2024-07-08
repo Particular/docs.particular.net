@@ -12,7 +12,7 @@ All releases are [announced on the Particular Software discussion forum](https:/
 There are two ways to be notified of new releases of packages and software from Particular Software:
 
 1) Register on the [Particular forum](https://discuss.particular.net) and ensure that notifications are set to "Watching" on the announcement channel to receive announcements for all platform components.
-1) Register at [GitHub](https://github.com/) and browse to repositories under the [Particular organization](https://github.com/Particular) that should be monitored. Expand the repository watch options and enable notifications for releases you are interested in.
+1) Register at [GitHub](https://github.com/) and browse to repositories under the [Particular organization](https://github.com/Particular). For each repository you are interested in, expand the repository watch options and enable notifications for releases.
 
 ## Atom Feeds
 

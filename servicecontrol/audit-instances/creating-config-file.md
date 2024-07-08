@@ -20,6 +20,8 @@ Anyone who can access the ServiceControl Audit instance URL has complete access 
 
 The hostname to bind the embedded HTTP server to; modify this setting to bind to a specific hostname, eg. `sc.mydomain.com`.
 
+This field can also contain a `*` as a wildcard to allow remote connections that use any hostname.
+
 Type: string
 
 Default: `localhost`

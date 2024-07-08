@@ -38,6 +38,10 @@ partial: license-management
 
 Sometimes the license must be embedded in a single line of text, for example, in a command line when deploying an endpoint with Docker. For these scenarios, the license can be minified, removing all spaces and line-breaks, by adding `minify=true` to the query string of the URL used to download a license file from the Particular Software website.
 
+## Behavior
+
+The license is only read once at startup. When the license expires the endpoint logs will contain a message indicating the license is expired. To resolve this the endpoint must be restarted so that it can read the updated license at startup.
+
 ## Troubleshooting
 
 Diagnose license scanning issues by [enabling Debug logging](/nservicebus/logging/#default-logging-changing-the-defaults-changing-the-logging-level) as all traversed locations and the scan result are logged.

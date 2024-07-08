@@ -82,6 +82,10 @@
         {
           "Minor": "4.3",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "4.4",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -98,6 +102,14 @@
         },
         {
           "Minor": "5.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "5.1",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "5.2",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -385,12 +397,17 @@
       ]
     },
     {
-      "PackageId": "NServiceBus.MessagingBridge",
+      "PackageId": "NServiceBus.MessageInterfaces",
       "Versions": [
         {
-          "Minor": "2.1",
+          "Minor": "1.0",
           "SupportLevel": "Mainstream"
-        },
+        }
+      ]
+    },
+    {
+      "PackageId": "NServiceBus.MessagingBridge",
+      "Versions": [
         {
           "Minor": "2.2",
           "SupportLevel": "Mainstream"
@@ -680,6 +697,10 @@
         {
           "Minor": "8.0",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "8.1",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -696,6 +717,10 @@
         },
         {
           "Minor": "8.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "8.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -889,6 +914,10 @@
         {
           "Minor": "3.0",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.1",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -928,12 +957,7 @@
     },
     {
       "PackageId": "NServiceBus.Transport.Bridge",
-      "Versions": [
-        {
-          "Minor": "1.0",
-          "SupportLevel": "Mainstream"
-        }
-      ]
+      "Versions": []
     },
     {
       "PackageId": "NServiceBus.Transport.Msmq",
@@ -957,6 +981,15 @@
         },
         {
           "Minor": "2.0",
+          "SupportLevel": "Mainstream"
+        }
+      ]
+    },
+    {
+      "PackageId": "NServiceBus.Transport.PostgreSql",
+      "Versions": [
+        {
+          "Minor": "8.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -974,6 +1007,10 @@
         },
         {
           "Minor": "8.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "8.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -1046,10 +1083,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "3.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "3.1",
           "SupportLevel": "Mainstream"
         },
@@ -1062,10 +1095,6 @@
     {
       "PackageId": "ParticularTemplates",
       "Versions": [
-        {
-          "Minor": "4.1",
-          "SupportLevel": "Mainstream"
-        },
         {
           "Minor": "5.0",
           "SupportLevel": "Mainstream"
@@ -1146,7 +1175,7 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "5.2",
+          "Minor": "5.3",
           "SupportLevel": "Mainstream"
         }
       ]

@@ -1,8 +1,11 @@
 ---
 title: Installing ServiceControl
 summary: How to install different types of ServiceControl instances
-reviewed: 2023-11-30
+reviewed: 2024-06-14
 component: ServiceControl
+related:
+ - servicecontrol/servicecontrol-instances/hardware
+ - servicecontrol/capacity-and-planning
 redirects:
  - servicecontrol/multi-transport-support
 ---

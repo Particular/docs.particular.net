@@ -5,7 +5,7 @@ reviewed: 2024-03-28
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
-AWS offers [multiple messaging services](https://aws.amazon.com/messaging/). The Particular Service Platform offers messaging support within AWS through [Amazon SQS](https://aws.amazon.com/sqs/) or a [SQL Server-based transport](#sql-server-transport).
+AWS offers [multiple messaging services](https://aws.amazon.com/messaging/). The Particular Service Platform offers messaging support within AWS through [Amazon SQS](https://aws.amazon.com/sqs/) or [SQL Server-based transport](#sql-server-transport).
 
 ## Amazon SQS
 
@@ -13,17 +13,17 @@ AWS offers [multiple messaging services](https://aws.amazon.com/messaging/). The
 
 :heavy_plus_sign: Pros:
 
-- Highly scalable
-- Highly reliable
+- High scalability
+- High reliability
 - Easy integration with other AWS services
 - Sensitive data is secured through server-side encryption (SSE)
-- Cost-effective: charges are based on usage reducing the need for capacity planning and pre-provisioning
+- Cost-effective: charges are based on usage, reducing the need for capacity planning and pre-provisioning
 
 :heavy_minus_sign: Cons:
 
-- Limited message size (256Kb per message).
-- Limited control over retry policies which forces delegation of handling retries to consumers increasing the overall complexity of the system
-- SQS supports a subset of protocols and formats which can cause compatibility issues with third-party applications
+- Limited message size (256Kb per message)
+- Limited control over retry policies forces delegation of handling retries to consumers which can increase the overall complexity of the system
+- SQS supports only a subset of protocols and formats which can cause compatibility issues with third-party applications
 - No local store-and-forward mechanism available
 
 NServiceBus addresses some of these limitations:
@@ -46,7 +46,7 @@ SQL Server transport is an NServiceBus feature that can use existing SQL Server 
 - Strong transaction integration with business data operations
 - Runs on cloud-hosted and on-premises SQL Server-compatible data stores (including Amazon RDS)
 - Arbitrary message sizes
-- Allows for exactly-once processing if business data and message data are in the same database
+- Allows for [exactly-once processing](https://particular.net/blog/what-does-idempotent-mean) if business data and message data are in the same database
 - Ease of backup and recovery as business data and messages are backed up in the same database
 
 :heavy_minus_sign: Cons:
@@ -59,4 +59,4 @@ SQL Server transport is an NServiceBus feature that can use existing SQL Server 
 
 ### When to use SQL Server transport
 
-Consider SQL transport if an existing application already uses a SQL Server-compatible data store and limited amount of messaging is being introduced. SQL transport can be a good stepping-stone when introducing messaging into an existing system without the introduction of new infrastructure.
+Consider using SQL transport if an existing application already uses a SQL Server-compatible data store and only a limited amount of messaging is being introduced. SQL transport can be a good stepping-stone when introducing messaging into an existing system without the introduction of new infrastructure.

@@ -21,7 +21,7 @@ class Program
         EndpointHelper.Instance = endpointInstance;
 
         // use in memory storage. Production should use more robust alternatives:
-        // SqlServer, Msmq, Redis etc
+        // SqlServer, Redis etc
         GlobalConfiguration.Configuration.UseMemoryStorage();
 
         GlobalConfiguration.Configuration.UseColouredConsoleLogProvider();

@@ -7,6 +7,15 @@
   NugetOrder:
     - NServiceBus
 
+- Key: MessageInterfaces
+  Name: NServiceBus.MessageInterfaces
+  DocsUrl: /nservicebus
+  Category: Core
+  GitHubOwner: Particular
+  ProjectUrl: https://github.com/Particular/NServiceBus.MessageInterfaces
+  NugetOrder:
+    - NServiceBus.MessageInterfaces    
+
 - Key: ABSDataBus
   Name: Azure Blob Storage Databus
   DocsUrl: /nservicebus/azure
@@ -529,6 +538,15 @@
   NugetOrder:
     - NServiceBus.Transport.SqlServer
     - NServiceBus.SqlServer
+
+- Key: PostgreSqlTransport
+  Name: PostgreSql Transport
+  DocsUrl: /transports/postgresql
+  GitHubOwner: Particular
+  Category: Transport
+  ProjectUrl: https://github.com/Particular/NServiceBus.SqlServer
+  NugetOrder:
+    - NServiceBus.Transport.PostgreSql
 
 - Key: StructureMap
   Name: StructureMap Dependency Injection

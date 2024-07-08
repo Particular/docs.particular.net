@@ -2,11 +2,11 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [9.0.x](https://www.nuget.org/packages/NServiceBus/9.0.0) | 2024-04-16     | -                 | -                                 |
-| [8.2.x](https://www.nuget.org/packages/NServiceBus/8.2.0) | 2024-04-11     | 2026-04-16        | Superseded by 9.0.x               |
-| [8.1.x](https://www.nuget.org/packages/NServiceBus/8.1.6) | 2023-06-19     | 2024-10-11        | Superseded by 8.2.x               |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus/9.0.3) | 2024-04-16     | -                 | -                                 |
+| [8.2.x](https://www.nuget.org/packages/NServiceBus/8.2.2) | 2024-04-11     | 2026-04-16        | Superseded by 9.0.x               |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus/8.1.7) | 2023-06-19     | 2024-10-11        | Superseded by 8.2.x               |
 | [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus/8.0.8) | ~~2022-11-17~~ | ~~2023-12-19~~    | ~~Superseded by 8.1.x~~           |
-| [7.8.x](https://www.nuget.org/packages/NServiceBus/7.8.4) | 2022-09-19     | 2024-11-17        | Superseded by 8.0.x               |
+| [7.8.x](https://www.nuget.org/packages/NServiceBus/7.8.5) | 2022-09-19     | 2024-11-17        | Superseded by 8.0.x               |
 | [~~7.7.x~~](https://www.nuget.org/packages/NServiceBus/7.7.6) | ~~2022-03-09~~ | ~~2023-03-19~~    | ~~Superseded by 7.8.x~~           |
 | [~~7.6.x~~](https://www.nuget.org/packages/NServiceBus/7.6.3) | ~~2021-12-17~~ | ~~2022-09-09~~    | ~~Superseded by 7.7.x~~           |
 | [~~7.5.x~~](https://www.nuget.org/packages/NServiceBus/7.5.2) | ~~2021-07-15~~ | ~~2022-06-17~~    | ~~Superseded by 7.6.x~~           |
@@ -38,6 +38,14 @@
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus/3.0.4) | ~~2012-03-08~~ | ~~2012-11-21~~    | ~~Superseded by 3.1.x~~           |
 | [~~2.6.x~~](https://www.nuget.org/packages/NServiceBus/2.6.0.1511) | ~~2011-08-09~~ | ~~2014-03-08~~    | ~~Superseded by 3.0.x~~           |
 | [~~2.5.x~~](https://www.nuget.org/packages/NServiceBus/2.5.0.1490) | ~~2011-07-18~~ | ~~2012-02-09~~    | ~~Superseded by 2.6.x~~           |
+
+### Core packages
+
+#### [NServiceBus.MessageInterfaces](/nuget/NServiceBus.MessageInterfaces)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.MessageInterfaces/1.0.0) | 2024-03-21     | -                 | -                                 |
 
 ### Transport packages
 
@@ -198,16 +206,23 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.3) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.4) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.4) | 2021-10-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.1) | ~~2020-06-24~~ | ~~2022-01-29~~    | ~~Superseded by 1.2.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.0.2) | ~~2018-05-29~~ | ~~2020-09-24~~    | ~~Superseded by 1.1.x~~           |
+
+#### [NServiceBus.Transport.PostgreSql](/nuget/NServiceBus.Transport.PostgreSql)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/8.1.2) | 2024-06-25     | -                 | -                                 |
 
 #### [NServiceBus.Transport.SqlServer](/nuget/NServiceBus.Transport.SqlServer)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.0.0) | 2024-04-16     | -                 | -                                 |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.1.2) | 2024-06-25     | -                 | -                                 |
+| [8.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.0.0) | 2024-04-16     | 2024-09-25        | Superseded by 8.1.x               |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/7.0.6) | 2023-08-28     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.3.8) | 2021-06-23     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~6.2.x~~](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.2.0) | ~~2020-11-19~~ | ~~2021-09-23~~    | ~~Superseded by 6.3.x~~           |
@@ -351,7 +366,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.0.0) | 2024-04-16     | -                 | -                                 |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.1.0) | 2024-06-25     | -                 | -                                 |
+| [8.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.0.0) | 2024-04-16     | 2024-09-25        | Superseded by 8.1.x               |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/7.0.5) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [6.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.6.5) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~6.5.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.5.1) | ~~2022-02-01~~ | ~~2022-12-19~~    | ~~Superseded by 6.6.x~~           |
@@ -380,7 +396,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.0.0) | 2024-04-16     | -                 | -                                 |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.1.0) | 2024-06-25     | -                 | -                                 |
+| [8.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.0.0) | 2024-04-16     | 2024-09-25        | Superseded by 8.1.x               |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/7.0.5) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [6.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/6.6.5) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
@@ -446,7 +463,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.3) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.4) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.4) | 2021-10-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.1) | ~~2020-06-24~~ | ~~2022-01-29~~    | ~~Superseded by 1.2.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.0.2) | ~~2018-05-29~~ | ~~2020-09-24~~    | ~~Superseded by 1.1.x~~           |
@@ -714,7 +731,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.3.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.3.1) | 2023-09-21     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
+| [4.4.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.4.0) | 2024-06-12     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
+| [4.3.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.3.1) | 2023-09-21     | 2024-09-12        | Superseded by 4.4.x               |
 | [~~4.2.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.2.0) | ~~2023-06-28~~ | ~~2023-12-21~~    | ~~Superseded by 4.3.x~~           |
 | [~~4.1.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.1.1) | ~~2022-12-21~~ | ~~2023-09-28~~    | ~~Superseded by 4.2.x~~           |
 | [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.0.1) | ~~2022-11-17~~ | ~~2023-03-21~~    | ~~Superseded by 4.1.x~~           |
@@ -730,7 +748,9 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.0.0) | 2024-04-16     | -                 | -                                 |
+| [5.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.2.0) | 2024-06-26     | -                 | -                                 |
+| [5.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.1.0) | 2024-06-12     | 2024-09-26        | Superseded by 5.2.x               |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.0.0) | 2024-04-16     | 2024-09-12        | Superseded by 5.1.x               |
 | [4.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.2.3) | 2023-09-21     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [~~4.1.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.1.1) | ~~2022-12-21~~ | ~~2023-12-21~~    | ~~Superseded by 4.2.x~~           |
 | [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.0.0) | ~~2022-11-17~~ | ~~2023-03-21~~    | ~~Superseded by 4.1.x~~           |
@@ -786,7 +806,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [6.0.x](https://www.nuget.org/packages/ParticularTemplates/6.0.0) | 2024-04-16     | -                 | -                                 |
 | [5.0.x](https://www.nuget.org/packages/ParticularTemplates/5.0.1) | 2023-06-19     | 2025-04-16        | Superseded by 6.0.x               |
-| [4.1.x](https://www.nuget.org/packages/ParticularTemplates/4.1.0) | 2020-08-14     | 2024-06-19        | Superseded by 5.0.x               |
+| [~~4.1.x~~](https://www.nuget.org/packages/ParticularTemplates/4.1.0) | ~~2020-08-14~~ | ~~2024-06-19~~    | ~~Superseded by 5.0.x~~           |
 | [~~4.0.x~~](https://www.nuget.org/packages/ParticularTemplates/4.0.0) | ~~2020-03-05~~ | ~~2020-11-14~~    | ~~Superseded by 4.1.x~~           |
 | [~~3.0.x~~](https://www.nuget.org/packages/ParticularTemplates/3.0.0) | ~~2018-11-29~~ | ~~2021-03-05~~    | ~~Superseded by 4.0.x~~           |
 | [~~2.0.x~~](https://www.nuget.org/packages/ParticularTemplates/2.0.0) | ~~2018-05-29~~ | ~~2019-11-29~~    | ~~Superseded by 3.0.x~~           |
@@ -905,9 +925,9 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/3.0.0) | 2024-04-18     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/3.0.1) | 2024-04-18     | -                 | -                                 |
 | [2.2.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.2.1) | 2024-02-26     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
-| [2.1.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.1.0) | 2023-07-25     | 2024-05-26        | Superseded by 2.2.x               |
+| [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.1.0) | ~~2023-07-25~~ | ~~2024-05-26~~    | ~~Superseded by 2.2.x~~           |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.0.3) | ~~2023-06-20~~ | ~~2023-10-25~~    | ~~Superseded by 2.1.x~~           |
 
 #### [NServiceBus.Metrics](/nuget/NServiceBus.Metrics)
@@ -971,9 +991,9 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/3.0.0) | 2024-04-16     | -                 | -                                 |
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/2.0.1) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/1.0.0) | 2021-11-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/3.0.1) | 2024-04-16     | -                 | -                                 |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/2.0.2) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.ServicePlatform.Connector/1.0.1) | 2021-11-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Testing](/nuget/NServiceBus.Testing)
 
@@ -1010,7 +1030,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.0.0) | 2024-04-16     | -                 | -                                 |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.1.0) | 2024-07-05     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.0.0) | 2024-04-16     | 2024-10-05        | Superseded by 3.1.x               |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/2.0.2) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/1.0.3) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
@@ -1018,7 +1039,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [1.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Bridge/1.0.3) | 2022-12-19     | 2024-06-20        | Superseded by 2.0.x of NServiceBus.MessagingBridge |
+| [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Bridge/1.0.3) | ~~2022-12-19~~ | ~~2024-06-20~~    | ~~Superseded by 2.0.x of NServiceBus.MessagingBridge~~ |
 | [~~0.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Bridge/0.1.1) | ~~2022-11-17~~ | ~~2023-12-19~~    | ~~Superseded by 1.0.x~~           |
 
 #### [NServiceBus.UniformSession](/nuget/NServiceBus.UniformSession)
@@ -1052,9 +1073,9 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.2.x](https://www.nuget.org/packages/Particular.PlatformSample/3.2.0) | 2024-05-14     | -                 | -                                 |
+| [3.2.x](https://www.nuget.org/packages/Particular.PlatformSample/3.2.4) | 2024-05-14     | -                 | -                                 |
 | [3.1.x](https://www.nuget.org/packages/Particular.PlatformSample/3.1.2) | 2024-03-20     | 2024-08-14        | Superseded by 3.2.x               |
-| [3.0.x](https://www.nuget.org/packages/Particular.PlatformSample/3.0.9) | 2023-12-01     | 2024-06-20        | Superseded by 3.1.x               |
+| [~~3.0.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.0.9) | ~~2023-12-01~~ | ~~2024-06-20~~    | ~~Superseded by 3.1.x~~           |
 | [2.40.x](https://www.nuget.org/packages/Particular.PlatformSample/2.40.0) | 2023-11-15     | 2024-12-01        | Superseded by 3.0.x               |
 | [~~2.39.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.39.0) | ~~2023-11-06~~ | ~~2024-02-15~~    | ~~Superseded by 2.40.x~~          |
 | [~~2.38.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.38.0) | ~~2023-08-16~~ | ~~2024-02-06~~    | ~~Superseded by 2.39.x~~          |

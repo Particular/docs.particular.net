@@ -8,20 +8,20 @@
       Title: "Part 2: Recovering from failure"
     - Url: tutorials/quickstart/tutorial-extending-the-system
       Title: "Part 3: Extending the system"
-  - Title: Introduction to NServiceBus
+  - Title: NServiceBus Step-by-step
     Articles:
     - Url: tutorials/nservicebus-step-by-step
       Title: Introduction
     - Url: tutorials/nservicebus-step-by-step/1-getting-started
-      Title: "Lesson 1: Getting Started"
+      Title: "Part 1: Getting Started"
     - Url: tutorials/nservicebus-step-by-step/2-sending-a-command
-      Title: "Lesson 2: Sending a command"
+      Title: "Part 2: Sending a command"
     - Url: tutorials/nservicebus-step-by-step/3-multiple-endpoints
-      Title: "Lesson 3: Multiple endpoints"
+      Title: "Part 3: Multiple endpoints"
     - Url: tutorials/nservicebus-step-by-step/4-publishing-events
-      Title: "Lesson 4: Publishing events"
+      Title: "Part 4: Publishing events"
     - Url: tutorials/nservicebus-step-by-step/5-retrying-errors
-      Title: "Lesson 5: Retrying errors"
+      Title: "Part 5: Retrying errors"
   - Title: NServiceBus Sagas
     Articles:
     - Url: tutorials/nservicebus-sagas
@@ -118,6 +118,26 @@
       - Title: Observability
         Url: architecture/aws/observability
 
+- Name: Particular Service Platform
+  Topics:
+  - Title: General
+    Articles: 
+    - Url: platform
+      Title: About
+    - Url: platform/installation
+      Title: Platform installation
+    - Url: platform/platform-sample-package
+      Title: Platform Sample installation
+    - Url: platform/connecting
+      Title: Connecting endpoints
+    - Url: platform/json-schema
+      Title: Connection schema
+    - Url: platform/contributing
+      Title: Contributing
+    - Url: nservicebus/release-notifications
+      Title: Release notifications
+
+
 - Name: NServiceBus
   Topics:
   - Title: General
@@ -133,17 +153,6 @@
         Title: Glossary
       - Url: nservicebus/concepts/priority-queues
         Title: Priority Queues
-    - Url: platform
-      Title: Service Platform
-      Articles:
-      - Url: platform/installation
-        Title: Platform Installation
-      - Url: platform/platform-sample-package
-        Title: Platform Sample Installation
-      - Url: platform/connecting
-        Title: Connecting endpoints
-      - Url: platform/json-schema
-        Title: Connection schema
     - Url: nservicebus/dotnet-templates
       Title: dotnet new Templates
     - Url: nservicebus/platform-nuget-packages
@@ -154,15 +163,12 @@
       Title: License
     - Url: nservicebus/community
       Title: Community extensions and integrations
-    - Url: nservicebus/release-notifications
-      Title: Release notifications
-    - Url: platform/contributing
-      Title: Contributing
     - Url: nservicebus/scaling
       Title: Scaling out
     - Url: nservicebus/biztalk
       Title: NServiceBus and Biztalk
-
+    - Url: nservicebus/azure
+      Title: NServiceBus and Azure
 
 
   - Title: Support Policy
@@ -513,6 +519,8 @@
     - Url: nservicebus/hosting/azure-functions-service-bus
       Title: Azure Functions with Service Bus (Isolated Worker)
       Articles:
+      - Url: nservicebus/hosting/azure-functions-service-bus/custom-triggers
+        Title: Custom triggers
       - Url: nservicebus/hosting/azure-functions-service-bus/analyzers
         Title: Roslyn analyzers
     - Url: nservicebus/hosting/azure-functions-service-bus/in-process
@@ -679,17 +687,17 @@
     - Url: nservicebus/logging
       Title: About NServiceBus logging
     - Url: nservicebus/logging/extensions-logging
-      Title: Microsoft.Extensions.Logging
-    - Url: nservicebus/logging/message-contents
-      Title: Message contents
-    - Url: nservicebus/logging/usage
-      Title: Writing a log entry
+      Title: Extensions.Logging
     - Url: nservicebus/logging/log4net
       Title: Log4Net
     - Url: nservicebus/logging/nlog
       Title: NLog
     - Url: nservicebus/logging/common-logging
       Title: CommonLogging
+    - Url: nservicebus/logging/message-contents
+      Title: Message contents
+    - Url: nservicebus/logging/usage
+      Title: Writing a log entry
     - Url: nservicebus/operations/auditing
       Title: Auditing Messages
   - Title: Security
@@ -904,6 +912,8 @@
       Articles:
       - Url: transports/upgrades/msmq-1to2
         Title: Version 1 to 2
+      - Url: transports/upgrades/msmq-2to2.0.4
+        Title: Version 2 to 2.0.4
   - Title: Learning
     Articles:
     - Url: transports/learning
@@ -974,6 +984,8 @@
       Title: Addressing
     - Url: transports/sql/transactions
       Title: Transaction support
+    - Url: persistence/sql/sqlserver-combining-persistence-wth-transport
+      Title: Combining with SQL Server Persistence
     - Url: transports/sql/discard-expired-messages
       Title: Discarding expired messages
     - Url: transports/sql/native-integration
@@ -992,6 +1004,22 @@
       Title: Azure SQL considerations
     - Url: transports/sql/troubleshooting
       Title: Troubleshooting
+  - Title: PostgreSQL
+    Articles:
+    - Url: transports/postgresql
+      Title: PostgreSQL transport
+    - Url: transports/postgresql/design
+      Title: Design
+    - Url: transports/postgresql/native-publish-subscribe
+      Title: Native publish/subscribe
+    - Url: transports/postgresql/connection-settings
+      Title: Connection settings
+    - Url: transports/postgresql/addressing
+      Title: Addressing
+    - Url: transports/postgresql/transactions
+      Title: Transaction support
+    - Url:  persistence/sql/postgresql-combining-persistence-with-transport
+      Title: Combining with PostgreSQL Persistence
   - Title: MSMQ
     Articles:
     - Url: transports/msmq
@@ -1162,6 +1190,8 @@
     - Url: persistence/sql/dialect-mssql
       Title: SQL Server
       Articles:
+      - Url: persistence/sql/sqlserver-combining-persistence-wth-transport
+        Title: Combining with SQL Server Transport
       - Url: persistence/sql/sqlserver-scripts
         Title: Scripts
     - Url: persistence/sql/dialect-mysql
@@ -1179,6 +1209,8 @@
       Articles:
       - Url: persistence/sql/postgresql-scripts
         Title: Scripts
+      - Url:  persistence/sql/postgresql-combining-persistence-with-transport
+        Title: Combining with PostgreSQL Transport
     - Url: persistence/sql/controlling-script-generation
       Title: Script generation
       Articles:
@@ -1217,6 +1249,8 @@
       Url: persistence/cosmosdb
     - Title: Saga concurrency
       Url: persistence/cosmosdb/saga-concurrency
+    - Title: Saga timeouts
+      Url: persistence/cosmosdb/saga-timeouts
     - Title: Transactions
       Url: persistence/cosmosdb/transactions
     - Title: Migration from Azure Table Persistence
@@ -1305,12 +1339,15 @@
       Title: Outbox
     - Url: persistence/dynamodb/transactions
       Title: Transactions
+
 - Name: ServiceInsight
   Topics:
   - Title: Introduction
     Articles:
     - Url: serviceinsight
       Title: About ServiceInsight
+    - Url: serviceinsight/installation
+      Title: Installation
     - Url: serviceinsight/license
       Title: Licensing
     - Url: serviceinsight/support-policy
@@ -1331,6 +1368,7 @@
       Title: Logging
     - Url: serviceinsight/troubleshooting
       Title: Troubleshooting
+
 - Name: ServicePulse
   Topics:
   - Title: Introduction
@@ -1478,6 +1516,8 @@
         Url: servicecontrol/maintenance-mode
       - Title: Retry importing messages
         Url: servicecontrol/import-failed-messages
+      - Title: Sequence contains no matching element
+        Url: servicecontrol/sequence-contains-no-matching-element
   - Title: Audit instances
     Articles:
       - Title: ServiceControl Audit instances

@@ -1,6 +1,3 @@
 ﻿using NServiceBus;
 
-class SomeMessage :
-    IMessage
-{
-}
+class SomeMessage : IMessage;

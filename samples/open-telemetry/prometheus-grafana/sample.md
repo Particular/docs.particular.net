@@ -51,15 +51,15 @@ snippet: metrics-shim
 
 ### Message processing counters
 
-To monitor the rate of messages being fetched from the queuing system, processed successfully, retried, and failed for the endpoint use:
+The following metric keys are available to monitor the rate of messages from the queuing system use:
 
-- `nservicebus.messaging.fetches`
+- `nservicebus.messaging.fetches` 
 - `nservicebus.messaging.successes`
 - `nservicebus.messaging.failures`
 
 ### Recoverability
 
-To monitor [recoverability](/nservicebus/recoverability/) metrics use:
+To monitor [recoverability](/nservicebus/recoverability/) metrics, use:
 
 - `nservicebus.recoverability.immediate_retries`
 - `nservicebus.recoverability.delayed_retries`
@@ -68,7 +68,7 @@ To monitor [recoverability](/nservicebus/recoverability/) metrics use:
 
 ### Critical time and processing time
 
-To monitor [critical time and processing time](/monitoring/metrics/definitions.md#metrics-captured) (in milliseconds) for successfully processed messages use:
+To monitor [critical time and processing time](/monitoring/metrics/definitions.md#metrics-captured) (in milliseconds) for successfully processed messages, use:
 
 - `nservicebus.messaging.processingtime`
 - `nservicebus.messaging.criticaltime`

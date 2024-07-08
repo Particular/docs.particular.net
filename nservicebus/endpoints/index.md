@@ -1,7 +1,7 @@
 ---
 title: Endpoints and endpoint instances
 summary: Defines the concepts of endpoint and endpoint instance.
-reviewed: 2021-06-29
+reviewed: 2024-05-28
 component: Core
 related:
  - samples/endpoint-configuration
@@ -9,7 +9,7 @@ redirects:
 - nservicebus/endpoint
 ---
 
-An _endpoint_ is a logical component that communicates with other components using [_messages_](/nservicebus/messaging). Each endpoint has an identifying name, contains a collection of [_message handlers_](/nservicebus/handlers/) and/or [_sagas_](/nservicebus/sagas/), and is deployed to a given _environment_ (e.g. development, testing, production). 
+An _endpoint_ is a logical component that communicates with other components using [_messages_](/nservicebus/messaging). Each endpoint has an identifying name, contains a collection of [_message handlers_](/nservicebus/handlers/) and/or [_sagas_](/nservicebus/sagas/), and is deployed to a given _environment_ (e.g. development, testing, production).
 
 ## Endpoint instance
 

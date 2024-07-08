@@ -1,4 +1,6 @@
-﻿var builder = Host.CreateApplicationBuilder(args);
+﻿using System.Diagnostics;
+
+var builder = Host.CreateApplicationBuilder(args);
 
 builder.Services.AddWindowsService();
 
@@ -8,7 +10,24 @@ var endpointConfiguration = new EndpointConfiguration("Samples.Hosting.GenericHo
 var routing = endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
-endpointConfiguration.EnableInstallers();
+
+
+//  It is recommended to run least privilege and only run installers during deployment.
+//  This also reduces startup time / time to first message.
+
+var isDevelopment = Debugger.IsAttached;
+var isSetup = args.Contains("--setup");
+
+if (isSetup)
+{
+    // Provision resources like transport queue creation and persister schemas
+    await NServiceBus.Installation.Installer.Setup(endpointConfiguration);
+    return; // Exit application 
+}
+else if (isDevelopment)
+{
+    endpointConfiguration.EnableInstallers();
+}
 
 builder.UseNServiceBus(endpointConfiguration);
 

@@ -11,7 +11,7 @@ class Program
         #region endpoint-configuration
         var endpointConfiguration = new EndpointConfiguration("Samples.DispatchNotification");
         endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.NotifyDispatch(new SampleDispatchWatcher());
+        endpointConfiguration.NotifyDispatch(new SampleDispatchNotifier());
         #endregion
 
         var endpoint = await Endpoint.Start(endpointConfiguration);
