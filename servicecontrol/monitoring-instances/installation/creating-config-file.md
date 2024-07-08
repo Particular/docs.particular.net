@@ -1,20 +1,19 @@
 ---
 title: Monitoring Instance Configuration Settings
 summary: Categorized ServiceControl Monitoring instance configuration settings list.
-reviewed: 2024-05-07
+reviewed: 2024-05-22
 ---
-
 
 ## Configuration Settings
 
 The Monitoring instance configuration can be adjusted via ServiceControl Management or by directly modifying the `ServiceControl.Monitoring.exe.config` file. Unless otherwise specified, the settings listed apply to the app settings section of the configuration file.
-
 
 ## Host Settings
 
 Prior to modifying these configuration settings review [Setting a Custom Hostname](configure-the-uri.md):
 
 ### Monitoring/EndpointName
+
 The endpoint name to be used by the monitoring instance and the name of the monitoring queue.
 
 Type: string
@@ -35,7 +34,6 @@ Default: `localhost`
 > [!NOTE]
 > This setting must have a value for the Monitoring instance API to be available from remote machines.
 
-
 ### Monitoring/HttpPort
 
 The port to bind the embedded HTTP server.
@@ -44,9 +42,7 @@ Type: int
 
 Default: `33633`
 
-
 ## Logging
-
 
 ### Monitoring/LogPath
 
@@ -55,7 +51,6 @@ The path for the Monitoring instance logs.
 Type: string
 
 Default: The folder that contains the Monitoring instance executable.
-
 
 ### Monitoring/LogLevel
 
@@ -69,9 +64,7 @@ Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 
 This setting will default to `Warn` if an invalid value is assigned.
 
-
 ## Transport
-
 
 ### Monitoring/TransportType
 
@@ -84,7 +77,6 @@ Type: string
 The connection string for the transport. This setting should be placed in the `connectionStrings` section of the configuration file.
 
 Type: string
-
 
 ### Monitoring/ErrorQueue
 
@@ -110,3 +102,20 @@ Type: timespan
 
 Default: 40 seconds
 
+## Usage Reporting
+
+### Monitoring/ServiceControlThroughputDataQueue
+
+Version: 5.4.0+
+
+The queue on which throughput data is received by ServiceControl error instance. This setting must match the equivalent [`LicensingComponent/ServiceControlThroughputDataQueue`](/servicecontrol/creating-config-file.md#usage-reporting-when-using-servicecontrol-licensingcomponentservicecontrolthroughputdataqueue) setting on the ServiceControl error instance.
+
+In most instances these settings do not need to be modified.
+
+If running multiple setups of the Platform Tools (i.e. multiple versions of ServiceControl Error and monitoring instances) then modify these settings so that the queue on each Monitoring instance is matched to the queue of its error instance.
+
+If using [MSMQ transport](/transports/msmq) and the monitoring instance is installed on a different machine to the ServiceControl error instance, then only the monitoring instance setting needs to be modified to include the machine name of the error instance in the queue address.
+
+Type: string
+
+Default: `ServiceControl.ThroughputData`

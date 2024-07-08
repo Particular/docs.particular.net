@@ -2,20 +2,19 @@
 title: Configuration Settings
 summary: Categorized list of ServiceControl configuration settings.
 component: ServiceControl
-reviewed: 2023-11-30
+reviewed: 2024-05-22
 ---
 
 The configuration of a ServiceControl instance can be adjusted via the ServiceControl Management utility or by directly modifying the `ServiceControl.exe.config` file. The settings listed are applicable to the `appSettings` section of the configuration file unless otherwise specified.
 
 ![image](https://github.com/Particular/docs.particular.net/assets/88632084/0b04d82b-6a77-427d-81f3-6e450544ff90)
 
-
 ## Host settings
 
 The following documents should be reviewed prior to modifying configuration settings:
 
-* [Setting a Custom Hostname](setting-custom-hostname.md) for guidance and details.
-* [Securing ServiceControl](securing-servicecontrol.md) for an overview of the security implications of changing the configuration.
+- [Setting a Custom Hostname](setting-custom-hostname.md) for guidance and details.
+- [Securing ServiceControl](securing-servicecontrol.md) for an overview of the security implications of changing the configuration.
 
 ### ServiceControl/HostName
 
@@ -322,6 +321,167 @@ This entry should be set to `false` if there is no external process reading mess
 
 See [Installation](installation.md) for details on how to set this at install time.
 
+## Usage Reporting when using ServiceControl
+
+### LicensingComponent/ServiceControlThroughputDataQueue
+
+Version: 5.4.0+
+
+The queue on which throughput data is received by the ServiceControl Error instance. This setting must match the equivalent [`Monitoring/ServiceControlThroughputDataQueue`](/servicecontrol/monitoring-instances/installation/creating-config-file.md#usage-reporting-monitoringservicecontrolthroughputdataqueue) setting for the Monitoring instance.
+
+In most instances these settings do not need to be modified.
+
+If running multiple setups of the Platform Tools (i.e. multiple versions of ServiceControl error and monitoring instances) then modify these settings so that the queue on each monitoring instance is matched to the queue of its error instance.
+
+If using [MSMQ transport](/transports/msmq) and the monitoring instance is installed on a different machine than the ServiceControl error instance, only the monitoring instance setting needs to be modified to include the machine name of the error instance in the queue address.
+
+Type: string
+
+Default: `ServiceControl.ThroughputData`
+
+## Usage Reporting when using the Azure Service Bus transport
+
+### LicensingComponent/ASB/TenantId
+
+Version: 5.4.0+
+
+The Azure [Tenant ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-microsoft-entra-tenant).
+
+Type: string
+
+### LicensingComponent/ASB/SubscriptionId
+
+Version: 5.4.0+
+
+The Azure [subscription ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-azure-subscription).
+
+Type: string
+
+### LicensingComponent/ASB/ClientId
+
+Version: 5.4.0+
+
+The Client ID (aka Application ID) for an [Azure service principal](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser#service-principal-object) that has access to read metrics data for the Azure Service Bus namespace.
+
+Type: string
+
+Example Client ID from an Azure App Registration:
+![Screenshot showing where the Client ID appears in an App Registration](asb-app-service-principal.png)
+
+### LicensingComponent/ASB/ClientSecret
+
+Version: 5.4.0+
+
+The [client secret](https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-service-principal-portal#option-3-create-a-new-client-secret) for an Azure service principal that has access to read metrics data for the Azure Service Bus namespace.
+
+Type: string
+
+> [!NOTE]
+> Certificates and federated credentials are not supported at this time.
+
+### LicensingComponent/ASB/ManagementUrl
+
+Version: 5.4.0+
+
+The Azure ManagementUrl URL.
+
+Type: string
+
+Default: https://management.azure.com
+
+This setting only needs to be configured if not using the public AzureCloud environment.
+For other environments:
+
+- AzureGermanCloud - https://management.microsoftazure.de
+- AzureUSGovernment - https://management.usgovcloudapi.net
+- AzureChinaCloud - https://management.chinacloudapi.cn
+
+## Usage Reporting when using the Amazon SQS transport
+
+### LicensingComponent/AmazonSQS/AccessKey
+
+Version: 5.4.0+
+
+The AWS Access Key ID to use to discover queue names and gather per-queue metrics.
+
+Type: string
+
+### LicensingComponent/AmazonSQS/SecretKey
+
+Version: 5.4.0+
+
+The AWS Secret Access Key to use to discover queue names and gather per-queue metrics.
+
+Type: string
+
+### LicensingComponent/AmazonSQS/Profile
+
+Version: 5.4.0+
+
+The name of a local AWS credentials profile to use to discover queue names and gather per-queue metrics.
+
+Type: string
+
+### LicensingComponent/AmazonSQS/Region
+
+Version: 5.4.0+
+
+The AWS region to use when accessing AWS services.
+
+Type: string
+
+### LicensingComponent/AmazonSQS/Prefix
+
+Version: 5.4.0+
+
+Report only on queues that begin with the specified prefix. This is commonly used when one AWS account must contain queues for multiple projects or multiple environments.
+
+Type: string
+
+## Usage Reporting when using the RabbitMQ transport
+
+### LicensingComponent/RabbitMQ/ApiUrl
+
+Version: 5.4.0+
+
+The RabbitMQ management URL.
+
+Type: string
+
+### LicensingComponent/RabbitMQ/UserName
+
+Version: 5.4.0+
+
+The username to access the RabbitMQ management interface.
+
+Type: string
+
+### LicensingComponent/RabbitMQ/Password
+
+Version: 5.4.0+
+
+The password to access the RabbitMQ management interface.
+
+Type: string
+
+## Usage Reporting when using the SqlServer transport
+
+### LicensingComponent/SqlServer/ConnectionString
+
+Version: 5.4.0+
+
+The connection string that will provide at least read access to all queue tables.
+
+Type: string
+
+### LicensingComponent/SqlServer/AdditionalCatalogs
+
+Version: 5.4.0+
+
+Specifies any additional databases on the same server that also contain NServiceBus message queues.
+
+Type: string
+
 ## Plugin-specific
 
 ### ServiceControl/HeartbeatGracePeriod
@@ -343,7 +503,7 @@ When configuring the heartbeat grace period, make sure it is greater than the [h
 
 ServiceControl stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If during troubleshooting, direct access to the RavenDB instance is required while ServiceControl is running, ServiceControl can be configured to expose the RavenDB studio.
 
-> [!NOTE]
+> [!NOTE] 
 > [Maintenance mode](maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
 
 > [!WARNING]
