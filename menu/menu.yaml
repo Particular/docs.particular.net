@@ -118,25 +118,22 @@
       - Title: Observability
         Url: architecture/aws/observability
 
-- Name: Particular Service Platform
+- Name: Service Platform
   Topics:
-  - Title: General
-    Articles: 
-    - Url: platform
-      Title: About
-    - Url: platform/installation
-      Title: Platform installation
-    - Url: platform/platform-sample-package
-      Title: Platform Sample installation
-    - Url: platform/connecting
-      Title: Connecting endpoints
-    - Url: platform/json-schema
-      Title: Connection schema
-    - Url: platform/contributing
-      Title: Contributing
-    - Url: nservicebus/release-notifications
-      Title: Release notifications
-
+  - Title: About
+    Url: platform
+  - Title: Platform installation
+    Url: platform/installation
+  - Title: Platform Sample installation
+    Url: platform/platform-sample-package
+  - Title: Connecting endpoints
+    Url: platform/connecting
+  - Title: Connection schema
+    Url: platform/json-schema
+  - Title: Contributing
+    Url: platform/contributing
+  - Title: Release notifications
+    Url: nservicebus/release-notifications
 
 - Name: NServiceBus
   Topics:
