@@ -1,3 +1,11 @@
+### Core packages
+
+#### [NServiceBus.MessageInterfaces](/nuget/NServiceBus.MessageInterfaces)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.MessageInterfaces/1.0.0) | 2024-03-21     | -                 | -                                 |
+
 ### Transport packages
 
 #### [NServiceBus.AmazonSQS](/nuget/NServiceBus.AmazonSQS)
@@ -504,7 +512,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.0.0) | 2024-04-16     | -                 | -                                 |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.1.0) | 2024-07-05     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.0.0) | 2024-04-16     | 2024-10-05        | Superseded by 3.1.x               |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/2.0.2) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/1.0.3) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 

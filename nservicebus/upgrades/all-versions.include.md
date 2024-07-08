@@ -2,8 +2,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [9.0.x](https://www.nuget.org/packages/NServiceBus/9.0.2) | 2024-04-16     | -                 | -                                 |
-| [8.2.x](https://www.nuget.org/packages/NServiceBus/8.2.1) | 2024-04-11     | 2026-04-16        | Superseded by 9.0.x               |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus/9.0.3) | 2024-04-16     | -                 | -                                 |
+| [8.2.x](https://www.nuget.org/packages/NServiceBus/8.2.2) | 2024-04-11     | 2026-04-16        | Superseded by 9.0.x               |
 | [8.1.x](https://www.nuget.org/packages/NServiceBus/8.1.7) | 2023-06-19     | 2024-10-11        | Superseded by 8.2.x               |
 | [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus/8.0.8) | ~~2022-11-17~~ | ~~2023-12-19~~    | ~~Superseded by 8.1.x~~           |
 | [7.8.x](https://www.nuget.org/packages/NServiceBus/7.8.5) | 2022-09-19     | 2024-11-17        | Superseded by 8.0.x               |
@@ -38,6 +38,14 @@
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus/3.0.4) | ~~2012-03-08~~ | ~~2012-11-21~~    | ~~Superseded by 3.1.x~~           |
 | [~~2.6.x~~](https://www.nuget.org/packages/NServiceBus/2.6.0.1511) | ~~2011-08-09~~ | ~~2014-03-08~~    | ~~Superseded by 3.0.x~~           |
 | [~~2.5.x~~](https://www.nuget.org/packages/NServiceBus/2.5.0.1490) | ~~2011-07-18~~ | ~~2012-02-09~~    | ~~Superseded by 2.6.x~~           |
+
+### Core packages
+
+#### [NServiceBus.MessageInterfaces](/nuget/NServiceBus.MessageInterfaces)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.MessageInterfaces/1.0.0) | 2024-03-21     | -                 | -                                 |
 
 ### Transport packages
 
@@ -1022,7 +1030,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.0.0) | 2024-04-16     | -                 | -                                 |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.1.0) | 2024-07-05     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.0.0) | 2024-04-16     | 2024-10-05        | Superseded by 3.1.x               |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/2.0.2) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/1.0.3) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 

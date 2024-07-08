@@ -397,6 +397,15 @@
       ]
     },
     {
+      "PackageId": "NServiceBus.MessageInterfaces",
+      "Versions": [
+        {
+          "Minor": "1.0",
+          "SupportLevel": "Mainstream"
+        }
+      ]
+    },
+    {
       "PackageId": "NServiceBus.MessagingBridge",
       "Versions": [
         {
@@ -904,6 +913,10 @@
         },
         {
           "Minor": "3.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.1",
           "SupportLevel": "Mainstream"
         }
       ]
