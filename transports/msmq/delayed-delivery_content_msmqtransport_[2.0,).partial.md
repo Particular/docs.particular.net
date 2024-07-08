@@ -67,3 +67,52 @@ In `TransactionScope` [transaction mode](/transports/transactions.md), the delay
 In lower transaction modes the dispatch behavior is **at least once**. `FetchNextDueTimeout` and `Remove` are executed in the same `TransactionScope` but sending messages to their destination queues is executed in a separate (inner) transport scope. If `Remove` fails, the message will be sent to the destination queue multiple times and the destination endpoint must handle the duplicates, using either the [outbox feature](/nservicebus/outbox/) or a custom de-duplication mechanism.
 
 The built-in SQL Server delayed message store takes a pessimistic lock on the delayed message row in the `FetchNextDueTimeout` operation to prevent other physical instances of the same logical endpoint from delivering the same delayed message. A custom delayed message store must also take some kind of lock to prevent this from happening. For example, a delayed message store using Azure Blog Storage may take a lease lock.
+
+### IDelayedMessageStore
+
+> [!NOTE]
+> The following samples are adapted from the `SqlServerDelayedMessageStore` class provided with the MSMQ transport, and are provided as a guide for adapting to whatever persistence technology is required.
+
+When creating a custom message store, the class can either implement `IDelayedMessageStore`
+
+snippet: dms-without-infrastructure
+
+or `IDelayedMessageStoreWithInfrastructure`
+
+snippet: dms-with-infrastructure
+
+The only difference between the two interfaces is the `SetupInfrastructure` method, which must be implemented in `IDelayedMessageStoreWithInfrastructure` to create the required storage tables if they don't exist yet. With `IDelayedMessageStore` the storage tables are expected to already exist.
+      
+snippet: dms-setup-infrastructure
+
+In the above example, `TimeoutTableCreator` is responsible for executing the script against the database. For SQL Server, the script would be
+
+snippet: dms-sql-create-table
+
+With both interfaces, the `Initialize` method will be called with the name of the endpoint being initialized. The storage implementation should throw an exception if it can't support specified transaction mode, e.g. TransactionScope mode requires the storage to enlist in a distributed transaction managed by the DTC.
+
+snippet: dms-initialise
+
+snippet: dms-sql-crud
+
+The remaining methods implement the logic required for the message store:
+
+`Store` Stores a delayed message.
+
+snippet: dms-store
+
+`Remove` Removes a due delayed message that has been dispatched to its destination from the store. It must return `true` if the removal succeeded or `false` if there was nothing to remove because the delayed message was already gone.
+   
+snippet: dms-remove
+
+`IncrementFailureCount` Increments the counter of failures for a given due delayed message. It must return `true` if the increment succeeded or `false` if the delayed message was already gone.
+   
+snippet: dms-increment-failure-count
+
+`Next` Returns the date and time set for the next delayed message to become due or null if there are no delayed messages stored.
+   
+snippet: dms-next
+
+`FetchNextDueTimeout` Retrieves the oldest due delayed message from the store at a specified date and time, or returns null if there are no due delayed messages. 
+   
+snippet: dms-fetch-next-duetimeout
