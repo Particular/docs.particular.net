@@ -1,7 +1,7 @@
 ---
 title: Scheduler
 summary: A simple example of the NServiceBus scheduler API
-reviewed: 2021-07-28
+reviewed: 2024-07-28
 component: Core
 related:
  - nservicebus/scheduling
