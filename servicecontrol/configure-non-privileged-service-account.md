@@ -4,12 +4,13 @@ summary: Using a low privilege account for ServiceControl
 reviewed: 2023-06-02
 ---
 
-To use a low-privileged account as the service account for ServiceControl, the following should be considered:
+<!-- TODO: Containerize -->
 
+To use a low-privileged account as the service account for ServiceControl, the following should be considered:
 
 ### Access control on queues
 
-The transport connection string used by ServiceControl must enable access to the following ServicControl queues:
+The transport connection string used by ServiceControl must enable access to the following ServiceControl queues:
 
  * `particular.servicecontrol`
  * `particular.servicecontrol.errors`
@@ -31,9 +32,9 @@ If the connection string does not provide appropriate rights, the service will f
 
 ### Url namespace reservations
 
-The account under which the ServiceControl instance is running requires URL namespace reservations for the hostname and ports used by the instance. The reservations can be managed using the [ServiceControl Powershell commands](/servicecontrol/powershell.md#troubleshooting-via-powershell-checking-and-manipulating-urlacls) or from the command line using [netsh.exe](https://docs.microsoft.com/en-us/windows/desktop/http/add-urlacl). For example, to add url reservation for `http:\\localhost:33333\` to `LocalService` account the following command can be used `netsh http add urlacl url=http://localhost:33333/ user=LocalService listen=yes delegate=no`.
+The account under which the ServiceControl instance is running requires URL namespace reservations for the hostname and ports used by the instance. The reservations can be managed using the [ServiceControl Powershell commands](/servicecontrol/) <!-- TODO: point to troubleshooting guide section instead --> or from the command line using [netsh.exe](https://docs.microsoft.com/en-us/windows/desktop/http/add-urlacl). For example, to add url reservation for `http:\\localhost:33333\` to `LocalService` account the following command can be used `netsh http add urlacl url=http://localhost:33333/ user=LocalService listen=yes delegate=no`.
 
-For instructions on how to review and change the urls used by ServiceControl instance, refer to [Changing the ServiceControl URI](setting-custom-hostname.md).
+For instructions on how to review and change the urls used by ServiceControl instance, refer to [Changing the ServiceControl URI](setting-custom-hostname.md). <!-- TODO: Is this necessary with the previous paragraph. Fix or raise an issue. -->
 
 > [!NOTE]
 > ServiceControl exposes endpoints on two different ports, each one requiring separate registration.
@@ -54,7 +55,7 @@ The service account running ServiceControl instance requires following filesyste
 
 ### Performance counters
 
-ServiceControl requires access to Windows performance counter infrastructure. As a result the service account needs to be a member of [Performance Monitor Users](https://docs.microsoft.com/en-us/windows/security/identity-protection/access-control/active-directory-security-groups#a-href-idbkmk-perfmonitorusersaperformance-monitor-users) group.
+ServiceControl requires access to Windows performance counter infrastructure. <!-- TODO: Is that still true? --> As a result the service account needs to be a member of [Performance Monitor Users](https://docs.microsoft.com/en-us/windows/security/identity-protection/access-control/active-directory-security-groups#a-href-idbkmk-perfmonitorusersaperformance-monitor-users) group.
 
 
 ### Testing the configuration
@@ -69,14 +70,12 @@ These methods confirm that the service account has sufficient rights:
 
 ![](servicedetailsview.png 'width=500')
 
-
 #### Method 1: Running the service as a non-privileged user
 
  1. Open Computer Management.
  1. Change the service account to the custom user, provide the password and apply the change. The account will be given "logon as a service" privilege.
  1. Start the service and confirm that it started.
  1. Examine the log file to ensure that the service is operating as expected. If the service does not start and the log file does not indicate the issue, try Method 2.
-
 
 #### Method 2: Running the service interactively as a non-privileged user
 

@@ -1,9 +1,10 @@
 ---
 title: ServiceControl Troubleshooting
 summary: Troubleshooting ServiceControl installation and common issues
+component: ServiceControl
 reviewed: 2023-07-07
 ---
-
+<!-- TODO: Containerize. -->
 > [!NOTE]
 > Many issues can be resolved by upgrading to the [latest version of ServiceControl](https://particular.net/downloads) and by ensuring the host meets the minimum [general hardware considerations for ServiceControl](/servicecontrol/servicecontrol-instances/hardware.md#general-recommendations).
 
@@ -28,11 +29,9 @@ In the event that the service fails to start to check if the configured port (ty
 ```dos
 netstat -a -b
 ```
-or use the provided [ServiceControl Management PowerShell](/servicecontrol/powershell.md) cmdlet to check a specific port:
+or install and use the provided [ServiceControl Management PowerShell module](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management) cmdlet to check a specific port:
 
-```ps
-Test-IfPortIsAvailable -Port 33333
-```
+snippet: ps-testport
 
 ## Missing queue
 

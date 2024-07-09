@@ -5,12 +5,9 @@ component: ServiceControl
 redirects:
  - servicecontrol/audit-instances/installation-powershell
 ---
+include: powershell-module-installation
 
-Using PowerShell, deploy the [ServiceControl Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) first, then deploy the ServiceControl Audit instance.
-
-include: installation-powershell-module
-
-## ServiceControl Audit instance Cmdlets and Aliases
+## Audit instance Cmdlets and Aliases
 
 The following cmdlets and aliases are provided by the ServiceControl Management PowerShell module for managing Audit instances.
 
@@ -20,77 +17,54 @@ The following cmdlets and aliases are provided by the ServiceControl Management 
 | audit-delete           | Remove-ServiceControlAuditInstance            |
 | audit-instances        | Get-ServiceControlAuditInstances              |
 | audit-upgrade          | Invoke-ServiceControlAuditInstanceUpgrade     |
-| sc-help                | Get-ServiceControlMgmtCommands                |
-| sc-transportsinfo      | Get-ServiceControlTransportTypes              |
 
-### Help
+include: powershell-remote-cmdlets-and-aliases
 
-All of the cmdlets have local help which can be accessed via the standard PowerShell help command.
+include: powershell-general-cmdlets-and-aliases
 
-```ps
-Get-Help Get-ServiceControlAuditInstances
-```
+include: powershell-help
 
-### Adding an instance
+### Deploying an Audit instance
 
-```ps
-$errorInstanceName = "Test.ServiceControl"
+Using PowerShell, deploy the [ServiceControl Error instance](/servicecontrol/servicecontrol-instances/deployment/powershell.md) first, then deploy the ServiceControl Audit instance using the `New-ServiceControlAuditInstance` cmdlet:
 
-$auditInstance New-ServiceControlAuditInstance `
-  -Name Test.ServiceControl.Audit `
-  -InstallPath C:\ServiceControl.Audit\Bin `
-  -DBPath C:\ServiceControl.Audit\DB `
-  -LogPath C:\ServiceControl.Audit\Logs `
-  -Port 44444 `
-  -DatabaseMaintenancePort 44445 `
-  -Transport MSMQ `
-  -AuditQueue audit1 `
-  -AuditRetentionPeriod 10:00:00:00 `
-  -ForwardAuditMessages:$false `
-  -ServiceControlQueueAddress $errorInstanceName
-```
+snippet: ps-new-audit-instance
 
-There are additional parameters available to set configuration options such as hostname and transport connection string.
+include: powershell-new-configuration
 
 > [!NOTE]
-> The address of a ServiceControl instance must be provided to send notifications to.
+> The address of a ServiceControl Error instance must be provided to send notifications to.
 
-Once a ServiceControl Audit instance is created, it must be added to the ServiceControl Error instance as a remote to be included in results returned to ServiceInsight.
+Once a ServiceControl Audit instance is created, it must be added to the ServiceControl Error instance as a [remote](/servicecontrol/servicecontrol-instances/remotes.md) to be included in results returned to [ServiceInsight](/serviceinsight/). Use the `Add-ServiceControlRemote` cmdlet to add a remote to the Error instance:
 
-```ps
-Add-ServiceControlRemote -Name $errorInstanceName -RemoteInstanceAddress $auditInstance.Url
-```
+snippet: ps-add-audit-remote
+
+### Listing deployed instances
+
+Use the `Get-ServiceControlAuditInstances` cmdlet to find a list of all of the ServiceControl Audit instances and their version numbers:
+
+snippet: ps-get-audit-instances
 
 ### Removing an instance
 
-Before removing a ServiceControl Audit instance, it should be removed from the ServiceControl Error instances list of remotes.
+Before removing a ServiceControl Audit instance, it should be removed from the ServiceControl Error instance's registered [remotes](/servicecontrol/servicecontrol-instances/remotes.md) using the `Remove-ServiceControlRemote` cmdlet:
 
-```ps
-Remove-ServiceControlRemote -Name "Test.ServiceControl" -RemoteInstanceAddress "http://localhost:44444/api"
-```
+snippet: ps-remove-audit-remote
 
-Remove the instance that was created in the Add sample and delete the database and logs:
+Use the `Remove-ServiceControlAuditInstance` cmdlet to remove the instance and delete the database and logs:
 
-```ps
-Remove-ServiceControlAuditInstance -Name Test.ServiceControl.Audit -RemoveDB -RemoveLogs
-```
+snippet: ps-remove-audit-instance
 
-To List existing instances of the ServiceControl Audit service use `Get-ServiceControlAuditInstances`.
+### Upgrading a instance
 
-### Upgrading an instance
+include: powershell-updatemodule
 
-To upgrade an instance to the latest version of the binaries run.
+Once the PowerShell module is updated, use the `Invoke-ServiceControlAuditInstanceUpgrade` cmdlet to upgrade the Audit instance to the installed version:
 
-```ps
-Invoke-ServiceControlAuditInstanceUpgrade -Name <Instance To upgrade>
-```
+snippet: ps-upgrade-audit-instance
 
-Use the following command to find a list of all of the ServiceControl Audit instances and their version numbers:
+include: powershell-instance-upgrade
 
-```ps
-Get-ServiceControlAuditInstances | Select Name, Version
-```
+include: powershell-importlicense
 
-The upgrade will stop the service if it is running. Additional parameters for `Invoke-ServiceControlAuditInstanceUpgrade` may be required. The configuration file of the existing version is examined prior to determine if all the required settings are present. If a configuration setting is missing  then the cmdlet will throw an error indicating the required additional parameter.
-
-include: troubleshooting-powershell-module
+include: powershell-module-troubleshooting

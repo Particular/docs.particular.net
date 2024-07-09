@@ -1,84 +1,61 @@
 ---
 title: Deploying ServiceControl Error instances using PowerShell
-reviewed: 2024-06-11
+reviewed: 2024-06-28
 component: ServiceControl
+redirects:
+- servicecontrol/powershell
 ---
 
-include: installation-powershell-module
+include: powershell-module-installation
 
-## ServiceControl instance Cmdlets and Aliases
+## Error instance Cmdlets and Aliases
 
-The following cmdlets and aliases are provided by the ServiceControl Management PowerShell module for the management of ServiceControl instances.
+The following cmdlets and aliases are provided by the ServiceControl Management PowerShell module for the management of ServiceControl Error instances.
 
-partial: cmdlets-and-aliases
+| Alias                  | Cmdlet                                                     |
+| ---------------------- | ---------------------------------------------------------- |
+| sc-add                 | New-ServiceControlInstance                                 |
+| sc-delete              | Remove-ServiceControlInstance                              |
+| sc-instances           | Get-ServiceControlInstances                                |
+| sc-upgrade             | Invoke-ServiceControlInstanceUpgrade                       |
 
-### Help
+include: powershell-general-cmdlets-and-aliases
 
-All of the cmdlets have local help which can be accessed via the standard PowerShell help command
+include: powershell-help
 
-snippet: ps-get-help
+### Deploying an Error instance
 
-### Adding an instance
+Use the `New-ServiceControlInstance` cmdlet to deploy a new ServiceControl Error instance:
 
-Use the `New-ServiceControlInstance` cmdlet to create a new ServiceControl instance. Use the `New-ServiceControlAuditInstance` cmdlet to create a new ServiceControl Audit instance.
+snippet: ps-new-error-instance
 
-There are additional parameters available to set additional configuration options such as forwarding queues, the transport connection string, or host name.
+include: powershell-new-configuration
 
-Create a ServiceControl instance:
+### Listing deployed instances
 
-snippet: new-servicecontrol-instance
+Use the `Get-ServiceControlInstances` cmdlet to find a list of all of the ServiceControl Error instances and their version numbers:
 
-Create a ServiceControl Audit instance to manage an audit queue:
-
-snippet: new-audit-instance
-
-> [!NOTE]
-> The ServiceControl Audit instance must be configured with the transport address of a ServiceControl instance.
+snippet: ps-get-error-instances
 
 ### Removing an instance
 
-Use the `Remove-ServiceControlInstance` cmdlet to remove a ServiceControl instance.
+Use the `Remove-ServiceControlInstance` cmdlet to remove the instance and delete the database and logs:
 
-snippet: remove-servicecontrol-instance
-
-Use the `Remove-ServiceControlAuditInstance` cmdlet to remove a ServiceControl Audit instance.
-
-snippet: remove-audit-instance
+snippet: ps-remove-error-instance
 
 > [!NOTE]
-> All connected ServiceControl Audit instances should be removed before removing the ServiceControl Error instance. Use the `Get-ServiceControlRemotes` cmdlet to find a list of connected ServiceControl Audit instances for a given ServiceControl instance.
+> All connected ServiceControl Audit instances should be [removed](/servicecontrol/audit-instances/deployment/powershell.md#audit-instance-cmdlets-and-aliases-removing-an-instance) before removing the ServiceControl Error instance. Use the `Get-ServiceControlRemotes` cmdlet to find a list of connected ServiceControl Audit instances for a given ServiceControl instance. <!-- TODO: Why do they all need to be removed? -->
 
-### Upgrading an instance
+### Upgrading a deployed instance
 
-The cmdlets in this section are used to upgrade the binaries of an existing instance. If the instance is running when the upgrade starts, it will be shut down during the upgrade and restarted once the upgrade is complete.
+include: powershell-updatemodule
 
-> [!WARNING]
-> The `sc-upgrade` and `audit-upgrade` commands do not download the latest available ServiceControl version. These Powershell commandlets are bound to the version of the Particular.ServiceControl.Management module loaded.
+Once the PowerShell module is updated, use the `Invoke-ServiceControlInstanceUpgrade` cmdlet to upgrade the Audit instance to the installed version:
 
-Before the upgrade begins the configuration file of the existing version is examined to determine if all of the required settings are present. If a configuration setting is missing then the cmdlet will throw an error indicating the required additional parameter for the cmdlet.
+snippet: ps-upgrade-error-instance
 
-Use the `Invoke-ServiceControlInstanceUpgrade` cmdlet to upgrade a ServiceControl instance to the latest binaries.
+include: powershell-instance-upgrade
 
-snippet: upgrade-servicecontrol-instance
+include: powershell-importlicense
 
-Use the following to find a list of all of the ServiceControl instances and their version numbers:
-
-snippet: get-instances
-
-Additional parameters may be required when upgrading instances. See the [upgrade guide](/servicecontrol/upgrades/) for the specific version for more details.
-
-Use the `Invoke-AuditInstanceUpgrade` cmdlet to upgrade a ServiceControl audit instance to the latest binaries.
-
-snippet: upgrade-audit-instance
-
-Use the following command to find a list of all of the ServiceControl Audit instances and their version numbers:
-
-snippet: get-audit-instances
-
-### Licensing
-
-Copies the license file to the correct location on the file system (`%PROGRAMDATA%/ParticularSoftware/license.xml`) so it is available to all instances of ServiceControl installed on the machine.
-
-snippet: ps-importlicense
-
-include: troubleshooting-powershell-module
+include: powershell-module-troubleshooting
