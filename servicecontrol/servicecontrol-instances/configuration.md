@@ -9,6 +9,12 @@ redirects:
 
 The configuration of a ServiceControl instance can be adjusted via the ServiceControl Management utility or by directly modifying the `ServiceControl.exe.config` file. The settings listed are applicable to the `appSettings` section of the configuration file unless otherwise specified.
 
+The configuration of a ServiceControl Error instance is controlled by the `ServiceControl.exe.config` file or by setting environment variables. When a setting configuration exists as both an environment variable and in the application configuration file the environment variable setting takes precedence.
+
+Deployments using the ServiceControl Management utility (SCMU) can use that application to make a subset of configuration settings which are read from and written to the application configuration file.
+
+## Locating the configuration file using SCMU
+
 ![image](https://github.com/Particular/docs.particular.net/assets/88632084/0b04d82b-6a77-427d-81f3-6e450544ff90)
 
 ## Host settings
@@ -20,35 +26,58 @@ The following documents should be reviewed prior to modifying configuration sett
 
 ### ServiceControl/HostName
 
-The hostname to bind the embedded HTTP server to; modify this setting to bind to a specific hostname, e.g. `sc.mydomain.com` and make the machine remotely accessible
+The hostname to bind the embedded HTTP API server to; modify this setting to bind to a specific hostname, e.g. `sc.mydomain.com` and make the machine remotely accessible.
 
 This field can also contain a `*` as a wildcard to allow remote connections that use any hostname.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_HOSTNAME` |
+| **App config key** | `ServiceControl/HostName` |
+| **SCMU field** | `HOST NAME` |
 
-Default: `localhost`
+| Type | Default value |
+| --- | --- |
+| string | `localhost` |
 
 > [!WARNING]
 > If the `ServiceControl/HostName` setting is changed, and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/configure-ravendb-location.md).
 
 ### ServiceControl/Port
 
-The port to bind the embedded HTTP server.
+The port to bind the embedded HTTP API server.
 
-Type: int
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_PORT` |
+| **App config key** | `ServiceControl/Port` |
+| **SCMU field** | `PORT NUMBER` |
 
-Default: `33333`.
+| Type | Default value |
+| --- | --- |
+| int | `33333` |
 
 > [!WARNING]
 > If the `ServiceControl/Port` setting is changed, and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/configure-ravendb-location.md).
 
+<!-- TODO: Link to troubleshooting port numbers/urlacl -->
+
 ### ServiceControl/DatabaseMaintenancePort
 
-The port to bind the RavenDB when in maintenance mode or [RavenDB is exposed](#troubleshooting).
+The port to bind the RavenDB when in [maintenance mode](/servicecontrol/maintenance-mode.md).
 
-Type: int
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_DATABASEMAINTENANCEPORT` |
+| **App config key** | `ServiceControl/DatabaseMaintenancePort` |
+| **SCMU field** | N/A |
 
-Default: `33334`.
+| Type | Default value |
+| --- | --- |
+| int | `33334` |
+
+> [!NOTE]
+> This setting is not relevant when running an error instance in a container.
 
 ### ServiceControl/VirtualDirectory
 
@@ -61,16 +90,28 @@ Default: `empty`
 > [!NOTE]
 > This setting is provided for backward compatibility and should be considered obsolete.
 
+<!-- TODO: Until when? Should this already be removed. Do research. -->
+
+## Embedded Database
+<!-- TODO: Add (make include) or move to RavenDB settings -->
 ### ServiceControl/DbPath
 
 The path where the internal RavenDB is located.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_DBPATH` |
+| **App config key** | `ServiceControl.Audit/DbPath` |
+| **SCMU field** | `???` |
 
-Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB`
+| Type | Default value |
+| --- | --- |
+| string | `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB` |
+
+> [!NOTE]
+> This setting is not relevant when running an error instance in a container.
 
 #if-version [,5)
-
 The indexes and Esent logs can be stored in a different path from the the RavenDB database data files by using the following [RavenDB configuration app settings](https://ravendb.net/docs/article-page/2.5/csharp/server/administration/configuration):
 
 ### Raven/IndexStoragePath
@@ -98,65 +139,93 @@ Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB
 
 The path for the ServiceControl logs.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_LOGPATH` |
+| **App config key** | `ServiceControl/LogPath` |
+| **SCMU field** | `LOG PATH` |
 
-Default: `%LOCALAPPDATA%\Particular\ServiceControl\logs`
+| Type | Default value |
+| --- | --- |
+| string | `%LOCALAPPDATA%\Particular\ServiceControl\logs` |
 
 > [!NOTE]
 > %LOCALAPPDATA% is a user-specific environment variable.
+
+<!-- //TODO: In Linux is this the same? %LOCALAPPDATA% -->
 
 ### ServiceControl/LogLevel
 
 Controls the LogLevel of the ServiceControl logs.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_LOGLEVEL` |
+| **App config key** | `ServiceControl/LogLevel` |
+| **SCMU field** | N/A |
 
-Default: `Info`
+| Type | Default value |
+| --- | --- |
+| string | `Info` |
 
-Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
-
-This setting will default to `Info` if an invalid value is assigned.
+<!-- TODO: Error is different than Audit, is this correct? -->
 
 ### ServiceControl/RavenDBLogLevel
 
 Controls the LogLevel of the RavenDB logs. See [Logging](/servicecontrol/logging.md).
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_RAVENDBLOGLEVEL` |
+| **App config key** | `ServiceControl/RavenDBLogLevel` |
+| **SCMU field** | N/A |
 
+| Type | Default value |
+| --- | --- |
 #if-version [5,)
-Default: `Operations`
+| string | `Operations` |
 
 Valid settings are: `None`, `Information`, `Operations`.
 #end-if
 #if-version [,5)
-Default: `Info`
+| string | `Info` |
 
 Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
-#end-if
 
 This setting will default to `Warn` if an invalid value is assigned.
+#end-if
+
+## Recoverability
 
 ### ServiceControl/TimeToRestartErrorIngestionAfterFailure
 
-Version: 4.4.1+
-
 Controls the maximum time delay to wait before restarting the error ingestion pipeline after detecting a connection problem.
 
-Type: `TimeSpan`
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_TIMETORESTARTAUDITINGESTIONAFTERFAILURE` |
+| **App config key** | `ServiceControl/TimeToRestartAuditIngestionAfterFailure` |
+| **SCMU field** | N/A |
 
-Default: 60 seconds
+| Type | Default value |
+| --- | --- |
+| timespan | 60 seconds |
 
 Valid settings are between 5 seconds and 1 hour.
 
 ### ServiceControl/InternalQueueName
 
-Version: 4.27.0+
-
 Controls the name of the internal queue that ServiceControl uses for internal control messages. This can be used when the internal queue name does not match the Windows Service Name.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_INTERNALQUEUENAME` |
+| **App config key** | `ServiceControl/InternalQueueName` |
+| **SCMU field** | N/A |
 
-Default: The Service Name
+| Type | Default value |
+| --- | --- |
+| string | The service name |
 
 #### ServiceControl Plugins
 
@@ -164,11 +233,19 @@ The [Custom Checks](/monitoring/custom-checks/install-plugin.md) and [Heartbeats
 
 ### ServiceControl/IngestErrorMessages
 
+Version: 4.33.0+
+
 Set to `false` to disable ingesting new error messages. Useful in some upgrade scenarios.
 
-Type: bool `true` or `false`
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_INGESTERRORMESSAGES` |
+| **App config key** | `ServiceControl/IngestErrorMessages` |
+| **SCMU field** | N/A |
 
-Default: `true`
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
 
 ## Data retention
 
