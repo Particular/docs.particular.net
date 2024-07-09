@@ -383,7 +383,7 @@ The error queue name to use for forwarding error messages. This setting is ignor
 
 Version: 5.4.0+
 
-The queue on which throughput data is received by the ServiceControl Error instance. This setting must match the equivalent [`Monitoring/ServiceControlThroughputDataQueue`](/servicecontrol/monitoring-instances/installation/creating-config-file.md#usage-reporting-monitoringservicecontrolthroughputdataqueue) setting for the Monitoring instance.
+The queue on which throughput data is received by the ServiceControl Error instance. This setting must match the equivalent [`Monitoring/ServiceControlThroughputDataQueue`](/servicecontrol/monitoring-instances/configuration.md#usage-reporting-monitoringservicecontrolthroughputdataqueue) setting for the Monitoring instance.
 
 In most instances these settings do not need to be modified.
 
@@ -422,7 +422,7 @@ The Client ID (aka Application ID) for an [Azure service principal](https://lear
 Type: string
 
 Example Client ID from an Azure App Registration:
-![Screenshot showing where the Client ID appears in an App Registration](asb-app-service-principal.png)
+![Screenshot showing where the Client ID appears in an App Registration](/servicecontrol/asb-app-service-principal.png)
 
 ### LicensingComponent/ASB/ClientSecret
 
