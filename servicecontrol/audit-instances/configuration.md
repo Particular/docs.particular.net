@@ -6,7 +6,7 @@ reviewed: 2024-06-24
 redirects:
  - servicecontrol/audit-instances/creating-config-file
 ---
-The configuration of a ServiceControl Audit instance is controlled by the `ServiceControl.Audit.exe.config` file or by setting environment variables. When a setting configuration exists as both an environment variables and in the application configuration file the environment variable setting takes precidence.
+The configuration of a ServiceControl Audit instance is controlled by the `ServiceControl.Audit.exe.config` file or by setting environment variables. When a setting configuration exists as both an environment variable and in the application configuration file the environment variable setting takes precedence.
 
 Deployments using the ServiceControl Management utility (SCMU) can use that application to make a subset of configuration settings which are read from and written to the application configuration file.
 
@@ -19,14 +19,17 @@ Deployments using the ServiceControl Management utility (SCMU) can use that appl
 
 ## Host settings
 
-Anyone who can access the ServiceControl Audit instance URL has complete access to the audit data stored by the ServiceControl Audit instance. This is why the default is to only respond to `localhost`. Consider carefully the implications of exposing a ServiceControl Audit instance via a custom or wildcard URI.
+The following documents should be reviewed prior to modifying configuration settings:
+
+* [Setting a Custom Hostname](/servicecontrol/setting-custom-hostname.md) for guidance and details.
+* [Securing ServiceControl](/servicecontrol/securing-servicecontrol.md) for an overview of the security implications of changing the configuration.
 
 > [!WARNING]
 > Changing the host name or port number of an existing ServiceControl Audit instance will break the link from the ServiceControl Error instance. See [Moving a remote instance](/servicecontrol/servicecontrol-instances/remotes.md) for guidelines on changing these settings.
 
 ### ServiceControl.Audit/HostName
 
-The hostname to bind the embedded HTTP server to; modify this setting to bind to a specific hostname, eg. `sc.mydomain.com`.
+The hostname to bind the embedded HTTP API server to; modify this setting to bind to a specific hostname, eg. `sc.mydomain.com` and make the machine remotely accessible.
 
 This field can also contain a `*` as a wildcard to allow remote connections that use any hostname.
 
@@ -34,25 +37,33 @@ This field can also contain a `*` as a wildcard to allow remote connections that
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_AUDIT_HOSTNAME` |
 | **App config key** | `ServiceControl.Audit/HostName` |
-| **SCMU field** | `HostName` |
+| **SCMU field** | `HOST NAME` |
 
 | Type | Default value |
 | --- | --- |
 | string | `localhost` |
 
+> [!WARNING]
+> If the `ServiceControl.Audit/HostName` setting is changed, and the `ServiceControl.Audit/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/configure-ravendb-location.md). <!-- TODO: Copied from error instance, confirm config keys -->
+
 ### ServiceControl.Audit/Port
 
-The port to bind the embedded HTTP server.
+The port to bind the embedded HTTP API server.
 
 | Context | Name |
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_AUDIT_PORT` |
 | **App config key** | `ServiceControl.Audit/Port` |
-| **SCMU field** | `Port` |
+| **SCMU field** | `PORT NUMBER` |
 
 | Type | Default value |
 | --- | --- |
 | int | `44444` |
+
+> [!WARNING]
+> If the `ServiceControl.Audit/Port` setting is changed, and the `ServiceControl.Audit/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/configure-ravendb-location.md). <!-- TODO: Copied from error instance, confirm config keys -->
+
+<!-- TODO: Link to troubleshooting port numbers/urlacl -->
 
 ### ServiceControl.Audit/DatabaseMaintenancePort
 
@@ -62,12 +73,11 @@ The port to bind the RavenDB when in [maintenance mode](/servicecontrol/audit-in
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_AUDIT_DATABASEMAINTENANCEPORT` |
 | **App config key** | `ServiceControl.Audit/DatabaseMaintenancePort` |
-| **SCMU field** | N/A |
+| **SCMU field** | `DATABASE MAINTENANCE PORT NUMBER (1 - 49151)` |
 
 | Type | Default value |
 | --- | --- |
-| int | `?????` |
-<!-- //TODO -->
+| int | `44445` |
 
 > [!NOTE]
 > This setting is not relevant when running an audit instance in a container.
@@ -82,19 +92,17 @@ The path where the internal RavenDB is located.
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_AUDIT_DBPATH` |
 | **App config key** | `ServiceControl.Audit/DbPath` |
-| **SCMU field** | `???` |
+| **SCMU field** | `DATABASE PATH` |
 
 | Type | Default value |
-| --- | --- |
-| string | See description above. |
+| --- | --- | --- | --- |
+| string | `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB` |
 
 > [!NOTE]
-> This setting is not relevant when running an audit instance in a container.
+> This setting is not relevant when the audit instance is [deployed using a container](/servicecontrol/audit-instances/deployment/containers.md).
 
 #if-version [,5)
-
 ### Raven/IndexStoragePath
-
 > [!NOTE]
 > Only supported on the RavenDB 3.5 storage engine. Use [symbolic links (soft links) to map any RavenDB storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
 
@@ -125,7 +133,7 @@ The path for the ServiceControl logs.
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_AUDIT_LOGPATH` |
 | **App config key** | `ServiceControl.Audit/LogPath` |
-| **SCMU field** | N/A |
+| **SCMU field** | `LOG PATH` |
 
 | Type | Default value |
 | --- | --- |
@@ -156,7 +164,6 @@ This setting will default to `Warn` if an invalid value is assigned.
 
 ## Recoverability
 
-#if-version [4.7,)
 ### ServiceControl.Audit/TimeToRestartAuditIngestionAfterFailure
 
 Controls the maximum time delay to wait before restarting the audit ingestion pipeline after detecting a connection problem.
@@ -173,8 +180,6 @@ Controls the maximum time delay to wait before restarting the audit ingestion pi
 
 Valid settings are between 5 seconds and 1 hour.
 
-#end-if
-#if-version [4.7,)
 ### ServiceControl.Audit/InternalQueueName
 
 Controls the name of the internal queue that ServiceControl uses for internal control messages. This can be used when the internal queue name does not match the Windows Service Name.
@@ -189,8 +194,6 @@ Controls the name of the internal queue that ServiceControl uses for internal co
 | --- | --- |
 | string | The service name |
 
-#end-if
-#if-version [5,)
 ### ServiceControl/IngestAuditMessages
 
 Set to `false` to disable ingesting new audit messages. Useful in some upgrade scenarios.
@@ -204,8 +207,6 @@ Set to `false` to disable ingesting new audit messages. Useful in some upgrade s
 | Type | Default value |
 | --- | --- |
 | bool | `true` |
-
-#end-if
 
 ## Data retention
 
@@ -266,23 +267,19 @@ Valid range for this setting is from 1 hour to 365 days.
 
 ## Performance tuning
 
-### ServiceControl.Audit/MaximumConcurrencyLevel
+### ServiceControl.Audit/MaxBodySizeToStore
 
-The maximum number of messages that can be concurrently pulled from the message transport.
-<!-- TODO: The following stuff is very detailed for a settings page. Should this be moved to a performance doc? -->
-It is important that the maximum concurrency level be incremented only if there are no verified bottlenecks in CPU, RAM, network I/O, storage I/O, and storage index lag. Higher numbers can result in faster audit message ingestion, but also consume more server resources, and can increase costs in the case of cloud transports that have associated per-operation costs. In some cases, the ingestion rate can be too high and the underlying database cannot keep up with indexing the new messages. In this case, consider lowering the maximum concurrency level to a value that still allows a suitable ingestion rate while easing the pressure on the database.
-
-Cloud transports with higher latency can benefit from higher concurrency values, but costs can increase as well. Local transports using fast local SSD drives and low latency do not benefit as much.
+This setting specifies the upper limit on body size, in bytes, to be configured.
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUDIT_MAXIMUMCONCURRENCYLEVEL` |
-| **App config key** | `ServiceControl.Audit/MaximumConcurrencyLevel` |
+| **Environment variable** | `SERVICECONTROL_AUDIT_MAXBODYSIZETOSTORE` |
+| **App config key** | `ServiceControl.Audit/MaxBodySizeToStore` |
 | **SCMU field** | N/A |
 
 | Type | Default value |
 | --- | --- |
-| int | `32` |
+| int | `102400` (100Kb) |
 
 ### ServiceControl.Audit/HttpDefaultConnectionLimit
 
@@ -300,23 +297,33 @@ The maximum number of concurrent connections allowed by ServiceControl. When wor
 
 <!-- //TODO: Really? Not an int? -->
 
-### ServiceControl.Audit/MaxBodySizeToStore
+### ServiceControl.Audit/MaximumConcurrencyLevel
 
-This setting specifies the upper limit on body size, in bytes, to be configured.
+The maximum number of messages that can be concurrently pulled from the message transport.
+
+It is important that the maximum concurrency level be incremented only if there are no verified bottlenecks in CPU, RAM, network I/O, storage I/O, and storage index lag. Higher numbers can result in faster audit message ingestion, but also consume more server resources, and can increase costs in the case of cloud transports that have associated per-operation costs. In some cases, the ingestion rate can be too high and the underlying database cannot keep up with indexing the new messages. In this case, consider lowering the maximum concurrency level to a value that still allows a suitable ingestion rate while easing the pressure on the database.
+
+Cloud transports with higher latency can benefit from higher concurrency values, but costs can increase as well. Local transports using fast local SSD drives and low latency do not benefit as much.
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUDIT_MAXBODYSIZETOSTORE` |
-| **App config key** | `ServiceControl.Audit/MaxBodySizeToStore` |
+| **Environment variable** | `SERVICECONTROL_AUDIT_MAXIMUMCONCURRENCYLEVEL` |
+| **App config key** | `ServiceControl.Audit/MaximumConcurrencyLevel` |
 | **SCMU field** | N/A |
 
 | Type | Default value |
 | --- | --- |
-| int | `102400` (100Kb) |
+#if-version [4.12,)
+| int | `32` |
+#end-if
+#if-version [,4.12)
+| int | `10` |
+#end-if
 
+#if-version [4.17,)
 ### ServiceControl.Audit/EnableFullTextSearchOnBodies
 
-Use this setting to configure whether the bodies of processed audit messages should be full-text indexed for searching.
+Use this setting to configure whether the bodies of processed messages should be full-text indexed for searching.
 
 | Context | Name |
 | --- | --- |
@@ -329,7 +336,7 @@ Use this setting to configure whether the bodies of processed audit messages sho
 | bool | `true` |
 
 > [!NOTE]
-> Changing the full-text search setting will cause indexes to be redeployed and rebuilt. Depending on the number of documents stored, this operation might take a long time and search results won't be available until completed.
+> If the audit instance uses RavenDB 5 persistence (available starting 4.26.0), changing the full-text search setting will cause indexes to be redeployed and rebuilt. Depending on the number of documents stored, this operation might take a long time and search results won't be available until completed.
 
 #if-version [5,)
 ### ServiceControl.Audit/BulkInsertCommitTimeoutInSeconds
