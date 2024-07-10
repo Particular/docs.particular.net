@@ -1395,7 +1395,7 @@
     - Url: servicepulse/support-policy
       Title: Support Policy
     - Url: servicepulse/usage
-      Title: Usage    
+      Title: Usage
   - Title: Configuration
     Articles:
     - Url: servicepulse/host-config
@@ -1491,8 +1491,6 @@
         Url: servicecontrol/logging
       - Title: Forwarding queues
         Url: servicecontrol/errorlog-auditlog-behavior
-    - Title: Persistence
-      Url: servicecontrol/persistence
   - Title: Audit instances
     Articles:
       - Title: ServiceControl Audit instances
