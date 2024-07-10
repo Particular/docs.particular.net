@@ -321,7 +321,7 @@ Use this setting to configure whether the bodies of processed messages should be
 #if-version [5,)
 ### ServiceControl.Audit/BulkInsertCommitTimeoutInSeconds
 
-Configures the maximum duration for processing a batch of audited messages.
+Configures the maximum duration, in seconds, for processing a batch of audited messages.
 
 | Context | Name |
 | --- | --- |
@@ -331,12 +331,9 @@ Configures the maximum duration for processing a batch of audited messages.
 
 | Type | Default value |
 | --- | --- |
-| int | `60` |
-
-<!-- TODO: Not a timespan? In seconds? -->
+| int | `60` (1 minute) |
 
 #end-if
-
 ## Transport
 
 ### ServiceControl.Audit/TransportType
