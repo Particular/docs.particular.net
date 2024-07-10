@@ -1551,6 +1551,8 @@
     Articles:
     - Title: Data expiration
       Url: servicecontrol/how-purge-expired-data
+    - Title: Accessing ServiceControl database
+      Url: servicecontrol/ravendb/accessing-database
     - Title: Backup
       Url: servicecontrol/backup-sc-database
     - Title: Containers

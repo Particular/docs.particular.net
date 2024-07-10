@@ -2,27 +2,25 @@
 title: Zero downtime upgrades
 summary: Instructions on how to upgrade ServiceControl instances with zero downtime
 isUpgradeGuide: true
-reviewed: 2023-11-30
+reviewed: 2024-07-10
 ---
 
-The [ServiceControl remotes feature](/servicecontrol/servicecontrol-instances/remotes.md) can be used to upgrade a ServiceControl installation without taking it offline.
+ServiceControl, which exists to serve the management of distributed systems, is itself a distributed system. As a result, pieces of the system can be upgraded and managed separately.
 
-> [!NOTE]
-> PowerShell must be used to install individual instances. Example scripts are provided for each step.
-
-> [!NOTE]
-> For scenarios where retaining audit message data is not required (e.g. transient data that does not merit effort to retain), this process is not necessary -- the audit instance can simply be deleted and recreated with the same name.
-
-> [!WARNING]
-> This zero downtime upgrade process is only suitable for use with ServiceControl Audit instances. To upgrade ServiceControl Error instances to version 5 see the [version 4 to 5](/servicecontrol/upgrades/4to5/) upgrade guide.
+This document describes in general terms how to replace each type of ServiceControl instance, and links to more specific information on how to accomplish these tasks for each potential deployment method.
 
 ## Audit instances
 
-The process follows these steps:
+ServiceControl Audit instances store audit data for a configured period of time, after which expired audit data is removed. Using the [ServiceControl remotes feature](/servicecontrol/servicecontrol-instances/remotes.md), multiple audit instances can store a portion of the overall audit data (sharding) which is queried in a scatter-gather fashion.
+
+Using this capability, an Audit instance that can't be upgraded can be replaced without downtime. The process follows these steps:
 
 1. Add a new audit instance as a remote
-1. Disable audit queue management on the old audit instance
-1. Decommission the old audit instance, when it is empty
+2. Disable audit queue ingestion on the old audit instance
+3. Decommission the old audit instance when all audit information is expired
+
+> [!NOTE]
+> For scenarios where retaining audit message data is not required (e.g. transient data that does not merit effort to retain), this process is not necessary -- the audit instance can simply be deleted and recreated with the same name.
 
 ### Initial state
 
@@ -53,32 +51,9 @@ class sca ServiceControlRemote
 
 ### Add a new audit instance
 
-Create a new ServiceControl Audit instance, and configure it as a remote instance of the ServiceControl Error instance.
+The first step is to create a new audit instance, and add it to the Error instance's remotes collection:
 
-On the audit instance machine:
-
-```ps1
-$auditInstance = New-ServiceControlAuditInstance `
-  -Name Particular.ServiceControl.NewAudit `
-  -InstallPath C:\ServiceControl.NewAudit\Bin `
-  -DBPath C:\ServiceControl.NewAudit\DB `
-  -LogPath C:\ServiceControl.NewAudit\Logs `
-  -Port 44446 `
-  -DatabaseMaintenancePort 44447 `
-  -Transport MSMQ `
-  -AuditQueue audit `
-  -AuditRetentionPeriod 10:00:00:00 `
-  -ForwardAuditMessages:$false `
-  -ServiceControlQueueAddress "Particular.ServiceControl"
-```
-
-On the ServiceControl Error instance machine:
-
-```ps1
-Add-ServiceControlRemote `
-  -Name "Particular.ServiceControl" `
-  -RemoteInstanceAddress "http://localhost:44446/api"
-```
+* [Adding a new audit instance with PowerShell](audit-powershell.md#add-a-new-audit-instance)
 
 After this step the installation looks like this:
 
@@ -107,43 +82,13 @@ class sc ServiceControlError
 class sca,sca2 ServiceControlRemote
 ```
 
-Although both ServiceControl Audit instances ingest messages from the audit queue, each message only ends up in a single instance. The ServiceControl Error instance queries both transparently.
+Although both ServiceControl Audit instances ingest messages from the audit queue, each message only ends up in a single instance. The ServiceControl Error instance queries both Audit instances transparently.
 
 ### Disable audit queue ingestion on the old instance
 
-Update the audit queue configuration on the original Audit instance and add the setting key [`ServiceControl/IngestAuditMessages`](/servicecontrol/audit-instances/configuration.md#host-settings-servicecontrolingestauditmessages) with value `false`, save, and restart the instance.
+Now that the new audit instance exists, the old audit instance must be configured so that it does not ingest any new audit data from the audit queue. This will make the old audit instance effectively read-only. The only reason it is not fully read-only is that old audit data that the old instance will continue to delete expired audit data that has passed the [audit retention period](/servicecontrol/audit-instances/configuration.md#data-retention-servicecontrol-auditauditretentionperiod).
 
-> [!NOTE]
-> For versions 4.32.0 of ServiceControl and older use `!disable` as the [`AuditQueue`](/servicecontrol/audit-instances/configuration.md#transport-servicebusauditqueue) name to disable the audit message ingestion.
-
-Alternatively, run the following PowerShell script to make the changes:
-
-```ps1
-$originalAuditInstanceName = "Particular.ServiceControl.Audit"
-$auditInstance = (Get-ServiceControlAuditInstances | where Name -eq $originalAuditInstanceName)[0]
-
-# Stop instance
-Stop-Service $originalAuditInstanceName
-
-# Update configuration
-$configPath = Join-Path $auditInstance.InstallPath "ServiceControl.Audit.exe.config"
-[xml]$configDoc = Get-Content $configPath
-$element = $configDoc.SelectSingleNode("//configuration/appSettings/add[@key='ServiceControl/IngestAuditMessages']")
-# Check if the node exists, if not, add it
-if ($null -eq $element) {
-    $appSettings = $configDoc.SelectSingleNode("//configuration/appSettings")
-    $newElement = $configDoc.CreateElement("add")
-    $newElement.SetAttribute("key", "ServiceControl/IngestAuditMessages")
-    $newElement.SetAttribute("value", "false")
-    $appSettings.AppendChild($newElement)
-} else {
-    $element.value = "false"
-}
-$configDoc.Save($configPath)
-
-# Start instance
-Start-Service $originalAuditInstanceName
-```
+* [Disabling audit queue ingestion with PowerShell](audit-powershell.md#disable-audit-queue-ingestion-on-the-old-instance)
 
 After this step the installation looks like this:
 
@@ -177,29 +122,14 @@ The ServiceControl Error instance continues to query both instances but the orig
 
 As the original audit instance is no longer ingesting messages, it will be empty after the audit retention period has elapsed and can be removed. The following steps describe how to determine when an audit instance is empty:
 
-1. Put the audit instance in [maintenance mode](/servicecontrol/audit-instances/maintenance-mode.md).
+1. [Access the database directly](/servicecontrol/ravendb/accessing-database.md)
 2. Launch RavenDB Management Studio with a browser.
 3. If the instance is using RavenDB 3.5 for persistence, go to the `<system>` database. If the instance is using RavenDB 5, go to the `audit` database.
 4. Check the documents count in the `ProcessedMessages` collection.
 
-When the `ProcessedMessages` collection is empty, the audit instance can be decomissioned.
+When the `ProcessedMessages` collection is empty, the audit instance can be decomissioned:
 
-On the ServiceControl Error instance machine:
-
-```ps1
-Remove-ServiceControlRemote `
-  -Name "Particular.ServiceControl" `
-  -RemoteInstanceAddress "http://localhost:44444/api"
-```
-
-On the original audit instance machine:
-
-```ps1
-Remove-ServiceControlAuditInstance `
-  -Name "Particular.ServiceControl.OriginalAudit" `
-  -RemoveDB `
-  -RemoveLogs
-```
+* [Decommissioning the old audit instance using PowerShell](audit-powershell.md#decommission-the-old-audit-instance)
 
 After this step the installation looks like this:
 
@@ -225,3 +155,11 @@ class sp ServicePulse
 class sc ServiceControlError
 class sca2 ServiceControlRemote
 ```
+
+## Error instances
+
+TODO: Steal generic procedure from 4to5 upgrade guide
+
+## Monitoring instances
+
+ServiceControl Monitoring instances store all data in memory, so an instance can be destroyed and recreated at any time.
