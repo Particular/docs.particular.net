@@ -387,7 +387,7 @@ The name of the audit queue to ingest messages from.
 
 ### ServiceControl.Audit/ForwardAuditMessages
 
-Use this setting to configure whether processed audit messages are forwarded to another queue or not. This entry should be set to `false` if there is no external process reading messages from the [`ServiceBus/AuditLogQueue`]()<!-- TODO: Add anchor link -->.
+Use this setting to configure whether processed audit messages are forwarded to another queue or not. This entry should be set to `false` if there is no external process reading messages from the [`ServiceBus/AuditLogQueue`](#transport-servicebusauditlogqueue)
 
 | Context | Name |
 | --- | --- |
