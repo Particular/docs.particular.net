@@ -9,7 +9,7 @@ related:
 ---
 
 The Usage page allows for viewing the endpoint usage summary of a system using NServiceBus.
-A usage report can be generated here at license renewal time.
+A usage report can be downloaded here at license renewal time.
 
 > [!NOTE]
 > The usage data collection functionality requires ServicePulse version 1.40 or later, and ServiceControl version 5.4 or later.
@@ -18,14 +18,17 @@ A usage report can be generated here at license renewal time.
 
 Click `Download Report` to generate a usage report file with the detected [endpoints](#viewing-usage-summary-detected-endpoints) and [queues](#viewing-usage-summary-detected-broker-queues). The report includes the [endpoint type](#setting-an-endpoint-type) selections made on screen, and any specified [words to mask](usage-config.md#report-masks) will be obfuscated.
 
-The report file must be provided to Particular upon request - it will not be automatically uploaded or sent.
+The `Download Report` button is disabled if there is less than 24 hours worth of usage data.
+
+The report file must be provided to Particular upon request, it is **not** automatically uploaded or sent.
 
 ## Viewing usage summary
 
-At any time the system usage can be viewed on the Usage page. It is divided into two sections:
+At any time the system usage can be viewed on the Usage page.  
+This page has two tabs:
 
 - [Detected endpoints](#viewing-usage-summary-detected-endpoints)
-- [Detected broker queues](#viewing-usage-summary-detected-broker-queues)
+- [Detected broker queues](#viewing-usage-summary-detected-broker-queues) (only displayed when using a broker transport)
 
 For each endpoint and queue, the maximum daily throughput is displayed. This can be helpful to get an understanding of which [tier](https://particular.net/pricing) the endpoint belongs to for licensing purposes.
 
