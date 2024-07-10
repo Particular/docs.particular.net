@@ -29,9 +29,7 @@ The endpoint name to be used by the monitoring instance and the name of the moni
 | --- | --- |
 | **Environment variable** | `MONITORING_ENDPOINTNAME` |
 | **App config key** | `Monitoring/EndpointName` |
-| **SCMU field** | `Instance Name` |
-
-<!-- //TODO: Confirm the field name -->
+| **SCMU field** | Instance Name |
 
 | Type | Default value |
 | --- | --- |
@@ -44,13 +42,13 @@ The endpoint name to be used by the monitoring instance and the name of the moni
 
 The hostname to bind the embedded HTTP server to, modify to bind to a specific hostname, eg. `monitoring.mydomain.com`.
 
+_Not applicable to container deployments. Containers bind to any hostname._
+
 | Context | Name |
 | --- | --- |
 | **Environment variable** | `MONITORING_HTTPHOSTNAME` |
 | **App config key** | `Monitoring/HttpHostname` |
-| **SCMU field** | `Host Name` |
-
-<!-- //TODO: Confirm field name -->
+| **SCMU field** | Host Name |
 
 | Type | Default value |
 | --- | --- |
@@ -63,13 +61,13 @@ The hostname to bind the embedded HTTP server to, modify to bind to a specific h
 
 The port to bind the embedded HTTP server.
 
+_Not applicable to container deployments. Containers always expose port `33633`._
+
 | Context | Name |
 | --- | --- |
 | **Environment variable** | `MONITORING_HTTPPORT` |
 | **App config key** | `Monitoring/HttpPort` |
-| **SCMU field** | `Port Number` |
-
-<!-- //TODO: Confirm field name -->
+| **SCMU field** | Port Number |
 
 | Type | Default value |
 | --- | --- |
@@ -80,6 +78,8 @@ The port to bind the embedded HTTP server.
 ### Monitoring/LogPath
 
 The path for the Monitoring instance logs.
+
+_Not applicable to container deployments. Containers always log to stdout._
 
 | Context | Name |
 | --- | --- |
@@ -119,11 +119,11 @@ The transport type to run ServiceControl Monitor with.
 | --- | --- |
 | **Environment variable** | `MONITORING_TRANSPORTTYPE` |
 | **App config key** | `Monitoring/TransportType` |
-| **SCMU field** | N/A |
+| **SCMU field** | Transport |
 
 | Type | Default value |
 | --- | --- |
-| string | `MSMQ` |
+| string | None |
 
 Valid values are documented in the [ServiceControl transport configuration documentation](/servicecontrol/transports.md).
 
@@ -135,7 +135,7 @@ The connection string for the transport.
 | --- | --- |
 | **Environment variable** | `NSERVICEBUS_TRANSPORT` |
 | **App config key** | `NServiceBus/Transport` in `connectionStrings` |
-| **SCMU field** | `Connection String` |
+| **SCMU field** | Connection String |
 
 | Type | Default value |
 | --- | --- |
@@ -151,9 +151,7 @@ The error queue name.
 | --- | --- |
 | **Environment variable** | `MONITORING_ERRORQUEUE` |
 | **App config key** | `Monitoring/ErrorQueue` |
-| **SCMU field** | N/A |
-
-<!-- //TODO: Is it, or can you set it in SCMU? -->
+| **SCMU field** | Error Queue Name |
 
 | Type | Default value |
 | --- | --- |
@@ -169,8 +167,6 @@ The maximum concurrency that will be used for ingesting metric messages.
 | **App config key** | `Monitoring/MaximumConcurrencyLevel` |
 | **SCMU field** | N/A |
 
-<!-- //TODO: Is it? Can you set this in SCMU? -->
-
 | Type | Default value |
 | --- | --- |
 | int | `32` |
@@ -185,17 +181,15 @@ The time after which the endpoint is considered stale if it stops sending messag
 | **App config key** | `Monitoring/EndpointUptimeGracePeriod` |
 | **SCMU field** | N/A |
 
-<!-- //TODO: Is it? Can you set this in SCMU? -->
-
 | Type | Default value |
 | --- | --- |
-| timespan | 40 seconds |
+| TimeSpan | `00:00:40` (40 seconds) |
 
 ## Usage Reporting
 
 ### Monitoring/ServiceControlThroughputDataQueue
 
-Version: 5.4.0+
+_Added in version 5.4.0_
 
 The queue on which throughput data is received by ServiceControl error instance. This setting must match the equivalent [`LicensingComponent/ServiceControlThroughputDataQueue`](/servicecontrol/servicecontrol-instances/configuration.md).md#usage-reporting-when-using-servicecontrol-licensingcomponentservicecontrolthroughputdataqueue) setting on the ServiceControl error instance.
 
