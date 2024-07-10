@@ -1,11 +1,5 @@
 #!/bin/bash
 
-# startcode MSMQDockerTransport
-docker run -e TRANSPORTTYPE=MSMQ particular/servicecontrol:latest
-docker run -e TRANSPORTTYPE=MSMQ particular/servicecontrol-audit:latest
-docker run -e TRANSPORTTYPE=MSMQ particular/servicecontrol-monitoring:latest
-# endcode
-
 # startcode RabbitMQDockerTransport
 docker run -e TRANSPORTTYPE=QuorumConventionalRouting particular/servicecontrol:latest
 docker run -e TRANSPORTTYPE=QuorumConventionalRouting particular/servicecontrol-audit:latest

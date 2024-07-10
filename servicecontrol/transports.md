@@ -28,17 +28,13 @@ To configure MSMQ as the transport, ensure the MSMQ service has been installed a
 > [!IMPORTANT]
 > When [ServiceControl instances are installed on a different machine than an endpoint](/transports/msmq/routing.md#when-servicecontrol-is-installed-on-a-different-server) `queuename@machinename` addresses must be used.
 
-#### Configuration using PowerShell or Containers
+#### Configuration using PowerShell
 
-When managing ServiceControl via PowerShell or when using containers, the transport must be specified using the `MSMQ` constant.
+When managing ServiceControl via PowerShell, the transport must be specified using the `MSMQ` constant.
 
 To do this in PowerShell set the `-Transport` option:
 
 snippet: MSMQPowerShellTransport
-
-To do this in Docker or other container hosts set the `TRANSPORTTYPE` environment variable:
-
-snippet: MSMQDockerTransport
 
 ### RabbitMQ
 
