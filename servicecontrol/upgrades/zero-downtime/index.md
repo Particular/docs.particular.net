@@ -136,7 +136,7 @@ if ($null -eq $element) {
     $newElement.SetAttribute("key", "ServiceControl/IngestAuditMessages")
     $newElement.SetAttribute("value", "false")
     $appSettings.AppendChild($newElement)
-} else {   
+} else {
     $element.value = "false"
 }
 $configDoc.Save($configPath)

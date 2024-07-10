@@ -73,7 +73,7 @@ Follow this procedure to upgrade all necessary ServiceControl 4 instances to ver
 These steps should be followed whether updating using ServiceControl Management or via PowerShell:
 
 1. Upgrade all ServiceControl instances to 4.33.0 or later. *This is required to support the upgrade path that keeps all failed messages safe.*
-2. To preserve audit data, install a new Audit instance that uses RavenDB 5 persistence as described in [zero-downtime upgrades](../zero-downtime.md), if this has not already been done.
+2. To preserve audit data, install a new Audit instance that uses RavenDB 5 persistence as described in [zero-downtime upgrades](../zero-downtime/), if this has not already been done.
 3. In ServicePulse, clean up all [failed messages](/servicepulse/intro-failed-messages.md). It's acceptable if a few failed messages still come in, but ideally, all failed messages should either be retried or archived.
 4. Disable error message ingestion:
    * Stop the ServiceControl instance.
@@ -154,7 +154,7 @@ After completing the , follow this procedure to upgrade using PowerShell 7.2 or 
 
 ## Force upgrading
 
-In ServiceControl 5, it is also possible to perform a forced upgrade on instances that still uses RavenDB 3.5 persistence, which will discard all the data in the current database and start with a fresh RavenDB 5 database. This is sometimes preferable on non-production and developer systems where the audit data has little value, or in situations where the [audit retention period](/servicecontrol/audit-instances/configuration.md#data-retention-servicecontrol-auditauditretentionperiod) is low and a decision is made that the value of the temporally-limited audit data is not worth the complexity of following the [zero-downtime upgrades](../zero-downtime.md) procedure.
+In ServiceControl 5, it is also possible to perform a forced upgrade on instances that still uses RavenDB 3.5 persistence, which will discard all the data in the current database and start with a fresh RavenDB 5 database. This is sometimes preferable on non-production and developer systems where the audit data has little value, or in situations where the [audit retention period](/servicecontrol/audit-instances/configuration.md#data-retention-servicecontrol-auditauditretentionperiod) is low and a decision is made that the value of the temporally-limited audit data is not worth the complexity of following the [zero-downtime upgrades](../zero-downtime/) procedure.
 
 Force upgrading instance requires upgrading version 4 instances to 4.26.0 or later.
 
