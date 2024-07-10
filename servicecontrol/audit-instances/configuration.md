@@ -313,15 +313,11 @@ Cloud transports with higher latency can benefit from higher concurrency values,
 
 | Type | Default value |
 | --- | --- |
-#if-version [4.12,)
-| int | `32` |
-#end-if
-#if-version [,4.12)
-| int | `10` |
-#end-if
+| int | `32` in 4.12.0<br/>`10` in earlier versions |
 
-#if-version [4.17,)
 ### ServiceControl.Audit/EnableFullTextSearchOnBodies
+
+_Added in 4.17.0_
 
 Use this setting to configure whether the bodies of processed messages should be full-text indexed for searching.
 
@@ -356,6 +352,7 @@ Configures the maximum duration for processing a batch of audited messages.
 <!-- TODO: Not a timespan? In seconds? -->
 
 #end-if
+
 ## Transport
 
 ### ServiceControl.Audit/TransportType
@@ -447,7 +444,7 @@ The ServiceControl queue name to use for plugin messages (e.g. Heartbeats, Custo
 
 | Type | Default value |
 | --- | --- |
-| string | `` |
+| string | _Empty_ |
 
 <!-- //TODO: What is the default? It is based on the windows service name, but doest that have a default? -->
 
@@ -482,9 +479,9 @@ For instances running version 4.25 and below or using the old RavenDB 3.5 persis
 
 #### ServiceControl.Audit/ExposeRavenDB
 
-Type: bool
-
-Default: `false`
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
 
 After restarting the ServiceControl Audit service, access the RavenDB studio locally at the following endpoint:
 
@@ -499,17 +496,17 @@ http://localhost:{configured ServiceControl instance maintenance port}/studio/in
 
 The percentage threshold for the [Message database storage space](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-critical-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive) then the check will fail, alerting the user.
 
-Type: int
-
-Default: 20
+| Type | Default value |
+| --- | --- |
+| int | `20` |
 
 #### ServiceControl.Audit/MinimumStorageLeftRequiredForIngestion
 
 The percentage threshold for the [Critical message database storage space](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-critical-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive), then the check will fail, alerting the user. The message ingestion will also be stopped to prevent data loss. Message ingestion will resume once more disk space is made available.
 
-Type: int
-
-Default: 5
+| Type | Default value |
+| --- | --- |
+| int | `5` |
 
 #if-version [,5)
 
@@ -520,8 +517,8 @@ This setting is applicable only on instances that use the RavenDB 3.5 storage en
 
 The path for the Esent logs on disk.
 
-Type: string
-
-Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB\Logs`
+| Type | Default value |
+| --- | --- |
+| string | `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB\Logs` |
 
 #end-if
