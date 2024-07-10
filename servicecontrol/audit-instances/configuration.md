@@ -427,7 +427,7 @@ The ServiceControl queue name to use for plugin messages (e.g. Heartbeats, Custo
 | --- | --- |
 | string | _Empty_ |
 
-<!-- //TODO: What is the default? It is based on the windows service name, but doest that have a default? -->
+<!-- //TODO: What is the default? It is based on the windows service name, but doesn't that have a default? -->
 
 ## Troubleshooting
 
@@ -449,16 +449,12 @@ http://localhost:{configured ServiceControl instance maintenance port}
 
 to access the internal database via [the RavenDB studio interface](https://ravendb.net/docs/article-page/5.4/csharp/studio/overview).
 
+#if-version [,5)
 ### RavenDB 3.5
 
-#if-version [5,)
-> [!NOTE]
-> Obsolete since version 5.0.0
-#end-if
-
-For instances running version 4.25 and below or using the old RavenDB 3.5 persistence the ServiceControl Audit instance can be configured to expose the RavenDB studio.
-
 #### ServiceControl.Audit/ExposeRavenDB
+
+The ServiceControl Audit instance can be configured to expose the RavenDB studio.
 
 | Type | Default value |
 | --- | --- |
@@ -473,6 +469,7 @@ http://localhost:{configured ServiceControl instance maintenance port}/studio/in
 > [!NOTE]
 > The ServiceControl Audit embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access, the hostname must be [set to a fully qualified domain name](/servicecontrol/setting-custom-hostname.md).
 
+#end-if
 #### ServiceControl.Audit/DataSpaceRemainingThreshold
 
 The percentage threshold for the [Message database storage space](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-critical-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive) then the check will fail, alerting the user.
