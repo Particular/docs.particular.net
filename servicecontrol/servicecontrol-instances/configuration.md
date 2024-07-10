@@ -340,22 +340,6 @@ In some cases, the ingestion rate can be too high and the underlying database ca
 | --- | --- |
 | int | `10` |
 
-### ServiceControl/HttpDefaultConnectionLimit
-
-The maximum number of concurrent connections allowed by ServiceControl. When working with transports that operate over HTTP, the number of concurrent connections can be increased to meet transport concurrency settings.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_HTTPDEFAULTCONNECTIONLIMIT` |
-| **App config key** | `ServiceControl/HttpDefaultConnectionLimit` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| string | `100` |
-
-<!-- //TODO: Really? Not an int? -->
-
 ### ServiceControl/EnableFullTextSearchOnBodies
 
 Use this setting to configure whether the bodies of processed error messages should be full-text indexed for searching.

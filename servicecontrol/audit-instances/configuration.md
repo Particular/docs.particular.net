@@ -281,22 +281,6 @@ This setting specifies the upper limit on body size, in bytes, to be configured.
 | --- | --- |
 | int | `102400` (100Kb) |
 
-### ServiceControl.Audit/HttpDefaultConnectionLimit
-
-The maximum number of concurrent connections allowed by ServiceControl. When working with transports that operate over HTTP, the number of concurrent connections can be increased to meet transport concurrency settings.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUDIT_HTTPDEFAULTCONNECTIONLIMIT` |
-| **App config key** | `ServiceControl.Audit/HttpDefaultConnectionLimit` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| string | `100` |
-
-<!-- //TODO: Really? Not an int? -->
-
 ### ServiceControl.Audit/MaximumConcurrencyLevel
 
 The maximum number of messages that can be concurrently pulled from the message transport.
