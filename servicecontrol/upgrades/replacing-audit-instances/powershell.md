@@ -2,9 +2,13 @@
 title: Replacing an Audit instance with PowerShell
 summary: Instructions on how to replace a ServiceControl Audit instance with zero downtime
 reviewed: 2024-07-10
+related:
+  - servicecontrol/upgrades/replacing-audit-instances/scmu
+  - servicecontrol/upgrades/replacing-audit-instances/containers
+  - servicecontrol/upgrades/replacing-error-instances
 ---
 
-This article describes how to use Powershell to replace an Audit instance with zero downtime. For an overview of the process and details for other deployment scenarios, see [Zero downtime upgrades: Audit instances](/servicecontrol/upgrades/zero-downtime/#audit-instances).
+This article describes how to use PowerShell to replace an Audit instance with zero downtime. For an overview of the process and details for other deployment scenarios, see [Replacing an Audit Instance](/servicecontrol/upgrades/replacing-audit-instances/).
 
 ## Add a new audit instance
 

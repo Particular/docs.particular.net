@@ -18,7 +18,7 @@ It is recommended to update to the new persistence format. The old persistence f
 
 Changing the persistence format of an existing audit instance is not supported.
 
-To switch to the new persistence format, follow the steps for [zero downtime upgrades](zero-downtime/), ensuring that the new audit instance is created with ServiceControl 4.26 or above.
+To switch to the new persistence format, follow the steps for [zero downtime upgrades](replacing-audit-instances/), ensuring that the new audit instance is created with ServiceControl 4.26 or above.
 
 ## How to determine which persistence format is used
 

@@ -1429,8 +1429,24 @@
       Url: servicecontrol/upgrades
     - Title: New persistence format
       Url: servicecontrol/upgrades/new-persistence
-    - Title: Zero downtime
-      Url: servicecontrol/upgrades/zero-downtime
+    - Title: Replacing Error instances
+      Url: servicecontrol/upgrades/replacing-error-instances
+      Articles:
+      - Title: with ServiceControl Management
+        Url: servicecontrol/upgrades/replacing-error-instances/scmu
+      - Title: with PowerShell
+        Url: servicecontrol/upgrades/replacing-error-instances/powershell
+      - Title: with Containers
+        Url: servicecontrol/upgrades/replacing-error-instances/containers
+    - Title: Replacing Audit instances
+      Url: servicecontrol/upgrades/replacing-audit-instances
+      Articles:
+      - Title: with ServiceControl Management
+        Url: servicecontrol/upgrades/replacing-audit-instances/scmu
+      - Title: with PowerShell
+        Url: servicecontrol/upgrades/replacing-audit-instances/powershell
+      - Title: with Containers
+        Url: servicecontrol/upgrades/replacing-audit-instances/containers
     - Title: Version 5.1 to 5.2
       Url: servicecontrol/upgrades/5.1to5.2
     - Title: Version 4 to 5

@@ -3,13 +3,19 @@ title: Replacing an Audit instance
 summary: Instructions on how to replace a ServiceControl Audit instance with zero downtime
 isUpgradeGuide: true
 reviewed: 2024-07-10
+related:
+  - servicecontrol/upgrades/replacing-error-instances
+redirects:
+  - servicecontrol/upgrades/zero-downtime
 ---
 
 ServiceControl, which exists to serve the management of distributed systems, is itself a distributed system. As a result, pieces of the system can be upgraded and managed separately.
 
-This document describes in general terms how to replace each type of ServiceControl instance, and links to more specific information on how to accomplish these tasks for each potential deployment method.
+This document describes in general terms how to replace a ServiceControl Audit instance, and links to more specific information on how to accomplish these tasks for each potential deployment method.
 
-## Audit instances
+See [Replacing an Error Instance](../replacing-error-instances/) for similar guidance for Error instances.
+
+## Overview
 
 ServiceControl Audit instances store audit data for a configured period of time, after which expired audit data is removed. Using the [ServiceControl remotes feature](/servicecontrol/servicecontrol-instances/remotes.md), multiple audit instances can store a portion of the overall audit data (sharding) which is queried in a scatter-gather fashion.
 
@@ -22,7 +28,7 @@ Using this capability, an Audit instance that can't be upgraded can be replaced 
 > [!NOTE]
 > For scenarios where retaining audit message data is not required (e.g. transient data that does not merit effort to retain), this process is not necessary -- the audit instance can simply be deleted and recreated with the same name.
 
-### Initial state
+## Initial state
 
 Before doing anything, the deployment looks like this:
 
@@ -49,11 +55,11 @@ class sc ServiceControlError
 class sca ServiceControlRemote
 ```
 
-### Add a new audit instance
+## Add a new audit instance
 
 The first step is to create a new audit instance, and add it to the Error instance's remotes collection:
 
-* [Adding a new audit instance with PowerShell](audit-powershell.md#add-a-new-audit-instance)
+* [Adding a new audit instance with PowerShell](powershell.md#add-a-new-audit-instance)
 
 After this step the installation looks like this:
 
@@ -84,11 +90,11 @@ class sca,sca2 ServiceControlRemote
 
 Although both ServiceControl Audit instances ingest messages from the audit queue, each message only ends up in a single instance. The ServiceControl Error instance queries both Audit instances transparently.
 
-### Disable audit queue ingestion on the old instance
+## Disable audit queue ingestion on the old instance
 
 Now that the new audit instance exists, the old audit instance must be configured so that it does not ingest any new audit data from the audit queue. This will make the old audit instance effectively read-only. The only reason it is not fully read-only is that old audit data that the old instance will continue to delete expired audit data that has passed the [audit retention period](/servicecontrol/audit-instances/configuration.md#data-retention-servicecontrol-auditauditretentionperiod).
 
-* [Disabling audit queue ingestion with PowerShell](audit-powershell.md#disable-audit-queue-ingestion-on-the-old-instance)
+* [Disabling audit queue ingestion with PowerShell](powershell.md#disable-audit-queue-ingestion-on-the-old-instance)
 
 After this step the installation looks like this:
 
@@ -118,7 +124,7 @@ class sca,sca2 ServiceControlRemote
 
 The ServiceControl Error instance continues to query both instances but the original Audit instance no longer reads new messages.
 
-### Decommission the old audit instance, when it is empty
+## Decommission the old audit instance, when it is empty
 
 As the original audit instance is no longer ingesting messages, it will be empty after the audit retention period has elapsed and can be removed. The following steps describe how to determine when an audit instance is empty:
 
@@ -129,7 +135,7 @@ As the original audit instance is no longer ingesting messages, it will be empty
 
 When the `ProcessedMessages` collection is empty, the audit instance can be decomissioned:
 
-* [Decommissioning the old audit instance using PowerShell](audit-powershell.md#decommission-the-old-audit-instance)
+* [Decommissioning the old audit instance using PowerShell](powershell.md#decommission-the-old-audit-instance)
 
 After this step the installation looks like this:
 
@@ -155,11 +161,3 @@ class sp ServicePulse
 class sc ServiceControlError
 class sca2 ServiceControlRemote
 ```
-
-## Error instances
-
-TODO: Steal generic procedure from 4to5 upgrade guide
-
-## Monitoring instances
-
-ServiceControl Monitoring instances store all data in memory, so an instance can be destroyed and recreated at any time.
