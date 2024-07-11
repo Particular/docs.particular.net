@@ -59,7 +59,15 @@ class sca ServiceControlRemote
 
 The first step is to create a new audit instance, and add it to the Error instance's remotes collection:
 
+* [Adding a new audit instance with ServiceControl Management](scmu.md#add-a-new-audit-instance)
 * [Adding a new audit instance with PowerShell](powershell.md#add-a-new-audit-instance)
+* [Adding a new audit instance with Containers](containers.md#add-a-new-audit-instance)
+
+Then, the new Audit instance must be added to the Error instance's remotes collection:
+
+* [Updating the remotes collection with ServiceControl Management](scmu.md#add-the-instance-to-remoteinstances)
+* [Updating the remotes collection with PowerShell](powershell.md#add-the-instance-to-remoteinstances)
+* [Updating the remotes collection with Containers](containers.md#add-the-instance-to-remoteinstances)
 
 After this step the installation looks like this:
 
@@ -94,7 +102,9 @@ Although both ServiceControl Audit instances ingest messages from the audit queu
 
 Now that the new audit instance exists, the old audit instance must be configured so that it does not ingest any new audit data from the audit queue. This will make the old audit instance effectively read-only. The only reason it is not fully read-only is that old audit data that the old instance will continue to delete expired audit data that has passed the [audit retention period](/servicecontrol/audit-instances/configuration.md#data-retention-servicecontrol-auditauditretentionperiod).
 
+* [Disabling audit queue ingestion with ServiceControl Management](scmu.md#disable-audit-queue-ingestion-on-the-old-instance)
 * [Disabling audit queue ingestion with PowerShell](powershell.md#disable-audit-queue-ingestion-on-the-old-instance)
+* [Disabling audit queue ingestion with Containers](containers.md#disable-audit-queue-ingestion-on-the-old-instance)
 
 After this step the installation looks like this:
 
@@ -135,7 +145,9 @@ As the original audit instance is no longer ingesting messages, it will be empty
 
 When the `ProcessedMessages` collection is empty, the audit instance can be decomissioned:
 
+* [Decommissioning the old audit instance using ServiceControl Management](scmu.md#decommission-the-old-audit-instance)
 * [Decommissioning the old audit instance using PowerShell](powershell.md#decommission-the-old-audit-instance)
+* [Decommissioning the old audit instance using Containers](containers.md#decommission-the-old-audit-instance)
 
 After this step the installation looks like this:
 
@@ -161,3 +173,5 @@ class sp ServicePulse
 class sc ServiceControlError
 class sca2 ServiceControlRemote
 ```
+
+At this point, the old Audit instance has been completely replaced by the new instance.

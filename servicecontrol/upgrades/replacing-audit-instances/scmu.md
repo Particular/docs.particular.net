@@ -20,6 +20,8 @@ First, a new audit instance must be created. If it is on the same machine, diffe
 4. Configure the new Audit instance as desired, or to match the previous instance, except that new ports must be selected if deploying on the same machine.
 5. Click the **Add** button to create and start the new instance.
 
+## Add the instance to RemoteInstances
+
 Then, the new Audit instance must be added to the Error instance's collection of remotes. This cannot be done in ServiceControl Management and must be done by editing the configuration file:
 
 1. Open ServiceControl Management.

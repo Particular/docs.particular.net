@@ -29,6 +29,8 @@ New-ServiceControlAuditInstance `
   -ServiceControlQueueAddress "Particular.ServiceControl"
 ```
 
+## Add the instance to RemoteInstances
+
 Then, to add the new instance to the Error instance's collection of remotes, execute the following on the ServiceControl Error instance machine:
 
 ```ps1
