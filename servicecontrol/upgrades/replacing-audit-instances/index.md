@@ -1,6 +1,6 @@
 ---
-title: Zero downtime upgrades
-summary: Instructions on how to upgrade ServiceControl instances with zero downtime
+title: Replacing an Audit instance
+summary: Instructions on how to replace a ServiceControl Audit instance with zero downtime
 isUpgradeGuide: true
 reviewed: 2024-07-10
 ---

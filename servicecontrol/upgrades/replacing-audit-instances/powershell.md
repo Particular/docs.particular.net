@@ -1,6 +1,6 @@
 ---
-title: Replacing Audit instance with PowerShell
-summary: Instructions on how to upgrade ServiceControl Audit instances with zero downtime
+title: Replacing an Audit instance with PowerShell
+summary: Instructions on how to replace a ServiceControl Audit instance with zero downtime
 reviewed: 2024-07-10
 ---
 
