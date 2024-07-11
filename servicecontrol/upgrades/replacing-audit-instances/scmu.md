@@ -12,38 +12,38 @@ This article describes how to use the ServiceControl Management Utility to repla
 
 ## Add a new audit instance
 
-First, a new audit instance must be created. If it is on the same machine, different ports must be specified.
+First, a new audit instance must be created. If it is on the same machine, different ports must be specified. Deploying it on a separate machine is preferable, as the databases of each instance will not compete for the same resources.
 
-```ps1
-New-ServiceControlAuditInstance `
-  -Name Particular.ServiceControl.NewAudit `
-  -InstallPath C:\ServiceControl.NewAudit\Bin `
-  -DBPath C:\ServiceControl.NewAudit\DB `
-  -LogPath C:\ServiceControl.NewAudit\Logs `
-  -Port 44446 `
-  -DatabaseMaintenancePort 44447 `
-  -Transport MSMQ `
-  -AuditQueue audit `
-  -AuditRetentionPeriod 10:00:00:00 `
-  -ForwardAuditMessages:$false `
-  -ServiceControlQueueAddress "Particular.ServiceControl"
-```
+1. Open ServiceControl Management.
+2. Click **New**, then **Add ServiceControl and Audit Instances**.
+3. Uncheck the **ServiceControl** checkbox so that only an Audit instance will be installed.
+4. Configure the new Audit instance as desired, or to match the previous instance, except that new ports must be selected if deploying on the same machine.
+5. Click the **Add** button to create and start the new instance.
 
-Then, to add the new instance to the Error instance's collection of remotes, execute the following on the ServiceControl Error instance machine:
+Then, the new Audit instance must be added to the Error instance's collection of remotes. This cannot be done in ServiceControl Management and must be done by editing the configuration file:
 
-```ps1
-Add-ServiceControlRemote `
-  -Name "Particular.ServiceControl" `
-  -RemoteInstanceAddress "http://localhost:44446/api"
-```
+1. Open ServiceControl Management.
+2. For the Error instance, click the **Installation Path > Browse** button to open the installation folder in Windows Explorer.
+3. Edit the **ServiceControl.exe.config** file.
+4. Edit the value of the `ServiceControl/RemoteInstances` setting:
+    * The value is XML-encoded JSON containing an array of values, each having an `api_uri` value.
+    * All JSON double-quotes (`"`) must be represented as `&quot;`.
+    * Add the API URL of the new Audit instance to the value.
+    * Example with two `localhost` URIs on ports `44444` and `44446`:
+      ```xml
+      [{&quot;api_uri&quot;:&quot;http://localhost:44444/api/&quot;},{&quot;api_uri&quot;:&quot;http://localhost:44446/api/&quot;}]
+5. Save the file.
+6. In ServiceControl Management, stop and restart the Error instance for the changes to take effect.
 
 ## Disable audit queue ingestion on the old instance
 
 Configure the old audit instance so that it will no longer ingest new messages from the audit queue, making the instance effectively read-only:
 
-1. Locate the `ServiceControl.Audit.exe.config` file.
-2. In the `appSettings` section, add a setting key for `ServiceControl/IngestAuditMessages` with a value of `false`.
-3. Restart the Audit instance for the changes to take effect.
+1. Open ServiceControl Management.
+2. For the old Audit instance, click the **Installation Path > Browse** button to open the installation folder in Windows Explorer.
+3. Edit the `ServiceControl.Audit.exe.config` file.
+4. In the `appSettings` section, add a setting key for `ServiceControl/IngestAuditMessages` with a value of `false`.
+5. In ServiceControl Management, stop and restart the Audit instance for the changes to take effect.
 
 > [!NOTE]
 > For versions 4.32.0 of ServiceControl and older use `!disable` as the [`AuditQueue`](/servicecontrol/audit-instances/configuration.md#transport-servicebusauditqueue) name to disable the audit message ingestion.
@@ -52,19 +52,6 @@ Configure the old audit instance so that it will no longer ingest new messages f
 
 When the audit retention period has expired and there are no remaining processed messages in the database, you can decommission the old audit instance.
 
-On the ServiceControl Error instance machine, remove the Audit instance URL from the collection of remote instances:
+First, use the same instructions above to edit the Error instance's configuration file, but this time removing the old Audit instance URL from the `ServiceControl/RemoteInstances` setting.
 
-```ps1
-Remove-ServiceControlRemote `
-  -Name "Particular.ServiceControl" `
-  -RemoteInstanceAddress "http://localhost:44444/api"
-```
-
-Then, on the ServiceControl Audit instance machine, remove the Audit instance, including the database and logs.
-
-```ps1
-Remove-ServiceControlAuditInstance `
-  -Name "Particular.ServiceControl.OriginalAudit" `
-  -RemoveDB `
-  -RemoveLogs
-```
+Lastly, using ServiceControl Monitoring, stop and remove the old Audit instance.
