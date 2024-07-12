@@ -20,12 +20,13 @@ NServiceBus and ServiceControl capture a number of different metrics about a run
 Processing time is the time it takes for an endpoint to **successfully** process an incoming message. It includes:
 
 - The execution of all handlers and sagas for the incoming message
-- The execution of the incoming message processing pipeline, which includes deserialization and where applicable, user-defined pipeline behaviors or saga-loading time.
+- The execution of the incoming message processing pipeline, which includes deserialization and where applicable, user-defined pipeline behaviors and saga loading and saving time.
+- The storing of the outbox operations (if outbox is enabled)
 
 Processing failures are not included in the processing time metric.
 
 > [!NOTE]
-> Processing time does not include the time to store the outbox operation, transmit outgoing messages to the transport, fetch the incoming message, and complete the incoming message (i.e. commit the transport transaction or acknowledge the message).
+> Processing time does not include fetching the incoming message, transmitting outgoing messages to the transport, and completing the incoming message (i.e. commmitting the transport transaction or acknowledging).
 
 ### Number of messages pulled from queue
 
@@ -43,13 +44,14 @@ This metric measures the total number of messages that the endpoint has failed t
 
 Critical time is the time between when a message is sent and when it is fully processed. It is a combination of:
 
+- Committing the sender outbox transaction (if outbox is enabled)
 - Network send time: The time a message spends on the network before arriving in the destination queue
 - Queue wait time: The time a message spends in the destination queue before being picked up and processed
 - Processing time: The time it takes for the destination endpoint to process the message
 
 Critical time does _not_ include:
 
-- The time to store the outbox operation, transmit messages to the transport, and complete the incoming message (i.e. commit the transport transaction or acknowledge) because the `TimeSent` header is added with the current time during the dispatch phase, after the outbox operation has completed.
+- The time to complete the incoming message (i.e. commit the transport transaction or acknowledge)
 - The time a delayed message is held by a timeout mechanism. (NServiceBus version 7.7 and above.)
 
 > [!NOTE]
