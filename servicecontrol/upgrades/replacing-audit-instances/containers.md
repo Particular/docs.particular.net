@@ -1,5 +1,5 @@
 ---
-title: Replacing an Audit instance with Containers
+title: Replacing an Audit instance using Containers
 summary: Instructions on how to replace a ServiceControl Audit instance with zero downtime
 reviewed: 2024-07-10
 related:

@@ -1,5 +1,5 @@
 ---
-title: Replacing an Error instance with PowerShell
+title: Replacing an Error instance using PowerShell
 summary: Instructions on how to replace a ServiceControl Error instance with zero downtime
 reviewed: 2024-07-10
 related:

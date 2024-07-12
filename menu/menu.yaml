@@ -1579,20 +1579,20 @@
     - Title: Replacing Error instances
       Url: servicecontrol/upgrades/replacing-error-instances
       Articles:
-      - Title: with ServiceControl Management
+      - Title: using ServiceControl Management
         Url: servicecontrol/upgrades/replacing-error-instances/scmu
-      - Title: with PowerShell
+      - Title: using PowerShell
         Url: servicecontrol/upgrades/replacing-error-instances/powershell
-      - Title: with Containers
+      - Title: using Containers
         Url: servicecontrol/upgrades/replacing-error-instances/containers
     - Title: Replacing Audit instances
       Url: servicecontrol/upgrades/replacing-audit-instances
       Articles:
-      - Title: with ServiceControl Management
+      - Title: using ServiceControl Management
         Url: servicecontrol/upgrades/replacing-audit-instances/scmu
-      - Title: with PowerShell
+      - Title: using PowerShell
         Url: servicecontrol/upgrades/replacing-audit-instances/powershell
-      - Title: with Containers
+      - Title: using Containers
         Url: servicecontrol/upgrades/replacing-audit-instances/containers
     - Title: New persistence format
       Url: servicecontrol/upgrades/new-persistence
