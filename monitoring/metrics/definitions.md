@@ -48,6 +48,7 @@ Critical time is the time between when a message is sent and when it is fully pr
 - Network send time: The time a message spends on the network before arriving in the destination queue
 - Queue wait time: The time a message spends in the destination queue before being picked up and processed
 - Processing time: The time it takes for the destination endpoint to process the message
+- Outgoing messages dispatch time: The time it takes transmitting outgoing messages to the transport
 
 Critical time does _not_ include:
 
