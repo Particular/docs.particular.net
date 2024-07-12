@@ -27,9 +27,7 @@ First, a new audit instance must be created. [Deploy a new Audit instance contai
 > [!NOTE]
 > If the Error instance is not yet deployed on containers, refer to the instructions for [ServiceControl Management](scmu.md#add-the-instance-to-remoteinstances) or [PowerShell](powershell.md#add-the-instance-to-remoteinstances).
 
-// TODO: REMOTEINSTANCES not currently documented and needs a link
-
-Next, modify the Error instance container by changing the [`REMOTEINSTANCES` environment variable]() to include the new Audit instance's API URL. The value must be a JSON-encoded array containing objects that each have an `api_uri` value.
+Next, modify the Error instance container by changing the [`REMOTEINSTANCES` environment variable](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolremoteinstances) to include the new Audit instance's API URL. The value must be a JSON-encoded array containing objects that each have an `api_uri` value.
 
 This example of a `REMOTEINSTANCES` value (as it would be used in a `docker run` command) shows two remote instances on the Docker internal network, using ports `44444` and `44446`:
 

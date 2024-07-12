@@ -31,9 +31,8 @@ Modify the old Error instance container by specifying the [`INGESTERRORMESSAGES`
 
 ## Replace the Error instance
 
-// TODO: REMOTEINSTANCES not currently documented and needs a link
 
-[Deploy a new Error instance container](/servicecontrol/servicecontrol-instances/deployment/containers.md) with its own [database container](/servicecontrol/ravendb/deployment/containers.md). The [`REMOTEINSTANCES` environment variable]() should match the configuration of the old Error instance so that it can communicate to the same Audit instance(s).
+[Deploy a new Error instance container](/servicecontrol/servicecontrol-instances/deployment/containers.md) with its own [database container](/servicecontrol/ravendb/deployment/containers.md). The [`REMOTEINSTANCES` environment variable](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolremoteinstances) should match the configuration of the old Error instance so that it can communicate to the same Audit instance(s).
 
 Now, the old and new Error instance's are both available, but the old Error instance is not ingesting messages.
 

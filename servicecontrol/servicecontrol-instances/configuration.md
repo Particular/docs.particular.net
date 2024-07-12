@@ -92,6 +92,20 @@ Default: `empty`
 
 <!-- TODO: Until when? Should this already be removed. Do research. -->
 
+### ServiceControl/RemoteInstances
+
+A configuration that specifies one or more attached Audit instances. See also [ServiceControl Remote Instances](remotes.md).
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_REMOTEINSTANCES` |
+| **App config key** | `ServiceControl/RemoteInstances` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
 ## Embedded Database
 <!-- TODO: Add (make include) or move to RavenDB settings -->
 ### ServiceControl/DbPath
