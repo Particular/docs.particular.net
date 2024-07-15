@@ -2,10 +2,11 @@
 title: Replacing an Error instance using ServiceControl Management
 summary: Instructions on how to replace a ServiceControl Error instance with zero downtime
 reviewed: 2024-07-10
+component: ServiceControl
 related:
-  - servicecontrol/upgrades/replacing-error-instances/powershell
-  - servicecontrol/upgrades/replacing-error-instances/containers
-  - servicecontrol/upgrades/replacing-audit-instances
+  - servicecontrol/migrations/replacing-error-instances/powershell
+  - servicecontrol/migrations/replacing-error-instances/containers
+  - servicecontrol/migrations/replacing-audit-instances
 ---
 
 This article describes the details of how to use the ServiceControl Management Utility to replace an Error instance with zero downtime.
@@ -13,7 +14,7 @@ This article describes the details of how to use the ServiceControl Management U
 > [!NOTE]
 > This does not include the complete process, only the steps specific to ServiceControl Management.
 >
-> For an overview of the process and details for other deployment scenarios, see [Replacing an Error Instance](/servicecontrol/upgrades/replacing-error-instances/).
+> For an overview of the process and details for other deployment scenarios, see [Replacing an Error Instance](/servicecontrol/migrations/replacing-error-instances/).
 
 ## Disable error message ingestion
 

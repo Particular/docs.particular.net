@@ -1577,25 +1577,25 @@
   - Title: Migrations
     Articles:
     - Title: Replacing Error instances
-      Url: servicecontrol/upgrades/replacing-error-instances
+      Url: servicecontrol/migrations/replacing-error-instances
       Articles:
       - Title: using ServiceControl Management
-        Url: servicecontrol/upgrades/replacing-error-instances/scmu
+        Url: servicecontrol/migrations/replacing-error-instances/scmu
       - Title: using PowerShell
-        Url: servicecontrol/upgrades/replacing-error-instances/powershell
+        Url: servicecontrol/migrations/replacing-error-instances/powershell
       - Title: using Containers
-        Url: servicecontrol/upgrades/replacing-error-instances/containers
+        Url: servicecontrol/migrations/replacing-error-instances/containers
     - Title: Replacing Audit instances
-      Url: servicecontrol/upgrades/replacing-audit-instances
+      Url: servicecontrol/migrations/replacing-audit-instances
       Articles:
       - Title: using ServiceControl Management
-        Url: servicecontrol/upgrades/replacing-audit-instances/scmu
+        Url: servicecontrol/migrations/replacing-audit-instances/scmu
       - Title: using PowerShell
-        Url: servicecontrol/upgrades/replacing-audit-instances/powershell
+        Url: servicecontrol/migrations/replacing-audit-instances/powershell
       - Title: using Containers
-        Url: servicecontrol/upgrades/replacing-audit-instances/containers
+        Url: servicecontrol/migrations/replacing-audit-instances/containers
     - Title: New persistence format
-      Url: servicecontrol/upgrades/new-persistence
+      Url: servicecontrol/migrations/new-persistence
   - Title: Troubleshooting
     Articles:
     - Title: ServiceControl troubleshooting

@@ -1,10 +1,10 @@
 ---
 title: Replacing an Error instance
 summary: Instructions on how to replace a ServiceControl Error instance with zero downtime
-isUpgradeGuide: true
 reviewed: 2024-07-10
+component: ServiceControl
 related:
-  - servicecontrol/upgrades/replacing-audit-instances
+  - servicecontrol/migrations/replacing-audit-instances
 ---
 
 ServiceControl, which exists to serve the management of distributed systems, is itself a distributed system. As a result, pieces of the system can be upgraded and managed separately.

@@ -2,13 +2,14 @@
 title: Replacing an Audit instance using ServiceControl Management
 summary: Instructions on how to replace a ServiceControl Audit instance with zero downtime
 reviewed: 2024-07-10
+component: ServiceControl
 related:
-  - servicecontrol/upgrades/replacing-audit-instances/powershell
-  - servicecontrol/upgrades/replacing-audit-instances/containers
-  - servicecontrol/upgrades/replacing-error-instances
+  - servicecontrol/migrations/replacing-audit-instances/powershell
+  - servicecontrol/migrations/replacing-audit-instances/containers
+  - servicecontrol/migrations/replacing-error-instances
 ---
 
-This article describes how to use the ServiceControl Management Utility to replace an Audit instance with zero downtime. For an overview of the process and details for other deployment scenarios, see [Replacing an Audit Instance](/servicecontrol/upgrades/replacing-audit-instances/).
+This article describes how to use the ServiceControl Management Utility to replace an Audit instance with zero downtime. For an overview of the process and details for other deployment scenarios, see [Replacing an Audit Instance](/servicecontrol/migrations/replacing-audit-instances/).
 
 ## Add a new audit instance
 

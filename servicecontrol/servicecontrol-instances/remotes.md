@@ -214,7 +214,7 @@ A new cross-region primary instance is added to allow ServiceInsight to show mes
 
 ### Zero downtime upgrades
 
-The remotes feature can be used to perform [zero downtime upgrades](/servicecontrol/upgrades/replacing-audit-instances/) of Audit instances.
+The remotes feature can be used to perform [zero downtime upgrades](/servicecontrol/migrations/replacing-audit-instances/) of Audit instances.
 
 ## Configuration
 

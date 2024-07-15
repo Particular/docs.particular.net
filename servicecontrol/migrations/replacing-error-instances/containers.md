@@ -2,10 +2,11 @@
 title: Replacing an Error instance using Containers
 summary: Instructions on how to replace a ServiceControl Error instance with zero downtime
 reviewed: 2024-07-10
+component: ServiceControl
 related:
-  - servicecontrol/upgrades/replacing-error-instances/scmu
-  - servicecontrol/upgrades/replacing-error-instances/powershell
-  - servicecontrol/upgrades/replacing-audit-instances
+  - servicecontrol/migrations/replacing-error-instances/scmu
+  - servicecontrol/migrations/replacing-error-instances/powershell
+  - servicecontrol/migrations/replacing-audit-instances
 ---
 
 This article describes how to replace an Error instance with zero downtime when using containers.
@@ -13,7 +14,7 @@ This article describes how to replace an Error instance with zero downtime when 
 > [!NOTE]
 > This does not include the complete process, only the steps specific to container deployments.
 >
-> For an overview of the process and details for other deployment scenarios, see [Replacing an Error Instance](/servicecontrol/upgrades/replacing-error-instances/).
+> For an overview of the process and details for other deployment scenarios, see [Replacing an Error Instance](/servicecontrol/migrations/replacing-error-instances/).
 
 ## Disable error message ingestion
 

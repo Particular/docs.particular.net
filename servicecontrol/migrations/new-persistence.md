@@ -3,6 +3,9 @@ title: New persistence format
 summary: How to migrate ServiceControl Audit instances to the new persistence format introduced in version 4.26
 isUpgradeGuide: true
 reviewed: 2022-10-21
+component: ServiceControl
+redirects:
+  - servicecontrol/upgrades/new-persistence
 ---
 
 Version 4.26 of ServiceControl introduced a new persistence format for audit instances. The new persistence format is faster and more efficient, using less space on disk.

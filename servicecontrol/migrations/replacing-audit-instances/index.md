@@ -1,10 +1,10 @@
 ---
 title: Replacing an Audit instance
 summary: Instructions on how to replace a ServiceControl Audit instance with zero downtime
-isUpgradeGuide: true
 reviewed: 2024-07-10
+component: ServiceControl
 related:
-  - servicecontrol/upgrades/replacing-error-instances
+  - servicecontrol/migrations/replacing-error-instances
 redirects:
   - servicecontrol/upgrades/zero-downtime
 ---
