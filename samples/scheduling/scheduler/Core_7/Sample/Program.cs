@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 class Program
 {
-    static ILog log = LogManager.GetLogger<Program>();
+    static readonly ILog log = LogManager.GetLogger<Program>();
 
     [Obsolete]
     static async Task Main()
