@@ -19,6 +19,7 @@ redirects:
 ## Prerequisites
 
 To run this sample, Prometheus and Grafana are required. This sample uses Docker and a `docker-compose.yml` file to run the stack.
+To run the Docker stack, run `docker-compose up -d` in the directory where the `docker-compose.yml` file is located.
 
 ## Code overview
 
@@ -115,9 +116,7 @@ graph TD
 
 ## Docker stack
 
-The Prometheus service must be configured to retrieve the metrics data from the endpoint. Grafana must also be configured to get the data from Prometheus and visualize it as graphs.
-
-To run the Docker stack, run `docker-compose up -d` in the directory where the `docker-compose.yml` file is located.
+In a production environment, the Prometheus service must be configured to retrieve the metrics data from the endpoint. Grafana must also be configured to get the data from Prometheus and visualize it as graphs. For this sample both services are setup as part of the [Docker stack](#prerequisites)
 
 ### Show a graph
 
@@ -133,11 +132,15 @@ avg(rate(nservicebus_messaging_successes_total[5m]))
 
 ## Grafana
 
-Grafana must be installed and configured to display the data scraped and stored in Prometheus. For more information on how to install Grafana, refer to the [Grafana installation guide](https://docs.grafana.org/installation). In this sample, the Grafana service runs as part of the Docker stack mentioned above.
+Open Grafana on `http://localhost:3000`, which is made available as part of the [Docker stack](#prerequisites)
+
+For a production environment, Grafana must be installed and configured to display the data scraped and stored in Prometheus. For more information on how to install Grafana, refer to the [Grafana installation guide](https://docs.grafana.org/installation). 
 
 ### Dashboard
 
-To graph the metrics, the following steps must be performed:
+This sample includes an [export of the Grafana dashboard](grafana-endpoints-dashboard.json) which can be [imported](https://docs.grafana.org/reference/export_import/) as a reference.
+
+To create a custom dashboard using Prometheus data, the following steps must be performed:
 
 * Add a new dashboard
 * Add a graph
@@ -147,4 +150,3 @@ To graph the metrics, the following steps must be performed:
 
 ![Grafana dashboard with NServiceBus OpenTelemetry metrics](example-grafana-dashboard.png)
 
-The sample includes an [export of the Grafana dashboard](grafana-endpoints-dashboard.json) which can be [imported](https://docs.grafana.org/reference/export_import/) as a reference.
