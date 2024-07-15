@@ -1427,6 +1427,8 @@
     Articles:
     - Title: Upgrade tips
       Url: servicecontrol/upgrades
+    - Title: Version 5 to Containers
+      Url: servicecontrol/upgrades/5-to-containers
     - Title: Version 5.1 to 5.2
       Url: servicecontrol/upgrades/5.1to5.2
     - Title: Version 4 to 5
@@ -1576,6 +1578,8 @@
         Url: servicecontrol/transport-adapter/incompatible-features
   - Title: Migrations
     Articles:
+    - Title: Overview
+      Url: servicecontrol/migrations
     - Title: Replacing Error instances
       Url: servicecontrol/migrations/replacing-error-instances
       Articles:
