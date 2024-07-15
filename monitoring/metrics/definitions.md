@@ -15,6 +15,10 @@ Gathering metrics is important to know how a system works and if it works proper
 
 NServiceBus and ServiceControl capture a number of different metrics about a running endpoint including the processing time, the number of messages in each queue (differentiating between those pulled from the queue, those processed successfully, and those which failed processing), as well as "critical time".
 
+### Handler time
+
+Handler time is the time each handler takes to perform the business logic. It is recorded for each handler separately. It includes serialization of outgoing messages. Handler time does not include any database operations managed by NServiceBus.
+
 ### Processing time
 
 Processing time is the time it takes for an endpoint to **successfully** process an incoming message. It includes:
