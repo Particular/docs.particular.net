@@ -1,7 +1,7 @@
 ---
 title: Connection Settings
 summary: Information about the connection settings for the SQL Server transport, including custom database schemas and circuit breakers
-reviewed: 2021-08-13
+reviewed: 2024-07-16
 component: SqlTransport
 redirects:
 - nservicebus/sqlserver/connection-settings
