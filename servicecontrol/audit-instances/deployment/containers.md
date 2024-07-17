@@ -5,13 +5,13 @@ component: ServiceControl
 versions: '[5.3, )'
 ---
 
-ServiceControl Audit instances are deployed using the [`particular/servicecontrol-audit` image](https://hub.docker.com/r/particular/servicecontrol-audit), as shown in this minimal example using `docker run`:
+ServiceControl Audit instances are deployed using the [`particular/servicecontrol-audit` image](https://hub.docker.com/r/particular/servicecontrol-audit), as shown in this minimal example using `docker run`, assuming a RabbitMQ container named `rabbitmq`:
 
 ```shell
-docker run -d -p 44444:44444 \
+docker run -d --name audit -p 44444:44444 \
     -e TRANSPORTTYPE=RabbitMQ.QuorumConventionalRouting \
-    -e CONNECTIONSTRING="host=host.docker.internal" \
-    -e RAVENDB_CONNECTIONSTRING="http://host.docker.internal:8080" \
+    -e CONNECTIONSTRING="host=rabbitmq" \
+    -e RAVENDB_CONNECTIONSTRING="http://audit-db:8080" \
     particular/servicecontrol-audit:latest
 ```
 ## Initial setup

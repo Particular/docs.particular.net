@@ -5,14 +5,14 @@ component: ServiceControl
 versions: '[5.3, )'
 ---
 
-ServiceControl Error instances are deployed using the [`particular/servicecontrol` image](https://hub.docker.com/r/particular/servicecontrol), as shown in this minimal example using `docker run`:
+ServiceControl Error instances are deployed using the [`particular/servicecontrol` image](https://hub.docker.com/r/particular/servicecontrol), as shown in this minimal example using `docker run`, assuming a RabbitMQ container named `rabbitmq`:
 
 ```shell
-docker run -d -p 33333:33333 \
+docker run -d --name servicecontrol -p 33333:33333 \
     -e TRANSPORTTYPE=RabbitMQ.QuorumConventionalRouting \
-    -e CONNECTIONSTRING="host=host.docker.internal" \
-    -e RAVENDB_CONNECTIONSTRING="http://host.docker.internal:8080" \
-    -e REMOTEINSTANCES='[{"api_uri":"http://host.docker.internal:44444/api"}]'
+    -e CONNECTIONSTRING="host=rabbitmq" \
+    -e RAVENDB_CONNECTIONSTRING="http://servicecontrol-db:8080" \
+    -e REMOTEINSTANCES='[{"api_uri":"http://audit:44444/api"}]'
     particular/servicecontrol:latest
 ```
 ## Initial setup

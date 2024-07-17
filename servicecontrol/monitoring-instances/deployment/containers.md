@@ -5,12 +5,12 @@ component: ServiceControl
 versions: '[5.3, )'
 ---
 
-ServiceControl Monitoring instances are deployed using the [`particular/servicecontrol-monitoring` image](https://hub.docker.com/r/particular/servicecontrol-monitoring), as shown in this minimal example using `docker run`:
+ServiceControl Monitoring instances are deployed using the [`particular/servicecontrol-monitoring` image](https://hub.docker.com/r/particular/servicecontrol-monitoring), as shown in this minimal example using `docker run`, assuming a RabbitMQ container named `rabbitmq`:
 
 ```shell
-docker run -d -p 33633:33633 \
+docker run -d --name monitoring -p 33633:33633 \
     -e TRANSPORTTYPE=RabbitMQ.QuorumConventionalRouting \
-    -e CONNECTIONSTRING="host=host.docker.internal" \
+    -e CONNECTIONSTRING="host=rabbitmq" \
     particular/servicecontrol-monitoring:latest
 ```
 ## Initial setup

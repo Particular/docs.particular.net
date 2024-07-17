@@ -30,10 +30,10 @@ First, a new audit instance must be created. [Deploy a new Audit instance contai
 
 Next, modify the Error instance container by changing the [`REMOTEINSTANCES` environment variable](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolremoteinstances) to include the new Audit instance's API URL. The value must be a JSON-encoded array containing objects that each have an `api_uri` value.
 
-This example of a `REMOTEINSTANCES` value (as it would be used in a `docker run` command) shows two remote instances on the Docker internal network, using ports `44444` and `44446`:
+This example of a `REMOTEINSTANCES` value (as it would be used in a `docker run` command) shows two remote instances on the Docker internal network:
 
 ```shell
--e REMOTEINSTANCES='[{"api_uri":"http://host.docker.internal:44444/api"},{"api_uri":"http://host.docker.internal:44446/api"}]'
+-e REMOTEINSTANCES='[{"api_uri":"http://audit-1:44444/api"},{"api_uri":"http://audit-2:44444/api"}]'
 ```
 
 ## Disable audit queue ingestion on the old instance
