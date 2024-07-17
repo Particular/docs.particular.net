@@ -43,9 +43,6 @@ Use the `Remove-ServiceControlInstance` cmdlet to remove the instance and delete
 
 snippet: ps-remove-error-instance
 
-> [!NOTE]
-> All connected ServiceControl Audit instances should be [removed](/servicecontrol/audit-instances/deployment/powershell.md#audit-instance-cmdlets-and-aliases-removing-an-instance) before removing the ServiceControl Error instance. Use the `Get-ServiceControlRemotes` cmdlet to find a list of connected ServiceControl Audit instances for a given ServiceControl instance. <!-- TODO: Why do they all need to be removed? -->
-
 ### Upgrading a deployed instance
 
 include: powershell-updatemodule

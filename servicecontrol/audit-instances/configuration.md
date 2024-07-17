@@ -140,9 +140,9 @@ The path for the ServiceControl logs.
 | string | `%LOCALAPPDATA%\Particular\ServiceControl.Audit\logs` |
 
 > [!NOTE]
-> %LOCALAPPDATA% is a user-specific environment variable.
-
-<!-- //TODO: In Linux is this the same? %LOCALAPPDATA% -->
+> %LOCALAPPDATA% is a user-specific path on Windows.
+>
+> When hosted on containers, logs are sent to **stdout** and this setting is ignored.
 
 ### ServiceControl.Audit/LogLevel
 
