@@ -441,7 +441,7 @@ ServiceControl Audit stores its data in a RavenDB embedded instance. If direct a
 
 ### RavenDB 5
 
-For instances running version 4.26 and above, which are configured to use [the new RavenDB 5 persistence](/servicecontrol/upgrades/new-persistence.md) browse to:
+For instances running version 4.26 and above, which are configured to use [the new RavenDB 5 persistence](/servicecontrol/migrations/new-persistence.md) browse to:
 
 ```no-highlight
 http://localhost:{configured ServiceControl instance maintenance port}
