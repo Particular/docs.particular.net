@@ -278,13 +278,13 @@ snippet: ps-list-audit-remotes
 
 To change the address of a remote instance to a new host and/or port number:
 
-1. Remove the current address from the list of remote instances: <!-- TODO: Remove the following line and replace with an anchor -->
+1. Remove the current address from the list of remote instances:
    - `Remove-ServiceControlRemote -Name $primaryServiceControl.Name -RemoteInstanceAddress $currentAddress`
 2. Restart the primary instance to refresh the list of remote instances
 3. Stop the remote instance
 4. Change the host and/or port number of the remote instance using the ServiceControl Management utility
 5. Start the remote instance at its new address
-6. Add the new address to the list of remote instances:  <!-- TODO: Remove the following line and replace with an anchor -->
+6. Add the new address to the list of remote instances: 
    - `Add-ServiceControlRemote -Name $primaryServiceControl.Name -RemoteInstanceAddress $newAddress`
 7. Restart the primary instance to refresh the list of remote instances
 
