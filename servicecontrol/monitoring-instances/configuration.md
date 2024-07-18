@@ -36,7 +36,7 @@ The endpoint name to be used by the monitoring instance and the name of the moni
 | string | `Particular.Monitoring` |
 
 > [!WARNING]
-> After changing this setting it's necessary to run the monitoring instance setup procedure by executing `ServiceControl.Monitoring.exe -s` in the command prompt. This ensures that all necessary queues are created and properly configured. <!-- //TODO: Perhaps just link to the setup procedure so we can handle all 3 deployment types. -->
+> After changing this setting it's necessary to run the monitoring instance setup procedure by executing `ServiceControl.Monitoring.exe -s` in the command prompt. This ensures that all necessary queues are created and properly configured.
 
 ### Monitoring/HttpHostname
 

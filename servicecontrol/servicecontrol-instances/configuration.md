@@ -60,8 +60,6 @@ The port to bind the embedded HTTP API server.
 > [!WARNING]
 > If the `ServiceControl/Port` setting is changed, and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/configure-ravendb-location.md).
 
-<!-- TODO: Link to troubleshooting port numbers/urlacl -->
-
 ### ServiceControl/DatabaseMaintenancePort
 
 The port to expose the RavenDB database.
@@ -83,14 +81,15 @@ The port to expose the RavenDB database.
 
 The virtual directory to bind the embedded HTTP server to; modify this setting to bind to a specific virtual directory.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_VIRTUALDIRECTORY` |
+| **App config key** | `ServiceControl/VirtualDirectory` |
+| **SCMU field** | N/A |
 
-Default: `empty`
-
-> [!NOTE]
-> This setting is provided for backward compatibility and should be considered obsolete.
-
-<!-- TODO: Until when? Should this already be removed. Do research. -->
+| Type | Default value |
+| --- | --- |
+| string | _None_ |
 
 ### ServiceControl/RemoteInstances
 
@@ -107,7 +106,7 @@ A configuration that specifies one or more attached Audit instances. See also [S
 | string | None |
 
 ## Embedded Database
-<!-- TODO: Add (make include) or move to RavenDB settings -->
+
 ### ServiceControl/DbPath
 
 The path where the internal RavenDB is located.
@@ -116,7 +115,7 @@ The path where the internal RavenDB is located.
 | --- | --- |
 | **Environment variable** | `SERVICECONTROL_AUDIT_DBPATH` |
 | **App config key** | `ServiceControl.Audit/DbPath` |
-| **SCMU field** | `???` |
+| **SCMU field** | `Database Path` |
 
 | Type | Default value |
 | --- | --- |
@@ -164,9 +163,9 @@ The path for the ServiceControl logs.
 | string | `%LOCALAPPDATA%\Particular\ServiceControl\logs` |
 
 > [!NOTE]
-> %LOCALAPPDATA% is a user-specific environment variable.
-
-<!-- //TODO: In Linux is this the same? %LOCALAPPDATA% -->
+> %LOCALAPPDATA% is a user-specific path on Windows.
+>
+> When hosted on containers, logs are sent to **stdout** and this setting is ignored.
 
 ### ServiceControl/LogLevel
 
@@ -181,8 +180,6 @@ Controls the LogLevel of the ServiceControl logs.
 | Type | Default value |
 | --- | --- |
 | string | `Info` |
-
-<!-- TODO: Error is different than Audit, is this correct? -->
 
 ### ServiceControl/RavenDBLogLevel
 
@@ -206,7 +203,6 @@ Valid settings are: `None`, `Information`, `Operations`.
 
 Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 
-This setting will default to `Warn` if an invalid value is assigned.
 #end-if
 
 ## Recoverability
@@ -421,7 +417,7 @@ The name of the error queue to ingest messages from.
 
 ### ServiceControl/ForwardErrorMessages
 
-Use this setting to configure whether processed error messages are forwarded to another queue or not. This entry should be set to `false` if there is no external process reading messages from the [`ServiceBus/ErrorLogQueue`]()<!-- TODO: Add anchor link -->.
+Use this setting to configure whether processed error messages are forwarded to another queue or not. This entry should be set to `false` if there is no external process reading messages from the [`ServiceBus/ErrorLogQueue`](#transport-servicecontrolforwarderrormessages).
 
 | Context | Name |
 | --- | --- |
@@ -450,7 +446,7 @@ The error queue name to use for forwarding error messages. This setting is ignor
 | string | `<ErrorQueue>.log` |
 
 > [!NOTE]
-> Changing the configuration file or environment value directly will not result in the queue being created. If you are using the ServiceControl Management utility to manage your ServiceControl error instance changing the value will create the forwarding queue if it has not been created. <!-- //TODO: init containers, is there a powershell equivalent? -->
+> Changing the configuration file or environment value directly will not result in the queue being created. If you are using the ServiceControl Management utility to manage your ServiceControl error instance changing the value will create the forwarding queue if it has not been created.
 
 ## Usage Reporting when using ServiceControl
 
@@ -640,43 +636,30 @@ When configuring the heartbeat grace period, make sure it is greater than the [h
 
 ## Troubleshooting
 
-### ServiceControl/ExposeRavenDB
-
-// TODO: Bring back audit or kill this - plus Maintenance Mode link below
-
-ServiceControl stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If during troubleshooting, direct access to the RavenDB instance is required while ServiceControl is running, ServiceControl can be configured to expose the RavenDB studio.
-
-> [!NOTE]
-> [Maintenance mode](/servicecontrol/ravendb/accessing-database.md#windows-deployment-maintenance-mode) is the recommended way to review documents in the embedded RavenDB instance.
-
-> [!WARNING]
-> The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl and is not intended for external manipulation or modifications.
-
-Type: bool
-
-Default: `false`
-
-After restarting the ServiceControl service, access the RavenDB studio locally at the following endpoint:
-
-```no-highlight
-http://localhost:{configured ServiceControl instance maintenance port}/studio/index.html#databases/documents?&database=%3Csystem%3E
-```
-
-> [!NOTE]
-> The ServiceControl embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access, the hostname must be [set to a fully qualified domain name](/servicecontrol/setting-custom-hostname.md).
-
 ### ServiceControl/DataSpaceRemainingThreshold
 
-The percentage threshold for the [Message database storage space](/servicecontrol/servicecontrol-instances/<!-- //TODO ServiceControl self monitoring via custom checks -->) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive), then the check will fail, alerting the user.
+The percentage threshold for the [Message database storage space](/servicecontrol/servicecontrol-instances/#persistence-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive), then the check will fail, alerting the user.
 
-Type: int
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_DATASPACEREMAININGTHRESHOLD` |
+| **App config key** | `ServiceControl/DataSpaceRemainingThreshold` |
+| **SCMU field** | N/A |
 
-Default: 20
+| Type | Default value |
+| --- | --- |
+| int | 20 (percent) |
 
 ### ServiceControl/MinimumStorageLeftRequiredForIngestion
 
-This setting was introduced in version 4.28. The percentage threshold for the [Critical message database storage space](/servicecontrol/servicecontrol-instances/<!-- //TODO ServiceControl self monitoring via custom checks -->) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive), then the check will fail, alerting the user. The message ingestion will also be stopped to prevent data loss. Message ingestion will resume once more disk space is made available.
+This setting was introduced in version 4.28. The percentage threshold for the [Critical message database storage space](/servicecontrol/servicecontrol-instances/#persistence-critical-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive), then the check will fail, alerting the user. The message ingestion will also be stopped to prevent data loss. Message ingestion will resume once more disk space is made available.
 
-Type: int
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_MINIMUMSTORAGELEFTREQUIREDFORINGESTION` |
+| **App config key** | `ServiceControl/MinimumStorageLeftRequiredForIngestion` |
+| **SCMU field** | N/A |
 
-Default: 5
+| Type | Default value |
+| --- | --- |
+| int | 5 (percent) |

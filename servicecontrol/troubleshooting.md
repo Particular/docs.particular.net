@@ -186,7 +186,7 @@ This risk of these error occurring is mitigated by:
 
 To resolve these errors, the affected indexes must be rebuilt:
 
-- [Access the ServiceControl database](/servicecontrol/ravendb/accessing-database)
+- [Access the ServiceControl database](/servicecontrol/ravendb/accessing-database.md)
 - In RavenDB Management Studio, navigate to the Indexes view
 - [Reset the relevant index(es)](https://ravendb.net/docs/article-page/5.4/csharp/indexes/index-administration)
 

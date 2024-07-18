@@ -44,7 +44,7 @@ This field can also contain a `*` as a wildcard to allow remote connections that
 | string | `localhost` |
 
 > [!WARNING]
-> If the `ServiceControl.Audit/HostName` setting is changed, and the `ServiceControl.Audit/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/configure-ravendb-location.md). <!-- TODO: Copied from error instance, confirm config keys -->
+> If the `ServiceControl.Audit/HostName` setting is changed, and the `ServiceControl.Audit/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/configure-ravendb-location.md).
 
 ### ServiceControl.Audit/Port
 
@@ -61,9 +61,7 @@ The port to bind the embedded HTTP API server.
 | int | `44444` |
 
 > [!WARNING]
-> If the `ServiceControl.Audit/Port` setting is changed, and the `ServiceControl.Audit/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/configure-ravendb-location.md). <!-- TODO: Copied from error instance, confirm config keys -->
-
-<!-- TODO: Link to troubleshooting port numbers/urlacl -->
+> If the `ServiceControl.Audit/Port` setting is changed, and the `ServiceControl.Audit/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/configure-ravendb-location.md).
 
 ### ServiceControl.Audit/DatabaseMaintenancePort
 
@@ -81,6 +79,21 @@ The port to expose the RavenDB database.
 
 > [!NOTE]
 > This setting is not relevant when running an audit instance in a container.
+
+### ServiceControl.Audit/VirtualDirectory
+
+The virtual directory to bind the embedded HTTP server to; modify this setting to bind to a specific virtual directory.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_VIRTUALDIRECTORY` |
+| **App config key** | `ServiceControl.Audit/VirtualDirectory` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | _None_ |
+
 
 ## Database
 
@@ -156,11 +169,9 @@ Controls the LogLevel of the ServiceControl logs.
 
 | Type | Default value |
 | --- | --- |
-| string | `Warn` |
+| string | `Info` |
 
 Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
-
-This setting will default to `Warn` if an invalid value is assigned.
 
 ## Recoverability
 
@@ -411,7 +422,7 @@ The audit queue name to use for forwarding audit messages. This setting is ignor
 | string | `<AuditQueue>.log` |
 
 > [!NOTE]
-> Changing the configuration file or environment value directly will not result in the queue being created. If you are using the ServiceControl Management utility to manage your ServiceControl audit instance changing the value will create the forwarding queue if it has not been created. <!-- //TODO: init containers, is there a powershell equivalent? -->
+> Changing the configuration file or environment value directly will not result in the queue being created. If you are using the ServiceControl Management utility to manage your ServiceControl audit instance changing the value will create the forwarding queue if it has not been created.
 
 ### ServiceControl.Audit/ServiceControlQueueAddress
 
@@ -427,8 +438,6 @@ The ServiceControl queue name to use for plugin messages (e.g. Heartbeats, Custo
 | --- | --- |
 | string | _Empty_ |
 
-<!-- //TODO: What is the default? It is based on the windows service name, but doesn't that have a default? -->
-
 ## Troubleshooting
 
 ServiceControl Audit stores its data in a RavenDB embedded instance. If direct access to the RavenDB instance is required for troubleshooting while ServiceControl Audit is running, see [Accessing the database](/servicecontrol/ravendb/accessing-database.md).
@@ -443,27 +452,7 @@ http://localhost:{configured ServiceControl instance maintenance port}
 
 to access the internal database via [the RavenDB studio interface](https://ravendb.net/docs/article-page/5.4/csharp/studio/overview).
 
-#if-version [,5)
-### RavenDB 3.5
 
-#### ServiceControl.Audit/ExposeRavenDB
-
-The ServiceControl Audit instance can be configured to expose the RavenDB studio.
-
-| Type | Default value |
-| --- | --- |
-| bool | `false` |
-
-After restarting the ServiceControl Audit service, access the RavenDB studio locally at the following endpoint:
-
-```no-highlight
-http://localhost:{configured ServiceControl instance maintenance port}/studio/index.html#databases/documents?&database=%3Csystem%3E
-```
-
-> [!NOTE]
-> The ServiceControl Audit embedded RavenDB studio can be accessed from localhost regardless of the hostname customization setting. To allow external access, the hostname must be [set to a fully qualified domain name](/servicecontrol/setting-custom-hostname.md).
-
-#end-if
 #### ServiceControl.Audit/DataSpaceRemainingThreshold
 
 The percentage threshold for the [Message database storage space](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-critical-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive) then the check will fail, alerting the user.

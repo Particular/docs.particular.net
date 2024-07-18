@@ -36,12 +36,7 @@ The database can be accessed without stopping or restarting the ServiceControl i
 
 RavenDB 3.5 is used on all ServiceControl 4.x instances except for ServiceControl Audit instances initially created using version 4.26.0 or later.
 
-In these versions, ServiceControl serves the database in-process and only exposes the database if configured to do so:
-
-// TODO: Audit link, setting missing due to no 4 snippets?
-
-* By the `ExposeRavenDB` setting, for the [Error](/servicecontrol/servicecontrol-instances/configuration.md#troubleshooting-servicecontrolexposeravendb) or [Audit]() instance
-* By enabling [maintenance mode](#windows-deployment-maintenance-mode)
+In these versions, ServiceControl serves the database in-process and only exposes the database if [maintenance mode](#windows-deployment-maintenance-mode) is enabled.
 
 ### Maintenance mode
 
