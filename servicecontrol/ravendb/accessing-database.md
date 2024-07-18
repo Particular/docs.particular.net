@@ -4,6 +4,7 @@ summary: How to get direct access to the database used by ServiceControl Error a
 reviewed: 2024-07-11
 redirects:
   - servicecontrol/maintenance-mode
+  - servicecontrol/audit-instances/maintenance-mode
 ---
 
 ServiceControl Error and Audit instances store data in a RavenDB database. Some advanced operations require accessing that database directly.

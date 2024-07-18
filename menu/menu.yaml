@@ -1517,8 +1517,6 @@
           Url: servicecontrol/logging
         - Title: Forwarding queues
           Url: servicecontrol/errorlog-auditlog-behavior
-      - Title: Maintenance Mode
-        Url: servicecontrol/audit-instances/maintenance-mode
   - Title: Monitoring instances
     Articles:
       - Title: ServiceControl monitoring instances
@@ -1553,9 +1551,7 @@
       Url: servicecontrol/backup-sc-database
     - Title: Containers
       Url: servicecontrol/ravendb/deployment/containers
-    - Title: Compacting the database (RavenDB 5)
-      Url: servicecontrol/db-compaction-v5
-    - Title: Compacting the database (RavenDB 3.5)
+    - Title: Compacting the database
       Url: servicecontrol/db-compaction
     - Title: Move database location
       Url: servicecontrol/move-database-location
@@ -1563,8 +1559,6 @@
     Articles:
     - Title: Azure Application Insights
       Url: servicecontrol/app-insights-integration
-    - Title: Plugins
-      Url: servicecontrol/plugins
     - Title: Integration events
       Url: servicecontrol/contracts
     - Title: Transport adapter

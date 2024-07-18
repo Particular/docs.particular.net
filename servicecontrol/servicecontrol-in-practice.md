@@ -5,7 +5,7 @@ reviewed: 2023-01-03
 isLearningPath: true
 ---
 
-ServiceControl provides many capabilities such as endpoint monitoring, advanced debugging, and failed message management. These capabilities can be extended by adding optional [plugins](/servicecontrol/plugins/) into the endpoints being monitored. Each capability and plugin provides valuable information, but they have certain resource and performance costs.
+ServiceControl provides many capabilities such as endpoint monitoring, advanced debugging, and failed message management. These capabilities can be extended by adding optional plugins into the endpoints being monitored. Each capability and plugin provides valuable information, but they have certain resource and performance costs.
 
 Hardware, peak and average message throughput, and number of endpoints in the system all have an impact on the performance of ServiceControl. These factors can vary greatly between environments. Capabilities and plugins that provide value in one environment may have a negative impact if included in another environment. For example, the [Saga Audit](/nservicebus/sagas/saga-audit.md) plugin provides additional information to support a development environment where message load is low. In a production environment, where there are many more saga instances to audit, the increased overhead is magnified and can have a significant performance impact.
 
@@ -34,7 +34,7 @@ Turn off [audit forwarding](/servicecontrol/errorlog-auditlog-behavior.md) if it
 
 ## Plugin considerations
 
-[Plugins](/servicecontrol/plugins/) are installed in an endpoint and send data to ServiceControl. This communication uses messaging over the configured transport of the endpoint. Each instance of a plugin adds more messages to the ServiceControl queue which can delay the processing of each message and make ServiceControl less responsive.
+Plugins are installed in an endpoint and send data to ServiceControl. This communication uses messaging over the configured transport of the endpoint. Each instance of a plugin adds more messages to the ServiceControl queue which can delay the processing of each message and make ServiceControl less responsive.
 
 ### Heartbeats
 

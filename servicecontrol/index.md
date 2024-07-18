@@ -31,6 +31,6 @@ To enable [ServiceControl](/servicecontrol) to gather this information, configur
 
 - [Configure recoverability](/nservicebus/recoverability) to collect failed messages.
 - [Enable auditing](/nservicebus/operations/auditing.md) to collect all messages.
-- [Install plugins](/servicecontrol/plugins/) to monitor endpoint health, collect saga state changes, and use custom checks.
+- Install plugins to [monitor endpoint health](/monitoring/heartbeats/), collect [saga state changes](/nservicebus/sagas/saga-audit.md), and use [custom checks](/monitoring/custom-checks/).
 
 See [_Optimizing ServiceControl for use in different environments_](/servicecontrol/servicecontrol-in-practice.md) for more information about practical considerations.
