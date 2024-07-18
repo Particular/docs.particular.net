@@ -19,9 +19,6 @@ If the ServiceControl Management application was not retained when installing in
 
 The selected license file will be stored into the [machine-wide license file location](/nservicebus/licensing/#license-management-machine-wide-license-location) so it is available to all instances of ServiceControl regardless of the service account used.
 
-<!-- TODO: Is this still true? -->
-A copy of the imported license will be added to the `HKEY_LOCAL_MACHINE` registry hive for backward compatibility with older instances of ServiceControl.
-
 ![](managementutil-addlicense.png 'width=500')
 
 ## ServiceControl PowerShell
