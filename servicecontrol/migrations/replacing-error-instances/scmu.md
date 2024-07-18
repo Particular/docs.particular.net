@@ -34,7 +34,7 @@ The alternative is to [create a brand new instance](#replace-the-error-instance-
 
 ### Force upgrading the Error instance
 
-1. Click the wrench <kbd> :wrench: </kbd> icon to access to the Error instance's [Advanced Options](/servicecontrol/maintenance-mode.md) screen.
+1. Click the wrench <kbd> :wrench: </kbd> icon to access to the Error instance's Advanced Options screen.
 2. If a **Force Upgrade** banner does not appear, stop and use the [Create a new Error instance](#replace-the-error-instance-create-a-new-error-instance) procedure instead.
 3. Under **Force Upgrade**, click the **Upgrade Instance** button and follow the prompts.
  * _**Note:** This is a destructive operation. A database backup is made but will require application re-installation of the instance to recover._

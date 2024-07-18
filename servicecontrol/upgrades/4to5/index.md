@@ -94,7 +94,7 @@ Follow this procedure to upgrade using the ServiceControl Management Utility:
 
 1. Ensure the [getting ready](#upgrading-to-version-5-getting-ready) steps above have been completed.
 2. Using ServiceControl Management version 5, perform a forced upgrade on the Error instance:
-    * Click the wrench <kbd> :wrench: </kbd> icon to access to the Error instance's [Advanced Options](/servicecontrol/maintenance-mode.md) screen.
+    * Click the wrench <kbd> :wrench: </kbd> icon to access to the Error instance's Advanced Options screen.
     * Under **Force Upgrade to Version 5**, click the **Upgrade Instance** button and follow the prompts.
     * _**Note:** This is a destructive operation. A database backup is made but will require application re-installation of the instance to recover._
 3. Re-enable error message ingestion by removing the `IngestErrorMessages` setting from the `ServiceControl.exe.config` file.

@@ -67,7 +67,7 @@ The port to bind the embedded HTTP API server.
 
 ### ServiceControl.Audit/DatabaseMaintenancePort
 
-The port to bind the RavenDB when in [maintenance mode](/servicecontrol/audit-instances/maintenance-mode.md).
+The port to expose the RavenDB database.
 
 | Context | Name |
 | --- | --- |
@@ -431,13 +431,7 @@ The ServiceControl queue name to use for plugin messages (e.g. Heartbeats, Custo
 
 ## Troubleshooting
 
-ServiceControl Audit stores its data in a RavenDB embedded instance. If direct access to the RavenDB instance is required for troubleshooting while ServiceControl Audit is running, use the following instructions.
-
-> [!NOTE]
-> [Maintenance mode](/servicecontrol/audit-instances/maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
-
-> [!WARNING]
-> The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl Audit and is not intended for external manipulation or modifications.
+ServiceControl Audit stores its data in a RavenDB embedded instance. If direct access to the RavenDB instance is required for troubleshooting while ServiceControl Audit is running, see [Accessing the database](/servicecontrol/ravendb/accessing-database.md).
 
 ### RavenDB 5
 

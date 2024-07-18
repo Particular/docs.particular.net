@@ -64,7 +64,7 @@ The port to bind the embedded HTTP API server.
 
 ### ServiceControl/DatabaseMaintenancePort
 
-The port to bind the RavenDB when in [maintenance mode](/servicecontrol/maintenance-mode.md).
+The port to expose the RavenDB database.
 
 | Context | Name |
 | --- | --- |
@@ -642,10 +642,12 @@ When configuring the heartbeat grace period, make sure it is greater than the [h
 
 ### ServiceControl/ExposeRavenDB
 
+// TODO: Bring back audit or kill this - plus Maintenance Mode link below
+
 ServiceControl stores its data in a RavenDB embedded instance. By default, the RavenDB instance is accessible only by the ServiceControl service. If during troubleshooting, direct access to the RavenDB instance is required while ServiceControl is running, ServiceControl can be configured to expose the RavenDB studio.
 
 > [!NOTE]
-> [Maintenance mode](/servicecontrol/maintenance-mode.md) is the recommended way to review documents in the embedded RavenDB instance.
+> [Maintenance mode](/servicecontrol/ravendb/accessing-database.md#windows-deployment-maintenance-mode) is the recommended way to review documents in the embedded RavenDB instance.
 
 > [!WARNING]
 > The ServiceControl RavenDB embedded instance is used exclusively by ServiceControl and is not intended for external manipulation or modifications.

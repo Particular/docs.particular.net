@@ -79,7 +79,7 @@ Once ServiceControl is running in this mode, the following procedure can be used
 
 ### Step 1: Start ServiceControl in maintenance mode
 
-* Start the ServiceControl instance in [maintenance mode](maintenance-mode.md).
+* Start the ServiceControl instance in [maintenance mode](/servicecontrol/ravendb/accessing-database.md#windows-deployment-maintenance-mode).
 
 ### Step 2: Export the current database
 
