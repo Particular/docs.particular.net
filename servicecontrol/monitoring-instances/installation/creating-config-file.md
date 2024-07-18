@@ -116,6 +116,8 @@ If running multiple setups of the Platform Tools (i.e. multiple versions of Serv
 
 If using [MSMQ transport](/transports/msmq) and the monitoring instance is installed on a different machine to the ServiceControl error instance, then only the monitoring instance setting needs to be modified to include the machine name of the error instance in the queue address.
 
+If using [AmazonSQS transport](/transports/sqs/) with [queue name prefixes](/transports/sqs/configuration-options#queue-name-prefix) then only the monitoring instance setting needs to be modified to include the queue name prefix in the queue address.
+
 Type: string
 
 Default: `ServiceControl.ThroughputData`
