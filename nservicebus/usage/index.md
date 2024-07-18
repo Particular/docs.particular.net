@@ -9,7 +9,7 @@ related:
 
 There are two methods available for measuring usage of an NServiceBus system:
 
-- [Using ServicePulse](#using-servicepulse) (**recommended**)
+- [Using ServicePulse](#benefits-of-using-servicepulse-to-measure-usage) (**recommended**)
 - [Standalone Endpoint Throughput tool](#standalone-endpoint-throughput-tool)
 
 Both methods will generate a usage report containing NServiceBus endpoint count and throughput summary. The report is saved as a file onto the local machine, which needs to be sent to Particular upon request, usually at license renewal time.
