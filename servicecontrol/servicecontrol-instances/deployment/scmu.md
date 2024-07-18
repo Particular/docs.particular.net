@@ -1,5 +1,5 @@
 ---
-title: Deploying ServiceControl Error instances using SCMU
+title: Deploying Error instances using ServiceControl Management
 summary: How to install different types of ServiceControl instances
 reviewed: 2024-06-14
 component: ServiceControl
@@ -9,8 +9,6 @@ related:
 redirects:
  - servicecontrol/multi-transport-support
 ---
-
-//TODO: Review/Editorialize. Some of this should be in the index and less specific to SCMU deployments
 
 Every component in the Particular Service Platform (not including NServiceBus), including ServiceControl, must be [downloaded](https://particular.net/downloads) and installed.
 
