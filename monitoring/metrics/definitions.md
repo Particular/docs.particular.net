@@ -66,6 +66,18 @@ Critical time does _not_ include:
 
 This metric measures the number of [retries](/nservicebus/recoverability) scheduled by the endpoint (immediate or delayed).
 
+### Immdiate retries
+
+This metric measures the number of [immediate retries](/nservicebus/recoverability/#immediate-retries) scheduled by the endpoint.
+
+### Delayed retries
+
+This metric measures the number of [delayed retries](/nservicebus/recoverability/#delayed-retries) scheduled by the endpoint.
+
+### Moved to error queue
+
+This metric measures the number of [messages moved to the error queue](/nservicebus/recoverability/#fault-handling).
+
 ### Queue length
 
 This metric tracks the number of messages in the main input queue of an endpoint.
