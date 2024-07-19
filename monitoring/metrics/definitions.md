@@ -66,7 +66,7 @@ Critical time does _not_ include:
 
 This metric measures the number of [retries](/nservicebus/recoverability) scheduled by the endpoint (immediate or delayed).
 
-### Immdiate retries
+### Immediate retries
 
 This metric measures the number of [immediate retries](/nservicebus/recoverability/#immediate-retries) scheduled by the endpoint.
 
