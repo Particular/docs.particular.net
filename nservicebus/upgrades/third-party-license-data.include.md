@@ -45,7 +45,7 @@
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Azure.Messaging.ServiceBus/" target="_blank">Azure.Messaging.ServiceBus</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Messaging.ServiceBus_7.17.5/sdk/servicebus/Azure.Messaging.ServiceBus/README.md" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Azure.Messaging.ServiceBus/" target="_blank">Azure.Messaging.ServiceBus</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Messaging.ServiceBus_7.18.0/sdk/servicebus/Azure.Messaging.ServiceBus/README.md" target="_blank">Project Site</a> |
 
 ### [NServiceBus.Transport.AzureStorageQueues](/nuget/NServiceBus.Transport.AzureStorageQueues)
 
