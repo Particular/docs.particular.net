@@ -3,15 +3,13 @@ title: Configuring endpoints for monitoring
 summary: Steps to configure endpoints to be monitored by ServicePulse
 reviewed: 2022-09-30
 component: ServicePulse
-related:
-- servicecontrol/plugins
 ---
 
 **ServicePulse monitors NServiceBus endpoints for:**
 
  1. Endpoint availability (using heartbeat signals sent from the endpoint)
- 1. Failed messages (by monitoring the error queue defined for the endpoints)
- 1. Custom checks (defined and developed according to application needs)
+ 2. Failed messages (by monitoring the error queue defined for the endpoints)
+ 3. Custom checks (defined and developed according to application needs)
 
 ![ServicePulse dashboard](images/dashboard.png 'width=500')
 

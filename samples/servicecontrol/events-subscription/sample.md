@@ -6,7 +6,6 @@ reviewed: 2023-11-30
 related:
  - servicecontrol
  - servicecontrol/contracts
- - servicecontrol/plugins
  - samples/servicecontrol/monitoring3rdparty
 ---
 

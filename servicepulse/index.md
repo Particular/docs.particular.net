@@ -5,7 +5,6 @@ component: ServicePulse
 isLearningPath: true
 related:
 - servicecontrol/setting-custom-hostname
-- servicecontrol/plugins
 - monitoring/metrics/performance-counters
 ---
 

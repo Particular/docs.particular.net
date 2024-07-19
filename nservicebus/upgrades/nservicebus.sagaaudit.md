@@ -4,7 +4,6 @@ summary: Instructions on how to upgrade SagaAudit Plugins to the new NServiceBus
 reviewed: 2021-11-04
 component: SagaAudit
 related:
- - servicecontrol/plugins
  - nservicebus/sagas/saga-audit
 isUpgradeGuide: true
 ignoreSeoRecommendations: true
