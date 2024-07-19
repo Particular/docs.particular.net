@@ -1,7 +1,7 @@
 ---
 title: Compacting RavenDB instances
 summary: How to compact the RavenDB database backing ServiceControl for RavenDB 3.5 instances
-reviewed: 2022-10-26
+reviewed: 2024-07-19
 redirects:
   - servciecontrol/db-compaction-v5
 ---

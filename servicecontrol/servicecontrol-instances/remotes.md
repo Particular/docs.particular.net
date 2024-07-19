@@ -1,6 +1,6 @@
 ---
 title: ServiceControl remote instances
-reviewed: 2022-10-19
+reviewed: 2024-07-19
 component: ServiceControl
 redirects:
 - servicecontrol/servicecontrol-instances/distributed-instances

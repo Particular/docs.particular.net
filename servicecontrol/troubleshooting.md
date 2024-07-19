@@ -2,7 +2,7 @@
 title: ServiceControl Troubleshooting
 summary: Troubleshooting ServiceControl installation and common issues
 component: ServiceControl
-reviewed: 2023-07-07
+reviewed: 2024-07-19
 ---
 
 > [!NOTE]

@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Audit instances
 summary: Information about ServiceControl Audit instances
-reviewed: 2021-08-06
+reviewed: 2024-07-19
 component: ServiceControl
 redirects:
  - servicecontrol/audit-instances/persistence
