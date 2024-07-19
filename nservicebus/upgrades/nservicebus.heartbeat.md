@@ -4,7 +4,6 @@ summary: Instructions on how to upgrade Heartbeat Plugins to the new NServiceBus
 reviewed: 2021-11-04
 component: Heartbeats
 related:
- - servicecontrol/plugins
  - monitoring/heartbeats
 isUpgradeGuide: true
 ignoreSeoRecommendations: true

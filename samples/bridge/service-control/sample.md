@@ -6,7 +6,6 @@ reviewed: 2023-05-16
 related:
  - servicecontrol
  - nservicebus/bridge
- - servicecontrol/plugins
 redirects:
  - samples/servicecontrol/adapter-mixed-transports
 ---

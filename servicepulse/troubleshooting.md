@@ -16,11 +16,11 @@ component: ServicePulse
 
 RavenDB index could be disabled. This typically happens when disk space runs out. To fix this:
 
- 1. Put ServiceControl in [maintenance mode](/servicecontrol/maintenance-mode.md).
- 1. Open the [Raven Studio browser](http://localhost:33334/studio/index.html#databases/documents?&database=%3Csystem%3E)
- 1. Navigate to the Indexes tab
- 1. For each disabled index, set it's state to Normal.
- 
+ 1. Put ServiceControl in [maintenance mode](/servicecontrol/ravendb/accessing-database.md#windows-deployment-maintenance-mode).
+ 2. Open the [Raven Studio browser](http://localhost:33334/studio/index.html#databases/documents?&database=%3Csystem%3E)
+ 3. Navigate to the Indexes tab
+ 4. For each disabled index, set it's state to Normal.
+
 This assumes ServiceControl is using the default port and host name; adjust the url accordingly if this is not the case.
 
 ### ServicePulse only shows the loading icon after an update

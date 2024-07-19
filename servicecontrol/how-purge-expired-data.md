@@ -4,7 +4,7 @@ summary: Configuring ServiceControl's data retention policy
 related:
  - nservicebus/recoverability
  - nservicebus/operations/auditing
- - servicecontrol/audit-instances/persistence
+ - servicecontrol/audit-instances
 reviewed: 2022-10-18
 ---
 
@@ -14,7 +14,7 @@ ServiceControl stores audit and error data. Any audit and error data that is old
 > The expiration process curates only the data in the embedded RavenDB. Audit and error forwarding queues are not curated or managed by ServiceControl. To turn these settings off, launch ServiceControl Management and edit the configuration settings for the instance.
 
 > [!WARNING]
-> The database will not automatically shrink in size after reducing the retention period. Ensure ServiceControl had time to purge all expired messages and then [compact the database](db-compaction-v5.md).
+> The database will not automatically shrink in size after reducing the retention period. Ensure ServiceControl had time to purge all expired messages and then [compact the database](db-compaction.md).
 
 ## Differences in message retention implementations
 

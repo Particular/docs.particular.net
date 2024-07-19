@@ -1,6 +1,6 @@
 ---
 title: ServiceControl remote instances
-reviewed: 2022-10-19
+reviewed: 2024-07-19
 component: ServiceControl
 redirects:
 - servicecontrol/servicecontrol-instances/distributed-instances
@@ -210,15 +210,15 @@ class auditA,auditB ServiceControlRemote
 
 In this deployment, each region has a full ServiceControl installation with a primary Error instance and an Audit instance. Each region can be managed and controlled via a dedicated ServicePulse.
 
-A new cross-region primary instance is added to allow ServiceInsight to show messages from both regions. This cross-region instance includes each region-specific primary instance as a remote allowing it to query messages from both. The cross-region instance must disable error message ingestion management by setting with the value [`ServiceControl/IngestErrorMessages`](/servicecontrol/creating-config-file.md#host-settings-servicecontrolingesterrormessages) option to `false`.
+A new cross-region primary instance is added to allow ServiceInsight to show messages from both regions. This cross-region instance includes each region-specific primary instance as a remote allowing it to query messages from both. The cross-region instance must disable error message ingestion management by setting with the value [`ServiceControl/IngestErrorMessages`](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontrolingesterrormessages) option to `false`.
 
 ### Zero downtime upgrades
 
-The remotes feature can be used to perform [zero downtime upgrades](/servicecontrol/upgrades/zero-downtime.md).
+The remotes feature can be used to perform [zero downtime upgrades](/servicecontrol/migrations/replacing-audit-instances/) of Audit instances.
 
 ## Configuration
 
-Remote instances are listed in the `ServiceControl/RemoteInstances` app setting in the primary instance [configuration file](/servicecontrol/creating-config-file.md). The value of this setting is a JSON array of remote instances. Each entry requires an `api_url` property specifying the API URL of the remote instance. For ServiceControl version 3 and earlier, each entry requires a `queue_address` property specifying the queue address of the remote instance.
+Remote instances are listed in the `ServiceControl/RemoteInstances` app setting in the primary instance [configuration file](/servicecontrol/servicecontrol-instances/configuration.md). The value of this setting is a JSON array of remote instances. Each entry requires an `api_url` property specifying the API URL of the remote instance. For ServiceControl version 3 and earlier, each entry requires a `queue_address` property specifying the queue address of the remote instance.
 
 > [!NOTE]
 > Changes to the configuration file do not take effect until the primary instance is restarted.
@@ -254,31 +254,25 @@ The following cmdlets are available in ServiceControl version 4 and above, for t
 | sc-remotes             | Get-ServiceControlRemotes                     |
 
 > [!NOTE]
-> The names and addresses of instances are controlled by the [cmdlets](/servicecontrol/powershell-cmdlets.md) for managing ServiceControl and and ServiceControl Audit instances.
+> The names and addresses of instances are controlled by the cmdlets for managing ServiceControl [Error](/servicecontrol/servicecontrol-instances/deployment/powershell.md) and [Audit](/servicecontrol/audit-instances/deployment/powershell.md) instances.
 
 ### Add a remote instance
 
 `Add-ServiceControlRemote` adds a remote instance to a primary instance.
 
-```ps
-Add-ServiceControlRemote -Name Particular.ServiceControl -RemoteInstanceAddress "http://localhost:44444/api"
-```
+snippet: ps-add-audit-remote
 
 ### Remove a remote instance
 
 `Remove-ServiceControlRemote` removes a remote instance from a primary instance.
 
-```ps
-Remove-ServiceControlRemote -Name Particular.ServiceControl -RemoteInstanceAddress "http://localhost:44444/api"
-```
+snippet: ps-remove-audit-remote
 
 ### List remote instances
 
 `Get-ServiceControlRemotes` gets a list of remote instances from a primary instance.
 
-```ps
-Get-ServiceControlRemotes -Name Particular.ServiceControl
-```
+snippet: ps-list-audit-remotes
 
 ### Changing the address of a remote instance
 

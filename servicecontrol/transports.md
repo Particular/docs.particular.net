@@ -1,37 +1,31 @@
 ---
-title: Transport support
-reviewed: 2024-04-05
+title: Transport configuration
+reviewed: 2024-07-19
+component: ServiceControl
 ---
-ServiceControl can be configured to use one of the supported [transports](/transports/) listed below using the ServiceControl Management application:
 
-* [Azure Service Bus](/transports/azure-service-bus)
-* [Azure Storage Queues](/transports/azure-storage-queues/)
-* [Amazon Simple Queue Service (SQS)](/transports/sqs/)
-* [Microsoft Message Queuing (MSMQ)](/transports/msmq/)
-* [RabbitMQ - Conventional routing topology](/transports/rabbitmq/routing-topology.md#conventional-routing-topology)
-* [RabbitMQ - Direct routing topology](/transports/rabbitmq/routing-topology.md#direct-routing-topology)
-* [SQL Server](/transports/sql/)
+Messag
 
-### Transport-specific features
+ServiceControl can be configured to use one of the supported [message transports](/transports/) which are configured for each instance type using the following settings:
 
-#### Transport adapters
+* ServiceControl (Error) instance: [`ServiceControl/TransportType`](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicecontroltransporttype)
+* Audit instance: [`ServiceControl.Audit/TransportType`](/servicecontrol/audit-instances/configuration.md#transport-servicecontrol-audittransporttype)
+* Monitoring instance: [`Monitoring/TransportType`](/servicecontrol/monitoring-instances/configuration.md#transport-monitoringtransporttype)
 
-Certain transport features are not supported natively by ServiceControl and will require a [transport adapter](/servicecontrol/transport-adapter). Contact [support](https://particular.net/support) for further guidance.
+The value for the `TransportType` settings can be any of the following:
 
-Configuring third-party transports through the ServiceControl Management application is not supported.
+| Message Transport | `TransportType` values |
+|-|-|
+| [Azure Service Bus](#azure-service-bus) | `NetStandardAzureServiceBus` |
+| [Azure Storage Queues](#azure-storage-queues) | `AzureStorageQueues` |
+| [Amazon Simple Queue Service (SQS)](#amazon-sqs) | `AmazonSQS` |
+| [RabbitMQ](#rabbitmq)<br/><i>See topology options below.</i> | `RabbitMQ.QuorumConventionalRouting`<br/>`RabbitMQ.ClassicConventionalRouting`<br/>`RabbitMQ.QuorumDirectRouting`<br/>`RabbitMQ.ClassicDirectRouting` |
+| [SQL Server](#sql) | `SQLServer` |
+| [Microsoft Message Queuing (MSMQ)](#msmq) | `MSMQ` |
 
-#### MSMQ
+Follow the link for each transport for additional information on configuration options for that transport lower on this page.
 
-To configure MSMQ as the transport, ensure the MSMQ service has been installed and configured as outlined in [MSMQ configuration](/transports/msmq/#msmq-configuration).
-
-#### RabbitMQ
-
-In addition to the [connection string options of the transport](/transports/rabbitmq/connection-settings.md) the following ServiceControl specific options are available in versions 4.4 and above:
-
-* `UseExternalAuthMechanism=true|false(default)` - Specifies that an [external authentication mechanism should be used for client authentication](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-external-authentication).
-* `DisableRemoteCertificateValidation=true|false(default)` - Allows ServiceControl to connect to the broker [even if the remote server certificate is invalid](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-remote-certificate-validation).
-
-#### Azure Service Bus
+## Azure Service Bus
 
 In addition to the [connection string options of the transport](/transports/azure-service-bus/configuration.md#configuring-an-endpoint) the following ServiceControl specific options are available in versions 4.4 and above:
 
@@ -48,12 +42,32 @@ As of version 4.21.8 of ServiceControl, the following options can be used to ena
   * The fully-qualified namespace will be parsed from the `Endpoint=sb://my-namespace.servicebus.windows.net/` connection string option
   * When specifying managed identity for the connection string, a [`ManagedIdentityCredential`](https://docs.microsoft.com/en-us/dotnet/api/azure.identity.managedidentitycredential) will be used.
   * Set the `ClientId=some-client-id` connectionstring option to use a specific [user-assigned identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview#managed-identity-types)
- 
+
 As of versions 4.33.3 and 5.0.5 of ServiceControl, support for partitioned entities can be enabled by adding the following connection string parameter:
 
 * `EnablePartitioning=<True|False>` — Configures the transport to create entities that support partitioning. The default value is `false`.
 
-#### SQL
+## Azure Storage Queues
+
+ServiceControl does not add any connection settings beyond the Azure Storage connection string.
+
+## RabbitMQ
+
+RabbitMQ contains different `TransportType` options based on the topology and queue type used by the system:
+
+| Queue Type | Topology | `TransporType` value |
+| --- | --- | --- |
+| [Quorum](https://www.rabbitmq.com/docs/quorum-queues) | [Conventional](/transports/rabbitmq/routing-topology.md#conventional-routing-topology) | `RabbitMQ.QuorumConventionalRouting` (Preferred) |
+| [Quorum](https://www.rabbitmq.com/docs/quorum-queues) | [Direct](/transports/rabbitmq/routing-topology.md#direct-routing-topology) | `RabbitMQ.QuorumDirectRouting` |
+| [Classic](https://www.rabbitmq.com/docs/classic-queues) | [Conventional](/transports/rabbitmq/routing-topology.md#conventional-routing-topology) | `RabbitMQ.ClassicConventionalRouting` |
+| [Classic](https://www.rabbitmq.com/docs/classic-queues) | [Direct](/transports/rabbitmq/routing-topology.md#direct-routing-topology) | `RabbitMQ.ClassicDirectRouting` |
+
+In addition to the [connection string options of the transport](/transports/rabbitmq/connection-settings.md) the following ServiceControl specific options are available in versions 4.4 and above:
+
+* `UseExternalAuthMechanism=true|false(default)` - Specifies that an [external authentication mechanism should be used for client authentication](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-external-authentication).
+* `DisableRemoteCertificateValidation=true|false(default)` - Allows ServiceControl to connect to the broker [even if the remote server certificate is invalid](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-remote-certificate-validation).
+
+## SQL
 
 In addition to the [connection string options of the transport](/transports/sql/connection-settings.md#connection-configuration) the following ServiceControl specific options are available in versions 4.4 and above:
 
@@ -62,7 +76,7 @@ In addition to the [connection string options of the transport](/transports/sql/
   * *Optional* `Subscriptions Table=<subscription_table_name>@<schema>` - to specify the schema.
   * *Optional* `Subscriptions Table=<subscription_table_name>@<schema>@<catalog>` - to specify the schema and catalog.
 
-#### Amazon SQS
+## Amazon SQS
 
 The following ServiceControl connection string options are available:
 
@@ -74,3 +88,13 @@ The following ServiceControl connection string options are available:
 * `S3BucketForLargeMessages=<value>` - S3 bucket for large messages [option](/transports/sqs/configuration-options.md#offload-large-messages-to-s3),
 * `S3KeyPrefix=<value>` - S3 key prefix [option](/transports/sqs/configuration-options.md#offload-large-messages-to-s3-key-prefix).
 * `DoNotWrapOutgoingMessages=true` - Do not wrap outgoing messages [option](/transports/sqs/configuration-options.md#do-not-wrap-message-payload-in-a-transport-envelope).
+
+## MSMQ
+
+To configure MSMQ as the transport, ensure the MSMQ service has been installed and configured as outlined in [MSMQ configuration](/transports/msmq/#msmq-configuration).
+
+> [!IMPORTANT]
+> When [ServiceControl instances are installed on a different machine than an endpoint](/transports/msmq/routing.md#when-servicecontrol-is-installed-on-a-different-server) `queuename@machinename` addresses must be used.
+
+> [!NOTE]
+> MSMQ transport is not available when running ServiceControl on containers.

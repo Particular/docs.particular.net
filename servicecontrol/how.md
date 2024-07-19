@@ -76,4 +76,4 @@ For ServicePulse to report metrics on logical endpoints, endpoint instances and 
 
 ## Forwarding
 
-ServiceControl _consumes_ messages from the audit and error queues. That is, it removes all messages from those queues. If a copy of those messages is required for further processing, configure [audit forwarding](/servicecontrol/audit-instances/creating-config-file.md#transport-servicecontrol-auditforwardauditmessages) and/or [error queue forwarding](/servicecontrol/creating-config-file.md#transport-servicecontrolforwarderrormessages).
+ServiceControl _consumes_ messages from the audit and error queues. That is, it removes all messages from those queues. If a copy of those messages is required for further processing, configure [audit forwarding](/servicecontrol/audit-instances/configuration.md#transport-servicecontrol-auditforwardauditmessages) and/or [error queue forwarding](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicecontrolforwarderrormessages).

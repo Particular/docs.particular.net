@@ -18,7 +18,7 @@ In most scenarios existing ServiceControl error instance connection settings wil
 
 ![usage-setup-connections](images/usage-setup-connection.png "width=600")
 
-If there is a connection problem, specific usage settings can be provided as environment variables or directly in the [ServiceControl.exe.config](/servicecontrol/creating-config-file.md) file.
+If there is a connection problem, specific usage settings can be provided as environment variables or directly in the [ServiceControl.exe.config](/servicecontrol/servicecontrol-instances/configuration.md) file.
 The Usage Setup tab provides easy copy/paste functionality to obtain the required settings in the correct format, based on configuration type.
 
 Look at the [Diagnostics](#diagnostics) tab to diagnose connection issues.
@@ -27,7 +27,7 @@ Look at the [Diagnostics](#diagnostics) tab to diagnose connection issues.
 
 #### Settings
 
-Refer to the [Usage Reporting when using the Azure Service Bus transport](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-azure-service-bus-transport) section of the ServiceControl config file for an explanation of the Azure Service Bus-specific settings.
+Refer to the [Usage Reporting when using the Azure Service Bus transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-azure-service-bus-transport) section of the ServiceControl config file for an explanation of the Azure Service Bus-specific settings.
 
 #### Minimum Permissions
 
@@ -64,7 +64,7 @@ To lock it down even further to the minimally required permissions, create a cus
 
 #### Settings
 
-Refer to the [Usage Reporting when using the Amazon SQS transport](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-amazon-sqs-transport) section of the ServiceControl config file for an explanation of the Amazon SQS-specific settings.
+Refer to the [Usage Reporting when using the Amazon SQS transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-amazon-sqs-transport) section of the ServiceControl config file for an explanation of the Amazon SQS-specific settings.
 
 #### Minimum Permissions
 
@@ -92,7 +92,7 @@ Refer to the [Usage Reporting when using the Amazon SQS transport](/servicecontr
 
 #### Settings
 
-Refer to the [Usage Reporting when using the SqlServer transport](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-sqlserver-transport) section of the ServiceControl config file for an explanation of the SQL Server-specific settings.
+Refer to the [Usage Reporting when using the SqlServer transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-sqlserver-transport) section of the ServiceControl config file for an explanation of the SQL Server-specific settings.
 
 #### Minimum Permissions
 
@@ -102,7 +102,7 @@ User with rights to query [INFORMATION_SCHEMA].[COLUMNS] table.
 
 #### Settings
 
-Refer to the [Usage Reporting when using the RabbitMQ transport](/servicecontrol/creating-config-file.md#usage-reporting-when-using-the-rabbitmq-transport) section of the ServiceControl config file for an explanation of the RabbitMQ-specific settings.
+Refer to the [Usage Reporting when using the RabbitMQ transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-rabbitmq-transport) section of the ServiceControl config file for an explanation of the RabbitMQ-specific settings.
 
 #### Minimum permissions
 
@@ -115,7 +115,7 @@ MSMQ and Azure Storage Queues do not support querying of metrics. To enable the 
 - Auditing
   - install the [Audit](./../servicecontrol/audit-instances) instance
   - configure [auditing](./../nservicebus/operations/auditing.md) on all NServiceBus endpoints
-- Monitoring  
+- Monitoring
   - install the [Monitoring](./../monitoring) instance
   - configure [metrics](./../monitoring/metrics) on all NServiceBus endpoints
 

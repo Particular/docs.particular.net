@@ -1,25 +1,33 @@
 ---
 title: ServiceControl Troubleshooting
 summary: Troubleshooting ServiceControl installation and common issues
-reviewed: 2023-07-07
+component: ServiceControl
+reviewed: 2024-07-19
 ---
 
 > [!NOTE]
 > Many issues can be resolved by upgrading to the [latest version of ServiceControl](https://particular.net/downloads) and by ensuring the host meets the minimum [general hardware considerations for ServiceControl](/servicecontrol/servicecontrol-instances/hardware.md#general-recommendations).
 
-## Check the configuration via ServiceControl Management
+## Check configuration
 
-Open ServiceControl Management and review the instance configuration. The user interface presents basic installation information for each instance of the ServiceControl service installed. To review the application configuration file for a specific instance click the installation path and then locate `ServiceControl.exe.config` from the Explorer window.
+Review the instance configuration for each instance:
+
+* Windows services store configuration in an `*.exe.config` file next to the executable, which can be found in ServiceControl Management by clicking on the Installation Path and opening the configuration file from Windows Explorer.
+* Container instances load all configuration from environment variables.
 
 ## Service stops unexpectedly
 
-The ServiceControl Windows Services are configured for automatic restart via Windows Service recoverability policy. The services are restarted after 1 minute of the unplanned shutdown.
+ServiceControl instances are configured to stop when essentialy dependencies (such as the message transport) are unavailable for too long, so that administrators are notified of the problem.
+
+ServiceControl Windows Services are configured for automatic restart via Windows Service recoverability policy. The services are restarted after 1 minute of the unplanned shutdown.
 
 ## Service fails to start
 
-There are various reasons that can cause the ServiceControl Windows Service fail to start. If a critical exception is thrown at service start up this is reported via an error message in the `Application` Windows Event Log. Additional information may also be present in the [ServiceControl logs](logging.md).
+There are various reasons that can cause the ServiceControl Windows Service fail to start. Details can be found in the [ServiceControl logs](logging.md).
 
-## The port is already in use
+In Windows applications, critical exception thrown at service start up will be reported via an error message in the `Application` Windows Event Log.
+
+## The port is already in use (Windows)
 
 When adding a ServiceControl instance the configured port number is checked to ensure it is available. This is not infallible though as another application or service that uses the same port may not be running at the time the service is added.
 
@@ -28,11 +36,9 @@ In the event that the service fails to start to check if the configured port (ty
 ```dos
 netstat -a -b
 ```
-or use the provided [ServiceControl Management PowerShell](/servicecontrol/powershell.md) cmdlet to check a specific port:
+or install and use the provided [ServiceControl Management PowerShell module](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management) cmdlet to check a specific port:
 
-```ps
-Test-IfPortIsAvailable -Port 33333
-```
+snippet: ps-testport
 
 ## Missing queue
 
@@ -40,9 +46,9 @@ The service expects to be able to connect to the error, audit and forwarding que
 
 ## Cannot connect to the queues
 
-Some transports have access controls built into them. Ensure the service account specified has sufficient rights to access the queues.
+Some transports have access controls built into them. Ensure the instance has sufficient rights to access the queues.
 
-## Service won't start after changing service accounts
+## Service won't start after changing service accounts (Windows)
 
  1. The service account has access read rights to the directory the service is installed
  1. The service account has access read/write rights to the database and logs directories specified in the configuration.
@@ -56,9 +62,13 @@ Some transports have access controls built into them. Ensure the service account
 
 ## Service fails to start: EsentInstanceUnavailableException
 
+_ServiceControl 4.x and below only._
+
 If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentInstanceUnavailableException` ensure that ServiceControl [database directory](configure-ravendb-location.md), sub-directory and files, is excluded from any anti-virus and anti-malware real-time and scheduled scan.
 
 ## Service fails to start: EsentDatabaseDirtyShutdownException
+
+_ServiceControl 4.x and below only._
 
 If ServiceControl fails to start and the logs contain a `Microsoft.Isam.Esent.Interop.EsentDatabaseDirtyShutdownException` run Esent Recovery against the ServiceControl database followed by an Esent Repair.
 
@@ -80,37 +90,14 @@ System.Data.SqlClient.SqlException
 
 When encryption is enabled, SQL Server uses a certificate to encrypt communication between itself and ServiceControl. Version 4 of the `Microsoft.Data.SqlClient` package includes a [breaking change](https://github.com/dotnet/SqlClient/pull/1210) to set `Encrypt=true` by default (the previous default was `false`) which causes this exception.
 
-To fix this error, [the update the SQL Server installation with a valid certificate and update the ServiceControl machine to trust this certificate](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/enable-encrypted-connections-to-the-database-engine).
-
-> [!WARNING]
-> It is not recommended to eliminate this warning by adding `Encrypt=False` or `TrustServerCertificate=True` to the connection string. Both of these options leave the ServiceControl installation unsecure.
+To fix this error, [update the SQL Server installation with a valid certificate and update the ServiceControl machine to trust this certificate](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/enable-encrypted-connections-to-the-database-engine) or add `Encrypt=False` to the connection string if encryption is truly not necessary.
 
 ## Unable to connect to ServiceControl from either ServiceInsight or ServicePulse
 
- 1. Log on to the machine hosting ServiceControl.
- 1. Open ServiceControl Management.
- 1. Click the on the ServiceControl instance that is running and needs to be examined.
- 1. Click the URL under 'Host'. A valid response with JSON data will be received.
- 1. If having issues remotely connecting to ServiceControl. Verify that firewall settings do not block access to the ServiceControl port specified in the URL.
+Attempt to connect to the ServiceControl instance's URL using a web browser. A valid response with JSON data should be returned. If not, verify that network configuration and/or firewall settings do not block access to the ServiceControl port specified in the URL.
 
 > [!NOTE]
 > Before changing firewall setting to expose ServiceControl read [Securing ServiceControl](securing-servicecontrol.md).
-
-## Method not found
-
-If the following exception occurs at startup, this is likely because there are one or more versions of `Newtonsoft.Json` registered in the Global Assembly Cache (GAC).
-
-```txt
-Service cannot be started. System.MissingMethodException: Method not found: 'Void System.Net.Http.Formatting.BaseJsonMediaTypeFormatter.set_SerializerSettings(Newtonsoft.Json.JsonSerializerSettings)'.
-```
-
-This problem can be resolved by removing `Newtonsoft.Json` entries from the GAC. It can be done with the [gacutil command](https://docs.microsoft.com/en-us/dotnet/framework/tools/gacutil-exe-gac-tool) in an elevated (administrator) console:
-
-```cmd
-gacutil /u Newtonsoft.Json
-```
-
-It may be required to first remove all `HKEY_LOCAL_MACHINE\SOFTWARE\Classes\Installer\Assemblies\Global Newtonsoft.Json` keys from the registry before using `gacutil /u Newtonsoft.Json`.
 
 ## Resolve messages that cannot be retried
 
@@ -123,15 +110,13 @@ If certain messages are not scheduled for retry and the logs show the following 
 
 The internal *FailedMessageRetries* collection must be purged in order to restore retries for such messages.
 
-1. Upgrade to the [latest ServiceControl version](https://github.com/particular/servicecontrol/releases)
+1. Upgrade to the [latest ServiceControl version](https://particular.net/downloads)
 1. Ensure that currently there are no retry operations active
-1. Start the instance in Maintenance Mode
-1. Open the embedded RavenDB Management Studio
+1. [Access the ServiceControl database](/servicecontrol/ravendb/accessing-database.md)
 1. Select the "FailedMessageRetries" collection in the left tree
-1. Delete all documents in the collection
-1. Stop maintenance mode
+2. Delete all documents in the collection
 
-## SmartScreen blocks the installer
+## SmartScreen blocks the installer (Windows)
 
 The installer is [code signed](https://en.wikipedia.org/wiki/Code_signing), but [SmartScreen](https://en.wikipedia.org/wiki/Microsoft_SmartScreen) (called Windows SmartScreen, Windows Defender SmartScreen and SmartScreen Filter in different places) may classify the code signing certificate as "untrusted" and block the installer from running until permission is granted by the user.
 
@@ -141,7 +126,7 @@ When building ServiceControl, all build artifacts are virus scanned to ensure no
 
 ## Stale indexes
 
-Each ServiceControl instance stores its data in a RavenDB embedded database. Indexes are used by RavenDB as way to query the documents. This indexing is done asynchronously in the background and is triggered whenever data is added or changed. The benefit of asynchronous indexing is that it allows the server to respond quickly even when large amounts of data has changed and avoids costly table scan operations.
+Each ServiceControl instance stores its data in a RavenDB database. Indexes are used by RavenDB as way to query the documents. This indexing is done asynchronously in the background and is triggered whenever data is added or changed. The benefit of asynchronous indexing is that it allows the server to respond quickly even when large amounts of data has changed and avoids costly table scan operations.
 
 A downside of this is that indexes are not updated immediately and can become stale. A healthy system has indexes updated in milliseconds, while a system under load can take up to several seconds to update the indexes. When indexes get very stale, the process of updating them can last for a long duration and can affect data presented and started tasks.
 
@@ -155,7 +140,12 @@ A warning message is seen in the logs when the Indexing lag exceeds the default 
 2023-07-03 09:41:08.4189|6|Warn|ServiceControl.CheckRavenDBIndexLag|Index [ExpiryKnownEndpointsIndex] IndexingLag 22,242 is above warning threshold (10,000). Launch in maintenance mode to let indexes catch up.
 ```
 
-This can be resolved by launching the ServiceControl instance in maintenance mode and letting the indexes catch up. Message ingestion pauses when in maintenance mode, but the database engine still runs and messages will continue to queue. This ensures that any tasks related to index rebuilding or index scanning can run without interruption. This is useful to resolve situations where the storage isn't fast enough to do both message ingestion and index operations, such as when an unexpected spike in message processing occurred.
+This can be resolved by temporarily stopping message ingestion to let the indexes catch up:
+
+* For Windows instances, launch the ServiceControl instance in maintenance mode, which runs the database but does not ingest new messages.
+* For container instances, stop the ServiceControl container temporarily, but keep the connected database container running.
+
+While message ingestion is disabled, the database engine still runs and messages will continue to queue. This ensures that any tasks related to index rebuilding or index scanning can run without interruption. This is useful to resolve situations where the storage isn't fast enough to do both message ingestion and index operations, such as when an unexpected spike in message processing occurred.
 
 Consider upgrading the storage if these errors persists.
 
@@ -167,7 +157,7 @@ Index issues are usually automatically corrected at start-up time but sometimes 
 
 > Detected RavenDB index errors, please start maintenance mode and resolve the following issues:
 
-Often [indexes get corrupted](#corrupted-indexes). Resolve these errors by inspecting the errors in [ServiceControl (audit or error) maintenance mode](maintenance-mode.md).
+Sometimes [indexes get corrupted](#corrupted-indexes). Resolve these errors by [accessing the ServiceControl database](/servicecontrol/ravendb/accessing-database.md) and inspecting the errors directly.
 
 Contact [Particular support](https://particular.net/support) for assistance.
 
@@ -196,18 +186,9 @@ This risk of these error occurring is mitigated by:
 
 To resolve these errors, the affected indexes must be rebuilt:
 
-- Start the [ServiceControl (audit or error) in maintenance mode](maintenance-mode.md)
+- [Access the ServiceControl database](/servicecontrol/ravendb/accessing-database.md)
 - In RavenDB Management Studio, navigate to the Indexes view
-- [Reset the relevant index(es)](https://ravendb.net/docs/article-page/3.5/csharp/server/administration/index-administration)
-
-#### Rebuild all indexes
-
-If many indexes are affected it may be easier to rebuild all indexes, although this can take a very long time if the database is large, and it will use a lot of CPU and storage IO capacity:
-
-- Stop the ServiceControl (audit or error) instance
-- Navigate to the [database folder](configure-ravendb-location.md) on disk
-- Delete the `Indexes` folder
-- Start the ServiceControl instance
+- [Reset the relevant index(es)](https://ravendb.net/docs/article-page/5.4/csharp/indexes/index-administration)
 
 
 ## High CPU utilization
@@ -297,7 +278,7 @@ System.Exception: No destination specified for message: ServiceControl.Contracts
    at NServiceBus.UnicastSendRouter.RouteUsingTable(IOutgoingSendContext context) in /_/src/NServiceBus.Core/Routing/UnicastSendRouter.cs:line 108
 ```
 
-This error is caused if there is no setting for `ServiceControl.Audit/ServiceControlQueueAddress`. Check the audit instance config file in the audit installation path  and add in the missing key value.
+This error is caused if there is no setting for `ServiceControl.Audit/ServiceControlQueueAddress`. Check the audit instance config file in the audit installation path and add in the missing key value.
 
  ```xml
 <add key="ServiceControl.Audit/ServiceControlQueueAddress" value="[QUEUENAMEGOESHERE]"/>
@@ -335,7 +316,7 @@ Bad Request - Invalid Hostname
 HTTP Error 400. The request hostname is invalid.
 ```
 
-The hostname can be configured via the [config file 'ServiceControl/HostName' ](/servicecontrol/creating-config-file.md#host-settings-servicecontrolhostname) or the [SCMU hostname](/servicecontrol/setting-custom-hostname.md) setting.
+The hostname can be configured via the [config file 'ServiceControl/HostName' ](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolhostname) or the [SCMU hostname](/servicecontrol/setting-custom-hostname.md) setting.
 
 ## VoronUnrecoverableErrorException
 
@@ -382,9 +363,9 @@ To mitigate growth or not having enough storage:
 
 3. Lower retention and, optionally, compact database:
 
-   - [ServiceControl - Error instance setting `ServiceControl/ErrorRetentionPeriod`](/servicecontrol/creating-config-file.md#data-retention-servicecontrolerrorretentionperiod)
-   - [ServiceControl - Error instance setting `ServiceControl/EventRetentionPeriod`](/servicecontrol/creating-config-file.md#data-retention-servicecontroleventretentionperiod)
-   - [ServiceControl - Audit instance setting `ServiceControl.Audit/AuditRetentionPeriod`](/servicecontrol/audit-instances/creating-config-file.md#data-retention-servicecontrol-auditauditretentionperiod)
+   - [ServiceControl - Error instance setting `ServiceControl/ErrorRetentionPeriod`](/servicecontrol/servicecontrol-instances/configuration.md#data-retention-servicecontrolerrorretentionperiod)
+   - [ServiceControl - Error instance setting `ServiceControl/EventRetentionPeriod`](/servicecontrol/servicecontrol-instances/configuration.md#data-retention-servicecontroleventretentionperiod)
+   - [ServiceControl - Audit instance setting `ServiceControl.Audit/AuditRetentionPeriod`](/servicecontrol/audit-instances/configuration.md#data-retention-servicecontrol-auditauditretentionperiod)
    - [ServiceControl - How to compact database](/servicecontrol/db-compaction.md)
    - [ServiceControl - How to purge expired data](/servicecontrol/how-purge-expired-data.md)
 
