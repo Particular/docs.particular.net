@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="9.*" />
+    <PackageReference Include="NServiceBus" Version="9.1.*" />
     <PackageReference Include="NServiceBus.Callbacks" Version="5.*" />
     <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="5.*" />
     <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="5.*" />
