@@ -56,6 +56,4 @@ Each ServiceControl Audit instance sends notification messages to a ServiceContr
 
 When a ServiceControl Audit instance detects a new endpoint, it sends a notification to the ServiceControl Error instance. The Error instance keeps track of all of the endpoints in the system and can monitor them with heartbeats and custom checks.
 
-### Health monitoring
-
-include: self-monitoring
+include: servicecontrol-self-monitoring

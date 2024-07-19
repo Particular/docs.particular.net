@@ -23,4 +23,6 @@ Failed message data is retained until 7 days after successful retry is detected 
 
 include: ravendb-exclusive-use-warning
 
-include: self-monitoring
+## Notifications
+
+include: servicecontrol-self-monitoring

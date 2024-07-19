@@ -1,3 +1,5 @@
+### Health monitoring
+
 ServiceControl includes some basic self-monitoring implemented as [custom checks](/monitoring/custom-checks/). These checks are reported in ServicePulse along with other custom checks.
 
 #### MSMQ transactional dead letter queue
@@ -14,7 +16,7 @@ When ServiceControl is unable to ingest an audit or error message, an error is l
 
 #### Error message ingestion process
 
-When ServiceControl has difficulty connecting to the configured transport, the error message ingestion process is shut down for sixty seconds. These shutdowns are monitored. The time to wait before restarting the error ingestion process is controlled by the [ServiceControl/TimeToRestartErrorIngestionAfterFailure](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontroltimetorestarterroringestionafterfailure) setting.
+When ServiceControl has difficulty connecting to the configured transport, the error message ingestion process is shut down for sixty seconds. These shutdowns are monitored. The time to wait before restarting the error ingestion process is controlled by the [ServiceControl/TimeToRestartErrorIngestionAfterFailure](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontroltimetorestarterroringestionafterfailure) setting.
 
 #### Message database storage space
 
@@ -22,4 +24,4 @@ ServiceControl stores messages in an embedded database. If the drive containing 
 
 #### Critical message database storage space
 
-This is similar to the [Message database storage space check](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-message-database-storage-space). However, in this case, if the drive containing the database has less than 5% remaining of its total capacity, message ingestion on the ServiceControl instance is stopped to prevent data loss, and a failure is reported. This threshold is controlled by the [ServiceControl/MinimumStorageLeftRequiredForIngestion](/servicecontrol/servicecontrol-instances/configuration.md#troubleshooting-servicecontrolminimumstorageleftrequiredforingestion) (for the error instance) and [ServiceControl.Audit/MinimumStorageLeftRequiredForIngestion](/servicecontrol/audit-instances/configuration.md#troubleshooting-ravendb-3-5-servicecontrol-auditminimumstorageleftrequiredforingestion) (for the audit instance) settings.
+This is similar to the [Message database storage space check](#notifications-health-monitoring-message-database-storage-space). However, in this case, if the drive containing the database has less than 5% remaining of its total capacity, message ingestion on the ServiceControl instance is stopped to prevent data loss, and a failure is reported. This threshold is controlled by the [ServiceControl/MinimumStorageLeftRequiredForIngestion](/servicecontrol/servicecontrol-instances/configuration.md#troubleshooting-servicecontrolminimumstorageleftrequiredforingestion) (for the error instance) and [ServiceControl.Audit/MinimumStorageLeftRequiredForIngestion](/servicecontrol/audit-instances/configuration.md#troubleshooting-ravendb-5-servicecontrol-auditminimumstorageleftrequiredforingestion) (for the audit instance) settings.

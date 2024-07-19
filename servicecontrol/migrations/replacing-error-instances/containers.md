@@ -37,4 +37,4 @@ Modify the old Error instance container by specifying the [`INGESTERRORMESSAGES`
 
 Now, the old and new Error instance's are both available, but the old Error instance is not ingesting messages.
 
-When confident of a successful upgrade, the old Error instance can be removed. If the old Error instance is not deployed in a container, refer to the instructions for removing teh old instance in the [ServiceControl Management](scmu.md#create-a-new-error-instance) or [PowerShell](powershell.md#create-a-new-error-instance) guides.
+When confident of a successful upgrade, the old Error instance can be removed. If the old Error instance is not deployed in a container, refer to the instructions for removing the old instance in the [ServiceControl Management](scmu.md#replace-the-error-instance-create-a-new-error-instance) or [PowerShell](powershell.md#replace-the-error-instance-create-a-new-error-instance) guides.
