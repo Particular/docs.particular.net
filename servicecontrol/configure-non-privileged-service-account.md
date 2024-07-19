@@ -13,15 +13,15 @@ The transport connection string used by ServiceControl must enable access to all
  * [ServiceControl/InstanceName](/servicecontrol/servicecontrol-instances/configuration.md) <!-- TODO: Add the InstanceName setting and link -->
  * [ServiceControl.Audit/InstanceName](/servicecontrol/audit-instances/configuration.md) <!-- TODO: Add the InstanceName setting and link -->
  * [ServiceControl.Monitoring/InstanceName](/servicecontrol/monitoring-instances/configuration.md) <!-- TODO: Add the InstanceName setting and link -->
- 
+
 The queues that ServiceControl needs to access will reflect the `InstanceName` used and the [instance type](/servicecontrol/#servicecontrol-instance-types):
 
 ### All instance types:
- 
+
  * `{InstanceName}`
  * `{InstanceName}.errors`
- * `{InstanceName}.timeouts` (only when using [MSMQ](/servicecontrol/transports.md#transport-specific-features-msmq))
- * `{InstanceName}.timeoutsdispatcher` (only when using [MSMQ](/servicecontrol/transports.md#transport-specific-features-msmq))
+ * `{InstanceName}.timeouts` (only when using [MSMQ](/servicecontrol/transports.md#msmq))
+ * `{InstanceName}.timeoutsdispatcher` (only when using [MSMQ](/servicecontrol/transports.md#msmq))
 
 ### [Error instances](/servicecontrol/servicecontrol-instances/):
 
@@ -37,7 +37,7 @@ The queues that ServiceControl needs to access will reflect the `InstanceName` u
 If the connection string does not provide appropriate rights, the service will fail to start.
 
 > [!NOTE]
-> For [MSMQ](/servicecontrol/transports.md#transport-specific-features-msmq), the ACL default for a queue allows Administrators full access. Switching to a low-privileged account requires modification of rights to give full control to the custom account.
+> For [MSMQ](/servicecontrol/transports.md#msmq), the ACL default for a queue allows Administrators full access. Switching to a low-privileged account requires modification of rights to give full control to the custom account.
 
 ## Url namespace reservations
 

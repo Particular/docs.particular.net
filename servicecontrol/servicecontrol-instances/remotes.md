@@ -210,7 +210,7 @@ class auditA,auditB ServiceControlRemote
 
 In this deployment, each region has a full ServiceControl installation with a primary Error instance and an Audit instance. Each region can be managed and controlled via a dedicated ServicePulse.
 
-A new cross-region primary instance is added to allow ServiceInsight to show messages from both regions. This cross-region instance includes each region-specific primary instance as a remote allowing it to query messages from both. The cross-region instance must disable error message ingestion management by setting with the value [`ServiceControl/IngestErrorMessages`](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolingesterrormessages) option to `false`.
+A new cross-region primary instance is added to allow ServiceInsight to show messages from both regions. This cross-region instance includes each region-specific primary instance as a remote allowing it to query messages from both. The cross-region instance must disable error message ingestion management by setting with the value [`ServiceControl/IngestErrorMessages`](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontrolingesterrormessages) option to `false`.
 
 ### Zero downtime upgrades
 
@@ -284,7 +284,7 @@ To change the address of a remote instance to a new host and/or port number:
 3. Stop the remote instance
 4. Change the host and/or port number of the remote instance using the ServiceControl Management utility
 5. Start the remote instance at its new address
-6. Add the new address to the list of remote instances: 
+6. Add the new address to the list of remote instances:
    - `Add-ServiceControlRemote -Name $primaryServiceControl.Name -RemoteInstanceAddress $newAddress`
 7. Restart the primary instance to refresh the list of remote instances
 

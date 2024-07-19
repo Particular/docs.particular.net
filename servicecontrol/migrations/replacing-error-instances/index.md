@@ -41,9 +41,9 @@ With ingestion stopped, the old Error instance will still be able to replay or a
 
 To disable error ingestion on the existing Error instance:
 
-* [Disabling error ingestion with ServiceControl Management](scmu.md#disabling-error-message-ingestion)
-* [Disabling error ingestion with PowerShell](powershell.md#disabling-error-message-ingestion)
-* [Disabling error ingestion with Containers](containers.md#disabling-error-message-ingestion)
+* [Disabling error ingestion with ServiceControl Management](scmu.md#disable-error-message-ingestion)
+* [Disabling error ingestion with PowerShell](powershell.md#disable-error-message-ingestion)
+* [Disabling error ingestion with Containers](containers.md#disable-error-message-ingestion)
 
 ## Retry or archive any failed messages
 

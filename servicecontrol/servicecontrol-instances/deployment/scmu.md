@@ -46,7 +46,7 @@ There are [three types](/servicecontrol/#servicecontrol-instance-types) of Servi
    3. Be aware of the port numbers as these are used by ServicePulse and ServiceInsight to connect to ServiceControl.
    4. Configure the [retention period](/servicecontrol/how-purge-expired-data.md) for each instance.
    5. Configure the name of the queue that messages should arrive in.
-      This queue is important to endpoints that send error and audit messages to these ServiceControl instances, as well as [plugins](/servicecontrol/servicecontrol-instances/configuration.md##recoverability-servicecontrolinternalqueuename).
+      This queue is important to endpoints that send error and audit messages to these ServiceControl instances, as well as [plugins](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontrolinternalqueuename).
    6. If needed, configure [forwarding queues](/servicecontrol/errorlog-auditlog-behavior.md).
    7. Full-text search can be turned off for [performance reasons](/servicecontrol/capacity-and-planning.md#storage-performance) if it's not needed.
 

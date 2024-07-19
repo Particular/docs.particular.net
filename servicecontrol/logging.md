@@ -114,4 +114,4 @@ Log Level Options: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 
 ## Critical Exception Logging
 
-If ServiceControl experiences a critical exception when running as a Windows Service, the exception information will be logged to the Windows EventLog. If ServiceControl is running interactively, the error is shown on the console and not logged. Typically ServiceControl is only run interactively to conduct database maintenance. See [Compacting the ServiceControl RavenDB database](/servicecontrol/db-compaction-v5.md).
+If ServiceControl experiences a critical exception when running as a Windows Service, the exception information will be logged to the Windows EventLog. If ServiceControl is running interactively, the error is shown on the console and not logged. Typically ServiceControl is only run interactively to conduct database maintenance. See [Compacting the ServiceControl RavenDB database](/servicecontrol/db-compaction.md).
