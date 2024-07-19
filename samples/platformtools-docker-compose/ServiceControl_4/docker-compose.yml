@@ -1,0 +1,48 @@
+version: '3.8'
+
+volumes:
+
+  error:
+  audit:
+  
+services:
+
+  error:
+    image: particular/servicecontrol.azureservicebus-windows:latest
+    ports:
+      - 33333:33333
+
+    volumes:
+      - error:c:/data
+      - ${PROGRAMDATA}/ParticularSoftware:C:/ProgramData/ParticularSoftware
+    env_file: .env
+    #mem_limit: 8192m
+    restart: unless-stopped
+
+
+  monitoring:
+    image: particular/servicecontrol.azureservicebus.monitoring-windows:latest
+    ports:
+      - 33633:33633
+    volumes:
+      - ${PROGRAMDATA}/ParticularSoftware:C:/ProgramData/ParticularSoftware
+    env_file: .env
+    restart: unless-stopped
+
+  audit:
+    image: particular/servicecontrol.azureservicebus.audit-windows:latest
+    ports:
+      - 44444:44444
+
+    volumes:
+      - audit:c:/data
+      - ${PROGRAMDATA}/ParticularSoftware:C:/ProgramData/ParticularSoftware
+    env_file: .env
+    #mem_limit: 8192m
+    restart: unless-stopped
+
+  pulse:
+    image: particular/servicepulse-windows:1
+    ports:
+      - 9090:80
+    restart: unless-stopped
