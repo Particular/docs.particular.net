@@ -9,4 +9,10 @@ related:
 
 NServiceBus version 8 and above supports [OpenTelemetry](https://opentelemetry.io/docs/instrumentation/net/) through traces, metrics, and logging.
 
-partial: content
+partial: traces
+
+partial: metrics
+
+partial: logs
+
+partial: host-identifier
