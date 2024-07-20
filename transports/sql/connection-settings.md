@@ -24,7 +24,7 @@ partial: connection-string
 
 ## Token-credentials
 
-Microsoft Entra Id authentication is supported via the [standard connection string options](https://learn.microsoft.com/en-us/sql/connect/ado-net/sql/azure-active-directory-authentication).
+Microsoft Entra ID authentication is supported via the [standard connection string options](https://learn.microsoft.com/en-us/sql/connect/ado-net/sql/azure-active-directory-authentication).
 
 ## Custom database schemas
 

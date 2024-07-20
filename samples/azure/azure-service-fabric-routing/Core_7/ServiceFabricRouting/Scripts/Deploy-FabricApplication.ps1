@@ -42,7 +42,7 @@ Overwrite Behavior if an application exists in the cluster with the same name. A
 Switch signaling whether the package should be validated or not before deployment.
 
 .PARAMETER SecurityToken
-A security token for authentication to cluster management endpoints. Used for silent authentication to clusters that are protected by Microsoft Entra Id.
+A security token for authentication to cluster management endpoints. Used for silent authentication to clusters that are protected by Microsoft Entra ID.
 
 .PARAMETER CopyPackageTimeoutSec
 Timeout in seconds for copying application package to image store.

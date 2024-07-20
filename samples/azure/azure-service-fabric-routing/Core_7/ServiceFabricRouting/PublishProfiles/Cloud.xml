@@ -15,7 +15,7 @@
                                     StoreLocation="CurrentUser"
                                     StoreName="My" />
 
-       Example showing parameters for a cluster that uses Microsoft Entra Id security:
+       Example showing parameters for a cluster that uses Microsoft Entra ID security:
        <ClusterConnectionParameters ConnectionEndpoint="mycluster.westus.cloudapp.azure.com:19000"
                                     AzureActiveDirectory="true"
                                     ServerCertThumbprint="0123456789012345678901234567890123456789" />

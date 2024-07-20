@@ -24,7 +24,7 @@ snippet: sqlpersistenceusagepostgresql
 
 ### Token Authentication
 
-To connect using token credentials, a User ID must be supplied in the connection string with the password supplied from the access token. Given that the token is only short-lived, a [data source builder must be utilized to handle password refreshes](https://devblogs.microsoft.com/dotnet/using-postgre-sql-with-dotnet-and-entra-id/). The following example uses Azure Entra ID.
+To connect using token credentials, a User ID must be supplied in the connection string with the password supplied from the access token. Given that the token is only short-lived, a [data source builder must be utilized to handle password refreshes](https://devblogs.microsoft.com/dotnet/using-postgre-sql-with-dotnet-and-entra-id/). The following example uses Microsoft Entra ID.
 
 snippet: SqlPersistenceUsagePostgreSqlEntra
 

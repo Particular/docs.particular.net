@@ -19,10 +19,10 @@ snippet: DefaultUsage
 
 ### Token-credentials
 
-Microsoft Entra Id authentication is supported via the [standard connection string options](https://learn.microsoft.com/en-us/sql/connect/ado-net/sql/azure-active-directory-authentication).
+Microsoft Entra ID authentication is supported via the [standard connection string options](https://learn.microsoft.com/en-us/sql/connect/ado-net/sql/azure-active-directory-authentication).
 
 > [!NOTE]
-> Microsoft Entra Id authentication is only supported when using [Microsoft.Data.SqlClient](https://learn.microsoft.com/en-us/sql/connect/ado-net/sql/azure-active-directory-authentication#overview)
+> Microsoft Entra ID authentication is only supported when using [Microsoft.Data.SqlClient](https://learn.microsoft.com/en-us/sql/connect/ado-net/sql/azure-active-directory-authentication#overview)
 
 ### Customizing schema and table name
 
