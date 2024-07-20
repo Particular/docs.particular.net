@@ -322,19 +322,11 @@ The NServiceBus version number.
 
 ## OpenTelemetry-related headers
 
-These headers are added when [OpenTelemetry](/nservicebus/operations/opentelemetry.md) is enabled on the endpoint.
+These headers are added when [OpenTelemetry](/nservicebus/operations/opentelemetry.md) is enabled for an endpoint:
 
-### traceparent
-
-The `traceparent`-header, in accordance with the [W3C TraceContext specification](https://www.w3.org/TR/trace-context/#traceparent-header).
-
-### tracestate
-
-The `tracestate`-header, in accordance with the [W3C TraceContext specification](https://www.w3.org/TR/trace-context/#tracestate-header).
-
-### baggage
-
-The `baggage`-header, in accordance with the [W3C TraceContext specification](https://www.w3.org/TR/baggage/#baggage-http-header-format).
+- [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header)
+- [`tracestate`](https://www.w3.org/TR/trace-context/#tracestate-header)
+- [`baggage`](https://www.w3.org/TR/baggage/#baggage-http-header-format)
 
 ## Audit headers
 
