@@ -1,4 +1,4 @@
-When using the [outbox](/nservicebus/outbox/), SQL Persistence always opens its own connection. In order to force using a separate connection even when the [outbox](/nservicebus/outbox/) is disabled, use the following API:
+This behaviour may be disabled, to force the persistance to create its own connection, as it does when the outbox is enabled:
 
 snippet: PostgreSqlDoNotShareConnection
 
