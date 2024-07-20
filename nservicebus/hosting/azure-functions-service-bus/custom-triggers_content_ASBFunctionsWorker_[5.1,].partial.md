@@ -2,4 +2,4 @@ If the trigger function must be customized, you must disable generation of the t
 
 snippet: custom-trigger-definition
 
-Make sure the endpoint in `UseNServiceBus` matches the queue name in the function as illustrated above.
+The endpoint name in `UseNServiceBus` must match the queue name in the function, as illustrated above.
