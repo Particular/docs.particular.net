@@ -32,25 +32,25 @@ Defaults to `0`.
 
 ### TimeToTriggerStoreCircuitBreaker
 
-Time to wait before triggering the circuit breaker that monitors the storing of delayed messages in the database. 
+Time to wait before triggering the circuit breaker that monitors the storing of delayed messages in the database.
 
 Defaults to `30` seconds.
-       
+
 ### TimeToTriggerFetchCircuitBreaker
 
-Time to wait before triggering the circuit breaker that monitors the fetching of due delayed messages from the database. 
+Time to wait before triggering the circuit breaker that monitors the fetching of due delayed messages from the database.
 
 Defaults to `30` seconds.
-    
+
 ### TimeToTriggerDispatchCircuitBreaker
 
-Time to wait before triggering the circuit breaker that monitors the dispatching of due delayed messages to the destination. 
+Time to wait before triggering the circuit breaker that monitors the dispatching of due delayed messages to the destination.
 
 Defaults to `30` seconds.
 
 ### MaximumRecoveryFailuresPerSecond
 
-Maximum number of failed attempts per second to increment the per-message failure counter that triggers the recovery circuit breaker. 
+Maximum number of failed attempts per second to increment the per-message failure counter that triggers the recovery circuit breaker.
 
 Defaults to `1` per sec.
 
@@ -58,7 +58,7 @@ Defaults to `1` per sec.
 
 Create a class which implements the `IDelayedMessageStore` interface and pass an instance to the `DelayedDeliverySettings` constructor.
 
-If the custom store needs to set up some infrastructure (create tables, etc.) then it must implement `IDelayedMessageStoreWithInfrastructure`. This interface extends `IDelayedMessageStore` adding a method for setting up the infrastructure. This new method is called before `IDelayedMessageStore.Initialize()`.
+If the custom store needs to set up some infrastructure (create tables, etc.) then it must implement `IDelayedMessageStoreWithInfrastructure`. This interface extends `IDelayedMessageStore` with a `SetupInfrastructure()` method. `SetupInfrastructure()` is called before `Initialize()`.
 
 ### Consistency
 
