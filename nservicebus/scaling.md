@@ -25,7 +25,7 @@ However, a centralized resource, such as a database, may also be a bottleneck. S
 
 ### Competing consumers
 
-The *[competing consumer pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html)* is an established way to scale out endpoints using [brokered transports](/transports/types.md#broker-transports). This is done by deploying multiple instances of an endpoint that will all start processing messages from the same queue. When a message is delivered, any of the endpoint instances could potentially process it. The NServiceBus transport will try to ensure that only one instance will actually process the message.
+The *[competing consumer pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html)* is an established way to scale out endpoints using [broker transports](/transports/types.md#broker-transports). This is done by deploying multiple instances of an endpoint that will all start processing messages from the same queue. When a message is delivered, any of the endpoint instances could potentially process it. The NServiceBus transport will try to ensure that only one instance will actually process the message.
 
 The image below shows the component `ClientUI` sending a command message to the logical endpoint `Sales`. But with messaging, the message is actually sent to the `Sales` queue. With two consumers competing for the `Sales` endpoint, both could potentially process the incoming message.
 
