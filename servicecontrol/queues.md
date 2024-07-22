@@ -48,7 +48,7 @@ If the heartbeats or custom checks plugins are in use, they should be configured
 | Component                          | Access<br/>requirements | Configuration                                                                                                                                                       |
 | ---------------------------------- | :---------------------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | NServiceBus endpoints              |          Write          | [Heartbeats plugin](/monitoring/heartbeats/install-plugin.md) and [Custom checks plugin](/monitoring/custom-checks/install-plugin.md)                               |
-| ServiceControl Error instance      |       Read/Write        | _Instance name_                                                                                                                                                     |
+| ServiceControl Error instance      |       Read/Write        | [ServiceControl/InstanceName](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolinstancename)                                                                                                                                                     |
 | ServiceControl Audit instance      |          Write          | [ServiceControl.Audit/ServiceControlQueueAddress](/servicecontrol/audit-instances/configuration.md#transport-servicecontrol-auditservicecontrolqueueaddress) |
 | ServiceControl Monitoring instance |            -            |
 
@@ -141,7 +141,7 @@ Each ServiceControl Audit instance includes an input queue. This is currently no
 | ---------------------------------- | :---------------------: | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | NServiceBus endpoints              |            -            |
 | ServiceControl Error instance      |            -            |
-| ServiceControl Audit instance      |          Read           | [ServiceControl.Audit/InternalQueueName](/servicecontrol/audit-instances/configuration.md#recoverability-servicecontrol-auditinternalqueuename) |
+| ServiceControl Audit instance      |          Read           | [ServiceControl.Audit/InstanceName](/servicecontrol/audit-instances/configuration.md#host-settings-servicecontrol-auditinstancename) |
 | ServiceControl Monitoring instance |            -            |
 
 ### Error queue

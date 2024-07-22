@@ -24,6 +24,25 @@ The following documents should be reviewed prior to modifying configuration sett
 * [Setting a Custom Hostname](/servicecontrol/setting-custom-hostname.md) for guidance and details.
 * [Securing ServiceControl](/servicecontrol/securing-servicecontrol.md) for an overview of the security implications of changing the configuration.
 
+### ServiceControl/InstanceName
+
+_Added in version 5.5.0_
+
+The name to be used by the error instance and the name of the input queue.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_INSTANCENAME` |
+| **App config key** | `ServiceControl/InstanceName` |
+| **SCMU field** | Instance/Queue Name |
+
+| Type | Default value |
+| --- | --- |
+| string | `Particular.ServiceControl` |
+
+> [!NOTE]
+> In versions prior to 5.5.0, the `InternalQueueName` setting can be used instead.
+
 ### ServiceControl/HostName
 
 The hostname to bind the embedded HTTP API server to; modify this setting to bind to a specific hostname, e.g. `sc.mydomain.com` and make the machine remotely accessible.
@@ -222,24 +241,6 @@ Controls the maximum time delay to wait before restarting the error ingestion pi
 | timespan | 60 seconds |
 
 Valid settings are between 5 seconds and 1 hour.
-
-### ServiceControl/InternalQueueName
-
-Controls the name of the internal queue that ServiceControl uses for internal control messages. This can be used when the internal queue name does not match the Windows Service Name.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_INTERNALQUEUENAME` |
-| **App config key** | `ServiceControl/InternalQueueName` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| string | The service name |
-
-#### ServiceControl Plugins
-
-The [Custom Checks](/monitoring/custom-checks/install-plugin.md) and [Heartbeats](/monitoring/heartbeats/install-plugin.md) monitoring plugins target this queue to send their data.
 
 ### ServiceControl/IngestErrorMessages
 

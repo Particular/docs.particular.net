@@ -27,6 +27,25 @@ The following documents should be reviewed prior to modifying configuration sett
 > [!WARNING]
 > Changing the host name or port number of an existing ServiceControl Audit instance will break the link from the ServiceControl Error instance. See [Moving a remote instance](/servicecontrol/servicecontrol-instances/remotes.md) for guidelines on changing these settings.
 
+### ServiceControl.Audit/InstanceName
+
+_Added in version 5.5.0_
+
+The name to be used by the audit instance and the name of the input queue.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_INSTANCENAME` |
+| **App config key** | `ServiceControl.Audit/InstanceName` |
+| **SCMU field** | Instance/Queue Name |
+
+| Type | Default value |
+| --- | --- |
+| string | `Particular.ServiceControl.Audit` |
+
+> [!NOTE]
+> In versions prior to 5.5.0, the `InternalQueueName` setting can be used instead.
+
 ### ServiceControl.Audit/HostName
 
 The hostname to bind the embedded HTTP API server to; modify this setting to bind to a specific hostname, eg. `sc.mydomain.com` and make the machine remotely accessible.
@@ -190,20 +209,6 @@ Controls the maximum time delay to wait before restarting the audit ingestion pi
 | timespan | 60 seconds |
 
 Valid settings are between 5 seconds and 1 hour.
-
-### ServiceControl.Audit/InternalQueueName
-
-Controls the name of the internal queue that ServiceControl uses for internal control messages. This can be used when the internal queue name does not match the Windows Service Name.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUDIT_INTERNALQUEUENAME` |
-| **App config key** | `ServiceControl.Audit/InternalQueueName` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| string | The service name |
 
 ### ServiceControl/IngestAuditMessages
 
