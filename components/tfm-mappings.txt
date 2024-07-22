@@ -22,3 +22,5 @@ net7.0: .NET 7
 net7.0-windows: .NET 7
 net8.0: .NET 8
 net8.0-windows: .NET 8
+net9.0: .NET 9
+net9.0-windows: .NET 9
