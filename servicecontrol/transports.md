@@ -4,8 +4,6 @@ reviewed: 2024-07-19
 component: ServiceControl
 ---
 
-Messag
-
 ServiceControl can be configured to use one of the supported [message transports](/transports/) which are configured for each instance type using the following settings:
 
 * ServiceControl (Error) instance: [`ServiceControl/TransportType`](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicecontroltransporttype)
