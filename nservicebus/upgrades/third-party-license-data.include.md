@@ -3,6 +3,8 @@
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/" target="_blank">Microsoft.Extensions.DependencyInjection</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Extensions.Diagnostics/" target="_blank">Microsoft.Extensions.Diagnostics</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/System.Formats.Asn1/" target="_blank">System.Formats.Asn1</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.Security.Cryptography.Xml/" target="_blank">System.Security.Cryptography.Xml</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
 ## Transport packages
