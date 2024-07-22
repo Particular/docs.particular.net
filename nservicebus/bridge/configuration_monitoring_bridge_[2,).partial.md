@@ -9,7 +9,7 @@ Heartbeats can be configured on a per bridge transport basis.  For each bridge t
 snippet: configure-heartbeats
 
 > [!NOTE]
-> `ServiceControl_Queue` is a placeholder for the name of the ServiceControl input queue. The name of the ServiceControl input queue matches the [ServiceControl internal queue name](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontrolinternalqueuename).
+> `ServiceControl_Queue` is a placeholder for the name of the ServiceControl input queue. The name of the ServiceControl input queue matches the [ServiceControl instance name](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolinstancename).
 
 #### Heartbeat interval
 
