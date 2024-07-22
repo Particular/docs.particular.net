@@ -28,10 +28,11 @@ It can be a challenge to decide whether or not a persister is needed and which o
 ## Supported persisters
 
 - [SQL](/persistence/sql/)
-  - [Microsoft SQL Server](/persistence/sql/dialect-mssql)
-  - [MySQL + Aurora](/persistence/sql/dialect-mysql)
-  - [PostgreSQL](/persistence/sql/dialect-postgresql)
-  - [Oracle](/persistence/sql/dialect-oracle)
+  - [Microsoft SQL Server](/persistence/sql/dialect-mssql.md)
+  - [MySQL](/persistence/sql/dialect-mysql.md)
+  - [PostgreSQL](/persistence/sql/dialect-postgresql.md)
+  - [Oracle](/persistence/sql/dialect-oracle.md)
+  - Includes support for Amazon Aurora (with MySQL or PostgreSQL) and Amazon RDS
 - [Cosmos DB](/persistence/cosmosdb/)
 - [DynamoDB](/persistence/dynamodb/)
 - [MongoDB](/persistence/mongodb/)
