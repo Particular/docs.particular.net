@@ -6,7 +6,7 @@ reviewed: 2024-06-24
 redirects:
  - servicecontrol/monitoring-instances/installation/creating-config-file
 ---
-The configuration of a ServiceControl Monitoring instance is controlled by the `ServiceControl.Monitoring.exe.config` file or by setting environment variables. When a setting configuration exists as both an environment variables and in the application configuration file, the environment variable setting takes precidence.
+The configuration of a ServiceControl Monitoring instance is controlled by the `ServiceControl.Monitoring.exe.config` file or by setting environment variables. When a setting configuration exists as both an environment variables and in the application configuration file, the environment variable setting takes precedence.
 
 Deployments using the ServiceControl Management utility (SCMU) can use that application to make a subset of configuration settings which are read from and written to the application configuration file.
 
@@ -21,15 +21,17 @@ Deployments using the ServiceControl Management utility (SCMU) can use that appl
 
 Prior to modifying these configuration settings review [Setting a Custom Hostname](configure-the-uri.md):
 
-### Monitoring/EndpointName
+### Monitoring/InstanceName
 
-The endpoint name to be used by the monitoring instance and the name of the monitoring queue.
+_Added in version 5.5.0_
+
+The name to be used by the monitoring instance and the name of the monitoring queue.
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `MONITORING_ENDPOINTNAME` |
-| **App config key** | `Monitoring/EndpointName` |
-| **SCMU field** | Instance Name |
+| **Environment variable** | `MONITORING_INSTANCENAME` |
+| **App config key** | `Monitoring/InstanceName` |
+| **SCMU field** | Instance/Queue Name |
 
 | Type | Default value |
 | --- | --- |

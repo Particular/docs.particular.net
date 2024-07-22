@@ -188,7 +188,7 @@ Endpoints send monitoring information to the monitoring queue and the monitoring
 | NServiceBus endpoints              |          Write          | [Monitoring plugin](/monitoring/metrics/install-plugin.md#configuration-service-control-metrics-address)                                  |
 | ServiceControl Error instance      |            -            |
 | ServiceControl Audit instance      |            -            |
-| ServiceControl Monitoring instance |          Read           | [Monitoring/EndpointName](/servicecontrol/monitoring-instances/configuration.md#host-settings-monitoringendpointname) |
+| ServiceControl Monitoring instance |          Read           | [Monitoring/InstanceName](/servicecontrol/monitoring-instances/configuration.md#host-settings-monitoringinstancename) |
 
 ### Error queue
 
