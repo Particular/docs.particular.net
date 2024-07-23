@@ -5,6 +5,7 @@
     <IsServiceFabricServiceProject>True</IsServiceFabricServiceProject>
     <OutputType>Exe</OutputType>
     <LangVersion>10.0</LangVersion>
+<NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Contracts\Contracts.csproj" />

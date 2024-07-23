@@ -4,6 +4,7 @@
     <OutputType>exe</OutputType>
     <StartupObject>Program</StartupObject>
     <LangVersion>10.0</LangVersion>
+<NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="8.*" />

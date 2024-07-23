@@ -3,6 +3,7 @@
     <TargetFrameworks>net9.0;net8.0;net7.0;net6.0</TargetFrameworks>
     <AzureFunctionsVersion>v4</AzureFunctionsVersion>
     <LangVersion>10.0</LangVersion>
+<NuGetAudit>false</NuGetAudit>
     <OutputType>Exe</OutputType>
   </PropertyGroup>
   <ItemGroup>

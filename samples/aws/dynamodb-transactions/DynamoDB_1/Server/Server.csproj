@@ -3,6 +3,7 @@
     <TargetFrameworks>net9.0;net8.0;net7.0;net6.0;net48</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <LangVersion>10.0</LangVersion>
+<NuGetAudit>false</NuGetAudit>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
   <ItemGroup>

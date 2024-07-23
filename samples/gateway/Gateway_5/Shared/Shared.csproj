@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>12.0</LangVersion>
+<NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
 
   <ItemGroup>

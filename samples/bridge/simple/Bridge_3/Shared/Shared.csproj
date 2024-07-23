@@ -2,5 +2,6 @@
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
     <LangVersion>12.0</LangVersion>
+<NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
 </Project>

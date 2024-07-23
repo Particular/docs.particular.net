@@ -3,6 +3,7 @@
 		<TargetFramework>net48</TargetFramework>
 		<OutputType>Exe</OutputType>
 		<LangVersion>10.0</LangVersion>
+<NuGetAudit>false</NuGetAudit>
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="3.*" />

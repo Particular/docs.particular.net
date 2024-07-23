@@ -3,6 +3,7 @@
     <TargetFramework>net48</TargetFramework>
     <OutputType>Library</OutputType>
     <LangVersion>10.0</LangVersion>
+<NuGetAudit>false</NuGetAudit>
     <ApplicationIcon />
     <StartupObject />
   </PropertyGroup>

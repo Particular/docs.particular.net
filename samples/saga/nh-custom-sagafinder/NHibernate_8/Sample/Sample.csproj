@@ -5,6 +5,7 @@
     <OutputType>Exe</OutputType>
     <ImplicitUsing>enable</ImplicitUsing>
     <LangVersion>10.0</LangVersion>
+<NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
 
   <ItemGroup>
