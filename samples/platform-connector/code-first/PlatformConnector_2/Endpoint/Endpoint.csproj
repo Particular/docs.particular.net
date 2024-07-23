@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <LangVersion>10.0</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
+    <NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="8.*" />

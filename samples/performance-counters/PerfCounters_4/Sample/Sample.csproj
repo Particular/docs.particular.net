@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <ApplicationManifest>app.manifest</ApplicationManifest>
     <LangVersion>10.0</LangVersion>
+    <NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Metrics.PerformanceCounters" Version="4.*" />

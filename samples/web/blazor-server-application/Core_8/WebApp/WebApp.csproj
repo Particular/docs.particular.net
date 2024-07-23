@@ -4,6 +4,7 @@
     <TargetFrameworks>net8.0;net7.0;net6.0</TargetFrameworks>
     <LangVersion>10.0</LangVersion>
     <Nullable>enable</Nullable>
+    <NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
 
   <ItemGroup>

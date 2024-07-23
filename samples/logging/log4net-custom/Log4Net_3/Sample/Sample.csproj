@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <LangVersion>10.0</LangVersion>
     <NoWarn>NU1605</NoWarn>
+    <NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="log4net" Version="2.*" />

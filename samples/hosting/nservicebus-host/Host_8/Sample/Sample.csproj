@@ -5,6 +5,7 @@
     <LangVersion>10.0</LangVersion>
     <StartAction>Program</StartAction>
     <StartProgram>.\NServiceBus.Host.exe</StartProgram>
+    <NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
 
   <ItemGroup>

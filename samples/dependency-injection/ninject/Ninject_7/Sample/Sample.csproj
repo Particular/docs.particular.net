@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <LangVersion>10.0</LangVersion>
     <NoWarn>$(NoWarn);CS0618</NoWarn>
+    <NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Ninject" Version="7.*" />

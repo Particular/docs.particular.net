@@ -4,6 +4,7 @@
     <OutputType>Exe</OutputType>
     <LangVersion>10.0</LangVersion>
     <NoWarn>$(NoWarn);NU1605</NoWarn>
+    <NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="6.*" />

@@ -5,6 +5,7 @@
     <LangVersion>10.0</LangVersion>
     <ApplicationIcon />
     <StartupObject />
+    <NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
