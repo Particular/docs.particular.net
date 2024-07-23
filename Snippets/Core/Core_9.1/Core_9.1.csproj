@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
+<NuGetAudit>false</NuGetAudit>
     <RootNamespace>Core9</RootNamespace>
   </PropertyGroup>
 

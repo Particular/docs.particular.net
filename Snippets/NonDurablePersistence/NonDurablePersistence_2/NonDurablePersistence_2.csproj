@@ -1,6 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
+<NuGetAudit>false</NuGetAudit>
     <RootNamespace>NonDurablePersistence_2</RootNamespace>
   </PropertyGroup>
   <ItemGroup>

@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
+<NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Persistence.CosmosDB" Version="3.*" />
