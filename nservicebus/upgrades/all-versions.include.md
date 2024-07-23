@@ -819,9 +819,9 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.Callbacks/5.0.0) | 2024-04-16     | -                 | -                                 |
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Callbacks/4.0.0) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Callbacks/3.0.0) | 2018-05-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.Callbacks/5.0.1) | 2024-04-16     | -                 | -                                 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Callbacks/4.0.1) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Callbacks/3.0.1) | 2018-05-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.Callbacks/2.0.3) | ~~2017-05-08~~ | ~~2020-05-29~~    | ~~Extended by NServiceBus 6.5.x~~ |
 | [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Callbacks/1.1.3) | ~~2017-01-16~~ | ~~2018-05-08~~    | ~~Superseded by 2.0.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Callbacks/1.0.1) | ~~2016-10-11~~ | ~~2017-04-16~~    | ~~Superseded by 1.1.x~~           |
@@ -830,9 +830,9 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/5.0.0) | 2024-04-16     | -                 | -                                 |
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/4.0.0) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/3.0.0) | 2018-05-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/5.0.1) | 2024-04-16     | -                 | -                                 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/4.0.1) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/3.0.1) | 2018-05-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/2.0.3) | ~~2017-05-08~~ | ~~2020-05-29~~    | ~~Extended by NServiceBus 6.5.x~~ |
 | [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Callbacks.Testing/1.1.3) | ~~2017-01-16~~ | ~~2018-05-08~~    | ~~Superseded by 2.0.x~~           |
 
