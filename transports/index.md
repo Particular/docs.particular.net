@@ -19,10 +19,10 @@ Initially, it's challenging to decide which queuing technology may be best for a
 
 ## Supported transports
 
-- [Learning](/transports/learning/)
-- [MSMQ](/transports/msmq)
 - [Azure Service Bus](/transports/azure-service-bus/)
 - [Azure Storage Queues](/transports/azure-storage-queues/)
-- [SQL Server](/transports/sql/)
-- [RabbitMQ](/transports/rabbitmq/)
 - [Amazon SQS](/transports/sqs/)
+- [RabbitMQ](/transports/rabbitmq/)
+- [SQL Server](/transports/sql/)
+- [MSMQ](/transports/msmq)
+- [Learning](/transports/learning/)
