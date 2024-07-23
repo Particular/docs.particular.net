@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <OutputType>Exe</OutputType>
-    <LangVersion>10.0</LangVersion>
+    <LangVersion>13.0</LangVersion>
 <NuGetAudit>false</NuGetAudit>
   </PropertyGroup>
   <ItemGroup>
