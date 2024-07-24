@@ -17,7 +17,7 @@ class Program
 
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         transport.Routing().RouteToEndpoint(typeof(MyCommand), "Samples.RabbitMQ.SimpleReceiver");
-        endpointConfiguration.EnableInstallers();        
+        endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
         await SendMessages(endpointInstance);
