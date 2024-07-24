@@ -6,7 +6,6 @@ component: Core
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 9
- - 9.1
 ---
 
 ## Meter source name change
