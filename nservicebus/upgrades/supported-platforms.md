@@ -20,6 +20,7 @@ Support policies for individual NServiceBus components can be found in the [NSer
 | Framework | Version | Platform | Support |
 |------------------|:-------:|:--------:|:-------:|
 | .NET | 8.0 (LTS) | [Windows / Linux](https://github.com/dotnet/core/blob/main/release-notes/8.0/supported-os.md) | [Supported until November 10, 2026](https://dotnet.microsoft.com/en-us/platform/support/policy/dotnet-core) |
+| .NET | 9.0 (preview 6) | [Windows / Linux](https://github.com/dotnet/core/blob/main/release-notes/9.0/supported-os.md) | Supported, for extra information view [the announcement](https://discuss.particular.net/t/nservicebus-for-net-9-preview/4036)  |
 
 macOS is supported for development purposes but not for production workloads.
 
