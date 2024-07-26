@@ -1,7 +1,7 @@
 ---
 title: Monitoring NServiceBus endpoints with Application Insights
 summary: How to configure NServiceBus to export OpenTelemetry traces and meters to Application Insights
-reviewed: 2024-01-17
+reviewed: 2024-07-26
 component: Core
 previewImage: trace-timeline.png
 related:
