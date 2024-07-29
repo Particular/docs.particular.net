@@ -39,10 +39,5 @@ Import-ServiceControlLicense License.xml
 # endcode
 
 # startcode ps-get-help
-#if-version [5,)
 Get-Help Get-ServiceControlManagementCommands
-#end-if
-#if-version [,5)
-Get-Help Get-ServiceControlMgmtCommands
-#end-if
 # endcode
