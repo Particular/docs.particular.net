@@ -62,7 +62,7 @@ Generic message definitions (e.g., `MyMessage<T>`) are not supported. It is reco
 
 Messages define the data contracts between endpoints. More details are available in the [sharing message contracts documentation](sharing-contracts.md).
 
-By following these guidelines message types are generally more compatible with [various serializers](nservicebus/serialization) and tend to be more evolvable over time.
+By following these guidelines message types are generally more compatible with [various serializers](/nservicebus/serialization) and tend to be more evolvable over time.
 
 ## Identifying messages
 
