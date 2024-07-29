@@ -58,7 +58,7 @@ Types used for other purposes (e.g., domain objects, data access objects, or UI 
 > [!NOTE]
 > Prior to NServiceBus version 7.2, messages had to be defined as a `class`. Defining them as a `struct` would result in a runtime exception.
 
-Generic message definitions (e.g., `MyMessage<T>`) are not supported. It is recommended to use dedicated, simple types for each message or to use inheritance to reuse shared message characteristics.
+Generic message definitions (e.g., `MyMessage<T>`) are not supported. It is recommended to use dedicated, simple types for each message.
 
 Messages define the data contracts between endpoints. More details are available in the [sharing message contracts documentation](sharing-contracts.md). It may also be beneficial to [use them as interfaces](messages-as-interfaces.md).
 
