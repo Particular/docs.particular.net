@@ -2,18 +2,9 @@ using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
 
-class TimeoutTableCreator
+static class TimeoutTableCreator
 {
-    private readonly CreateSqlConnection createSqlConnection;
-    private readonly string tableName;
-
-    public TimeoutTableCreator(CreateSqlConnection createSqlConnection, string tableName)
-    {
-        this.tableName = tableName;
-        this.createSqlConnection = createSqlConnection;
-    }
-
-    public async Task CreateIfNecessary(CancellationToken cancellationToken = default)
+    public static async Task CreateIfNecessary(CreateSqlConnection createSqlConnection, string tableName, CancellationToken cancellationToken = default)
     {
         var sql = string.Format(SqlConstants.SqlCreateTable, tableName);
         using (var connection = await createSqlConnection(cancellationToken))

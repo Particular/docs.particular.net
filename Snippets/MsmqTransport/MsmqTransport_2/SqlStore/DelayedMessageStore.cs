@@ -53,16 +53,17 @@ public class DelayedMessageStore : IDelayedMessageStore
 public class DelayedMessageStoreWithInfrastructure : IDelayedMessageStoreWithInfrastructure
 #endregion
 {
-    string schema;
-    string tableName;
-    CreateSqlConnection createSqlConnection;
+    private readonly string schema;
+    private readonly CreateSqlConnection createSqlConnection;
 
-    string quotedFullName;
-    string insertCommand;
-    string removeCommand;
-    string bumpFailureCountCommand;
-    string nextCommand;
-    string fetchCommand;
+    private string tableName;
+
+    private string quotedFullName;
+    private string insertCommand;
+    private string removeCommand;
+    private string bumpFailureCountCommand;
+    private string nextCommand;
+    private string fetchCommand;
 
     public DelayedMessageStoreWithInfrastructure(string connectionString, string schema = null, string tableName = null)
         : this(token => Task.FromResult(new SqlConnection(connectionString)), schema, tableName)
@@ -145,8 +146,7 @@ public class DelayedMessageStoreWithInfrastructure : IDelayedMessageStoreWithInf
     #region dms-setup-infrastructure
     public async Task SetupInfrastructure(CancellationToken cancellationToken = default)
     {
-        var creator = new TimeoutTableCreator(createSqlConnection, quotedFullName);
-        await creator.CreateIfNecessary(cancellationToken);
+        await TimeoutTableCreator.CreateIfNecessary(createSqlConnection, quotedFullName, cancellationToken);
     }
     #endregion
 
