@@ -1,6 +1,6 @@
 ---
 title: Deploying ServiceControl Audit instances using PowerShell
-reviewed: 2021-08-06
+reviewed: 2024-07-26
 component: ServiceControl
 redirects:
  - servicecontrol/audit-instances/installation-powershell
