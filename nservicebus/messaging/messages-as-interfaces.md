@@ -10,9 +10,7 @@ redirects:
 - nservicebus/messaging/interfaces-as-messages
 ---
 
-Events can be created on the fly from interfaces without first defining an explicit class implementing the interfaces. This technique can be used to support multiple inheritance for [polymorphic routing scenarios](./dynamic-dispatch-and-routing.md). In general, it is recommended to use [simple dedicated types](
-/nservicebus/messaging/messages-events-commands.md
-) as messages instead.
+Events can be created on the fly from interfaces without first defining an explicit class implementing the interfaces. This technique can be used to support multiple inheritance for [polymorphic routing scenarios](./dynamic-dispatch-and-routing.md). In general, it is recommended to use [dedicated, simple types](/nservicebus/messaging/messages-events-commands.md) as messages instead.
 
 ## Sending interface messages
 

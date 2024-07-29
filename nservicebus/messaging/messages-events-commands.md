@@ -52,8 +52,8 @@ Messages should:
 * Be simple [POCO](https://en.wikipedia.org/wiki/Plain_old_CLR_object) types
 * Be as small as possible
 * Satisfy the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle)
-* Favour simplicity and if necessary redundancy over object oriented practices like inheritance
-* Avoid using types used for other purposes (e.g., domain objects, data access objects, or UI binding objects)
+* Favor simplicity and redundancy over object-oriented practices like inheritance
+* Not be re-used for other purposes (e.g., domain objects, data access objects, or UI binding objects)
 
 > [!NOTE]
 > Prior to NServiceBus version 7.2, messages had to be defined as a `class`. Defining them as a `struct` would result in a runtime exception.
@@ -62,7 +62,7 @@ Generic message definitions (e.g., `MyMessage<T>`) are not supported. It is reco
 
 Messages define the data contracts between endpoints. More details are available in the [sharing message contracts documentation](sharing-contracts.md).
 
-By following these guidelines message types are generally more compatible with [various serializers](/nservicebus/serialization) and tend to be more evolvable over time.
+By following these guidelines, message types are generally more compatible with [serializers](/nservicebus/serialization) and tend to be more evolvable over time.
 
 ## Identifying messages
 
