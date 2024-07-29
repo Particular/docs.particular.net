@@ -53,8 +53,7 @@ Messages should:
 * Be as small as possible
 * Satisfy the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle)
 * Favour simplicity and if necessary redundancy over object oriented practices like inheritance
-
-Types used for other purposes (e.g., domain objects, data access objects, or UI binding objects) should not be used as messages.
+* Avoid using types used for other purposes (e.g., domain objects, data access objects, or UI binding objects)
 
 > [!NOTE]
 > Prior to NServiceBus version 7.2, messages had to be defined as a `class`. Defining them as a `struct` would result in a runtime exception.
