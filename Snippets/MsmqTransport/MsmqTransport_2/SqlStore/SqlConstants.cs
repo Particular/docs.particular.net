@@ -1,16 +1,14 @@
-namespace NServiceBus.Snippets
+static class SqlConstants
 {
-    class SqlConstants
-    {
-        #region dms-sql-crud
-        public const string SqlInsert = "INSERT INTO {0} (Id, Destination, Time, Headers, State) VALUES (@id, @destination, @time, @headers, @state);";
-        public const string SqlFetch = "SELECT TOP 1 Id, Destination, Time, Headers, State, RetryCount FROM {0} WITH (READPAST, UPDLOCK, ROWLOCK) WHERE Time < @time ORDER BY Time";
-        public const string SqlDelete = "DELETE {0} WHERE Id = @id";
-        public const string SqlUpdate = "UPDATE {0} SET RetryCount = RetryCount + 1 WHERE Id = @id";
-        public const string SqlGetNext = "SELECT TOP 1 Time FROM {0} ORDER BY Time";
-        #endregion
-        #region dms-sql-create-table
-        public const string SqlCreateTable = @"
+    #region dms-sql-crud
+    public const string SqlInsert = "INSERT INTO {0} (Id, Destination, Time, Headers, State) VALUES (@id, @destination, @time, @headers, @state);";
+    public const string SqlFetch = "SELECT TOP 1 Id, Destination, Time, Headers, State, RetryCount FROM {0} WITH (READPAST, UPDLOCK, ROWLOCK) WHERE Time < @time ORDER BY Time";
+    public const string SqlDelete = "DELETE {0} WHERE Id = @id";
+    public const string SqlUpdate = "UPDATE {0} SET RetryCount = RetryCount + 1 WHERE Id = @id";
+    public const string SqlGetNext = "SELECT TOP 1 Time FROM {0} ORDER BY Time";
+    #endregion
+    #region dms-sql-create-table
+    public const string SqlCreateTable = @"
 if not exists (
     select * from sys.objects
     where
@@ -40,6 +38,5 @@ begin
     create index Index_Time on {0} (Time);
 end
 ";
-        #endregion
-    }
+    #endregion
 }
