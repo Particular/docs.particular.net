@@ -7,7 +7,7 @@ snippet: delayed-delivery
 The SQL Server delayed message store (`SqlServerDelayedMessageStore`) is the only delayed message store that ships with the MSMQ transport.
 
 > [!WARNING]
-> When enabling native delayed delivery, the timeout manager should be disabled so the two features do not compete for delayed messages. See the [MSMQ Transport version 1 to 2 upgrade guide](/transports/upgrades/msmq-1to2.md) for guidance on migrating away from the timeout manager.
+> When enabling native delayed delivery, the timeout manager should be disabled so that the two features do not compete for delayed messages. See the [MSMQ Transport version 1 to 2 upgrade guide](/transports/upgrades/msmq-1to2.md) for guidance on migrating away from the timeout manager.
 
 ### How it works
 
