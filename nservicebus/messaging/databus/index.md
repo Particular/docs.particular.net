@@ -12,6 +12,8 @@ related:
  - samples/databus/blob-storage-databus
 ---
 
+partial: obsolete
+
 Although messaging systems work best with small message sizes, some scenarios require sending binary large objects ([blobs](https://en.wikipedia.org/wiki/Binary_large_object)) data along with a message (also known as a [_Claim Check_](https://learn.microsoft.com/en-us/azure/architecture/patterns/claim-check)). For this purpose, NServiceBus has a `DataBus` feature to overcome the message size limitations imposed by the underlying transport.
 
 ## How it works

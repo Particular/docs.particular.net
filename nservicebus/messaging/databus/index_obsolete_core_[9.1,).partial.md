@@ -1,0 +1,2 @@
+> [!WARNING]
+> The `DataBus` feature is available as a [dedicated NuGet package](/nservicebus/messaging/databus/). The API documented on this page will continue to work for NServiceBus Version 9 but it will hint about its upcoming obsoletion with the following warning: *The DataBus feature is released as a dedicated 'NServiceBus.ClaimCheck.DataBus' package.*.
