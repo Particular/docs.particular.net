@@ -63,3 +63,5 @@ The XML serializer in NServiceBus is a custom implementation. As such it does no
 * [HashTable](https://msdn.microsoft.com/en-us/library/system.collections.hashtable.aspx)
 * Types with non-default constructors. So types must have a public constructor with no parameters.
 * [ArrayList](https://msdn.microsoft.com/en-us/library/system.collections.arraylist.aspx)
+* [DateOnly](https://learn.microsoft.com/en-us/dotnet/api/system.dateonly)
+* [TimeOnly](https://learn.microsoft.com/en-us/dotnet/api/system.timeonly)
