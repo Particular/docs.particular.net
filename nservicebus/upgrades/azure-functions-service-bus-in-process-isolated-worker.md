@@ -9,37 +9,58 @@ related:
 isUpgradeGuide: true
 ---
 
-Since Microsoft has confirmed that .Net 8.0 will be the last LTS to support the in-process hosting model, it is highly recommended to migrate to the isolated worker hosting model.  The following sections describe how to migrate Azure Functions (in-process) to (Isolated Worker).
+## Overview
 
-The main difference between Azure Functions (in-process) and Azure Functions (Isolated Worker) is that Isolated Worker functions are isolated from the Azure Functions runtime, while in-process functions share the same process and AppDomain. Microsoft has more detailed information about the [difference between the in-process and isolated worker model](https://learn.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-in-process-differences).
+Microsoft has confirmed that .NET 8.0 will be the last LTS to support the in-process hosting model. It is highly recommended to migrate to the isolated worker hosting model.  This guide provides steps to help you migrate from in-process to isolated worker.
 
-Using the `NServicebus.AzureFunctions.InProcess.ServieBus 2.x` component [example](https://docs.particular.net/samples/azure-functions/service-bus/?version=asbfunctions_2) and the `NServiceBus.AzureFunctions.Worker.ServiceBus 3.x` component [example](https://docs.particular.net/samples/azure-functions/service-bus-worker/?version=asbfunctionsworker_3) as reference for th migration process.
+## Key differences
+
+- **In-process**: Functions run within the Azure Functions runtime, sharing the same process and AppDomain.
+- **Isolated worker**: Functions are isolated from the Azure Functions runtime and run in a separate process.
+
+Microsoft provides more detailed information about the [difference between the in-process and isolated worker model](https://learn.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-in-process-differences).
+
+This migration guide is based on the `NServicebus.AzureFunctions.InProcess.ServieBus 2.x` component [example](https://docs.particular.net/samples/azure-functions/service-bus/?version=asbfunctions_2) and the `NServiceBus.AzureFunctions.Worker.ServiceBus 3.x` component [example](https://docs.particular.net/samples/azure-functions/service-bus-worker/?version=asbfunctionsworker_3) as reference.
 
 ## Update project file
 
 ### Update framework
 
-- Change the `TargetFramework` to >= `net6.0`
+  Change the `TargetFramework` to `net6.0` or higher in your `.csproj` file
+
+```xml
+<PropertyGroup>
+  <TargetFramework>net6.0</TargetFramework>
+</PropertyGroup>
+```
 
 ### Remove package references
 
+Remove the following package references from your `.csproj` file.
+
 - `Microsoft.NET.Sdk.Functions`
-- `Microsoft.Azure.WebJobs`
-- `Microsoft.Azure.Webjobs`
 - `Micrsosoft.Azure.Functions.Exension`
 - `Microsoft.Azure.Webjobs`
 - `Microsoft.Azure.Webjobs.extensions.http`
 
 ### Add package references
 
-- `Microsoft.Azure.Functions.Worker` >= 1.0.0
-- `Microsoft.Azure.Functions.Worker.Sdk` >= 1.0.0
-- `Microsoft.Azure.Functions.Worker.Extensions.Http` >= 3.0.0
-- `NServiceBus.AzureFunctions.Worker.ServiceBus` >= 3.0.0
+Add the following package references to your `.csproj` file.
 
-## In HttpSender.cs
+```xml
+<ItemGroup>
+  <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="1.*" />
+  <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.*" />
+  <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.*" />
+  <PackageReference Include="NServiceBus.AzureFunctions.Worker.ServiceBus" Version="3.*" />
+</ItemGroup>
+```
 
-### Remove references
+## Update function code
+
+### Modify `HttpSender.cs`
+
+Remove the following references:
 
 - `Microsoft.AspNetCore.Http`
 - `Microsoft.AspNetCore.Mvc`
@@ -47,16 +68,16 @@ Using the `NServicebus.AzureFunctions.InProcess.ServieBus 2.x` component [exampl
 - `Microsoft.Azure.WebJobs`
 - `Microsoft.Azure.WebJobs.Extensions.Http`
 
-### Add references
+Add the following references
 
 - `Microsoft.Azure.Functions.Worker`
 - `Microsoft.Azure.Functions.Worker.Extensions.Http`
 
-### Change return type of Run method
+### Update the `Run` method signature and logic
 
 - Change from `Task<IActionResult>` to `Task<HttpResponseData>`
 - Change `ExecutionContext` parameter to `FunctionContext`
-- The functionEndpoint.send method now does not take the logger as a parameter.
+- The `functionEndpoint.send` method now does not take the logger as a parameter.
 
 ```csharp
 [Function("HttpSender")]
@@ -68,20 +89,22 @@ public async Task<HttpResponseData> Run(
     var logger = executionContext.GetLogger<HttpSender>();
     logger.LogInformation("C# HTTP trigger function received a request.");
 
-            var sendOptions = new SendOptions();
-        sendOptions.RouteToThisEndpoint();
+    var sendOptions = new SendOptions();
+    sendOptions.RouteToThisEndpoint();
 
-        await functionEndpoint.Send(new TriggerMessage(), sendOptions, executionContext);
+    await functionEndpoint.Send(new TriggerMessage(), sendOptions, executionContext);
 
-        var r = req.CreateResponse(HttpStatusCode.OK);
-        await r.WriteStringAsync($"{nameof(TriggerMessage)} sent.");
-        return r;
+    var r = req.CreateResponse(HttpStatusCode.OK);
+    await r.WriteStringAsync($"{nameof(TriggerMessage)} sent.");
+    return r;
 }
 ```
 
-## In Startup.cs or program.cs
+## Update host configuration
 
-Simple example:
+Utilizing the minimal hosting model available in .Net 6.0, the `startup.cs` file can be merged with the `program.cs` file to register services.
+
+### Simple example
 
 ```csharp
 using Microsoft.Extensions.Hosting;
@@ -104,7 +127,7 @@ public class Program
 }
 ```
 
-Utilizing the minimal hosting model available in .Net 6.0, the `startup.cs` file can be merged with the `program.cs` file to register services.
+### With dependency injection
 
 ```csharp
 using Microsoft.Extensions.Hosting;
