@@ -20,7 +20,7 @@ Microsoft has confirmed that .NET 8.0 will be the last LTS to support the in-pro
 
 Microsoft provides more detailed information about the [difference between the in-process and isolated worker model](https://learn.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-in-process-differences).
 
-This migration guide is based on the `NServicebus.AzureFunctions.InProcess.ServieBus 2.x` component [example](https://docs.particular.net/samples/azure-functions/service-bus/?version=asbfunctions_2) and the `NServiceBus.AzureFunctions.Worker.ServiceBus 3.x` component [example](https://docs.particular.net/samples/azure-functions/service-bus-worker/?version=asbfunctionsworker_3) as reference.
+This migration guide is based on the `NServicebus.AzureFunctions.InProcess.ServieBus 2.x` component [example](/samples/azure-functions/service-bus/?version=asbfunctions_2) and the `NServiceBus.AzureFunctions.Worker.ServiceBus 3.x` component [example](/samples/azure-functions/service-bus-worker/?version=asbfunctionsworker_3) as reference.
 
 ## Update project file
 
