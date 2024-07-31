@@ -13,11 +13,13 @@ Since Microsoft has confirmed that .Net 8.0 will be the last LTS to support the 
 
 The main difference between Azure Functions (in-process) and Azure Functions (Isolated Worker) is that Isolated Worker functions are isolated from the Azure Functions runtime, while in-process functions share the same process and AppDomain. Microsoft has more detailed information about the [difference between the in-process and isolated worker model](https://learn.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-in-process-differences).
 
+Using the `NServicebus.AzureFunctions.InProcess.ServieBus 2.x` component [example](https://docs.particular.net/samples/azure-functions/service-bus/?version=asbfunctions_2) and the `NServiceBus.AzureFunctions.Worker.ServiceBus 3.x` component [example](https://docs.particular.net/samples/azure-functions/service-bus-worker/?version=asbfunctionsworker_3) as reference for th migration process.
+
 ## Update project file
 
 ### Update framework
 
-- Change the `TargetFramework` to `net6.0` or greater
+- Change the `TargetFramework` to >= `net6.0`
 
 ### Remove package references
 
