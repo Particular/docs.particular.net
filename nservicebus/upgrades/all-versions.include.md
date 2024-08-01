@@ -2,7 +2,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [9.1.x](https://www.nuget.org/packages/NServiceBus/9.1.0) | 2024-07-19     | -                 | -                                 |
+| [9.1.x](https://www.nuget.org/packages/NServiceBus/9.1.1) | 2024-07-19     | -                 | -                                 |
 | [9.0.x](https://www.nuget.org/packages/NServiceBus/9.0.3) | 2024-04-16     | 2025-01-19        | Superseded by 9.1.x               |
 | [8.2.x](https://www.nuget.org/packages/NServiceBus/8.2.2) | 2024-04-11     | 2026-04-16        | Superseded by 9.0.x               |
 | [8.1.x](https://www.nuget.org/packages/NServiceBus/8.1.7) | 2023-06-19     | 2024-10-11        | Superseded by 8.2.x               |
@@ -208,7 +208,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.4) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
-| [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.4) | 2021-10-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.5) | 2021-10-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.1) | ~~2020-06-24~~ | ~~2022-01-29~~    | ~~Superseded by 1.2.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.0.2) | ~~2018-05-29~~ | ~~2020-09-24~~    | ~~Superseded by 1.1.x~~           |
 
@@ -465,7 +465,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.4) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
-| [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.4) | 2021-10-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.5) | 2021-10-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.1.1) | ~~2020-06-24~~ | ~~2022-01-29~~    | ~~Superseded by 1.2.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.0.2) | ~~2018-05-29~~ | ~~2020-09-24~~    | ~~Superseded by 1.1.x~~           |
 

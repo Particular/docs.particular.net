@@ -59,7 +59,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.4) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
-| [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.4) | 2021-10-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.5) | 2021-10-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Transport.PostgreSql](/nuget/NServiceBus.Transport.PostgreSql)
 
@@ -209,7 +209,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.4) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
-| [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.4) | 2021-10-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.5) | 2021-10-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 ### Serializer packages
 
