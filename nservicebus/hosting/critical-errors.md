@@ -11,7 +11,7 @@ NServiceBus has the ability to handle message processing failures through the [r
 
 Examples of **critical errors** include:
 
-* An exception occurs when NServiceBus attempts to execute the recoverability policy, including moving a message to the error queue. The context will contain a specific error `Failed to execute recoverability policy for message with native ID: \`{message.MessageId}\``
+* An exception occurs when NServiceBus attempts to execute the recoverability policy, including moving a message to the error queue. The context will contain a specific error `Failed to execute recoverability policy for message with native ID: "{message.MessageId}"`
 * There are repeated failures in reading information from a required storage.
 * An exception occurs reading from the input queue.
 
