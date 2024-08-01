@@ -6,7 +6,7 @@ related:
  - nservicebus/hosting/azure-functions-service-bus
 redirects:
  - samples/previews/azure-functions/service-bus
-reviewed: 2021-08-11
+reviewed: 2024-08-02
 ---
 
 This sample shows how to host NServiceBus within an Azure Function, in this case, a function triggered by an incoming Service Bus message. This enables hosting message handlers in Azure Functions, gaining the abstraction of message handlers implemented using `IHandleMessages<T>` and also taking advantage of NServiceBus's extensible message processing pipeline.
