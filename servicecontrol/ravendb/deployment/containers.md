@@ -17,7 +17,7 @@ This minimal example creates a database container using `docker run`:
 
 ```shell
 docker run -d --name servicecontrol-db \
-    -v <DATA_DIRECTORY>:/opt/RavenDB/Server/RavenData
+    -v <DATA_DIRECTORY>:/opt/RavenDB/Server/RavenData \
     particular/servicecontrol-ravendb:latest
 ```
 
