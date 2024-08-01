@@ -104,27 +104,6 @@ Utilizing the minimal hosting model that became available in .Net 6.0, the `star
 
 snippet: asb-function-isolated-configuration
 
-```csharp
-using Microsoft.Extensions.Hosting;
-using NServiceBus;
-using System.Threading.Tasks;
-
-[assembly:NServiceBusTriggerFunction("ASBWorkerEndpoint")]
-
-public class Program
-{
-    public static Task Main()
-    {
-        var host = new HostBuilder()
-            .ConfigureFunctionsWorkerDefaults()
-            .UseNServiceBus()
-            .Build();
-
-        return host.RunAsync();
-    }
-}
-```
-
 ### With dependency injection
 
 ```csharp
