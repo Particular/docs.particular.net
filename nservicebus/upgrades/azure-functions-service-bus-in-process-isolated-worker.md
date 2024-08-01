@@ -4,14 +4,16 @@ summary: Instructions on how to migrate Azure Functions (in-process) to Azure Fu
 component: ASBFunctionsWorker
 reviewed: 2024-07-29
 related:
- - nservicebus/hosting/azure-functions-service-bus/in-process
  - nservicebus/hosting/azure-functions-service-bus
-isUpgradeGuide: true
+ - samples/azure-functions/service-bus-worker
+ - nservicebus/hosting/azure-functions-service-bus/in-process
+ - samples/azure-functions/service-bus
+isUpgradeGuide: false
 ---
 
 ## Overview
 
-Microsoft has confirmed that .NET 8.0 will be the last LTS to support the in-process hosting model. It is highly recommended to migrate to the isolated worker hosting model.  This guide provides steps to help you migrate from in-process to isolated worker.
+Microsoft has confirmed that .NET 8.0 will be the last LTS to support the in-process hosting model and .NET 6.0 LTS will reach end of support in November 2024. It is highly recommended to migrate to the isolated worker hosting model.  This guide provides steps to help you migrate from in-process to isolated worker.
 
 ## Key differences
 
@@ -20,17 +22,15 @@ Microsoft has confirmed that .NET 8.0 will be the last LTS to support the in-pro
 
 Microsoft provides more detailed information about the [difference between the in-process and isolated worker model](https://learn.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-in-process-differences).
 
-This migration guide is based on the `NServicebus.AzureFunctions.InProcess.ServiceBus 2.x` component [example](/samples/azure-functions/service-bus/?version=asbfunctions_2) and the `NServiceBus.AzureFunctions.Worker.ServiceBus 3.x` component [example](/samples/azure-functions/service-bus-worker/?version=asbfunctionsworker_3) as reference.
-
 ## Update project file
 
 ### Update framework
 
-  Change the `TargetFramework` to `net6.0` or higher in your `.csproj` file
+It's recommended to update the `TargetFramework` in your `.csproj` file to `net8.0`.  However, NServiceBus.AzureFunctions.Worker.ServiceBus (>= 1.0.0 && < 5.0.0) will work with `net6.0`.
 
 ```xml
 <PropertyGroup>
-  <TargetFramework>net6.0</TargetFramework>
+  <TargetFrameworks>net8.0</TargetFrameworks>
 </PropertyGroup>
 ```
 
@@ -46,27 +46,21 @@ Remove the following package references from your `.csproj` file.
 
 ### Add package references
 
-Add the following package references to your `.csproj` file.
+Add the following package references to your `.csproj` file with the appropriate dependency version.
 
-```xml
-<ItemGroup>
-  <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="1.*" />
-  <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="1.*" />
-  <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.*" />
-  <PackageReference Include="NServiceBus.AzureFunctions.Worker.ServiceBus" Version="3.*" />
-</ItemGroup>
-```
+- `Microsoft.Azure.Functions.Worker`
+- `Microsoft.Azure.Functions.Worker.Sdk`
+- `Microsoft.Azure.Functions.Worker.Extensions`
+- `NServiceBus.AzureFunctions.Worker.ServiceBus`
 
-## Update function code
-
-### Modify `HttpSender.cs`
+## Update trigger function
 
 Remove the following references:
 
 - `Microsoft.AspNetCore.Http`
 - `Microsoft.AspNetCore.Mvc`
-- `Microsoft.Azure.WebJobs.Http`
 - `Microsoft.Azure.WebJobs`
+- `Microsoft.Azure.WebJobs.Http`
 - `Microsoft.Azure.WebJobs.Extensions.Http`
 
 Add the following references
@@ -74,14 +68,15 @@ Add the following references
 - `Microsoft.Azure.Functions.Worker`
 - `Microsoft.Azure.Functions.Worker.Extensions.Http`
 
-### Update the `Run` method signature and logic
+### Update trigger function signature and logic
 
 - Change from `Task<IActionResult>` to `Task<HttpResponseData>`
 - Change `ExecutionContext` parameter to `FunctionContext`
-- The `functionEndpoint.send` method now does not take the logger as a parameter.
+- The `functionEndpoint.Send` method now does not take the logger as a parameter.
+- Update the trigger function annotation from `[FunctionName(<triggerFunctionName>)` to `[Function(<triggerFunctionName>)]`
 
 ```csharp
-[Function("HttpSender")]
+[Function("TriggerFunctionName")]
 public async Task<HttpResponseData> Run(
     [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]
     HttpRequestData req,
@@ -103,9 +98,11 @@ public async Task<HttpResponseData> Run(
 
 ## Update host configuration
 
-Utilizing the minimal hosting model available in .Net 6.0, the `startup.cs` file can be merged with the `program.cs` file to register services.
+Utilizing the minimal hosting model that became available in .Net 6.0, the `startup.cs` file can be merged with the `program.cs` file to register services.
 
 ### Simple example
+
+snippet: asb-function-isolated-configuration
 
 ```csharp
 using Microsoft.Extensions.Hosting;
