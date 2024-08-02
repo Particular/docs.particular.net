@@ -16,6 +16,15 @@
   NugetOrder:
     - NServiceBus.MessageInterfaces    
 
+- Key: DataBus
+  Name: DataBus
+  DocsUrl: /nservicebus/messaging/databus
+  GitHubOwner: Particular
+  Category: Databus
+  ProjectUrl: https://github.com/Particular/NServiceBus.ClaimCheck.DataBus
+  NugetOrder:
+    - NServiceBus.ClaimCheck.DataBus
+
 - Key: ABSDataBus
   Name: Azure Blob Storage Databus
   DocsUrl: /nservicebus/azure
@@ -27,7 +36,7 @@
 
 - Key: BinaryDataBusSerializer
   Name: DataBus Binary Serializer
-  DocsUrl: /nservicebus/messaging/databus/binary
+  DocsUrl: /nservicebus/messaging/claimcheck/binary
   GitHubOwner: Particular
   Category: Databus
   ProjectUrl: https://github.com/Particular/NServiceBus.DataBus.BinarySerializer
@@ -155,7 +164,7 @@
 
 - Key: FileShareDataBus
   Name: File Share Databus
-  DocsUrl: /nservicebus/messaging/databus/file-share
+  DocsUrl: /nservicebus/messaging/claimcheck/file-share
   GitHubOwner: Particular
   Category: Databus
   ProjectUrl: https://github.com/Particular/NServiceBus

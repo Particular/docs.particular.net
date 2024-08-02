@@ -3,6 +3,8 @@ title: DataBus Binary Serializer
 summary: A binary serializer for the data bus
 component: BinaryDataBusSerializer
 reviewed: 2024-02-16
+redirects:
+ - nservicebus/messaging/databus/binary
 related:
  - samples/databus/file-share-databus
  - samples/databus/custom-serializer

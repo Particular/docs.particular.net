@@ -1,10 +1,11 @@
 ---
 title: Customizing the data bus
 summary: Demonstrates how to register and plug in a customized data bus implementation into an endpoint.
-component: Core
+component: DataBus
 reviewed: 2024-02-16
 redirects:
-- nservicebus/plugin-custom-databus
+ - nservicebus/plugin-custom-databus
+ - nservicebus/messaging/databus/custom
 related:
 - samples/databus/custom-serializer
 ---

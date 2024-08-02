@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 15.0.26730.12
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataBus_1", "DataBus_1\DataBus_1.csproj", "{2FFFC06C-64E4-4A61-B3A0-71B8B4EBF046}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2FFFC06C-64E4-4A61-B3A0-71B8B4EBF046}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FFFC06C-64E4-4A61-B3A0-71B8B4EBF046}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FFFC06C-64E4-4A61-B3A0-71B8B4EBF046}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FFFC06C-64E4-4A61-B3A0-71B8B4EBF046}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1B5B580D-6C24-43BE-AEAC-F310FBBF0D77}
+	EndGlobalSection
+EndGlobal

@@ -1,7 +1,7 @@
 ---
 title: NServiceBus DataBus feature
 summary: How to handle messages that are too large to be sent by a transport natively by using NServiceBus DataBus
-component: Core
+component: Databus
 reviewed: 2024-08-01
 redirects:
  - nservicebus/databus
@@ -11,8 +11,6 @@ related:
  - samples/databus/custom-serializer
  - samples/databus/blob-storage-databus
 ---
-
-partial: obsolete
 
 Although messaging systems work best with small message sizes, some scenarios require sending binary large objects ([blobs](https://en.wikipedia.org/wiki/Binary_large_object)) data along with a message (also known as a [_Claim Check_](https://learn.microsoft.com/en-us/azure/architecture/patterns/claim-check)). For this purpose, NServiceBus has a `DataBus` feature to overcome the message size limitations imposed by the underlying transport.
 
@@ -45,8 +43,8 @@ The `DataBus` may be used to send messages which exceed the transport's message 
 
 See the individual `DataBus` implementations for details on enabling and configuring the `DataBus`.
 
-- [File Share Data Bus](/nservicebus/messaging/claimcheck/file-share.md)
-- [Azure Blob Storage Data Bus](/nservicebus/messaging/claimcheck/azure-blob-storage.md)
+- [File Share Data Bus](file-share.md)
+- [Azure Blob Storage Data Bus](azure-blob-storage.md)
 
 ## Cleanup
 

@@ -477,13 +477,13 @@
     - Url: nservicebus/messaging/databus
       Title: Data Bus
       Articles:
-      - Url: nservicebus/messaging/databus/file-share
+      - Url: nservicebus/messaging/claimcheck/file-share
         Title: File Share
-      - Url: nservicebus/messaging/databus/azure-blob-storage
+      - Url: nservicebus/messaging/claimcheck/azure-blob-storage
         Title: Azure Blob Storage
-      - Url: nservicebus/messaging/databus/binary
+      - Url: nservicebus/messaging/claimcheck/binary
         Title: DataBus binary serializer
-      - Url: nservicebus/messaging/databus/custom
+      - Url: nservicebus/messaging/claimcheck/custom
         Title: Customizing DataBus
   - Title: Hosting
     Articles:
