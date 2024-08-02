@@ -3,6 +3,8 @@ title: File Share Data Bus
 summary: An implementation of data bus using file shares
 reviewed: 2024-02-16
 component: FileShareDataBus
+redirects:
+ - nservicebus/messaging/databus/file-share
 related:
  - samples/databus/file-share-databus
 ---
