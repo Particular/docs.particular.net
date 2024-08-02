@@ -82,17 +82,17 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [10.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate/10.0.0) | 2024-04-16     | -                 | -                                 |
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate/9.0.2) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
-| [8.6.x](https://www.nuget.org/packages/NServiceBus.NHibernate/8.6.3) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [10.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate/10.0.1) | 2024-04-16     | -                 | -                                 |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate/9.0.3) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [8.6.x](https://www.nuget.org/packages/NServiceBus.NHibernate/8.6.4) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.NHibernate.TransactionalSession](/nuget/NServiceBus.NHibernate.TransactionalSession)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [10.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/10.0.0) | 2024-04-16     | -                 | -                                 |
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/9.0.2) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
-| [8.6.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/8.6.3) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [10.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/10.0.1) | 2024-04-16     | -                 | -                                 |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/9.0.3) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [8.6.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/8.6.4) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Persistence.AzureTable](/nuget/NServiceBus.Persistence.AzureTable)
 
@@ -550,7 +550,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.5.x](https://www.nuget.org/packages/Particular.PlatformSample/3.5.0) | 2024-07-23     | -                 | -                                 |
+| [3.6.x](https://www.nuget.org/packages/Particular.PlatformSample/3.6.0) | 2024-08-01     | -                 | -                                 |
+| [3.5.x](https://www.nuget.org/packages/Particular.PlatformSample/3.5.0) | 2024-07-23     | 2024-11-01        | Superseded by 3.6.x               |
 | [3.4.x](https://www.nuget.org/packages/Particular.PlatformSample/3.4.0) | 2024-07-12     | 2024-10-23        | Superseded by 3.5.x               |
 | [3.3.x](https://www.nuget.org/packages/Particular.PlatformSample/3.3.0) | 2024-07-08     | 2024-10-12        | Superseded by 3.4.x               |
 | [3.2.x](https://www.nuget.org/packages/Particular.PlatformSample/3.2.4) | 2024-05-14     | 2024-10-08        | Superseded by 3.3.x               |
