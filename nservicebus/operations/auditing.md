@@ -101,7 +101,7 @@ When auditing is enabled, all messages are audited by default. To control which 
 
 Auditing works by sending an exact copy of the received message to the audit queue, so filtering out individual properties is not supported.
 
-For sensitive properties, e.g., credit card numbers or passwords, use [message property encryption](/nservicebus/security/property-encryption.md). For large properties, consider the [data bus feature](/nservicebus/messaging/databus/) to avoid including the actual payload in the audited message.
+For sensitive properties, e.g. credit card numbers or passwords, use [message property encryption](/nservicebus/security/property-encryption.md). For large properties, consider the [data bus feature](/nservicebus/messaging/claimcheck/) to avoid including the actual payload in the audited message.
 
 ## Additional audit information
 

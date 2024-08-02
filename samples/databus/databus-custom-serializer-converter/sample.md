@@ -20,7 +20,7 @@ This sample shows how to send large attachments with NServiceBus via Windows fil
  1. Press <kbd>D</kbd> in the window to send a large message. A message has just been sent that is larger than the limit allowed by the learning transport. NServiceBus sends it as an attachment, allowing it to reach the Receiver application.
 
 > [!WARNING]
-> The FileShareDataBus **does not** remove physical attachments once the message has been processed. Apply a custom [cleanup-strategy](/nservicebus/messaging/databus/file-share.md#cleanup-strategy).
+> The FileShareDataBus **does not** remove physical attachments once the message has been processed. Apply a custom [cleanup-strategy](/nservicebus/messaging/claimcheck/file-share.md#cleanup-strategy).
 
 ## Code walk-through
 

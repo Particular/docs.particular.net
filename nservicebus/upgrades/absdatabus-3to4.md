@@ -31,4 +31,4 @@ For scenario's in which advanced authentication modes are desirable, a preconfig
 
 ## Expired blob cleanup
 
-The built-in cleanup mechanism has been deprecated. See available [clean-up options](/nservicebus/messaging/databus/azure-blob-storage.md?version=absdatabus_4#cleanup-strategies).
+The built-in cleanup mechanism has been deprecated. See available [clean-up options](/nservicebus/messaging/claimcheck/azure-blob-storage.md?version=absdatabus_4#cleanup-strategies).

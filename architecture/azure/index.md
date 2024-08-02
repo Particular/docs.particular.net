@@ -60,7 +60,7 @@ The Particular Service Platform makes systems follow the [ten design principles 
 
 ### Design patterns
 
-[Azure Cloud Design Patterns](https://learn.microsoft.com/en-us/azure/architecture/patterns/) lists many proven patterns for addressing specific challenges. The Particular Service Platform implements many of these such as [Asynchronous Request-Reply](/nservicebus/messaging/reply-to-a-message.md), [Circuit Breaker](/nservicebus/recoverability/#automatic-rate-limiting), [Claim Check](/nservicebus/messaging/databus/), [Competing Consumers](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers), and more.
+[Azure Cloud Design Patterns](https://learn.microsoft.com/en-us/azure/architecture/patterns/) lists many proven patterns for addressing specific challenges. The Particular Service Platform implements many of these such as [Asynchronous Request-Reply](/nservicebus/messaging/reply-to-a-message.md), [Circuit Breaker](/nservicebus/recoverability/#automatic-rate-limiting), [Claim Check](/nservicebus/messaging/claimcheck/), [Competing Consumers](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers), and more.
 
 [**Talk to a solution architect to help identify suitable design patterns →**](https://particular.net/solution-architect?message=I%27d%20like%20to%20talk%20to%20a%20solution%20architect%20to%20help%20identify%20suitable%20design%20patterns%20for%20my%20system.)
 

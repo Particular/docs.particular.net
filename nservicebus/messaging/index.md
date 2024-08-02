@@ -23,4 +23,4 @@ The approaches to messaging in NServiceBus can be categorized into the following
 * [Message routing](/nservicebus/messaging/routing.md)
 * [Scheduling](/nservicebus/scheduling/)
 * [Outbox](/nservicebus/outbox/)
-* [Databus](/nservicebus/messaging/databus/)
+* [Databus](/nservicebus/messaging/claimcheck/)

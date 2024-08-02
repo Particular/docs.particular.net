@@ -8,7 +8,7 @@ reviewed: 2024-02-09
 ---
 
 > [!WARNING]
-> [Gateway](/nservicebus/gateway) hosted in Service Fabric does not support forwarding messages containing [Databus](/nservicebus/messaging/databus/) properties.
+> [Gateway](/nservicebus/gateway) hosted in Service Fabric does not support forwarding messages containing [Databus](/nservicebus/messaging/claimcheck/) properties.
 
 When adopting Service Fabric, it's not uncommon that the Service Fabric hosted endpoints need to interact with endpoints outside of the cluster. This can get tricky especially when the endpoints inside Service Fabric are stateful. When integrating using sender side distribution, or when using the Service Fabric built-in [reverse proxy](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reverseproxy) to expose the endpoints as web services, the partition information needs to be provided by the consumer.
 
