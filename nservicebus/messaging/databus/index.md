@@ -3,9 +3,6 @@ title: NServiceBus DataBus feature
 summary: How to handle messages that are too large to be sent by a transport natively by using NServiceBus DataBus
 component: Core
 reviewed: 2024-08-01
-redirects:
- - nservicebus/databus
- - samples/pipeline/stream-properties
 related:
  - samples/databus/file-share-databus
  - samples/databus/custom-serializer
