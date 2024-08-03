@@ -1,140 +1,101 @@
 ---
-title: Migrating Azure Functions (in-process) to (Isolated Worker)
-summary: Instructions on how to migrate Azure Functions (in-process) to Azure Functions (Isolated Worker)
+title: Migrating Azure Functions in-process to Isolated Worker
+summary: Instructions on how to migrate Azure Functions in-process to Azure Functions Isolated Worker
 component: ASBFunctionsWorker
 reviewed: 2024-07-29
 related:
- - nservicebus/hosting/azure-functions-service-bus
- - samples/azure-functions/service-bus-worker
  - nservicebus/hosting/azure-functions-service-bus/in-process
  - samples/azure-functions/service-bus
+ - nservicebus/hosting/azure-functions-service-bus
+ - samples/azure-functions/service-bus-worker
 isUpgradeGuide: false
 ---
 
-## Overview
+Microsoft has confirmed that .NET 8.0 will be the last LTS to support the in-process hosting model and .NET 6.0 LTS will reach end of support in November 2024. Migrating to the isolated worker hosting model is strongly advised.
 
-Microsoft has confirmed that .NET 8.0 will be the last LTS to support the in-process hosting model and .NET 6.0 LTS will reach end of support in November 2024. It is highly recommended to migrate to the isolated worker hosting model.  This guide provides steps to help you migrate from in-process to isolated worker.
+> [!NOTE]
+> When migrating from the in-process model to the isolated worker model, please follow [Microsoft's migration guide](https://learn.microsoft.com/en-us/azure/azure-functions/migrate-dotnet-to-isolated-model?tabs=net8) to begin with, as this guide will focus on the NServiceBus functionality.
 
 ## Key differences
 
-- **In-process**: Functions run within the Azure Functions runtime, sharing the same process and AppDomain.
-- **Isolated worker**: Functions are isolated from the Azure Functions runtime and run in a separate process.
+Find more detailed information about the [difference between the in-process and isolated worker model](https://learn.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-in-process-differences).
 
-Microsoft provides more detailed information about the [difference between the in-process and isolated worker model](https://learn.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-in-process-differences).
+- **In-process**: Functions run within the Azure Functions runtime, share the same process and AppDomain.
+- **Isolated worker**: Functions are isolated from the Azure Functions runtime and run in a separate process.
 
 ## Update project file
 
-### Update framework
+### Framework
 
 It's recommended to update the `TargetFramework` in your `.csproj` file to `net8.0`.  However, NServiceBus.AzureFunctions.Worker.ServiceBus (>= 1.0.0 && < 5.0.0) will work with `net6.0`.
 
-```xml
-<PropertyGroup>
-  <TargetFrameworks>net8.0</TargetFrameworks>
-</PropertyGroup>
+### Package references
+
+- Remove `NServiceBus.AzureFunctions.InProcess.ServiceBus` from your `.csproj` file.
+- Add `NServiceBus.AzureFunctions.Worker.ServiceBus` to your `.csproj` file with the appropriate version based on the version of NServiceBus in your project.
+
+## Update host configuration
+
+A `Program.cs` file is required when migrating to the isolated worker model.
+
+This is an example of and in-process host configuration using `Startup.cs`
+
+```csharp
+[assembly: FunctionsStartup(typeof(Startup))]
+[assembly: NServiceBusTriggerFunction(Startup.EndpointName)]
+
+class Startup : FunctionsStartup
+{
+    public const string EndpointName = "InProcessDemoEndpoint";
+
+    public override void Configure(IFunctionsHostBuilder builder)
+    {
+        builder.UseNServiceBus();
+    }
+}
 ```
 
-### Remove package references
+A migrated host configuration for isolated worker to `Program.cs` would look like the following
 
-Remove the following package references from your `.csproj` file.
+snippet: asb-function-isolated-configuration
 
-- `Microsoft.NET.Sdk.Functions`
-- `Micrsosoft.Azure.Functions.Exension`
-- `Microsoft.Azure.Webjobs`
-- `Microsoft.Azure.Webjobs.extensions.http`
-- `NServiceBus.AzureFunctions.InProcess.ServiceBus`
+## Update trigger functions
 
-### Add package references
+Remember to follow Microsoft's migration guide to update the [trigger functions and bindings](https://learn.microsoft.com/en-us/azure/azure-functions/migrate-dotnet-to-isolated-model?tabs=net8#trigger-and-binding-changes).
 
-Add the following package references to your `.csproj` file with the appropriate dependency version.
-
-- `Microsoft.Azure.Functions.Worker`
-- `Microsoft.Azure.Functions.Worker.Sdk`
-- `Microsoft.Azure.Functions.Worker.Extensions`
-- `NServiceBus.AzureFunctions.Worker.ServiceBus`
-
-## Update trigger function
-
-Remove the following references:
-
-- `Microsoft.AspNetCore.Http`
-- `Microsoft.AspNetCore.Mvc`
-- `Microsoft.Azure.WebJobs`
-- `Microsoft.Azure.WebJobs.Http`
-- `Microsoft.Azure.WebJobs.Extensions.Http`
-
-Add the following references
-
-- `Microsoft.Azure.Functions.Worker`
-- `Microsoft.Azure.Functions.Worker.Extensions.Http`
-
-### Update trigger function signature and logic
+### Trigger function signature and logic
 
 - Change from `Task<IActionResult>` to `Task<HttpResponseData>`
 - Change `ExecutionContext` parameter to `FunctionContext`
 - The `functionEndpoint.Send` method now does not take the logger as a parameter.
 - Update the trigger function annotation from `[FunctionName(<triggerFunctionName>)` to `[Function(<triggerFunctionName>)]`
 
-```csharp
-[Function("TriggerFunctionName")]
-public async Task<HttpResponseData> Run(
-    [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)]
-    HttpRequestData req,
-    FunctionContext executionContext)
-{
-    var logger = executionContext.GetLogger<HttpSender>();
-    logger.LogInformation("C# HTTP trigger function received a request.");
-
-    var sendOptions = new SendOptions();
-    sendOptions.RouteToThisEndpoint();
-
-    await functionEndpoint.Send(new TriggerMessage(), sendOptions, executionContext);
-
-    var r = req.CreateResponse(HttpStatusCode.OK);
-    await r.WriteStringAsync($"{nameof(TriggerMessage)} sent.");
-    return r;
-}
-```
-
-## Update host configuration
-
-Utilizing the minimal hosting model that became available in .Net 6.0, the `startup.cs` file can be merged with the `program.cs` file to register services.
-
-### Simple example
-
-snippet: asb-function-isolated-configuration
-
-### With dependency injection
+An example of an in-process trigger function
 
 ```csharp
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Configuration;
-using NServiceBus;
-using System.Threading.Tasks;
-
-[assembly: NServiceBusTriggerFunction("ASBWorkerEndpoint")]
-
-public class Program
+class HttpTrigger
 {
-    public static Task Main()
+    IFunctionEndpoint functionEndpoint;
+
+    public HttpTrigger(IFunctionEndpoint functionEndpoint)
     {
-        var host = new HostBuilder()
-            .ConfigureFunctionsWorkerDefaults(builder =>
-            {
-                // Register custom service in the container
-                builder.Services.AddSingleton(serviceProvider =>
-                {
-                    var configurationRoot = serviceProvider.GetRequiredService<IConfiguration>();
-                    var customComponentInitializationValue = configurationRoot.GetValue<string>("CustomComponentValue");
+        this.functionEndpoint = functionEndpoint;
+    }
 
-                    return new CustomComponent(customComponentInitializationValue);
-                });
-            })
-            .UseNServiceBus()
-            .Build();
-
-        return host.RunAsync();
+    [FunctionName("HttpSender")]
+    public Task Run(
+        [ServiceBusTrigger("MyFunctionsEndpoint")]
+        ServiceBusReceivedMessage message,
+        ServiceBusClient client,
+        ServiceBusMessageActions messageActions,
+        ILogger logger,
+        ExecutionContext executionContext)
+    {
+        return functionEndpoint.ProcessAtomic(message, executionContext, client, messageActions, logger);
     }
 }
 ```
+
+This is an example of a trigger function migrated to the isolated worker model
+
+snippet: asb-function-isolated-dispatching-outside-message-handler
