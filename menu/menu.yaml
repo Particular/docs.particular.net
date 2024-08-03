@@ -311,7 +311,7 @@
       - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-3to4
         Title: Version 3 to 4
       - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-isolated-worker
-        Title: Migrate to Azure Functions (Isolated Worker)
+        Title: Migrate to Azure Functions using Isolated Workers
     - Title: Gateway
       Articles:
       - Url: nservicebus/upgrades/gateway-1to2
