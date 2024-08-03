@@ -27,7 +27,7 @@ Find more detailed information about the [difference between the in-process and 
 
 ### Framework
 
-It's recommended to update the `TargetFramework` in your `.csproj` file to `net8.0`.  However, NServiceBus.AzureFunctions.Worker.ServiceBus (>= 1.0.0 && < 5.0.0) will work with `net6.0`.
+It's recommended to update the `TargetFramework` in your `.csproj` file to `net8.0`.
 
 ### Package references
 
@@ -65,7 +65,6 @@ Remember to follow Microsoft's migration guide to update the [trigger functions 
 
 ### Trigger function signature and logic
 
-- Change from `Task<IActionResult>` to `Task<HttpResponseData>`
 - Change `ExecutionContext` parameter to `FunctionContext`
 - The `functionEndpoint.Send` method now does not take the logger as a parameter.
 - Update the trigger function annotation from `[FunctionName(<triggerFunctionName>)` to `[Function(<triggerFunctionName>)]`
