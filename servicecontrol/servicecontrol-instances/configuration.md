@@ -463,9 +463,14 @@ If running multiple setups of the Platform Tools (i.e. multiple versions of Serv
 
 If using [MSMQ transport](/transports/msmq) and the monitoring instance is installed on a different machine than the ServiceControl error instance, only the monitoring instance setting needs to be modified to include the machine name of the error instance in the queue address.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSECOMPONENTS_SERVICECONTROLTHROUGHPUTDADAQUEUE` |
+| **App config key** | `LicensingComponent/ServiceControlThroughputDataQueue` |
 
-Default: `ServiceControl.ThroughputData`
+| Type | Default value |
+| --- | --- |
+| string | `ServiceControl.ThroughputData` |
 
 ## Usage Reporting when using the Azure Service Bus transport
 
@@ -475,7 +480,14 @@ Version: 5.4.0+
 
 The Azure [Tenant ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-microsoft-entra-tenant).
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSECOMPONENTS_ASB_TENANTID` |
+| **App config key** | `LicensingComponent/ASB/TenantId` |
+
+| Type | Required |
+| --- | --- |
+| string | yes |
 
 ### LicensingComponent/ASB/SubscriptionId
 
@@ -483,7 +495,14 @@ Version: 5.4.0+
 
 The Azure [subscription ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-azure-subscription).
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSECOMPONENTS_ASB_SUBSCRIPTIONID` |
+| **App config key** | `LicensingComponent/ASB/SubscriptionId` |
+
+| Type | Required |
+| --- | --- |
+| string | yes |
 
 ### LicensingComponent/ASB/ClientId
 
@@ -491,7 +510,14 @@ Version: 5.4.0+
 
 The Client ID (aka Application ID) for an [Azure service principal](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser#service-principal-object) that has access to read metrics data for the Azure Service Bus namespace.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSECOMPONENTS_ASB_CLIENTID` |
+| **App config key** | `LicensingComponent/ASB/ClientId` |
+
+| Type | Required |
+| --- | --- |
+| string | yes |
 
 Example Client ID from an Azure App Registration:
 ![Screenshot showing where the Client ID appears in an App Registration](/servicecontrol/asb-app-service-principal.png)
@@ -502,7 +528,14 @@ Version: 5.4.0+
 
 The [client secret](https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-service-principal-portal#option-3-create-a-new-client-secret) for an Azure service principal that has access to read metrics data for the Azure Service Bus namespace.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSECOMPONENTS_ASB_CLIENTSECRET` |
+| **App config key** | `LicensingComponent/ASB/ClientSecret` |
+
+| Type | Required |
+| --- | --- |
+| string | yes |
 
 > [!NOTE]
 > Certificates and federated credentials are not supported at this time.
@@ -513,9 +546,14 @@ Version: 5.4.0+
 
 The Azure ManagementUrl URL.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSECOMPONENTS_ASB_MANAGEMENTURL` |
+| **App config key** | `LicensingComponent/ASB/ManagementUrl` |
 
-Default: https://management.azure.com
+| Type | Default value |
+| --- | --- |
+| string | https://management.azure.com |
 
 This setting only needs to be configured if not using the public AzureCloud environment.
 For other environments:
@@ -532,7 +570,14 @@ Version: 5.4.0+
 
 The AWS Access Key ID to use to discover queue names and gather per-queue metrics.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSECOMPONENTS_AMAZONSQS_ACCESSKEY` |
+| **App config key** | `LicensingComponent/AmazonSQS/AccessKey` |
+
+| Type | Default value |
+| --- | --- |
+| string | existing transport connection string |
 
 ### LicensingComponent/AmazonSQS/SecretKey
 
@@ -540,7 +585,14 @@ Version: 5.4.0+
 
 The AWS Secret Access Key to use to discover queue names and gather per-queue metrics.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSECOMPONENTS_AMAZONSQS_SECRETKEY` |
+| **App config key** | `LicensingComponent/AmazonSQS/SecretKey` |
+
+| Type | Default value |
+| --- | --- |
+| string | existing transport connection string |
 
 ### LicensingComponent/AmazonSQS/Profile
 
@@ -548,7 +600,14 @@ Version: 5.4.0+
 
 The name of a local AWS credentials profile to use to discover queue names and gather per-queue metrics.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSECOMPONENTS_AMAZONSQS_PROFILE` |
+| **App config key** | `LicensingComponent/AmazonSQS/Profile` |
+
+| Type | Default value |
+| --- | --- |
+| string | |
 
 ### LicensingComponent/AmazonSQS/Region
 
@@ -556,7 +615,14 @@ Version: 5.4.0+
 
 The AWS region to use when accessing AWS services.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSECOMPONENTS_AMAZONSQS_REGION` |
+| **App config key** | `LicensingComponent/AmazonSQS/Region` |
+
+| Type | Default value |
+| --- | --- |
+| string | existing transport connection string |
 
 ### LicensingComponent/AmazonSQS/Prefix
 
@@ -564,7 +630,14 @@ Version: 5.4.0+
 
 Report only on queues that begin with the specified prefix. This is commonly used when one AWS account must contain queues for multiple projects or multiple environments.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSECOMPONENTS_AMAZONSQS_PREFIX` |
+| **App config key** | `LicensingComponent/AmazonSQS/Prefix` |
+
+| Type | Default value |
+| --- | --- |
+| string | existing transport connection string |
 
 ## Usage Reporting when using the RabbitMQ transport
 
@@ -574,7 +647,14 @@ Version: 5.4.0+
 
 The RabbitMQ management URL.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSECOMPONENTS_RABBITMQ_APIURL` |
+| **App config key** | `LicensingComponent/RabbitMQ/ApiUrl` |
+
+| Type | Default value |
+| --- | --- |
+| string | existing transport connection string |
 
 ### LicensingComponent/RabbitMQ/UserName
 
@@ -582,7 +662,14 @@ Version: 5.4.0+
 
 The username to access the RabbitMQ management interface.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSECOMPONENTS_RABBITMQ_USERNAME` |
+| **App config key** | `LicensingComponent/RabbitMQ/UserName` |
+
+| Type | Default value |
+| --- | --- |
+| string | existing transport connection string |
 
 ### LicensingComponent/RabbitMQ/Password
 
@@ -590,7 +677,14 @@ Version: 5.4.0+
 
 The password to access the RabbitMQ management interface.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSECOMPONENTS_RABBITMQ_PASSWORD` |
+| **App config key** | `LicensingComponent/RabbitMQ/Password` |
+
+| Type | Default value |
+| --- | --- |
+| string | existing transport connection string |
 
 ## Usage Reporting when using the SqlServer transport
 
@@ -600,7 +694,14 @@ Version: 5.4.0+
 
 The connection string that will provide at least read access to all queue tables.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSECOMPONENTS_SQLSERVER_CONNECTIONSTRING` |
+| **App config key** | `LicensingComponent/SqlServer/ConnectionString` |
+
+| Type | Default value |
+| --- | --- |
+| string | existing transport connection string |
 
 ### LicensingComponent/SqlServer/AdditionalCatalogs
 
@@ -608,7 +709,14 @@ Version: 5.4.0+
 
 Specifies any additional databases on the same server that also contain NServiceBus message queues.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSECOMPONENTS_SQLSERVER_ADDITIONALCATALOGS` |
+| **App config key** | `LicensingComponent/SqlServer/AdditionalCatalogs` |
+
+| Type | Default value |
+| --- | --- |
+| string | |
 
 ## Plugin-specific
 
