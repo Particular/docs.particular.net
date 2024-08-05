@@ -9,4 +9,4 @@ The snippet below shows custom unwrapping logic that enables both NServiceBus fo
 snippet: CustomEnvelopeUnwrapper
 
 > [!NOTE]
-> This feature is currently NOT compatible with ServiceControl. A [ServiceControl transport adapter](/servicecontrol/transport-adapter/) is required in order to leverage both.
+> This feature is currently NOT compatible with ServiceControl. A [ServiceControl transport adapter](/servicecontrol/transport-adapter.md) is required in order to leverage both.

@@ -1568,9 +1568,6 @@
       Url: servicecontrol/contracts
     - Title: Transport adapter
       Url: servicecontrol/transport-adapter
-      Articles:
-      - Title: Incompatible transport features
-        Url: servicecontrol/transport-adapter/incompatible-features
   - Title: Migrations
     Articles:
     - Title: Overview
