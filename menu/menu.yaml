@@ -1562,8 +1562,6 @@
       Url: servicecontrol/move-database-location
   - Title: Integration
     Articles:
-    - Title: Azure Application Insights
-      Url: servicecontrol/app-insights-integration
     - Title: Integration events
       Url: servicecontrol/contracts
     - Title: Transport adapter
