@@ -36,7 +36,6 @@ There are [three types](/servicecontrol/#servicecontrol-instance-types) of Servi
    1. The default name is `Particular.ServiceControl`.
       The name is used to derive names for the error and audit instances. The name of each instance can be adjusted from its default if required.
    2. The transport should match the endpoint's transport.
-      If a transport is not available, a [transport adapter](/servicecontrol/transport-adapter/incompatible-features.md) can be used.
 5. For additional instance settings, open the `ServiceControl` and `ServiceControl Audit` sections.
    1. The name of the instance can be modified; the defaults for error and audit are `Particular.ServiceControl` and `Particular.ServiceControl.Audit`.
       1. The name of the error instance is especially important to [enable plugins to send information](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolinstancename) to ServiceControl.
