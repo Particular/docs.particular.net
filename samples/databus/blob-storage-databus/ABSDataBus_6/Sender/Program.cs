@@ -13,9 +13,11 @@ class Program
         #region ConfiguringDataBusLocation
 
         var blobServiceClient = new BlobServiceClient("UseDevelopmentStorage=true");
+#pragma warning disable CS0618 // Type or member is obsolete
         var dataBus = endpointConfiguration.UseDataBus<AzureDataBus, SystemJsonDataBusSerializer>()
             .Container("testcontainer")
             .UseBlobServiceClient(blobServiceClient);
+#pragma warning restore CS0618 // Type or member is obsolete
 
         #endregion
 
@@ -52,6 +54,7 @@ class Program
     {
         Console.WriteLine("Sending message...");
 
+#pragma warning disable CS0618 // Type or member is obsolete
         #region SendMessageLargePayload
 
         var message = new MessageWithLargePayload
@@ -62,6 +65,7 @@ class Program
         await messageSession.Send("Samples.AzureBlobStorageDataBus.Receiver", message);
 
         #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
 
         Console.WriteLine("Message sent.");
     }

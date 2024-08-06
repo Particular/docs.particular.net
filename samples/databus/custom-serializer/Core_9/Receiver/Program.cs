@@ -10,12 +10,14 @@ class Program
         Console.Title = "Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver");
 
+#pragma warning disable CS0618 // Type or member is obsolete
         #region ConfigureReceiverCustomDataBusSerializer
 
         var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, BsonDataBusSerializer>();
         dataBus.BasePath(@"..\..\..\..\storage");
 
         #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
 
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
