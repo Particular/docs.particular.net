@@ -1562,15 +1562,10 @@
       Url: servicecontrol/move-database-location
   - Title: Integration
     Articles:
-    - Title: Azure Application Insights
-      Url: servicecontrol/app-insights-integration
     - Title: Integration events
       Url: servicecontrol/contracts
     - Title: Transport adapter
       Url: servicecontrol/transport-adapter
-      Articles:
-      - Title: Incompatible transport features
-        Url: servicecontrol/transport-adapter/incompatible-features
   - Title: Migrations
     Articles:
     - Title: Overview

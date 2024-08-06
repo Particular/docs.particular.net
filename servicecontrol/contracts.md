@@ -10,6 +10,7 @@ redirects:
  - servicecontrol/external-integrations
 related:
  - samples/servicecontrol/events-subscription
+ - samples/servicecontrol/azure-monitor-events
  - monitoring/heartbeats/notification-events
  - monitoring/custom-checks/notification-events
 ---
