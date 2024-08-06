@@ -5,6 +5,7 @@ namespace CleanupStrategy
     using System.Threading.Tasks;
     using NServiceBus;
 
+#pragma warning disable CS0618 // Type or member is obsolete
     #region HandlerThatCleansUpDatabus
 
     public class Handler :
@@ -34,6 +35,7 @@ namespace CleanupStrategy
     }
 
     #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
 
     public class RemoveDatabusAttachment :
         ICommand
@@ -44,6 +46,8 @@ namespace CleanupStrategy
     public class MessageWithLargePayload
     {
         public string SomeProperty { get; set; }
+#pragma warning disable CS0618 // Type or member is obsolete
         public DataBusProperty<byte[]> LargeBlob { get; set; }
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 }

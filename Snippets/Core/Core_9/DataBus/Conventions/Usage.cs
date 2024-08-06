@@ -6,6 +6,7 @@
     {
         Usage(EndpointConfiguration endpointConfiguration)
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             #region DefineMessageWithLargePayloadUsingConvention
 
             var conventions = endpointConfiguration.Conventions();
@@ -13,7 +14,7 @@
                 property => property.Name.EndsWith("DataBus"));
 
             #endregion
-
+#pragma warning restore CS0618 // Type or member is obsolete
         }
     }
 }
