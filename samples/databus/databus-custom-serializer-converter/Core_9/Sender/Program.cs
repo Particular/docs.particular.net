@@ -11,12 +11,14 @@ class Program
         Console.Title = "Sender";
         var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Sender");
 
+#pragma warning disable CS0618 // Type or member is obsolete
         #region ConfigureDataBus
 
         var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
         dataBus.BasePath(@"..\..\..\..\storage");
 
         #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
 
         #region CustomJsonSerializerOptions
         var jsonSerializerOptions = new JsonSerializerOptions();
@@ -46,6 +48,7 @@ class Program
 
     static async Task SendMessageLargePayload(IEndpointInstance endpointInstance)
     {
+#pragma warning disable CS0618 // Type or member is obsolete
         #region SendMessageLargePayload
 
         var message = new MessageWithLargePayload
@@ -56,6 +59,7 @@ class Program
         await endpointInstance.Send("Samples.DataBus.Receiver", message);
 
         #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
 
         Console.WriteLine(@"Message sent, the payload is stored in: ..\..\..\storage");
     }
