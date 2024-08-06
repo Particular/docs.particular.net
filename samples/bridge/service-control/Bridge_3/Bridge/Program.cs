@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -11,49 +10,47 @@ static class Program
     {
         Console.Title = "Bridge";
 
-        await Host.CreateDefaultBuilder()
-            .ConfigureLogging(logging =>
-            {
-                logging.ClearProviders();
-                logging.AddSimpleConsole(options =>
-                {
-                    options.IncludeScopes = false;
-                    options.SingleLine = true;
-                    options.TimestampFormat = "hh:mm:ss ";
-                });
-            })
-            .UseNServiceBusBridge((ctx, bridgeConfiguration) =>
-            {
-                #region ServiceControlTransport
+        var builder = Host.CreateApplicationBuilder();
 
-                var serviceControlTransport = new BridgeTransport(new LearningTransport());
-                serviceControlTransport.HasEndpoint("Particular.ServiceControl");
-                serviceControlTransport.HasEndpoint("Particular.Monitoring");
-                serviceControlTransport.HasEndpoint("error");
-                serviceControlTransport.HasEndpoint("audit");
+        builder.Logging.ClearProviders();
+        builder.Logging.AddSimpleConsole(options =>
+        {
+            options.IncludeScopes = false;
+            options.SingleLine = true;
+            options.TimestampFormat = "hh:mm:ss ";
+        });
 
-                #endregion
+        var bridgeConfiguration = new BridgeConfiguration();
+        #region ServiceControlTransport
 
-                #region EndpointSideConfig
-                var learningTransport = new LearningTransport
-                {
-                    // Set storage directory and add the character '2' to simulate a different transport.
-                    StorageDirectory = $"{LearningTransportInfrastructure.FindStoragePath()}2"
-                };
+        var serviceControlTransport = new BridgeTransport(new LearningTransport());
+        serviceControlTransport.HasEndpoint("Particular.ServiceControl");
+        serviceControlTransport.HasEndpoint("Particular.Monitoring");
+        serviceControlTransport.HasEndpoint("error");
+        serviceControlTransport.HasEndpoint("audit");
 
-                var endpointsTransport = new BridgeTransport(learningTransport)
-                {
-                    // A different name is required if transports are used twice.
-                    Name = "right-side"
-                };
+        #endregion
 
-                endpointsTransport.HasEndpoint("Samples.Bridge.Endpoint");
-                #endregion
+        #region EndpointSideConfig
+        var learningTransport = new LearningTransport
+        {
+            // Set storage directory and add the character '2' to simulate a different transport.
+            StorageDirectory = $"{LearningTransportInfrastructure.FindStoragePath()}2"
+        };
 
-                bridgeConfiguration.AddTransport(serviceControlTransport);
-                bridgeConfiguration.AddTransport(endpointsTransport);
-            })
-            .Build()
-            .RunAsync();
+        var endpointsTransport = new BridgeTransport(learningTransport)
+        {
+            // A different name is required if transports are used twice.
+            Name = "right-side"
+        };
+
+        endpointsTransport.HasEndpoint("Samples.Bridge.Endpoint");
+        #endregion
+
+        bridgeConfiguration.AddTransport(serviceControlTransport);
+        bridgeConfiguration.AddTransport(endpointsTransport);
+        builder.UseNServiceBusBridge(bridgeConfiguration);
+
+        await builder.Build().RunAsync();
     }
 }

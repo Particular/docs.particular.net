@@ -8,31 +8,27 @@ namespace MTEndpoint
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
-        }
+            var builder = Host.CreateApplicationBuilder(args);
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureServices((hostContext, services) =>
+            builder.Services.AddMassTransit(x =>
+            {
+                x.AddConsumer<MessageConsumer>();
+
+                x.UsingRabbitMq((context, cfg) =>
                 {
-                    services.AddMassTransit(x =>
+                    cfg.Host("localhost", rabbitConfig =>
                     {
-                        x.AddConsumer<MessageConsumer>();
-
-                        x.UsingRabbitMq((context, cfg) =>
-                        {
-                            cfg.Host("localhost", rabbitConfig =>
-                            {
-                                rabbitConfig.Username("guest");
-                                rabbitConfig.Password("guest");
-                            });
-                            cfg.ConfigureEndpoints(context);
-                        });
+                        rabbitConfig.Username("guest");
+                        rabbitConfig.Password("guest");
                     });
-
-                    services.AddMassTransitHostedService();
-
-                    services.AddHostedService<Worker>();
+                    cfg.ConfigureEndpoints(context);
                 });
+            });
+            builder.Services.AddMassTransitHostedService();
+
+            builder.Services.AddHostedService<Worker>();
+
+            builder.Build().Run();
+        }
     }
 }
