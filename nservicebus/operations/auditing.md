@@ -11,8 +11,7 @@ redirects:
  - nservicebus/auditing-with-nservicebus
 ---
 
-> [!NOTE]
-> Auditing is required for optimum functionality of the platform tools. ServicePulse can work without auditing enabled but will show incorrect retry states on messages, and ServiceInsight will only show failures instead of complete conversations.
+partial: failedmessagesack
 
 The distributed nature of parallel, message-driven systems makes them more difficult to debug than their sequential, synchronous and centralized counterparts. For these reasons, NServiceBus provides built-in message auditing for every endpoint. Configure NServiceBus to audit and it will capture a copy of every received message and forward it to a specified audit queue.
 
