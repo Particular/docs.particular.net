@@ -6,7 +6,7 @@ component: FileShareDataBus
 redirects:
  - nservicebus/attachments-databus-sample
 related:
- - nservicebus/messaging/databus
+ - nservicebus/messaging/claimcheck
 ---
 
  1. Run the solution. Two console applications start.
