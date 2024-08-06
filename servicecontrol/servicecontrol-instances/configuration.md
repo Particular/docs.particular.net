@@ -465,7 +465,7 @@ If using [MSMQ transport](/transports/msmq) and the monitoring instance is insta
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `LICENSINGCOMPONENT_SERVICECONTROLTHROUGHPUTDADAQUEUE` |
+| **Environment variable** | `LICENSINGCOMPONENT_SERVICECONTROLTHROUGHPUTDATAQUEUE` |
 | **App config key** | `LicensingComponent/ServiceControlThroughputDataQueue` |
 
 | Type | Default value |
