@@ -1,7 +1,7 @@
 ---
 title: Logging
 summary: NServiceBus logging
-reviewed: 2021-09-08
+reviewed: 2024-08-06
 component: Core
 isLearningPath: true
 redirects:
