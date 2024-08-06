@@ -4,7 +4,7 @@ summary: The file share data bus allows large properties to be transferred via a
 reviewed: 2023-09-03
 component: FileShareDataBus
 related:
- - nservicebus/messaging/databus
+ - nservicebus/messaging/claimcheck
 ---
 
 Although System.Text.Json is one of the supported serializers from NServiceBus 8, System.Text.Json does not support ISerializable .

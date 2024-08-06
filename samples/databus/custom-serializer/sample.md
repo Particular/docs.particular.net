@@ -4,7 +4,7 @@ summary: Send a message that includes a DataBus property serialized using a cust
 reviewed: 2023-07-25
 component: Core
 related:
- - nservicebus/messaging/databus
+ - nservicebus/messaging/claimcheck
 ---
 
 1. Run the solution. Two console applications start.
