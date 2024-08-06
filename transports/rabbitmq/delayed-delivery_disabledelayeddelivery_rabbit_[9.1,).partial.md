@@ -1,3 +1,8 @@
 ## Disabling delayed delivery
 
-From version 9.1 and higher is possible to disable the creation of the delayed delivery infrastructure. This can be useful in integration scenarios where the creation of the delayed delivery infrastructure is undesirable.
+From version 9.1 and higher it is possible to disable the creation of the delayed delivery infrastructure. This can be useful in integration scenarios where the creation of the delayed delivery infrastructure is undesirable.
+
+snippet: rabbitmq-disable-delayed-delivery
+
+> WARN:
+> Disabling delayed delivery should only be used in cases where it is required as this feature is required in order for delayed retries to work.
