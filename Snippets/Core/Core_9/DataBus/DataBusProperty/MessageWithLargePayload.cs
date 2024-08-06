@@ -2,6 +2,7 @@
 {
     using NServiceBus;
 
+#pragma warning disable CS0618 // Type or member is obsolete
     #region MessageWithLargePayload
 
     public class MessageWithLargePayload
@@ -11,4 +12,5 @@
     }
 
     #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
 }

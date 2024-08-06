@@ -6,6 +6,7 @@
     using System.Threading.Tasks;
     using NServiceBus.DataBus;
 
+#pragma warning disable CS0618 // Type or member is obsolete
     #region CustomDataBus
 
     class CustomDataBus :
@@ -31,5 +32,5 @@
     }
 
     #endregion
-
+#pragma warning restore CS0618 // Type or member is obsolete
 }
