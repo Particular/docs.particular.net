@@ -577,7 +577,7 @@ The AWS Access Key ID to use to discover queue names and gather per-queue metric
 
 | Type | Default value |
 | --- | --- |
-| string | existing transport connection string |
+| string | obtained from ServiceControl |
 
 ### LicensingComponent/AmazonSQS/SecretKey
 
@@ -592,7 +592,7 @@ The AWS Secret Access Key to use to discover queue names and gather per-queue me
 
 | Type | Default value |
 | --- | --- |
-| string | existing transport connection string |
+| string | obtained from ServiceControl |
 
 ### LicensingComponent/AmazonSQS/Profile
 
@@ -622,7 +622,7 @@ The AWS region to use when accessing AWS services.
 
 | Type | Default value |
 | --- | --- |
-| string | existing transport connection string |
+| string | obtained from ServiceControl |
 
 ### LicensingComponent/AmazonSQS/Prefix
 
@@ -637,7 +637,7 @@ Report only on queues that begin with the specified prefix. This is commonly use
 
 | Type | Default value |
 | --- | --- |
-| string | existing transport connection string |
+| string | obtained from ServiceControl |
 
 ## Usage Reporting when using the RabbitMQ transport
 
@@ -654,7 +654,7 @@ The RabbitMQ management URL.
 
 | Type | Default value |
 | --- | --- |
-| string | existing transport connection string |
+| string | obtained from ServiceControl |
 
 ### LicensingComponent/RabbitMQ/UserName
 
@@ -669,7 +669,7 @@ The username to access the RabbitMQ management interface.
 
 | Type | Default value |
 | --- | --- |
-| string | existing transport connection string |
+| string | obtained from ServiceControl |
 
 ### LicensingComponent/RabbitMQ/Password
 
@@ -684,7 +684,7 @@ The password to access the RabbitMQ management interface.
 
 | Type | Default value |
 | --- | --- |
-| string | existing transport connection string |
+| string | obtained from ServiceControl |
 
 ## Usage Reporting when using the SqlServer transport
 
@@ -701,7 +701,7 @@ The connection string that will provide at least read access to all queue tables
 
 | Type | Default value |
 | --- | --- |
-| string | existing transport connection string |
+| string | obtained from ServiceControl |
 
 ### LicensingComponent/SqlServer/AdditionalCatalogs
 
