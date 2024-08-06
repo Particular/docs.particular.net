@@ -6,9 +6,9 @@ namespace Core9.Conventions
 
     class Usage
     {
+#pragma warning disable CS0618 // Type or member is obsolete
         void MessageConventions(EndpointConfiguration endpointConfiguration)
         {
-#pragma warning disable CS0618 // Type or member is obsolete
             #region MessageConventions
 
             var conventions = endpointConfiguration.Conventions();
