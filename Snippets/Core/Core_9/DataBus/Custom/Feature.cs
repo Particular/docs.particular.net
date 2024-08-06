@@ -4,6 +4,7 @@
     using NServiceBus.DataBus;
     using NServiceBus.Features;
 
+#pragma warning disable CS0618 // Type or member is obsolete
     #region CustomDataBusFeature
     class CustomDatabusFeature : Feature
     {
@@ -14,4 +15,5 @@
             => context.Services.AddSingleton<IDataBus, CustomDataBus>();
     }
     #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
 }

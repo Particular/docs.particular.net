@@ -9,6 +9,7 @@
     {
         Usage(EndpointConfiguration endpointConfiguration)
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             #region PluginCustomDataBus
             endpointConfiguration.UseDataBus(svc => new CustomDataBus(), new SystemJsonDataBusSerializer());
             #endregion
@@ -37,4 +38,5 @@
             public string ContentType { get; }
         }
     }
+#pragma warning restore CS0618 // Type or member is obsolete
 }

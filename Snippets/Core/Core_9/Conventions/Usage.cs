@@ -8,6 +8,7 @@ namespace Core9.Conventions
     {
         void MessageConventions(EndpointConfiguration endpointConfiguration)
         {
+#pragma warning disable CS0618 // Type or member is obsolete
             #region MessageConventions
 
             var conventions = endpointConfiguration.Conventions();
@@ -49,6 +50,6 @@ namespace Core9.Conventions
 
             #endregion
         }
-#pragma warning restore 618
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 }
