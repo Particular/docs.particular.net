@@ -12,12 +12,14 @@ class Program
         Console.Title = "Sender";
         var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Sender");
 
+#pragma warning disable CS0618 // Type or member is obsolete
         #region ConfigureSenderCustomDataBusSerializer
 
         var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, BsonDataBusSerializer>();
         dataBus.BasePath(@"..\..\..\..\storage");
 
         #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
 
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
@@ -44,11 +46,13 @@ class Program
     {
         var measurements = GetMeasurements().ToArray();
 
+#pragma warning disable CS0618 // Type or member is obsolete
         var message = new MessageWithLargePayload
         {
             SomeProperty = "This message contains a large collection that will be sent on the data bus",
             LargeData = new DataBusProperty<Measurement[]>(measurements)
         };
+#pragma warning restore CS0618 // Type or member is obsolete
         Console.WriteLine(@"Message send, the payload is stored in: ..\..\..\storage");
         return endpointInstance.Send("Samples.DataBus.Receiver", message);
     }
