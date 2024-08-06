@@ -14,6 +14,8 @@ Endpoints support sending and receiving large chunks of data via the [data bus](
 
 It is possible to create a custom data bus implementation. This is done by making use of the [Features](/nservicebus/pipeline/features.md) extension.
 
+partial: obsolete
+
 ## Implement the `IDataBus` interface
 
 This new class will provide the custom implementations for the `Get` and `Put` methods for the data bus.
