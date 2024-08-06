@@ -465,7 +465,7 @@ If using [MSMQ transport](/transports/msmq) and the monitoring instance is insta
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `LICENSECOMPONENTS_SERVICECONTROLTHROUGHPUTDADAQUEUE` |
+| **Environment variable** | `LICENSINGCOMPONENT_SERVICECONTROLTHROUGHPUTDADAQUEUE` |
 | **App config key** | `LicensingComponent/ServiceControlThroughputDataQueue` |
 
 | Type | Default value |
@@ -482,7 +482,7 @@ The Azure [Tenant ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-s
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `LICENSECOMPONENTS_ASB_TENANTID` |
+| **Environment variable** | `LICENSINGCOMPONENT_ASB_TENANTID` |
 | **App config key** | `LicensingComponent/ASB/TenantId` |
 
 | Type | Required |
@@ -497,7 +497,7 @@ The Azure [subscription ID](https://learn.microsoft.com/en-us/azure/azure-portal
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `LICENSECOMPONENTS_ASB_SUBSCRIPTIONID` |
+| **Environment variable** | `LICENSINGCOMPONENT_ASB_SUBSCRIPTIONID` |
 | **App config key** | `LicensingComponent/ASB/SubscriptionId` |
 
 | Type | Required |
@@ -512,7 +512,7 @@ The Client ID (aka Application ID) for an [Azure service principal](https://lear
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `LICENSECOMPONENTS_ASB_CLIENTID` |
+| **Environment variable** | `LICENSINGCOMPONENT_ASB_CLIENTID` |
 | **App config key** | `LicensingComponent/ASB/ClientId` |
 
 | Type | Required |
@@ -530,7 +530,7 @@ The [client secret](https://learn.microsoft.com/en-us/entra/identity-platform/ho
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `LICENSECOMPONENTS_ASB_CLIENTSECRET` |
+| **Environment variable** | `LICENSINGCOMPONENT_ASB_CLIENTSECRET` |
 | **App config key** | `LicensingComponent/ASB/ClientSecret` |
 
 | Type | Required |
@@ -548,7 +548,7 @@ The Azure ManagementUrl URL.
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `LICENSECOMPONENTS_ASB_MANAGEMENTURL` |
+| **Environment variable** | `LICENSINGCOMPONENT_ASB_MANAGEMENTURL` |
 | **App config key** | `LicensingComponent/ASB/ManagementUrl` |
 
 | Type | Default value |
@@ -572,7 +572,7 @@ The AWS Access Key ID to use to discover queue names and gather per-queue metric
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `LICENSECOMPONENTS_AMAZONSQS_ACCESSKEY` |
+| **Environment variable** | `LICENSINGCOMPONENT_AMAZONSQS_ACCESSKEY` |
 | **App config key** | `LicensingComponent/AmazonSQS/AccessKey` |
 
 | Type | Default value |
@@ -587,7 +587,7 @@ The AWS Secret Access Key to use to discover queue names and gather per-queue me
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `LICENSECOMPONENTS_AMAZONSQS_SECRETKEY` |
+| **Environment variable** | `LICENSINGCOMPONENT_AMAZONSQS_SECRETKEY` |
 | **App config key** | `LicensingComponent/AmazonSQS/SecretKey` |
 
 | Type | Default value |
@@ -602,7 +602,7 @@ The name of a local AWS credentials profile to use to discover queue names and g
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `LICENSECOMPONENTS_AMAZONSQS_PROFILE` |
+| **Environment variable** | `LICENSINGCOMPONENT_AMAZONSQS_PROFILE` |
 | **App config key** | `LicensingComponent/AmazonSQS/Profile` |
 
 | Type | Default value |
@@ -617,7 +617,7 @@ The AWS region to use when accessing AWS services.
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `LICENSECOMPONENTS_AMAZONSQS_REGION` |
+| **Environment variable** | `LICENSINGCOMPONENT_AMAZONSQS_REGION` |
 | **App config key** | `LicensingComponent/AmazonSQS/Region` |
 
 | Type | Default value |
@@ -632,7 +632,7 @@ Report only on queues that begin with the specified prefix. This is commonly use
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `LICENSECOMPONENTS_AMAZONSQS_PREFIX` |
+| **Environment variable** | `LICENSINGCOMPONENT_AMAZONSQS_PREFIX` |
 | **App config key** | `LicensingComponent/AmazonSQS/Prefix` |
 
 | Type | Default value |
@@ -649,7 +649,7 @@ The RabbitMQ management URL.
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `LICENSECOMPONENTS_RABBITMQ_APIURL` |
+| **Environment variable** | `LICENSINGCOMPONENT_RABBITMQ_APIURL` |
 | **App config key** | `LicensingComponent/RabbitMQ/ApiUrl` |
 
 | Type | Default value |
@@ -664,7 +664,7 @@ The username to access the RabbitMQ management interface.
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `LICENSECOMPONENTS_RABBITMQ_USERNAME` |
+| **Environment variable** | `LICENSINGCOMPONENT_RABBITMQ_USERNAME` |
 | **App config key** | `LicensingComponent/RabbitMQ/UserName` |
 
 | Type | Default value |
@@ -679,7 +679,7 @@ The password to access the RabbitMQ management interface.
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `LICENSECOMPONENTS_RABBITMQ_PASSWORD` |
+| **Environment variable** | `LICENSINGCOMPONENT_RABBITMQ_PASSWORD` |
 | **App config key** | `LicensingComponent/RabbitMQ/Password` |
 
 | Type | Default value |
@@ -696,7 +696,7 @@ The connection string that will provide at least read access to all queue tables
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `LICENSECOMPONENTS_SQLSERVER_CONNECTIONSTRING` |
+| **Environment variable** | `LICENSINGCOMPONENT_SQLSERVER_CONNECTIONSTRING` |
 | **App config key** | `LicensingComponent/SqlServer/ConnectionString` |
 
 | Type | Default value |
@@ -711,7 +711,7 @@ Specifies any additional databases on the same server that also contain NService
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `LICENSECOMPONENTS_SQLSERVER_ADDITIONALCATALOGS` |
+| **Environment variable** | `LICENSINGCOMPONENT_SQLSERVER_ADDITIONALCATALOGS` |
 | **App config key** | `LicensingComponent/SqlServer/AdditionalCatalogs` |
 
 | Type | Default value |
