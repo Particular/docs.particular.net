@@ -474,7 +474,7 @@
           Title: NHibernate Persistence
         - Url: nservicebus/transactional-session/persistences/ravendb
           Title: RavenDB Persistence
-    - Url: nservicebus/messaging/databus
+    - Url: nservicebus/messaging/claimcheck
       Title: Data Bus
       Articles:
       - Url: nservicebus/messaging/claimcheck/file-share

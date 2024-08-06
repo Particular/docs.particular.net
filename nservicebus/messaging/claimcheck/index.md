@@ -1,7 +1,7 @@
 ---
 title: NServiceBus DataBus feature
 summary: How to handle messages that are too large to be sent by a transport natively by using NServiceBus DataBus
-component: Databus
+component: DataBus
 reviewed: 2024-08-01
 redirects:
  - nservicebus/databus

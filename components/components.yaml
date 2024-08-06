@@ -18,12 +18,13 @@
 
 - Key: DataBus
   Name: DataBus
-  DocsUrl: /nservicebus/messaging/databus
+  DocsUrl: /nservicebus/messaging/claimcheck
   GitHubOwner: Particular
   Category: Databus
   ProjectUrl: https://github.com/Particular/NServiceBus.ClaimCheck.DataBus
   NugetOrder:
     - NServiceBus.ClaimCheck.DataBus
+    - NServiceBus
 
 - Key: ABSDataBus
   Name: Azure Blob Storage Databus
@@ -169,6 +170,7 @@
   Category: Databus
   ProjectUrl: https://github.com/Particular/NServiceBus
   NugetOrder:
+    - NServiceBus.ClaimCheck.DataBus
     - NServiceBus
 
 - Key: Gateway
