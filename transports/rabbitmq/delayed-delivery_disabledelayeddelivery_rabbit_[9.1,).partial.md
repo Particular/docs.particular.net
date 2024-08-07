@@ -5,4 +5,4 @@ From version 9.1 and higher it is possible to disable the creation of the delaye
 snippet: rabbitmq-disable-delayed-delivery
 
 > WARN:
-> Disabling delayed delivery should only be used in cases where it is required as this feature is required in order for delayed retries to work.
+> Saga Timeouts and Delayed Retries features are dependant on delayed delivery.
