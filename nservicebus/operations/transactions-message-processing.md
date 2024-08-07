@@ -1,7 +1,7 @@
 ---
 title: Transactions and Message Processing
 summary: Overview of message processing, transactions, and consistency guarantees in NServiceBus.
-reviewed: 2022-07-11
+reviewed: 2024-08-06
 redirects:
 - nservicebus/transactions
 - nservicebus/transactions-message-processing
@@ -50,3 +50,7 @@ Messages are processed in NServiceBus in the following steps:
 Refer to the [Message Handling Pipeline](/nservicebus/pipeline/) article to learn more about message processing.
 
 Refer to the [Recoverability](/nservicebus/recoverability/) and the [ServicePulse: Failed Message Monitoring](/servicepulse/intro-failed-messages.md) articles to learn more about error handling, automatic and manual retries, as well as processing failures monitoring.
+
+## Limitations
+
+When [enabling MSDTC on Amazon RDS for SQL Server](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.Options.MSDTC.html), a set of [limitations](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.Options.MSDTC.html#Appendix.SQLServer.Options.MSDTC.Limitations) must be taken into account.
