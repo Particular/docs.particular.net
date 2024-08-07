@@ -53,4 +53,4 @@ Refer to the [Recoverability](/nservicebus/recoverability/) and the [ServicePuls
 
 ## Limitations
 
-If you are [enabling MSDTC on Amazon RDS for SQL Server](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.Options.MSDTC.html), there are a set of [limitations](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.Options.MSDTC.html#Appendix.SQLServer.Options.MSDTC.Limitations) you should take into account.
+When [enabling MSDTC on Amazon RDS for SQL Server](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.Options.MSDTC.html), a set of [limitations](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/Appendix.SQLServer.Options.MSDTC.html#Appendix.SQLServer.Options.MSDTC.Limitations) must be taken into account.
