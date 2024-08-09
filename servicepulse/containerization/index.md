@@ -13,7 +13,7 @@ The container can be created as shown in this minimal example using `docker run`
 ```shell
 docker run -d --name servicepulse -p 9090:9090 \
     -e SERVICECONTROL_URL="http://servicecontrol:33333" \
-    -e MONITORING_URL="http://servicecontrol-audit:44444" \
+    -e MONITORING_URL="http://servicecontrol-monitoring:33633" \
     particular/servicepulse:latest
 ```
 
