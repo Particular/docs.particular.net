@@ -1555,7 +1555,7 @@
     - Title: Backup
       Url: servicecontrol/backup-sc-database
     - Title: Containers
-      Url: servicecontrol/ravendb/deployment/containers
+      Url: servicecontrol/ravendb/containers
     - Title: Compacting the database
       Url: servicecontrol/db-compaction
     - Title: Move database location
