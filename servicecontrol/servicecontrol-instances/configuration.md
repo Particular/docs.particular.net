@@ -124,7 +124,9 @@ A configuration that specifies one or more attached Audit instances. See also [S
 | --- | --- |
 | string | None |
 
-## Embedded Database
+## Embedded database
+
+These settings are not valid for ServiceControl instances hosted in a container.
 
 ### ServiceControl/DbPath
 
@@ -143,10 +145,37 @@ The path where the internal RavenDB is located.
 > [!NOTE]
 > This setting is not relevant when running an error instance in a container.
 
+### ServiceControl/RavenDBLogLevel
+
+Controls the LogLevel of the RavenDB logs. See [Logging](/servicecontrol/logging.md).
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_RAVENDBLOGLEVEL` |
+| **App config key** | `ServiceControl/RavenDBLogLevel` |
+| **SCMU field** | N/A |
+
+#if-version [5,)
+| Type | Default value |
+| --- | --- |
+| string | `Operations` |
+
+Valid settings are: `None`, `Information`, `Operations`.
+#end-if
 #if-version [,5)
-The indexes and Esent logs can be stored in a different path from the the RavenDB database data files by using the following [RavenDB configuration app settings](https://ravendb.net/docs/article-page/2.5/csharp/server/administration/configuration):
+| Type | Default value |
+| --- | --- |
+| string | `Info` |
+
+Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
+
+#end-if
+
+#if-version [,5)
 
 ### Raven/IndexStoragePath
+
+The indexes and Esent logs can be stored in a different path from the the RavenDB database data files by using the following [RavenDB configuration app settings](https://ravendb.net/docs/article-page/2.5/csharp/server/administration/configuration):
 
 > [!NOTE]
 > Only supported on RavenDB 3.5 storage engine (prior version 5). Use [symbolic links (soft links) to map any RavenDB storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
@@ -166,6 +195,8 @@ Type: string
 Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB\Logs`
 
 #end-if
+
+## Logging
 
 ### ServiceControl/LogPath
 
@@ -199,30 +230,6 @@ Controls the LogLevel of the ServiceControl logs.
 | Type | Default value |
 | --- | --- |
 | string | `Info` |
-
-### ServiceControl/RavenDBLogLevel
-
-Controls the LogLevel of the RavenDB logs. See [Logging](/servicecontrol/logging.md).
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_RAVENDBLOGLEVEL` |
-| **App config key** | `ServiceControl/RavenDBLogLevel` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-#if-version [5,)
-| string | `Operations` |
-
-Valid settings are: `None`, `Information`, `Operations`.
-#end-if
-#if-version [,5)
-| string | `Info` |
-
-Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
-
-#end-if
 
 ## Recoverability
 

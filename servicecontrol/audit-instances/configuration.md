@@ -114,7 +114,9 @@ The virtual directory to bind the embedded HTTP server to; modify this setting t
 | string | _None_ |
 
 
-## Database
+## Embedded database
+
+These settings are not valid for ServiceControl instances hosted in a container.
 
 ### ServiceControl.Audit/DbPath
 
@@ -132,6 +134,31 @@ The path where the internal RavenDB is located.
 
 > [!NOTE]
 > This setting is not relevant when the audit instance is [deployed using a container](/servicecontrol/audit-instances/deployment/containers.md).
+
+### ServiceControl.Audit/RavenDBLogLevel
+
+Controls the LogLevel of the RavenDB logs.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_RAVENDBLOGLEVEL` |
+| **App config key** | `ServiceControl.Audit/RavenDBLogLevel` |
+| **SCMU field** | N/A |
+
+#if-version [5,)
+| Type | Default value |
+| --- | --- |
+| string | `Operations` |
+
+Valid settings are: `None`, `Information`, `Operations`.
+#end-if
+#if-version [,5)
+| Type | Default value |
+| --- | --- |
+| string | `Warn` |
+
+Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
+#end-if
 
 #if-version [,5)
 ### Raven/IndexStoragePath
@@ -445,20 +472,7 @@ The ServiceControl queue name to use for plugin messages (e.g. Heartbeats, Custo
 
 ## Troubleshooting
 
-ServiceControl Audit stores its data in a RavenDB embedded instance. If direct access to the RavenDB instance is required for troubleshooting while ServiceControl Audit is running, see [Accessing the database](/servicecontrol/ravendb/accessing-database.md).
-
-### RavenDB 5
-
-For instances running version 4.26 and above, which are configured to use [the new RavenDB 5 persistence](/servicecontrol/migrations/new-persistence.md) browse to:
-
-```no-highlight
-http://localhost:{configured ServiceControl instance maintenance port}
-```
-
-to access the internal database via [the RavenDB studio interface](https://ravendb.net/docs/article-page/5.4/csharp/studio/overview).
-
-
-#### ServiceControl.Audit/DataSpaceRemainingThreshold
+### ServiceControl.Audit/DataSpaceRemainingThreshold
 
 The percentage threshold for the [Message database storage space](/servicecontrol/servicecontrol-instances/#notifications-health-monitoring-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive) then the check will fail, alerting the user.
 
@@ -466,7 +480,7 @@ The percentage threshold for the [Message database storage space](/servicecontro
 | --- | --- |
 | int | `20` |
 
-#### ServiceControl.Audit/MinimumStorageLeftRequiredForIngestion
+### ServiceControl.Audit/MinimumStorageLeftRequiredForIngestion
 
 The percentage threshold for the [Critical message database storage space](/servicecontrol/servicecontrol-instances/#notifications-health-monitoring-message-database-storage-space) check. If the remaining hard drive space drops below this threshold (as a percentage of the total space on the drive), then the check will fail, alerting the user. The message ingestion will also be stopped to prevent data loss. Message ingestion will resume once more disk space is made available.
 
@@ -476,7 +490,7 @@ The percentage threshold for the [Critical message database storage space](/serv
 
 #if-version [,5)
 
-#### Raven/Esent/LogsPath
+### Raven/Esent/LogsPath
 
 
 This setting is applicable only on instances that use the RavenDB 3.5 storage engine.
