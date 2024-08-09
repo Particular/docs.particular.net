@@ -46,7 +46,7 @@ This is an example of and in-process host configuration using `Startup.cs`
 
 class Startup : FunctionsStartup
 {
-    public const string EndpointName = "InProcessDemoEndpoint";
+    public const string EndpointName = "DemoEndpoint";
 
     public override void Configure(IFunctionsHostBuilder builder)
     {
@@ -62,7 +62,7 @@ A migrated host configuration for isolated worker to `Program.cs` would look lik
 
 public class Program
 {
-  public const string EndpointName = "WorkerDemoEndpoint";
+  public const string EndpointName = "DemoEndpoint";
 
   public static Task Main()
   {
