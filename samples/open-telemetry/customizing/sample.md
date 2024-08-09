@@ -1,7 +1,7 @@
 ---
 title: Customizing OpenTelemetry tracing
 summary: Demonstrates how to add data to existing OpenTelemetry traces
-reviewed: 2022-07-15
+reviewed: 2024-07-26
 component: Core
 related:
 - nservicebus/operations/opentelemetry

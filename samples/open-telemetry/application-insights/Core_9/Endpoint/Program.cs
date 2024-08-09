@@ -26,7 +26,7 @@ var resourceBuilder = ResourceBuilder.CreateDefault().AddAttributes(attributes);
 
 var traceProvider = Sdk.CreateTracerProviderBuilder()
     .SetResourceBuilder(resourceBuilder)
-    .AddSource("NServiceBus.Core")
+    .AddSource("NServiceBus.Core*")
     .AddAzureMonitorTraceExporter(o => o.ConnectionString = appInsightsConnectionString)
     .AddConsoleExporter()
     .Build();
@@ -37,7 +37,7 @@ var traceProvider = Sdk.CreateTracerProviderBuilder()
 
 var meterProvider = Sdk.CreateMeterProviderBuilder()
     .SetResourceBuilder(resourceBuilder)
-    .AddMeter("NServiceBus.Core")
+    .AddMeter("NServiceBus.Core*")
     .AddAzureMonitorMetricExporter(o => o.ConnectionString = appInsightsConnectionString)
     .AddConsoleExporter()
     .Build();

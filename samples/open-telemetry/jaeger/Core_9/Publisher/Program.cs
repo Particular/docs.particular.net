@@ -17,7 +17,7 @@ class Program
         #region jaeger-exporter-configuration
         var tracerProvider = Sdk.CreateTracerProviderBuilder()
             .SetResourceBuilder(ResourceBuilder.CreateDefault().AddService(EndpointName))
-            .AddSource("NServiceBus.Core")
+            .AddSource("NServiceBus.Core*")
             .AddOtlpExporter() // The exporter defaults to gRPC on over port 4317 - https://github.com/open-telemetry/opentelemetry-dotnet/blob/main/src/OpenTelemetry.Exporter.OpenTelemetryProtocol/README.md#otlpexporteroptions
             .Build();
         #endregion
