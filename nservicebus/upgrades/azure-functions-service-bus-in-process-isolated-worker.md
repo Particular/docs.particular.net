@@ -78,7 +78,7 @@ public class Program
 
 ## Update trigger functions
 
-Remember to follow Microsoft's migration guide to update the [trigger functions and bindings](https://learn.microsoft.com/en-us/azure/azure-functions/migrate-dotnet-to-isolated-model?tabs=net8#trigger-and-binding-changes).
+Remember first to follow Microsoft's migration guide to update the [trigger functions and bindings](https://learn.microsoft.com/en-us/azure/azure-functions/migrate-dotnet-to-isolated-model?tabs=net8#trigger-and-binding-changes).
 
 ### Trigger function signature and logic
 
