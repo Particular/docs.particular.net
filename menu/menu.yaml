@@ -1376,6 +1376,8 @@
       Title: About ServicePulse
     - Url: servicepulse/installation
       Title: Installation
+    - Url: servicepulse/containerization
+      Title: Container deployment
     - Url: servicepulse/intro-failed-messages
       Title: Failed Messages
     - Url: servicepulse/intro-failed-message-retries
