@@ -36,7 +36,7 @@ It's recommended to update the `TargetFramework` in your `.csproj` file to `net8
 
 ## Update host configuration
 
-A `Program.cs` file is required when migrating to the isolated worker model.
+A `Program.cs` file is required and replaces any file that has the FunctionsStartup attribute like the `Startup.cs` when migrating to the isolated worker model.
 
 This is an example of and in-process host configuration using `Startup.cs`
 
