@@ -6,7 +6,7 @@ component: ServicePulse
 
 ServicePulse can be deployed on containers using the [`particular/servicepulse` image](https://hub.docker.com/r/particular/servicepulse).
 
-The ServicePulse container image includes a reverse proxy feature that allows ServicePulse to act as a single ingress/egress point for a system containing ServiceControl containers, allowing the addition of additional features such as SSL and authentication using existing container hosting infrastructure.
+The ServicePulse container image includes a reverse proxy feature that allows ServicePulse to act as a single ingress/egress point for a system containing ServiceControl containers. This allows existing container hosting infrastructure to layer additional features onto the ServicePulse ingress point, such as SSL or authentication.
 
 The container can be created as shown in this minimal example using `docker run`:
 
