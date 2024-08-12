@@ -17,7 +17,7 @@ A ServiceControl Error instance:
 
 ## Persistence
 
-Each ServiceControl Error instance stores message data in a RavenDB database. For instances deployed using the [ServiceControl Management Utility](/servicecontrol/servicecontrol-instances/deployment/scmu.md) or [PowerShell](/servicecontrol/servicecontrol-instances/deployment/powershell.md) this database is embedded with the ServiceControl Error instance. For ServiceControl Error instances deployed using [containers](/servicecontrol/servicecontrol-instances/deployment/containers.md) the database resides in a [separate container](/servicecontrol/ravendb/deployment/containers.md).
+Each ServiceControl Error instance stores message data in a RavenDB database. For instances deployed using the [ServiceControl Management Utility](/servicecontrol/servicecontrol-instances/deployment/scmu.md) or [PowerShell](/servicecontrol/servicecontrol-instances/deployment/powershell.md) this database is embedded with the ServiceControl Error instance. For ServiceControl Error instances deployed using [containers](/servicecontrol/servicecontrol-instances/deployment/containers.md) the database resides in a [separate container](/servicecontrol/ravendb/containers.md).
 
 Failed message data is retained until 7 days after successful retry is detected or the failed message is [manually archived](/servicepulse/intro-archived-messages.md). [This retention period can be customized](/servicecontrol/servicecontrol-instances/configuration.md#data-retention).
 

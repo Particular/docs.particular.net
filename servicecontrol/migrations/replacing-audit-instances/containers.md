@@ -21,7 +21,7 @@ This article describes how to replace an Audit instance with zero downtime when 
 >
 > This guide assumes this is true, and that the user knows how to create routable URLs to allow the communication, even if one instance is hosted on a virtual machine and another instance is running on containerized infrastructure.
 
-First, a new audit instance must be created. [Deploy a new Audit instance container](/servicecontrol/audit-instances/deployment/containers.md) with its own [database container](/servicecontrol/ravendb/deployment/containers.md).
+First, a new audit instance must be created. [Deploy a new Audit instance container](/servicecontrol/audit-instances/deployment/containers.md) with its own [database container](/servicecontrol/ravendb/containers.md).
 
 ## Add the instance to RemoteInstances
 
@@ -51,4 +51,4 @@ Modify the old Audit instance container by specifying the [`INGESTAUDITMESSAGES`
 When the audit retention period has expired and there are no remaining processed messages in the database, you can decommission the old audit instance:
 
 1. Adjust the `REMOTEINSTANCES` environment variable [as described above](#add-the-instance-to-remoteinstances) except remove the old Audit instance URI from the collection.
-2. Remove the old Audit instance by stopping and removing the container, as well as the related [database container](/servicecontrol/ravendb/deployment/containers.md).
+2. Remove the old Audit instance by stopping and removing the container, as well as the related [database container](/servicecontrol/ravendb/containers.md).

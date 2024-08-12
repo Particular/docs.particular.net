@@ -2,6 +2,8 @@
 title: Managing ServiceControl RavenDB instances via Containers
 reviewed: 2024-06-11
 component: ServiceControl
+redirects:
+  - servciecontrol/ravendb/deployment/containers
 ---
 
 When ServiceControl is hosted in containers, the [`particular/servicecontrol-ravendb` image](https://hub.docker.com/r/particular/servicecontrol-ravendb) provides the database storage to the Error and Audit instances.
