@@ -1,6 +1,6 @@
 ---
 title: Immutable Messages
-reviewed: 2021-09-08
+reviewed: 2024-08-13
 component: Core
 related:
 - samples/immutable-messages
@@ -16,11 +16,10 @@ Message objects can be made immutable at runtime by:
 1. Creating properties with only public getters and initializing these properties via constructor initialization.
 2. Having regular message classes with public getters/setters at the sender, where these classes implement an interface with only public getters. Receivers reference only the interface.
 
-
 ## Properties with only public getters
 
 > [!NOTE]
-> [Not all serializers support deserialization to private setters](/nservicebus/serialization/).
+> Not all serializers [support deserialization to private setters](/nservicebus/serialization/#immutable-message-types).
 
 ```c#
 public class CancelOrder : ICommand

@@ -1,7 +1,7 @@
 ---
 title: Pending Retries Message Management
 summary: Describes how ServicePulse detects and monitors failed messages in the pending state, and allows retrying, or deleting them.
-reviewed: 2021-09-08
+reviewed: 2024-08-13
 ---
 
 In ServicePulse versions 1.6.6 and above, there is a screen to view and manage failed messages that have been requested to be retried but have not completed yet.
@@ -42,9 +42,9 @@ The Pending Retries screen shows failed messages for which a retry was requested
 
 Failed messages that are retried may stay in the pending state for the following reasons:
 
- * The retrying endpoint is not working (e.g. crashed or is scaled-out) and the retried messages are waiting in the queue and have not yet been processed.
- * The retry operation failed and the message is in ServiceControl's Dead Letter Queue.
- * The retrying endpoint does not have auditing enabled but has successfully processed the retried message(s).
+- The retrying endpoint is not working (e.g. crashed or is scaled-out) and the retried messages are waiting in the queue and have not yet been processed.
+- The retry operation failed and the message is in ServiceControl's Dead Letter Queue.
+- The retrying endpoint does not have auditing enabled but has successfully processed the retried message(s).
 
 The messages displayed on this screen can be filtered based on the time period by selecting one of the options, such as messages in the last two hours, or messages in the previous day or week. The default option is set to display all pending messages.
 
@@ -54,9 +54,7 @@ Results can be filtered by queue name using the search functionality:
 
 ![Queue Filter](images/pending-retries-filter-queues.png 'width=500')
 
-Detailed information about the message, such as failure timestamp, endpoint, stack trace of the error, etc., is displayed in the same manner as on the [Failed Messages](intro-failed-messages.md) page providing additional information as follows:
-
- * **Redirect** Information if a redirect is created for this queue.
+Detailed information about the message, such as failure timestamp, endpoint, stack trace of the error, etc., is displayed in the same manner as on the [Failed Messages](intro-failed-messages.md) page providing additional informtaion about [redirects](/servicepulse/redirect.md) if one is created for this queue.
 
 ### Retrying a message
 

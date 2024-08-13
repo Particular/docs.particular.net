@@ -701,7 +701,7 @@
 
 - Key: Migrations
   Name: Particular.TimeoutMigration
-  DocsUrl: nservicebus/tools
+  DocsUrl: nservicebus/tools/migrate-to-native-delivery
   GitHubOwner: Particular
   Category: Persistence
   SupportLevel: Tool
@@ -809,3 +809,4 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.DynamoDB
   NugetOrder:
     - NServiceBus.Persistence.DynamoDB.TransactionalSession
+timoue
