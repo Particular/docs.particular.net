@@ -29,7 +29,7 @@ This method requires ServicePulse version 1.40 or later, and ServiceControl vers
 To learn more about this method, read the [ServicePulse Usage documentation](/servicepulse/usage.md).
 
 > [!NOTE]
-> While customers are not required to use ServicePulse at this time, it will become a requirement in the future.
+> While customers are not required to use ServicePulse at this time, it will become a requirement for all active projects in the future.
 
 ## Standalone Endpoint Throughput tool
 
