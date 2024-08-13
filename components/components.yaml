@@ -809,4 +809,3 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.DynamoDB
   NugetOrder:
     - NServiceBus.Persistence.DynamoDB.TransactionalSession
-timoue
