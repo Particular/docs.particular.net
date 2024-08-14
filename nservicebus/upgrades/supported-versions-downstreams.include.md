@@ -43,7 +43,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.0.1) | 2024-04-16     | -                 | -                                 |
+| [4.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.2.0) | 2024-08-13     | -                 | -                                 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.0.1) | 2024-04-16     | 2024-11-13        | Superseded by 4.2.x               |
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.2.3) | 2023-03-23     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/2.0.6) | 2021-10-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
@@ -551,7 +552,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.7.x](https://www.nuget.org/packages/Particular.PlatformSample/3.7.0) | 2024-08-12     | -                 | -                                 |
+| [3.8.x](https://www.nuget.org/packages/Particular.PlatformSample/3.8.0) | 2024-08-13     | -                 | -                                 |
+| [3.7.x](https://www.nuget.org/packages/Particular.PlatformSample/3.7.0) | 2024-08-12     | 2024-11-13        | Superseded by 3.8.x               |
 | [3.6.x](https://www.nuget.org/packages/Particular.PlatformSample/3.6.0) | 2024-08-01     | 2024-11-12        | Superseded by 3.7.x               |
 | [3.5.x](https://www.nuget.org/packages/Particular.PlatformSample/3.5.0) | 2024-07-23     | 2024-11-01        | Superseded by 3.6.x               |
 | [3.4.x](https://www.nuget.org/packages/Particular.PlatformSample/3.4.0) | 2024-07-12     | 2024-10-23        | Superseded by 3.5.x               |

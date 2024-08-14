@@ -943,6 +943,10 @@
         {
           "Minor": "4.0",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "4.2",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -1091,10 +1095,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "3.1",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "3.2",
           "SupportLevel": "Mainstream"
         },
@@ -1116,6 +1116,10 @@
         },
         {
           "Minor": "3.7",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.8",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -1203,7 +1207,7 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "5.5",
+          "Minor": "5.6",
           "SupportLevel": "Mainstream"
         }
       ]
