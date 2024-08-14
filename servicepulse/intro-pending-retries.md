@@ -54,7 +54,7 @@ Results can be filtered by queue name using the search functionality:
 
 ![Queue Filter](images/pending-retries-filter-queues.png 'width=500')
 
-Detailed information about the message, such as failure timestamp, endpoint, stack trace of the error, etc., is displayed in the same manner as on the [Failed Messages](intro-failed-messages.md) page providing additional informtaion about [redirects](/servicepulse/redirect.md) if one is created for this queue.
+Detailed information about the message, such as the failure timestamp, endpoint, stack trace of the error, etc., is displayed in the same manner as on the [Failed Messages](intro-failed-messages.md) page, additionally providing information about [redirects](/servicepulse/redirect.md) if one is created for this queue.
 
 ### Retrying a message
 
