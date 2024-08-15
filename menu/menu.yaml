@@ -770,6 +770,8 @@
       Title: Software supply chain
   - Title: Tools
     Articles:
+    - Url: nservicebus/tools
+      Title: Overview
     - Url: nservicebus/tools/migrate-to-native-delivery
       Title: Migrating timeouts
     - Url: nservicebus/usage
