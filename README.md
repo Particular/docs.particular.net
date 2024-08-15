@@ -293,7 +293,7 @@ Samples can be targeted to multiple [target frameworks](https://docs.microsoft.c
 When multi-targeting samples for NServiceBus 8 and earlier, The recommended set of frameworks is:
 
 ```xml
-<TargetFrameworks>net7.0;net6.0;net48</TargetFrameworks>
+<TargetFrameworks>net8.0;net6.0;net48</TargetFrameworks>
 ```
 
 For NServiceBus 9, samples can't currently be multi-targeted, so they should be singled targeted:
