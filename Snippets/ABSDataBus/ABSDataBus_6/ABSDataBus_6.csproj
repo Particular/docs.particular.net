@@ -6,6 +6,6 @@
     <PackageReference Include="Azure.Identity" Version="1.*" />
     <PackageReference Include="Microsoft.Extensions.Azure" Version="1.*" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.*" />
-    <PackageReference Include="NServiceBus.DataBus.AzureBlobStorage" Version="6.*" />
+    <PackageReference Include="NServiceBus.DataBus.AzureBlobStorage" Version="6.0.*" />
   </ItemGroup>
 </Project>
