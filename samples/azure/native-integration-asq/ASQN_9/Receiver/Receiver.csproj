@@ -17,4 +17,8 @@
     <PackageReference Include="System.Net.NameResolution" Version="4.*" />
   </ItemGroup>
 
+  <ItemGroup>
+    <RuntimeHostConfigurationOption Include="System.Runtime.Loader.UseRidGraph" Value="true" />
+  </ItemGroup>
+
 </Project>

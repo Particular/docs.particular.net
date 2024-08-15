@@ -4,7 +4,9 @@
     <OutputType>Exe</OutputType>
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\SharedMessages\SharedMessages.csproj" />
   </ItemGroup>
+
 </Project>
