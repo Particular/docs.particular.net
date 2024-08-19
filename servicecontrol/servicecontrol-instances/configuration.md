@@ -481,6 +481,21 @@ If using [MSMQ transport](/transports/msmq) and the monitoring instance is insta
 
 ## Usage Reporting when using the Azure Service Bus transport
 
+### LicensingComponent/ASB/ServiceBusName
+
+Version: 5.4.0+
+
+The Azure ServiceBus name.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_ASB_SERVICEBUSNAME` |
+| **App config key** | `LicensingComponent/ASB/ServiceBusName` |
+
+| Type | Default value |
+| --- | --- |
+| string | obtained from ServiceControl |
+
 ### LicensingComponent/ASB/TenantId
 
 Version: 5.4.0+
