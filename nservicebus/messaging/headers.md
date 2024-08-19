@@ -322,7 +322,7 @@ The NServiceBus version number.
 
 ## OpenTelemetry-related headers
 
-These headers are added when [OpenTelemetry](/nservicebus/operations/opentelemetry.md) is enabled for an endpoint:
+These headers are added when [OpenTelemetry](/nservicebus/operations/opentelemetry.md) is enabled for an endpoint, in accordance with the [W3C Trace Context specification](https://www.w3.org/TR/trace-context):
 
 - [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header)
 - [`tracestate`](https://www.w3.org/TR/trace-context/#tracestate-header)
