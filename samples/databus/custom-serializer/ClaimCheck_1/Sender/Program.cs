@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NServiceBus.ClaimCheck;
 
 class Program
 {
@@ -14,8 +15,8 @@ class Program
 
         #region ConfigureSenderCustomDataBusSerializer
 
-        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, BsonDataBusSerializer>();
-        dataBus.BasePath(@"..\..\..\..\storage");
+        var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, BsonClaimCheckSerializer>();
+        claimCheck.BasePath(@"..\..\..\..\storage");
 
         #endregion
 
@@ -47,7 +48,7 @@ class Program
         var message = new MessageWithLargePayload
         {
             SomeProperty = "This message contains a large collection that will be sent on the data bus",
-            LargeData = new DataBusProperty<Measurement[]>(measurements)
+            LargeData = new ClaimCheckProperty<Measurement[]>(measurements)
         };
         Console.WriteLine(@"Message send, the payload is stored in: ..\..\..\storage");
         return endpointInstance.Send("Samples.DataBus.Receiver", message);

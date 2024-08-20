@@ -2,6 +2,7 @@ using NServiceBus;
 using Shared;
 using System;
 using System.Threading.Tasks;
+using NServiceBus.ClaimCheck;
 
 class Program
 {
@@ -12,8 +13,8 @@ class Program
 
         #region ConfigureReceiverCustomDataBusSerializer
 
-        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, BsonDataBusSerializer>();
-        dataBus.BasePath(@"..\..\..\..\storage");
+        var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, BsonClaimCheckSerializer>();
+        claimCheck.BasePath(@"..\..\..\..\storage");
 
         #endregion
 

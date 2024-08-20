@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using NServiceBus.ClaimCheck;
 
 namespace Shared
 {
@@ -10,8 +11,8 @@ namespace Shared
 
     #region CustomDataBusSerializer
 
-    public class BsonDataBusSerializer :
-        IDataBusSerializer
+    public class BsonClaimCheckSerializer :
+        IClaimCheckSerializer
     {
         public void Serialize(object databusProperty, Stream stream)
         {
