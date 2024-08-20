@@ -1,4 +1,5 @@
 ﻿using NServiceBus;
+using NServiceBus.ClaimCheck;
 
 #region MessageWithLargePayload
 
@@ -8,7 +9,7 @@ public class MessageWithLargePayload :
     ICommand
 {
     public string SomeProperty { get; set; }
-    public DataBusProperty<byte[]> LargeBlob { get; set; }
+    public ClaimCheckProperty<byte[]> LargeBlob { get; set; }
 }
 
 #endregion

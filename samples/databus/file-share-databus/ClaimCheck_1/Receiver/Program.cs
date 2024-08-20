@@ -1,6 +1,7 @@
 using NServiceBus;
 using System;
 using System.Threading.Tasks;
+using NServiceBus.ClaimCheck;
 
 class Program
 {
@@ -8,8 +9,8 @@ class Program
     {
         Console.Title = "Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver");
-        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
-        dataBus.BasePath(@"..\..\..\..\storage");
+        var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, SystemJsonClaimCheckSerializer>();
+        claimCheck.BasePath(@"..\..\..\..\storage");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         var endpointInstance = await Endpoint.Start(endpointConfiguration);

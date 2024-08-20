@@ -1,6 +1,7 @@
 using NServiceBus;
 using System;
 using System.Threading.Tasks;
+using NServiceBus.ClaimCheck;
 
 class Program
 {
@@ -11,8 +12,8 @@ class Program
 
         #region ConfigureDataBus
 
-        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
-        dataBus.BasePath(@"..\..\..\..\storage");
+        var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, SystemJsonClaimCheckSerializer>();
+        claimCheck.BasePath(@"..\..\..\..\storage");
 
         #endregion
 
@@ -53,7 +54,7 @@ class Program
         var message = new MessageWithLargePayload
         {
             SomeProperty = "This message contains a large blob that will be sent on the data bus",
-            LargeBlob = new DataBusProperty<byte[]>(new byte[1024*1024*5]) //5MB
+            LargeBlob = new ClaimCheckProperty<byte[]>(new byte[1024*1024*5]) //5MB
         };
         await endpointInstance.Send("Samples.DataBus.Receiver", message);
 
