@@ -12,6 +12,6 @@ upgradeGuideCoreVersions:
 
 In NServiceBus 9.2.x, the DataBus feature was removed from `NServiceBus.Core` and released as it's own [NServiceBus.ClaimCheck.DataBus](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/) package.
 
-The namespace for the DataBus feature has  also changed from `NServiceBus.DataBus` to `NServiceBus.ClaimCheck.DataBus`.
+The namespace for the DataBus feature has also changed from `NServiceBus.DataBus` to `NServiceBus.ClaimCheck`.
 
 Update endpoint configuration code to use the new package and namespace. The API surface between the old and the new code remains the same.
