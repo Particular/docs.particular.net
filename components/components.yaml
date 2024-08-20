@@ -21,9 +21,9 @@
   DocsUrl: /nservicebus/messaging/claimcheck
   GitHubOwner: Particular
   Category: Databus
-  ProjectUrl: https://github.com/Particular/NServiceBus.ClaimCheck.DataBus
+  ProjectUrl: https://github.com/Particular/NServiceBus.ClaimCheck
   NugetOrder:
-    - NServiceBus.ClaimCheck.DataBus
+    - NServiceBus.ClaimCheck
     - NServiceBus
 
 - Key: ABSDataBus
