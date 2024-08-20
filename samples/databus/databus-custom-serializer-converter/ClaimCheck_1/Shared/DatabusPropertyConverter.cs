@@ -1,31 +1,28 @@
 ﻿using NServiceBus;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+using NServiceBus.ClaimCheck;
 
 namespace Shared
 {
     #region DatabusPropertyConverter
-    public class DatabusPropertyConverter<T> : JsonConverter<DataBusProperty<T>> where T : class
+    public class ClaimCheckPropertyConverter<T> : JsonConverter<ClaimCheckProperty<T>> where T : class
     {
-        public DatabusPropertyConverter(JsonSerializerOptions options)
+        public ClaimCheckPropertyConverter(JsonSerializerOptions options)
         {
 
         }
-        public override DataBusProperty<T> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override ClaimCheckProperty<T> Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             var sdp = JsonSerializer.Deserialize<SerializableDatabusProperty>(reader.GetString());
-            DataBusProperty<T> databusProp = new DataBusProperty<T>();
+            ClaimCheckProperty<T> databusProp = new ClaimCheckProperty<T>();
             databusProp.HasValue = sdp.HasValue;
             databusProp.Key = sdp.Key;
             return databusProp;
         }
 
-        public override void Write(Utf8JsonWriter writer, DataBusProperty<T> value, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, ClaimCheckProperty<T> value, JsonSerializerOptions options)
         {
             SerializableDatabusProperty sdp = new SerializableDatabusProperty();
             sdp.HasValue = value.HasValue;
