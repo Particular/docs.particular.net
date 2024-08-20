@@ -170,7 +170,7 @@
   Category: Databus
   ProjectUrl: https://github.com/Particular/NServiceBus
   NugetOrder:
-    - NServiceBus.ClaimCheck.DataBus
+    - NServiceBus.ClaimCheck
     - NServiceBus
 
 - Key: Gateway

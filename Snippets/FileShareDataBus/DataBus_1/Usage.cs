@@ -1,4 +1,4 @@
-﻿using NServiceBus.ClaimCheck.DataBus;
+﻿using NServiceBus.ClaimCheck;
 
 class Usage
 {

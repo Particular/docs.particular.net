@@ -44,6 +44,6 @@ namespace CleanupStrategy
     public class MessageWithLargePayload
     {
         public string SomeProperty { get; set; }
-        public NServiceBus.ClaimCheck.DataBus.DataBusProperty<byte[]> LargeBlob { get; set; }
+        public ClaimCheckProperty<byte[]> LargeBlob { get; set; }
     }
 }
