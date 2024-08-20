@@ -1,4 +1,5 @@
-﻿using NServiceBus.ClaimCheck;
+﻿using NServiceBus;
+using NServiceBus.ClaimCheck;
 
 class Usage
 {
@@ -6,8 +7,8 @@ class Usage
     {
         #region FileShareDataBus
 
-        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
-        dataBus.BasePath(databusPath);
+        var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, SystemJsonClaimCheckSerializer>();
+        claimCheck.BasePath(databusPath);
 
         #endregion
     }

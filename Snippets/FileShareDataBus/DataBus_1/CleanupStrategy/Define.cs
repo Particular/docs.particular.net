@@ -1,15 +1,17 @@
+using NServiceBus;
+
 namespace CleanupStrategy
 {
     using NServiceBus.ClaimCheck;
 
     class Define
     {
-        Define(NServiceBus.EndpointConfiguration endpointConfiguration)
+        Define(EndpointConfiguration endpointConfiguration)
         {
             #region DefineFileLocationForDatabusFiles
 
-            var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
-            dataBus.BasePath(@"\\share\databus_attachments\");
+            var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, SystemJsonClaimCheckSerializer>();
+            claimCheck.BasePath(@"\\share\databus_attachments\");
 
             #endregion
         }
