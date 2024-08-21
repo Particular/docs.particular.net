@@ -36,6 +36,6 @@ public class BehaviorTests
 
         await behavior.Invoke(context, () => Task.CompletedTask);
 
-        Assert.IsFalse(context.Headers.ContainsKey("custom-header"));
+        Assert.That(context.Headers.ContainsKey("custom-header"), Is.False);
     }
 }
