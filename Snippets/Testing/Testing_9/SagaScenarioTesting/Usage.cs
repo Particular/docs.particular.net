@@ -49,7 +49,7 @@ public class Usage
         var timeoutResults = await testableSaga.AdvanceTime(TimeSpan.FromHours(1));
         Assert.That(timeoutResults.Length, Is.EqualTo(1));
         var shipped = timeoutResults.First().FindPublishedMessage<OrderShipped>();
-        Assert.That(shipped.CorrelationId == orderId);
+        Assert.That(shipped.CorrelationId, Is.EqualTo(orderId));
     }
 
     public void Ctor()

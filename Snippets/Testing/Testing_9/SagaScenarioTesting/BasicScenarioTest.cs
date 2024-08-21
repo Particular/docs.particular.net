@@ -49,7 +49,7 @@ public class BasicScenarioTest
         var timeoutResults = await testableSaga.AdvanceTime(TimeSpan.FromHours(1));
         Assert.That(timeoutResults.Length, Is.EqualTo(1));
         var shipped = timeoutResults.First().FindPublishedMessage<OrderShipped>();
-        Assert.That(shipped.OrderId == orderId);
+        Assert.That(shipped.OrderId, Is.EqualTo(orderId));
     }
     #endregion
 
