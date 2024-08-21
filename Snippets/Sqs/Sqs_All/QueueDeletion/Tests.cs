@@ -345,9 +345,12 @@
                 Assert.That(await QueueExistenceUtils.Exists($"{endpointName}.Retries", queueNamePrefix), Is.False, $"Queue {endpointName}.retries still exists.");
             }
 
-            Assert.That(await QueueExistenceUtils.Exists(errorQueueName, queueNamePrefix), Is.False, $"Queue {errorQueueName} still exists.");
+            Assert.Multiple(async () =>
+            {
+                Assert.That(await QueueExistenceUtils.Exists(errorQueueName, queueNamePrefix), Is.False, $"Queue {errorQueueName} still exists.");
 
-            Assert.That(await QueueExistenceUtils.Exists(auditQueueName, queueNamePrefix), Is.False, $"Queue {auditQueueName} still exists.");
+                Assert.That(await QueueExistenceUtils.Exists(auditQueueName, queueNamePrefix), Is.False, $"Queue {auditQueueName} still exists.");
+            });
         }
     }
 

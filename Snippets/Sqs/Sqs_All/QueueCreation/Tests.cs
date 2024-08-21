@@ -409,11 +409,14 @@
         {
             var timeSpanInSeconds = Convert.ToInt32(maxTimeToLive.TotalSeconds);
 
-            Assert.That(await QueueExistenceUtils.Exists(endpointName, queueNamePrefix), Is.True, "Endpoint Queue did not exist");
-            Assert.That((await QueueAccessUtils.Exists(endpointName, queueNamePrefix, new List<string>
+            Assert.Multiple(async () =>
+            {
+                Assert.That(await QueueExistenceUtils.Exists(endpointName, queueNamePrefix), Is.True, "Endpoint Queue did not exist");
+                Assert.That((await QueueAccessUtils.Exists(endpointName, queueNamePrefix, new List<string>
             {
                 QueueAttributeName.MessageRetentionPeriod
             })).MessageRetentionPeriod, Is.EqualTo(timeSpanInSeconds));
+            });
 
             switch (delayedDeliveryMethod)
             {
@@ -454,24 +457,30 @@
 
             if (includeRetries)
             {
-                Assert.That(await QueueExistenceUtils.Exists($"{endpointName}.Retries", queueNamePrefix), Is.True, "Retries Queue did not exist");
-                Assert.That((await QueueAccessUtils.Exists(endpointName, queueNamePrefix, new List<string>
+                Assert.Multiple(async () =>
+                {
+                    Assert.That(await QueueExistenceUtils.Exists($"{endpointName}.Retries", queueNamePrefix), Is.True, "Retries Queue did not exist");
+                    Assert.That((await QueueAccessUtils.Exists(endpointName, queueNamePrefix, new List<string>
                 {
                     QueueAttributeName.MessageRetentionPeriod
                 })).MessageRetentionPeriod, Is.EqualTo(timeSpanInSeconds));
+                });
             }
 
-            Assert.That(await QueueExistenceUtils.Exists(errorQueueName, queueNamePrefix), Is.True);
-            Assert.That((await QueueAccessUtils.Exists(errorQueueName, queueNamePrefix, new List<string>
+            Assert.Multiple(async () =>
+            {
+                Assert.That(await QueueExistenceUtils.Exists(errorQueueName, queueNamePrefix), Is.True);
+                Assert.That((await QueueAccessUtils.Exists(errorQueueName, queueNamePrefix, new List<string>
             {
                 QueueAttributeName.MessageRetentionPeriod
             })).MessageRetentionPeriod, Is.EqualTo(timeSpanInSeconds));
 
-            Assert.That(await QueueExistenceUtils.Exists(auditQueueName, queueNamePrefix), Is.True);
-            Assert.That((await QueueAccessUtils.Exists(auditQueueName, queueNamePrefix, new List<string>
+                Assert.That(await QueueExistenceUtils.Exists(auditQueueName, queueNamePrefix), Is.True);
+                Assert.That((await QueueAccessUtils.Exists(auditQueueName, queueNamePrefix, new List<string>
             {
                 QueueAttributeName.MessageRetentionPeriod
             })).MessageRetentionPeriod, Is.EqualTo(timeSpanInSeconds));
+            });
         }
 
         [Test]

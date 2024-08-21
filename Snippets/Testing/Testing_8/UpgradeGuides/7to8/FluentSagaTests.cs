@@ -22,12 +22,15 @@
             var message = new StartsSaga { MyId = "some-id" };
             var startResult = await testableSaga.Handle(message);
 
-            // Assert
-            Assert.That(startResult.FindPublishedMessage<MyEvent>(), Is.Not.Null,
-                "MyEvent should be published");
+            Assert.Multiple(() =>
+            {
+                // Assert
+                Assert.That(startResult.FindPublishedMessage<MyEvent>(), Is.Not.Null,
+                    "MyEvent should be published");
 
-            Assert.That(startResult.FindSentMessage<MyCommand>(), Is.Not.Null,
-                "MyCommand should be sent");
+                Assert.That(startResult.FindSentMessage<MyCommand>(), Is.Not.Null,
+                    "MyCommand should be sent");
+            });
 
             // Instead of asserting on timeouts placed, virtually advance time
             // and then assert on the results
