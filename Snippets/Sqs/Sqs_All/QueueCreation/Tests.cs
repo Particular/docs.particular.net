@@ -367,7 +367,7 @@
                 await CreateEndpointQueues.CreateQueuesForEndpoint(endpointName, includeRetries: true);
             });
 
-            Assert.That(exception.Message.Contains("is longer than 80 characters and therefore cannot be used to create an SQS queue."), Is.True);
+            Assert.That(exception.Message, Does.Contain("is longer than 80 characters and therefore cannot be used to create an SQS queue."));
         }
 
         [Test]
