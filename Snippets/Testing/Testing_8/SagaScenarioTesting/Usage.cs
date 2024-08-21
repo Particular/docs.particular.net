@@ -53,7 +53,7 @@
 
             // Advance time more to get the timeout to fire
             var timeoutResults = await testableSaga.AdvanceTime(TimeSpan.FromHours(1));
-            Assert.That(timeoutResults.Length, Is.EqualTo(1));
+            Assert.That(timeoutResults, Has.Length.EqualTo(1));
             var shipped = timeoutResults.First().FindPublishedMessage<OrderShipped>();
             Assert.That(shipped.CorrelationId == orderId);
         }

@@ -49,7 +49,7 @@
             // Timeouts are stored and can be played by advancing time
             var noResults = await testableSaga.AdvanceTime(TimeSpan.FromMinutes(10));
             // But that wasn't long enough
-            Assert.That(noResults.Length, Is.EqualTo(0));
+            Assert.That(noResults, Is.Empty);
 
             // Advance time more to get the timeout to fire
             var timeoutResults = await testableSaga.AdvanceTime(TimeSpan.FromHours(1));

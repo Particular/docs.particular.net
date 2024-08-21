@@ -21,7 +21,7 @@ namespace IntegrityTests
             var errMsg = $"Only one solution file allowed per directory. These have multiple:" + Environment.NewLine
                 + string.Join(Environment.NewLine, directoriesWithMoreThanOneSolution);
 
-            Assert.That(directoriesWithMoreThanOneSolution.Length, Is.EqualTo(0), errMsg);
+            Assert.That(directoriesWithMoreThanOneSolution, Is.Empty, errMsg);
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace IntegrityTests
             var errMsg = $"Only one project file allowed per directory. These have multiple:" + Environment.NewLine
                 + string.Join(Environment.NewLine, directoriesWithMoreThanOneProject);
 
-            Assert.That(directoriesWithMoreThanOneProject.Length, Is.EqualTo(0), errMsg);
+            Assert.That(directoriesWithMoreThanOneProject, Is.Empty, errMsg);
         }
     }
 }

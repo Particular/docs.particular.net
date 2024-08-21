@@ -20,7 +20,7 @@
 
             await component.DoSomething();
 
-            Assert.That(uniformSession.PublishedMessages.Length, Is.EqualTo(1));
+            Assert.That(uniformSession.PublishedMessages, Has.Length.EqualTo(1));
         }
         #endregion
 
@@ -38,9 +38,9 @@
 
             Assert.Multiple(() =>
             {
-                Assert.That(uniformSession.SentMessages.Length, Is.EqualTo(1));
+                Assert.That(uniformSession.SentMessages, Has.Length.EqualTo(1));
                 // the message handler context and the uniform session share the same state, so these assertions are identical
-                Assert.That(handlerContext.SentMessages.Length, Is.EqualTo(1));
+                Assert.That(handlerContext.SentMessages, Has.Length.EqualTo(1));
             });
         }
         #endregion
@@ -59,9 +59,9 @@
 
             Assert.Multiple(() =>
             {
-                Assert.That(uniformSession.SentMessages.Length, Is.EqualTo(1));
+                Assert.That(uniformSession.SentMessages, Has.Length.EqualTo(1));
                 // the message session and the uniform session share the same state, so these assertions are identical
-                Assert.That(messageSession.SentMessages.Length, Is.EqualTo(1));
+                Assert.That(messageSession.SentMessages, Has.Length.EqualTo(1));
             });
         }
         #endregion

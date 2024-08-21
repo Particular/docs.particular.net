@@ -36,7 +36,7 @@
             // and then assert on the results
             var advanceTimeResults = await testableSaga.AdvanceTime(TimeSpan.FromDays(7));
 
-            Assert.That(advanceTimeResults.Length, Is.EqualTo(1));
+            Assert.That(advanceTimeResults, Has.Length.EqualTo(1));
             var timeoutResult = advanceTimeResults.Single();
             Assert.That(timeoutResult.Completed, Is.True);
         }
