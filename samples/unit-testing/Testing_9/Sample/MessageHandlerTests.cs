@@ -16,7 +16,7 @@ public class MessageHandlerTests
 
         var repliedMessages = context.RepliedMessages;
         Assert.That(repliedMessages.Length, Is.EqualTo(1));
-        Assert.IsInstanceOf<MyResponse>(repliedMessages[0].Message);
+        Assert.That(repliedMessages[0].Message, Is.InstanceOf<MyResponse>());
     }
     #endregion
 }

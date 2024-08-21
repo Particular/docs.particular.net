@@ -16,7 +16,7 @@ public class MessageHandlerTests
         await handler.Handle(new MyRequest(), context);
 
         Assert.That(context.RepliedMessages.Length, Is.EqualTo(1));
-        Assert.IsInstanceOf<MyResponse>(context.RepliedMessages[0].Message);
+        Assert.That(context.RepliedMessages[0].Message, Is.InstanceOf<MyResponse>());
     }
     #endregion
 }

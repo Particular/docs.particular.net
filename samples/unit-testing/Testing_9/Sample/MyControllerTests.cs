@@ -16,7 +16,7 @@ public class MyControllerTests
 
         var sentMessages = endpointInstance.SentMessages;
         Assert.That(sentMessages.Length, Is.EqualTo(1));
-        Assert.IsInstanceOf<MyMessage>(sentMessages[0].Message);
+        Assert.That(sentMessages[0].Message, Is.InstanceOf<MyMessage>());
     }
     #endregion
 }
