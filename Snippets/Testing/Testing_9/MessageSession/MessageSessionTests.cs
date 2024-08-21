@@ -16,7 +16,7 @@ public class MessageSessionTests
 
         await somethingThatUsesTheMessageSession.DoSomething();
 
-        Assert.AreEqual(1, testableSession.SentMessages.Length);
+        Assert.That(testableSession.SentMessages.Length, Is.EqualTo(1));
         Assert.IsInstanceOf<MyResponse>(testableSession.SentMessages[0].Message);
     }
     #endregion

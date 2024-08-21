@@ -20,7 +20,7 @@
 
             await component.DoSomething();
 
-            Assert.AreEqual(1, uniformSession.PublishedMessages.Length);
+            Assert.That(uniformSession.PublishedMessages.Length, Is.EqualTo(1));
         }
         #endregion
 
@@ -36,9 +36,9 @@
             // message handler calls SharedComponent within Handle
             await messageHandler.Handle(new SomeEvent(), handlerContext);
 
-            Assert.AreEqual(1, uniformSession.SentMessages.Length);
+            Assert.That(uniformSession.SentMessages.Length, Is.EqualTo(1));
             // the message handler context and the uniform session share the same state, so these assertions are identical
-            Assert.AreEqual(1, handlerContext.SentMessages.Length);
+            Assert.That(handlerContext.SentMessages.Length, Is.EqualTo(1));
         }
         #endregion
 
@@ -54,9 +54,9 @@
             // MyService calls SharedComponent within Start
             await myService.Start(messageSession);
 
-            Assert.AreEqual(1, uniformSession.SentMessages.Length);
+            Assert.That(uniformSession.SentMessages.Length, Is.EqualTo(1));
             // the message session and the uniform session share the same state, so these assertions are identical
-            Assert.AreEqual(1, messageSession.SentMessages.Length);
+            Assert.That(messageSession.SentMessages.Length, Is.EqualTo(1));
         }
         #endregion
 

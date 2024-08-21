@@ -34,7 +34,7 @@ public class RecoverabilityTests
         var recoverabilityAction = policy(errorContext);
 
         Assert.IsInstanceOf<MoveToError>(recoverabilityAction, "Should ignore policies and move directly to custom error queue.");
-        Assert.AreEqual(CustomErrorQueue, ((MoveToError)recoverabilityAction).ErrorQueue);
+        Assert.That(((MoveToError)recoverabilityAction).ErrorQueue, Is.EqualTo(CustomErrorQueue));
     }
 
     [Test]
@@ -46,7 +46,7 @@ public class RecoverabilityTests
         var recoverabilityAction = policy(errorContext);
 
         Assert.IsInstanceOf<MoveToError>(recoverabilityAction, "Should be moved to error queue.");
-        Assert.AreEqual(DefaultErrorQueue, ((MoveToError)recoverabilityAction).ErrorQueue, "Should be moved to default error queue.");
+        Assert.That(((MoveToError)recoverabilityAction).ErrorQueue, Is.EqualTo(DefaultErrorQueue), "Should be moved to default error queue.");
     }
 
     private const string DefaultErrorQueue = "errorQueue";
