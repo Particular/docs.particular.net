@@ -32,7 +32,7 @@
 
             await QueueDeletionUtils.DeleteAllQueues(queueNamePrefix: "DEV");
 
-            Assert.IsTrue(await QueueExistenceUtils.Exists("deleteprefix-10"));
+            Assert.That(await QueueExistenceUtils.Exists("deleteprefix-10"), Is.True);
 
             for (var i = 0; i < 10; i++)
             {
