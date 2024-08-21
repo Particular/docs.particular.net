@@ -25,7 +25,7 @@ public class SagaTests
         await saga.Handle(regularOrder, context);
 
         var processMessage = (ProcessOrder)context.SentMessages[0].Message;
-        Assert.AreEqual(50, processMessage.TotalAmount);
+        Assert.That(processMessage.TotalAmount, Is.EqualTo(50));
     }
 
     #region SagaTest
@@ -48,7 +48,7 @@ public class SagaTests
         await saga.Handle(discountOrder, context);
 
         var processMessage = (ProcessOrder)context.SentMessages[0].Message;
-        Assert.AreEqual(900, processMessage.TotalAmount);
+        Assert.That(processMessage.TotalAmount, Is.EqualTo(900));
     }
     #endregion
 }

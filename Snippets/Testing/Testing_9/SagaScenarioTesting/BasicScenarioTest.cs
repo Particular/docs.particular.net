@@ -24,21 +24,27 @@ public class BasicScenarioTest
 
         // Process OrderPlaced and make assertions on the result
         var placeResult = await testableSaga.Handle(orderPlaced);
-        Assert.That(placeResult.Completed, Is.False);
-        Assert.That(placeResult.FindPublishedMessage<OrderShipped>(), Is.Null);
-        Assert.That(placeResult.FindTimeoutMessage<ShippingDelay>(), Is.Null);
+        Assert.Multiple(() =>
+        {
+            Assert.That(placeResult.Completed, Is.False);
+            Assert.That(placeResult.FindPublishedMessage<OrderShipped>(), Is.Null);
+            Assert.That(placeResult.FindTimeoutMessage<ShippingDelay>(), Is.Null);
+        });
 
         // Process OrderBilled and make assertions on the result
         var billResult = await testableSaga.Handle(orderBilled);
-        Assert.That(billResult.Completed, Is.False);
-        Assert.That(billResult.FindPublishedMessage<OrderShipped>(), Is.Null);
-        Assert.That(billResult.FindTimeoutMessage<ShippingDelay>(), Is.Not.Null);
+        Assert.Multiple(() =>
+        {
+            Assert.That(billResult.Completed, Is.False);
+            Assert.That(billResult.FindPublishedMessage<OrderShipped>(), Is.Null);
+            Assert.That(billResult.FindTimeoutMessage<ShippingDelay>(), Is.Not.Null);
 
-        // Each result includes a snapshot of saga data after each message.
-        // Snapshots can be asserted even after multiple operations have occurred.
-        Assert.That(placeResult.SagaDataSnapshot.OrderId, Is.EqualTo(orderId));
-        Assert.That(placeResult.SagaDataSnapshot.Placed, Is.True);
-        Assert.That(placeResult.SagaDataSnapshot.Billed, Is.False);
+            // Each result includes a snapshot of saga data after each message.
+            // Snapshots can be asserted even after multiple operations have occurred.
+            Assert.That(placeResult.SagaDataSnapshot.OrderId, Is.EqualTo(orderId));
+            Assert.That(placeResult.SagaDataSnapshot.Placed, Is.True);
+            Assert.That(placeResult.SagaDataSnapshot.Billed, Is.False);
+        });
 
         // Timeouts are stored and can be played by advancing time
         var noResults = await testableSaga.AdvanceTime(TimeSpan.FromMinutes(10));
@@ -47,9 +53,9 @@ public class BasicScenarioTest
 
         // Advance time more to get the timeout to fire
         var timeoutResults = await testableSaga.AdvanceTime(TimeSpan.FromHours(1));
-        Assert.That(timeoutResults.Length, Is.EqualTo(1));
+        Assert.That(timeoutResults, Has.Length.EqualTo(1));
         var shipped = timeoutResults.First().FindPublishedMessage<OrderShipped>();
-        Assert.That(shipped.OrderId == orderId);
+        Assert.That(shipped.OrderId, Is.EqualTo(orderId));
     }
     #endregion
 

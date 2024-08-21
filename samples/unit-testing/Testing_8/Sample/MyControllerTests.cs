@@ -15,7 +15,7 @@ public class MyControllerTests
         await handler.HandleRequest();
 
         var sentMessages = endpointInstance.SentMessages;
-        Assert.AreEqual(1, sentMessages.Length);
+        Assert.That(sentMessages, Has.Length.EqualTo(1));
         Assert.IsInstanceOf<MyMessage>(sentMessages[0].Message);
     }
     #endregion

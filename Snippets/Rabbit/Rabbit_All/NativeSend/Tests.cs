@@ -65,7 +65,7 @@ namespace Rabbit_All.NativeSend
         {
             public Task Handle(MessageToSend message, IMessageHandlerContext context)
             {
-                Assert.AreEqual("Value", message.Property);
+                Assert.That(message.Property, Is.EqualTo("Value"));
                 tcs.SetResult(true);
                 return Task.CompletedTask;
             }

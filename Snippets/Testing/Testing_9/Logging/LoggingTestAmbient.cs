@@ -39,7 +39,7 @@ public class LoggingTestsAmbient
 
         await handler.Handle(new MyRequest(), new TestableMessageHandlerContext());
 
-        StringAssert.Contains("Some log message", logStatements.ToString());
+        Assert.That(logStatements.ToString(), Does.Contain("Some log message"));
     }
 }
 #endregion
