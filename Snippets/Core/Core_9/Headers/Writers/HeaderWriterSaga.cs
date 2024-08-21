@@ -14,6 +14,12 @@
         static CountdownEvent CountdownEvent = new CountdownEvent(4);
         string endpointName = "HeaderWriterSagaV8";
 
+        [OneTimeTearDown]
+        public void TearDown()
+        {
+            CountdownEvent.Dispose();
+        }
+
         [Test]
         public async Task Write()
         {

@@ -17,6 +17,12 @@
 
         string endpointName = "HeaderWriterEncryptionV8";
 
+        [OneTimeTearDown]
+        public void TearDown()
+        {
+            ManualResetEvent.Dispose();
+        }
+
         [Test]
         public async Task Write()
         {

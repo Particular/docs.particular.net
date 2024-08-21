@@ -17,6 +17,12 @@
 
         string endpointName = "HeaderWriterDataBusPropertyV8";
 
+        [OneTimeTearDown]
+        public void TearDown()
+        {
+            ManualResetEvent.Dispose();
+        }
+
         [Test]
         public async Task Write()
         {
