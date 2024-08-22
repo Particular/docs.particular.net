@@ -99,9 +99,6 @@ The "Sales" queue on the MSMQ transport and the "Billing" queue on the AzureServ
 
 The bridge provides the ability to change the address of the queue of incoming messages.
 
-> [!NOTE]
-> When forwarding messages to MSMQ endpoints that run on different servers than the bridge, the addresses of the queues that messages should be forwarded to _must_ be provided.
-
 snippet: custom-address
 
 ## Recoverability
