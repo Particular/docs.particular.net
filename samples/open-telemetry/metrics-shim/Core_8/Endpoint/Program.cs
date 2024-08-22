@@ -59,6 +59,5 @@ finally
 {
     await simulator.Stop(cancellation.Token);
     await endpointInstance.Stop(cancellation.Token);
-    traceProvider?.Dispose();
     meterProvider?.Dispose();
 }
