@@ -575,14 +575,14 @@ The Azure ManagementUrl URL.
 
 | Type | Default value |
 | --- | --- |
-| string | https://management.azure.com |
+| string | https://management.azure.com/ |
 
 This setting only needs to be configured if not using the public AzureCloud environment.
 For other environments:
 
-- AzureGermanCloud - https://management.microsoftazure.de
-- AzureUSGovernment - https://management.usgovcloudapi.net
-- AzureChinaCloud - https://management.chinacloudapi.cn
+- AzureGermanCloud - https://management.microsoftazure.de/
+- AzureUSGovernment - https://management.usgovcloudapi.net/
+- AzureChinaCloud - https://management.chinacloudapi.cn/
 
 ## Usage Reporting when using the Amazon SQS transport
 
