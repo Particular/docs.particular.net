@@ -92,15 +92,3 @@ The endpoint configures an OpenTelemetry meter provider that includes the `NServ
 
 snippet: enable-meters
 
-#if-version [, 9)
-
-#### Critical time and processing time
-
-[Critical time and processing time captured by the metrics package](/monitoring/metrics/definitions.md#metrics-captured) are not yet supported in OpenTelemetry's native format (using System.Diagnostics), so a shim is required to expose them as OpenTelemetry metrics.
-
-snippet: metrics-shim
-
-> [!NOTE]
-> The shim passes `QueueName` as a custom dimension which allows filtering the graphs in Application Insights. Multi-dimensional metrics are not enabled by default. Check [the Azure Monitor documentation](https://docs.microsoft.com/en-us/azure/azure-monitor/app/get-metric#enable-multi-dimensional-metrics) for instructions on how to enable this feature.
-
-#end-if
