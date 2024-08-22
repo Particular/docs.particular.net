@@ -8,7 +8,7 @@ related:
  - nservicebus/messaging/unobtrusive-mode
 ---
 
-*Conventions* can be used to identify which types are messages, commands, and events, instead of using [marker interfaces](/nservicebus/messaging/messages-events-commands#identifying-messages-marker-interfaces). This can be done to avoid references to the NServiceBus assembly, referred to as *[unobtrusive mode](unobtrusive-mode.md)*. This is ideal for use in cross-platform environments.
+*Conventions* can be used to identify which types are messages, commands, and events, instead of using [marker interfaces](/nservicebus/messaging/messages-events-commands.md#identifying-messages-marker-interfaces). This can be done to avoid references to the NServiceBus assembly, referred to as *[unobtrusive mode](unobtrusive-mode.md)*. This is ideal for use in cross-platform environments.
 
 Currently *conventions* exist to identify:
 
