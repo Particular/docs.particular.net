@@ -44,16 +44,6 @@ Each reported metric is tagged with the following additional information:
 - the .NET fully qualified type information for the message being processed
 - the exception type name (if applicable)
 
-#if-version [, 9)
-
-### Additional metrics
-
-Recoverability and processing-related metrics currently emitted [by the metrics package](/monitoring/metrics/definitions.md#metrics-captured) are not yet supported in OpenTelemetry's native format (using System.Diagnostics), so a shim is required to expose them as OpenTelemetry metrics.
-
-snippet: metrics-shim
-
-#end-if
-
 ### Message processing counters
 
 The following metric keys are available to monitor the rate of messages from the queuing system use:
