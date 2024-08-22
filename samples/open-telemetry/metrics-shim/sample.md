@@ -14,7 +14,8 @@ In versions of NServiceBus prior to 9.1, there was no native OpenTelemetry-suppo
 - Handler time
 - Retries
 
-NOTE: Starting from version 9.1, NServiceBus natively exposes these metrics via OpenTelemetry.
+> [!NOTE]
+Starting from version 9.1, NServiceBus natively exposes these metrics via OpenTelemetry.
 
 It is possible to expose these metrics via OpenTelemetry by using a shim.
 
