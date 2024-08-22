@@ -8,10 +8,11 @@ related:
 ---
 
 The Particular Service Platform has built-in support for [metrics](/monitoring/metrics), which are captured by the NServiceBus.Metrics package. These metrics can be exposed to an observability backend using OpenTelemetry.
-In versions of NServiceBus prior to 9.1, there was no native OpenTelemetry-support for the following metrics:
-- [Critical time](/monitoring/metrics/definitions.md#critical-time)
-- [Processing time](/monitoring/metrics/definitions.md#processing-time)
-- [Handler time](/monitoring/metrics/definitions.md#handler-time)
+In versions of NServiceBus prior to 9.1, there was no native OpenTelemetry-support for the following [metrics](/monitoring/metrics/definitions.md):
+- Critical time
+- Processing time
+- Handler time
+- Retries
 
 NOTE: Starting from version 9.1, NServiceBus natively exposes these metrics via OpenTelemetry.
 
@@ -45,6 +46,10 @@ Navigate to _Monitoring_ → _Metrics_ on the Azure portal dashboard for the con
 The OpenTelemetry instrumentation is enabled on the endpoint.
 
 snippet: enable-open-telemetry
+
+Next, metrics are enabled.
+
+snippet: enable-meters
 
 ### The shim
 
