@@ -146,3 +146,27 @@ class HttpSender
     }
 }
 ```
+
+## Ensuring consistency in the Isolated Worker model
+
+It's important to be able to maintain the consistency guarantees that were previously available in the in-process model when using `SendsAtomicWithReceive`.  To achieve this, there are a few options:
+
+1. **Implement the [Outbox pattern](https://docs.particular.net/architecture/consistency#transactions-outbox-pattern)** to simulate atomic transactions. (Recommended)
+2. Ensure that all receiver message handlers are [idempotent](https://docs.particular.net/architecture/consistency#idempotency).
+3. Ensure that the system infrastructure guarantees consistency between business data and messages.
+
+### Using SendsAtomicWithReceive in the In-Process model
+
+In the in-process model, `SendsAtomicWithReceive` could be enabled by setting a boolean value in the assembly attribute:
+
+```csharp
+[assembly: NServiceBusTriggerFunction("ASBFunctionEndpoint", SendsAtomicWithReceive = true)]
+```
+
+### Changes in the Isolated Worker model
+
+However, in the isolated worker model, the `SendsAtomicWithReceive` attribute is not supported yet.  Therefore, this setting needs to be removed from the assembly attribute.
+
+```csharp
+[assembly: NServiceBusTriggerFunction("ASBFunctionEndpoint")]
+```
