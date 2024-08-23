@@ -11,24 +11,29 @@ ServiceControl Monitoring instances are deployed using the [`particular/servicec
 docker run -d --name monitoring -p 33633:33633 \
     -e TRANSPORTTYPE=RabbitMQ.QuorumConventionalRouting \
     -e CONNECTIONSTRING="host=rabbitmq" \
-    particular/servicecontrol-monitoring:latest
+    particular/servicecontrol-monitoring:latest --setup-and-run
 ```
 ## Initial setup
 
-Before running the container image normally, it must be run in setup mode to create the required message queues.
+Before running the container image normally, it must run the setup process to create the required message queues.
 
-The container image will run in setup mode by adding the `--setup` argument. For example:
+The `--setup-and-run` argument will run the setup process when the container is run, after which the application will run normally. This simplifies deployment by removing the need for a separate init container.
+
+If different settings are needed for the setup process (such as a different transport connection string with permissions to create queues) then the setup process can be run on its own using the `--setup` argument. For example:
 
 ```shell
 # Using docker run
 docker run --rm {OPTIONS} particular/servicecontrol-monitoring --setup
 ```
 
-Depending on the requirements of the message transport, setup mode may require different connection settings that have permissions to create queues, which are not necessary during non-setup runtime.
+After setup is complete, the container will exit, and the `--rm` (or equivalent) option may be used to automatically remove the container. Then a different container can be run with no argument, which will cause the application to run normally:
 
-After setup is complete, the container will exit, and the `--rm` (or equivalent) option may be used to automatically remove the container.
+```shell
+# Using docker run
+docker run {OPTIONS} particular/servicecontrol-monitoring
+```
 
-The initial setup should be repeated any time the container is [updated to a new version](#upgrading).
+The setup process should be repeated any time the container is [updated to a new version](#upgrading). This will be handled automatically if using the `--setup-and-run` argument.
 
 ## Required settings
 
