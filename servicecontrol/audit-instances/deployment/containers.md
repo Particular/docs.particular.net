@@ -42,7 +42,7 @@ docker run {OPTIONS} particular/servicecontrol-audit --setup-and-run
 
 The `--setup-and-run` argument will run the setup process when the container is run, after which the application will run normally. This simplifies deployment by removing the need for a separate init container in environments where the setup process does not need different settings.
 
-Using `--setup-and-run` removes the need to repeat a setup process when the cotnainer is updated to a new version.
+Using `--setup-and-run` removes the need to repeat a setup process when the container is updated to a new version.
 
 ## Required settings
 
