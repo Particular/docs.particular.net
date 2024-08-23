@@ -24,6 +24,8 @@ The container image will run in setup mode by adding the `--setup` argument. For
 docker run --rm {OPTIONS} particular/servicecontrol-monitoring --setup
 ```
 
+Setup mode may require different settings, such as a different transport connection string with permissions to create queues.
+
 After setup is complete, the container will exit, and the `--rm` (or equivalent) option may be used to automatically remove the container.
 
 The setup process should be repeated any time the container is [updated to a new version](#upgrading).
@@ -37,7 +39,7 @@ Instead of running `--setup` as a separate container, the setup and run operatio
 docker run {OPTIONS} particular/servicecontrol-monitoring --setup-and-run
 ```
 
-The `--setup-and-run` argument will run the setup process when the container is run, after which the application will run normally. This simplifies deployment by removing the need for a separate init container in environments where the setup process does not need different settings, such as a different transport connection string with permissions to create queues.
+The `--setup-and-run` argument will run the setup process when the container is run, after which the application will run normally. This simplifies deployment by removing the need for a separate init container in environments where the setup process does not need different settings.
 
 Using `--setup-and-run` removes the need to repeat a setup process when the cotnainer is updated to a new version.
 
