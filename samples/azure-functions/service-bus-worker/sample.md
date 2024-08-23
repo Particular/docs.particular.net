@@ -17,7 +17,7 @@ downloadbutton
 
 ### Create queue
 
-The use the sample the endpoint queue must be created. It can be done manually in the Azure portal, or with the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli). In this sample, the queue name is `ASBWorkerEndpoint`.
+To use the sample, the endpoint queue must be created. It can be done manually in the Azure portal, or with the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli). In this sample, the queue name is `ASBWorkerEndpoint`.
 
 To create the queue with the Azure CLI, execute the following Azure CLI command:
 
