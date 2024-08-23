@@ -197,9 +197,9 @@
             #region custom-address
 
             var transport = new BridgeTransport(new MsmqTransport());
-            transport.HasEndpoint("Finance", "finance_queue_name");
+            transport.HasEndpoint("Finance", "finance@machinename");
 
-            var endpoint = new BridgeEndpoint("Sales", "sales_queue_name");
+            var endpoint = new BridgeEndpoint("Sales", "sales@machinename");
             transport.HasEndpoint(endpoint);
 
             #endregion

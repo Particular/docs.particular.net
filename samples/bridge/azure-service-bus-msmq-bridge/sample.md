@@ -61,7 +61,7 @@ snippet: asb-bridge-configuration
 The MSMQ bridge endpoint is configured by using the name of the actual MSMQ endpoint where the message needs to be routed to:
 
 > [!NOTE]
-> [Endpoints cannot read from remote MSMQ queues](/transports/msmq/#remote-queues), hence when forwarding messages to/from MSMQ endpoints, the bridge must be configured on each MSMQ server.
+> [Endpoints cannot read from remote MSMQ queues](/transports/msmq/#remote-queues), hence when reading messages from proxied MSMQ endpoints, the bridge must be configured on each MSMQ server that contains the proxy queues.
 
 snippet: create-msmq-endpoint-of-bridge
 
