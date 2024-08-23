@@ -2,7 +2,7 @@
 title: Migrating Azure Functions in-process to Isolated Worker
 summary: Instructions on how to migrate Azure Functions in-process to Azure Functions Isolated Worker
 component: ASBFunctionsWorker
-reviewed: 2024-07-29
+reviewed: 2024-08-23
 related:
  - nservicebus/hosting/azure-functions-service-bus/in-process
  - samples/azure-functions/service-bus
