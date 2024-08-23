@@ -21,6 +21,11 @@ If a logical endpoint communicates with other endpoints that use a different tra
 
 snippet: endpoint-registration
 
+> [!NOTE]
+> Having the same logical endpoint running on both transports is not supported. The bridge will throw an exception if an endpoint is registered on more than one transport.
+>
+> If a duplicate endpoint it is not registered with the bridge, any messages it sends that need to be forwarded across the bridge will fail and get sent to the [bridge error queue](#recoverability-error-queue).
+
 ## Registering publishers
 
 When NServiceBus discovers a message handler in an endpoint for an event, it automatically subscribes to this event on the transport. The publisher itself is not aware of this, since it does not receive a notification when a subscriber subscribes to an event. This represents a challenge for the bridge.
