@@ -242,6 +242,17 @@ public class Configuration
         #endregion
     }
 
+    public void TranslateReplyToAddressForFailedMessages()
+    {
+        var bridgeConfiguration = new BridgeConfiguration();
+
+        #region translate-reply-to-address-for-failed-messages
+
+        bridgeConfiguration.TranslateReplyToAddressForFailedMessages();
+
+        #endregion
+    }
+
     string connectionString = string.Empty;
     string connectionStringNamepace1 = string.Empty;
     string connectionStringNamepace2 = string.Empty;
