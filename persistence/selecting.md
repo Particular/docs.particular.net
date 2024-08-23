@@ -1,11 +1,11 @@
 ---
 title: Selecting a persister
-summary: A guide for selecting an NServicebus persister.
-reviewed: 2021-09-29
+summary: A guide for selecting an NServicebus persister
+reviewed: 2024-08-27
 isLearningPath: true
 ---
 
-NServiceBus stores data for various purposes. This document contains guidelines to help select the right persister for NServiceBus from the [list of supported persisters](/persistence/#supported-persisters).
+NServiceBus needs to store data for various purposes, such as persisting the state of sagas, enabling the outbox, and for certain other transport features. Depending on the environment, a *persister* may be needed. This document contains guidelines to help determine whether a persister is needed, and if so, how to select the right one from the [list of supported persisters](/persistence/#supported-persisters).
 
 ## How NServiceBus uses storage
 
