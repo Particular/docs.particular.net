@@ -8,7 +8,7 @@ using System.Collections.Generic;
 using System.Threading;
 using OpenTelemetry.Metrics;
 
-var endpointName = "Samples.OpenTelemetry.AppInsights";
+var endpointName = "Samples.OpenTelemetry.MetricsShim";
 
 Console.Title = endpointName;
 
@@ -22,22 +22,11 @@ var appInsightsConnectionString = "<YOUR CONNECTION STRING HERE>";
 
 var resourceBuilder = ResourceBuilder.CreateDefault().AddAttributes(attributes);
 
-#region enable-tracing
-
-var traceProvider = Sdk.CreateTracerProviderBuilder()
-    .SetResourceBuilder(resourceBuilder)
-    .AddSource("NServiceBus.Core*")
-    .AddAzureMonitorTraceExporter(o => o.ConnectionString = appInsightsConnectionString)
-    .AddConsoleExporter()
-    .Build();
-
-#endregion
-
 #region enable-meters
 
 var meterProvider = Sdk.CreateMeterProviderBuilder()
     .SetResourceBuilder(resourceBuilder)
-    .AddMeter("NServiceBus.Core*")
+    .AddMeter("NServiceBus.Core")
     .AddAzureMonitorMetricExporter(o => o.ConnectionString = appInsightsConnectionString)
     .AddConsoleExporter()
     .Build();
@@ -70,6 +59,5 @@ finally
 {
     await simulator.Stop(cancellation.Token);
     await endpointInstance.Stop(cancellation.Token);
-    traceProvider?.Dispose();
     meterProvider?.Dispose();
 }

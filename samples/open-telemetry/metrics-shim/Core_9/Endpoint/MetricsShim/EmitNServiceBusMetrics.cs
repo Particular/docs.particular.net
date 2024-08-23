@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
@@ -9,6 +9,7 @@ using NServiceBus.Features;
 using NServiceBus.Settings;
 
 #region metrics-shim
+
 class EmitNServiceBusMetrics : Feature
 {
     public EmitNServiceBusMetrics()
@@ -18,13 +19,19 @@ class EmitNServiceBusMetrics : Feature
 
     protected override void Setup(FeatureConfigurationContext context)
     {
+        if (context.Settings.GetOrDefault<bool>("Endpoint.SendOnly"))
+        {
+            // there are no metrics relevant for send only endpoints yet
+            return;
+        }
+
         var queueName = context.LocalQueueAddress().BaseAddress;
         var discriminator = context.InstanceSpecificQueueAddress()?.Discriminator;
 
         var recoverabilitySettings = (RecoverabilitySettings)typeof(RecoverabilitySettings).GetConstructor(
               BindingFlags.NonPublic | BindingFlags.Instance,
-              null, [typeof(SettingsHolder)],
-              null).Invoke([(SettingsHolder)context.Settings]);
+              null, new Type[] { typeof(SettingsHolder) },
+              null).Invoke(new object[] { (SettingsHolder)context.Settings });
 
         recoverabilitySettings.Immediate(i => i.OnMessageBeingRetried((m, _) => RecordRetry(m.Headers, queueName, discriminator, true)));
         recoverabilitySettings.Delayed(d => d.OnMessageBeingRetried((m, _) => RecordRetry(m.Headers, queueName, discriminator, false)));
@@ -34,12 +41,7 @@ class EmitNServiceBusMetrics : Feature
         {
             e.TryGetMessageType(out var messageType);
 
-            var tags = new TagList(
-            [
-                new(Tags.QueueName, queueName ?? ""),
-                new(Tags.EndpointDiscriminator, discriminator ?? ""),
-                new(Tags.MessageType, messageType ?? ""),
-            ]);
+            var tags = CreateTags(queueName, discriminator, messageType);
 
             ProcessingTime.Record((e.CompletedAt - e.StartedAt).TotalMilliseconds, tags);
 
@@ -56,12 +58,7 @@ class EmitNServiceBusMetrics : Feature
     {
         headers.TryGetMessageType(out var messageType);
 
-        var tags = new TagList(
-        [
-            new(Tags.QueueName, queueName ?? ""),
-            new(Tags.EndpointDiscriminator, discriminator ?? ""),
-            new(Tags.MessageType, messageType ?? ""),
-        ]);
+        var tags = CreateTags(queueName, discriminator, messageType);
 
         if (immediate)
         {
@@ -80,37 +77,47 @@ class EmitNServiceBusMetrics : Feature
     {
         headers.TryGetMessageType(out var messageType);
 
-        var tags = new TagList(
-        [
-            new(Tags.QueueName, queueName ?? ""),
-            new(Tags.EndpointDiscriminator, discriminator ?? ""),
-            new(Tags.MessageType, messageType ?? "")
-        ]);
-
-        MessageSentToErrorQueue.Add(1, tags);
+        MessageSentToErrorQueue.Add(1, CreateTags(queueName, discriminator, messageType));
 
         return Task.CompletedTask;
+    }
+
+    static TagList CreateTags(string queueName, string discriminator, string messageType)
+    {
+        var tags = new TagList(new KeyValuePair<string, object>[] { new(Tags.QueueName, queueName) });
+
+        if (!string.IsNullOrWhiteSpace(discriminator))
+        {
+            tags.Add(Tags.EndpointDiscriminator, discriminator);
+        }
+
+        if (!string.IsNullOrWhiteSpace(messageType))
+        {
+            tags.Add(Tags.MessageType, messageType);
+        }
+
+        return tags;
     }
 
     static readonly Meter NServiceBusMeter = new Meter("NServiceBus.Core", "0.1.0");
 
     public static readonly Counter<long> ImmedidateRetries =
-        NServiceBusMeter.CreateCounter<long>("nservicebus.recoverability.immediate_retries", description: "Number of immediate retries performed by the endpoint.");
+        NServiceBusMeter.CreateCounter<long>("nservicebus.recoverability.immediate", description: "Number of immediate retries performed by the endpoint.");
 
     public static readonly Counter<long> DelayedRetries =
-        NServiceBusMeter.CreateCounter<long>("nservicebus.recoverability.delayed_retries", description: "Number of delayed retries performed by the endpoint.");
+        NServiceBusMeter.CreateCounter<long>("nservicebus.recoverability.delayed", description: "Number of delayed retries performed by the endpoint.");
 
     public static readonly Counter<long> Retries =
         NServiceBusMeter.CreateCounter<long>("nservicebus.recoverability.retries", description: "Number of retries performed by the endpoint.");
 
     public static readonly Counter<long> MessageSentToErrorQueue =
-        NServiceBusMeter.CreateCounter<long>("nservicebus.recoverability.moved_to_error", description: "Number of messages sent to the error queue.");
+        NServiceBusMeter.CreateCounter<long>("nservicebus.recoverability.error", description: "Number of messages sent to the error queue.");
 
     public static readonly Histogram<double> ProcessingTime =
-        NServiceBusMeter.CreateHistogram<double>("nservicebus.messaging.processingtime", "ms", "The time in milliseconds between when the message was pulled from the queue until processed by the endpoint.");
+        NServiceBusMeter.CreateHistogram<double>("nservicebus.messaging.processing_time", "ms", "The time in milliseconds between when the message was pulled from the queue until processed by the endpoint.");
 
     public static readonly Histogram<double> CriticalTime =
-        NServiceBusMeter.CreateHistogram<double>("nservicebus.messaging.criticaltime", "ms", "The time in milliseconds between when the message was sent until processed by the endpoint.");
+        NServiceBusMeter.CreateHistogram<double>("nservicebus.messaging.critical_time", "ms", "The time in milliseconds between when the message was sent until processed by the endpoint.");
 
     public static class Tags
     {

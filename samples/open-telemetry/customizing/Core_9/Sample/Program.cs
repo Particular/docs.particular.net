@@ -17,7 +17,7 @@ public static class Program
 
         var tracerProviderBuilder = Sdk.CreateTracerProviderBuilder()
             .SetResourceBuilder(resourceBuilder)
-            .AddSource("NServiceBus.Core")
+            .AddSource("NServiceBus.Core*")
             .AddSource(CustomActivitySources.Name)
             .AddProcessor(new NetHostProcessor())
             .AddConsoleExporter();

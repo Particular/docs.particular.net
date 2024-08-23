@@ -3,7 +3,7 @@ title: Monitoring NServiceBus endpoints with Prometheus and Grafana
 summary: How to configure NServiceBus to export OpenTelemetry metrics to Prometheus and Grafana
 component: Core
 isLearningPath: true
-reviewed: 2024-01-17
+reviewed: 2024-07-26
 previewImage: grafana.png
 related:
 - nservicebus/operations/opentelemetry
@@ -39,22 +39,16 @@ snippet: enable-opentelemetry-metrics
 
 Each reported metric is tagged with the following additional information:
 
-* the queue name of the endpoint
-* the uniquely addressable address for the endpoint (if set)
-* the .NET fully qualified type information for the message being processed
-* the exception type name (if applicable)
-
-### Additional metrics
-
-Recoverability and processing-related metrics currently emitted [by the metrics package](/monitoring/metrics/definitions.md#metrics-captured) are not yet supported in OpenTelemetry's native format (using System.Diagnostics), so a shim is required to expose them as OpenTelemetry metrics.
-
-snippet: metrics-shim
+- the queue name of the endpoint
+- the uniquely addressable address for the endpoint (if set)
+- the .NET fully qualified type information for the message being processed
+- the exception type name (if applicable)
 
 ### Message processing counters
 
 The following metric keys are available to monitor the rate of messages from the queuing system use:
 
-- `nservicebus.messaging.fetches` 
+- `nservicebus.messaging.fetches`
 - `nservicebus.messaging.successes`
 - `nservicebus.messaging.failures`
 
@@ -62,17 +56,17 @@ The following metric keys are available to monitor the rate of messages from the
 
 To monitor [recoverability](/nservicebus/recoverability/) metrics, use:
 
-- `nservicebus.recoverability.immediate_retries`
-- `nservicebus.recoverability.delayed_retries`
-- `nservicebus.recoverability.retries`
-- `nservicebus.recoverability.sent_to_error`
+- `nservicebus.recoverability.immediate`
+- `nservicebus.recoverability.delayed`
+- `nservicebus.recoverability.error`
 
-### Critical time and processing time
+#### Handler time, critical time, and processing time
 
-To monitor [critical time and processing time](/monitoring/metrics/definitions.md#metrics-captured) (in milliseconds) for successfully processed messages, use:
+To monitor [handler time, processing time, and critical time](/monitoring/metrics/definitions.md#metrics-captured) (in seconds) for successfully processed messages use:
 
-- `nservicebus.messaging.processingtime`
-- `nservicebus.messaging.criticaltime`
+- `nservicebus.messaging.handler_time`
+- `nservicebus.messaging.processing_time`
+- `nservicebus.messaging.critical_time`
 
 ## Exporting metrics
 
@@ -134,7 +128,7 @@ avg(rate(nservicebus_messaging_successes_total[5m]))
 
 Open Grafana on `http://localhost:3000`, which is made available as part of the [Docker stack](#prerequisites)
 
-For a production environment, Grafana must be installed and configured to display the data scraped and stored in Prometheus. For more information on how to install Grafana, refer to the [Grafana installation guide](https://docs.grafana.org/installation). 
+For a production environment, Grafana must be installed and configured to display the data scraped and stored in Prometheus. For more information on how to install Grafana, refer to the [Grafana installation guide](https://docs.grafana.org/installation).
 
 ### Dashboard
 
@@ -142,11 +136,10 @@ This sample includes an [export of the Grafana dashboard](grafana-endpoints-dash
 
 To create a custom dashboard using Prometheus data, the following steps must be performed:
 
-* Add a new dashboard
-* Add a graph
-* Click its title to edit
-* From the Data source dropdown, select Prometheus
-* For the query, open the Metrics dropdown and select one of the metrics. Built-in functions (e.g. rate) can also be applied.
+- Add a new dashboard
+- Add a graph
+- Click its title to edit
+- From the Data source dropdown, select Prometheus
+- For the query, open the Metrics dropdown and select one of the metrics. Built-in functions (e.g. rate) can also be applied.
 
 ![Grafana dashboard with NServiceBus OpenTelemetry metrics](example-grafana-dashboard.png)
-
