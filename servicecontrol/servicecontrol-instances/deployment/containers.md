@@ -12,7 +12,7 @@ docker run -d --name servicecontrol -p 33333:33333 \
     -e TRANSPORTTYPE=RabbitMQ.QuorumConventionalRouting \
     -e CONNECTIONSTRING="host=rabbitmq" \
     -e RAVENDB_CONNECTIONSTRING="http://servicecontrol-db:8080" \
-    -e REMOTEINSTANCES='[{"api_uri":"http://audit:44444/api"}]'
+    -e REMOTEINSTANCES='[{"api_uri":"http://audit:44444/api"}]' \
     particular/servicecontrol:latest
 ```
 ## Initial setup
