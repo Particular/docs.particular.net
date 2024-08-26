@@ -34,7 +34,7 @@
         protected override void Setup(FeatureConfigurationContext context)
         {
             var pipeline = context.Pipeline;
-            pipeline.Replace("NServiceBus.SerializeMessageConnector", new CustomStageConnector());
+            pipeline.Replace("SerializeMessageConnector", new CustomStageConnector());
         }
     }
     #endregion
