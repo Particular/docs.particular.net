@@ -71,7 +71,7 @@ The queue name to forward audit messages.
 The [Time-to-be-received (TTBR)](/nservicebus/messaging/discard-old-messages.md) for audit messages can be overriden.
 
 > [!NOTE]
-> What happens to messages for which the TTBR expires is different. Some transports will auto deleted expired message in the backlog of the queue while no messages are dequeued while others will only delete expired messages once the expired message reaches the front of the queue due to messages being requested. More details at [discarding old messages behavior](/nservicebus/messaging/discard-old-messages.md#behavior)
+> What happens to messages for which the TTBR expires is different. Most transports will **not** auto deleted expired message in the backlog of the queue and purge when dequeued and are received by the client. More details at [discarding old messages behavior](/nservicebus/messaging/discard-old-messages.md#behavior)
 
 #### Default Value
 
