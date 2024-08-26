@@ -16,7 +16,7 @@ docker run -d --name audit -p 44444:44444 \
 ```
 ## Initial setup
 
-Before running the container image normally, it must be run in setup mode to create the required message queues.
+Before running the container image normally, it must run in setup mode to create the required message queues and perform upgrade tasks.
 
 The container image will run in setup mode by adding the `--setup` argument. For example:
 
@@ -25,11 +25,24 @@ The container image will run in setup mode by adding the `--setup` argument. For
 docker run --rm {OPTIONS} particular/servicecontrol-audit --setup
 ```
 
-Depending on the requirements of the message transport, setup mode may require different connection settings that have permissions to create queues, which are not necessary during non-setup runtime.
+Setup mode may require different settings, such as a different transport connection string with permissions to create queues.
 
 After setup is complete, the container will exit, and the `--rm` (or equivalent) option may be used to automatically remove the container.
 
-The initial setup should be repeated any time the container is [updated to a new version](#upgrading).
+The setup process should be repeated any time the container is [updated to a new version](#upgrading).
+
+### Simplified setup
+
+Instead of running `--setup` as a separate container, the setup and run operations can be combined using the `--setup-and-run` argument:
+
+```shell
+# Using docker run
+docker run {OPTIONS} particular/servicecontrol-audit --setup-and-run
+```
+
+The `--setup-and-run` argument will run the setup process when the container is run, after which the application will run normally. This simplifies deployment by removing the need for a separate init container in environments where the setup process does not need different settings.
+
+Using `--setup-and-run` removes the need to repeat a setup process when the container is updated to a new version.
 
 ## Required settings
 
