@@ -13,10 +13,9 @@ class Program
 
         var blobServiceClient = new BlobServiceClient("UseDevelopmentStorage=true");
 
-        var claimCheck = endpointConfiguration.UseClaimCheck<AzureDataBus, SystemJsonClaimCheckSerializer>()
+        var claimCheck = endpointConfiguration.UseClaimCheck<AzureClaimCheck, SystemJsonClaimCheckSerializer>()
             .Container("testcontainer")
             .UseBlobServiceClient(blobServiceClient);
-
 
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
