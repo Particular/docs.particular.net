@@ -149,11 +149,10 @@ class HttpSender
 
 ## Ensuring consistency in the Isolated Worker model
 
-It's important to be able to maintain the consistency guarantees that were previously available in the in-process model when using `SendsAtomicWithReceive`.  To achieve this, there are a few options:
+If `SendsAtomicWithReceive` was previously enabled in the in-process model (note that it is not enabled by default), maintaining that consistency guarantee in the isolated worker model may be important. However, achieving this consistency in the isolated worker model requires more than just adding an assembly attribute. To ensure consistency, consider the following options:
 
-1. **Implement the [Outbox pattern](/architecture/consistency.md#transactions-outbox-pattern)** to enable consistent database and message queue operations. (Recommended)
-2. Ensure that all receiver message handlers are [idempotent](/architecture/consistency.md#idempotency).
-3. Ensure that the system infrastructure guarantees consistency between business data and messages.
+- **Implement the [Outbox pattern](/architecture/consistency.md#transactions-outbox-pattern)** to enable consistent database and message queue operations. (Recommended)
+- Ensure that all receiver message handlers are [idempotent](/architecture/consistency.md#idempotency).
 
 ### Using SendsAtomicWithReceive in the In-Process model
 
@@ -165,7 +164,7 @@ In the in-process model, `SendsAtomicWithReceive` could be enabled by setting a 
 
 ### Changes in the Isolated Worker model
 
-However, in the isolated worker model, the `SendsAtomicWithReceive` attribute is not supported yet.  Therefore, this setting needs to be removed from the assembly attribute.
+In the isolated worker model, the `SendsAtomicWithReceive` attribute is not supported. This is because the `Microsoft.Azure.Functions.Worker.Sdk` cannot natively manage transactions across the separate processes that run the function code and the host runtime. Unlike the in-process model, where the function code and the host runtime share the same process, making transaction management more feasible, the isolated worker model requires this setting to be removed from the assembly attribute.
 
 ```csharp
 [assembly: NServiceBusTriggerFunction("ASBFunctionEndpoint")]
