@@ -9,7 +9,7 @@ using NServiceBus.Features;
 class CustomClaimCheckFeature : Feature
 {
     public CustomClaimCheckFeature()
-        => DependsOn<ClaimCheckFeature>();
+        => DependsOn<ClaimCheck>();
 
     protected override void Setup(FeatureConfigurationContext context)
         => context.Services.AddSingleton<IClaimCheck, CustomClaimCheck>();
