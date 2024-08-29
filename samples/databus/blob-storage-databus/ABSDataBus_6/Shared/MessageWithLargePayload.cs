@@ -1,4 +1,5 @@
 ﻿using NServiceBus;
+using NServiceBus.ClaimCheck;
 
 #region MessageWithLargePayload
 

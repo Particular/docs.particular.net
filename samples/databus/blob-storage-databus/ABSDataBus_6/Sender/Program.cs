@@ -2,6 +2,7 @@ using Azure.Storage.Blobs;
 using NServiceBus;
 using System;
 using System.Threading.Tasks;
+using NServiceBus.ClaimCheck;
 
 class Program
 {
@@ -14,7 +15,7 @@ class Program
 
         var blobServiceClient = new BlobServiceClient("UseDevelopmentStorage=true");
 
-        var dataBus = endpointConfiguration.UseClaimCheck<AzureClaimCheck, SystemJsonClaimCheckSerializer>()
+        var claimCheck = endpointConfiguration.UseClaimCheck<AzureClaimCheck, SystemJsonClaimCheckSerializer>()
             .Container("testcontainer")
             .UseBlobServiceClient(blobServiceClient);
 
