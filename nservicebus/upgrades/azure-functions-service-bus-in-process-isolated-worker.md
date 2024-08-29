@@ -151,7 +151,7 @@ class HttpSender
 
 It's important to be able to maintain the consistency guarantees that were previously available in the in-process model when using `SendsAtomicWithReceive`.  To achieve this, there are a few options:
 
-1. **Implement the [Outbox pattern](/architecture/consistency.md#transactions-outbox-pattern)** to simulate atomic transactions. (Recommended)
+1. **Implement the [Outbox pattern](/architecture/consistency.md#transactions-outbox-pattern)** to enable consistent database and message queue operations. (Recommended)
 2. Ensure that all receiver message handlers are [idempotent](/architecture/consistency.md#idempotency).
 3. Ensure that the system infrastructure guarantees consistency between business data and messages.
 
