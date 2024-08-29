@@ -2,7 +2,6 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
 
-#pragma warning disable CS0618 // Type or member is obsolete
 #region MessageWithLargePayloadHandler
 
 public class MessageWithLargePayloadHandler :
@@ -18,4 +17,3 @@ public class MessageWithLargePayloadHandler :
 }
 
 #endregion
-#pragma warning restore CS0618 // Type or member is obsolete
