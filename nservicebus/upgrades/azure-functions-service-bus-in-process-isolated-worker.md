@@ -149,10 +149,9 @@ class HttpSender
 
 ## Ensuring consistency in the Isolated Worker model
 
-If `SendsAtomicWithReceive` was previously enabled in the in-process model (note that it is not enabled by default), maintaining that consistency guarantee in the isolated worker model may be important. However, achieving this consistency in the isolated worker model requires more than just adding an assembly attribute. To ensure consistency, consider the following options:
+If `SendsAtomicWithReceive` was previously [enabled in the in-process model](/nservicebus/hosting/azure-functions-service-bus/in-process#message-consistency) (note that it is not enabled by default), maintaining that consistency guarantee in the isolated worker model is important. 
 
-- **Implement the [Outbox pattern](/architecture/consistency.md#transactions-outbox-pattern)** to enable consistent database and message queue operations. (Recommended)
-- Ensure that all receiver message handlers are [idempotent](/architecture/consistency.md#idempotency).
+Lower [transaction modes](/transports/transactions.md#transactions) can result in the duplication of outgoing messages otherwise known as [ghost messages](/nservicebus/concepts/glossary.md#ghost-message). To ensure that [consistency](/architecture/consistency) is maintained make sure that all involved message handlers are [idempotent](https://docs.particular.net/architecture/consistency#idempotency). 
 
 ### Using SendsAtomicWithReceive in the In-Process model
 
