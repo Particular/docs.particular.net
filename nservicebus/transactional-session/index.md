@@ -182,7 +182,7 @@ Internally, the transactional session doesn't use a single transaction that span
 9. The transaction is committed, and the outbox record and business data modifications are stored atomically.
 
 > [!NOTE]
-> Steps 7 and 8 are skipped when no message operations are executed in the transactional session to avoid wasting queue and database resources.
+> Steps 7 and 8 are skipped, and as a consequence Phase 2, when no message operations are executed in the transactional session to avoid wasting queue and database resources.
 
 ### Phase 2
 
