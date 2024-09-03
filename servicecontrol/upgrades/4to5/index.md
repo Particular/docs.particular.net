@@ -110,11 +110,11 @@ Follow this procedure to upgrade using the ServiceControl Management Utility:
 
 After completing the , follow this procedure to upgrade using PowerShell 7.2 or higher.
 
-1. Install the **Particular.ServiceControl.Management** module, replacing `5.0.0` with a newer 5.x version if available:
+1. Install the latest version of the **Particular.ServiceControl.Management** module. As with all module installations, you can specify a specific version by swapping in the `-RequiredVersion` parameter in place of `-MinimumVersion`, and replacing `5.0.0` with the desired version. (For more information on installing powershell modules, see the official documentation for [Install-Module](https://learn.microsoft.com/en-us/powershell/module/powershellget/install-module))
     ```ps1
-    Install-Module -Name Particular.ServiceControl.Management -RequiredVersion 5.0.0
+    Install-Module -Name Particular.ServiceControl.Management -MinimumVersion 5.0.0
 
-    Import-Module Particular.ServiceControl.Management -RequiredVersion 5.0.0
+    Import-Module Particular.ServiceControl.Management -MinimumVersion 5.0.0
     ```
 2. Ensure the [getting ready](#upgrading-to-version-5-getting-ready) steps above have been completed. The following query can be used to list all instances and their current versions:
     ```ps1
