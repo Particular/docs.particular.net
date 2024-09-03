@@ -513,7 +513,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.1.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.1.0) | 2024-07-05     | -                 | -                                 |
+| [3.2.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.2.0) | 2024-09-02     | -                 | -                                 |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.1.0) | 2024-07-05     | 2024-12-02        | Superseded by 3.2.x               |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.0.0) | 2024-04-16     | 2024-10-05        | Superseded by 3.1.x               |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/2.0.2) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/1.0.3) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
@@ -551,7 +552,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.10.x](https://www.nuget.org/packages/Particular.PlatformSample/3.10.0) | 2024-08-26     | -                 | -                                 |
+| [3.11.x](https://www.nuget.org/packages/Particular.PlatformSample/3.11.0) | 2024-09-02     | -                 | -                                 |
+| [3.10.x](https://www.nuget.org/packages/Particular.PlatformSample/3.10.0) | 2024-08-26     | 2024-12-02        | Superseded by 3.11.x              |
 | [3.9.x](https://www.nuget.org/packages/Particular.PlatformSample/3.9.0) | 2024-08-16     | 2024-11-26        | Superseded by 3.10.x              |
 | [3.8.x](https://www.nuget.org/packages/Particular.PlatformSample/3.8.0) | 2024-08-13     | 2024-11-16        | Superseded by 3.9.x               |
 | [3.7.x](https://www.nuget.org/packages/Particular.PlatformSample/3.7.0) | 2024-08-12     | 2024-11-13        | Superseded by 3.8.x               |
