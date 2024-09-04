@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 
 namespace Billing
@@ -12,13 +13,16 @@ namespace Billing
 
             var endpointConfiguration = new EndpointConfiguration("Billing");
 
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
+
             var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
 
             endpointConfiguration.RegisterComponents(
                 c =>
                 {
-                    c.ConfigureComponent<OrderCalculator>(DependencyLifecycle.SingleInstance);
+                    c.AddSingleton<OrderCalculator>();
                 }
                 );
 

@@ -12,6 +12,8 @@ namespace Sales
 
             var endpointConfiguration = new EndpointConfiguration("Sales");
 
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
             var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
