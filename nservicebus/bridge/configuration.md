@@ -120,7 +120,7 @@ If a message fails while it is being forwarded to the target transport, the foll
 
 The error queue used by the bridge is named `bridge.error` by default. Note that the default `error` queue used by other platform components can not be used to enable bridging of the system-wide error queue since a bridged queue may not be used as the error queue. See the documentation around [bridging platform queues](#bridging-platform-queues) for more details.
 
-A different error queue may configured as follows:
+A different error queue may be configured as follows:
 
 snippet: custom-error-queue
 
