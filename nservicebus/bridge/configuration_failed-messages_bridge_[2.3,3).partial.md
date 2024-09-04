@@ -1,4 +1,4 @@
-### Handling of failed messages
+### Error queue
 
 By default, when the bridge transfers a message to the ServiceControl error queue it will not attempt to translate the [`NServiceBus.ReplyToAddress`](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-replytoaddress) message header.
 This means that endpoints only need to be registered with the bridge if they are directly involved with messages transferred between transports.
@@ -13,4 +13,4 @@ snippet: translate-reply-to-address-for-failed-messages
 > Message that fail during bridge address translation due to unknown endpoints will be moved to the `bridge.error` queue.
 
 > [!NOTE]
-> Translating the `NServiceBus.ReplyToAddress` message header for failed messages will become the default behavior in the next major version of the bridge. 
+> Translating the `NServiceBus.ReplyToAddress` message header for failed messages will become the default behavior in a future major version of the bridge. 
