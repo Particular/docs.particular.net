@@ -19,6 +19,13 @@ jobs:
           dotnet-version: 8.0.x
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
+      - name: NuGet Cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
       - name: Build affected samples and snippets
         run: pwsh.exe -NoLogo -NonInteractive -File .\tools\build-samples-and-snippets.ps1
       - name: Notify Slack on failure
