@@ -12,6 +12,8 @@ namespace Sales
 
             var endpointConfiguration = new EndpointConfiguration("Sales");
 
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
             endpointConfiguration.UseTransport<LearningTransport>();
 
             #region NoDelayedRetries
