@@ -12,6 +12,8 @@ namespace Shipping
 
             var endpointConfiguration = new EndpointConfiguration("Shipping");
 
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
             endpointConfiguration.UseTransport<LearningTransport>();
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);
