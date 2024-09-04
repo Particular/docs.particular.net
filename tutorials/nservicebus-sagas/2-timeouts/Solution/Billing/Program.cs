@@ -12,6 +12,8 @@ namespace Billing
 
             var endpointConfiguration = new EndpointConfiguration("Billing");
 
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);
