@@ -552,7 +552,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.11.x](https://www.nuget.org/packages/Particular.PlatformSample/3.11.0) | 2024-09-02     | -                 | -                                 |
+| [3.12.x](https://www.nuget.org/packages/Particular.PlatformSample/3.12.0) | 2024-09-04     | -                 | -                                 |
+| [3.11.x](https://www.nuget.org/packages/Particular.PlatformSample/3.11.0) | 2024-09-02     | 2024-12-04        | Superseded by 3.12.x              |
 | [3.10.x](https://www.nuget.org/packages/Particular.PlatformSample/3.10.0) | 2024-08-26     | 2024-12-02        | Superseded by 3.11.x              |
 | [3.9.x](https://www.nuget.org/packages/Particular.PlatformSample/3.9.0) | 2024-08-16     | 2024-11-26        | Superseded by 3.10.x              |
 | [3.8.x](https://www.nuget.org/packages/Particular.PlatformSample/3.8.0) | 2024-08-13     | 2024-11-16        | Superseded by 3.9.x               |
@@ -570,7 +571,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/4.0.0) | 2022-02-01     | -                 | -                                 |
+| [5.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/5.0.0) | 2024-09-04     | -                 | -                                 |
+| [4.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/4.0.0) | 2022-02-01     | 2025-09-04        | Superseded by 5.0.x               |
 
 #### [ServiceControl.TransportAdapter](/nuget/ServiceControl.TransportAdapter)
 

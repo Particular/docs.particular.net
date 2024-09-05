@@ -1137,6 +1137,10 @@
         {
           "Minor": "3.11",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.12",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -1158,6 +1162,10 @@
       "Versions": [
         {
           "Minor": "4.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "5.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -1223,7 +1231,7 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "5.7",
+          "Minor": "5.8",
           "SupportLevel": "Mainstream"
         }
       ]
