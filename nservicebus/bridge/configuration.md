@@ -2,7 +2,7 @@
 title: Bridge configuration options
 summary: Configuration options for the messaging bridge.
 component: Bridge
-reviewed: 2023-07-04
+reviewed: 2024-09-05
 ---
 
 ## Hosting
