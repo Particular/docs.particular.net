@@ -48,9 +48,14 @@ snippet: custom-prefetch-count
 
 To disable prefetching, prefetch count should be set to zero.
 
+> [!NOTE]
+> The lock duration for all prefetched messages starts as soon as they are fetched. To avoid `LockLostException`, ensure the lock-renewal duration is longer than the total time it takes to process all prefetched messages (i.e., message handler execution time multiplied by the prefetch count).
+
 ## Lock-renewal
 
-For all supported transport transaction modes (except `TransportTransactionMode.None`), the transport uses a peek-lock mechanism to ensure a single instance of an endpoint can process a message. The default lock duration is specified during the entity creation. By default, the transport uses the SDK's default maximum auto lock renewal duration of 5 minutes.
+For all supported transport transaction modes (except `TransportTransactionMode.None`), the transport utilizes a peek-lock mechanism to ensure that only one instance of an endpoint can process a message. The default lock duration is set during entity creation. By default, the transport uses the SDK's default maximum auto lock renewal duration of 5 minutes.
+
+To ensure smooth processing, it is recommended to configuring the `MaxAutoLockRenewalDuration` property to be greater than the longest running handler for the endpoint. This helps avoid `LockLostException` and ensures the message is properly handled by [the recoverability process](/nservicebus/recoverability/).
 
 partial: lockrenewal
 
