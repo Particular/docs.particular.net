@@ -15,7 +15,7 @@ The value for the `TransportType` settings can be any of the following:
 | Message Transport | `TransportType` values |
 |-|-|
 | [Azure Service Bus](#azure-service-bus) | `NetStandardAzureServiceBus` |
-| [Azure Storage Queues](#azure-storage-queues) | `AzureStorageQueues` |
+| [Azure Storage Queues](#azure-storage-queues) | `AzureStorageQueue` |
 | [Amazon Simple Queue Service (SQS)](#amazon-sqs) | `AmazonSQS` |
 | [RabbitMQ](#rabbitmq)<br/><i>See topology options below.</i> | `RabbitMQ.QuorumConventionalRouting`<br/>`RabbitMQ.ClassicConventionalRouting`<br/>`RabbitMQ.QuorumDirectRouting`<br/>`RabbitMQ.ClassicDirectRouting` |
 | [SQL Server](#sql) | `SQLServer` |
