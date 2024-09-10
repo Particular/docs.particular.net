@@ -3,6 +3,8 @@ title: File Share Data Bus
 summary: An implementation of data bus using file shares
 reviewed: 2024-02-16
 component: FileShareDataBus
+redirects:
+ - nservicebus/messaging/databus/file-share
 related:
  - samples/databus/file-share-databus
 ---
@@ -10,6 +12,8 @@ related:
 The file share data bus allows large properties to be transferred via a Windows file share.
 
 This implementation [leverages both serialization and headers](/nservicebus/messaging/headers.md#file-share-data-bus-headers) to provide its functionality.
+
+partial: obsolete
 
 ## Usage
 

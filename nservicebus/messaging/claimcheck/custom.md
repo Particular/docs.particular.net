@@ -1,10 +1,11 @@
 ---
 title: Customizing the data bus
 summary: Demonstrates how to register and plug in a customized data bus implementation into an endpoint.
-component: Core
+component: DataBus
 reviewed: 2024-02-16
 redirects:
-- nservicebus/plugin-custom-databus
+ - nservicebus/plugin-custom-databus
+ - nservicebus/messaging/databus/custom
 related:
 - samples/databus/custom-serializer
 ---
@@ -12,6 +13,8 @@ related:
 Endpoints support sending and receiving large chunks of data via the [data bus](./).
 
 It is possible to create a custom data bus implementation. This is done by making use of the [Features](/nservicebus/pipeline/features.md) extension.
+
+partial: obsolete
 
 ## Implement the `IDataBus` interface
 

@@ -1,5 +1,6 @@
 using Azure.Storage.Blobs;
 using NServiceBus;
+using NServiceBus.ClaimCheck;
 using System;
 using System.Threading.Tasks;
 
@@ -11,11 +12,10 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.AzureBlobStorageDataBus.Receiver");
 
         var blobServiceClient = new BlobServiceClient("UseDevelopmentStorage=true");
-#pragma warning disable CS0618 // Type or member is obsolete
-        var dataBus = endpointConfiguration.UseDataBus<AzureDataBus, SystemJsonDataBusSerializer>()
+
+        var claimCheck = endpointConfiguration.UseClaimCheck<AzureClaimCheck, SystemJsonClaimCheckSerializer>()
             .Container("testcontainer")
             .UseBlobServiceClient(blobServiceClient);
-#pragma warning restore CS0618 // Type or member is obsolete
 
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());

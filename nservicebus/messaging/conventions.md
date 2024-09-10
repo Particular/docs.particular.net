@@ -16,7 +16,7 @@ Currently *conventions* exist to identify:
  * [Events](/nservicebus/messaging/messages-events-commands.md)
  * [Messages](/nservicebus/messaging/messages-events-commands.md)
  * [Message Property Encryption](/nservicebus/security/property-encryption.md)
- * [Data Bus](/nservicebus/messaging/databus/)
+ * [Data Bus](/nservicebus/messaging/claimcheck/)
  * [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md)
 
 Message types can be defined in a *Portable Class Library* (PCL) and shared across multiple platforms, even if the platform does not use NServiceBus for message processing.
