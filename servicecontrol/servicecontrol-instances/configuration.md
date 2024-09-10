@@ -337,6 +337,20 @@ The grace period to keep event logs before they are deleted.
 
 Valid range for this setting is from 1 hour to 200 days.
 
+### ServiceControl/TrackInstancesInitialValue
+
+The default value for whether to `Track` or `Do not Track` endpoint instance on newly discovered endpoints.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_TRACKINSTANCESINITIALVALUE` |
+| **App config key** | `ServiceControl/TrackInstancesInitialValue` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` (`Track`) |
+
 ## Performance tuning
 
 ### ServiceControl/MaximumConcurrencyLevel
