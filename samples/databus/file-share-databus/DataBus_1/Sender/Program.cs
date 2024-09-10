@@ -8,7 +8,7 @@ class Program
     static async Task Main()
     {
         Console.Title = "Sender";
-        var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Sender");
+        var endpointConfiguration = new EndpointConfiguration("Samples.ClaimCheck.Sender");
 
         #region ConfigureDataBus
 
@@ -21,7 +21,7 @@ class Program
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press 'D' to send a databus large message");
+        Console.WriteLine("Press 'D' to send a large message");
         Console.WriteLine("Press 'N' to send a normal large message exceed the size limit and throw");
         Console.WriteLine("Press any other key to exit");
 
@@ -53,10 +53,10 @@ class Program
 
         var message = new MessageWithLargePayload
         {
-            SomeProperty = "This message contains a large blob that will be sent on the data bus",
+            SomeProperty = "This message contains a large blob that will be sent on the claim check",
             LargeBlob = new ClaimCheckProperty<byte[]>(new byte[1024*1024*5]) //5MB
         };
-        await endpointInstance.Send("Samples.DataBus.Receiver", message);
+        await endpointInstance.Send("Samples.ClaimCheck.Receiver", message);
 
         #endregion
 
@@ -71,7 +71,7 @@ class Program
         {
             LargeBlob = new byte[1024*1024*5] //5MB
         };
-        await endpointInstance.Send("Samples.DataBus.Receiver", message);
+        await endpointInstance.Send("Samples.ClaimCheck.Receiver", message);
 
         #endregion
     }

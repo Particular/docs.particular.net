@@ -3,7 +3,7 @@ using NServiceBus.ClaimCheck;
 
 #region MessageWithLargePayload
 
-//the data bus is allowed to clean up transmitted properties older than the TTBR
+//the implementation of the claim check pattern is allowed to clean up transmitted properties older than the TTBR
 [TimeToBeReceived("00:01:00")]
 public class MessageWithLargePayload :
     ICommand

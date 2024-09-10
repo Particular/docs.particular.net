@@ -8,7 +8,7 @@ class Program
     static async Task Main()
     {
         Console.Title = "Receiver";
-        var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver");
+        var endpointConfiguration = new EndpointConfiguration("Samples.ClaimCheck.Receiver");
         var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, SystemJsonClaimCheckSerializer>();
         claimCheck.BasePath(@"..\..\..\..\storage");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
