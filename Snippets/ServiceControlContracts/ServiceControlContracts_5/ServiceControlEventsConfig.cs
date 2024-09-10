@@ -8,7 +8,7 @@
         {
             #region ServiceControlEventsConfig
 
-            endpointConfiguration.UseSerialization<JsonSerializer>();
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
             var conventions = endpointConfiguration.Conventions();
             conventions.DefiningEventsAs(
                 type =>

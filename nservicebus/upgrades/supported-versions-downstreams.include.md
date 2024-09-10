@@ -404,7 +404,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [5.0.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/5.0.0) | 2024-04-16     | -                 | -                                 |
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/4.0.1) | 2023-03-08     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
-| [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/3.1.1) | ~~2023-03-08~~ | ~~2024-03-08~~    | ~~Superseded by 4.0.x~~           |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/2.0.1) | 2018-05-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Gateway](/nuget/NServiceBus.Gateway)
@@ -450,8 +449,10 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/3.0.3) | 2024-04-18     | -                 | -                                 |
-| [2.2.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.2.3) | 2024-02-26     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/3.1.0) | 2024-09-05     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/3.0.3) | 2024-04-18     | 2024-12-05        | Superseded by 3.1.x               |
+| [2.3.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.3.0) | 2024-09-05     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [2.2.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.2.3) | 2024-02-26     | 2024-12-05        | Superseded by 2.3.x               |
 | [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.1.0) | ~~2023-07-25~~ | ~~2024-05-26~~    | ~~Superseded by 2.2.x~~           |
 
 #### [NServiceBus.Metrics](/nuget/NServiceBus.Metrics)
@@ -552,7 +553,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.11.x](https://www.nuget.org/packages/Particular.PlatformSample/3.11.0) | 2024-09-02     | -                 | -                                 |
+| [3.12.x](https://www.nuget.org/packages/Particular.PlatformSample/3.12.0) | 2024-09-04     | -                 | -                                 |
+| [3.11.x](https://www.nuget.org/packages/Particular.PlatformSample/3.11.0) | 2024-09-02     | 2024-12-04        | Superseded by 3.12.x              |
 | [3.10.x](https://www.nuget.org/packages/Particular.PlatformSample/3.10.0) | 2024-08-26     | 2024-12-02        | Superseded by 3.11.x              |
 | [3.9.x](https://www.nuget.org/packages/Particular.PlatformSample/3.9.0) | 2024-08-16     | 2024-11-26        | Superseded by 3.10.x              |
 | [3.8.x](https://www.nuget.org/packages/Particular.PlatformSample/3.8.0) | 2024-08-13     | 2024-11-16        | Superseded by 3.9.x               |
@@ -570,7 +572,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/4.0.0) | 2022-02-01     | -                 | -                                 |
+| [5.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/5.0.0) | 2024-09-04     | -                 | -                                 |
+| [4.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/4.0.0) | 2022-02-01     | 2025-09-04        | Superseded by 5.0.x               |
 
 #### [ServiceControl.TransportAdapter](/nuget/ServiceControl.TransportAdapter)
 

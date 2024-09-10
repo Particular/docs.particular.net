@@ -102,7 +102,7 @@
 
 | Depencency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos/" target="_blank">Microsoft.Azure.Cosmos</a> | <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos/3.42.0/license" target="_blank">View License</a> | <a href="https://github.com/Azure/azure-cosmos-dotnet-v3" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos/" target="_blank">Microsoft.Azure.Cosmos</a> | <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos/3.43.0/license" target="_blank">View License</a> | <a href="https://github.com/Azure/azure-cosmos-dotnet-v3" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Newtonsoft.Json/" target="_blank">Newtonsoft.Json</a> | <a href="https://licenses.nuget.org/MIT" target="_blank">MIT</a> | <a href="https://www.newtonsoft.com/json" target="_blank">Project Site</a> |
 
 ### [NServiceBus.Persistence.CosmosDB.TransactionalSession](/nuget/NServiceBus.Persistence.CosmosDB.TransactionalSession)

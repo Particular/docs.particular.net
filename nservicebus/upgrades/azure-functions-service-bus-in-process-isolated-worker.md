@@ -2,7 +2,7 @@
 title: Migrating Azure Functions in-process to Isolated Worker
 summary: Instructions on how to migrate Azure Functions in-process to Azure Functions Isolated Worker
 component: ASBFunctionsWorker
-reviewed: 2024-07-29
+reviewed: 2024-08-23
 related:
  - nservicebus/hosting/azure-functions-service-bus/in-process
  - samples/azure-functions/service-bus
@@ -129,8 +129,7 @@ class HttpSender
 
     [Function("HttpSender")]
     public async Task<HttpResponseData> Run(
-        [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequestData req,
-        FunctionContext functionContext)
+        [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequestData req, FunctionContext functionContext)
     {
         var logger = functionContext.GetLogger<HttpSender>();
         logger.LogInformation("C# HTTP trigger function received a request.");
@@ -145,4 +144,26 @@ class HttpSender
         return r;
     }
 }
+```
+
+## Ensuring consistency in the Isolated Worker model
+
+If `SendsAtomicWithReceive` was previously [enabled in the in-process model](/nservicebus/hosting/azure-functions-service-bus/in-process/#message-consistency) (note that it is not enabled by default), maintaining that consistency guarantee in the isolated worker model is important.
+
+Lower [transaction modes](/transports/transactions.md#transactions) can result in the duplication of outgoing messages otherwise known as [ghost messages](/nservicebus/concepts/glossary.md#ghost-message). To ensure that [consistency](/architecture/consistency.md) is maintained make sure that all involved message handlers are [idempotent](/architecture/consistency.md#idempotency).
+
+### Using SendsAtomicWithReceive in the In-Process model
+
+In the in-process model, `SendsAtomicWithReceive` could be enabled by setting a boolean value to true in the assembly attribute:
+
+```csharp
+[assembly: NServiceBusTriggerFunction("ASBFunctionEndpoint", SendsAtomicWithReceive = true)]
+```
+
+### Changes in the Isolated Worker model
+
+In the isolated worker model, the `SendsAtomicWithReceive` attribute is not supported. This is because the `Microsoft.Azure.Functions.Worker.Sdk` cannot natively manage transactions across the separate processes that run the function code and the host runtime. Unlike the in-process model, where the function code and the host runtime share the same process, making transaction management more feasible, the isolated worker model requires this setting to be removed from the assembly attribute.
+
+```csharp
+[assembly: NServiceBusTriggerFunction("ASBFunctionEndpoint")]
 ```
