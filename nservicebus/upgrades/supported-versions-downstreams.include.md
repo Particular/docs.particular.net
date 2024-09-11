@@ -306,11 +306,18 @@
 
 ### Databus packages
 
+#### [NServiceBus.ClaimCheck](/nuget/NServiceBus.ClaimCheck)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.ClaimCheck/1.0.1) | 2024-09-10     | -                 | -                                 |
+
 #### [NServiceBus.DataBus.AzureBlobStorage](/nuget/NServiceBus.DataBus.AzureBlobStorage)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/6.0.0) | 2024-04-16     | -                 | -                                 |
+| [6.1.x](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/6.1.3) | 2024-09-10     | -                 | -                                 |
+| [6.0.x](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/6.0.0) | 2024-04-16     | 2024-12-10        | Superseded by 6.1.x               |
 | [5.0.x](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/5.0.0) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/4.0.2) | 2020-11-10     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
@@ -336,7 +343,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.4.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.4.0) | 2024-06-12     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
-| [4.3.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.3.1) | 2023-09-21     | 2024-09-12        | Superseded by 4.4.x               |
+| [~~4.3.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.3.1) | ~~2023-09-21~~ | ~~2024-09-12~~    | ~~Superseded by 4.4.x~~           |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/3.0.0) | 2022-01-12     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.AzureFunctions.Worker.ServiceBus](/nuget/NServiceBus.AzureFunctions.Worker.ServiceBus)
@@ -345,7 +352,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [5.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.2.0) | 2024-06-26     | -                 | -                                 |
 | [5.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.1.0) | 2024-06-12     | 2024-09-26        | Superseded by 5.2.x               |
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.0.0) | 2024-04-16     | 2024-09-12        | Superseded by 5.1.x               |
+| [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.0.0) | ~~2024-04-16~~ | ~~2024-09-12~~    | ~~Superseded by 5.1.x~~           |
 | [4.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.2.3) | 2023-09-21     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [3.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/3.1.2) | 2022-08-31     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 

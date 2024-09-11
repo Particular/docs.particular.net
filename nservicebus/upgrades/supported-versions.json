@@ -22,6 +22,10 @@
         {
           "Minor": "9.1",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "9.2",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -170,6 +174,15 @@
       ]
     },
     {
+      "PackageId": "NServiceBus.ClaimCheck",
+      "Versions": [
+        {
+          "Minor": "1.0",
+          "SupportLevel": "Mainstream"
+        }
+      ]
+    },
+    {
       "PackageId": "NServiceBus.CommonLogging",
       "Versions": [
         {
@@ -212,6 +225,10 @@
         },
         {
           "Minor": "6.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "6.1",
           "SupportLevel": "Mainstream"
         }
       ]
