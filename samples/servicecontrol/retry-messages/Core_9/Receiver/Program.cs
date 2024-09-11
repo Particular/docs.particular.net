@@ -30,14 +30,15 @@ Console.WriteLine("Press 't' to toggle fault mode or `x` to stop.");
 
 while (true)
 {
-    var key = ToLower(Console.ReadKey().KeyChar);
-    if (key == 't')
+    var key = Console.ReadKey();
+    if (key.Key == ConsoleKey.T)
     {
         SimpleMessageHandler.FaultMode = !SimpleMessageHandler.FaultMode;
+        Console.WriteLine();
         Console.WriteLine("Fault mode " + (SimpleMessageHandler.FaultMode ? "enabled" : "disabled"));
     }
 
-    if (key == 'x')
+    if (key.Key == ConsoleKey.Escape || (key.Key == ConsoleKey.C && (key.Modifiers & ConsoleModifiers.Control) != 0))
     {
         break;
     }
