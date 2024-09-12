@@ -26,7 +26,7 @@ recoverability.Immediate(
 
 var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-Console.WriteLine("Press 't' to toggle fault mode or `x` to stop.");
+Console.WriteLine("Press 't' to toggle fault mode or `Esc` to stop.");
 
 while (true)
 {
