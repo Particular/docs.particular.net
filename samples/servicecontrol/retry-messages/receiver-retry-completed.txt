@@ -1,0 +1,13 @@
+Exception details:
+        Message type: SimpleMessage
+        Handler type: SimpleMessageHandler
+        Handler start time: 2024-09-12 07:41:32:540082 Z
+        Handler failure time: 2024-09-12 07:41:32:573794 Z
+        Handler canceled: False
+        Message ID: b287b065-1fb1-4fb1-8b71-b1e9007ec40d
+        Transport message ID: 75fe4ddd-ffde-49b1-a1dc-37c9ab8c40c6
+        Pipeline canceled: False
+t
+Fault mode disabled
+2024-09-12 09:44:43.779 INFO  Received message.
+2024-09-12 09:44:43.781 INFO  Successfully processed message.
