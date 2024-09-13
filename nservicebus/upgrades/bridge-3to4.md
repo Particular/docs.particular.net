@@ -3,15 +3,14 @@ title: Messaging Bridge Upgrade Version 3 to 4
 component: Bridge
 reviewed: 2024-09-12
 isUpgradeGuide: true
-upgradeGuideCoreVersions:
- - 8
- - 9
 ---
 
-## ReplyToAddress header translation for failed messages
+## All endpoints must be registered with the bridge
 
-Version 4 of the Messaging Bridge will by default translate the `NServiceBus.ReplyToAddress` message header for failed messages.
-This is a change from previous bridge versions, in which the translation of the header had to be explicitly enabled.
+Version 4 of the Messaging Bridge will default to translating the `NServiceBus.ReplyToAddress` message header for all messages.
+This is a change from previous bridge versions, in which the translation of the header had to be explicitly enabled for failed messages.
+
+This behaviour ensures successful delivery of in-flight messages between endpoints that have changed transports during the lifetime of the message.
 
 > [!NOTE]
 > The `TranslateReplyToAddressForFailedMessages()` method is now obsolete and will be removed in the next major version of the bridge. It is necessary to remove invocations of the method after upgrading to version 4.
