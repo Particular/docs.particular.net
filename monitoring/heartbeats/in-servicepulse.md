@@ -61,7 +61,7 @@ There are bulk operation buttons at the top of the screen to allow for muting or
 
 When an endpoint instance has been decommissioned, and should no longer be displayed in ServicePulse, it can be removed. 
 - For [Tracked Instances](#configuration-track-instances), click the `Delete` button on the instance row to remove it from ServicePulse
-- For [Untracked Instances](#configuration-do-not-track-instances) the endpoint will automatically be removed after 6 hours of inactivity.
+- For [Untracked Instances](#configuration-do-not-track-instances), the endpoint instance will automatically be removed after 6 hours of inactivity.
 
 > [!NOTE]
 > This feature requires ServicePulse version 1.23 or higher and ServiceControl version 4.4 or higher.
