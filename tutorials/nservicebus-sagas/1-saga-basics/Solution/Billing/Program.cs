@@ -1,25 +1,33 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 namespace Billing
 {
     class Program
     {
-        static async Task Main()
+        static Task Main()
         {
-            Console.Title = "Billing";
+            var builder = Host.CreateApplicationBuilder();
+
+            builder.AddServiceDefaults();
 
             var endpointConfiguration = new EndpointConfiguration("Billing");
+            endpointConfiguration.EnableOpenTelemetry();
 
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            var connectionString = builder.Configuration.GetConnectionString("transport");
+            var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
+            var routing = endpointConfiguration.UseTransport(transport);
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
+            endpointConfiguration.EnableInstallers();
 
-            Console.WriteLine("Press Enter to exit.");
-            Console.ReadLine();
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-            await endpointInstance.Stop();
+            builder.UseNServiceBus(endpointConfiguration);
+
+            return builder.Build().RunAsync();
         }
     }
 }

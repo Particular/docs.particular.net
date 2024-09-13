@@ -1,26 +1,33 @@
-﻿using NServiceBus;
-using System;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
+using NServiceBus;
 using System.Threading.Tasks;
 
 namespace Shipping
 {
     class Program
     {
-        static async Task Main()
+        static Task Main()
         {
-            Console.Title = "Shipping";
+            var builder = Host.CreateApplicationBuilder();
 
             var endpointConfiguration = new EndpointConfiguration("Shipping");
+            endpointConfiguration.EnableOpenTelemetry();
 
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            builder.AddServiceDefaults();
+
+            var connectionString = builder.Configuration.GetConnectionString("transport");
+            var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
+            var routing = endpointConfiguration.UseTransport(transport);
+
             var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
+            endpointConfiguration.EnableInstallers();
 
-            Console.WriteLine("Press Enter to exit.");
-            Console.ReadLine();
+            builder.UseNServiceBus(endpointConfiguration);
 
-            await endpointInstance.Stop();
+            return builder.Build().RunAsync();
         }
     }
 }

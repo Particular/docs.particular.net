@@ -1,64 +1,39 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Messages;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
-using NServiceBus.Logging;
 
 namespace ClientUI
 {
     class Program
     {
-        static async Task Main()
+        static Task Main()
         {
-            Console.Title = "ClientUI";
+            var builder = Host.CreateApplicationBuilder();
+
+            builder.AddServiceDefaults();
 
             var endpointConfiguration = new EndpointConfiguration("ClientUI");
+            endpointConfiguration.EnableOpenTelemetry();
 
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
-
-            var routing = transport.Routing();
+            var connectionString = builder.Configuration.GetConnectionString("transport");
+            var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
+            var routing = endpointConfiguration.UseTransport(transport);
             routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
+            endpointConfiguration.EnableInstallers();
 
-            await RunLoop(endpointInstance);
 
-            await endpointInstance.Stop();
-        }
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        static ILog log = LogManager.GetLogger<Program>();
+            builder.UseNServiceBus(endpointConfiguration);
 
-        static async Task RunLoop(IEndpointInstance endpointInstance)
-        {
-            while (true)
-            {
-                log.Info("Press 'P' to place an order, or 'Q' to quit.");
-                var key = Console.ReadKey();
-                Console.WriteLine();
+            builder.Services.AddHostedService<MessageSenderService>();
 
-                switch (key.Key)
-                {
-                    case ConsoleKey.P:
-                        // Instantiate the command
-                        var command = new PlaceOrder
-                        {
-                            OrderId = Guid.NewGuid().ToString()
-                        };
-
-                        // Send the command
-                        log.Info($"Sending PlaceOrder command, OrderId = {command.OrderId}");
-                        await endpointInstance.Send(command);
-
-                        break;
-
-                    case ConsoleKey.Q:
-                        return;
-
-                    default:
-                        log.Info("Unknown input. Please try again.");
-                        break;
-                }
-            }
+            return builder.Build().RunAsync();
         }
     }
 }

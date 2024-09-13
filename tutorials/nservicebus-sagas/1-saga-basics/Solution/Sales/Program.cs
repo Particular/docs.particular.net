@@ -1,25 +1,36 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 namespace Sales
 {
     class Program
     {
-        static async Task Main()
+        static Task Main()
         {
-            Console.Title = "Sales";
+            var builder = Host.CreateApplicationBuilder();
+
+            builder.AddServiceDefaults();
 
             var endpointConfiguration = new EndpointConfiguration("Sales");
+            endpointConfiguration.EnableOpenTelemetry();
 
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            var connectionString = builder.Configuration.GetConnectionString("transport");
+            var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
+            var routing = endpointConfiguration.UseTransport(transport);
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-            Console.WriteLine("Press Enter to exit.");
-            Console.ReadLine();
+            endpointConfiguration.EnableInstallers();
 
-            await endpointInstance.Stop();
+
+            builder.UseNServiceBus(endpointConfiguration);
+
+            var host = builder.Build();
+
+            return host.RunAsync();
         }
     }
 }

@@ -24,17 +24,20 @@ namespace Sales
             // Uncomment to test throwing a systemic exception
             //throw new Exception("BOOM");
 
-            // Uncomment to test throwing a transient exception
-            //if (random.Next(0, 5) == 0)
-            //{
-            //    throw new Exception("Oops");
-            //}
+            //Uncomment to test throwing a transient exception
+            if (random.Next(0, 5) == 0)
+            {
+                throw new Exception("Oops");
+            }
+
+            var publishOptions = new PublishOptions();
+            publishOptions.ContinueExistingTraceOnReceive();
 
             var orderPlaced = new OrderPlaced
             {
                 OrderId = message.OrderId
             };
-            return context.Publish(orderPlaced);
+            return context.Publish(orderPlaced, publishOptions);
         }
     }
 }
