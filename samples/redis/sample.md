@@ -9,6 +9,16 @@ This sample shows how to pass large data between endpoints using [Redis](https:/
 
 include: redis-feedback
 
+## Prerequisites
+
+This sample connects to a local Redis instance. See the [Redis guidance for installing a new instance](https://redis.io/docs/latest/get-started/).
+
+Alternatively with Docker installed locally, execute the following command in the solution directory:
+
+```bash
+docker compose up -d
+```
+
 ## Overview
 
 ```mermaid
@@ -24,7 +34,7 @@ graph LR
 
 ## Running the project
 
-1. Run a Redis instance. The sample includes a `run-redis.cmd` script to run Redis in a docker container. The endpoints are already configured to connect to this instance.
+1. Run a Redis instance.
 1. Run the Sender endpoint to generate data and send a message to the Receiver endpoint.
 1. Run the Receiver endpoint to process the message.
 

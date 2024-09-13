@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35201.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sender", "Sender\Sender.csproj", "{A2C85229-1A52-4D3B-90FF-EF9D93EE6216}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sender", "Sender\Sender.csproj", "{A2C85229-1A52-4D3B-90FF-EF9D93EE6216}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Receiver", "Receiver\Receiver.csproj", "{D295B34A-6424-4204-B007-971EE333D991}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Receiver", "Receiver\Receiver.csproj", "{D295B34A-6424-4204-B007-971EE333D991}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{3282C6A4-9A1E-401D-BC87-71ECE1241A8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{3282C6A4-9A1E-401D-BC87-71ECE1241A8E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DCDF2CA8-92D1-46E2-AFE2-4A39D6605557}"
 	ProjectSection(SolutionItems) = preProject
-		run-redis.cmd = run-redis.cmd
+		docker-compose.yml = docker-compose.yml
 	EndProjectSection
 EndProject
 Global
