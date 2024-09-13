@@ -40,11 +40,11 @@ graph LR
 
 ## Code walkthrough
 
-Both endpoints use a shared extension method to connect to the Redis instance at startup and make the Redis database instance available in the application container.
+Both endpoints use a shared extension method that connects to the Redis instance at startup and makes the Redis database instance available in the application container.
 
 snippet: use-redis
 
-When the Sender endpoint starts a random string is generated and stored in the Redis instance.
+When the Sender endpoint starts, a random string is generated and stored in the Redis instance.
 
 snippet: set-string
 
@@ -52,7 +52,7 @@ Once the data has been stored, a message is sent to process it. Note that this m
 
 snippet: send-message
 
-When the Receiver endpoint processes the message, the data is retrieved using the key provided. Some processing occurs (in this case finding the most common letter) and the result is logged.
+When the Receiver endpoint processes the message, the data is retrieved using the key provided. Some processing occurs (in this case, finding the most common letter), and the result is logged.
 
 snippet: get-string
 
