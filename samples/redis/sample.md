@@ -30,7 +30,7 @@ graph LR
 
 1. The Sender endpoint generates data and stores it in the Redis instance
 1. The Sender endpoint sends a message with the Redis key to the Receiver endpoint
-1. The Receiver endpoint retreives the data from the Redis instance using the key in the message
+1. The Receiver endpoint retrieves the data from the Redis instance using the key in the message
 
 ## Running the project
 
