@@ -64,4 +64,4 @@ When an endpoint instance has been decommissioned, and should no longer be displ
 - For [Untracked Instances](#configuration-do-not-track-instances), the endpoint instance will automatically be removed after 6 hours of inactivity.
 
 > [!NOTE]
-> This feature requires ServicePulse version 1.23 or higher and ServiceControl version 4.4 or higher.
+> This feature requires ServicePulse version 1.42 or higher and ServiceControl version 5.9 or higher.
