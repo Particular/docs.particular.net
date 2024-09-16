@@ -73,46 +73,46 @@ The built-in SQL Server delayed message store takes a pessimistic lock on the de
 > [!NOTE]
 > The following samples are adapted from the `SqlServerDelayedMessageStore` class provided with the MSMQ transport, and are provided as a guide for adapting to whatever persistence technology is required.
 
-When creating a custom message store, the class can either implement `IDelayedMessageStore`
+When creating a custom message store, the class can either implement `IDelayedMessageStore`:
 
 snippet: dms-without-infrastructure
 
-or `IDelayedMessageStoreWithInfrastructure`
+or `IDelayedMessageStoreWithInfrastructure`:
 
 snippet: dms-with-infrastructure
 
-The only difference between the two interfaces is the `SetupInfrastructure` method, which must be implemented in `IDelayedMessageStoreWithInfrastructure` to create the required storage tables if they don't exist yet. With `IDelayedMessageStore` the storage tables are expected to already exist.
+The only difference between the two interfaces is the `SetupInfrastructure` method, which must be implemented for `IDelayedMessageStoreWithInfrastructure` to create the required storage tables if they don't yet exist. With `IDelayedMessageStore`, it is expected that the storage tables already exist:
       
 snippet: dms-setup-infrastructure
 
-In the above example, `TimeoutTableCreator` is responsible for executing the script against the database. For SQL Server, the script would be
+In the above example, `TimeoutTableCreator` is responsible for executing the script against the database. For SQL Server, the script is:
 
 snippet: dms-sql-create-table
 
-With both interfaces, the `Initialize` method will be called with the name of the endpoint being initialized. The storage implementation should throw an exception if it can't support specified transaction mode, e.g. TransactionScope mode requires the storage to enlist in a distributed transaction managed by the DTC.
+With both interfaces, the `Initialize` method is called with the name of the endpoint being initialized. The storage implementation should throw an exception if it doesn't support the specified transaction mode. For example, `TransactionScope` mode requires the storage to enlist in a distributed transaction managed by the DTC:
 
 snippet: dms-initialise
 
 snippet: dms-sql-crud
 
-The remaining methods implement the logic required for the message store:
+The remaining methods implement the logic required for the message store.
 
-`Store` Stores a delayed message.
+`Store` stores a delayed message:
 
 snippet: dms-store
 
-`Remove` Removes a due delayed message that has been dispatched to its destination from the store. It must return `true` if the removal succeeded or `false` if there was nothing to remove because the delayed message was already gone.
+`Remove` removes a delayed message that has been dispatched to its destination. It must return `true` if the removal succeeded or `false` if there was nothing to remove because the delayed message was already removed:
    
 snippet: dms-remove
 
-`IncrementFailureCount` Increments the counter of failures for a given due delayed message. It must return `true` if the increment succeeded or `false` if the delayed message was already gone.
+`IncrementFailureCount` increments the count of failures for a given delayed message. It must return `true` if the increment succeeded or `false` if the delayed message was already removed:
    
 snippet: dms-increment-failure-count
 
-`Next` Returns the date and time set for the next delayed message to become due or null if there are no delayed messages stored.
+`Next` returns the date and time when the next delayed message is due or `null` if there are no delayed messages:
    
 snippet: dms-next
 
-`FetchNextDueTimeout` Retrieves the oldest due delayed message from the store at a specified date and time, or returns null if there are no due delayed messages. 
+`FetchNextDueTimeout` returns the next delayed message that will be due at a specified date and time or `null` if there will be no delayed messages at that date and time:
    
 snippet: dms-fetch-next-duetimeout
