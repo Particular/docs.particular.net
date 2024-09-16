@@ -113,6 +113,6 @@ snippet: dms-increment-failure-count
    
 snippet: dms-next
 
-`FetchNextDueTimeout` returns the delayed message that will be next due at a specified date and time or `null` if there will be no delayed messages at that date and time:
+`FetchNextDueTimeout` returns the next delayed message that will be due at a specified date and time or `null` if there will be no delayed messages at that date and time:
    
 snippet: dms-fetch-next-duetimeout
