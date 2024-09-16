@@ -166,6 +166,8 @@
       Title: NServiceBus and Biztalk
     - Url: nservicebus/azure
       Title: NServiceBus and Azure
+    - Url: nservicebus/cloudevents
+      Title: NServiceBus and CloudEvents
 
 
   - Title: Support Policy
