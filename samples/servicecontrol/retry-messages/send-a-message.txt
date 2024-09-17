@@ -1,4 +1,0 @@
-2024-09-12 09:38:38.902 INFO  Logging to 'C:\Particular\docs.particular.net\samples\servicecontrol\retry-messages\Core_9\Sender\bin\Debug\net8.0\' with level Info
-2024-09-12 09:38:39.070 INFO  Selected active license from C:\ProgramData\ParticularSoftware\license.xml
-License Expiration: 2029-10-31
-Press 'Enter' to send a new message. Press any other key to finish.

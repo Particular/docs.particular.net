@@ -1,9 +1,17 @@
 using System;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using static System.Char;
 
 Console.Title = "Receiver";
-var endpointConfiguration = new EndpointConfiguration("FixMalformedMessages.Receiver");
+
+var builder = Host.CreateApplicationBuilder(args);
+
+builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
+builder.Logging.AddConsole();
+
+var endpointConfiguration = new EndpointConfiguration("RetryFailedMessages.Receiver");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport<LearningTransport>();
 
@@ -24,24 +32,15 @@ recoverability.Immediate(
 
 #endregion
 
+builder.UseNServiceBus(endpointConfiguration);
+
+builder.Services.AddHostedService<Toggle>();
+
+var host = builder.Build();
+await host.RunAsync();
+
 var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-Console.WriteLine("Press 't' to toggle fault mode or `Esc` to stop.");
 
-while (true)
-{
-    var key = Console.ReadKey();
-    if (key.Key == ConsoleKey.T)
-    {
-        SimpleMessageHandler.FaultMode = !SimpleMessageHandler.FaultMode;
-        Console.WriteLine();
-        Console.WriteLine("Fault mode " + (SimpleMessageHandler.FaultMode ? "enabled" : "disabled"));
-    }
-
-    if (key.Key == ConsoleKey.Escape || (key.Key == ConsoleKey.C && (key.Modifiers & ConsoleModifiers.Control) != 0))
-    {
-        break;
-    }
-}
 
 await endpointInstance.Stop();

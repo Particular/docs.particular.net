@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.*" />
   </ItemGroup>
 
 </Project>
