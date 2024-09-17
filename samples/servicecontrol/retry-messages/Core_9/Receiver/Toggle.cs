@@ -3,10 +3,14 @@ using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography.Xml;
 
 public class Toggle : BackgroundService
 {
     private readonly ILogger<Toggle> logger;
+
+    
 
     public Toggle(ILogger<Toggle> logger)
     {
@@ -21,7 +25,7 @@ public class Toggle : BackgroundService
 
             while (!stoppingToken.IsCancellationRequested)
             {
-                var key = Console.ReadKey();
+                var key = ConoleHelper.ReadKeyAsync(stoppingToken);
                 if (key.Key == ConsoleKey.T)
                 {
                     SimpleMessageHandler.FaultMode = !SimpleMessageHandler.FaultMode;

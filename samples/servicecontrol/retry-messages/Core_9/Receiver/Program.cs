@@ -38,9 +38,3 @@ builder.Services.AddHostedService<Toggle>();
 
 var host = builder.Build();
 await host.RunAsync();
-
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-
-
-await endpointInstance.Stop();
