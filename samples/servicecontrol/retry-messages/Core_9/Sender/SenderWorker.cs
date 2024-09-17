@@ -24,9 +24,9 @@ public class SenderWorker : BackgroundService
 
             while (!stoppingToken.IsCancellationRequested)
             {
-                var key = ConoleHelper.ReadKeyAsync(stoppingToken);
+                var key = await ConoleHelper.ReadKeyAsync(stoppingToken);
 
-                if (key.Key != ConsoleKey.Enter)
+                if (key != ConsoleKey.Enter)
                 {
                     break;
                 }

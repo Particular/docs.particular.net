@@ -1,34 +1,37 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Threading;
+using System.Threading.Tasks;
 
 public class ConoleHelper
 {
-    const int STD_INPUT_HANDLE = -10;
-
-    [DllImport("kernel32.dll", SetLastError = true)]
-    internal static extern IntPtr GetStdHandle(int nStdHandle);
-
-    [DllImport("kernel32.dll", SetLastError = true)]
-    static extern bool CancelIoEx(IntPtr handle, IntPtr lpOverlapped);
-
-    public static ConsoleKeyInfo ReadKeyAsync(CancellationToken cancellationToken)
+    public static async Task<ConsoleKey> ReadKeyAsync(CancellationToken cancellationToken)
     {
-        using var reg = cancellationToken.Register(() =>
+        // if there is a key available, return it without waiting
+        //  (or dispatching work to the thread queue)
+        if (Console.KeyAvailable)
         {
-            var handle = GetStdHandle(STD_INPUT_HANDLE);
-            CancelIoEx(handle, IntPtr.Zero);
-        });
-        try
-        {
-            var key = Console.ReadKey();
-            reg.Unregister();
-            return key;
+            var read = Console.ReadKey(false);
+            return read.Key;
         }
-        catch (InvalidOperationException)
+
+        // otherwise
+        var result = await Task.Run<ConsoleKey>(async () =>
         {
-            // caused by CancelIoEx
+            while (!cancellationToken.IsCancellationRequested)
+            {
+                await Task.Delay(100);
+                if (Console.KeyAvailable)
+                {
+                    var read = Console.ReadKey(false);
+                    return read.Key;
+                }
+            }
+            cancellationToken.ThrowIfCancellationRequested();
+
+            //We should not get here
             throw new OperationCanceledException(cancellationToken);
-        }
+        }, cancellationToken);
+        return result;
     }
 }

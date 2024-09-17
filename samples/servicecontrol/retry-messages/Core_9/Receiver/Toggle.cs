@@ -17,7 +17,7 @@ public class Toggle : BackgroundService
         this.logger = logger;
     }
 
-    protected override Task ExecuteAsync(CancellationToken stoppingToken)
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         try
         {
@@ -25,8 +25,8 @@ public class Toggle : BackgroundService
 
             while (!stoppingToken.IsCancellationRequested)
             {
-                var key = ConoleHelper.ReadKeyAsync(stoppingToken);
-                if (key.Key == ConsoleKey.T)
+                var key = await ConoleHelper.ReadKeyAsync(stoppingToken);
+                if (key == ConsoleKey.T)
                 {
                     SimpleMessageHandler.FaultMode = !SimpleMessageHandler.FaultMode;
                     Console.WriteLine();
@@ -38,6 +38,5 @@ public class Toggle : BackgroundService
         {
             // graceful shutdown
         }
-        return Task.CompletedTask;
     }
 }
