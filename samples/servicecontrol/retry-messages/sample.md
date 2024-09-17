@@ -111,7 +111,7 @@ Fault mode disabled
 
 ## Code walk-through
 
-For simplicity, both [the immediate](/nservicebus/recoverability/#immediate-retries) and [the delayed retries](/nservicebus/recoverability/#delayed-retries) are disabled in the sample. As a result, messages are moved to the error queue after a single failed processing attempt:
+For simplicity, both [the immediate](/nservicebus/recoverability#immediate-retries) and [the delayed retries](/nservicebus/recoverability/#delayed-retries) are disabled in the sample. As a result, messages are moved to the error queue after a single failed processing attempt:
 
 snippet: DisableRetries
 
