@@ -11,7 +11,10 @@
 
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" Version="8.2.0" />
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="8.2.0" />
     <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="8.2.0" />
+    <PackageReference Include="Nall.Aspire.Hosting.DependsOn.PostgreSQL" Version="1.0.1" />
+    <PackageReference Include="Nall.Aspire.Hosting.DependsOn.RabbitMq" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>

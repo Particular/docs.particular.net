@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Npgsql;
+using NpgsqlTypes;
 using NServiceBus;
 using System.Threading.Tasks;
 
@@ -20,7 +22,21 @@ namespace Shipping
             var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
             var routing = endpointConfiguration.UseTransport(transport);
 
-            var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+            var persistenceConnection = builder.Configuration.GetConnectionString("shipping-db");
+            var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+            var dialect = persistence.SqlDialect<SqlDialect.PostgreSql>();
+            dialect.JsonBParameterModifier(
+                modifier: parameter =>
+                {
+                    var npgsqlParameter = (NpgsqlParameter)parameter;
+                    npgsqlParameter.NpgsqlDbType = NpgsqlDbType.Jsonb;
+                });
+            persistence.ConnectionBuilder(
+                connectionBuilder: () =>
+                {
+                    return new NpgsqlConnection(persistenceConnection);
+                });
+
             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
             endpointConfiguration.EnableInstallers();
