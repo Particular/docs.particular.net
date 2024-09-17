@@ -7,7 +7,6 @@ reviewed: 2024-09-03
 
 This sample shows how to retry a failed message. The sample uses the [Learning Transport](/transports/learning/) and a portable version of the Particular Service Platform tools. Installing ServiceControl is **not** required.
 
-include: platformlauncher-windows-required
 
 downloadbutton
 
