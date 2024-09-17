@@ -11,9 +11,9 @@ include: platformlauncher-windows-required
 
 downloadbutton
 
-## Running the project
+## Running the solution
 
-Running the project will result in 3 console windows. Wait a moment until the ServicePulse window opens in the browser.
+Running the solution starts 3 console windows. Wait a moment until the ServicePulse window opens in the browser.
 
 ![service-pulse-fresh](service-pulse-fresh.png)
 
@@ -32,7 +32,7 @@ Press <kbd>Enter</kbd> in the Sender console window to send one.
 
 ### Receiver
 
-The receiver is a program that uses NServiceBus to read messages off a queue and process them. It has a fault simulation mode that is enabled by default. Because of that, the message that has just been sent fails to be processed.
+The receiver reads messages off a queue and processes them. By default, it runs in a fault simulation mode, which causes message processing to fail, including the one that has just been sent.
 
 ```cmd
 2024-09-12 09:38:38.826 INFO  Logging to 'C:\Particular\docs.particular.net\samples\servicecontrol\retry-messages\Core_9\Receiver\bin\Debug\net8.0\' with level Info
@@ -84,7 +84,7 @@ Fault mode disabled
 
 ### ServicePulse
 
-Go back to the ServicePulse browser window. You can see that now the dashboard view indicates that there is a failed message. 
+Going back to the ServicePulse browser window, there is a notification on the dashboard about one failed message. 
 
 ![service-pulse-dash-error](service-pulse-dash-error.png)
 
@@ -92,7 +92,7 @@ Click on the failure symbol to see the datails. You can inspect the message head
 
 ![service-pulse-error-details](service-pulse-error-details.png)
 
-Now click `Request retry` to initiate the message retry process.
+Now click `Request retry` to initiate the message retry process i.e. sending the message back to the receiver's input queue for reprocessing.
 
 ![service-pulse-retry-in-progress](service-pulse-retry-in-progress.png)
 
@@ -122,10 +122,10 @@ Fault mode disabled
 
 ## Code walk-through
 
-Retries are disabled in the sample for simplicity; messages are immediately moved to the error queue after a processing failure:
+For simplicity, both [the immediate](/nservicebus/recoverability/index.md#immediate-retries) and [the delayed retries](/nservicebus/recoverability/index.md#delayed-retries) are disabled in the sample. As a result, messages are moved to the error queue after a single failed processing attempt:
 
 snippet: DisableRetries
 
-This endpoint processes messages of type `SimpleMessage`. Depending on the value of the `FaultMode` property, the message processing might end with an exception.
+The receiver's failure mode is controlled by the `FaultMode` property. When `true` processing of `SimpleMessage` messages ends with an exception.
 
 snippet: ReceiverHandler
