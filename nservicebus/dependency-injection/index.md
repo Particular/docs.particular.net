@@ -3,7 +3,7 @@ title: Dependency Injection
 summary: NServiceBus automatically registers components, handlers, and sagas.
 component: Core
 isLearningPath: true
-reviewed: 2021-11-15
+reviewed: 2024-09-18
 redirects:
  - nservicebus/containers
  - nservicebus/dependency-injection/msdependencyinjection
