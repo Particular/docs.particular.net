@@ -3,14 +3,10 @@ using Microsoft.Extensions.Logging;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.Xml;
 
 public class Toggle : BackgroundService
 {
     private readonly ILogger<Toggle> logger;
-
-    
 
     public Toggle(ILogger<Toggle> logger)
     {

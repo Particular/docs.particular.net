@@ -1,24 +1,30 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 public class SimpleMessageHandler :
     IHandleMessages<SimpleMessage>
 {
-    static ILog log = LogManager.GetLogger<SimpleMessageHandler>();
     public static bool FaultMode { get; set; } = true;
+
+    private readonly ILogger<Toggle> logger;
+
+    public SimpleMessageHandler(ILogger<Toggle> logger)
+    {
+        this.logger = logger;
+    }
 
     public Task Handle(SimpleMessage message, IMessageHandlerContext context)
     {
         #region ReceiverHandler
 
-        log.Info("Received message.");
+        logger.LogInformation("Received message.");
         if (FaultMode)
         {
             throw new Exception("Simulated error.");
         }
-        log.Info("Successfully processed message.");
+        logger.LogInformation("Successfully processed message.");
         return Task.CompletedTask;
 
         #endregion
