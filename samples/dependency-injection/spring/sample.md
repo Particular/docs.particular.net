@@ -1,7 +1,7 @@
 ---
 title: Spring Dependency Injection Usage
 component: Spring
-reviewed: 2021-11-15
+reviewed: 2024-09-18
 related:
  - nservicebus/dependency-injection
  - nservicebus/dependency-injection/spring
