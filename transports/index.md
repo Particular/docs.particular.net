@@ -24,5 +24,6 @@ Initially, it's challenging to decide which queuing technology may be best for a
 - [Amazon SQS](/transports/sqs/)
 - [RabbitMQ](/transports/rabbitmq/)
 - [SQL Server](/transports/sql/)
+- [PostgreSQL](/transports/postgresql/)
 - [MSMQ](/transports/msmq)
 - [Learning](/transports/learning/)
