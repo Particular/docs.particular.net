@@ -19,6 +19,7 @@ The value for the `TransportType` settings can be any of the following:
 | [Amazon Simple Queue Service (SQS)](#amazon-sqs) | `AmazonSQS` |
 | [RabbitMQ](#rabbitmq)<br/><i>See topology options below.</i> | `RabbitMQ.QuorumConventionalRouting`<br/>`RabbitMQ.ClassicConventionalRouting`<br/>`RabbitMQ.QuorumDirectRouting`<br/>`RabbitMQ.ClassicDirectRouting` |
 | [SQL Server](#sql) | `SQLServer` |
+| [PostgreSQL](#postgresql) | `PostgreSQL` |
 | [Microsoft Message Queuing (MSMQ)](#msmq) | `MSMQ` |
 
 Follow the link for each transport for additional information on configuration options for that transport lower on this page.
@@ -73,6 +74,14 @@ In addition to the [connection string options of the transport](/transports/sql/
 * `Subscriptions Table=<subscription_table_name>` - Specifies SQL subscription table name.
   * *Optional* `Subscriptions Table=<subscription_table_name>@<schema>` - to specify the schema.
   * *Optional* `Subscriptions Table=<subscription_table_name>@<schema>@<catalog>` - to specify the schema and catalog.
+
+## PostgreSQL
+
+In addition to the [connection string options of the transport](/transports/postgresql/connection-settings.md#connection-configuration) the following ServiceControl specific options are available in versions 5.10 and above:
+
+* `Queue Schema=<schema_name>` - Specifies custom schema for the ServiceControl input queue.
+* `Subscriptions Table=<subscription_table_name>` - Specifies PostgreSQL subscription table name.
+  * *Optional* `Subscriptions Table=<subscription_table_name>@<schema>` - to specify the schema.
 
 ## Amazon SQS
 
