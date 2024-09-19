@@ -754,6 +754,23 @@ Specifies any additional databases on the same server that also contain NService
 | --- | --- |
 | string | |
 
+## Usage Reporting when using the PostgreSQL transport
+
+### LicensingComponent/PostgreSQL/ConnectionString
+
+Version: 5.10.0+
+
+The connection string that will provide at least read access to all queue tables.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_POSTGRESQL_CONNECTIONSTRING` |
+| **App config key** | `LicensingComponent/PostgreSQL/ConnectionString` |
+
+| Type | Default value |
+| --- | --- |
+| string | obtained from ServiceControl |
+
 ## Plugin-specific
 
 ### ServiceControl/HeartbeatGracePeriod

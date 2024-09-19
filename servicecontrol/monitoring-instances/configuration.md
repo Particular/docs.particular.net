@@ -201,6 +201,8 @@ If running multiple setups of the Platform Tools (i.e. multiple versions of Serv
 
 If using [MSMQ transport](/transports/msmq) and the monitoring instance is installed on a different machine to the ServiceControl error instance, then only the monitoring instance setting needs to be modified to include the machine name of the error instance in the queue address.
 
+If using [PostgreSQL transport](/transports//postgresql/) then the schema name needs to be included in the `Monitoring/ServiceControlThroughputDataQueue` setting
+
 | Context | Name |
 | --- | --- |
 | **Environment variable** | `MONITORING_SERVICECONTROLTHROUGHPUTDATAQUEUE` |

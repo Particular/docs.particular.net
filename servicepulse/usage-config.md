@@ -98,6 +98,16 @@ Refer to the [Usage Reporting when using the SqlServer transport](/servicecontro
 
 User with rights to query [INFORMATION_SCHEMA].[COLUMNS] table.
 
+### PostgreSQL
+
+#### Settings
+
+Refer to the [Usage Reporting when using the PostgreSQL transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-postgresql-transport) section of the ServiceControl config file for an explanation of the PostgreSQL Server-specific settings.
+
+#### Minimum Permissions
+
+User with rights to query [INFORMATION_SCHEMA].[COLUMNS] table.
+
 ### RabbitMQ
 
 #### Settings
