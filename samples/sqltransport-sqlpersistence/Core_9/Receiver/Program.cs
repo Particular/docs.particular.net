@@ -13,7 +13,7 @@ endpointConfiguration.SendFailedMessagesTo("error");
 endpointConfiguration.AuditProcessedMessagesTo("audit");
 endpointConfiguration.EnableInstallers();
 // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSql;Integrated Security=True;Max Pool Size=100;Encrypt=false
-var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSql;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
+var connectionString = @"Server=vine-wood-wand;Initial Catalog=NsbSamplesSql;User Id=dbuser;Password=P@ssw0rd123;Max Pool Size=100;Encrypt=false";
 
 var transport = new SqlServerTransport(connectionString)
 {
