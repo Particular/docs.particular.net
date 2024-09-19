@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
     <OutputType>exe</OutputType>
-    <LangVersion>13.0</LangVersion>
+    <LangVersion>12.0</LangVersion>
     <NugetAudit>false</NugetAudit>
   </PropertyGroup>
   <ItemGroup>
