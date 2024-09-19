@@ -998,7 +998,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.SagaAudit/5.0.0) | 2024-04-16     | -                 | -                                 |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.SagaAudit/5.0.1) | 2024-04-16     | -                 | -                                 |
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.SagaAudit/4.0.0) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.SagaAudit/3.0.1) | 2018-05-29     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.SagaAudit/2.0.1) | ~~2017-11-15~~ | ~~2020-05-29~~    | ~~Extended by NServiceBus 6.5.x~~ |
