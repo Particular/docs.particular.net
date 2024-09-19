@@ -162,6 +162,8 @@ namespace IntegrityTests
             { "net6.0-windows", 10 },
             { "net8.0", 12 },
             { "net8.0-windows", 12 },
+            {"net9.0", 13 },
+            {"net9.0-windows", 13 }
         };
     }
 }
