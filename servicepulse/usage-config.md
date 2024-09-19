@@ -49,6 +49,7 @@ To lock it down even further to the minimally required permissions, create a cus
                     "Microsoft.ServiceBus/namespaces/read",
                     "Microsoft.ServiceBus/namespaces/providers/Microsoft.Insights/metricDefinitions/read",
                     "Microsoft.ServiceBus/namespaces/queues/read",
+                    "Microsoft.Resources/subscriptions/read",
                     "Microsoft.Resources/subscriptions/resources/read"
                 ],
                 "notActions": [],
@@ -59,6 +60,8 @@ To lock it down even further to the minimally required permissions, create a cus
     }
 }
 ```
+
+The `Microsoft.ServiceBus` permissions are required to read queue names and metric data from Azure Monitor. The `Microsoft.Resources/subscriptions` permissions are required in order to locate the Service Bus namespace within the Azure subscription.
 
 ### Amazon SQS
 
