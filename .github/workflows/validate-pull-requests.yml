@@ -40,7 +40,7 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4.0.1
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 9.0.x
       - name: Run integrity tests
         run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release --logger "GitHubActions;report-warnings=false"
   build-projects:
@@ -52,7 +52,7 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4.0.1
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: 9.0.x
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
       - name: Build affected samples & snippets
