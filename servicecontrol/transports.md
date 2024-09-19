@@ -79,7 +79,7 @@ In addition to the [connection string options of the transport](/transports/sql/
 
 In addition to the [connection string options of the transport](/transports/postgresql/connection-settings.md#connection-configuration) the following ServiceControl specific options are available in versions 5.10 and above:
 
-* `Queue Schema=<schema_name>` - Specifies custom schema for the ServiceControl input queue.
+* `Queue Schema=<schema_name>` - Specifies a custom schema for the ServiceControl input queue.
 * `Subscriptions Table=<subscription_table_name>` - Specifies PostgreSQL subscription table name.
   * *Optional* `Subscriptions Table=<subscription_table_name>@<schema>` - to specify the schema.
 
