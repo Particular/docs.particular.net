@@ -1,6 +1,6 @@
 ## Access to the native Azure Storage Queue incoming message
 
-Accessing the native azure storage queue incoming message from behaviors and handlers can be beneficial for customizations and recoverability.  When a message is received, the transport includes the native `QueueMessage` in the message processing context. You can use the following code to retrieve the message details from a pipeline behavior:
+Accessing the native azure storage queue incoming message from behaviors and handlers can be beneficial for customizations and recoverability.  When a message is received, the transport includes the [native `QueueMessage`](https://learn.microsoft.com/en-us/dotnet/api/azure.storage.queues.models.queuemessage?view=azure-dotnet) in the message processing context. You can use the following code to retrieve the message details from a pipeline behavior:
 
 snippet: access-native-incoming-message
 
