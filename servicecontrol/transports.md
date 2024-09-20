@@ -81,7 +81,9 @@ In addition to the [connection string options of the transport](/transports/post
 
 * `Queue Schema=<schema_name>` - Specifies a custom schema for the ServiceControl input queue.
 * `Subscriptions Table=<subscription_table_name>` - Specifies PostgreSQL subscription table name.
-  * *Optional* `Subscriptions Table=schema.tablename` - to specify the schema.
+  * *Optional* `Subscriptions Table=schema.tablename` - to specify the schema with simple table name.
+  * *Optional* `Subscriptions Table=schema.multi.table.name` - to specify the schema with a table name containing `.`.
+  * *Optional* `Subscriptions Table==&quot;multi.table.name=&quot;` - to specify a table name containing `.` without a schema. In this case, `Queue Schema` will be used if specified, otherwise the default schema (`public`) will be used.
 
 ## Amazon SQS
 
