@@ -11,6 +11,15 @@ related:
 
 When combining [SQL Server transport](/transports/sql) and [SQL persistence using the Sql dialect](/persistence/sql), the connection behaves differently based on whether the [Outbox](/nservicebus/outbox/) is enabled or disabled. This influences where the saga data is stored.
 
+### With Outbox
+
+SQL Transport<br/>TransactionMode | Connection sharing | Saga location
+:-:|:-:|:-:
+TransactionScope | Not supported | N/A
+AtomicSendsWithReceive | Not supported | N/A
+ReceiveOnly | Connection sharing via SQL Transport storage context | Persistence DB
+None | Not supported | N/A
+
 ### Without Outbox
 
 SQL Transport<br/>TransactionMode | Connection sharing | Saga location
@@ -28,11 +37,4 @@ When an endpoint uses SQL Persistence combined with the SQL Server Transport wit
 
 partial: Connection
 
-### With Outbox
 
-SQL Transport<br/>TransactionMode | Connection sharing | Saga location
-:-:|:-:|:-:
-TransactionScope | Not supported | N/A
-AtomicSendsWithReceive | Not supported | N/A
-ReceiveOnly | Connection sharing via SQL Transport storage context | Persistence DB
-None | Not supported | N/A
