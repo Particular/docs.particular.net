@@ -14,10 +14,6 @@ jobs:
         uses: actions/setup-dotnet@v4.0.1
         with:
           dotnet-version: 8.0.x
-      - name: Install .NET Aspire workload
-        run: |
-          dotnet workload update
-          dotnet workload install aspire
         # Caching is done to limit data transfer on each PR, not to optimize CI speed
       - name: Check docstool version for cache
         run: |
@@ -45,6 +41,10 @@ jobs:
         uses: actions/setup-dotnet@v4.0.1
         with:
           dotnet-version: 8.0.x
+      - name: Install .NET Aspire workload
+        run: |
+          dotnet workload update
+          dotnet workload install aspire
       - name: Run integrity tests
         run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release --logger "GitHubActions;report-warnings=false"
   build-projects:
@@ -57,6 +57,10 @@ jobs:
         uses: actions/setup-dotnet@v4.0.1
         with:
           dotnet-version: 8.0.x
+      - name: Install .NET Aspire workload
+        run: |
+          dotnet workload update
+          dotnet workload install aspire
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
       - name: Build affected samples & snippets
