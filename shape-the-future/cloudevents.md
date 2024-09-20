@@ -8,5 +8,5 @@ reviewed: 2024-09-16
 
 NServiceBus currently does not natively support CloudEvents.
 
-We are currently capturing requirements to understand your needs regarding CloudEvents.
-If you are interested in helping us shape how NServiceBus should support CloudEvents by sharing some of your use cases, drop us a comment in [this](https://github.com/Particular/NServiceBus/issues/5357) GitHub issue.
+We are currently capturing requirements in understanding customer needs when it comes to CloudEvents.
+If you are interested in helping us shape how NServiceBus should support CloudEvents, drop us a comment in [this](https://github.com/Particular/NServiceBus/issues/7159) GitHub issue.

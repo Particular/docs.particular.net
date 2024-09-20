@@ -166,8 +166,6 @@
       Title: NServiceBus and Biztalk
     - Url: nservicebus/azure
       Title: NServiceBus and Azure
-    - Url: nservicebus/cloudevents
-      Title: NServiceBus and CloudEvents
 
 
   - Title: Support Policy
@@ -1658,3 +1656,10 @@
     Articles:
     - Title: Upgrading to native queue length metric
       Url: monitoring/upgrade-guides/native-queue-length
+
+- Name: Shape the future
+  Topics:
+  - Title: Introduction
+    Url: shape-the-future
+  - Title: NServiceBus and CloudEvents
+    Url: shape-the-future/cloudevents
