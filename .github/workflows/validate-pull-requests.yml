@@ -58,7 +58,7 @@ jobs:
           echo "Updating advertising manifests"
           dotnet workload update --advertising-manifests-only
           echo "Installing the Apsire workload"
-          dotnet workload install aspire --verbosity diagnostic
+          dotnet workload install aspire --skip-manifest-update
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
       - name: Build affected samples & snippets
