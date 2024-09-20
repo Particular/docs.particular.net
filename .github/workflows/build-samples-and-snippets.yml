@@ -19,7 +19,7 @@ jobs:
           dotnet-version: 8.0.x
       - name: Install .NET Aspire workload
         run: |
-          dotnet workload update
+          dotnet workload update --advertising-manifests-only
           dotnet workload install aspire
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
