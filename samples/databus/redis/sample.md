@@ -3,6 +3,8 @@ title: Redis claim check
 summary: Implementing the claim check pattern with Redis
 component: Core
 reviewed: 2024-09-12
+related:
+ - nservicebus/messaging/claimcheck
 ---
 
 This sample shows how to implement the [Claim Check pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/claim-check) with [Redis](https://redis.io/) as a data store.
