@@ -14,6 +14,10 @@ jobs:
         uses: actions/setup-dotnet@v4.0.1
         with:
           dotnet-version: 8.0.x
+      - name: Install .NET Aspire workload
+        run: |
+          dotnet workload update
+          dotnet workload install aspire
         # Caching is done to limit data transfer on each PR, not to optimize CI speed
       - name: Check docstool version for cache
         run: |
