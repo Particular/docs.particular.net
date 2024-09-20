@@ -1,7 +1,7 @@
 ---
 title: Sender-Side Distribution
 summary: Scale out MSMQ message processing with sender-side distribution
-reviewed: 2021-11-03
+reviewed: 2024-09-20
 component: MsmqTransport
 related:
  - transports/msmq/scaling-out
