@@ -40,27 +40,18 @@ graph LR
 
 ## Code walkthrough
 
-Both endpoints use a shared extension method that connects to the Redis instance at startup and makes the Redis database instance available in the application container.
+The solution contains a claim check implementation that writes to and reads from Redis.
 
-snippet: use-redis
+snippet: claim-check
 
-When the Sender endpoint starts, a random string is generated and stored in the Redis instance.
+Each endpoint is configured to use the Redis claim check. The conventions are updated to tell NServiceBus which properties should have the claim check applied.
 
-snippet: set-string
+snippet: configure-claim-check
 
-Once the data has been stored, a message is sent to process it. Note that this message does not contain the data, only the Redis key.
+When the Sender endpoint starts, a random string is generated and assigned to a property on the message. NServiceBus transparently places the data in Redis and sends the message without this large property.
 
 snippet: send-message
 
-When the Receiver endpoint processes the message, the data is retrieved using the key provided. Some processing occurs (in this case, finding the most common letter), and the result is logged.
+On the receiving side, NServiceBus restores the data from Redis before the message handler is called.
 
-snippet: get-string
-
-After processing the message, the message handler sets the Redis key to expire after 30 minutes.
-
-snippet: expire-key
-
-> [!CAUTION]
-> The message handler _could_ delete the Redis key directly instead of setting an expiry on it. This is dangerous as the Redis client does not participate in the NServiceBus transaction. If the transaction rolls back and the message must be retried, it is important that the Redis key has not been deleted. It is safer to set a timeout which is at least long enough to allow for any immediate and delayed retries.
-
-include: redis-feedback
+snippet: process-message

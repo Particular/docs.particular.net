@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using NServiceBus.ClaimCheck;
 using Shared;
 using Shared.Messages;
 
@@ -19,9 +20,18 @@ class Program
         transport.RouteToEndpoint(typeof(ProcessText), "Receiver");
         endpointConfig.UseSerialization<SystemJsonSerializer>();
 
-        builder.UseNServiceBus(endpointConfig);
+        #region configure-claim-check
+        endpointConfig.UseClaimCheck(
+            _ => new RedisClaimCheck("localhost"),
+            new SystemJsonClaimCheckSerializer()
+        );
+        endpointConfig.Conventions()
+            .DefiningClaimCheckPropertiesAs(
+                prop => prop.Name.StartsWith("Large")
+            );
+        #endregion
 
-        builder.UseRedis("localhost");
+        builder.UseNServiceBus(endpointConfig);
 
         builder.Services.AddHostedService<TextSenderHostedService>();
 

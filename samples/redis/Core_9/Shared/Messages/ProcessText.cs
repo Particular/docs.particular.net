@@ -4,5 +4,5 @@ namespace Shared.Messages;
 
 public class ProcessText : ICommand
 {
-    public string RedisKey { get; set; }
+    public string LargeText { get; set; }
 }

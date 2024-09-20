@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using NServiceBus.ClaimCheck;
 using Shared;
 
 class Program
@@ -15,10 +16,10 @@ class Program
         var endpointConfig = new EndpointConfiguration("Receiver");
         endpointConfig.UseTransport(new LearningTransport());
         endpointConfig.UseSerialization<SystemJsonSerializer>();
+        endpointConfig.UseClaimCheck(_ => new RedisClaimCheck("localhost"), new SystemJsonClaimCheckSerializer());
+        endpointConfig.Conventions().DefiningClaimCheckPropertiesAs(prop => prop.Name.StartsWith("Large"));
 
         builder.UseNServiceBus(endpointConfig);
-
-        builder.UseRedis("localhost");
 
         var host = builder.Build();
 

@@ -5,25 +5,17 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
 using Shared.Messages;
-using StackExchange.Redis;
 
-class TextSenderHostedService(IMessageSession messageSession, IDatabase db, ILogger<TextSenderHostedService> log) : BackgroundService
+class TextSenderHostedService(IMessageSession messageSession, ILogger<TextSenderHostedService> log) : BackgroundService
 {
     const int Megabyte = 1024 * 1024;
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        #region set-string
-        var key = $"particular:sample:randomtext:{Guid.NewGuid()}";
-        var randomText = GetRandomText(1 * Megabyte);
-
-        await db.StringSetAsync(key, randomText);
-        #endregion
-
         #region send-message
         await messageSession.Send(new ProcessText
         {
-            RedisKey = key
+            LargeText = GetRandomText(1 * Megabyte)
         }, cancellationToken: stoppingToken);
         #endregion
 
