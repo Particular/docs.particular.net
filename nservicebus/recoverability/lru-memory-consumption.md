@@ -3,7 +3,7 @@ title: Avoiding excessive memory consumption
 summary: Explains how to avoid excessive memory consumption due to recoverability exception caching
 component: Core
 versions: '[6, )'
-reviewed: 2021-11-09
+reviewed: 2024-09-22
 ---
 
 The MSMQ and SQL Server transports cache exceptions in memory to allow transactions to be cleared before executing recoverability policies. Therefore, exceptions with large memory footprints can cause excessive memory consumption. Furthermore, the cache may retain items for longer when the endpoint is scaled out. This page describes how to solve issues caused by excessive memory consumption due to this caching.
