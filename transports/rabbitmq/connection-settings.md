@@ -68,8 +68,12 @@ Secure connections to the broker using [Transport Layer Security (TLS)](https://
 
 snippet: rabbitmq-connection-tls
 
+#if-version [, 8)
+
 > [!WARNING]
 > TLS 1.2 must be enabled on the broker to establish a secure connection.
+
+#end-if
 
 ### Client authentication
 
