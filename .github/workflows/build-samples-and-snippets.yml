@@ -21,7 +21,7 @@ jobs:
         run: |
           echo "Updating advertising manifests"
           dotnet workload update --advertising-manifests-only
-          echo "Installing the Apsire workload"
+          echo "Installing the Aspire workload"
           dotnet workload install aspire
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2

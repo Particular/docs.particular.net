@@ -21,16 +21,14 @@ namespace Sales
 
             // This is normally where some business logic would occur
 
-            // Uncomment to test throwing a systemic exception
-            //throw new Exception("BOOM");
-
-            //Uncomment to test throwing a transient exception
+            // Force a transient exception to demonstrate failures in telemetry data
             if (random.Next(0, 5) == 0)
             {
                 throw new Exception("Oops");
             }
 
             var publishOptions = new PublishOptions();
+            // https://docs.particular.net/nservicebus/operations/opentelemetry#traces-emitted-span-structure-publish-operations
             publishOptions.ContinueExistingTraceOnReceive();
 
             var orderPlaced = new OrderPlaced

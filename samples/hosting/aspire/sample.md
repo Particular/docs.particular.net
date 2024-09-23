@@ -7,7 +7,7 @@ reviewed: 2024-09-20
 
 [.NET Aspire](https://learn.microsoft.com/en-us/dotnet/aspire/) is a stack for developing distributed applications provided by Microsoft.
 
-This sample shows a .NET Aspire AppHost project which orchestrates multiple NServiceBus endpoints, along with docker images providing a RabbitMQ transport and PostgreSQL persistence.
+This sample shows a .NET Aspire AppHost project that orchestrates multiple NServiceBus endpoints, wiring up the required infrastructure pieces including a RabbitMQ broker and PostgreSQL database.
 
 ## Running the sample
 
@@ -28,7 +28,7 @@ The [.NET Aspire orchestration project](https://learn.microsoft.com/en-us/dotnet
 - A PostgreSQL server named `database`
   - A database named `shipping-db`
   - An instance of [pgweb](https://sosedoff.github.io/pgweb/) to access the database
-- 4 projects, each of which is an NServiceBus endpoint. All of these projects reference the `transport` resource.
+- Four projects, each of which is an NServiceBus endpoint. All of these projects reference the `transport` resource.
   - `clientui`
   - `billing`
   - `sales`
