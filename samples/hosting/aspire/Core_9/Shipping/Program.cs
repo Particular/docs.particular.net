@@ -30,6 +30,11 @@ namespace Shipping
             #region persistence-config
             var persistenceConnection = builder.Configuration.GetConnectionString("shipping-db");
             var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+            persistence.ConnectionBuilder(
+                connectionBuilder: () =>
+                {
+                    return new NpgsqlConnection(persistenceConnection);
+                });
             #endregion
 
             var dialect = persistence.SqlDialect<SqlDialect.PostgreSql>();
@@ -38,11 +43,6 @@ namespace Shipping
                 {
                     var npgsqlParameter = (NpgsqlParameter)parameter;
                     npgsqlParameter.NpgsqlDbType = NpgsqlDbType.Jsonb;
-                });
-            persistence.ConnectionBuilder(
-                connectionBuilder: () =>
-                {
-                    return new NpgsqlConnection(persistenceConnection);
                 });
 
             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
