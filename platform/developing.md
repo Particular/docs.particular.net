@@ -18,7 +18,7 @@ The NServiceBus NuGet packages can be incorporated using:
 - or any IDE [paired with the Microsoft dotnet command line interface](https://learn.microsoft.com/en-us/nuget/consume-packages/install-use-packages-dotnet-cli). 
 
 > [!NOTE]
-> [Templates for .NET](https://docs.particular.net/nservicebus/dotnet-templates/) are available to make it easier to get started creating NServiceBus endpoints.
+> [Templates for .NET](/nservicebus/dotnet-templates/) are available to make it easier to get started creating NServiceBus endpoints.
 
 ## ServiceControl and ServicePulse
 
