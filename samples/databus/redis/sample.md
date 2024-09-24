@@ -48,7 +48,7 @@ Each endpoint is configured to use the Redis claim check. The conventions are up
 
 snippet: configure-claim-check
 
-When the Sender endpoint starts, a random string is generated and assigned to a property on the message. NServiceBus transparently places the data in Redis and sends the message without this large property.
+When the Sender endpoint starts, a random string is generated and assigned to the property `LargeText` on the message. NServiceBus transparently stores the data in Redis and sends the message without this large property.
 
 snippet: send-message
 
