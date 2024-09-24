@@ -1,6 +1,6 @@
 ---
-title: NServiceBus and Aspire
-summary: How to use NServiceBus with Aspire
+title: NServiceBus and .NET Aspire
+summary: How to use NServiceBus with .NET Aspire
 reviewed: 2024-09-16
 ---
 
