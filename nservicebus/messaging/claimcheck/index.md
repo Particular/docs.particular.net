@@ -54,7 +54,7 @@ See the individual `DataBus` implementations for details on enabling and configu
 By default, blobs are stored with no set expiration. If messages have a [time to be received](/nservicebus/messaging/discard-old-messages.md) set, the `DataBus` will pass this along to the data bus storage implementation.
 
 > [!NOTE]
-> The value used should be aligned with the [ServiceContol audit retention period](/servicecontrol/how-purge-expired-data.md) if it is required that `DataBus` blob keys in messages sent to the audit queue can still be fetched.
+> The value used should be aligned with the [ServiceControl audit retention period](/servicecontrol/how-purge-expired-data.md) if it is required that `DataBus` blob keys in messages sent to the audit queue can still be fetched.
 
 ## Specifying `DataBus` properties
 
