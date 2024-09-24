@@ -44,7 +44,7 @@ The solution contains a claim check implementation that writes to and reads from
 
 snippet: claim-check
 
-Each endpoint is configured to use the Redis claim check. The conventions are updated to tell NServiceBus which properties should have the claim check applied.
+Each endpoint is configured to use the Redis claim check. The conventions are updated to configure NServiceBus to understand which properties should have the claim check applied.
 
 snippet: configure-claim-check
 
