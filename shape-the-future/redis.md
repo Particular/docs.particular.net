@@ -4,7 +4,7 @@ summary: Using NServiceBus with Redis
 reviewed: 2024-09-23
 ---
 
--- do we want an image here too?
+![](Redis_Logo_Red_RGB.svg)
 
 [Redis](https://redis.io/) provides cloud and on-prem solutions for caching, vector search, and NoSQL databases that seamlessly fit into any tech stack—making it simple for digital customers to build, scale, and deploy the fast apps our world runs on.
 
