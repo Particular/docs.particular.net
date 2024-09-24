@@ -52,6 +52,6 @@ When the Sender endpoint starts, a random string is generated and assigned to th
 
 snippet: send-message
 
-On the receiving side, NServiceBus restores the data from Redis before the message handler is called.
+On the receiving side, NServiceBus loads the data from Redis before the message handler is called. When the handler is invoked, the `LargeText` property is populated with the data from Redis.
 
 snippet: process-message
