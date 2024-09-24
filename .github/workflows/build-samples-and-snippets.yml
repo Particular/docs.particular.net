@@ -17,7 +17,7 @@ jobs:
         uses: actions/setup-dotnet@v4.0.1
         with:
           dotnet-version: 8.0.x
-      - name: Install .NET Aspire workload
+      - name: Install .NET Aspire workload # To be removed once the base GitHub image has the Aspire workload 8.2
         run: |
           echo "Updating advertising manifests"
           dotnet workload update --advertising-manifests-only

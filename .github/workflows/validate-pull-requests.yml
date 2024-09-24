@@ -53,7 +53,7 @@ jobs:
         uses: actions/setup-dotnet@v4.0.1
         with:
           dotnet-version: 8.0.x
-      - name: Update .NET workloads
+      - name: Update .NET workloads # To be removed once the base GitHub image has the Aspire workload 8.2
         run: dotnet workload update
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
