@@ -1665,3 +1665,5 @@
     Url: shape-the-future/cloudevents
   - Title: NServiceBus and .NET Aspire
     Url: shape-the-future/aspire
+  - Title: NServiceBus and Redis
+    Url: shape-the-future/redis
