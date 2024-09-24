@@ -17,6 +17,12 @@ jobs:
         uses: actions/setup-dotnet@v4.0.1
         with:
           dotnet-version: 8.0.x
+      - name: Install .NET Aspire workload
+        run: |
+          echo "Updating advertising manifests"
+          dotnet workload update --advertising-manifests-only
+          echo "Installing the Aspire workload"
+          dotnet workload install aspire
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
       - name: NuGet Cache

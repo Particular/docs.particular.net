@@ -53,6 +53,8 @@ jobs:
         uses: actions/setup-dotnet@v4.0.1
         with:
           dotnet-version: 8.0.x
+      - name: Update .NET workloads
+        run: dotnet workload update
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
       - name: Build affected samples & snippets
