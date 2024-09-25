@@ -55,3 +55,5 @@ snippet: send-message
 On the receiving side, NServiceBus loads the data from Redis before the message handler is called. When the handler is invoked, the `LargeText` property is populated with the data from Redis.
 
 snippet: process-message
+
+If you have other scenarios in which you use Redis, or are missing specific capabilities, [share them and help shape the future of the platform](/shape-the-future/redis.md).

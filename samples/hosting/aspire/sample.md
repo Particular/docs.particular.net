@@ -64,3 +64,5 @@ snippet: persistence-config
 Finally, each endpoint enables NServiceBus installers. Every time the application host is run, the transport and persistence database are recreated and will not contain the queues and tables needed for the endpoints to run. Enabling installers allows NServiceBus to set up the assets that it needs at runtime.
 
 snippet: enable-installers
+
+If you're missing certain capabilities to use .NET Aspire with NServiceBus, [share them and help shape the future of the platform](/shape-the-future/aspire.md).
