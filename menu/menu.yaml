@@ -965,6 +965,8 @@
       Title: Delayed Delivery
     - Url: transports/azure-storage-queues/native-integration
       Title: Native Integration
+    - Url: transports/azure-storage-queues/native-message-access
+      Title: Native Message Access
     - Url: transports/azure-storage-queues/native-publish-subscribe
       Title: Native Publish Subscribe
     - Url: transports/azure-storage-queues/sanitization
