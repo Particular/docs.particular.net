@@ -17,7 +17,7 @@ docker run -d --name servicepulse -p 9090:9090 \
 
 ## Reverse proxy
 
-The ServicePulse container image includes a reverse proxy feature that allows ServicePulse to act as a single ingress/egress point for a system containing ServiceControl containers. This allows existing container hosting infrastructure to layer additional features onto the ServicePulse ingress point, such as SSL or authentication.
+The ServicePulse container image includes a reverse proxy feature that allows ServicePulse to act as a single ingress/egress point for a system containing ServiceControl containers. This allows existing container hosting infrastructure to layer additional features onto the ServicePulse ingress point, such as SSL or authentication. It is enabled by default, but [it can be disabled](#settings-enable-reverse-proxy).
 
 ## Ports
 
@@ -74,7 +74,6 @@ The default page that should be displayed when visiting the ServicePulse site.
 | **Type** | string |
 | **Default** | `/dashboard` |
 
-
 ### Show pending retries
 
 Set to `true` to show details of pending retries.
@@ -84,3 +83,13 @@ Set to `true` to show details of pending retries.
 | **Environment variable** | `SHOW_PENDING_RETRY` |
 | **Type** | bool |
 | **Default** | `false` |
+
+### Enable reverse proxy
+
+Controls whether the proxy that forwards requests to the ServiceControl and Monitoring instances is enabled or not. Set to `false` to disable.
+
+| | |
+|-|-|
+| **Environment variable** | `ENABLE_REVERSE_PROXY` |
+| **Type** | bool |
+| **Default** | `true` |
