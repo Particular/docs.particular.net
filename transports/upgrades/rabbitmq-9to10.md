@@ -7,7 +7,6 @@ related:
 - transports/rabbitmq
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
- - 8
  - 9
 ---
 
