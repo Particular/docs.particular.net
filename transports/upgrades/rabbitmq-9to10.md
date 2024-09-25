@@ -19,4 +19,9 @@ For details, see the [RabbitMQ client changelog](https://github.com/rabbitmq/rab
 
 ### `IRoutingTopology` Updates
 
-All methods now return a [ValueTask](https://devblogs.microsoft.com/dotnet/understanding-the-whys-whats-and-whens-of-valuetask/) and include a [CancellationToken](https://learn.microsoft.com/en-us/dotnet/standard/threading/cancellation-in-managed-threads) as the last parameter.
+The following changes have been made to `IRoutingTopology`:
+
+- All methods return a [ValueTask](https://devblogs.microsoft.com/dotnet/understanding-the-whys-whats-and-whens-of-valuetask/).
+- The type of the `channel` parameter has been changed from `RabbitMQ.Client.IModel` to `RabbitMQ.Client.IChannel`.
+- The type of the `properties` parameter has been changed from `RabbitMQ.Client.IBasicProperties` to `RabbitMQ.Client.BasicProperties`.
+- All methods include a [CancellationToken](https://learn.microsoft.com/en-us/dotnet/standard/threading/cancellation-in-managed-threads) as the last parameter.
