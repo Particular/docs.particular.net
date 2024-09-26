@@ -42,10 +42,10 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.2.1) | 2024-09-24     | -                 | -                                 |
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.0.1) | 2024-04-16     | 2024-12-24        | Superseded by 4.2.x               |
-| [3.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.2.3) | 2023-03-23     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/2.0.6) | 2021-10-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [4.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.2.2) | 2024-09-24     | -                 | -                                 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.0.2) | 2024-04-16     | 2024-12-24        | Superseded by 4.2.x               |
+| [3.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.2.4) | 2023-03-23     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/2.0.7) | 2021-10-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Transport.AzureStorageQueues](/nuget/NServiceBus.Transport.AzureStorageQueues)
 

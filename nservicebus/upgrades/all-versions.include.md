@@ -179,12 +179,12 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.2.1) | 2024-09-24     | -                 | -                                 |
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.0.1) | 2024-04-16     | 2024-12-24        | Superseded by 4.2.x               |
-| [3.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.2.3) | 2023-03-23     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [4.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.2.2) | 2024-09-24     | -                 | -                                 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.0.2) | 2024-04-16     | 2024-12-24        | Superseded by 4.2.x               |
+| [3.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.2.4) | 2023-03-23     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.1.3) | ~~2022-11-24~~ | ~~2023-06-23~~    | ~~Superseded by 3.2.x~~           |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.0.3) | ~~2022-11-17~~ | ~~2023-02-24~~    | ~~Superseded by 3.1.x~~           |
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/2.0.6) | 2021-10-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/2.0.7) | 2021-10-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~1.9.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.9.0) | ~~2021-03-01~~ | ~~2022-10-19~~    | ~~Superseded by 2.0.x~~           |
 | [~~1.8.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.8.0) | ~~2020-12-24~~ | ~~2021-06-01~~    | ~~Superseded by 1.9.x~~           |
 | [~~1.7.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/1.7.0) | ~~2020-11-24~~ | ~~2021-03-24~~    | ~~Superseded by 1.8.x~~           |
