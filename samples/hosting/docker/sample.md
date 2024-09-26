@@ -12,6 +12,15 @@ redirects:
 
 This sample demonstrates how to use Docker Linux containers to host NServiceBus endpoints communicating over the [RabbitMQ transport](/transports/rabbitmq/). While this sample uses [Docker Compose](https://docs.docker.com/compose/) to demonstrate how to orchestrate a multi-container application, the containers are compatible withe other orchestration technologies, for example [Kubernetes](https://kubernetes.io/docs/home/).
 
+The endpoints use the [.NET SDK Container Building Tools](https://github.com/dotnet/sdk-container-builds) to enable the creation of containers via the `dotnet publish` command. See the [Microsoft tutorial](https://learn.microsoft.com/en-us/dotnet/core/docker/publish-as-container?pivots=dotnet-8-0) and [customization documentation](https://github.com/dotnet/sdk-container-builds/blob/main/docs/ContainerCustomization.md) for more details.
+
+## Prerequisites
+
+To containerize a .NET app using `dotnet publish`, you'll need:
+
+- **[.NET 8+ SDK](https://dotnet.microsoft.com/download/dotnet/8.0)**: Check your installed SDK version with `dotnet --info`.
+- **[Docker Community Edition](https://www.docker.com/products/docker-desktop)**: Ensure Docker is installed and running on your system.
+
 ## Running the sample
 
 Running the sample involves building the container images and starting the multi-container application.
@@ -53,10 +62,6 @@ docker-compose down
 ## Code walk-through
 
 This sample consists of `Sender` and `Receiver` endpoints exchanging messages using the [RabbitMQ transport](/transports/rabbitmq/). Each of these three components runs in a separate Docker Linux container.
-
-### Endpoint containers
-
-The endpoints use the [.NET SDK Container Building Tools](https://github.com/dotnet/sdk-container-builds) to enable the creation of containers via the `dotnet publish` command. See the [Microsoft tutorial](https://learn.microsoft.com/en-us/dotnet/core/docker/publish-as-container?pivots=dotnet-8-0) and [customization documentation](https://github.com/dotnet/sdk-container-builds/blob/main/docs/ContainerCustomization.md) for more details.
 
 ### Orchestration
 
