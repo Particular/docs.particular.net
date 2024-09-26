@@ -28,7 +28,7 @@ When logged on to the server where ServiceControl is installed, the database is 
 
 Access the database at:
 
-* Error Instance: [http://localhost:33333](http://localhost:33333) (or the configured [database maintenance port](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontroldatabasemaintenanceport))
+* Error Instance: [http://localhost:33334](http://localhost:33334) (or the configured [database maintenance port](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontroldatabasemaintenanceport))
 * Audit Instance: [http://localhost:44445](http://localhost:44445) (or the configured [database maintenance port](/servicecontrol/audit-instances/configuration.md#host-settings-servicecontrol-auditdatabasemaintenanceport))
 
 The database can be accessed without stopping or restarting the ServiceControl instance, though [maintenance mode](#windows-deployment-maintenance-mode) can still be used for some operations.
