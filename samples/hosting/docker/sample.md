@@ -16,7 +16,7 @@ The endpoints use the [.NET SDK Container Building Tools](https://github.com/dot
 
 ## Prerequisites
 
-To containerize a .NET app using `dotnet publish`, you'll need:
+To containerize a .NET app using `dotnet publish`:
 
 - **[.NET 8+ SDK](https://dotnet.microsoft.com/download/dotnet/8.0)**: Check your installed SDK version with `dotnet --info`.
 - **[Docker Community Edition](https://www.docker.com/products/docker-desktop)**: Ensure Docker is installed and running on your system.
