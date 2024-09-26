@@ -23,14 +23,14 @@ Let's build something simple to give NServiceBus a try.
 This tutorial uses NServiceBus version 8, .NET 6, and assumes an up-to-date installation of [Visual Studio 2022](https://www.visualstudio.com/downloads/).
 
 > [!NOTE]
-> NServiceBus 8 also [supports .NET Framework 4.7.2 or higher](/nservicebus/operations/dotnet-framework-version-requirements.md), but [new applications should be built on .NET 6 or higher](https://devblogs.microsoft.com/dotnet/net-core-is-the-future-of-net/).
+> NServiceBus 8 also [supports .NET Framework 4.7.2 or higher](/nservicebus/operations/dotnet-framework-version-requirements.md), but new applications should use NServiceBus 9 and [.NET 8 or higher](https://devblogs.microsoft.com/dotnet/net-core-is-the-future-of-net/).
 
 ### Create a solution
 
 First, let's create a basic solution and include the dependencies we need.
 
  1. In Visual Studio, create a new project and select the **Console App** project type.
- 2. Select **.NET 6.0 (Long Term Support)** from the Framework dropdown.
+ 2. Select **.NET 8.0 (Long Term Support)** from the Framework dropdown.
  3. Set the project name to **ClientUI**.
  4. Set the solution name to **RetailDemo**.
 
