@@ -42,6 +42,11 @@ snippet: postgresql-multischema-config-for-queue-send
 
 snippet: postgresql-multischema-config-for-queue-error
 
+> [!NOTE]
+> If the queue name contains a "." and the first part is not a schema name, enclose the queue name in quotes.
+
+snippet: postgresql-multischema-config-for-queue-heartbeats
+
 The entire algorithm for calculating the schema is the following:
 
 * If the schema is configured for a given queue via `UseSchemaForQueue`, the configured value is used.
@@ -49,4 +54,3 @@ The entire algorithm for calculating the schema is the following:
 * If destination address contains a schema, the schema from address is used.
 * If default schema is configured via `DefaultSchema`, the configured value is used.
 * Otherwise, `public` is used as a default schema.
-
