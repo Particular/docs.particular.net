@@ -1,5 +1,4 @@
 # startcode compose
-version: "3.8"
 services:
     sender:
         image: sender
