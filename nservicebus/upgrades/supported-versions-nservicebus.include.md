@@ -1,4 +1,4 @@
-### [NServiceBus](https://www.nuget.org/nuget/NServiceBus)
+### [NServiceBus](https://www.nuget.org/packages/NServiceBus)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
