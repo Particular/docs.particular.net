@@ -38,6 +38,7 @@ Examine the executable directory of the NServiceBus services. The presence of an
 | `NServiceBus.Transports.RabbitMQ.dll` | RabbitMQ | [RabbitMQ](rabbitmq.md) |
 | `NServiceBus.Transport.SQLServer.dll` | SQL Server Transport | [SQL Server Transport](sql-transport.md) |
 | `NServiceBus.Transports.SQLServer.dll` | SQL Server Transport | [SQL Server Transport](sql-transport.md) |
+| `NServiceBus.Transport.PostgreSQL.dll` | PostgreSQL Transport | [PostgreSQL Transport](postgresql-transport.md) |
 | `NServiceBus.Transport.Msmq.dll` | MSMQ | See [For MSMQ or Azure Storage Queues](#for-msmq-or-azure-storage-queues) below |
 | `NServiceBus.Azure.Transports.WindowsAzureStorageQueues.dll` | Azure Storage Queues | See [For MSMQ or Azure Storage Queues](#for-msmq-or-azure-storage-queues) below |
 | `NServiceBus.Transport.AzureStorageQueues.dll` | Azure Storage Queues | See [For MSMQ or Azure Storage Queues](#for-msmq-or-azure-storage-queues) below |

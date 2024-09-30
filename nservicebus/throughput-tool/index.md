@@ -52,6 +52,7 @@ The tool can collect data using various methods depending on the system's config
 - [Amazon SQS](amazon-sqs.md)
 - [RabbitMQ](rabbitmq.md)
 - [SQL Transport](sql-transport.md)
+- [PostgreSQL Transport](postgresql-transport.md)
 - Microsoft Message Queueing (MSMQ) – Use [ServiceControl data collection](service-control.md)
 - Azure Storage Queues – Use [ServiceControl data collection](service-control.md)
 - [Click here if unsure what message transport is used by the system](determine-transport.md)
