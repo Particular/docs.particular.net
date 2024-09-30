@@ -25,6 +25,7 @@ Each of the following sections describes the advantages and disadvantages of eac
 * [Amazon SQS](#amazon-sqs)
 * [RabbitMQ](#rabbitmq)
 * [SQL Server](#sql-server)
+* [PostgreSQL](#postgresql)
 * [MSMQ](#msmq)
 * [Learning Transport](#learning)
 
@@ -109,8 +110,6 @@ Azure Storage Queues has fewer features than Azure Service Bus but can be more c
 - When high throughput is not required
 - When scale-out is not required. Scaling out requires Azure Service Bus
 
-
-
 ## SQL Server
 
 The SQL Server transport implements queues using relational database tables. Each row of a queue table holds one message with an ID, headers, and body, plus additional columns for backward compatibility.
@@ -118,7 +117,7 @@ The SQL Server transport implements queues using relational database tables. Eac
 ### Advantages
 
 - SQL Server is already present in many organizations. This could result in lower licensing and training costs, as well as a reduction in operational risk, since the skills and knowledge required to run SQL Server are already present.
-- Mature tooling, such as [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms)
+- Mature tooling, such as [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms) and [Azure Data Studio](https://learn.microsoft.com/en-us/azure-data-studio/download-azure-data-studio)
 - Free to start with the [SQL Server Express or Developer editions](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 - Easy scale-out through competing consumers. Multiple instances of the same endpoint consume messages from a single queue.
 - Supports distributed transactions, allowing atomic message processing and data manipulation in database systems which also support distributed transactions (e.g. SQL Server), using the [Microsoft Distributed Transaction Coordinator (MSDTC)](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms684146(v=vs.85))
@@ -126,15 +125,43 @@ The SQL Server transport implements queues using relational database tables. Eac
 
 ### Disadvantages
 
-- Adds pressure to the server due to polling for new messages
+- Adds pressure to the database server due to polling for new messages
 - Depending on throughput, can add significant load to an existing SQL Server installation
+- Can have significant costs in Production for high throughput systems where extra servers or cores are required to support the load
+- Inherently not designed as a messaging broker, which can lead to lower performance and connection limitations when utilized for a larger system with many endpoints.
 
 ### When to select this transport
 
 - When it's not possible to introduce a native queueing technology
-- When the benefits of introducing a native queueing technology are outweighed by the cost of licensing, training, and ongoing maintenance compared with using an existing SQL Server infrastructure
+- When the benefits of introducing a native queueing technology are outweighed by the cost of licensing, training, and ongoing maintenance compared with using existing SQL Server infrastructure
 - For integration with a legacy application which uses SQL Server, using [database triggers](/samples/sqltransport/native-integration/)
+- When the system has a small number of endpoints, or a medium number of endpoints with low throughput.
 
+## PostgreSQL
+
+Similar to [SQL Server](#sql-server), the PostgreSQL transport implements queues using relational database tables. Each row of a queue table holds one message with an ID, headers, and body.
+
+### Advantages
+
+- PostgreSQL is already present in many organizations, as a relational database that doesn't have the licensing limitations of a commercial solution such as SQL Server or Oracle. This could result in lower licensing and training costs, as well as a reduction in operational risk, since the skills and knowledge required to run PostgreSQL are already present.
+- Mature tooling, such as [pgAdmin](https://www.pgadmin.org) and [Azure Data Studio](https://learn.microsoft.com/en-us/azure-data-studio/download-azure-data-studio)
+- TODO: should precious mention competing consumers, given the known issue about limited connections?
+- TODO: Does postgres support distributed transactions?
+- Can store both queues and business data in a single backup, making it easier to restore a system to a consistent state
+
+### Disadvantages
+
+- Adds pressure to the database server due to polling for new messages
+- Depending on throughput, can add significant load to an existing PostgreSQL installation
+- Inherently not designed as a messaging broker, which can lead to lower performance and connection limitations when utilized for a larger system with many endpoints.
+  - PostgreSQL opens a new process for each connection, and therefore has a [default concurrent connection limit of 100](https://postgresqlco.nf/doc/en/param/max_connections/). This limit is overridable, but will use more processes/resources. Having this relatively low connection limit can lead to connection starvation in systems with many [endpoints and/or endpoint instances](/nservicebus/endpoints/)
+
+### When to select this transport
+
+- When it's not possible to introduce a native queueing technology
+- When the benefits of introducing a native queueing technology are outweighed by the cost of licensing, training, and ongoing maintenance compared with using existing PostgreSQL infrastructure
+- For integration with a legacy application which uses PostgreSQL, using database triggers
+- When the system has a small number of endpoints.
 
 ## RabbitMQ
 
