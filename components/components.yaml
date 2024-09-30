@@ -712,7 +712,7 @@
 
 - Key: Migrations
   Name: Particular.TimeoutMigration
-  DocsUrl: nservicebus/tools/migrate-to-native-delivery
+  DocsUrl: /nservicebus/tools/migrate-to-native-delivery
   GitHubOwner: Particular
   Category: Persistence
   SupportLevel: Tool
@@ -723,7 +723,7 @@
 
 - Key: CosmosDB
   Name: NServiceBus.Persistence.CosmosDB
-  DocsUrl: persistence/cosmosdb
+  DocsUrl: /persistence/cosmosdb
   GitHubOwner: Particular
   Category: Persistence
   LicenseUrl: https://github.com/Particular/NServiceBus.Persistence.CosmosDB/blob/master/LICENSE.md
