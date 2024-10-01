@@ -3,7 +3,7 @@ title: Installing RavenDB
 summary: How to install RavenDB when using RavenDB persistence for various versions of NServiceBus.
 component: core
 versions: "[3,)"
-reviewed: 2021-12-03
+reviewed: 2024-10-01
 related:
  - nservicebus/operations
 redirects:

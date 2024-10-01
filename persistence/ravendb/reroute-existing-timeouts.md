@@ -3,7 +3,7 @@ title: Rerouting Existing Timeouts
 summary: How to reroute existing timeouts in the Raven persister when an endpoint is moved
 component: Raven
 versions: '[3,)'
-reviewed: 2021-12-03
+reviewed: 2024-10-01
 related:
  - nservicebus/endpoints/decommissioning-endpoints
 redirects:
