@@ -35,8 +35,8 @@ Either the `--connectionString` or `--connectionStringSource` must be used to pr
 | Option | Description |
 |-|-|
 | <nobr>`--connectionString`</nobr> | A single database connection string<sup>1</sup> that will provide at least read access to all queue tables. |
-| <nobr>`--addCatalogs`</nobr> | When the `--connectionString` parameter points to a single database, but multiple database catalogs on the same server also contain NServiceBus message queues, the `--addCatalogs` parameter specifies additional database catalogs to search. The tool replaces the `Database` parameter in the connection string with the additional catalog and queries all of them. With this option, only a single database server is supported.<br/><br/>Example: `--connectionString <Catalog1String> --addCatalogs Catalog2 Catalog3 Catalog4` |
-| <nobr>`--connectionStringSource` | Provide a file containing database connection strings (one per line) instead of specifying a single connection string as a tool argument. The tool will scan the databases provided by all connection strings in the file for NServiceBus queue tables. With this option, multiple catalogs in multiple database servers are supported.<br/><br/>Example: `--connectionStringSource <PathToFile>` |
+| <nobr>`--addDatabases`</nobr> | When the `--connectionString` parameter points to a single database, but multiple databases on the same server also contain NServiceBus message queues, the `--addDatabases` parameter specifies additional databases to search. The tool replaces the `Database` parameter in the connection string with the additional database and queries all of them. With this option, only a single database server is supported.<br/><br/>Example: `--connectionString <Database1String> --addDatabases Database2 Database3 Database4` |
+| <nobr>`--connectionStringSource` | Provide a file containing database connection strings (one per line) instead of specifying a single connection string as a tool argument. The tool will scan the databases provided by all connection strings in the file for NServiceBus queue tables. With this option, multiple databases in multiple database servers are supported.<br/><br/>Example: `--connectionStringSource <PathToFile>` |
 include: throughput-tool-global-options
 
 <sup>1</sup> See [examples of PostgreSQL connection strings](https://www.connectionstrings.com/postgresql/). Authentication is often via username/password `User Id=myUsername;Password=myPassword`.
@@ -47,7 +47,7 @@ The tool executes the following PostgreSQL queries on the database connection st
 
 ### Find queues
 
-The tool uses this query to discover what tables in a PostgreSQL database catalog have the table structure that matches an NServiceBus queue table. This query is executed only once when the tool is first run.
+The tool uses this query to discover what tables in a PostgreSQL database have the table structure that matches an NServiceBus queue table. This query is executed only once when the tool is first run.
 
 ```sql
 SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
