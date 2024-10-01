@@ -1,5 +1,6 @@
 ---
 title: Licensing ServiceControl
+summary: Configure, manage and troubleshoot ServiceControl license
 reviewed: 2024-06-27
 component: ServiceControl
 ---

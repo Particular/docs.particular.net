@@ -1,5 +1,6 @@
 ---
 title: ServiceControl Error instances
+summary: A guide to ServiceControl Error Instances. Learn about how ServiceControl persists message data and the health monitoring options available.
 reviewed: 2024-07-19
 component: ServiceControl
 related:

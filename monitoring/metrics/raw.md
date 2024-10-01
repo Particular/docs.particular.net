@@ -1,6 +1,6 @@
 ---
 title: Consume raw data from Metrics
-summary: 
+summary: Use the public API in the Metrics package to consume raw metrics data
 reviewed: 2023-11-30
 component: Metrics
 related:

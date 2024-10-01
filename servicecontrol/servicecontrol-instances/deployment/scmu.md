@@ -1,6 +1,6 @@
 ---
 title: Deploying Error instances using ServiceControl Management
-summary: How to install different types of ServiceControl instances
+summary: A guide to using ServiceControl Management Utility to set up ServiceControl instances. Information about installing and upgrading ServiceControl instances.
 reviewed: 2024-06-14
 component: ServiceControl
 related:

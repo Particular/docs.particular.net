@@ -1,5 +1,6 @@
 ---
 title: ServiceControl remote instances
+summary: Aggregate data from other ServiceControl instances using the ServiceControl Remotes features
 reviewed: 2024-07-19
 component: ServiceControl
 redirects:

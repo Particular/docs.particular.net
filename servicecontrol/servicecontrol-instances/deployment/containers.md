@@ -1,5 +1,6 @@
 ---
 title: Deploying ServiceControl Error instances using Containers
+summary: A guide to setting up and deploying ServiceControl Error instances using Containers
 reviewed: 2024-07-08
 component: ServiceControl
 versions: '[5.3, )'
