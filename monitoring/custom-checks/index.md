@@ -1,6 +1,6 @@
 ---
 title: Custom Checks
-summary: Define a custom set of conditions that are checked on the endpoint.
+summary: Enable endpoint health monitoring by running custom code using the Custom Checks plugin and ServiceControl
 reviewed: 2022-02-09
 isLearningPath: true
 redirects:

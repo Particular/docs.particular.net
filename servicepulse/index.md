@@ -1,5 +1,6 @@
 ---
 title: ServicePulse
+summary: Monitor the health of an NServiceBus system real-time using ServicePulse
 reviewed: 2024-04-19
 component: ServicePulse
 isLearningPath: true

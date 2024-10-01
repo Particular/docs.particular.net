@@ -1,6 +1,6 @@
 ---
 title: Heartbeat notification events
-summary:
+summary: Learn about the integration events exposed by ServiceControl for the Heartbeats plugin
 reviewed: 2022-03-11
 component: Heartbeats
 versions: 'Heartbeats:*'

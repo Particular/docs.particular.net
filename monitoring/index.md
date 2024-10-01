@@ -1,5 +1,6 @@
 ---
 title: Monitoring
+summary: Monitor the endpoint health and endpoint performance of an NServiceBus system
 reviewed: 2022-02-09
 isLearningPath: true
 ---

@@ -1,6 +1,6 @@
 ---
 title: Measuring system usage
-summary: How to measure the usage of an NServiceBus system
+summary: Learn how to measure the system usage of an NServiceBus system using ServicePulse or the Standalone Endpoint Throughput Tool
 reviewed: 2024-05-08
 related:
   - servicepulse/usage

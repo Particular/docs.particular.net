@@ -1,6 +1,6 @@
 ---
 title: Installing ServiceInsight
-summary: Describes how ServiceInsight is installed
+summary: Learn about the prerequisites and the steps involved in installing ServiceInsight
 component: ServiceInsight
 reviewed: 2024-06-25
 ---

@@ -1,6 +1,6 @@
 ---
 title: Custom Checks notification events
-summary:
+summary: Learn about the integration events exposed by ServiceControl for the Custom Checks plugin
 reviewed: 2022-02-28
 component: CustomChecks
 versions: 'CustomChecks:*'
