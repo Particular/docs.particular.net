@@ -124,6 +124,8 @@
     Url: platform
   - Title: Platform installation
     Url: platform/installation
+  - Title: Developing with the Platform
+    Url: platform/developing
   - Title: Platform Sample installation
     Url: platform/platform-sample-package
   - Title: Connecting endpoints
