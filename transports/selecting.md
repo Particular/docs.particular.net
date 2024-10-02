@@ -145,8 +145,7 @@ Similar to [SQL Server](#sql-server), the PostgreSQL transport implements queues
 
 - PostgreSQL is already present in many organizations, as a relational database that doesn't have the licensing limitations of a commercial solution such as SQL Server or Oracle. This could result in lower licensing and training costs, as well as a reduction in operational risk, since the skills and knowledge required to run PostgreSQL are already present.
 - Mature tooling, such as [pgAdmin](https://www.pgadmin.org) and [Azure Data Studio](https://learn.microsoft.com/en-us/azure-data-studio/download-azure-data-studio)
-- TODO: should precious mention competing consumers, given the known issue about limited connections?
-- TODO: Does postgres support distributed transactions?
+- Easy scale-out through competing consumers. Multiple instances of the same endpoint consume messages from a single queue.
 - Can store both queues and business data in a single backup, making it easier to restore a system to a consistent state
 
 ### Disadvantages
