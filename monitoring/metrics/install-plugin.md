@@ -1,5 +1,6 @@
 ---
 title: Send Metrics data to ServiceControl
+summary: Install the Metrics plugin to send monitoring data to ServiceControl
 reviewed: 2022-03-18
 component: MetricsServiceControl
 related:

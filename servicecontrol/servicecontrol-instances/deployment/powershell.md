@@ -1,5 +1,6 @@
 ---
 title: Deploying ServiceControl Error instances using PowerShell
+summary: A guide to setting up and deploying ServiceControl Error instances using PowerShell. Prerequisites, installation and deployment
 reviewed: 2024-06-28
 component: ServiceControl
 redirects:

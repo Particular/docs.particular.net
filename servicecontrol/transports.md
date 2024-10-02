@@ -1,5 +1,6 @@
 ---
 title: Transport configuration
+summary: ServiceControl can be configured to use one of the supported message transports which are configured for each instance type 
 reviewed: 2024-07-19
 component: ServiceControl
 ---

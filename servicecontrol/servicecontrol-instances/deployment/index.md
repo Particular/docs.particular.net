@@ -1,5 +1,6 @@
 ---
 title: ServiceControl Error instances deployment options
+summary: Learn about the deployment options for ServiceControl Error instances. Recommendations for setting up ServiceControl instances on production systems.
 reviewed: 2024-06-28
 component: ServiceControl
 ---

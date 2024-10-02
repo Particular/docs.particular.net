@@ -1,6 +1,6 @@
 ---
 title: Metrics
-summary:
+summary: Collect metric data about endpoint performance using the Metrics plugin
 reviewed: 2022-02-28
 component: Metrics
 versions: 'Metrics:*'
