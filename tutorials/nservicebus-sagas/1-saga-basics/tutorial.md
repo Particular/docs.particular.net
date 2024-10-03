@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus sagas: Saga basics"
-reviewed: 2022-01-25
+reviewed: 2024-10-02
 isLearningPath: true
 summary: A step-by-step guide to building an NServiceBus saga to handle a common business case of taking action once multiple messages have been successfully received.
 previewImage: feature-image.png
