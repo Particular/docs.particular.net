@@ -26,7 +26,7 @@ In the exercises so far, we had a `ShippingPolicy` saga that was rather passive 
 >
 > downloadbutton(Download Previous Solution, /tutorials/nservicebus-sagas/2-timeouts)
 >
-> The solution contains 5 projects. The **ClientUI**, **Sales**, **Billing**, and **Shipping** projects define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system.
+> The solution contains 5 projects. The **ClientUI**, **Sales**, **Billing**, and **Shipping** projects define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is the entry point to the system.
 > **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes that define the messages exchanged in our system.
 > To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
 >
