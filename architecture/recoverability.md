@@ -22,7 +22,7 @@ Transient failures are temporary and are not caused by errors in business logic.
 > [!NOTE]
 > The Particular Platform simplifies the handling of transient errors:
 >
-> - NServiceBus has [built-in support for immediate and delayed retries](/nservicebus/recoverability/) for all supported messaging technologies. The automated > retries behavior is highly customizable.
+> - NServiceBus has [built-in support for immediate and delayed retries](/nservicebus/recoverability/) for all supported messaging technologies. The automated retries behavior is highly customizable.
 > - ServicePulse shows [real-time metrics monitoring retries](/servicepulse/#real-time-monitoring) occuring in the system.
 
 
