@@ -21,14 +21,14 @@ This minimal example creates a database container using `docker run`:
 #if-version [5, 6)
 ```shell
 docker run -d --name servicecontrol-db \
-    -v <DATA_DIRECTORY>:/opt/RavenDB/Server/RavenData \
+    -v <VOLUME_NAME>:/opt/RavenDB/Server/RavenData \
     particular/servicecontrol-ravendb:latest
 ```
 #end-if
 #if-version [6, )
 ```shell
 docker run -d --name servicecontrol-db \
-    -v <DATA_DIRECTORY>:/var/lib/ravendb/data \
+    -v <VOLUME_NAME>:/var/lib/ravendb/data \
     particular/servicecontrol-ravendb:latest
 ```
 #end-if
