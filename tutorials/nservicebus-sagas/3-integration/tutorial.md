@@ -318,6 +318,6 @@ It is possible to handle these instances by [creating an `IHandleSagaNotFound` i
 
 ## Summary
 
-In this lesson, we learned about sagas that execute several steps within a business process. Sagas orchestrate and delegate the work to other handlers. The reason for delegation is to adhere to the Single Responsibility Principle and to avoid potential contention. We've also taken another look at timeouts. And finally, we've seen how different scenarios in our business process can be modeled and implemented using sagas.
+In this lesson, we learned about sagas that execute several steps within a business process via commands. Sagas orchestrate and delegate the work to other handlers. The reason for delegation is to adhere to the Single Responsibility Principle and to avoid potential contention. We've also taken another look at timeouts. And finally, we've seen how different scenarios in our business process can be modeled and implemented using sagas.
 
 For more information on sagas, check out the [saga documentation](/nservicebus/sagas/) or our [other saga tutorials](/tutorials/nservicebus-sagas/). If you've got questions, you could also [talk to us about a proof of concept](https://particular.net/proof-of-concept).
