@@ -172,7 +172,7 @@ Our mappings specify that whenever a message of type `OrderPlaced` is received, 
 
 ##### Auto-population
 
-One thing we **do not** have to worry about is filling in `OrderId` value in the saga data. We've already told NServiceBus that `OrderPlaced` and `OrderBilled` can start the saga. We've instructed it to look up data based on the `OrderId` of the incoming message. Because it knows these things, when it creates a new `ShippingPolicyData` it knows what the value of the `OrderId` property should be, and fills it in for us.
+One thing we **do not** have to worry about is filling in the `OrderId` value in the saga data. We've already told NServiceBus that `OrderPlaced` and `OrderBilled` can start the saga. We've instructed it to look up data based on the `OrderId` of the incoming message. Because it knows these things, when it creates a new `ShippingPolicyData` it knows what the value of the `OrderId` property should be, and fills it in for us.
 
 So code like this is **not required**:
 
