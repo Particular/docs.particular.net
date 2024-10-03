@@ -1,7 +1,7 @@
 ---
 title: "NServiceBus sagas: Integrations"
-reviewed: 2024-01-04
-summary: In this tutorial, learn how to use NServiceBus sagas to manage integration with external systems that communicate via HTTP.
+reviewed: 2024-10-02
+summary: Learn how to use NServiceBus sagas to manage integration with external systems that communicate via HTTP.
 previewImage: https://img.youtube.com/vi/BHlKPgY2xxg/maxresdefault.jpg
 ---
 
@@ -26,13 +26,15 @@ In the exercises so far, we had a `ShippingPolicy` saga that was rather passive 
 >
 > downloadbutton(Download Previous Solution, /tutorials/nservicebus-sagas/2-timeouts)
 >
-> The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Shipping** define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system. > **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes that define the messages exchanged in our system. > To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
+> The solution contains 5 projects. The **ClientUI**, **Sales**, **Billing**, and **Shipping** projects define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is the entry point to the system.
+> **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes that define the messages exchanged in our system.
+> To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
 >
-> This tutorial assumes at least Visual Studio 2019 and .NET Framework 4.7.2.
+> This tutorial uses NServiceBus version 8, .NET 6, and assumes an up-to-date installation of Visual Studio 2022.
 
 ### A new saga
 
-While it would be possible to implement the new functionality in our existing `ShippingPolicy` saga, it's probably not a good idea. That saga is about deciding whether or not to ship while we are now dealing with the process of executing that shipment. It's best to keep the [single responsibility principle](https://en.wikipedia.org/wiki/Single-responsibility_principle) in mind and keep them separate. The result will be simpler sagas that are easier to test and easier to evolve in the future.
+While it would be possible to implement the new functionality in our existing `ShippingPolicy` saga, it's not a good idea. That saga is about deciding whether or not to ship while we are now dealing with the process of executing that shipment. It's best to keep the [single responsibility principle](https://en.wikipedia.org/wiki/Single-responsibility_principle) in mind and keep them separate. The result will be simpler sagas that are easier to test and easier to evolve in the future.
 
 In the `ShippingPolicy` saga class (inside the **Shipping** endpoint project), we already have the `ShipOrder` being sent from the `ProcessOrder` method at the end of the saga. Currently, this is being processed by the `ShipOrderHandler` class, also in the **Shipping** endpoint. Our aim is to replace that handler with a new saga.
 
@@ -102,7 +104,8 @@ We will use a separate message handler to communicate with the Maple web service
 > [!NOTE]
 > **Why not contact the web service directly within the saga?**
 >
-> While the saga is processing the message, it holds a database lock on your saga data so that if multiple messages from the same saga try to modify the data simultaneously, only one of them will succeed. This presents two problems for a web service > request. First, a web request can't be added to a database transaction, meaning that if a concurrency exception occurs, the web request can't be undone. The second is that the time it takes for the web request to complete will hold the saga > database transaction open longer, making it even more likely that another message will be processed concurrently, creating more contention.
+> While the saga is processing the message, it holds a database lock on your saga data so that if multiple messages from the same saga try to modify the data simultaneously, only one of them will succeed.
+> This presents two problems for a web service request. First, a web request can't be added to a database transaction, meaning that if a concurrency exception occurs, the web request can't be undone. The second is that the time it takes for the web request to complete will hold the saga database transaction open longer, making it even more likely that another message will be processed concurrently, creating more contention.
 >
 > This is why a saga should be only a message-driven state machine: a message comes in, decisions are made, and messages go out. Leave all the other processing to external message handlers, as shown in this tutorial.
 
@@ -315,6 +318,6 @@ It is possible to handle these instances by [creating an `IHandleSagaNotFound` i
 
 ## Summary
 
-In this lesson, we learned about commander sagas that execute several steps within a business process. Sagas orchestrate and delegate the work to other handlers. The reason for delegation is to adhere to the Single Responsibility Principle and to avoid potential contention. We've also taken another look at timeouts. And finally, we've seen how different scenarios in our business process can be modeled and implemented using sagas.
+In this lesson, we learned about sagas that execute several steps within a business process via commands. Sagas orchestrate and delegate the work to other handlers. The reason for delegation is to adhere to the Single Responsibility Principle and to avoid potential contention. We've also taken another look at timeouts. And finally, we've seen how different scenarios in our business process can be modeled and implemented using sagas.
 
 For more information on sagas, check out the [saga documentation](/nservicebus/sagas/) or our [other saga tutorials](/tutorials/nservicebus-sagas/). If you've got questions, you could also [talk to us about a proof of concept](https://particular.net/proof-of-concept).
