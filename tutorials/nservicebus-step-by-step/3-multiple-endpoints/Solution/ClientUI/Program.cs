@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Messages;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 namespace ClientUI
 {
@@ -27,13 +27,16 @@ namespace ClientUI
             await endpointInstance.Stop();
         }
 
-        static ILog log = LogManager.GetLogger<Program>();
 
         static async Task RunLoop(IEndpointInstance endpointInstance)
         {
             while (true)
             {
-                log.Info("Press 'P' to place an order, or 'Q' to quit.");
+                using ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
+                ILogger logger = factory.CreateLogger("Program");
+
+                logger.LogInformation("Press 'P' to place an order, or 'Q' to quit.");
+
                 var key = Console.ReadKey();
                 Console.WriteLine();
 
@@ -47,7 +50,7 @@ namespace ClientUI
                         };
 
                         // Send the command
-                        log.Info($"Sending PlaceOrder command, OrderId = {command.OrderId}");
+                        logger.LogInformation("Sending PlaceOrder command, OrderId = {orderId}", command.OrderId);
                         await endpointInstance.Send(command);
 
                         break;
@@ -56,7 +59,7 @@ namespace ClientUI
                         return;
 
                     default:
-                        log.Info("Unknown input. Please try again.");
+                        logger.LogInformation("Unknown input. Please try again.");
                         break;
                 }
             }

@@ -1,18 +1,23 @@
 ﻿using System.Threading.Tasks;
 using Messages;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 namespace Billing
 {
     public class OrderPlacedHandler :
         IHandleMessages<OrderPlaced>
     {
-        static ILog log = LogManager.GetLogger<OrderPlacedHandler>();
+       private readonly ILogger<OrderPlacedHandler> logger;
+
+        public OrderPlacedHandler(ILogger<OrderPlacedHandler> logger)
+        {
+            this.logger = logger;
+        }
 
         public Task Handle(OrderPlaced message, IMessageHandlerContext context)
         {
-            log.Info($"Received OrderPlaced, OrderId = {message.OrderId} - Charging credit card...");
+            logger.LogInformation("Received OrderPlaced, OrderId = {orderId} - Charging credit card...", message.OrderId);
 
             var orderBilled = new OrderBilled
             {

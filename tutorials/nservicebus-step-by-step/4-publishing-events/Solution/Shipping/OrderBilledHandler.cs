@@ -1,18 +1,23 @@
 ﻿using System.Threading.Tasks;
 using Messages;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 namespace Shipping
 {
     public class OrderBilledHandler :
         IHandleMessages<OrderBilled>
     {
-        static ILog log = LogManager.GetLogger<OrderBilledHandler>();
+        private readonly ILogger<OrderBilledHandler> logger;
+
+        public OrderBilledHandler(ILogger<OrderBilledHandler> logger)
+        {
+            this.logger = logger;
+        }
 
         public Task Handle(OrderBilled message, IMessageHandlerContext context)
         {
-            log.Info($"Received OrderBilled, OrderId = {message.OrderId} - Should we ship now?");
+            logger.LogInformation("Received OrderBilled, OrderId = {orderId} - Should we ship now?", message.OrderId);
             return Task.CompletedTask;
         }
     }

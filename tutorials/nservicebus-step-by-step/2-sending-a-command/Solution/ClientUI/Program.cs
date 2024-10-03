@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Messages;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
 namespace ClientUI
 {
@@ -27,13 +27,14 @@ namespace ClientUI
 
         #region RunLoop
 
-        static ILog log = LogManager.GetLogger<Program>();
-
         static async Task RunLoop(IEndpointInstance endpointInstance)
         {
+            using ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
+            ILogger logger = factory.CreateLogger("Program");
+
             while (true)
             {
-                log.Info("Press 'P' to place an order, or 'Q' to quit.");
+                logger.LogInformation("Press 'P' to place an order, or 'Q' to quit.");
                 var key = Console.ReadKey();
                 Console.WriteLine();
 
@@ -47,7 +48,7 @@ namespace ClientUI
                         };
 
                         // Send the command to the local endpoint
-                        log.Info($"Sending PlaceOrder command, OrderId = {command.OrderId}");
+                        logger.LogInformation($"Sending PlaceOrder command, OrderId = {command.OrderId}");
                         await endpointInstance.SendLocal(command);
 
                         break;
@@ -56,7 +57,7 @@ namespace ClientUI
                         return;
 
                     default:
-                        log.Info("Unknown input. Please try again.");
+                        logger.LogInformation("Unknown input. Please try again.");
                         break;
                 }
             }

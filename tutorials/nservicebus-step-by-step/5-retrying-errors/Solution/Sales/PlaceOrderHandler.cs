@@ -1,23 +1,27 @@
 ﻿using System.Threading.Tasks;
 using Messages;
 using NServiceBus;
-using NServiceBus.Logging;
-
-#pragma warning disable 162
 
 namespace Sales
 {
     using System;
+    using Microsoft.Extensions.Logging;
 
     public class PlaceOrderHandler :
         IHandleMessages<PlaceOrder>
     {
-        static ILog log = LogManager.GetLogger<PlaceOrderHandler>();
+        private readonly ILogger<PlaceOrderHandler> logger;
+
+        public PlaceOrderHandler(ILogger<PlaceOrderHandler> logger)
+        {
+            this.logger = logger;
+        }
+
         static Random random = new Random();
 
         public Task Handle(PlaceOrder message, IMessageHandlerContext context)
         {
-            log.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
+            logger.LogInformation("Received PlaceOrder, OrderId = {orderId}", message.OrderId);
 
             // This is normally where some business logic would occur
 
