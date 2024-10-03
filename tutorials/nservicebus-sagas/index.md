@@ -19,7 +19,7 @@ How do we create a delay so that we can trigger an action at some point in the f
 For these types of scenarios, you need a *stateful* message handler. Other ways to describe what is needed might include a message-driven state machine or an orchestration engine. 
 In NServiceBus, we call these [**Sagas**](/nservicebus/sagas/). In this tutorial, we'll build on the solution from the [NServiceBus Step-by-step tutorial](/tutorials/nservicebus-step-by-step/) and learn to master NServiceBus Sagas.
 
-This lessons make the most sense when tackled in order, but it's not required.
+These lessons make the most sense when tackled in order, but it's not required.
 
 1. [**Saga basics**](1-saga-basics/) (20-25 minutes) - learn how to introduce Sagas to complete the order shipping process.
 1. [**Timeouts**](2-timeouts/) (20-25 minutes) - learn how to delay processing of an order to implement the *buyer's remorse* pattern.
