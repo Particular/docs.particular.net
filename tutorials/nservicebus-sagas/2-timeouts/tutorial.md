@@ -81,7 +81,7 @@ Besides the `context`, the `RequestTimeout` method has two interesting parameter
 > This tutorial uses 20 seconds as a timeout value for simplicity. In production, a business enforced rule should determine the length of this period.
 
 > [!NOTE]
-> Instead of a `TimeSpan`, we could provide a `DateTime` instance, such as `DateTime.UtcNow.AddDays(10)`. When using this format, remember that local time is affected by Daylight Savings Time (DST) changes, so instead use UTC dates to avoid DST conversion issues.
+> Instead of a `TimeSpan`, we could provide a `DateTime` instance, such as `DateTime.UtcNow.AddDays(10)`. When using this format, remember that local time is affected by Daylight Savings Time (DST) changes, so use UTC dates instead to avoid DST conversion issues.
 
 The other interesting parameter is the message that will be sent when the timeout elapses. In this case, we are providing an instance of `BuyersRemorseIsOver`, a class which is not yet defined. Let's define it now. You can put it in the same file as our saga and leave it as an empty class:
 
