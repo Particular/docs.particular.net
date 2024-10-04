@@ -377,7 +377,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.0.x](https://www.nuget.org/packages/ParticularTemplates/6.0.0) | 2024-04-16     | -                 | -                                 |
+| [6.1.x](https://www.nuget.org/packages/ParticularTemplates/6.1.0) | 2024-10-03     | -                 | -                                 |
+| [6.0.x](https://www.nuget.org/packages/ParticularTemplates/6.0.0) | 2024-04-16     | 2025-01-03        | Superseded by 6.1.x               |
 | [5.0.x](https://www.nuget.org/packages/ParticularTemplates/5.0.1) | 2023-06-19     | 2025-04-16        | Superseded by 6.0.x               |
 | [~~4.1.x~~](https://www.nuget.org/packages/ParticularTemplates/4.1.0) | ~~2020-08-14~~ | ~~2024-06-19~~    | ~~Superseded by 5.0.x~~           |
 
@@ -527,7 +528,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.2.0) | 2024-09-02     | -                 | -                                 |
 | [3.1.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.1.0) | 2024-07-05     | 2024-12-02        | Superseded by 3.2.x               |
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.0.0) | 2024-04-16     | 2024-10-05        | Superseded by 3.1.x               |
+| [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.0.0) | ~~2024-04-16~~ | ~~2024-10-05~~    | ~~Superseded by 3.1.x~~           |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/2.0.2) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/1.0.3) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
