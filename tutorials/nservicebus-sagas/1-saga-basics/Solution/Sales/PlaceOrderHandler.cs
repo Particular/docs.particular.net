@@ -1,40 +1,36 @@
 ﻿using System.Threading.Tasks;
 using Messages;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
+using System;
 
-#pragma warning disable 162
+namespace Sales;
 
-namespace Sales
+public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) :
+    IHandleMessages<PlaceOrder>
 {
-    using System;
+   private readonly ILogger<PlaceOrderHandler> _logger = logger;
+    static Random random = new Random();
 
-    public class PlaceOrderHandler :
-        IHandleMessages<PlaceOrder>
+    public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
-        static ILog log = LogManager.GetLogger<PlaceOrderHandler>();
-        static Random random = new Random();
+        _logger.LogInformation("Received PlaceOrder, OrderId = {message.OrderId}", message.OrderId);
 
-        public Task Handle(PlaceOrder message, IMessageHandlerContext context)
+        // This is normally where some business logic would occur
+
+        // Uncomment to test throwing a systemic exception
+        //throw new Exception("BOOM");
+
+        // Uncomment to test throwing a transient exception
+        //if (random.Next(0, 5) == 0)
+        //{
+        //    throw new Exception("Oops");
+        //}
+
+        var orderPlaced = new OrderPlaced
         {
-            log.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
-
-            // This is normally where some business logic would occur
-
-            // Uncomment to test throwing a systemic exception
-            //throw new Exception("BOOM");
-
-            // Uncomment to test throwing a transient exception
-            //if (random.Next(0, 5) == 0)
-            //{
-            //    throw new Exception("Oops");
-            //}
-
-            var orderPlaced = new OrderPlaced
-            {
-                OrderId = message.OrderId
-            };
-            return context.Publish(orderPlaced);
-        }
+            OrderId = message.OrderId
+        };
+        return context.Publish(orderPlaced);
     }
 }

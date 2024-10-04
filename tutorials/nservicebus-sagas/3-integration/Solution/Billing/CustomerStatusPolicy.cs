@@ -1,17 +1,16 @@
 ﻿using Messages;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
 namespace Billing
 {
-    public class CustomerStatusPolicy :
+    public class CustomerStatusPolicy(ILogger<OrderPlacedHandler> logger) :
         Saga<CustomerStatusPolicy.CustomerStatusState>,
         IAmStartedByMessages<OrderBilled>,
         IHandleTimeouts<CustomerStatusPolicy.OrderExpired>
     {
-        static ILog log = LogManager.GetLogger<CustomerStatusPolicy>();
 
         //values hardcoded for simplicity
         const int preferredStatusAmount = 250;
@@ -27,7 +26,7 @@ namespace Billing
         {
             Data.CustomerId = message.CustomerId;
 
-            log.Info($"Customer {Data.CustomerId} submitted order of {message.OrderValue}");
+            logger.LogInformation("Customer {CustomerId} submitted order of {OrderValue}", Data.CustomerId, message.OrderValue);
 
             Data.RunningTotal += message.OrderValue;
             await CheckForPreferredStatus(context);
@@ -37,7 +36,7 @@ namespace Billing
 
         public async Task Timeout(OrderExpired timeout, IMessageHandlerContext context)
         {
-            log.Info($"Customer {Data.CustomerId} order of {timeout.Amount} timed out.");
+            logger.LogInformation("Customer {CustomerId} order of {Amount} timed out.", Data.CustomerId, timeout.Amount);
             Data.RunningTotal -= timeout.Amount;
             await CheckForPreferredStatus(context);
         }

@@ -1,66 +1,44 @@
-﻿using System;
-using System.Threading.Tasks;
+using System;
 using Messages;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
-using NServiceBus.Logging;
 
-namespace ClientUI
+namespace ClientUI;
+
+public class Program
 {
-    class Program
+    public static void Main(string[] args)
     {
-        static async Task Main()
-        {
-            Console.Title = "ClientUI";
+        Console.Title = "ClientUI";
 
-            var endpointConfiguration = new EndpointConfiguration("ClientUI");
+        var builder = WebApplication.CreateBuilder(args);
 
-            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        var endpointConfiguration = new EndpointConfiguration("ClientUI");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+        var routing = transport.Routing();
+        routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
-            var routing = transport.Routing();
-            routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.AuditProcessedMessagesTo("audit");
+        endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        var metrics = endpointConfiguration.EnableMetrics();
+        metrics.SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromMilliseconds(500));
 
-            await RunLoop(endpointInstance);
+        builder.UseNServiceBus(endpointConfiguration);
 
-            await endpointInstance.Stop();
-        }
+        builder.Services.AddControllers();
+        builder.Services.AddMvc();
 
-        static ILog log = LogManager.GetLogger<Program>();
+        var app = builder.Build();
+        app.UseStaticFiles();
+        app.UseRouting();
+        app.UseAuthorization();
+        app.MapControllers();
 
-        static async Task RunLoop(IEndpointInstance endpointInstance)
-        {
-            while (true)
-            {
-                log.Info("Press 'P' to place an order, or 'Q' to quit.");
-                var key = Console.ReadKey();
-                Console.WriteLine();
-
-                switch (key.Key)
-                {
-                    case ConsoleKey.P:
-                        // Instantiate the command
-                        var command = new PlaceOrder
-                        {
-                            OrderId = Guid.NewGuid().ToString()
-                        };
-
-                        // Send the command
-                        log.Info($"Sending PlaceOrder command, OrderId = {command.OrderId}");
-                        await endpointInstance.Send(command);
-
-                        break;
-
-                    case ConsoleKey.Q:
-                        return;
-
-                    default:
-                        log.Info("Unknown input. Please try again.");
-                        break;
-                }
-            }
-        }
+        app.Run();
     }
 }

@@ -1,17 +1,16 @@
 ﻿using Messages;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 using System.Threading.Tasks;
 
 namespace Shipping
 {
-    class ShippingPolicy :
+    class ShippingPolicy(ILogger<ShippingPolicy> logger) :
         Saga<ShippingPolicyData>,
         IAmStartedByMessages<OrderBilled>,
         IAmStartedByMessages<OrderPlaced>
     {
-        static ILog log = LogManager.GetLogger<ShippingPolicy>();
-
+      
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShippingPolicyData> mapper)
         {
             mapper.MapSaga(sagaData => sagaData.OrderId)
@@ -21,14 +20,14 @@ namespace Shipping
 
         public Task Handle(OrderPlaced message, IMessageHandlerContext context)
         {
-            log.Info($"OrderPlaced message received.");
+            logger.LogInformation("OrderPlaced message received.");
             Data.IsOrderPlaced = true;
             return ProcessOrder(context);
         }
 
         public Task Handle(OrderBilled message, IMessageHandlerContext context)
         {
-            log.Info($"OrderBilled message received.");
+            logger.LogInformation("OrderBilled message received.");
             Data.IsOrderBilled = true;
             return ProcessOrder(context);
         }

@@ -1,29 +1,41 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
+using Microsoft.Extensions.Hosting;
 
-namespace Sales
+namespace Sales;
+
+class Program
 {
-    class Program
+    static async Task Main(string[] args)
     {
-        static async Task Main()
-        {
-            Console.Title = "Sales";
+        Console.Title = "Sales";
 
-            var endpointConfiguration = new EndpointConfiguration("Sales");
+        var builder = Host.CreateApplicationBuilder(args);
 
-            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        var endpointConfiguration = new EndpointConfiguration("Sales");
 
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-            var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        endpointConfiguration.UsePersistence<LearningPersistence>();
 
-            Console.WriteLine("Press Enter to exit.");
-            Console.ReadLine();
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.AuditProcessedMessagesTo("audit");
 
-            await endpointInstance.Stop();
-        }
+        // So that when we test recoverability, we don't have to wait so long
+        // for the failed message to be sent to the error queue
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Delayed(
+            delayed =>
+            {
+                delayed.TimeIncrease(TimeSpan.FromSeconds(2));
+            }
+        );
+
+        builder.UseNServiceBus(endpointConfiguration);
+
+        await builder.Build().RunAsync();
     }
 }

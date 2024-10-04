@@ -1,35 +1,47 @@
 ﻿using Messages;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using System;
 using System.Threading.Tasks;
 
-namespace Shipping
+namespace Shipping;
+
+class Program
 {
-    class Program
+    static async Task Main(string[] args)
     {
-        static async Task Main()
-        {
-            Console.Title = "Shipping";
+        Console.Title = "Shipping";
 
-            var endpointConfiguration = new EndpointConfiguration("Shipping");
+        var builder = Host.CreateApplicationBuilder(args);
 
-            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        var endpointConfiguration = new EndpointConfiguration("Shipping");
 
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-            var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+        var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
-            var routing = transport.Routing();
-            routing.RouteToEndpoint(typeof(ShipOrder), "Shipping");
-            routing.RouteToEndpoint(typeof(ShipWithMaple), "Shipping");
-            routing.RouteToEndpoint(typeof(ShipWithAlpine), "Shipping");
+        var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        var routing = transport.Routing();
+        routing.RouteToEndpoint(typeof(ShipOrder), "Shipping");
+        routing.RouteToEndpoint(typeof(ShipWithMaple), "Shipping");
+        routing.RouteToEndpoint(typeof(ShipWithAlpine), "Shipping");
 
-            Console.WriteLine("Press Enter to exit.");
-            Console.ReadLine();
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.AuditProcessedMessagesTo("audit");
 
-            await endpointInstance.Stop();
-        }
+        // So that when we test recoverability, we don't have to wait so long
+        // for the failed message to be sent to the error queue
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Delayed(
+            delayed =>
+            {
+                delayed.TimeIncrease(TimeSpan.FromSeconds(2));
+            }
+        );
+
+        builder.UseNServiceBus(endpointConfiguration);
+
+        await builder.Build().RunAsync();
     }
 }
