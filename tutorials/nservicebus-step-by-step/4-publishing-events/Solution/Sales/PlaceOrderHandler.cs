@@ -3,33 +3,26 @@ using Messages;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
 
-namespace Sales
+namespace Sales;
+
+public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) :
+    IHandleMessages<PlaceOrder>
 {
-    public class PlaceOrderHandler :
-        IHandleMessages<PlaceOrder>
+
+    #region UpdatedHandler
+
+    public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
-        private readonly ILogger<PlaceOrderHandler> logger;
+        logger.LogInformation("Received PlaceOrder, OrderId = {orderId}", message.OrderId);
 
-        public PlaceOrderHandler(ILogger<PlaceOrderHandler> logger)
+        // This is normally where some business logic would occur
+
+        var orderPlaced = new OrderPlaced
         {
-            this.logger = logger;
-        }
-
-        #region UpdatedHandler
-
-        public Task Handle(PlaceOrder message, IMessageHandlerContext context)
-        {
-            logger.LogInformation("Received PlaceOrder, OrderId = {orderId}", message.OrderId);
-
-            // This is normally where some business logic would occur
-
-            var orderPlaced = new OrderPlaced
-            {
-                OrderId = message.OrderId
-            };
-            return context.Publish(orderPlaced);
-        }
-
-        #endregion
+            OrderId = message.OrderId
+        };
+        return context.Publish(orderPlaced);
     }
+
+    #endregion
 }

@@ -3,22 +3,15 @@ using Messages;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
 
-namespace Shipping
+namespace Shipping;
+
+public class OrderBilledHandler(ILogger<OrderBilledHandler> logger) :
+    IHandleMessages<OrderBilled>
 {
-    public class OrderBilledHandler :
-        IHandleMessages<OrderBilled>
+   
+    public Task Handle(OrderBilled message, IMessageHandlerContext context)
     {
-        private readonly ILogger<OrderBilledHandler> logger;
-
-        public OrderBilledHandler(ILogger<OrderBilledHandler> logger)
-        {
-            this.logger = logger;
-        }
-
-        public Task Handle(OrderBilled message, IMessageHandlerContext context)
-        {
-            logger.LogInformation("Received OrderBilled, OrderId = {orderId} - Should we ship now?", message.OrderId);
-            return Task.CompletedTask;
-        }
+        logger.LogInformation("Received OrderBilled, OrderId = {orderId} - Should we ship now?", message.OrderId);
+        return Task.CompletedTask;
     }
 }

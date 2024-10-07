@@ -1,28 +1,25 @@
-﻿using NServiceBus;
+﻿using Microsoft.Extensions.Hosting;
+using NServiceBus;
 using System;
 using System.Threading.Tasks;
 
-namespace Shipping
+namespace Shipping;
+class Program
 {
-    class Program
+    static async Task Main(string[] args)
     {
-        static async Task Main()
-        {
-            Console.Title = "Shipping";
+        Console.Title = "Shipping";
 
-            var endpointConfiguration = new EndpointConfiguration("Shipping");
+        var builder = Host.CreateApplicationBuilder(args);
 
-            // Choose JSON to serialize and deserialize messages
-            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        var endpointConfiguration = new EndpointConfiguration("Shipping");
 
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        endpointConfiguration.UseTransport<LearningTransport>();
 
-            Console.WriteLine("Press Enter to exit.");
-            Console.ReadLine();
+        builder.UseNServiceBus(endpointConfiguration);
 
-            await endpointInstance.Stop();
-        }
+        await builder.Build().RunAsync();
     }
 }

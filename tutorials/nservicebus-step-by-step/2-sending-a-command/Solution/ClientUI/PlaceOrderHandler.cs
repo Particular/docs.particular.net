@@ -3,26 +3,21 @@ using Messages;
 using NServiceBus;
 using Microsoft.Extensions.Logging;
 
-namespace ClientUI
+namespace ClientUI;
+
+public class PlaceOrderHandler :
+    IHandleMessages<PlaceOrder>
 {
-    #region PlaceOrderHandler
+    private readonly ILogger<PlaceOrderHandler> logger;
 
-    public class PlaceOrderHandler :
-        IHandleMessages<PlaceOrder>
+    public PlaceOrderHandler(ILogger<PlaceOrderHandler> logger)
     {
-        private readonly ILogger<PlaceOrderHandler> logger;
-
-        public PlaceOrderHandler(ILogger<PlaceOrderHandler> logger)
-        {
-            this.logger = logger;
-        }
-
-        public Task Handle(PlaceOrder message, IMessageHandlerContext context)
-        {
-            logger.LogInformation("Received PlaceOrder, OrderId = {orderId}", message.OrderId);
-            return Task.CompletedTask;
-        }
+        this.logger = logger;
     }
 
-    #endregion
+    public Task Handle(PlaceOrder message, IMessageHandlerContext context)
+    {
+        logger.LogInformation("Received PlaceOrder, OrderId = {orderId}", message.OrderId);
+        return Task.CompletedTask;
+    }
 }

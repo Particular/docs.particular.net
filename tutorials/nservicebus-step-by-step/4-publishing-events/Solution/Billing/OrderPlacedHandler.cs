@@ -5,15 +5,10 @@ using NServiceBus;
 
 namespace Billing
 {
-    public class OrderPlacedHandler :
+    public class OrderPlacedHandler(ILogger<OrderPlacedHandler> logger) :
         IHandleMessages<OrderPlaced>
     {
-       private readonly ILogger<OrderPlacedHandler> logger;
-
-        public OrderPlacedHandler(ILogger<OrderPlacedHandler> logger)
-        {
-            this.logger = logger;
-        }
+       private readonly ILogger<OrderPlacedHandler> logger = logger;
 
         public Task Handle(OrderPlaced message, IMessageHandlerContext context)
         {
