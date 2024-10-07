@@ -1,44 +1,23 @@
-using System;
+using ClientUI;
 using Messages;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using NServiceBus;
 
-namespace ClientUI;
 
-public class Program
-{
-    public static void Main(string[] args)
-    {
-        Console.Title = "ClientUI";
+var builder = Host.CreateApplicationBuilder(args);
 
-        var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddWindowsService();
 
-        var endpointConfiguration = new EndpointConfiguration("ClientUI");
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        var transport = endpointConfiguration.UseTransport<LearningTransport>();
+var endpointConfiguration = new EndpointConfiguration("ClientUI");
 
-        var routing = transport.Routing();
-        routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.AuditProcessedMessagesTo("audit");
-        endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
+var routing = endpointConfiguration.UseTransport(new LearningTransport());
 
-        var metrics = endpointConfiguration.EnableMetrics();
-        metrics.SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromMilliseconds(500));
+routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
-        builder.UseNServiceBus(endpointConfiguration);
+builder.UseNServiceBus(endpointConfiguration);
 
-        builder.Services.AddControllers();
-        builder.Services.AddMvc();
+builder.Services.AddHostedService<Worker>();
 
-        var app = builder.Build();
-        app.UseStaticFiles();
-        app.UseRouting();
-        app.UseAuthorization();
-        app.MapControllers();
+var host = builder.Build();
 
-        app.Run();
-    }
-}
+host.Run();
