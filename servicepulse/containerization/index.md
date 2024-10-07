@@ -88,6 +88,8 @@ Set to `true` to show details of pending retries.
 
 Controls whether the proxy that forwards requests to the ServiceControl and Monitoring instances is enabled or not. Set to `false` to disable.
 
+_Added in version 1.44.0_
+
 | | |
 |-|-|
 | **Environment variable** | `ENABLE_REVERSE_PROXY` |
