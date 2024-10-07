@@ -12,7 +12,7 @@ redirects:
   - tutorials/nservicebus-sagas/1-getting-started
 ---
 
-When you build a system with asynchronous messages, you divide each process into discrete message handlers that are executed when an incoming message arrives. Your system naturally becomes more reliable because each of these message handlers can be retried until they are successful. Additionally, it becomes easier to understand since each message handler is responsible for just one specific task. This means  there's less code to keep in your head at any time.
+When you build a system with asynchronous messages, you divide each process into discrete message handlers that are executed when an incoming message arrives. Your system naturally becomes more reliable because each of these message handlers can be retried until they are successful. Additionally, it becomes easier to understand since each message handler is responsible for just one specific task. This means that there's less code to keep in your head at any time.
 
 What happens when some process is dependent upon *more than one message*?
 
