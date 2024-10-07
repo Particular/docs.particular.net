@@ -198,7 +198,7 @@ public class Configuration
         var transport = new BridgeTransport(new MsmqTransport());
         transport.HasEndpoint("Finance", "finance@machinename");
 
-        var endpoint = new BridgeEndpoint("Sales", "sales@another-machine");
+        var endpoint = new BridgeEndpoint("Sales", "sales@machinename");
         transport.HasEndpoint(endpoint);
 
         #endregion
