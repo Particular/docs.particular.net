@@ -1,28 +1,17 @@
-﻿using NServiceBus;
-using System;
-using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Hosting;
+using NServiceBus;
 
-namespace ClientUI
-{
-    class Program
-    {
-        static async Task Main()
-        {
-            Console.Title = "ClientUI";
 
-            var endpointConfiguration = new EndpointConfiguration("ClientUI");
+var builder = Host.CreateApplicationBuilder(args);
 
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+var endpointConfiguration = new EndpointConfiguration("ClientUI");
 
-            // Choose JSON to serialize and deserialize messages
-            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var routing = endpointConfiguration.UseTransport(new LearningTransport());
 
-            Console.WriteLine("Press Enter to exit...");
-            Console.ReadLine();
+builder.UseNServiceBus(endpointConfiguration);
 
-            await endpointInstance.Stop();
-        }
-    }
-}
+var host = builder.Build();
+
+host.Run();
