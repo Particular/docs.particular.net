@@ -53,6 +53,9 @@ class StepByStep
         #region Startup
         builder.UseNServiceBus(endpointConfiguration);
 
+        Console.WriteLine("Press Enter to exit...");
+        Console.ReadLine();
+
         await builder.Build().RunAsync();
         #endregion
     }

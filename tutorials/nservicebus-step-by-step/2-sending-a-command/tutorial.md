@@ -142,9 +142,9 @@ snippet: PlaceOrderHandler
 
 Now we have a message and a handler to process it. Let's send that message.
 
-In the **ClientUI** project, we are currently stopping the endpoint when we press the <kbd>Enter</kbd> key. Instead, let's create a run loop that will allow us to be a little more interactive, so that we can use the keyboard to decide whether to send a message or quit.
+In the **ClientUI** project, we are currently stopping the endpoint when we press the <kbd>Enter</kbd> key. Instead, let's create a long running task using the .NET []`BackgroundService` class](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-8.0&tabs=visual-studio#backgroundservice-base-class)
 
-Add the following method to the **Program.cs** file:
+Create a class called `Worker` and add the following code:
 
 snippet: RunLoop
 
