@@ -1,31 +1,30 @@
-﻿using NServiceBus;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using NServiceBus;
 
-namespace Core_7.SagaAPI
+namespace Core_9.SagaAPI;
+
+class SampleSaga : Saga<SampleSagaData>, IHandleMessages<MyMessageType>
 {
-    class SampleSaga : Saga<SampleSagaData>, IHandleMessages<MyMessageType>
+    public Task Handle(MyMessageType message, IMessageHandlerContext context)
     {
-        public Task Handle(MyMessageType message, IMessageHandlerContext context)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SampleSagaData> mapper)
-        {
-            #region ConfigureHowToFindSagaSampleAPI
-            mapper.MapSaga(sagaData => sagaData.SagaPropertyName)
-                .ToMessage<MyMessageType>(message => message.MessagePropertyName);
-            #endregion
-        }
+        throw new System.NotImplementedException();
     }
 
-    class SampleSagaData : ContainSagaData
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SampleSagaData> mapper)
     {
-        public string SagaPropertyName { get; set; }
+        #region ConfigureHowToFindSagaSampleAPI
+        mapper.MapSaga(sagaData => sagaData.SagaPropertyName)
+            .ToMessage<MyMessageType>(message => message.MessagePropertyName);
+        #endregion
     }
+}
 
-    class MyMessageType
-    {
-        public string MessagePropertyName { get; set; }
-    }
+class SampleSagaData : ContainSagaData
+{
+    public string SagaPropertyName { get; set; }
+}
+
+class MyMessageType
+{
+    public string MessagePropertyName { get; set; }
 }

@@ -1,15 +1,14 @@
 ﻿using NServiceBus;
 
-namespace Core_7.Lesson1
+namespace Core_9.Lesson1;
+
+class EndpointConfig
 {
-    class EndpointConfig
+    public EndpointConfig()
     {
-        public EndpointConfig()
-        {
-            var endpointConfiguration = new EndpointConfiguration("Fake");
-            #region ShippingEndpointConfigLearningPersistence
-            var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
-            #endregion
-        }
+        var endpointConfiguration = new EndpointConfiguration("Fake");
+        #region ShippingEndpointConfigLearningPersistence
+        var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+        #endregion
     }
 }

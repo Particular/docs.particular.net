@@ -1,53 +1,50 @@
-﻿namespace Core_7.Lesson1.SagaMappings
-{
-    using NServiceBus;
-    using NServiceBus.Logging;
-    using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using NServiceBus;
 
+namespace Core_9.Lesson1.SagaMappings;
 #pragma warning disable 1998
 
-    #region ExtendedShippingPolicyData
-    public class ShippingPolicyData : ContainSagaData
+#region ExtendedShippingPolicyData
+public class ShippingPolicyData : ContainSagaData
+{
+    public string OrderId { get; set; }
+    public bool IsOrderPlaced { get; set; }
+    public bool IsOrderBilled { get; set; }
+}
+#endregion
+
+public class ShippingPolicy(ILogger<ShippingPolicy> logger) : Saga<ShippingPolicyData>,
+    IAmStartedByMessages<OrderPlaced>, // This can start the saga
+    IHandleMessages<OrderBilled>       // But surely, not this one!?
+{
+
+    #region ShippingPolicyFinalMappings
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShippingPolicyData> mapper)
     {
-        public string OrderId { get; set; }
-        public bool IsOrderPlaced { get; set; }
-        public bool IsOrderBilled { get; set; }
+        mapper.MapSaga(sagaData => sagaData.OrderId)
+            .ToMessage<OrderPlaced>(message => message.OrderId)
+            .ToMessage<OrderBilled>(message => message.OrderId);
     }
     #endregion
 
-    public class ShippingPolicy : Saga<ShippingPolicyData>,
-            IAmStartedByMessages<OrderPlaced>, // This can start the saga
-            IHandleMessages<OrderBilled>       // But surely, not this one!?
+    #region ShippingPolicyCorrelationAutoPopulation
+    public Task Handle(OrderPlaced message, IMessageHandlerContext context)
     {
-        static ILog log = LogManager.GetLogger<ShippingPolicy>();
+        // DON'T NEED THIS! NServiceBus does this for us.
+        Data.OrderId = message.OrderId;
 
-        #region ShippingPolicyFinalMappings
-        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShippingPolicyData> mapper)
-        {
-            mapper.MapSaga(sagaData => sagaData.OrderId)
-                .ToMessage<OrderPlaced>(message => message.OrderId)
-                .ToMessage<OrderBilled>(message => message.OrderId);
-        }
-        #endregion
-
-        #region ShippingPolicyCorrelationAutoPopulation
-        public Task Handle(OrderPlaced message, IMessageHandlerContext context)
-        {
-            // DON'T NEED THIS! NServiceBus does this for us.
-            Data.OrderId = message.OrderId;
-
-            log.Info($"OrderPlaced message received.");
-            Data.IsOrderPlaced = true;
-            return Task.CompletedTask;
-        }
-        #endregion
-
-        public Task Handle(OrderBilled message, IMessageHandlerContext context)
-        {
-            log.Info($"OrderBilled message received.");
-            return Task.CompletedTask;
-        }
+        logger.LogInformation("OrderPlaced message received for {OrderId}.", message.OrderId);
+        Data.IsOrderPlaced = true;
+        return Task.CompletedTask;
     }
+    #endregion
+
+    public Task Handle(OrderBilled message, IMessageHandlerContext context)
+    {
+        logger.LogInformation("OrderPlaced message received for {OrderId}.", message.OrderId);
+        return Task.CompletedTask;
+    }
+}
 
 #pragma warning restore 1998
-}

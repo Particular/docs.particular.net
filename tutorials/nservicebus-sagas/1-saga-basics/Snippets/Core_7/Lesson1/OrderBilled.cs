@@ -1,7 +1,6 @@
-﻿namespace Core_7.Lesson1
+﻿namespace Core_9.Lesson1;
+
+public class OrderBilled
 {
-    public class OrderBilled
-    {
-        public string OrderId { get; set; }
-    }
+    public string OrderId { get; set; }
 }

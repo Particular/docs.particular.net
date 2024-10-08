@@ -1,23 +1,21 @@
-﻿namespace Core_7.Lesson1.StartingTheSaga
-{
-    using NServiceBus;
-    using NServiceBus.Logging;
-    using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using NServiceBus;
 
+namespace Core_9.Lesson1.StartingTheSaga
+{
 #pragma warning disable 1998
 #pragma warning disable NSB0006 // Message that starts the saga does not have a message mapping
 
     namespace StartedBy1Message
     {
         #region ShippingPolicyStartedBy1Message
-        public class ShippingPolicy : Saga<ShippingPolicyData>,
+        public class ShippingPolicy(ILogger<ShippingPolicy> logger) : Saga<ShippingPolicyData>,
             IAmStartedByMessages<OrderPlaced>, // This can start the saga
             IHandleMessages<OrderBilled>       // But surely, not this one!?
         #endregion
         {
-            static ILog log = LogManager.GetLogger<ShippingPolicy>();
-
-
+           
             protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShippingPolicyData> mapper)
             {
                 // TODO
@@ -25,13 +23,13 @@
 
             public Task Handle(OrderPlaced message, IMessageHandlerContext context)
             {
-                log.Info($"OrderPlaced message received.");
+                logger.LogInformation("OrderPlaced message received for {OrderId}.", message.OrderId);
                 return Task.CompletedTask;
             }
 
             public Task Handle(OrderBilled message, IMessageHandlerContext context)
             {
-                log.Info($"OrderBilled message received.");
+                logger.LogInformation("OrderPlaced message received for {OrderId}.", message.OrderId);
                 return Task.CompletedTask;
             }
         }
@@ -40,14 +38,12 @@
     namespace StartedBy2Messages
     {
         #region ShippingPolicyStartedBy2Messages
-        public class ShippingPolicy : Saga<ShippingPolicyData>,
+        public class ShippingPolicy(ILogger<ShippingPolicy> logger) : Saga<ShippingPolicyData>,
             IAmStartedByMessages<OrderPlaced>, // I can start the saga!
             IAmStartedByMessages<OrderBilled>  // I can start the saga too!
         {
             #endregion
-            static ILog log = LogManager.GetLogger<ShippingPolicy>();
-
-
+           
             protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShippingPolicyData> mapper)
             {
                 // TODO
@@ -55,13 +51,13 @@
 
             public Task Handle(OrderPlaced message, IMessageHandlerContext context)
             {
-                log.Info($"OrderPlaced message received.");
+                logger.LogInformation("OrderPlaced message received for {OrderId}.", message.OrderId);
                 return Task.CompletedTask;
             }
 
             public Task Handle(OrderBilled message, IMessageHandlerContext context)
             {
-                log.Info($"OrderBilled message received.");
+                logger.LogInformation("OrderPlaced message received for {OrderId}.", message.OrderId);
                 return Task.CompletedTask;
             }
         }
