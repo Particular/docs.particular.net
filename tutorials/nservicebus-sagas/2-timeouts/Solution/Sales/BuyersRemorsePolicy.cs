@@ -4,7 +4,7 @@ using System;
 using System.Threading.Tasks;
 using Messages;
 
-namespace Core_7.BuyersRemorseTimeoutRequest;
+namespace Sales;
 
 class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger)
     : Saga<BuyersRemorseState>
@@ -24,6 +24,7 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger)
         logger.LogInformation("Received PlaceOrder, OrderId = {OrderId}", message.OrderId);
 
         logger.LogInformation("Starting cool down period for order #{OrderId}.", Data.OrderId);
+
         await RequestTimeout(context, TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
     }
 

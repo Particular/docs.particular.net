@@ -9,12 +9,11 @@ namespace Sales;
 public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) :
     IHandleMessages<PlaceOrder>
 {
-   private readonly ILogger<PlaceOrderHandler> _logger = logger;
     static Random random = new Random();
 
     public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
-        _logger.LogInformation("Received PlaceOrder, OrderId = {message.OrderId}", message.OrderId);
+        logger.LogInformation("Received PlaceOrder, OrderId = {message.OrderId}", message.OrderId);
 
         // This is normally where some business logic would occur
 

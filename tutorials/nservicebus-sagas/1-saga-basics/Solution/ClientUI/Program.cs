@@ -1,23 +1,28 @@
-using ClientUI;
 using Messages;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
+namespace ClientUI;
 
-var builder = Host.CreateApplicationBuilder(args);
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        var builder = Host.CreateApplicationBuilder(args);
 
-builder.Services.AddWindowsService();
+        var endpointConfiguration = new EndpointConfiguration("ClientUI");
 
-var endpointConfiguration = new EndpointConfiguration("ClientUI");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        var routing = endpointConfiguration.UseTransport(new LearningTransport());
 
-var routing = endpointConfiguration.UseTransport(new LearningTransport());
+        routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
-routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
+        builder.UseNServiceBus(endpointConfiguration);
 
-builder.UseNServiceBus(endpointConfiguration);
+        builder.Services.AddHostedService<Worker>();
 
-builder.Services.AddHostedService<Worker>();
+        await builder.Build().RunAsync();
 
-var host = builder.Build();
-
-host.Run();
+    }
+}
