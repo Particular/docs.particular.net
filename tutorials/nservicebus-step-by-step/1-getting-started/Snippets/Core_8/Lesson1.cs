@@ -1,42 +1,43 @@
-﻿namespace Core_8
-{
-    using NServiceBus;
-    using System;
-    using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
+using NServiceBus;
 
+namespace Core_9;
 #pragma warning disable 1998
 
-    #region EmptyProgram
-    class Program
+#region EmptyProgram
+class Program
+{
+    static async Task Main()
     {
-        static async Task Main()
-        {
 
-        }
     }
-    #endregion
+}
+#endregion
 
-    class StepByStep
+class StepByStep
+{
+    #region Main
+    static async Task Main()
     {
-        #region Main
-        static async Task Main()
+        static async Task Main(string[] args)
         {
-            Console.Title = "ClientUI";
+            var builder = Host.CreateApplicationBuilder(args);
 
             var endpointConfiguration = new EndpointConfiguration("ClientUI");
 
-            // Choose JSON to serialize and deserialize messages
             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            var routing = endpointConfiguration.UseTransport(new LearningTransport());
 
         }
         #endregion
 
-        static async Task Steps()
+        static async Task Steps(string[] args)
         {
-            #region ConsoleTitle
-            Console.Title = "ClientUI";
+            #region Setup
+            var builder = Host.CreateApplicationBuilder(args);
             #endregion
 
             #region EndpointName
@@ -51,15 +52,11 @@
             #endregion
 
             #region Startup
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
+            builder.UseNServiceBus(endpointConfiguration);
 
-            Console.WriteLine("Press Enter to exit...");
-            Console.ReadLine();
-
-            await endpointInstance.Stop();
+            await builder.Build().RunAsync();
             #endregion
         }
     }
 
 #pragma warning restore 1998
-}

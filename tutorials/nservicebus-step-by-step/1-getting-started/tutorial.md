@@ -63,11 +63,11 @@ snippet: Main
 
 Now, let's go line-by-line and find out exactly what each step is doing.
 
-#### Console Title
+#### Setup
 
-snippet: ConsoleTitle
+snippet: Setup
 
-When running multiple console apps in the same solution, giving each one a name makes them easier to identify. This console app's title is `ClientUI`. In later lessons, we'll expand this solution to host multiple applications.
+The host is typically configured, built, and run by code in the `Program` class. The `CreateApplicationBuilder` method creates and configures a builder object.
 
 #### EndpointConfiguration
 
