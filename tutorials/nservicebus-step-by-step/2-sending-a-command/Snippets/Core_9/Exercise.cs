@@ -25,24 +25,6 @@ namespace Core_9
 
     class Program
     {
-        static async Task Main(EndpointConfiguration endpointConfiguration)
-        {
-            #region AddRunLoopToMain
-
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-            // Remove these two lines
-            Console.WriteLine("Press Enter to exit...");
-            Console.ReadLine();
-
-            // Replace with:
-            await RunLoop(endpointInstance);
-
-            await endpointInstance.Stop();
-
-            #endregion
-        }
-
         static async Task Steps(string[] args)
         {
             var builder = Host.CreateApplicationBuilder(args);

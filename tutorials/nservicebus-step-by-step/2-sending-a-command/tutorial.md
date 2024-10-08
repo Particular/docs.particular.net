@@ -159,7 +159,7 @@ Because `SendLocal()` returns a `Task`, we need to be sure to `await` it properl
 
 Now let's modify the `Main` method to call the new `RunLoop` method:
 
-snippet: AddRunLoopToMain
+snippet: AddWorker
 
 
 ### Running the solution
