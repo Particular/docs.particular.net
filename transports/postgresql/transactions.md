@@ -15,7 +15,7 @@ The PostgreSQL transport supports the following [transport transaction modes](/t
 `TransactionScope` mode is not supported because the implementation of `TransactionScope` in [npgsql](https://www.npgsql.org/index.html) (ADO.NET driver for PostgreSQL) is not reliable and may lead to logical message loss (an update to a database that is prepared and persisted but not actually applied to the data tables).
 
 > [!NOTE]
-> `Exactly once` message processing without distributed transactions can be achieved with any transport using the [Outbox](/nservicebus/outbox/) feature. It requires business and persistence data to share the storage mechanism but does not put any requirements on transport data storage. In addition to that, PostgreSQL transport supports the `exactly once` processing mode when using **SendsAtomicWithReceive** transaction mode [in conjunction with SQL Persistence](/persistence/sql/postgresql-combining-persistence-with-transport.md).
+> `Exactly once` message processing without distributed transactions can be achieved with any transport using the [Outbox](/nservicebus/outbox/) feature. It requires business and persistence data to share the storage mechanism but does not put any requirements on transport data storage. In addition, PostgreSQL transport supports the `exactly once` processing mode when using **SendsAtomicWithReceive** transaction mode [in conjunction with SQL Persistence](/persistence/sql/postgresql-combining-persistence-with-transport.md).
 
 
 ### Native transactions
