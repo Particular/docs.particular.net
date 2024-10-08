@@ -10,7 +10,6 @@ namespace ClientUI;
 
 public class Worker(IMessageSession messageSession, ILogger<Worker> logger) : BackgroundService
 {
-
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         while (true)

@@ -5,16 +5,9 @@ using Microsoft.Extensions.Logging;
 
 namespace ClientUI;
 
-public class PlaceOrderHandler :
+public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) :
     IHandleMessages<PlaceOrder>
 {
-    private readonly ILogger<PlaceOrderHandler> logger;
-
-    public PlaceOrderHandler(ILogger<PlaceOrderHandler> logger)
-    {
-        this.logger = logger;
-    }
-
     public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
         logger.LogInformation("Received PlaceOrder, OrderId = {orderId}", message.OrderId);

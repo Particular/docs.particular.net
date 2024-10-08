@@ -3,22 +3,19 @@ using Messages;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
 
-namespace Billing
+namespace Billing;
+
+public class OrderPlacedHandler(ILogger<OrderPlacedHandler> logger) :
+    IHandleMessages<OrderPlaced>
 {
-    public class OrderPlacedHandler(ILogger<OrderPlacedHandler> logger) :
-        IHandleMessages<OrderPlaced>
+    public Task Handle(OrderPlaced message, IMessageHandlerContext context)
     {
-       private readonly ILogger<OrderPlacedHandler> logger = logger;
+        logger.LogInformation("Received OrderPlaced, OrderId = {orderId} - Charging credit card...", message.OrderId);
 
-        public Task Handle(OrderPlaced message, IMessageHandlerContext context)
+        var orderBilled = new OrderBilled
         {
-            logger.LogInformation("Received OrderPlaced, OrderId = {orderId} - Charging credit card...", message.OrderId);
-
-            var orderBilled = new OrderBilled
-            {
-                OrderId = message.OrderId
-            };
-            return context.Publish(orderBilled);
-        }
+            OrderId = message.OrderId
+        };
+        return context.Publish(orderBilled);
     }
 }

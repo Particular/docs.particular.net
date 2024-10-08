@@ -4,7 +4,6 @@ using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 namespace ClientUI;
-
 class Program
 {
     static async Task Main(string[] args)

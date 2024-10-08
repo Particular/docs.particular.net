@@ -8,7 +8,6 @@ namespace Sales;
 public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) :
     IHandleMessages<PlaceOrder>
 {
-
     #region UpdatedHandler
 
     public Task Handle(PlaceOrder message, IMessageHandlerContext context)
