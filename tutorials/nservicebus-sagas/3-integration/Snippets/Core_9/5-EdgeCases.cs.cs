@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
 using NServiceBus.Logging;
 
 namespace EdgeCases
 {
-    class ShipOrderWorkflow :
+    class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
         Saga<ShipOrderWorkflow.ShipOrderData>,
         IHandleTimeouts<ShipOrderWorkflow.ShippingEscalation>
     {
-        static ILog log = LogManager.GetLogger<ShipOrderWorkflow>();
-
         #region EdgeCases-ShipmentFailed
         public async Task Timeout(ShippingEscalation timeout, IMessageHandlerContext context)
         {
@@ -18,14 +17,14 @@ namespace EdgeCases
             {
                 if (!Data.ShipmentOrderSentToAlpine)
                 {
-                    log.Info($"Order [{Data.OrderId}] - No answer from Maple, let's try Alpine.");
+                    logger.LogInformation("Order [{OrderId}] - No answer from Maple, let's try Alpine.", Data.OrderId);
                     Data.ShipmentOrderSentToAlpine = true;
                     await context.Send(new ShipWithAlpine() { OrderId = Data.OrderId });
                     await RequestTimeout(context, TimeSpan.FromSeconds(20), new ShippingEscalation());
                 }
                 else if (!Data.ShipmentAcceptedByAlpine) // No response from Maple nor Alpine
                 {
-                    log.Warn($"Order [{Data.OrderId}] - No answer from Maple/Alpine. We need to escalate!");
+                    logger.LogWarning("Order [{.OrderId}] - No answer from Maple/Alpine. We need to escalate!", Data.OrderId);
 
                     // escalate to Warehouse Manager!
                     await context.Publish<ShipmentFailed>();
