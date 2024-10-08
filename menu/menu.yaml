@@ -32,14 +32,22 @@
       Title: "Part 2: Timeouts"
     - Url: tutorials/nservicebus-sagas/3-integration
       Title: "Part 3: Third-party integration"
+  - Title: NServiceBus monitoring demo
+    Articles:
+    - Url: tutorials/monitoring-demo
+      Title: Introduction
+    - Url: tutorials/monitoring-demo/walkthrough-1
+      Title: "Monitoring NServiceBus Demo - Slow handlers"
+    - Url: tutorials/monitoring-demo/walkthrough-2
+      Title: "Monitoring NServiceBus Demo - Message backlogs"
+    - Url: tutorials/monitoring-demo/walkthrough-3
+      Title: "Monitoring NServiceBus Demo - Struggling endpoints"
   - Title: More tutorials
     Articles:
     - Url: tutorials/message-replay
       Title: Message replay tutorial
     - Url: tutorials/monitoring-setup
       Title: NServiceBus monitoring setup
-    - Url: tutorials/monitoring-demo
-      Title: NServiceBus monitoring demo
     - Url: tutorials
       Title: All tutorials
   - Url: get-started
