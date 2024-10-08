@@ -30,6 +30,8 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger)
 
     public async Task Timeout(BuyersRemorseIsOver state, IMessageHandlerContext context)
     {
+        logger.LogInformation("Cooling down period for order #{OrderId} has elapsed.", Data.OrderId);
+
         var orderPlaced = new OrderPlaced
         {
             OrderId = Data.OrderId

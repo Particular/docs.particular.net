@@ -1,21 +1,21 @@
-using Messages;
-using Microsoft.Extensions.Hosting;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using NServiceBus.Logging;
-using NServiceBus.Routing;
+using NServiceBus;
 
-namespace ClientUI;
+namespace Core_9.BuyersRemorseCancellingOrders;
 
-public class Worker(IMessageSession messageSession,ILogger<Worker> logger) : BackgroundService
-{    
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+class UICommands(ILogger<UICommands> logger)
+{
+    async Task Execute(IMessageSession endpointInstance)
     {
+        #region BuyersRemorseCancellingOrders
         var lastOrder = string.Empty;
 
         while (true)
         {
             Console.Title = "ClientUI";
-          
+
             logger.LogInformation("Press 'P' to place an order, or 'Q' to quit.");
             var key = Console.ReadKey();
             Console.WriteLine();
@@ -31,16 +31,17 @@ public class Worker(IMessageSession messageSession,ILogger<Worker> logger) : Bac
 
                     // Send the command
                     logger.LogInformation("Sending PlaceOrder command, OrderId = {OrderId}", command.OrderId);
-                    await messageSession.Send(command);
+                    await endpointInstance.Send(command);
 
                     lastOrder = command.OrderId; // Store order identifier to cancel if needed.
                     break;
+
                 case ConsoleKey.C:
                     var cancelCommand = new CancelOrder
                     {
                         OrderId = lastOrder
                     };
-                    await messageSession.Send(cancelCommand);
+                    await endpointInstance.Send(cancelCommand);
                     logger.LogInformation("Sent a CancelOrder command, {OrderId}", cancelCommand.OrderId);
                     break;
 
@@ -52,5 +53,16 @@ public class Worker(IMessageSession messageSession,ILogger<Worker> logger) : Bac
                     break;
             }
         }
+        #endregion
     }
+}
+
+internal class PlaceOrder
+{
+    public string OrderId { get; set; }
+}
+
+internal class CancelOrder
+{
+    public string OrderId { get; set; }
 }

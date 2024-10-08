@@ -17,6 +17,7 @@ class Program
         var routing = endpointConfiguration.UseTransport(new LearningTransport());
 
         routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
+        routing.RouteToEndpoint(typeof(CancelOrder), "Sales");
 
         builder.UseNServiceBus(endpointConfiguration);
 
