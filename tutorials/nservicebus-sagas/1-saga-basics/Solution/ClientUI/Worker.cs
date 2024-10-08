@@ -4,8 +4,8 @@ using Microsoft.Extensions.Logging;
 
 namespace ClientUI;
 
-public class Worker(IMessageSession messageSession,ILogger<Worker> logger) : BackgroundService
-{    
+public class Worker(IMessageSession messageSession, ILogger<Worker> logger) : BackgroundService
+{
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         while (true)
