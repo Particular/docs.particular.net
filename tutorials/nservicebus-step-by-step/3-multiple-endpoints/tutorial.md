@@ -47,6 +47,8 @@ We say *logical routing* because this is at a logical layer only, which isn't ne
 > An [**endpoint**](/nservicebus/concepts/glossary.md#endpoint) is a logical concept, defined by an endpoint name and associated implementation, that defines an owner responsible for processing messages.
 >
 > An [**endpoint instance**](/nservicebus/concepts/glossary.md#endpoint-instance) is a physical instance of the endpoint deployed to a single server. Many endpoint instances may be deployed to many servers in order to scale out the processing of a high-volume message to multiple servers.
+>
+> The IMessageSession API provides basic message operations
 
 For now, we'll only concern ourselves with logical routing, and leave the rest of it (physical routing, scale-out, etc.) for a later time.
 
@@ -93,7 +95,7 @@ First, let's create a project for our new endpoint.
 
 Now that we have a project for our **Sales** endpoint, we need to add similar code to configure and start an NServiceBus endpoint:
 
-snippet: SalesProgram
+snippet: SalesConsoleApp
 
 Most of this configuration looks exactly the same as our **ClientUI** endpoint. It's critical for the configuration between endpoints to match (especially message transport and serializer); otherwise, the endpoints would not be able to understand each other.
 

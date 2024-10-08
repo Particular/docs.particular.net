@@ -146,7 +146,7 @@ In the **ClientUI** project, we are currently stopping the endpoint when we pres
 
 Create a class called `Worker` and add the following code:
 
-snippet: RunLoop
+snippet: WorkerClass
 
 Let's take a closer look at the case when we want to place an order. In order to create the `PlaceOrder` command, create an instance of the `PlaceOrder` class and supply a unique value for the `OrderId`. Then, after logging the details, we can send it with the `SendLocal` method.
 
