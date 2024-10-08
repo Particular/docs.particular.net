@@ -4,67 +4,66 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace Billing
+namespace Billing;
+
+public class CustomerStatusPolicy(ILogger<OrderPlacedHandler> logger) :
+    Saga<CustomerStatusPolicy.CustomerStatusState>,
+    IAmStartedByMessages<OrderBilled>,
+    IHandleTimeouts<CustomerStatusPolicy.OrderExpired>
 {
-    public class CustomerStatusPolicy(ILogger<OrderPlacedHandler> logger) :
-        Saga<CustomerStatusPolicy.CustomerStatusState>,
-        IAmStartedByMessages<OrderBilled>,
-        IHandleTimeouts<CustomerStatusPolicy.OrderExpired>
+
+    //values hardcoded for simplicity
+    const int preferredStatusAmount = 250;
+    TimeSpan orderExpiryTimeout = TimeSpan.FromSeconds(10);
+
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<CustomerStatusState> mapper)
     {
+        mapper.MapSaga(saga => saga.CustomerId)
+            .ToMessage<OrderBilled>(message => message.CustomerId);
+    }
 
-        //values hardcoded for simplicity
-        const int preferredStatusAmount = 250;
-        TimeSpan orderExpiryTimeout = TimeSpan.FromSeconds(10);
+    public async Task Handle(OrderBilled message, IMessageHandlerContext context)
+    {
+        Data.CustomerId = message.CustomerId;
 
-        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<CustomerStatusState> mapper)
+        logger.LogInformation("Customer {CustomerId} submitted order of {OrderValue}", Data.CustomerId, message.OrderValue);
+
+        Data.RunningTotal += message.OrderValue;
+        await CheckForPreferredStatus(context);
+
+        await RequestTimeout(context, orderExpiryTimeout, new OrderExpired() { Amount = message.OrderValue });
+    }
+
+    public async Task Timeout(OrderExpired timeout, IMessageHandlerContext context)
+    {
+        logger.LogInformation("Customer {CustomerId} order of {Amount} timed out.", Data.CustomerId, timeout.Amount);
+        Data.RunningTotal -= timeout.Amount;
+        await CheckForPreferredStatus(context);
+    }
+
+    async Task CheckForPreferredStatus(IMessageHandlerContext context)
+    {
+        if (!Data.PreferredStatus && Data.RunningTotal >= preferredStatusAmount)
         {
-            mapper.MapSaga(saga => saga.CustomerId)
-                .ToMessage<OrderBilled>(message => message.CustomerId);
+            Data.PreferredStatus = true;
+            await context.Publish<CustomerHasBecomePreferred>(s => s.CustomerId = Data.CustomerId);
         }
-
-        public async Task Handle(OrderBilled message, IMessageHandlerContext context)
+        else if (Data.PreferredStatus && Data.RunningTotal < preferredStatusAmount)
         {
-            Data.CustomerId = message.CustomerId;
-
-            logger.LogInformation("Customer {CustomerId} submitted order of {OrderValue}", Data.CustomerId, message.OrderValue);
-
-            Data.RunningTotal += message.OrderValue;
-            await CheckForPreferredStatus(context);
-
-            await RequestTimeout(context, orderExpiryTimeout, new OrderExpired() { Amount = message.OrderValue });
+            Data.PreferredStatus = false;
+            await context.Publish<CustomerHasBecomeNonPreferred>(s => s.CustomerId = Data.CustomerId);
         }
+    }
 
-        public async Task Timeout(OrderExpired timeout, IMessageHandlerContext context)
-        {
-            logger.LogInformation("Customer {CustomerId} order of {Amount} timed out.", Data.CustomerId, timeout.Amount);
-            Data.RunningTotal -= timeout.Amount;
-            await CheckForPreferredStatus(context);
-        }
+    public class CustomerStatusState : ContainSagaData
+    {
+        public string CustomerId { get; set; }
+        public decimal RunningTotal { get; set; }
+        public bool PreferredStatus { get; set; }
+    }
 
-        async Task CheckForPreferredStatus(IMessageHandlerContext context)
-        {
-            if (!Data.PreferredStatus && Data.RunningTotal >= preferredStatusAmount)
-            {
-                Data.PreferredStatus = true;
-                await context.Publish<CustomerHasBecomePreferred>(s => s.CustomerId = Data.CustomerId);
-            }
-            else if (Data.PreferredStatus && Data.RunningTotal < preferredStatusAmount)
-            {
-                Data.PreferredStatus = false;
-                await context.Publish<CustomerHasBecomeNonPreferred>(s => s.CustomerId = Data.CustomerId);
-            }
-        }
-
-        public class CustomerStatusState : ContainSagaData
-        {
-            public string CustomerId { get; set; }
-            public decimal RunningTotal { get; set; }
-            public bool PreferredStatus { get; set; }
-        }
-
-        public class OrderExpired
-        {
-            public decimal Amount { get; set; }
-        }
+    public class OrderExpired
+    {
+        public decimal Amount { get; set; }
     }
 }

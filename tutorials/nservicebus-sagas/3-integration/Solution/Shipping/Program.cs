@@ -30,8 +30,8 @@ class Program
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.AuditProcessedMessagesTo("audit");
 
-        // So that when we test recoverability, we don't have to wait so long
-        // for the failed message to be sent to the error queue
+        // Decrease the default delayed delivery interval so that we don't
+        // have to wait too long for the message to be moved to the error queue
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.Delayed(
             delayed =>

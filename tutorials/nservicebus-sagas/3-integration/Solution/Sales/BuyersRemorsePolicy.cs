@@ -4,7 +4,7 @@ using System;
 using System.Threading.Tasks;
 using Messages;
 
-namespace Core_7.BuyersRemorseTimeoutRequest;
+namespace Sales;
 
 class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger)
     : Saga<BuyersRemorseState>

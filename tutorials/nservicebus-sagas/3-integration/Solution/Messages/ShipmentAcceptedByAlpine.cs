@@ -1,8 +1,7 @@
 ﻿using NServiceBus;
 
-namespace Messages
+namespace Messages;
+
+public class ShipmentAcceptedByAlpine : IMessage
 {
-    public class ShipmentAcceptedByAlpine : IMessage
-    {
-    }
 }

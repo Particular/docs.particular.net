@@ -1,8 +1,7 @@
 ﻿using NServiceBus;
 
-namespace Shipping
+namespace Shipping;
+
+public class ShipmentFailed : IEvent
 {
-    public class ShipmentFailed : IEvent
-    {
-    }
 }

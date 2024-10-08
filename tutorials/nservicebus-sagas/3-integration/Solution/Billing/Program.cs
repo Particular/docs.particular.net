@@ -32,7 +32,7 @@ class Program
         endpointConfiguration.AuditProcessedMessagesTo("audit");
 
         // Decrease the default delayed delivery interval so that we don't
-        // have to wait too long for the a message to be moved to the error queue
+        // have to wait too long for the message to be moved to the error queue
         var recoverability = endpointConfiguration.Recoverability();
         recoverability.Delayed(
             delayed =>
