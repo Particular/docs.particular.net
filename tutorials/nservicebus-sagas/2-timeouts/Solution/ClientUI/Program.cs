@@ -21,7 +21,7 @@ class Program
 
         builder.UseNServiceBus(endpointConfiguration);
 
-        builder.Services.AddHostedService<Worker>();
+        builder.Services.AddHostedService<InputLoopService>();
 
         await builder.Build().RunAsync();
 

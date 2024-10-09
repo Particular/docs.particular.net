@@ -136,7 +136,7 @@ Now we need to modify ClientUI to send a `CancelOrder` command. First, we define
 
 snippet: BuyersRemorseCancelOrderRouting
 
-To allow users to cancel orders, we'll modify the ClientUI input loop to:
+To allow users to cancel orders, we'll modify the ClientUI input loop in the `InputLoopService` class to:
 
 * store the ID of the sent order
 * accept another command, `cancel`, that uses the previously stored ID to cancel the sent order

@@ -16,7 +16,7 @@ class UICommands(ILogger<UICommands> logger)
         {
             Console.Title = "ClientUI";
 
-            logger.LogInformation("Press 'P' to place an order, or 'Q' to quit.");
+            logger.LogInformation("Press 'P' to place an order, 'C' to cancel an order, or 'Q' to quit.");
             var key = Console.ReadKey();
             Console.WriteLine();
 

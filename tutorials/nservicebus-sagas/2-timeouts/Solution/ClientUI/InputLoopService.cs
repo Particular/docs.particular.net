@@ -1,12 +1,10 @@
 using Messages;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using NServiceBus.Logging;
-using NServiceBus.Routing;
 
 namespace ClientUI;
 
-public class Worker(IMessageSession messageSession,ILogger<Worker> logger) : BackgroundService
+public class InputLoopService(IMessageSession messageSession,ILogger<InputLoopService> logger) : BackgroundService
 {    
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -16,7 +14,7 @@ public class Worker(IMessageSession messageSession,ILogger<Worker> logger) : Bac
         {
             Console.Title = "ClientUI";
           
-            logger.LogInformation("Press 'P' to place an order, or 'Q' to quit.");
+            logger.LogInformation("Press 'P' to place an order, 'C' to cancel an order, or 'Q' to quit.");
             var key = Console.ReadKey();
             Console.WriteLine();
 
