@@ -2,7 +2,7 @@
 title: SQL Persistence - SQL Server dialect
 component: SqlPersistence
 related:
-reviewed: 2021-12-10
+reviewed: 2024-10-09
 ---
 
 > [!WARNING]

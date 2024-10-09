@@ -1,7 +1,7 @@
 ---
 title: Session filter pipeline extension
 summary: How to extend the pipeline to filter out messages from older sessions.
-reviewed: 2021-12-22
+reviewed: 2024-10-09
 component: Core
 related:
  - nservicebus/pipeline
