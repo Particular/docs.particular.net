@@ -675,7 +675,7 @@ File extensions scanned for snippets include:
 |--------------|----------------|
 | c#           | `cs`           |
 | xml          | `xml`          |
-| command line | `dos`          |
+| command line | `shell`        |
 | powershell   | `ps`           |
 | json         | `json`         |
 | sql          | `sql`          |
