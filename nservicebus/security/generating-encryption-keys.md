@@ -48,7 +48,7 @@ snippet: Hex-CSharp
 
 Generates 32 random bytes (256bits) in a base64 encoded output:
 
-```dos
+```shell
 openssl rand -base64 32
 ```
 
@@ -57,7 +57,7 @@ openssl rand -base64 32
 
 Generates 32 random characters (256bits):
 
-```dos
+```shell
 openssl rand 32
 ```
 

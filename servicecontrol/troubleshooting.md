@@ -33,7 +33,7 @@ When adding a ServiceControl instance the configured port number is checked to e
 
 In the event that the service fails to start to check if the configured port (typically port 33333) is available. To do this open up an elevated command prompt and issue the following command:
 
-```dos
+```shell
 netstat -a -b
 ```
 or install and use the provided [ServiceControl Management PowerShell module](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management) cmdlet to check a specific port:

@@ -70,7 +70,7 @@ From Server Manager's Add Roles and Features Wizard, enable `Message Queue Serve
 
 The DISM command line equivalent is:
 
-```dos
+```shell
 DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server
 ```
 
@@ -80,7 +80,7 @@ From the Control Panel, choose Programs. Then run the Windows Features Wizard by
 
 The DISM command line equivalent is:
 
-```dos
+```shell
 DISM.exe /Online /NoRestart /English /Enable-Feature /all /FeatureName:MSMQ-Server
 ```
 

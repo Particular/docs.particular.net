@@ -96,7 +96,7 @@ To run the service this way, the custom service account must have rights to log 
 
 For example
 
-```dos
+```shell
 runas /user:MyDomain\MyTestUser cmd.exe
 ```
 
@@ -114,7 +114,7 @@ Once login rights are granted:
  1. Shut down the console session.
  1. Start the service.
 
-```dos
+```shell
 ServiceControl.exe --serviceName=Particular.ServiceControl
 ```
 

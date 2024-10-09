@@ -76,7 +76,7 @@ Reboot to finalize the changes.
 
 To list which MSMQ features are enabled:
 
-```dos
+```shell
 DISM /Online /Get-Features /Format:Table | FINDSTR "^MSMQ-"
 ```
 
@@ -95,7 +95,7 @@ WCF-MSMQ-Activation45                                 | Disabled
 
 To disable a feature execute the following:
 
-```dos
+```shell
 DISM /Online /Disable-Feature /FeatureName:<FeatureName>
 ```
 
