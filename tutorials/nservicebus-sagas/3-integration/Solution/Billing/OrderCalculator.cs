@@ -4,7 +4,7 @@ namespace Billing;
 
 public class OrderCalculator
 {
-    Random rnd = new Random();
+    Random random = new Random();
 
     public decimal GetOrderTotal(string orderId)
     {
@@ -12,6 +12,6 @@ public class OrderCalculator
         // Calculate price
 
         // Return the price
-        return rnd.Next(25, 500);
+        return random.Next(25, 500);
     }
 }
