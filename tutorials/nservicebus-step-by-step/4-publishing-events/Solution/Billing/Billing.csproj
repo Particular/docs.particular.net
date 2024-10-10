@@ -5,7 +5,7 @@
     <LangVersion>12.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.*" />
     <PackageReference Include="NServiceBus" Version="9.*" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.*" />
     <ProjectReference Include="..\Billing.Messages\Billing.Messages.csproj" />
