@@ -1,10 +1,9 @@
 ﻿using NServiceBus;
 
-namespace Messages
+namespace Messages;
+
+public class ShipOrder :
+    ICommand
 {
-    public class ShipOrder :
-        ICommand
-    {
-        public string OrderId { get; set; }
-    }
+    public string OrderId { get; set; }
 }

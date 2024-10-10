@@ -1,37 +1,48 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-namespace Billing
+namespace Billing;
+
+class Program
 {
-    class Program
+    static async Task Main(string[] args)
     {
-        static async Task Main()
-        {
-            Console.Title = "Billing";
+        Console.Title = "Billing";
 
-            var endpointConfiguration = new EndpointConfiguration("Billing");
+        var builder = Host.CreateApplicationBuilder(args);
 
-            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        var endpointConfiguration = new EndpointConfiguration("Billing");
 
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-            var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
-            endpointConfiguration.RegisterComponents(
-                c =>
-                {
-                    c.AddSingleton<OrderCalculator>();
-                }
-                );
+        var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        endpointConfiguration.RegisterComponents(
+            c =>
+            {
+                c.AddSingleton<OrderCalculator>();
+            });
 
-            Console.WriteLine("Press Enter to exit.");
-            Console.ReadLine();
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.AuditProcessedMessagesTo("audit");
 
-            await endpointInstance.Stop();
-        }
+        // Decrease the default delayed delivery interval so that we don't
+        // have to wait too long for the message to be moved to the error queue
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Delayed(
+            delayed =>
+            {
+                delayed.TimeIncrease(TimeSpan.FromSeconds(2));
+            }
+        );
+
+        builder.UseNServiceBus(endpointConfiguration);
+
+        await builder.Build().RunAsync();
     }
 }

@@ -1,9 +1,8 @@
 ﻿using NServiceBus;
 
-namespace Messages
+namespace Messages;
+
+public interface CustomerHasBecomePreferred : IEvent
 {
-    public interface CustomerHasBecomePreferred : IEvent
-    {
-        string CustomerId { get; set; }
-    }
+    string CustomerId { get; set; }
 }
