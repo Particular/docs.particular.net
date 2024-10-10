@@ -1,67 +1,26 @@
-﻿using System;
-using System.Threading.Tasks;
-using Messages;
+﻿using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
-using NServiceBus.Logging;
 
-namespace ClientUI
+namespace ClientUI;
+
+class Program
 {
-    class Program
+    static async Task Main(string[] args)
     {
-        static async Task Main()
-        {
-            Console.Title = "ClientUI";
+        var builder = Host.CreateApplicationBuilder(args);
 
-            var endpointConfiguration = new EndpointConfiguration("ClientUI");
-            // Choose JSON to serialize and deserialize messages
-            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        var endpointConfiguration = new EndpointConfiguration("ClientUI");
 
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        endpointConfiguration.UseTransport(new LearningTransport());
 
-            await RunLoop(endpointInstance);
+        builder.UseNServiceBus(endpointConfiguration);
 
-            await endpointInstance.Stop();
-        }
+        builder.Services.AddHostedService<InputLoopService>();
 
-        #region RunLoop
-
-        static ILog log = LogManager.GetLogger<Program>();
-
-        static async Task RunLoop(IEndpointInstance endpointInstance)
-        {
-            while (true)
-            {
-                log.Info("Press 'P' to place an order, or 'Q' to quit.");
-                var key = Console.ReadKey();
-                Console.WriteLine();
-
-                switch (key.Key)
-                {
-                    case ConsoleKey.P:
-                        // Instantiate the command
-                        var command = new PlaceOrder
-                        {
-                            OrderId = Guid.NewGuid().ToString()
-                        };
-
-                        // Send the command to the local endpoint
-                        log.Info($"Sending PlaceOrder command, OrderId = {command.OrderId}");
-                        await endpointInstance.SendLocal(command);
-
-                        break;
-
-                    case ConsoleKey.Q:
-                        return;
-
-                    default:
-                        log.Info("Unknown input. Please try again.");
-                        break;
-                }
-            }
-        }
-
-        #endregion
+        await builder.Build().RunAsync();
     }
 }

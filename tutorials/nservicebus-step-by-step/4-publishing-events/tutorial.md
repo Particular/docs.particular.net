@@ -169,8 +169,8 @@ This is also a good opportunity to check your understanding. If you can complete
 If everything worked, you should now see output like this in your **Shipping** window:
 
 ```
-INFO  Shipping.OrderPlacedHandler Received OrderPlaced, OrderId = 96ee660a-5dd7-4772-9058-863d303ee0aa - Should we ship now?
-INFO  Shipping.OrderBilledHandler Received OrderBilled, OrderId = 96ee660a-5dd7-4772-9058-863d303ee0aa - Should we ship now?
+info: Shipping.OrderPlacedHandler[0] Received OrderPlaced, OrderId = efbceb55-2e41-4fa6-b390-5a08d8763ae7 - Should we ship now?
+info: Shipping.OrderBilledHandler[0] Received OrderBilled, OrderId = efbceb55-2e41-4fa6-b390-5a08d8763ae7 - Should we ship now?
 ```
 
 Of course, these messages could appear out of order. With asynchronous messaging, there are no message ordering guarantees. Even though `OrderBilled` comes logically after `OrderPlaced`, it's possible that `OrderBilled` could arrive first.

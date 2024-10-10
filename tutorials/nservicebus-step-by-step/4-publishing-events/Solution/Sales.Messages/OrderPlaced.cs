@@ -1,14 +1,13 @@
 ﻿using NServiceBus;
 
-namespace Messages
+namespace Messages;
+
+#region OrderPlaced
+
+public class OrderPlaced :
+    IEvent
 {
-    #region OrderPlaced
-
-    public class OrderPlaced :
-        IEvent
-    {
-        public string OrderId { get; set; }
-    }
-
-    #endregion
+    public string OrderId { get; set; }
 }
+
+#endregion

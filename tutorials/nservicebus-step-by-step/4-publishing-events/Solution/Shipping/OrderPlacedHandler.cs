@@ -1,19 +1,16 @@
 ﻿using System.Threading.Tasks;
 using Messages;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
-namespace Shipping
-{
-    public class OrderPlacedHandler :
-        IHandleMessages<OrderPlaced>
+namespace Shipping;
+
+public class OrderPlacedHandler(ILogger<OrderPlacedHandler> logger) :
+    IHandleMessages<OrderPlaced>
+{        
+    public Task Handle(OrderPlaced message, IMessageHandlerContext context)
     {
-        static ILog log = LogManager.GetLogger<OrderPlacedHandler>();
-
-        public Task Handle(OrderPlaced message, IMessageHandlerContext context)
-        {
-            log.Info($"Received OrderPlaced, OrderId = {message.OrderId} - Should we ship now?");
-            return Task.CompletedTask;
-        }
+        logger.LogInformation("Received OrderPlaced, OrderId = {orderId} - Should we ship now?",message.OrderId);
+        return Task.CompletedTask;
     }
 }
