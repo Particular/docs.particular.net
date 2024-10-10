@@ -165,13 +165,18 @@ Now when we run the solution, we get two console windows, one for **ClientUI** a
 In the **ClientUI** window, we see this output:
 
 ```
-INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.
+info: ClientUI.InputLoopService[0]
+      Press 'P' to place an order, or 'Q' to quit.
 p
-INFO  ClientUI.Program Sending PlaceOrder command, OrderId = af0d1aa7-1611-4aa0-b83d-05e2d931d532
-INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.
+info: ClientUI.InputLoopService[0]
+      Sending PlaceOrder command, OrderId = 0124c1d5-8eb9-43f7-85e4-2c3ef6081464
+info: ClientUI.InputLoopService[0]
+      Press 'P' to place an order, or 'Q' to quit.
 p
-INFO  ClientUI.Program Sending PlaceOrder command, OrderId = e19d6160-595a-4c30-98b5-ea07bc44a6f8
-INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.
+info: ClientUI.InputLoopService[0]
+      Sending PlaceOrder command, OrderId = 7c833457-a8a3-4c45-bc01-b30f09c11db0
+info: ClientUI.InputLoopService[0]
+      Press 'P' to place an order, or 'Q' to quit.
 ```
 
 Everything is the same, except the command is not processed here.
@@ -180,8 +185,9 @@ In the **Sales** window, we see:
 
 ```
 Press Enter to exit.
-INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = af0d1aa7-1611-4aa0-b83d-05e2d931d532
-INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e19d6160-595a-4c30-98b5-ea07bc44a6f8
+info: Sales.PlaceOrderHandler[0] Received PlaceOrder, OrderId = 0124c1d5-8eb9-43f7-85e4-2c3ef6081464
+
+info: Sales.PlaceOrderHandler[0] Received PlaceOrder, OrderId = 7c833457-a8a3-4c45-bc01-b30f09c11db0
 ```
 
 At this point, we've managed to create two processes and achieve inter-process communication between them. Now let's try something different.
