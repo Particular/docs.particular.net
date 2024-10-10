@@ -33,8 +33,8 @@ namespace Core_9
             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
-            
-            #region AddWorker
+
+            #region AddInputLoopService
             builder.UseNServiceBus(endpointConfiguration);
 
             // Remove these two lines
@@ -42,7 +42,7 @@ namespace Core_9
             Console.ReadLine();
 
             // Replace with:
-            builder.Services.AddHostedService<Worker>();
+            builder.Services.AddHostedService<InputLoopService>();
 
             await builder.Build().RunAsync();
             #endregion
@@ -54,9 +54,9 @@ namespace Core_9
         }
     }
 
-    #region WorkerClass
+    #region InputLoopService
 
-    public class Worker(IMessageSession messageSession, ILogger<Worker> logger) : BackgroundService
+    public class InputLoopService(IMessageSession messageSession, ILogger<InputLoopService> logger) : BackgroundService
     {
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {

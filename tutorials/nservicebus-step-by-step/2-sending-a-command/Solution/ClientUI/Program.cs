@@ -1,6 +1,4 @@
 ﻿using System.Threading.Tasks;
-using ClientUI;
-using Messages;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
@@ -17,11 +15,11 @@ class Program
 
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        var routing = endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.UseTransport(new LearningTransport());
 
         builder.UseNServiceBus(endpointConfiguration);
 
-        builder.Services.AddHostedService<Worker>();
+        builder.Services.AddHostedService<InputLoopService>();
 
         await builder.Build().RunAsync();
     }

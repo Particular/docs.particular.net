@@ -8,7 +8,7 @@ using NServiceBus;
 
 namespace ClientUI;
 
-public class Worker(IMessageSession messageSession, ILogger<Worker> logger) : BackgroundService
+public class InputLoopService(IMessageSession messageSession, ILogger<InputLoopService> logger) : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {

@@ -144,9 +144,9 @@ Now we have a message and a handler to process it. Let's send that message.
 
 In the **ClientUI** project, we are currently stopping the endpoint when we press the <kbd>Enter</kbd> key. Instead, let's create a long running task using the .NET []`BackgroundService` class](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-8.0&tabs=visual-studio#backgroundservice-base-class)
 
-Create a class called `Worker` and add the following code:
+Create a class called `InputLoopService` and add the following code:
 
-snippet: WorkerClass
+snippet: InputLoopService
 
 Let's take a closer look at the case when we want to place an order. In order to create the `PlaceOrder` command, create an instance of the `PlaceOrder` class and supply a unique value for the `OrderId`. Then, after logging the details, we can send it with the `SendLocal` method.
 
@@ -159,7 +159,7 @@ Because `SendLocal()` returns a `Task`, we need to be sure to `await` it properl
 
 Now let's modify the `Main` method to call the new `RunLoop` method:
 
-snippet: AddWorker
+snippet: AddInputLoopService
 
 
 ### Running the solution
@@ -167,15 +167,22 @@ snippet: AddWorker
 Now we are ready to run the solution. Whenever we press <kbd>P</kbd> on the terminal, a command message is sent and then processed by a handler class in the same project.
 You should see something similar to this on your console:
 ```
-INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.
+info: ClientUI.InputLoopService[0]
+      Press 'P' to place an order, or 'Q' to quit.
 p
-INFO  ClientUI.Program Sending PlaceOrder command, OrderId = 1fb61e01-34a3-4562-82b1-85278565b59d
-INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.
-INFO  ClientUI.PlaceOrderHandler Received PlaceOrder, OrderId = 1fb61e01-34a3-4562-82b1-85278565b59d
+info: ClientUI.InputLoopService[0]
+      Sending PlaceOrder command, OrderId = d372b7e5-aa0c-4f04-9714-b2d92eccb85b
+info: ClientUI.InputLoopService[0]
+      Press 'P' to place an order, or 'Q' to quit.
+info: ClientUI.PlaceOrderHandler[0]
+      Received PlaceOrder, OrderId = d372b7e5-aa0c-4f04-9714-b2d92eccb85b
 p
-INFO  ClientUI.Program Sending PlaceOrder command, OrderId = d9e59362-ccf4-4323-8298-4bbc052fb877
-INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.
-INFO  ClientUI.PlaceOrderHandler Received PlaceOrder, OrderId = d9e59362-ccf4-4323-8298-4bbc052fb877
+info: ClientUI.InputLoopService[0]
+      Sending PlaceOrder command, OrderId = 4feacbf6-9592-43c4-be80-4863bd79dd8d
+info: ClientUI.InputLoopService[0]
+      Press 'P' to place an order, or 'Q' to quit.
+info: ClientUI.PlaceOrderHandler[0]
+      Received PlaceOrder, OrderId = 4feacbf6-9592-43c4-be80-4863bd79dd8d
 ```
 
 Note how after sending a message, the prompt from `ClientUI.Program` is displayed _before_ the `ClientUI.PlaceOrderHandler` acknowledges receipt of the message. This is because rather than calling the `Handle` method as a direct method call, the message is sent asynchronously, and then control immediately returns to the `RunLoop` which repeats the prompt. It isn't until a bit later, when the message is received and processed, that we see the `Received PlaceOrder` notification.
