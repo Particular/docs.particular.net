@@ -104,7 +104,7 @@ Next, run the solution.
  1. In Visual Studio's **Debug** menu, select **Detach All** so that the system keeps running but does not break into the debugger when we throw our exception.
  1. In the **ClientUI** window, place an order by pressing <kbd>P</kbd>.
 
-When we do these steps, we'll see a wall of exception messages in white text, which is log level INFO, followed by one in yellow text, which is log level WARN. The exception traces in white are the failures during immediate retries, and the last trace in yellow is the failure that hands the message over to delayed retries.
+When we do these steps, we'll see a wall of exception messages with log level `Information`, followed by one with log level `Warning`. The exception traces with log level `Information` are the failures during immediate retries, and the last trace with log level `Warning` is the failure that hands the message over to delayed retries.
 
 ```
 info: Sales.PlaceOrderHandler[0]
@@ -114,7 +114,7 @@ warn: NServiceBus.DelayedRetry[0]
       System.Exception: BOOM
 ```
 
-Ten seconds later, the retries begin again, followed by another yellow trace, sending the message back to delayed retries. Twenty seconds after that, another set of traces. Finally, 30 seconds after that, the final exception trace will be shown in red, which is log level ERROR. This is where NServiceBus gives up on the message and redirects it to the error queue.
+Ten seconds later, the retries begin again, followed by another log level `Warning`, sending the message back to delayed retries. Twenty seconds after that, another set of traces. Finally, 30 seconds after that, the final exception trace will be logged with level `Error`. This is where NServiceBus gives up on the message and redirects it to the error queue.
 
 ```
 info: Sales.PlaceOrderHandler[0]

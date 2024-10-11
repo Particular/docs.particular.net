@@ -14,8 +14,6 @@ public class InputLoopService(IMessageSession messageSession, ILogger<InputLoopS
     {
         while (true)
         {
-            Console.Title = "ClientUI";
-
             logger.LogInformation("Press 'P' to place an order, or 'Q' to quit.");
             var key = Console.ReadKey();
             Console.WriteLine();

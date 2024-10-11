@@ -10,6 +10,8 @@ namespace Core_9;
 public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) :
     IHandleMessages<PlaceOrder>
 {
+#pragma warning disable CS0162 // Unreachable code detected
+
     #region ThrowSystemic
     public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
@@ -19,17 +21,16 @@ public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) :
 
         throw new Exception("BOOM");
 
-#pragma warning disable CS0162 // Unreachable code detected
         var orderPlaced = new OrderPlaced
         {
             OrderId = message.OrderId
         };
         return context.Publish(orderPlaced);
-#pragma warning restore CS0162 // Unreachable code detected
     }
 
 
-#endregion
+    #endregion
+#pragma warning restore CS0162 // Unreachable code detected
 
 #pragma warning restore CS0162 // Unreachable code detected
 
