@@ -120,13 +120,13 @@ Now that we've defined a message, we can create a corresponding message handler.
 
  1. In the **ClientUI** project, create a new class named `PlaceOrderHandler`.
  1. Mark the handler class as public and implement the `IHandleMessages<PlaceOrder>` interface.
- 1. Add a logger instance, which will allow you to take advantage of the same logging system used by NServiceBus. This has an important advantage over `Console.WriteLine()`: the entries written with the logger will appear in the log file in addition to the console. Use this line to add the logger instance to your handler class:
+ 1. Add a logger instance, which will allow you to take advantage of the same logging system used by NServiceBus. This has an important advantage over `Console.WriteLine()`: the entries written with the logger will appear in the log file in addition to the console. Use this line to add primary constructor to your handler class that gets the logger instance:
     ```cs
-    static ILog log = LogManager.GetLogger<PlaceOrderHandler>();
+    public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger)
     ```
  1. Within the `Handle` method, use the logger to record the receipt of the `PlaceOrder` message, including the value of the `OrderId` message property:
     ```cs
-    log.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
+    logger.LogInformation("Received PlaceOrder, OrderId = {orderId}", message.OrderId);
     ```
  1. Since everything we have done in this handler method is synchronous, return `Task.CompletedTask`.
 
@@ -134,15 +134,11 @@ When complete, your `PlaceOrderHandler` class should look like this:
 
 snippet: PlaceOrderHandler
 
-> [!NOTE]
-> Because `LogManager.GetLogger(..);` is an expensive call, it's important to [implement loggers as static members](/nservicebus/logging/usage.md).
-
-
 ### Send a message
 
 Now we have a message and a handler to process it. Let's send that message.
 
-In the **ClientUI** project, we are currently stopping the endpoint when we press the <kbd>Enter</kbd> key. Instead, let's create a long running task using the .NET []`BackgroundService` class](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-8.0&tabs=visual-studio#backgroundservice-base-class)
+In the **ClientUI** project, we are currently stopping the endpoint when we press the <kbd>Ctrl+C</kbd>. Let's change that, and put the user input processing logic in a long running task using the a [`BackgroundService`](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-8.0&tabs=visual-studio#backgroundservice-base-class)
 
 Create a class called `InputLoopService` and add the following code:
 
@@ -157,7 +153,7 @@ Let's take a closer look at the case when we want to place an order. In order to
 
 Because `SendLocal()` returns a `Task`, we need to be sure to `await` it properly.
 
-Now let's modify the `Main` method to call the new `RunLoop` method:
+Now let's modify the `Main` method and register the `InputLookService` in the host:
 
 snippet: AddInputLoopService
 

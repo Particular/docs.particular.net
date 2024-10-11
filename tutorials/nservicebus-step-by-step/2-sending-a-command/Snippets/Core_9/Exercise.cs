@@ -37,11 +37,7 @@ namespace Core_9
             #region AddInputLoopService
             builder.UseNServiceBus(endpointConfiguration);
 
-            // Remove these two lines
-            Console.WriteLine("Press Enter to exit...");
-            Console.ReadLine();
-
-            // Replace with:
+            // Add this line:
             builder.Services.AddHostedService<InputLoopService>();
 
             await builder.Build().RunAsync();
@@ -62,8 +58,6 @@ namespace Core_9
         {
             while (true)
             {
-                Console.Title = "ClientUI";
-
                 logger.LogInformation("Press 'P' to place an order, or 'Q' to quit.");
                 var key = Console.ReadKey();
                 Console.WriteLine();

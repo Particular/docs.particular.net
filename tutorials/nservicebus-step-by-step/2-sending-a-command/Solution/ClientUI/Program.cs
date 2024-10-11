@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
@@ -9,6 +10,8 @@ class Program
 {
     static async Task Main(string[] args)
     {
+        Console.Title = "ClientUI";
+
         var builder = Host.CreateApplicationBuilder(args);
 
         var endpointConfiguration = new EndpointConfiguration("ClientUI");
