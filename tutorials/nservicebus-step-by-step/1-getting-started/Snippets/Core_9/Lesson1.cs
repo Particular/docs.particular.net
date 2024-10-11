@@ -35,6 +35,10 @@ class StepByStep
 
     static async Task Steps(string[] args)
     {
+        #region ConsoleTitle
+        Console.Title = "ClientUI";
+        #endregion
+
         #region Setup
         var builder = Host.CreateApplicationBuilder(args);
         #endregion
@@ -52,9 +56,6 @@ class StepByStep
 
         #region Startup
         builder.UseNServiceBus(endpointConfiguration);
-
-        Console.WriteLine("Press Enter to exit...");
-        Console.ReadLine();
 
         await builder.Build().RunAsync();
         #endregion
