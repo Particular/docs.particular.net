@@ -144,7 +144,8 @@ Finally, modify the solution properties so that **Billing** will start when debu
 Now when we run the solution, we'll see the following output in the **Billing** window:
 
 ```
-INFO  Billing.OrderPlacedHandler Received OrderPlaced, OrderId = 01698293-9da9-4606-8468-2b7f1b86b380 - Charging credit card...
+info: Billing.OrderPlacedHandler[0]
+      Received OrderPlaced, OrderId = a875a956-2ab2-4bb5-aec9-c1048d5faa2b - Charging credit card...
 ```
 
 That's great, but why stop there? The whole point of Publish/Subscribe is that we can have *multiple* subscribers.
