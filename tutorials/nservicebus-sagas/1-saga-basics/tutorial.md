@@ -229,12 +229,12 @@ You can now press <kbd>F5</kbd> and test the `ShippingPolicy` saga. By sending a
 The **Shipping** endpoint console should show the following output:
 
 ```code
-info: Shipping.ShippingPolicy[0]
-      OrderPlaced message received for 95728c31-b926-46bc-9a9e-8dbe57dee5e0.
-info: Shipping.ShippingPolicy[0]
-      OrderBilled message received for 95728c31-b926-46bc-9a9e-8dbe57dee5e0.
-info: Shipping.ShipOrderHandler[0]
-      Order [95728c31-b926-46bc-9a9e-8dbe57dee5e0] - Successfully shipped.
+ info: Shipping.ShippingPolicy[0]
+       OrderPlaced message received for 95728c31-b926-46bc-9a9e-8dbe57dee5e0.
+ info: Shipping.ShippingPolicy[0]
+       OrderBilled message received for 95728c31-b926-46bc-9a9e-8dbe57dee5e0.
+ info: Shipping.ShipOrderHandler[0]
+       Order [95728c31-b926-46bc-9a9e-8dbe57dee5e0] - Successfully shipped.
 ```
 
 Remember that it's possible that `OrderBilled` may be handled before `OrderPlaced`, which is why it was so critical to indicate that the saga can be started by both messages with `IAmStartedByMessages<T>`. This ensures that the saga will work correctly no matter the arrival order of the events.
