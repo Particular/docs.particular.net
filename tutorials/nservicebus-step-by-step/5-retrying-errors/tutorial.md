@@ -107,23 +107,22 @@ Next, run the solution.
 When we do these steps, we'll see a wall of exception messages with log level `Information`, followed by one with log level `Warning`. The exception traces with log level `Information` are the failures during immediate retries, and the last trace with log level `Warning` is the failure that hands the message over to delayed retries.
 
 ```
-info: Sales.PlaceOrderHandler[0]
-      Received PlaceOrder, OrderId = a905a24c-a630-475b-af8b-452db7c95d3a
-warn: NServiceBus.DelayedRetry[0]
-      Delayed Retry will reschedule message '605705bd-3e31-4241-b56a-b20500a6c475' after a delay of 00:00:10 because of an exception:
-      System.Exception: BOOM
+ info: Sales.PlaceOrderHandler[0]
+       Received PlaceOrder, OrderId = a905a24c-a630-475b-af8b-452db7c95d3a
+ warn: NServiceBus.DelayedRetry[0]
+       Delayed Retry will reschedule message '605705bd-3e31-4241-b56a-b20500a6c475' after a delay of 00:00:10 because of an exception:
+       System.Exception: BOOM
 ```
 
 Ten seconds later, the retries begin again, followed by another log level `Warning`, sending the message back to delayed retries. Twenty seconds after that, another set of traces. Finally, 30 seconds after that, the final exception trace will be logged with level `Error`. This is where NServiceBus gives up on the message and redirects it to the error queue.
 
 ```
-info: Sales.PlaceOrderHandler[0]
-      Received PlaceOrder, OrderId = a905a24c-a630-475b-af8b-452db7c95d3a
-fail: NServiceBus.MoveToError[0]
-      Moving message '605705bd-3e31-4241-b56a-b20500a6c475' to the error queue 'error' because processing failed due to an exception:
-      System.Exception: BOOM
+ info: Sales.PlaceOrderHandler[0]
+       Received PlaceOrder, OrderId = a905a24c-a630-475b-af8b-452db7c95d3a
+ fail: NServiceBus.MoveToError[0]
+       Moving message '605705bd-3e31-4241-b56a-b20500a6c475' to the error queue 'error' because processing failed due to an exception:
+       System.Exception: BOOM
 ```
-
 
 ### Retry settings
 
@@ -155,7 +154,6 @@ snippet: ThrowTransient
 As you will see in the **Sales** window, 80% of the messages will go through as normal. When an exception occurs, the exception trace will be displayed once in white, and then generally succeed on the next try. After the successful retry, the other windows will continue to react as normal to complete the process.
 
 With NServiceBus watching over your processes with automated retries, you don't have to worry about transient failures anymore. If an error is severe enough, it will progress through immediate and delayed retries and be delivered to an error queue. Then you know that it's a severe error that needs to be addressed.
-
 
 ## Summary
 
