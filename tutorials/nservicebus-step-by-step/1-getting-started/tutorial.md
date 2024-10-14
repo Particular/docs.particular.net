@@ -69,6 +69,12 @@ snippet: ConsoleTitle
 
 When running multiple console apps in the same solution, giving each one a name makes them easier to identify. This console app's title is `ClientUI`. In later lessons, we'll expand this solution to host multiple applications.
 
+#### Setup
+
+snippet: Setup
+
+The host is typically configured, built, and run by code in the `Program` class. The `CreateApplicationBuilder` method creates and configures a builder object.
+
 #### EndpointConfiguration
 
 snippet: EndpointName
@@ -86,7 +92,7 @@ Capturing the `transport` settings in a variable as shown will make things easie
 
 ### Starting up
 
-At the end of the `Main` method, after the configuration code, add the following lines which will start the endpoint and keep it running until you press the <kbd>Enter</kbd> key to shut it down.
+At the end of the `Main` method, after the configuration code, add the following lines which will start the endpoint and keep it running until you press the <kbd>Ctrl+C</kbd> to shut it down.
 
 snippet: Startup
 

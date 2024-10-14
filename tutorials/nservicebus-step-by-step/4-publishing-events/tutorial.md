@@ -144,7 +144,8 @@ Finally, modify the solution properties so that **Billing** will start when debu
 Now when we run the solution, we'll see the following output in the **Billing** window:
 
 ```
-INFO  Billing.OrderPlacedHandler Received OrderPlaced, OrderId = 01698293-9da9-4606-8468-2b7f1b86b380 - Charging credit card...
+ info: Billing.OrderPlacedHandler[0]
+       Received OrderPlaced, OrderId = a875a956-2ab2-4bb5-aec9-c1048d5faa2b - Charging credit card...
 ```
 
 That's great, but why stop there? The whole point of Publish/Subscribe is that we can have *multiple* subscribers.
@@ -169,8 +170,8 @@ This is also a good opportunity to check your understanding. If you can complete
 If everything worked, you should now see output like this in your **Shipping** window:
 
 ```
-INFO  Shipping.OrderPlacedHandler Received OrderPlaced, OrderId = 96ee660a-5dd7-4772-9058-863d303ee0aa - Should we ship now?
-INFO  Shipping.OrderBilledHandler Received OrderBilled, OrderId = 96ee660a-5dd7-4772-9058-863d303ee0aa - Should we ship now?
+ info: Shipping.OrderPlacedHandler[0] Received OrderPlaced, OrderId = efbceb55-2e41-4fa6-b390-5a08d8763ae7 - Should we ship now?
+ info: Shipping.OrderBilledHandler[0] Received OrderBilled, OrderId = efbceb55-2e41-4fa6-b390-5a08d8763ae7 - Should we ship now?
 ```
 
 Of course, these messages could appear out of order. With asynchronous messaging, there are no message ordering guarantees. Even though `OrderBilled` comes logically after `OrderPlaced`, it's possible that `OrderBilled` could arrive first.

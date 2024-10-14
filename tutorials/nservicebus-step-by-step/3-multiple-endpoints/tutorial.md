@@ -47,6 +47,8 @@ We say *logical routing* because this is at a logical layer only, which isn't ne
 > An [**endpoint**](/nservicebus/concepts/glossary.md#endpoint) is a logical concept, defined by an endpoint name and associated implementation, that defines an owner responsible for processing messages.
 >
 > An [**endpoint instance**](/nservicebus/concepts/glossary.md#endpoint-instance) is a physical instance of the endpoint deployed to a single server. Many endpoint instances may be deployed to many servers in order to scale out the processing of a high-volume message to multiple servers.
+>
+> The IMessageSession API provides basic message operations
 
 For now, we'll only concern ourselves with logical routing, and leave the rest of it (physical routing, scale-out, etc.) for a later time.
 
@@ -93,7 +95,7 @@ First, let's create a project for our new endpoint.
 
 Now that we have a project for our **Sales** endpoint, we need to add similar code to configure and start an NServiceBus endpoint:
 
-snippet: SalesProgram
+snippet: SalesConsoleApp
 
 Most of this configuration looks exactly the same as our **ClientUI** endpoint. It's critical for the configuration between endpoints to match (especially message transport and serializer); otherwise, the endpoints would not be able to understand each other.
 
@@ -163,13 +165,18 @@ Now when we run the solution, we get two console windows, one for **ClientUI** a
 In the **ClientUI** window, we see this output:
 
 ```
-INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.
-p
-INFO  ClientUI.Program Sending PlaceOrder command, OrderId = af0d1aa7-1611-4aa0-b83d-05e2d931d532
-INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.
-p
-INFO  ClientUI.Program Sending PlaceOrder command, OrderId = e19d6160-595a-4c30-98b5-ea07bc44a6f8
-INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.
+ info: ClientUI.InputLoopService[0]
+       Press 'P' to place an order, or 'Q' to quit.
+ p
+ info: ClientUI.InputLoopService[0]
+       Sending PlaceOrder command, OrderId = 0124c1d5-8eb9-43f7-85e4-2c3ef6081464
+ info: ClientUI.InputLoopService[0]
+       Press 'P' to place an order, or 'Q' to quit.
+ p
+ info: ClientUI.InputLoopService[0]
+       Sending PlaceOrder command, OrderId = 7c833457-a8a3-4c45-bc01-b30f09c11db0
+ info: ClientUI.InputLoopService[0]
+       Press 'P' to place an order, or 'Q' to quit.
 ```
 
 Everything is the same, except the command is not processed here.
@@ -177,9 +184,10 @@ Everything is the same, except the command is not processed here.
 In the **Sales** window, we see:
 
 ```
-Press Enter to exit.
-INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = af0d1aa7-1611-4aa0-b83d-05e2d931d532
-INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e19d6160-595a-4c30-98b5-ea07bc44a6f8
+ Press Enter to exit.
+ info: Sales.PlaceOrderHandler[0] Received PlaceOrder, OrderId = 0124c1d5-8eb9-43f7-85e4-2c3ef6081464
+
+ info: Sales.PlaceOrderHandler[0] Received PlaceOrder, OrderId = 7c833457-a8a3-4c45-bc01-b30f09c11db0
 ```
 
 At this point, we've managed to create two processes and achieve inter-process communication between them. Now let's try something different.

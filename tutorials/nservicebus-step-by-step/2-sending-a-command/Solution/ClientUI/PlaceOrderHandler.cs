@@ -1,23 +1,16 @@
 ﻿using System.Threading.Tasks;
 using Messages;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
-namespace ClientUI
+namespace ClientUI;
+
+public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) :
+    IHandleMessages<PlaceOrder>
 {
-    #region PlaceOrderHandler
-
-    public class PlaceOrderHandler :
-        IHandleMessages<PlaceOrder>
+    public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
-        static ILog log = LogManager.GetLogger<PlaceOrderHandler>();
-
-        public Task Handle(PlaceOrder message, IMessageHandlerContext context)
-        {
-            log.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
-            return Task.CompletedTask;
-        }
+        logger.LogInformation("Received PlaceOrder, OrderId = {orderId}", message.OrderId);
+        return Task.CompletedTask;
     }
-
-    #endregion
 }
