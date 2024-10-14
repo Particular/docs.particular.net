@@ -163,22 +163,22 @@ snippet: AddInputLoopService
 Now we are ready to run the solution. Whenever we press <kbd>P</kbd> on the terminal, a command message is sent and then processed by a handler class in the same project.
 You should see something similar to this on your console:
 ```
-info: ClientUI.InputLoopService[0]
-      Press 'P' to place an order, or 'Q' to quit.
-p
-info: ClientUI.InputLoopService[0]
-      Sending PlaceOrder command, OrderId = d372b7e5-aa0c-4f04-9714-b2d92eccb85b
-info: ClientUI.InputLoopService[0]
-      Press 'P' to place an order, or 'Q' to quit.
-info: ClientUI.PlaceOrderHandler[0]
-      Received PlaceOrder, OrderId = d372b7e5-aa0c-4f04-9714-b2d92eccb85b
-p
-info: ClientUI.InputLoopService[0]
-      Sending PlaceOrder command, OrderId = 4feacbf6-9592-43c4-be80-4863bd79dd8d
-info: ClientUI.InputLoopService[0]
-      Press 'P' to place an order, or 'Q' to quit.
-info: ClientUI.PlaceOrderHandler[0]
-      Received PlaceOrder, OrderId = 4feacbf6-9592-43c4-be80-4863bd79dd8d
+ info: ClientUI.InputLoopService[0]
+       Press 'P' to place an order, or 'Q' to quit.
+ p
+ info: ClientUI.InputLoopService[0]
+       Sending PlaceOrder command, OrderId = d372b7e5-aa0c-4f04-9714-b2d92eccb85b
+ info: ClientUI.InputLoopService[0]
+       Press 'P' to place an order, or 'Q' to quit.
+ info: ClientUI.PlaceOrderHandler[0]
+       Received PlaceOrder, OrderId = d372b7e5-aa0c-4f04-9714-b2d92eccb85b
+ p
+ info: ClientUI.InputLoopService[0]
+       Sending PlaceOrder command, OrderId = 4feacbf6-9592-43c4-be80-4863bd79dd8d
+ info: ClientUI.InputLoopService[0]
+       Press 'P' to place an order, or 'Q' to quit.
+ info: ClientUI.PlaceOrderHandler[0]
+       Received PlaceOrder, OrderId = 4feacbf6-9592-43c4-be80-4863bd79dd8d
 ```
 
 Note how after sending a message, the prompt from `ClientUI.Program` is displayed _before_ the `ClientUI.PlaceOrderHandler` acknowledges receipt of the message. This is because rather than calling the `Handle` method as a direct method call, the message is sent asynchronously, and then control immediately returns to the `RunLoop` which repeats the prompt. It isn't until a bit later, when the message is received and processed, that we see the `Received PlaceOrder` notification.
