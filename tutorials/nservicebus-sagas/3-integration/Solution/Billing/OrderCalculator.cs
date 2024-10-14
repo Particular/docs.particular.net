@@ -1,18 +1,17 @@
 ﻿using System;
 
-namespace Billing
+namespace Billing;
+
+public class OrderCalculator
 {
-    public class OrderCalculator
+    Random random = new Random();
+
+    public decimal GetOrderTotal(string orderId)
     {
-        Random rnd = new Random();
+        // Retrieve order from database
+        // Calculate price
 
-        public decimal GetOrderTotal(string orderId)
-        {
-            // Retrieve order from database
-            // Calculate price
-
-            // Return the price
-            return rnd.Next(25, 500);
-        }
+        // Return the price
+        return random.Next(25, 500);
     }
 }

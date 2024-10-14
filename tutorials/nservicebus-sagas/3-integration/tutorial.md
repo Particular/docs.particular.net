@@ -259,10 +259,14 @@ Based on the randomized timeouts that occur in the Maple and Alpine handlers, th
 The happy path for this workflow is for Maple, our preferred provider, to respond quickly. When that occurs, the output in the **Shipping** console application will look like this:
 
 ```
-12:48:02.112 INFO  ShipOrderWorkflow for Order [19da7b54-36c0-4f68-9db5-713738dccfcf] - Trying Maple first.
-12:48:02.152 INFO  ShipWithMapleHandler: Delaying Order [19da7b54-36c0-4f68-9db5-713738dccfcf] 7 seconds.
-12:48:09.196 INFO  Order [19da7b54-36c0-4f68-9db5-713738dccfcf] - Successfully shipped with Maple
-12:48:23.532 INFO  No saga found for timeout message c6dad340-8ee7-4d54-b23b-ac7c0135d2fd, ignoring since the saga has been marked as complete before the timeout fired
+ info: Shipping.ShipOrderWorkflow[0]
+       ShipOrderWorkflow for Order [dd437de8-dae7-4449-b8c9-ce478ab8ec2a] - Trying Maple first.
+ info: Shipping.Integration.ShipWithMapleHandler[0]
+       ShipWithMapleHandler: Delaying Order [dd437de8-dae7-4449-b8c9-ce478ab8ec2a] 7 seconds.
+ info: Shipping.ShipOrderWorkflow[0]
+       Order [dd437de8-dae7-4449-b8c9-ce478ab8ec2a] - Successfully shipped with Maple
+ info: NServiceBus.SagaPersistenceBehavior[0]
+       No saga found for timeout message 9ec5274d-f711-4265-a5df-b2040092af31, ignoring since the saga has been marked as complete before the timeout fired
 ```
 
 In this case, shipping via Maple was attempted first, and Maple responded in 7 seconds, which is shorter than the requested 20-second timeout.
@@ -278,12 +282,18 @@ Timeouts are designed to be reminders for the saga to take action. If the saga d
 The second case is when Maple takes longer than the 20-second timeout, but Alpine responds quickly.
 
 ```
-13:24:47.214 INFO  ShipOrderWorkflow for Order [a4bd57a8-e835-49b4-b507-90d1a23cd84e] - Trying Maple first.
-13:24:47.275 INFO  ShipWithMapleHandler: Delaying Order [a4bd57a8-e835-49b4-b507-90d1a23cd84e] 42 seconds.
-13:25:29.324 INFO  Order [a4bd57a8-e835-49b4-b507-90d1a23cd84e] - No answer from Maple, let's try Alpine.
-13:25:29.386 INFO  ShipWithAlpineHandler: Delaying Order [a4bd57a8-e835-49b4-b507-90d1a23cd84e] 3 seconds.
-13:25:32.421 INFO  Order [a4bd57a8-e835-49b4-b507-90d1a23cd84e] - Successfully shipped with Alpine
-13:25:50.592 INFO  No saga found for timeout message 9cc0f019-f529-4c00-8eeb-ac7c01401c70, ignoring since the saga has been marked as complete before the timeout fired
+ info: Shipping.ShipOrderWorkflow[0]
+       ShipOrderWorkflow for Order [62a1a38c-86c0-4020-9bb3-a1748dd71783] - Trying Maple first.
+ info: Shipping.Integration.ShipWithMapleHandler[0]
+       ShipWithMapleHandler: Delaying Order [62a1a38c-86c0-4020-9bb3-a1748dd71783] 42 seconds.
+ info: Shipping.ShipOrderWorkflow[0]
+       Order [62a1a38c-86c0-4020-9bb3-a1748dd71783] - No answer from Maple, let's try Alpine.
+ info: Shipping.Integration.ShipWithAlpineHandler[0]
+       ShipWithAlpineHandler: Delaying Order [62a1a38c-86c0-4020-9bb3-a1748dd71783] 4 seconds.
+ info: Shipping.ShipOrderWorkflow[0]
+       Order [62a1a38c-86c0-4020-9bb3-a1748dd71783] - Successfully shipped with Alpine
+ info: NServiceBus.SagaPersistenceBehavior[0]
+       No saga found for timeout message 137c7deb-1d5b-440a-818f-b2040093edd9, ignoring since the saga has been marked as complete before the timeout fired
 ```
 
 Here, we see that Maple was attempted, but took 42 seconds to respond, which is past our requested 20-second timeout. So instead, the order was shipping via Alpine, which responded in 3 seconds, which was successful.
@@ -295,12 +305,18 @@ Once again, a timeout was discarded after the saga completed its work, but in th
 In the last case, both Maple and Alpine will take longer than their configured timeouts to respond:
 
 ```
-13:36:21.825 INFO  ShipOrderWorkflow for Order [54775217-49ee-4856-82e5-1ccc432d1d60] - Trying Maple first.
-13:36:21.861 INFO  ShipWithMapleHandler: Delaying Order [54775217-49ee-4856-82e5-1ccc432d1d60] 42 seconds.
-13:37:03.914 INFO  Order [54775217-49ee-4856-82e5-1ccc432d1d60] - No answer from Maple, let's try Alpine.
-13:37:03.965 INFO  ShipWithAlpineHandler: Delaying Order [54775217-49ee-4856-82e5-1ccc432d1d60] 24 seconds.
-13:37:27.998 WARN  Order [54775217-49ee-4856-82e5-1ccc432d1d60] - No answer from Maple/Alpine. We need to escalate!
-13:37:28.032 INFO  Could not find a started saga for 'Messages.ShipmentAcceptedByAlpine' message type. Going to invoke SagaNotFoundHandlers.
+ info: Shipping.ShipOrderWorkflow[0]
+       ShipOrderWorkflow for Order [1cd958c7-7bbe-4388-a831-c88c0c7da5b8] - Trying Maple first.
+ info: Shipping.Integration.ShipWithMapleHandler[0]
+       ShipWithMapleHandler: Delaying Order [1cd958c7-7bbe-4388-a831-c88c0c7da5b8] 44 seconds.
+ info: Shipping.ShipOrderWorkflow[0]
+       Order [1cd958c7-7bbe-4388-a831-c88c0c7da5b8] - No answer from Maple, let's try Alpine.
+ info: Shipping.Integration.ShipWithAlpineHandler[0]
+       ShipWithAlpineHandler: Delaying Order [1cd958c7-7bbe-4388-a831-c88c0c7da5b8] 24 seconds.
+ warn: Shipping.ShipOrderWorkflow[0]
+       Order [1cd958c7-7bbe-4388-a831-c88c0c7da5b8] - No answer from Maple/Alpine. We need to escalate!
+ info: NServiceBus.SagaPersistenceBehavior[0]
+       Could not find a started saga of 'Shipping.ShipOrderWorkflow' for message type 'Messages.ShipmentAcceptedByAlpine'.
 ```
 
 We can see from the output that both timeouts were reached, resulting in the `WARN` statement, which we know would be accompanied by the `ShipmentFailed` event being published, but since we don't have any handler for that we don't see any evidence in the log.
@@ -308,7 +324,8 @@ We can see from the output that both timeouts were reached, resulting in the `WA
 We also see a new message at the end, similar to what happened when timeout messages were being ignored:
 
 ```
-INFO  Could not find a started saga for 'Messages.ShipmentAcceptedByAlpine' message type. Going to invoke SagaNotFoundHandlers.
+ info: NServiceBus.InvokeSagaNotFoundBehavior[0]
+       Could not find any started sagas for message type 'Messages.ShipmentAcceptedByAlpine'. Going to invoke SagaNotFoundHandlers.
 ```
 
 This is caused by the `ShipmentAcceptedByAlpine` message being returned _after_ the second timeout has already given up on Alpine, published `ShipmentFailed`, and marked the saga as complete, removing it from storage. As we've defined the saga thus far, this is working as intended, but this is another place where it all comes down to business requirements.
