@@ -46,6 +46,8 @@ A volume must be mounted to `/var/lib/ravendb/data` to provide persistent storag
 
 > [!NOTE]
 > RavenDB has specific requirements about the types of storage it supports. See the [RavenDB container requirements documentation](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/running-in-docker-container#requirements) for more information.
+> 
+> If providing these storage requirements is not possible, it is also possible to connect to an external, separately-licensed RavenDB server. The external server must be using the same Major and Minor version noted in the version map below.
 
 ## Additional settings
 
