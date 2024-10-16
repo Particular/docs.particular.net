@@ -1,7 +1,7 @@
 ---
 title: Cosmos DB Persistence Usage with transactions
 summary: Using Cosmos DB Persistence to store sagas and outbox records atomically
-reviewed: 2022-01-19
+reviewed: 2024-10-14
 component: CosmosDB
 related:
  - nservicebus/sagas
