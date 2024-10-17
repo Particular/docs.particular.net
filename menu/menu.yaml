@@ -804,7 +804,7 @@
         - Url: nservicebus/throughput-tool/sql-transport
           Title: using SQL Transport
         - Url: nservicebus/throughput-tool/postgresql-transport
-          Title: using PostgreSQL Transport  
+          Title: using PostgreSQL Transport
         - Url: nservicebus/throughput-tool/service-control
           Title: using ServiceControl
         - Url: nservicebus/throughput-tool/determine-transport
@@ -1453,6 +1453,8 @@
     Articles:
     - Title: Upgrade tips
       Url: servicecontrol/upgrades
+    - Title: Version 5 to 6
+      Url: servicecontrol/upgrades/5to6
     - Title: Version 5.1 to 5.2
       Url: servicecontrol/upgrades/5.1to5.2
     - Title: Version 4 to 5
