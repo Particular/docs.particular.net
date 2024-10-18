@@ -565,7 +565,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.18.x](https://www.nuget.org/packages/Particular.PlatformSample/3.18.0) | 2024-10-07     | -                 | -                                 |
+| [3.19.x](https://www.nuget.org/packages/Particular.PlatformSample/3.19.0) | 2024-10-17     | -                 | -                                 |
+| [3.18.x](https://www.nuget.org/packages/Particular.PlatformSample/3.18.0) | 2024-10-07     | 2025-01-17        | Superseded by 3.19.x              |
 | [3.17.x](https://www.nuget.org/packages/Particular.PlatformSample/3.17.0) | 2024-10-04     | 2025-01-07        | Superseded by 3.18.x              |
 | [3.16.x](https://www.nuget.org/packages/Particular.PlatformSample/3.16.0) | 2024-09-27     | 2025-01-04        | Superseded by 3.17.x              |
 | [3.15.x](https://www.nuget.org/packages/Particular.PlatformSample/3.15.0) | 2024-09-26     | 2024-12-27        | Superseded by 3.16.x              |
