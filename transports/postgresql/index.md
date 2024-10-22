@@ -61,6 +61,7 @@ When an exception occurs during message handling, the transaction is already in 
 
 When an endpoint is scaled out to multiple instances, more retries may be observed than configured, as each instance accumulates failures until a single node has observed enough retries to escalate to delayed retries. It is also possible for immediate retries to be observed on a different instance even when [Recoverability](/nservicebus/recoverability/) is configured for zero immediate retries.
 
+.
 ## Transactions
 
 PostgreSQL transport supports following [transaction handling modes](/transports/transactions.md): receive only, send atomic with receive, and no transactions. It does not support Transaction scope mode due to the limitations in the design of the PostgreSQL database and the System.Transactions library.
