@@ -61,7 +61,14 @@ When an exception occurs during message handling, the transaction is already in 
 
 When an endpoint is scaled out to multiple instances, more retries may be observed than configured, as each instance accumulates failures until a single node has observed enough retries to escalate to delayed retries. It is also possible for immediate retries to be observed on a different instance even when [Recoverability](/nservicebus/recoverability/) is configured for zero immediate retries.
 
-.
+### Connection pooling
+
+By default, PostgreSQL [limits the maximum number](https://www.postgresql.org/docs/current/runtime-config-connection.html#RUNTIME-CONFIG-CONNECTION-SETTINGS) of concurrent client connections to `100` per database server. [Client connection pooling mechanism](https://www.npgsql.org/doc/connection-string-parameters.html#pooling) built into the Npgsql library (used internally by the transport) should prevent hitting this constraint for small deployments. When the limit is reached, the following options should be considered:
+
+- changing the default value for [the `max_connections` setting](https://www.postgresql.org/docs/current/runtime-config-connection.html#RUNTIME-CONFIG-CONNECTION-SETTINGS) at the database server level
+- using [PgBouncer](https://www.pgbouncer.org/), a self-hosted external connection pooling service, and tweaking the connection strings for endpoints and the platform tools according to [the Npgsql compatibility guidelines](https://www.npgsql.org/doc/compatibility.html#pgbouncer)
+- using a hosted solution like [Azure Flexible Server](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/concepts-pgbouncer) or [AWS RDS Proxy](https://aws.amazon.com/rds/proxy/) 
+
 ## Transactions
 
 PostgreSQL transport supports following [transaction handling modes](/transports/transactions.md): receive only, send atomic with receive, and no transactions. It does not support Transaction scope mode due to the limitations in the design of the PostgreSQL database and the System.Transactions library.
