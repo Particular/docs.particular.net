@@ -195,7 +195,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.1.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/4.1.0) | 2024-09-17     | -                 | -                                 |
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/4.0.0) | 2024-04-16     | 2024-12-17        | Superseded by 4.1.x               |
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/3.0.3) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/3.0.4) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [2.3.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/2.3.3) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Storage.MongoDB.TransactionalSession](/nuget/NServiceBus.Storage.MongoDB.TransactionalSession)
@@ -204,7 +204,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.1.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/4.1.0) | 2024-09-17     | -                 | -                                 |
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/4.0.0) | 2024-04-16     | 2024-12-17        | Superseded by 4.1.x               |
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/3.0.3) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/3.0.4) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [2.3.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/2.3.3) | 2022-09-19     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 
 #### [NServiceBus.Transport.Msmq](/nuget/NServiceBus.Transport.Msmq)
@@ -565,7 +565,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.19.x](https://www.nuget.org/packages/Particular.PlatformSample/3.19.0) | 2024-10-17     | -                 | -                                 |
+| [3.20.x](https://www.nuget.org/packages/Particular.PlatformSample/3.20.0) | 2024-10-23     | -                 | -                                 |
+| [3.19.x](https://www.nuget.org/packages/Particular.PlatformSample/3.19.0) | 2024-10-17     | 2025-01-23        | Superseded by 3.20.x              |
 | [3.18.x](https://www.nuget.org/packages/Particular.PlatformSample/3.18.0) | 2024-10-07     | 2025-01-17        | Superseded by 3.19.x              |
 | [3.17.x](https://www.nuget.org/packages/Particular.PlatformSample/3.17.0) | 2024-10-04     | 2025-01-07        | Superseded by 3.18.x              |
 | [3.16.x](https://www.nuget.org/packages/Particular.PlatformSample/3.16.0) | 2024-09-27     | 2025-01-04        | Superseded by 3.17.x              |
