@@ -42,7 +42,7 @@ Nested directories are **not** scanned for assemblies by default. Nested directo
 
 snippet: ScanningNestedAssebliesEnabled
 
-### Disable assembly file scanning
+### Disable assembly files scanning
 
 Scanning of assemblies deployed to the `bin` folder (and other configured scanning locations) can be disabled:
 
