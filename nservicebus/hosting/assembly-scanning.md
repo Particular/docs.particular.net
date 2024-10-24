@@ -1,7 +1,7 @@
 ---
 title: Assembly scanning
 summary: To enable automatic detection of various features NServiceBus scans assemblies for well known types
-reviewed: 2022-02-15
+reviewed: 2024-10-24
 component: core
 redirects:
  - nservicebus/assembly-scanning
@@ -11,8 +11,8 @@ NServiceBus scans assemblies at endpoint startup to automatically detect and loa
 
 There are some cases where finer control over which assemblies are loaded is required:
 
-* To limit the number of assemblies being scanned and hence provide improvements to startup time.
-* If hosting multiple endpoints out of the same directory each endpoint may require a subset of assemblies to be loaded.
+* To limit the number of assemblies being scanned and hence improve startup time.
+* If hosting multiple endpoints out of the same directory, each endpoint may require loading a subset of assemblies.
 
 > [!NOTE]
 > NServiceBus extensions such as `NServiceBus.RavenDB.dll` are not considered a core assembly but still must be included when customizing the assembly scanning.
@@ -25,14 +25,14 @@ snippet: ScanningApDomainAssemblies
 
 ## Assembly files
 
-By default all assemblies in the endpoint's `bin` directory are scanned in search of related interfaces so that the endpoint can configure them automatically.
+By default, all assemblies in the endpoint's `bin` directory are scanned for related interfaces so that the endpoint can configure them automatically.
 
 ### Additional assembly scanning path
 
 > [!NOTE]
 > This configuration option is available only in NServiceBus version 7.4 and above.
 
-Assembly scanning can be configured to scan an additional path for assemblies located outside of the default scanning path.
+Assembly scanning can be configured to scan an additional path for assemblies outside the default scanning path.
 
 snippet: AdditionalAssemblyScanningPath
 
@@ -42,7 +42,7 @@ Nested directories are **not** scanned for assemblies by default. Nested directo
 
 snippet: ScanningNestedAssebliesEnabled
 
-### Disable assembly files scanning
+### Disable assembly file scanning
 
 Scanning of assemblies deployed to the `bin` folder (and other configured scanning locations) can be disabled:
 
@@ -74,7 +74,7 @@ snippet: ScanningExcludeTypes
 > [!NOTE]
 > This configuration option is only available in NServiceBus 6.2 and above.
 
-By default, exceptions occurred during assembly scanning will be re-thrown. Those exceptions can be ignored using the following:
+By default, exceptions that occurred during assembly scanning will be re-thrown. Those exceptions can be ignored using the following:
 
 snippet: SwallowScanningExceptions
 
