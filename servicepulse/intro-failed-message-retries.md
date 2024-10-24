@@ -24,7 +24,7 @@ If the sender cannot be fixed it is better to use a pipeline behavior to repair 
 
 ## ServicePulse interface
 
-ServicePulse allows you to see failed messages and retry them. The UI groups these messages based on the endpoint that failed to process them. You can see the source, and the number of failed messages.
+ServicePulse allows you to see failed messages and retry them. By default, the UI groups these messages based on the endpoint that failed to process them. You can see the source, and the number of failed messages.
 
 ![Failed Messages ](/servicepulse/images/retry/failed-mesage-groups-annotated.png)
 
