@@ -1,6 +1,6 @@
 ---
 title: Assembly scanning
-summary: To enable automatic detection of various features NServiceBus scans assemblies for well known types
+summary: To enable the automatic detection of various features, NServiceBus scans assemblies for well-known types
 reviewed: 2024-10-24
 component: core
 redirects:
@@ -19,7 +19,7 @@ There are some cases where finer control over which assemblies are loaded is req
 
 ## AppDomain assemblies
 
-By default, the assemblies that are already loaded into the AppDomain are scanned. The endpoint can also be configured to disable AppDomain assembly scanning:
+By default, the assemblies already loaded into the AppDomain are scanned. The endpoint can also be configured to disable AppDomain assembly scanning:
 
 snippet: ScanningApDomainAssemblies
 
