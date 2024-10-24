@@ -53,7 +53,7 @@ snippet: disable-file-scanning
 
 ## Assemblies to scan
 
-The assemblies being scanned can be further controlled via user-defined exclusions. This supports common scenarios removing specific assemblies from scanning without the risk of accidentally excluding required assemblies.
+The assemblies being scanned can further be controlled via user-defined exclusions. This supports common scenarios removing specific assemblies from scanning without the risk of accidentally excluding required assemblies.
 
 ### Exclude specific assemblies by name
 
@@ -79,4 +79,4 @@ By default, exceptions that occurred during assembly scanning will be re-thrown.
 snippet: SwallowScanningExceptions
 
 > [!WARNING]
-> Ignoring assembly scanning exceptions can cause the endpoint to not load some features, behaviors, messages or message handlers and cause incorrect behavior.
+> Ignoring assembly scanning exceptions can cause the endpoint not to load some features, behaviors, messages or message handlers and cause incorrect behavior.
