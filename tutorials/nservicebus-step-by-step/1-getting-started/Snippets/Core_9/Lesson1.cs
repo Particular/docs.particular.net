@@ -22,13 +22,14 @@ class StepByStep
 
     static async Task Main(string[] args)
     {
+        Console.Title = "ClientUI";
+        
         var builder = Host.CreateApplicationBuilder(args);
 
         var endpointConfiguration = new EndpointConfiguration("ClientUI");
-
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        var routing = endpointConfiguration.UseTransport(new LearningTransport());
+        var transport = endpointConfiguration.UseTransport(new LearningTransport());
 
     }
     #endregion
