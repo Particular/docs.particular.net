@@ -26,26 +26,25 @@ If the sender cannot be fixed it is better to use a pipeline behavior to repair 
 
 ServicePulse allows you to see failed messages and retry them. By default, the UI groups these messages based on the endpoint that failed to process them. You can see the source, and the number of failed messages.
 
-![Failed Messages ](/servicepulse/images/retry/failed-mesage-groups-annotated.png)
+![Failed Messages](./images/retry/failed-mesage-groups-annotated.png)
 
 ### Retrying failed messages
 
 The messages can be retried in different ways:
- -
  - [One by one](#the-messages-can-be-retried-in-different-ways-one-by-one)
  - [By the an entire group](#the-messages-can-be-retried-in-different-ways-by-the-an-entire-group)
 
 #### 1. One by one
 
-![Individual message retry](/servicepulse/images/retry/failed-mesage-groups-annotated.png)
+![Individual message retry](./images/retry/failed-mesage-groups-annotated.png)
 
 In this case, you will see the a notification showing that a retry has been been requested, and it is in progress.
-![Individual message retry in progress](/servicepulse/images/retry/one-retry-in-progress.png)
+![Individual message retry in progress](./images/retry/one-retry-in-progress.png)
 
 #### 2. By the an entire group
 
-![Retry all](/servicepulse/images/retry/retry-all.png)
+![Retry all](./images/retry/retry-all.png)
 
 You will see a retry in progress notification for all the messages, as well as the number of messages failed decreased.
 
-![All retried in progress](/servicepulse/images/retry/all-retry-in-progress.png)
+![All retried in progress](./images/retry/all-retry-in-progress.png)
