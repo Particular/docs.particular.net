@@ -38,9 +38,10 @@ Next, add the NServiceBus NuGet package as a dependency. Using PowerShell or ano
 
 ```
 dotnet add package NServiceBus
+dotnet add package NServiceBus.Extensions.Hosting
 ```
 
-This adds an NServiceBus.Core assembly reference to the ClientUI project. Now we're ready to start writing code.
+This adds an NServiceBus.Core and NSeviceBus.Extension.Hosting assembly references to the ClientUI project. Now we're ready to start writing code.
 
 ### Configure an endpoint
 
