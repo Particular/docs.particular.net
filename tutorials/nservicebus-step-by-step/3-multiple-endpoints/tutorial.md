@@ -81,7 +81,7 @@ Let's split apart the endpoint we created in the previous lesson. We'll reconfig
 First, let's create a project for our new endpoint.
 
  1. Create a new **Console Application** project named **Sales**.
- 1. In the same directory as the **Sales** project, add the following NuGet package using the .NET CLI:
+ 1. In the same directory as the **Sales** project, add the following NuGet packages using the .NET CLI:
       ```
     dotnet add package Microsoft.Extensions.Hosting
     dotnet add package NServiceBus
