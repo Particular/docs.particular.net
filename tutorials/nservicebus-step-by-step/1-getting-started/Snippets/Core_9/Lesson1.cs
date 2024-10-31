@@ -30,7 +30,10 @@ class StepByStep
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var transport = endpointConfiguration.UseTransport(new LearningTransport());
+        
+        builder.UseNServiceBus(endpointConfiguration);
 
+        await builder.Build().RunAsync();
     }
     #endregion
 
