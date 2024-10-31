@@ -31,8 +31,8 @@ ServicePulse allows you to see failed messages and retry them. By default, the U
 ### Retrying failed messages
 
 The messages can be retried in different ways:
- - [One by one](#the-messages-can-be-retried-in-different-ways-one-by-one)
- - [By the an entire group](#the-messages-can-be-retried-in-different-ways-by-the-an-entire-group)
+ - One by one
+ - By the an entire group
 
 #### 1. One by one
 
