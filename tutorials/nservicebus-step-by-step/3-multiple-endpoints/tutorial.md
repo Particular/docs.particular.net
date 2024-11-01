@@ -83,7 +83,6 @@ First, let's create a project for our new endpoint.
  1. Create a new **Console Application** project named **Sales**.
  1. In the same directory as the **Sales** project, add the following NuGet packages using the .NET CLI:
       ```
-    dotnet add package Microsoft.Extensions.Hosting
     dotnet add package NServiceBus
     dotnet add package NServiceBus.Extensions.Hosting
       ```
