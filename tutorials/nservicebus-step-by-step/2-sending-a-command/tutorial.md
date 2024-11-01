@@ -120,7 +120,7 @@ Now that we've defined a message, we can create a corresponding message handler.
 
  1. In the **ClientUI** project, create a new class named `PlaceOrderHandler`.
  1. Mark the handler class as public and implement the `IHandleMessages<PlaceOrder>` interface.
- 1. Add a logger instance, which will allow you to take advantage of the same logging system used by NServiceBus. This has an important advantage over `Console.WriteLine()`: the entries written with the logger will appear in the log file in addition to the console. Use this line to add primary constructor to your handler class that gets the logger instance:
+ 1. Add a logger instance, which will allow you to take advantage of the same logging system used by NServiceBus. This has an important advantage over `Console.WriteLine()`: the entries written with the logger will appear in the log file in addition to the console. Use this line to add a primary constructor to your handler class that accepts a logger instance:
     ```cs
     public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger)
     ```
@@ -138,9 +138,9 @@ snippet: PlaceOrderHandler
 
 Now we have a message and a handler to process it. Let's send that message.
 
-In the **ClientUI** project, we are currently stopping the endpoint when we press the <kbd>Ctrl+C</kbd>. Let's change that, and put the user input processing logic in a long running task using the a [`BackgroundService`](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-8.0&tabs=visual-studio#backgroundservice-base-class)
+In the **ClientUI** project, we are currently stopping the endpoint when we press <kbd>Ctrl+C</kbd>. Let's change that, and put the user input processing logic in a long running task using a [`BackgroundService`](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-8.0&tabs=visual-studio#backgroundservice-base-class)
 
-Create a class called `InputLoopService` and add the following code:
+Create a class named `InputLoopService` and add the following code:
 
 snippet: InputLoopService
 
