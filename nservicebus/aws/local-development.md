@@ -4,7 +4,7 @@ summary: How to use LocalStack for your development needs when using Amazon SQS 
 reviewed: 2024-10-29
 ---
 
-[LocalStack](https://www.localstack.cloud/) is a tool to develop and test your AWS applications locally reducing development time and increasing product velocity.
+[LocalStack](https://www.localstack.cloud/) is a tool to develop and test your AWS applications locally, reducing development time and increasing product velocity.
 
 > [!NOTE]
 > Refer to the [official LocalStack documentation](https://docs.localstack.cloud/getting-started/installation/) to learn how to install and run it locally.
