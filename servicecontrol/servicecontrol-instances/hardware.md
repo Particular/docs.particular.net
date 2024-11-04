@@ -12,7 +12,7 @@ This article provides recommendations and performance benchmarks to help select 
 * A dedicated production server for installing ServiceControl instances (Error, Audit, and Monitoring).
 * A minimum of 16 GB of RAM (excluding RAM for OS and other services).
 * 2 GHz quad core CPU or better.
-* A dedicated disk for ServiceControl databases (not the disk where the operating system is installed).
+* A dedicated, non-virtual, pre-allocated disk SSD for ServiceControl databases (not the disk where the operating system is installed).
 
 ### Scaling ServiceControl
 
@@ -30,6 +30,8 @@ Disk, CPU, RAM, and network performance may be monitored using the Windows Resou
 * Store multiple ServiceControl databases on separate physical disks to prevent multiple instances competing for the same disk resources.
 * Disable disk write caching (read caching can remain enabled) to prevent data corruption if the (virtual) server or disk controller fails. This is a general best practice for databases.
 * [Database paths](/servicecontrol/servicecontrol-instances/configuration.md#embedded-database-servicecontroldbpath) should be located on disks suitable for low latency write operations (e.g. fiber, solid state drives, raid 10), with a recommended IOPS of at least 7500.
+* Pre-allocated (not a dynamically expanding virtual disk)
+* Use of Solid State Drives to significantly reduce seek times and increase throughput
 
 > [!NOTE]
 > To measure disk performance, use a storage benchmark tool such as Windows System Assessment Tool (`winsat disk -drive g`), [CrystalDiskMark](https://crystalmark.info/en/software/crystaldiskmark/), or [DiskSpd](https://github.com/Microsoft/diskspd).
