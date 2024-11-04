@@ -24,7 +24,7 @@ amazonSqsConfig.ServiceURL = "http://localhost.localstack.cloud:4566";
 var amazonSqsClient = new AmazonSQSClient(amazonSqsConfig);
 ```
 
-The above example refers to Amazon SQS. The same needs to be done for Amazon SNS and Amazon DynamoDB when using these services.
+The above example refers to Amazon SQS. When using these services, the same must be done for Amazon SNS and Amazon DynamoDB. More details are in the [Amazon SQS configuration options documentation](/transports/sqs/configuration-options.md).
 
 
 > [!NOTE]
