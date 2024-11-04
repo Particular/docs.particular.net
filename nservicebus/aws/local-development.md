@@ -24,6 +24,8 @@ amazonSqsConfig.ServiceURL = "http://localhost.localstack.cloud:4566";
 var amazonSqsClient = new AmazonSQSClient(amazonSqsConfig);
 ```
 
+The above example refers to Amazon SQS. The same needs to be done for Amazon SNS and Amazon DynamoDB when using these services.
+
 
 > [!NOTE]
 > Remember that, even if you are not connecting to AWS cloud services, it is still required to specify access credentials and region.
