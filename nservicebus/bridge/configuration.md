@@ -113,7 +113,7 @@ snippet: custom-address
 
 If a message fails while it is being forwarded to the target transport, the following recoverability actions are taken:
 
-1. Three immediate retries are performed to make sure that the problem isn't transient/
+1. Three immediate retries are performed to make sure that the problem isn't transient.
 1. If the retries fail, the message is moved to the bridge error queue.
 
 ### Error queue
