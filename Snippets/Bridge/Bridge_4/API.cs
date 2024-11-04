@@ -5,10 +5,11 @@ public class API
     public void Configuration()
     {
         var connectionString = string.Empty;
-        var bridgeConfiguration = new BridgeConfiguration();
-
+       
         #region bridgeconfiguration
-
+        
+        var bridgeConfiguration = new BridgeConfiguration();
+        
         var msmq = new BridgeTransport(new MsmqTransport());
         var asb = new BridgeTransport(new AzureServiceBusTransport(connectionString));
 
