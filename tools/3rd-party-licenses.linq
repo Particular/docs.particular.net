@@ -93,7 +93,7 @@ public static class TextWriterExtensions
     {
         //package.Dump();
         
-        output.WriteLine("| Depencency | License | Project Site |");
+        output.WriteLine("| Dependency | License | Project Site |");
         output.WriteLine("|:-----------|:-------:|:------------:|");
 
         foreach (var dependency in package.Dependencies)
