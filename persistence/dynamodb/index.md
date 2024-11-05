@@ -21,7 +21,8 @@ For a description of each feature, see the [persistence at a glance legend](/per
 |Transactions               |Using `TransactWriteItems`
 |Concurrency control        |Optimistic concurrency, optional pessimistic concurrency
 |Scripted deployment        |Not supported
-|Installers                 |Table is created by installers.
+|Installers                 |Table is created by installers
+|Local development          |[Supported via LocalStack](/nservicebus/aws/local-development.md)
 
 ## Usage
 
