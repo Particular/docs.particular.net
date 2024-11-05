@@ -15,8 +15,7 @@ To configure an NServiceBus endpoint to connect to LocalStack instead of AWS, th
 AWS_ENDPOINT_URL=http://localhost.localstack.cloud:4566
 ```
 
-Alternatively, configure the AWS SDK `ServiceURL` configuration property, like in the following example programmatically:
-
+Alternatively, configure the AWS SDK `ServiceURL` configuration property, like in the following example programmatically for the Amazon SQS transport:
 
 ```csharp
 var amazonSqsConfig = new AmazonSQSConfig();
@@ -24,8 +23,21 @@ amazonSqsConfig.ServiceURL = "http://localhost.localstack.cloud:4566";
 var amazonSqsClient = new AmazonSQSClient(amazonSqsConfig);
 ```
 
-The above example refers to Amazon SQS. When using these services, the same must be done for Amazon SNS and Amazon DynamoDB. More details are in the [Amazon SQS configuration options documentation](/transports/sqs/configuration-options.md).
+Similarly, the Amazon SNS and DynamoDB configurations must follow the same patter. The following snippet shows the SNS configuration:
 
+```csharp
+var amazonSnsConfig = new AmazonSimpleNotificationServiceConfig();
+amazonSnsConfig.ServiceURL = "http://localhost.localstack.cloud:4566";
+var amazonSnsClient = new AmazonSimpleNotificationServiceClient(amazonSnsConfig);
+```
+
+The DynamoDB configuration is shown in the following example:
+
+```csharp
+var amazonDynamoDBConfig = new AmazonDynamoDBConfig();
+amazonDynamoDBConfig.ServiceURL = "http://localhost.localstack.cloud:4566";
+var amazonDynamoDBClient = new AmazonDynamoDBClient(amazonDynamoDBConfig);
+```
 
 > [!NOTE]
 > Remember that, even if you are not connecting to AWS cloud services, it is still required to specify access credentials and region.
