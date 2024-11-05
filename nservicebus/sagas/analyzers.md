@@ -16,7 +16,7 @@ Starting in NServiceBus version 7.7, [Roslyn analyzers](https://docs.microsoft.c
 
 The `ConfigureHowToFindSaga` method is executed to determine the mappings between incoming messages and stored saga data. Arbitrary statements or calls to other methods, while they may be valid C#, are not valid in this method.
 
-See [message correlation](/services/sagas/message-correlation.md) for details on how to map incoming messages to stored saga data.
+See [message correlation](message-correlation.md) for details on how to map incoming messages to stored saga data.
 
 ## Saga mapping expressions can be simplified
 
