@@ -55,7 +55,7 @@ class StepByStep
         #endregion
 
         #region LearningTransport
-        var transport = endpointConfiguration.UseTransport<LearningTransport>();
+        var transport = endpointConfiguration.UseTransport(new LearningTransport());
         #endregion
 
         #region Startup
