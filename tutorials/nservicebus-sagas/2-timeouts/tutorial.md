@@ -10,7 +10,7 @@ extensions:
   nextUrl: tutorials/nservicebus-sagas/3-integration
 ---
 
-Being able to model the concept of time as part of a long-running process is incredibly powerful. Batch jobs are a feeble attempt at this but fail at handling things in real-time and makes every instance of a long-running process dependent on every other instance, but what if the batch job fails?
+Being able to model the concept of time as part of a long-running process is incredibly powerful. Batch jobs are a feeble attempt at this. They fail at handling things in real-time and make every instance of a long-running process dependent on every other instance. What if the batch job fails?
 
 > For more on the difficulties associated with batch jobs, see [Death to the Batch Job](https://particular.net/blog/death-to-the-batch-job).
 
@@ -23,7 +23,7 @@ There's no need to write batch jobs to query data every night. Instead, each ins
 > [!NOTE]
 > The delivery of a delayed message is not guaranteed to occur at the specified point in time. It may be delayed further if the system is very busy at that time.
 
-The use cases for saga timeouts are too numerous to count, so in this tutorial we will focus on implementing the [buyer's remorse pattern](https://en.wikipedia.org/wiki/Buyer%27s_remorse). In this pattern, customers that purchased something are able to cancel their order within a certain amount of time after it was placed. This is an important software pattern that pops up in non-retail domains as well. For example, Gmail uses the same pattern for their [Undo Send feature](https://support.google.com/mail/answer/2819488?co=GENIE.Platform%3DDesktop&hl=en).
+The use cases for saga timeouts are too numerous to count. So, in this tutorial we will focus on implementing the [buyer's remorse pattern](https://en.wikipedia.org/wiki/Buyer%27s_remorse). In this pattern, customers that purchased something are able to cancel their order within a certain amount of time after it was placed. This is an important software pattern that pops up in non-retail domains as well. For example, Gmail uses the same pattern for their [Undo Send feature](https://support.google.com/mail/answer/2819488?co=GENIE.Platform%3DDesktop&hl=en).
 
 With the buyer's remorse pattern, the purchase is kept in a holding state until after a defined delay. The order isn't *really* sent until the timeout has expired.
 
