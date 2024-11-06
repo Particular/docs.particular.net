@@ -9,10 +9,9 @@ namespace Alpine;
 
 class Program
 {
-    static void Routing(TransportExtensions<LearningTransport> transport)
+    static void Routing(RoutingSettings<LearningTransport> routing)
     {
         #region ShipWithAlpine-Routing
-        var routing = transport.Routing();
         routing.RouteToEndpoint(typeof(ShipOrder), "Shipping");
         routing.RouteToEndpoint(typeof(ShipWithMaple), "Shipping");
         routing.RouteToEndpoint(typeof(ShipWithAlpine), "Shipping");

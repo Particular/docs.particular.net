@@ -1,16 +1,18 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
 
 #pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
 namespace Core_9;
 
 #region Creation-SagaStart
-class ShipOrderWorkflow :
+class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
     Saga<ShipOrderWorkflow.ShipOrderData>,
     IAmStartedByMessages<ShipOrder>
 {
     public async Task Handle(ShipOrder message, IMessageHandlerContext context)
     {
+        logger.LogInformation("Handling ShipOrder");
     }
 
     internal class ShipOrderData : ContainSagaData
