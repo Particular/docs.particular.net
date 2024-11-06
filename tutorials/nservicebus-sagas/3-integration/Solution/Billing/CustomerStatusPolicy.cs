@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Billing;
 
 public class CustomerStatusPolicy(ILogger<CustomerStatusPolicy> logger) :
-    Saga<CustomerStatusPolicy.CustomerStatusState>,
+    Saga<CustomerStatusPolicy.CustomerStatusData>,
     IAmStartedByMessages<OrderBilled>,
     IHandleTimeouts<CustomerStatusPolicy.OrderExpired>
 {
@@ -16,7 +16,7 @@ public class CustomerStatusPolicy(ILogger<CustomerStatusPolicy> logger) :
     const int preferredStatusAmount = 250;
     readonly TimeSpan orderExpiryTimeout = TimeSpan.FromSeconds(10);
 
-    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<CustomerStatusState> mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<CustomerStatusData> mapper)
     {
         mapper.MapSaga(saga => saga.CustomerId)
             .ToMessage<OrderBilled>(message => message.CustomerId);
@@ -24,8 +24,6 @@ public class CustomerStatusPolicy(ILogger<CustomerStatusPolicy> logger) :
 
     public async Task Handle(OrderBilled message, IMessageHandlerContext context)
     {
-        Data.CustomerId = message.CustomerId;
-
         logger.LogInformation("Customer {CustomerId} submitted order of {OrderValue}", Data.CustomerId, message.OrderValue);
 
         Data.RunningTotal += message.OrderValue;
@@ -55,7 +53,7 @@ public class CustomerStatusPolicy(ILogger<CustomerStatusPolicy> logger) :
         }
     }
 
-    public class CustomerStatusState : ContainSagaData
+    public class CustomerStatusData : ContainSagaData
     {
         public string CustomerId { get; set; }
         public decimal RunningTotal { get; set; }
