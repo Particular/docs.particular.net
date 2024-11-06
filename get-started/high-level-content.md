@@ -1,7 +1,7 @@
 ---
 title: High-level content
 summary: Recommended articles to gain an understanding of the key concepts and technologies used within the Particular Service Platform
-reviewed: 2022-03-18
+reviewed: 2024-11-06
 ---
 
 These articles are recommended to gain an understanding of the key concepts and technologies used within the Particular Service Platform.
