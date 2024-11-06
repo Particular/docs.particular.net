@@ -25,7 +25,7 @@ snippet: Launch
 The Platform Sample package performs the following when the Console App is started:
 
 1. Copies platform binaries into the project output directory.
-1. Find available ports for all the platform tools.
+1. Finds available ports for all the platform tools.
 1. Launches ServiceControl and ServiceControl.Monitoring.
 1. Waits for the ServiceControl API to be responsive, which may take a while.
 1. Opens a browser window with ServicePulse.
