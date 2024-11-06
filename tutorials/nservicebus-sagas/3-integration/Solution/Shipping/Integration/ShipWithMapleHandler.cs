@@ -4,29 +4,26 @@ using Messages;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
-namespace Shipping.Integration
+namespace Shipping.Integration;
+
+#region ShipWithMapleHandler
+
+class ShipWithMapleHandler(ILogger<ShipWithMapleHandler> logger) : IHandleMessages<ShipWithMaple>
 {
-    #region ShipWithMapleHandler
+    const int MaximumTimeMapleMightRespond = 60;
 
-    class ShipWithMapleHandler : IHandleMessages<ShipWithMaple>
+    public async Task Handle(ShipWithMaple message, IMessageHandlerContext context)
     {
-        static ILog log = LogManager.GetLogger<ShipWithMapleHandler>();
+        var waitingTime = Random.Shared.Next(MaximumTimeMapleMightRespond);
 
-        const int MaximumTimeMapleMightRespond = 60;
-        static Random random = new Random();
+        logger.LogInformation($"ShipWithMapleHandler: Delaying Order [{message.OrderId}] {waitingTime} seconds.");
 
-        public async Task Handle(ShipWithMaple message, IMessageHandlerContext context)
-        {
-            var waitingTime = random.Next(MaximumTimeMapleMightRespond);
+        await Task.Delay(waitingTime * 1000, CancellationToken.None);
 
-            log.Info($"ShipWithMapleHandler: Delaying Order [{message.OrderId}] {waitingTime} seconds.");
-
-            await Task.Delay(waitingTime * 1000, CancellationToken.None);
-
-            await context.Reply(new ShipmentAcceptedByMaple());
-        }
+        await context.Reply(new ShipmentAcceptedByMaple());
     }
-
-    #endregion
 }
+
+#endregion

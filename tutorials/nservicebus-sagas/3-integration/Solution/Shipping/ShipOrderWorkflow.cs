@@ -13,7 +13,6 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
     IHandleMessages<ShipmentAcceptedByAlpine>,
     IHandleTimeouts<ShipOrderWorkflow.ShippingEscalation>
 {
-
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShipOrderData> mapper)
     {
         mapper.MapSaga(saga => saga.OrderId)

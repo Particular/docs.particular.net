@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Billing;
 
-public class CustomerStatusPolicy(ILogger<OrderPlacedHandler> logger) :
+public class CustomerStatusPolicy(ILogger<CustomerStatusPolicy> logger) :
     Saga<CustomerStatusPolicy.CustomerStatusState>,
     IAmStartedByMessages<OrderBilled>,
     IHandleTimeouts<CustomerStatusPolicy.OrderExpired>
@@ -14,7 +14,7 @@ public class CustomerStatusPolicy(ILogger<OrderPlacedHandler> logger) :
 
     //values hardcoded for simplicity
     const int preferredStatusAmount = 250;
-    TimeSpan orderExpiryTimeout = TimeSpan.FromSeconds(10);
+    readonly TimeSpan orderExpiryTimeout = TimeSpan.FromSeconds(10);
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<CustomerStatusState> mapper)
     {

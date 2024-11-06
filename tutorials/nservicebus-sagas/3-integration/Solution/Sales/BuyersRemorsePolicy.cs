@@ -12,7 +12,7 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger)
     , IHandleMessages<CancelOrder>
     , IHandleTimeouts<BuyersRemorseIsOver>
 {
-    
+
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseState> mapper)
     {
         mapper.MapSaga(saga => saga.OrderId)
