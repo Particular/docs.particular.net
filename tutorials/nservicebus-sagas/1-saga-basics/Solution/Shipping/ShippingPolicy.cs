@@ -30,7 +30,7 @@ class ShippingPolicy(ILogger<ShippingPolicy> logger) : Saga<ShippingPolicyData>,
         return ProcessOrder(context);
     }
 
-    private async Task ProcessOrder(IMessageHandlerContext context)
+    async Task ProcessOrder(IMessageHandlerContext context)
     {
         if (Data.IsOrderPlaced && Data.IsOrderBilled)
         {
