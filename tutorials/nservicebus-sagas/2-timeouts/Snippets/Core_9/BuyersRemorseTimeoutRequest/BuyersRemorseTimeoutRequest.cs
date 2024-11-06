@@ -5,11 +5,11 @@ using NServiceBus;
 
 namespace Core_9.BuyersRemorseTimeoutRequest;
 
-class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseState>
+class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>
 {
-    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseState> mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseData> mapper)
     {
-            
+
     }
 
     #region BuyersRemorseTimeoutRequest
@@ -31,7 +31,7 @@ internal class BuyersRemorseIsOver
 
 }
 
-public class BuyersRemorseState : ContainSagaData
+public class BuyersRemorseData : ContainSagaData
 {
     public string OrderId { get; set; }
 }

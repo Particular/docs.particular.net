@@ -6,12 +6,12 @@ namespace Core_9.BuyersRemorseCancelOrderHandling;
 
 #region BuyersRemorseCancelOrderHandling
 
-class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseState>,
+class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>,
     IAmStartedByMessages<PlaceOrder>,
     IHandleMessages<CancelOrder>,
     IHandleTimeouts<BuyersRemorseIsOver>
 {
-  protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseState> mapper)
+  protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseData> mapper)
     {
         mapper.MapSaga(saga => saga.OrderId)
             .ToMessage<PlaceOrder>(message => message.OrderId)
@@ -84,7 +84,7 @@ internal class PlaceOrder
     public object OrderId { get; internal set; }
 }
 
-internal class BuyersRemorseState
+internal class BuyersRemorseData
 {
     public object OrderId { get; set; }
 }

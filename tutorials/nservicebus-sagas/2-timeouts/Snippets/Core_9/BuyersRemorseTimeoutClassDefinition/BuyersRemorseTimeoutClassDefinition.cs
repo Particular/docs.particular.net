@@ -2,7 +2,7 @@
 
 #region BuyersRemorseTimeoutClassDefinition
 
-class BuyersRemorsePolicy : Saga<BuyersRemorseState>, 
+class BuyersRemorsePolicy : Saga<BuyersRemorseData>,
     IAmStartedByMessages<PlaceOrder>
 {
     // ...
@@ -18,7 +18,7 @@ internal class Saga<T>
 {
 }
 
-internal class BuyersRemorseState
+internal class BuyersRemorseData
 {
 }
 
