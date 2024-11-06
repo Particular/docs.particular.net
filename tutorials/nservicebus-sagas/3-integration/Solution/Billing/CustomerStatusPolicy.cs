@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Billing;
 
 public class CustomerStatusPolicy(ILogger<CustomerStatusPolicy> logger) :
-    Saga<CustomerStatusPolicy.CustomerStatusData>,
+    Saga<CustomerStatusPolicyData>,
     IAmStartedByMessages<OrderBilled>,
     IHandleTimeouts<CustomerStatusPolicy.OrderExpired>
 {
@@ -16,7 +16,7 @@ public class CustomerStatusPolicy(ILogger<CustomerStatusPolicy> logger) :
     const int preferredStatusAmount = 250;
     readonly TimeSpan orderExpiryTimeout = TimeSpan.FromSeconds(10);
 
-    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<CustomerStatusData> mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<CustomerStatusPolicyData> mapper)
     {
         mapper.MapSaga(saga => saga.CustomerId)
             .ToMessage<OrderBilled>(message => message.CustomerId);
@@ -53,15 +53,15 @@ public class CustomerStatusPolicy(ILogger<CustomerStatusPolicy> logger) :
         }
     }
 
-    public class CustomerStatusData : ContainSagaData
-    {
-        public string CustomerId { get; set; }
-        public decimal RunningTotal { get; set; }
-        public bool PreferredStatus { get; set; }
-    }
-
     public class OrderExpired
     {
         public decimal Amount { get; set; }
     }
+}
+
+public class CustomerStatusPolicyData : ContainSagaData
+{
+    public string CustomerId { get; set; }
+    public decimal RunningTotal { get; set; }
+    public bool PreferredStatus { get; set; }
 }

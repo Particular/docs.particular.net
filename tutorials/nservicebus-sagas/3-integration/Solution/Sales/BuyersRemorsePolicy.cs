@@ -6,12 +6,12 @@ using Messages;
 
 namespace Sales;
 
-class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>,
+class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorsePolicyData>,
     IAmStartedByMessages<PlaceOrder>,
     IHandleMessages<CancelOrder>,
     IHandleTimeouts<BuyersRemorseIsOver>
 {
-    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseData> mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorsePolicyData> mapper)
     {
         mapper.MapSaga(saga => saga.OrderId)
             .ToMessage<PlaceOrder>(message => message.OrderId)
@@ -59,8 +59,7 @@ internal class BuyersRemorseIsOver
 {
 }
 
-public class BuyersRemorseData :
-    ContainSagaData
+public class BuyersRemorsePolicyData : ContainSagaData
 {
     public string CustomerId { get; set; }
     public string OrderId { get; set; }

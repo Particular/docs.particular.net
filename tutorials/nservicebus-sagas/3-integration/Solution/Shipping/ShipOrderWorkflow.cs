@@ -1,8 +1,8 @@
-﻿using NServiceBus;
 using System;
 using System.Threading.Tasks;
 using Messages;
 using Microsoft.Extensions.Logging;
+using NServiceBus;
 
 namespace Shipping;
 
