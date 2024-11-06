@@ -1,6 +1,6 @@
 ---
 title: Transport configuration
-summary: ServiceControl can be configured to use one of the supported message transports which are configured for each instance type 
+summary: ServiceControl can be configured to use one of the supported message transports which are configured for each instance type
 reviewed: 2024-07-19
 component: ServiceControl
 ---
@@ -98,6 +98,10 @@ The following ServiceControl connection string options are available:
 * `S3BucketForLargeMessages=<value>` - S3 bucket for large messages [option](/transports/sqs/configuration-options.md#offload-large-messages-to-s3),
 * `S3KeyPrefix=<value>` - S3 key prefix [option](/transports/sqs/configuration-options.md#offload-large-messages-to-s3-key-prefix).
 * `DoNotWrapOutgoingMessages=true` - Do not wrap outgoing messages [option](/transports/sqs/configuration-options.md#do-not-wrap-message-payload-in-a-transport-envelope).
+
+> [!NOTE]
+> When using SQS as a transport, for local development purposes it is possible to set up ServiceControl to connect to a LocalStack instance.
+> Refer to the [documentation](/nservicebus/aws/local-development.md) about how to configure the environment to use LocalStack.
 
 ## MSMQ
 
