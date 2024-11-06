@@ -1,8 +1,8 @@
-﻿using Messages;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using System;
 using System.Threading.Tasks;
+using Messages;
 
 var endpointName = "Shipping";
 
@@ -16,7 +16,7 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
 var routing = endpointConfiguration.UseTransport(new LearningTransport());
 
-var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+endpointConfiguration.UsePersistence<LearningPersistence>();
 
 routing.RouteToEndpoint(typeof(ShipOrder), "Shipping");
 routing.RouteToEndpoint(typeof(ShipWithMaple), "Shipping");

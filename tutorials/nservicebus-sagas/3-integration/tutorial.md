@@ -26,11 +26,11 @@ In the exercises so far, we had a `ShippingPolicy` saga that was rather passive 
 >
 > downloadbutton(Download Previous Solution, /tutorials/nservicebus-sagas/2-timeouts)
 >
-> The solution contains 5 projects. The **ClientUI**, **Sales**, **Billing**, and **Shipping** projects define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is the entry point to the system.
-> **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes that define the messages exchanged in our system.
+> The **ClientUI**, **Sales**, **Billing**, and **Shipping** projects define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is the entry point to the system.
+> **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references relevant **.Messages** assembly, which contains the classes that define the messages exchanged in our system.
 > To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
 >
-> This tutorial uses NServiceBus version 8, .NET 6, and assumes an up-to-date installation of Visual Studio 2022.
+> This tutorial uses NServiceBus version 9, .NET 8, and assumes an up-to-date installation of Visual Studio 2022.
 
 ### A new saga
 
@@ -63,7 +63,7 @@ Recall that while Maple Shipping Service is cheaper and thus our preferred vendo
 
 To do that, we'll first need to add a class for the command and for the timeout.
 
-In the **Messages** project, add a class for `ShipWithMaple`:
+In the **Shipping.Messages** project, add a class for `ShipWithMaple`:
 
 snippet: ShipWithMapleCommand
 
@@ -113,7 +113,7 @@ We'll need to create the message handler and configure the routing so the saga k
 
 Rather than call a real web service, our example will fake it by delaying for a random time and then replying to the `ShipOrderWorkflow` saga with a `ShipmentAcceptedByMaple` message.
 
-First, let's add the `ShipmentAcceptedByMaple` message to our **Messages** project:
+First, let's add the `ShipmentAcceptedByMaple` message to our **Shipping.Messages** project:
 
 snippet: ShipmentAcceptedByMapleMessage
 
@@ -189,7 +189,7 @@ Now let's move on to handling the response from Alpine.
 
 Just like with Maple, we'll need an external handler to mimic contacting Alpine Delivery and a response message type so that Alpine can deliver its answer back to our saga.
 
-Add this message to your **Messages** project:
+Add this message to your **Shipping.Messages** project:
 
 snippet: ShipmentAcceptedByAlpineMessage
 
@@ -226,7 +226,7 @@ In this case, the shipment was not accepted by Maple, but we *already sent the r
 
 One way to handle this situation is to notify the sales department, which can handle the issue manually by calling either shipment provider and requesting delivery.
 
-The best way to notify the sales department is via an event. Add `ShipmentFailed` to your **Messages** project:
+The best way to notify the sales department is via an event. Add `ShipmentFailed` to your **Shipping.Messages** project:
 
 snippet: ShipmentFailedEvent
 
