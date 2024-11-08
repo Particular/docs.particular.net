@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus monitoring setup"
-reviewed: 2022-02-28
+reviewed: 2024-11-07
 summary: Setting up the Particular Service Platform to monitor an NServiceBus system.
 component: Core
 isLearningPath: true

@@ -42,14 +42,6 @@
       Title: "Monitoring NServiceBus Demo - Message backlogs"
     - Url: tutorials/monitoring-demo/walkthrough-3
       Title: "Monitoring NServiceBus Demo - Struggling endpoints"
-  - Title: More tutorials
-    Articles:
-    - Url: tutorials/message-replay
-      Title: Message replay tutorial
-    - Url: tutorials/monitoring-setup
-      Title: NServiceBus monitoring setup
-    - Url: tutorials
-      Title: All tutorials
   - Url: get-started
     Title: Overview
   - Url: get-started/high-level-content

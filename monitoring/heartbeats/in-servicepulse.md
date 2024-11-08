@@ -1,7 +1,7 @@
 ---
 title: Managing endpoint heartbeats in ServicePulse
 summary: Describes how ServicePulse monitors endpoints activity and availability using heartbeat messages
-reviewed: 2022-03-11
+reviewed: 2024-11-07
 redirects:
   - servicepulse/intro-endpoints-heartbeats
 ---
@@ -59,7 +59,7 @@ There are bulk operation buttons at the top of the screen to allow for muting or
 
 ### Removing Endpoint Instances
 
-When an endpoint instance has been decommissioned, and should no longer be displayed in ServicePulse, it can be removed. 
+When an endpoint instance has been decommissioned, and should no longer be displayed in ServicePulse, it can be removed.
 - For [Tracked Instances](#configuration-track-instances), click the `Delete` button on the instance row to remove it from ServicePulse
 - For [Untracked Instances](#configuration-do-not-track-instances), the endpoint instance will automatically be removed after 6 hours of inactivity.
 

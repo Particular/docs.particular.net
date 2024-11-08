@@ -1,7 +1,7 @@
 ---
 title: Send Metrics data to ServiceControl
 summary: Install the Metrics plugin to send monitoring data to ServiceControl
-reviewed: 2022-03-18
+reviewed: 2024-11-07
 component: MetricsServiceControl
 related:
   - samples/logging/metrics
@@ -13,7 +13,7 @@ The `NServiceBus.Metrics.ServiceControl` component enables sending monitoring da
 
 ## Configuration
 
-After adding the package to the project, metrics are sent to ServiceControl once enabled.
+The package allows collection and propagation of metrics to ServiceControl.
 
 It can be enabled via:
 
@@ -39,7 +39,7 @@ It is recommended to [override the *host id* and *host display name* via NServic
 > [!NOTE]
 > Make sure that the `InstanceId` value is unique and human readable.
 
-A human readable value is being passed in the following example:
+A human-readable value is passed in the following example:
 
 snippet: SendMetricDataToServiceControlHostId
 
