@@ -1,26 +1,17 @@
 ﻿using System;
-using System.Threading.Tasks;
 using NServiceBus;
 using Microsoft.Extensions.Hosting;
 
-namespace Sales;
+Console.Title = "Sales";
 
-class Program
-{
-    static async Task Main(string[] args)
-    {
-        Console.Title = "Sales";
+var builder = Host.CreateApplicationBuilder(args);
 
-        var builder = Host.CreateApplicationBuilder(args);
+var endpointConfiguration = new EndpointConfiguration("Sales");
 
-        var endpointConfiguration = new EndpointConfiguration("Sales");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        endpointConfiguration.UseTransport<LearningTransport>();
-        
-        builder.UseNServiceBus(endpointConfiguration);
+builder.UseNServiceBus(endpointConfiguration);
 
-        await builder.Build().RunAsync();
-    }
-}
+await builder.Build().RunAsync();

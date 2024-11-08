@@ -58,7 +58,7 @@ Therefore, it makes sense that logical routing is defined in code.
 
 ### Defining logical routes
 
-[**Message routing**](/nservicebus/messaging/routing.md) is a function of the message transport, so all routing functionality is accessed from the `transport` object returned when we defined the message transport, as shown in this example using the Learning Transport:
+[**Message routing**](/nservicebus/messaging/routing.md) is a function of the message transport, so all routing functionality is accessed from the `RoutingSettings<T>` object returned when we defined the message transport, as shown in this example using the Learning Transport:
 
 snippet: RoutingSettings
 
@@ -88,9 +88,6 @@ First, let's create a project for our new endpoint.
       ```
  1. Rename **Messages** project to **Sales.Messages**
  1. In the **Sales** project, add a reference to the **Sales.Messages** project, so that we have access to the `PlaceOrder` message.
-
-> [!NOTE]
-> To take advantage of the `Async Main` feature and avoid boilerplate code, [enable C# 7.1 features](https://www.meziantou.net/2017/08/24/3-ways-to-enable-c-7-1-features).
 
 ### Configuring an endpoint
 
@@ -148,7 +145,7 @@ The important takeaway is, if a message is accidentally sent to an endpoint we d
 Now we need to change **ClientUI** so that it is sending `PlaceOrder` to the **Sales** endpoint.
 
  1. In the **ClientUI** endpoint, modify the **Program.cs** file so that `endpointInstance.SendLocal(command)` is replaced by `endpointInstance.Send(command)`.
- 1. In the `Main` method of the same file, use the `transport` variable to access the routing configuration and specify the logical routing for `PlaceOrder` by adding the following code after the line that configures the Learning Transport:
+ 1. In the the same file, use the `transport` variable to access the routing configuration and specify the logical routing for `PlaceOrder` by adding the following code after the line that configures the Learning Transport:
 
 snippet: AddingRouting
 
