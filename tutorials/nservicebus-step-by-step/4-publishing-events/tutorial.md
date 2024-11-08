@@ -15,7 +15,6 @@ So far in this tutorial, we have only sent **commands**, meaning one-way message
 
 In the next 25-30 minutes, you will learn how the publish/subscribe pattern can help you create more maintainable code. Together, we'll learn to define, publish, and subscribe to an event.
 
-
 ## Events
 
 Unlike a **command** which is sent to only one receiver, an **event** is another type of message that is published to multiple receivers. Let's take a look at the formal definitions for commands and events:
@@ -49,7 +48,6 @@ From this comparison, it's clear that commands and events will sometimes come in
 
 The loose coupling provided by publishing events gives us quite a bit of flexibility to design our software systems in a much more maintainable way.
 
-
 ## Better code through decoupling
 
 Imagine you are implementing a `SubmitOrder` method for an e-commerce website. To complete the sale, you need to retrieve the shopping cart, insert an Order and OrderLines into the database, authorize a credit card transaction and capture the authorization, and email the user their receipt. You also may need to notify a fulfillment agency via a web service, update a wish list or gift registry, or store "frequently bought together" information, all depending upon your specific business requirements.
@@ -62,7 +60,6 @@ By using events, we can follow the [single responsibility principle](https://en.
 
 This means that when the code for the credit card processing changes, we don't even need to touch (let alone test and redeploy) any of the code in the system except for that which is directly related to processing credit cards.
 
-
 ## Defining events
 
 Creating an event message is similar to creating a command. We create a class and mark it with the `IEvent` (rather than `ICommand`) interface.
@@ -73,16 +70,11 @@ All the other considerations for command messages apply to events as well. Prope
 
 With events, you should be even more careful about putting too much information in an event message. Sometimes this complexity can't be avoided for commands, as the command receiver needs the information to do its job. That's manageable for commands because the sender and receiver are highly coupled already. For events, it's a different story. Since a publisher of an event does not know (or care) how many subscribers it has, it may not be possible to modify all of them if a change is required to the event.
 
-
 ## Handling events
 
 Create a handler class by implementing `IHandleMessages<T>` where `T` is the type of the event message.
 
 snippet: EventHandler
-
-> [!NOTE]
-> Since we are using the Learning Transport, which supports publish/subscribe natively, we don't have to do anything else to subscribe to an event other than create the event handler. Other transports do not support native publish/subscribe and require the extra step of [defining the publisher for an event](/nservicebus/messaging/routing.md#event-routing-message-driven).
-
 
 ## Exercise
 
@@ -93,7 +85,6 @@ We'll also create a new `OrderBilled` event that will be published by the **Bill
 ![Lesson 4 Diagram](diagram.svg)
 
 When the **Shipping** endpoint receives both the `OrderPlaced` and `OrderBilled` events, it will know that it is time to ship the product to the customer. Because this requires stored state, we can't accomplish that with message handlers alone. To implement that functionality, we would need a [Saga](/nservicebus/sagas/), but that will not be covered in this lesson.
-
 
 ### Create an event
 
@@ -107,7 +98,6 @@ When complete, your `OrderPlaced` class should look like the following:
 
 snippet: OrderPlaced
 
-
 ### Publish an event
 
 Now that the `OrderPlaced` event is defined, we can publish it from the `PlaceOrderHandler`.
@@ -119,7 +109,6 @@ Now that the `OrderPlaced` event is defined, we can publish it from the `PlaceOr
 snippet: UpdatedHandler
 
 If we run the solution now, nothing new or exciting will happen, at least visibly. We're publishing a message, but there are no subscribers so no physical messages actually get sent anywhere. We're like a newspaper with no circulation. To fix that, we need a subscriber.
-
 
 ### Create a subscriber
 
@@ -150,7 +139,6 @@ Now when we run the solution, we'll see the following output in the **Billing** 
 
 That's great, but why stop there? The whole point of Publish/Subscribe is that we can have *multiple* subscribers.
 
-
 ### Create another subscriber
 
 In a real system, after an order is placed and billed, we need to ship the products. So let's add another event and two more subscribers. Once the credit card is charged, we'll publish an `OrderBilled` event. Next, we'll create a new endpoint **Shipping** that will subscribe to both events.
@@ -164,7 +152,6 @@ This is also a good opportunity to check your understanding. If you can complete
  1. In **Shipping**, create a message handler for `OrderPlaced`.
  1. In **Shipping**, create a message handler for `OrderBilled`.
 
-
 ### Running the solution
 
 If everything worked, you should now see output like this in your **Shipping** window:
@@ -177,7 +164,6 @@ If everything worked, you should now see output like this in your **Shipping** w
 Of course, these messages could appear out of order. With asynchronous messaging, there are no message ordering guarantees. Even though `OrderBilled` comes logically after `OrderPlaced`, it's possible that `OrderBilled` could arrive first.
 
 You'll note that in the sample solution, the message for each handler says "Should we ship now?" This is because both message handlers are stateless. Like HTTP requests, message handlers have no intrinsic memory of what came before. NServiceBus contains a feature called [Sagas](/nservicebus/sagas/) that provides the ability to retain state between messages, but that won't be covered in this lesson.
-
 
 ## Summary
 

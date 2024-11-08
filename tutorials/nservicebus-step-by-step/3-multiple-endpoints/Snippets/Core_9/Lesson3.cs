@@ -77,8 +77,7 @@ class Snippets
         #endregion
 
     }
-
-
+    
     class Program
     {
         static async Task Main(string[] args)
@@ -100,5 +99,4 @@ class Snippets
             #endregion
         }
     }
-
 }

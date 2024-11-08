@@ -40,10 +40,10 @@ Unicast-only transports do not have the notion of topics, exchanges, or similar 
 
 Unicast-only transports include:
 
-- [Azure Storage Queues](/transports/azure-storage-queues/)
 - [MSMQ](/transports/msmq/)
 - [SQL Server version 4 and below](/transports/sql/)
 - [Amazon SQS version 4 and below](/transports/sqs/)
+- [Azure Storage Queues version 9 and below](/transports/azure-storage-queues/)
 
 ## Multicast-enabled transports
 
