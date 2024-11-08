@@ -43,22 +43,17 @@ namespace Core_9
             await builder.Build().RunAsync();
             #endregion
         }
-
-        static Task RunLoop(IEndpointInstance endpoint)
-        {
-            return Task.CompletedTask;
-        }
     }
 
     #region InputLoopService
 
-    public class InputLoopService(IMessageSession messageSession, ILogger<InputLoopService> logger) : BackgroundService
+    public class InputLoopService(IMessageSession messageSession) : BackgroundService
     {
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             while (true)
             {
-                logger.LogInformation("Press 'P' to place an order, or 'Q' to quit.");
+                Console.WriteLine("Press 'P' to place an order, or 'Q' to quit.");
                 var key = Console.ReadKey();
                 Console.WriteLine();
 
@@ -72,8 +67,8 @@ namespace Core_9
                         };
 
                         // Send the command
-                        logger.LogInformation("Sending PlaceOrder command, OrderId = {OrderId}", command.OrderId);
-                        await messageSession.SendLocal(command);
+                        Console.WriteLine($"Sending PlaceOrder command, OrderId = {command.OrderId}");
+                        await messageSession.SendLocal(command, stoppingToken);
 
                         break;
 
@@ -81,7 +76,7 @@ namespace Core_9
                         return;
 
                     default:
-                        logger.LogInformation("Unknown input. Please try again.");
+                        Console.WriteLine("Unknown input. Please try again.");
                         break;
                 }
             }
