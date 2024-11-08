@@ -56,3 +56,4 @@ Multicast-enabled transports include:
 - [RabbitMQ](/transports/rabbitmq/)
 - [SQL Server version 5 and above](/transports/sql/)
 - [Amazon SQS version 5 and above](/transports/sqs/)
+- [Azure Storage Queues version 10 and above](/transports/azure-storage-queues/)
