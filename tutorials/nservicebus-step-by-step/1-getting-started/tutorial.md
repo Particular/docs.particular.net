@@ -20,7 +20,7 @@ In this first lesson, which should take 10-15 minutes, you will create your firs
 
 Let's build something simple to give NServiceBus a try.
 
-This tutorial uses NServiceBus version 8, .NET 6, and assumes an up-to-date installation of [Visual Studio 2022](https://www.visualstudio.com/downloads/).
+This tutorial uses NServiceBus version 9, .NET 8, and assumes an up-to-date installation of [Visual Studio 2022](https://www.visualstudio.com/downloads/).
 
 > [!NOTE]
 > NServiceBus 8 also [supports .NET Framework 4.7.2 or higher](/nservicebus/operations/dotnet-framework-version-requirements.md), but new applications should use NServiceBus 9 and [.NET 8 or higher](https://devblogs.microsoft.com/dotnet/net-core-is-the-future-of-net/).
@@ -47,10 +47,6 @@ This adds an NServiceBus.Core and NSeviceBus.Extension.Hosting assembly referenc
 
 We're ready to create a [**messaging endpoint**](/nservicebus/endpoints/). A messaging endpoint (or just **endpoint**) is a logical component capable of sending and receiving messages. An endpoint is hosted within a process, which in this case is a simple console application, but could be a web application or other .NET process.
 
-In the **Program.cs** file, modify the code to look like the following:
-
-snippet: EmptyProgram
-
 > [!NOTE]
 > For the sake of brevity, code snippets in this tutorial do not contain the `using` statements needed to import namespaces. 
 > If you're using Visual Studio, unknown references such as `Task` or NServiceBus types will generate a "red squiggly" underline effect. 
@@ -58,9 +54,11 @@ snippet: EmptyProgram
 >
 > Alternatively, in the code snippet's **Copy/Edit** menu you will find a **Copy usings** item that will copy the namespaces used by the snippet to your clipboard.
 
-Now that we have a `Main` method, let's discuss the importance of each line we're going to add to it. First, add the following code to the `Main` method:
+We're going to use [the top-level statements feature for this tutorial](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/top-level-statements) to minimise the boilerplate code we have to write.
 
-snippet: Main
+First, add the following code to the `Program.cs`:
+
+snippet: Program
 
 Now, let's go line-by-line and find out exactly what each step is doing.
 
@@ -74,7 +72,7 @@ When running multiple console apps in the same solution, giving each one a name 
 
 snippet: Setup
 
-The host is typically configured, built, and run by code in the `Program` class. The `CreateApplicationBuilder` method creates and configures a builder object.
+The host is typically configured, built, and run by code in `Program.cs`. The `CreateApplicationBuilder` method creates and configures a builder object.
 
 #### EndpointConfiguration
 
@@ -93,7 +91,7 @@ Capturing the `transport` settings in a variable as shown will make things easie
 
 ### Starting up
 
-At the end of the `Main` method, after the configuration code, the following lines will start the endpoint and keep it running until you press <kbd>Ctrl+C</kbd> to shut it down.
+At the end of the file, after the configuration code, the following lines will start the endpoint and keep it running until you press <kbd>Ctrl+C</kbd> to shut it down.
 
 snippet: Startup
 
@@ -101,10 +99,9 @@ The endpoint is initialized according to the settings defined by the `EndpointCo
 
 When you run the endpoint for the first time, the endpoint will:
 
- * Display its logging information, which is [written to a file, Trace, and the Console](/nservicebus/logging/#default-logging). NServiceBus also logs to multiple levels, so you can [change the log level](/nservicebus/logging/#default-logging-changing-the-defaults-changing-the-logging-level) from `INFO` to `DEBUG` in order to get more information.
- * Display the [status of your license](/nservicebus/licensing/).
- * Attempt to add the current user to the "Performance Monitor Users" group so that it can write [performance counters](/monitoring/metrics/performance-counters.md) to track its health and progress.
- * Create file-based "queues" in the `.learningtransport` directory inside your solution directory. We recommend adding `.learningtransport` to your source control system's ignore file.
+* Display its logging information via [Microsoft.Extensions.Logging](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging)
+* Display the [status of your license](/nservicebus/licensing/).
+* Create file-based "queues" in the `.learningtransport` directory inside your solution directory. We recommend adding `.learningtransport` to your source control system's ignore file.
 
 ## Summary
 
