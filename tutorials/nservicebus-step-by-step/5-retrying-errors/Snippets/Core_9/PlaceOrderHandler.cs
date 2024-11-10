@@ -5,8 +5,6 @@ using NServiceBus;
 
 namespace Core_9;
 
-
-
 public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) :
     IHandleMessages<PlaceOrder>
 {
@@ -34,14 +32,10 @@ public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) :
 
 #pragma warning restore CS0162 // Unreachable code detected
 
-    #region Random
-    static Random random = new Random();
-    #endregion
-
     public void ThrowTransient()
     {
         #region ThrowTransient
-        if (random.Next(0, 5) == 0)
+        if (Random.Shared.Next(0, 5) == 0)
         {
             throw new Exception("Oops");
         }
