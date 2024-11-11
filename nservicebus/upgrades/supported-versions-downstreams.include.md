@@ -338,7 +338,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/2.0.0) | 2024-04-16     | -                 | -                                 |
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/1.1.1) | 2023-09-21     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
-| [~~0.6.x~~](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/0.6.0) | ~~2023-04-27~~ | ~~2024-05-09~~    | ~~Superseded by 1.0.x~~           |
 
 #### [NServiceBus.AzureFunctions.InProcess.ServiceBus](/nuget/NServiceBus.AzureFunctions.InProcess.ServiceBus)
 
@@ -579,7 +578,7 @@
 | [3.9.x](https://www.nuget.org/packages/Particular.PlatformSample/3.9.0) | 2024-08-16     | 2024-11-26        | Superseded by 3.10.x              |
 | [3.8.x](https://www.nuget.org/packages/Particular.PlatformSample/3.8.0) | 2024-08-13     | 2024-11-16        | Superseded by 3.9.x               |
 | [3.7.x](https://www.nuget.org/packages/Particular.PlatformSample/3.7.0) | 2024-08-12     | 2024-11-13        | Superseded by 3.8.x               |
-| [3.6.x](https://www.nuget.org/packages/Particular.PlatformSample/3.6.0) | 2024-08-01     | 2024-11-12        | Superseded by 3.7.x               |
+| [~~3.6.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.6.0) | ~~2024-08-01~~ | ~~2024-11-12~~    | ~~Superseded by 3.7.x~~           |
 | [~~3.5.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.5.0) | ~~2024-07-23~~ | ~~2024-11-01~~    | ~~Superseded by 3.6.x~~           |
 | [~~3.4.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.4.0) | ~~2024-07-12~~ | ~~2024-10-23~~    | ~~Superseded by 3.5.x~~           |
 | [~~3.3.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.3.0) | ~~2024-07-08~~ | ~~2024-10-12~~    | ~~Superseded by 3.4.x~~           |
