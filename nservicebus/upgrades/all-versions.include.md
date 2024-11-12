@@ -157,7 +157,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.SqlServer/7.0.7) | 2023-08-28     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.SqlServer/7.0.8) | 2023-08-28     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.SqlServer/6.3.8) | 2021-06-23     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~6.2.x~~](https://www.nuget.org/packages/NServiceBus.SqlServer/6.2.0) | ~~2020-11-19~~ | ~~2021-09-23~~    | ~~Superseded by 6.3.x~~           |
 | [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.SqlServer/6.1.2) | ~~2020-06-24~~ | ~~2021-02-19~~    | ~~Superseded by 6.2.x~~           |
@@ -219,15 +219,15 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/8.1.5) | 2024-06-25     | -                 | -                                 |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/8.1.6) | 2024-06-25     | -                 | -                                 |
 
 #### [NServiceBus.Transport.SqlServer](/nuget/NServiceBus.Transport.SqlServer)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.1.5) | 2024-06-25     | -                 | -                                 |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.1.6) | 2024-06-25     | -                 | -                                 |
 | [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.0.0) | ~~2024-04-16~~ | ~~2024-09-25~~    | ~~Superseded by 8.1.x~~           |
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/7.0.7) | 2023-08-28     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/7.0.8) | 2023-08-28     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.3.8) | 2021-06-23     | 2024-11-17        | Extended by NServiceBus 7.8.x     |
 | [~~6.2.x~~](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.2.0) | ~~2020-11-19~~ | ~~2021-09-23~~    | ~~Superseded by 6.3.x~~           |
 | [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.1.2) | ~~2020-06-24~~ | ~~2021-02-19~~    | ~~Superseded by 6.2.x~~           |
@@ -1105,7 +1105,7 @@
 | [3.10.x](https://www.nuget.org/packages/Particular.PlatformSample/3.10.0) | 2024-08-26     | 2024-12-02        | Superseded by 3.11.x              |
 | [3.9.x](https://www.nuget.org/packages/Particular.PlatformSample/3.9.0) | 2024-08-16     | 2024-11-26        | Superseded by 3.10.x              |
 | [3.8.x](https://www.nuget.org/packages/Particular.PlatformSample/3.8.0) | 2024-08-13     | 2024-11-16        | Superseded by 3.9.x               |
-| [3.7.x](https://www.nuget.org/packages/Particular.PlatformSample/3.7.0) | 2024-08-12     | 2024-11-13        | Superseded by 3.8.x               |
+| [~~3.7.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.7.0) | ~~2024-08-12~~ | ~~2024-11-13~~    | ~~Superseded by 3.8.x~~           |
 | [~~3.6.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.6.0) | ~~2024-08-01~~ | ~~2024-11-12~~    | ~~Superseded by 3.7.x~~           |
 | [~~3.5.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.5.0) | ~~2024-07-23~~ | ~~2024-11-01~~    | ~~Superseded by 3.6.x~~           |
 | [~~3.4.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.4.0) | ~~2024-07-12~~ | ~~2024-10-23~~    | ~~Superseded by 3.5.x~~           |
