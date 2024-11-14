@@ -1,27 +1,24 @@
+using ClientUI;
 using Messages;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace ClientUI;
+var endpointName = "ClientUI";
 
-class Program
-{
-    static async Task Main(string[] args)
-    {
-        var builder = Host.CreateApplicationBuilder(args);
+Console.Title = endpointName;
 
-        var endpointConfiguration = new EndpointConfiguration("ClientUI");
+var builder = Host.CreateApplicationBuilder(args);
 
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+var endpointConfiguration = new EndpointConfiguration(endpointName);
 
-        var routing = endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
+var routing = endpointConfiguration.UseTransport(new LearningTransport());
 
-        builder.UseNServiceBus(endpointConfiguration);
+routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
-        builder.Services.AddHostedService<InputLoopService>();
+builder.UseNServiceBus(endpointConfiguration);
 
-        await builder.Build().RunAsync();
-    }
-}
+builder.Services.AddHostedService<InputLoopService>();
+
+await builder.Build().RunAsync();

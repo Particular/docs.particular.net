@@ -8,7 +8,7 @@ namespace Core_9.BuyersRemorsePolicyStartedByPlaceOrder;
 
 #region BuyersRemorsePolicyStartedByPlaceOrder
 
-class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseState>,
+class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>,
     IAmStartedByMessages<PlaceOrder>
 {
     public Task Handle(PlaceOrder message, IMessageHandlerContext context)
@@ -20,7 +20,7 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemo
         return Task.CompletedTask;
     }
 
-    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseState> mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseData> mapper)
     {
         // TO BE IMPLEMENTED
     }
@@ -33,7 +33,7 @@ internal class PlaceOrder
     public string OrderId { get; set; }
 }
 
-internal class BuyersRemorseState : ContainSagaData
+internal class BuyersRemorseData : ContainSagaData
 {
     public string OrderId { get; set; }
 }

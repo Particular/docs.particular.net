@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace Billing;
 
-public class CustomerStatusPolicy(ILogger<OrderPlacedHandler> logger) :
-    Saga<CustomerStatusPolicy.CustomerStatusState>,
+public class CustomerStatusPolicy(ILogger<CustomerStatusPolicy> logger) :
+    Saga<CustomerStatusPolicyData>,
     IAmStartedByMessages<OrderBilled>,
     IHandleTimeouts<CustomerStatusPolicy.OrderExpired>
 {
 
     //values hardcoded for simplicity
     const int preferredStatusAmount = 250;
-    TimeSpan orderExpiryTimeout = TimeSpan.FromSeconds(10);
+    readonly TimeSpan orderExpiryTimeout = TimeSpan.FromSeconds(10);
 
-    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<CustomerStatusState> mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<CustomerStatusPolicyData> mapper)
     {
         mapper.MapSaga(saga => saga.CustomerId)
             .ToMessage<OrderBilled>(message => message.CustomerId);
@@ -24,8 +24,6 @@ public class CustomerStatusPolicy(ILogger<OrderPlacedHandler> logger) :
 
     public async Task Handle(OrderBilled message, IMessageHandlerContext context)
     {
-        Data.CustomerId = message.CustomerId;
-
         logger.LogInformation("Customer {CustomerId} submitted order of {OrderValue}", Data.CustomerId, message.OrderValue);
 
         Data.RunningTotal += message.OrderValue;
@@ -55,15 +53,15 @@ public class CustomerStatusPolicy(ILogger<OrderPlacedHandler> logger) :
         }
     }
 
-    public class CustomerStatusState : ContainSagaData
-    {
-        public string CustomerId { get; set; }
-        public decimal RunningTotal { get; set; }
-        public bool PreferredStatus { get; set; }
-    }
-
     public class OrderExpired
     {
         public decimal Amount { get; set; }
     }
+}
+
+public class CustomerStatusPolicyData : ContainSagaData
+{
+    public string CustomerId { get; set; }
+    public decimal RunningTotal { get; set; }
+    public bool PreferredStatus { get; set; }
 }

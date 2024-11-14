@@ -1,48 +1,36 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Billing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-namespace Billing;
+var endpointName = "Billing";
 
-class Program
-{
-    static async Task Main(string[] args)
-    {
-        Console.Title = "Billing";
+Console.Title = endpointName;
 
-        var builder = Host.CreateApplicationBuilder(args);
+var builder = Host.CreateApplicationBuilder(args);
 
-        var endpointConfiguration = new EndpointConfiguration("Billing");
+var endpointConfiguration = new EndpointConfiguration(endpointName);
 
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        endpointConfiguration.UseTransport<LearningTransport>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+endpointConfiguration.UsePersistence<LearningPersistence>();
 
-        endpointConfiguration.RegisterComponents(
-            c =>
-            {
-                c.AddSingleton<OrderCalculator>();
-            });
+endpointConfiguration.SendFailedMessagesTo("error");
+endpointConfiguration.AuditProcessedMessagesTo("audit");
 
-        endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.AuditProcessedMessagesTo("audit");
+// Decrease the default delayed delivery interval so that we don't
+// have to wait too long for the message to be moved to the error queue
+var recoverability = endpointConfiguration.Recoverability();
+recoverability.Delayed(
+    delayed => { delayed.TimeIncrease(TimeSpan.FromSeconds(2)); }
+);
 
-        // Decrease the default delayed delivery interval so that we don't
-        // have to wait too long for the message to be moved to the error queue
-        var recoverability = endpointConfiguration.Recoverability();
-        recoverability.Delayed(
-            delayed =>
-            {
-                delayed.TimeIncrease(TimeSpan.FromSeconds(2));
-            }
-        );
+builder.UseNServiceBus(endpointConfiguration);
 
-        builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddSingleton<OrderCalculator>();
 
-        await builder.Build().RunAsync();
-    }
-}
+await builder.Build().RunAsync();

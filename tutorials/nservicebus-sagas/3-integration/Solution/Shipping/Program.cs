@@ -1,47 +1,37 @@
-﻿using Messages;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using System;
 using System.Threading.Tasks;
+using Messages;
 
-namespace Shipping;
+var endpointName = "Shipping";
 
-class Program
-{
-    static async Task Main(string[] args)
-    {
-        Console.Title = "Shipping";
+Console.Title = endpointName;
 
-        var builder = Host.CreateApplicationBuilder(args);
+var builder = Host.CreateApplicationBuilder(args);
 
-        var endpointConfiguration = new EndpointConfiguration("Shipping");
+var endpointConfiguration = new EndpointConfiguration(endpointName);
 
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        var transport = endpointConfiguration.UseTransport<LearningTransport>();
+var routing = endpointConfiguration.UseTransport(new LearningTransport());
 
-        var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+endpointConfiguration.UsePersistence<LearningPersistence>();
 
-        var routing = transport.Routing();
-        routing.RouteToEndpoint(typeof(ShipOrder), "Shipping");
-        routing.RouteToEndpoint(typeof(ShipWithMaple), "Shipping");
-        routing.RouteToEndpoint(typeof(ShipWithAlpine), "Shipping");
+routing.RouteToEndpoint(typeof(ShipOrder), "Shipping");
+routing.RouteToEndpoint(typeof(ShipWithMaple), "Shipping");
+routing.RouteToEndpoint(typeof(ShipWithAlpine), "Shipping");
 
-        endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.AuditProcessedMessagesTo("audit");
+endpointConfiguration.SendFailedMessagesTo("error");
+endpointConfiguration.AuditProcessedMessagesTo("audit");
 
-        // Decrease the default delayed delivery interval so that we don't
-        // have to wait too long for the message to be moved to the error queue
-        var recoverability = endpointConfiguration.Recoverability();
-        recoverability.Delayed(
-            delayed =>
-            {
-                delayed.TimeIncrease(TimeSpan.FromSeconds(2));
-            }
-        );
+// Decrease the default delayed delivery interval so that we don't
+// have to wait too long for the message to be moved to the error queue
+var recoverability = endpointConfiguration.Recoverability();
+recoverability.Delayed(
+    delayed => { delayed.TimeIncrease(TimeSpan.FromSeconds(2)); }
+);
 
-        builder.UseNServiceBus(endpointConfiguration);
+builder.UseNServiceBus(endpointConfiguration);
 
-        await builder.Build().RunAsync();
-    }
-}
+await builder.Build().RunAsync();

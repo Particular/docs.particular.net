@@ -7,10 +7,10 @@ namespace Core_9.BuyersRemorseTimeoutHandling;
 
 #region BuyersRemorseTimeoutHandling
 
-class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseState>, 
+class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>,
     IHandleTimeouts<BuyersRemorseIsOver>
 {
-    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseState> mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseData> mapper)
     {
         //Omitted for clarity
     }
@@ -45,7 +45,7 @@ internal class PlaceOrder
 {
 }
 
-internal class BuyersRemorseState : ContainSagaData
+internal class BuyersRemorseData : ContainSagaData
 {
     public object OrderId { get; set; }
 }

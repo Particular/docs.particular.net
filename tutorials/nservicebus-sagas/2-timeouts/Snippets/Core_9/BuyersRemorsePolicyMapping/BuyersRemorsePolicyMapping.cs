@@ -7,11 +7,11 @@ namespace Core_9.BuyersRemorsePolicyMapping;
 #region BuyersRemorsePolicyMapping
 
 #pragma warning disable CS9113 // Parameter is unread.
-class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseState>,
+class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>,
 #pragma warning restore CS9113 // Parameter is unread.
     IAmStartedByMessages<PlaceOrder>
 {
-    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseState> mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseData> mapper)
     {
         mapper.MapSaga(saga => saga.OrderId)
             .ToMessage<PlaceOrder>(message => message.OrderId);
@@ -31,7 +31,7 @@ internal class PlaceOrder
     public string OrderId { get; set; }
 }
 
-internal class BuyersRemorseState : ContainSagaData
+internal class BuyersRemorseData : ContainSagaData
 {
     public string OrderId { get; set; }
 }

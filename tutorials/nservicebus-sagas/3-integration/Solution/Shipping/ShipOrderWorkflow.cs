@@ -1,20 +1,19 @@
-﻿using NServiceBus;
 using System;
 using System.Threading.Tasks;
 using Messages;
 using Microsoft.Extensions.Logging;
+using NServiceBus;
 
 namespace Shipping;
 
 class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
-    Saga<ShipOrderWorkflow.ShipOrderData>,
+    Saga<ShipOrderWorkflowData>,
     IAmStartedByMessages<ShipOrder>,
     IHandleMessages<ShipmentAcceptedByMaple>,
     IHandleMessages<ShipmentAcceptedByAlpine>,
     IHandleTimeouts<ShipOrderWorkflow.ShippingEscalation>
 {
-
-    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShipOrderData> mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShipOrderWorkflowData> mapper)
     {
         mapper.MapSaga(saga => saga.OrderId)
             .ToMessage<ShipOrder>(message => message.OrderId);
@@ -79,15 +78,15 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
         }
     }
 
-    internal class ShipOrderData : ContainSagaData
-    {
-        public string OrderId { get; set; }
-        public bool ShipmentAcceptedByMaple { get; set; }
-        public bool ShipmentOrderSentToAlpine { get; set; }
-        public bool ShipmentAcceptedByAlpine { get; set; }
-    }
-
     internal class ShippingEscalation
     {
     }
+}
+
+public class ShipOrderWorkflowData : ContainSagaData
+{
+    public string OrderId { get; set; }
+    public bool ShipmentAcceptedByMaple { get; set; }
+    public bool ShipmentOrderSentToAlpine { get; set; }
+    public bool ShipmentAcceptedByAlpine { get; set; }
 }

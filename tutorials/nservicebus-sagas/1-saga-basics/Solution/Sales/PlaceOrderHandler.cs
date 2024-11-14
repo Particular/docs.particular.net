@@ -9,8 +9,6 @@ namespace Sales;
 public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) :
     IHandleMessages<PlaceOrder>
 {
-    static Random random = new Random();
-
     public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
         logger.LogInformation("Received PlaceOrder, OrderId = {message.OrderId}", message.OrderId);
@@ -21,7 +19,7 @@ public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) :
         //throw new Exception("BOOM");
 
         // Uncomment to test throwing a transient exception
-        //if (random.Next(0, 5) == 0)
+        //if (Random.Shared.Next(0, 5) == 0)
         //{
         //    throw new Exception("Oops");
         //}

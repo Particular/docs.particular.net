@@ -38,11 +38,11 @@ In this tutorial, we'll model the delay period using a saga timeout. We'll chang
 >
 > downloadbutton(Download Previous Solution, /tutorials/nservicebus-sagas/1-saga-basics)
 >
-> The solution contains 5 projects. The **ClientUI**, **Sales**, **Billing**, and **Shipping** projects define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is the entry point to the system.
-> **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes that define the messages exchanged in our system.
+> The **ClientUI**, **Sales**, **Billing**, and **Shipping** projects define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is the entry point to the system.
+> **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the relevant **.Messages** assembly, which contains the classes that define the messages exchanged in our system.
 > To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
 >
-> This tutorial uses NServiceBus version 8, .NET 6, and assumes an up-to-date installation of Visual Studio 2022.
+> This tutorial uses NServiceBus version 9, .NET 8, and assumes an up-to-date installation of Visual Studio 2022.
 
 ### Saga storage
 
@@ -58,7 +58,7 @@ In the Sales project, create a new class called `BuyersRemorsePolicy` and add th
 
 snippet: EmptyBuyersRemorsePolicy
 
-The policy inherits from `Saga<BuyersRemorseState>`. `BuyersRemorseState` represents the saga's state by inheriting from `ContainsSagaData`.
+The policy inherits from `Saga<BuyersRemorseData>`. `BuyersRemorseData` represents the saga's state by inheriting from `ContainsSagaData`.
 
 The ClientUI already sends a `PlaceOrder` command to the Sales endpoint. This command is perfect to start the buyer's remorse saga. Let's implement the `IAmStartedByMessages<PlaceOrder>` interface in the saga:
 
@@ -107,7 +107,7 @@ But it's not much of a buyer's remorse policy if we can't cancel the order. Let'
 
 ### Order cancellation
 
-As you might expect by now, cancelling an order is done by sending a command and handling it. First, define the `CancelOrder` command in the Messages project:
+As you might expect by now, cancelling an order is done by sending a command and handling it. First, define the `CancelOrder` command in the **Sales.Messages*** project:
 
 snippet: BuyersRemorseCancelOrderCommand
 

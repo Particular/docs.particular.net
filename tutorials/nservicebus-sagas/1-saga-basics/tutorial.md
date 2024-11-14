@@ -36,11 +36,11 @@ In this exercise we'll build a saga to handle the situation outlined above, wher
 >
 > downloadbutton(Download Previous Solution, /tutorials/nservicebus-step-by-step/5-retrying-errors)
 >
-> The solution contains 5 projects. The **ClientUI**, **Sales**, **Billing**, and **Shipping** projects define endpoints that communicate with each other using NServiceBus messages. The **ClientUI** endpoint mimics a web application and is the entry point to the system. **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes defining messages exchanged in our system.
+> The **ClientUI**, **Sales**, **Billing**, and **Shipping** projects define endpoints that communicate with each other using NServiceBus messages. The **ClientUI** endpoint mimics a web application and is the entry point to the system. **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references relevant **.Messages** assemblies, which contains the classes defining messages exchanged in our system.
 >
 > Check out the [NServiceBus step-by-step tutorial overview](/tutorials/nservicebus-step-by-step/) for a diagram of how the existing code works. Or, if you like, you can complete those lessons first to learn the basics of sending messages and publishing events with NServiceBus and return to this lesson afterward.
 >
-> This tutorial uses NServiceBus version 8, .NET 6, and assumes an up-to-date installation of Visual Studio 2022.
+> This tutorial uses NServiceBus version 9, .NET 8, and assumes an up-to-date installation of Visual Studio 2022.
 
 We will create a saga in the **Shipping** endpoint that will handle the `OrderPlaced` and `OrderBilled` events. When it receives both, it'll send the `ShipOrder` command to initiate the delivery.
 
@@ -184,7 +184,7 @@ Less boilerplate code is a good thing. Let's concern ourselves with more importa
 
 Right now the `ShippingPolicy` saga does nothing else other than handling messages and keeping track of which messages have been handled. Once both messages are received, we need to deliver the order.
 
-First, in the **Messages** project, create a `ShipOrder` command:
+First, create a new **Shipping.Messages** project, add a reference to it from the **Shipping** project, create a `ShipOrder` command:
 
 snippet: ShippingPolicyShipOrder
 

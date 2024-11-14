@@ -2,7 +2,9 @@
 
 namespace Messages;
 
-public class CancelOrder : ICommand
+public class PlaceOrder :
+    ICommand
 {
     public string OrderId { get; set; }
+    public string CustomerId { get; set; }
 }

@@ -4,16 +4,14 @@ using Microsoft.Extensions.Logging;
 
 namespace ClientUI;
 
-public class InputLoopService(IMessageSession messageSession,ILogger<InputLoopService> logger) : BackgroundService
+public class InputLoopService(IMessageSession messageSession) : BackgroundService
 {
-    
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         while (true)
         {
-            Console.Title = "ClientUI";
 
-            logger.LogInformation("Press 'P' to place an order, or 'Q' to quit.");
+            Console.WriteLine("Press 'P' to place an order, or 'Q' to quit.");
             var key = Console.ReadKey();
             Console.WriteLine();
 
@@ -28,8 +26,8 @@ public class InputLoopService(IMessageSession messageSession,ILogger<InputLoopSe
                     };
 
                     // Send the command
-                    logger.LogInformation("Sending PlaceOrder command, OrderId = {OrderId}", command.OrderId);
-                    await messageSession.Send(command);
+                    Console.WriteLine($"Sending PlaceOrder command, OrderId = {command.OrderId}");
+                    await messageSession.Send(command, stoppingToken);
 
                     break;
 
@@ -37,7 +35,7 @@ public class InputLoopService(IMessageSession messageSession,ILogger<InputLoopSe
                     return;
 
                 default:
-                    logger.LogInformation("Unknown input. Please try again.");
+                    Console.WriteLine("Unknown input. Please try again.");
                     break;
             }
         }

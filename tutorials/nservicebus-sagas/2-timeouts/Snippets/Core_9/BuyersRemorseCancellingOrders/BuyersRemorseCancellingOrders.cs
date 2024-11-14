@@ -5,7 +5,7 @@ using NServiceBus;
 
 namespace Core_9.BuyersRemorseCancellingOrders;
 
-class UICommands(ILogger<UICommands> logger)
+class UICommands
 {
     async Task Execute(IMessageSession endpointInstance)
     {
@@ -14,9 +14,7 @@ class UICommands(ILogger<UICommands> logger)
 
         while (true)
         {
-            Console.Title = "ClientUI";
-
-            logger.LogInformation("Press 'P' to place an order, 'C' to cancel an order, or 'Q' to quit.");
+            Console.WriteLine("Press 'P' to place an order, 'C' to cancel an order, or 'Q' to quit.");
             var key = Console.ReadKey();
             Console.WriteLine();
 
@@ -30,7 +28,7 @@ class UICommands(ILogger<UICommands> logger)
                     };
 
                     // Send the command
-                    logger.LogInformation("Sending PlaceOrder command, OrderId = {OrderId}", command.OrderId);
+                    Console.WriteLine($"Sending PlaceOrder command, OrderId = {command.OrderId}");
                     await endpointInstance.Send(command);
 
                     lastOrder = command.OrderId; // Store order identifier to cancel if needed.
@@ -42,14 +40,14 @@ class UICommands(ILogger<UICommands> logger)
                         OrderId = lastOrder
                     };
                     await endpointInstance.Send(cancelCommand);
-                    logger.LogInformation("Sent a CancelOrder command, {OrderId}", cancelCommand.OrderId);
+                    Console.WriteLine($"Sent a CancelOrder command, {cancelCommand.OrderId}");
                     break;
 
                 case ConsoleKey.Q:
                     return;
 
                 default:
-                    logger.LogInformation("Unknown input. Please try again.");
+                    Console.WriteLine("Unknown input. Please try again.");
                     break;
             }
         }

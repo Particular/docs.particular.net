@@ -7,16 +7,16 @@ namespace Core_9.EmptyBuyersRemorsePolicy;
 
 #region EmptyBuyersRemorsePolicy
 #pragma warning disable CS9113 // Parameter is unread.
-class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseState>
+class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>
 #pragma warning restore CS9113 // Parameter is unread.
 {
-    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseState> mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseData> mapper)
     {
         // TO BE IMPLEMENTED
     }
 }
 
-public class BuyersRemorseState : ContainSagaData
+public class BuyersRemorseData : ContainSagaData
 {
     public string OrderId { get; set; }
 }
