@@ -11,6 +11,9 @@ When ServiceControl is hosted in containers, the [`particular/servicecontrol-rav
 
 The database container extends the [official RavenDB container](https://hub.docker.com/r/ravendb/ravendb) and is provided to ensure compatibility with ServiceControl instances. In other words, for any version `x.y.z` version of ServiceControl, the same version `x.y.z` of the database container should be used to ensure data storage compatibility.
 
+> [!NOTE]
+The NServiceBus license covers the license for the embedded RavenDB that ships with ServiceControl. A separate RavenDB license is not required in this case.
+
 > [!WARNING]
 > A single database container should not be shared between multiple ServiceControl instances in production scenarios.
 
