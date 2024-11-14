@@ -48,15 +48,18 @@ Using `--setup-and-run` removes the need to repeat a setup process when the cont
 
 ## Required settings
 
-The following environment settings are required to run a ServiceControl error instance:
+_Environment variable:_ `REMOTEINSTANCES`
 
-| Environment Variable | Description |
-|-|-|
-| `TRANSPORTTYPE` | Determines the message transport used to communicate with message endpoints. See [ServiceControl transport configuration](/servicecontrol/transports.md) for valid TransportType values. |
-| `CONNECTIONSTRING` | Provides the connection information to connect to the chosen transport. The form of this connection string is different for every message transport. See [ServiceControl transport support](/servicecontrol/transports.md) for more details on options available to each message transport. |
-| `RAVENDB_CONNECTIONSTRING` | Provides the URL to connect to the [database container](/servicecontrol/ravendb/containers.md) that stores the error instance's data. The database container should be exclusive to the error instance, and not shared by any other ServiceControl instances. |
-| `REMOTEINSTANCES` | A JSON structure that provides URLs for the Error instance to access any [remote audit instances](/servicecontrol/servicecontrol-instances/remotes.md). When requesting audit data via the ServiceControl API, the Error instance will communicate to each of the remote audit instances in a scatter-gather pattern and then return the combined results. The URLs must be accessible by the Error instance directly, not constructed to be accessible from an external browser. |
-| `PARTICULARSOFTWARE_LICENSE` | The Particular Software license. The environment variable should contain the full multi-line contents of the license file. |
+The following environment settings are required to run a ServiceControl error instance.
+
+include: servicecontrol-container-transport
+include: servicecontrol-container-ravenconnectionstring
+
+### Remote instances
+
+A JSON structure that provides URLs for the Error instance to access any [remote audit instances](/servicecontrol/servicecontrol-instances/remotes.md). When requesting audit data via the ServiceControl API, the Error instance will communicate to each of the remote audit instances in a scatter-gather pattern and then return the combined results. The URLs must be accessible by the Error instance directly, not constructed to be accessible from an external browser.
+
+include: servicecontrol-container-license
 
 ## Ports
 

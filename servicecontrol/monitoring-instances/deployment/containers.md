@@ -47,11 +47,8 @@ Using `--setup-and-run` removes the need to repeat a setup process when the cont
 
 The following environment settings are required to run a ServiceControl monitoring instance:
 
-| Environment Variable | Description |
-|-|-|
-| `TRANSPORTTYPE` | Determines the message transport used to communicate with message endpoints. See [ServiceControl transport configuration](/servicecontrol/transports.md) for valid TransportType values. |
-| `CONNECTIONSTRING` | Provides the connection information to connect to the chosen transport. The form of this connection string is different for every message transport. See [ServiceControl transport support](/servicecontrol/transports.md) for more details on options available to each message transport. |
-| `PARTICULARSOFTWARE_LICENSE` | The Particular Software license. The environment variable should contain the full multi-line contents of the license file. |
+include: servicecontrol-container-transport
+include: servicecontrol-container-license
 
 ## Ports
 

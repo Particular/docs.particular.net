@@ -144,14 +144,15 @@ The important takeaway is, if a message is accidentally sent to an endpoint we d
 
 Now we need to change **ClientUI** so that it is sending `PlaceOrder` to the **Sales** endpoint.
 
- 1. In the **ClientUI** endpoint, modify the **Program.cs** file so that `endpointInstance.SendLocal(command)` is replaced by `endpointInstance.Send(command)`.
- 1. In the the same file, use the `transport` variable to access the routing configuration and specify the logical routing for `PlaceOrder` by adding the following code after the line that configures the Learning Transport:
+1. In the **ClientUI** endpoint, modify the **Program.cs** file so that `endpointInstance.SendLocal(command)` is replaced by `endpointInstance.Send(command)`.
+1. In the the same file, use the `transport` variable to access the routing configuration and specify the logical routing for `PlaceOrder` by adding the following code after the line that configures the Learning Transport:
 
 snippet: AddingRouting
 
 This establishes that commands of type `PlaceOrder` should be sent to the **Sales** endpoint.
 
-Reminder: As noted in [configuring an endpoint](#exercise-configuring-an-endpoint), ensure the configuration (e.g. message transport and serializers used) between endpoints match.
+> [!IMPORTANT]  
+> As noted in [configuring an endpoint](#exercise-configuring-an-endpoint), ensure the configuration (e.g. message transport and serializers used) between endpoints match.
 
 ### Running the solution
 
