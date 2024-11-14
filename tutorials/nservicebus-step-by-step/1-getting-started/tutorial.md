@@ -22,9 +22,6 @@ Let's build something simple to give NServiceBus a try.
 
 This tutorial uses NServiceBus version 9, .NET 8, and assumes an up-to-date installation of [Visual Studio 2022](https://www.visualstudio.com/downloads/).
 
-> [!NOTE]
-> NServiceBus 8 also [supports .NET Framework 4.7.2 or higher](/nservicebus/operations/dotnet-framework-version-requirements.md), but new applications should use NServiceBus 9 and [.NET 8 or higher](https://devblogs.microsoft.com/dotnet/net-core-is-the-future-of-net/).
-
 ### Create a solution
 
 First, let's create a basic solution and include the dependencies we need.
