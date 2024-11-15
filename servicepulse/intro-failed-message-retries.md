@@ -21,30 +21,28 @@ There are two ways to deal with this scenario. If the issue in the sender can be
 
 If the sender cannot be fixed it is better to use a pipeline behavior to repair the messages at the receiver endpoint before they are passed to the handler. [This sample](/samples/pipeline/fix-messages-using-behavior/) demonstrates this scenario.
 
-
 ## ServicePulse interface
 
-ServicePulse allows you to see failed messages and retry them. By default, the UI groups these messages based on the endpoint that failed to process them. You can see the source, and the number of failed messages.
+ServicePulse allows you to view and retry failed messages. By default, failed messages are grouped by exception type and stack trace and a message count is displayed for each group.
 
 ![Failed Messages](./images/retry/failed-mesage-groups-annotated.png)
 
 ### Retrying failed messages
 
 The messages can be retried in different ways:
- - One by one
- - By the an entire group
 
-#### 1. One by one
+#### 1. Individually
 
 ![Individual message retry](./images/retry/failed-mesage-groups-annotated.png)
 
-In this case, you will see the a notification showing that a retry has been been requested, and it is in progress.
+You will see a notification that a retry has been requested and is in progress.
+
 ![Individual message retry in progress](./images/retry/one-retry-in-progress.png)
 
-#### 2. By the an entire group
+#### 2. By group
 
 ![Retry all](./images/retry/retry-all.png)
 
-You will see a retry in progress notification for all the messages, as well as the number of messages failed decreased.
+You will see a notification that retries have been requested and are in progress, and the number of failed messages will decrease.
 
 ![All retried in progress](./images/retry/all-retry-in-progress.png)
