@@ -1104,7 +1104,7 @@
 | [3.11.x](https://www.nuget.org/packages/Particular.PlatformSample/3.11.0) | 2024-09-02     | 2024-12-04        | Superseded by 3.12.x              |
 | [3.10.x](https://www.nuget.org/packages/Particular.PlatformSample/3.10.0) | 2024-08-26     | 2024-12-02        | Superseded by 3.11.x              |
 | [3.9.x](https://www.nuget.org/packages/Particular.PlatformSample/3.9.0) | 2024-08-16     | 2024-11-26        | Superseded by 3.10.x              |
-| [3.8.x](https://www.nuget.org/packages/Particular.PlatformSample/3.8.0) | 2024-08-13     | 2024-11-16        | Superseded by 3.9.x               |
+| [~~3.8.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.8.0) | ~~2024-08-13~~ | ~~2024-11-16~~    | ~~Superseded by 3.9.x~~           |
 | [~~3.7.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.7.0) | ~~2024-08-12~~ | ~~2024-11-13~~    | ~~Superseded by 3.8.x~~           |
 | [~~3.6.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.6.0) | ~~2024-08-01~~ | ~~2024-11-12~~    | ~~Superseded by 3.7.x~~           |
 | [~~3.5.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.5.0) | ~~2024-07-23~~ | ~~2024-11-01~~    | ~~Superseded by 3.6.x~~           |
