@@ -108,7 +108,7 @@ snippet: MassTransitConsumer
 Because the event is published in RabbitMQ, NServiceBus can also subscribe to it.
 
 > [!NOTE]
-> This sample shows how to use a NServiceBus behavior to ingest messages from a MassTransit system. To see how to alter the MassTransit messages to not need an NServiceBus behavior but instead use the [MassTransit.Interop.NServiceBus](https://nuget.org/packages/MassTransit.Interop.NServiceBus/) package, see [the MassTransit docs](https://masstransit.io/documentation/configuration/integrations/nsb).
+> This sample shows how to use an NServiceBus behavior to ingest messages from a MassTransit system. Alternatively, the [MassTransit.Interop.NServiceBus](https://nuget.org/packages/MassTransit.Interop.NServiceBus/) package may be used, as described in [the MassTransit docs](https://masstransit.io/documentation/configuration/integrations/nsb).
 
 ## NServiceBus subscriber
 
