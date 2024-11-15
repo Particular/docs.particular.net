@@ -16,9 +16,9 @@ partial: disable-scanning
 
 ## Dynamic type loading
 
-Due to the various ways of defining, sharing, and deploying message contracts, a specific message type might not be available or detected by assembly scanning at startup time. NServiceBus is capable of automatically loading message types, including their defining assembly, at runtime if it is present in the .NET runtime's assembly probing paths. This behavior can lead to additional assemblies being loaded during runtime, based on incoming messages `NServiceBus.EnclosedMessageTypes` header.
+Due to the various ways of defining, sharing, and deploying message contracts, a specific message type might not be available or detected by assembly scanning at startup time. NServiceBus is capable of automatically loading message types, including their defining assemblies, at runtime if they are present in the .NET runtime's assembly probing paths. This behavior can lead to additional assemblies being loaded during runtime, based on the `NServiceBus.EnclosedMessageTypes` header of incoming messages.
 
 partial: disable-type-loading
 
 > [!NOTE]
-> Loading types do not automatically create instances of the loaded type. NServiceBus prevents instantiation of types that are not considered [valid message types](/nservicebus/messaging/conventions.md).
+> When a type is dynamically loaded, it is not necessarily instantiated. NServiceBus prevents instantiation of types that are not considered [valid message types](/nservicebus/messaging/conventions.md).
