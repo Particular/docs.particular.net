@@ -94,7 +94,7 @@ where INDEX_NAME = 'SAGAIDX_525D1D4DC0C3DCD96947E1';
 ```
 
 > [!NOTE]
-> If the saga name or correlation property name changes, the name of the index will also change.
+> If either the saga name or correlation property name change, the name of the index will also change.
 
 If a saga name is longer than 27 characters, an exception will be thrown, and a [substitute table name must be specified](saga.md#table-structure-table-name).
 
