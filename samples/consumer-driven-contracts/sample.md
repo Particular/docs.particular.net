@@ -8,9 +8,9 @@ versions: '[6,)'
 
 ## Introduction to consumer-driven contracts
 
-This sample shows a [consumer-driven contract](https://martinfowler.com/articles/consumerDrivenContracts.html)(CDC) approach to messaging. The essence of consumer-driven contracts is that the ownership of the contract is inverted. Instead of the producer providing the definition, consumers define the contract they expect, and it's up to the producer to fulfil it.
+This sample shows a [consumer-driven contract](https://martinfowler.com/articles/consumerDrivenContracts.html)(CDC) approach to messaging. The essence of consumer-driven contracts is that the ownership of the contract is inverted. Instead of the producer providing the definition, consumers define the contract they expect, and it's up to the producer to fulfill it.
 
-In NServiceBus terminology, "producers" are called "publishers", and "consumers" are called "subscribers". Contracts translate to message contracts and are defined using plain C# types. To honor a consumer contract, the producer would make the relevant message contract inherit from the consumer contract type.
+In NServiceBus terminology, "producers" are called "publishers" and "consumers" are called "subscribers". Contracts translate to message contracts and are defined using plain C# types. To honor a consumer contract, the producer would make the relevant message contract inherit from the consumer contract type.
 
 ## Contracts as interfaces
 
