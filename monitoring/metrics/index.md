@@ -49,7 +49,7 @@ To enable collecting metrics in an environment:
 
 ## Performance impact on system resources
 
-A ServiceControl monitoring instance is more lightweight than a regular ServiceControl instance. Nevertheless, it is not recommended to host a monitoring instance on the same machine as production endpoint instances.
+A ServiceControl monitoring instance is more lightweight than a regular ServiceControl instance. However, hosting a monitoring instance and production endpoint instances on the same machine is not recommended.
 
 ### Wire usage
 
@@ -57,7 +57,7 @@ Each endpoint instance collects performance metrics, which are buffered and then
 
 ### Storage usage
 
-A Service Control Monitoring instance processes Metrics. The metric data is stored in RAM only. Logfiles are still written to disk. The metrics data are stored for at most one hour. A 100MB process can hold state for at least 100 endpoint instances.
+A Service Control Monitoring instance processes metrics. Metrics data is stored in RAM only, for at most one hour. Logfiles are still written to disk. A 100MB process can hold metrics data for at least 100 endpoint instances.
 
 ### CPU usage
 
