@@ -135,7 +135,7 @@ Throwing a big exception is an example of a systemic error. Let's see how NServi
 
 snippet: ThrowTransient
 
-1. Start the solution, and either select **Detach All** in the **Debug** menu, or just start the solution without debugging (<kbd>Ctrl</kbd>+<kbd>F5</kbd>).
+3. Start the solution, and either select **Detach All** in the **Debug** menu, or just start the solution without debugging (<kbd>Ctrl</kbd>+<kbd>F5</kbd>).
 1. In the **ClientUI** window, send one message at a time by pressing <kbd>P</kbd>, and watch the **Sales** window.
 
 As you will see in the **Sales** window, 80% of the messages will go through as normal. When an exception occurs, the exception trace will be displayed once in white, and then generally succeed on the next try. After the successful retry, the other windows will continue to react as normal to complete the process.

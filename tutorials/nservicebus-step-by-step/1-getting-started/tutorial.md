@@ -51,7 +51,7 @@ We're ready to create a [**messaging endpoint**](/nservicebus/endpoints/). A mes
 >
 > Alternatively, in the code snippet's **Copy/Edit** menu you will find a **Copy usings** item that will copy the namespaces used by the snippet to your clipboard.
 
-We're going to use [the top-level statements feature for this tutorial](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/top-level-statements) to minimise the boilerplate code we have to write.
+We're going to use the [top-level statements](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/program-structure/top-level-statements) feature for this tutorial to minimize the boilerplate code we have to write.
 
 First, add the following code to the `Program.cs`:
 
