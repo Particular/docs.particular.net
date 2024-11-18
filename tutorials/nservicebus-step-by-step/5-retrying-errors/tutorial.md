@@ -17,11 +17,9 @@ It's how we respond to exceptions that is important. When a database is deadlock
 
 In the next 25-30 minutes, you will learn about some causes of errors and see how to manage them with NServiceBus.
 
-
 ## Causes of errors
 
 Where connectivity is a major concern, there are generally three broad categories of exceptions:
-
 
 ### Transient exceptions
 
@@ -34,7 +32,6 @@ Let's consider a common scenario: code that updates a record in the database. Tw
 
 This is an example of a **transient exception**. Transient exceptions appear to be caused by random quantum fluctuations in the ether. If the failing code is immediately retried, it will probably succeed. Indeed, the exception message above tells us to do exactly that.
 
-
 ### Semi-transient exceptions
 
 The next category involves failures such as connecting to a web service that goes down intermittently. An immediate retry will likely not succeed, but retrying after a short time (from a few seconds up to a few minutes) might.
@@ -45,13 +42,11 @@ Another common example involves the failover of a database cluster. If a databas
 
 It can be difficult to deal with this type of failure, as it's often not possible for the calling thread to wait around long enough for the failure to resolve itself.
 
-
 ### Systemic exceptions
 
 Outright flaws in your system cause **systemic exceptions**, which are straight-up bugs. They will fail every time given the same input data. These are our good friends `NullReferenceException`, `ArgumentException`, dividing by zero, and a host of other common mistakes we've all made.
 
 In short, these are the exceptions that a developer needs to look at, triage, and fix —- preferably without all the noise from the transient and semi-transient errors getting in the way of our investigation.
-
 
 ## Automatic retries
 
@@ -72,7 +67,6 @@ The last step, moving the message to an error queue, is how NServiceBus deals wi
 
 We'll take a look at a few options for configuring retries in the exercise, but for more details, check out the [recoverability documentation](/nservicebus/recoverability/).
 
-
 ## Replaying messages
 
 Once a message is sent to the error queue, this indicates that a systemic failure has occurred. When this happens, a person needs to look at the message and figure out *why*.
@@ -84,11 +78,9 @@ NServiceBus embeds the exception details and stack trace into the message that i
 
 Sometimes, a new release will contain a bug in handler logic that isn't found until the code is deployed. When this happens, many errors can flood into the error queue at once. At these times, it's incredibly useful to be able to roll back to the old version of the endpoint, and then replay the messages through proven code. Then you can take the time to properly troubleshoot and fix the issue before attempting a new deployment.
 
-
 ## Exercise
 
 In this exercise we'll throw an exception inside a message handler, and see how NServiceBus automatically retries the message.
-
 
 ### Throw an exception
 
@@ -134,22 +126,17 @@ The number of retries supplied to the immediate retries API can be pulled from a
 
 You can also [configure delayed retries](/nservicebus/recoverability/configure-delayed-retries.md) in much the same way. In addition to the number of rounds of delayed retries, you can also modify the time increase used for the delay between each round of retries.
 
-
 ### Transient exceptions
 
 Throwing a big exception is an example of a systemic error. Let's see how NServiceBus reacts when we throw a transient exception. To do this, let's introduce a random number generator so that we only throw an exception 20% of the time.
 
 1. In the **Sales** endpoint, locate the **PlaceOrderHandler**.
-1. Add a static **Random** instance to the class:
-
-snippet: Random
-
-3. Change the `throw` statement so that it's dependent on the random number:
+1. Change the `throw` statement so that it's dependent on a random number:
 
 snippet: ThrowTransient
 
-4. Start the solution, and either select **Detach All** in the **Debug** menu, or just start the solution without debugging (<kbd>Ctrl</kbd>+<kbd>F5</kbd>).
-4. In the **ClientUI** window, send one message at a time by pressing <kbd>P</kbd>, and watch the **Sales** window.
+3. Start the solution, and either select **Detach All** in the **Debug** menu, or just start the solution without debugging (<kbd>Ctrl</kbd>+<kbd>F5</kbd>).
+1. In the **ClientUI** window, send one message at a time by pressing <kbd>P</kbd>, and watch the **Sales** window.
 
 As you will see in the **Sales** window, 80% of the messages will go through as normal. When an exception occurs, the exception trace will be displayed once in white, and then generally succeed on the next try. After the successful retry, the other windows will continue to react as normal to complete the process.
 

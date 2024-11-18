@@ -15,7 +15,6 @@ Sending and receiving messages is a central characteristic of any NServiceBus sy
 
 In the next 15-20 minutes, you will learn how to define messages and message handlers, send and receive a message locally, and use the built-in logging capabilities.
 
-
 ## What is a message
 
 A [**message**](/nservicebus/messaging/messages-events-commands.md) is a collection of data sent via one-way communication between two endpoints. In NServiceBus, we define messages via simple classes.
@@ -59,7 +58,6 @@ Additionally, message assemblies should have no dependencies other than librarie
 
 Following these guidelines will make your message contracts easy to evolve in the future.
 
-
 ## Processing messages
 
 To process a message, we create a [**message handler**](/nservicebus/handlers/), a class that implements `IHandleMessages<T>`, where `T` is a message type. A message handler looks like this:
@@ -86,7 +84,6 @@ Now let's take the solution we started in the [last lesson](../1-getting-started
 
 ![Exercise 2 Diagram](diagram.svg)
 
-
 ### Create a messages assembly
 
 To share messages between endpoints, they need to be self-contained in a separate assembly. Let's create that assembly now.
@@ -96,7 +93,6 @@ To share messages between endpoints, they need to be self-contained in a separat
  1. Remove the automatically created **Class1.cs** file from the project.
  1. Add the NServiceBus NuGet package to the **Messages** project.
  1. In the **ClientUI** project, add a reference to the **Messages** project.
-
 
 ### Create a message
 
@@ -112,7 +108,6 @@ Let's create our first command.
 When complete, your `PlaceOrder` class should look like the following:
 
 snippet: PlaceOrder
-
 
 ### Create a handler
 
@@ -153,10 +148,9 @@ Let's take a closer look at the case when we want to place an order. In order to
 
 Because `SendLocal()` returns a `Task`, we need to be sure to `await` it properly.
 
-Now let's modify the `Main` method and register the `InputLookService` in the host:
+Now let's modify `Program.cs` method and register the `InputLookService` in the host:
 
 snippet: AddInputLoopService
-
 
 ### Running the solution
 
@@ -182,7 +176,6 @@ You should see something similar to this on your console:
 ```
 
 Note how after sending a message, the prompt from `ClientUI.Program` is displayed _before_ the `ClientUI.PlaceOrderHandler` acknowledges receipt of the message. This is because rather than calling the `Handle` method as a direct method call, the message is sent asynchronously, and then control immediately returns to the `RunLoop` which repeats the prompt. It isn't until a bit later, when the message is received and processed, that we see the `Received PlaceOrder` notification.
-
 
 ## Summary
 

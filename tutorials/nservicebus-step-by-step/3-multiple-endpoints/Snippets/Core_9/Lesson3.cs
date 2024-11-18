@@ -42,9 +42,8 @@ class Snippets
     void ShowRouting(EndpointConfiguration endpointConfiguration)
     {
         #region RoutingSettings
-        var transport = endpointConfiguration.UseTransport<LearningTransport>();
         // Returns a RoutingSettings<LearningTransport>
-        var routing = transport.Routing();
+        var routing = endpointConfiguration.UseTransport(new LearningTransport());
         #endregion
 
         #region RouteToEndpoint
@@ -71,21 +70,19 @@ class Snippets
         var endpointConfiguration = new EndpointConfiguration("Sales");
         #endregion
 
-        var transport = endpointConfiguration.UseTransport<LearningTransport>();
+        var routing = endpointConfiguration.UseTransport(new LearningTransport());
 
         #region AddingRouting
-        var routing = transport.Routing();
         routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
         #endregion
 
     }
-
-    #region SalesConsoleApp
-
+    
     class Program
     {
         static async Task Main(string[] args)
         {
+            #region SalesConsoleApp
             Console.Title = "Sales";
 
             var builder = Host.CreateApplicationBuilder(args);
@@ -94,13 +91,12 @@ class Snippets
 
             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-            endpointConfiguration.UseTransport<LearningTransport>();
+            endpointConfiguration.UseTransport(new LearningTransport());
 
             builder.UseNServiceBus(endpointConfiguration);
 
             await builder.Build().RunAsync();
+            #endregion
         }
     }
-
-    #endregion
 }

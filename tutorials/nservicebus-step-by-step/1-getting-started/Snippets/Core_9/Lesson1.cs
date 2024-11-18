@@ -4,38 +4,28 @@ using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 namespace Core_9;
+
 #pragma warning disable 1998
-
-#region EmptyProgram
-class Program
-{
-    static async Task Main(string[] args)
-    {
-
-    }
-}
-#endregion
 
 class StepByStep
 {
-    #region Main
-
-    static async Task Main(string[] args)
+    static async Task Program(string[] args)
     {
+        #region Program
         Console.Title = "ClientUI";
-        
+
         var builder = Host.CreateApplicationBuilder(args);
 
         var endpointConfiguration = new EndpointConfiguration("ClientUI");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var transport = endpointConfiguration.UseTransport(new LearningTransport());
-        
+
         builder.UseNServiceBus(endpointConfiguration);
 
         await builder.Build().RunAsync();
+        #endregion
     }
-    #endregion
 
     static async Task Steps(string[] args)
     {

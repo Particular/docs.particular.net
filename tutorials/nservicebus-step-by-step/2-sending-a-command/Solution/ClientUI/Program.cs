@@ -1,29 +1,21 @@
 ﻿using System;
-using System.Threading.Tasks;
+using ClientUI;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-namespace ClientUI;
+Console.Title = "ClientUI";
 
-class Program
-{
-    static async Task Main(string[] args)
-    {
-        Console.Title = "ClientUI";
+var builder = Host.CreateApplicationBuilder(args);
 
-        var builder = Host.CreateApplicationBuilder(args);
+var endpointConfiguration = new EndpointConfiguration("ClientUI");
 
-        var endpointConfiguration = new EndpointConfiguration("ClientUI");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        endpointConfiguration.UseTransport(new LearningTransport());
+builder.UseNServiceBus(endpointConfiguration);
 
-        builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddHostedService<InputLoopService>();
 
-        builder.Services.AddHostedService<InputLoopService>();
-
-        await builder.Build().RunAsync();
-    }
-}
+await builder.Build().RunAsync();
