@@ -2,7 +2,7 @@
 title: Startup and Shutdown Sequence
 summary: The sequence of steps in an endpoint startup and shutdown process, including all available public extension points
 component: Core
-reviewed: 2022-04-11
+reviewed: 2024-11-19
 related:
 - nservicebus/operations/installers
 ---
