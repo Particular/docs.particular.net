@@ -8,7 +8,7 @@ redirects:
 
 When building systems using the [request/response pattern](/nservicebus/messaging/reply-to-a-message.md), the `Reply` method exposed by the `IMessageHandlerContext` is used to reply to the sender of the incoming message.
 
-The same `Reply` method can be used inside a [saga](nservicebus/sagas/) and it is important to understand that the `Reply` method always routes the message to the sender of the incoming message, _not the endpoint that started the saga_.
+The same `Reply` method can be used inside a [saga](/nservicebus/sagas/) and it is important to understand that the `Reply` method always routes the message to the sender of the incoming message, _not the endpoint that started the saga_.
 
 > [!NOTE]
 > The `Reply` method always delivers the message to the sender address of the incoming message.

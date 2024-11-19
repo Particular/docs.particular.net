@@ -1,6 +1,6 @@
 ---
 title: Endpoint API changes in NServiceBus Version 6
-reviewed: 2023-03-31
+reviewed: 2024-11-19
 component: Core
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -29,6 +29,7 @@ The endpoint name is used as a logical identifier when sending or receiving mess
 
 The `IWantToRunWhenBusStartsAndStops` interface is now obsolete.
 
+If the extensibility provided by `IWantToRunWhenBusStartsAndStops` is still required, it can be achieved via other means in the [NServiceBus endpoint lifecycle](/nservicebus/lifecycle/).
 
 ### [Self-hosting](/nservicebus/hosting/#self-hosting)
 
@@ -68,8 +69,6 @@ While the [Dispose Pattern](https://docs.microsoft.com/en-us/dotnet/standard/des
 
  * [Windows Service Hosting](/nservicebus/hosting/windows-service.md) where startup is usually done in [ServiceBase.OnStart](https://msdn.microsoft.com/en-us/library/system.serviceprocess.servicebase.onstart.aspx) and shutdown is usually done in [ServiceBase.OnStop](https://msdn.microsoft.com/en-us/library/system.serviceprocess.servicebase.onstop.aspx).
  * [Web Site or Web Service Hosting](/nservicebus/hosting/web-application.md) where startup is usually done in [HttpApplication.Application_Start](https://msdn.microsoft.com/en-us/library/ms178473.aspx) and shutdown is usually done in [HttpApplication.Dispose](https://msdn.microsoft.com/en-us/library/system.web.httpapplication.dispose.aspx).
-
-If the extensibility provided by `IWantToRunWhenBusStartsAndStops` is still required, it can be achieved via other means, such as [using MEF or reflection to customize NServiceBus](/samples/plugin-based-config/).
 
 ### Using [NServiceBus.Host](/nservicebus/hosting/nservicebus-host/)
 
