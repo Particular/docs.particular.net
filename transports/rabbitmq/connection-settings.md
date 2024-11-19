@@ -117,7 +117,7 @@ snippet: rabbitmq-config-prefetch-count
 
 ## Controlling behavior when the broker connection is lost
 
-The RabbitMQ transport monitors the connection to the broker and will trigger the critical error action if the connection fails and stays disconnected for the configured amount of time.
+The RabbitMQ transport monitors the connection to the broker and will trigger [the critical error action](/nservicebus/hosting/critical-errors.md) if the connection fails and stays disconnected for the configured amount of time.
 
 ### Heartbeat interval
 
