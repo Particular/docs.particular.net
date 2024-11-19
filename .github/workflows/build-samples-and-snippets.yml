@@ -25,16 +25,23 @@ jobs:
           dotnet workload install aspire
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
-      - name: NuGet Cache
-        uses: actions/cache@v4
+      - name: Restore NuGet Cache
+        id: nuget-cache-restore
+        uses: actions/cache/restore@v4
         with:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
           restore-keys: |
             ${{ runner.os }}-nuget-
-          save-always: true
       - name: Build affected samples and snippets
         run: pwsh.exe -NoLogo -NonInteractive -File .\tools\build-samples-and-snippets.ps1
+      - name: Save NuGet Cache
+        id: nuget-cache-save
+        if: always() && steps.nuget-cache-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ steps.nuget-cache-restore.outputs.cache-primary-key }}
       - name: Notify Slack on failure
         if: ${{ failure() }}
         shell: pwsh
