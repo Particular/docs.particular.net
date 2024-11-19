@@ -2,15 +2,12 @@ The `Particular.ServiceControl.Management` module can be installed from the [Pow
 
 ## Prerequisites
 
-The ServiceControl PowerShell module has the following prerequisites:
-
 #if-version [5,)
 
 The ServiceControl PowerShell module requires a version of PowerShell (Core) greater or equal to the [oldest supported LTS version](https://learn.microsoft.com/en-us/powershell/scripting/install/powershell-support-lifecycle#powershell-end-of-support-dates). The [PowerShell Gallery page](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management) will identify the minimum PowerShell version for each release.
 
 Windows PowerShell is not supported.
-- PowerShell (Core) 7.2 or later
-- 
+
 #end-if
 #if-version [,5)
 
