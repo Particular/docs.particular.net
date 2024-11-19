@@ -65,3 +65,6 @@ As the ServiceControl RavenDB container extends the official RavenDB container, 
 
 > [!NOTE]
 > The [RavenDB container overview on Docker Hub](https://hub.docker.com/r/ravendb/ravendb) is specific to the most recent version of RavenDB which may not match the version used by ServiceControl.
+
+> [!NOTE]
+> To host ServiceControl and ServicePulse in Azure Container Apps, use Service Control v6 with [RavenDB Cloud](https://ravendb.net/cloud) for hosting the database
