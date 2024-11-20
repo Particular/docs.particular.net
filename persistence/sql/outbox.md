@@ -28,7 +28,7 @@ In scaled-out environments, endpoint instances compete to execute outbox cleanup
 - Run the cleanup on only a single instance.
 - Increase the cleanup interval so that, on average, one endpoint instance cleans up as often as a single instance would normally. The cleanup timer isn't strict and over time these will drift and will cause less overlap. For example, for 10 endpoint instances, let cleanup run every 10 minutes instead of every minute.
 - Disable cleanup on all instances and have cleanup run as a scheduled job in the database. See the dialect-specific scripts for
-  - [SQL Server](https://docs.particular.net/persistence/sql/sqlserver-scripts#run-time-outbox)
-  - [MySQL](https://docs.particular.net/persistence/sql/mysql-scripts#run-time-outbox)
-  - [Oracle](https://docs.particular.net/persistence/sql/oracle-scripts#run-time-outbox)
-  - [PostgreSQL](https://docs.particular.net/persistence/sql/postgresql-scripts#run-time-outbox)
+  - [SQL Server](/sqlserver-scripts#run-time-outbox)
+  - [MySQL](/mysql-scripts#run-time-outbox)
+  - [Oracle](/sql/oracle-scripts#run-time-outbox)
+  - [PostgreSQL](/postgresql-scripts#run-time-outbox)
