@@ -2,7 +2,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.0.x](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/6.0.1) | 2024-10-17     | -                 | -                                 |
+| [6.1.x](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/6.1.0) | 2024-11-19     | -                 | -                                 |
+| [~~6.0.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/6.0.1) | ~~2024-10-17~~ | ~~2024-11-19~~    | ~~Superseded by 6.1.x~~           |
 | [5.11.x](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/5.11.1) | 2024-10-04     | 2025-10-17        | Superseded by 6.0.x               |
 | [~~5.10.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/5.10.0) | ~~2024-09-27~~ | ~~2024-10-04~~    | ~~Superseded by 5.11.x~~          |
 | [~~5.9.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/5.9.2) | ~~2024-09-11~~ | ~~2024-09-27~~    | ~~Superseded by 5.10.x~~          |
@@ -16,5 +17,4 @@
 | [~~5.1.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/5.1.2) | ~~2024-04-22~~ | ~~2024-05-14~~    | ~~Superseded by 5.2.x~~           |
 | [~~5.0.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/5.0.5) | ~~2023-12-01~~ | ~~2024-04-22~~    | ~~Superseded by 5.1.x~~           |
 | [4.33.x](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/4.33.5) | 2023-11-20     | 2024-12-01        | Superseded by 5.0.x               |
-| [~~4.32.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/4.32.4) | ~~2023-06-22~~ | ~~2023-11-20~~    | ~~Superseded by 4.33.x~~          |
 
