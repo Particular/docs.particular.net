@@ -4,6 +4,9 @@ summary: A guide to setting up and deploying ServiceControl Error instances usin
 reviewed: 2024-07-08
 component: ServiceControl
 versions: '[5.3, )'
+redirects:
+  - servicecontrol/containerization
+  - samples/platformtools-docker-compose
 ---
 
 ServiceControl Error instances are deployed using the [`particular/servicecontrol` image](https://hub.docker.com/r/particular/servicecontrol), as shown in this minimal example using `docker run`, assuming a RabbitMQ container named `rabbitmq`:
@@ -16,6 +19,9 @@ docker run -d --name servicecontrol -p 33333:33333 \
     -e REMOTEINSTANCES='[{"api_uri":"http://audit:44444/api"}]' \
     particular/servicecontrol:latest
 ```
+
+include: platform-container-examples
+
 ## Initial setup
 
 Before running the container image normally, it must run in setup mode to create the required message queues and perform upgrade tasks.

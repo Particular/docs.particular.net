@@ -14,6 +14,9 @@ docker run -d --name audit -p 44444:44444 \
     -e RAVENDB_CONNECTIONSTRING="http://audit-db:8080" \
     particular/servicecontrol-audit:latest
 ```
+
+include: platform-container-examples
+
 ## Initial setup
 
 Before running the container image normally, it must run in setup mode to create the required message queues and perform upgrade tasks.
