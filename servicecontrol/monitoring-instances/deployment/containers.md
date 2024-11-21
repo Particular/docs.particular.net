@@ -13,6 +13,9 @@ docker run -d --name monitoring -p 33633:33633 \
     -e CONNECTIONSTRING="host=rabbitmq" \
     particular/servicecontrol-monitoring:latest
 ```
+
+include: platform-container-examples
+
 ## Initial setup
 
 Before running the container image normally, it must run in setup mode to create the required message queues and perform upgrade tasks.
