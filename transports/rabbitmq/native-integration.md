@@ -14,11 +14,17 @@ redirects:
 
 This document describes how to consume messages from and send messages to non-NServiceBus endpoints via RabbitMQ in integration scenarios.
 
-### Access to the native RabbitMQ message details
+### Access to the received native RabbitMQ message details
 
 It can sometimes be useful to access the native RabbitMQ message from behaviors and handlers. When a message is received, the transport adds the native RabbitMQ client [`BasicDeliverEventArgs`](https://rabbitmq.github.io/rabbitmq-dotnet-client/api/RabbitMQ.Client.Events.BasicDeliverEventArgs.html) to the message processing context. Use the code below to access the message details from a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md):
 
 snippet: rabbitmq-access-to-event-args
+
+### Access to the native RabbitMQ message details prior to sending
+
+When integrating with other software systems it might be necessary to customize the native RabbitMQ message immediately before sending it to the broker. This can be done by registering a callback that gets invoked for each message as a last step before handing the message to the RabbitMQ client SDK.
+
+snippet: rabbitmq-customize-outgoing-message
 
 ### Custom message ID strategy
 
