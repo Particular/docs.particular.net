@@ -26,7 +26,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [9.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.1.1) | 2024-08-08     | -                 | -                                 |
+| [9.2.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.2.0) | 2024-11-25     | -                 | -                                 |
+| [9.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.1.1) | 2024-08-08     | 2025-02-25        | Superseded by 9.2.x               |
 | [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.0.1) | ~~2024-04-16~~ | ~~2024-11-08~~    | ~~Superseded by 9.1.x~~           |
 | [8.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/8.0.5) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [~~7.0.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/7.0.7) | ~~2022-07-14~~ | ~~2024-11-17~~    | ~~Extended by NServiceBus 7.8.x~~ |
@@ -464,7 +465,6 @@
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/3.0.3) | 2024-04-18     | 2024-12-05        | Superseded by 3.1.x               |
 | [2.3.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.3.0) | 2024-09-05     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [2.2.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.2.3) | 2024-02-26     | 2024-12-05        | Superseded by 2.3.x               |
-| [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.1.0) | ~~2023-07-25~~ | ~~2024-05-26~~    | ~~Superseded by 2.2.x~~           |
 
 #### [NServiceBus.Metrics](/nuget/NServiceBus.Metrics)
 

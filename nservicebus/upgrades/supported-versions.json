@@ -596,6 +596,10 @@
         {
           "Minor": "9.1",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "9.2",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -865,10 +869,6 @@
       "Versions": [
         {
           "Minor": "2.40",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.9",
           "SupportLevel": "Mainstream"
         },
         {
