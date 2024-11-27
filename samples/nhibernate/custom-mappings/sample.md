@@ -70,10 +70,10 @@ Saga data classes can be decorated with [NHibernate.Mapping.Attributes](https://
 
 NHibernate.Mapping.Attributes needs to know what types to scan to generate an NHibernate mapping configuration that can be passed to the NServiceBus NHibernate configuration.
 
- 1. Add the NuGet package `NHibernate.Mapping.Attributes`
- 1. Create a custom NHibernate configuration object.
- 1. Initialize the attribute mapping (see sample below).
- 1. Pass it to the NServiceBus NHibernate configuration.
+1. Add the NuGet package `NHibernate.Mapping.Attributes`
+1. Create a custom NHibernate configuration object.
+1. Initialize the attribute mapping (see sample below).
+1. Pass it to the NServiceBus NHibernate configuration.
 
 Initialize the NHibernate attribute based mappings:
 
