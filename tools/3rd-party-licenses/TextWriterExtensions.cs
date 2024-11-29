@@ -16,7 +16,7 @@ public static class TextWriterExtensions
 
         if (dependency.License != null)
         {
-            output.WriteExternalLink(dependency.License.License, dependency.License.LicenseUrl.ToString());
+            output.WriteExternalLink(dependency.License, dependency.LicenseUrl);
         }
         else if (dependency.LicenseUrl != null)
         {

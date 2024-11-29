@@ -9,24 +9,38 @@ env:
 jobs:
   run-scripts:
     name: Run scripts
-    runs-on: windows-2022
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Install LINQPad
-        run: choco install linqpad
+      - name: Checkout ServicePulse
+        uses: actions/checkout@v4
+        with:
+          repository: Particular/ServicePulse
+          path: checkout/ServicePulse
+      - name: Checkout ServiceControl
+        uses: actions/checkout@v4
+        with:
+          repository: Particular/ServiceControl
+          path: checkout/ServiceControl
       - name: Set environment vars
         run: |
-          echo "C:\Program Files\LinqPad8" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
           git config user.email "85681268+internalautomation[bot]@users.noreply.github.com"
           git config user.name "internalautomation[bot]"
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.0.x
+      - uses: actions/setup-node@v4
+        with:
+          node-version: current
       - name: Update Core Dependencies
-        run: lprun8 tools\coreDependencies.linq
+        run: dotnet --project tools/coreDependencies/coreDependencies.csproj
       - name: Update 3rd-Party Licenses
-        run: lprun8 tools\3rd-party-licenses.linq
+        run: dotnet --project tools/3rd-party-licenses/3rd-party-licenses.csproj
       - name: Commit changes
+        shell: pwsh
         run: |
           git diff > ../changes.diff
           $changes = Get-Item ../changes.diff

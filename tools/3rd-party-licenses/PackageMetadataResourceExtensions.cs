@@ -12,10 +12,15 @@ public static class PackageMetadataResourceExtensions
             return null;
         }
 
+        if (latestPackage.Authors == "Particular Software" || latestPackage.Authors == "NServiceBus Ltd")
+        {
+            return null;
+        }
+
         return new DependencyInfo
         {
             Id = latestPackage.Identity.Id,
-            License = latestPackage.LicenseMetadata,
+            License = latestPackage.LicenseMetadata?.License,
             LicenseUrl = latestPackage.LicenseUrl?.ToString(),
             ProjectUrl = latestPackage.ProjectUrl?.ToString()
         };
@@ -58,7 +63,7 @@ public static class PackageMetadataResourceExtensions
             result.Add(new DependencyInfo
             {
                 Id = dependency.Id,
-                License = dependencyPackage.LicenseMetadata,
+                License = dependencyPackage.LicenseMetadata?.License,
                 LicenseUrl = dependencyPackage.LicenseUrl?.ToString(),
                 ProjectUrl = dependencyPackage.ProjectUrl?.ToString()
             });
