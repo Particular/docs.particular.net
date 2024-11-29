@@ -5,7 +5,7 @@ using Sender;
 using Shared;
 
 await Host.CreateDefaultBuilder(args)
-    .UseNServiceBus(ctx =>
+    .UseNServiceBus(_ =>
     {
         var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Sender");
 
@@ -22,4 +22,5 @@ await Host.CreateDefaultBuilder(args)
         return endpointConfiguration;
     })
     .ConfigureServices(services => services.AddHostedService<MessageSender>())
-    .RunConsoleAsync();
+    .Build()
+    .RunAsync();
