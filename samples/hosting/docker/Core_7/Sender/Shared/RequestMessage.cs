@@ -1,9 +1,9 @@
-using System;
 using NServiceBus;
+using System;
 
 namespace Shared;
 
-public class ResponseMessage
+public class RequestMessage
     : IMessage
 {
     public Guid Id { get; set; }

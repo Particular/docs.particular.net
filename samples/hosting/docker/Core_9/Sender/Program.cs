@@ -3,9 +3,8 @@ using Microsoft.Extensions.Hosting;
 using Sender;
 using Shared;
 
-await ProceedIfBrokerIsAlive.WaitForBroker("rabbitmq");
-
 var builder = Host.CreateApplicationBuilder(args);
+
 var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Sender");
 endpointConfiguration.CustomDiagnosticsWriter((d, ct) => Task.CompletedTask);
 
@@ -23,5 +22,5 @@ endpointConfiguration.EnableInstallers();
 builder.UseNServiceBus(endpointConfiguration);
 builder.Services.AddHostedService<MessageSender>();
 
-var app = builder.Build();
-app.Run();
+await builder.Build()
+    .RunAsync();

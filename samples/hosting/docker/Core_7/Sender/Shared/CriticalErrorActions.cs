@@ -1,16 +1,19 @@
-﻿namespace Shared;
-
+﻿using NServiceBus;
 using NServiceBus.Logging;
+using System;
+using System.Threading.Tasks;
+
+namespace Shared;
 
 public static class CriticalErrorActions
 {
-    public static async Task RestartContainer(ICriticalErrorContext context, CancellationToken cancellationToken)
+    public static async Task RestartContainer(ICriticalErrorContext context)
     {
         // TODO: decide if stopping the endpoint and exiting the process is the best response to a critical error
         // https://docs.particular.net/nservicebus/hosting/critical-errors
         try
         {
-            await context.Stop(cancellationToken);
+            await context.Stop();
         }
         finally
         {
