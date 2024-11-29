@@ -5,16 +5,8 @@ using Shared;
 
 namespace Receiver;
 
-public class RequestMessageHandler
-    : IHandleMessages<RequestMessage>
+public class RequestMessageHandler(ILogger<RequestMessageHandler> logger) : IHandleMessages<RequestMessage>
 {
-    readonly ILogger logger;
-
-    public RequestMessageHandler(ILogger<RequestMessageHandler> logger)
-    {
-        this.logger = logger;
-    }
-
     public Task Handle(RequestMessage message, IMessageHandlerContext context)
     {
         logger.LogInformation($"Request received with description: {message.Data}");

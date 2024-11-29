@@ -8,14 +8,9 @@ using Shared;
 
 namespace Sender;
 
-class MessageSender : IHostedService
+class MessageSender(ILogger<MessageSender> logger, IMessageSession messageSession)
+    : IHostedService
 {
-    public MessageSender(ILogger<MessageSender> logger, IMessageSession messageSession)
-    {
-        this.logger = logger;
-        this.messageSession = messageSession;
-    }
-
     public async Task StartAsync(CancellationToken cancellationToken)
     {
         var guid = Guid.NewGuid();
@@ -26,7 +21,7 @@ class MessageSender : IHostedService
             Data = "String property value"
         };
 
-        await messageSession.Send(message);
+        await messageSession.Send(message, cancellationToken);
 
         logger.LogInformation($"Message sent, requesting to get data by id: {guid:N}");
         logger.LogInformation("Use 'docker-compose down' to stop containers.");
@@ -36,7 +31,4 @@ class MessageSender : IHostedService
     {
         return Task.CompletedTask;
     }
-
-    readonly ILogger logger;
-    readonly IMessageSession messageSession;
 }
