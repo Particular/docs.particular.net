@@ -1,15 +1,27 @@
-using NuGet.Common;
-using NuGet.Protocol.Core.Types;
-
 public static class PackageMetadataResourceExtensions
 {
-    private static SourceCacheContext sourceCacheContext = new SourceCacheContext
+    public static async Task<DependencyInfo> GetPackageDetails(this NuGetSearcher searcher, string packageId)
     {
-        MaxAge = DateTimeOffset.UtcNow,
-        NoCache = true,
-    };
+        var latestPackage = (await searcher.GetPackageAsync(packageId))
+            .OrderByDescending(pkg => pkg.Identity.Version)
+            .FirstOrDefault();
 
-    public static async Task<List<DependencyInfo>> GetDependencies(this NuGetSearcher searcher, string packageId, ILogger logger)
+        if (latestPackage == null)
+        {
+            // Package is not yet on NuGet
+            return null;
+        }
+
+        return new DependencyInfo
+        {
+            Id = latestPackage.Identity.Id,
+            License = latestPackage.LicenseMetadata,
+            LicenseUrl = latestPackage.LicenseUrl?.ToString(),
+            ProjectUrl = latestPackage.ProjectUrl?.ToString()
+        };
+    }
+
+    public static async Task<List<DependencyInfo>> GetDependencies(this NuGetSearcher searcher, string packageId)
     {
         Console.WriteLine("Getting dependencies for " + packageId);
 
