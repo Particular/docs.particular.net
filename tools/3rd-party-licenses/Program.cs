@@ -3,10 +3,10 @@ using NuGet.Protocol.Core.Types;
 using YamlDotNet.Serialization;
 
 var source = "https://api.nuget.org/v3/index.json";
-var componentsPath = Path.Combine(@"..\..\..\..\..\components\components.yaml");
+var componentsPath = Path.Combine(@"../../../../../components/components.yaml");
 
 var corePackageId = "NServiceBus";
-var includePath = Path.Combine(@"..\..\..\..\..\platform\third-party-license-data.include.md");
+var includePath = Path.Combine(@"../../../../../platform/third-party-license-data.include.md");
 
 var logger = new Logger();
 

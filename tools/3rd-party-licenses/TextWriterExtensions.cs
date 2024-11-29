@@ -46,8 +46,6 @@ public static class TextWriterExtensions
             }
             output.WriteLine(" |");
         }
-
-        output.WriteLine();
     }
 
     static void WriteExternalLink(this TextWriter output, string text, string url)
