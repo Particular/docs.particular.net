@@ -27,11 +27,10 @@ Running the sample involves building the container images and starting the multi
 
 ### Building container images
 
-Build the container images by using the following commands:
+Build the container images by using the following command:
 
 ```
-dotnet publish Sender --os linux --arch x64 /t:PublishContainer
-dotnet publish Receiver --os linux --arch x64 /t:PublishContainer
+dotnet publish Docker.sln -f net8.0 --os linux --arch x64 /t:PublishContainer
 ```
 
 ### Starting containers
@@ -74,9 +73,3 @@ snippet: compose
 Endpoints configure the RabbitMQ transport to use the broker instance running in the `rabbitmq` container:
 
 snippet: TransportConfiguration
-
-### Waiting for RabbitMQ broker to become available
-
-Both endpoints block startup until the broker becomes available using the shared `ProceedIfBrokerIsAlive` class.
-
-See the [docker documentation for other options to control startup order](https://docs.docker.com/compose/startup-order/).
