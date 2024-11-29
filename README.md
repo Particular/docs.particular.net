@@ -47,18 +47,19 @@ To build all samples and snippets run `.\tools\build-samples-and-snippets.ps1` f
 
 If, as part of editing a page, a full review of the content is done, the [reviewed header](#reviewed) should be updated. This date is used to render the [last reviewed page](https://docs.particular.net/review).
 
-As part of a full review the following should be done:
+As part of a full review, the following should be done:
 
 * Spelling (US)
 * Grammar
-* Version specific language and content is correct
+* Version-specific language and content is correct
 * Language is concise
 * All links are relevant. No 3rd party links have redirects or 404s.
 * Are there any more links that can be added to improve the content
 * Content is correct up to and including the current released version
 * Content can benefit from having its own header so that it is picked up while searching for a related topic.
-* Summary and title is adequate
-* Update reviewed date in header, even if no changes were made.
+* Summary and title are adequate
+* Update the reviewed date in the header, even if no changes were made.
+* Remove [security advisories](https://docs.particular.net/security-advisories/) for no longer supported versions
 
 ## Conventions
 
