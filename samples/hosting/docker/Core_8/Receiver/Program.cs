@@ -3,7 +3,7 @@ using NServiceBus;
 using Shared;
 
 await Host.CreateDefaultBuilder(args)
-    .UseNServiceBus(ctx =>
+    .UseNServiceBus(_ =>
     {
         var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Receiver");
 
