@@ -13,9 +13,12 @@ public class Npm(string[] npmFolders)
         {
             Console.WriteLine($"Getting packages for {npmFolder}");
 
-            await Runner.ExecuteCommand(npmFolder, "npm", "install");
-            var result = await Runner.ExecuteCommand(npmFolder, "npm", "ls --json --depth 0");
-
+            var result = await Runner.ExecuteCommand(npmFolder, "npm", "install");
+            Console.WriteLine("npm install");
+            Console.WriteLine(result);
+            result = await Runner.ExecuteCommand(npmFolder, "npm", "ls --json --depth 0");
+            Console.WriteLine("npm ls --json --depth 0");
+            Console.WriteLine(result);
             var resultJson = JsonSerializer.Deserialize<NpmResult>(result,
                 new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
 
