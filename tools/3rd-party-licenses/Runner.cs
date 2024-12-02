@@ -72,7 +72,7 @@ static class Runner
         }
         catch (Exception ex)
         {
-            throw new Exception($"Error when attempting to execute {executable}: {ex.Message}", ex);
+            throw new Exception($"Error when attempting to execute {executable} {arguments}: {ex.Message}", ex);
         }
     }
 }
