@@ -11,7 +11,7 @@ public static class TextWriterExtensions
     static void WritePackageDependencies(this TextWriter output, DependencyInfo dependency)
     {
         output.Write("| ");
-        output.WriteExternalLink(dependency.Id, $"https://www.nuget.org/packages/{dependency.Id}/");
+        output.WriteExternalLink(dependency.Id, dependency.RegistryUrl);
         output.Write(" | ");
 
         if (dependency.License != null)

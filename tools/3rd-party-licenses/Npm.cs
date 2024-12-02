@@ -30,7 +30,12 @@ public class Npm(string[] npmFolders)
                     "BSD-3-Clause" => "https://opensource.org/licenses/BSD-3-Clause",
                     _ => throw new Exception(json.License)
                 };
-                list.Add(new DependencyInfo { License = json.License, ProjectUrl = json.Homepage, Id = resultJsonDependency.Key, LicenseUrl = licenseUrl });
+                list.Add(new DependencyInfo {
+                    RegistryUrl = $"https://www.npmjs.com/package/{resultJsonDependency.Key}",
+                    License = json.License,
+                    ProjectUrl = json.Homepage,
+                    Id = resultJsonDependency.Key,
+                    LicenseUrl = licenseUrl });
             }
         }
 
