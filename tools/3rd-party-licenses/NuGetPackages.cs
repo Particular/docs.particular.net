@@ -52,6 +52,7 @@ public class NuGetPackages(string componentsPath, string[] solutionFiles)
         {
             Console.WriteLine($"Getting packages for {solutionFile}");
 
+            await Runner.ExecuteCommand(".", "dotnet", "restore");
             var result = await Runner.ExecuteCommand(".", "dotnet", $"list {solutionFile} package --format json");
 
             var resultJson = JsonSerializer.Deserialize<DotnetResult>(result,
