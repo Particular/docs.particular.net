@@ -15,8 +15,8 @@ The primary job of ServiceControl is to collect information on system behavior i
 
 Each ServiceControl instance stores its data in a [RavenDB](https://ravendb.net) instance. 
 
-For ServiceControl instances deployed via PowerShell or the ServiceControl Management Utility the database is run via an [embedded RavenDB server](/servicecontrol/configure-ravendb-location.md).
-For ServiceControl instances deployed via Containers the database is run via a [dedicated container](/servicecontrol/ravendb/containers.md).
+- For ServiceControl instances deployed via PowerShell or the ServiceControl Management Utility the database is run via an [embedded RavenDB server](/servicecontrol/configure-ravendb-location.md).
+- For ServiceControl instances deployed via Containers the database is run via a [dedicated container](/servicecontrol/ravendb/containers.md).
 
 The location of the database has a significant impact on overall system performance and throughput. The database files should be located on a high-performance storage device with a high-throughput connection to the machine hosting ServiceControl.
 
