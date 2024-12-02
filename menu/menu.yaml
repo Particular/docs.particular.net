@@ -721,8 +721,6 @@
       Title: 2022-12-06
     - Url: security-advisories/servicepulse-directorytraversal
       Title: 2020-03-11
-    - Url: security-advisories/asq-alias-for-default-connectionstring
-      Title: 2018-01-19
     - Url: security-advisories/msmq-permissions
       Title: 2017-01-10
     - Url: security-advisories/sqlserver-sqlinjection
