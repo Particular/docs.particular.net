@@ -34,7 +34,7 @@ jobs:
           dotnet-version: 9.0.x
       - uses: actions/setup-node@v4
         with:
-          node-version: current
+          node-version: 20
       - name: Update Core Dependencies
         run: |
           (cd tools/coreDependencies && dotnet run --project coreDependencies.csproj)
