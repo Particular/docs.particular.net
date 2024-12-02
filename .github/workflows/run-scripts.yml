@@ -44,8 +44,8 @@ jobs:
       - name: Commit changes
         shell: pwsh
         run: |
-          git diff > ../changes.patch
-          $changes = Get-Item ../changes.patch
+          git diff > changes.patch
+          $changes = Get-Item changes.patch
 
           Write-Output "Diff size is $($changes.Length) bytes"
 
@@ -71,7 +71,7 @@ jobs:
         if: ${{ always() }}
         with:
           name: changes.patch
-          path: ../changes.patch
+          path: changes.patch
           if-no-files-found: ignore
       - name: Notify Slack on failure
         if: ${{ failure() }}
