@@ -51,9 +51,9 @@ jobs:
 
           if ($changes.Length -gt 20480) {
             Add-Content -Path $env:GITHUB_STEP_SUMMARY -Value "## Changes diff"
-            Add-Content -Path $env:GITHUB_STEP_SUMMARY -Value "```"
+            Add-Content -Path $env:GITHUB_STEP_SUMMARY -Value "``````"
             Add-Content -Path $env:GITHUB_STEP_SUMMARY -Value $changes
-            Add-Content -Path $env:GITHUB_STEP_SUMMARY -Value "```"
+            Add-Content -Path $env:GITHUB_STEP_SUMMARY -Value "``````"
             throw "Changes diff is > 20KB - too much change to trust without verifying"
             return 1
           }
