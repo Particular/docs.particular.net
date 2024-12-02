@@ -13,6 +13,7 @@ public class Npm(string[] npmFolders)
         {
             Console.WriteLine($"Getting packages for {npmFolder}");
 
+            await Runner.ExecuteCommand(npmFolder, "npm", "install");
             var result = await Runner.ExecuteCommand(npmFolder, "npm", "ls --json --depth 0");
 
             var resultJson = JsonSerializer.Deserialize<NpmResult>(result,
