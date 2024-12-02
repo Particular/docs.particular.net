@@ -61,7 +61,7 @@ static class Runner
                 {
                     fullOutput = "ERROR: " + Environment.NewLine + Environment.NewLine + error;
                 }
-                
+
                 return fullOutput;
             }
         }

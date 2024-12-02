@@ -66,6 +66,11 @@ public class NuGetPackages(string componentsPath, string[] solutionFiles)
                 }
 
                 Console.WriteLine($"Getting packages for {project.Path}");
+                if (project.Frameworks == null)
+                {
+                    continue;
+                }
+
                 foreach (var projectFramework in project.Frameworks)
                 {
                     foreach (var projectFrameworkTopLevelPackage in projectFramework.TopLevelPackages)
