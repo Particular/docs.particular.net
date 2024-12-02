@@ -30,6 +30,7 @@ Given a version number `{major}.{minor}.{patch}`, increment the:
 
 * Text in log and exception messages is not considered part of the public API.
 * Specific instances where following SemVer could hide potential message loss between versions.
+* Public unsupported APIs: Undocumented APIs are unsupported; as such, they don't follow SemVer. Unsupported APIs are identified by the [`Experimental` attribute](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/proposals/csharp-12.0/experimental-attribute) to allow compilers to report the unsupported nature of the referenced member.
 
 ## Backporting important bug fixes
 
