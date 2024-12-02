@@ -61,12 +61,7 @@ static class Runner
                 {
                     fullOutput = "ERROR: " + Environment.NewLine + Environment.NewLine + error;
                 }
-
-                if (process.ExitCode != 0)
-                {
-                    throw new Exception($"The return code was: {process.ExitCode}", new Exception(fullOutput));
-                }
-
+                
                 return fullOutput;
             }
         }
