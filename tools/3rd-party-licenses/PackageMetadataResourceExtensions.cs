@@ -64,7 +64,7 @@ public static class PackageMetadataResourceExtensions
             result.Add(new DependencyInfo
             {
                 Id = dependency.Id,
-                RegistryUrl = $"https://www.nuget.org/packages/{latestPackage.Identity.Id}",
+                RegistryUrl = $"https://www.nuget.org/packages/{dependency.Id}",
                 License = dependencyPackage.LicenseMetadata?.License,
                 LicenseUrl = dependencyPackage.LicenseUrl?.ToString(),
                 ProjectUrl = dependencyPackage.ProjectUrl?.ToString()
