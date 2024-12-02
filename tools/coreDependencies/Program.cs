@@ -11,7 +11,7 @@ SourceRepository nuGet = Repository.Factory.GetCoreV3("https://www.nuget.org/api
 SourceRepository  feedz = Repository.Factory.GetCoreV3("https://f.feedz.io/particular-software/packages/nuget");
 SemanticVersion minCoreVersion = new SemanticVersion(3, 3, 0);
 
-var coreDependencies = "../../../../components/core-dependencies";
+var coreDependencies = "../../components/core-dependencies";
 Directory.CreateDirectory(coreDependencies);
 var filePaths = Directory.GetFiles(coreDependencies, "*.txt");
 foreach (var filePath in filePaths)
@@ -19,7 +19,7 @@ foreach (var filePath in filePaths)
     File.Delete(filePath);
 }
 
-var nugetAliasFile = "../../../../components/nugetAlias.txt";
+var nugetAliasFile = "../../components/nugetAlias.txt";
 
 var packageNames = GetPackageNames(nugetAliasFile, corePackageName);
 
