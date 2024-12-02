@@ -48,9 +48,10 @@ jobs:
           $changes = Get-Item ../changes.diff
 
           Write-Output "Diff size is $($changes.Length) bytes"
-          Write-Output ../changes.diff
 
           if ($changes.Length -gt 20480) {
+            echo "## Changes diff" >> $env:GITHUB_STEP_SUMMARY
+            echo "```$changes```" >> $env:GITHUB_STEP_SUMMARY
             throw "Changes diff is > 20KB - too much change to trust without verifying"
             return 1
           }
