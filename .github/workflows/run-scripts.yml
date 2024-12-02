@@ -44,18 +44,13 @@ jobs:
       - name: Commit changes
         shell: pwsh
         run: |
-          git diff > ../changes.diff
-          $changes = Get-Item ../changes.diff
+          git diff > ../changes.patch
+          $changes = Get-Item ../changes.patch
 
           Write-Output "Diff size is $($changes.Length) bytes"
 
           if ($changes.Length -gt 20480) {
-            $changesDiffContent = Get-Content -Path ../changes.diff
-            Add-Content -Path $env:GITHUB_STEP_SUMMARY -Value "## Changes diff"
-            Add-Content -Path $env:GITHUB_STEP_SUMMARY -Value '```'
-            Add-Content -Path $env:GITHUB_STEP_SUMMARY -Value $changesDiffContent
-            Add-Content -Path $env:GITHUB_STEP_SUMMARY -Value '```'
-            throw "Changes diff is > 20KB - too much change to trust without verifying"
+            throw "Changes diff is > 20KB - too much change to trust without verifying. changed.patch file have been created as an artifact. To merge this file run 'git apply changes.patch'"
             return 1
           }
           if ($changes.Length -eq 0) {
@@ -71,6 +66,13 @@ jobs:
 
           Write-Output "Pushing changes to origin"
           git push origin master
+      - uses: actions/upload-artifact@v4
+        name: Attach patch as artifact
+        if: ${{ always() }}
+        with:
+          name: changes.patch
+          path: ../changes.patch
+          if-no-files-found: ignore
       - name: Notify Slack on failure
         if: ${{ failure() }}
         shell: pwsh
