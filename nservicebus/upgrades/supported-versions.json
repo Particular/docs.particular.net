@@ -741,10 +741,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "3.1",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "3.2",
           "SupportLevel": "Mainstream"
         }
@@ -871,14 +867,6 @@
     {
       "PackageId": "Particular.PlatformSample",
       "Versions": [
-        {
-          "Minor": "2.40",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.10",
-          "SupportLevel": "Mainstream"
-        },
         {
           "Minor": "3.11",
           "SupportLevel": "Mainstream"
@@ -1010,10 +998,6 @@
     {
       "PackageId": "Particular.PlatformSample.ServiceControl",
       "Versions": [
-        {
-          "Minor": "4.33",
-          "SupportLevel": "Mainstream"
-        },
         {
           "Minor": "5.11",
           "SupportLevel": "Mainstream"
