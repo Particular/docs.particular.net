@@ -36,9 +36,11 @@ jobs:
         with:
           node-version: current
       - name: Update Core Dependencies
-        run: dotnet --project tools/coreDependencies/coreDependencies.csproj
+        run: |
+          (cd tools/coreDependencies && dotnet run --project coreDependencies.csproj)
       - name: Update 3rd-Party Licenses
-        run: dotnet --project tools/3rd-party-licenses/3rd-party-licenses.csproj
+        run: |
+          (cd tools/3rd-party-licenses && dotnet run --project 3rd-party-licenses.csproj)
       - name: Commit changes
         shell: pwsh
         run: |
