@@ -64,4 +64,4 @@ partial: lockrenewal
 > Message lock renewal is initiated by client code, not the broker. If the request to renew the lock fails after all the SDK built-in retries (e.g., due to connection loss), the lock won't be renewed, and the message will become unlocked and available for processing by competing consumers. Lock renewal should be treated as a best effort, not as a guaranteed operation.
 
 > [!NOTE]
-> If a message lock renewal is required, it may be worth checking the duration of the handlers, and see whether these can be optimised. In addition, it may be worth checking wither the prefetch count is too high, considering that all messages are locked on peek. This may indicate that too many messages are locked for which the processing exceeds the lock duration.
+> If message lock renewal is required, it may be worth checking the duration of the handlers, and see whether these can be optimised. In addition, it may be worth checking whether the prefetch count is too high, considering all messages are locked on peek. This may indicate that too many messages are locked for which the processing exceeds the lock duration.
