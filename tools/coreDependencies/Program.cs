@@ -1,44 +1,35 @@
-<Query Kind="Program">
-  <NuGetReference>NuGet.Protocol</NuGetReference>
-  <Namespace>NuGet</Namespace>
-  <Namespace>System.Collections.Concurrent</Namespace>
-  <Namespace>System.Threading.Tasks</Namespace>
-  <Namespace>NuGet.Protocol.Core.Types</Namespace>
-  <Namespace>NuGet.Protocol</Namespace>
-  <Namespace>NuGet.Versioning</Namespace>
-  <Namespace>NuGet.Common</Namespace>
-  <Namespace>NuGet.Packaging.Core</Namespace>
-</Query>
+﻿using System.Collections.Concurrent;
+using NuGet.Common;
+using NuGet.Packaging.Core;
+using NuGet.Protocol;
+using NuGet.Protocol.Core.Types;
+using NuGet.Versioning;
 
 string corePackageName = "NServiceBus";
-string location = Util.CurrentQuery.Location;
-//string location = @"C:\Code\docs.particular.net\tools";
 
 SourceRepository nuGet = Repository.Factory.GetCoreV3("https://www.nuget.org/api/v2/");
 SourceRepository  feedz = Repository.Factory.GetCoreV3("https://f.feedz.io/particular-software/packages/nuget");
 SemanticVersion minCoreVersion = new SemanticVersion(3, 3, 0);
 
-async Task Main()
+var coreDependencies = "../../components/core-dependencies";
+Directory.CreateDirectory(coreDependencies);
+var filePaths = Directory.GetFiles(coreDependencies, "*.txt");
+foreach (var filePath in filePaths)
 {
-    var coreDependencies = Path.Combine(location, @"..\components\core-dependencies");
-    Directory.CreateDirectory(coreDependencies);
-    var filePaths = Directory.GetFiles(coreDependencies, "*.txt");
-    foreach (var filePath in filePaths)
-    {
-        File.Delete(filePath);
-    }
-
-    var nugetAliasFile = Path.Combine(location, @"..\components\nugetAlias.txt");
-
-    var packageNames = GetPackageNames(nugetAliasFile, corePackageName);
-
-    var allPackages = await GetAllPackages(packageNames);
-
-    foreach (var packageName in packageNames)
-    {
-        Process(allPackages, packageName, coreDependencies);
-    }
+    File.Delete(filePath);
 }
+
+var nugetAliasFile = "../../components/nugetAlias.txt";
+
+var packageNames = GetPackageNames(nugetAliasFile, corePackageName);
+
+var allPackages = await GetAllPackages(packageNames);
+
+foreach (var packageName in packageNames)
+{
+    Process(allPackages, packageName, coreDependencies);
+}
+
 
 void Process(List<IPackageSearchMetadata> allPackages, string packageName, string coreDependencies)
 {

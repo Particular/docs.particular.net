@@ -134,6 +134,8 @@
     Url: platform/contributing
   - Title: Release notifications
     Url: nservicebus/release-notifications
+  - Title: Third-party licenses
+    Url: platform/third-party-licenses
 
 - Name: NServiceBus
   Topics:
@@ -185,8 +187,6 @@
     Articles:
     - Url: nservicebus/upgrades
       Title: About upgrading NServiceBus
-    - Url: nservicebus/upgrades/third-party-licenses
-      Title: Third-party licenses
     - Url: nservicebus/upgrades/callbacks-1to2
       Title: Callbacks 1 to 2
     - Url: nservicebus/upgrades/sqs-lambda-1to2
