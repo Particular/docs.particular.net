@@ -11,7 +11,7 @@ related:
 
 The NServiceBus Messaging Bridge allows NServiceBus endpoints to connect to other endpoints that are not using the same transport using the [Messaging Bridge Pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingBridge.html).
 
-The bridge is transparent when sending and receiving endpoints. Therefore, they are unaware that a bridge transfers messages to a different transport. Endpoints send and receive messages to and from logical endpoints as if no bridge was involved.
+The bridge is transparent when sending and receiving endpoints. Therefore, endpoints are unaware that a bridge transfers messages to a different transport. Endpoints send and receive messages to and from logical endpoints as if no bridge was involved.
 
 > [!NOTE]
 > The bridge package version is not tied to any specific version of NServiceBus. Therefore, the latest version of the Messaging Bridge package should be used, independent of the NServiceBus version used in any endpoints.
