@@ -1,12 +1,3 @@
----
-title: PostgreSQL transport
-summary: Why PostgreSQL?
-reviewed: 2024-05-28
-component: PostgreSqlTransport
-redirects:
-related:
----
-
 Once orders are successfully stored in the system, they need to be processed, paid, and shipped. This requires orchestrating multiple activities, some of which may not be under our direct control. Clearly, we don’t want to deliver orders that haven’t been paid, or, even worse, charge the customer and ship nothing.
 
 Traditional database transactions fall short in such scenarios—they cannot help coordinate activities when external resources, like payment gateways or shipping couriers with HTTP APIs, are involved. These external systems cannot be enlisted in database transactions, yet we still need to ensure that business processes like “ship only when paid” are handled correctly and reliably.
