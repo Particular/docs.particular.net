@@ -712,7 +712,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [6.1.x](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/6.1.3) | 2024-09-10     | -                 | -                                 |
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/6.0.0) | 2024-04-16     | 2024-12-10        | Superseded by 6.1.x               |
+| [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/6.0.0) | ~~2024-04-16~~ | ~~2024-12-10~~    | ~~Superseded by 6.1.x~~           |
 | [5.0.x](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/5.0.0) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/4.0.2) | ~~2020-11-10~~ | ~~2024-11-17~~    | ~~Extended by NServiceBus 7.8.x~~ |
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.DataBus.AzureBlobStorage/3.1.1) | ~~2020-03-04~~ | ~~2021-11-10~~    | ~~Superseded by 4.0.x~~           |
