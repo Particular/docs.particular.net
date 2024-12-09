@@ -3,22 +3,21 @@ using Microsoft.Extensions.Logging;
 using NServiceBus;
 using Shared;
 
-namespace Sender
+namespace Sender;
+
+public class ResponseMessageHandler
+    : IHandleMessages<ResponseMessage>
 {
-    public class ResponseMessageHandler
-        : IHandleMessages<ResponseMessage>
+    readonly ILogger logger;
+
+    public ResponseMessageHandler(ILogger<ResponseMessageHandler> logger)
     {
-        readonly ILogger logger;
+        this.logger = logger;
+    }
 
-        public ResponseMessageHandler(ILogger<ResponseMessageHandler> logger)
-        {
-            this.logger = logger;
-        }
-
-        public Task Handle(ResponseMessage message, IMessageHandlerContext context)
-        {
-            logger.LogInformation($"Response received with description: {message.Data}");
-            return Task.CompletedTask;
-        }
+    public Task Handle(ResponseMessage message, IMessageHandlerContext context)
+    {
+        logger.LogInformation($"Response received with description: {message.Data}");
+        return Task.CompletedTask;
     }
 }
