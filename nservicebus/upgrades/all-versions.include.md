@@ -878,7 +878,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [5.1.x](https://www.nuget.org/packages/NServiceBus.Gateway/5.1.0) | 2024-09-11     | -                 | -                                 |
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.Gateway/5.0.0) | 2024-04-16     | 2024-12-11        | Superseded by 5.1.x               |
+| [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.Gateway/5.0.0) | ~~2024-04-16~~ | ~~2024-12-11~~    | ~~Superseded by 5.1.x~~           |
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Gateway/4.0.1) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [~~3.3.x~~](https://www.nuget.org/packages/NServiceBus.Gateway/3.3.1) | ~~2022-01-24~~ | ~~2024-11-17~~    | ~~Extended by NServiceBus 7.8.x~~ |
 | [~~3.2.x~~](https://www.nuget.org/packages/NServiceBus.Gateway/3.2.0) | ~~2021-06-28~~ | ~~2022-04-24~~    | ~~Superseded by 3.3.x~~           |
