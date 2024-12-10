@@ -1,0 +1,10 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+
+    "AzureWebJobsServiceBus": "<set your ASB connection string here>",
+    "CustomComponentValue": "Custom Component"
+  }
+}
