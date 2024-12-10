@@ -1,7 +1,7 @@
 ---
 title: Header propagation using the pipeline
 summary: How to use the pipeline to copy a header from incoming messages to outgoing messages
-reviewed: 2022-05-23
+reviewed: 2024-12-10
 component: Core
 related:
  - nservicebus/pipeline
