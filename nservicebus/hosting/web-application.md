@@ -7,7 +7,6 @@ related:
  - samples/web
  - nservicebus/lifecycle
  - samples/startup-shutdown-sequence
- - samples/endpoint-configuration
  - nservicebus/messaging/callbacks
  - nservicebus/hosting/publishing-from-web-applications
 ---

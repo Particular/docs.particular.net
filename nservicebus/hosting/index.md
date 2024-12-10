@@ -52,7 +52,6 @@ Related:
  * [Generic host as Windows Service](/samples/hosting/generic-host)
  * [Generate a Windows Service project using `dotnet new`](/nservicebus/dotnet-templates/)
  * [Windows Service installation](windows-service.md)
- * [Endpoint configuration choices](/samples/endpoint-configuration/)
 
 
 
