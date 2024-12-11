@@ -49,7 +49,7 @@ The sample consists of several projects:
 
 ### Shared
 
-The shared message contracts and common configuration for both versions. This project exists for the purposes of code reuse between the two endpoint versions. In a production codebase, this project [would not be required](/samples/#technology-choices-messages-definitions) as both versions of sagas would not co-exist in the same solution.
+The shared message contracts and common configuration for both versions. This project exists for the purposes of code reuse between the two endpoint versions. In a production codebase, this project would not be required as both versions of sagas would not co-exist in the same solution.
 
 
 #### Endpoint configuration

@@ -1,1 +1,0 @@
-AzureFunctions.ASBTrigger.FunctionsHostBuilder\AzureFunctions.ASBTrigger.FunctionsHostBuilder.csproj
