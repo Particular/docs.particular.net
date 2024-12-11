@@ -86,12 +86,7 @@
     },
     {
       "PackageId": "NServiceBus.Azure.Transports.WindowsAzureStorageQueues",
-      "Versions": [
-        {
-          "Minor": "8.2",
-          "SupportLevel": "Extended"
-        }
-      ]
+      "Versions": []
     },
     {
       "PackageId": "NServiceBus.AzureFunctions.InProcess.ServiceBus",
@@ -583,12 +578,7 @@
     },
     {
       "PackageId": "NServiceBus.Persistence.AzureStorage",
-      "Versions": [
-        {
-          "Minor": "2.4",
-          "SupportLevel": "Extended"
-        }
-      ]
+      "Versions": []
     },
     {
       "PackageId": "NServiceBus.Persistence.AzureTable",
