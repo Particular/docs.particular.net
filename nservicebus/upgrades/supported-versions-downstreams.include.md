@@ -18,12 +18,6 @@
 | [6.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.2.0) | 2023-11-20     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [5.7.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.7.3) | 2023-03-07     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
-#### [NServiceBus.Azure.Transports.WindowsAzureServiceBus](/nuget/NServiceBus.Azure.Transports.WindowsAzureServiceBus)
-
-| Version   | Released       | Supported until   | Notes                             |
-|:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [10.1.x](https://www.nuget.org/packages/NServiceBus.Azure.Transports.WindowsAzureServiceBus/10.1.0) | 2020-04-30     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
-
 #### [NServiceBus.Azure.Transports.WindowsAzureStorageQueues](/nuget/NServiceBus.Azure.Transports.WindowsAzureStorageQueues)
 
 | Version   | Released       | Supported until   | Notes                             |
