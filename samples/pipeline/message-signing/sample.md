@@ -4,7 +4,6 @@ summary: Shows how to implement message signing and verification using NServiceB
 reviewed: 2024-10-10
 component: Core
 related:
- - samples/pipeline/handler-timer
  - samples/pipeline/unit-of-work
 ---
 
