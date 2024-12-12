@@ -10,6 +10,6 @@ redirects:
   - nservicebus/upgrades/third-party-licenses
 ---
 
-Particular Service Platform would not be possible without the following great third-party libraries.
+The Particular Service Platform uses the following third-party libraries:
 
 include: third-party-license-data
