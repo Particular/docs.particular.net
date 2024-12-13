@@ -75,6 +75,6 @@ Supported isolation levels:
 - `Serializable`
 - `Read Commited` 
 - `Repeatable Read` (Not supported by Oracle)
-#if-version [8.3,)
+#if-version [8.2,)
 - `Snapshot` (Only supported by SqlServer and Postgres)
 #end-if
