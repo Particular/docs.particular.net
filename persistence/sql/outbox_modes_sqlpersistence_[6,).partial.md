@@ -40,7 +40,7 @@ A change in the isolation level affects all data access included in transactions
 
 Supported isolation levels:
 
-- `Serializable`
+- `Serializable` (Not supported by Oracle)
 - `Read Commited` 
 - `Repeatable Read` (Not supported by Oracle)
 #if-version [8.2,)
