@@ -486,3 +486,39 @@ snippet: HeaderWriterDataBusConvention
 #### Example body
 
 snippet: HeaderWriterDataBusConventionBody
+
+## ServiceControl
+
+### ServiceControl.TargetEndpointAddress
+
+Used by messageging bridge to return the message back to the correct queue if the failed message reach
+
+### ServiceControl.Retry.AcknowledgementQueue
+
+Value:Queue name
+
+The queue to send an acknowledgement system message back to a specific ServiceControl queue to mark a retried message as processed.
+
+
+### ServiceControl.Retry.StagingId
+
+??
+
+### ServiceControl.Retry.Attempt.MessageId
+
+??
+
+### ServiceControl.Retry.Successful
+
+Contains a timestamp in the format `yyyy-MM-dd HH:mm:ss:ffffff Z` to indicate when a message was succesfully processed.
+
+Part of the control message send back to ServiceControl to signal that a message that was manually retried in ServicePulse/Control and flag as processed succesful.
+
+### ServiceControl.Retry.UniqueMessageId
+
+Contains the [NServiceBus.MessageId](#messaging-interaction-headers-nservicebusmessageid) value of the message that was succesfully processed.
+
+Part of the control message send back to
+
+
+The presence of any header key that starts with `ServiceControl.` would indicate its a message that is manually retried.
