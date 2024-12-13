@@ -3,6 +3,7 @@ using NHibernate.Mapping.Attributes;
 using NServiceBus;
 
 #pragma warning disable NSB0012 // Saga data classes should inherit ContainSagaData
+#region AttributesMapping
 
 [Class]
 public class OrderSagaDataAttributes :
@@ -45,4 +46,5 @@ public class OrderSagaDataAttributes :
     }
 }
 
+#endregion
 #pragma warning restore NSB0012 // Saga data classes should inherit ContainSagaData
