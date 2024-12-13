@@ -489,22 +489,35 @@ snippet: HeaderWriterDataBusConventionBody
 
 ## ServiceControl
 
+### ServiceControl.RetryTo
+
+Value: Queue name
+
+When present in a failed message to ServiceControl, ServiceControl will send the message to this queue instead of the queue name value from [NServiceBus.FailedQ](#error-forwarding-headers-nservicebusfailedq)
+
+This is used by the ServiceControl transport adapter to bridge failed messages between different transports.
+
 ### ServiceControl.TargetEndpointAddress
 
+Value: Queue name
 Used by messageging bridge to return the message back to the correct queue if the failed message reach
 
 ### ServiceControl.Retry.AcknowledgementQueue
 
-Value:Queue name
+Value: Queue name
 
 The queue to send an acknowledgement system message back to a specific ServiceControl queue to mark a retried message as processed.
 
 
 ### ServiceControl.Retry.StagingId
 
+Value: UUID
+
 ??
 
 ### ServiceControl.Retry.Attempt.MessageId
+
+Value: UUID ??
 
 ??
 
