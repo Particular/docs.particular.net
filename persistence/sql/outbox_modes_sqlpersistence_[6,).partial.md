@@ -28,7 +28,7 @@ The outbox supports transactions via [ADO.NET local transactions](https://learn.
 
 ### ADO.NET
 
-By default the outbox uses the ADO.NET local transactions abstracted via `DbTransaction`. This is appropriate for most situations.
+By default, the outbox uses the ADO.NET local transactions abstracted via `DbTransaction`. This is appropriate for most situations.
 
 #### Isolation Level
 
