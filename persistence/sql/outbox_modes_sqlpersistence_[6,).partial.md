@@ -24,7 +24,7 @@ The trade-off is that each message processing attempt requires additional round 
 
 ## Transaction type
 
-The outbox supports transactions via [ADO.NET Local transactions](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/local-transactions) or [TransactionScopes](https://learn.microsoft.com/en-us/dotnet/api/system.transactions.transactionscope).
+The outbox supports transactions via [ADO.NET local transactions](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/local-transactions) or [TransactionScopes](https://learn.microsoft.com/en-us/dotnet/api/system.transactions.transactionscope).
 
 ### ADO.NET
 
@@ -36,7 +36,7 @@ If required, the transaction [isolation level](https://learn.microsoft.com/en-us
 
 snippet: SqlPersistenceOutboxIsolationLevel
 
-A change in the isolation level affects all data access included in transactions. This should be done only if the business logic executed by message handlers within outbox transactions requires different than the default (`ReadCommited`) isolation level to guarantee correctness.
+A change in the isolation level affects all data access included in transactions. This should be used only if the business logic executed by message handlers within outbox transactions requires a different isolation level than the default (`ReadCommited`) to guarantee correctness.
 
 Supported isolation levels:
 
@@ -56,9 +56,9 @@ snippet: SqlPersistenceOutboxTransactionScopeMode
 In this mode the SQL persistence creates a `TransactionScope` that wraps the whole message processing attempt and within that scope it opens a connection, that is used for:
 
 - storing the outbox record
-- persisting the application state change applied via `SynchronizedStorageSession`
+- persisting the application state changes applied via `SynchronizedStorageSession`
 
-In addition to that connection managed by NServiceBus, users can open their own database connections in the message handlers. If the underlying database technology supports distributed transactions managed by the Microsoft Distributed Transaction Coordinator (MSDTC) (e.g. SQL Server or Oracle), the transaction is escalated to a distributed transaction.
+In addition to the connection managed by NServiceBus, users can open their own database connections in message handlers. If the underlying database technology supports distributed transactions managed by the Microsoft Distributed Transaction Coordinator (MSDTC) (e.g. SQL Server or Oracle), the transaction is escalated to a distributed transaction.
 
 The `TransactionScope` mode is most useful in legacy scenarios such as when migrating from the MSMQ transport to a messaging infrastructure that does not support MSDTC. In this scenario, it is no longer possible to use a distributed transaction which includes the transport and the database. To maintain consistency, the outbox must be used instead. If the outbox table cannot be added to the legacy database, it may be placed in a separate database, but access to both databases must be included in distributed transactions.
 
@@ -68,7 +68,7 @@ If required, the transaction [isolation level](https://learn.microsoft.com/en-us
 
 snippet: SqlPersistenceOutboxTransactionScopeMode
 
-A change in the isolation level affects all data access included in transactions. This should be done only if the business logic executed by message handlers within outbox transactions requires lower than the default isolation level (`Serializable`) to guarantee correctness.
+A change in the isolation level affects all data access included in transactions. This should be done only if the business logic executed by message handlers within outbox transactions requires a lower isolation level than the default (`Serializable`) to guarantee correctness.
 
 Supported isolation levels:
 
