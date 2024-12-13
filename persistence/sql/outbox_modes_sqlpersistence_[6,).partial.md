@@ -26,7 +26,7 @@ The trade-off is that each message processing attempt requires additional round 
 
 The outbox supports transactions via [ADO.NET Local transactions](https://learn.microsoft.com/en-us/dotnet/framework/data/adonet/local-transactions) or [TransactionScopes](https://learn.microsoft.com/en-us/dotnet/api/system.transactions.transactionscope).
 
-### ADO.net
+### ADO.NET
 
 By default the outbox uses the ADO.NET local transactions abstracted via `DbTransaction`. This is appropriate for most situations.
 
