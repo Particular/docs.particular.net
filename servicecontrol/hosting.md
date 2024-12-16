@@ -1,3 +1,9 @@
+---
+title: ServiceControl Hosting Options
+summary: Hosting options for running ServiceControl instances
+component: ServiceControl
+reviewed: 2024-12-16
+---
 
 ServiceControl instances can be hosted on:
 
