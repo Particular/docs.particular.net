@@ -40,7 +40,7 @@ Behaviors can also be registered from a `Feature` as shown below:
 snippet: RegisterBehaviorFromFeature
 
 > [!WARNING]
-> Behaviors are only created once and the same instance is reused on every invocation of the pipeline. Consequently, every behavior dependency will also behave as a singleton, even if a different option was specified when registering it in [dependency injection](/nservicebus/dependency-injection/). Furthermore, the behavior and all dependencies called during the invocation phase must be concurrency-safe and possibly stateless. Storing state in a behavior instance should be avoided since it will cause the state to be shared across all message handling sessions. This could lead to unwanted side effects.
+> Behaviors are only created once and the same instance is reused on every invocation of the pipeline. Consequently, every behavior dependency behave as a singleton, even if a different option was specified when registering it in [dependency injection](/nservicebus/dependency-injection/). Furthermore, the behavior and all dependencies must be thread-safe. Storing state in a behavior instance should be avoided since it will cause the state to be shared across all message handling sessions. This could lead to unwanted side effects.
 
 ## Replace an existing step
 
@@ -63,12 +63,11 @@ partial: disable
 
 ## Exception handling
 
-Exceptions thrown from a behavior's `Invoke` method bubble up the chain. If the exception is not handled by a behavior, the message is considered faulty which results in putting the message back in the queue (and rolling back the transaction, when configured) or moving it to the error queue (depending on the endpoint configuration).
+Exceptions thrown from a behavior's `Invoke` method bubble up the chain. If the exception is not handled by any behavior, the message is considered faulty which results in putting the message back in the queue (and rolling back the transaction, when configured) or moving it to the error queue (depending on the endpoint's [recoverability](/nservicebus/recoverability/) configuration).
 
 ### MessageDeserializationException
 
-If a message fails to deserialize, a `MessageDeserializationException` exception will be thrown by the `DeserializeLogicalMessagesBehavior` behavior. In this case, the message is directly moved to the error queue to avoid blocking the system with poison messages.
-
+If a message fails to deserialize, a `MessageDeserializationException` exception is thrown by the `DeserializeLogicalMessagesBehavior` behavior. In this case, the message is immediately moved to the error queue to avoid blocking the system with poison messages.
 
 ## Skip serialization
 
@@ -87,7 +86,7 @@ Sometimes a parent behavior might need to pass information to a child behavior a
 snippet: SharingBehaviorData
 
 > [!NOTE]
-> Contexts are not concurrency-safe.
+> Contexts are not thread-safe.
 
 > [!NOTE]
 > In NServiceBus version 6 and above, the context respects the stage hierarchy and only allows adding new entries in the scope of the current context. A child behavior (later in the pipeline chain) can read and even modify entries set by a parent behavior (earlier in the pipeline chain) but entries added by the child cannot be accessed from the parent.
@@ -96,7 +95,7 @@ snippet: SharingBehaviorData
 
 snippet: InjectingDependencies
 
-Dependencies injected into the constructor of a behavior become singletons regardless of their actual scope on the dependency injection container. In order to create instances per request or scoped dependencies it is required to use the builder that is available on the context.
+Dependencies injected into the constructor of a behavior become singletons regardless of their actual scope on the dependency injection container. In order to create instances per request or scoped dependencies it is required to use the `IServiceProvider` that is available as `Builder` property on the context.
 
 The service provider available via the context varies depending on the pipeline stage. [Pipeline stages used within the context of an incoming message](/nservicebus/pipeline/steps-stages-connectors.md#stages-incoming-pipeline-stages) exposes a new child service provider created for each incoming message. All other use cases exposes the root service provider.
 
