@@ -50,7 +50,7 @@ To disable prefetching, prefetch count should be set to zero.
 
 > [!NOTE]
 > The lock duration for all prefetched messages starts as soon as they are fetched. To avoid `LockLostException`, ensure the lock-renewal duration is longer than the total time it takes to process all prefetched messages (i.e., message handler execution time multiplied by the prefetch count).
-> In addition, it's important to consider the endpoint's scaling. If the prefetch count is high, the lock may deprive other endpoint instances of messages, rendering additional endpoint instances unnecessary.
+> In addition, it's important to consider how the endpoint is scaled. If the prefetch count is high, the lock may deprive other endpoint instances of messages, making those instances redundant.
 
 ## Lock-renewal
 
@@ -61,7 +61,10 @@ To ensure smooth processing, it is recommended to configuring the `MaxAutoLockRe
 partial: lockrenewal
 
 > [!NOTE]
-> Message lock renewal is initiated by client code, not the broker. If the request to renew the lock fails after all the SDK built-in retries (e.g., due to connection loss), the lock won't be renewed, and the message will become unlocked and available for processing by competing consumers. Lock renewal should be treated as a best effort, not as a guaranteed operation.
+> Message lock renewal is initiated by client code, not the broker. If a request to renew a lock fails after all the SDK built-in retries (e.g., due to connection loss), the lock won't be renewed, and the message will become unlocked and available for processing by competing consumers. Lock renewal should be treated as a best effort, not as a guaranteed operation.
 
 > [!NOTE]
-> If message lock renewal is required, it may be worth checking the duration of the handlers, and see whether these can be optimised. In addition, it may be worth checking whether the prefetch count is too high, considering all messages are locked on peek. This may indicate that too many messages are locked for which the processing exceeds the lock duration.
+> If message lock renewal occurs, two actions may be taken to avoid the time taken for message processing exceeding the lock duration:
+>
+> - Optimise the message handlers to reduce their execution time.
+> - Reduce the prefetch count. All messages are locked on peek, so when they are prefetched, they remain locked until they are all processed.
