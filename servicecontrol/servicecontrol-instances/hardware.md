@@ -39,10 +39,6 @@ Disk, CPU, RAM, and network performance may be monitored using the Windows Resou
 > [!NOTE]
 > Do not use an ephemeral AWS or Azure disk for ServiceControl data because these disks will be erased when the virtual machine reboots.
 
-### Hosting in the cloud
-
-At this time, the only way to host ServiceControl in the cloud is to use a virtual machine.
-
 ## Improving performance
 
 ### Increase RAM
