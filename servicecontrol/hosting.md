@@ -51,8 +51,10 @@ The following environments are getting production supports
 
 - Azure Container Apps
 - Azure Managed Kubernetes Service (AKS) 
-- Amazon Elastic Kubernetes Service
+- Amazon Elastic Kubernetes Service (EKS)
+- Amazon Elastic Container Service (ECS)
 - Docker Engine on Windows 2022
+
 
 ### Known working environments
 
