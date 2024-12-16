@@ -50,7 +50,7 @@ To disable prefetching, prefetch count should be set to zero.
 
 > [!NOTE]
 > The lock duration for all prefetched messages starts as soon as they are fetched. To avoid `LockLostException`, ensure the lock-renewal duration is longer than the total time it takes to process all prefetched messages (i.e., message handler execution time multiplied by the prefetch count).
-> In addition, it's important to consider how the endpoint is scaled. If the prefetch count is high, the lock may deprive other endpoint instances of messages, making those instances redundant.
+> In addition, it's important to consider how endpoints are scaled. If the prefetch count is high, the lock may deprive other endpoint instances of messages, making those instances redundant.
 
 ## Lock-renewal
 
