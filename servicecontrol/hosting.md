@@ -61,6 +61,6 @@ Docker and Kubernetes are available in many configurations and environments. Man
 The following additional environments are known to work:
 
 - Docker Desktop for Windows
-- Docker on Mac
+- Docker Desktop for Mac
 - Docker on Fedora
 - Podman on Fedora Workstation 41
