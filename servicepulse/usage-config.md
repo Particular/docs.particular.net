@@ -25,11 +25,21 @@ Look at the [Diagnostics](#diagnostics) tab to diagnose connection issues.
 
 ### Azure Service Bus
 
-#### Setup using Azure Portal
+Steps:
 
 1. Create an application Id for ServiceControl
 2. Assign the role `Monitoring Reader` to this application Id
 3. Update ServiceControl configuration and set at minimum `TenantId`, `SubscriptionId`, `ClientId` (aka ApplicationId) and its accompanying `ClientSecret`
+
+#### Using Azure Portal
+
+- Create App
+  -* *Home > App registrations** > ➕ New registration
+- Assign application to role:
+  - **Home > Service Bus > {service bus namespace} > Access control (IAM) > ➕ Add
+    - Role: `Monitoring Reader`
+    - Members: ➕ Select Members > {application name}
+    - Review and Assign
 
 
 #### Setup using Azure CLI
