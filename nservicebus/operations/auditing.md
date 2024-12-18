@@ -28,7 +28,7 @@ Auditing shows the end state of the flow of messages. When configured to audit, 
 This means that a message is eventually forwarded to either the *audit queue* or the *error queue*, but while it's in flight it will be in the *endpoint queue* until all immediate and delayed processing attempts have exceeded.
 
 > [!NOTE]
-> Outgoing messages like commands or events will only end in the *audit queue* when **succesfully processed**.
+> Outgoing messages will only end in the *audit queue* when **successfully processed**.
 
 ### Events
 
