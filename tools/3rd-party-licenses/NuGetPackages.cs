@@ -1,29 +1,8 @@
 using NuGet.Configuration;
 using NuGet.Protocol.Core.Types;
 using YamlDotNet.Serialization;
-using System.Text.Json;
-using NuGet.Commands;
-
-class DotnetResult
-{
-    public Project[] Projects { get; set; }
-}
-
-class Project
-{
-    public string Path { get; set; }
-    public Framework[] Frameworks { get; set; }
-}
-
-class Framework
-{
-    public CSProjPackage[] TopLevelPackages { get; set; }
-}
-
-class CSProjPackage
-{
-    public string Id { get; set; }
-}
+using System.Xml.Linq;
+using System.Xml.XPath;
 
 public class NuGetPackages(string componentsPath, Tuple<string, string>[] solutionFiles)
 {
@@ -53,33 +32,29 @@ public class NuGetPackages(string componentsPath, Tuple<string, string>[] soluti
 
             Console.WriteLine($"Getting packages for {solutionFile}");
 
-            await Runner.ExecuteCommand(".", "dotnet", $"restore {solutionFile}");
-            var result = await Runner.ExecuteCommand(".", "dotnet", $"list {solutionFile} package --format json");
+            var solutionDirectory = Path.GetDirectoryName(solutionFile);
+            var projectFiles = Directory.GetFiles(solutionDirectory, "*.csproj", SearchOption.AllDirectories)
+                .Where(path => !Path.GetFileName(path).Contains("test", StringComparison.OrdinalIgnoreCase))
+                .Where(path => !Path.GetFileName(path).Contains("PlatformSample", StringComparison.OrdinalIgnoreCase))
+                .ToArray();
 
-            var resultJson = JsonSerializer.Deserialize<DotnetResult>(result,
-                new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
-
-            foreach (var project in resultJson.Projects)
+            foreach (var project in projectFiles)
             {
-                if (project.Path.Contains("test", StringComparison.OrdinalIgnoreCase) || project.Path.Contains("PlatformSample", StringComparison.OrdinalIgnoreCase))
-                {
-                    continue;
-                }
+                Console.WriteLine($"Getting packages for {project}");
+                var xdoc = XDocument.Load(project);
+                var topLevelPackages = xdoc.XPathSelectElements("/Project/ItemGroup/PackageReference")
+                    .Where(pkgRef => pkgRef.Attribute("PrivateAssets")?.Value.Equals("All", StringComparison.OrdinalIgnoreCase) ?? true)
+                    .Select(pkgRef => pkgRef.Attribute("Include")!.Value)
+                    .ToArray();
 
-                Console.WriteLine($"Getting packages for {project.Path}");
-                if (project.Frameworks == null)
+                foreach (var projectFrameworkTopLevelPackageId in topLevelPackages)
                 {
-                    continue;
-                }
-
-                foreach (var projectFramework in project.Frameworks)
-                {
-                    foreach (var projectFrameworkTopLevelPackage in projectFramework.TopLevelPackages)
+                    if (!dependencies.ContainsKey(projectFrameworkTopLevelPackageId))
                     {
-                        var packageDetails = await searcher.GetPackageDetails(projectFrameworkTopLevelPackage.Id);
-                        if (packageDetails != null && !dependencies.ContainsKey(packageDetails.Id))
+                        var packageDetails = await searcher.GetPackageDetails(projectFrameworkTopLevelPackageId);
+                        if (packageDetails is not null)
                         {
-                            dependencies.Add(packageDetails.Id, packageDetails);
+                            dependencies.Add(projectFrameworkTopLevelPackageId, packageDetails);
                         }
                     }
                 }
