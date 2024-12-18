@@ -516,7 +516,7 @@ Part of the control message send back to ServiceControl to signal that a message
 
 ### ServiceControl.Retry.UniqueMessageId
 
-Contains the [NServiceBus.MessageId](#messaging-interaction-headers-nservicebusmessageid) value of the message that was succesfully processed.
+Contains the [NServiceBus.MessageId](#messaging-interaction-headers-nservicebus-messageid) value of the message that was succesfully processed.
 
 Part of the control message send back to
 
