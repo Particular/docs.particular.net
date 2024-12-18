@@ -37,7 +37,7 @@ snippet: core-8to9-machinename
 
 ## API to set additional audit metadata has changed
 
-The API to [set additional audit metadata](/nservicebus/operations/auditing.md#additional-audit-information) has been changed.
+The API to [add additional audit metadata](/nservicebus/operations/auditing.md#adding-additional-audit-information) has been changed.
 
 snippet: core-8to9-audit-metadata
 
