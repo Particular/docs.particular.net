@@ -43,7 +43,16 @@ public class NuGetPackages(string componentsPath, Tuple<string, string>[] soluti
                 Console.WriteLine($"Getting packages for {project}");
                 var xdoc = XDocument.Load(project);
                 var topLevelPackages = xdoc.XPathSelectElements("/Project/ItemGroup/PackageReference")
-                    .Where(pkgRef => pkgRef.Attribute("PrivateAssets")?.Value.Equals("All", StringComparison.OrdinalIgnoreCase) ?? true)
+                    .Where(pkgRef =>
+                    {
+                        var privateAssets = pkgRef.Attribute("PrivateAssets")?.Value;
+                        if (privateAssets is not null && privateAssets.Equals("All", StringComparison.OrdinalIgnoreCase))
+                        {
+                            return false;
+                        }
+
+                        return true;
+                    })
                     .Select(pkgRef => pkgRef.Attribute("Include")!.Value)
                     .ToArray();
 
