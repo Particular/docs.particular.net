@@ -493,7 +493,7 @@ snippet: HeaderWriterDataBusConventionBody
 
 Value: Queue name
 
-When present in a failed message to ServiceControl, ServiceControl will send the message to this queue instead of the queue name value from [NServiceBus.FailedQ](#error-forwarding-headers-nservicebusfailedq)
+When present in a failed message to ServiceControl, ServiceControl will send the message to this queue instead of the queue name value from [NServiceBus.FailedQ](#error-forwarding-headers-nservicebus-failedq)
 
 This is used by the ServiceControl transport adapter to bridge failed messages between different transports.
 
