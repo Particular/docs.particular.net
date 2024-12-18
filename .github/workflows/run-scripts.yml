@@ -59,7 +59,7 @@ jobs:
           }
 
           Write-Output "Staging changes"
-          git add --all
+          git add platform/third-party-license-data.include.md
 
           Write-Output "Committing changes"
           git commit -m "Updates from running scripts in the 'tools' directory"
