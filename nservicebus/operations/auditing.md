@@ -23,7 +23,7 @@ It is recommended to specify a central auditing queue for all related endpoints 
 
 ## How it works
 
-Auditing shows the end state of the flow of messages. When configured to audit, NServiceBus will capture a copy of every **successfully processed message** and forward it to a specified audit queue. When a message fails to be processed it will be forwarded to the configured error queue and not be copied to the audit queue. 
+Auditing shows the end state of the flow of messages. When configured to audit, NServiceBus captures a copy of every **successfully processed message** and forwards it to a specified audit queue. When a message fails to be processed it is forwarded to the configured error queue and not be copied to the audit queue. 
 
 This means that a message is eventually forwarded to either the *audit queue* or the *error queue*, but while it's in flight it will be in the *endpoint queue* until all immediate and delayed processing attempts have exceeded.
 
@@ -32,7 +32,7 @@ This means that a message is eventually forwarded to either the *audit queue* or
 
 ### Events
 
-Because auditing only shows processed messages published messages will only appear if there is subscribers for that event. In fact, if there are multiple subscribers there will be an audit message for each subscriber in the audit queue **after each subscriber successfully processed their copy of the event message**. If there is no subscriber or the routing of events in broker has missing routes no event message will copied to the audit queue. 
+Because auditing only shows processed messages, published messages only appear if there are subscribers for that message. If there are multiple subscribers there will be an audit message for each subscriber in the audit queue **after each subscriber successfully processes their copy of the event message**. If there is no subscriber or the routing  in the messaging infrastructure is misconfigured no event message will be copied to the audit queue. 
 
 ## Performance impact
 
