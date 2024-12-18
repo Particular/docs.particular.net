@@ -19,12 +19,12 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: Particular/ServicePulse
-          path: ../ServicePulse
+          path: checkout/ServicePulse
       - name: Checkout ServiceControl
         uses: actions/checkout@v4
         with:
           repository: Particular/ServiceControl
-          path: ../ServiceControl
+          path: checkout/ServiceControl
       - name: Set environment vars
         run: |
           git config user.email "85681268+internalautomation[bot]@users.noreply.github.com"
