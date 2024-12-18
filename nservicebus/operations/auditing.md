@@ -23,16 +23,16 @@ It is recommended to specify a central auditing queue for all related endpoints 
 
 ## How it works
 
-Auditing shows the end state of the flow of messages. When configured to audit, NServiceBus will capture a copy of every **successfully processed message** and forward it to a specified audit queue. When a message fails to be processed it will be forwarded to the configured error queue and will not be copied to the audit queue. 
+Auditing shows the end state of the flow of messages. When configured to audit, NServiceBus will capture a copy of every **successfully processed message** and forward it to a specified audit queue. When a message fails to be processed it will be forwarded to the configured error queue and not be copied to the audit queue. 
 
-This means that a message eventually ends up in either the *audit queue* or the *error queue* but while its in flight it will be in the *endpoint queue*.
+This means that a message eventually is forwarded to either the *audit queue* or the *error queue* but while its in flight it will be in the *endpoint queue* untill all immediate and delayed processing attemps have exceeded.
 
 > [!NOTE]
 > Outgoing messages like commands or events will only end in the *audit queue* when **succesfully processed**.
 
 ### Events
 
-Because auditing only shows processed messages published messages will only appear if there is subscribers for that event. In fact, if there are multiple subscribers there will be an audit message for each subscriber in the audit queue **after each subscriber successfully processed their copy of the event message*. If there is no subscriber or the routing of events in broker has missing routes no event message will copied to the audit queue. 
+Because auditing only shows processed messages published messages will only appear if there is subscribers for that event. In fact, if there are multiple subscribers there will be an audit message for each subscriber in the audit queue **after each subscriber successfully processed their copy of the event message**. If there is no subscriber or the routing of events in broker has missing routes no event message will copied to the audit queue. 
 
 
 ## Performance impact
