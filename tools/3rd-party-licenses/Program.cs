@@ -1,10 +1,11 @@
-﻿using _3rd_party_licenses;
+﻿using System.Text.RegularExpressions;
+using _3rd_party_licenses;
 
 const string componentsPath = "../../components/components.yaml";
 const string includePath = "../../platform/third-party-license-data.include.md";
-const string servicePulseSln = "../../checkout/ServicePulse/src/ServicePulse.sln";
-const string servicePulseNpm = "../../checkout/ServicePulse/src/Frontend";
-const string serviceControlSln = "../../checkout/ServiceControl/src/ServiceControl.sln";
+const string servicePulseSln = "../../../ServicePulse/src/ServicePulse.sln";
+const string servicePulseNpm = "../../../ServicePulse/src/Frontend";
+const string serviceControlSln = "../../../ServiceControl/src/ServiceControl.sln";
 
 // Support running from IDE when current directory relative to repo is /tools/3rd-party-licenses/bin/Debug/net...
 while (Regex.IsMatch(Environment.CurrentDirectory, @"[/\\]bin([/\\]|$)"))
