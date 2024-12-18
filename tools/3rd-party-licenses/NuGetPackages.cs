@@ -61,7 +61,7 @@ public class NuGetPackages(string componentsPath, Tuple<string, string>[] soluti
 
             foreach (var project in resultJson.Projects)
             {
-                if (project.Path.Contains("test", StringComparison.CurrentCultureIgnoreCase))
+                if (project.Path.Contains("test", StringComparison.OrdinalIgnoreCase))
                 {
                     continue;
                 }
