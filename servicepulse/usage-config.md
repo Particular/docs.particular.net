@@ -1,5 +1,5 @@
 ---
-title: Usage Setup
+title: Usage Reporting Setup
 summary: Viewing endpoint usage summary and generating a usage report
 component: ServicePulse
 reviewed: 2024-05-08
@@ -25,13 +25,54 @@ Look at the [Diagnostics](#diagnostics) tab to diagnose connection issues.
 
 ### Azure Service Bus
 
+Steps:
+
+1. Create an application Id for ServiceControl
+2. Assign the role `Monitoring Reader` to this application Id
+3. Update ServiceControl configuration and set at minimum `TenantId`, `SubscriptionId`, `ClientId` (aka ApplicationId) and its accompanying `ClientSecret`
+
+#### Using Azure Portal
+
+- Create App
+  -* *Home > App registrations** > ➕ New registration
+- Assign application to role:
+  - **Home > Service Bus > {service bus namespace} > Access control (IAM) > ➕ Add
+    - Role: `Monitoring Reader`
+    - Members: ➕ Select Members > {application name}
+    - Review and Assign
+
+
+#### Setup using Azure CLI
+
+```ps1
+# set correct context and subscription
+az account set --subscription "YourAzureSubscriptionName"
+Set-AzContext -Subscription "YourAzureSubscriptionName"
+
+# Application ID: az ad app create --display-name ServiceControlUsageReporting
+$applicationId = "<Your Application ID>"
+
+# Azure Service Bus subscription ID: az servicebus namespace list
+$subscriptionId = "<Your Subscription ID>"
+
+# Resource group name: az group list
+$resourceGroupName = "<Your Resource group Name>"
+# Assign role to resource group
+
+$scope = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
+# or to specific resource in resource group 
+#$scope = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.ServiceBus/namespaces/$namespaceName
+
+New-AzRoleAssignment -ApplicationId $applicationId -RoleDefinitionName "Monitoring Reader" -Scope $scope
+```
+
 #### Settings
 
 Refer to the [Usage Reporting when using the Azure Service Bus transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-azure-service-bus-transport) section of the ServiceControl config file for an explanation of the Azure Service Bus-specific settings.
 
 #### Minimum Permissions
 
-The built-in role [Monitoring Reader](https://learn.microsoft.com/en-us/azure/azure-monitor/roles-permissions-security#monitoring-reader) is sufficient to access the required Azure Service Bus metrics.
+The built-in role [`Monitoring Reader`](https://learn.microsoft.com/en-us/azure/azure-monitor/roles-permissions-security#monitoring-reader) is sufficient to access the required Azure Service Bus metrics.
 
 To lock it down even further to the minimally required permissions, create a custom role with the following permissions:
 
@@ -60,6 +101,7 @@ To lock it down even further to the minimally required permissions, create a cus
     }
 }
 ```
+
 
 The `Microsoft.ServiceBus` permissions are required to read queue names and metric data from Azure Monitor. The `Microsoft.Resources/subscriptions` permissions are required in order to locate the Service Bus namespace within the Azure subscription.
 
