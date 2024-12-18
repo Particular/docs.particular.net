@@ -2,7 +2,7 @@
 title: Auditing Messages
 summary: Send a copy of every successfully processed message to a central place for analysis and compliance purposes.
 component: Core
-reviewed: 2024-08-06
+reviewed: 2024-12-08
 related:
  - nservicebus/operations
  - nservicebus/messaging/headers
@@ -33,7 +33,6 @@ This means that a message eventually is forwarded to either the *audit queue* or
 ### Events
 
 Because auditing only shows processed messages published messages will only appear if there is subscribers for that event. In fact, if there are multiple subscribers there will be an audit message for each subscriber in the audit queue **after each subscriber successfully processed their copy of the event message**. If there is no subscriber or the routing of events in broker has missing routes no event message will copied to the audit queue. 
-
 
 ## Performance impact
 
@@ -92,6 +91,8 @@ To force a [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md) on
 
 Note that while the phrasing is "forwarding a message" in the implementation, it is actually "cloning and sending a new message". This is important when considering TimeToBeReceived since the time taken to receive and process the original message is not part of the TimeToBeReceived of the new audit message. In effect, the audit message receives the full-time allotment of whatever TimeToBeReceived is used.
 
+### MSMQ
+
 > [!WARNING]
 > MSMQ forces the same TimeToBeReceived on all messages in a transaction. Therefore, OverrideTimeToBeReceived is unsupported when using the [MSMQ Transport](/transports/msmq/). If OverrideTimeToBeReceived is detected when using MSMQ, an exception will be thrown with the following text:
 >
@@ -117,7 +118,7 @@ Auditing works by sending an exact copy of the received message to the audit que
 
 For sensitive properties, e.g. credit card numbers or passwords, use [message property encryption](/nservicebus/security/property-encryption.md). For large properties, consider the [data bus feature](/nservicebus/messaging/claimcheck/) to avoid including the actual payload in the audited message.
 
-## Additional audit information
+## Adding additional audit information
 
 Additional information can be added to audit messages using a [custom behavior](/nservicebus/pipeline/manipulate-with-behaviors.md), as shown in the following snippet. The additional data will be contained in the audit message headers.
 
