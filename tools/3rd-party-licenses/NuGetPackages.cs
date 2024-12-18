@@ -49,7 +49,7 @@ public class NuGetPackages(string componentsPath, Tuple<string, string>[] soluti
         var results = new List<PackageWrapper>();
         foreach (var (name, solutionFile) in solutionFiles)
         {
-            var list = new List<DependencyInfo>();
+            var dependencies = new Dictionary<string, DependencyInfo>(StringComparer.OrdinalIgnoreCase);
 
             Console.WriteLine($"Getting packages for {solutionFile}");
 
@@ -77,15 +77,17 @@ public class NuGetPackages(string componentsPath, Tuple<string, string>[] soluti
                     foreach (var projectFrameworkTopLevelPackage in projectFramework.TopLevelPackages)
                     {
                         var packageDetails = await searcher.GetPackageDetails(projectFrameworkTopLevelPackage.Id);
-                        if (packageDetails != null)
+                        if (packageDetails != null && !dependencies.ContainsKey(packageDetails.Id))
                         {
-                            list.Add(packageDetails);
+                            dependencies.Add(packageDetails.Id, packageDetails);
                         }
                     }
                 }
             }
 
-            results.Add(new PackageWrapper($"{name} NuGet packages", list));
+            var dependenciesList = dependencies.Values.OrderBy(p => p.Id).ToList();
+
+            results.Add(new PackageWrapper($"{name} NuGet packages", dependenciesList));
         }
 
         return results;
