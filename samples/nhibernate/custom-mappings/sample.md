@@ -36,13 +36,13 @@ Using NHibernate mapping files is the native way to customize the mappings. The 
 
 For more information, see: [how to create a simple NHibernate based application](https://nhibernate.info/doc/tutorials/first-nh-app/your-first-nhibernate-based-application.html).
 
-### The Mapping
+### Mapping
 
 The `.hbm.xml` contents is as follows
 
 snippet: hmlxml
 
-### Reading the mapping file
+### Configuration
 
 Create a custom NHibernate configuration object and use the following example to add mappings from the file system.
 
@@ -60,6 +60,12 @@ To use it with NServiceBus:
    * or by creating a new Configuration instance and pass it to FluentNHibernate
 1. Pass it to the NServiceBus NHibernate configuration.
 
+### Mapping
+
+snippet: FluentMapping
+
+### Configuration
+
 Example of a possible implementation:
 
 snippet: FluentConfiguration
@@ -75,6 +81,12 @@ NHibernate.Mapping.Attributes needs to know what types to scan to generate an NH
 1. Initialize the attribute mapping (see sample below).
 1. Pass it to the NServiceBus NHibernate configuration.
 
+### Mapping
+
+snippet: AttributesMapping
+
+### Configuration
+
 Initialize the NHibernate attribute based mappings:
 
 snippet: AttributesConfiguration
@@ -88,6 +100,12 @@ To use it:
 1. Create a custom NHibernate configuration object.
 1. Use either the model mapping or convention mapping features.
 1. Pass it to the NServiceBus NHibernate configuration.
+
+### Mapping
+
+snippet: LoquaciousMapping
+
+### Configuration
 
 Initialize NHibernate Loquacious configuration:
 
