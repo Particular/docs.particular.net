@@ -50,13 +50,13 @@ az account set --subscription "YourAzureSubscriptionName"
 Set-AzContext -Subscription "YourAzureSubscriptionName"
 
 # Application ID: az ad app create --display-name ServiceControlUsageReporting
-$applicationId = "817c7efc-0c93-473a-99b9-1612d32b8678"
+$applicationId = "<Your Application ID>"
 
 # Azure Service Bus subscription ID: az servicebus namespace list
-$subscriptionId = "934f5a76-bd9e-4d9a-be26-94b1476bab33"
+$subscriptionId = "<Your Subscription ID>"
 
 # Resource group name: az group list
-$resourceGroupName = "ramon.smits"
+$resourceGroupName = "<Your Resource group Name>"
 # Assign role to resource group
 
 $scope = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
