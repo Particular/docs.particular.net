@@ -25,7 +25,7 @@ class CSProjPackage
     public string Id { get; set; }
 }
 
-public class NuGetPackages(string componentsPath, string[] solutionFiles)
+public class NuGetPackages(string componentsPath, Tuple<string, string>[] solutionFiles)
 {
     const string Source = "https://api.nuget.org/v3/index.json";
     const string CorePackageId = "NServiceBus";
@@ -44,12 +44,13 @@ public class NuGetPackages(string componentsPath, string[] solutionFiles)
             .Where(component => component.UsesNuget && component.SupportLevel == SupportLevel.Regular);
     }
 
-    public async Task<List<DependencyInfo>> GetPackagesForSolution()
+    public async Task<List<PackageWrapper>> GetPackagesForSolution()
     {
-        var list = new List<DependencyInfo>();
-
-        foreach (var solutionFile in solutionFiles)
+        var results = new List<PackageWrapper>();
+        foreach (var (name, solutionFile) in solutionFiles)
         {
+            var list = new List<DependencyInfo>();
+
             Console.WriteLine($"Getting packages for {solutionFile}");
 
             await Runner.ExecuteCommand(".", "dotnet", $"restore {solutionFile}");
@@ -83,9 +84,11 @@ public class NuGetPackages(string componentsPath, string[] solutionFiles)
                     }
                 }
             }
+
+            results.Add(new PackageWrapper($"{name} NuGet packages", list));
         }
 
-        return list;
+        return results;
     }
 
     public async Task Initialize()
@@ -95,15 +98,15 @@ public class NuGetPackages(string componentsPath, string[] solutionFiles)
         searcher = new NuGetSearcher(packageMetadata, new Logger());
     }
 
-    public async Task<List<DependencyInfo>> GetPackages()
+    public async Task<List<PackageWrapper>> GetPackages()
     {
-        var results = (await searcher.GetDependencies(CorePackageId))
+        var results = new [] {new PackageWrapper(CorePackageId, await searcher.GetDependencies(CorePackageId))}
             .Concat((await Task.WhenAll(GetComponents(componentsPath)
                 .SelectMany(component => component.NugetOrder
                     .Where(packageId => packageId != CorePackageId)
                     .Distinct()
-                    .Select(packageId => searcher.GetDependencies(packageId))
-                ))).SelectMany(list => list))
+                    .Select(async packageId => new PackageWrapper(packageId, await searcher.GetDependencies(packageId)))
+                ))))
             .ToList();
 
         return results;

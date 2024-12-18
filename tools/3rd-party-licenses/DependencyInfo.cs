@@ -1,4 +1,8 @@
-using NuGet.Packaging;
+public class PackageWrapper(string id, List<DependencyInfo> dependencies)
+{
+    public string Id => id;
+    public List<DependencyInfo> Dependencies => dependencies;
+}
 
 public class DependencyInfo
 {

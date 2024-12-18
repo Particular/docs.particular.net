@@ -7,16 +7,13 @@ const string servicePulseNpm = "../../checkout/ServicePulse/src/Frontend";
 const string serviceControlSln = "../../checkout/ServiceControl/src/ServiceControl.sln";
 
 await using var output = new StreamWriter(includePath, append: false);
-output.WriteLine("| Library | License | Project Site |");
-output.WriteLine("|:-----------|:-------:|:------------:|");
 
-var nuGetPackages = new NuGetPackages(componentsPath, [servicePulseSln, serviceControlSln]);
+var nuGetPackages = new NuGetPackages(componentsPath, [Tuple.Create("ServicePulse", servicePulseSln), Tuple.Create("ServiceControl", serviceControlSln)]);
 await nuGetPackages.Initialize();
 
-var npm = new Npm([servicePulseNpm]);
+var npm = new Npm([Tuple.Create("ServicePulse", servicePulseNpm)]);
 
 output.WritePackages((await nuGetPackages.GetPackagesForSolution())
     .Concat(await nuGetPackages.GetPackages())
     .Concat(await npm.GetPackagesForPackageJson())
-    .OrderBy(info => info.Id)
-    .DistinctBy(package => package.Id));
+    .OrderBy(info => info.Id));
