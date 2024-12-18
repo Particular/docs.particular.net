@@ -44,7 +44,7 @@ jobs:
       - name: Commit changes
         shell: pwsh
         run: |
-          git diff > changes.patch
+          git diff platform/third-party-license-data.include.md > changes.patch
           $changes = Get-Item changes.patch
 
           Write-Output "Diff size is $($changes.Length) bytes"
