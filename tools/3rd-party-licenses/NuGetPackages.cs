@@ -1,31 +1,10 @@
 using NuGet.Configuration;
 using NuGet.Protocol.Core.Types;
 using YamlDotNet.Serialization;
-using System.Text.Json;
-using NuGet.Commands;
+using System.Xml.Linq;
+using System.Xml.XPath;
 
-class DotnetResult
-{
-    public Project[] Projects { get; set; }
-}
-
-class Project
-{
-    public string Path { get; set; }
-    public Framework[] Frameworks { get; set; }
-}
-
-class Framework
-{
-    public CSProjPackage[] TopLevelPackages { get; set; }
-}
-
-class CSProjPackage
-{
-    public string Id { get; set; }
-}
-
-public class NuGetPackages(string componentsPath, string[] solutionFiles)
+public class NuGetPackages(string componentsPath, Tuple<string, string>[] solutionFiles)
 {
     const string Source = "https://api.nuget.org/v3/index.json";
     const string CorePackageId = "NServiceBus";
@@ -44,48 +23,58 @@ public class NuGetPackages(string componentsPath, string[] solutionFiles)
             .Where(component => component.UsesNuget && component.SupportLevel == SupportLevel.Regular);
     }
 
-    public async Task<List<DependencyInfo>> GetPackagesForSolution()
+    public async Task<List<PackageWrapper>> GetPackagesForSolution()
     {
-        var list = new List<DependencyInfo>();
-
-        foreach (var solutionFile in solutionFiles)
+        var results = new List<PackageWrapper>();
+        foreach (var (name, solutionFile) in solutionFiles)
         {
+            var dependencies = new Dictionary<string, DependencyInfo>(StringComparer.OrdinalIgnoreCase);
+
             Console.WriteLine($"Getting packages for {solutionFile}");
 
-            await Runner.ExecuteCommand(".", "dotnet", $"restore {solutionFile}");
-            var result = await Runner.ExecuteCommand(".", "dotnet", $"list {solutionFile} package --format json");
+            var solutionDirectory = Path.GetDirectoryName(solutionFile);
+            var projectFiles = Directory.GetFiles(solutionDirectory, "*.csproj", SearchOption.AllDirectories)
+                .Where(path => !Path.GetFileName(path).Contains("test", StringComparison.OrdinalIgnoreCase))
+                .Where(path => !Path.GetFileName(path).Contains("PlatformSample", StringComparison.OrdinalIgnoreCase))
+                .ToArray();
 
-            var resultJson = JsonSerializer.Deserialize<DotnetResult>(result,
-                new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase });
-
-            foreach (var project in resultJson.Projects)
+            foreach (var project in projectFiles)
             {
-                if (project.Path.Contains("test", StringComparison.CurrentCultureIgnoreCase))
-                {
-                    continue;
-                }
-
-                Console.WriteLine($"Getting packages for {project.Path}");
-                if (project.Frameworks == null)
-                {
-                    continue;
-                }
-
-                foreach (var projectFramework in project.Frameworks)
-                {
-                    foreach (var projectFrameworkTopLevelPackage in projectFramework.TopLevelPackages)
+                Console.WriteLine($"Getting packages for {project}");
+                var xdoc = XDocument.Load(project);
+                var topLevelPackages = xdoc.XPathSelectElements("/Project/ItemGroup/PackageReference")
+                    .Where(pkgRef =>
                     {
-                        var packageDetails = await searcher.GetPackageDetails(projectFrameworkTopLevelPackage.Id);
-                        if (packageDetails != null)
+                        var privateAssets = pkgRef.Attribute("PrivateAssets")?.Value;
+                        if (privateAssets is not null && privateAssets.Equals("All", StringComparison.OrdinalIgnoreCase))
                         {
-                            list.Add(packageDetails);
+                            return false;
+                        }
+
+                        return true;
+                    })
+                    .Select(pkgRef => pkgRef.Attribute("Include")!.Value)
+                    .ToArray();
+
+                foreach (var projectFrameworkTopLevelPackageId in topLevelPackages)
+                {
+                    if (!dependencies.ContainsKey(projectFrameworkTopLevelPackageId))
+                    {
+                        var packageDetails = await searcher.GetPackageDetails(projectFrameworkTopLevelPackageId);
+                        if (packageDetails is not null)
+                        {
+                            dependencies.Add(projectFrameworkTopLevelPackageId, packageDetails);
                         }
                     }
                 }
             }
+
+            var dependenciesList = dependencies.Values.OrderBy(p => p.Id).ToList();
+
+            results.Add(new PackageWrapper($"{name} NuGet packages", dependenciesList));
         }
 
-        return list;
+        return results;
     }
 
     public async Task Initialize()
@@ -95,15 +84,15 @@ public class NuGetPackages(string componentsPath, string[] solutionFiles)
         searcher = new NuGetSearcher(packageMetadata, new Logger());
     }
 
-    public async Task<List<DependencyInfo>> GetPackages()
+    public async Task<List<PackageWrapper>> GetPackages()
     {
-        var results = (await searcher.GetDependencies(CorePackageId))
+        var results = new [] {new PackageWrapper(CorePackageId, await searcher.GetDependencies(CorePackageId))}
             .Concat((await Task.WhenAll(GetComponents(componentsPath)
                 .SelectMany(component => component.NugetOrder
                     .Where(packageId => packageId != CorePackageId)
                     .Distinct()
-                    .Select(packageId => searcher.GetDependencies(packageId))
-                ))).SelectMany(list => list))
+                    .Select(async packageId => new PackageWrapper(packageId, await searcher.GetDependencies(packageId)))
+                ))))
             .ToList();
 
         return results;

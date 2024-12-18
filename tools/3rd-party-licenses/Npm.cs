@@ -3,20 +3,21 @@ using System.Text.Json;
 
 namespace _3rd_party_licenses;
 
-public class Npm(string[] npmFolders)
+public class Npm(Tuple<string, string>[] npmFolders)
 {
-    public async Task<List<DependencyInfo>> GetPackagesForPackageJson()
+    public async Task<List<PackageWrapper>> GetPackagesForPackageJson()
     {
-        var list = new List<DependencyInfo>();
+        var results = new List<PackageWrapper>();
 
-        foreach (var npmFolder in npmFolders)
+        foreach (var (name, npmFolder) in npmFolders)
         {
+            var list = new List<DependencyInfo>();
             Console.WriteLine($"Getting packages for {npmFolder}");
 
             var result = await Runner.ExecuteCommand(npmFolder, "npm", "install");
             Console.WriteLine("npm install");
             Console.WriteLine(result);
-            result = await Runner.ExecuteCommand(npmFolder, "npm", "ls --json --depth 0");
+            result = await Runner.ExecuteCommand(npmFolder, "npm", "ls --json --depth 0 --omit dev");
             Console.WriteLine("npm ls --json --depth 0");
             Console.WriteLine(result);
             var resultJson = JsonSerializer.Deserialize<NpmResult>(result,
@@ -41,9 +42,11 @@ public class Npm(string[] npmFolders)
                     Id = resultJsonDependency.Key,
                     LicenseUrl = licenseUrl });
             }
+
+            results.Add(new PackageWrapper($"{name} npm packages", list));
         }
 
-        return list;
+        return results;
     }
 }
 

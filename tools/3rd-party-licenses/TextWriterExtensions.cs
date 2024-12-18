@@ -1,10 +1,24 @@
 public static class TextWriterExtensions
 {
-    public static void WritePackages(this TextWriter output, IEnumerable<DependencyInfo> packages)
+    public static void WritePackages(this TextWriter output, IEnumerable<PackageWrapper> packages)
     {
         foreach (var package in packages)
         {
-            output.WritePackageDependencies(package);
+            if (package.Dependencies.Count <= 0)
+            {
+                continue;
+            }
+
+            output.WriteLine($"### {package.Id}");
+            output.WriteLine();
+            output.WriteLine("| Dependency | License | Project Site |");
+            output.WriteLine("|:-----------|:-------:|:------------:|");
+            foreach (var packageDependency in package.Dependencies)
+            {
+                output.WritePackageDependencies(packageDependency);
+            }
+
+            output.WriteLine();
         }
     }
 
