@@ -25,7 +25,7 @@ It is recommended to specify a central auditing queue for all related endpoints 
 
 Auditing shows the end state of the flow of messages. When configured to audit, NServiceBus will capture a copy of every **successfully processed message** and forward it to a specified audit queue. When a message fails to be processed it will be forwarded to the configured error queue and not be copied to the audit queue. 
 
-This means that a message eventually is forwarded to either the *audit queue* or the *error queue* but while its in flight it will be in the *endpoint queue* untill all immediate and delayed processing attemps have exceeded.
+This means that a message is eventually forwarded to either the *audit queue* or the *error queue*, but while it's in flight it will be in the *endpoint queue* until all immediate and delayed processing attempts have exceeded.
 
 > [!NOTE]
 > Outgoing messages like commands or events will only end in the *audit queue* when **succesfully processed**.
