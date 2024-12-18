@@ -508,19 +508,6 @@ Value: Queue name
 
 The queue to send an acknowledgement system message back to a specific ServiceControl queue to mark a retried message as processed.
 
-
-### ServiceControl.Retry.StagingId
-
-Value: UUID
-
-??
-
-### ServiceControl.Retry.Attempt.MessageId
-
-Value: UUID ??
-
-??
-
 ### ServiceControl.Retry.Successful
 
 Contains a timestamp in the format `yyyy-MM-dd HH:mm:ss:ffffff Z` to indicate when a message was succesfully processed.
