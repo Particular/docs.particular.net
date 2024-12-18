@@ -17,7 +17,7 @@ public class Npm(Tuple<string, string>[] npmFolders)
             var result = await Runner.ExecuteCommand(npmFolder, "npm", "install");
             Console.WriteLine("npm install");
             Console.WriteLine(result);
-            result = await Runner.ExecuteCommand(npmFolder, "npm", "ls --json --depth 0");
+            result = await Runner.ExecuteCommand(npmFolder, "npm", "ls --json --depth 0 --omit dev");
             Console.WriteLine("npm ls --json --depth 0");
             Console.WriteLine(result);
             var resultJson = JsonSerializer.Deserialize<NpmResult>(result,
