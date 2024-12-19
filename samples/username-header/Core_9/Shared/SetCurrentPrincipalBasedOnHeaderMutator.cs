@@ -4,20 +4,14 @@ using NServiceBus.Logging;
 using NServiceBus.MessageMutator;
 
 #region set-principal-from-header-mutator
-public class SetCurrentPrincipalBasedOnHeaderMutator :
+public class SetCurrentPrincipalBasedOnHeaderMutator(IPrincipalAccessor principalAccessor) :
     IMutateIncomingTransportMessages
 {
-    static ILog log = LogManager.GetLogger("Handler");
-    readonly IPrincipalAccessor principalAccessor;
-
-    public SetCurrentPrincipalBasedOnHeaderMutator(IPrincipalAccessor principalAccessor)
-    {
-        this.principalAccessor = principalAccessor;
-    }
+    static ILog log = LogManager.GetLogger(nameof(SetCurrentPrincipalBasedOnHeaderMutator));
 
     public Task MutateIncoming(MutateIncomingTransportMessageContext context)
     {
-        if (context.Headers.TryGetValue("UserName", out var userNameHeader))
+        if (context.Headers.TryGetValue(Headers.UserName, out var userNameHeader))
         {
             log.Info("Adding CurrentPrincipal user from headers");
             var identity = new GenericIdentity(userNameHeader);
