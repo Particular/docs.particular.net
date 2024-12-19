@@ -20,11 +20,7 @@ partial class Program
         var connection = "Data Source=localhost;User Id=SYSTEM; Password=yourStrong(!)Password; Enlist=false";
 
         persistence.SqlDialect<SqlDialect.Oracle>();
-        persistence.ConnectionBuilder(
-            () =>
-            {
-                return new OracleConnection(connection);
-            });
+        persistence.ConnectionBuilder(() => new OracleConnection(connection));
 
         var subscriptions = persistence.SubscriptionSettings();
         subscriptions.CacheFor(TimeSpan.FromMinutes(1));
