@@ -4,23 +4,17 @@ using NServiceBus.MessageMutator;
 
 #region username-header-mutator
 
-public class AddUserNameToOutgoingHeadersMutator :
+public class AddUserNameToOutgoingHeadersMutator(IPrincipalAccessor principalAccessor) :
     IMutateOutgoingTransportMessages
 {
-    static ILog log = LogManager.GetLogger("Handler");
-    readonly IPrincipalAccessor principalAccessor;
-
-    public AddUserNameToOutgoingHeadersMutator(IPrincipalAccessor principalAccessor)
-    {
-        this.principalAccessor = principalAccessor;
-    }
+    static readonly ILog log = LogManager.GetLogger(nameof(AddUserNameToOutgoingHeadersMutator));
 
     public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
     {
         if (principalAccessor.CurrentPrincipal?.Identity.Name != null)
         {
             log.Info("Adding CurrentPrincipal user to headers");
-            context.OutgoingHeaders["UserName"] = principalAccessor.CurrentPrincipal.Identity.Name;
+            context.OutgoingHeaders[Headers.UserName] = principalAccessor.CurrentPrincipal.Identity.Name;
         }
 
         return Task.CompletedTask;

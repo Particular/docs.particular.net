@@ -1,7 +1,7 @@
 ---
 title: Passing user identity between endpoints using a custom header
 summary: How to pass user identity between sending and receiving endpoints by attaching a custom header to every outgoing message.
-reviewed: 2024-12-10
+reviewed: 2024-12-19
 component: Core
 related:
 - nservicebus/pipeline/message-mutators
