@@ -13,6 +13,7 @@ var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
 persistence.SqlDialect<SqlDialect.Oracle>();
 
 var connection = $"Data Source=localhost;User Id=SYSTEM; Password=yourStrong(!)Password; Enlist=false";
+
 persistence.ConnectionBuilder(connectionBuilder: () => new OracleConnection(connection));
 #endregion
 

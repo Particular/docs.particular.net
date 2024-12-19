@@ -14,6 +14,7 @@ persistence.SqlDialect<SqlDialect.MsSqlServer>();
 
 // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlPersistence;Integrated Security=True;Encrypt=false
 var connectionString = "Server=localhost,1433;Initial Catalog=NsbSamplesSqlPersistence;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
+
 persistence.ConnectionBuilder(connectionBuilder: () => new SqlConnection(connectionString));
 #endregion
 
