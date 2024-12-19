@@ -17,21 +17,7 @@ partial class Program
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
 
-        var password = Environment.GetEnvironmentVariable("OraclePassword");
-
-        if (string.IsNullOrWhiteSpace(password))
-        {
-            throw new Exception("Could not extract 'OraclePassword' from Environment variables.");
-        }
-
-        var username = Environment.GetEnvironmentVariable("OracleUserName");
-
-        if (string.IsNullOrWhiteSpace(username))
-        {
-            throw new Exception("Could not extract 'OracleUserName' from Environment variables.");
-        }
-
-        var connection = $"Data Source=localhost;User Id={username}; Password={password}; Enlist=false";
+        var connection = "Data Source=localhost;User Id=SYSTEM; Password=yourStrong(!)Password; Enlist=false";
 
         persistence.SqlDialect<SqlDialect.Oracle>();
         persistence.ConnectionBuilder(

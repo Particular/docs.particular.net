@@ -12,7 +12,7 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
 persistence.SqlDialect<SqlDialect.Oracle>();
 
-var connection = $"Data Source=localhost;User Id=SYSTEM; Password=yourStrong(!)Password; Enlist=false";
+var connection = "Data Source=localhost;User Id=SYSTEM; Password=yourStrong(!)Password; Enlist=false";
 
 persistence.ConnectionBuilder(() => new OracleConnection(connection));
 #endregion
