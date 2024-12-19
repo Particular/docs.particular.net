@@ -3,16 +3,9 @@ using System.Threading.Tasks;
 using NServiceBus.Pipeline;
 
 #region HandlerTimerBehavior
-class HandlerTimerBehavior :
+class HandlerTimerBehavior(CustomLogger logger) :
     Behavior<IInvokeHandlerContext>
 {
-    CustomLogger logger;
-
-    public HandlerTimerBehavior(CustomLogger logger)
-    {
-        this.logger = logger;
-    }
-
     public override async Task Invoke(IInvokeHandlerContext context, Func<Task> next)
     {
         var handlerName = context.MessageHandler.Instance.GetType().Name;

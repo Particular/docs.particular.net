@@ -12,7 +12,7 @@ public class Handler2 :
     public Task Handle(HandlerMessage message, IMessageHandlerContext context)
     {
         var milliseconds = random.Next(100, 1000);
-        log.Info($"HandlerMessage received going to Task.Delay({milliseconds}ms)");
+        log.InfoFormat("HandlerMessage received going to Task.Delay({0}ms)", milliseconds);
         return Task.Delay(milliseconds, context.CancellationToken);
     }
 }

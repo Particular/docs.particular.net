@@ -4,16 +4,9 @@ using NServiceBus.Pipeline;
 using NServiceBus.Sagas;
 
 #region SagaStateAuditBehavior
-class SagaStateAuditBehavior :
+class SagaStateAuditBehavior(CustomLogger logger) :
     Behavior<IInvokeHandlerContext>
 {
-    CustomLogger logger;
-
-    public SagaStateAuditBehavior(CustomLogger logger)
-    {
-        this.logger = logger;
-    }
-
     public override async Task Invoke(IInvokeHandlerContext context, Func<Task> next)
     {
         await next();
