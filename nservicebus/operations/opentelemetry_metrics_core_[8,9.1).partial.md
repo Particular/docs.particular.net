@@ -20,6 +20,7 @@ See the [OpenTelemetry samples](/samples/open-telemetry/) for instructions on ho
 The NServiceBus.Metrics package provides additional metrics that are not yet exposed via OpenTelemetry.
 
 These metrics include:
+
 - Critical time
 - Processing time
 - Handler time
