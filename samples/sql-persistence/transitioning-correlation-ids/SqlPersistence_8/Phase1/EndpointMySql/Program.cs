@@ -34,7 +34,7 @@ partial class Program
 
         persistence.SqlDialect<SqlDialect.MySql>();
         persistence.ConnectionBuilder(
-            connectionBuilder: () =>
+            () =>
             {
                 return new MySqlConnection(connection);
             });

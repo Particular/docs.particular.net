@@ -44,7 +44,7 @@ partial class Program
             });
 
         persistence.ConnectionBuilder(
-            connectionBuilder: () =>
+            () =>
             {
                 return new NpgsqlConnection(connection);
             });

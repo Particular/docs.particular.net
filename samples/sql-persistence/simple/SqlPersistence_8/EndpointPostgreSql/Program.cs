@@ -15,7 +15,7 @@ var dialect = persistence.SqlDialect<SqlDialect.PostgreSql>();
 
 var connection = "Host=localhost;Username=postgres;Password=yourStrong(!)Password;Database=NsbSamplesSqlPersistence";
 
-persistence.ConnectionBuilder(connectionBuilder: () => new NpgsqlConnection(connection));
+persistence.ConnectionBuilder(() => new NpgsqlConnection(connection));
 #endregion
 
 dialect.JsonBParameterModifier(

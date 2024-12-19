@@ -35,7 +35,7 @@ partial class Program
 
         persistence.SqlDialect<SqlDialect.Oracle>();
         persistence.ConnectionBuilder(
-            connectionBuilder: () =>
+            () =>
             {
                 return new OracleConnection(connection);
             });

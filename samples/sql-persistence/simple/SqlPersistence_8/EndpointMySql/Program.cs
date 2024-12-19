@@ -13,7 +13,7 @@ persistence.SqlDialect<SqlDialect.MySql>();
 
 var connection = "server=localhost;user=root;database=sqlpersistencesample;port=3306;password=yourStrong(!)Password;AllowUserVariables=True;AutoEnlist=false";
 
-persistence.ConnectionBuilder(connectionBuilder: () => new MySqlConnection(connection));
+persistence.ConnectionBuilder(() => new MySqlConnection(connection));
 #endregion
 
 var subscriptions = persistence.SubscriptionSettings();

@@ -4,18 +4,17 @@ using NServiceBus;
 
 Console.Title = "EndpointSqlServer";
 
-#region sqlServerConfig
-
 var endpointConfiguration = new EndpointConfiguration("Samples.SqlPersistence.EndpointSqlServer");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
+#region sqlServerConfig
 var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
 persistence.SqlDialect<SqlDialect.MsSqlServer>();
 
 // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlPersistence;Integrated Security=True;Encrypt=false
 var connectionString = "Server=localhost,1433;Initial Catalog=NsbSamplesSqlPersistence;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 
-persistence.ConnectionBuilder(connectionBuilder: () => new SqlConnection(connectionString));
+persistence.ConnectionBuilder(() => new SqlConnection(connectionString));
 #endregion
 
 var subscriptions = persistence.SubscriptionSettings();

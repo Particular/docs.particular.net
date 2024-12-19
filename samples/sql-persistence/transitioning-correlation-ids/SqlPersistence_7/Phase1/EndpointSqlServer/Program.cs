@@ -22,7 +22,7 @@ partial class Program
         persistence.SqlDialect<SqlDialect.MsSqlServer>();
 
         persistence.ConnectionBuilder(
-            connectionBuilder: () => new SqlConnection(connectionString));
+            () => new SqlConnection(connectionString));
 
         var subscriptions = persistence.SubscriptionSettings();
         subscriptions.CacheFor(TimeSpan.FromMinutes(1));

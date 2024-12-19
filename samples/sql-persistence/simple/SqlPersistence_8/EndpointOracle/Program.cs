@@ -14,7 +14,7 @@ persistence.SqlDialect<SqlDialect.Oracle>();
 
 var connection = $"Data Source=localhost;User Id=SYSTEM; Password=yourStrong(!)Password; Enlist=false";
 
-persistence.ConnectionBuilder(connectionBuilder: () => new OracleConnection(connection));
+persistence.ConnectionBuilder(() => new OracleConnection(connection));
 #endregion
 
 var subscriptions = persistence.SubscriptionSettings();
