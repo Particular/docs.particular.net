@@ -40,7 +40,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.2.4) | 2024-09-24     | -                 | -                                 |
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.0.4) | 2024-04-16     | 2024-12-24        | Superseded by 4.2.x               |
+| [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.0.4) | ~~2024-04-16~~ | ~~2024-12-24~~    | ~~Superseded by 4.2.x~~           |
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.2.6) | 2023-03-23     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/2.0.8) | 2021-10-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
@@ -554,7 +554,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.22.x](https://www.nuget.org/packages/Particular.PlatformSample/3.22.0) | 2024-11-19     | -                 | -                                 |
+| [3.23.x](https://www.nuget.org/packages/Particular.PlatformSample/3.23.0) | 2024-12-20     | -                 | -                                 |
+| [3.22.x](https://www.nuget.org/packages/Particular.PlatformSample/3.22.0) | 2024-11-19     | 2025-03-20        | Superseded by 3.23.x              |
 | [3.21.x](https://www.nuget.org/packages/Particular.PlatformSample/3.21.0) | 2024-11-18     | 2025-02-19        | Superseded by 3.22.x              |
 | [3.20.x](https://www.nuget.org/packages/Particular.PlatformSample/3.20.0) | 2024-10-23     | 2025-02-18        | Superseded by 3.21.x              |
 | [3.19.x](https://www.nuget.org/packages/Particular.PlatformSample/3.19.0) | 2024-10-17     | 2025-01-23        | Superseded by 3.20.x              |
@@ -563,7 +564,7 @@
 | [3.16.x](https://www.nuget.org/packages/Particular.PlatformSample/3.16.0) | 2024-09-27     | 2025-01-04        | Superseded by 3.17.x              |
 | [3.15.x](https://www.nuget.org/packages/Particular.PlatformSample/3.15.0) | 2024-09-26     | 2024-12-27        | Superseded by 3.16.x              |
 | [3.14.x](https://www.nuget.org/packages/Particular.PlatformSample/3.14.0) | 2024-09-24     | 2024-12-26        | Superseded by 3.15.x              |
-| [3.13.x](https://www.nuget.org/packages/Particular.PlatformSample/3.13.0) | 2024-09-13     | 2024-12-24        | Superseded by 3.14.x              |
+| [~~3.13.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.13.0) | ~~2024-09-13~~ | ~~2024-12-24~~    | ~~Superseded by 3.14.x~~          |
 | [~~3.12.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.12.0) | ~~2024-09-04~~ | ~~2024-12-13~~    | ~~Superseded by 3.13.x~~          |
 | [~~3.11.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.11.0) | ~~2024-09-02~~ | ~~2024-12-04~~    | ~~Superseded by 3.12.x~~          |
 | [~~3.10.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.10.0) | ~~2024-08-26~~ | ~~2024-12-02~~    | ~~Superseded by 3.11.x~~          |
