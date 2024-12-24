@@ -18,7 +18,7 @@ public class CustomLogger
     public void WriteSaga(IContainSagaData sagaData)
     {
         var serialized = JsonSerializer.Serialize(sagaData, options);
-        log.Warn($"Saga State: \r\n{serialized}");
+        log.WarnFormat("Saga State: \n{0}", serialized);
     }
 
     class Log :
@@ -35,7 +35,7 @@ public class CustomLogger
 
         public void Dispose()
         {
-            log.Warn($"{name} took {stopwatch.ElapsedMilliseconds}ms to process");
+            log.WarnFormat("{0} took {1}ms to process", name, stopwatch.ElapsedMilliseconds);
         }
     }
 }
