@@ -942,10 +942,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "4.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "4.2",
           "SupportLevel": "Mainstream"
         }
@@ -1087,10 +1083,6 @@
     {
       "PackageId": "Particular.PlatformSample",
       "Versions": [
-        {
-          "Minor": "3.13",
-          "SupportLevel": "Mainstream"
-        },
         {
           "Minor": "3.14",
           "SupportLevel": "Mainstream"
