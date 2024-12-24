@@ -495,7 +495,7 @@ If using [MSMQ transport](/transports/msmq) and the monitoring instance is insta
 
 ## Usage Reporting when using the Azure Service Bus transport
 
-The following settings are part of [Usage Reporting Setup when using the Azure Service Bus transport](/servicepulse/usage-config#connection-setup-azure-service-bus
+The following settings are part of [Usage Reporting Setup when using the Azure Service Bus transport](/servicepulse/usage-config.md#connection-setup-azure-service-bus)
 
 ### LicensingComponent/ASB/ServiceBusName
 
