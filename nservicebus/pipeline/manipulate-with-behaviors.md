@@ -62,7 +62,7 @@ partial: disable
 
 ## Exception handling
 
-Exceptions thrown from a behavior's `Invoke` method bubble up the chain. If any behavior does not handle the exception, the message is considered faulty, which results in putting the message back in the queue (and rolling back the transaction when configured) or moving it to the error queue (depending on the endpoint's [recoverability](/services/recoverability/) configuration).
+Exceptions thrown from a behavior's `Invoke` method bubble up the chain. If any behavior does not handle the exception, the message is considered faulty, which results in putting the message back in the queue (and rolling back the transaction when configured) or moving it to the error queue (depending on the endpoint's [recoverability](/nservicebus/recoverability/) configuration).
 
 ### MessageDeserializationException
 
