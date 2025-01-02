@@ -375,7 +375,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [6.1.x](https://www.nuget.org/packages/ParticularTemplates/6.1.0) | 2024-10-03     | -                 | -                                 |
-| [6.0.x](https://www.nuget.org/packages/ParticularTemplates/6.0.0) | 2024-04-16     | 2025-01-03        | Superseded by 6.1.x               |
+| [~~6.0.x~~](https://www.nuget.org/packages/ParticularTemplates/6.0.0) | ~~2024-04-16~~ | ~~2025-01-03~~    | ~~Superseded by 6.1.x~~           |
 | [5.0.x](https://www.nuget.org/packages/ParticularTemplates/5.0.1) | 2023-06-19     | 2025-04-16        | Superseded by 6.0.x               |
 
 ### Other packages
