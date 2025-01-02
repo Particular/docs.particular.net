@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Buffers.Text;
 using System.Collections.Generic;
 
 using NServiceBus;
@@ -18,15 +19,18 @@ routingSettings.DisablePublishing();
 
 #region Native-message-mapping
 
-transport.MessageUnwrapper = message => new MessageWrapper
-{
-    Id = message.MessageId,
-    Body = message.Body.ToArray(),
-    Headers = new Dictionary<string, string>
-            {
-                { Headers.EnclosedMessageTypes, typeof(NativeMessage).FullName }
-            }
-};
+transport.MessageUnwrapper = message =>
+    Base64.IsValid(message.MessageText)
+    ? null // not a raw native message - allow the framework to deal with it
+    : new MessageWrapper
+    {
+        Id = message.MessageId,
+        Body = message.Body.ToArray(),
+        Headers = new Dictionary<string, string>
+        {
+            { Headers.EnclosedMessageTypes, typeof(NativeMessage).FullName }
+        }
+    };
 
 #endregion
 
