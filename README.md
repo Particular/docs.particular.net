@@ -301,7 +301,7 @@ When multi-targeting samples for NServiceBus 8 and earlier, The recommended set 
 For NServiceBus 9, samples can't currently be multi-targeted, so they should be singled targeted:
 
 ```xml
-<TargetFramework>net8.0</TargetFramework>
+<TargetFramework>net9.0</TargetFramework>
 ```
 
 Some things to keep in mind:
