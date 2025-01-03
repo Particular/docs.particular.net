@@ -13,7 +13,9 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4.1.0
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: |
+            9.0.x
+            8.0.x
         # Caching is done to limit data transfer on each PR, not to optimize CI speed
       - name: Check docstool version for cache
         run: |
@@ -40,7 +42,9 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4.1.0
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: |
+            9.0.x
+            8.0.x
       - name: Run integrity tests
         run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release --logger "GitHubActions;report-warnings=false"
   build-projects:
@@ -52,7 +56,9 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4.1.0
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: |
+            9.0.x
+            8.0.x
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
       - name: Build affected samples & snippets
