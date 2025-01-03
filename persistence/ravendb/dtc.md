@@ -56,7 +56,7 @@ To maintain the use of DTC, the best solution is to transition away from RavenDB
 
 In this situation, consider switching to the [SQL Persistence](/persistence/sql/) library, with data stored in Microsoft SQL Server or Oracle, both of which support distributed transactions.
 
-Because it stores saga data as JSON blobs in much the same way as RavenDB, SQL persistence also provides a smooth data migration path from existing RavenDB data. Contact <support@particular.net> to pursue this option.
+Because it stores saga data as JSON blobs in much the same way as RavenDB, SQL persistence also provides a smooth data migration path from existing RavenDB data. [Contact support](https://customers.particular.net) to pursue this option.
 
 Before migrating, remember that different endpoints can use different persistence within the same solution. Therefore, any new endpoint added to a current solution should use the new persistence.
 
@@ -68,4 +68,4 @@ It is also possible to migrate to [NHibernate Persistence](/persistence/nhiberna
 
 ## Summary
 
-Going forward, DTC transactions with RavenDB will not be supported, although support will be available to existing customers to migrate to a different solution using one of the alternatives above. Contact <support@particular.net> for a more thorough discussion of a migration path.
+Going forward, DTC transactions with RavenDB will not be supported, although support will be available to existing customers to migrate to a different solution using one of the alternatives above. [Contact support](https://customers.particular.net) for a more thorough discussion of a migration path.

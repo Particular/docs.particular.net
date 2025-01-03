@@ -30,7 +30,7 @@ The samples are located in GitHub at [Particular/docs.particular.net/samples](ht
 
 ## Samples targeting non-supported versions of the platform
 
-Samples that target non-supported versions of NServiceBus have been archived, according to the [support policy](/nservicebus/upgrades/support-policy.md). Customers with an extended support agreement can request archived samples by [contacting support](mailto:support@particular.net).
+Samples that target non-supported versions of NServiceBus have been archived, according to the [support policy](/nservicebus/upgrades/support-policy.md). Customers with an extended support agreement can request archived samples by [contacting support](https://customers.particular.net).
 
 ## Technology choices
 

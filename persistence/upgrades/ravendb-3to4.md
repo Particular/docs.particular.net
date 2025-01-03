@@ -34,7 +34,7 @@ When using the `AllowStaleSagaReads()` option in previous versions, which was so
 
 Starting in NServiceBus Version 6, only one correlation id is supported, and the `AllowStaleSagaReads()` option is deprecated. However, saga data stored using this option in previous versions will not have the unique identity pointer document, and will not be able to load. The result is that NServiceBus will not be able to find the saga data document. If the message handler is implemented in the saga as `IHandleMessages<T>`, then the message will be incorrectly discarded as belonging to a saga that has already completed. If the message handler is implemented in the saga as `IAmStartedByMessages<T>`. then a new saga data will (incorrectly) be created, leading to duplicate saga data documents and incorrect business execution.
 
-When upgrading, if the `AllowStaleSagaReads` option is in use, contact [support@particular.net](mailto:support@particular.net) for assistance in identifying the scope of the problem and migration of data.
+When upgrading, if the `AllowStaleSagaReads` option is in use, [contact support](https://customers.particular.net) for assistance in identifying the scope of the problem and migration of data.
 
 
 ## Namespace changes
