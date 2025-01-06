@@ -1,8 +1,7 @@
-using Azure.Storage.Blobs;
-using NServiceBus;
-using NServiceBus.ClaimCheck;
 using System;
 using System.Threading.Tasks;
+using Azure.Storage.Blobs;
+using NServiceBus;
 
 class Program
 {
@@ -22,7 +21,8 @@ class Program
         endpointConfiguration.EnableInstallers();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press any key to exit");
+        Console.WriteLine("Press any key to exit for now");
+
         Console.ReadKey();
         await endpointInstance.Stop();
     }
