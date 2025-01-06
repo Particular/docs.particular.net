@@ -12,7 +12,7 @@ var sales = builder.AddProject<Projects.Sales>("sales")
     .WithReference(transport)
     .WaitFor(transport);
 
-builder.AddProject<Projects.ClientUI>("clientui")
+builder.AddProject<Projects.ClientUI>("ClientUI")
     .WithReference(transport)
     .WaitFor(transport)
     .WaitFor(sales);
