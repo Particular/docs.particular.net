@@ -107,6 +107,7 @@ foreach($solution in $solutions) {
         }
         else
         {
+	    dotnet workload restore
             dotnet build $solution.Name -maxCpuCount --verbosity quiet | Tee-Object -Variable out
         }
 
