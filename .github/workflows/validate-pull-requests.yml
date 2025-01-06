@@ -59,8 +59,14 @@ jobs:
           dotnet-version: |
             9.0.x
             8.0.x
-      - name: Update .NET workloads # To be removed once the base GitHub image has the Aspire workload 8.2
-        run: dotnet workload update
+      # - name: Update .NET workloads # To be removed once the base GitHub image has the Aspire workload 8.2
+      #   run: dotnet workload update
+      - name: Install .NET Aspire workload # To be removed once the base GitHub image has the Aspire workload 8.2
+        run: |
+          echo "Updating advertising manifests"
+          dotnet workload update --advertising-manifests-only
+          echo "Installing the Aspire workload"
+          dotnet workload install aspire
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
       - name: Build affected samples & snippets

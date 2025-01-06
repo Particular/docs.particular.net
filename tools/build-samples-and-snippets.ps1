@@ -89,8 +89,6 @@ $solutions = Get-BuildSolutions
 #$solutions | ForEach-Object { Write-Output (" * {0}" -f $_.FullName) }
 #Write-Output "::endgroup::"
 
-dotnet workload install aspire
-
 foreach($solution in $solutions) {
     Write-Output ("::group::Build Solution {0}" -f $solution.FullName)
 
