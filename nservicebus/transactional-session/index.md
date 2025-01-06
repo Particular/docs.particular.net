@@ -18,7 +18,7 @@ Consider an ASP.NET Core controller that creates a user in the business database
 
 1. **Zombie record**: The controller creates the `User` in the database first, then publishes the `UserCreated` event. If a failure occurs between these two operations:
     * The user is created in the database, but the `UserCreated` event is not published.
-    * This results is a user in the database, known as a zombie record, which is never announced to the rest of the system.
+    * This results in a user in the database, known as a zombie record, which is never announced to the rest of the system.
 2. **Ghost message**: The controller publishes the `UserCreated` event first, then creates the user in the database. If a failure occurs between these two operations:
     * The `UserCreated` event is published, but the user is not created in the database.
     * The rest of the system is notified about the creation of the user, but the user record is never created. This inconsistency causes errors, as parts of the system expect the record to exist in the database.
