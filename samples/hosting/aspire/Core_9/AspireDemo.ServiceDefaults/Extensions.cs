@@ -39,9 +39,9 @@ public static class Extensions
         builder.Logging.AddOpenTelemetry(logging =>
         {
             logging.IncludeFormattedMessage = true;
-            logging.IncludeScopes = false;
+            logging.IncludeScopes = true;
         });
-        #region add-nsb-otel
+#region add-nsb-otel
         builder.Services.AddOpenTelemetry()
             .WithMetrics(metrics =>
             {
@@ -60,7 +60,7 @@ public static class Extensions
                     //.AddGrpcClientInstrumentation()
                     .AddHttpClientInstrumentation();
             });
-        #endregion
+#endregion
         builder.AddOpenTelemetryExporters();
 
         return builder;
