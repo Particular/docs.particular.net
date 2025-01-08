@@ -1,4 +1,5 @@
 ﻿using System.Buffers.Text;
+using System.Text.Json;
 using NServiceBus;
 using NServiceBus.Azure.Transports.WindowsAzureStorageQueues;
 
@@ -13,19 +14,22 @@ class CustomEnvelopeUnwrapper
         {
             MessageUnwrapper = queueMessage =>
             {
-                //This sample expects the native message to be serialized only,
-                // conforming to the specified endpoint serializer.
-                //NServiceBus messages will always be Base64 encoded, so any messages
-                // of this type can be forwarded to the framework by returning null.
-                return Base64.IsValid(queueMessage.MessageText)
-                ? null
+                //Determine whether the message is one expected by the standard program flow.
+                // All other messages should be forwarded to the framework by returning null.
+                //NOTE: More complex methods may be needed in some scenarios to determine
+                // whether the message is of an expected type, but this check
+                // should be kept as lightweight as possible. Deserialization of the message
+                // body happens later in the pipeline.
+                return queueMessage.MessageText.Contains("MyMessageIdFieldName") &&
+                       queueMessage.MessageText.Contains("MyMessageCustomPropertyFieldName")
                 //this was a native message just return the body as is with no headers
-                : new MessageWrapper 
+                ? new MessageWrapper 
                 {
                     Id = queueMessage.MessageId,
                     Headers = [],
                     Body = queueMessage.Body.ToArray()
-                };
+                }
+                : null;
             }
         };
 
