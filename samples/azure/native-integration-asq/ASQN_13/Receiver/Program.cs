@@ -20,9 +20,9 @@ routingSettings.DisablePublishing();
 #region Native-message-mapping
 
 transport.MessageUnwrapper = message =>
-    Base64.IsValid(message.MessageText)
-    ? null // not a raw native message - allow the framework to deal with it
-    : new MessageWrapper
+    message.MessageText.Contains("NativeMessageId") &&
+    message.MessageText.Contains("Content")
+    ? new MessageWrapper
     {
         Id = message.MessageId,
         Body = message.Body.ToArray(),
@@ -30,7 +30,8 @@ transport.MessageUnwrapper = message =>
         {
             { Headers.EnclosedMessageTypes, typeof(NativeMessage).FullName }
         }
-    };
+    }
+    : null; // not a raw native message - allow the framework to deal with it
 
 #endregion
 
