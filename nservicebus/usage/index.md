@@ -11,7 +11,7 @@ related:
 
 ServicePulse will generate a usage report containing NServiceBus endpoint count and throughput summary. The report is saved as a file onto the local machine, which needs to be sent to Particular upon request, usually at license renewal time.
 
-ServicePulse provides the;
+ServicePulse provides the user with;
 
 - ability to [view system usage](/servicepulse/usage.md#viewing-usage-summary) at any time
 - ability to [specify if a detected queue should not be included in license pricing](/servicepulse/usage.md#setting-an-endpoint-type)
