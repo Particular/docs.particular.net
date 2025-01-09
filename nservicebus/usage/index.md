@@ -13,11 +13,10 @@ ServicePulse will generate a usage report containing NServiceBus endpoint count 
 
 ServicePulse provides the user with;
 
-- ability to [view system usage](/servicepulse/usage.md#viewing-usage-summary) at any time
-- ability to [specify if a detected queue should not be included in license pricing](/servicepulse/usage.md#setting-an-endpoint-type)
-- incorporated into the existing Particular Platform - [the report can be generated directly from ServicePulse](/servicepulse/usage.md#download-a-usage-report)
-- improved endpoint detection for endpoints that have Monitoring or Audit enabled
-- once setup, there's no more work required, just a button press once a year to generate the usage report
+- The ability to [view system usage](/servicepulse/usage.md#viewing-usage-summary) at any time
+- The ability to [specify if a detected queue should not be included in license pricing](/servicepulse/usage.md#setting-an-endpoint-type)
+- Improved endpoint detection for endpoints that have Monitoring or Audit enabled
+- Once setup, there's no more work required, just a button press once a year to generate the usage report
 
 The Usage page allows for viewing the endpoint usage summary of a system using NServiceBus.
 A usage report can be downloaded here at license renewal time.
