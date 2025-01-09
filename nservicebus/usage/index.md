@@ -27,7 +27,7 @@ A usage report can be downloaded here at license renewal time.
 > [!NOTE]
 > While customers are not currently required to use ServicePulse, starting 1 January 2026, it will become mandatory for all projects in active development. If you have any issues installing ServicePulse in your environment, please reach out so we can help find a path forward.
 
-Customers who are not able to use ServicePulse should [contact us](https://particular.net/contact)
+Customers who are not able to use ServicePulse can either contact their Account Manager or [Contact our Customer Success Team](https://particular.net/contact)
 
 ## Download a usage report
 
