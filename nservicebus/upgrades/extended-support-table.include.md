@@ -7,3 +7,5 @@
 | <nobr>NServiceBus 5</nobr> | <nobr>2014-09-29</nobr> |   Unsupported   |               2018-10-11                |              2020-10-11               |
 | <nobr>NServiceBus 4</nobr> | <nobr>2013-07-11</nobr> |   Unsupported   |               2016-09-29                |              2018-09-29               |
 | <nobr>NServiceBus 3</nobr> | <nobr>2012-03-08</nobr> |   Unsupported   |               2015-07-11                |              2017-07-11               |
+
+<sup>1</sup> For .NET Framework systems, extended support expires on 2031-04-16

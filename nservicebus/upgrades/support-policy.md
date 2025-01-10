@@ -57,8 +57,6 @@ The following table describes the extended support status for all major versions
 
 include: extended-support-table
 
-<sup>1</sup> For .NET Framework systems, extended support expires on 2031-04-16
-
 [Reach out](https://particular.net/contact) for further information or inquiries.
 
 ## Compatibility guarantees
