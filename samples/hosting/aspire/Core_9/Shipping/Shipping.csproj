@@ -12,10 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Npgsql" Version="8.0.4" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.0" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="8.1.0" />
-    <PackageReference Include="NServiceBus.RabbitMQ" Version="9.1.1" />
+    <PackageReference Include="Npgsql" Version="8.*" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="8.*" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="9.*" />
   </ItemGroup>
 
 </Project>
