@@ -14,6 +14,9 @@ There are two methods available for measuring usage of an NServiceBus system:
 
 Both methods will generate a usage report containing NServiceBus endpoint count and throughput summary. The report is saved as a file onto the local machine, which needs to be sent to Particular upon request, usually at license renewal time.
 
+> [!TIP]
+> To get help with problems encountered attempting to create a throughput report, [create a support case](https://customers.particular.net/request-support/licensing).
+
 ## Benefits of using ServicePulse to measure usage
 
 The recommended method for measuring usage in an NServiceBus system is via ServicePulse, which offers the following advantages:
