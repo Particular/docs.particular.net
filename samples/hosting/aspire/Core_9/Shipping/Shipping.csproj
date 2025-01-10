@@ -5,11 +5,10 @@
     <LangVersion>13.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Npgsql" Version="9.0.2" />
+    <PackageReference Include="Npgsql" Version="8.0.4" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.0" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="8.1.0" />
     <PackageReference Include="NServiceBus.RabbitMQ" Version="9.1.1" />
-    <PackageReference Include="System.Text.Json" Version="9.0.0" />
     <ProjectReference Include="..\Messages\Messages.csproj" />
     <ProjectReference Include="..\AspireDemo.ServiceDefaults\AspireDemo.ServiceDefaults.csproj" />
   </ItemGroup>

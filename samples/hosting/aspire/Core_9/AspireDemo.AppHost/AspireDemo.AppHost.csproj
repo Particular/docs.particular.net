@@ -15,8 +15,6 @@
     <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="8.2.0" />
     <PackageReference Include="Nall.Aspire.Hosting.DependsOn.PostgreSQL" Version="1.0.1" />
     <PackageReference Include="Nall.Aspire.Hosting.DependsOn.RabbitMq" Version="1.0.1" />
-    <PackageReference Include="Npgsql" Version="9.0.2" />
-    <PackageReference Include="System.Text.Json" Version="9.0.0" />
   </ItemGroup>
 
   <ItemGroup>
