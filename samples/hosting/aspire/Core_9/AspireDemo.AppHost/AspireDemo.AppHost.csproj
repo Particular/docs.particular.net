@@ -1,5 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <Sdk Name="Aspire.AppHost.Sdk" Version="9.0.0" />
+
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <OutputType>Exe</OutputType>
@@ -17,11 +19,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="8.2.0" />
-    <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="8.*" />
-    <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="8.*" />
-    <PackageReference Include="Nall.Aspire.Hosting.DependsOn.PostgreSQL" Version="1.*" />
-    <PackageReference Include="Nall.Aspire.Hosting.DependsOn.RabbitMq" Version="1.*" />
+    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.0.0" />
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="9.*" />
+    <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="9.*" />
   </ItemGroup>
 
 </Project>

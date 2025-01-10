@@ -1,8 +1,7 @@
 #region app-host
 var builder = DistributedApplication.CreateBuilder(args);
 
-var transport = builder.AddRabbitMQ("transport")
-    .WithHealthCheck();
+var transport = builder.AddRabbitMQ("transport");
 
 builder.AddProject<Projects.Billing>("billing")
     .WithReference(transport)
@@ -23,8 +22,7 @@ var database = builder.AddPostgres("database")
     .WithEnvironment("POSTGRES_DB", "shipping-db")
     .WithPgWeb();
 
-var shippingDb = database.AddDatabase("shipping-db")
-    .WithHealthCheck();
+var shippingDb = database.AddDatabase("shipping-db");
 
 builder.AddProject<Projects.Shipping>("shipping")
     .WithReference(transport)
