@@ -1157,7 +1157,7 @@ Paragraph after…
 
 The engine will parse the video ID out of the YouTube URL and create a properly styled embed.
 
-### Document stucture
+### Related content
 
 - Consider what is the best place to direct the reader after they are done reading the current page. Add a link to that page at the bottom.
 
