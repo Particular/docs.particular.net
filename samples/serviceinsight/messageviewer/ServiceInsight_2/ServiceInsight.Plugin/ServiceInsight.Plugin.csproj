@@ -4,7 +4,7 @@
     <TargetFramework>net48</TargetFramework>
     <UseWpf>true</UseWpf>
     <RootNamespace>ServiceInsight.CustomViewer.Plugin</RootNamespace>
-    <LangVersion>12.0</LangVersion>
+    <LangVersion>13.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
