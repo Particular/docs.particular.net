@@ -57,7 +57,10 @@ The tool can collect data using various methods depending on the system's config
 - Azure Storage Queues – Use [ServiceControl data collection](service-control.md)
 - [Click here if unsure what message transport is used by the system](determine-transport.md)
 
-If the system uses MSMQ or Azure Storage Queues but does not use ServiceControl, this tool cannot be used to measure throughput. Email <a href="mailto:contact@particular.net">contact@particular.net</a> for instructions on estimating system throughput.
+> [!TIP]
+> If the system uses MSMQ or Azure Storage Queues but does not use ServiceControl, this tool cannot be used to measure throughput.
+>
+> If this or any other problem is encountered attempting to generate a throughput report, [open a support case](https://customers.particular.net/request-support/licensing).
 
 ## Masking private data
 
