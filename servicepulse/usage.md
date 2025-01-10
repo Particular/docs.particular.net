@@ -1,10 +1,9 @@
 ---
 title: Measuring system usage
-summary: Learn how to measure the system usage of an NServiceBus system using ServicePulse or the Standalone Endpoint Throughput Tool
-reviewed: 2024-05-08
-related:
-  - servicepulse/usage
-  - nservicebus/throughput-tool
+summary: Learn how to measure the system usage of an NServiceBus system using ServicePulse
+reviewed: 2025-01-10
+redirects:
+- nservicebus/usage
 ---
 
 ## Using ServicePulse to measure usage
@@ -13,8 +12,8 @@ ServicePulse will generate a usage report containing NServiceBus endpoint count 
 
 ServicePulse provides the user with:
 
-- The ability to [view system usage](/servicepulse/usage.md#viewing-usage-summary) at any time
-- The ability to [specify if a detected queue should not be included in license pricing](/servicepulse/usage.md#setting-an-endpoint-type)
+- The ability to [view system usage](#viewing-usage-summary) at any time
+- The ability to [specify if a detected queue should not be included in license pricing](#setting-an-endpoint-type)
 - Improved endpoint detection for endpoints that have Monitoring or Audit enabled
 - Once setup, there's no more work required, just a button press once a year to generate the usage report
 
@@ -27,7 +26,7 @@ A usage report can be downloaded here at license renewal time.
 > [!NOTE]
 > While customers are not currently required to use ServicePulse, starting 1 January 2026, it will become mandatory for all projects in active development. If you have any issues installing ServicePulse in your environment, please reach out so we can help find a path forward.
 
-Customers who are not able to use ServicePulse can either contact their Account Manager or [Contact our Customer Success Team](https://particular.net/contact)
+Customers who are not able to use ServicePulse can either contact their Account Manager directly or [contact &#117;s](https://particular.net/contact).
 
 ## Download a usage report
 
@@ -39,7 +38,7 @@ The report file must be provided to Particular upon request, it is **not** autom
 
 ## Viewing usage summary
 
-At any time the system usage can be viewed on the Usage page.  
+At any time the system usage can be viewed on the Usage page.
 This page has two tabs:
 
 - [Detected endpoints](#viewing-usage-summary-detected-endpoints)
@@ -71,13 +70,8 @@ The filter option can be used for bulk updating of endpoints or queues matching 
 
 1. Find the endpoints/queues that need to be bulk updated
 2. Press the `Set Endpoint Type for all items below` button to select which endpoint type the filtered results should be set to.
-
-![usage-endpoints-filter](images/usage-endpoints-filter.png "width=600")
-
+   ![usage-endpoints-filter](images/usage-endpoints-filter.png "width=600")
 3. A confirmation box appears - press `Yes` to proceed with the bulk update.
-
-![usage-endpoints-bulk-update](images/usage-endpoints-bulk-update.png "width=600")
-
+   ![usage-endpoints-bulk-update](images/usage-endpoints-bulk-update.png "width=600")
 4. All endpoints/queues on screen will be updated to the selected endpoint type and automatically saved.
-
-![usage-endpoints-updated](images/usage-endpoints-updated.png "width=600")
+   ![usage-endpoints-updated](images/usage-endpoints-updated.png "width=600")

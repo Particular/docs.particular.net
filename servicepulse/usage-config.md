@@ -4,7 +4,7 @@ summary: Viewing endpoint usage summary and generating a usage report
 component: ServicePulse
 reviewed: 2024-05-08
 related:
-  - nservicebus/usage
+  - servicepulse/usage
 ---
 
 Specific settings for collecting usage data to generate a usage report.
@@ -60,7 +60,7 @@ $resourceGroupName = "<Your Resource group Name>"
 # Assign role to resource group
 
 $scope = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
-# or to specific resource in resource group 
+# or to specific resource in resource group
 #$scope = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.ServiceBus/namespaces/$namespaceName
 
 New-AzRoleAssignment -ApplicationId $applicationId -RoleDefinitionName "Monitoring Reader" -Scope $scope
