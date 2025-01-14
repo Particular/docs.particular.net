@@ -72,3 +72,7 @@ The filter option can be used for bulk updating of endpoints or queues matching 
    ![usage-endpoints-bulk-update](images/usage-endpoints-bulk-update.png "width=600")
 4. All endpoints/queues on screen will be updated to the selected endpoint type and automatically saved.
    ![usage-endpoints-updated](images/usage-endpoints-updated.png "width=600")
+
+### Need any help?
+
+To get help with problems encountered attempting to create a throughput report, [create a support case](https://customers.particular.net/request-support/licensing).
