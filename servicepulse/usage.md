@@ -23,7 +23,7 @@ A usage report can be downloaded here at license renewal time.
 > [!NOTE]
 > The usage data collection functionality requires ServicePulse version 1.40 or later, and ServiceControl version 5.4 or later. Additionally, if using RabbitMQ broker, version 3.10.0 or higher is required.
 
-Customers who are not able to use ServicePulse can either contact their Account Manager directly or [contact &#117;s](https://particular.net/contact).
+Customers who are not able to use ServicePulse can either contact their Account Manager directly or use the [contact form](https://particular.net/contact).
 
 ## Download a usage report
 
