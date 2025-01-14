@@ -3,7 +3,7 @@ title: Endpoint Throughput tool
 summary: Use the Particular endpoint throughput counter tool to measure the usage of an NServiceBus system.
 reviewed: 2024-05-22
 related:
-  - nservicebus/usage
+  - servicepulse/usage
 ---
 
 > [!NOTE]

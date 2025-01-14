@@ -2,12 +2,9 @@
 title: Tools
 summary: An overview of tools related to NServiceBus
 reviewed: 2024-08-13
-related:
-  - nservicebus/usage
 ---
 
 - [Particular.TimeoutMigration](migrate-to-native-delivery.md)
-- [Particular.EndpointThroughputCounter](/nservicebus/throughput-tool)
 
 ## Support policy
 
