@@ -3,7 +3,7 @@ using System.Text.Json;
 
 namespace _3rd_party_licenses;
 
-public class Npm(Tuple<string, string>[] npmFolders)
+public class Npm(params (string name, string npmFolder)[] npmFolders)
 {
     public async Task<List<PackageWrapper>> GetPackagesForPackageJson()
     {
