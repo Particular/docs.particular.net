@@ -779,7 +779,7 @@
     - Url: nservicebus/tools/migrate-to-native-delivery
       Title: Migrating timeouts
     - Url: nservicebus/throughput-tool
-      Title: Measuring throughput using legacy tool
+      Title: Measuring usage using legacy tool
   - Title: Troubleshooting
     Articles:
     - Url: nservicebus/troubleshooting/message-loss
