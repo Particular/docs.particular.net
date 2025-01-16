@@ -4,6 +4,13 @@ summary: Use the Particular endpoint throughput counter tool to measure the usag
 reviewed: 2024-05-22
 related:
   - servicepulse/usage
+redirects:
+  - nservicebus/throughput-tool/azure-service-bus
+  - nservicebus/throughput-tool/amazon-sqs
+  - nservicebus/throughput-tool/rabbitmq
+  - nservicebus/throughput-tool/sql-transport
+  - nservicebus/throughput-tool/postgresql-transport
+  - nservicebus/throughput-tool/service-control
 ---
 
 > [!NOTE]
@@ -46,21 +53,342 @@ In this mode, the target system does not need any version of .NET preinstalled.
 
 ## Running the tool
 
-The tool can collect data using various methods depending on the system's configuration. To run the tool, select the relevant article based on the [message transport](/transports/) used in the system to be measured:
+The tool can collect data using various methods depending on the system's configuration. To run the tool, select the relevant section based on the [message transport](/transports/) used in the system to be measured:
 
-- [Azure Service Bus](azure-service-bus.md)
-- [Amazon SQS](amazon-sqs.md)
-- [RabbitMQ](rabbitmq.md)
-- [SQL Transport](sql-transport.md)
-- [PostgreSQL Transport](postgresql-transport.md)
-- Microsoft Message Queueing (MSMQ) – Use [ServiceControl data collection](service-control.md)
-- Azure Storage Queues – Use [ServiceControl data collection](service-control.md)
+<!-- following comment prevents VSCode Markdown plugin from messing up this list -->
+<!-- no toc -->
+- [Azure Service Bus](#running-the-tool-azure-service-bus)
+- [Amazon SQS](#running-the-tool-amazon-sqs)
+- [RabbitMQ](#running-the-tool-rabbitmq)
+- [SQL Transport](#running-the-tool-sql-transport)
+- [PostgreSQL Transport](#running-the-tool-postgresql-transport)
+- Microsoft Message Queueing (MSMQ) – Use [ServiceControl data collection](#running-the-tool-servicecontrol)
+- Azure Storage Queues – Use [ServiceControl data collection](#running-the-tool-servicecontrol)
 - [Click here if unsure what message transport is used by the system](determine-transport.md)
 
 > [!TIP]
 > If the system uses MSMQ or Azure Storage Queues but does not use ServiceControl, this tool cannot be used to measure throughput.
 >
 > If this or any other problem is encountered attempting to generate a throughput report, [open a support case](https://customers.particular.net/request-support/licensing).
+
+### Azure Service Bus
+
+#### Prerequisites
+
+Collecting metrics from Azure Service Bus relies upon an existing set of Azure credentials set using the Azure Command Line Interface (CLI), which must be installed first:
+
+1. Install the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli).
+2. From a command line, execute `az login`, which will open a browser to complete the authentication to Azure. The built-in role [Monitoring Reader](https://learn.microsoft.com/en-us/azure/azure-monitor/roles-permissions-security#monitoring-reader) is sufficient to access the required Azure Service Bus metrics.
+3. Execute `az account set --subscription {SubscriptionId}`, where `{SubscriptionId}` is a Guid matching the subscription id that contains the Azure Service Bus namespace.
+
+Completing these steps stores credentials that can be used by the tool.
+
+#### Running the tool
+
+To run the tool, the resource ID for the Azure Service Bus namespace is needed.
+
+In the Azure Portal, go to the Azure Service Bus namespace, click **Properties** in the side navigtation (as shown in the screenshot below) and then copy the `Id` value, which will be needed to run the tool. The `Id` value should have a format similar to `/subscriptions/{Guid}/resourceGroups/{rsrcGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}`.
+
+This screenshot shows how to copy the Service Bus Namespace's `Id` value:
+
+![How to collect the Service Bus Namespace Id](azure-service-bus.png)
+
+Execute the tool with the resource ID of the Azure Service Bus namespace.
+
+If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
+
+```shell
+throughput-counter azureservicebus [options] --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace
+```
+
+Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
+
+```shell
+Particular.EndpointThroughputCounter.exe azureservicebus [options] --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace
+```
+
+#### Options
+
+| Option | Description |
+|-|-|
+| <nobr>`--resourceId`</nobr> | **Required** – The resource ID of the Azure Service Bus namespace, which can be found in the Azure Portal as described above. |
+| <nobr>`--serviceBusDomain`</nobr> | The Service Bus domain. Defaults to `servicebus.windows.net`. Only necessary for Azure customers using a [non-public/government cloud](https://learn.microsoft.com/en-us/rest/api/servicebus/). |
+include: throughput-tool-global-options
+
+#### What the tool does
+
+First, the tool uses a `ServiceBusAdministrationClient` to [query the queue names](https://learn.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.administration.servicebusadministrationclient.getqueuesasync?view=azure-dotnet) from the namespace. Next, a `MetricsQueryClient` is used to [query for `CompleteMessage` metrics](https://learn.microsoft.com/en-us/dotnet/api/azure.monitor.query.metricsqueryclient.queryresourceasync?view=azure-dotnet) for the past 30 days from each queue.
+
+Using Azure Service Bus metrics allows the tool to capture the last 30 days worth of data at once. Although the tool collects 30 days worth of data, only the highest daily throughput is included in the report.
+
+### Amazon SQS
+
+#### Running the tool
+
+Collecting metrics for SQS relies upon [AWSSDK.SQS](https://www.nuget.org/packages/AWSSDK.SQS) to discover queue names and [AWSSDK.CloudWatch](https://www.nuget.org/packages/AWSSDK.CloudWatch) to gather per-queue metrics.
+
+Authentication to AWS requires a [AWS credentials profile](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/keys-profiles-credentials.html), or credentials can be created from the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables, if both are not empty. The tool uses default constructors for the SQS and CloudWatch clients and follows the [credential and profile resolution](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/creds-assign.html) rules determined by the AWS SDK.
+
+The AWS region can be specified either by command-line parameter or by the `AWS_REGION` environment variable.
+
+If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended), execute the tool as shown:
+
+```shell
+throughput-counter sqs [options]
+```
+
+Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
+
+```shell
+Particular.EndpointThroughputCounter.exe sqs [options]
+```
+
+#### Options
+
+| Option | Description |
+|-|-|
+| <nobr>`--profile`</nobr> | The name of a local [AWS credentials profile](https://docs.aws.amazon.com/toolkit-for-visual-studio/latest/user-guide/keys-profiles-credentials.html). If not included, credentials can be read from the `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` environment variables. |
+| <nobr>`--region`</nobr> | The AWS region to use when accessing AWS services. If not provided, the default profile value or `AWS_REGION` environment variable will be used. |
+| <nobr>`--prefix`</nobr> | Report only on queues that begin with a specific prefix. This is commonly used when one AWS account must contain queues for multiple projects or multiple environments.<br/><br/>Example: `--prefix "prod-"` |
+include: throughput-tool-global-options
+
+#### What the tool does
+
+The tool first queries the SQS API to [fetch all queue names](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ListQueues.html). Then, for each queue that is discovered, the tool queries the [CloudWatch API](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricStatistics.html) for the `NumberOfMessagesDeleted` metrics for the past 30 days.
+
+Unlike ServiceControl, using SQS and CloudWatch metrics allows the tool to capture the last 30 days worth of data at once, which means that the report will be generated without delay. Although the tool collects 30 days worth of data, only the highest daily throughput is included in the report.
+
+### RabbitMQ
+
+#### Running the tool
+
+To collect data from RabbitMQ, the [management plugin](https://www.rabbitmq.com/management.html) must be enabled on the RabbitMQ broker. The tool will also require a login that can access the management UI.
+
+Execute the tool, providing the RabbitMQ management URL, as in this example where the RabbitMQ broker is running on localhost.
+
+If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
+
+```shell
+throughput-counter rabbitmq [options] --apiUrl http://localhost:15672
+```
+
+Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
+
+```shell
+Particular.EndpointThroughputCounter.exe rabbitmq [options] --apiUrl http://localhost:15672
+```
+
+The tool will prompt for the username and password to access the RabbitMQ management interface. After that, it will take its initial reading, then sleep for 24 hours before taking its final reading and generating a report.
+
+#### Options
+
+| Option | Description |
+|-|-|
+| <nobr>`--apiUrl`</nobr> | **Required** – The URL for the RabbitMQ management site. Generally this will be `http://<rabbitmq-hostname>:15672` |
+include: throughput-tool-global-options
+
+#### What the tool does
+
+After performing an interactive login to the RabbitMQ Management API, the tool will:
+
+1. Query `/api/overview` to get basic information about the system, ensure that the current version of RabbitMQ is compatible with the tool, and that the necessary plugins are installed to be able to get queue throughput details.
+2. Query `/api/queues?page=1&page_size=500&name=&use_regex=false&pagination=true` to discover queue names and to get the message stats for each queue. If more than 500 queues are present, the additional pages of data will be requested as well.
+3. The queries to `/api/queues` will be repeated every 5 minutes over the 24-hour tool runtime. This way, the tool can continue counting if a restart of a RabbitMQ server instance causes the message stats to reset.
+
+### SQL Transport
+
+#### Running the tool
+
+Once installed, execute the tool with the database connection string used by SQL Server endpoints.
+
+If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
+
+```shell
+throughput-counter sqlserver [options] --connectionString "Server=SERVER;Database=DATABASE;User=USERNAME;Password=PASSWORD;"
+```
+
+Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
+
+```shell
+Particular.EndpointThroughputCounter.exe sqlserver [options] --connectionString "Server=SERVER;Database=DATABASE;User=USERNAME;Password=PASSWORD;"
+```
+
+The tool will run for slightly longer than 24 hours in order to capture a beginning and ending identity value for each queue table.
+
+#### Options
+
+Either the `--connectionString` or `--connectionStringSource` must be used to provide the tool with connection string information.
+
+| Option | Description |
+|-|-|
+| <nobr>`--connectionString`</nobr> | A single database connection string<sup>1</sup> that will provide at least read access to all queue tables. |
+| <nobr>`--addCatalogs`</nobr> | When the `--connectionString` parameter points to a single database, but multiple database catalogs on the same server also contain NServiceBus message queues, the `--addCatalogs` parameter specifies additional database catalogs to search. The tool replaces the `Database` or `Initial Catalog` parameter in the connection string with the additional catalog and queries all of them. With this option, only a single database server is supported.<br/><br/>Example: `--connectionString <Catalog1String> --addCatalogs Catalog2 Catalog3 Catalog4` |
+| <nobr>`--connectionStringSource` | Provide a file containing database connection strings (one per line) instead of specifying a single connection string as a tool argument. The tool will scan the databases provided by all connection strings in the file for NServiceBus queue tables. With this option, multiple catalogs in multiple database servers are supported.<br/><br/>Example: `--connectionStringSource <PathToFile>` |
+include: throughput-tool-global-options
+
+<sup>1</sup> See [examples of SQL Server connection strings](https://www.connectionstrings.com/sql-server/). Authentication is often via username/password `User Id=myUsername;Password=myPassword`, integrated security `Integrated Security=true`, or active directory with MFA `Authentication=ActiveDirectoryInteractive;UID=user@domain.com`.
+
+> [!NOTE]
+> In recent versions of Microsoft's Sql Server drivers encryption has been enabled by default. When trying to connect to a Sql Server instance that uses a self-signed cerftificate, the tool may display an exception stating *[The certificate chain was issued by an authority that is not trusted](https://learn.microsoft.com/en-us/troubleshoot/sql/connect/certificate-chain-not-trusted?tabs=ole-db-driver-19)*. To bypass this exception update the connection string to include `;Trust Server Certificate=true`.
+
+#### What the tool does
+
+The tool executes the following SQL queries on the database connection strings provided.
+
+##### Find queues
+
+The tool uses this query to discover what tables in a SQL database catalog have the table structure that matches an NServiceBus queue table. This query is executed only once when the tool is first run.
+
+```sql
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+
+SELECT C.TABLE_SCHEMA as TableSchema, C.TABLE_NAME as TableName
+FROM [INFORMATION_SCHEMA].[COLUMNS] C
+WHERE
+	(C.COLUMN_NAME = 'Id' AND C.DATA_TYPE = 'uniqueidentifier') OR
+	(C.COLUMN_NAME = 'CorrelationId' AND C.DATA_TYPE = 'varchar') OR
+	(C.COLUMN_NAME = 'ReplyToAddress' AND C.DATA_TYPE = 'varchar') OR
+	(C.COLUMN_NAME = 'Recoverable' AND C.DATA_TYPE = 'bit') OR
+	(C.COLUMN_NAME = 'Expires' AND C.DATA_TYPE = 'datetime') OR
+	(C.COLUMN_NAME = 'Headers') OR
+	(C.COLUMN_NAME = 'Body' AND C.DATA_TYPE = 'varbinary') OR
+	(C.COLUMN_NAME = 'RowVersion' AND C.DATA_TYPE = 'bigint')
+GROUP BY C.TABLE_SCHEMA, C.TABLE_NAME
+HAVING COUNT(*) = 8
+```
+
+##### Get snapshot
+
+The tool uses this query to get a snapshot of the identity value for each queue table. It is executed once per queue table when the tool is first run, then again at the end of the tool execution. The snapshots are compared to determine how many messages were processed in that table while the tool was running.
+
+```sql
+select IDENT_CURRENT('[SCHEMA_NAME].[TABLE_NAME]')
+```
+
+### PostgreSQL Transport
+
+#### Running the tool
+
+Once installed, execute the tool with the database connection string used by PostgreSQL endpoints.
+
+If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
+
+```shell
+throughput-counter postgresql [options] --connectionString "Server=SERVER;Database=DATABASE;Port=5432;User Id=USERID;Password=PASSWORD;"
+```
+
+Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
+
+```shell
+Particular.EndpointThroughputCounter.exe postgresql [options] --connectionString "Server=SERVER;Database=DATABASE;Port=5432;User Id=USERID;Password=PASSWORD;"
+```
+
+The tool will run for slightly longer than 24 hours in order to capture a beginning and ending identity value for each queue table.
+
+#### Options
+
+Either the `--connectionString` or `--connectionStringSource` must be used to provide the tool with connection string information.
+
+| Option | Description |
+|-|-|
+| <nobr>`--connectionString`</nobr> | A single database connection string<sup>1</sup> that will provide at least read access to all queue tables. |
+| <nobr>`--addDatabases`</nobr> | When the `--connectionString` parameter points to a single database, but multiple databases on the same server also contain NServiceBus message queues, the `--addDatabases` parameter specifies additional databases to search. The tool replaces the `Database` parameter in the connection string with the additional database and queries all of them. With this option, only a single database server is supported.<br/><br/>Example: `--connectionString <Database1String> --addDatabases Database2 Database3 Database4` |
+| <nobr>`--connectionStringSource` | Provide a file containing database connection strings (one per line) instead of specifying a single connection string as a tool argument. The tool will scan the databases provided by all connection strings in the file for NServiceBus queue tables. With this option, multiple databases in multiple database servers are supported.<br/><br/>Example: `--connectionStringSource <PathToFile>` |
+include: throughput-tool-global-options
+
+<sup>1</sup> See [examples of PostgreSQL connection strings](https://www.connectionstrings.com/postgresql/). Authentication is often via username/password `User Id=myUsername;Password=myPassword`.
+
+#### What the tool does
+
+The tool executes the following PostgreSQL queries on the database connection strings provided.
+
+##### Find queues
+
+The tool uses this query to discover what tables in a PostgreSQL database have the table structure that matches an NServiceBus queue table. This query is executed only once when the tool is first run.
+
+```sql
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+
+SELECT C.TABLE_SCHEMA as TableSchema, C.TABLE_NAME as TableName
+FROM information_schema.columns C
+WHERE
+    (C.COLUMN_NAME = 'id' AND C.DATA_TYPE = 'uuid') OR
+    (C.COLUMN_NAME = 'expires' AND C.DATA_TYPE = 'timestamp without time zone') OR
+    (C.COLUMN_NAME = 'headers' AND C.DATA_TYPE = 'text') OR
+    (C.COLUMN_NAME = 'body' AND C.DATA_TYPE = 'bytea') OR
+    (C.COLUMN_NAME = 'seq' AND C.DATA_TYPE = 'integer')
+GROUP BY C.TABLE_SCHEMA, C.TABLE_NAME
+HAVING COUNT(*) = 5
+```
+
+##### Get snapshot
+
+The tool uses this query to get a snapshot of the identity value for each queue table. It is executed once per queue table when the tool is first run, then again at the end of the tool execution. The snapshots are compared to determine how many messages were processed in that table while the tool was running.
+
+```sql
+select last_value from "TABLE_NAME.SEQUENCE_NAME";
+```
+
+### ServiceControl
+
+#### Prerequisites
+
+The tool should be used with a [supported version of ServiceControl](/servicecontrol/upgrades/supported-versions.md).
+
+> [!NOTE]
+> Do not attempt to install ServiceControl just to run the throughput tool on an MSMQ or Azure Storage Queues system. In order to successfully collect any data, every system endpoint must be modified to send data to the new ServiceControl installation or there will be no data to collect. Instead, reach out to a licensing specialist to suggest alternate ways to estimate the system throughput needed for licensing.
+
+#### Running the tool
+
+Once installed, execute the tool with the URLs for the ServiceControl and monitoring APIs.
+
+If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
+
+```shell
+throughput-counter servicecontrol [options] --serviceControlApiUrl http://localhost:33333/api/ --monitoringApiUrl http://localhost:33633/
+```
+
+Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
+
+```shell
+Particular.EndpointThroughputCounter.exe servicecontrol [options] --serviceControlApiUrl http://localhost:33333/api/ --monitoringApiUrl http://localhost:33633/
+```
+
+Because ServiceControl contains, at maximum, the previous 1 hour of monitoring data, the tool will query the ServiceControl API 24 times with a one-hour sleep period between each attempt in order to capture a total of 24 hours worth of data.
+
+For endpoints that do not have monitoring enabled, the tool will fall back to querying [message audit data](/nservicebus/operations/auditing.md) to determine how many messages have been processed each hour.
+
+#### Options
+
+| Option | Description |
+|-|-|
+| <nobr>`--serviceControlApiUrl`</nobr> | **Required** – The URL of the ServiceControl API. In the [ServiceControl Management Utility](/servicecontrol/servicecontrol-instances/deployment/scmu.md), find the instance identified as a **ServiceControl Instance** and use the value of the **URL** field, as shown in the screenshot below. |
+| <nobr>`--monitoringApiUrl`</nobr> | **Required** – The URL of the Monitoring API. In the [ServiceControl Management Utility](/servicecontrol/monitoring-instances/deployment/scmu.md), find the instance identified as a **Monitoring Instance** and use the value of the **URL** field, as shown in the screenshot below. |
+include: throughput-tool-global-options
+
+This screenshot shows how to identify the instance types and locate the required URLs:
+
+![ServiceControl instances showing tool inputs](servicecontrol.png)
+
+#### What the tool does
+
+The tool will send HTTP requests to both the [ServiceControl primary instance](/servicecontrol/servicecontrol-instances/) and the [ServiceControl monitoring instance](/servicecontrol/monitoring-instances/).
+
+##### Primary instance
+
+The following requests will be sent to the primary instance:
+
+* `<PrimaryUrl>`: Makes sure the URL is valid and that the ServiceControl version is compatible with the tool.
+* `<PrimaryUrl>/endpoints`: Discovers endpoint names.
+* `<PrimaryUrl>/configuration/remotes`: Discovers information about connected audit instances, and verifies that their versions are compatible with the tool.
+* `<PrimaryUrl>/endpoints/{EndpointName}/audit-count`: Requested only once per endpoint, and retrieves throughput information for endpoints with auditing enabled.
+
+##### Monitoring instance
+
+The following requests will be sent to the monitoring instance:
+
+* `<MonitoringUrl>`: Makes sure the URL is valid and that the ServiceControl version is compatible with the tool.
+* `<MonitoringUrl>/monitored-endpoints?history=60`: Retrieved once per hour to get throughput data for endpoints with monitoring enabled.
 
 ## Masking private data
 
