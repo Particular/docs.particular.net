@@ -48,8 +48,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [13.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/13.0.1) | 2024-04-16     | -                 | -                                 |
-| [12.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/12.0.2) | 2022-11-23     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [13.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/13.0.2) | 2024-04-16     | -                 | -                                 |
+| [12.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/12.0.3) | 2022-11-23     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [10.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/10.0.6) | 2021-03-16     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
 #### [NServiceBus.Transport.Msmq](/nuget/NServiceBus.Transport.Msmq)
