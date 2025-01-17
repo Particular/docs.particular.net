@@ -2,29 +2,25 @@
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 
-class Program
+#region ApplicationStart
+
+var builder = WebApplication.CreateBuilder();
+
+builder.Host.UseNServiceBus(_ =>
 {
-    public static void Main()
-    {
-        #region ApplicationStart
-        var builder = WebApplication.CreateBuilder();
+    var endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.WebApplication");
+    endpointConfiguration.MakeInstanceUniquelyAddressable("1");
+    endpointConfiguration.EnableCallbacks();
+    endpointConfiguration.UseTransport(new LearningTransport());
+    return endpointConfiguration;
+});
 
-        builder.Host.UseNServiceBus(context =>
-        {
-            var endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.WebApplication");
-            endpointConfiguration.MakeInstanceUniquelyAddressable("1");
-            endpointConfiguration.EnableCallbacks();
-            endpointConfiguration.UseTransport(new LearningTransport());
-            return endpointConfiguration;
-        });
-        #endregion
+#endregion
 
-        builder.Services.AddRazorPages();
+builder.Services.AddRazorPages();
 
-        var app = builder.Build();
+var app = builder.Build();
 
-        app.MapRazorPages();
+app.MapRazorPages();
 
-        app.Run();
-    }
-}
+await app.RunAsync();

@@ -1,27 +1,17 @@
 using NServiceBus;
 using System.Threading.Tasks;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
 #region Handler
 
-public class CommandMessageHandler :
+public class CommandMessageHandler(ILogger<CommandMessageHandler> logger) :
     IHandleMessages<Command>
 {
-    static ILog log = LogManager.GetLogger<CommandMessageHandler>();
-
     public Task Handle(Command message, IMessageHandlerContext context)
     {
-        log.Info("Hello from CommandMessageHandler");
-        Task reply;
-        if (message.Id%2 == 0)
-        {
-            reply = context.Reply(ErrorCodes.Fail);
-        }
-        else
-        {
-            reply = context.Reply(ErrorCodes.None);
-        }
-        return reply;
+        logger.LogInformation("Hello from CommandMessageHandler");
+
+        return context.Reply(message.Id%2 == 0 ? ErrorCodes.Fail : ErrorCodes.None);
     }
 }
 
