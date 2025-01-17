@@ -17,7 +17,7 @@ extensions:
 
 include: nsb101-intro-paragraph
 
-- **[Part 1: Getting started](getting-started/)** (10-15 minutes) - Set up your development environment and create your very first messaging endpoint.
+- **[Part 1: Getting started](1-getting-started/)** (10-15 minutes) - Set up your development environment and create your very first messaging endpoint.
 
 - **[Part 2: Sending a command](2-sending-a-command/)** (15-20 minutes) - Define messages and message handlers, and send your first message.
 
