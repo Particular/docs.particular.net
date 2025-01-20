@@ -12,10 +12,14 @@ See how to use the monitoring features in the Particular Service Platform by try
 <div class="text-center inline-download hidden-xs"><a id='download-demo' href='https://s3.amazonaws.com/particular.downloads/MonitoringDemo/Particular.MonitoringDemo.zip' class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download demo</a>
 </div>
 
+# Prerequisites
 
-## System requirements
-
-In order to run the demo, the .NET 8 runtime must be installed.
+In order to run the downloaded sample you will need the following prerequisites:
+ 
+- .NET 8 runtime must be installed.
+- Window operating system, the Particular Service Platform requires the Windows operating system
+  - Desktop: Windows 8 or higher
+  - Server: Windows Server 2016 or higher
 
 ## Running the sample
 
