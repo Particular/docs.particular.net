@@ -21,8 +21,8 @@ Deployment options:
 
 Instances can be installed on Windows Server (virtual) machines using:
 
-- Management UI: ServiceControl Management Utility
 - Commandline: ServiceControl Powershell Module
+- Management UI: ServiceControl Management Utility
 
 ### Supported editions
 
