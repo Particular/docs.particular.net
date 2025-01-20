@@ -457,8 +457,8 @@
         Title: Troubleshooting
       - Url: nservicebus/gateway/scale-out
         Title: Scale-Out
-      - Url: nservicebus/rawmessaging
-        Title: Raw messaging
+    - Url: nservicebus/rawmessaging
+      Title: Raw messaging
     - Url: nservicebus/outbox
       Title: Outbox
     - Url: nservicebus/transactional-session
@@ -778,29 +778,8 @@
       Title: Overview
     - Url: nservicebus/tools/migrate-to-native-delivery
       Title: Migrating timeouts
-    - Url: nservicebus/usage
-      Title: Measuring system usage
-    - Url: servicepulse/usage
-      Title: System usage via ServicePulse
     - Url: nservicebus/throughput-tool
-      Title: System usage via Endpoint Throughput tool
-      Articles:
-        - Url: nservicebus/throughput-tool/azure-service-bus
-          Title: using Azure Service Bus
-        - Url: nservicebus/throughput-tool/amazon-sqs
-          Title: using Amazon SQS
-        - Url: nservicebus/throughput-tool/rabbitmq
-          Title: using RabbitMQ
-        - Url: nservicebus/throughput-tool/sql-transport
-          Title: using SQL Transport
-        - Url: nservicebus/throughput-tool/postgresql-transport
-          Title: using PostgreSQL Transport
-        - Url: nservicebus/throughput-tool/service-control
-          Title: using ServiceControl
-        - Url: nservicebus/throughput-tool/determine-transport
-          Title: Determining message transport
-        - Url: nservicebus/throughput-tool/faq
-          Title: FAQ
+      Title: Measuring usage using legacy tool
   - Title: Troubleshooting
     Articles:
     - Url: nservicebus/troubleshooting/message-loss
@@ -1415,7 +1394,7 @@
     - Url: servicepulse/support-policy
       Title: Support Policy
     - Url: servicepulse/usage
-      Title: Usage
+      Title: Measuring system usage
   - Title: Configuration
     Articles:
     - Url: servicepulse/host-config

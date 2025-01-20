@@ -4,7 +4,7 @@ using YamlDotNet.Serialization;
 using System.Xml.Linq;
 using System.Xml.XPath;
 
-public class NuGetPackages(string componentsPath, Tuple<string, string>[] solutionFiles)
+public class NuGetPackages(string componentsPath, params (string name, string solutionFile)[] solutionFiles)
 {
     const string Source = "https://api.nuget.org/v3/index.json";
     const string CorePackageId = "NServiceBus";

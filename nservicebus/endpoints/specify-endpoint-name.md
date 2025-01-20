@@ -1,7 +1,7 @@
 ---
 title: Specify Endpoint Name
 summary: Describes the ways in which to specify an endpoint name
-reviewed: 2022-07-25
+reviewed: 2024-12-31
 component: Core
 redirects:
 - nservicebus/how-to-specify-your-input-queue-name
@@ -21,11 +21,11 @@ See also:
 
 ## Input queue
 
-By default, the endpoint's input queue name is the same as endpoint's name.
+By default, the endpoint's input queue name is the same as the endpoint's name.
 
 The input queue name can be overridden:
 
 snippet: InputQueueName
 
 > [!NOTE]
-> Changing the input queue may also require adjusting the routing configuration for senders to send messages to the renamed queue. See [routing configuration](/nservicebus/messaging/routing.md).
+> Changing the input queue may also require adjusting the routing configuration so senders can send messages to the renamed queue. See [routing configuration](/nservicebus/messaging/routing.md).

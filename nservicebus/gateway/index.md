@@ -3,7 +3,7 @@ title: Gateway
 summary: Durable fire-and-forget messaging across physically separated IT infrastructure
 component: Gateway
 isLearningPath: true
-reviewed: 2022-07-11
+reviewed: 2024-12-24
 redirects:
  - nservicebus/introduction-to-the-gateway
 related:
@@ -63,7 +63,7 @@ snippet: SendToSites
 In NServiceBus version 5 and above, the gateway is provided by the `NServiceBus.Gateway` NuGet package. In version 4 and below the gateway is part of the `NServiceBus` NuGet package.
 
 > [!NOTE]
-> The gateway requires NServiceBus persistence to operate though not all persisters support it. Currently, the gateway is supported only by InMemory, RavenDB and NHibernate persisters. If the configured persister doesn't support gateway, an exception will be thrown at endpoint startup.
+> The gateway requires NServiceBus persistence to operate though not all persisters support it. Currently, the gateway is supported only by InMemory, RavenDB and Sql persisters. If the configured persister doesn't support gateway, an exception will be thrown at endpoint startup.
 
 The gateway feature must be explicitly enabled using the configuration API:
 

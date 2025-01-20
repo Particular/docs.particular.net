@@ -17,12 +17,6 @@ jobs:
         uses: actions/setup-dotnet@v4.1.0
         with:
           dotnet-version: 8.0.x
-      - name: Install .NET Aspire workload # To be removed once the base GitHub image has the Aspire workload 8.2
-        run: |
-          echo "Updating advertising manifests"
-          dotnet workload update --advertising-manifests-only
-          echo "Installing the Aspire workload"
-          dotnet workload install aspire
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
       - name: Restore NuGet Cache

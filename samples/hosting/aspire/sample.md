@@ -16,7 +16,7 @@ This sample shows a .NET Aspire AppHost project that orchestrates multiple NServ
 3. Review the metrics, traces, and structured log entries of each of the resources
 
 > [!NOTE]
-> This sample requires [Docker](https://www.docker.com/) and [.NET Aspire](https://learn.microsoft.com/en-us/dotnet/aspire/) to run.
+> This sample requires [Docker](https://www.docker.com/) to run.
 
 ## Code walkthrough
 
@@ -35,9 +35,6 @@ The [.NET Aspire orchestration project](https://learn.microsoft.com/en-us/dotnet
   - `shipping` - also has a reference to the `shipping-db` resource
 
 snippet: app-host
-
-> [!NOTE]
-> The NServiceBus projects expect the transport and persistence infrastructure to be in place before they are started. This sample relies on extensions provided by the [Nall.Aspire.Hosting.DependsOn](https://www.nuget.org/packages/Nall.Aspire.Hosting.DependsOn/) package to prevent resources from starting until their dependencies are available.
 
 ### AspireDemo.ServiceDefaults
 

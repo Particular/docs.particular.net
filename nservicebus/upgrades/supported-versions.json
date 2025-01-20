@@ -12,10 +12,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "9.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "9.1",
           "SupportLevel": "Mainstream"
         },
@@ -942,10 +938,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "4.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "4.2",
           "SupportLevel": "Mainstream"
         }
@@ -1088,30 +1080,6 @@
       "PackageId": "Particular.PlatformSample",
       "Versions": [
         {
-          "Minor": "3.13",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.14",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.15",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.16",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.17",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.18",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "3.19",
           "SupportLevel": "Mainstream"
         },
@@ -1126,6 +1094,10 @@
         {
           "Minor": "3.22",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.23",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -1134,10 +1106,6 @@
       "Versions": [
         {
           "Minor": "5.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "6.0",
           "SupportLevel": "Mainstream"
         },
         {

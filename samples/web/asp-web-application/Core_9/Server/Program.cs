@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Threading.Tasks;
 using NServiceBus;
+using Microsoft.Extensions.Hosting;
 
-class Program
-{
-    public static async Task Main()
-    {
-        var endpointConfiguration = new EndpointConfiguration(Console.Title = "AsyncPagesServer");
-        endpointConfiguration.EnableCallbacks(makesRequests: false);
-        endpointConfiguration.UseTransport(new LearningTransport());
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+Console.Title = "Server";
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop();
-    }
-}
+var builder = Host.CreateApplicationBuilder(args);
+
+var endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.Server");
+endpointConfiguration.EnableCallbacks(makesRequests: false);
+endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
+builder.UseNServiceBus(endpointConfiguration);
+
+await builder.Build().RunAsync();

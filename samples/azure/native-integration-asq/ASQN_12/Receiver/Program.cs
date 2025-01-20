@@ -21,15 +21,19 @@ class Program
 
         #region Native-message-mapping
 
-        transport.MessageUnwrapper = message => new MessageWrapper
-        {
-            Id = message.MessageId,
-            Body = message.Body.ToArray(),
-            Headers = new Dictionary<string, string>
+        transport.MessageUnwrapper = message =>
+            message.MessageText.Contains("NativeMessageId") &&
+            message.MessageText.Contains("Content")
+            ? new MessageWrapper
             {
-                { Headers.EnclosedMessageTypes, typeof(NativeMessage).FullName }
+                Id = message.MessageId,
+                Body = message.Body.ToArray(),
+                Headers = new Dictionary<string, string>
+                {
+                    { Headers.EnclosedMessageTypes, typeof(NativeMessage).FullName }
+                }
             }
-        };
+            : null; // not a raw native message - allow the framework to deal with it
 
         #endregion
 

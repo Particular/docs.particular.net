@@ -22,7 +22,7 @@ endpointConfiguration.UseTransport(new SqlServerTransport(connectionString)
 
 var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
 persistence.SqlDialect<SqlDialect.MsSqlServer>();
-persistence.ConnectionBuilder(connectionBuilder: () => new SqlConnection(connectionString));
+persistence.ConnectionBuilder(() => new SqlConnection(connectionString));
 
 var subscriptions = persistence.SubscriptionSettings();
 subscriptions.CacheFor(TimeSpan.FromMinutes(1));

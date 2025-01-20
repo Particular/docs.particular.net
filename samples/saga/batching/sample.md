@@ -1,7 +1,7 @@
 ---
 title: Batch messages using sagas
 summary: Use batching when generating tasks using sagas
-reviewed: 2022-07-18
+reviewed: 2025-01-05
 component: Core
 related:
 - nservicebus/sagas
