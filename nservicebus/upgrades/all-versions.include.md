@@ -4,7 +4,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [9.2.x](https://www.nuget.org/packages/NServiceBus/9.2.4) | 2024-09-10     | -                 | -                                 |
 | [9.1.x](https://www.nuget.org/packages/NServiceBus/9.1.2) | 2024-07-19     | 2025-03-10        | Superseded by 9.2.x               |
-| [9.0.x](https://www.nuget.org/packages/NServiceBus/9.0.4) | 2024-04-16     | 2025-01-19        | Superseded by 9.1.x               |
+| [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus/9.0.4) | ~~2024-04-16~~ | ~~2025-01-19~~    | ~~Superseded by 9.1.x~~           |
 | [8.2.x](https://www.nuget.org/packages/NServiceBus/8.2.4) | 2024-04-11     | 2026-04-16        | Superseded by 9.0.x               |
 | [~~8.1.x~~](https://www.nuget.org/packages/NServiceBus/8.1.8) | ~~2023-06-19~~ | ~~2024-10-11~~    | ~~Superseded by 8.2.x~~           |
 | [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus/8.0.8) | ~~2022-11-17~~ | ~~2023-12-19~~    | ~~Superseded by 8.1.x~~           |
@@ -133,7 +133,7 @@
 | [9.2.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.2.0) | 2024-11-25     | -                 | -                                 |
 | [9.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.1.1) | 2024-08-08     | 2025-02-25        | Superseded by 9.2.x               |
 | [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.0.1) | ~~2024-04-16~~ | ~~2024-11-08~~    | ~~Superseded by 9.1.x~~           |
-| [8.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/8.0.5) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [8.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/8.0.6) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/7.0.7) | 2022-07-14     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 | [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.1.6) | ~~2021-05-07~~ | ~~2023-07-14~~    | ~~Superseded by 7.0.x~~           |
 | [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/6.0.0) | ~~2020-07-13~~ | ~~2021-08-07~~    | ~~Superseded by 6.1.x~~           |
