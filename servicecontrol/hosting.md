@@ -2,7 +2,7 @@
 title: ServiceControl Hosting Options
 summary: Hosting options for running ServiceControl instances
 component: ServiceControl
-reviewed: 2024-12-16
+reviewed: 2025-01-20
 ---
 
 ServiceControl instances can be hosted on:
@@ -35,7 +35,7 @@ The supported Windows Server versions are aligned with the [Microsoft Mainstream
 
 ## Containers
 
-Various containerized hosting options are available:
+That Particular Platform images are OCI compliant and can be used in various environments:
 
 - Docker
 - Kubernetes
@@ -47,14 +47,13 @@ Various containerized hosting options are available:
 
 ### Supported environments
 
-The following environments are getting production supports
+The following environments are supported:
 
 - Azure Container Apps
 - Azure Managed Kubernetes Service (AKS) 
 - Amazon Elastic Kubernetes Service (EKS)
 - Amazon Elastic Container Service (ECS)
 - Docker Engine on Windows 2022
-
 
 ### Known working environments
 
