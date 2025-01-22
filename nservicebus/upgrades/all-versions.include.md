@@ -4,7 +4,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [9.2.x](https://www.nuget.org/packages/NServiceBus/9.2.4) | 2024-09-10     | -                 | -                                 |
 | [9.1.x](https://www.nuget.org/packages/NServiceBus/9.1.2) | 2024-07-19     | 2025-03-10        | Superseded by 9.2.x               |
-| [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus/9.0.4) | ~~2024-04-16~~ | ~~2025-01-19~~    | ~~Superseded by 9.1.x~~           |
+| [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus/9.0.5) | ~~2024-04-16~~ | ~~2025-01-19~~    | ~~Superseded by 9.1.x~~           |
 | [8.2.x](https://www.nuget.org/packages/NServiceBus/8.2.4) | 2024-04-11     | 2026-04-16        | Superseded by 9.0.x               |
 | [~~8.1.x~~](https://www.nuget.org/packages/NServiceBus/8.1.8) | ~~2023-06-19~~ | ~~2024-10-11~~    | ~~Superseded by 8.2.x~~           |
 | [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus/8.0.8) | ~~2022-11-17~~ | ~~2023-12-19~~    | ~~Superseded by 8.1.x~~           |
@@ -57,8 +57,8 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [7.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.2.0) | 2024-12-05     | -                 | -                                 |
 | [7.1.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.1.1) | 2024-11-26     | 2025-03-05        | Superseded by 7.2.x               |
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.0.1) | 2024-04-16     | 2025-02-26        | Superseded by 7.1.x               |
-| [6.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.2.0) | 2023-11-20     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.0.2) | 2024-04-16     | 2025-02-26        | Superseded by 7.1.x               |
+| [6.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.2.1) | 2023-11-20     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.1.2) | ~~2023-03-07~~ | ~~2024-02-20~~    | ~~Superseded by 6.2.x~~           |
 | [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.0.1) | ~~2022-11-17~~ | ~~2023-06-07~~    | ~~Superseded by 6.1.x~~           |
 | [5.7.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.7.3) | 2023-03-07     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
@@ -1099,7 +1099,7 @@
 | [3.22.x](https://www.nuget.org/packages/Particular.PlatformSample/3.22.0) | 2024-11-19     | 2025-03-20        | Superseded by 3.23.x              |
 | [3.21.x](https://www.nuget.org/packages/Particular.PlatformSample/3.21.0) | 2024-11-18     | 2025-02-19        | Superseded by 3.22.x              |
 | [3.20.x](https://www.nuget.org/packages/Particular.PlatformSample/3.20.0) | 2024-10-23     | 2025-02-18        | Superseded by 3.21.x              |
-| [3.19.x](https://www.nuget.org/packages/Particular.PlatformSample/3.19.0) | 2024-10-17     | 2025-01-23        | Superseded by 3.20.x              |
+| [~~3.19.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.19.0) | ~~2024-10-17~~ | ~~2025-01-23~~    | ~~Superseded by 3.20.x~~          |
 | [~~3.18.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.18.0) | ~~2024-10-07~~ | ~~2025-01-17~~    | ~~Superseded by 3.19.x~~          |
 | [~~3.17.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.17.0) | ~~2024-10-04~~ | ~~2025-01-07~~    | ~~Superseded by 3.18.x~~          |
 | [~~3.16.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.16.0) | ~~2024-09-27~~ | ~~2025-01-04~~    | ~~Superseded by 3.17.x~~          |
