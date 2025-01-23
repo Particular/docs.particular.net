@@ -14,7 +14,7 @@ When the MassTransit is used with the rest of the platfrom there are in total 4 
 1. MassTransit-Connector
 1. ServicePulse
 
-The ServiceControl and ServiceControl-RavenDB containers are used to ingest messages from the `error` queue. The MassTransit-Connector container reads messages from the MassTransit system's `_error` queues and moves them into the `error` queue to be ingested by ServiceControl. The ServicePulse container exposes a web interface to allow users to retry failed messages back to the MassTransit system.
+The `particular/servicecontrol` and `particular/servicecontrol-ravendb` containers are used to ingest messages from the `error` queue. The `particular/servicecontrol-masstransit-connector` container reads messages from the MassTransit system's error queues and moves them into the `error` queue to be ingested by ServiceControl. The `particular/servicepulse` container exposes a web interface to allow users to retry failed messages back to the MassTransit system.
 
 ## Docker Compose 
 
