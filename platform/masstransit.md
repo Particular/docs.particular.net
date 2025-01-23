@@ -12,6 +12,10 @@ It auto-detects and ingests messages from the [error](https://masstransit.io/doc
 ![MassTransit Fault Management](masstransit-overview.png  "width=715")
 *MassTransit error queue auto-discovery and management*
 
+The [MassTransit Connector for ServiceControl](/servicecontrol/masstransit/) is part of the Particular Service Platform, which adds error queue and dead letter queue monitoring to MassTransit systems. This container runs alongside the existing MassTransit system and monitors for any faulted messages that occur within the system.
+
+![Particular Service Platform architecture](architecture-overview-diagram-masstransit.svg)
+
 ### Managing failures
 
 After the ingestion, failing messages are available via ServicePulse which is the UI for the platform. It enables navigating the list of failures, displaying details of the failed messsage (including exception details), as well as scheduling message for reprocessing.
