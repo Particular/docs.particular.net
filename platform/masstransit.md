@@ -21,7 +21,7 @@ After the ingestion, failed messages are available via ServicePulse which is the
 
 ![Managing failures with ServicePulse](masstransit-servicepulse.gif)
 
-In addition, ServicePulse offers more advanced features such as [retry redirects](/servicepulse/redirect.md) and [failed message editting](/servicepulse/intro-editing-messages.md).
+In addition, ServicePulse offers more advanced features such as [retry redirects](/servicepulse/redirect.md) and [failed message editing](/servicepulse/intro-editing-messages.md).
 
 <div class="text-center inline-download hidden-xs"><a id='masstransit-sample' target="_blank" href='https://github.com/particular/MassTransitShowcaseDemo/' class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> See it in action</a>
 </div>
