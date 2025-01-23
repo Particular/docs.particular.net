@@ -7,7 +7,7 @@ component: ServiceControl
 
 ## Overview
 
-WhenMassTransit is used with the rest of the platform, there are in total 4 containers that get deployed:
+When MassTransit is used with the rest of the platform, there are in total 4 containers that get deployed:
 
 1. [particular/servicecontrol](https://hub.docker.com/r/particular/servicecontrol)
 1. [particular/servicecontrol-ravendb](https://hub.docker.com/r/particular/servicecontrol-ravendb)
