@@ -120,16 +120,22 @@
 
 - Name: Service Platform
   Topics:
-  - Title: About
+  - Title: Introduction
     Url: platform
-  - Title: Platform installation
+  - Title: Installation
     Url: platform/installation
   - Title: Platform Sample installation
     Url: platform/platform-sample-package
-  - Title: Connecting endpoints
-    Url: platform/connecting
-  - Title: Connection schema
-    Url: platform/json-schema
+  - Title: Connecting NServiceBus
+    Articles:
+    - Title: Using the NuGet package
+      Url: platform/connecting
+    - Title: Configuration schema
+      Url: platform/json-schema
+  - Title: Connecting MassTransit
+    Articles:
+    - Title: Using MassTransit Connector
+      Url: platform/masstransit
   - Title: Contributing
     Url: platform/contributing
   - Title: Release notifications
@@ -1565,6 +1571,12 @@
       Url: servicecontrol/contracts
     - Title: Transport adapter
       Url: servicecontrol/transport-adapter
+  - Title: MassTransit
+    Articles:
+    - Title: Connector Settings
+      Url: servicecontrol/masstransit
+    - Title: Docker Deployment
+      Url: servicecontrol/masstransit/docker-deployment
   - Title: Migrations
     Articles:
     - Title: Overview
