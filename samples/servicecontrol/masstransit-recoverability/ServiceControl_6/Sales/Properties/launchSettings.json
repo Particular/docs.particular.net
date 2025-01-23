@@ -1,0 +1,28 @@
+﻿{
+  "profiles": {
+    "RabbitMQ": {
+      "commandName": "Project",
+      "commandLineArgs": "--rabbitmq",
+      "launchBrowser": false,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Azure Service Bus": {
+      "commandName": "Project",
+      "commandLineArgs": "--azureservicebus",
+      "launchBrowser": false,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "AmazonSQS": {
+      "commandName": "Project",
+      "commandLineArgs": "--amazonsqs",
+      "launchBrowser": false,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
