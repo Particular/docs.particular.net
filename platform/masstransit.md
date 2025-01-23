@@ -5,12 +5,11 @@ reviewed: 2024-09-04
 component: ServiceControl
 ---
 
-The Particular Service Platform provides recoverability features for MassTransit endpoints on RabbitMQ, Azure Service Bus, and Amazon SQS.
+The Particular Service Platform provides recoverability features for MassTransit endpoints on RabbitMQ and Azure Service Bus
 
 It auto-detects and ingests messages from the [error](https://masstransit.io/documentation/concepts/exceptions#error-pipe) and [dead-letter](https://masstransit.io/documentation/concepts/exceptions#dead-letter-pipe) queues for all endpoints running in your system. The platform provides an aggregated view of the information necessary to detect, diagnose, and fix problems causing the failures as well as the ability to schedule failed messages for re-processing.
 
 ![MassTransit Fault Management](masstransit-overview.png  "width=715")
-*MassTransit error queue auto-discovery and management*
 
 The [MassTransit Connector for ServiceControl](/servicecontrol/masstransit/) is part of the Particular Service Platform, which adds error queue and dead letter queue monitoring to MassTransit systems. This container runs alongside the existing MassTransit system and monitors for any faulted messages that occur within the system.
 
