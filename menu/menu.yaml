@@ -126,16 +126,14 @@
     Url: platform/installation
   - Title: Platform Sample installation
     Url: platform/platform-sample-package
+  - Title: MassTransit Error Management
+    Url: platform/masstransit
   - Title: Connecting NServiceBus
     Articles:
     - Title: Using the NuGet package
       Url: platform/connecting
     - Title: Configuration schema
       Url: platform/json-schema
-  - Title: Connecting MassTransit
-    Articles:
-    - Title: Using MassTransit Connector
-      Url: platform/masstransit
   - Title: Contributing
     Url: platform/contributing
   - Title: Release notifications
