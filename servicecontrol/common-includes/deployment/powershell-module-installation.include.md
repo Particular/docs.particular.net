@@ -8,6 +8,9 @@ The ServiceControl PowerShell module requires a version of PowerShell (Core) gre
 
 Windows PowerShell is not supported.
 
+> [!NOTE]
+> The ServiceControl and PowerShell modules versions must match. When installing ServiceControl, instance versions must match the version of the PowerShell module used to install them.
+
 #end-if
 #if-version [,5)
 
