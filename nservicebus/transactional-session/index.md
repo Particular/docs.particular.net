@@ -163,7 +163,8 @@ Internally, the transactional session doesn't use a single transaction that span
 The endpoint receives the control message and processes it as follows:
 
 * Find the outbox record.
-  * If it exists, and it hasn't been marked as dispatched, and there are pending operations they are dispatched, and the outbox record is set as dispatched.
+  * If it exists, and it hasn't been marked as dispatched, and there are pending operations:
+    * Dispatched the messages, and the outbox record is set as dispatched.
   * If it doesn't exist yet, delay the processing of the control message.
 
 ## Failure scenarios
