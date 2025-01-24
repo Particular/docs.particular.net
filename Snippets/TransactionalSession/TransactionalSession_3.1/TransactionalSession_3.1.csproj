@@ -3,6 +3,6 @@
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.TransactionalSession" Version="3.*" />
+    <PackageReference Include="NServiceBus.TransactionalSession" Version="3.1.*" />
   </ItemGroup>
 </Project>
