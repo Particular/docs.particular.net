@@ -1,7 +1,7 @@
 ---
 title: Transactional session
 summary: Atomicity when modifying data and sending messages outside the context of a message handler
-reviewed: 2022-09-12
+reviewed: 2025-01-24
 component: TransactionalSession
 related:
 - samples/transactional-session/aspnetcore-webapi
