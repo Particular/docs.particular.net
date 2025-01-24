@@ -77,13 +77,13 @@ The maximum commit duration does not represent the total transaction time, but r
 
 When the control message is consumed, but the outbox record is not yet available in storage, the following formula is applied to delay the message (see [Phase 2](#how-it-works-phase-2)):
 
-```text
+```csharp
 CommitDelayIncrement = 2 * CommitDelayIncrement;
-RemainingCommitDuration = RemainingCommitDuration -
-   (CommitDelayIncrement > RemainingCommitDuration ? RemainingCommitDuration : CommitDelayIncrement)
+RemainingCommitDuration = RemainingCommitDuration
+  - (CommitDelayIncrement > RemainingCommitDuration 
+      ? RemainingCommitDuration
+      : CommitDelayIncrement);
 ```
-
-The default commit delay increment is set to `Timespan.FromSeconds(2)`and cannot be overridden.
 
 partial: config
 
