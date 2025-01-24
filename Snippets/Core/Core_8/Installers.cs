@@ -1,10 +1,11 @@
-﻿
-namespace Core8
+﻿namespace Core8
 {
     using System;
     using System.Linq;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.DependencyInjection;
     using NServiceBus;
+    using NServiceBus.Installation;
 
     class ForInstallationOnReplacement
     {
