@@ -242,8 +242,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [10.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate/10.0.1) | 2024-04-16     | -                 | -                                 |
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate/9.0.3) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [10.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate/10.0.2) | 2024-04-16     | -                 | -                                 |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate/9.0.4) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [8.6.x](https://www.nuget.org/packages/NServiceBus.NHibernate/8.6.4) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 | [~~8.5.x~~](https://www.nuget.org/packages/NServiceBus.NHibernate/8.5.0) | ~~2021-07-13~~ | ~~2022-12-19~~    | ~~Superseded by 8.6.x~~           |
 | [~~8.4.x~~](https://www.nuget.org/packages/NServiceBus.NHibernate/8.4.4) | ~~2020-06-24~~ | ~~2021-10-13~~    | ~~Superseded by 8.5.x~~           |
@@ -273,8 +273,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [10.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/10.0.1) | 2024-04-16     | -                 | -                                 |
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/9.0.3) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [10.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/10.0.2) | 2024-04-16     | -                 | -                                 |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/9.0.4) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [8.6.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/8.6.4) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
 #### [NServiceBus.Persistence.AzureStorage](/nuget/NServiceBus.Persistence.AzureStorage)
@@ -316,7 +316,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.0.0) | 2024-04-16     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.0.1) | 2024-04-16     | -                 | -                                 |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/2.0.2) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.2.2) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 | [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.1.1) | ~~2022-01-20~~ | ~~2022-12-19~~    | ~~Superseded by 1.2.x~~           |
@@ -328,7 +328,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/3.0.0) | 2024-04-16     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/3.0.1) | 2024-04-16     | -                 | -                                 |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/2.0.2) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/1.2.2) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
@@ -483,8 +483,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/4.0.0) | 2024-04-16     | -                 | -                                 |
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/3.0.0) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/4.0.1) | 2024-04-16     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/3.0.1) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [2.4.x](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/2.4.0) | 2022-06-30     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 | [~~2.3.x~~](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/2.3.0) | ~~2021-03-25~~ | ~~2022-09-30~~    | ~~Superseded by 2.4.x~~           |
 | [~~2.2.x~~](https://www.nuget.org/packages/NServiceBus.Newtonsoft.Json/2.2.0) | ~~2018-12-10~~ | ~~2021-06-25~~    | ~~Superseded by 2.3.x~~           |
@@ -979,8 +979,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/5.0.0) | 2024-04-16     | -                 | -                                 |
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/4.0.0) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/5.0.1) | 2024-04-16     | -                 | -                                 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/4.0.1) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/3.0.6) | 2018-06-07     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 | [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/2.1.3) | ~~2018-05-23~~ | ~~2020-05-29~~    | ~~Extended by NServiceBus 6.5.x~~ |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl/2.0.1) | ~~2017-12-12~~ | ~~2018-08-23~~    | ~~Superseded by 2.1.x~~           |
@@ -993,7 +993,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl.Msmq/4.0.0) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl.Msmq/4.0.1) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl.Msmq/3.0.1) | 2018-06-15     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl.Msmq/2.0.3) | ~~2018-05-23~~ | ~~2020-05-29~~    | ~~Extended by NServiceBus 6.5.x~~ |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Metrics.ServiceControl.Msmq/1.0.1) | ~~2018-05-23~~ | ~~2018-10-11~~    | ~~Bounded by NServiceBus 5.2.x~~  |
