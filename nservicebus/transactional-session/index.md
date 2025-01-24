@@ -142,17 +142,21 @@ Internally, the transactional session doesn't use a single transaction that span
 ### Phase 1
 
 1. The user opens a transactional session.
-2. A set of `PendingOperations` is initialized and collects the message operations.
+2. A set of `PendingTransportOperations` is initialized and collects the message operations.
 3. A transaction is started on the storage seam.
-4. The user can execute any required message operations using the transactional session.
-5. The user can store any data using the persistence-specific session, which is accessible through the transactional session.
-6. When all operations are registered, the user calls `Commit` on the transactional session.
-7. A control message to complete the transaction is dispatched to the local queue. The control message is independent of the message operations and is not stored in the outbox record.
-8. The message operations are converted and stored into an outbox record.
+4. The storage returns an open transaction.
+5. The user can execute any required message operations using the transactional session.
+6. Transport operations are captured by the `PendingTransportOperations`
+7. The user can store any data using the persistence-specific session, which is accessible through the transactional session.
+8. When all operations are registered, the user calls `Commit` on the transactional session.
+9. A control message to complete the transaction is dispatched to the local queue. The control message is independent of the message operations and is not stored in the outbox record.
+10. The message operations are converted into an outbox record.
+11. The outbox record is returned to the transactional session
+12. The outbox record is saved to the storage seam.
 9. The transaction is committed, and the outbox record and business data modifications are stored atomically.
 
 > [!NOTE]
-> Steps 7 and 8 are skipped, and as a consequence Phase 2, when no message operations are executed in the transactional session to avoid wasting queue and database resources.
+> When no message operations are executed in the transactional session, steps 9 through 12 are skipped (and as a consequence Phase 2 is also skipped) to avoid wasting queue and database resources.
 
 ### Phase 2
 
