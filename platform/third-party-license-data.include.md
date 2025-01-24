@@ -249,7 +249,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient" target="_blank">Microsoft.Data.SqlClient</a> | <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient/5.2.2/license" target="_blank">MIT</a> | <a href="https://aka.ms/sqlclientproject" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient" target="_blank">Microsoft.Data.SqlClient</a> | <a href="https://www.nuget.org/packages/Microsoft.Data.SqlClient/6.0.1/license" target="_blank">MIT</a> | <a href="https://aka.ms/sqlclientproject" target="_blank">Project Site</a> |
 
 ### ServiceControl NuGet packages
 
@@ -279,7 +279,7 @@
 | <a href="https://www.nuget.org/packages/System.Diagnostics.PerformanceCounter" target="_blank">System.Diagnostics.PerformanceCounter</a> | <a href="https://www.nuget.org/packages/System.Diagnostics.PerformanceCounter/9.0.1/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.DirectoryServices.AccountManagement" target="_blank">System.DirectoryServices.AccountManagement</a> | <a href="https://www.nuget.org/packages/System.DirectoryServices.AccountManagement/9.0.1/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.Management" target="_blank">System.Management</a> | <a href="https://www.nuget.org/packages/System.Management/9.0.1/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/System.Management.Automation" target="_blank">System.Management.Automation</a> | <a href="https://www.nuget.org/packages/System.Management.Automation/7.4.6/license" target="_blank">MIT</a> | <a href="https://github.com/PowerShell/PowerShell" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/System.Management.Automation" target="_blank">System.Management.Automation</a> | <a href="https://www.nuget.org/packages/System.Management.Automation/7.5.0/license" target="_blank">MIT</a> | <a href="https://github.com/PowerShell/PowerShell" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.Reactive.Linq" target="_blank">System.Reactive.Linq</a> | <a href="https://www.nuget.org/packages/System.Reactive.Linq/6.0.1/license" target="_blank">MIT</a> | <a href="https://github.com/dotnet/reactive" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.ServiceProcess.ServiceController" target="_blank">System.ServiceProcess.ServiceController</a> | <a href="https://www.nuget.org/packages/System.ServiceProcess.ServiceController/9.0.1/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Yarp.ReverseProxy" target="_blank">Yarp.ReverseProxy</a> | <a href="https://www.nuget.org/packages/Yarp.ReverseProxy/2.2.0/license" target="_blank">MIT</a> | <a href="https://github.com/microsoft/reverse-proxy" target="_blank">Project Site</a> |
