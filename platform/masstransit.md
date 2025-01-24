@@ -2,7 +2,6 @@
 title: MassTransit Error Management
 summary: How to manage errors from MassTransit systems
 reviewed: 2025-01-23
-component: ServiceControl
 ---
 
 The Particular Service Platform provides error management capabilities for MassTransit endpoints on RabbitMQ and Azure Service Bus.
