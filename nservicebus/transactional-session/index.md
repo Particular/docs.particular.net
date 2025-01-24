@@ -63,36 +63,6 @@ Disposing the transactional session without committing will roll back any change
 > [!NOTE]
 > The `Commit` operation may fail and throw an exception for reasons outlined in the [failure scenarios section](#failure-scenarios).
 
-### Advanced configuration
-
-#### Maximum commit duration
-
-The maximum commit duration limits the amount of time it can take for a transaction to commit the changes before the operation times out. The value can be configured when opening the session.
-
-The default value for the maximum commit duration is `TimeSpan.FromSeconds(15)`.
-
-snippet: configuring-timeout-transactional-session
-
-The maximum commit duration does not represent the total transaction time, but rather the time it takes to complete the commit operation (as observed from the perspective of the control message). In practice, the observed total commit time might be longer due to delays in the transport caused by latency, delayed delivery, load on the input queue, endpoint concurrency limits, and more.
-
-When the control message is consumed, but the outbox record is not yet available in storage, the following formula is applied to delay the message (see [Phase 2](#how-it-works-phase-2)):
-
-```csharp
-CommitDelayIncrement = 2 * CommitDelayIncrement;
-RemainingCommitDuration = RemainingCommitDuration
-  - (CommitDelayIncrement > RemainingCommitDuration 
-      ? RemainingCommitDuration
-      : CommitDelayIncrement);
-```
-
-partial: config
-
-#### Metadata
-
-It is possible to add metadata (e.g. tenant information) transactional session control message via custom headers. These headers can be accessed by a [custom behavior](/nservicebus/pipeline/manipulate-with-behaviors.md#add-a-new-step) when the control message is received in the `TransportReceive` part of the pipeline.
-
-snippet: configuring-metadata-transactional-session
-
 ## Requirements
 
 The transactional session feature requires a supported persistence package to store outgoing messages. This feature is currently supported for the following persistence packages:
@@ -207,3 +177,33 @@ If dispatching the control message fails, the transactional session changes will
 
 * The transactional session cannot be used in send-only endpoints. A full endpoint is required to send a control message to the local queue.
 * The transport must have the same or higher availability guarantees as the database.
+
+## Advanced configuration
+
+### Maximum commit duration
+
+The maximum commit duration limits the amount of time it can take for a transaction to commit the changes before the operation times out. The value can be configured when opening the session.
+
+The default value for the maximum commit duration is `TimeSpan.FromSeconds(15)`.
+
+snippet: configuring-timeout-transactional-session
+
+The maximum commit duration does not represent the total transaction time, but rather the time it takes to complete the commit operation (as observed from the perspective of the control message). In practice, the observed total commit time might be longer due to delays in the transport caused by latency, delayed delivery, load on the input queue, endpoint concurrency limits, and more.
+
+When the control message is consumed, but the outbox record is not yet available in storage, the following formula is applied to delay the message (see [Phase 2](#how-it-works-phase-2)):
+
+```csharp
+CommitDelayIncrement = 2 * CommitDelayIncrement;
+RemainingCommitDuration = RemainingCommitDuration
+  - (CommitDelayIncrement > RemainingCommitDuration 
+      ? RemainingCommitDuration
+      : CommitDelayIncrement);
+```
+
+partial: config
+
+### Metadata
+
+It is possible to add metadata (e.g. tenant information) transactional session control message via custom headers. These headers can be accessed by a [custom behavior](/nservicebus/pipeline/manipulate-with-behaviors.md#add-a-new-step) when the control message is received in the `TransportReceive` part of the pipeline.
+
+snippet: configuring-metadata-transactional-session
