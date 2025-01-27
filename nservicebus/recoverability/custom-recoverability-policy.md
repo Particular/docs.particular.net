@@ -2,7 +2,7 @@
 title: Custom Recoverability Policy
 summary: Shows how to take full control over Recoverability by implementing a Recoverability Policy
 component: Core
-reviewed: 2022-10-03
+reviewed: 2025-01-27
 versions: '[6.0,)'
 related:
  - samples/faulttolerance
@@ -38,7 +38,6 @@ As outlined in the [Recoverability introduction](/nservicebus/recoverability/), 
 
 This behavior guarantees safety in edge cases and cannot be overridden.
 
-
 ## Recoverability Configuration
 
 `RecoverabilityConfig` contains all the information required when a recoverability policy is implemented. This includes:
@@ -54,7 +53,6 @@ The information provided in the configuration is static and will not change betw
 > [!NOTE]
 > In cases when Immediate and/or Delayed Retry capabilities have been turned off and/or are not available, the `MaxNumberOfRetries` exposed to recoverability policy will be set to 0 (zero).
 
-
 ## Error Context
 
 `ErrorContext` provides all the information about the currently failing message. It contains the following information:
@@ -69,7 +67,7 @@ The information provided in the configuration is static and will not change betw
 ## Implement a custom policy
 
 > [!NOTE]
-> New APIs were made available starting in version 6.2. The examples below show how to implement recovery customizations both prior to and after version 6.2. It is not necessary to implement both snippets for a given example.
+> New APIs were made available starting in version 6.2. The examples below show how to implement recovery customizations both before and after version 6.2. It is not necessary to implement both snippets for a given example.
 
 
 ### Partial customization
@@ -80,7 +78,7 @@ For example, the following custom policy will move the message directly to an er
 
 snippet: CustomExceptionPolicyHandler
 
-In the following example the default Recoverability Policy is tweaked to do three Immediate Retries and three Delayed Retries with a time increase of two seconds:
+In the following example, the default Recoverability Policy is tweaked to do three Immediate Retries and three Delayed Retries with a time increase of two seconds:
 
 snippet: PartiallyCustomizedPolicyRecoverabilityConfiguration
 
@@ -90,10 +88,9 @@ snippet: PartiallyCustomizedPolicy
 
 If more control over Recoverability is needed, the Recoverability delegate can be overridden completely.
 
-
 ### Full customization
 
-If the Recoverability Policy is fully customized, then the `DefaultRecoverabilityPolicy` won't be called. In this case it is still possible to use the recoverability high level APIs, for example:
+If the Recoverability Policy is fully customized, then the `DefaultRecoverabilityPolicy` won't be called. In this case, it is still possible to use the recoverability high-level APIs, for example:
 
 snippet: FullyCustomizedPolicyRecoverabilityConfigurationWithDiscard
 
