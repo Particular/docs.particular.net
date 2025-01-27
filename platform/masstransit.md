@@ -11,13 +11,13 @@ The platform provides an aggregated view of the information necessary to detect,
 
 ![MassTransit Fault Management](masstransit-overview-s.png  "width=715")
 
-This is done with a container called the [ServiceControl MassTransit Connector](/servicecontrol/masstransit/) which runs alongside the existing MassTransit system and monitors for any failed messages that occur within it.
+This is done with a container called the [MassTransit Connector for ServiceControl](/servicecontrol/masstransit/) which runs alongside the existing MassTransit system and monitors for any failed messages that occur within it.
 
 ![Particular Service Platform architecture](architecture-overview-diagram-masstransit.svg)
 
 ### Managing errors
 
-After the ingestion, failed messages are available via ServicePulse which is the UI for the platform. It enables navigating the list of errors, displaying details of the failed messsage (including exception details), as well as sending the message to be reprocessed.
+After the ingestion, failed messages are available via ServicePulse which is the UI for the platform. It enables navigating the list of errors, displaying details of the failed message (including exception details), as well as sending the message to be reprocessed.
 
 ![Managing failures with ServicePulse](masstransit-servicepulse.gif)
 
