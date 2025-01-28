@@ -86,7 +86,7 @@ In order to get notifications when the exposed ServiceControl events occur, crea
 snippet: ServiceControlEventsHandlers
 
 > [!IMPORTANT]
-> In order to prevent infinate message loops (processing of an integration event fails, the faulting message is moved to the ServiceControl error queue and triggers yet another integration event) the monitoring endpoint must use a dedicated error queue, separte from the ServiceControl one. 
+> In order to prevent infinite message loops (i.e. processing of an integration event fails -> the faulting message is moved to the ServiceControl error queue, which triggers yet another integration event) the monitoring endpoint must use a dedicated error queue, separate from the ServiceControl one. 
 
 snippet: ServiceControlEventsMonitorCustomErrorQueue
 
