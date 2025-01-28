@@ -1098,6 +1098,10 @@
         {
           "Minor": "3.24",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.25",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
