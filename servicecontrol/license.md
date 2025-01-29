@@ -5,7 +5,12 @@ reviewed: 2024-06-27
 component: ServiceControl
 ---
 
-In general ServiceControl instances support [all of the license management options that NServiceBus supports](/nservicebus/licensing/#license-management) with the exception of code-first configuration and the Windows Registry. In addition, ServiceControl provides additional license management techniques:
+In general ServiceControl instances support [all of the license management options that NServiceBus supports](/nservicebus/licensing/#license-management) with the exception of code-first configuration and the Windows Registry.
+
+> [!NOTE]
+> When using the [user specific license location](/nservicebus/licensing/#license-management-user-specific-license-location) ensure that the account under which the ServiceControl instance is running has permissions to access the user folder.
+
+In addition, ServiceControl provides additional license management techniques:
 
 ## ServiceControl Management utility (SCMU)
 
