@@ -1,11 +1,9 @@
 ---
 title: MassTransit Connector for ServiceControl
-summary: Configuration and running the MassTransit Connector for ServiceControl
+summary: Introduction to the MassTransit Connector for ServiceControl
 reviewed: 2024-09-04
 component: ServiceControl
 ---
-
-## Overview
 
 The [MassTransit Connector for ServiceControl](https://hub.docker.com/r/particular/servicecontrol-masstransit-connector) is part of the Particular Service Platform, which adds error queue and dead letter queue monitoring to MassTransit systems. This container runs alongside the existing MassTransit system and monitors for any faulted messages that occur within the system.
 
@@ -35,7 +33,3 @@ The `Particular.ServiceControl.staging` queue ensures that messages aren't dupli
 The `Particular.ServiceControl.errors` queue tracks any internal errors that may occur within ServiceControl.
 
 Other transport-specific queues might also be created. For example, when using RabbitMQ, a queue called `nsb.v2.verify-stream-flag-enabled` will be created to validate that the setup of the RabbitMQ broker enables streams and quorum queues.
-
-## Settings
-
-For a list of all the supported settings, head over to https://hub.docker.com/r/particular/servicecontrol-masstransit-connector.
