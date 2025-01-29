@@ -53,7 +53,7 @@
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker" target="_blank">Microsoft.Azure.Functions.Worker</a> | <a href="https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker/1.24.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-functions-dotnet-worker" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Extensions.ServiceBus" target="_blank">Microsoft.Azure.Functions.Worker.Extensions.ServiceBus</a> | <a href="https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Extensions.ServiceBus/5.22.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-functions-dotnet-worker" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Extensions.ServiceBus" target="_blank">Microsoft.Azure.Functions.Worker.Extensions.ServiceBus</a> | <a href="https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Extensions.ServiceBus/5.22.1/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-functions-dotnet-worker" target="_blank">Project Site</a> |
 
 ### NServiceBus.CommonLogging
 
@@ -162,7 +162,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2" target="_blank">AWSSDK.DynamoDBv2</a> | <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2/3.7.405.11/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2" target="_blank">AWSSDK.DynamoDBv2</a> | <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2/3.7.405.12/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 
 ### NServiceBus.Persistence.ServiceFabric
 
