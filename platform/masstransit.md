@@ -6,7 +6,7 @@ reviewed: 2025-01-23
 
 The Particular Service Platform provides error management capabilities for MassTransit endpoints on RabbitMQ and Azure Service Bus.
 
-It auto-detects and ingests messages from the [error](https://masstransit.io/documentation/concepts/exceptions#error-pipe) and [dead-letter](https://masstransit.io/documentation/concepts/exceptions#dead-letter-pipe) queues for all endpoints running in a MassTransit system.  
+It ingests messages from specified [error](https://masstransit.io/documentation/concepts/exceptions#error-pipe) and [dead-letter](https://masstransit.io/documentation/concepts/exceptions#dead-letter-pipe) queues for endpoints running in a MassTransit system.  
 The platform provides an aggregated view of the information necessary to detect, diagnose, and fix problems causing the errors as well as the ability to send failed messages to be reprocessed.
 
 ![MassTransit Fault Management](masstransit-overview-s.png  "width=715")

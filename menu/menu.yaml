@@ -1571,9 +1571,9 @@
       Url: servicecontrol/transport-adapter
   - Title: MassTransit
     Articles:
-    - Title: Connector Settings
+    - Title: Connector for ServiceControl
       Url: servicecontrol/masstransit
-    - Title: Docker Deployment
+    - Title: Using Containers
       Url: servicecontrol/masstransit/docker-deployment
   - Title: Migrations
     Articles:
