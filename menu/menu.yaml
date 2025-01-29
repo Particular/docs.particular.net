@@ -1440,6 +1440,8 @@
       Url: servicecontrol/upgrades
     - Title: Version 6.3 to 6.4
       Url: servicecontrol/upgrades/6.3to6.4
+    - Title: Version 6.2 to 6.3
+      Url: servicecontrol/upgrades/6.2to6.3
     - Title: Version 5 to 6
       Url: servicecontrol/upgrades/5to6
     - Title: Version 5.1 to 5.2
