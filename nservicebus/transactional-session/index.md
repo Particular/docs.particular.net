@@ -153,7 +153,7 @@ Internally, the transactional session doesn't use a single transaction that span
 10. The message operations are converted into an outbox record.
 11. The outbox record is returned to the transactional session
 12. The outbox record is saved to the storage seam.
-9. The transaction is committed, and the outbox record and business data modifications are stored atomically.
+13. The transaction is committed, and the outbox record and business data modifications are stored atomically.
 
 > [!NOTE]
 > When no message operations are executed in the transactional session, steps 9 through 12 are skipped (and as a consequence Phase 2 is also skipped) to avoid wasting queue and database resources.
