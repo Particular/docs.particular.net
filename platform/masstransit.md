@@ -23,5 +23,23 @@ After the ingestion, failed messages are available via ServicePulse which is the
 
 In addition, ServicePulse offers more advanced features such as [retry redirects](/servicepulse/redirect.md) and [failed message editing](/servicepulse/intro-editing-messages.md).
 
-<div class="text-center inline-download hidden-xs"><a id='masstransit-sample' target="_blank" href='https://github.com/particular/MassTransitShowcaseDemo/' class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> See it in action</a>
+<div class="text-center inline-download hidden-xs"><a id='masstransit-sample' target="_blank" href='https://github.com/particular/MassTransitShowcaseDemo/' class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> See it in action now</a>
 </div>
+
+### Pricing
+
+During the [early access period](https://particular.net/eula/early_access), this functionality is entirely free.
+
+### Easy to remove
+
+As the error management capability is packaged in containers, removing it is very simple and straighforward:
+
+1. Disable the [ServiceControl-MassTransit-Connector](https://hub.docker.com/r/particular/servicecontrol-masstransit-connector) container
+2. [Retry all the failed messages](/servicepulse/intro-failed-message-retries#servicepulse-interface-retrying-failed-messages)
+3. [Validate that all pending retries have completed](/servicepulse/intro-pending-retries)
+4. [Remove all 4 containers from your system](/servicecontrol/masstransit/docker-deployment)
+5. Done!
+
+### Questions? Concerns?
+
+[Talk to us!](https://discuss.particular.net/tag/masstransit)
