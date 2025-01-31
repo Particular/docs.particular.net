@@ -35,10 +35,11 @@ During the [early access period](https://particular.net/eula/early_access), this
 As the error management capability is packaged in containers, removing it is very simple and straightforward:
 
 1. Disable the [ServiceControl-MassTransit-Connector](https://hub.docker.com/r/particular/servicecontrol-masstransit-connector) container
-2. [Retry all the failed messages](/servicepulse/intro-failed-message-retries.md#servicepulse-interface-retrying-failed-messages)
-3. [Validate that all pending retries have completed](/servicepulse/intro-pending-retries.md)
-4. [Remove all 4 containers from your system](/servicecontrol/masstransit/docker-deployment.md)
-5. Done!
+1. [Retry all the failed messages](/servicepulse/intro-failed-message-retries.md#servicepulse-interface-retrying-failed-messages)
+1. [Validate that all pending retries have completed](/servicepulse/intro-pending-retries.md)
+1. [Remove all 4 containers from your system](/servicecontrol/masstransit/docker-deployment.md)
+1. (Optional) Remove the queues utilized by [ServiceControl and the Connector](/servicecontrol/masstransit/index.md/#what-queues-are-created)
+1. Done!
 
 ### Questions? Concerns?
 
