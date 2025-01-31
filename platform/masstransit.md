@@ -38,7 +38,7 @@ As the error management capability is packaged in containers, removing it is ver
 1. [Retry all the failed messages](/servicepulse/intro-failed-message-retries.md#servicepulse-interface-retrying-failed-messages)
 1. [Validate that all pending retries have completed](/servicepulse/intro-pending-retries.md)
 1. [Remove all 4 containers from your system](/servicecontrol/masstransit/docker-deployment.md)
-1. (Optional) Remove the queues utilized by [ServiceControl and the Connector](/servicecontrol/masstransit/index.md/#what-queues-are-created)
+1. (Optional) Remove the queues utilized by [ServiceControl and the Connector](/servicecontrol/masstransit/#what-queues-are-created)
 1. Done!
 
 ### Questions? Concerns?
