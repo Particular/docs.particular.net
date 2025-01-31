@@ -17,7 +17,7 @@ ServiceControl reads the faulted message, extracting information and metadata ab
 
 The ServiceControl MassTransit Connector creates a queue for transferring messages from ServiceControl back to a consumer's input queue. By default, the queue name is `Particular.ServiceControl.Connector.MassTransit_return`, which can be changed by overwriting the default value using the `RETURN_QUEUE` environment variable.
 
-It also creates a "poison" queue that it starts with the same name as the queue before and appends `.poison` to it. By default, the queue name is `Particular.ServiceControl.Connector.MassTransit_return.poison`.
+It also creates a "poison" queue that it starts with the same name as the `RETURN_QUEUE` and appends `.poison` to it. By default, the queue name is `Particular.ServiceControl.Connector.MassTransit_return.poison`. This queue is  only used if there are any messages that the connector fails to process. Should any messages fail to this queue, a warning is raised in the `Custom Checks` section of ServicePulse
 
 In addition, ServiceControl creates queues necessary to facilitate the process of retrying failed messages. These are:
 
