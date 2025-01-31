@@ -816,19 +816,6 @@
 | [~~2.6.x~~](https://www.nuget.org/packages/NServiceBus.Host/2.6.0.1511) | ~~2011-08-09~~ | ~~2014-03-08~~    | ~~Extended by NServiceBus 2.6.x~~ |
 | [~~2.5.x~~](https://www.nuget.org/packages/NServiceBus.Host/2.5.0.1490) | ~~2011-06-23~~ | ~~2011-11-09~~    | ~~Superseded by 2.6.x~~           |
 
-#### [ParticularTemplates](/nuget/ParticularTemplates)
-
-| Version   | Released       | Supported until   | Notes                             |
-|:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.1.x](https://www.nuget.org/packages/ParticularTemplates/6.1.0) | 2024-10-03     | -                 | -                                 |
-| [~~6.0.x~~](https://www.nuget.org/packages/ParticularTemplates/6.0.0) | ~~2024-04-16~~ | ~~2025-01-03~~    | ~~Superseded by 6.1.x~~           |
-| [5.0.x](https://www.nuget.org/packages/ParticularTemplates/5.0.1) | 2023-06-19     | 2025-04-16        | Superseded by 6.0.x               |
-| [~~4.1.x~~](https://www.nuget.org/packages/ParticularTemplates/4.1.0) | ~~2020-08-14~~ | ~~2024-06-19~~    | ~~Superseded by 5.0.x~~           |
-| [~~4.0.x~~](https://www.nuget.org/packages/ParticularTemplates/4.0.0) | ~~2020-03-05~~ | ~~2020-11-14~~    | ~~Superseded by 4.1.x~~           |
-| [~~3.0.x~~](https://www.nuget.org/packages/ParticularTemplates/3.0.0) | ~~2018-11-29~~ | ~~2021-03-05~~    | ~~Superseded by 4.0.x~~           |
-| [~~2.0.x~~](https://www.nuget.org/packages/ParticularTemplates/2.0.0) | ~~2018-05-29~~ | ~~2019-11-29~~    | ~~Superseded by 3.0.x~~           |
-| [~~1.0.x~~](https://www.nuget.org/packages/ParticularTemplates/1.0.0) | ~~2017-10-05~~ | ~~2019-05-29~~    | ~~Superseded by 2.0.x~~           |
-
 ### Other packages
 
 #### [NServiceBus.Callbacks](/nuget/NServiceBus.Callbacks)

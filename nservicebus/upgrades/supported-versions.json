@@ -1106,19 +1106,6 @@
       ]
     },
     {
-      "PackageId": "ParticularTemplates",
-      "Versions": [
-        {
-          "Minor": "5.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "6.1",
-          "SupportLevel": "Mainstream"
-        }
-      ]
-    },
-    {
       "PackageId": "ServiceControl.Contracts",
       "Versions": [
         {
