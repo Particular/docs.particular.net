@@ -1,11 +1,9 @@
 ---
 title: MassTransit Connector for ServiceControl
-summary: Configuration and running the MassTransit Connector for ServiceControl
+summary: Introduction to the MassTransit Connector for ServiceControl
 reviewed: 2024-09-04
 component: ServiceControl
 ---
-
-## Overview
 
 The [MassTransit Connector for ServiceControl](https://hub.docker.com/r/particular/servicecontrol-masstransit-connector) is part of the Particular Service Platform, which adds error queue and dead letter queue monitoring to MassTransit systems. This container runs alongside the existing MassTransit system and monitors for any faulted messages that occur within the system.
 
@@ -18,6 +16,8 @@ ServiceControl reads the faulted message, extracting information and metadata ab
 ## What queues are created
 
 The ServiceControl MassTransit Connector creates a queue for transferring messages from ServiceControl back to a consumer's input queue. By default, the queue name is `Particular.ServiceControl.Connector.MassTransit_return`, which can be changed by overwriting the default value using the `RETURN_QUEUE` environment variable.
+
+It also creates a "poison" queue that it starts with the same name as the `RETURN_QUEUE` and appends `.poison` to it. By default, the queue name is `Particular.ServiceControl.Connector.MassTransit_return.poison`. This queue is  only used if there are any messages that the connector fails to process. Should any messages fail to this queue, a warning is raised in the `Custom Checks` section of ServicePulse
 
 In addition, ServiceControl creates queues necessary to facilitate the process of retrying failed messages. These are:
 
@@ -35,7 +35,3 @@ The `Particular.ServiceControl.staging` queue ensures that messages aren't dupli
 The `Particular.ServiceControl.errors` queue tracks any internal errors that may occur within ServiceControl.
 
 Other transport-specific queues might also be created. For example, when using RabbitMQ, a queue called `nsb.v2.verify-stream-flag-enabled` will be created to validate that the setup of the RabbitMQ broker enables streams and quorum queues.
-
-## Settings
-
-For a list of all the supported settings, head over to https://hub.docker.com/r/particular/servicecontrol-masstransit-connector.
