@@ -1,7 +1,7 @@
 ---
 title: SQL Server transport
 summary: An overview of the NServiceBus SQL Server transport.
-reviewed: 2022-10-07
+reviewed: 2025-01-30
 component: SqlTransport
 redirects:
  - nservicebus/sqlserver/usage
@@ -58,17 +58,17 @@ SQL Server transport uses SQL Server to store queues and messages. It doesn't us
 
 ## Disadvantages
 
- * No local store-and-forward mechanism; when a SQL Server instance is down, the endpoint cannot send nor receive messages.
  * In centralized deployment scenarios, maximum throughput applies for the whole system, not individual endpoints. For example, if SQL Server can handle 2000 msg/s on the given hardware, each one of the 10 endpoints deployed on this machine can only receive a maximum of 200 msg/s (on average).
  * When using SQL Server transport, a database table serves as a queue for the messages for the endpoints. These tables are polled periodically to see if messages need to be processed by the endpoints. Although the polling interval is one second, this may still lead to delays in processing a message. For environments where low latency is required, consider using other transports that use queuing technologies, such as RabbitMQ. Refer to [receiving behavior](design.md#behavior-receiving) documentation for more information about the polling configuration.
-
+* No local store-and-forward mechanism; when a SQL Server instance is down, the endpoint cannot send nor receive messages.
+ 
 
 ## Deployment considerations
 
 The typical process hosting NServiceBus operates and manages three types of data:
 
  * Transport data - queues and messages managed by the transport.
- * Persistence data - required for correct operation of specific transport features, e.g. saga data, timeout manager state and subscriptions.
+ * Persistence data - required for correct operation of specific transport features, e.g. saga data, outbox data, and subscriptions.
  * Business data - application-specific data, independent of NServiceBus, usually managed via code executed from inside message handlers.
 
 SQL Server transport manages transport data, but it puts no constraints on the type and configuration of storage technology used for persistence or business data. It can work with any of the available persisters, e.g. [NHibernate](/persistence/nhibernate) or [RavenDB](/persistence/ravendb/), for storing NServiceBus data, as well as any storage mechanisms for storing business data.
