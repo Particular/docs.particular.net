@@ -11,17 +11,17 @@ The platform provides an aggregated view of the information necessary to detect,
 
 ![MassTransit Fault Management](masstransit-overview-s.png  "width=715")
 
-This is done with a container called the [MassTransit Connector for ServiceControl](/servicecontrol/masstransit/) which runs alongside the existing MassTransit system and monitors for any failed messages that occur within it.
+This is done with a [container](/servicecontrol/masstransit/) which runs alongside the existing MassTransit system and monitors for any failed messages that occur within it.
 
 ![Particular Service Platform architecture](architecture-overview-diagram-masstransit.svg)
 
 ### Managing errors
 
-After the ingestion, failed messages are available via ServicePulse which is the UI for the platform. It enables navigating the list of errors, displaying details of the failed message (including exception details), as well as sending the message to be reprocessed.
+After the ingestion, failed messages are available in the platform. It enables navigating the list of errors, displaying details of the failed message (including exception details), as well as sending the message to be reprocessed.
 
-![Managing failures with ServicePulse](masstransit-servicepulse.gif)
+![Managing failures](masstransit-servicepulse.gif)
 
-In addition, ServicePulse offers more advanced features such as [retry redirects](/servicepulse/redirect.md) and [failed message editing](/servicepulse/intro-editing-messages.md).
+In addition, the platform offers more advanced features such as [retry redirects](/servicepulse/redirect.md) and [failed message editing](/servicepulse/intro-editing-messages.md).
 
 <div class="text-center inline-download hidden-xs"><a id='masstransit-sample' target="_blank" href='https://github.com/particular/MassTransitShowcaseDemo/' class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> See it in action now</a>
 </div>
@@ -34,11 +34,11 @@ During the [early access period](https://particular.net/eula/early_access), this
 
 As the error management capability is packaged in containers, removing it is very simple:
 
-1. Disable the [ServiceControl-MassTransit-Connector](https://hub.docker.com/r/particular/servicecontrol-masstransit-connector) container
+1. Disable the [connector container](https://hub.docker.com/r/particular/servicecontrol-masstransit-connector)
 1. [Retry all the failed messages](/servicepulse/intro-failed-message-retries.md#servicepulse-interface-retrying-failed-messages)
 1. [Validate that all pending retries have completed](/servicepulse/intro-pending-retries.md)
 1. [Remove all 4 containers from your system](/servicecontrol/masstransit/docker-deployment.md)
-1. (Optional) Remove the queues utilized by [ServiceControl and the Connector](/servicecontrol/masstransit/#what-queues-are-created)
+1. (Optional) Remove the [platform queues](/servicecontrol/masstransit/#what-queues-are-created)
 1. Done!
 
 ### Questions? Concerns?
