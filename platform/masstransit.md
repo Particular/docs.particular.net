@@ -32,7 +32,7 @@ During the [early access period](https://particular.net/eula/early_access), this
 
 ### Easy to remove
 
-As the error management capability is packaged in containers, removing it is very simple and straightforward:
+As the error management capability is packaged in containers, removing it is very simple:
 
 1. Disable the [ServiceControl-MassTransit-Connector](https://hub.docker.com/r/particular/servicecontrol-masstransit-connector) container
 1. [Retry all the failed messages](/servicepulse/intro-failed-message-retries.md#servicepulse-interface-retrying-failed-messages)
