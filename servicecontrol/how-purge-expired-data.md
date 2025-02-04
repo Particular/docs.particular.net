@@ -5,7 +5,7 @@ related:
  - nservicebus/recoverability
  - nservicebus/operations/auditing
  - servicecontrol/audit-instances
-reviewed: 2022-10-18
+reviewed: 2025-02-04
 ---
 
 ServiceControl stores audit and error data. Any audit and error data that is older than the specified thresholds is deleted from RavenDB. The expiration thresholds for both faulted and audited messages must be set during installation. These values can be modified later by either
