@@ -1,5 +1,5 @@
 ---
 title: RabbitMQ Transport Samples
-reviewed: 2022-10-12
+reviewed: 2025-02-04
 component: Rabbit
 ---
