@@ -4,7 +4,7 @@ summary: How to manage errors from MassTransit systems
 reviewed: 2025-01-23
 ---
 
-The Particular Service Platform is now offering its error management capabilities for MassTransit endpoints on RabbitMQ and Azure Service Bus under the [early access license - for free](https://particular.net/eula/early_access).
+The Particular Service Platform now offers its error management capabilities for MassTransit endpoints on RabbitMQ and Azure Service Bus under the [early access license - for free](https://particular.net/eula/early_access).
 
 This functionality ingests messages from specified [error](https://masstransit.io/documentation/concepts/exceptions#error-pipe) or [dead-letter](https://masstransit.io/documentation/concepts/exceptions#dead-letter-pipe) queues for endpoints running in a MassTransit system.
 The platform provides an aggregated view of the information necessary to detect, diagnose, and fix problems causing the errors as well as the ability to send failed messages to be reprocessed.
@@ -17,7 +17,7 @@ This is done with a [container](/servicecontrol/masstransit/) which runs alongsi
 
 ### Managing errors
 
-After the ingestion, failed messages are available in the platform. It enables navigating the list of errors, displaying details of the failed message (including exception details), as well as sending the message to be reprocessed.
+After the ingestion, failed messages are available in the platform. It enables navigating the list of errors, displaying details of the failed message (including exception details), and sending the message to be reprocessed.
 
 ![Managing failures](masstransit-servicepulse.gif)
 
