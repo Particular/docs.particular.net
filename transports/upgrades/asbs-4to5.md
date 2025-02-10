@@ -65,7 +65,7 @@ The below endpoint configuration snippets demonstrate how a migration could take
 - `Publisher1` also publishes `Event2` which is subscribed by `Subscriber1` and `Subscriber3`
 - `Publisher2` publishes `Event3` which is subscribed by `Subscriber3` and `Subscriber4`
 
-In order to use the migration topology the subscribers need to be on NServiceBus 9 or higher. It is not required to upgrade every endpoint to the new version of the transport as long as events are correctly mapped to either be publish or subscribed in a backward compatible way where necessary. For example if for some reasons `Subscriber4` cannot be upgraded to a newer version of NServiceBus and the transport then `Publisher2` can either stay on the older version of the transport or be upgraded but explicitly mark the published `Event3` to be published in a backward compatible way by using the following configuration:
+In order to use the migration topology the publishers and subscribers need to be on NServiceBus 9 or higher. It is not required to upgrade every endpoint to the new version of the transport as long as events are correctly mapped to either be publish or subscribed in a backward compatible way where necessary. For example if for some reasons `Subscriber4` cannot be upgraded to a newer version of NServiceBus and the transport then `Publisher2` can either stay on the older version of the transport or be upgraded but explicitly mark the published `Event3` to be published in a backward compatible way by using the following configuration:
 
 ```csharp
 var topology = TopicTopology.MigrateFromSingleDefaultTopic();
@@ -144,3 +144,7 @@ var topology = TopicTopology.Default;
 Use either `TopicTopology.MigrateFromNamedSingleTopic(string topicName)` or `TopicTopology.MigrateFromTopicHierarchy(string topicToPublishTo, string topicToSubscribeOn)`.
 
 The default topic name is `bundle-1`. In case that one is used create the migration topology with `TopicTopology.MigrateFromSingleDefaultTopic()`.
+
+### Migrating subscription name customizations
+
+### Migrating rule name customizations
