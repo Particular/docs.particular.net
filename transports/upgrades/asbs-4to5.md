@@ -164,4 +164,46 @@ The default topic name is `bundle-1`. In case that one is used create the migrat
 
 ### Migrating subscription name customizations
 
+Previous versions of the transport provided a function delegate approach that allowed mapping from the queue name to the subscription name. Given that function delegates can execute arbitrary code inline this approach made it very flexible at the cost of making it impossible to properly store that logic in application configuration. Starting with v5 of the transport the subscription name can be assigned to a queue name directly using
+
+```csharp
+topology.OverrideSubscriptionNameFor("QueueName", "SubscriptionName")
+```
+
+or for more advanced scenarios be mapped out for all cases with the configuration settings.
+
+```json
+{
+  ...
+  "QueueNameToSubscriptionNameMap": {
+    "QueueName": "SubscriptionName"
+  }
+}
+```
+
+The assumption is that any previous delegate invocation would needed to be idempotent to create reliable runtime behavior. Subscription names must adhere to the limits outlined in the [Microsoft documentation on subscription creation](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas) and are automatically validated during startup.
+
 ### Migrating rule name customizations
+
+Previous versions of the transport provided a function delegate approach that allowed mapping from the message type to the rule name. Given that function delegates can execute arbitrary code inline this approach made it very flexible at the cost of making it impossible to properly store that logic in application configuration. Starting with v5 of the transport the rule name can be assigned to a message type full name directly using
+
+```csharp
+topology.EventToMigrate<TEventType>("MyRuleName")
+```
+
+or for more advanced scenarios be mapped out for all cases with the configuration settings.
+
+```json
+{
+  "$type": "migration-topology-options",
+  ...
+  "EventsToMigrateMap": [
+    "Namespace.Event1"
+  ],
+  "SubscribedEventToRuleNameMap": {
+    "Namespace.Event1": "Event1Rule"
+  }
+}
+```
+
+The assumption is that any previous delegate invocation would needed to be idempotent to create reliable runtime behavior. Rules names must adhere to the limits outlined in the [Microsoft documentation on subscription creation](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas) and are automatically validated during startup.
