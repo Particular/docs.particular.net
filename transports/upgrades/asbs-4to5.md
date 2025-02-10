@@ -69,6 +69,7 @@ In order to use the migration topology the publishers and subscribers need to be
 
 ```csharp
 var topology = TopicTopology.MigrateFromSingleDefaultTopic();
+// Publishes and/or subscribes using the “old” single-topic (here bundle-1) approach.
 topology.EventToMigrate<Event3>();
 ```
 
@@ -92,6 +93,7 @@ assuming `Subscriber1` and `Subscriber2` can be migrated the `Publisher1` config
 
 ```csharp
 var topology = TopicTopology.MigrateFromSingleDefaultTopic();
+// Publishes this event using the new “topic per event” approach (here to a Namespace.Event1 topic).
 topology.MigratedPublishedEvent<Event1>();
 topology.EventToMigrate<Event2>();
 ```
@@ -108,6 +110,7 @@ and the `Subscriber2` configuration
 
 ```csharp
 var topology = TopicTopology.MigrateFromSingleDefaultTopic();
+// Subscribes to this event using the new “topic per event” approach (here to a Namespace.Event1 topic)
 topology.MigratedSubscribedEvent<Event1>();
 ```
 
@@ -144,6 +147,8 @@ var topology = TopicTopology.Default;
 Generally it does not matter whether the publisher or the subscriber is upgraded first to the new version of the transport as long as the migration topology settings are aligned with the requirements of the subscribers. That means if a publisher is upgraded before all the subscribers the publisher migration topology settings need to be configured to publish the events in a backward compatible way. If the subscribers are upgraded first then the subscribers migration topology settings need to be configured to subscribe the events in a backward compatible way.
 
 When switching an event to the new topic per event type approach it is required upgrade the publisher together with the subscribers. By using the provided tool or any other infrastructure as a service tool like Bicep, Terraform or Pulumi it would be possible to setup the topic for a specific event including all the forwarding subscriptions for the subscribers and then rollout the publisher update. To reduce the CPU and memory overhead the subscriber endpoints should disable the [AutoSubscribe feature for the specific event](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#automatic-subscriptions-exclude-event-types-from-auto-subscribe) to make sure the subscriber endpoints do not create the unnecessary old subscriptions or delete the no-longer used filter rules for the specific event for those endpoints.
+
+All endpoints using `TopicTopology.Default` can be considered fully migrated.
 
 ### Cleanup of no longer used entities on Azure Service Bus
 
