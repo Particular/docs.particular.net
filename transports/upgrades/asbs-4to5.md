@@ -49,7 +49,7 @@ The migration topology should be used used by endpoints that require being backw
 
 In this topology every event type must be explicitly mapped by marking it as "to be migrated" or "migrated". All yet to be migrated events will be published or subscribed in the backward compatible way. All migrated events will be published or subscribed according to the topic per event type topology.
 
-####  Least-privilege
+#### Least-privilege
 
 Subscribing and unsubscribing to a "to be migrated" at runtime is supported even when connected endpoints has no manage rights support. This is ensured to keep the migration topology backward compatible from a privilege mode perspective.
 
@@ -61,18 +61,18 @@ While it is possible to migrated event by event currently it is not supported to
 
 The below endpoint configuration snippets demonstrate how a migration could take place assuming the following scenario:
 
-- Publisher1 publishes Event1 which is subscribed by Subscriber1 and Subscriber2
-- Publisher1 also publishes Event2 which is subscribed by Subscriber1 and Subscriber3
-- Publisher2 publishes Event3 which is subscribed by Subscriber3 and Subscriber4
+- `Publisher1` publishes `Event1` which is subscribed by `Subscriber1` and `Subscriber2`
+- `Publisher1` also publishes `Event2` which is subscribed by `Subscriber1` and `Subscriber3`
+- `Publisher2` publishes `Event3` which is subscribed by `Subscriber3` and `Subscriber4`
 
-In order to use the migration topology the subscribers need to be on NServiceBus 9 or higher. It is not required to upgrade every endpoint to the new version of the transport as long as events are correctly mapped to either be publish or subscribed in a backward compatible way where necessary. For example if for some reasons Subscriber4 cannot be upgraded to a newer version of NServiceBus and the transport then Publisher2 can either stay on the older version of the transport or be upgraded but explicitly mark the published Event3 to be published in a backward compatible way by using the following configuration:
+In order to use the migration topology the subscribers need to be on NServiceBus 9 or higher. It is not required to upgrade every endpoint to the new version of the transport as long as events are correctly mapped to either be publish or subscribed in a backward compatible way where necessary. For example if for some reasons `Subscriber4` cannot be upgraded to a newer version of NServiceBus and the transport then `Publisher2` can either stay on the older version of the transport or be upgraded but explicitly mark the published `Event3` to be published in a backward compatible way by using the following configuration:
 
 ```csharp
 var topology = TopicTopology.MigrateFromSingleDefaultTopic();
 topology.EventToMigrate<Event3>();
 ```
 
-If the Subscriber3 endpoint would be upgrade to the new version of the transport it would need to map Event3 and Event2 while Event3 might need to stay marked as to be migrated until Subscriber4 can be upgraded. For example the Subscriber3 configuration might look like
+If the `Subscriber3` endpoint would be upgrade to the new version of the transport it would need to map Event3 and `Event2` while `Event3` might need to stay marked as to be migrated until `Subscriber4` can be upgraded. For example the `Subscriber3` configuration might look like
 
 ```csharp
 var topology = TopicTopology.MigrateFromSingleDefaultTopic();
@@ -80,7 +80,7 @@ topology.EventToMigrate<Event2>();
 topology.EventToMigrate<Event3>();
 ```
 
-and the Publisher1 configuration
+and the `Publisher1` configuration
 
 ```csharp
 var topology = TopicTopology.MigrateFromSingleDefaultTopic();
@@ -88,7 +88,7 @@ topology.EventToMigrate<Event1>();
 topology.EventToMigrate<Event2>();
 ```
 
-assuming Subscriber1 and Subscriber2 can be migrated the Publisher1 configuration could be switched to
+assuming `Subscriber1` and `Subscriber2` can be migrated the `Publisher1` configuration could be switched to
 
 ```csharp
 var topology = TopicTopology.MigrateFromSingleDefaultTopic();
@@ -96,7 +96,7 @@ topology.MigratedPublishedEvent<Event1>();
 topology.EventToMigrate<Event2>();
 ```
 
-the Subscriber1 configuration
+the `Subscriber1` configuration
 
 ```csharp
 var topology = TopicTopology.MigrateFromSingleDefaultTopic();
@@ -104,20 +104,20 @@ topology.MigratedSubscribedEvent<Event1>();
 topology.EventToMigrate<Event2>();
 ```
 
-and the Subscriber2 configuration
+and the `Subscriber2` configuration
 
 ```csharp
 var topology = TopicTopology.MigrateFromSingleDefaultTopic();
 topology.MigratedSubscribedEvent<Event1>();
 ```
 
-or directly using the topic per event type topology since it only ever subscribes to Event1 which is only published in the new way.
+or directly using the topic per event type topology since it only ever subscribes to `Event1` which is only published in the new way.
 
 ```csharp
 var topology = TopicTopology.Default;
 ```
 
-The Subscriber3 configuration would for a period of time look like
+The `Subscriber3` configuration would for a period of time look like
 
 ```csharp
 var topology = TopicTopology.MigrateFromSingleDefaultTopic();
@@ -125,7 +125,7 @@ topology.EventToMigrate<Event2>();
 topology.EventToMigrate<Event3>();
 ```
 
-until Publisher1 switches Event2 to be published in the new way
+until `Publisher1` switches `Event2` to be published in the new way
 
 ```csharp
 var topology = TopicTopology.MigrateFromSingleDefaultTopic();
