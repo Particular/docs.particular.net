@@ -39,7 +39,7 @@ flowchart TD;
 
 #### Least-privilege
 
-Subscribing and unsubscribing to events require manage rights because entire subscriptions need to be created or deleted. It is possible to run these scenarios with least-privilege access by deploying the necessary subscriptions as part of the endpoint deployment. This can be done by briefly enabling installers, using the [provided tool](/transports/azure-service-bus/operational-scripting), or utilizing infrastructure-as-code tools like Bicep, Terraform, or Pulumi.
+Subscribing and unsubscribing to events require manage rights because entire subscriptions need to be created or deleted. It is possible to run these scenarios with least-privilege access by deploying the necessary subscriptions as part of the endpoint deployment. This can be done by briefly enabling installers, using the [provided tool](/transports/azure-service-bus/operational-scripting.md), or utilizing infrastructure-as-code tools like Bicep, Terraform, or Pulumi.
 
 ### Migration topology
 
@@ -53,7 +53,7 @@ In this topology, each event type must be explicitly mapped as either "to be mig
 
 Subscribing and unsubscribing to a "to be migrated" event at runtime is supported even when connected endpoints do not have manage rights. This ensures that the migration topology remains backward-compatible from a privilege mode perspective.
 
-For migrated events, subscribing and unsubscribing require manage rights since entire subscriptions need to be created or deleted. These scenarios can be executed with least-privilege access by deploying the necessary subscriptions during the endpoint deployment using the [provided tool](/transports/azure-service-bus/operational-scripting) or infrastructure-as-code tools like Bicep, Terraform, or Pulumi.
+For migrated events, subscribing and unsubscribing require manage rights since entire subscriptions need to be created or deleted. These scenarios can be executed with least-privilege access by deploying the necessary subscriptions during the endpoint deployment using the [provided tool](/transports/azure-service-bus/operational-scripting.md) or infrastructure-as-code tools like Bicep, Terraform, or Pulumi.
 
 ## Migrating existing endpoints
 
@@ -151,7 +151,7 @@ var topology = TopicTopology.Default;
 
 Generally, it does not matter whether the publisher or the subscriber is upgraded first, as long as the migration topology settings align with the subscribers' requirements. If a publisher is upgraded before all subscribers, it must be configured to publish events in a backward-compatible way. If the subscribers are upgraded first, they must subscribe to events in a backward-compatible way.
 
-When switching an event to the new topic-per-event-type approach, the publisher and all subscribers must be upgraded together. Using the [provided tool](/transports/azure-service-bus/operational-scripting) or infrastructure-as-code tools like Bicep, Terraform, or Pulumi, it is possible to set up the topic for a specific event, including all forwarding subscriptions, before rolling out the publisher update.
+When switching an event to the new topic-per-event-type approach, the publisher and all subscribers must be upgraded together. Using the [provided tool](/transports/azure-service-bus/operational-scripting.md) or infrastructure-as-code tools like Bicep, Terraform, or Pulumi, it is possible to set up the topic for a specific event, including all forwarding subscriptions, before rolling out the publisher update.
 
 To reduce CPU and memory overhead, subscriber endpoints should disable the [AutoSubscribe feature for the specific event](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#automatic-subscriptions-exclude-event-types-from-auto-subscribe) to prevent unnecessary old subscriptions or the deletion of no-longer-used filter rules.
 
