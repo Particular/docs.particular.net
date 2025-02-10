@@ -49,7 +49,7 @@ The migration topology should be used used by endpoints that require being backw
 
 In this topology every event type must be explicitly mapped by marking it as "to be migrated" or "migrated". All yet to be migrated events will be published or subscribed in the backward compatible way. All migrated events will be published or subscribed according to the topic per event type topology.
 
-### Least-privilege
+####  Least-privilege
 
 Subscribing and unsubscribing to a "to be migrated" at runtime is supported even when connected endpoints has no manage rights support. This is ensured to keep the migration topology backward compatible from a privilege mode perspective.
 
