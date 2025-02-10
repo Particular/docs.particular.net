@@ -139,6 +139,18 @@ or directly using the topic per event type topology since it only ever publishes
 var topology = TopicTopology.Default;
 ```
 
+### Order of migration
+
+Generally it does not matter whether the publisher or the subscriber is upgraded first to the new version of the transport as long as the migration topology settings are aligned with the requirements of the subscribers. That means if a publisher is upgraded before all the subscribers the publisher migration topology settings need to be configured to publish the events in a backward compatible way. If the subscribers are upgraded first then the subscribers migration topology settings need to be configured to subscribe the events in a backward compatible way.
+
+When switching an event to the new topic per event type approach it is required upgrade the publisher together with the subscribers. By using the provided tool or any other infrastructure as a service tool like Bicep, Terraform or Pulumi it would be possible to setup the topic for a specific event including all the forwarding subscriptions for the subscribers and then rollout the publisher update. To reduce the CPU and memory overhead the subscriber endpoints should disable the [AutoSubscribe feature for the specific event](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#automatic-subscriptions-exclude-event-types-from-auto-subscribe) to make sure the subscriber endpoints do not create the unnecessary old subscriptions or delete the no-longer used filter rules for the specific event for those endpoints.
+
+### Cleanup of no longer used entities on Azure Service Bus
+
+Assuming the migration takes longer it may desirable to delete old subscriptions or rules that are no longer needed to reduce the CPU and memory overhead on the evaluation on the single topic that might still be used by some endpoints.
+
+Once all events have moved away the old single topic can be deleted.
+
 ### Migrating from non-default topics or hierarchies
 
 Use either `TopicTopology.MigrateFromNamedSingleTopic(string topicName)` or `TopicTopology.MigrateFromTopicHierarchy(string topicToPublishTo, string topicToSubscribeOn)`.
