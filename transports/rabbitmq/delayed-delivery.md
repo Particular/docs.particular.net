@@ -12,7 +12,6 @@ partial: v1-warning
 
 In versions 4.3 and above, the RabbitMQ transport no longer relies on the [timeout manager](/nservicebus/messaging/timeout-manager.md) to implement [delayed delivery](/nservicebus/messaging/delayed-delivery.md). Instead, the transport creates infrastructure inside the broker which can delay messages using native RabbitMQ features.
 
-
 ## How it works
 
 When an endpoint is started, the transport declares a set of topic exchanges, queues, and bindings that work together to provide the necessary infrastructure to support delayed messages. Exchanges and queues are grouped to provide 28 delay levels. There is one final delivery exchange in addition to the delay-level exchanges. When a message needs to be delayed, the value of the desired delay is first converted to seconds. The binary representation of this value is used as part of the routing key when the message is sent to the delay-level exchanges. The full routing key has the following format:
@@ -28,7 +27,6 @@ As an example, a delay of 10 seconds (`1010` in binary) on a message bound for t
 ```
 0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.1.0.destination
 ```
-
 
 ### Delay levels
 
@@ -105,13 +103,11 @@ To avoid unnecessary traversal through the delay infrastructure, the message is 
 * If the value is a `1`, the exchange will route the message to the `nsb.v2.delay-level-03` queue, where it will wait until the TTL expires (2^3 seconds) before being forwarded to the `nsb.v2.delay-level-02` exchange.
 * If the value is a `0`, the exchange will route the message to the `nsb.v2.delay-level-02` exchange.
 
-
 ### Delivery
 
 At the end of this process, the message is routed to the `nsb.v2.delay-delivery` exchange. It is at this final step where the message destination is evaluated to determine where the message should be routed to.
 
 Every endpoint that can receive delayed messages will create bindings like `#.EndpointName` to this exchange to control final routing. The exact process depends upon the [routing topology](routing-topology.md) in use. These bindings match any combination of delay values, but only the binding for the correct destination endpoint will match, resulting in the message being delivered only to the correct endpoint.
-
 
 ### Example
 
@@ -184,3 +180,9 @@ In order to migrate timeouts to the native-delay delivery implementation, the [m
 partial: v1-to-v2
 
 partial: disabledelayeddelivery
+
+## RabbitMQ upgrade
+
+When upgrading the RabbitMQ cluster, it is recommended to use the [rolling (in-place)](https://www.rabbitmq.com/docs/upgrade#rolling-upgrade) method due to the way the native delayed delivery infrastructure is implemented.
+
+Upgrading using other methods (like [blue-green deployment](https://www.rabbitmq.com/docs/upgrade#blue-green-deployment)) is not recommended as it can cause the loss of routing information in the delayed messages.
