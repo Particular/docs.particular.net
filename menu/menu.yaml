@@ -822,6 +822,8 @@
         Title: Version 6 to 7
     - Title: Azure Service Bus
       Articles:
+      - Url: transports/upgrades/asbs-4to5
+        Title: Version 4 to 5
       - Url: transports/upgrades/asbs-3to4
         Title: Version 3 to 4
       - Url: transports/upgrades/asbs-2to3
@@ -829,11 +831,11 @@
       - Url: transports/upgrades/asbs-1to2
         Title: Version 1 to 2
       - Url: transports/upgrades/asbs-1.7to1.8
-        Title: Verson 1.7 to 1.8
+        Title: Version 1.7 to 1.8
     - Title: Azure Service Bus (Legacy)
       Articles:
       - Url: transports/upgrades/asb-10toasbs-1
-        Title: Verson 10 to ASB 1
+        Title: Version 10 to ASB 1
       - Url: transports/upgrades/asb-9to10
         Title: Version 9 to 10
       - Url: transports/upgrades/asb-9to9.1
