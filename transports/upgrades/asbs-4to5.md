@@ -16,13 +16,13 @@ Upgrading from Azure Service Bus transport version 4 to version 5 is a major upg
 Version 5 of the transport introduces the concept of choosing a topic topology. The following two topologies are supported:
 
 - Migration topology
-- Topic per event type topology
+- Topic-per-event type topology
 
 The topology selection must be explicitly passed into the constructor of the transport when the transport is being created.
 
 ## Topologies
 
-### Topic per Event Type Topology
+### Topic-per-event type topology
 
 This topology is the default and preferred choice for new endpoints that do not require backward compatibility with previous versions of the transport. It optimizes event routing, reduces filter overhead, aligns with industry best practices, and improves observability in the event routing path.
 
@@ -39,7 +39,7 @@ flowchart TD;
 
 #### Least-privilege
 
-Subscribing and unsubscribing to events require manage rights because entire subscriptions need to be created or deleted. It is possible to run these scenarios with least-privilege access by deploying the necessary subscriptions as part of the endpoint deployment. This can be done by briefly enabling installers, using the [provided tool](/transports/azure-service-bus/operational-scripting.md), or utilizing infrastructure-as-code tools like Bicep, Terraform, or Pulumi.
+Subscribing and unsubscribing to events requires management rights to the Azure Service Bus namespace because subscriptions need to be created or deleted. It is possible to run the transport with least-privilege access by deploying the necessary subscriptions as part of the endpoint deployment. This can be done by briefly enabling installers, using the [provided tool](/transports/azure-service-bus/operational-scripting.md), or utilizing infrastructure-as-code tools such as Bicep, Terraform, or Pulumi.
 
 ### Migration topology
 
@@ -47,17 +47,17 @@ The migration topology is a hybrid design that allows transitioning from the pre
 
 The migration topology should be used by endpoints that require backward compatibility with endpoints using the previous topology.
 
-In this topology, each event type must be explicitly mapped as either "to be migrated" or "migrated". Events yet to be migrated will be published or subscribed in the backward-compatible way, while migrated events will follow the topic-per-event-type topology.
+In this topology, each event type must be explicitly mapped as either "to be migrated" or "migrated". Events yet to be migrated are published or subscribed in the backward-compatible way, while migrated events follow the topic-per-event-type topology.
 
 #### Least-privilege
 
-Subscribing and unsubscribing to a "to be migrated" event at runtime is supported even when connected endpoints do not have manage rights. This ensures that the migration topology remains backward-compatible from a privilege mode perspective.
+Subscribing and unsubscribing to a "to be migrated" event at runtime is supported even when connected endpoints do not have management rights to the Azure Service Bus namespace. This ensures that the migration topology remains backward-compatible from a privilege mode perspective.
 
-For migrated events, subscribing and unsubscribing require manage rights since entire subscriptions need to be created or deleted. These scenarios can be executed with least-privilege access by deploying the necessary subscriptions during the endpoint deployment using the [provided tool](/transports/azure-service-bus/operational-scripting.md) or infrastructure-as-code tools like Bicep, Terraform, or Pulumi.
+For migrated events, subscribing and unsubscribing requires management rights since subscriptions need to be created or deleted. It is possible to run the transport with least-privilege access by deploying the necessary subscriptions during the endpoint deployment using the [provided tool](/transports/azure-service-bus/operational-scripting.md) or infrastructure-as-code tools such as Bicep, Terraform, or Pulumi.
 
 ## Migrating existing endpoints
 
-While it is possible to migrate events individually, it is currently not supported to partially migrate parts of the topology for a single event. This means that when an event is migrated, both the publisher and all subscribers must migrate together. If a partial migration approach is necessary, be sure to reach out to support.
+While it is possible to migrate events individually, it is currently not supported to partially migrate a delivery path of a single event. This means that when an event is migrated, both the publisher and all the subscribers must migrate in one step. If a partial migration approach is necessary, be sure to reach out to support.
 
 The following endpoint configuration snippets demonstrate how a migration could take place, assuming the following scenario:
 
@@ -151,7 +151,14 @@ var topology = TopicTopology.Default;
 
 Generally, it does not matter whether the publisher or the subscriber is upgraded first, as long as the migration topology settings align with the subscribers' requirements. If a publisher is upgraded before all subscribers, it must be configured to publish events in a backward-compatible way. If the subscribers are upgraded first, they must subscribe to events in a backward-compatible way.
 
-When switching an event to the new topic-per-event-type approach, the publisher and all subscribers must be upgraded together. Using the [provided tool](/transports/azure-service-bus/operational-scripting.md) or infrastructure-as-code tools like Bicep, Terraform, or Pulumi, it is possible to set up the topic for a specific event, including all forwarding subscriptions, before rolling out the publisher update.
+Switching the event delivery path to the new topic-per-event-type approach is a two-step process.
+
+First, ensure that the infrastructure for the event delivery (topic and all subscriptions) is created. This can be done in a number of ways:
+- If endpoints have installers enabled, the subscribers can be restarted after the event is marked as "migrated" in the topology configuration. This means that during the startup process the necessary infrastructure for the event is created. The old infrastructure (subscription on the common topic) still exists and is being used to deliver the events
+- Using the [provided tool](/transports/azure-service-bus/operational-scripting.md)
+- Using infrastructure-as-code tools such as Bicep, Terraform, or Pulumi
+
+The second step is to mark the event as "migrated" in the publisher configuration and re-deploy the endpoint.
 
 To reduce CPU and memory overhead, subscriber endpoints should disable the [AutoSubscribe feature for the specific event](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#automatic-subscriptions-exclude-event-types-from-auto-subscribe) to prevent unnecessary old subscriptions or the deletion of no-longer-used filter rules.
 
