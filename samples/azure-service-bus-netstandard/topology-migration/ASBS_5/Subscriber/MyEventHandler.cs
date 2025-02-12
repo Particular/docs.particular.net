@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using NServiceBus;
 using Shared;
 
-namespace SubscriberV5
+namespace Subscriber
 {
     public class MyEventHandler(ILogger<MyEventHandler> logger) : IHandleMessages<MyEvent>
     {

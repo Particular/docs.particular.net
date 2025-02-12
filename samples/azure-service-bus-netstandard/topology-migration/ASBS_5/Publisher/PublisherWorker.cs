@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using NServiceBus;
 using Shared;
 
-namespace PublisherV5
+namespace Publisher
 {
     public class PublisherWorker(IMessageSession messageSession, ILogger<PublisherWorker> logger)
         : BackgroundService

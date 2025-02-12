@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
-using PublisherV5;
+using Publisher;
 using Shared;
 
 var builder = Host.CreateApplicationBuilder(args);
