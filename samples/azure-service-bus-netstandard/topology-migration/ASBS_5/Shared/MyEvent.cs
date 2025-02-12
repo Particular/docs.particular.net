@@ -2,7 +2,5 @@
 
 namespace Shared
 {
-    public class MyEvent : IEvent
-    {
-    }
+    public class MyEvent : IEvent;
 }

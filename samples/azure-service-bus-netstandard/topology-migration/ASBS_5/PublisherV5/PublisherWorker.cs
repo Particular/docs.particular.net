@@ -8,26 +8,18 @@ using Shared;
 
 namespace PublisherV5
 {
-    public class PublisherWorker : BackgroundService
+    public class PublisherWorker(IMessageSession messageSession, ILogger<PublisherWorker> logger)
+        : BackgroundService
     {
-        private readonly IMessageSession messageSession;
-        private readonly ILogger<PublisherWorker> logger;
-
-        public PublisherWorker(IMessageSession messageSession, ILogger<PublisherWorker> logger)
-        {
-            this.messageSession = messageSession;
-            this.logger = logger;
-        }
-
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             try
             {
-                await messageSession.Publish(new MyEvent());
+                await messageSession.Publish(new MyEvent(), cancellationToken: stoppingToken);
 
                 logger.LogInformation("Published MyOtherEvent");
             }
-            catch (OperationCanceledException)
+            catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested)
             {
                 // graceful shutdown
             }

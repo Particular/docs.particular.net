@@ -1,50 +1,38 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
+using PublisherV5;
 using Shared;
 
-namespace PublisherV5
-{
-    class Program
-    {
-        static async Task Main(string[] args)
-        {
-            var builder = Host.CreateApplicationBuilder(args);
+var builder = Host.CreateApplicationBuilder(args);
+builder.Logging.AddConsole();
 
-            builder.Logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
-            builder.Logging.AddConsole();
+var endpointConfiguration = new EndpointConfiguration("Publisher");
 
-            var endpointConfiguration = new EndpointConfiguration("Publisher");
+var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString")!;
 
-            var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString");
+//Step 0: Using the topology that supports migration and single-topic event delivery path
+var topology = TopicTopology.MigrateFromSingleDefaultTopic();
+topology.EventToMigrate<MyEvent>();
 
-            //Step 0: Using the topology that supports migration and single-topic event delivery path
-            var topology = TopicTopology.MigrateFromSingleDefaultTopic();
-            topology.EventToMigrate<MyEvent>();
+//Step 2: Switch to topic-per-event delivery path
+//var topology = TopicTopology.MigrateFromSingleDefaultTopic();
+//topology.MigratedPublishedEvent<MyEvent>();
 
-            //Step 2: Switch to topic-per-event delivery path
-            //var topology = TopicTopology.MigrateFromSingleDefaultTopic();
-            //topology.MigratedPublishedEvent<MyEvent>();
+//Step 3: Switch to topic-per-event topology once all events have been migrated
+//var topology = TopicTopology.Default;
 
-            //Step 3: Switch to topic-per-event topology once all events have been migrated
-            //var topology = TopicTopology.Default;
+var routing = endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString, topology));
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-            var routing = endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString, topology));
-            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+// Operational scripting: https://docs.particular.net/transports/azure-service-bus/operational-scripting
+endpointConfiguration.EnableInstallers();
 
-            // Operational scripting: https://docs.particular.net/transports/azure-service-bus/operational-scripting
-            endpointConfiguration.EnableInstallers();
+builder.UseNServiceBus(endpointConfiguration);
 
-            builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddHostedService<PublisherWorker>();
 
-            builder.Services.AddHostedService<PublisherWorker>();
-
-            var host = builder.Build();
-            await host.RunAsync();
-        }
-    }
-}
+var host = builder.Build();
+await host.RunAsync();
