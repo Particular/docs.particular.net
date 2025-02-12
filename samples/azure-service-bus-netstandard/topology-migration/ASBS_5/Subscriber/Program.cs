@@ -7,7 +7,7 @@ using Shared;
 var builder = Host.CreateApplicationBuilder(args);
 builder.Logging.AddConsole();
 
-var endpointConfiguration = new EndpointConfiguration("Subscriber");
+var endpointConfiguration = new EndpointConfiguration("Samples.TopologyMigration.Subscriber");
 
 var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString")!;
 

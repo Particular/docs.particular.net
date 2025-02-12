@@ -9,7 +9,7 @@ using Shared;
 var builder = Host.CreateApplicationBuilder(args);
 builder.Logging.AddConsole();
 
-var endpointConfiguration = new EndpointConfiguration("Publisher");
+var endpointConfiguration = new EndpointConfiguration("Samples.TopologyMigration.Publisher");
 
 var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString")!;
 
@@ -32,7 +32,7 @@ endpointConfiguration.EnableInstallers();
 
 builder.UseNServiceBus(endpointConfiguration);
 
-builder.Services.AddHostedService<PublisherWorker>();
+builder.Services.AddHostedService<Worker>();
 
 var host = builder.Build();
 await host.RunAsync();
