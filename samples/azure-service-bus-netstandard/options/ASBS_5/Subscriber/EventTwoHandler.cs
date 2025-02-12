@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using NServiceBus;
 using Shared;
 
-public class EventTwoHandler(ILogger<EventTwo> logger) : IHandleMessages<EventTwo>
+public class EventTwoHandler(ILogger<EventTwoHandler> logger) : IHandleMessages<EventTwo>
 {
     public Task Handle(EventTwo message, IMessageHandlerContext context)
     {

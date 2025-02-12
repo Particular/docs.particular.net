@@ -21,6 +21,7 @@ var topology = TopicTopology.FromOptions(topologyOptions);
 endpointConfiguration.UseTransport(new AzureServiceBusTransport(section["ConnectionString"]!, topology));
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
+endpointConfiguration.EnableInstallers();
 
 builder.UseNServiceBus(endpointConfiguration);
 

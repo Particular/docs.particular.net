@@ -4,6 +4,6 @@
     <LangVersion>13.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.*" />
+    <PackageReference Include="NServiceBus.MessageInterfaces" Version="1.0.0" />
   </ItemGroup>
 </Project>
