@@ -183,6 +183,6 @@ partial: disabledelayeddelivery
 
 ## RabbitMQ upgrade
 
-When upgrading the RabbitMQ cluster, it is recommended to use the [rolling (in-place)](https://www.rabbitmq.com/docs/upgrade#rolling-upgrade) method due to the way the native delayed delivery infrastructure is implemented.
+When upgrading the RabbitMQ cluster, it is recommended to use the [rolling (in-place)](https://www.rabbitmq.com/docs/upgrade#rolling-upgrade) method.
 
 Due to the way the native delayed delivery infrastructure is implemented, upgrading RabbitMQ by using [blue-green deployments](https://www.rabbitmq.com/docs/upgrade#blue-green-deployment) is more complicated and requires the specialized shovelling of delayed messages in order to avoid message loss.  Contact [Particular support](https://customers.particular.net/request-support) for further details on this scenario.
