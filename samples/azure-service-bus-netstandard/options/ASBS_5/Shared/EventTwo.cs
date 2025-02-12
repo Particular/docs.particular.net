@@ -5,6 +5,6 @@ namespace Shared;
 
 public class EventTwo : IEvent
 {
-    public string Content { get; set; }
-    public DateTime PublishedOnUtc { get; set; }
+    public required string Content { get; init; }
+    public required DateTime PublishedOnUtc { get; init; }
 }
