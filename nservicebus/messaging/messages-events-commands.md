@@ -35,21 +35,22 @@ _Can_ be sent using the [gateway](/nservicebus/gateway). | _Cannot_ be sent usin
 
 There are checks in place to ensure best practices are followed. Violations of the above guidelines generate the following exceptions:
 
- * _"Pub/Sub is not supported for Commands. They should be sent directly to their logical owner."_ - this exception is being thrown when attempting to publish a Command or subscribe to/unsubscribe from a Command.
- * _"Events can have multiple recipients so they should be published."_ - this exception will occur when attempting to use `Send()` to send an event.
- * _"Reply is neither supported for Commands nor Events. Commands should be sent to their logical owner using bus.Send and bus. Events should be published." - this exception is thrown when attempting to reply with a Command or an Event.
- * _"Cannot configure routing for type {name} because it is not considered a message. Message types have to either implement NServiceBus.IMessage interface or match a defined message convention."_ - this exception is thrown when configuring the destination endpoint for a non-message type.
- * _"Cannot configure routing for assembly {name} because it contains no types considered as messages. Message types have to either implement NServiceBus.IMessage interface or match a defined message convention."_ - this exception is thrown when configuring the destination endpoint for an assembly that contains no types considered messages.
- * _"Cannot configure routing for namespace {name} because it contains no types considered as messages..."_ - this exception is thrown when configuring the destination endpoint for a namespace that contains no types considered messages.
- * _"Cannot configure publisher for type {name} because it is not considered a message. Message types have to either implement NServiceBus.IMessage interface or match a defined message convention."_ - this exception is thrown when configuring the publisher for a type that is not a message.
- * _"Cannot configure publisher for type {name} because it is not considered an event. Event types have to either implement NServiceBus.IEvent interface or match a defined event convention."_ - this exception is thrown when configuring the publisher for a type that is not an event.
- * _"Cannot configure publisher for type {name} because it is a command."_ - this exception is thrown when configuring the publisher for a command.
+ * _"Pub/Sub is not supported for Commands. They should be sent directly to their logical owner."_ — thrown when attempting to publish a Command or subscribe to/unsubscribe from a Command.
+ * _"Events can have multiple recipients so they should be published."_ — thrown when attempting to use `Send()` to send an event.
+ * _"Reply is not supported for commands or events. Commands should be sent to their logical owner. Events should be published."_ — thrown when attempting to reply with a Command or an Event.
+ * _"Cannot configure routing for type {name} because it is not considered a message. Message types have to either implement NServiceBus.IMessage interface or match a defined message convention."_ — thrown when configuring the destination endpoint for a non-message type.
+ * _"Cannot configure routing for assembly {name} because it contains no types considered as messages. Message types have to either implement NServiceBus.IMessage interface or match a defined message convention."_ — thrown when configuring the destination endpoint for an assembly that contains no types considered messages.
+ * _"Cannot configure routing for namespace {name} because it contains no types considered as messages..."_ — thrown when configuring the destination endpoint for a namespace that contains no types considered messages.
+ * _"Cannot configure publisher for type {name} because it is not considered a message. Message types have to either implement NServiceBus.IMessage interface or match a defined message convention."_ — thrown when configuring the publisher for a type that is not a message.
+ * _"Cannot configure publisher for type {name} because it is not considered an event. Event types have to either implement NServiceBus.IEvent interface or match a defined event convention."_ — thrown when configuring the publisher for a type that is not an event.
+ * _"Cannot configure publisher for type {name} because it is a command."_ — thrown when configuring the publisher for a command.
 
 ## Designing messages
 
-Messages should:
+A message can be defined using a [class](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/classes), [record](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records), or an [interface](https://docs.particular.net/nservicebus/messaging/messages-as-interfaces). Messages should focus on _data only_ and avoid including methods or other business logic. Treating messages as simple contracts makes them easier to version and evolve over time.
 
-* Be simple [POCOs](https://en.wikipedia.org/wiki/Plain_old_CLR_object) of type `class`, `struct`, or `record`.
+Ideally, a good message type will:
+
 * Be as small as possible
 * Satisfy the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle)
 * Favor simplicity and redundancy over object-oriented practices like inheritance
@@ -82,7 +83,7 @@ The simplest way to identify messages is to use interfaces.
 * `NServiceBus.IEvent` for an event.
 * `NServiceBus.IMessage` for any other message type (e.g., a _reply_ in a request/response pattern).
 
-```cs
+```csharp
 public class MyCommand : ICommand { }
 
 public class MyEvent : IEvent { }
