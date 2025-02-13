@@ -17,7 +17,29 @@ redirects:
  - nservicebus/messaging/invalidoperationexception-in-unobtrusive-mode
 ---
 
-A _message_ is the unit of communication for NServiceBus. There are two types of messages, _commands_ and _events_, that capture more of the intent and help NServiceBus enforce messaging best practices. This enforcement is enabled by default but can be [disabled](best-practice-enforcement.md).
+A _message_ is the unit of communication for NServiceBus. There are two types of messages, _commands_ and _events_, that capture more of the intent and users to follow messaging best-practices. 
+
+## Commands
+
+A command tells a service to do something, and typically a command should only be consumed by a single consumer. For example if there is a command, such as SubmitOrder, then there should only be one handler or saga that implements `IHandleMessages<SubmitOrder>`.
+
+Commands should be expressed in a verb-noun sequence, following the _tell_ style:
+
+- UpdateCustomerAddress
+- UpgradeCustomerAccount
+- SubmitOrder
+
+## Events
+
+An event signifies that something has happened. Events are published (using Publish) via either message handler context within a message handler, a saga or a pipeline, a message or transactional session.
+
+Events should be expressed in a noun-verb (past tense) sequence, indicating that something happened. Some example event names may include:
+
+- CustomerAddressUpdated
+- CustomerAccountUpgraded
+- OrderSubmitted, OrderAccepted, OrderRejected, OrderShipped
+
+## Commands vs Events 
 
 Command | Event
 -- | --
@@ -44,6 +66,8 @@ There are checks in place to ensure best practices are followed. Violations of t
  * _"Cannot configure publisher for type {name} because it is not considered a message. Message types have to either implement NServiceBus.IMessage interface or match a defined message convention."_ — thrown when configuring the publisher for a type that is not a message.
  * _"Cannot configure publisher for type {name} because it is not considered an event. Event types have to either implement NServiceBus.IEvent interface or match a defined event convention."_ — thrown when configuring the publisher for a type that is not an event.
  * _"Cannot configure publisher for type {name} because it is a command."_ — thrown when configuring the publisher for a command.
+
+ This enforcement is enabled by default but can be [disabled](best-practice-enforcement.md).
 
 ## Designing messages
 
