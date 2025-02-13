@@ -21,7 +21,7 @@ A _message_ is the unit of communication for NServiceBus. There are two types of
 
 ## Commands
 
-A command tells a service to do something, and typically a command should only be consumed by a single consumer. For example if there is a command, such as SubmitOrder, then there should only be one handler or saga that implements `IHandleMessages<SubmitOrder>`.
+A command tells a service to do something, and typically a command should only be consumed by a single consumer. Commands are sent via either message handler context within a message handler, a saga, a pipeline behavior, a message or transactional session. For example if there is a command, such as SubmitOrder, then there should only be one handler or saga that implements `IHandleMessages<SubmitOrder>`.
 
 Commands should be expressed in a verb-noun sequence, following the _tell_ style:
 
@@ -31,7 +31,7 @@ Commands should be expressed in a verb-noun sequence, following the _tell_ style
 
 ## Events
 
-An event signifies that something has happened. Events are published (using Publish) via either message handler context within a message handler, a saga or a pipeline, a message or transactional session.
+An event signifies that something has happened. Events are published via either message handler context within a message handler, a saga, a pipeline behavior, a message or transactional session.
 
 Events should be expressed in a noun-verb (past tense) sequence, indicating that something happened. Some example event names may include:
 
