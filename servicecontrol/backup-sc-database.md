@@ -1,9 +1,9 @@
 ---
 title: Backup the ServiceControl Data
-summary: How to backup the ServiceControl RavenDB Embedded instance
-reviewed: 2022-10-26
+summary: How to backup the ServiceControl RavenDB instance
+reviewed: 2025-02-14
 ---
-ServiceControl uses an embedded RavenDB for data storage. To backup or restore the database instance, follow these procedures:
+ServiceControl uses RavenDB for data storage. To backup or restore the database instance, follow these procedures:
 
 ## Instances using RavenDB 5
 
@@ -45,7 +45,7 @@ For ServiceControl instances using RavenDB 3.5, the following steps outline how 
 
 ### Do not migrate to a different Windows Server version
 
-Care should be taken when planning to move ServiceControl from one server to another. Moving databases between servers can be problematic. The embedded RavenDB does not support moving from a new versions of Windows back to older versions of Windows. See [Getting error while restoring backup file in raven DB](https://stackoverflow.com/questions/25625910/getting-error-while-restoring-backup-file-in-raven-db) for more details.
+Care should be taken when planning to move ServiceControl from one server to another. Moving databases between servers can be problematic. RavenDB does not support moving from a new versions of Windows back to older versions of Windows. See [Getting error while restoring backup file in raven DB](https://stackoverflow.com/questions/25625910/getting-error-while-restoring-backup-file-in-raven-db) for more details.
 
 ### Restore to the same ServiceControl version
 
