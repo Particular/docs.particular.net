@@ -5,6 +5,7 @@ reviewed: 2025-02-07
 component: ASBS
 related:
  - transports/azure-service-bus
+ - samples/azure-service-bus-netstandard/topology-migration
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
  - 8
