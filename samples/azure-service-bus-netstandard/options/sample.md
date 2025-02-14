@@ -7,7 +7,7 @@ related:
  - transports/azure-service-bus
 ---
 
-This sample shows how to leverage topology options to layout the topic topology used within the app settings. The sample uses the generic host for convenient loading of appsettings.json via the built-in configuration provider model. Appsettings is used for demonstration purposes and technically the options could be loaded from other sources.
+This sample shows how to leverage topology options to layout the topic topology used within the Application configuration. The sample uses the generic host for convenient loading of configuration via the built-in configuration provider model. The `appsettings.json` is used for demonstration purposes and technically the options could be loaded from other sources.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ The sample contains three executable projects:
 
 ### Configuration from options
 
-With the generic hosts ability to load configuration sections it is a matter of loading the topology options from the section in the application settings as shown below:
+With the generic hosts ability to load configuration sections it is a matter of loading the topology options from the section in the Application configuration as shown below:
 
 Snippet: OptionsLoading
 

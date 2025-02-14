@@ -12,32 +12,17 @@ builder.Logging.AddConsole();
 
 builder.Services.AddAzureServiceBusTopology(builder.Configuration);
 
-var section = builder.Configuration.GetSection("AzureServiceBus");
-
 var endpointConfiguration = new EndpointConfiguration("Samples.AzureServiceBus.Options.Subscriber");
+
+var section = builder.Configuration.GetSection("AzureServiceBus");
 var topologyOptions = section.GetSection("Topology").Get<TopologyOptions>()!;
 var topology = TopicTopology.FromOptions(topologyOptions);
+
 endpointConfiguration.UseTransport(new AzureServiceBusTransport(section["ConnectionString"]!, topology));
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
 endpointConfiguration.EnableInstallers();
 
 builder.UseNServiceBus(endpointConfiguration);
 
 var app = builder.Build();
 await app.RunAsync();
-
-static async Task OnCriticalError(ICriticalErrorContext context, CancellationToken cancellationToken)
-{
-    var fatalMessage =
-        $"The following critical error was encountered:{Environment.NewLine}{context.Error}{Environment.NewLine}Process is shutting down. StackTrace: {Environment.NewLine}{context.Exception.StackTrace}";
-
-    try
-    {
-        await context.Stop(cancellationToken);
-    }
-    finally
-    {
-        Environment.FailFast(fatalMessage, context.Exception);
-    }
-}
