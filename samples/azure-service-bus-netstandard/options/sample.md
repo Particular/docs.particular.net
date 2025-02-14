@@ -44,5 +44,5 @@ Snippet: OptionsValidation
 
 1. First, run the `Subscriber` project by itself. This will create all the necessary publish/subscribe infrastructure in Azure Service Bus.
 2. Run the projects normally so that all endpoints start.
-3. The `Publisher` endpoint continuously published two events with a short pause in between.
+3. The `Publisher` endpoint continuously publishes two events with a short pause in between.
     * The endpoint in the `Subscriber` window will receive both `EventOne` and `EventTwo`.
