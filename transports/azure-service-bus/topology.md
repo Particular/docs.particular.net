@@ -2,7 +2,6 @@
 title: Topology
 component: ASBS
 related:
- - samples/azure-service-bus-netstandard/hierarchy-migration
 reviewed: 2024-11-07
 ---
 
