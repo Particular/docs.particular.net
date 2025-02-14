@@ -13,12 +13,15 @@ builder.Logging.AddConsole();
 
 builder.Services.AddAzureServiceBusTopology(builder.Configuration);
 
-var section = builder.Configuration.GetSection("AzureServiceBus");
-
 var endpointConfiguration = new EndpointConfiguration("Samples.AzureServiceBus.Options.Publisher");
+
+#region OptionsLoading
+var section = builder.Configuration.GetSection("AzureServiceBus");
 var topologyOptions = section.GetSection("Topology").Get<TopologyOptions>()!;
 var topology = TopicTopology.FromOptions(topologyOptions);
 endpointConfiguration.UseTransport(new AzureServiceBusTransport(section["ConnectionString"]!, topology));
+#endregion
+
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
 endpointConfiguration.EnableInstallers();

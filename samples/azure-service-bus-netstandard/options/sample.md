@@ -17,8 +17,28 @@ include: asb-connectionstring-xplat
 
 The sample contains three executable projects:
 
- * `Publisher`: an NServiceBus endpoint that publishes `EventOne` to topic `event-one` and `EventTwo` to `event-two`.
- * `Subscriber`: an NServiceBus endpoint subscribing to the `EventOne` and `EventTwo` event published by the `Publisher`.
+* `Publisher`: an NServiceBus endpoint that publishes `EventOne` to topic `event-one` and `EventTwo` to `event-two`.
+* `Subscriber`: an NServiceBus endpoint subscribing to the `EventOne` and `EventTwo` event published by the `Publisher`.
+
+### Configuration from options
+
+With the generic hosts ability to load configuration sections it is a matter of loading the topology options from the section in the application settings as shown below:
+
+Snippet: OptionsLoading
+
+In this example the publisher overrides the default topic destination to a custom conventions instead of using the default fullname of the event type:
+
+Snippet: PublisherAppsettings
+
+The subscriber needs to override the subscription mapping accordingly:
+
+Snippet: SubscriberAppsettings
+
+### Validation
+
+The transport provides integration with Microsoft.Extensions.Options and has a built-in options validator. With the generic host it is possible to register the validator to make sure the configuration loaded fulfills the requirements of the broker (e.g. topic name length) and is self-consistent.
+
+Snippet: OptionsValidation
 
 ## Running the sample
 
@@ -26,5 +46,3 @@ The sample contains three executable projects:
 2. Run the projects normally so that all endpoints start.
 3. The `Publisher` endpoint continuously published two events with a short pause in between.
     * The endpoint in the `Subscriber` window will receive both `EventOne` and `EventTwo`.
-
-TBD

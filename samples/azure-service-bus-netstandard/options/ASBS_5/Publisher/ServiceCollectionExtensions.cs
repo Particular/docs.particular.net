@@ -9,7 +9,9 @@ public static class ServiceCollectionExtensions
         this IServiceCollection services,
         IConfiguration configuration)
     {
+        #region OptionsValidation
         services.AddSingleton<IValidateOptions<TopologyOptions>, TopologyOptionsValidator>();
         services.AddOptions<TopologyOptions>().Bind(configuration.GetSection("AzureServiceBus:Topology")).ValidateOnStart();
+        #endregion
     }
 }
