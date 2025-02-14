@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ Transport
 summary: An overview of the RabbitMQ transport, learn how to configure and use RabbitMQ as a transport in NServiceBus
-reviewed: 2022-10-19
+reviewed: 2025-02-14
 component: Rabbit
 related:
  - samples/rabbitmq/simple
@@ -54,7 +54,7 @@ See the [routing topology documentation](/transports/rabbitmq/routing-topology.m
 
 ### Advantages
 
- * Provides [native reliability](https://www.rabbitmq.com/reliability.html) and [high-availability](https://www.rabbitmq.com/ha.html) features.
+ * Provides [native reliability](https://www.rabbitmq.com/reliability.html) and [high-availability](https://www.rabbitmq.com/docs/quorum-queues#availability) features.
  * Offers a native publish-subscribe mechanism; therefore it doesn't require NServiceBus persistence for storing event subscriptions.
  * Wide range of [supported clients](https://www.rabbitmq.com/devtools.html) allows for integrating the system with applications written in other languages using native RabbitMQ features.
  * Supports the [competing consumers](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html) pattern out of the box. Messages are received by instances in a round-robin fashion without additional configuration.
