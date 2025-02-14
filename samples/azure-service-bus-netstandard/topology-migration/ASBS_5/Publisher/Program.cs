@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿#pragma warning disable CS0618 // Type or member is obsolete
+
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -36,3 +38,5 @@ builder.Services.AddHostedService<Worker>();
 
 var host = builder.Build();
 await host.RunAsync();
+
+#pragma warning restore CS0618 // Type or member is obsolete
