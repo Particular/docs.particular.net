@@ -1,7 +1,7 @@
 ---
 title: How does ServiceControl work?
 summary: An overview of how ServiceControl collects and processes messages and data from an NServiceBus system
-reviewed: 2022-10-19
+reviewed: 2025-02-14
 ---
 
 ServiceControl is a background process that will collect and store data and make it available via an HTTP API to ServicePulse and ServiceInsight.
