@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿#pragma warning disable CS0618 // Type or member is obsolete
+
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
@@ -32,3 +34,5 @@ builder.UseNServiceBus(endpointConfiguration);
 
 var host = builder.Build();
 await host.RunAsync();
+
+#pragma warning restore CS0618 // Type or member is obsolete
