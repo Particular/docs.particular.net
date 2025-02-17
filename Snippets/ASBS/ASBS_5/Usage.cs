@@ -12,14 +12,14 @@ class Usage
     {
         #region azure-service-bus-for-dotnet-standard
 
-        var transport = new AzureServiceBusTransport("Endpoint=sb://[NAMESPACE].servicebus.windows.net/;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]");
+        var transport = new AzureServiceBusTransport("Endpoint=sb://[NAMESPACE].servicebus.windows.net/;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]", TopicTopology.Default);
         endpointConfiguration.UseTransport(transport);
 
         #endregion
 
         #region token-credentials
 
-        var transportWithTokenCredentials = new AzureServiceBusTransport("[NAMESPACE].servicebus.windows.net", new DefaultAzureCredential());
+        var transportWithTokenCredentials = new AzureServiceBusTransport("[NAMESPACE].servicebus.windows.net", new DefaultAzureCredential(), TopicTopology.Default));
         endpointConfiguration.UseTransport(transportWithTokenCredentials);
 
         #endregion
