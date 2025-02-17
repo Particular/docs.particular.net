@@ -6,14 +6,6 @@
     {
         void Simple(EndpointConfiguration endpointConfiguration)
         {
-            #region HandlerOrderingWithCode
-
-            endpointConfiguration.ExecuteTheseHandlersFirst(
-                typeof(HandlerB),
-                typeof(HandlerA),
-                typeof(HandlerC));
-
-            #endregion
         }
 
         void SpecifyingFirst(EndpointConfiguration endpointConfiguration)
