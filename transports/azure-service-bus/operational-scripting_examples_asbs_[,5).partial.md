@@ -1,4 +1,4 @@
-#### Provisioning endpoints
+### Provisioning endpoints
 
 Create the topology for an endpoint named `MyEndpoint` using the default settings:
 
@@ -18,7 +18,7 @@ Create the topology for an endpoint named `MyEndpoint` and override the publish 
 asb-transport endpoint create MyEndpoint -tp custom-publish-topic -ts custom-subscribe-topic -c "<connection-string>"
 ```
 
-#### Subscribing to events
+### Subscribing to events
 
 Subscribe `MyOtherEndpoint` to the event `Contracts.Events.SomeEvent` using the default settings:
 
