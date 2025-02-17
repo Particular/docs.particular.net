@@ -19,7 +19,7 @@ class Usage
 
         #region token-credentials
 
-        var transportWithTokenCredentials = new AzureServiceBusTransport("[NAMESPACE].servicebus.windows.net", new DefaultAzureCredential(), TopicTopology.Default));
+        var transportWithTokenCredentials = new AzureServiceBusTransport("[NAMESPACE].servicebus.windows.net", new DefaultAzureCredential(), TopicTopology.Default);
         endpointConfiguration.UseTransport(transportWithTokenCredentials);
 
         #endregion
@@ -42,40 +42,17 @@ class Usage
 
         #endregion
 
-        #region custom-single-topology
-
-        transport.Topology = TopicTopology.Single(topicName: "custom-bundle");
-
-        #endregion
-
-        #region custom-topology-hierarchy
-
-        transport.Topology = TopicTopology.Hierarchy(topicToPublishTo: "custom-publish-bundle", topicToSubscribeOn: "custom-subscribe-bundle");
-
-        #endregion
-
-        #region custom-topology-hierarchy-bundle
-
-        transport.Topology = TopicTopology.Hierarchy(topicToPublishTo: "bundle-1", topicToSubscribeOn: "bundle-2");
-
-        #endregion
-
+#pragma warning disable CS0618 // Type or member is obsolete
         #region asb-sanitization-compatibility
 
-        string HashName(string input)
-        {
-            var inputBytes = Encoding.Default.GetBytes(input);
-            // use MD5 hash to get a 16-byte hash of the string
-            var hashBytes = MD5.HashData(inputBytes);
+        var migrationTopology = TopicTopology.MigrateFromSingleDefaultTopic();
+        migrationTopology.OverrideSubscriptionNameFor("QueueName", "ShortenedSubscriptionName");
 
-            return new Guid(hashBytes).ToString();
-        }
-
-        const int MaxEntityName = 50;
-
-        transport.SubscriptionNamingConvention = n => n.Length > MaxEntityName ? HashName(n) : n;
-        transport.SubscriptionRuleNamingConvention = n => n.FullName.Length > MaxEntityName ? HashName(n.FullName) : n.FullName;
+        migrationTopology.EventToMigrate<MyEvent>("ShortenedRuleName");
 
         #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
     }
+
+    class MyEvent;
 }
