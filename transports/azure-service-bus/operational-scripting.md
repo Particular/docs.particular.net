@@ -19,6 +19,14 @@ Once installed, the `asb-transport` command line tool will be available for use.
 
 `asb-transport <command> [options]`
 
+## Available commands
+
+- `endpoint create`
+- `endpoint subscribe`
+- `endpoint unsubscribe`
+- `queue create`
+- `queue delete`
+
 partial: endpoint-command
 
 ### asb-transport queue create
@@ -56,22 +64,24 @@ asb-transport queue delete name
 
 `-n` | `--namespace` : Sets the fully qualified namespace to connect with cached credentials, e.g., credentials from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
 
-### Examples
+partial: migration-endpoint-command
 
-#### Provisioning the audit and the error queues
+## Examples
+
+### Provisioning the audit and the error queues
 
 ```
 asb-transport queue create audit -c "<connection-string>"
 asb-transport queue create error -c "<connection-string>"
 ```
 
-#### Using connection strings
+### Using connection strings
 
 ```
 asb-transport [command] [subcommand] -c "<connection-string>"
 ```
 
-#### Using cached credentials
+### Using cached credentials
 
 ```
 asb-transport [command] [subcommand] -n "somenamespace.servicebus.windows.net"

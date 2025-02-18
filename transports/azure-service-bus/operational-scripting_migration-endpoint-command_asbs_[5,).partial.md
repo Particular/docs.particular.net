@@ -1,9 +1,19 @@
-### asb-transport endpoint create
+## Migration-specific commands
+
+These commands are dedicated to endpoints that are configured with the migration topology for the purpose of migrating from the single-topic publishing approach (forwarding topology) to topic-per-event approach.
+
+- `migration endpoint create`
+- `migration endpoint subscribe`
+- `migration endpoint unsubscribe`
+- `migration endpoint subscribe migrated`
+- `migration endpoint unsubscribe migrated`
+
+### asb-transport migration endpoint create
 
 Creates infrastructure for an endpoint: input queue, topic, and subscription.
 
 ```
-asb-transport endpoint create name
+asb-transport migration endpoint create name
                               [--size]
                               [--partitioned]
                               [--topic]
@@ -29,12 +39,12 @@ asb-transport endpoint create name
 
 `-b` | `--subscription`: Subscription name (defaults to endpoint name)
 
-### asb-transport endpoint subscribe
+### asb-transport migration endpoint subscribe
 
-Creates a new subscription for an endpoint.
+Creates a new subscription for an endpoint using single-topic approach.
 
 ```
-asb-transport endpoint subscribe name event-type
+asb-transport migration endpoint subscribe name event-type
                               [--topic]
                               [--subscription]
                               [--rule-name]
@@ -52,12 +62,12 @@ asb-transport endpoint subscribe name event-type
 
 `-r` | `--rule-name`: Rule name (defaults to event type)
 
-### asb-transport endpoint unsubscribe
+### asb-transport migration endpoint unsubscribe
 
-Deletes a subscription for an endpoint.
+Delete a subscription for an endpoint using single-topic approach.
 
 ```
-asb-transport endpoint unsubscribe name event-type
+asb-transport migration endpoint unsubscribe name event-type
                               [--topic]
                               [--subscription]
                               [--rule-name]
@@ -74,3 +84,37 @@ asb-transport endpoint unsubscribe name event-type
 `-b` | `--subscription`: Subscription name (defaults to endpoint name)
 
 `-r` | `--rule-name`: Rule name (defaults to event type)
+
+### asb-transport migration endpoint subscribe-migrated
+
+Creates a new subscription for an endpoint using topic-per-event approach.
+
+```
+asb-transport migration endpoint subscribe-migrated name topic
+                              [--subscription]
+```
+
+#### Options
+
+`-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
+
+`-n` | `--namespace` : Sets the fully qualified namespace to connect with cached credentials, e.g., credentials from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
+
+`-b` | `--subscription`: Subscription name (defaults to endpoint name)
+
+### asb-transport migration endpoint unsubscribe-migrated
+
+Deletes a subscription for an endpoint using topic-per-event approach.
+
+```
+asb-transport migration endpoint unsubscribe-migrated name topic
+                              [--subscription]
+```
+
+#### Options
+
+`-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
+
+`-n` | `--namespace` : Sets the fully qualified namespace to connect with cached credentials, e.g., credentials from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
+
+`-b` | `--subscription`: Subscription name (defaults to endpoint name)

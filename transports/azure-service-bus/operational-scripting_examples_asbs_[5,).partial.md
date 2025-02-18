@@ -1,4 +1,4 @@
-#### Provisioning endpoints
+### Provisioning endpoints
 
 Create the topology for an endpoint named `MyEndpoint`:
 
@@ -6,7 +6,7 @@ Create the topology for an endpoint named `MyEndpoint`:
 asb-transport endpoint create MyEndpoint -c "<connection-string>"
 ```
 
-#### Subscribing to events
+### Subscribing to events
 
 Subscribe `MyOtherEndpoint` to the event `Contracts.Events.SomeEvent` using the default settings:
 
@@ -20,7 +20,7 @@ Subscribe `MyOtherEndpoint` to the event `Contracts.Events.SomeEvent` and overri
 asb-transport endpoint subscribe MyOtherEndpoint Contracts.Events.SomeEvent -s my-other-endpoint -c "<connection-string>"
 ```
 
-#### Provisioning endpoints that use migration topology
+### Provisioning endpoints that use migration topology
 
 Create the topology for an endpoint named `MyEndpoint` using the default settings:
 
@@ -40,7 +40,7 @@ Create the topology for an endpoint named `MyEndpoint` and override the publish 
 asb-transport migration endpoint create MyEndpoint -tp custom-publish-topic -ts custom-subscribe-topic -c "<connection-string>"
 ```
 
-#### Subscribing to events
+### Subscribing to events
 
 Subscribe `MyOtherEndpoint` to the event `Contracts.Events.SomeEvent` using the default settings:
 
