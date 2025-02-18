@@ -57,7 +57,7 @@ When all tasks are done the transport switches back to the *peek* mode.
 
 Under certain conditions, the initial estimate of the number of pending messages might be wrong e.g. when there is more than one instance of a scaled-out endpoint consuming messages from the same queue. In this case, one of the received tasks will fail (i.e. `delete` will return no results). When this happens, the transport immediately switches back to the *peek* mode.
 
-The [default peek interval](#peek-delay-configuration), if no peek has yet been run or the previous peek returned no messages in the queue, is 1 second. The recommended range for this setting is between 100 milliseconds to 10 seconds. If a value higher than the maximum recommended settings is used, a warning message will be logged. While a value less than 100 milliseconds will put unnecessary stress on the database, a value larger than 10 seconds should also be used with caution as it may result in messages backing up in the queue.
+The [default peek interval](#behavior-queue-peek-settings-peek-delay-configuration), if no peek has yet been run or the previous peek returned no messages in the queue, is 1 second. The recommended range for this setting is between 100 milliseconds to 10 seconds. If a value higher than the maximum recommended settings is used, a warning message will be logged. While a value less than 100 milliseconds will put unnecessary stress on the database, a value larger than 10 seconds should also be used with caution as it may result in messages backing up in the queue.
 
 > [!WARNING]
 > If the queue peek interval is configured, it must not be set larger than the [Time-To-Be-Received](/nservicebus/messaging/discard-old-messages.md)(TTBR) to ensure that such messages are not discarded.
