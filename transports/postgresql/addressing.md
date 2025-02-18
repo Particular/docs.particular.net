@@ -21,7 +21,7 @@ The address is resolved into a fully-qualified table name that includes the tabl
 
 ### Schema
 
-The transport needs to determine which schema to use for a queue table when sending messages. The following API is used to set the schema for an endpoint when [routing](/nservicebus/messaging/routing.md) is used to determine the destination queue for a message:
+The transport needs to determine which schema to use for a queue table when sending messages. The following API sets the schema for an endpoint when using [routing](/nservicebus/messaging/routing.md) to determine the destination queue for a message:
 
 snippet: postgresql-multischema-config-for-endpoint
 
@@ -34,7 +34,7 @@ There are several cases when routing is not used and the transport requires spec
   - [Custom Checks plugin](/monitoring/custom-checks/install-plugin.md)
 - [Overriding the default routing mechanism](/nservicebus/messaging/send-a-message.md#overriding-the-default-routing)
 
-The following API is used to set the schema for a queue:
+Use the following API to set the schema for a queue:
 
 snippet: postgresql-multischema-config-for-queue
 
@@ -49,10 +49,10 @@ snippet: postgresql-multischema-config-for-queue-error
 
 snippet: postgresql-multischema-config-for-queue-heartbeats
 
-The entire algorithm for calculating the schema is the following:
+The following values determine the schema, in priority order:
 
-* If the schema is configured for a given queue via `UseSchemaForQueue`, the configured value is used.
-* If [logical routing](/nservicebus/messaging/routing.md#command-routing) is used and schema is configured for a given endpoint via `UseSchemaForEndpoint`, the configured schema is used.
-* If destination address contains a schema, the schema from address is used.
-* If default schema is configured via `DefaultSchema`, the configured value is used.
+* A schema configured for a given queue via `UseSchemaForQueue`.
+* If [logical routing](/nservicebus/messaging/routing.md#command-routing) is used, a schema configured for a given endpoint via `UseSchemaForEndpoint`.
+* A schema contained in the destination address.
+* A default schema configured via `DefaultSchema`.
 * Otherwise, `public` is used as a default schema.
