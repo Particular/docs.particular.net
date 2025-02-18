@@ -31,7 +31,7 @@ This design can dramatically reduce filtering overhead, often boosting performan
 
 #### Quotas and limitations
 
-A single Azure Service Bus topic can hold up to 2,000 subscriptions, and each Premium namespace (with one messaging unit) can have up to 1,000 topics
+A single Azure Service Bus topic [can hold up to 2,000 subscriptions, and each Premium namespace (with one messaging unit) can have up to 1,000 topics](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas).
 
 - Subscriptions per topic: 2,000 (Standard/Premium).
 - Topics per Premium namespace: 1,000 per messaging unit.
@@ -72,7 +72,56 @@ class OrderAccepted : IOrderAccepted, IOrderStatusChanged { }
 class OrderDeclined : IOrderAccepted, IOrderStatusChanged { }
 ```
 
-TBB add snippet
+For a handler `class OrderAcceptedHandler : IHandleMessages<OrderAccepted>` the subscription will look like:
+
+```mermaid
+flowchart LR
+    subgraph Publisher
+    P[Publishes<br/>OrderAccepted]
+    end
+
+    subgraph Service Bus
+    T1[Topic: Shipping.OrderAccepted]
+    end
+
+    subgraph Subscriber
+    S1[Subscribes to<br/>OrderAccepted]
+    end
+
+    P -->|Publish| T1
+    S1 -->|Subscribe| T1
+```
+
+If the subscriber is interested only in the interface `IOrderStatusChanged`, it will declare a handler `class OrderStatusChanged : IHandleMessages<IOrderStatusChanged>` and a mapping to the corresponding topics where the types implementing that contract are published to.
+
+snippet: asb-interface-based-inheritance
+
+When a publisher starts publishing `Shipping.OrderDeclined` the event is needs to be mapped
+
+snippet: asb-interface-based-inheritance-declined
+
+in order to opt into receiving the event into the subscriber's input queue and therefore requires a topology change.
+
+```mermaid
+flowchart LR
+    subgraph Publisher
+    P[Publishes<br/>OrderAccepted<br/>OrderDeclined]
+    end
+
+    subgraph Service Bus
+    T1[Topic: Shipping.OrderAccepted]
+    T2[Topic: Shipping.OrderDeclined]
+    end
+
+    subgraph Subscriber
+    S1[Subscribes to<br/>OrderAccepted<br/>OrderDeclined]
+    end
+
+    P -->|Publish| T1
+    P -->|Publish| T2
+    S1 -->|Subscribe| T1
+    S1 -->|Subscribe| T2
+```
 
 ##### Evolution of the message contract
 

@@ -5,6 +5,7 @@ using System.Text;
 using Azure.Identity;
 
 using NServiceBus;
+using Shipping;
 
 class Usage
 {
@@ -52,7 +53,26 @@ class Usage
 
         #endregion
 #pragma warning restore CS0618 // Type or member is obsolete
+
+        var topology = TopicTopology.Default;
+        #region asb-interface-based-inheritance
+        topology.SubscribeTo<IOrderStatusChanged>("Shipping.OrderAccepted");
+        #endregion
+
+        #region asb-interface-based-inheritance-declined
+        topology.SubscribeTo<IOrderStatusChanged>("Shipping.OrderAccepted");
+        topology.SubscribeTo<IOrderStatusChanged>("Shipping.OrderDeclined");
+        #endregion
     }
 
     class MyEvent;
+}
+
+namespace Shipping
+{
+    interface IOrderAccepted : IEvent { }
+    interface IOrderStatusChanged : IEvent { }
+
+    class OrderAccepted : IOrderAccepted, IOrderStatusChanged { }
+    class OrderDeclined : IOrderAccepted, IOrderStatusChanged { }
 }
