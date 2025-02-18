@@ -3,8 +3,9 @@ using System.Security.Cryptography;
 using System.Text;
 
 using Azure.Identity;
-
+using Azure.Messaging.ServiceBus;
 using NServiceBus;
+using NServiceBus.Transport;
 using Shipping;
 
 class Usage
@@ -63,6 +64,26 @@ class Usage
         topology.SubscribeTo<IOrderStatusChanged>("Shipping.OrderAccepted");
         topology.SubscribeTo<IOrderStatusChanged>("Shipping.OrderDeclined");
         #endregion
+
+        #region asb-versioning-subscriber-mapping
+        topology.SubscribeTo<IOrderAccepted>("Shipping.OrderAccepted");
+        topology.SubscribeTo<IOrderAccepted>("Shipping.OrderAcceptedV2");
+        #endregion
+
+        #region asb-versioning-publisher-mapping
+        topology.PublishTo<OrderAcceptedV2>("Shipping.OrderAccepted");
+        #endregion
+
+        #region asb-versioning-publisher-customization
+        transport.OutgoingNativeMessageCustomization = (operation, message) =>
+        {
+            if (operation is MulticastTransportOperation multicastTransportOperation)
+            {
+                // Subject is used for demonstration purposes only, choose a property that fits your scenario
+                message.Subject = multicastTransportOperation.MessageType.FullName;
+            }
+        };
+        #endregion
     }
 
     class MyEvent;
@@ -75,4 +96,6 @@ namespace Shipping
 
     class OrderAccepted : IOrderAccepted, IOrderStatusChanged { }
     class OrderDeclined : IOrderAccepted, IOrderStatusChanged { }
+
+    class OrderAcceptedV2 : IOrderAccepted, IOrderStatusChanged { }
 }

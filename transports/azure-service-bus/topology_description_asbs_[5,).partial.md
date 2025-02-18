@@ -125,9 +125,24 @@ flowchart LR
 
 ##### Evolution of the message contract
 
-Evolving the contract is a special case of multiplexing potentially
+As mentioned in [versioning of shared contracts](/nservicebus/messaging/sharing-contracts.md#versioning) and also shown in the examples above, NServiceBus uses the fully-qualified assembly name in the message header. [Evolving the message contract](/nservicebus/messaging/evolving-contracts.md) encourages creating entirely new contract types and then adding a version number to the original name. For example, when evolving `Shipping.OrderAccepted`, the publisher would create a new contract called `Shipping.OrderAcceptedV2`. When the publisher publishes `Shipping.OrderAcceptedV2` events, those would be published by default to `Shipping.OrderAcceptedV2` topic and therefore existing subscribers interested in the previous version would not receive those events. The following options are available:
 
-TBD
+- Publish both versions of the event on the publisher side to individual topics and setting up the subscribers where necessary to receive both _or_
+- Multiplex all versions of the event to the same topic and filter the versions on the subscriber side within specialized filter rules
+
+When publishing both versions of the event the subscribers need to opt-into receiving those events by adding an explicit mapping:
+
+snippet: asb-versioning-subscriber-mapping
+
+When multiplexing all versions of the event to the same topic the following configuration needs to be added on the publisher side:
+
+snippet: asb-versioning-publisher-mapping
+
+and then a customization that promotes the full name to a property of the native message
+
+snippet: asb-versioning-publisher-customization
+
+which would allow adding either a correlation filter (preferred) or a SQL filter to filter out based on the promoted full name.
 
 #### Handling overflow and scaling
 
