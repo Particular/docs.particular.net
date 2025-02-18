@@ -97,7 +97,7 @@ snippet: ThrowFatalException
 
 Next, let's enable the Particular Service Platform tools and see what they do.
 
-1. In the **Platform** project, locate and open the **Program.cs** file.
+1. In the **PlatformLauncher** project, locate and open the **Program.cs** file.
 2. Ensure the code inside the **Main** method shown here is uncommented. This is responsible for launching the platform when we start our project.
 
 snippet: PlatformMain
