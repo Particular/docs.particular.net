@@ -65,13 +65,13 @@ To activate a specific profile, pass the full name of the profile in the command
 
 For example, to run the endpoint with the `Integration` and `PerformanceCounters` profiles:
 
-```dos
+```shell
 .\NServiceBus.Host.exe nservicebus.integration nservicebus.performancecounters
 ```
 
 When installing the host as a Windows Service, the profiles used during installation are saved, and they are used every time the host starts. In order to install the host with the `Production` and `PerformanceCounters` profiles:
 
-```dos
+```shell
 .\NServiceBus.Host.exe /install nservicebus.production nservicebus.performancecounters
 ```
 

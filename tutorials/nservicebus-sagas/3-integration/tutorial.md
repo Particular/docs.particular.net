@@ -1,7 +1,7 @@
 ---
 title: "NServiceBus sagas: Integrations"
-reviewed: 2024-01-04
-summary: In this tutorial, learn how to use NServiceBus sagas to manage integration with external systems that communicate via HTTP.
+reviewed: 2024-10-02
+summary: Learn how to use NServiceBus sagas to manage integration with external systems that communicate via HTTP.
 previewImage: https://img.youtube.com/vi/BHlKPgY2xxg/maxresdefault.jpg
 ---
 
@@ -26,13 +26,15 @@ In the exercises so far, we had a `ShippingPolicy` saga that was rather passive 
 >
 > downloadbutton(Download Previous Solution, /tutorials/nservicebus-sagas/2-timeouts)
 >
-> The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Shipping** define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system. > **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes that define the messages exchanged in our system. > To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
+> The **ClientUI**, **Sales**, **Billing**, and **Shipping** projects define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is the entry point to the system.
+> **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references relevant **.Messages** assembly, which contains the classes that define the messages exchanged in our system.
+> To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
 >
-> This tutorial assumes at least Visual Studio 2019 and .NET Framework 4.7.2.
+> This tutorial uses NServiceBus version 9, .NET 8, and assumes an up-to-date installation of Visual Studio 2022.
 
 ### A new saga
 
-While it would be possible to implement the new functionality in our existing `ShippingPolicy` saga, it's probably not a good idea. That saga is about deciding whether or not to ship while we are now dealing with the process of executing that shipment. It's best to keep the [single responsibility principle](https://en.wikipedia.org/wiki/Single-responsibility_principle) in mind and keep them separate. The result will be simpler sagas that are easier to test and easier to evolve in the future.
+While it would be possible to implement the new functionality in our existing `ShippingPolicy` saga, it's not a good idea. That saga is about deciding whether or not to ship while we are now dealing with the process of executing that shipment. It's best to keep the [single responsibility principle](https://en.wikipedia.org/wiki/Single-responsibility_principle) in mind and keep them separate. The result will be simpler sagas that are easier to test and easier to evolve in the future.
 
 In the `ShippingPolicy` saga class (inside the **Shipping** endpoint project), we already have the `ShipOrder` being sent from the `ProcessOrder` method at the end of the saga. Currently, this is being processed by the `ShipOrderHandler` class, also in the **Shipping** endpoint. Our aim is to replace that handler with a new saga.
 
@@ -61,7 +63,7 @@ Recall that while Maple Shipping Service is cheaper and thus our preferred vendo
 
 To do that, we'll first need to add a class for the command and for the timeout.
 
-In the **Messages** project, add a class for `ShipWithMaple`:
+In the **Shipping.Messages** project, add a class for `ShipWithMaple`:
 
 snippet: ShipWithMapleCommand
 
@@ -102,7 +104,8 @@ We will use a separate message handler to communicate with the Maple web service
 > [!NOTE]
 > **Why not contact the web service directly within the saga?**
 >
-> While the saga is processing the message, it holds a database lock on your saga data so that if multiple messages from the same saga try to modify the data simultaneously, only one of them will succeed. This presents two problems for a web service > request. First, a web request can't be added to a database transaction, meaning that if a concurrency exception occurs, the web request can't be undone. The second is that the time it takes for the web request to complete will hold the saga > database transaction open longer, making it even more likely that another message will be processed concurrently, creating more contention.
+> While the saga is processing the message, it holds a database lock on your saga data so that if multiple messages from the same saga try to modify the data simultaneously, only one of them will succeed.
+> This presents two problems for a web service request. First, a web request can't be added to a database transaction, meaning that if a concurrency exception occurs, the web request can't be undone. The second is that the time it takes for the web request to complete will hold the saga database transaction open longer, making it even more likely that another message will be processed concurrently, creating more contention.
 >
 > This is why a saga should be only a message-driven state machine: a message comes in, decisions are made, and messages go out. Leave all the other processing to external message handlers, as shown in this tutorial.
 
@@ -110,7 +113,7 @@ We'll need to create the message handler and configure the routing so the saga k
 
 Rather than call a real web service, our example will fake it by delaying for a random time and then replying to the `ShipOrderWorkflow` saga with a `ShipmentAcceptedByMaple` message.
 
-First, let's add the `ShipmentAcceptedByMaple` message to our **Messages** project:
+First, let's add the `ShipmentAcceptedByMaple` message to our **Shipping.Messages** project:
 
 snippet: ShipmentAcceptedByMapleMessage
 
@@ -186,7 +189,7 @@ Now let's move on to handling the response from Alpine.
 
 Just like with Maple, we'll need an external handler to mimic contacting Alpine Delivery and a response message type so that Alpine can deliver its answer back to our saga.
 
-Add this message to your **Messages** project:
+Add this message to your **Shipping.Messages** project:
 
 snippet: ShipmentAcceptedByAlpineMessage
 
@@ -223,7 +226,7 @@ In this case, the shipment was not accepted by Maple, but we *already sent the r
 
 One way to handle this situation is to notify the sales department, which can handle the issue manually by calling either shipment provider and requesting delivery.
 
-The best way to notify the sales department is via an event. Add `ShipmentFailed` to your **Messages** project:
+The best way to notify the sales department is via an event. Add `ShipmentFailed` to your **Shipping.Messages** project:
 
 snippet: ShipmentFailedEvent
 
@@ -256,10 +259,14 @@ Based on the randomized timeouts that occur in the Maple and Alpine handlers, th
 The happy path for this workflow is for Maple, our preferred provider, to respond quickly. When that occurs, the output in the **Shipping** console application will look like this:
 
 ```
-12:48:02.112 INFO  ShipOrderWorkflow for Order [19da7b54-36c0-4f68-9db5-713738dccfcf] - Trying Maple first.
-12:48:02.152 INFO  ShipWithMapleHandler: Delaying Order [19da7b54-36c0-4f68-9db5-713738dccfcf] 7 seconds.
-12:48:09.196 INFO  Order [19da7b54-36c0-4f68-9db5-713738dccfcf] - Successfully shipped with Maple
-12:48:23.532 INFO  No saga found for timeout message c6dad340-8ee7-4d54-b23b-ac7c0135d2fd, ignoring since the saga has been marked as complete before the timeout fired
+ info: Shipping.ShipOrderWorkflow[0]
+       ShipOrderWorkflow for Order [dd437de8-dae7-4449-b8c9-ce478ab8ec2a] - Trying Maple first.
+ info: Shipping.Integration.ShipWithMapleHandler[0]
+       ShipWithMapleHandler: Delaying Order [dd437de8-dae7-4449-b8c9-ce478ab8ec2a] 7 seconds.
+ info: Shipping.ShipOrderWorkflow[0]
+       Order [dd437de8-dae7-4449-b8c9-ce478ab8ec2a] - Successfully shipped with Maple
+ info: NServiceBus.SagaPersistenceBehavior[0]
+       No saga found for timeout message 9ec5274d-f711-4265-a5df-b2040092af31, ignoring since the saga has been marked as complete before the timeout fired
 ```
 
 In this case, shipping via Maple was attempted first, and Maple responded in 7 seconds, which is shorter than the requested 20-second timeout.
@@ -275,12 +282,18 @@ Timeouts are designed to be reminders for the saga to take action. If the saga d
 The second case is when Maple takes longer than the 20-second timeout, but Alpine responds quickly.
 
 ```
-13:24:47.214 INFO  ShipOrderWorkflow for Order [a4bd57a8-e835-49b4-b507-90d1a23cd84e] - Trying Maple first.
-13:24:47.275 INFO  ShipWithMapleHandler: Delaying Order [a4bd57a8-e835-49b4-b507-90d1a23cd84e] 42 seconds.
-13:25:29.324 INFO  Order [a4bd57a8-e835-49b4-b507-90d1a23cd84e] - No answer from Maple, let's try Alpine.
-13:25:29.386 INFO  ShipWithAlpineHandler: Delaying Order [a4bd57a8-e835-49b4-b507-90d1a23cd84e] 3 seconds.
-13:25:32.421 INFO  Order [a4bd57a8-e835-49b4-b507-90d1a23cd84e] - Successfully shipped with Alpine
-13:25:50.592 INFO  No saga found for timeout message 9cc0f019-f529-4c00-8eeb-ac7c01401c70, ignoring since the saga has been marked as complete before the timeout fired
+ info: Shipping.ShipOrderWorkflow[0]
+       ShipOrderWorkflow for Order [62a1a38c-86c0-4020-9bb3-a1748dd71783] - Trying Maple first.
+ info: Shipping.Integration.ShipWithMapleHandler[0]
+       ShipWithMapleHandler: Delaying Order [62a1a38c-86c0-4020-9bb3-a1748dd71783] 42 seconds.
+ info: Shipping.ShipOrderWorkflow[0]
+       Order [62a1a38c-86c0-4020-9bb3-a1748dd71783] - No answer from Maple, let's try Alpine.
+ info: Shipping.Integration.ShipWithAlpineHandler[0]
+       ShipWithAlpineHandler: Delaying Order [62a1a38c-86c0-4020-9bb3-a1748dd71783] 4 seconds.
+ info: Shipping.ShipOrderWorkflow[0]
+       Order [62a1a38c-86c0-4020-9bb3-a1748dd71783] - Successfully shipped with Alpine
+ info: NServiceBus.SagaPersistenceBehavior[0]
+       No saga found for timeout message 137c7deb-1d5b-440a-818f-b2040093edd9, ignoring since the saga has been marked as complete before the timeout fired
 ```
 
 Here, we see that Maple was attempted, but took 42 seconds to respond, which is past our requested 20-second timeout. So instead, the order was shipping via Alpine, which responded in 3 seconds, which was successful.
@@ -292,12 +305,18 @@ Once again, a timeout was discarded after the saga completed its work, but in th
 In the last case, both Maple and Alpine will take longer than their configured timeouts to respond:
 
 ```
-13:36:21.825 INFO  ShipOrderWorkflow for Order [54775217-49ee-4856-82e5-1ccc432d1d60] - Trying Maple first.
-13:36:21.861 INFO  ShipWithMapleHandler: Delaying Order [54775217-49ee-4856-82e5-1ccc432d1d60] 42 seconds.
-13:37:03.914 INFO  Order [54775217-49ee-4856-82e5-1ccc432d1d60] - No answer from Maple, let's try Alpine.
-13:37:03.965 INFO  ShipWithAlpineHandler: Delaying Order [54775217-49ee-4856-82e5-1ccc432d1d60] 24 seconds.
-13:37:27.998 WARN  Order [54775217-49ee-4856-82e5-1ccc432d1d60] - No answer from Maple/Alpine. We need to escalate!
-13:37:28.032 INFO  Could not find a started saga for 'Messages.ShipmentAcceptedByAlpine' message type. Going to invoke SagaNotFoundHandlers.
+ info: Shipping.ShipOrderWorkflow[0]
+       ShipOrderWorkflow for Order [1cd958c7-7bbe-4388-a831-c88c0c7da5b8] - Trying Maple first.
+ info: Shipping.Integration.ShipWithMapleHandler[0]
+       ShipWithMapleHandler: Delaying Order [1cd958c7-7bbe-4388-a831-c88c0c7da5b8] 44 seconds.
+ info: Shipping.ShipOrderWorkflow[0]
+       Order [1cd958c7-7bbe-4388-a831-c88c0c7da5b8] - No answer from Maple, let's try Alpine.
+ info: Shipping.Integration.ShipWithAlpineHandler[0]
+       ShipWithAlpineHandler: Delaying Order [1cd958c7-7bbe-4388-a831-c88c0c7da5b8] 24 seconds.
+ warn: Shipping.ShipOrderWorkflow[0]
+       Order [1cd958c7-7bbe-4388-a831-c88c0c7da5b8] - No answer from Maple/Alpine. We need to escalate!
+ info: NServiceBus.SagaPersistenceBehavior[0]
+       Could not find a started saga of 'Shipping.ShipOrderWorkflow' for message type 'Messages.ShipmentAcceptedByAlpine'.
 ```
 
 We can see from the output that both timeouts were reached, resulting in the `WARN` statement, which we know would be accompanied by the `ShipmentFailed` event being published, but since we don't have any handler for that we don't see any evidence in the log.
@@ -305,7 +324,8 @@ We can see from the output that both timeouts were reached, resulting in the `WA
 We also see a new message at the end, similar to what happened when timeout messages were being ignored:
 
 ```
-INFO  Could not find a started saga for 'Messages.ShipmentAcceptedByAlpine' message type. Going to invoke SagaNotFoundHandlers.
+ info: NServiceBus.InvokeSagaNotFoundBehavior[0]
+       Could not find any started sagas for message type 'Messages.ShipmentAcceptedByAlpine'. Going to invoke SagaNotFoundHandlers.
 ```
 
 This is caused by the `ShipmentAcceptedByAlpine` message being returned _after_ the second timeout has already given up on Alpine, published `ShipmentFailed`, and marked the saga as complete, removing it from storage. As we've defined the saga thus far, this is working as intended, but this is another place where it all comes down to business requirements.
@@ -315,6 +335,6 @@ It is possible to handle these instances by [creating an `IHandleSagaNotFound` i
 
 ## Summary
 
-In this lesson, we learned about commander sagas that execute several steps within a business process. Sagas orchestrate and delegate the work to other handlers. The reason for delegation is to adhere to the Single Responsibility Principle and to avoid potential contention. We've also taken another look at timeouts. And finally, we've seen how different scenarios in our business process can be modeled and implemented using sagas.
+In this lesson, we learned about sagas that execute several steps within a business process via commands. Sagas orchestrate and delegate the work to other handlers. The reason for delegation is to adhere to the Single Responsibility Principle and to avoid potential contention. We've also taken another look at timeouts. And finally, we've seen how different scenarios in our business process can be modeled and implemented using sagas.
 
 For more information on sagas, check out the [saga documentation](/nservicebus/sagas/) or our [other saga tutorials](/tutorials/nservicebus-sagas/). If you've got questions, you could also [talk to us about a proof of concept](https://particular.net/proof-of-concept).

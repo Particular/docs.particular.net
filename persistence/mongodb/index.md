@@ -7,7 +7,7 @@ related:
 redirects:
 - persistence/mongodb-tekmaven
 - nservicebus/messaging/databus/mongodb-tekmaven
-reviewed: 2021-08-19
+reviewed: 2024-08-01
 ---
 
 Uses the [MongoDB document database](https://www.mongodb.com/) for storage.

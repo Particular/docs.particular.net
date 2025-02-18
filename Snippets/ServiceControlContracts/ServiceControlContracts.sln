@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceControlContracts_1", "ServiceControlContracts_1\ServiceControlContracts_1.csproj", "{93F53614-102A-48EA-B42F-334125DD8046}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceControlContracts_5", "ServiceControlContracts_5\ServiceControlContracts_5.csproj", "{93F53614-102A-48EA-B42F-334125DD8046}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

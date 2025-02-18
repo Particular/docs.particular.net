@@ -16,14 +16,14 @@ To change it:
  1. Edit the value of `ImagePath`. The value contains the full path to the ServicePulse.exe and a command line of the URL to use:
 
 The default value for ImagePath is:
-```dos
+```shell
 "C:\Program Files (x86)\Particular Software\ServicePulse\ServicePulse.Host.exe" --url="http://localhost:9090"
 ```
 
 Change the value after `--url=` and restart the service.
 
 It may be necessary to reserve the new URL for the account being used to run ServicePulse. For example, to reserve port 9090 for all users:
-```dos
+```shell
 netsh http add urlacl url=http://+:9090/ user=Everyone
 ```
 

@@ -1,14 +1,14 @@
 ---
 title: Reply and ReplyToOriginator Differences
 summary: Outlines the different behaviors of the Reply and ReplyToOriginator methods of the IMessageHandlerContext/IBus instance.
-reviewed: 2022-05-12
+reviewed: 2024-11-19
 redirects:
 - nservicebus/sagas/reply-replaytooriginator-differences
 ---
 
-When building systems using the [request/response pattern](/nservicebus/messaging/reply-to-a-message.md), the `Reply` method exposed by the `IMessageHandlerContext` or `IBus` interface is used to reply to the sender of the incoming message.
+When building systems using the [request/response pattern](/nservicebus/messaging/reply-to-a-message.md), the `Reply` method exposed by the `IMessageHandlerContext` is used to reply to the sender of the incoming message.
 
-The same `Reply` method can be used inside a `Saga` and it is important to understand that it can have a different semantic, otherwise it can lead to unexpected behavior.
+The same `Reply` method can be used inside a [saga](/nservicebus/sagas/) and it is important to understand that the `Reply` method always routes the message to the sender of the incoming message, _not the endpoint that started the saga_.
 
 > [!NOTE]
 > The `Reply` method always delivers the message to the sender address of the incoming message.

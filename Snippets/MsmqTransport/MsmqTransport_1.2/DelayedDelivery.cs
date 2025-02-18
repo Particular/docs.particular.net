@@ -1,5 +1,6 @@
 ﻿using System;
 using NServiceBus;
+using NServiceBus.Features;
 
 class DelayedDelivery
 {
@@ -20,6 +21,8 @@ class DelayedDelivery
         delayedDeliverySettings.TimeToTriggerStoreCircuitBreaker = TimeSpan.FromSeconds(20);
         delayedDeliverySettings.TimeToTriggerDispatchCircuitBreaker = TimeSpan.FromSeconds(15);
         delayedDeliverySettings.TimeToTriggerFetchCircuitBreaker = TimeSpan.FromSeconds(45);
+
+        endpointConfiguration.DisableFeature<TimeoutManager>();
 
         #endregion
     }

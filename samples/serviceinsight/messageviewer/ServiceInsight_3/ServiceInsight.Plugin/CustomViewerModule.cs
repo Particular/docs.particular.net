@@ -2,7 +2,7 @@
 
 namespace ServiceInsight.CustomViewer.Plugin
 {
-	#region  IoCModule
+    #region  IoCModule
     public class CustomViewerModule : Module
     {
         protected override void Load(ContainerBuilder builder)
@@ -12,5 +12,5 @@ namespace ServiceInsight.CustomViewer.Plugin
             builder.RegisterType<MessageEncryptor>().AsImplementedInterfaces().AsSelf().SingleInstance();
         }
     }
-	#endregion
+    #endregion
 }

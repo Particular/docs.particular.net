@@ -1,6 +1,6 @@
 ---
 title: License file information
-summary: Outlines license usage, management, and restrictions
+summary: Learn how to configure NServiceBus license and troubleshoot any license scanning issues 
 component: core
 reviewed: 2024-05-07
 redirects:

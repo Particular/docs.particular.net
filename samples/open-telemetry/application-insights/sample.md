@@ -1,7 +1,7 @@
 ---
 title: Monitoring NServiceBus endpoints with Application Insights
 summary: How to configure NServiceBus to export OpenTelemetry traces and meters to Application Insights
-reviewed: 2024-01-17
+reviewed: 2024-07-26
 component: Core
 previewImage: trace-timeline.png
 related:
@@ -58,19 +58,19 @@ To monitor the rate of messages being fetched from the queuing system, processed
 
 To monitor [recoverability](/nservicebus/recoverability/) metrics use:
 
-- `nservicebus.recoverability.immediate_retries`
-- `nservicebus.recoverability.delayed_retries`
-- `nservicebus.recoverability.retries`
-- `nservicebus.recoverability.sent_to_error`
+- `nservicebus.recoverability.immediate`
+- `nservicebus.recoverability.delayed`
+- `nservicebus.recoverability.error`
 
 ![Graph showing recoverability metrics in Application Insights](metrics-recoverability.png)
 
-#### Critical time and processing time
+#### Handler time, critical time, and processing time
 
-To monitor [critical time and processing time](/monitoring/metrics/definitions.md#metrics-captured) (in milliseconds) for successfully processed messages use:
+To monitor [handler time, processing time, and critical time](/monitoring/metrics/definitions.md#metrics-captured) (in seconds) for successfully processed messages use:
 
-- `nservicebus.messaging.processingtime`
-- `nservicebus.messaging.criticaltime`
+- `nservicebus.messaging.handler_time`
+- `nservicebus.messaging.processing_time`
+- `nservicebus.messaging.critical_time`
 
 ![Graph showing processing time and critical time metrics in Application Insights](metrics-timing.png)
 
@@ -92,11 +92,3 @@ The endpoint configures an OpenTelemetry meter provider that includes the `NServ
 
 snippet: enable-meters
 
-#### Critical time and processing time
-
-[Critical time and processing time captured by the metrics package](/monitoring/metrics/definitions.md#metrics-captured) are not yet supported in OpenTelemetry's native format (using System.Diagnostics), so a shim is required to expose them as OpenTelemetry metrics.
-
-snippet: metrics-shim
-
-> [!NOTE]
-> The shim passes `QueueName` as a custom dimension which allows filtering the graphs in Application Insights. Multi-dimensional metrics are not enabled by default. Check [the Azure Monitor documentation](https://docs.microsoft.com/en-us/azure/azure-monitor/app/get-metric#enable-multi-dimensional-metrics) for instructions on how to enable this feature.

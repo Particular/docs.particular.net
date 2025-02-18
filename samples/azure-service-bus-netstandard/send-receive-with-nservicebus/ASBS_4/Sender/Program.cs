@@ -1,46 +1,31 @@
-using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
+using Sender;
 using Shared;
 
-namespace Sender
-{
-    class Program
-    {
-        static async Task Main(string[] args)
-        {
-            var host = Host.CreateDefaultBuilder(args)
-                .ConfigureLogging((context, logging) =>
-                {
-                    logging.AddConfiguration(context.Configuration.GetSection("Logging"));
+var builder = Host.CreateApplicationBuilder(args);
 
-                    logging.AddConsole();
-                })
-                .UseConsoleLifetime()
-                .UseNServiceBus(context =>
-                {
-                    var endpointConfiguration = new EndpointConfiguration("Sender");
+builder.Logging.AddConsole();
 
-                    var connectionString = context.Configuration.GetConnectionString("AzureServiceBusConnectionString");
-                    var routing = endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString));
-                    endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+var endpointConfiguration = new EndpointConfiguration("Sender");
 
-                    endpointConfiguration.AuditProcessedMessagesTo("audit");
-                    routing.RouteToEndpoint(typeof(Ping), "Receiver");
+var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString");
+var routing = endpointConfiguration.UseTransport(new AzureServiceBusTransport(connectionString));
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-                    // Operational scripting: https://docs.particular.net/transports/azure-service-bus/operational-scripting
-                    endpointConfiguration.EnableInstallers();
+endpointConfiguration.AuditProcessedMessagesTo("audit");
+routing.RouteToEndpoint(typeof(Ping), "Receiver");
 
-                    return endpointConfiguration;
-                })
-                .ConfigureServices(services => services.AddHostedService<SenderWorker>())
-                .Build();
+// Operational scripting: https://docs.particular.net/transports/azure-service-bus/operational-scripting
+endpointConfiguration.EnableInstallers();
 
-            await host.RunAsync();
-        }
-    }
-}
+builder.UseNServiceBus(endpointConfiguration);
+
+builder.Services.AddHostedService<SenderWorker>();
+
+var host = builder.Build();
+await host.RunAsync();

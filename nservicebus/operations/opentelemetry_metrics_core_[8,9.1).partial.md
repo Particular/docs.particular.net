@@ -14,3 +14,16 @@ snippet: opentelemetry-enablemeters
 - `nservicebus.messaging.failures` - Total number of messages processed unsuccessfully by the endpoint
 
 See the [OpenTelemetry samples](/samples/open-telemetry/) for instructions on how to send metric information to different tools.
+
+### Additional metrics
+
+The NServiceBus.Metrics package provides additional metrics that are not yet exposed via OpenTelemetry.
+
+These metrics include:
+
+- Critical time
+- Processing time
+- Handler time
+- Retries
+
+To expose these metrics via OpenTelemetry, a shim can be used. The [OpenTelemetry shim sample](/samples/open-telemetry/metrics-shim/) demonstrates how to set up a shim that exposes NServiceBus.Metrics in an OpenTelemetry format and exports them to Azure Application Insights.

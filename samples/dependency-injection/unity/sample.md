@@ -1,7 +1,7 @@
 ---
 title: Unity Dependency Injection Usage
 component: Extensions.DependencyInjection
-reviewed: 2021-12-07
+reviewed: 2024-10-01
 related:
 - nservicebus/dependency-injection
 - nservicebus/dependency-injection/unity

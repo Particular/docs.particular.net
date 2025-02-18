@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Messages;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 namespace Billing
 {
@@ -9,11 +9,16 @@ namespace Billing
     public class OrderPlacedHandler :
         IHandleMessages<OrderPlaced>
     {
-        static readonly ILog log = LogManager.GetLogger<OrderPlacedHandler>();
+        private readonly ILogger<OrderPlacedHandler> logger;
+
+        public OrderPlacedHandler(ILogger<OrderPlacedHandler> logger)
+        {
+            this.logger = logger;
+        }
 
         public Task Handle(OrderPlaced message, IMessageHandlerContext context)
         {
-            log.Info($"Billing has received OrderPlaced, OrderId = {message.OrderId}");
+            logger.LogInformation("Billing has received OrderPlaced, OrderId = {orderId}", message.OrderId);
             return Task.CompletedTask;
         }
     }

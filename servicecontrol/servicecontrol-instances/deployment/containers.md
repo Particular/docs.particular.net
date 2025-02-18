@@ -1,8 +1,12 @@
 ---
 title: Deploying ServiceControl Error instances using Containers
+summary: A guide to setting up and deploying ServiceControl Error instances using Containers
 reviewed: 2024-07-08
 component: ServiceControl
 versions: '[5.3, )'
+redirects:
+  - servicecontrol/containerization
+  - samples/platformtools-docker-compose
 ---
 
 ServiceControl Error instances are deployed using the [`particular/servicecontrol` image](https://hub.docker.com/r/particular/servicecontrol), as shown in this minimal example using `docker run`, assuming a RabbitMQ container named `rabbitmq`:
@@ -12,12 +16,15 @@ docker run -d --name servicecontrol -p 33333:33333 \
     -e TRANSPORTTYPE=RabbitMQ.QuorumConventionalRouting \
     -e CONNECTIONSTRING="host=rabbitmq" \
     -e RAVENDB_CONNECTIONSTRING="http://servicecontrol-db:8080" \
-    -e REMOTEINSTANCES='[{"api_uri":"http://audit:44444/api"}]'
+    -e REMOTEINSTANCES='[{"api_uri":"http://audit:44444/api"}]' \
     particular/servicecontrol:latest
 ```
+
+include: platform-container-examples
+
 ## Initial setup
 
-Before running the container image normally, it must be run in setup mode to create the required message queues.
+Before running the container image normally, it must run in setup mode to create the required message queues and perform upgrade tasks.
 
 The container image will run in setup mode by adding the `--setup` argument. For example:
 
@@ -26,23 +33,39 @@ The container image will run in setup mode by adding the `--setup` argument. For
 docker run --rm {OPTIONS} particular/servicecontrol --setup
 ```
 
-Depending on the requirements of the message transport, setup mode may require different connection settings that have permissions to create queues, which are not necessary during non-setup runtime.
+Setup mode may require different settings, such as a different transport connection string with permissions to create queues.
 
 After setup is complete, the container will exit, and the `--rm` (or equivalent) option may be used to automatically remove the container.
 
-The initial setup should be repeated any time the container is [updated to a new version](#upgrading).
+The setup process should be repeated any time the container is [updated to a new version](#upgrading).
+
+### Simplified setup
+
+Instead of running `--setup` as a separate container, the setup and run operations can be combined using the `--setup-and-run` argument:
+
+```shell
+# Using docker run
+docker run {OPTIONS} particular/servicecontrol --setup-and-run
+```
+
+The `--setup-and-run` argument will run the setup process when the container is run, after which the application will run normally. This simplifies deployment by removing the need for a separate init container in environments where the setup process does not need different settings.
+
+Using `--setup-and-run` removes the need to repeat a setup process when the container is updated to a new version.
 
 ## Required settings
 
-The following environment settings are required to run a ServiceControl error instance:
+_Environment variable:_ `REMOTEINSTANCES`
 
-| Environment Variable | Description |
-|-|-|
-| `TRANSPORTTYPE` | Determines the message transport used to communicate with message endpoints. See [ServiceControl transport configuration](/servicecontrol/transports.md) for valid TransportType values. |
-| `CONNECTIONSTRING` | Provides the connection information to connect to the chosen transport. The form of this connection string is different for every message transport. See [ServiceControl transport support](/servicecontrol/transports.md) for more details on options available to each message transport. |
-| `RAVENDB_CONNECTIONSTRING` | Provides the URL to connect to the [database container](/servicecontrol/ravendb/deployment/containers.md) that stores the error instance's data. The database container should be exclusive to the error instance, and not shared by any other ServiceControl instances. |
-| `REMOTEINSTANCES` | A JSON structure that provides URLs for the Error instance to access any [remote audit instances](/servicecontrol/servicecontrol-instances/remotes.md). When requesting audit data via the ServiceControl API, the Error instance will communicate to each of the remote audit instances in a scatter-gather pattern and then return the combined results. The URLs must be accessible by the Error instance directly, not constructed to be accessible from an external browser. |
-| `PARTICULARSOFTWARE_LICENSE` | The Particular Software license. The environment variable should contain the full multi-line contents of the license file. |
+The following environment settings are required to run a ServiceControl error instance.
+
+include: servicecontrol-container-transport
+include: servicecontrol-container-ravenconnectionstring
+
+### Remote instances
+
+A JSON structure that provides URLs for the Error instance to access any [remote audit instances](/servicecontrol/servicecontrol-instances/remotes.md). When requesting audit data via the ServiceControl API, the Error instance will communicate to each of the remote audit instances in a scatter-gather pattern and then return the combined results. The URLs must be accessible by the Error instance directly, not constructed to be accessible from an external browser.
+
+include: servicecontrol-container-license
 
 ## Ports
 

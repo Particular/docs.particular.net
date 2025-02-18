@@ -44,10 +44,15 @@ snippet: postgresql-multischema-config-for-queue-send
 
 snippet: postgresql-multischema-config-for-queue-error
 
-The following algorithm is used to determine the schema:
+> [!NOTE]
+> If the queue name contains a "." and the first part is not a schema name, enclose the queue name in quotes.
 
-- If the schema is set for a given queue using `UseSchemaForQueue`, that schema is used.
-- If [logical routing](/nservicebus/messaging/routing.md#command-routing) is used and the schema is set for a given endpoint using `UseSchemaForEndpoint`, that schema is used.
-- If the destination address contains a schema, that schema is used.
-- If a default schema is set using `DefaultSchema`, that schema is used.
-- Otherwise, the default schema `public` is used.
+snippet: postgresql-multischema-config-for-queue-heartbeats
+
+The entire algorithm for calculating the schema is the following:
+
+* If the schema is configured for a given queue via `UseSchemaForQueue`, the configured value is used.
+* If [logical routing](/nservicebus/messaging/routing.md#command-routing) is used and schema is configured for a given endpoint via `UseSchemaForEndpoint`, the configured schema is used.
+* If destination address contains a schema, the schema from address is used.
+* If default schema is configured via `DefaultSchema`, the configured value is used.
+* Otherwise, `public` is used as a default schema.

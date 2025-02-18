@@ -73,7 +73,7 @@ where `<directory>` is the full path of the working directory that the de-duplic
 
 The utility will list saga data classes that it found while scanning the assemblies provided. The list of classes is split into two categories: those classes that have a correlation property and those that do not.
 
-```dos
+```shell
 $ NServiceBus.AzureStoragePersistence.SagaDeduplicator.exe directory=saga operation=Download
 
 Following saga types have correlation properties

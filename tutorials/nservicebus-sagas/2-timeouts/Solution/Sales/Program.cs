@@ -1,27 +1,41 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-namespace Sales
+namespace Sales;
+
+class Program
 {
-    class Program
+    static async Task Main(string[] args)
     {
-        static async Task Main()
-        {
-            Console.Title = "Sales";
+        Console.Title = "Sales";
 
-            var endpointConfiguration = new EndpointConfiguration("Sales");
+        var builder = Host.CreateApplicationBuilder(args);
 
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+        var endpointConfiguration = new EndpointConfiguration("Sales");
 
-            var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        endpointConfiguration.UseTransport<LearningTransport>();
 
-            Console.WriteLine("Press Enter to exit.");
-            Console.ReadLine();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
 
-            await endpointInstance.Stop();
-        }
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.AuditProcessedMessagesTo("audit");
+
+        // Decrease the default delayed delivery interval so that we don't
+        // have to wait too long for the message to be moved to the error queue
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Delayed(
+            delayed =>
+            {
+                delayed.TimeIncrease(TimeSpan.FromSeconds(2));
+            }
+        );
+
+        builder.UseNServiceBus(endpointConfiguration);
+
+        await builder.Build().RunAsync();
     }
 }

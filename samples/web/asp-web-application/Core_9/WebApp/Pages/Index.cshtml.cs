@@ -5,16 +5,9 @@ using NServiceBus;
 namespace WebApp.Pages
 {
     [IgnoreAntiforgeryToken]
-    public class IndexModel : PageModel
+    public class IndexModel(IMessageSession messageSession) : PageModel
     {
-        IMessageSession messageSession;
-
         public string ResponseText { get; set; }
-
-        public IndexModel(IMessageSession messageSession)
-        {
-            this.messageSession = messageSession;
-        }
 
         public async Task<IActionResult> OnPostAsync(string textField)
         {

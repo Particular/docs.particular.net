@@ -1,5 +1,6 @@
 ---
 title: ServiceControl remote instances
+summary: Aggregate data from other ServiceControl instances using the ServiceControl Remotes features
 reviewed: 2024-07-19
 component: ServiceControl
 redirects:
@@ -228,7 +229,7 @@ Remote instances are listed in the `ServiceControl/RemoteInstances` app setting 
 ```xml
 <configuration>
   <appSettings>
-    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api'}]"/>
+    <add key="ServiceControl/RemoteInstances" value="[{&quot;api_uri&quot;:&quot;http://localhost:33334/api&quot;}]"/>
   </appSettings>/
 </configuration>
 ```
@@ -238,7 +239,7 @@ Remote instances are listed in the `ServiceControl/RemoteInstances` app setting 
 ```xml
 <configuration>
   <appSettings>
-    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api', 'queue_address':'Particular.ServiceControl.Remote'}]"/>
+    <add key="ServiceControl/RemoteInstances" value="[{&quot;api_uri&quot;:&quot;http://localhost:33334/api&quot;, &quot;queue_address&quot;:&quot;Particular.ServiceControl.Remote&quot;}]"/>
   </appSettings>/
 </configuration>
 ```

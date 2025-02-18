@@ -23,6 +23,7 @@ while (true)
 
     var nativeMessage = new NativeMessage
     {
+        NativeMessageId = Guid.NewGuid(),
         Content = $"Hello from native sender @ {DateTimeOffset.Now}"
     };
 

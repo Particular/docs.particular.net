@@ -1,5 +1,7 @@
 ﻿using FluentNHibernate.Mapping;
 
+#region FluentMapping
+
 public class OrderSagaDataFluentMap :
     ClassMap<OrderSagaDataFluent>
 {
@@ -27,3 +29,5 @@ public class OrderSagaDataFluentMap :
         });
     }
 }
+
+#endregion

@@ -1,6 +1,6 @@
 ---
 title: Outbox
-summary: Reliable messaging without distributed transactions
+summary: Ensure message consistency with the NServiceBus Outbox, handling message deduplication and transactional integrity in distributed systems.
 reviewed: 2023-06-30
 component: Core
 isLearningPath: true

@@ -2,7 +2,7 @@
 title: NServiceBus host troubleshooting
 summary: Resolve common NServiceBus host issues
 component: Host
-reviewed: 2022-05-17
+reviewed: 2024-12-06
 ---
 
 ## Host fails to start due to System.Reflection.ReflectionTypeLoadException

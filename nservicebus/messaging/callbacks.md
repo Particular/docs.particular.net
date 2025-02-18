@@ -1,7 +1,7 @@
 ---
 title: Client-side callbacks
 summary: Gradually transition applications from synchronous to a messaging architecture
-reviewed: 2022-06-03
+reviewed: 2024-12-06
 component: Callbacks
 redirects:
 - nservicebus/how-do-i-handle-responses-on-the-client-side

@@ -1,7 +1,7 @@
 ---
 title: Performance Metrics in ServicePulse
 summary: Describes how to use ServicePulse to review endpoint performance metrics
-reviewed: 2022-03-28
+reviewed: 2024-11-27
 ---
 
 ServicePulse collects and displays performance monitoring data about running endpoints on the Monitoring tab.

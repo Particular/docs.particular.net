@@ -1,7 +1,7 @@
 ---
 title: Uninstall RavenDB v2.0
 summary: Uninstalling RavenDB instances that were installed by previous versions of the Platform Installer.
-reviewed: 2021-12-03
+reviewed: 2024-10-01
 redirects:
  - nservicebus/using-ravendb-uninstalling-v4
  - nservicebus/ravendb/uninstalling-v4
@@ -25,19 +25,19 @@ As of 2014-10-15, the Platform Installer no longer installs RavenDB Version 2.0 
 
 To list the URACLs for that port, from an **Admin** PowerShell run:
 
-```dos
+```shell
 netsh.exe http show urlacl | select-string :8080
 ```
 
 This may return something like the following:
 
-```dos
+```shell
 Reserved URL: http://+:8080/
 ```
 
 Remove it with this command:
 
-```dos
+```shell
 netsh.exe http delete urlacl url=http://+:8080/
 ```
 
@@ -50,6 +50,6 @@ There is one additional cleanup step if the PlatformInstaller was used as the me
 
 The following PowerShell command will list the directory which can be safely deleted.
 
-```dos
+```shell
 dir ("{0}\lib" -f $env:ChocolateyInstall) -Filter *RavenDB* | Select -ExpandProperty FullName
 ```

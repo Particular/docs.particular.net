@@ -37,6 +37,12 @@ class MultiSchema
         endpointConfiguration.SendFailedMessagesTo("myerror");
 
         #endregion
+
+        #region postgresql-multischema-config-for-queue-heartbeats
+
+        endpointConfiguration.SendHeartbeatTo("\"Particular.ServiceControl\"");
+        
+        #endregion        
     }
 
     void ConfigureCustomSchemaForEndpoint(EndpointConfiguration endpointConfiguration)

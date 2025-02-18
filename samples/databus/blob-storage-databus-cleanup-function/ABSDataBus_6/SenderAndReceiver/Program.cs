@@ -9,7 +9,9 @@ class Program
         Console.Title = "SenderAndReceiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.AzureDataBusCleanupWithFunctions.SenderAndReceiver");
 
+#pragma warning disable CS0618 // Type or member is obsolete
         var dataBus = endpointConfiguration.UseDataBus<AzureDataBus, SystemJsonDataBusSerializer>();
+#pragma warning restore CS0618 // Type or member is obsolete
         dataBus.ConnectionString("UseDevelopmentStorage=true");
 
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
@@ -47,11 +49,13 @@ class Program
     {
         Console.WriteLine("Sending message...");
 
+#pragma warning disable CS0618 // Type or member is obsolete
         var message = new MessageWithLargePayload
         {
             Description = "This message contains a large payload that will be sent on the Azure data bus",
             LargePayload = new DataBusProperty<byte[]>(new byte[1024 * 1024 * 5]) // 5MB
         };
+#pragma warning restore CS0618 // Type or member is obsolete
 
         await messageSession.SendLocal(message);
 

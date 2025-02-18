@@ -6,7 +6,7 @@ reviewed: 2024-06-24
 redirects:
  - servicecontrol/monitoring-instances/installation/creating-config-file
 ---
-The configuration of a ServiceControl Monitoring instance is controlled by the `ServiceControl.Monitoring.exe.config` file or by setting environment variables. When a setting configuration exists as both an environment variables and in the application configuration file, the environment variable setting takes precidence.
+The configuration of a ServiceControl Monitoring instance is controlled by the `ServiceControl.Monitoring.exe.config` file or by setting environment variables. When a setting configuration exists as both an environment variables and in the application configuration file, the environment variable setting takes precedence.
 
 Deployments using the ServiceControl Management utility (SCMU) can use that application to make a subset of configuration settings which are read from and written to the application configuration file.
 
@@ -21,15 +21,17 @@ Deployments using the ServiceControl Management utility (SCMU) can use that appl
 
 Prior to modifying these configuration settings review [Setting a Custom Hostname](configure-the-uri.md):
 
-### Monitoring/EndpointName
+### Monitoring/InstanceName
 
-The endpoint name to be used by the monitoring instance and the name of the monitoring queue.
+_Added in version 5.5.0_
+
+The name to be used by the monitoring instance and the name of the monitoring queue.
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `MONITORING_ENDPOINTNAME` |
-| **App config key** | `Monitoring/EndpointName` |
-| **SCMU field** | Instance Name |
+| **Environment variable** | `MONITORING_INSTANCENAME` |
+| **App config key** | `Monitoring/InstanceName` |
+| **SCMU field** | Instance/Queue Name |
 
 | Type | Default value |
 | --- | --- |
@@ -191,7 +193,7 @@ The time after which the endpoint is considered stale if it stops sending messag
 
 _Added in version 5.4.0_
 
-The queue on which throughput data is received by ServiceControl error instance. This setting must match the equivalent [`LicensingComponent/ServiceControlThroughputDataQueue`](/servicecontrol/servicecontrol-instances/configuration.md).md#usage-reporting-when-using-servicecontrol-licensingcomponentservicecontrolthroughputdataqueue) setting on the ServiceControl error instance.
+The queue on which throughput data is received by ServiceControl error instance. This setting must match the equivalent [`LicensingComponent/ServiceControlThroughputDataQueue`](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-servicecontrol-licensingcomponentservicecontrolthroughputdataqueue) setting on the ServiceControl error instance.
 
 In most instances these settings do not need to be modified.
 
@@ -199,6 +201,13 @@ If running multiple setups of the Platform Tools (i.e. multiple versions of Serv
 
 If using [MSMQ transport](/transports/msmq) and the monitoring instance is installed on a different machine to the ServiceControl error instance, then only the monitoring instance setting needs to be modified to include the machine name of the error instance in the queue address.
 
-Type: string
+If using [PostgreSQL transport](/transports/postgresql/), and a schema other than `public` is required, then the schema name needs to be included in the `Monitoring/ServiceControlThroughputDataQueue` setting
 
-Default: `ServiceControl.ThroughputData`
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_SERVICECONTROLTHROUGHPUTDATAQUEUE` |
+| **App config key** | `Monitoring/ServiceControlThroughputDataQueue` |
+
+| Type | Default value |
+| --- | --- |
+| string | `ServiceControl.ThroughputData` |

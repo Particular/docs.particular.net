@@ -2,5 +2,3 @@ The RabbitMQ transport supports the following [transport transaction modes](/tra
 
  * Transport transaction - receive only
  * Unreliable (transactions disabled)
-
-

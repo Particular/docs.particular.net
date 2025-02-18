@@ -47,6 +47,8 @@ We say *logical routing* because this is at a logical layer only, which isn't ne
 > An [**endpoint**](/nservicebus/concepts/glossary.md#endpoint) is a logical concept, defined by an endpoint name and associated implementation, that defines an owner responsible for processing messages.
 >
 > An [**endpoint instance**](/nservicebus/concepts/glossary.md#endpoint-instance) is a physical instance of the endpoint deployed to a single server. Many endpoint instances may be deployed to many servers in order to scale out the processing of a high-volume message to multiple servers.
+>
+> The IMessageSession API provides basic message operations
 
 For now, we'll only concern ourselves with logical routing, and leave the rest of it (physical routing, scale-out, etc.) for a later time.
 
@@ -56,7 +58,7 @@ Therefore, it makes sense that logical routing is defined in code.
 
 ### Defining logical routes
 
-[**Message routing**](/nservicebus/messaging/routing.md) is a function of the message transport, so all routing functionality is accessed from the `transport` object returned when we defined the message transport, as shown in this example using the Learning Transport:
+[**Message routing**](/nservicebus/messaging/routing.md) is a function of the message transport, so all routing functionality is accessed from the `RoutingSettings<T>` object returned when we defined the message transport, as shown in this example using the Learning Transport:
 
 snippet: RoutingSettings
 
@@ -79,21 +81,19 @@ Let's split apart the endpoint we created in the previous lesson. We'll reconfig
 First, let's create a project for our new endpoint.
 
  1. Create a new **Console Application** project named **Sales**.
- 1. In the same directory as the **Sales** project, add the NServiceBus NuGet package using the .NET CLI:
+ 1. In the same directory as the **Sales** project, add the following NuGet packages using the .NET CLI:
       ```
     dotnet add package NServiceBus
+    dotnet add package NServiceBus.Extensions.Hosting
       ```
  1. Rename **Messages** project to **Sales.Messages**
  1. In the **Sales** project, add a reference to the **Sales.Messages** project, so that we have access to the `PlaceOrder` message.
-
-> [!NOTE]
-> To take advantage of the `Async Main` feature and avoid boilerplate code, [enable C# 7.1 features](https://www.meziantou.net/2017/08/24/3-ways-to-enable-c-7-1-features).
 
 ### Configuring an endpoint
 
 Now that we have a project for our **Sales** endpoint, we need to add similar code to configure and start an NServiceBus endpoint:
 
-snippet: SalesProgram
+snippet: SalesConsoleApp
 
 Most of this configuration looks exactly the same as our **ClientUI** endpoint. It's critical for the configuration between endpoints to match (especially message transport and serializer); otherwise, the endpoints would not be able to understand each other.
 
@@ -144,14 +144,15 @@ The important takeaway is, if a message is accidentally sent to an endpoint we d
 
 Now we need to change **ClientUI** so that it is sending `PlaceOrder` to the **Sales** endpoint.
 
- 1. In the **ClientUI** endpoint, modify the **Program.cs** file so that `endpointInstance.SendLocal(command)` is replaced by `endpointInstance.Send(command)`.
- 1. In the `Main` method of the same file, use the `transport` variable to access the routing configuration and specify the logical routing for `PlaceOrder` by adding the following code after the line that configures the Learning Transport:
+1. In the **ClientUI** endpoint, modify the **Program.cs** file so that `endpointInstance.SendLocal(command)` is replaced by `endpointInstance.Send(command)`.
+1. In the the same file, use the `transport` variable to access the routing configuration and specify the logical routing for `PlaceOrder` by adding the following code after the line that configures the Learning Transport:
 
 snippet: AddingRouting
 
 This establishes that commands of type `PlaceOrder` should be sent to the **Sales** endpoint.
 
-Reminder: As noted in [configuring an endpoint](#exercise-configuring-an-endpoint), ensure the configuration (e.g. message transport and serializers used) between endpoints match.
+> [!IMPORTANT]  
+> As noted in [configuring an endpoint](#exercise-configuring-an-endpoint), ensure the configuration (e.g. message transport and serializers used) between endpoints match.
 
 ### Running the solution
 
@@ -163,13 +164,18 @@ Now when we run the solution, we get two console windows, one for **ClientUI** a
 In the **ClientUI** window, we see this output:
 
 ```
-INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.
-p
-INFO  ClientUI.Program Sending PlaceOrder command, OrderId = af0d1aa7-1611-4aa0-b83d-05e2d931d532
-INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.
-p
-INFO  ClientUI.Program Sending PlaceOrder command, OrderId = e19d6160-595a-4c30-98b5-ea07bc44a6f8
-INFO  ClientUI.Program Press 'P' to place an order, or 'Q' to quit.
+ info: ClientUI.InputLoopService[0]
+       Press 'P' to place an order, or 'Q' to quit.
+ p
+ info: ClientUI.InputLoopService[0]
+       Sending PlaceOrder command, OrderId = 0124c1d5-8eb9-43f7-85e4-2c3ef6081464
+ info: ClientUI.InputLoopService[0]
+       Press 'P' to place an order, or 'Q' to quit.
+ p
+ info: ClientUI.InputLoopService[0]
+       Sending PlaceOrder command, OrderId = 7c833457-a8a3-4c45-bc01-b30f09c11db0
+ info: ClientUI.InputLoopService[0]
+       Press 'P' to place an order, or 'Q' to quit.
 ```
 
 Everything is the same, except the command is not processed here.
@@ -177,9 +183,10 @@ Everything is the same, except the command is not processed here.
 In the **Sales** window, we see:
 
 ```
-Press Enter to exit.
-INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = af0d1aa7-1611-4aa0-b83d-05e2d931d532
-INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e19d6160-595a-4c30-98b5-ea07bc44a6f8
+ Press Enter to exit.
+ info: Sales.PlaceOrderHandler[0] Received PlaceOrder, OrderId = 0124c1d5-8eb9-43f7-85e4-2c3ef6081464
+
+ info: Sales.PlaceOrderHandler[0] Received PlaceOrder, OrderId = 7c833457-a8a3-4c45-bc01-b30f09c11db0
 ```
 
 At this point, we've managed to create two processes and achieve inter-process communication between them. Now let's try something different.

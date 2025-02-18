@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System.Transactions" />
@@ -9,7 +9,8 @@
     <PackageReference Include="Microsoft.PowerShell.SDK" Version="7.3.9" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
-    <PackageReference Include="NUnit" Version="3.*" />
+    <PackageReference Include="NUnit" Version="4.*" />
+    <PackageReference Include="NUnit.Analyzers" Version="4.3.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.*" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
     <PackageReference Include="System.Management.Automation" Version="7.3.9" />

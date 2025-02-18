@@ -6,7 +6,7 @@ related:
 - persistence
 - persistence/azure-table
 - persistence/azure-table/performance-tuning
-reviewed: 2021-12-22
+reviewed: 2024-10-10
 ---
 
 

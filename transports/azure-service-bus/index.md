@@ -5,8 +5,9 @@ related:
  - samples/azure-service-bus-netstandard/send-reply
  - samples/azure-service-bus-netstandard/native-integration
  - samples/azure-service-bus-netstandard/native-integration-pub-sub
- - samples/azure-service-bus-netstandard/hierarchy-migration
+ - samples/azure-service-bus-netstandard/options
  - samples/azure-service-bus-netstandard/send-receive-with-nservicebus
+ - samples/azure-service-bus-netstandard/topology-migration
 reviewed: 2024-05-17
 ---
 

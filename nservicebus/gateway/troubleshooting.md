@@ -40,21 +40,21 @@ If the gateway is not listening no response will be received.
 
 To clean and recreate the url acl manually run the following commands from an admin console:
 
-```dos
+```shell
 netsh http delete urlacl YourUrl
 netsh http add urlacl url=YourUrl user="YourMachine\EndpointUsername"
 ```
 
 For example
 
-```dos
+```shell
 netsh http delete urlacl http://localhost:25894/MyEndpoint/
 netsh http add urlacl url=http://localhost:25894/MyEndpoint/ user="Machine\MyEndpointServiceAccount"
 ```
 
 To list all urlacls on a machine run
 
-```dos
+```shell
 netsh http show urlacl
 ```
 

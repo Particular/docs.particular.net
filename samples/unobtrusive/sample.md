@@ -23,4 +23,4 @@ The `ConventionExtensions` class tells NServiceBus how to determine which types 
 
 snippet: CustomConvention
 
-It also demonstrates how to configure conventions for the [data bus](/nservicebus/messaging/databus/) and [time-to-be-received](/nservicebus/messaging/discard-old-messages.md) features.
+It also demonstrates how to configure conventions for the [data bus](/nservicebus/messaging/claimcheck/) and [time-to-be-received](/nservicebus/messaging/discard-old-messages.md) features.

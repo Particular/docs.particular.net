@@ -1,12 +1,12 @@
 ---
 title: Platform NuGet packages
-reviewed: 2022-06-05
+reviewed: 2024-12-27
 related:
  - nservicebus/upgrades/support-policy
  - nservicebus/upgrades/supported-platforms
 ---
 
-This page contains a curated list of NuGet packages that would commonly be used to build a distributed system with NServiceBus and the Particular Service Platform.
+This page contains a curated list of NuGet packages commonly used to build a distributed system with NServiceBus and the Particular Service Platform.
 
 - [NServiceBus](https://www.nuget.org/packages/NServiceBus)
 

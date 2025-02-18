@@ -1,7 +1,7 @@
 ---
 title: Custom Checks
-summary: Define a custom set of conditions that are checked on the endpoint.
-reviewed: 2022-02-09
+summary: Enable endpoint health monitoring by running custom code using the Custom Checks plugin and ServiceControl
+reviewed: 2024-10-24
 isLearningPath: true
 redirects:
   - nservicebus/operations/custom-checks

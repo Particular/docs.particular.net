@@ -34,7 +34,7 @@ It is possible to manually install ServicePulse using IIS following these steps:
 
 1. Extract the ServicePulse files using the following command at a command prompt:
 
-```dos
+```shell
 ServicePulse.Host.exe --extract --outPath="C:\inetpub\websites\ServicePulse"
 ```
 
@@ -45,7 +45,7 @@ ServicePulse.Host.exe --extract --outPath="C:\inetpub\websites\ServicePulse"
 1. When using IIS to host ServicePulse, the ServicePulse.Host service is not used. To remove the service, uninstall ServicePulse using Add/Remove Programs.
 1. Use the following command on an elevated command prompt to remove the URLACL that was created by the ServicePulse installer to use port 9090 without any restrictions.
 
-```dos
+```shell
 netsh http delete urlacl http://+:9090/
 ```
 
@@ -160,7 +160,7 @@ When ServicePulse is hosted in IIS, the upgrade process is as follows:
 1. Install the new version of ServicePulse using the standard instructions.
 1. Extract the files from the `ServicePulse.Host.exe` using the following command, but replace `<recordedvalue>` with the value saved from Step 2, and `<webroot>` with the path to the root directory of the IIS website.
 
-```dos
+```shell
 ServicePulse.Host.exe --extract --serviceControlUrl="<recordedvalue>" --outPath="<webroot>"
 ```
 

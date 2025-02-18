@@ -17,11 +17,9 @@ It's how we respond to exceptions that is important. When a database is deadlock
 
 In the next 25-30 minutes, you will learn about some causes of errors and see how to manage them with NServiceBus.
 
-
 ## Causes of errors
 
 Where connectivity is a major concern, there are generally three broad categories of exceptions:
-
 
 ### Transient exceptions
 
@@ -34,7 +32,6 @@ Let's consider a common scenario: code that updates a record in the database. Tw
 
 This is an example of a **transient exception**. Transient exceptions appear to be caused by random quantum fluctuations in the ether. If the failing code is immediately retried, it will probably succeed. Indeed, the exception message above tells us to do exactly that.
 
-
 ### Semi-transient exceptions
 
 The next category involves failures such as connecting to a web service that goes down intermittently. An immediate retry will likely not succeed, but retrying after a short time (from a few seconds up to a few minutes) might.
@@ -45,13 +42,11 @@ Another common example involves the failover of a database cluster. If a databas
 
 It can be difficult to deal with this type of failure, as it's often not possible for the calling thread to wait around long enough for the failure to resolve itself.
 
-
 ### Systemic exceptions
 
 Outright flaws in your system cause **systemic exceptions**, which are straight-up bugs. They will fail every time given the same input data. These are our good friends `NullReferenceException`, `ArgumentException`, dividing by zero, and a host of other common mistakes we've all made.
 
 In short, these are the exceptions that a developer needs to look at, triage, and fix —- preferably without all the noise from the transient and semi-transient errors getting in the way of our investigation.
-
 
 ## Automatic retries
 
@@ -72,7 +67,6 @@ The last step, moving the message to an error queue, is how NServiceBus deals wi
 
 We'll take a look at a few options for configuring retries in the exercise, but for more details, check out the [recoverability documentation](/nservicebus/recoverability/).
 
-
 ## Replaying messages
 
 Once a message is sent to the error queue, this indicates that a systemic failure has occurred. When this happens, a person needs to look at the message and figure out *why*.
@@ -84,11 +78,9 @@ NServiceBus embeds the exception details and stack trace into the message that i
 
 Sometimes, a new release will contain a bug in handler logic that isn't found until the code is deployed. When this happens, many errors can flood into the error queue at once. At these times, it's incredibly useful to be able to roll back to the old version of the endpoint, and then replay the messages through proven code. Then you can take the time to properly troubleshoot and fix the issue before attempting a new deployment.
 
-
 ## Exercise
 
 In this exercise we'll throw an exception inside a message handler, and see how NServiceBus automatically retries the message.
-
 
 ### Throw an exception
 
@@ -104,24 +96,25 @@ Next, run the solution.
  1. In Visual Studio's **Debug** menu, select **Detach All** so that the system keeps running but does not break into the debugger when we throw our exception.
  1. In the **ClientUI** window, place an order by pressing <kbd>P</kbd>.
 
-When we do these steps, we'll see a wall of exception messages in white text, which is log level INFO, followed by one in yellow text, which is log level WARN. The exception traces in white are the failures during immediate retries, and the last trace in yellow is the failure that hands the message over to delayed retries.
+When we do these steps, we'll see a wall of exception messages with log level `Information`, followed by one with log level `Warning`. The exception traces with log level `Information` are the failures during immediate retries, and the last trace with log level `Warning` is the failure that hands the message over to delayed retries.
 
 ```
-INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e927667c-b949-47ee-8ea2-f29523909784
-WARN  NServiceBus.RecoverabilityExecutor Delayed Retry will reschedule message '53ac6836-48ef-49dd-aabb-a67c0104a2a5' after a delay of 00:00:10 because of an exception:
-System.Exception: BOOM
-   at <stack trace>
+ info: Sales.PlaceOrderHandler[0]
+       Received PlaceOrder, OrderId = a905a24c-a630-475b-af8b-452db7c95d3a
+ warn: NServiceBus.DelayedRetry[0]
+       Delayed Retry will reschedule message '605705bd-3e31-4241-b56a-b20500a6c475' after a delay of 00:00:10 because of an exception:
+       System.Exception: BOOM
 ```
 
-Ten seconds later, the retries begin again, followed by another yellow trace, sending the message back to delayed retries. Twenty seconds after that, another set of traces. Finally, 30 seconds after that, the final exception trace will be shown in red, which is log level ERROR. This is where NServiceBus gives up on the message and redirects it to the error queue.
+Ten seconds later, the retries begin again, followed by another log level `Warning`, sending the message back to delayed retries. Twenty seconds after that, another set of traces. Finally, 30 seconds after that, the final exception trace will be logged with level `Error`. This is where NServiceBus gives up on the message and redirects it to the error queue.
 
 ```
-INFO  Sales.PlaceOrderHandler Received PlaceOrder, OrderId = e927667c-b949-47ee-8ea2-f29523909784
-ERROR NServiceBus.RecoverabilityExecutor Moving message '53ac6836-48ef-49dd-aabb-a67c0104a2a5' to the error queue 'error' because processing failed due to an exception:
-System.Exception: BOOM
-   at < stack trace>
+ info: Sales.PlaceOrderHandler[0]
+       Received PlaceOrder, OrderId = a905a24c-a630-475b-af8b-452db7c95d3a
+ fail: NServiceBus.MoveToError[0]
+       Moving message '605705bd-3e31-4241-b56a-b20500a6c475' to the error queue 'error' because processing failed due to an exception:
+       System.Exception: BOOM
 ```
-
 
 ### Retry settings
 
@@ -133,27 +126,21 @@ The number of retries supplied to the immediate retries API can be pulled from a
 
 You can also [configure delayed retries](/nservicebus/recoverability/configure-delayed-retries.md) in much the same way. In addition to the number of rounds of delayed retries, you can also modify the time increase used for the delay between each round of retries.
 
-
 ### Transient exceptions
 
 Throwing a big exception is an example of a systemic error. Let's see how NServiceBus reacts when we throw a transient exception. To do this, let's introduce a random number generator so that we only throw an exception 20% of the time.
 
 1. In the **Sales** endpoint, locate the **PlaceOrderHandler**.
-1. Add a static **Random** instance to the class:
-
-snippet: Random
-
-3. Change the `throw` statement so that it's dependent on the random number:
+1. Change the `throw` statement so that it's dependent on a random number:
 
 snippet: ThrowTransient
 
-4. Start the solution, and either select **Detach All** in the **Debug** menu, or just start the solution without debugging (<kbd>Ctrl</kbd>+<kbd>F5</kbd>).
-4. In the **ClientUI** window, send one message at a time by pressing <kbd>P</kbd>, and watch the **Sales** window.
+3. Start the solution, and either select **Detach All** in the **Debug** menu, or just start the solution without debugging (<kbd>Ctrl</kbd>+<kbd>F5</kbd>).
+1. In the **ClientUI** window, send one message at a time by pressing <kbd>P</kbd>, and watch the **Sales** window.
 
 As you will see in the **Sales** window, 80% of the messages will go through as normal. When an exception occurs, the exception trace will be displayed once in white, and then generally succeed on the next try. After the successful retry, the other windows will continue to react as normal to complete the process.
 
 With NServiceBus watching over your processes with automated retries, you don't have to worry about transient failures anymore. If an error is severe enough, it will progress through immediate and delayed retries and be delivered to an error queue. Then you know that it's a severe error that needs to be addressed.
-
 
 ## Summary
 

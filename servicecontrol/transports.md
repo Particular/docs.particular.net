@@ -1,10 +1,9 @@
 ---
 title: Transport configuration
+summary: ServiceControl can be configured to use one of the supported message transports which are configured for each instance type
 reviewed: 2024-07-19
 component: ServiceControl
 ---
-
-Messag
 
 ServiceControl can be configured to use one of the supported [message transports](/transports/) which are configured for each instance type using the following settings:
 
@@ -17,10 +16,11 @@ The value for the `TransportType` settings can be any of the following:
 | Message Transport | `TransportType` values |
 |-|-|
 | [Azure Service Bus](#azure-service-bus) | `NetStandardAzureServiceBus` |
-| [Azure Storage Queues](#azure-storage-queues) | `AzureStorageQueues` |
+| [Azure Storage Queues](#azure-storage-queues) | `AzureStorageQueue` |
 | [Amazon Simple Queue Service (SQS)](#amazon-sqs) | `AmazonSQS` |
 | [RabbitMQ](#rabbitmq)<br/><i>See topology options below.</i> | `RabbitMQ.QuorumConventionalRouting`<br/>`RabbitMQ.ClassicConventionalRouting`<br/>`RabbitMQ.QuorumDirectRouting`<br/>`RabbitMQ.ClassicDirectRouting` |
 | [SQL Server](#sql) | `SQLServer` |
+| [PostgreSQL](#postgresql) | `PostgreSQL` |
 | [Microsoft Message Queuing (MSMQ)](#msmq) | `MSMQ` |
 
 Follow the link for each transport for additional information on configuration options for that transport lower on this page.
@@ -76,6 +76,16 @@ In addition to the [connection string options of the transport](/transports/sql/
   * *Optional* `Subscriptions Table=<subscription_table_name>@<schema>` - to specify the schema.
   * *Optional* `Subscriptions Table=<subscription_table_name>@<schema>@<catalog>` - to specify the schema and catalog.
 
+## PostgreSQL
+
+In addition to the [connection string options of the transport](/transports/postgresql/connection-settings.md#connection-configuration) the following ServiceControl specific options are available in versions 5.10 and above:
+
+* `Queue Schema=<schema_name>` - Specifies a custom schema for the ServiceControl input queue.
+* `Subscriptions Table=<subscription_table_name>` - Specifies PostgreSQL subscription table name.
+  * *Optional* `Subscriptions Table=schema.tablename` - to specify the schema with simple table name.
+  * *Optional* `Subscriptions Table=schema.multi.table.name` - to specify the schema with a table name containing `.`.
+  * *Optional* `Subscriptions Table==&quot;multi.table.name=&quot;` - to specify a table name containing `.` without a schema. In this case, `Queue Schema` will be used if specified, otherwise the default schema (`public`) will be used.
+
 ## Amazon SQS
 
 The following ServiceControl connection string options are available:
@@ -88,6 +98,10 @@ The following ServiceControl connection string options are available:
 * `S3BucketForLargeMessages=<value>` - S3 bucket for large messages [option](/transports/sqs/configuration-options.md#offload-large-messages-to-s3),
 * `S3KeyPrefix=<value>` - S3 key prefix [option](/transports/sqs/configuration-options.md#offload-large-messages-to-s3-key-prefix).
 * `DoNotWrapOutgoingMessages=true` - Do not wrap outgoing messages [option](/transports/sqs/configuration-options.md#do-not-wrap-message-payload-in-a-transport-envelope).
+
+> [!NOTE]
+> When using SQS as a transport, for local development purposes it is possible to set up ServiceControl to connect to a LocalStack instance.
+> Refer to the [documentation](/nservicebus/aws/local-development.md) about how to configure the environment to use LocalStack.
 
 ## MSMQ
 

@@ -4,7 +4,7 @@ summary: Control how SQL scripts are generated for the SQL persister
 component: SqlPersistence
 related:
  - persistence/sql/operational-scripting
-reviewed: 2021-12-22
+reviewed: 2024-10-09
 ---
 
 

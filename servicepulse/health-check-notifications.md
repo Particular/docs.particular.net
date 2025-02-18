@@ -2,7 +2,7 @@
 title: Health check notifications
 summary: Describes how to setup email notifications for failing ServiceControl internal health checks
 component: ServicePulse
-reviewed: 2022-01-13
+reviewed: 2024-10-14
 related:
 ---
 

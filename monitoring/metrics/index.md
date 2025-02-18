@@ -1,7 +1,7 @@
 ---
 title: Metrics
-summary:
-reviewed: 2022-02-28
+summary: Collect metric data about endpoint performance using the Metrics plugin
+reviewed: 2024-10-30
 component: Metrics
 versions: 'Metrics:*'
 related:
@@ -13,7 +13,7 @@ related:
 
 partial: opentelemetry
 
-The Metrics plugin collects metric data about the performance of running endpoints. This data can be forwarded to a ServiceControl monitoring instance and then viewed in ServicePulse.
+The Metrics plugin collects metric data about the performance of running endpoints. This data can be forwarded to a ServiceControl monitoring instance and viewed in ServicePulse.
 
 To see performance monitoring in action, try the [standalone demo](/tutorials/monitoring-demo/).
 
@@ -49,15 +49,15 @@ To enable collecting metrics in an environment:
 
 ## Performance impact on system resources
 
-A ServiceControl monitoring instance is more lightweight than a regular ServiceControl instance. Nevertheless, it is not recommended to host a monitoring instance on the same machine that is hosting production endpoint instances.
+A ServiceControl monitoring instance is more lightweight than a regular ServiceControl instance. However, hosting a monitoring instance and production endpoint instances on the same machine is not recommended.
 
 ### Wire usage
 
-Each endpoint instance collects performance metrics which are buffered and then sent. A single metrics message contains a batch of values written in a compact binary format, making reporting very lightweight.
+Each endpoint instance collects performance metrics, which are buffered and then sent. A single metrics message contains a batch of values written in a compact binary format, making reporting very lightweight.
 
 ### Storage usage
 
-A Service Control Monitoring instance processes Metric. The metric data is stored in RAM only. Logfiles are still written to disk. The metrics data are stored for at most one hour. A 100MB process can hold state for at least 100 endpoint instances.
+A Service Control Monitoring instance processes metrics. Metrics data is stored in RAM only, for at most one hour. Logfiles are still written to disk. A 100MB process can hold metrics data for at least 100 endpoint instances.
 
 ### CPU usage
 

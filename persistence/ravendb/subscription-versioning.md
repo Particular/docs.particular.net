@@ -2,7 +2,7 @@
 title: Subscription versioning
 component: raven
 versions: '[4,6)'
-reviewed: 2021-12-03
+reviewed: 2024-10-01
 redirects:
  - nservicebus/ravendb/subscription-versioning
 ---

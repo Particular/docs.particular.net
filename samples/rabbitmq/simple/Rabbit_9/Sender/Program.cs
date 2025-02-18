@@ -15,6 +15,7 @@ class Program
         transport.ConnectionString("host=localhost");
         #endregion
 
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         transport.Routing().RouteToEndpoint(typeof(MyCommand), "Samples.RabbitMQ.SimpleReceiver");
         endpointConfiguration.EnableInstallers();
 

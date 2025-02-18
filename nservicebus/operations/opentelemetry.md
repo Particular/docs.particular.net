@@ -2,7 +2,7 @@
 title: OpenTelemetry
 summary: Observability of NServiceBus endpoints with OpenTelemetry
 component: core
-reviewed: 2022-06-29
+reviewed: 2024-12-19
 related:
  - samples/open-telemetry
 ---

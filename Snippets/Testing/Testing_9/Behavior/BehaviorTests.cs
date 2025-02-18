@@ -19,7 +19,7 @@ public class BehaviorTests
 
         await behavior.Invoke(context, () => Task.CompletedTask);
 
-        Assert.AreEqual("custom header value", context.Headers["custom-header"]);
+        Assert.That(context.Headers["custom-header"], Is.EqualTo("custom header value"));
     }
     #endregion
 }

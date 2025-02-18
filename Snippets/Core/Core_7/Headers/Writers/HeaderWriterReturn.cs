@@ -13,6 +13,12 @@
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
         string endpointName = "HeaderWriterReturnV7";
 
+        [OneTimeTearDown]
+        public void TearDown()
+        {
+            ManualResetEvent.Dispose();
+        }
+
         [Test]
         public async Task Write()
         {

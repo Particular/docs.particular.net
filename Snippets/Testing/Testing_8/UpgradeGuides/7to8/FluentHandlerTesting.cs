@@ -23,8 +23,9 @@
             await handler.Handle(requestMessage, messageContext);
 
             // Assert
-            Assert.IsTrue(messageContext.RepliedMessages.Any(x =>
+            Assert.That(messageContext.RepliedMessages.Any(x =>
                 x.Message<ResponseMessage>()?.String == "hello"),
+                Is.True,
                 "Should send a ResponseMessage reply that echoes the provided string");
         }
     }

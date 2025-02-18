@@ -68,8 +68,12 @@ Secure connections to the broker using [Transport Layer Security (TLS)](https://
 
 snippet: rabbitmq-connection-tls
 
+#if-version [, 8)
+
 > [!WARNING]
 > TLS 1.2 must be enabled on the broker to establish a secure connection.
+
+#end-if
 
 ### Client authentication
 
@@ -113,7 +117,7 @@ snippet: rabbitmq-config-prefetch-count
 
 ## Controlling behavior when the broker connection is lost
 
-The RabbitMQ transport monitors the connection to the broker and will trigger the critical error action if the connection fails and stays disconnected for the configured amount of time.
+The RabbitMQ transport monitors the connection to the broker and will trigger [the critical error action](/nservicebus/hosting/critical-errors.md) if the connection fails and stays disconnected for the configured amount of time.
 
 ### Heartbeat interval
 

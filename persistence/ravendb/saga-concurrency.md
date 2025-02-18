@@ -2,7 +2,7 @@
 title: RavenDB Persistence Saga Concurrency
 summary: Explains how concurrency works with sagas in the RavenDB persister
 component: raven
-reviewed: 2021-12-03
+reviewed: 2024-10-01
 related:
  - nservicebus/sagas/concurrency
 redirects:

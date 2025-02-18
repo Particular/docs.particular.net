@@ -46,7 +46,7 @@
                     await NativeSend.SendMessage(client, endpointName, message, headers);
                 }
 
-                Assert.AreEqual("Value", await state.Signal.Task);
+                Assert.That(await state.Signal.Task, Is.EqualTo("Value"));
             }
             finally
             {
@@ -93,7 +93,7 @@
                     command.Invoke();
                 }
 
-                Assert.AreEqual("Value", await state.Signal.Task);
+                Assert.That(await state.Signal.Task, Is.EqualTo("Value"));
             }
             finally
             {
@@ -134,7 +134,7 @@
                     await NativeSend.SendLargeMessage(client, s3Client, endpointName, "test", SqsTransportConfigurationExtensions.S3BucketName, message, headers);
                 }
 
-                Assert.AreEqual("Value", await state.Signal.Task);
+                Assert.That(await state.Signal.Task, Is.EqualTo("Value"));
             }
             finally
             {
@@ -183,7 +183,7 @@
                     command.Invoke();
                 }
 
-                Assert.AreEqual("Value", await state.Signal.Task);
+                Assert.That(await state.Signal.Task, Is.EqualTo("Value"));
             }
             finally
             {

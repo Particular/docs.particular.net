@@ -43,6 +43,12 @@ namespace IntegrityTests
 
                     foreach (var projectFile in projectFiles)
                     {
+                        //Don't analyze generated project files
+                        if (projectFile.Contains("obj"))
+                        {
+                            continue;
+                        }
+
                         var doc = XDocument.Load(projectFile);
 
                         if (doc.Root.Attribute("Sdk") == null)
@@ -82,6 +88,12 @@ namespace IntegrityTests
 
                     foreach (var projectFile in projectFiles)
                     {
+                        //Don't analyze generated project files
+                        if (projectFile.Contains("obj"))
+                        {
+                            continue;
+                        }
+
                         var doc = XDocument.Load(projectFile);
 
                         if (doc.Root.Attribute("Sdk") == null)
@@ -148,10 +160,10 @@ namespace IntegrityTests
             {"netstandard2.0", null },
             { "net6.0", 10 },
             { "net6.0-windows", 10 },
-            { "net7.0", 11 },
-            { "net7.0-windows", 11 },
             { "net8.0", 12 },
             { "net8.0-windows", 12 },
+            { "net9.0", 13 },
+            { "net9.0-windows", 13 },
         };
     }
 }

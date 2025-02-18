@@ -1,7 +1,7 @@
 ---
 title: MSMQ Transport Troubleshooting
 summary: Resolutions for common problems with the MSMQ transport.
-reviewed: 2022-02-09
+reviewed: 2024-10-24
 component: MsmqTransport
 isLearningPath: true
 redirects:
@@ -61,7 +61,7 @@ Also, check the outgoing queues to see if messages sent to remote servers are re
 1. Make sure that the hard disk drive has sufficient space.
 1. Disable the MSMQ storage limit if the disk still has plenty of space.
 1. Inspect the (transactional) dead-letter queue (TDLQ) under System Queues via [QueueExplorer by Cogin](https://www.cogin.com/mq/) as the built-in viewer for Windows has limitations.
-  * Dead-letter queues acts as a recycle bin for other transactional queues. If other transactional queues have been purged, ensure the TDLQ is purged as well.
+  * Dead-letter queues act as a recycle bin for other transactional queues. If other transactional queues have been purged, ensure the TDLQ is purged as well.
   * Within the TDLQ, the Class column shows the reason the message arrived there. Common messages include "The queue was purged" or "The queue was deleted".
   * Purge the content of the TDLQ/DLQ to free storage space.
 1. Inspect outgoing queues for messages that cannot be delivered due to connectivity issues, or machines that are unavailable or obsolete. Resolve connectivity issues to ensure queued outgoing messages will be delivered to the remote machine(s).
@@ -106,7 +106,7 @@ Outgoing queues show three values:
 - Unacknowledged (msgs)
 - Unprocessed (msgs)
 
-By default *Number of messages* shows the count of messages that have not yet been delivered or processed. It does not indicate the number of messages that still need to be sent. Calculate the number of unsent messages by subtracting *Unprocessed (msgs)* from *Number of messages*.
+By default, *Number of messages* shows the count of messages that have not yet been delivered or processed. It does not indicate the number of messages that still need to be sent. Calculate the number of unsent messages by subtracting *Unprocessed (msgs)* from *Number of messages*.
 This means that if an endpoint at the recipient is stopped or slow, the messages remaining to be processed are included in this count.
 
 When MSMQ dead-lettering is disabled *Number of messages* will only indicate the number of messages remaining to be delivered. *Unprocessed (msgs)* will always show the value 0 when dead lettering is disabled.
@@ -125,7 +125,7 @@ The following precautions can be taken to monitor the health of MSMQ in a produc
 
 Define thresholds for the performance counters. Then create alerts that are triggered when the thresholds are exceeded. The alerts can be integrated with monitoring suites like Solarwinds, New Relic, SCOMM, or similar tools.
 
-To determine useful thresholds, determine what values are typical for the specific environment to act as a baseline. This helps detect and address potential issues early, e.g. before MSMQ reaches its limits with regards to disk and memory usage.
+To determine useful thresholds, determine what values are typical for the specific environment to act as a baseline. This helps detect and address potential issues early, e.g. before MSMQ reaches its limits in regard to disk and memory usage.
 
 ## Virus scanners
 

@@ -1,33 +1,36 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Billing;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-namespace Billing
-{
-    class Program
-    {
-        static async Task Main()
-        {
-            Console.Title = "Billing";
+var endpointName = "Billing";
 
-            var endpointConfiguration = new EndpointConfiguration("Billing");
+Console.Title = endpointName;
 
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
-            var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
+var builder = Host.CreateApplicationBuilder(args);
 
-            endpointConfiguration.RegisterComponents(
-                c =>
-                {
-                    c.ConfigureComponent<OrderCalculator>(DependencyLifecycle.SingleInstance);
-                }
-                );
+var endpointConfiguration = new EndpointConfiguration(endpointName);
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-            Console.WriteLine("Press Enter to exit.");
-            Console.ReadLine();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-            await endpointInstance.Stop();
-        }
-    }
-}
+endpointConfiguration.UsePersistence<LearningPersistence>();
+
+endpointConfiguration.SendFailedMessagesTo("error");
+endpointConfiguration.AuditProcessedMessagesTo("audit");
+
+// Decrease the default delayed delivery interval so that we don't
+// have to wait too long for the message to be moved to the error queue
+var recoverability = endpointConfiguration.Recoverability();
+recoverability.Delayed(
+    delayed => { delayed.TimeIncrease(TimeSpan.FromSeconds(2)); }
+);
+
+builder.UseNServiceBus(endpointConfiguration);
+
+builder.Services.AddSingleton<OrderCalculator>();
+
+await builder.Build().RunAsync();

@@ -1,21 +1,23 @@
 # startcode compose
-version: "3.8"
 services:
     sender:
         image: sender
         depends_on:
-            - rabbitmq
+            rabbitmq:
+                condition: service_healthy    
     receiver:
         image: receiver
         depends_on:
-            - rabbitmq
+            rabbitmq:
+                condition: service_healthy    
     rabbitmq:
-        image: "rabbitmq:3.12-management"
+        image: "rabbitmq:3-management"
         ports:
             - "15672:15672"
             - "5672:5672"
         healthcheck:
-            test: ["CMD-SHELL", "if rabbitmqctl status; then \nexit 0 \nfi \nexit 1"]
-            interval: 10s
-            retries: 5
+            test: rabbitmq-diagnostics check_port_connectivity
+            interval: 30s
+            timeout: 30s
+            retries: 3
 # endcode

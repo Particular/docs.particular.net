@@ -13,24 +13,24 @@ upgradeGuideCoreVersions:
 ---
 
 > [!NOTE]
-> If the endpoint being upgraded is not using delayed delivery or is using the `SqlServerDelayedMessageStore` that ships with the MSMQ transport package, no further action is needed. This class has already been updated as part of the release.
+> If the endpoint being upgraded is not using delayed delivery or is using the `SqlServerDelayedMessageStore` that ships with the MSMQ transport package, no further action is required.
 
-Versions 2.0.0-2.0.3 of the transport include support for a custom delayed delivery message store by implementing `IDelayedMessageStore`. This interface contains a method to initialize the store when the endpoint starts. For this method to be called, two configuration options must be set:
+Versions 2.0.0-2.0.3 of the transport include support for a custom delayed delivery message store which implements `IDelayedMessageStore`. This interface contains an `Initialize()` method which may be used to initialize the store when the endpoint starts. `Initialize()` is called when two conditions are satisfied:
 
-- the endpoint must be configured to run installers
-- the transport must be configured to create queues
+- the endpoint is configured to run installers
+- the transport is configured to create queues
 
-Version 2.0.4 preserves this behavior for backwards compatability. This can cause a problem in a minimal-access environment when either of the above conditions is not met, as `Initialize()` will not be called.
+Version 2.0.4 preserves this behavior for backwards compatibility. If at least one of these conditions is not satisfied, `Initialize()` is not called, which may cause problems in a minimal-access environment.
 
-To enable the endpoint to run in a minimal access environment, a new interface (`IDelayedMessageStoreWithInfrastructure`) has been added. This new interface extends the original `IDelayedMessageStore` interface.
+To ensure an endpoint can run in a minimal access environment, a new interface named `IDelayedMessageStoreWithInfrastructure` has been added. This new interface extends `IDelayedMessageStore` with a `SetupInfrastructure()` method.
 
-If a custom delayed delivery message store implements `IDelayedMessageStoreWithInfrastructure` then `Initialize()` is always called when the endpoint starts. The new `SetupInfrastructure()` method is only called if the above criteria are met.
+If a custom delayed delivery message store implements `IDelayedMessageStoreWithInfrastructure`, `Initialize()` is always called when the endpoint starts and `SetupInfrastructure()` is only called if both the above conditions are satisfied.
 
-If the custom delayed delivery message store is used in an endpoint which meets both criteria above, no action is needed during an upgrade.
+If a custom delayed delivery message store is used in an endpoint which satisfies both the above conditions, no further action is required.
 
-If the custom delayed delivery message store is used in an endpoint where one or both of the criteria above are not met, follow this process to update it:
+If a custom delayed delivery message store is used in an endpoint where at least one of the above conditions is not satisfied, these actions must be taken:
 
 1. Update the reference to the transport package to the latest version 2 release
-2. Update the class definition of the custom delayed delivery message store to use `IDelayedMessageStoreWithInfrastructure` (instead of `IDelayedMessageStore`)
-3. Move any code that creates infrastructure from the `Initialize()` method to the `SetupInfrastructure()` method.
-   - If there is information in the `Initialize()` method which is needed in `SetupInfrastructure()`, it can be stored in fields on the class. `Initialize()` is always called first.
+2. Change the custom delayed delivery message store class to implement `IDelayedMessageStoreWithInfrastructure` instead of `IDelayedMessageStore`.
+3. Move any code that creates infrastructure from `Initialize()` to `SetupInfrastructure()`.
+   - `Initialize()` is always called first. If `SetupInfrastructure()` requires any references created by `Initialize()`, they may be assigned to private fields on the class.

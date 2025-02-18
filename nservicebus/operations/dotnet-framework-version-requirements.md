@@ -1,7 +1,7 @@
 ---
 title: .NET Framework requirements
 summary: List of the .NET Framework requirements for NServiceBus.
-reviewed: 2021-09-21
+reviewed: 2024-08-20
 related:
  - nservicebus/operations
 redirects:

@@ -202,6 +202,10 @@ migrate-timeouts preview ravendb --serverUrl http://localhost:8080 --databaseNam
 migrate-timeouts preview nhb --source "Data Source=localhost;Initial Catalog=myTestDB;User=sa;Password=mypassword;" --dialect MsSqlDatabaseDialect rabbitmq --target amqp://guest:guest@localhost:5672
 ```
 
+```
+migrate-timeouts preview sqlp --source "Data Source=localhost;Initial Catalog=myTestDB;User=sa;Password=mypassword;" --dialect MsSqlServer msmq --target "Data Source=localhost;Initial Catalog=myTestDB;User=sa;Password=mypassword;" --dialect MsSqlServer
+```
+
 ## How the tool works
 
 The migration tool will first perform a few health checks:

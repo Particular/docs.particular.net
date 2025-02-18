@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <LangVersion>13.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AspireDemo.ServiceDefaults\AspireDemo.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\Messages\Messages.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Npgsql" Version="8.*" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.*" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="8.*" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="9.*" />
+  </ItemGroup>
+
+</Project>

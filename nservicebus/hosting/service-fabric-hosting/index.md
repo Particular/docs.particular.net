@@ -3,7 +3,7 @@ title: Service Fabric Hosting
 related:
  - persistence/service-fabric
  - samples/azure/azure-service-fabric-routing
-reviewed: 2022-03-18
+reviewed: 2024-11-05
 component: Core
 versions: '[6,9)'
 isLearningPath: true
@@ -22,9 +22,9 @@ Refer to the [Service Fabric documentation](https://docs.microsoft.com/en-us/azu
 
 ### Stateless service
 
-Hosting with a stateless service is similar to [self-hosting](/nservicebus/hosting/#self-hosting) with [Azure App Service](https://docs.microsoft.com/en-us/azure/app-service/)). Endpoints are stateless and use storage external to Service Fabric for managing data needed for their operation. Endpoints can be scaled out, leveraging [competing consumer](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers) at the transport level.
+Hosting with a stateless service is similar to [self-hosting](/nservicebus/hosting/#self-hosting) with [Azure App Service](https://docs.microsoft.com/en-us/azure/app-service/)). Endpoints are stateless and use storage external to Service Fabric to manage data needed for their operation. Endpoints can be scaled out, leveraging [competing consumer](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers) at the transport level.
 
-With stateless services, the number of instances of a service can range from one to `the number of nodes in the cluster - 1`. Endpoints are self-hosted and should be started using a custom Service Fabric [`ICommunicationListener`](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-communication) implementation.
+With stateless services, the number of service instances can range from one to `the number of nodes in the cluster - 1`. Endpoints are self-hosted and should be started using a custom Service Fabric [`ICommunicationListener`](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-communication) implementation.
 
 snippet: StatelessEndpointCommunicationListener
 
@@ -52,9 +52,9 @@ NServiceBus provides persistence based on reliable collections for saga and outb
 
 ### Guest executable
 
-The [guest executable](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-deploy-existing-app) option allows packaging and deployment of an an existing endpoint into Service Fabric with minimal or no change at all. Service Fabric treats a guest executable as a stateless services.
+The [guest executable](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-deploy-existing-app) option allows packaging and deployment of an existing endpoint into Service Fabric with minimal or no change at all. Service Fabric treats a guest executable as a stateless service.
 
-This option can be used as an interim solution for the endpoints that eventually need to be converted to Service Fabric services, but cannot be converted right away.
+This option can be used as an interim solution for the endpoints that eventually need to be converted to Service Fabric services but cannot be converted right away.
 
 > [!WARNING]
 > While executables can be packaged and deployed to Service Fabric without much effort, the Service Fabric hosting environment might not support all local dependencies. For example, endpoints running on the MSMQ transport should be migrated to another transport. The reason for this is that Service Fabric reallocates processes to different machines based on metrics such as CPU load, but these local dependencies will not move along with it.

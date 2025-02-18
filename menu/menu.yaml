@@ -32,16 +32,16 @@
       Title: "Part 2: Timeouts"
     - Url: tutorials/nservicebus-sagas/3-integration
       Title: "Part 3: Third-party integration"
-  - Title: More tutorials
+  - Title: NServiceBus monitoring demo
     Articles:
-    - Url: tutorials/message-replay
-      Title: Message replay tutorial
-    - Url: tutorials/monitoring-setup
-      Title: NServiceBus monitoring setup
     - Url: tutorials/monitoring-demo
-      Title: NServiceBus monitoring demo
-    - Url: tutorials
-      Title: All tutorials
+      Title: Introduction
+    - Url: tutorials/monitoring-demo/walkthrough-1
+      Title: "Monitoring NServiceBus Demo - Slow handlers"
+    - Url: tutorials/monitoring-demo/walkthrough-2
+      Title: "Monitoring NServiceBus Demo - Message backlogs"
+    - Url: tutorials/monitoring-demo/walkthrough-3
+      Title: "Monitoring NServiceBus Demo - Struggling endpoints"
   - Url: get-started
     Title: Overview
   - Url: get-started/high-level-content
@@ -120,20 +120,26 @@
 
 - Name: Service Platform
   Topics:
-  - Title: About
+  - Title: Introduction
     Url: platform
-  - Title: Platform installation
+  - Title: Installation
     Url: platform/installation
   - Title: Platform Sample installation
     Url: platform/platform-sample-package
-  - Title: Connecting endpoints
-    Url: platform/connecting
-  - Title: Connection schema
-    Url: platform/json-schema
+  - Title: MassTransit Error Management
+    Url: platform/masstransit
+  - Title: Connecting NServiceBus
+    Articles:
+    - Title: Using the NuGet package
+      Url: platform/connecting
+    - Title: Configuration schema
+      Url: platform/json-schema
   - Title: Contributing
     Url: platform/contributing
   - Title: Release notifications
     Url: nservicebus/release-notifications
+  - Title: Third-party licenses
+    Url: platform/third-party-licenses
 
 - Name: NServiceBus
   Topics:
@@ -185,14 +191,14 @@
     Articles:
     - Url: nservicebus/upgrades
       Title: About upgrading NServiceBus
-    - Url: nservicebus/upgrades/third-party-licenses
-      Title: Third-party licenses
     - Url: nservicebus/upgrades/callbacks-1to2
       Title: Callbacks 1 to 2
     - Url: nservicebus/upgrades/sqs-lambda-1to2
       Title: AwsLambda SQS 1 to 2
-    - Url: nservicebus/upgrades/bridge-2to3
-      Title: Messaging Bridge 2 to 3
+    - Url: nservicebus/upgrades/9to9.1
+      Title: NServiceBus 9 to 9.1
+    - Url: nservicebus/upgrades/9.1to9.2
+      Title: NServiceBus 9.1 to 9.2
     - Url: nservicebus/upgrades/8to9
       Title: NServiceBus 8 to 9
     - Url: nservicebus/upgrades/7to8
@@ -308,6 +314,8 @@
         Title: Version 2 to 3
       - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-3to4
         Title: Version 3 to 4
+      - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-isolated-worker
+        Title: Migrate to Azure Functions using Isolated Workers
     - Title: Gateway
       Articles:
       - Url: nservicebus/upgrades/gateway-1to2
@@ -316,6 +324,12 @@
         Title: Version 2 to 3
       - Url: nservicebus/upgrades/gateway-3to4
         Title: Version 3 to 4
+    - Title: Messaging Bridge
+      Articles:
+      - Url: nservicebus/upgrades/bridge-2to3
+        Title: Messaging Bridge 2 to 3
+      - Url: nservicebus/upgrades/bridge-3to4
+        Title: Messaging Bridge 3 to 4
     - Title: System.Text.Json Serializer
       Articles:
       - Url: nservicebus/upgrades/community-system-json
@@ -447,8 +461,8 @@
         Title: Troubleshooting
       - Url: nservicebus/gateway/scale-out
         Title: Scale-Out
-      - Url: nservicebus/rawmessaging
-        Title: Raw messaging
+    - Url: nservicebus/rawmessaging
+      Title: Raw messaging
     - Url: nservicebus/outbox
       Title: Outbox
     - Url: nservicebus/transactional-session
@@ -468,16 +482,16 @@
           Title: NHibernate Persistence
         - Url: nservicebus/transactional-session/persistences/ravendb
           Title: RavenDB Persistence
-    - Url: nservicebus/messaging/databus
+    - Url: nservicebus/messaging/claimcheck
       Title: Data Bus
       Articles:
-      - Url: nservicebus/messaging/databus/file-share
+      - Url: nservicebus/messaging/claimcheck/file-share
         Title: File Share
-      - Url: nservicebus/messaging/databus/azure-blob-storage
+      - Url: nservicebus/messaging/claimcheck/azure-blob-storage
         Title: Azure Blob Storage
-      - Url: nservicebus/messaging/databus/binary
+      - Url: nservicebus/messaging/claimcheck/binary
         Title: DataBus binary serializer
-      - Url: nservicebus/messaging/databus/custom
+      - Url: nservicebus/messaging/claimcheck/custom
         Title: Customizing DataBus
   - Title: Hosting
     Articles:
@@ -711,8 +725,6 @@
       Title: 2022-12-06
     - Url: security-advisories/servicepulse-directorytraversal
       Title: 2020-03-11
-    - Url: security-advisories/asq-alias-for-default-connectionstring
-      Title: 2018-01-19
     - Url: security-advisories/msmq-permissions
       Title: 2017-01-10
     - Url: security-advisories/sqlserver-sqlinjection
@@ -766,29 +778,12 @@
       Title: Software supply chain
   - Title: Tools
     Articles:
+    - Url: nservicebus/tools
+      Title: Overview
     - Url: nservicebus/tools/migrate-to-native-delivery
       Title: Migrating timeouts
-    - Url: nservicebus/usage
-      Title: Measuring system usage
-    - Url: servicepulse/usage
-      Title: System usage via ServicePulse
     - Url: nservicebus/throughput-tool
-      Title: System usage via Endpoint Throughput tool
-      Articles:
-        - Url: nservicebus/throughput-tool/azure-service-bus
-          Title: using Azure Service Bus
-        - Url: nservicebus/throughput-tool/amazon-sqs
-          Title: using Amazon SQS
-        - Url: nservicebus/throughput-tool/rabbitmq
-          Title: using RabbitMQ
-        - Url: nservicebus/throughput-tool/sql-transport
-          Title: using SQL Transport
-        - Url: nservicebus/throughput-tool/service-control
-          Title: using ServiceControl
-        - Url: nservicebus/throughput-tool/determine-transport
-          Title: Determining message transport
-        - Url: nservicebus/throughput-tool/faq
-          Title: FAQ
+      Title: Measuring usage using legacy tool
   - Title: Troubleshooting
     Articles:
     - Url: nservicebus/troubleshooting/message-loss
@@ -827,6 +822,8 @@
         Title: Version 6 to 7
     - Title: Azure Service Bus
       Articles:
+      - Url: transports/upgrades/asbs-4to5
+        Title: Version 4 to 5
       - Url: transports/upgrades/asbs-3to4
         Title: Version 3 to 4
       - Url: transports/upgrades/asbs-2to3
@@ -834,11 +831,11 @@
       - Url: transports/upgrades/asbs-1to2
         Title: Version 1 to 2
       - Url: transports/upgrades/asbs-1.7to1.8
-        Title: Verson 1.7 to 1.8
+        Title: Version 1.7 to 1.8
     - Title: Azure Service Bus (Legacy)
       Articles:
       - Url: transports/upgrades/asb-10toasbs-1
-        Title: Verson 10 to ASB 1
+        Title: Version 10 to ASB 1
       - Url: transports/upgrades/asb-9to10
         Title: Version 9 to 10
       - Url: transports/upgrades/asb-9to9.1
@@ -953,6 +950,8 @@
       Title: Delayed Delivery
     - Url: transports/azure-storage-queues/native-integration
       Title: Native Integration
+    - Url: transports/azure-storage-queues/native-message-access
+      Title: Native Message Access
     - Url: transports/azure-storage-queues/native-publish-subscribe
       Title: Native Publish Subscribe
     - Url: transports/azure-storage-queues/sanitization
@@ -1089,6 +1088,8 @@
       Title: Native Integration
     - Url: transports/sqs/operations-scripting
       Title: Scripting
+    - Url: nservicebus/aws/local-development
+      Title: Local development
     - Url: transports/sqs/troubleshooting
       Title: Troubleshooting
 
@@ -1336,6 +1337,8 @@
       Title: Outbox
     - Url: persistence/dynamodb/transactions
       Title: Transactions
+    - Url: nservicebus/aws/local-development
+      Title: Local development
 
 - Name: ServiceInsight
   Topics:
@@ -1374,6 +1377,8 @@
       Title: About ServicePulse
     - Url: servicepulse/installation
       Title: Installation
+    - Url: servicepulse/containerization
+      Title: Container deployment
     - Url: servicepulse/intro-failed-messages
       Title: Failed Messages
     - Url: servicepulse/intro-failed-message-retries
@@ -1395,7 +1400,7 @@
     - Url: servicepulse/support-policy
       Title: Support Policy
     - Url: servicepulse/usage
-      Title: Usage
+      Title: Measuring system usage
   - Title: Configuration
     Articles:
     - Url: servicepulse/host-config
@@ -1427,6 +1432,8 @@
     Articles:
     - Title: Upgrade tips
       Url: servicecontrol/upgrades
+    - Title: Version 5 to 6
+      Url: servicecontrol/upgrades/5to6
     - Title: Version 5.1 to 5.2
       Url: servicecontrol/upgrades/5.1to5.2
     - Title: Version 4 to 5
@@ -1553,22 +1560,23 @@
     - Title: Backup
       Url: servicecontrol/backup-sc-database
     - Title: Containers
-      Url: servicecontrol/ravendb/deployment/containers
+      Url: servicecontrol/ravendb/containers
     - Title: Compacting the database
       Url: servicecontrol/db-compaction
     - Title: Move database location
       Url: servicecontrol/move-database-location
   - Title: Integration
     Articles:
-    - Title: Azure Application Insights
-      Url: servicecontrol/app-insights-integration
     - Title: Integration events
       Url: servicecontrol/contracts
     - Title: Transport adapter
       Url: servicecontrol/transport-adapter
-      Articles:
-      - Title: Incompatible transport features
-        Url: servicecontrol/transport-adapter/incompatible-features
+  - Title: MassTransit
+    Articles:
+    - Title: Introduction
+      Url: servicecontrol/masstransit
+    - Title: Deployment
+      Url: servicecontrol/masstransit/docker-deployment
   - Title: Migrations
     Articles:
     - Title: Overview
@@ -1647,3 +1655,14 @@
     Articles:
     - Title: Upgrading to native queue length metric
       Url: monitoring/upgrade-guides/native-queue-length
+
+- Name: Shape the future
+  Topics:
+  - Title: Introduction
+    Url: shape-the-future
+  - Title: NServiceBus and CloudEvents
+    Url: shape-the-future/cloudevents
+  - Title: NServiceBus and .NET Aspire
+    Url: shape-the-future/aspire
+  - Title: NServiceBus and Redis
+    Url: shape-the-future/redis

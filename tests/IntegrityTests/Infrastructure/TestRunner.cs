@@ -20,6 +20,7 @@ namespace IntegrityTests
             this.errorMessage = errorMessage;
             ignoreRegexes = [];
             IgnoreRegex(@"\\tests\\");
+            IgnoreRegex(@"\\tools\\");
         }
 
         public void Run(Func<string, bool> testDelegate)

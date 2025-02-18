@@ -129,7 +129,7 @@ This can be run with a scheduled job to clear the archive regularly.
 
 Once that query completes, the records can be archived to disk. In a command prompt, use the BCP to create an archive on disk.
 
-```dos
+```shell
 bcp samples.dbo.audit_archive out archive.csv -c -q -T -S .\SQLExpress
 ```
 

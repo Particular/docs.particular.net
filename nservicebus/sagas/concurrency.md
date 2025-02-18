@@ -4,7 +4,7 @@ summary: NServiceBus ensures consistency between saga state and messaging.
 component: Core
 redirects:
 - nservicebus/nservicebus-sagas-and-concurrency
-reviewed: 2021-12-10
+reviewed: 2024-10-08
 related:
 - persistence/nhibernate/saga-concurrency
 - persistence/ravendb/saga-concurrency
@@ -33,7 +33,7 @@ Optimistic concurrency only allows one message handler to succeed. The saga stat
 
 When using some persisters, messages received simultaneously that correlate to the same existing saga instance are not handled simultaneously. The persister uses pessimistic locking to ensure that message handlers are invoked one after another.
 
-When using other persisters, and simultaneously handling messages which cause changes to the state of the same existing saga instance, NServiceBus ensures that only one message changes the state. Using optimistic concurrency, only one message handler is allowed to succeed. The saga state is updated, and sent messages are dispatched. The other handlers fail, roll back, and their messages enter [recoverability](/nservicebus/recoverability/). When those messages are retried, the process repeats. One or more of those messages may attempt to complete the saga. See below for how that scenario is handled.
+When using other persisters and simultaneously handling messages that cause changes to the state of the same existing saga instance, NServiceBus ensures that only one message changes the state. Using optimistic concurrency, only one message handler is allowed to succeed. The saga state is updated and sent messages are dispatched. The other handlers fail, roll back, and their messages enter [recoverability](/nservicebus/recoverability/). When those messages are retried, the process repeats. One or more of those messages may attempt to complete the saga. See below for how that scenario is handled.
 
 See the [documentation for each persister](/persistence/) for details of which method is used.
 

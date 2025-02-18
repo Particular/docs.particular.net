@@ -1,7 +1,7 @@
 ---
 title: Using ServiceControl Events
 summary: Build custom notifications by subscribing to ServiceControl events
-reviewed: 2022-01-25
+reviewed: 2024-10-14
 component: ServiceControlContracts
 isLearningPath: true
 redirects:
@@ -10,6 +10,7 @@ redirects:
  - servicecontrol/external-integrations
 related:
  - samples/servicecontrol/events-subscription
+ - samples/servicecontrol/azure-monitor-events
  - monitoring/heartbeats/notification-events
  - monitoring/custom-checks/notification-events
 ---

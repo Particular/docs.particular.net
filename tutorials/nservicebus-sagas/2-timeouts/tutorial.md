@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus sagas: Timeouts"
-reviewed: 2022-03-11
+reviewed: 2024-10-02
 isLearningPath: true
 summary: "Implement the buyer's remorse pattern using NServiceBus, a common business case to cancel orders within a certain amount of time after the purchase."
 previewImage: saga-tutorial-2-feature.png
@@ -10,7 +10,7 @@ extensions:
   nextUrl: tutorials/nservicebus-sagas/3-integration
 ---
 
-Being able to model the concept of time as part of a long-running process is incredibly powerful. Batch jobs are a feeble attempt at this but fail at handling things in real-time and makes every instance of a long-running process dependent on every other instance, but what if the batch job fails?
+Being able to model the concept of time as part of a long-running process is incredibly powerful. Batch jobs are a feeble attempt at this. They fail at handling things in real-time and make every instance of a long-running process dependent on every other instance. What if the batch job fails?
 
 > For more on the difficulties associated with batch jobs, see [Death to the Batch Job](https://particular.net/blog/death-to-the-batch-job).
 
@@ -23,7 +23,7 @@ There's no need to write batch jobs to query data every night. Instead, each ins
 > [!NOTE]
 > The delivery of a delayed message is not guaranteed to occur at the specified point in time. It may be delayed further if the system is very busy at that time.
 
-The use cases for saga timeouts are too numerous to count, so in this tutorial we will focus on implementing the [buyer's remorse pattern](https://en.wikipedia.org/wiki/Buyer%27s_remorse). In this pattern, customers that purchased something are able to cancel their order within a certain amount of time after it was placed. This is an important software pattern that pops up in non-retail domains as well. For example, Gmail uses the same pattern for their [Undo Send feature](https://support.google.com/mail/answer/2819488?co=GENIE.Platform%3DDesktop&hl=en).
+The use cases for saga timeouts are too numerous to count. So, in this tutorial we will focus on implementing the [buyer's remorse pattern](https://en.wikipedia.org/wiki/Buyer%27s_remorse). In this pattern, customers that purchased something are able to cancel their order within a certain amount of time after it was placed. This is an important software pattern that pops up in non-retail domains as well. For example, Gmail uses the same pattern for their [Undo Send feature](https://support.google.com/mail/answer/2819488?co=GENIE.Platform%3DDesktop&hl=en).
 
 With the buyer's remorse pattern, the purchase is kept in a holding state until after a defined delay. The order isn't *really* sent until the timeout has expired.
 
@@ -38,9 +38,11 @@ In this tutorial, we'll model the delay period using a saga timeout. We'll chang
 >
 > downloadbutton(Download Previous Solution, /tutorials/nservicebus-sagas/1-saga-basics)
 >
-> The solution contains 5 projects. **ClientUI**, **Sales**, **Billing**, and **Shipping** define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is an entry point to the system. > **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the **Messages** assembly, which contains the classes that define the messages exchanged in our system. > To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
+> The **ClientUI**, **Sales**, **Billing**, and **Shipping** projects define endpoints that communicate with each other using messages. The **ClientUI** endpoint mimics a web application and is the entry point to the system.
+> **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the relevant **.Messages** assembly, which contains the classes that define the messages exchanged in our system.
+> To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
 >
-> Although NServiceBus only requires .NET Framework 4.5.2, this tutorial assumes at least Visual Studio 2017 and .NET Framework 4.6.1.
+> This tutorial uses NServiceBus version 9, .NET 8, and assumes an up-to-date installation of Visual Studio 2022.
 
 ### Saga storage
 
@@ -56,7 +58,7 @@ In the Sales project, create a new class called `BuyersRemorsePolicy` and add th
 
 snippet: EmptyBuyersRemorsePolicy
 
-The policy inherits from `Saga<BuyersRemorseState>`. `BuyersRemorseState` represents the saga's state by inheriting from `ContainsSagaData`.
+The policy inherits from `Saga<BuyersRemorseData>`. `BuyersRemorseData` represents the saga's state by inheriting from `ContainsSagaData`.
 
 The ClientUI already sends a `PlaceOrder` command to the Sales endpoint. This command is perfect to start the buyer's remorse saga. Let's implement the `IAmStartedByMessages<PlaceOrder>` interface in the saga:
 
@@ -74,13 +76,12 @@ Our next step is to tell our `BuyersRemorsePolicy` to schedule a message to tell
 
 snippet: BuyersRemorseTimeoutRequest
 
+Besides the `context`, the `RequestTimeout` method has two interesting parameters. One is the `TimeSpan` which tells us how long to wait before sending our timeout message. In this case, it's 20 seconds.
 > [!NOTE]
 > This tutorial uses 20 seconds as a timeout value for simplicity. In production, a business enforced rule should determine the length of this period.
 
-Besides the `context`, the `RequestTimeout` method has two interesting parameters. One is the `TimeSpan` which tells us how long to wait before sending our timeout message. In this case, it's 20 seconds.
-
 > [!NOTE]
-> Instead of a `TimeSpan`, we could provide a `DateTime` instance, such as `DateTime.UtcNow.AddDays(10)`. When using this form, remember that local time is affected by Daylight Savings Time (DST) changes: use UTC dates to avoid DST conversion issues.
+> Instead of a `TimeSpan`, we could provide a `DateTime` instance, such as `DateTime.UtcNow.AddDays(10)`. When using this format, remember that local time is affected by Daylight Savings Time (DST) changes, so use UTC dates instead to avoid DST conversion issues.
 
 The other interesting parameter is the message that will be sent when the timeout elapses. In this case, we are providing an instance of `BuyersRemorseIsOver`, a class which is not yet defined. Let's define it now. You can put it in the same file as our saga and leave it as an empty class:
 
@@ -106,7 +107,7 @@ But it's not much of a buyer's remorse policy if we can't cancel the order. Let'
 
 ### Order cancellation
 
-As you might expect by now, cancelling an order is done by sending a command and handling it. First, define the `CancelOrder` command in the Messages project:
+As you might expect by now, cancelling an order is done by sending a command and handling it. First, define the `CancelOrder` command in the **Sales.Messages*** project:
 
 snippet: BuyersRemorseCancelOrderCommand
 
@@ -135,7 +136,7 @@ Now we need to modify ClientUI to send a `CancelOrder` command. First, we define
 
 snippet: BuyersRemorseCancelOrderRouting
 
-To allow users to cancel orders, we'll modify the ClientUI input loop to:
+To allow users to cancel orders, we'll modify the ClientUI input loop in the `InputLoopService` class to:
 
 * store the ID of the sent order
 * accept another command, `cancel`, that uses the previously stored ID to cancel the sent order

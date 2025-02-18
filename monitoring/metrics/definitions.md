@@ -1,6 +1,6 @@
 ---
 title: Metric definitions
-summary: Measuring the performance and health of an endpoint.
+summary: List of metrics captured by NServiceBus and their definitions
 reviewed: 2023-07-25
 redirects:
   - nservicebus/operations/metrics

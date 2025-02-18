@@ -3,7 +3,7 @@ title: PostgreSQL dialect design
 summary: An SQL persister dialect that specifically targets PostgreSQL, including AWS Aurora PostgreSQL.
 component: SqlPersistence
 related:
-reviewed: 2021-12-22
+reviewed: 2024-10-09
 versions: "[3,)"
 redirects:
   - nservicebus/sql-persistence/postgresql-design

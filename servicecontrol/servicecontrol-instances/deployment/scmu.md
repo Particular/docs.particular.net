@@ -1,6 +1,6 @@
 ---
 title: Deploying Error instances using ServiceControl Management
-summary: How to install different types of ServiceControl instances
+summary: A guide to using ServiceControl Management Utility to set up ServiceControl instances. Information about installing and upgrading ServiceControl instances.
 reviewed: 2024-06-14
 component: ServiceControl
 related:
@@ -36,17 +36,16 @@ There are [three types](/servicecontrol/#servicecontrol-instance-types) of Servi
    1. The default name is `Particular.ServiceControl`.
       The name is used to derive names for the error and audit instances. The name of each instance can be adjusted from its default if required.
    2. The transport should match the endpoint's transport.
-      If a transport is not available, a [transport adapter](/servicecontrol/transport-adapter/incompatible-features.md) can be used.
 5. For additional instance settings, open the `ServiceControl` and `ServiceControl Audit` sections.
    1. The name of the instance can be modified; the defaults for error and audit are `Particular.ServiceControl` and `Particular.ServiceControl.Audit`.
-      1. The name of the error instance is especially important to [enable plugins to send information](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontrolinternalqueuename) to ServiceControl.
+      1. The name of the error instance is especially important to [enable plugins to send information](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolinstancename) to ServiceControl.
       2. If multiple instances for different systems are installed on the same server, a name like `Particular.SystemName` is a common option.
    2. Select the appropriate user account.
       Note that ServiceControl instances will run as Windows Services in the background.
    3. Be aware of the port numbers as these are used by ServicePulse and ServiceInsight to connect to ServiceControl.
    4. Configure the [retention period](/servicecontrol/how-purge-expired-data.md) for each instance.
    5. Configure the name of the queue that messages should arrive in.
-      This queue is important to endpoints that send error and audit messages to these ServiceControl instances, as well as [plugins](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontrolinternalqueuename).
+      This queue is important to endpoints that send error and audit messages to these ServiceControl instances, as well as [plugins](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolinstancename).
    6. If needed, configure [forwarding queues](/servicecontrol/errorlog-auditlog-behavior.md).
    7. Full-text search can be turned off for [performance reasons](/servicecontrol/capacity-and-planning.md#storage-performance) if it's not needed.
 

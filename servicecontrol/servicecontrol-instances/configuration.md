@@ -24,6 +24,25 @@ The following documents should be reviewed prior to modifying configuration sett
 * [Setting a Custom Hostname](/servicecontrol/setting-custom-hostname.md) for guidance and details.
 * [Securing ServiceControl](/servicecontrol/securing-servicecontrol.md) for an overview of the security implications of changing the configuration.
 
+### ServiceControl/InstanceName
+
+_Added in version 5.5.0_
+
+The name to be used by the error instance and the name of the input queue.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_INSTANCENAME` |
+| **App config key** | `ServiceControl/InstanceName` |
+| **SCMU field** | Instance/Queue Name |
+
+| Type | Default value |
+| --- | --- |
+| string | `Particular.ServiceControl` |
+
+> [!NOTE]
+> In versions prior to 5.5.0, the `InternalQueueName` setting can be used instead.
+
 ### ServiceControl/HostName
 
 The hostname to bind the embedded HTTP API server to; modify this setting to bind to a specific hostname, e.g. `sc.mydomain.com` and make the machine remotely accessible.
@@ -105,7 +124,9 @@ A configuration that specifies one or more attached Audit instances. See also [S
 | --- | --- |
 | string | None |
 
-## Embedded Database
+## Embedded database
+
+These settings are not valid for ServiceControl instances hosted in a container.
 
 ### ServiceControl/DbPath
 
@@ -124,10 +145,37 @@ The path where the internal RavenDB is located.
 > [!NOTE]
 > This setting is not relevant when running an error instance in a container.
 
+### ServiceControl/RavenDBLogLevel
+
+Controls the LogLevel of the RavenDB logs. See [Logging](/servicecontrol/logging.md).
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_RAVENDBLOGLEVEL` |
+| **App config key** | `ServiceControl/RavenDBLogLevel` |
+| **SCMU field** | N/A |
+
+#if-version [5,)
+| Type | Default value |
+| --- | --- |
+| string | `Operations` |
+
+Valid settings are: `None`, `Information`, `Operations`.
+#end-if
 #if-version [,5)
-The indexes and Esent logs can be stored in a different path from the the RavenDB database data files by using the following [RavenDB configuration app settings](https://ravendb.net/docs/article-page/2.5/csharp/server/administration/configuration):
+| Type | Default value |
+| --- | --- |
+| string | `Info` |
+
+Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
+
+#end-if
+
+#if-version [,5)
 
 ### Raven/IndexStoragePath
+
+The indexes and Esent logs can be stored in a different path from the the RavenDB database data files by using the following [RavenDB configuration app settings](https://ravendb.net/docs/article-page/2.5/csharp/server/administration/configuration):
 
 > [!NOTE]
 > Only supported on RavenDB 3.5 storage engine (prior version 5). Use [symbolic links (soft links) to map any RavenDB storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
@@ -147,6 +195,8 @@ Type: string
 Default: `%SYSTEMDRIVE%\ProgramData\Particular\ServiceControl\<instance_name>\DB\Logs`
 
 #end-if
+
+## Logging
 
 ### ServiceControl/LogPath
 
@@ -181,30 +231,6 @@ Controls the LogLevel of the ServiceControl logs.
 | --- | --- |
 | string | `Info` |
 
-### ServiceControl/RavenDBLogLevel
-
-Controls the LogLevel of the RavenDB logs. See [Logging](/servicecontrol/logging.md).
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_RAVENDBLOGLEVEL` |
-| **App config key** | `ServiceControl/RavenDBLogLevel` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-#if-version [5,)
-| string | `Operations` |
-
-Valid settings are: `None`, `Information`, `Operations`.
-#end-if
-#if-version [,5)
-| string | `Info` |
-
-Valid settings are: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
-
-#end-if
-
 ## Recoverability
 
 ### ServiceControl/TimeToRestartErrorIngestionAfterFailure
@@ -222,24 +248,6 @@ Controls the maximum time delay to wait before restarting the error ingestion pi
 | timespan | 60 seconds |
 
 Valid settings are between 5 seconds and 1 hour.
-
-### ServiceControl/InternalQueueName
-
-Controls the name of the internal queue that ServiceControl uses for internal control messages. This can be used when the internal queue name does not match the Windows Service Name.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_INTERNALQUEUENAME` |
-| **App config key** | `ServiceControl/InternalQueueName` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| string | The service name |
-
-#### ServiceControl Plugins
-
-The [Custom Checks](/monitoring/custom-checks/install-plugin.md) and [Heartbeats](/monitoring/heartbeats/install-plugin.md) monitoring plugins target this queue to send their data.
 
 ### ServiceControl/IngestErrorMessages
 
@@ -328,6 +336,20 @@ The grace period to keep event logs before they are deleted.
 | timespan | 14 days |
 
 Valid range for this setting is from 1 hour to 200 days.
+
+### ServiceControl/TrackInstancesInitialValue
+
+The default value for whether to `Track` or `Do not Track` endpoint instance on newly discovered endpoints.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_TRACKINSTANCESINITIALVALUE` |
+| **App config key** | `ServiceControl/TrackInstancesInitialValue` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` (`Track`) |
 
 ## Performance tuning
 
@@ -462,11 +484,33 @@ If running multiple setups of the Platform Tools (i.e. multiple versions of Serv
 
 If using [MSMQ transport](/transports/msmq) and the monitoring instance is installed on a different machine than the ServiceControl error instance, only the monitoring instance setting needs to be modified to include the machine name of the error instance in the queue address.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_SERVICECONTROLTHROUGHPUTDATAQUEUE` |
+| **App config key** | `LicensingComponent/ServiceControlThroughputDataQueue` |
 
-Default: `ServiceControl.ThroughputData`
+| Type | Default value |
+| --- | --- |
+| string | `ServiceControl.ThroughputData` |
 
 ## Usage Reporting when using the Azure Service Bus transport
+
+The following settings are part of [Usage Reporting Setup when using the Azure Service Bus transport](/servicepulse/usage-config.md#connection-setup-azure-service-bus)
+
+### LicensingComponent/ASB/ServiceBusName
+
+Version: 5.4.0+
+
+The Azure ServiceBus name.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_ASB_SERVICEBUSNAME` |
+| **App config key** | `LicensingComponent/ASB/ServiceBusName` |
+
+| Type | Default value |
+| --- | --- |
+| string | obtained from ServiceControl |
 
 ### LicensingComponent/ASB/TenantId
 
@@ -474,7 +518,14 @@ Version: 5.4.0+
 
 The Azure [Tenant ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-microsoft-entra-tenant).
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_ASB_TENANTID` |
+| **App config key** | `LicensingComponent/ASB/TenantId` |
+
+| Type | Required |
+| --- | --- |
+| string | yes |
 
 ### LicensingComponent/ASB/SubscriptionId
 
@@ -482,7 +533,14 @@ Version: 5.4.0+
 
 The Azure [subscription ID](https://learn.microsoft.com/en-us/azure/azure-portal/get-subscription-tenant-id#find-your-azure-subscription).
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_ASB_SUBSCRIPTIONID` |
+| **App config key** | `LicensingComponent/ASB/SubscriptionId` |
+
+| Type | Required |
+| --- | --- |
+| string | yes |
 
 ### LicensingComponent/ASB/ClientId
 
@@ -490,7 +548,14 @@ Version: 5.4.0+
 
 The Client ID (aka Application ID) for an [Azure service principal](https://learn.microsoft.com/en-us/entra/identity-platform/app-objects-and-service-principals?tabs=browser#service-principal-object) that has access to read metrics data for the Azure Service Bus namespace.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_ASB_CLIENTID` |
+| **App config key** | `LicensingComponent/ASB/ClientId` |
+
+| Type | Required |
+| --- | --- |
+| string | yes |
 
 Example Client ID from an Azure App Registration:
 ![Screenshot showing where the Client ID appears in an App Registration](/servicecontrol/asb-app-service-principal.png)
@@ -501,7 +566,14 @@ Version: 5.4.0+
 
 The [client secret](https://learn.microsoft.com/en-us/entra/identity-platform/howto-create-service-principal-portal#option-3-create-a-new-client-secret) for an Azure service principal that has access to read metrics data for the Azure Service Bus namespace.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_ASB_CLIENTSECRET` |
+| **App config key** | `LicensingComponent/ASB/ClientSecret` |
+
+| Type | Required |
+| --- | --- |
+| string | yes |
 
 > [!NOTE]
 > Certificates and federated credentials are not supported at this time.
@@ -512,16 +584,21 @@ Version: 5.4.0+
 
 The Azure ManagementUrl URL.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_ASB_MANAGEMENTURL` |
+| **App config key** | `LicensingComponent/ASB/ManagementUrl` |
 
-Default: https://management.azure.com
+| Type | Default value |
+| --- | --- |
+| string | https://management.azure.com/ |
 
 This setting only needs to be configured if not using the public AzureCloud environment.
 For other environments:
 
-- AzureGermanCloud - https://management.microsoftazure.de
-- AzureUSGovernment - https://management.usgovcloudapi.net
-- AzureChinaCloud - https://management.chinacloudapi.cn
+- AzureGermanCloud - https://management.microsoftazure.de/
+- AzureUSGovernment - https://management.usgovcloudapi.net/
+- AzureChinaCloud - https://management.chinacloudapi.cn/
 
 ## Usage Reporting when using the Amazon SQS transport
 
@@ -531,7 +608,14 @@ Version: 5.4.0+
 
 The AWS Access Key ID to use to discover queue names and gather per-queue metrics.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_AMAZONSQS_ACCESSKEY` |
+| **App config key** | `LicensingComponent/AmazonSQS/AccessKey` |
+
+| Type | Default value |
+| --- | --- |
+| string | obtained from ServiceControl |
 
 ### LicensingComponent/AmazonSQS/SecretKey
 
@@ -539,7 +623,14 @@ Version: 5.4.0+
 
 The AWS Secret Access Key to use to discover queue names and gather per-queue metrics.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_AMAZONSQS_SECRETKEY` |
+| **App config key** | `LicensingComponent/AmazonSQS/SecretKey` |
+
+| Type | Default value |
+| --- | --- |
+| string | obtained from ServiceControl |
 
 ### LicensingComponent/AmazonSQS/Profile
 
@@ -547,7 +638,14 @@ Version: 5.4.0+
 
 The name of a local AWS credentials profile to use to discover queue names and gather per-queue metrics.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_AMAZONSQS_PROFILE` |
+| **App config key** | `LicensingComponent/AmazonSQS/Profile` |
+
+| Type | Default value |
+| --- | --- |
+| string | |
 
 ### LicensingComponent/AmazonSQS/Region
 
@@ -555,7 +653,14 @@ Version: 5.4.0+
 
 The AWS region to use when accessing AWS services.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_AMAZONSQS_REGION` |
+| **App config key** | `LicensingComponent/AmazonSQS/Region` |
+
+| Type | Default value |
+| --- | --- |
+| string | obtained from ServiceControl |
 
 ### LicensingComponent/AmazonSQS/Prefix
 
@@ -563,7 +668,14 @@ Version: 5.4.0+
 
 Report only on queues that begin with the specified prefix. This is commonly used when one AWS account must contain queues for multiple projects or multiple environments.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_AMAZONSQS_PREFIX` |
+| **App config key** | `LicensingComponent/AmazonSQS/Prefix` |
+
+| Type | Default value |
+| --- | --- |
+| string | obtained from ServiceControl |
 
 ## Usage Reporting when using the RabbitMQ transport
 
@@ -573,7 +685,14 @@ Version: 5.4.0+
 
 The RabbitMQ management URL.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_RABBITMQ_APIURL` |
+| **App config key** | `LicensingComponent/RabbitMQ/ApiUrl` |
+
+| Type | Default value |
+| --- | --- |
+| string | obtained from ServiceControl |
 
 ### LicensingComponent/RabbitMQ/UserName
 
@@ -581,7 +700,14 @@ Version: 5.4.0+
 
 The username to access the RabbitMQ management interface.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_RABBITMQ_USERNAME` |
+| **App config key** | `LicensingComponent/RabbitMQ/UserName` |
+
+| Type | Default value |
+| --- | --- |
+| string | obtained from ServiceControl |
 
 ### LicensingComponent/RabbitMQ/Password
 
@@ -589,7 +715,14 @@ Version: 5.4.0+
 
 The password to access the RabbitMQ management interface.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_RABBITMQ_PASSWORD` |
+| **App config key** | `LicensingComponent/RabbitMQ/Password` |
+
+| Type | Default value |
+| --- | --- |
+| string | obtained from ServiceControl |
 
 ## Usage Reporting when using the SqlServer transport
 
@@ -599,7 +732,14 @@ Version: 5.4.0+
 
 The connection string that will provide at least read access to all queue tables.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_SQLSERVER_CONNECTIONSTRING` |
+| **App config key** | `LicensingComponent/SqlServer/ConnectionString` |
+
+| Type | Default value |
+| --- | --- |
+| string | obtained from ServiceControl |
 
 ### LicensingComponent/SqlServer/AdditionalCatalogs
 
@@ -607,7 +747,31 @@ Version: 5.4.0+
 
 Specifies any additional databases on the same server that also contain NServiceBus message queues.
 
-Type: string
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_SQLSERVER_ADDITIONALCATALOGS` |
+| **App config key** | `LicensingComponent/SqlServer/AdditionalCatalogs` |
+
+| Type | Default value |
+| --- | --- |
+| string | |
+
+## Usage Reporting when using the PostgreSQL transport
+
+### LicensingComponent/PostgreSQL/ConnectionString
+
+Version: 5.10.0+
+
+The connection string that will provide at least read access to all queue tables.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_POSTGRESQL_CONNECTIONSTRING` |
+| **App config key** | `LicensingComponent/PostgreSQL/ConnectionString` |
+
+| Type | Default value |
+| --- | --- |
+| string | obtained from ServiceControl |
 
 ## Plugin-specific
 

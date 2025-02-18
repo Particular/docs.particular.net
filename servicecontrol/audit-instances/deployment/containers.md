@@ -14,9 +14,12 @@ docker run -d --name audit -p 44444:44444 \
     -e RAVENDB_CONNECTIONSTRING="http://audit-db:8080" \
     particular/servicecontrol-audit:latest
 ```
+
+include: platform-container-examples
+
 ## Initial setup
 
-Before running the container image normally, it must be run in setup mode to create the required message queues.
+Before running the container image normally, it must run in setup mode to create the required message queues and perform upgrade tasks.
 
 The container image will run in setup mode by adding the `--setup` argument. For example:
 
@@ -25,22 +28,32 @@ The container image will run in setup mode by adding the `--setup` argument. For
 docker run --rm {OPTIONS} particular/servicecontrol-audit --setup
 ```
 
-Depending on the requirements of the message transport, setup mode may require different connection settings that have permissions to create queues, which are not necessary during non-setup runtime.
+Setup mode may require different settings, such as a different transport connection string with permissions to create queues.
 
 After setup is complete, the container will exit, and the `--rm` (or equivalent) option may be used to automatically remove the container.
 
-The initial setup should be repeated any time the container is [updated to a new version](#upgrading).
+The setup process should be repeated any time the container is [updated to a new version](#upgrading).
+
+### Simplified setup
+
+Instead of running `--setup` as a separate container, the setup and run operations can be combined using the `--setup-and-run` argument:
+
+```shell
+# Using docker run
+docker run {OPTIONS} particular/servicecontrol-audit --setup-and-run
+```
+
+The `--setup-and-run` argument will run the setup process when the container is run, after which the application will run normally. This simplifies deployment by removing the need for a separate init container in environments where the setup process does not need different settings.
+
+Using `--setup-and-run` removes the need to repeat a setup process when the container is updated to a new version.
 
 ## Required settings
 
-The following environment settings are required to run a ServiceControl audit instance:
+The following environment settings are required to run a ServiceControl audit instance.
 
-| Environment Variable | Description |
-|-|-|
-| `TRANSPORTTYPE` | Determines the message transport used to communicate with message endpoints. See [ServiceControl transport configuration](/servicecontrol/transports.md) for valid TransportType values. |
-| `CONNECTIONSTRING` | Provides the connection information to connect to the chosen transport. The form of this connection string is different for every message transport. See [ServiceControl transport support](/servicecontrol/transports.md) for more details on options available to each message transport. |
-| `RAVENDB_CONNECTIONSTRING` | Provides the URL to connect to the [database container](/servicecontrol/ravendb/deployment/containers.md) that stores the audit instance's data. The database container should be exclusive to the error instance, and not shared by any other ServiceControl instances. |
-| `PARTICULARSOFTWARE_LICENSE` | The Particular Software license. The environment variable should contain the full multi-line contents of the license file. |
+include: servicecontrol-container-transport
+include: servicecontrol-container-ravenconnectionstring
+include: servicecontrol-container-license
 
 ## Ports
 

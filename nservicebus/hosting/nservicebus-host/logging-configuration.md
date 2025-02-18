@@ -5,7 +5,6 @@ component: Host
 reviewed: 2024-01-02
 related:
  - nservicebus/logging
- - samples/logging/hostcustom
 ---
 
 include: host-deprecated-warning

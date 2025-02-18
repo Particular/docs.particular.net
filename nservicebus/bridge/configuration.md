@@ -2,7 +2,7 @@
 title: Bridge configuration options
 summary: Configuration options for the messaging bridge.
 component: Bridge
-reviewed: 2023-07-04
+reviewed: 2024-09-05
 ---
 
 ## Hosting
@@ -20,6 +20,11 @@ snippet: generic-host-builder-context
 If a logical endpoint communicates with other endpoints that use a different transport, it must be registered with the bridge. Endpoints are registered with the bridge on the transport they run on. The bridge then creates a proxy endpoint on each transport that needs to be bridged.
 
 snippet: endpoint-registration
+
+> [!NOTE]
+> Having the same logical endpoint running on both transports is not supported. The bridge will throw an exception if an endpoint is registered on more than one transport.
+>
+> If a duplicate endpoint it is not registered with the bridge, any messages it sends that need to be forwarded across the bridge will fail and get sent to the [bridge error queue](#recoverability-error-queue).
 
 ## Registering publishers
 
@@ -108,14 +113,14 @@ snippet: custom-address
 
 If a message fails while it is being forwarded to the target transport, the following recoverability actions are taken:
 
-1. Three immediate retries are performed to make sure that the problem isn't transient/
+1. Three immediate retries are performed to make sure that the problem isn't transient.
 1. If the retries fail, the message is moved to the bridge error queue.
 
 ### Error queue
 
 The error queue used by the bridge is named `bridge.error` by default. Note that the default `error` queue used by other platform components can not be used to enable bridging of the system-wide error queue since a bridged queue may not be used as the error queue. See the documentation around [bridging platform queues](#bridging-platform-queues) for more details.
 
-A different error queue may configured as follows:
+A different error queue may be configured as follows:
 
 snippet: custom-error-queue
 
@@ -141,6 +146,8 @@ snippet: platform-bridging
 
 > [!WARNING]
 > The endpoint name used when creating a `BridgeEndpoint` is case-sensitive, even if one or both transports don't require it. This is to accommodate all transports, some of which require a case-sensitive endpoint name. More details can be found on [this issue](https://github.com/Particular/NServiceBus.MessagingBridge/issues/175).
+
+partial: failed-messages
 
 ### Audit queue
 

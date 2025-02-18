@@ -4,7 +4,9 @@ summary: Using an Azure Function instead of the built in blob cleanup capabiliti
 component: ABSDataBus
 reviewed: 2023-08-05
 related:
-- nservicebus/messaging/databus
+- nservicebus/messaging/claimcheck
+redirects:
+- samples/azure/blob-storage-databus-cleanup-function
 ---
 
 This sample shows how to use [Azure Functions](https://azure.microsoft.com/en-us/services/functions/) to automatically trigger blob cleanup.

@@ -1,9 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFrameworks>net8.0;net7.0;net6.0;net48</TargetFrameworks>
-    <LangVersion>10.0</LangVersion>
-  </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj" Private="false" ExcludeAssets="runtime" />
-  </ItemGroup>
-</Project>

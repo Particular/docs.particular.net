@@ -17,39 +17,40 @@ namespace Bridge
             SqlHelper.EnsureDatabaseExists(ReceiverConnectionString);
             SqlHelper.EnsureDatabaseExists(SenderConnectionString);
 
-            await Host.CreateDefaultBuilder()
-                .UseNServiceBusBridge((hostBuilderContext, bridgeConfiguration) =>
-                {
-                    #region BridgeConfiguration
+            var builder = Host.CreateApplicationBuilder();
+            var bridgeConfiguration = new BridgeConfiguration();
 
-                    var receiverTransport = new BridgeTransport(new SqlServerTransport(ReceiverConnectionString))
-                    {
-                        Name = "Receiver",
-                        AutoCreateQueues = true
-                    };
+            #region BridgeConfiguration
 
-                    receiverTransport.HasEndpoint("Samples.SqlServer.MultiInstanceReceiver");
+            var receiverTransport = new BridgeTransport(new SqlServerTransport(ReceiverConnectionString))
+            {
+                Name = "Receiver",
+                AutoCreateQueues = true
+            };
 
-                    var senderTransport = new BridgeTransport(new SqlServerTransport(SenderConnectionString))
-                    {
-                        Name = "Sender",
-                        AutoCreateQueues = true
-                    };
+            receiverTransport.HasEndpoint("Samples.SqlServer.MultiInstanceReceiver");
 
-                    senderTransport.HasEndpoint("Samples.SqlServer.MultiInstanceSender");
+            var senderTransport = new BridgeTransport(new SqlServerTransport(SenderConnectionString))
+            {
+                Name = "Sender",
+                AutoCreateQueues = true
+            };
 
-                    bridgeConfiguration.AddTransport(receiverTransport);
-                    bridgeConfiguration.AddTransport(senderTransport);
+            senderTransport.HasEndpoint("Samples.SqlServer.MultiInstanceSender");
 
-                    // .NET 6 does not support distributed transactions
-                    bridgeConfiguration.RunInReceiveOnlyTransactionMode();
+            bridgeConfiguration.AddTransport(receiverTransport);
+            bridgeConfiguration.AddTransport(senderTransport);
 
-                    #endregion
+            // .NET 6 does not support distributed transactions
+            bridgeConfiguration.RunInReceiveOnlyTransactionMode();
 
-                    // more configuration...
-                })
-                .Build()
-                .RunAsync();
+            #endregion
+
+            // more configuration...
+
+            builder.UseNServiceBusBridge(bridgeConfiguration);
+            var host = builder.Build();
+            await host.RunAsync();
         }
     }
 }

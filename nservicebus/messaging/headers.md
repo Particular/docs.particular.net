@@ -322,19 +322,11 @@ The NServiceBus version number.
 
 ## OpenTelemetry-related headers
 
-These headers are added when [OpenTelemetry](/nservicebus/operations/opentelemetry.md) is enabled on the endpoint.
+These headers are added when [OpenTelemetry](/nservicebus/operations/opentelemetry.md) is enabled for an endpoint, in accordance with the [W3C Trace Context specification](https://www.w3.org/TR/trace-context):
 
-### traceparent
-
-The `traceparent`-header, in accordance with the [W3C TraceContext specification](https://www.w3.org/TR/trace-context/#traceparent-header).
-
-### tracestate
-
-The `tracestate`-header, in accordance with the [W3C TraceContext specification](https://www.w3.org/TR/trace-context/#tracestate-header).
-
-### baggage
-
-The `baggage`-header, in accordance with the [W3C TraceContext specification](https://www.w3.org/TR/baggage/#baggage-http-header-format).
+- [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header)
+- [`tracestate`](https://www.w3.org/TR/trace-context/#tracestate-header)
+- [`baggage`](https://www.w3.org/TR/baggage/#baggage-http-header-format)
 
 ## Audit headers
 
@@ -462,7 +454,7 @@ snippet: HeaderWriterEncryptionBody
 
 ## File share data bus headers
 
-When using the [file share data bus](/nservicebus/messaging/databus/file-share.md), extra headers and serialized message information are necessary to correlate between the information on the queue and the data on the file system.
+When using the [file share data bus](/nservicebus/messaging/claimcheck/file-share.md), extra headers and serialized message information are necessary to correlate between the information on the queue and the data on the file system.
 
 
 ### Using DataBusProperty
@@ -494,3 +486,39 @@ snippet: HeaderWriterDataBusConvention
 #### Example body
 
 snippet: HeaderWriterDataBusConventionBody
+
+## ServiceControl
+
+### ServiceControl.RetryTo
+
+Value: Queue name
+
+When present in a failed message to ServiceControl, ServiceControl will send the message to this queue instead of the queue name value from [NServiceBus.FailedQ](#error-forwarding-headers-nservicebus-failedq)
+
+This is used by the ServiceControl transport adapter to bridge failed messages between different transports.
+
+### ServiceControl.TargetEndpointAddress
+
+Value: Queue name
+Used by messageging bridge to return the message back to the correct queue if the failed message reach
+
+### ServiceControl.Retry.AcknowledgementQueue
+
+Value: Queue name
+
+The queue to send an acknowledgement system message back to a specific ServiceControl queue to mark a retried message as processed.
+
+### ServiceControl.Retry.Successful
+
+Contains a timestamp in the format `yyyy-MM-dd HH:mm:ss:ffffff Z` to indicate when a message was succesfully processed.
+
+Part of the control message send back to ServiceControl to signal that a message that was manually retried in ServicePulse/Control and flag as processed succesful.
+
+### ServiceControl.Retry.UniqueMessageId
+
+Contains the [NServiceBus.MessageId](#messaging-interaction-headers-nservicebus-messageid) value of the message that was succesfully processed.
+
+Part of the control message send back to
+
+
+The presence of any header key that starts with `ServiceControl.` would indicate its a message that is manually retried.

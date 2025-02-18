@@ -2,6 +2,7 @@ using Azure.Storage.Blobs;
 using NServiceBus;
 using System;
 using System.Threading.Tasks;
+using NServiceBus.ClaimCheck;
 
 class Program
 {
@@ -13,7 +14,8 @@ class Program
         #region ConfiguringDataBusLocation
 
         var blobServiceClient = new BlobServiceClient("UseDevelopmentStorage=true");
-        var dataBus = endpointConfiguration.UseDataBus<AzureDataBus, SystemJsonDataBusSerializer>()
+
+        var claimCheck = endpointConfiguration.UseClaimCheck<AzureClaimCheck, SystemJsonClaimCheckSerializer>()
             .Container("testcontainer")
             .UseBlobServiceClient(blobServiceClient);
 
@@ -57,7 +59,7 @@ class Program
         var message = new MessageWithLargePayload
         {
             Description = "This message contains a large payload that will be sent on the Azure data bus",
-            LargePayload = new DataBusProperty<byte[]>(new byte[1024 * 1024 * 5]) // 5MB
+            LargePayload = new ClaimCheckProperty<byte[]>(new byte[1024 * 1024 * 5]) // 5MB
         };
         await messageSession.Send("Samples.AzureBlobStorageDataBus.Receiver", message);
 

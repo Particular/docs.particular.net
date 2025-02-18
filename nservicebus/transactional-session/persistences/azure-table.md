@@ -2,7 +2,7 @@
 title: Transactional Session with Azure Table Persistence
 summary: How to configure a transactional session with Azure Table Persistence
 component: TransactionalSession.AzureTable
-reviewed: 2022-09-12
+reviewed: 2025-01-22
 related:
 - persistence/azure-table
 - nservicebus/transactional-session
@@ -19,7 +19,7 @@ snippet: enabling-transactional-session-azurestorage
 
 ## Opening a session
 
-To open a Azure Storage Persistence transactional session:
+To open an Azure Storage Persistence transactional session:
 
 snippet: open-transactional-session-azurestorage
 
@@ -31,7 +31,7 @@ snippet: open-transactional-session-azurestorage-table
 
 ## Transaction usage
 
-Message and database operations made via the the transactional session are committed together once the session is committed:
+Message and database operations made via the transactional session are committed together once the session is committed:
 
 snippet: use-transactional-session-azurestorage
 

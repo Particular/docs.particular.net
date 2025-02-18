@@ -11,7 +11,10 @@ class Program
         endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UsePersistence<InMemoryPersistence>();
-        endpointConfiguration.SendFailedMessagesTo("error");
+
+#region ServiceControlEventsMonitorCustomErrorQueue
+        endpointConfiguration.SendFailedMessagesTo("error-monitoring");
+#endregion
 
         var transport = endpointConfiguration.UseTransport<LearningTransport>();
 

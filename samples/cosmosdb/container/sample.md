@@ -1,7 +1,7 @@
 ---
 title: Cosmos DB Persistence Usage with non-default container
 summary: Using Cosmos DB Persistence to store sagas providing a non-default container dynamically
-reviewed: 2022-01-19
+reviewed: 2024-10-15
 component: CosmosDB
 related:
  - nservicebus/sagas

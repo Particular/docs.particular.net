@@ -43,7 +43,7 @@
                         errorQueueName: errorQueueName,
                         messageId: messageId);
 
-                Assert.IsTrue(await state.Signal.Task);
+                Assert.That(await state.Signal.Task, Is.True);
             }
             finally
             {

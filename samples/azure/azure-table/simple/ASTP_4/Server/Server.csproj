@@ -1,14 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net7.0;net6.0;net48</TargetFrameworks>
+    <TargetFrameworks>net9.0;net8.0;net6.0;net48</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="8.*" />
     <PackageReference Include="NServiceBus.Persistence.AzureTable" Version="4.*" />
   </ItemGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\SharedMessages\SharedMessages.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <RuntimeHostConfigurationOption Include="System.Runtime.Loader.UseRidGraph" Value="true" />
+  </ItemGroup>
+
 </Project>
