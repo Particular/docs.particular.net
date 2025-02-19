@@ -155,6 +155,7 @@ Generally, it does not matter whether the publisher or the subscriber is upgrade
 Switching the event delivery path to the new topic-per-event-type approach is a two-step process.
 
 First, ensure that the infrastructure for the event delivery (topic and all subscriptions) is created. This can be done in a number of ways:
+
 - If endpoints have installers enabled, the subscribers can be restarted after the event is marked as "migrated" in the topology configuration. This means that during the startup process the necessary infrastructure for the event is created. The old infrastructure (subscription on the common topic) still exists and is being used to deliver the events
 - Using the [provided tool](/transports/azure-service-bus/operational-scripting.md)
 - Using infrastructure-as-code tools such as Bicep, Terraform, or Pulumi
@@ -172,6 +173,9 @@ If the migration takes a long time, it may be desirable to delete old subscripti
 Once all events have been migrated, the old single topic can be deleted.
 
 ### Migrating from non-default topics or hierarchies
+
+> [!NOTE]
+> The methods are already obsoleted to give early notice when the migration topology will be phased out. Due to the obsoletion the methods have `[EditorBrowsable(EditorBrowsableState.Never)]` which may hide those members depending on the IDE settings. This can be solved by explicitly typing out the method signatures as shown below or configure the IDE to show members independent of their browsable state ([Visual Studio](https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.editorbrowsableattribute#remarks) or Rider under Editor > General > Code Completion > Filter members by EditorBrowsable attribute).
 
 Use either `TopicTopology.MigrateFromNamedSingleTopic(string topicName)` or `TopicTopology.MigrateFromTopicHierarchy(string topicToPublishTo, string topicToSubscribeOn)`.
 
