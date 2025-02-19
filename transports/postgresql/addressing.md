@@ -52,7 +52,7 @@ snippet: postgresql-multischema-config-for-queue-heartbeats
 The following values determine the schema, in priority order:
 
 * A schema configured for a given queue via `UseSchemaForQueue`.
-* If [logical routing](/nservicebus/messaging/routing.md#command-routing) is used, a schema configured for a given endpoint via `UseSchemaForEndpoint`.
+* A schema configured for a given endpoint via `UseSchemaForEndpoint`.
 * A schema contained in the destination address.
 * A default schema configured via `DefaultSchema`.
 * Otherwise, `public` is used as a default schema.
