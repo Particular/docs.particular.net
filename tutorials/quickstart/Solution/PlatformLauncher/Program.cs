@@ -10,7 +10,10 @@ namespace Platform
         static async Task Main()
         {
             Console.Title = "Platform Launcher";
-            await Particular.PlatformLauncher.Launch();
+            // The Particular Service Platform tools are disabled initially.
+            // To enable them, replace the line below with:
+            //   await Particular.PlatformLauncher.Launch();
+            await Task.CompletedTask;
         }
 
         #endregion
