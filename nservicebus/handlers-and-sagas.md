@@ -2,7 +2,7 @@
 title: Handlers and Sagas
 summary: A brief introduction to handlers and sagas
 component: Core
-reviewed: 2022-11-08
+reviewed: 2025-02-19
 related:
  - nservicebus/handlers
  - nservicebus/sagas
