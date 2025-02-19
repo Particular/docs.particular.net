@@ -12,14 +12,11 @@ Topic names must adhere to the limits outlined in [the Microsoft documentation o
 
 It is possible to configure a topology entirely from configuration by loading a serialized version of the options and using the `TopicTopology.FromOptions` to create the topology.
 
-```json
-{
-  ...
-  "QueueNameToSubscriptionNameMap": {
-    "QueueName": "SubscriptionName"
-  }
-}
-```
+This allows loading topology configuration from Application configuration or any other sources. The options layer also provides support for source generated serializer options as part of `TopologyOptionsSerializationContext`.
+
+The following snippet demonstrates raw deserialization of options and creating the topology from those options. Usage may vary depending on the usage cases. For more details how to load options in the generic host consolidate the [options sample](/samples/azure-service-bus-netstandard/options/sample.md).
+
+snippet: asb-options-options-loading
 
 ##### Validation
 
