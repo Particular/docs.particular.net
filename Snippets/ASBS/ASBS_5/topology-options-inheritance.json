@@ -1,4 +1,4 @@
-# startcode topology-options
+# startcode topology-options-inheritance
 {
   "$type": "topology-options",
   "PublishedEventToTopicsMap": {
@@ -14,4 +14,4 @@
     "Publisher": "PublisherSubscriptionName"
   }
 }
-# endcode topology-options
+# endcode topology-options-inheritance
