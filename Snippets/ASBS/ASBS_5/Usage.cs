@@ -5,8 +5,6 @@ using System.Text;
 using Azure.Identity;
 using Azure.Messaging.ServiceBus;
 using NServiceBus;
-using NServiceBus.Transport;
-using Shipping;
 
 class Usage
 {
@@ -54,6 +52,12 @@ class Usage
 
         #endregion
 #pragma warning restore CS0618 // Type or member is obsolete
+
+        #region asb-options-validation-disable
+
+        transport.Topology.OptionsValidator = new TopologyOptionsDisableValidationValidator();
+
+        #endregion
 
         var topology = TopicTopology.Default;
         #region asb-interface-based-inheritance

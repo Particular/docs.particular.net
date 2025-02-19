@@ -20,3 +20,13 @@ It is possible to configure a topology entirely from configuration by loading a 
   }
 }
 ```
+
+##### Validation
+
+During the start of the transport the topology configuration is validated against some of the well known limitations like entity, subscription or rule name lengths and some consistency validation is executed.
+
+The default validator uses data validations and source generated options validation. The default validator can be overriden or the validation can be entirely disabled.
+
+snippet: asb-options-validation-disable
+
+Disabling the validator might be desirable in generic hosting scenarios when the topology options are loaded from the Application configuration and the validator is registered to validate at startup to avoid double validating.
