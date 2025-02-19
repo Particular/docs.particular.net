@@ -2,7 +2,7 @@
 title: NServiceBus.Extensions.DependencyInjection Usage
 summary: A sample that uses Microsoft's built-in dependency injection container
 component: Extensions.DependencyInjection
-reviewed: 2022-10-31
+reviewed: 2025-02-18
 related:
  - nservicebus/dependency-injection
  - nservicebus/dependency-injection/extensions-dependencyinjection
