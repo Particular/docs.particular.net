@@ -9,7 +9,7 @@ related:
 
 ## Prerequisites
 
-The uses a database `nservicebus`. Ensure it exists before running the sample.
+This sample uses a database named `nservicebus`. Ensure it exists before running the sample.
 
 ## Running the sample
 

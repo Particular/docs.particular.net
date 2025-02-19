@@ -17,7 +17,6 @@ The PostgreSQL transport supports the following [transport transaction modes](/t
 > [!NOTE]
 > `Exactly once` message processing without distributed transactions can be achieved with any transport using the [Outbox](/nservicebus/outbox/) feature. It requires business and persistence data to share the storage mechanism but does not put any requirements on transport data storage. In addition, PostgreSQL transport supports the `exactly once` processing mode when using **SendsAtomicWithReceive** transaction mode [in conjunction with SQL Persistence](/persistence/sql/postgresql-combining-persistence-with-transport.md).
 
-
 ### Native transactions
 
 In this mode, the message is received inside a native ADO.NET transaction. There are two available options within native transaction level:
@@ -25,10 +24,9 @@ In this mode, the message is received inside a native ADO.NET transaction. There
  * **ReceiveOnly** - An input message is received using native transaction. The transaction is committed only when message processing succeeds.
 
 > [!NOTE]
-> This transaction is not shared outside of the message receiver. That means there is a possibility of persistent side-effects when processing fails, i.e. [ghost messages](/nservicebus/concepts/glossary.md#ghost-message) might occur.
+> This transaction is not shared outside of the message receiver and therefore there is a possibility of persistent side-effects when processing fails, i.e. [ghost messages](/nservicebus/concepts/glossary.md#ghost-message) might occur.
 
- * **SendsAtomicWithReceive** - This mode is similar to the `ReceiveOnly`, but transaction is shared with sending operations. That means the message receive operation and any send or publish operations are committed atomically.
-
+ * **SendsAtomicWithReceive** - This mode is similar to the `ReceiveOnly`, but the transaction is shared with sending operations. The message receive operation and any send or publish operations are committed atomically.
 
 ### Unreliable (transactions disabled)
 
