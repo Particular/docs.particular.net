@@ -5,6 +5,7 @@ using System.Text;
 using Azure.Identity;
 
 using NServiceBus;
+using NServiceBus.Transport.AzureServiceBus;
 
 class Usage
 {
@@ -52,6 +53,12 @@ class Usage
 
         #endregion
 #pragma warning restore CS0618 // Type or member is obsolete
+
+        #region asb-options-validation-disable
+
+        transport.Topology.OptionsValidator = new TopologyOptionsDisableValidationValidator();
+
+        #endregion
     }
 
     class MyEvent;
