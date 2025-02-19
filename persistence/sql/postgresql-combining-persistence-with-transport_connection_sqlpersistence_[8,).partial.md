@@ -1,4 +1,4 @@
-This behaviour may be disabled, to force the persistance to create its own connection, as it does when the outbox is enabled:
+This behavior may be disabled, to force the persistance to create its own connection, as it does when the outbox is enabled:
 
 snippet: PostgreSqlDoNotShareConnection
 
