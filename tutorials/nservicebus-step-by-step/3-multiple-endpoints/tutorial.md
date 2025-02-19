@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Step-by-step: Multiple Endpoints"
-reviewed: 2024-05-21
+reviewed: 2025-02-19
 summary: In this 15-20-minute tutorial, you'll learn how to send messages between multiple endpoints and control the logical routing of messages between endpoints.
 redirects:
 - tutorials/intro-to-nservicebus/3-multiple-endpoints
@@ -144,8 +144,8 @@ The important takeaway is, if a message is accidentally sent to an endpoint we d
 
 Now we need to change **ClientUI** so that it is sending `PlaceOrder` to the **Sales** endpoint.
 
-1. In the **ClientUI** endpoint, modify the **Program.cs** file so that `endpointInstance.SendLocal(command)` is replaced by `endpointInstance.Send(command)`.
-1. In the the same file, use the `transport` variable to access the routing configuration and specify the logical routing for `PlaceOrder` by adding the following code after the line that configures the Learning Transport:
+1. In the **ClientUI** endpoint, modify the **InputLoopService.cs** file so that `messageSession.SendLocal(command, stoppingToken)` is replaced by `messageSession.Send(command, stoppingToken)`.
+1. In the **Program.cs** file, use the `routing` variable to access the routing configuration and specify the logical routing for `PlaceOrder` by adding the following code after the line that configures the Learning Transport:
 
 snippet: AddingRouting
 
