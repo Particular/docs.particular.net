@@ -14,8 +14,6 @@ Want to quickly learn what NServiceBus is all about? You're in the right place. 
 * Build a failure-resistant system using messages
 * Create a system that can be easily extended as new requirements are added
 
-If you've already experienced the benefits of messaging, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
-
 > [!NOTE]
 > * If you're new here, check out the [overview of NServiceBus](https://particular.net/nservicebus).
 > * The [Glossary of messaging terms](/nservicebus/concepts/glossary.md) may help as you go along this tutorial.
