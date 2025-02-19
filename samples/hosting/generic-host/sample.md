@@ -1,7 +1,7 @@
 ---
 title: Endpoint hosting with the Generic Host
 summary: Hosting an endpoint with the Generic Host
-reviewed: 2022-11-09
+reviewed: 2025-02-19
 component: Core
 related:
 - nservicebus/hosting/extensions-hosting
