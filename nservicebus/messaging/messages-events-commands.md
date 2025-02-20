@@ -72,7 +72,7 @@ There are checks in place to ensure best practices are followed. Violations of t
 
 ## Designing messages
 
-A message can be defined using a [class](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/classes), [record](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records), or an [interface](https://docs.particular.net/nservicebus/messaging/messages-as-interfaces). Messages should focus on _data only_ and avoid including methods or other business logic. Treating messages as simple contracts makes them easier to version and evolve over time.
+A message can be defined using a [class](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/classes), [record](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records), or an [interface](/nservicebus/messaging/messages-as-interfaces.md). Messages should focus on _data only_ and avoid including methods or other business logic. Treating messages as simple contracts makes them easier to version and evolve over time.
 
 Ideally, a good message type will:
 
