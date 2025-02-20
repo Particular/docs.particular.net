@@ -82,6 +82,8 @@ Ideally, a good message type will:
 
 > [!NOTE]
 > Prior to NServiceBus version 7.2, messages had to be defined as a `class`. Defining them as a `struct` would result in a runtime exception.
+> - `struct` is supported since 7.2+.
+> - `record` is supported since 9.0+.
 
 Generic message definitions (e.g., `MyMessage<T>`) are not supported. It is recommended to use dedicated, simple types for each message.
 
