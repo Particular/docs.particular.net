@@ -4,11 +4,11 @@ using NServiceBus;
 
 namespace Core_9.BuyersRemorsePolicyMapping;
 
+#pragma warning disable 9113
+
 #region BuyersRemorsePolicyMapping
 
-#pragma warning disable CS9113 // Parameter is unread.
 class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>,
-#pragma warning restore CS9113 // Parameter is unread.
     IAmStartedByMessages<PlaceOrder>
 {
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseData> mapper)
@@ -25,6 +25,8 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemo
 }
 
 #endregion
+
+#pragma warning restore 9113
 
 internal class PlaceOrder
 {
