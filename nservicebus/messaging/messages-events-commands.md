@@ -2,10 +2,11 @@
 title: Messages, events, and commands
 summary: Messages as commands or events are the the unit of communication for message-based distributed systems. NServiceBus ensures they are used correctly.
 component: Core
-reviewed: 2023-12-05
+reviewed: 2025-02-19
 related:
  - nservicebus/messaging/conventions
  - nservicebus/messaging/unobtrusive-mode
+ - samples/message-assembly-sharing/
 redirects:
  - nservicebus/introducing-ievent-and-icommand
  - nservicebus/messaging/introducing-ievent-and-icommand
@@ -116,6 +117,8 @@ public class MyEvent : IEvent { }
 public class MyMessage : IMessage { }
 ```
 
+Those interfaces are available in [NServiceBus.MessageInterfaces](https://www.nuget.org/packages/NServiceBus.MessageInterfaces). The project targets `netstandard2.0` has a stable version number which is highly unlikely to change. Using these well-defined interfaces should be prefered over conventions since NServiceBus.MessageInterfaces package can be used to create a shared message assembly that can be used by multiple major versions of NServiceBus, and in projects using different target frameworks, while still relying on the `ICommand` and `IEvent` marker interfaces.
+
 ### Conventions
 
-To avoid having message contract assemblies reference the NServiceBus assembly, [custom conventions](/nservicebus/messaging/conventions.md) can be used to identify the types used as contracts for messages, commands, and events. This is known as [unobtrusive mode](unobtrusive-mode.md).
+[Custom conventions](/nservicebus/messaging/conventions.md) can be used to identify the types used as contracts for messages, commands, and events. This is known as [unobtrusive mode](unobtrusive-mode.md).
