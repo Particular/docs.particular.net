@@ -6,7 +6,7 @@ reviewed: 2025-02-19
 related:
  - nservicebus/messaging/conventions
  - nservicebus/messaging/unobtrusive-mode
- - samples/message-assembly-sharing/
+ - samples/message-assembly-sharing
 redirects:
  - nservicebus/introducing-ievent-and-icommand
  - nservicebus/messaging/introducing-ievent-and-icommand
