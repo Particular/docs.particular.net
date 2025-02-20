@@ -117,7 +117,7 @@ public class MyEvent : IEvent { }
 public class MyMessage : IMessage { }
 ```
 
-Those interfaces are available in [NServiceBus.MessageInterfaces](https://www.nuget.org/packages/NServiceBus.MessageInterfaces). The project targets `netstandard2.0` has a stable version number which is highly unlikely to change. Using these well-defined interfaces should be prefered over conventions since NServiceBus.MessageInterfaces package can be used to create a shared message assembly that can be used by multiple major versions of NServiceBus, and in projects using different target frameworks, while still relying on the `ICommand` and `IEvent` marker interfaces.
+Those interfaces are available in [NServiceBus.MessageInterfaces](https://www.nuget.org/packages/NServiceBus.MessageInterfaces). The project targets `netstandard2.0` has a stable version number which is highly unlikely to change. Using these well-defined interfaces should be prefered over conventions since `NServiceBus.MessageInterfaces` package can be used to create a shared message assembly that can be used by multiple major versions of NServiceBus, and in projects using different target frameworks, while still relying on the `ICommand` and `IEvent` marker interfaces.
 
 ### Conventions
 
