@@ -27,7 +27,7 @@ flowchart LR
     S2 -->|Subscribe| T2
 ```
 
-This design can dramatically reduce filtering overhead, often boosting performance and scalability. Distributing the messages across multiple topics avoids the single-topic bottleneck and mitigates the risk of hitting per-topic subscription and filter limits.
+This design can dramatically reduce filtering overhead, boosting performance and scalability. Distributing the messages across multiple topics avoids the single-topic bottleneck and mitigates the risk of hitting per-topic subscription and filter limits.
 
 #### Quotas and limitations
 
@@ -40,7 +40,7 @@ A single Azure Service Bus topic [can hold up to 2,000 subscriptions, and each P
 By allocating a separate topic for each concrete event type, the overall system can scale more effectively:
 
 - Each topic is dedicated to one event type, so message consumption is isolated.
-- If any single topic hits its 5 GB quota, only that event type is affected, reducing the blast radius of a partial outage.
+- Failure domain size is reduced from entire system to single topic so if any single topic hits its 5 GB quota, only that event type is affected.
 - The maximum limit of 1,000 topics per messaging unit can comfortably support hundreds of event types, especially when factoring that not all event types are high-volume
 
 > [!NOTE]
@@ -48,7 +48,7 @@ By allocating a separate topic for each concrete event type, the overall system 
 
 #### Subscription rule matching
 
-In this topology, no SQL or Correlation filtering is strictly required on the topic itself because messages in a topic are all of the same event type. Subscriptions can use a default “match-all” rule (`1=1`) or the default catch-all rule on each topic subscription.
+In this topology, no SQL or Correlation filtering is required on the topic itself because messages in a topic are all of the same event type. Subscriptions can use a default “match-all” rule (`1=1`) or the default catch-all rule on each topic subscription.
 
 Since there is only one event type per topic:
 
@@ -130,7 +130,7 @@ As mentioned in [versioning of shared contracts](/nservicebus/messaging/sharing-
 - Publish both versions of the event on the publisher side to individual topics and setting up the subscribers where necessary to receive both _or_
 - Multiplex all versions of the event to the same topic and filter the versions on the subscriber side within specialized filter rules
 
-When publishing both versions of the event the subscribers need to opt-into receiving those events by adding an explicit mapping:
+When publishing both versions of the event the subscribers need to opt-in to receiving those events by adding an explicit mapping:
 
 snippet: asb-versioning-subscriber-mapping
 
