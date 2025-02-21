@@ -18,6 +18,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASBFunctions_4", "ASBFuncti
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASBFunctions_4.4", "ASBFunctions_4.4\ASBFunctions_4.4.csproj", "{568C02E9-9C3A-4EEF-94B0-EBB05D6D52D2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASBFunctions_5", "ASBFunctions_5\ASBFunctions_5.csproj", "{E2420EE8-2E10-C335-781E-A2150BBA7768}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -56,6 +58,10 @@ Global
 		{568C02E9-9C3A-4EEF-94B0-EBB05D6D52D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{568C02E9-9C3A-4EEF-94B0-EBB05D6D52D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{568C02E9-9C3A-4EEF-94B0-EBB05D6D52D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2420EE8-2E10-C335-781E-A2150BBA7768}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2420EE8-2E10-C335-781E-A2150BBA7768}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2420EE8-2E10-C335-781E-A2150BBA7768}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2420EE8-2E10-C335-781E-A2150BBA7768}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
