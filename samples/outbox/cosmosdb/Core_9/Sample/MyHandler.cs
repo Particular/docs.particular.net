@@ -8,7 +8,6 @@ public class MyHandler : IHandleMessages<MyMessage>
     public async Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         Console.WriteLine($"Processing MessageId {context.MessageId}");
-
     }
     #endregion
 }
