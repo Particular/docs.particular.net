@@ -131,7 +131,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [9.2.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.2.0) | 2024-11-25     | -                 | -                                 |
-| [9.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.1.1) | 2024-08-08     | 2025-02-25        | Superseded by 9.2.x               |
+| [~~9.1.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.1.1) | ~~2024-08-08~~ | ~~2025-02-25~~    | ~~Superseded by 9.2.x~~           |
 | [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.0.1) | ~~2024-04-16~~ | ~~2024-11-08~~    | ~~Superseded by 9.1.x~~           |
 | [8.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/8.0.6) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/7.0.7) | 2022-07-14     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
@@ -747,7 +747,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.4.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.4.1) | 2024-06-12     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/5.0.0) | 2025-02-21     | -                 | -                                 |
+| [4.4.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.4.1) | 2024-06-12     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [~~4.3.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.3.1) | ~~2023-09-21~~ | ~~2024-09-12~~    | ~~Superseded by 4.4.x~~           |
 | [~~4.2.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.2.0) | ~~2023-06-28~~ | ~~2023-12-21~~    | ~~Superseded by 4.3.x~~           |
 | [~~4.1.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.1.1) | ~~2022-12-21~~ | ~~2023-09-28~~    | ~~Superseded by 4.2.x~~           |
@@ -1082,7 +1083,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.26.x](https://www.nuget.org/packages/Particular.PlatformSample/3.26.0) | 2025-02-03     | -                 | -                                 |
+| [3.32.x](https://www.nuget.org/packages/Particular.PlatformSample/3.32.0) | 2025-02-21     | -                 | -                                 |
+| [3.26.x](https://www.nuget.org/packages/Particular.PlatformSample/3.26.0) | 2025-02-03     | 2025-05-21        | Superseded by 3.32.x              |
 | [3.25.x](https://www.nuget.org/packages/Particular.PlatformSample/3.25.0) | 2025-01-27     | 2025-05-03        | Superseded by 3.26.x              |
 | [3.24.x](https://www.nuget.org/packages/Particular.PlatformSample/3.24.0) | 2025-01-22     | 2025-04-27        | Superseded by 3.25.x              |
 | [3.23.x](https://www.nuget.org/packages/Particular.PlatformSample/3.23.0) | 2024-12-20     | 2025-04-22        | Superseded by 3.24.x              |
