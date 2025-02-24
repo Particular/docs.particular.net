@@ -10,15 +10,18 @@ public class MyHandler :
 
     public MyHandler(ILogger<MyHandler> logger)
     {
-        this.logger = logger;
+        ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
+        this.logger = factory.CreateLogger<MyHandler>();
+        logger.LogInformation("Hello World! Logging is {Description}.", "fun");
+
     }
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         logger.LogInformation($"Message received. Id: {message.Id}");
-       //throw new ArgumentNullException("Uh oh - something went wrong....");
-       //throw new DivideByZeroException("DivideByZeroException - something went wrong....");
-       return Task.CompletedTask;
+        //throw new ArgumentNullException("Uh oh - something went wrong....");
+        //throw new DivideByZeroException("DivideByZeroException - something went wrong....");
+        return Task.CompletedTask;
     }
 }
 #endregion
