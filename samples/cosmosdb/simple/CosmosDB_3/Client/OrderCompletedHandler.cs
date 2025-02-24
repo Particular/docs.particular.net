@@ -1,15 +1,20 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
+
 
 public class OrderCompletedHandler :
     IHandleMessages<OrderCompleted>
 {
-    static ILog log = LogManager.GetLogger<OrderCompletedHandler>();
+    private readonly ILogger<OrderCompletedHandler> logger;
 
+    public OrderCompletedHandler(ILogger<OrderCompletedHandler> logger)
+    {
+        this.logger = logger;
+    }
     public Task Handle(OrderCompleted message, IMessageHandlerContext context)
     {
-        log.Info($"Received OrderCompleted for OrderId {message.OrderId}");
+        logger.LogInformation($"Received OrderCompleted for OrderId {message.OrderId}");
         return Task.CompletedTask;
     }
 }
