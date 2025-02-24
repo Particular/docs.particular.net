@@ -1,16 +1,22 @@
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 using Subscriber2.Contracts;
 
 class Consumer2EventHandler :
     IHandleMessages<Consumer2Contract>
-{
-    static ILog log = LogManager.GetLogger<Consumer2EventHandler>();
+{    
+    private readonly ILogger<Consumer2EventHandler> logger;
 
+    public Consumer2EventHandler()
+    {
+        ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
+        this.logger = factory.CreateLogger<Consumer2EventHandler>();
+
+    }
     public Task Handle(Consumer2Contract message, IMessageHandlerContext context)
     {
-        log.Info(message.Consumer2Property);
+        logger.LogInformation(message.Consumer2Property);
         return Task.CompletedTask;
     }
 }
