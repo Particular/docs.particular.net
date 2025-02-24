@@ -8,11 +8,13 @@ extensions:
   nextUrl: tutorials/quickstart/tutorial-reliability
 ---
 
-Want to quickly learn what NServiceBus is all about? You're in the right place. In less than one hour, learn how to:
+Want to learn what NServiceBus is all about? You're in the right place. 
 
-* Connect different parts of a system using messages
-* Build a failure-resistant system using messages
-* Create a system that can be easily extended as new requirements are added
+In just 10 minutes, see how to:
+
+* Send and process command messages
+* Publish and subscribe to event messages
+* All fully abstracted from the underlying queuing system
 
 > [!NOTE]
 > * If you're new here, check out the [overview of NServiceBus](https://particular.net/nservicebus).
