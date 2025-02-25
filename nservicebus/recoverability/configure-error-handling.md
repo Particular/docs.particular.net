@@ -33,7 +33,7 @@ include: configurationWarning
 Before a message is moved to the error queue it is possible to inspect and [error forwarding headers](/nservicebus/messaging/headers.md#error-forwarding-headers).
 
 > [!WARNING]
-> Prior to Version 8 modifying existing headers on the failed message was also possible. Use a recoverability pipeline behaviour](/nservicebus/recoverability/pipeline.md) to get full access to all headers.
+> Prior to Version 8 modifying existing headers on the failed message was also possible. Use a [recoverability pipeline behaviour](/nservicebus/recoverability/pipeline.md) to get full access to all headers. See the [upgrade guide](/nservicebus/upgrades/7to8/#header-manipulation-for-failed-messages) for more information.
 
 The following snippet shows how to configure header customizations and perform header value modification.
 
