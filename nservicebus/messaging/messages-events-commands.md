@@ -49,14 +49,15 @@ There are checks in place to ensure best practices are followed. Violations of t
 
 Messages should:
 
-* Be simple [POCO](https://en.wikipedia.org/wiki/Plain_old_CLR_object) types
+* Be simple [POCOs](https://en.wikipedia.org/wiki/Plain_old_CLR_object) of type `class`, `struct`, or `record`.
 * Be as small as possible
 * Satisfy the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle)
 * Favor simplicity and redundancy over object-oriented practices like inheritance
 * Not be re-used for other purposes (e.g., domain objects, data access objects, or UI binding objects)
 
 > [!NOTE]
-> Prior to NServiceBus version 7.2, messages had to be defined as a `class`. Defining them as a `struct` would result in a runtime exception.
+> - `struct` is supported since 7.2+.
+> - `record` is supported since 9.0+.
 
 Generic message definitions (e.g., `MyMessage<T>`) are not supported. It is recommended to use dedicated, simple types for each message.
 
