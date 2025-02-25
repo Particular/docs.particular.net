@@ -49,7 +49,7 @@ There are checks in place to ensure best practices are followed. Violations of t
 
 Messages should:
 
-* Be simple [POCO](https://en.wikipedia.org/wiki/Plain_old_CLR_object) types and can be of type `class`, `struct`, or `record`.
+* Be simple [POCOs](https://en.wikipedia.org/wiki/Plain_old_CLR_object) of type `class`, `struct`, or `record`.
 * Be as small as possible
 * Satisfy the [Single Responsibility Principle](https://en.wikipedia.org/wiki/Single_responsibility_principle)
 * Favor simplicity and redundancy over object-oriented practices like inheritance
