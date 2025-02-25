@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
 using NServiceBus.Logging;
 
@@ -28,7 +29,7 @@ class Program
         var transactionInformation = persistence.TransactionInformation();
         transactionInformation.ExtractPartitionKeyFromMessage<IProvideOrderId>(provideOrderId =>
         {
-            Log.Info($"Found partition key '{provideOrderId.OrderId}' from '{nameof(IProvideOrderId)}'");
+            logger.LogInformation($"Found partition key '{provideOrderId.OrderId}' from '{nameof(IProvideOrderId)}'");
             return new PartitionKey(provideOrderId.OrderId.ToString());
         });
         #endregion
@@ -59,5 +60,9 @@ class Program
         await endpointInstance.Stop();
     }
 
-    static ILog Log = LogManager.GetLogger<Program>();
+    private static readonly ILogger<Program> logger =
+    LoggerFactory.Create(builder =>
+    {
+        builder.AddConsole();
+    }).CreateLogger<Program>();
 }

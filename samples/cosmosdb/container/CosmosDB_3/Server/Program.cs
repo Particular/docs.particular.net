@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 using Headers = NServiceBus.Headers;
 
 class Program
 {
+
     static async Task Main()
     {
         Console.Title = "Server";
@@ -32,7 +33,7 @@ class Program
         var transactionInformation = persistence.TransactionInformation();
         transactionInformation.ExtractContainerInformationFromMessage<ShipOrder>(m =>
         {
-            Log.Info($"Message '{m.GetType().AssemblyQualifiedName}' destined to be handled by '{nameof(ShipOrderSaga)}' will use 'ShipOrderSagaData' container.");
+            Log.LogInformation($"Message '{m.GetType().AssemblyQualifiedName}' destined to be handled by '{nameof(ShipOrderSaga)}' will use 'ShipOrderSagaData' container.");
             return new ContainerInformation("ShipOrderSagaData", new PartitionKeyPath("/id"));
         });
         #endregion
@@ -41,7 +42,7 @@ class Program
         {
             if (headers.TryGetValue(Headers.SagaType, out var sagaTypeHeader) && sagaTypeHeader.Contains(nameof(ShipOrderSaga)))
             {
-                Log.Info($"Message '{headers[Headers.EnclosedMessageTypes]}' destined to be handled by '{nameof(ShipOrderSaga)}' will use 'ShipOrderSagaData' container.");
+                Log.LogInformation($"Message '{headers[Headers.EnclosedMessageTypes]}' destined to be handled by '{nameof(ShipOrderSaga)}' will use 'ShipOrderSagaData' container.");
 
                 return new ContainerInformation("ShipOrderSagaData", new PartitionKeyPath("/id"));
             }
@@ -61,5 +62,10 @@ class Program
         await endpointInstance.Stop();
     }
 
-    static readonly ILog Log = LogManager.GetLogger<Program>();
+    private static readonly ILogger<Program> Log =
+     LoggerFactory.Create(builder =>
+     {
+         builder.AddConsole();
+     }).CreateLogger<Program>();
+
 }
