@@ -21,7 +21,7 @@ Message objects can be made immutable at runtime by:
 ## Record types
 
 > [!NOTE]
-> Record types are supported since NServiceBus 9
+> Record types are supported starting with NServiceBus 9
 
 ```c#
 public record CancelOrder(int OrderId);
