@@ -57,7 +57,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [7.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.2.0) | 2024-12-05     | -                 | -                                 |
 | [7.1.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.1.1) | 2024-11-26     | 2025-03-05        | Superseded by 7.2.x               |
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.0.2) | 2024-04-16     | 2025-02-26        | Superseded by 7.1.x               |
+| [~~7.0.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.0.2) | ~~2024-04-16~~ | ~~2025-02-26~~    | ~~Superseded by 7.1.x~~           |
 | [6.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.2.1) | 2023-11-20     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.1.2) | ~~2023-03-07~~ | ~~2024-02-20~~    | ~~Superseded by 6.2.x~~           |
 | [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.0.1) | ~~2022-11-17~~ | ~~2023-06-07~~    | ~~Superseded by 6.1.x~~           |
