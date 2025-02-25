@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
 #region thesaga
 
@@ -11,7 +11,11 @@ public class OrderSaga :
     IHandleMessages<OrderShipped>,
     IHandleTimeouts<CompleteOrder>
 {
-    static readonly ILog Log = LogManager.GetLogger<OrderSaga>();
+    private static readonly ILogger<OrderSaga> logger =
+     LoggerFactory.Create(builder =>
+     {
+         builder.AddConsole();
+     }).CreateLogger<OrderSaga>();
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
@@ -24,14 +28,14 @@ public class OrderSaga :
     {
         var orderDescription = $"The saga for order {message.OrderId}";
         Data.OrderDescription = orderDescription;
-        Log.Info($"Received StartOrder message {Data.OrderId}. Starting Saga");
+        logger.LogInformation($"Received StartOrder message {Data.OrderId}. Starting Saga");
 
         var shipOrder = new ShipOrder
         {
             OrderId = message.OrderId
         };
 
-        Log.Info("Order will complete in 5 seconds");
+        logger.LogInformation("Order will complete in 5 seconds");
         var timeoutData = new CompleteOrder
         {
             OrderDescription = orderDescription,
@@ -46,13 +50,13 @@ public class OrderSaga :
 
     public Task Handle(OrderShipped message, IMessageHandlerContext context)
     {
-        Log.Info($"Order with OrderId {Data.OrderId} shipped on {message.ShippingDate}");
+        logger.LogInformation($"Order with OrderId {Data.OrderId} shipped on {message.ShippingDate}");
         return Task.CompletedTask;
     }
 
     public Task Timeout(CompleteOrder state, IMessageHandlerContext context)
     {
-        Log.Info($"Saga with OrderId {Data.OrderId} completed");
+        logger.LogInformation($"Saga with OrderId {Data.OrderId} completed");
         MarkAsComplete();
         var orderCompleted = new OrderCompleted
         {

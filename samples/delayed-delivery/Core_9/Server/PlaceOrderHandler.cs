@@ -2,12 +2,17 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
 public class PlaceOrderHandler :
     IHandleMessages<PlaceOrder>
 {
-    static ILog log = LogManager.GetLogger<PlaceOrderHandler>();
+    private static readonly ILogger<PlaceOrderHandler> logger =
+    LoggerFactory.Create(builder =>
+    {
+        builder.AddConsole();
+    }).CreateLogger<PlaceOrderHandler>();
+
     static List<Guid> wasMessageDelayed = new List<Guid>();
 
     #region PlaceOrderHandler
@@ -20,11 +25,11 @@ public class PlaceOrderHandler :
             options.DelayDeliveryWith(TimeSpan.FromSeconds(5));
             options.RouteToThisEndpoint();
             await context.Send(message, options);
-            log.Info($"[Defer Message Handling] Deferring Message with Id: {message.Id}");
+            logger.LogInformation($"[Defer Message Handling] Deferring Message with Id: {message.Id}");
             return;
         }
 
-        log.Info($"[Defer Message Handling] Order for Product:{message.Product} placed with id: {message.Id}");
+        logger.LogInformation($"[Defer Message Handling] Order for Product:{message.Product} placed with id: {message.Id}");
     }
     #endregion
 

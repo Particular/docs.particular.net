@@ -11,7 +11,6 @@ class Program
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         Console.WriteLine("Press 'S' to send a StartOrder message to the server endpoint");

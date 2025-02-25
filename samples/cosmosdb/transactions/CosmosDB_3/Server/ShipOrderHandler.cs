@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
 public class ShipOrderHandler :
     IHandleMessages<ShipOrder>
@@ -18,7 +18,7 @@ public class ShipOrderHandler :
 
         Store(orderShippingInformation, context);
 
-        Log.Info($"Order Shipped. OrderId {message.OrderId}");
+        logger.LogInformation($"Order Shipped. OrderId {message.OrderId}");
 
         var options = new PublishOptions();
         options.SetHeader("Sample.CosmosDB.Transaction.OrderId", message.OrderId.ToString());
@@ -37,5 +37,10 @@ public class ShipOrderHandler :
         session.Batch.CreateItem(orderShippingInformation, requestOptions);
     }
 
-    static ILog Log = LogManager.GetLogger<ShipOrderHandler>();
+    private static readonly ILogger<ShipOrderHandler> logger =
+     LoggerFactory.Create(builder =>
+     {
+         builder.AddConsole();
+     }).CreateLogger<ShipOrderHandler>();
+
 }

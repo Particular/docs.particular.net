@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 class Program
 {
@@ -37,7 +36,7 @@ class Program
         #region TransactionInformationFromHeader
         transactionInformation.ExtractPartitionKeyFromHeader("Sample.CosmosDB.Transaction.OrderId", orderId =>
         {
-            Log.Info($"Found partition key '{orderId}' from header 'Sample.CosmosDB.Transaction'");
+            logger.LogInformation($"Found partition key '{orderId}' from header 'Sample.CosmosDB.Transaction'");
             return orderId;
         });
 
