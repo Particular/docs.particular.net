@@ -12,7 +12,7 @@ upgradeGuideCoreVersions:
  - 9
 ---
 
-Upgrading from Azure Service Bus transport version 4 to version 5 is a major upgrade and requires careful planning. Read the entire upgrade guide before beginning the upgrade process.
+Upgrading Azure Service Bus transport from version 4 to version 5 is a major upgrade and requires careful planning. Read the entire upgrade guide before beginning the upgrade process.
 
 Version 5 of the transport introduces the concept of choosing a topic topology. The following two topologies are supported:
 
