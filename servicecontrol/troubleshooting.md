@@ -384,3 +384,34 @@ To mitigate growth or not having enough storage:
 7. Scale out audit storage over multiple disks and/or machines:
 
    - [ServiceControl remote instances  Sharding audit messages with split audit queues](/servicecontrol/servicecontrol-instances/remotes.md#overview-sharding-audit-messages-with-split-audit-queues)
+
+## Audit instances: Corrupted indexes or corrupted database after a service shutdown
+
+When the following conditions are met:
+
+- ServiceControl Audit instances are installed on Windows as a service
+- The audit database size is massive (> 500Gb)
+- There is a constant load on the database due to:
+  - Continuously ingesting messages from the audit queue
+  - Message expiration kicking in to delete expired audit messages
+- Database indexes use the Corax indexing engine
+
+There is a chance that, at service shutdown, ServiceControl takes a long time to shut down and, in most cases, doesn't shut down gracefully because the RavenDB database is busy updating indexes due to ingestion and cleaning up tombstones due to retention.
+
+To mitigate this situation, migrating indexes from the Corax to the Lucene indexing engine can solve the issue. It might be sufficient to migrate to Lucene the `MessagesViewIndex` (regardless of the fact that full-text search is enabled or not), which is the one with the highest load.
+
+To migrate indexes from the Corax to the Lucene indexing engine, perform the following steps:
+
+1. Start the ServiceControl Audit instance in maintenance mode
+2. Access the RavenDB studio
+3. Edit the index that needs to be changed
+4. From the edit index Configuration tab
+5. Change the indexing engine from Corax or Corax (inherited) to Lucene
+6. Click save
+
+At this point, there will be two indexes, the original one and the new one with the Lucene indexing engine. The RavenDB studio will offer the option to swap them. The swap operation will:
+
+- Make the Lucene index the default
+- Delete the Corax index
+
+After the swap operation, the new Lucene-based index must be rebuilt. Depending on the index size, the operation might take a long time.
