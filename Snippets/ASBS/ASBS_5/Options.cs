@@ -45,9 +45,9 @@ public class Options
         }, TopologyOptionsSerializationContext.Default.TopologyOptions);
 
         var builder = new StringBuilder();
-        builder.AppendLine("# startcode topology-options");
+        builder.AppendLine("# start" + "code topology-options");
         builder.AppendLine(serializedOptions);
-        builder.AppendLine("# endcode topology-options");
+        builder.AppendLine("# end" + "code topology-options");
 
         File.WriteAllText(Path.Combine(TestContext.CurrentContext.TestDirectory, "..", "..", "..", "topology-options.json"), builder.ToString());
     }
