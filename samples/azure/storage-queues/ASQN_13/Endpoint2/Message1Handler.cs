@@ -1,15 +1,19 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
 public class Message1Handler :
     IHandleMessages<Message1>
 {
-    static ILog log = LogManager.GetLogger<Message1Handler>();
+    private static readonly ILogger<Message1Handler> logger =
+     LoggerFactory.Create(builder =>
+     {
+         builder.AddConsole();
+     }).CreateLogger<Message1Handler>();
 
     public Task Handle(Message1 message, IMessageHandlerContext context)
     {
-        log.Info($"Received Message1: {message.Property}");
+        logger.LogInformation($"Received Message1: {message.Property}");
         var message2 = new Message2
         {
             Property = "Hello from Endpoint2"

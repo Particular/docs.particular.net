@@ -1,14 +1,18 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
 public class MyEventHandler : IHandleMessages<MyEvent>
 {
-    static ILog log = LogManager.GetLogger<MyEventHandler>();
+    private static readonly ILogger<MyCommandHandler> logger =
+    LoggerFactory.Create(builder =>
+    {
+        builder.AddConsole();
+    }).CreateLogger<MyCommandHandler>();
 
     public Task Handle(MyEvent eventMessage, IMessageHandlerContext context)
     {
-        log.Info($"Hello from {nameof(MyEventHandler)}");
+        logger.LogInformation($"Hello from {nameof(MyEventHandler)}");
         return Task.CompletedTask;
     }
 }
