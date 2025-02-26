@@ -65,9 +65,9 @@ public class Options
         }, TopologyOptionsSerializationContext.Default.TopologyOptions);
 
         var builder = new StringBuilder();
-        builder.AppendLine("# startcode topology-options-inheritance");
+        builder.AppendLine("# start" + "code topology-options-inheritance");
         builder.AppendLine(serializedOptions);
-        builder.AppendLine("# endcode topology-options-inheritance");
+        builder.AppendLine("# end" + "code topology-options-inheritance");
 
         File.WriteAllText(Path.Combine(TestContext.CurrentContext.TestDirectory, "..", "..", "..", "topology-options-inheritance.json"), builder.ToString());
     }
