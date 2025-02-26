@@ -25,9 +25,9 @@ public class Options
         }, TopologyOptionsSerializationContext.Default.TopologyOptions);
 
         var builder = new StringBuilder();
-        builder.AppendLine("# startcode migration-options");
+        builder.AppendLine("# start" + "code migration-options");
         builder.AppendLine(serializedOptions);
-        builder.AppendLine("# endcode migration-options");
+        builder.AppendLine("# end" + "code migration-options");
 
         File.WriteAllText(Path.Combine(TestContext.CurrentContext.TestDirectory, "..", "..", "..", "migration-options.json"), builder.ToString());
     }
