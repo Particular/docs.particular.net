@@ -14,7 +14,7 @@ It is possible to configure a topology entirely from configuration by loading a 
 
 This allows loading topology configuration from Application configuration or any other sources. The options layer also provides support for source generated serializer options as part of `TopologyOptionsSerializationContext`.
 
-The following snippet demonstrates raw deserialization of options and creating the topology from those options. Usage may vary depending on the usage cases. For more details how to load options in the generic host consolidate the [options sample](/samples/azure-service-bus-netstandard/options/sample.md).
+The following snippet demonstrates raw deserialization of options and creating the topology from those options. Usage may vary depending on the usage cases. For more details how to load options in the generic host consolidate the [options sample](/samples/azure-service-bus-netstandard/options/).
 
 snippet: asb-options-options-loading
 
