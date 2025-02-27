@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
@@ -18,7 +15,15 @@ var section = builder.Configuration.GetSection("AzureServiceBus");
 var topologyOptions = section.GetSection("Topology").Get<TopologyOptions>()!;
 var topology = TopicTopology.FromOptions(topologyOptions);
 
-endpointConfiguration.UseTransport(new AzureServiceBusTransport(section["ConnectionString"]!, topology));
+var transport = new AzureServiceBusTransport(section["ConnectionString"]!, topology)
+{
+    Topology =
+    {
+        // Validation is already done by the generic host so we can disable in the transport
+        OptionsValidator = new TopologyOptionsDisableValidationValidator()
+    }
+};
+endpointConfiguration.UseTransport(transport);
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.EnableInstallers();
 
