@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using NServiceBus.Transport;
 using NServiceBus.Transport.RabbitMQ;
 using NServiceBus.Unicast.Messages;
@@ -12,31 +14,38 @@ class MyRoutingTopology :
     {
     }
 
-    public void SetupSubscription(IModel channel, MessageMetadata type, string subscriberName)
+    public ValueTask SetupSubscription(IChannel channel, MessageMetadata type, string subscriberName, CancellationToken cancellationToken = default)
     {
+        throw new NotImplementedException();
     }
 
-    public void TeardownSubscription(IModel channel, MessageMetadata type, string subscriberName)
+    public ValueTask TeardownSubscription(IChannel channel, MessageMetadata type, string subscriberName, CancellationToken cancellationToken = default)
     {
+        throw new NotImplementedException();
     }
 
-    public void Publish(IModel channel, Type type, OutgoingMessage message, IBasicProperties properties)
+    public ValueTask Publish(IChannel channel, Type type, OutgoingMessage message, BasicProperties properties, CancellationToken cancellationToken = default)
     {
+        throw new NotImplementedException();
     }
 
-    public void Send(IModel channel, string address, OutgoingMessage message, IBasicProperties properties)
+    public ValueTask Send(IChannel channel, string address, OutgoingMessage message, BasicProperties properties, CancellationToken cancellationToken = default)
     {
+        throw new NotImplementedException();
     }
 
-    public void RawSendInCaseOfFailure(IModel channel, string address, ReadOnlyMemory<byte> body, IBasicProperties properties)
+    public ValueTask RawSendInCaseOfFailure(IChannel channel, string address, ReadOnlyMemory<byte> body, BasicProperties properties, CancellationToken cancellationToken = default)
     {
+        throw new NotImplementedException();
     }
 
-    public void Initialize(IModel channel, IEnumerable<string> receivingAddresses, IEnumerable<string> sendingAddresses)
+    public ValueTask Initialize(IChannel channel, IEnumerable<string> receivingAddresses, IEnumerable<string> sendingAddresses, CancellationToken cancellationToken = default)
     {
+        throw new NotImplementedException();
     }
 
-    public void BindToDelayInfrastructure(IModel channel, string address, string deliveryExchange, string routingKey)
+    public ValueTask BindToDelayInfrastructure(IChannel channel, string address, string deliveryExchange, string routingKey, CancellationToken cancellationToken = default)
     {
+        throw new NotImplementedException();
     }
 }
