@@ -402,7 +402,7 @@ To mitigate this situation, migrating indexes from the Corax to the Lucene index
 
 To migrate indexes from the Corax to the Lucene indexing engine, perform the following steps:
 
-1. Start the ServiceControl Audit instance in [maintenance mode](/servicecontrol/ravendb/accessing-database#windows-deployment-maintenance-mode)
+1. Start the ServiceControl Audit instance in [maintenance mode](/servicecontrol/ravendb/accessing-database.md#windows-deployment-maintenance-mode)
 2. Access the RavenDB studio
 3. Edit the index that needs to be changed
 4. From the edit index Configuration tab
