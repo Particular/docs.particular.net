@@ -10,10 +10,8 @@ public class MyHandler :
 
     public MyHandler(ILogger<MyHandler> logger)
     {
-        ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
-        this.logger = factory.CreateLogger<MyHandler>();
         logger.LogInformation("Hello World! Logging is {Description}.", "fun");
-
+        this.logger = logger;
     }
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
