@@ -415,3 +415,5 @@ At this point, there will be two indexes, the original one and the new one with 
 - Delete the Corax index
 
 After the swap operation, the new Lucene-based index must be rebuilt. Depending on the index size, the operation might take a long time.
+
+When ServiceControl is restarted, the Corax-based index may get recreated. One way to mitigate this behavior is to let the ServiceControl instance recreate the index once and then pause the indexing operations for the Corax-base index. To pause the index from the RavenDB studio while ServiceControl is still in maintenance mode, look for the Corax duplicate index and click the pause indexing button.
