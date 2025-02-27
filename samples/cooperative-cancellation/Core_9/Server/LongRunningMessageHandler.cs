@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 public class LongRunningMessageHandler :
     IHandleMessages<LongRunningMessage>
 {
-    private static readonly ILogger<LongRunningMessageHandler> logger =
-      LoggerFactory.Create(builder =>
-      {
-          builder.AddConsole();
-      }).CreateLogger<LongRunningMessageHandler>();
+    private readonly ILogger<LongRunningMessageHandler> logger;
+
+    public LongRunningMessageHandler(ILogger<LongRunningMessageHandler> logger)
+    {
+        this.logger = logger;
+    }
 
     #region LongRunningMessageHandler
     public async Task Handle(LongRunningMessage message, IMessageHandlerContext context)

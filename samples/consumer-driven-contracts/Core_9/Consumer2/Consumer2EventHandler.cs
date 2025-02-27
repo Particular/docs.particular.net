@@ -6,12 +6,11 @@ using Subscriber2.Contracts;
 class Consumer2EventHandler :
     IHandleMessages<Consumer2Contract>
 {
-    private static readonly ILogger<Consumer2EventHandler> logger =
-      LoggerFactory.Create(builder =>
-      {
-          builder.AddConsole();
-      }).CreateLogger<Consumer2EventHandler>();
-
+    private readonly ILogger<Consumer2EventHandler> logger;
+    public Consumer2EventHandler(ILogger<Consumer2EventHandler> logger)
+    {
+        this.logger = logger;
+    }
 
     public Task Handle(Consumer2Contract message, IMessageHandlerContext context)
     {
