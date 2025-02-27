@@ -48,9 +48,7 @@ class Program
                 endpointConfiguration.EnableMetrics().SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromSeconds(1));
 
                 var routing = endpointConfiguration.UseTransport(new LearningTransport());
-
                 routing.RouteToEndpoint(typeof(MyMessage), "Endpoint");
-
 
                 return endpointConfiguration;
             });
