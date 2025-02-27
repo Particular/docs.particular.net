@@ -73,8 +73,10 @@ In addition to the [connection string options of the transport](/transports/rabb
 
 These options are available for only quorum queues in version 6.3 and above:
 
-* `ManagementApiUri=<uri>` - The URI of the RabbitMQ management API.  The default value is `http://guest:guest@localhost:15672/api/`
-* `DisableManagemenApi=true|false(default)` - Disable the connection to the management API that is used to validate the delivery limit of quorum queues in RabbitMQ version 4 and above.
+* `ValidateDeliveryLimits=<true(default)|false>` - Validate the delivery limit of quorum queues in RabbitMQ.
+* `ManagementApiUrl=<SCHEME://HOST:PORT>` - The URL of the RabbitMQ management API.  If this option is not set, the default value will be used based on the broker connection string. For example, if the connection string is `host=myhost;username=myuser;password=mypassword;port=5672;useTls=true`, the management API would attempt to connect to `https://myuser:mypassword@myhost:15671/api/`
+* `ManagementApiUserName=<USERNAME>` - The username used to connect to the RabbitMQ management API.  If this option is not set, the credentials from the broker connection string will be used to set the value.
+* `ManagementApiPassword=<Password>` - The password used to connect to the RabbitMQ management API.  If this option is not set, the credentials from the broker connection string will be used to set the value.
 
 ## SQL
 
