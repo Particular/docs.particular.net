@@ -222,7 +222,7 @@ class Usage
         #region rabbitmq-management-api-url
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.ManagementApiUrl("http://{username}:{password}@{host}:{port}");
+        transport.ManagementApiConfiguration(url: "http://{host}:{port}", userName: "{username}", password: "{password}");
 
         #endregion
     }
