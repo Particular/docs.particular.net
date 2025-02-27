@@ -5,11 +5,12 @@ using Microsoft.Extensions.Logging;
 public class OrderReceivedHandler :
     IHandleMessages<OrderReceived>
 {
-    private static readonly ILogger<OrderReceivedHandler> logger =
-      LoggerFactory.Create(builder =>
-      {
-          builder.AddConsole();
-      }).CreateLogger<OrderReceivedHandler>();
+    private readonly ILogger<OrderReceivedHandler> logger;
+
+    public OrderReceivedHandler(ILogger<OrderReceivedHandler> logger)
+    {
+        this.logger = logger;
+    }
 
     public Task Handle(OrderReceived message, IMessageHandlerContext context)
     {

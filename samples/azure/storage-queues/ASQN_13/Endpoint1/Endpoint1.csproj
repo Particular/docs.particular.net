@@ -9,5 +9,6 @@
     <PackageReference Include="NServiceBus" Version="9.*" />
     <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="13.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.1" />
   </ItemGroup>
 </Project>
