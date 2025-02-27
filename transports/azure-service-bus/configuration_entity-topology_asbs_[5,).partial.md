@@ -18,6 +18,18 @@ The following snippet demonstrates raw deserialization of options and creating t
 
 snippet: asb-options-options-loading
 
+The topology json document for the topic-per-event topology looks following:
+
+snippet: topology-options
+
+In order to support polymorphic events, one event (base type) can be mapped to multiple topics (where the derived events are published):
+
+snippet: topology-options-inheritance
+
+Loading from json is also supported for the migration topology:
+
+snippet: migration-options
+
 ##### Validation
 
 During the start of the transport the topology configuration is validated against some of the well known limitations like entity, subscription or rule name lengths and some consistency validation is executed.

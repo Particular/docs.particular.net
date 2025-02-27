@@ -4,6 +4,9 @@ using System.Text.Json;
 using Azure.Identity;
 using Azure.Messaging.ServiceBus;
 using NServiceBus;
+using NServiceBus.Transport;
+using NServiceBus.Transport.AzureServiceBus;
+using Shipping;
 
 class Usage
 {
@@ -62,15 +65,7 @@ class Usage
 
         using var stream = File.OpenRead("topology-options.json");
         var options = JsonSerializer.Deserialize<TopologyOptions>(stream, TopologyOptionsSerializationContext.Default.Options);
-        var topology = TopicTopology.FromOptions(options);
-
-        #endregion
-
-        #region asb-options-options-loading
-
-        using var stream = File.OpenRead("topology-options.json");
-        var options = JsonSerializer.Deserialize<TopologyOptions>(stream, TopologyOptionsSerializationContext.Default.Options);
-        var topology = TopicTopology.FromOptions(options);
+        var jsonTopology = TopicTopology.FromOptions(options);
 
         #endregion
 
