@@ -15,7 +15,7 @@ snippet: rabbitmq-management-api-url
 
 If a queue already has a policy and the delivery limit is not set to unlimited (-1), the transport will raise an exception indicating that the RabbitMQ node already has a policy applied.  The transport will not attempt to update the delivery limit of the existing policy or make a superseding delivery limit policy.
 
-Manually updating the delivery limit of an existing policy to unlimited (-1) or removing the existing policy will allow the management API to validate the delivery limit.  If it's not feasible to update the delivery limit of an existing policy, the use of the management API and the validation of the delivery limit can be disabled by calling the `DoNotUseManagementApi()` transport method.
+Manually updating the delivery limit of an existing policy to unlimited (-1) or removing the existing policy will allow the management API to validate the delivery limit.  If it's not feasible to update the delivery limit of an existing policy, the validation of the delivery limit can be disabled by calling the `DoNotValidateDeliveryLimits()` transport method.
 
 > [!WARNING]
 > Potential message loss can occur if the delivery limit is not set to unlimited on the queue.  If the delivery limit is not set to unlimited, the recoverability process may not function as intended.
