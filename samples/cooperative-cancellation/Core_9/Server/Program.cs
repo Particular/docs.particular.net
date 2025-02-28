@@ -1,33 +1,32 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Logging;
+using Server;
 
 class Program
 {
-    static async Task Main()
+    public static async Task Main(string[] args)
     {
-        Console.Title = "Cancellation";
-        LogManager.Use<DefaultFactory>()
-            .Level(LogLevel.Info);
-        var endpointConfiguration = new EndpointConfiguration("Samples.Cooperative.Cancellation");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
-
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-        await endpointInstance.SendLocal(new LongRunningMessage { DataId = Guid.NewGuid() });
-
-        Console.ReadKey();
-
-        Console.WriteLine("Giving the endpoint 1 second to gracefully stop before sending a cancel signal to the cancellation token");
-
-        #region StoppingEndpointWithCancellationToken
-        var tokenSource = new CancellationTokenSource();
-        tokenSource.CancelAfter(TimeSpan.FromSeconds(1));
-        await endpointInstance.Stop(tokenSource.Token);
-        #endregion
+        await CreateHostBuilder(args).Build().RunAsync();
     }
+
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+     Host.CreateDefaultBuilder(args)
+         .ConfigureServices((hostContext, services) =>
+         {
+             Console.Title = "Cancellation";
+             services.AddHostedService<InputLoopService>();
+         }).UseNServiceBus(x =>
+         {
+             var endpointConfiguration = new EndpointConfiguration("Samples.Cooperative.Cancellation");
+             endpointConfiguration.UsePersistence<LearningPersistence>();
+             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+             endpointConfiguration.UseTransport(new LearningTransport());
+
+             return endpointConfiguration;
+         });
 }
