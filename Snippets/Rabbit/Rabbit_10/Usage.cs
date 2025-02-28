@@ -234,7 +234,7 @@ class Usage
 
     void SetManagementApiConfiguration(EndpointConfiguration endpointConfiguration)
     {
-        #region rabbitmq-management-api-url
+        #region rabbitmq-management-api-configuration
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.ManagementApiConfiguration(
