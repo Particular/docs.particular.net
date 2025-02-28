@@ -217,7 +217,22 @@ class Usage
         #endregion
     }
 
-    void SetManagementApiUrl(EndpointConfiguration endpointConfiguration)
+    void DisableDelayedDelivery(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-disable-delayed-delivery
+
+        var rabbitMqTransport = new RabbitMQTransport(
+            routingTopology: RoutingTopology.Conventional(QueueType.Classic),
+            connectionString: "host=localhost;username=rabbitmq;password=rabbitmq",
+            enableDelayedDelivery: false
+        );
+
+        endpointConfiguration.UseTransport(rabbitMqTransport);
+
+        #endregion
+    }
+
+    void SetManagementApiConfiguration(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-management-api-url
 
