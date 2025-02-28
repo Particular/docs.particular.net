@@ -60,21 +60,21 @@ By default, blobs are stored with no set expiration. If messages have a [time to
 
 There are two ways to specify the message properties to be sent using the `DataBus`:
 
- 1. Using the `DataBusProperty<T>` type
+ 1. Using the `ClaimCheckProperty<T>` type
  1. Message conventions
 
 > [!NOTE]
 > `DataBus` properties must be top-level properties on a message class.
 
-### Using `DataBusProperty<T>`
+### Using `ClaimCheckProperty<T>`
 
-Set the type of the property to be sent over as `DataBusProperty<byte[]>`:
+Set the type of the property to be sent over as `ClaimCheckProperty<byte[]>`:
 
 snippet: MessageWithLargePayload
 
 ### Using message conventions
 
-NServiceBus also supports defining `DataBus` properties by convention. This allows data properties to be sent using the `DataBus` without using `DataBusProperty<T>`, thus removing the need for having a dependency on NServiceBus from the message types.
+NServiceBus also supports defining `DataBus` properties by convention. This allows data properties to be sent using the `DataBus` without using `ClaimCheckProperty<T>`, thus removing the need for having a dependency on NServiceBus from the message types.
 
 In the configuration of the endpoint include:
 
