@@ -238,7 +238,7 @@ class Usage
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
         transport.ManagementApiConfiguration(
-            url: "http://{host}:{port}",
+            url: "{scheme}://{host}:{port}",
             userName: "{username}",
             password: "{password}"
         );
