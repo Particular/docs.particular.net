@@ -6,7 +6,7 @@ The RabbitMQ transport can verify and set the RabbitMQ delivery limit to unlimit
 
 To configure the management API and perform the delivery limit validation, set the URL details as follows:
 
-snippet: rabbitmq-management-api-url
+snippet: rabbitmq-management-api-configuration
 
 > [!NOTE]
 > If the management API URL is not set, the transport will attempt to connect to the RabbitMQ management API with the default management API values based on the broker connection string.  For example, if the broker connection string is `host=localhost;port=5671;useTls=true`, the management API would attempt to connect to `https://guest:guest@localhost:15671` .
