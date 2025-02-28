@@ -101,7 +101,7 @@ snippet: rabbitmq-external-auth-mechanism
 
 partial: add-cluster-node
 
-partial: management-api-url
+partial: management-api-configuration
 
 ## Controlling the prefetch count
 
