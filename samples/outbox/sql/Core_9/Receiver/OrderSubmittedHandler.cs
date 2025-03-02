@@ -6,11 +6,12 @@ using Microsoft.Extensions.Logging;
 public class OrderSubmittedHandler :
     IHandleMessages<OrderSubmitted>
 {
-    private static readonly ILogger<OrderSubmittedHandler> logger =
-    LoggerFactory.Create(builder =>
+    private readonly ILogger<OrderSubmittedHandler> logger;
+
+    public OrderSubmittedHandler(ILogger<OrderSubmittedHandler> logger)
     {
-        builder.AddConsole();
-    }).CreateLogger<OrderSubmittedHandler>();
+        this.logger = logger;
+    }
 
     public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {

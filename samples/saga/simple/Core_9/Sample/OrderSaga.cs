@@ -2,7 +2,6 @@
 using System.Threading.Tasks;
 using NServiceBus;
 using Microsoft.Extensions.Logging;
-using NServiceBus.Logging;
 
 #region thesaga
 public class OrderSaga :
@@ -11,11 +10,12 @@ public class OrderSaga :
     IHandleMessages<CompleteOrder>,
     IHandleTimeouts<CancelOrder>
 {
-    private static readonly ILogger<OrderSaga> logger =
-    LoggerFactory.Create(builder =>
+    private readonly ILogger<OrderSaga> logger;
+
+    public OrderSaga(ILogger<OrderSaga> logger)
     {
-        builder.AddConsole();
-    }).CreateLogger<OrderSaga>();
+        this.logger = logger;
+    }
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {

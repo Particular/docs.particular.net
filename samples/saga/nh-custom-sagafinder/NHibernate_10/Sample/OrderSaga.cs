@@ -1,6 +1,8 @@
-﻿using NServiceBus.Logging;
+﻿
 
 #region saga
+
+using Microsoft.Extensions.Logging;
 
 public class OrderSaga :
     Saga<OrderSagaData>,
@@ -8,7 +10,12 @@ public class OrderSaga :
     IHandleMessages<CompletePaymentTransaction>,
     IHandleMessages<CompleteOrder>
 {
-    static readonly ILog log = LogManager.GetLogger<OrderSaga>();
+    private readonly ILogger<OrderSaga> logger;
+
+    public OrderSaga(ILogger<OrderSaga> logger)
+    {
+        this.logger = logger;
+    }
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
@@ -21,7 +28,7 @@ public class OrderSaga :
     {
         Data.PaymentTransactionId = Guid.NewGuid().ToString();
 
-        log.Info($"Saga with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId}");
+        logger.LogInformation($"Saga with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId}");
         var issuePaymentRequest = new IssuePaymentRequest
         {
             PaymentTransactionId = Data.PaymentTransactionId
@@ -31,7 +38,7 @@ public class OrderSaga :
 
     public Task Handle(CompletePaymentTransaction message, IMessageHandlerContext context)
     {
-        log.Info($"Transaction with Id {Data.PaymentTransactionId} completed for order id {Data.OrderId}");
+        logger.LogInformation($"Transaction with Id {Data.PaymentTransactionId} completed for order id {Data.OrderId}");
         var completeOrder = new CompleteOrder
         {
             OrderId = Data.OrderId
@@ -41,7 +48,7 @@ public class OrderSaga :
 
     public Task Handle(CompleteOrder message, IMessageHandlerContext context)
     {
-        log.Info($"Saga with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
+        logger.LogInformation($"Saga with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
         MarkAsComplete();
         return Task.CompletedTask;
     }

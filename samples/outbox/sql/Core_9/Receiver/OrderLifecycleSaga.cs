@@ -9,11 +9,12 @@ public class OrderLifecycleSaga :
     IAmStartedByMessages<OrderSubmitted>,
     IHandleTimeouts<OrderTimeout>
 {
-    private static readonly ILogger<OrderLifecycleSaga> logger =
-    LoggerFactory.Create(builder =>
+    private readonly ILogger<OrderLifecycleSaga> logger;
+
+    public OrderLifecycleSaga(ILogger<OrderLifecycleSaga> logger)
     {
-        builder.AddConsole();
-    }).CreateLogger<OrderLifecycleSaga>();
+        this.logger = logger;
+    }
 
     protected override void ConfigureMapping(IMessagePropertyMapper mapper)
     {
