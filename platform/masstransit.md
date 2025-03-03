@@ -11,9 +11,8 @@ The platform provides an aggregated view of the information necessary to detect,
 
 ![MassTransit Fault Management](masstransit-overview-s.png  "width=715")
 
-This is done with a [container](/servicecontrol/masstransit/) which runs alongside the existing MassTransit system and monitors for any failed messages that occur within it.
 
-![Particular Service Platform architecture](architecture-overview-diagram-masstransit.svg)
+youtube: https://www.youtube.com/watch?v=h5gcHWizS7o
 
 ### Managing errors
 
@@ -25,6 +24,12 @@ In addition, the platform offers more advanced features such as [retry redirects
 
 <div class="text-center inline-download hidden-xs"><a id='masstransit-sample' target="_blank" href='https://github.com/particular/MassTransitShowcaseDemo/' class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> See it in action now</a>
 </div>
+
+
+This is done with a [container](/servicecontrol/masstransit/) which runs alongside the existing MassTransit system and monitors for any failed messages that occur within it.
+
+![Particular Service Platform architecture](architecture-overview-diagram-masstransit.svg)
+
 
 ### Pricing
 
