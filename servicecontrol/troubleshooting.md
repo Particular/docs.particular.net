@@ -416,4 +416,6 @@ At this point, there will be two indexes, the original one and the new one with 
 
 After the swap operation, the new Lucene-based index must be rebuilt. Depending on the index size, the operation might take a long time.
 
-When ServiceControl is restarted, the Corax-based index may get recreated. One way to mitigate this behavior is to let the ServiceControl instance recreate the index once and then pause the indexing operations for the Corax-base index. To pause the index from the RavenDB studio while ServiceControl is still in maintenance mode, look for the Corax duplicate index and click the pause indexing button.
+When ServiceControl is restarted, the Corax-based index may get recreated. To prevent the ServiceControl instance from recreating the index, the index can be locked.
+
+To lock an index, from the RavenDB studio, while ServiceControl is still in maintenance mode, look for the index that was set to use Lucene and click the `🔓 Unlocked` button. Change the setting to `🔒 Locked` ([Locked Ignore](https://ravendb.net/docs/article-page/7.0/csharp/client-api/operations/maintenance/indexes/set-index-lock#lock-modes)). The RavenDB studio will notify the operation completion with the message: _Lock mode was set to: Locked (ignore)_. 
