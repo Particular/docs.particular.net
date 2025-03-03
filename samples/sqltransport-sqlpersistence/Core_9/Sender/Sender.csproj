@@ -5,6 +5,7 @@
     <LangVersion>13.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.1" />
     <PackageReference Include="NServiceBus.Transport.SqlServer" Version="8.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>

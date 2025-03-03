@@ -8,6 +8,7 @@
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus" Version="9.*" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.1" />
     <PackageReference Include="NServiceBus.Transport.SqlServer" Version="8.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="4.*" />
   </ItemGroup>

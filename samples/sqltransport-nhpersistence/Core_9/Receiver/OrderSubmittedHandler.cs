@@ -1,15 +1,14 @@
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
-public class OrderSubmittedHandler :
+public class OrderSubmittedHandler(ILogger<OrderSubmittedHandler> logger) :
     IHandleMessages<OrderSubmitted>
 {
-    static ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
-
+  
     public Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
-        log.Info($"Order {message.OrderId} worth {message.Value} submitted");
+        logger.LogInformation($"Order {message.OrderId} worth {message.Value} submitted");
 
         #region StoreUserData
 

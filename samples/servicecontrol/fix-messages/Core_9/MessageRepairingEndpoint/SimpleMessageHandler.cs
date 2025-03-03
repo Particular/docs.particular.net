@@ -1,20 +1,18 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
-public class SimpleMessageHandler : IHandleMessages<SimpleMessage>
+public class SimpleMessageHandler(ILogger<SimpleMessageHandler> logger) : IHandleMessages<SimpleMessage>
 {
-    static ILog log = LogManager.GetLogger<SimpleMessageHandler>();
-
     public Task Handle(SimpleMessage message, IMessageHandlerContext context)
     {
         #region RepairAndForward
 
-        log.Info($"Repairing message with Id = {message.Id}.");
+        logger.LogInformation($"Repairing message with Id = {message.Id}.");
 
         message.Id = message.Id.ToUpperInvariant();
 
-        log.Info($"Forwarding repaired message with Id = {message.Id} to the Receiver.");
+        logger.LogInformation($"Forwarding repaired message with Id = {message.Id} to the Receiver.");
 
         return context.Send("FixMalformedMessages.Receiver", message);
 

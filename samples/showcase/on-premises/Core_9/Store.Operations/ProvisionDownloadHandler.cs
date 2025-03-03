@@ -1,14 +1,12 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 using Store.Messages.RequestResponse;
 
-public class ProvisionDownloadHandler :
+public class ProvisionDownloadHandler(ILogger<ProvisionDownloadHandler> logger) :
     IHandleMessages<ProvisionDownloadRequest>
 {
-    static ILog log = LogManager.GetLogger<ProvisionDownloadHandler>();
-
     public Task Handle(ProvisionDownloadRequest message, IMessageHandlerContext context)
     {
         if (DebugFlagMutator.Debug)
@@ -17,7 +15,7 @@ public class ProvisionDownloadHandler :
         }
 
         var products = string.Join(", ", message.ProductIds);
-        log.Info($"Provision the products and make the Urls available to the Content management for download ...[{products}] product(s) to provision");
+        logger.LogInformation($"Provision the products and make the Urls available to the Content management for download ...[{products}] product(s) to provision");
 
         var response = new ProvisionDownloadResponse
         {
