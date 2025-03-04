@@ -44,7 +44,7 @@ In the Phase 2 endpoint the message type is:
 
 ## Mutation
 
-This change is achieved via the use of a [IMutateIncomingTransportMessages](/nservicebus/pipeline/message-mutators.md?version=core_7#transport-messages-mutators-imutateincomingtransportmessages).
+This change is achieved via the use of a [IMutateIncomingTransportMessages](/nservicebus/pipeline/message-mutators.md#transport-messages-mutators-imutateincomingtransportmessages).
 
 The mutator is registered at endpoint startup:
 
