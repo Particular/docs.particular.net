@@ -13,15 +13,17 @@ namespace Server
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             var message = new LongRunningMessage { DataId = Guid.NewGuid() };
+
+
+            #region StoppingEndpointWithCancellationToken
             var tokenSource = new CancellationTokenSource();
             tokenSource.CancelAfter(TimeSpan.FromSeconds(1));
-            await messageSession.SendLocal(new LongRunningMessage { DataId = Guid.NewGuid() }, tokenSource.Token);
+            #endregion
 
+            await messageSession.SendLocal(new LongRunningMessage { DataId = Guid.NewGuid() }, tokenSource.Token);
             Console.ReadKey();
 
-            //Console.WriteLine("Giving the endpoint 1 second to gracefully stop before sending a cancel signal to the cancellation token");
             logger.LogInformation("Giving the endpoint 1 second to gracefully stop before sending a cancel signal to the cancellation token");
-
         }
     }
 }

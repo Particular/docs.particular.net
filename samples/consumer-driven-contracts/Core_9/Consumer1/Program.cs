@@ -14,10 +14,9 @@ class Program
         Host.CreateDefaultBuilder(args)
             .ConfigureServices((hostContext, services) =>
             {
-                Console.Title = "Server";
+                Console.Title = "Consumer1";
             }).UseNServiceBus(x =>
             {
-                Console.Title = "Consumer1";
                 var endpointConfiguration = new EndpointConfiguration("Samples.ConsumerDrivenContracts.Consumer1");
                 var transport = endpointConfiguration.UseTransport(new LearningTransport());
                 endpointConfiguration.UseSerialization<SystemJsonSerializer>();

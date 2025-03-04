@@ -1,16 +1,13 @@
 using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
 static class Program
 {
     static async Task Main()
     {
-        Console.Title = "WithoutDelayedRetries";
-        LogManager.Use<DefaultFactory>()
-            .Level(LogLevel.Warn);
-
+        Console.Title = "WithoutDelayedRetries";       
         #region Disable
 
         var endpointConfiguration = new EndpointConfiguration("Samples.ErrorHandling.WithoutDelayedRetries");
