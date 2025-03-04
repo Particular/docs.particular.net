@@ -56,7 +56,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [7.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.2.0) | 2024-12-05     | -                 | -                                 |
-| [7.1.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.1.1) | 2024-11-26     | 2025-03-05        | Superseded by 7.2.x               |
+| [~~7.1.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.1.1) | ~~2024-11-26~~ | ~~2025-03-05~~    | ~~Superseded by 7.2.x~~           |
 | [~~7.0.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.0.2) | ~~2024-04-16~~ | ~~2025-02-26~~    | ~~Superseded by 7.1.x~~           |
 | [6.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.2.1) | 2023-11-20     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [~~6.1.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.1.2) | ~~2023-03-07~~ | ~~2024-02-20~~    | ~~Superseded by 6.2.x~~           |
@@ -1084,7 +1084,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.32.x](https://www.nuget.org/packages/Particular.PlatformSample/3.32.0) | 2025-02-21     | -                 | -                                 |
+| [3.33.x](https://www.nuget.org/packages/Particular.PlatformSample/3.33.0) | 2025-03-03     | -                 | -                                 |
+| [3.32.x](https://www.nuget.org/packages/Particular.PlatformSample/3.32.0) | 2025-02-21     | 2025-06-03        | Superseded by 3.33.x              |
 | [3.26.x](https://www.nuget.org/packages/Particular.PlatformSample/3.26.0) | 2025-02-03     | 2025-05-21        | Superseded by 3.32.x              |
 | [3.25.x](https://www.nuget.org/packages/Particular.PlatformSample/3.25.0) | 2025-01-27     | 2025-05-03        | Superseded by 3.26.x              |
 | [3.24.x](https://www.nuget.org/packages/Particular.PlatformSample/3.24.0) | 2025-01-22     | 2025-04-27        | Superseded by 3.25.x              |
