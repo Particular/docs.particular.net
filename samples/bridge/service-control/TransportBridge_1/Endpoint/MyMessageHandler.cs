@@ -1,15 +1,19 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
 class MyMessageHandler :
     IHandleMessages<MyMessage>
 {
-    static ILog log = LogManager.GetLogger<MyMessageHandler>();
+    private static readonly ILogger<MyMessageHandler> logger =
+    LoggerFactory.Create(builder =>
+    {
+        builder.AddConsole();
+    }).CreateLogger<MyMessageHandler>();
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        log.Info($"Processing message {message.Id}");
+        logger.LogInformation($"Processing message {message.Id}");
         return FailureSimulator.Invoke();
     }
 }

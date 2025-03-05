@@ -1,10 +1,12 @@
 using System;
 using System.IO;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Transport.SqlServer;
 
 Console.Title = "Receiver";
+var builder = Host.CreateApplicationBuilder(args);
 
 #region ReceiverConfiguration
 
@@ -45,7 +47,8 @@ persistence.TablePrefix("");
 await SqlHelper.CreateSchema(connectionString, "receiver");
 var allText = File.ReadAllText("Startup.sql");
 await SqlHelper.ExecuteSql(connectionString, allText);
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
 Console.WriteLine("Press any key to exit");
 Console.ReadKey();
-await endpointInstance.Stop();
+builder.UseNServiceBus(endpointConfiguration);
+
+await builder.Build().RunAsync();

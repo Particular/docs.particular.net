@@ -1,16 +1,14 @@
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 using ServiceStack.OrmLite;
 
 namespace OrmLite
 {
 
-    public class OrderSubmittedHandler :
+    public class OrderSubmittedHandler(ILogger<OrderSubmittedHandler> logger) :
         IHandleMessages<OrderSubmitted>
     {
-        static readonly ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
-
         static OrderSubmittedHandler()
         {
             OrmLiteConfig.DialectProvider = SqlServer2016Dialect.Provider;
@@ -18,7 +16,7 @@ namespace OrmLite
 
         public Task Handle(OrderSubmitted message, IMessageHandlerContext context)
         {
-            log.Info($"Order {message.OrderId} worth {message.Value} persisted by OrmLite");
+            logger.LogInformation($"Order {message.OrderId} worth {message.Value} persisted by OrmLite");
 
             #region StoreDataOrmLite
 
