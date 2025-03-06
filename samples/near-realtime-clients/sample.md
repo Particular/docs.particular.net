@@ -12,33 +12,33 @@ related:
 > [!NOTE]
 > SignalR can be used in many different ways. For general guidance, check out the official [SignalR tutorials](https://learn.microsoft.com/en-us/aspnet/core/tutorials/signalr?tabs=visual-studio&view=aspnetcore-6.0) and [SignalR samples](https://github.com/aspnet/SignalR-samples). This guide specifically focuses on how to relay NServiceBus events to SignalR clients.
 
-For near real-time, occasionally connected clients, messages are only relevant for a short period of time. Clients that received near real-time stock ticker updates are a common example of these types of clients.
+For "near real-time" clients where the connection is transient or occasionally-connected, messages are only useful for a short period of time. A classic example is stock ticker updates, where the latest prices matter, but old ones quickly become irrelevant. For such systems, there is often heavy loads as newer data replaces old.
 
-One of the basic features of message queuing is the ability for the receiving endpoints to maintain service even when offline.  In this scenario, the long lasting, durable nature of message queuing can result in a backlog of messages that are no longer relevant which, if disconnected long enough, can result in queue quotas being exceeded. This can ultimately result in exceptions on the message sender possibly impacting other parts of the system.
+One of the key features of message queuing is the ability for the receiving endpoints to maintain service even when offline. Messages remain in the queue for processing when the system comes back online. However, while this feature is critical for some systems, the long lasting, durable nature of message queuing can result in a backlog of messages that are no longor relevant. If the client is disconnected long enough, it can result in queue quotas being exceeded. This can ultimately result in exceptions on the message sender and possibly impact other parts of the system.
 
-A possible answer is to [unsubscribe](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#manually-subscribing-to-a-message) on shutdown. This is a fragile option since the client may not successfully complete the unsubscribe when a crash occurs.
+One way to prevent this is to [unsubscribe](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#manually-subscribing-to-a-message) when shutting down. However, this approach is unreliable since a crash could prevent the unsubscribe from happening.
 
-Another solution is to avoid implementing each client as an NServiceBus endpoint, but instead use a push technology, such as [SignalR](https://signalr.net/), to update clients only while they are connected.
+A better solution is to avoid implementing each client as an NServiceBus endpoint. Instead, use a push-based technology like [SignalR](https://signalr.net/) to only send updates when clients are connected.
 
-This sample demonstrates how to use a SignalR server, which also acts as an NServiceBus endpoint, to push subscribed NServiceBus events to any connected SignalR clients.
+This sample demonstrates how to use a SignalR server that also acts as an NServiceBus endpoint, to push subscribed NServiceBus events to any connected SignalR clients.
 
 ## Project structure
 
-Before running the sample, review the solution structure, the projects, and the classes. The `Publisher` and `ClientHub` projects are command-line applications that host an instance of NServiceBus.
+Before running the sample, review the solution structure, the projects, and the classes.
 
-The `ClientHub` project also hosts a SignalR server. The `Client` project is a command-line application that hosts a SignalR client.
+- `Publisher` project: command-line application that hosts an instance of NServiceBus.
+- `ClientHub` project: command-line application that hosts an instance of NServiceBus and a SignalR server.
+- `Client` project: command-line application that hosts a SignalR client.
 
 ## Sharing message types with SignalR
 
-The `StockEvents` project contains the definition of a message class that is shared with both NServiceBus endpoints, the SignalR hub, and the SignalR client. Open "StockTick" to see the message that will be published by this sample. Note that this event is defined using [unobtrusive mode message conventions](/nservicebus/messaging/unobtrusive-mode.md), allowing the `Client` project, which only uses SignalR, to reference the message type without requiring a reference to NServiceBus.
+The `StockEvents` project contains the definition of a message class that is shared with both NServiceBus endpoints, the SignalR hub, and the SignalR client. Open `StockTick` to see the message that will be published by this sample. Note that this event is defined using [unobtrusive mode message conventions](/nservicebus/messaging/unobtrusive-mode.md), allowing the `Client` project, which only uses SignalR, to reference the message type without requiring a reference to NServiceBus.
 
 snippet: MessageConventionsForNonNSB
 
 ## Hosting SignalR with NServiceBus
 
 The sample shows how to host a self-hosted SignalR server side-by-side with an NServiceBus endpoint.
-
-
 
 ## Bridging the bus to clients using SignalR
 
@@ -61,7 +61,7 @@ In this sample, the SignalR client is implemented as a .NET console application.
 
 ## Scaling out SignalR with NServiceBus
 
-When the number of connected clients exceeds the capability of a single SignalR server, it will be necessary to scale out the SignalR server. Scaling out SignalR is described in the [ASP.NET Core SignalR hosting and scaling](https://learn.microsoft.com/en-us/aspnet/core/signalr/scale) article by Microsoft.
+When the number of connected clients exceeds the capability of a single SignalR server, scale out the SignalR server. See [Microsoft's ASP.NET Core SignalR hosting and scaling](https://learn.microsoft.com/en-us/aspnet/core/signalr/scale) for details on how to do this.
 
 ```mermaid
 graph TD
@@ -92,4 +92,4 @@ SS2-->|SignalR Message|CC
 SS2-->|SignalR Message|CD
 ```
 
-In this diagram an NServiceBus event is being processed by [one of the two subscriber instances](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers). Server 1 is forwarding the NServiceBus event as a SignalR message, which is then broadcast via the configured backplane to Server 2's SignalR server. This allows the connected SignalR clients to receive the message.
+In this diagram, an NServiceBus event is being processed by [one of the two subscriber instances](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers). `Server 1` is forwarding the NServiceBus event as a SignalR message, which is then broadcast via the configured backplane to `Server 2`'s SignalR server. This allows the connected SignalR clients to receive the message.
