@@ -2,14 +2,13 @@
 title: Self-Hosting in Azure WebJobs
 summary: Uses NServiceBus the self-hosting capability to host an endpoint in an Azure WebJob.
 component: Core
-reviewed: 2022-11-08
+reviewed: 2025-03-05
 isLearningPath: true
-related:
-- samples/dependency-injection/aspnetcore
 redirects:
 - samples/azure/self-host
 - samples/azure/shared-host
 ---
+
 
 This sample is compatible with Azure WebJobs SDK 3.0.
 
@@ -33,7 +32,7 @@ The `UseNServiceBus` method of [`NServiceBus.Extensions.Hosting`](/nservicebus/h
 snippet: WebJobHost_Start
 
 > [!NOTE]
-> If dependencies need to be shared between the service collection and NServiceBus infrastructure, such as message handlers, see the [ASP.NET Core sample](/samples/dependency-injection/#related-samples).
+> If dependencies need to be shared between the service collection and NServiceBus infrastructure, such as message handlers, see the [ASP.NET Core sample](/samples/dependency-injection/aspnetcore).
 
 A critical error action must be defined to restart the host when a critical error is raised:
 
