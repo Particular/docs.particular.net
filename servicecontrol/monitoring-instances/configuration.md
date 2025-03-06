@@ -75,6 +75,25 @@ _Not applicable to container deployments. Containers always expose port `33633`.
 | --- | --- |
 | int | `33633` |
 
+### Monitoring/ShutdownTimeout
+
+_Added in version 6.4.1_
+
+The maximum allowed time for the process to complet the shutdown.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_SHUTDOWNTIMEOUT` |
+| **App config key** | `Monitoring/ShutdownTimeout` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| TimeSpan | `00:00:05` (5 seconds) |
+
+> [!NOTE]
+> When installing the instance on Windows as a service via PowerShell or the ServiceControl Managememnt Utility (SCMU) the ShutdownTimeout value is set to 2 minutes (`00:02:00`).
+
 ## Logging
 
 ### Monitoring/LogPath
