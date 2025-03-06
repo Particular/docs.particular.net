@@ -113,6 +113,24 @@ The virtual directory to bind the embedded HTTP server to; modify this setting t
 | --- | --- |
 | string | _None_ |
 
+### ServiceControl.Audit/ShutdownTimeout
+
+_Added in version 6.4.1_
+
+The maximum allowed time for the process to complet the shutdown.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_SHUTDOWNTIMEOUT` |
+| **App config key** | `ServiceControl.Audit/ShutdownTimeout` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| TimeSpan | `00:00:05` (5 seconds) |
+
+> [!NOTE]
+> When installing the instance on Windows as a service via PowerShell or the ServiceControl Managememnt Utility (SCMU) the ShutdownTimeout value is set to 2 minutes (`00:02:00`).
 
 ## Embedded database
 
