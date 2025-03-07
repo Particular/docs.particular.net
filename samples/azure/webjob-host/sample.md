@@ -1,6 +1,6 @@
 ---
 title: Self-Hosting in Azure WebJobs
-summary: Uses NServiceBus the self-hosting capability to host an endpoint in an Azure WebJob.
+summary: Host an NServiceBus endpoint in an Azure WebJobs.
 component: Core
 reviewed: 2025-03-05
 isLearningPath: true
@@ -8,8 +8,7 @@ redirects:
 - samples/azure/self-host
 - samples/azure/shared-host
 ---
-
-
+This is an example of how an NServiceBus endpoint can be hosted using Azure WebJobs.
 This sample is compatible with Azure WebJobs SDK 3.0.
 
 ## Running in development mode
