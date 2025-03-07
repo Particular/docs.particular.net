@@ -1,13 +1,13 @@
 ---
-title: Azure Table Persistence Usage with transactions
+title: Azure Table Persistence Usage with Transactions
 summary: Using Azure Table Persistence to store sagas and outbox records atomically
-reviewed: 2022-11-17
+reviewed: 2025-03-06
 component: ASP
 related:
  - nservicebus/sagas
 ---
 
-This sample shows a client/server scenario using saga and outbox persistences to store records atomically by leveraging transactions.
+This sample demonstrates a client/server scenario using sagas and outbox persistences to store records atomically by leveraging transactions.
 
 ## Projects
 
@@ -25,7 +25,7 @@ The shared message contracts used by all endpoints.
 * Receive the `StartOrder` message and initiate an `OrderSaga`.
 * `OrderSaga` requests a timeout with an instance of `CompleteOrder` with the saga data.
 * Receive the `OrderShipped` message with a custom header.
-* `OrderSaga` publishes an `OrderCompleted` event when the `CompleteOrder` timeout fires.
+* `OrderSaga` publishes an `OrderCompleted` event when the `CompleteOrder` timeout is triggered.
 
 ### Persistence config
 
@@ -33,23 +33,25 @@ Configure the endpoint to use Azure Table Persistence.
 
 snippet: AzureTableConfig
 
-The order id is used as a partition key.
+The OrderId is used as the partition key.
 
-## Behaviors
+## Using Behaviors
 
-Most messages implement `IProvideOrderId` and thus a logical behavior can use the provided order identification as a partition key.
+The following shows two different ways to provide OrderIDs to the saga using [behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md).
+
+1. Most messages implement `IProvideOrderId` allowing the OrderId to be used as the partition key.
 
 snippet: BehaviorUsingIProvideOrderId
 
-One handler publishes an event that doesn't implement `IProvideOrderId` but adds a custom header to indicate the order identification. The handler also creates `OrderShippingInformation` by participating in the transactional batch provided by NServiceBus.
+2. One handler publishes an event that does not implement `IProvideOrderId` but adds a custom header containing the OrderId. The handler also creates `OrderShippingInformation` as part of the transactional batch provided by NServiceBus.
 
 snippet: UseHeader
 
-The header can be used to determine the partition key in the transport receive context
+The custom header added then allows the partition key to be determined within `OrderIdHeaderAsPartitionKeyBehavior`.
 
 snippet: BehaviorUsingHeader
 
-Finally the above behaviors are registered in the pipeline.
+Finally, the above behaviors are registered in the pipeline.
 
 snippet: BehaviorRegistration
 
