@@ -1,39 +1,43 @@
 ---
 title: Migrating from NHibernate to SQL persister
-summary: Highlights differences in the database schema between the two persisters and migration options
-reviewed: 2022-11-24
+summary: Learn how to migrate from NHibernate to SQL persister
+reviewed: 2025-03-06
 component: SqlPersistence
 ---
 
 ## Schema
 
-The database schema is not compatible between the [NHibernate](/persistence/nhibernate) and [SQL](/persistence/sql) persisters.
+The database schemas for [NHibernate](/persistence/nhibernate) and [SQL](/persistence/sql) persisters are not compatible.
 
-The current schemas are available via the scripting pages:
+Current schemas can be found via their respective scripting pages:
 
 -  [NHibernate persistence SQL Server scripting](/persistence/nhibernate/scripting.md)
 -  [SQL persistence SQL Server scripting](/persistence/sql/sqlserver-scripts.md)
 
-
 ### Sagas
 
-NHibernate stores sagas as a table structure while SQL Persistence stores saga state as a JSON BLOB, similar to a key/value store. Each saga type has its own table or table structure for both NHibernate and SQL Persistence.
+- NHibernate: stores sagas as a table structure.
+- SQL Persistence: stores sagas as a JSON BLOB, similar to a key/value store.
+- Each saga type has its own table or table structure for both NHibernate and SQL Persistence.
 
 ### Subscriptions
 
-NHibernate stores subscriptions in a single `Subscription` table. In SQL Persistence, each logical publisher endpoint has its own subscription table, `<endpoint_name>_SubscriptionData`.
+- NHibernate: stores subscriptions in a single `Subscription` table.
+- SQL Persistence: each logical publisher endpoint has its own subscription table, `<endpoint_name>_SubscriptionData`.
 
 ### Timeouts
 
-NHibernate has a `TimeoutEntity` table with an `Endpoint` column where SQL Persistence has a `<endpoint_name>_TimeoutData` table for each endpoint.
+NHibernate: has a `TimeoutEntity` table with an `Endpoint` column 
+SQL Persistence: has a `<endpoint_name>_TimeoutData` table for each endpoint.
 
 ### Outbox
 
-NHibernate has an `OutboxRecord` table shared by all endpoints, where in later versions the endpoint name is prepended to the MessageId. SQL Persistence has a table, `<endpoint_name>_OutboxData`, for each logical endpoint.
+- NHibernate: has an `OutboxRecord` table shared by all endpoints, with later versions prepending the endpoint name to the MessageId. 
+- SQL Persistence: creates a separate outbox table, `<endpoint_name>_OutboxData`, for each logical endpoint.
 
 ## Outbox retention
 
-If the outbox retention period is set to a very large period and the message throughput is high then such a migration will take a while to complete. It is recommended to keep the retention period as low as possible.
+An extended retention period combined with high message throughput can cause migration to take longer. Keeping the retention period as low as possible is recommended.
 
 - [NHibernate Deduplication record lifespan](/persistence/nhibernate/outbox.md#deduplication-record-lifespan)
 - [SQL Persistence Deduplication record lifespan](/persistence/sql/outbox.md#deduplication-record-lifespan)
@@ -42,16 +46,16 @@ If the outbox retention period is set to a very large period and the message thr
 
 ### Conversion
 
-Subscription, timeouts, and outbox data can be converted using script that can map between the schema differences.
+Subscription, timeouts, and outbox data can be converted using scripts that map between the schemas.
 
-Saga state has custom schemas which cannot be easily migrated.
+Saga state migration is more complex due to custom schemas that cannot be easily migrated.
 
 ### Downtime migration
 
-Downtime migration that uses custom scripting with deep knowledge on saga state serialization differences.
+Downtime migration depends on custom scripting with a deep knowledge of saga state serialization differences.
 
- - No complex deployment
+ - No complex deployment required
  - Requires custom saga migration mappings
  - Downtime is relative to the size of the data set
- - Pretty easy if the saga state schema is fairly flat
- - Required for outbox,  timeouts, and subscriptions
+ - Straightforward if the saga state schema is fairly flat
+ - Required for outbox, timeouts, and subscriptions
