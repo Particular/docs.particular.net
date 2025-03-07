@@ -28,8 +28,8 @@ rabbitmq-transport delays create [options]
 
 #### Options
 
-`--connectionString` | `-c` : The RabbitMQ connection string. Takes precedence over a connection string provided in an environment variable.<br />
-`--connectionStringEnv` : The environment variable that contains the RabbitMQ connection string<br />
+`--connectionString` | `-c` : Force this command to use the specified connection string<br />
+`--connectionStringEnv` : Specifies the environment variable where the connection string can be found. `--connectionString`, if specified, will take precedence over this option<br />
 `--certPath`: The path to the client certificate file for connecting to the broker<br />
 `--certPassphrase`: The passphrase for the client certificate file specified by the `certPath` option<br />
 `--disableCertValidation`: Disable remote certificate validation when connecting to the broker<br />
@@ -45,8 +45,8 @@ rabbitmq-transport delays migrate [options]
 
 #### Options
 
-`--connectionString` | `-c` : The RabbitMQ connection string. Takes precedence over a connection string provided in an environment variable.<br />
-`--connectionStringEnv` : The environment variable that contains the RabbitMQ connection string<br />
+`--connectionString` | `-c` : Force this command to use the specified connection string<br />
+`--connectionStringEnv` : Specifies the environment variable where the connection string can be found. `--connectionString`, if specified, will take precedence over this option<br />
 `--certPath`: The path to the client certificate file for connecting to the broker<br />
 `--certPassphrase`: The passphrase for the client certificate file specified by the `certPath` option<br />
 `--disableCertValidation`: Disable remote certificate validation when connecting to the broker<br />
@@ -86,8 +86,8 @@ rabbitmq-transport endpoint create <endpointName> [options]
 
 #### Options
 
-`--connectionString` | `-c` : The connection string to use<br />
-`--connectionStringEnv` : Specifies the environment variable where the connection string can be found. --connectionString, if specified, will take precedence over this option<br />
+`--connectionString` | `-c` : Force this command to use the specified connection string<br />
+`--connectionStringEnv` : Specifies the environment variable where the connection string can be found. `--connectionString`, if specified, will take precedence over this option<br />
 `--certPath`: Set the path to the client certificate file for connecting to the broker<br />
 `--certPassphrase`: The passphrase for client certificate file for when using a client certificate<br />
 `--disableCertValidation`: The passphrase for client certificate file for when using a client certificate<br />
@@ -116,8 +116,8 @@ rabbitmq-transport queue migrate-to-quorum <queueName> [options]
 
 #### Options
 
-`--connectionString` | `-c` : The connection string to use<br />
-`--connectionStringEnv` : Specifies the environment variable where the connection string can be found. --connectionString, if specified, will take precedence over this option<br />
+`--connectionString` | `-c` : Force this command to use the specified connection string<br />
+`--connectionStringEnv` : Specifies the environment variable where the connection string can be found. `--connectionString`, if specified, will take precedence over this option<br />
 `--certPath`: Set the path to the client certificate file for connecting to the broker<br />
 `--certPassphrase`: The passphrase for client certificate file for when using a client certificate<br />
 `--disableCertValidation`: The passphrase for client certificate file for when using a client certificate<br />
