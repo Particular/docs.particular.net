@@ -24,7 +24,7 @@ This sample contains one project:
 
 ### Receiver
 
-The receiver uses the self-hosting capability to start an endpoint inside a continuously running WebJob.
+The receiver uses the self-hosting capability to start an endpoint inside a WebJob.
 
 The `UseNServiceBus` method of [`NServiceBus.Extensions.Hosting`](/nservicebus/hosting/extensions-hosting.md) is used to configure and start the endpoint:
 
