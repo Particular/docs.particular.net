@@ -2,7 +2,6 @@
 
 using Contracts;
 using Microsoft.Extensions.Logging;
-using NServiceBus.Logging;
 
 public class SomethingMoreHappenedHandler(ILogger<SomethingMoreHappenedHandler> logger) : IHandleMessages<ISomethingMoreHappened>
 {

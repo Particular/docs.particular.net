@@ -16,14 +16,11 @@ class Program
         Host.CreateDefaultBuilder(args)
             .ConfigureServices((hostContext, services) =>
             {
-                Console.Title = "Server";
+                Console.Title = "Endpoint";
                 services.AddHostedService<InputLoopService>();
 
             }).UseNServiceBus(x =>
             {
-                Console.Title = "Endpoint";
-              
-               
                 var endpointConfiguration = new EndpointConfiguration(
                     "Samples.Bridge.Endpoint");
 

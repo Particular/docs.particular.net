@@ -5,18 +5,12 @@ using System.Threading.Tasks;
 
 #region saga
 
-public class OrderSaga :
+public class OrderSaga(ILogger<OrderSaga> logger) :
     Saga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>,
     IHandleMessages<CompletePaymentTransaction>,
     IHandleMessages<CompleteOrder>
 {
-    private static readonly ILogger<OrderSaga> logger =
-    LoggerFactory.Create(builder =>
-    {
-        builder.AddConsole();
-    }).CreateLogger<OrderSaga>();
-
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
         mapper.MapSaga(saga => saga.OrderId)

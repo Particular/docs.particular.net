@@ -2,15 +2,8 @@
 using Shared;
 
 #region PriceUpdatedHandler
-public class PriceUpdatedHandler : IHandleMessages<PriceUpdated>
+public class PriceUpdatedHandler(ILogger<PriceUpdatedHandler> logger) : IHandleMessages<PriceUpdated>
 {
-    private static readonly ILogger<PriceUpdatedHandler> logger =
-     LoggerFactory.Create(builder =>
-     {
-         builder.AddConsole();
-     }).CreateLogger<PriceUpdatedHandler>();
-
-
     public Task Handle(PriceUpdated message, IMessageHandlerContext context)
     {
         var header = context.MessageHeaders[Headers.OriginatingSite];

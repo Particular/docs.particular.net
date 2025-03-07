@@ -29,8 +29,9 @@ class Program
 
              #region SenderConfiguration
 
-             // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlOutbox;Integrated Security=True;Max Pool Size=100;Encrypt=false
-             var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlOutbox;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
+             //for local instance or SqlExpress
+             // string connectionString = @"Data Source=(localdb)\mssqllocaldb;Database=NsbSamplesSqlOutbox;Trusted_Connection=True;MultipleActiveResultSets=true";
+              var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlOutbox;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
 
              var transport = new SqlServerTransport(connectionString)
              {
@@ -65,7 +66,6 @@ class Program
 
              SqlHelper.CreateSchema(connectionString, "sender");
              Console.WriteLine("Press enter to send a message");
-             Console.WriteLine("Press any key to exit");
              return endpointConfiguration;
          });
 }
