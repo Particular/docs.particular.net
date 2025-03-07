@@ -1,6 +1,6 @@
 ---
 title: Migrating from NHibernate to SQL persister
-summary: Learn how to migrate from NHibernate to SQL persister with an understanding of the database schema differences between them
+summary: Learn how to migrate from NHibernate to SQL persister
 reviewed: 2025-03-06
 component: SqlPersistence
 ---
@@ -13,7 +13,6 @@ Current schemas can be found via their respective scripting pages:
 
 -  [NHibernate persistence SQL Server scripting](/persistence/nhibernate/scripting.md)
 -  [SQL persistence SQL Server scripting](/persistence/sql/sqlserver-scripts.md)
-
 
 ### Sagas
 
@@ -38,7 +37,7 @@ SQL Persistence: has a `<endpoint_name>_TimeoutData` table for each endpoint.
 
 ## Outbox retention
 
-If the outbox retention period is set to a very large period and the message throughput is high then such a migration will take a while to complete. It is recommended to keep the retention period as low as possible.
+An extended retention period combined with high message throughput can cause migration to take longer. Keeping the retention period as low as possible is recommended.
 
 - [NHibernate Deduplication record lifespan](/persistence/nhibernate/outbox.md#deduplication-record-lifespan)
 - [SQL Persistence Deduplication record lifespan](/persistence/sql/outbox.md#deduplication-record-lifespan)
@@ -47,9 +46,9 @@ If the outbox retention period is set to a very large period and the message thr
 
 ### Conversion
 
-Subscription, timeouts, and outbox data can be converted using script that can map between the schema differences.
+Subscription, timeouts, and outbox data can be converted using scripts that map between the schemas.
 
-Saga state has custom schemas which cannot be easily migrated.
+Saga state migration is more complex due to custom schemas that cannot be easily migrated.
 
 ### Downtime migration
 
@@ -59,4 +58,4 @@ Downtime migration that uses custom scripting with deep knowledge on saga state 
  - Requires custom saga migration mappings
  - Downtime is relative to the size of the data set
  - Pretty easy if the saga state schema is fairly flat
- - Required for outbox,  timeouts, and subscriptions
+ - Required for outbox, timeouts, and subscriptions
