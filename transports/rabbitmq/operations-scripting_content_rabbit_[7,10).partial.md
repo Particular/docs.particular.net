@@ -119,3 +119,4 @@ rabbitmq-transport queue migrate-to-quorum <queueName> [options]
 `--certPath`: Set the path to the client certificate file for connecting to the broker<br />
 `--certPassphrase`: The passphrase for client certificate file for when using a client certificate<br />
 `--disableCertValidation`: The passphrase for client certificate file for when using a client certificate<br />
+`--useExternalAuth`: Use the external authorization option when connecting to the broker<br />
