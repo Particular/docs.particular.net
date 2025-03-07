@@ -10,24 +10,30 @@ related:
 - nservicebus/licensing
 ---
 
-There are multuple ways to add a license to ServiceInsight.
+Note: If you do not have license installed when you first launch ServiceInsight, a 14-day trial will automatically be created and installed. 
 
-## Via the ServiceInsight UI
+## Installing the License from ServiceInsight
 
-If the trial period has expired expires, the following dialog is displayed when running ServiceInsight:
+If your license has expired, a dialog box will display when you launch ServiceInsight:
 
 ![trial period expiration](images/trial-period-expiration.png)
 
-The license can be loaded by clicking the "Browse..." button and selecting the license file. The dialog box will then display the following confirmation message:
+The license can be loaded by clicking the "Manage License..." button and selecting the license file.
+
+You can also import a new license file by going to the "Help" menu and selecting "Manage License".
+
+In either case, a dialog box will appear allowing you to "Import license file...".
+
+Once a license is loaded, the dialog box will display a success message like the following:
 
 ![trial period licensed](images/trial-period-licensed.png)
 
-## Via other platform tools
+## Installing the License from ServiceControl
 
 See the [ServiceControl licensing page](/servicecontrol/license.md) for more information.
 
 ## Verifying the license is loaded
 
-Once the license file is loaded, ServiceInsight will display licensing information in the status bar (bottom right hand side) upon launch:
+ServiceInsight displays licensing information in the status bar (bottom right hand side):
 
 ![license verified](images/license-verified.png 'width=500')
