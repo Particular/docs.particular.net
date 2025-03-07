@@ -12,9 +12,6 @@ related:
 > [!NOTE]
 > SignalR can be used in many different ways. For general guidance, check out the official [SignalR tutorials](https://learn.microsoft.com/en-us/aspnet/core/tutorials/signalr?tabs=visual-studio&view=aspnetcore-6.0) and [SignalR samples](https://github.com/aspnet/SignalR-samples). This guide specifically focuses on how to relay NServiceBus events to SignalR clients.
 
-> [!NOTE]
-> For simplicity, we use "occasionally-connected" to refer to a variety of non-permanent client connections, including "transient" connections.
-
 For "near real-time" [occasionally-connected](https://en.wikipedia.org/wiki/Occasionally_connected_computing) clients, messages are only useful for a short period of time. A classic example is stock ticker updates, where the latest prices matter, but old ones quickly become irrelevant.
 
 One of the key features of message queuing is the ability for the receiving endpoints to maintain service even when offline. Messages remain in the queue for processing when the system comes back online. However, while this feature is critical for some systems, the long lasting, durable nature of message queuing can result in a backlog of messages that are no longer relevant for occasionally-connected ones. If the client is disconnected long enough, it can result in queue quotas being exceeded. This can ultimately result in exceptions on the message sender and possibly impact other parts of the system.
