@@ -37,17 +37,17 @@ The OrderId is used as the partition key.
 
 ## Using Behaviors
 
-The following shows 3 different ways to provide OrderIDs to the saga using [behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md).
+The following shows two different ways to provide OrderIDs to the saga using [behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md).
 
-Most messages implement `IProvideOrderId` allowing the OrderId to be used as the partition key.
+1. Most messages implement `IProvideOrderId` allowing the OrderId to be used as the partition key.
 
 snippet: BehaviorUsingIProvideOrderId
 
-One of the handlers publishes an event that does not implement `IProvideOrderId` but adds a custom header containing the OrderId. The handler also creates `OrderShippingInformation` as part of the transactional batch provided by NServiceBus.
+2. One handler publishes an event that does not implement `IProvideOrderId` but adds a custom header containing the OrderId. The handler also creates `OrderShippingInformation` as part of the transactional batch provided by NServiceBus.
 
 snippet: UseHeader
 
-The header allows the partition key to be determined within the transport receive context.
+The custom header added then allows the partition key to be determined within `OrderIdHeaderAsPartitionKeyBehavior`.
 
 snippet: BehaviorUsingHeader
 
