@@ -52,10 +52,10 @@ Saga state migration is more complex due to custom schemas that cannot be easily
 
 ### Downtime migration
 
-Downtime migration that uses custom scripting with deep knowledge on saga state serialization differences.
+Downtime migration depends on custom scripting with a deep knowledge of saga state serialization differences.
 
- - No complex deployment
+ - No complex deployment required
  - Requires custom saga migration mappings
  - Downtime is relative to the size of the data set
- - Pretty easy if the saga state schema is fairly flat
+ - Straightforward if the saga state schema is fairly flat
  - Required for outbox, timeouts, and subscriptions
