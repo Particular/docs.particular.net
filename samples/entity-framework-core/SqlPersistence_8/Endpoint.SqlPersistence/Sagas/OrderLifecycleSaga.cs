@@ -1,16 +1,15 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 using NServiceBus.Persistence.Sql;
 
-public class OrderLifecycleSaga :
+public class OrderLifecycleSaga(ILogger<OrderLifecycleSaga> logger) :
     SqlSaga<OrderLifecycleSagaData>,
     IAmStartedByMessages<OrderSubmitted>,
     IHandleTimeouts<OrderLifecycleSaga.OrderTimeout>
 {
-    static readonly ILog log = LogManager.GetLogger<OrderLifecycleSaga>();
-
+   
     protected override void ConfigureMapping(IMessagePropertyMapper mapper)
     {
         mapper.ConfigureMapping<OrderSubmitted>(m => m.OrderId);
@@ -28,7 +27,7 @@ public class OrderLifecycleSaga :
             OrderId = message.OrderId,
         };
 
-        log.Info($"Order process {message.OrderId} started.");
+        logger.LogInformation($"Order process {message.OrderId} started.");
 
         await context.Reply(orderAccepted);
     }

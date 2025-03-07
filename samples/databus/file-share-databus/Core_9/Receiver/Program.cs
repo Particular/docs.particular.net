@@ -1,20 +1,21 @@
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using System;
 using System.Threading.Tasks;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Receiver";
-        var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver");
-        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
-        dataBus.BasePath(@"..\..\..\..\storage");
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop();
-    }
-}
+
+Console.Title = "Receiver";
+
+var builder = Host.CreateApplicationBuilder(args);
+var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver");
+var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
+dataBus.BasePath(@"..\..\..\..\storage");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
+
+builder.UseNServiceBus(endpointConfiguration);
+
+await builder.Build().RunAsync();

@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using System.Text.Json;
 using NServiceBus;
+using Microsoft.Extensions.Logging;
 using NServiceBus.Logging;
 
 #region CustomLogger

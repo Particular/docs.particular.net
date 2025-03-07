@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
-public class MySaga :
+public class MySaga(ILogger<MySaga> logger) :
     Saga<MySaga.SagaData>,
     IAmStartedByMessages<StartSagaMessage>,
     IHandleMessages<CompleteSagaMessage>
 {
-    static ILog log = LogManager.GetLogger<MySaga>();
-
     public class SagaData :
         ContainSagaData
     {
@@ -26,7 +24,7 @@ public class MySaga :
 
     public Task Handle(StartSagaMessage message, IMessageHandlerContext context)
     {
-        log.Info("Received StartSagaMessage");
+        logger.LogInformation("Received StartSagaMessage");
         Data.TheId = message.TheId;
         Data.MessageSentTime = message.SentTime;
         var completeSagaMessage = new CompleteSagaMessage
@@ -38,7 +36,7 @@ public class MySaga :
 
     public Task Handle(CompleteSagaMessage message, IMessageHandlerContext context)
     {
-        log.Info("Received CompleteSagaMessage");
+        logger.LogInformation("Received CompleteSagaMessage");
         MarkAsComplete();
         return Task.CompletedTask;
     }

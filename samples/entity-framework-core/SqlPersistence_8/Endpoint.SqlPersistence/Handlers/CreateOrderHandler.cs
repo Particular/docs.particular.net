@@ -1,12 +1,10 @@
 using NServiceBus;
 using System.Threading.Tasks;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
-public class CreateOrderHandler(ReceiverDataContext dataContext) :
+public class CreateOrderHandler(ReceiverDataContext dataContext, ILogger<CreateOrderHandler> logger) :
     IHandleMessages<OrderSubmitted>
 {
-    static readonly ILog log = LogManager.GetLogger<CreateOrderHandler>();
-
     public Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
         #region StoreOrder
@@ -20,7 +18,7 @@ public class CreateOrderHandler(ReceiverDataContext dataContext) :
 
         #endregion
 
-        log.Info($"Order {message.OrderId} worth {message.Value} created.");
+        logger.LogInformation($"Order {message.OrderId} worth {message.Value} created.");
 
         return Task.CompletedTask;
     }
