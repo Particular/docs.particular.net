@@ -14,8 +14,6 @@ There are multuple ways to add a license to ServiceInsight.
 
 ## Via the ServiceInsight UI
 
-To register ServiceInsight, before or after the trial period is over, click on the `Help -> Register` menu item. 
-
 If the trial period has expired expires, the following dialog is displayed when running ServiceInsight:
 
 ![trial period expiration](images/trial-period-expiration.png)
