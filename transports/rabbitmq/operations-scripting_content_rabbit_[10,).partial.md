@@ -8,6 +8,9 @@ dotnet tool install -g NServiceBus.Transport.RabbitMQ.CommandLine
 
 Once installed, the `rabbitmq-transport` command line tool will be available for use.
 
+> [!NOTE]
+> Commands that have the `--managementApi*` options requires the [RabbitMQ management plugin](https://www.rabbitmq.com/management.html) to be installed on the broker.
+
 `rabbitmq-transport <command> [options]`
 
 ### Available commands
