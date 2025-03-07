@@ -35,9 +35,11 @@ snippet: AzureTableConfig
 
 The OrderId is used as the partition key.
 
-## Behaviors
+## Using Behaviors
 
-Most messages implement `IProvideOrderId` enabling the logical behavior of using the provided OrderId as the partition key.
+The following shows 3 different ways to provide OrderIDs to the saga using [behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md).
+
+Most messages implement `IProvideOrderId` allowing the OrderId to be used as the partition key.
 
 snippet: BehaviorUsingIProvideOrderId
 
