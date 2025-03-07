@@ -1,7 +1,7 @@
 ---
 title: Migrating from NHibernate to SQL persister
-summary: Highlights differences in the database schema between the two persisters and migration options
-reviewed: 2022-11-24
+summary: Learn how to migrate from NHibernate to SQL persister with an understanding of the database schema differences between them
+reviewed: 2025-03-06
 component: SqlPersistence
 ---
 
