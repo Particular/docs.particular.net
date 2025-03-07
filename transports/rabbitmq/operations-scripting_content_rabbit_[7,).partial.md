@@ -52,8 +52,6 @@ rabbitmq-transport delays migrate [options]
 `--disableCertValidation`: Disable remote certificate validation when connecting to the broker<br />
 `--useExternalAuth`: Use the external authorization option when connecting to the broker<br />
 `--routingTopology` | `-r` : The routing topology to use<br />
-`--useDurableEntities` | `-d` : Specifies if entities should be created as durable<br />
-`--queueType` | `-q` : The type of queue to create<br />
 
 ### `delays verify`
 
@@ -121,4 +119,3 @@ rabbitmq-transport queue migrate-to-quorum <queueName> [options]
 `--certPath`: Set the path to the client certificate file for connecting to the broker<br />
 `--certPassphrase`: The passphrase for client certificate file for when using a client certificate<br />
 `--disableCertValidation`: The passphrase for client certificate file for when using a client certificate<br />
-`--useExternalAuth`: Use the external authorization option when connecting to the broker<br />
