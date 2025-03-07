@@ -1,6 +1,6 @@
 ---
-title: Azure Table Persistence Usage using Saga IDs as partition key
-summary: Using Azure Table Persistence to store sagas and outbox records atomically using the deterministic Saga ID as the partition key
+title: Azure Table Persistence with Saga IDs as Partition Keys
+summary: Use Azure Table Persistence to store sagas and outbox records atomically by using a deterministic Saga ID as the partition key
 reviewed: 2022-11-17
 component: ASP
 related:
