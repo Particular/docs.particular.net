@@ -1,7 +1,7 @@
 ---
-title: Install the license in ServiceInsight
-reviewed: 2022-11-24
-summary: Install the Particular Platform license in ServiceInsight.
+title: ServiceInsight License Installation
+reviewed: 2025-03-06
+summary: Learn how to install the Particular Platform license in ServiceInsight.
 component: ServiceInsight
 redirects:
  - serviceinsight/how-to-install-your-license-file-serviceinsight
@@ -10,12 +10,13 @@ related:
 - nservicebus/licensing
 ---
 
-There are a few options for adding a license to ServiceInsight.
+There are multuple ways to add a license to ServiceInsight.
 
+## Via the ServiceInsight UI
 
-## Via ServiceInsight
+To register ServiceInsight, before or after the trial period is over, click on the `Help -> Register` menu item. 
 
-To register ServiceInsight, before or after the trial period is over, click on the `Help -> Register` menu item. Running ServiceInsight after the trial period has expired, the following dialog will be displayed:
+If the trial period has expired expires, the following dialog is displayed when running ServiceInsight:
 
 ![trial period expiration](images/trial-period-expiration.png)
 
@@ -23,14 +24,12 @@ The license can be loaded by clicking the "Browse..." button and selecting the l
 
 ![trial period licensed](images/trial-period-licensed.png)
 
-
-## Using other platform tools
+## Via other platform tools
 
 See the [ServiceControl licensing page](/servicecontrol/license.md) for more information.
 
+## Verifying the license is loaded
 
-## Verifying a license is applied
-
-Once the license file is loaded, ServiceInsight will display licensing information on its status bar (bottom right hand side) upon launch:
+Once the license file is loaded, ServiceInsight will display licensing information in the status bar (bottom right hand side) upon launch:
 
 ![license verified](images/license-verified.png 'width=500')
