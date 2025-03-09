@@ -1,13 +1,13 @@
 ---
-title: Azure Table Persistence Usage using Saga IDs as partition key
-summary: Using Azure Table Persistence to store sagas and outbox records atomically using the deterministic Saga ID as the partition key
-reviewed: 2022-11-17
+title: Azure Table Persistence with Saga IDs as Partition Keys
+summary: Use Azure Table Persistence to store sagas and outbox records atomically by using a deterministic Saga ID as the partition key
+reviewed: 2025-03-06
 component: ASP
 related:
  - nservicebus/sagas
 ---
 
-This sample shows a client/server scenario using saga and outbox persistences to store records atomically by leveraging transactions. The Saga ID is used as a partition key.
+This sample demonstrates a client/server scenario using saga and outbox persistences to store records atomically by leveraging transactions. The Saga ID is used as a partition key.
 
 ## Projects
 
@@ -33,15 +33,15 @@ Configure the endpoint to use Azure Table Persistence.
 
 snippet: AzureTableConfig
 
-The order id is used to derive the saga id from.
+The Saga ID is derived from the Order ID.
 
 ## Behaviors
 
-Most messages implement `IProvideOrderId`. By default Saga IDs are deterministically derived from the saga data, the correlation property name and the correlation property value. `IProvidePartitionKeyFromSagaId` is a helper that can be injected into behaviors in the logical pipeline stage if the Saga ID should be used as a partition key.
+Most messages implement `IProvideOrderId`. By default, Saga IDs are deterministically derived from the saga data, the correlation property name, and the correlation property value. `IProvidePartitionKeyFromSagaId` is a helper that can be injected into behaviors in the logical pipeline stage if the Saga ID is used as a partition key.
 
 snippet: BehaviorUsingIProvidePartitionKeyFromSagaId
 
-One handler replies with a message that doesn't implement `IProvideOrderId`. Transactionality can still be achieved because messages that are part of a saga conversation flow will get the Saga ID set as a header. In such cases no correlation property information needs to be extracted to derive the Saga ID from.
+One of the handlers replies with a message that does not implement `IProvideOrderId`. However, transactionality is still maintained because messages that are part of a saga conversation flow automatically have the Saga ID set as a header. In these cases, there is no need to extract correlation property information to derive the Saga ID.
 
 Finally the above behavior is registered in the pipeline.
 
