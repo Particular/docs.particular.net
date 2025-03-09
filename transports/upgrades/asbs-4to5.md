@@ -188,7 +188,7 @@ Previous versions of the transport allowed mapping from queue names to subscript
 Starting with v5 of the transport, subscription names can be assigned directly:
 
 ```csharp
-topology.OverrideSubscriptionNameFor("QueueName", "SubscriptionName")
+topology.OverrideSubscriptionNameFor("QueueNameThatIsLongerThanFiftyCharactersAndStillValid", "SubscriptionName")
 ```
 
 For more advanced scenarios, mappings can be stored in configuration:
@@ -197,12 +197,30 @@ For more advanced scenarios, mappings can be stored in configuration:
 {
   ...
   "QueueNameToSubscriptionNameMap": {
-    "QueueName": "SubscriptionName"
+    "QueueNameThatIsLongerThanFiftyCharactersAndStillValid": "SubscriptionName"
   }
 }
 ```
 
 The assumption is that any previous delegate invocation would needed to be idempotent to create reliable runtime behavior. Subscription names must adhere to the limits outlined in the [Microsoft documentation on subscription creation](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas) and are automatically validated during startup.
+
+For example, if previously an MD5 hash was used as the sanitization function it might be required to preserve the same entity names.
+For queue names that crossed the threshold of 50 characters, it would be necessary to precalculate the MD5 hash and store that as the subscription name. Alternatively simply configure the subscription name already used in production as a hardcoded value. Below is the MD5 hash as a GUID for a queue name called `QueueNameThatIsLongerThanFiftyCharactersAndStillValid`:
+
+```csharp
+topology.OverrideSubscriptionNameFor("QueueNameThatIsLongerThanFiftyCharactersAndStillValid", "7b7139c2-dd0e-2870-424a-891c84f89477")
+```
+
+the hash was calculated assuming the previously known `ValidateAndHashIfNeeded` strategy.
+
+```csharp
+static string HashName(string input)
+{
+    var inputBytes = Encoding.Default.GetBytes(input);
+    var hashBytes = MD5.HashData(inputBytes);
+    return new Guid(hashBytes).ToString();
+}
+```
 
 ### Migrating rule name customizations
 
@@ -219,12 +237,29 @@ Or via configuration:
   "$type": "migration-topology-options",
   ...
   "EventsToMigrateMap": [
-    "Namespace.Event1"
+    "Namespace.Subnamespace.VeryLongEventName1"
   ],
   "SubscribedEventToRuleNameMap": {
-    "Namespace.Event1": "Event1Rule"
+    "Namespace.Subnamespace.VeryLongEventName1": "MyRuleName"
   }
 }
 ```
 
 The assumption is that any previous delegate invocation would needed to be idempotent to create reliable runtime behavior. Rules names must adhere to the limits outlined in the [Microsoft documentation on subscription creation](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas) and are automatically validated during startup.
+
+For example, if previously an MD5 hash was used as the sanitization function it might be required to preserve the same entity names. For rule names that crossed the threshold of 50 characters, it would then be necessary to precalculate the MD5 hash and store that as the rule name. Alternatively simply configure the rule name already used in production as a hardcoded value. Below is the MD5 hash as a GUID for a rule name called `Namespace.Subnamespace.VeryLongEventName1`:
+
+```csharp
+topology.EventToMigrate<Namespace.Subnamespace.VeryLongEventName1>("76b98b1a-3a59-490a-a064-de65c0bc9aa6")
+```
+
+the hash was calculated assuming the previously known `ValidateAndHashIfNeeded` strategy.
+
+```csharp
+static string HashName(string input)
+{
+    var inputBytes = Encoding.Default.GetBytes(input);
+    var hashBytes = MD5.HashData(inputBytes);
+    return new Guid(hashBytes).ToString();
+}
+```
