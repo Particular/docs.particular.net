@@ -1,10 +1,9 @@
 ﻿using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Messages;
-using Microsoft.Extensions.Logging;
 
 namespace Shipping.Integration;
 

@@ -1,15 +1,13 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 #region GitHubSearchResponseHandler
-public class GitHubSearchResponseHandler :
+public class GitHubSearchResponseHandler(ILogger<GitHubSearchResponseHandler> logger) :
     IHandleMessages<SearchResponse>
 {
-    static ILog log = LogManager.GetLogger<GitHubSearchResponseHandler>();
-
     public Task Handle(SearchResponse message, IMessageHandlerContext context)
     {
-        log.Info($"Found commit '{message.CommitSha}' for branch '{message.Branch}'.");
+        logger.LogInformation($"Found commit '{message.CommitSha}' for branch '{message.Branch}'.");
         return Task.CompletedTask;
     }
 }

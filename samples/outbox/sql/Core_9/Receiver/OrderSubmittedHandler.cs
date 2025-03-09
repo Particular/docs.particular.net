@@ -1,16 +1,21 @@
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
 public class OrderSubmittedHandler :
     IHandleMessages<OrderSubmitted>
 {
-    static ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
+    private readonly ILogger<OrderSubmittedHandler> logger;
+
+    public OrderSubmittedHandler(ILogger<OrderSubmittedHandler> logger)
+    {
+        this.logger = logger;
+    }
 
     public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
-        log.Info($"Order {message.OrderId} worth {message.Value} submitted");
+        logger.LogInformation($"Order {message.OrderId} worth {message.Value} submitted");
 
         #region StoreUserData
 

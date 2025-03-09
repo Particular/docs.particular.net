@@ -1,17 +1,14 @@
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
-
 namespace Dapper
 {
-    public class OrderSubmittedHandler :
+    public class OrderSubmittedHandler(ILogger<OrderSubmittedHandler> logger) :
         IHandleMessages<OrderSubmitted>
     {
-        static ILog log = LogManager.GetLogger<OrderLifecycleSaga>();
-
         public Task Handle(OrderSubmitted message, IMessageHandlerContext context)
         {
-            log.Info($"Order {message.OrderId} worth {message.Value} persisted by Dapper");
+            logger.LogInformation($"Order {message.OrderId} worth {message.Value} persisted by Dapper");
 
             #region StoreDataDapper
 
