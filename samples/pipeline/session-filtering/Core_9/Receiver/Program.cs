@@ -19,11 +19,13 @@ class Program
          {
              Console.Title = "Server";
              services.AddSingleton<RotatingSessionKeyProvider>(); // Register the service
-             services.AddHostedService<RecevingLoopService>();
-             services.AddSingleton<ILogger<FilterIncomingMessages>>();
+             services.AddHostedService<ReceivingLoopService>();
+             // Register FilterIncomingMessages if it's a service
+             services.AddSingleton<FilterIncomingMessages>();
 
 
-         }).UseNServiceBus(static x =>
+
+         }).UseNServiceBus(x =>
          {
              Console.Title = "Receiver";
              var endpointConfiguration = new EndpointConfiguration("Samples.SessionFilter.Receiver");
@@ -33,7 +35,9 @@ class Program
              endpointConfiguration.UseTransport(new LearningTransport());
 
              var sessionKeyProvider = new RotatingSessionKeyProvider();
-             endpointConfiguration.ApplySessionFilter(sessionKeyProvider);
+             // Register FilterIncomingMessages if it's a service
+             var logger = new LoggerFactory().CreateLogger<FilterIncomingMessages>();
+             endpointConfiguration.ApplySessionFilter(sessionKeyProvider, logger);
 
 
              return endpointConfiguration;

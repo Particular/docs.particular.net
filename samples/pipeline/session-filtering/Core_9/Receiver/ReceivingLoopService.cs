@@ -6,9 +6,9 @@ using Microsoft.Extensions.Hosting;
 namespace Receiver
 {
 
-    public class RecevingLoopService(RotatingSessionKeyProvider sessionKeyProvider) : BackgroundService
+    public class ReceivingLoopService(RotatingSessionKeyProvider sessionKeyProvider) : BackgroundService
     {
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
             PrintMenu(sessionKeyProvider);
 
@@ -21,9 +21,10 @@ namespace Receiver
                         PrintMenu(sessionKeyProvider);
                         break;
                     case ConsoleKey.Escape:
-                        return;
+                        return Task.CompletedTask;
                 }
             }
+            return Task.CompletedTask;
         }
 
         static void PrintMenu(ISessionKeyProvider sessionKeyProvider)

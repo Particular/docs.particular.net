@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
 using Sender;
 
@@ -23,7 +24,7 @@ class Program
 
           }).UseNServiceBus(x =>
           {
-              var endpointConfiguration = new EndpointConfiguration("Samples.SessionFilter.Sender");
+              var endpointConfiguration = new EndpointConfiguration("c");
 
               endpointConfiguration.UsePersistence<LearningPersistence>();
               endpointConfiguration.UseSerialization<SystemJsonSerializer>();
@@ -37,7 +38,9 @@ class Program
               #region add-filter-behavior
 
               var sessionKeyProvider = new RotatingSessionKeyProvider();
-              endpointConfiguration.ApplySessionFilter(sessionKeyProvider);
+              var logger = new LoggerFactory().CreateLogger<FilterIncomingMessages>();
+
+              endpointConfiguration.ApplySessionFilter(sessionKeyProvider, logger);
               #endregion
 
               return endpointConfiguration;
