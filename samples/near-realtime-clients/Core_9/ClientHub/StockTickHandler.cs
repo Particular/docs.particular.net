@@ -1,8 +1,4 @@
 ﻿using Microsoft.AspNetCore.SignalR;
-using NServiceBus;
-using NServiceBus.Logging;
-using System.Threading.Tasks;
-
 namespace ClientHub;
 
 
@@ -11,17 +7,18 @@ namespace ClientHub;
 public class StockTickHandler :
     IHandleMessages<StockTick>
 {
-    static readonly ILog log = LogManager.GetLogger<StockTickHandler>();
     readonly IHubContext<StockTicksHub> hub;
+    private readonly ILogger<StockTickHandler> logger;
 
-    public StockTickHandler(IHubContext<StockTicksHub> hub)
+    public StockTickHandler(IHubContext<StockTicksHub> hub, ILogger<StockTickHandler> logger)
     {
         this.hub = hub;
+        this.logger = logger;
     }
 
     public Task Handle(StockTick message, IMessageHandlerContext context)
     {
-        log.Info($"StockTick event received for Symbol {message.Symbol} with timestamp: {message.Timestamp:O}. Press any key to exit.");
+        logger.LogInformation($"StockTick event received for Symbol {message.Symbol} with timestamp: {message.Timestamp:O}. Press any key to exit.");
         return hub.Clients.All.SendAsync("PushStockTick", message, context.CancellationToken);
     }
 }

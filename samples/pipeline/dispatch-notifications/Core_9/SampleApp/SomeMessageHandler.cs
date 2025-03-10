@@ -1,15 +1,14 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
-class SomeMessageHandler :
+class SomeMessageHandler (ILogger<SomeMessageHandler> logger):
     IHandleMessages<SomeMessage>
 {
-    static readonly ILog Log = LogManager.GetLogger<SomeMessageHandler>();
-
+  
     public Task Handle(SomeMessage message, IMessageHandlerContext context)
     {
-        Log.Info("Got SomeMessage");
+        logger.LogInformation("Got SomeMessage");
         return Task.CompletedTask;
     }
 }

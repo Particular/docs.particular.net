@@ -1,17 +1,17 @@
 ﻿using System;
-using System.Threading;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
-using NServiceBus;
 
-namespace Client
+namespace Sample
 {
     public class InputLoopService(IMessageSession messageSession) : BackgroundService
     {
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
 
-            Console.WriteLine("Press 'enter' to send a StartOrder messages");
 
             while (true)
             {
@@ -22,19 +22,12 @@ namespace Client
                 {
                     break;
                 }
-
-                var orderId = Guid.NewGuid();
-                var startOrder = new StartOrder
+                for (var i = 0; i < 10; i++)
                 {
-                    OrderId = orderId
-                };
-
-                await messageSession.Send("Samples.MongoDB.Server", startOrder);
-
-                Console.WriteLine($"StartOrder Message sent with OrderId {orderId}");
-
+                    var myMessage = new MyMessage();
+                    await messageSession.SendLocal(myMessage);
+                }
             }
         }
-
     }
 }
