@@ -1,15 +1,12 @@
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
-
-public class AuditThisMessageHandler :
+public class AuditThisMessageHandler(ILogger<AuditThisMessageHandler> logger) :
     IHandleMessages<AuditThisMessage>
 {
-    static ILog log = LogManager.GetLogger<AuditThisMessageHandler>();
-
     public Task Handle(AuditThisMessage message, IMessageHandlerContext context)
     {
-        log.Info($"Handling {message.GetType().Name}");
+        logger.LogInformation($"Handling {message.GetType().Name}");
         return Task.CompletedTask;
     }
 }

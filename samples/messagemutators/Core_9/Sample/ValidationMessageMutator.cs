@@ -4,7 +4,6 @@ using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using NServiceBus.Logging;
 using NServiceBus.MessageMutator;
 #region ValidationMessageMutator
 

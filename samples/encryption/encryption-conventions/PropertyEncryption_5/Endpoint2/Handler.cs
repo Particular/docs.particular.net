@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 public class Handler(ILogger<Handler> logger) :
     IHandleMessages<MessageWithSecretData>
