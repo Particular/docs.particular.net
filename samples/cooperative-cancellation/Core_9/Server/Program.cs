@@ -1,33 +1,31 @@
 using System;
 using System.Threading;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
-using NServiceBus.Logging;
+using Server;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Cancellation";
-        LogManager.Use<DefaultFactory>()
-            .Level(LogLevel.Info);
-        var endpointConfiguration = new EndpointConfiguration("Samples.Cooperative.Cancellation");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder(args);
 
-        await endpointInstance.SendLocal(new LongRunningMessage { DataId = Guid.NewGuid() });
+Console.Title = "Cancellation";
+var endpointConfiguration = new EndpointConfiguration("Samples.Cooperative.Cancellation");
+endpointConfiguration.UsePersistence<LearningPersistence>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        Console.ReadKey();
+builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddHostedService<InputLoopService>();
 
-        Console.WriteLine("Giving the endpoint 1 second to gracefully stop before sending a cancel signal to the cancellation token");
+var host =  builder.Build();
+var runTask = host.RunAsync();
+Console.ReadKey();
 
-        #region StoppingEndpointWithCancellationToken
-        var tokenSource = new CancellationTokenSource();
-        tokenSource.CancelAfter(TimeSpan.FromSeconds(1));
-        await endpointInstance.Stop(tokenSource.Token);
-        #endregion
-    }
-}
+var tokenSource = new CancellationTokenSource();
+tokenSource.CancelAfter(TimeSpan.FromSeconds(1));
+
+await host.StopAsync(tokenSource.Token);
+
+await runTask;
+
+

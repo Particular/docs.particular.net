@@ -1,17 +1,22 @@
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 #region ObjectMessageHandler
 
 public class ObjectMessageHandler :
     IHandleMessages<ObjectMessage>
 {
-    static ILog log = LogManager.GetLogger<ObjectMessageHandler>();
+    private readonly ILogger<ObjectMessageHandler> logger;
+
+    public ObjectMessageHandler(ILogger<ObjectMessageHandler> logger)
+    {
+        this.logger = logger;
+    }
 
     public Task Handle(ObjectMessage message, IMessageHandlerContext context)
     {
-        log.Info("Message received, Returning");
+        logger.LogInformation("Message received, Returning");
         var objectResponseMessage = new ObjectResponseMessage
         {
             Property = "PropertyValue"

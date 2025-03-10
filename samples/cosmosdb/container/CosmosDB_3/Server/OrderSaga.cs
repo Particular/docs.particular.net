@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
-
 #region theordersaga
 
 public class OrderSaga :
@@ -9,7 +8,11 @@ public class OrderSaga :
     IAmStartedByMessages<StartOrder>,
     IHandleMessages<CompleteOrder>
 {
-    static ILog log = LogManager.GetLogger<OrderSaga>();
+    private static readonly ILogger<Program> logger =
+       LoggerFactory.Create(builder =>
+       {
+           builder.AddConsole();
+       }).CreateLogger<Program>();
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
@@ -23,7 +26,7 @@ public class OrderSaga :
         Data.OrderId = message.OrderId;
         Data.OrderDescription = $"The saga for order {message.OrderId}";
 
-        log.Info($"Received StartOrder message {Data.OrderId}. Starting Saga");
+        logger.LogInformation($"Received StartOrder message {Data.OrderId}. Starting Saga");
 
         var shipOrder = new ShipOrder
         {
@@ -35,7 +38,7 @@ public class OrderSaga :
 
     public Task Handle(CompleteOrder message, IMessageHandlerContext context)
     {
-        log.Info($"Saga with OrderId {Data.OrderId} completed");
+        logger.LogInformation($"Saga with OrderId {Data.OrderId} completed");
         MarkAsComplete();
         var orderCompleted = new OrderCompleted
         {

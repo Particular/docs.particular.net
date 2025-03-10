@@ -1,4 +1,5 @@
 using System;
+using Microsoft.Extensions.Hosting;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NHibernate.Driver;
@@ -9,6 +10,7 @@ using NServiceBus.Persistence;
 using NServiceBus.Transport.SqlServer;
 
 Console.Title = "Receiver";
+var builder = Host.CreateApplicationBuilder(args);
 
 // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlNHibernate;Integrated Security=True;Max Pool Size=100;Encrypt=false
 var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlNHibernate;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
@@ -58,8 +60,9 @@ persistence.UseConfiguration(hibernateConfig);
 
 #endregion
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
 Console.WriteLine("Press any key to exit");
 Console.ReadKey();
-await endpointInstance.Stop();
+builder.UseNServiceBus(endpointConfiguration);
+
+await builder.Build().RunAsync();

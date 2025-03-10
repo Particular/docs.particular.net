@@ -1,8 +1,11 @@
 using System;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 
 Console.Title = "SimpleReceiver";
+var builder = Host.CreateApplicationBuilder(args);
+
 var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.SimpleReceiver");
 
 // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=SqlServerSimple;Integrated Security=True;Max Pool Size=100;Encrypt=false
@@ -17,8 +20,11 @@ endpointConfiguration.UseTransport(new SqlServerTransport(connectionString)
 endpointConfiguration.EnableInstallers();
 
 await SqlHelper.EnsureDatabaseExists(connectionString);
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
 Console.WriteLine("Press any key to exit");
 Console.WriteLine("Waiting for message from the Sender");
 Console.ReadKey();
-await endpointInstance.Stop();
+
+
+builder.UseNServiceBus(endpointConfiguration);
+
+await builder.Build().RunAsync();
