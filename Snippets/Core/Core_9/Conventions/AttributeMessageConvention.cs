@@ -8,8 +8,8 @@
     class MyNamespaceMessageConvention : IMessageConvention
     {
         public bool IsMessageType(Type type) => type.Namespace == "MyNamespace.Messages";
-        public bool IsCommandType(Type type) => type.Namespace == "MyNamespace.Messages.Events";
-        public bool IsEventType(Type type) => type.Namespace == "MyNamespace.Messages.Commands";
+        public bool IsCommandType(Type type) => type.Namespace == "MyNamespace.Messages.Commands";
+        public bool IsEventType(Type type) => type.Namespace == "MyNamespace.Messages.Events";
         public string Name { get; } = "MyNamespace message convention";
     }
 
