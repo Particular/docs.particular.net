@@ -1,69 +1,50 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using Sender;
 
 class Program
 {
-    static async Task Main(string[] args)
+
+    public static async Task Main(string[] args)
     {
-        Console.Title = "Sender";
-        var endpointConfiguration = new EndpointConfiguration("Samples.SessionFilter.Sender");
-
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        var routing = endpointConfiguration.UseTransport(new LearningTransport());
-
-        routing.RouteToEndpoint(
-            typeof(SomeMessage),
-            "Samples.SessionFilter.Receiver"
-        );
-
-        #region add-filter-behavior
-
-        var sessionKeyProvider = new RotatingSessionKeyProvider();
-
-        endpointConfiguration.ApplySessionFilter(sessionKeyProvider);
-
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-        #endregion
-
-        await MainLoop(endpointInstance, sessionKeyProvider);
-
-        await endpointInstance.Stop();
+        await CreateHostBuilder(args).Build().RunAsync();
     }
 
-    static async Task MainLoop(IEndpointInstance endpoint, RotatingSessionKeyProvider sessionKeyProvider)
-    {
-        PrintMenu(sessionKeyProvider);
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+     Host.CreateDefaultBuilder(args)
+         .ConfigureServices((hostContext, services) =>
+          {
+              Console.Title = "Sender";
+              services.AddHostedService<InputLoopService>();
+              services.AddSingleton<RotatingSessionKeyProvider>(); // Register the service
 
-        var index = 1;
+          }).UseNServiceBus(x =>
+          {
+              var endpointConfiguration = new EndpointConfiguration("Samples.SessionFilter.Sender");
 
-        while (true)
-        {
+              endpointConfiguration.UsePersistence<LearningPersistence>();
+              endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+              var routing = endpointConfiguration.UseTransport(new LearningTransport());
 
-            switch (Console.ReadKey(true).Key)
-            {
-                case ConsoleKey.C:
-                    sessionKeyProvider.NextKey();
-                    PrintMenu(sessionKeyProvider);
-                    break;
-                case ConsoleKey.Escape:
-                    return;
-                default:
-                    await endpoint.Send(new SomeMessage { Counter = index });
-                    Console.WriteLine($"Sent message {index++}");
-                    break;
-            }
-        }
-    }
+              routing.RouteToEndpoint(
+                  typeof(SomeMessage),
+                  "Samples.SessionFilter.Receiver"
+              );
 
-    static void PrintMenu(ISessionKeyProvider sessionKeyProvider)
-    {
-        Console.Clear();
-        Console.WriteLine($"Session Key: {sessionKeyProvider.SessionKey}");
-        Console.WriteLine("C)   Change Session Key");
-        Console.WriteLine("ESC) Close");
-        Console.WriteLine("any other key to send a message");
-    }
+              #region add-filter-behavior
+
+              var sessionKeyProvider = new RotatingSessionKeyProvider();
+              endpointConfiguration.ApplySessionFilter(sessionKeyProvider);
+              #endregion
+
+              return endpointConfiguration;
+          });
+
+
+
+
+
 }
