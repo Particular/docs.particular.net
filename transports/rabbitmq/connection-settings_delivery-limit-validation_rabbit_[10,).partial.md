@@ -15,3 +15,5 @@ If the endpoint will not start because delivery limit validation is failing, man
 
 > [!WARNING]
 > If it not possible to allow the validation to pass, the `DoNotValidateDeliveryLimits` configuration method can be used to skip the validation entirely. This is not recommended because it leaves the endpoint open to the possibility of message loss in the case where the number of immediate retries is greater than the delivery limit of the queue.
+
+The [`queue validate-delivery-limit`](operations-scripting.md#queue-validate-delivery-limit) command can also be used to validate the delivery limit of a queue.
