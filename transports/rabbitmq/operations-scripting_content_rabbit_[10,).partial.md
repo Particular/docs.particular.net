@@ -8,9 +8,6 @@ dotnet tool install -g NServiceBus.Transport.RabbitMQ.CommandLine
 
 Once installed, the `rabbitmq-transport` command line tool will be available for use.
 
-> [!NOTE]
-> Commands that have the `--managementApi*` options requires the [RabbitMQ management plugin](https://www.rabbitmq.com/management.html) to be installed on the broker.
-
 `rabbitmq-transport <command> [options]`
 
 ### Available commands
@@ -71,14 +68,13 @@ Use this command to verify broker requirements for using the v2 delay infrastruc
 rabbitmq-transport delays verify [options]
 ```
 
-> [!NOTE]
-> This command requires the [RabbitMQ management plugin](https://www.rabbitmq.com/management.html) to be installed on the broker.
-
 #### Options
 
-`--url` : The URL of the RabbitMQ management API<br />
-`--username` : The username for accessing the RabbitMQ management API<br />
-`--password`: The password for accessing the RabbitMQ management API<br />
+`--connectionString` | `-c` : Force this command to use the specified connection string<br />
+`--connectionStringEnv` : Specifies the environment variable where the connection string can be found. `--connectionString`, if specified, will take precedence over this option<br />
+`--managementApiUrl` : Overrides the value inferred from the connection string<br />
+`--managementApiUserName` : Overrides the value inferred from the connection string. If provided, the `--managementApiPassword` option must also be provided or this option will be ignored<br />
+`--managementApiPassword` : Overrides the value inferred from the connection string. If provided, the `--managementApiUserName` option must also be provided or this option will be ignored<br />
 
 ### `endpoint create`
 
@@ -139,7 +135,7 @@ rabbitmq-transport queue migrate-to-quorum <queueName> [options]
 
 ### `queue validate-delivery-limit`
 
-Use this command to migrate an existing classic queue to a quorum queue.
+Use this command to validate that a queue is correctly configured to have an unlimited delivery limit, and attempt to create a policy if it is not.
 
 ```
 rabbitmq-transport queue validate-delivery-limit <queueName> [options]
@@ -147,7 +143,7 @@ rabbitmq-transport queue validate-delivery-limit <queueName> [options]
 
 #### Arguments
 
-`queueName` : The name of the quorum queue to validate the delivery limit on
+`queueName` : The name of the queue to validate
 
 #### Options
 
