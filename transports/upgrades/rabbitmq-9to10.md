@@ -12,13 +12,13 @@ upgradeGuideCoreVersions:
 
 ## RabbitMQ Management API access is now required
 
-The transport has introduced a client connection to the HTTP-based RabbitMQ management API.  This requires the [rabbitmq management plugin](https://www.rabbitmq.com/docs/management#getting-started) to be enabled on the node. The client uses [basic access authentication](https://en.wikipedia.org/wiki/Basic_access_authentication) to connect with the RabbitMQ management API and is configured via the `ManagementApiConfiguration` transport method.
+The transport now uses the RabbitMQ management API to [verify broker requirements](/transports/rabbitmq/#broker-compatibility) and enable [delivery limit validation](/transports/rabbitmq/connection-settings.md#delivery-limit-validation).
 
-For more details about the configuration, see [Configuring RabbitMQ delivery limit validation](/transports/rabbitmq/connection-settings.md?version=rabbit_10#configuring-rabbitmq-delivery-limit-validation).
+The [RabbitMQ management plugin](https://www.rabbitmq.com/docs/management) must be enabled, and the plugin's [statistics and metrics collection must not be disabled](https://www.rabbitmq.com/docs/management#disable-stats). See [Configuring RabbitMQ management API access](/transports/rabbitmq/connection-settings.md#configuring-rabbitmq-management-api-access) for configuration options.
 
 ## RabbitMQ Client v7 Upgrade
 
-The transport now uses [RabbitMQ.Client v7.0.0](https://www.nuget.org/packages/RabbitMQ.Client/7.0.0), which exclusively supports an async API model. This change results in some breaking changes in the public API.
+The transport now uses RabbitMQ.Client v7, which exclusively supports an async API model. This change results in some breaking changes in the public API.
 
 For details, see the [RabbitMQ client changelog](https://github.com/rabbitmq/rabbitmq-dotnet-client/releases/tag/v7.0.0).
 
