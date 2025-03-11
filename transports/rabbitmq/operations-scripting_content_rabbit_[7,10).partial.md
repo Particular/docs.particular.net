@@ -28,8 +28,8 @@ rabbitmq-transport delays create [options]
 
 #### Options
 
-`--connectionString` | `-c` : The RabbitMQ connection string. Takes precedence over a connection string provided in an environment variable.<br />
-`--connectionStringEnv` : The environment variable that contains the RabbitMQ connection string<br />
+`--connectionString` | `-c` : Force this command to use the specified connection string<br />
+`--connectionStringEnv` : Specifies the environment variable where the connection string can be found. `--connectionString`, if specified, will take precedence over this option<br />
 `--certPath`: The path to the client certificate file for connecting to the broker<br />
 `--certPassphrase`: The passphrase for the client certificate file specified by the `certPath` option<br />
 `--disableCertValidation`: Disable remote certificate validation when connecting to the broker<br />
@@ -45,15 +45,13 @@ rabbitmq-transport delays migrate [options]
 
 #### Options
 
-`--connectionString` | `-c` : The RabbitMQ connection string. Takes precedence over a connection string provided in an environment variable.<br />
-`--connectionStringEnv` : The environment variable that contains the RabbitMQ connection string<br />
+`--connectionString` | `-c` : Force this command to use the specified connection string<br />
+`--connectionStringEnv` : Specifies the environment variable where the connection string can be found. `--connectionString`, if specified, will take precedence over this option<br />
 `--certPath`: The path to the client certificate file for connecting to the broker<br />
 `--certPassphrase`: The passphrase for the client certificate file specified by the `certPath` option<br />
 `--disableCertValidation`: Disable remote certificate validation when connecting to the broker<br />
 `--useExternalAuth`: Use the external authorization option when connecting to the broker<br />
 `--routingTopology` | `-r` : The routing topology to use<br />
-`--useDurableEntities` | `-d` : Specifies if entities should be created as durable<br />
-`--queueType` | `-q` : The type of queue to create<br />
 
 ### `delays verify`
 
@@ -86,15 +84,15 @@ rabbitmq-transport endpoint create <endpointName> [options]
 
 #### Options
 
-`--connectionString` | `-c` : The connection string to use<br />
-`--connectionStringEnv` : Specifies the environment variable where the connection string can be found. --connectionString, if specified, will take precedence over this option<br />
+`--connectionString` | `-c` : Force this command to use the specified connection string<br />
+`--connectionStringEnv` : Specifies the environment variable where the connection string can be found. `--connectionString`, if specified, will take precedence over this option<br />
 `--certPath`: Set the path to the client certificate file for connecting to the broker<br />
 `--certPassphrase`: The passphrase for client certificate file for when using a client certificate<br />
-`--disableCertValidation`: The passphrase for client certificate file for when using a client certificate<br />
+`--disableCertValidation`: Disable remote certificate validation when connecting to the broker<br />
 `--useExternalAuth`: Use the external authorization option when connecting to the broker<br />
-`--routingTopology` | `-r` : The routing topology to use<br />
+`--routingTopology` | `-r` : Specifies which routing topology to use<br />
 `--useDurableEntities` | `-d` : Specifies if entities should be created as durable<br />
-`--queueType` | `-q` : The type of queue to create<br />
+`--queueType` | `-t` : Specifies queue type will be used for queue creation<br />
 `--errorQueueName`: Also create an error queue with the specified name<br />
 `--auditQueueName`: Also create an audit queue with the specified name<br />
 `--instanceDiscriminators`: An optional list of instance discriminators to use when the endpoint needs uniquely addressable instances<br />
@@ -116,8 +114,8 @@ rabbitmq-transport queue migrate-to-quorum <queueName> [options]
 
 #### Options
 
-`--connectionString` | `-c` : The connection string to use<br />
-`--connectionStringEnv` : Specifies the environment variable where the connection string can be found. --connectionString, if specified, will take precedence over this option<br />
+`--connectionString` | `-c` : Force this command to use the specified connection string<br />
+`--connectionStringEnv` : Specifies the environment variable where the connection string can be found. `--connectionString`, if specified, will take precedence over this option<br />
 `--certPath`: Set the path to the client certificate file for connecting to the broker<br />
 `--certPassphrase`: The passphrase for client certificate file for when using a client certificate<br />
 `--disableCertValidation`: The passphrase for client certificate file for when using a client certificate<br />

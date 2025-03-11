@@ -101,6 +101,10 @@ snippet: rabbitmq-external-auth-mechanism
 
 partial: add-cluster-node
 
+partial: management-api-configuration
+
+partial: delivery-limit-validation
+
 ## Controlling the prefetch count
 
 When consuming messages from the broker, throughput can be improved by having the consumer [prefetch](https://www.rabbitmq.com/consumer-prefetch.html) additional messages.
