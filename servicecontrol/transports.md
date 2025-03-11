@@ -71,13 +71,6 @@ In addition to the [connection string options of the transport](/transports/rabb
 * `UseExternalAuthMechanism=true|false(default)` - Specifies that an [external authentication mechanism should be used for client authentication](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-external-authentication).
 * `DisableRemoteCertificateValidation=true|false(default)` - Allows ServiceControl to connect to the broker [even if the remote server certificate is invalid](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-remote-certificate-validation).
 
-These options are available for only quorum queues in version 6.3 and above:
-
-* `ValidateDeliveryLimits=<true(default)|false>` - Validate that the delivery limit of quorum queues in RabbitMQ are set to unlimited (-1).
-* `ManagementApiUrl=<SCHEME://HOST:PORT>` - The URL of the RabbitMQ management API.  If this option is not set, the default value will be used based on the broker connection string.
-* `ManagementApiUserName=<USERNAME>` - The username used to connect to the RabbitMQ management API.  If this option is not set, the credentials from the broker connection string will be used to set the value.
-* `ManagementApiPassword=<PASSWORD>` - The password used to connect to the RabbitMQ management API.  If this option is not set, the credentials from the broker connection string will be used to set the value.
-
 ## SQL
 
 In addition to the [connection string options of the transport](/transports/sql/connection-settings.md#connection-configuration) the following ServiceControl specific options are available in versions 4.4 and above:

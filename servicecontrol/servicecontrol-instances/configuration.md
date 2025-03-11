@@ -679,12 +679,9 @@ Report only on queues that begin with the specified prefix. This is commonly use
 
 ## Usage Reporting when using the RabbitMQ transport
 
-> [!NOTE]
-> Begining with version 6.3.0, this configuration is not longer required.  The RabbitMQ transport version 10.x is configured using the [RabbitMQ transport configuration options](/servicecontrol/transports.md#rabbitmq).  Also, see [6.2to6.3](/servicecontrol/upgrades/6.2to6.3.md) upgrade guide for more information.
-
 ### LicensingComponent/RabbitMQ/ApiUrl
 
-Version: 5.4.0 to 6.2.x
+Version: 5.4.0+
 
 The RabbitMQ management URL.
 
@@ -699,7 +696,7 @@ The RabbitMQ management URL.
 
 ### LicensingComponent/RabbitMQ/UserName
 
-Version: 5.4.0 to 6.2.x
+Version: 5.4.0+
 
 The username to access the RabbitMQ management interface.
 
@@ -714,7 +711,7 @@ The username to access the RabbitMQ management interface.
 
 ### LicensingComponent/RabbitMQ/Password
 
-Version: 5.4.0 to 6.2.x
+Version: 5.4.0+
 
 The password to access the RabbitMQ management interface.
 
