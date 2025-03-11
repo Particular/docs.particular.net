@@ -1,15 +1,12 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
-
-public class CreateOrderHandler :
+public class CreateOrderHandler(ILogger<CreateOrderHandler> logger) :
     IHandleMessages<CreateOrder>
 {
-    static ILog log = LogManager.GetLogger<CreateOrderHandler>();
-
     public Task Handle(CreateOrder message, IMessageHandlerContext context)
     {
-        log.Info("Order received. OriginatingEndpoint:" + context.MessageHeaders[Headers.OriginatingEndpoint]);
+        logger.LogInformation("Order received. OriginatingEndpoint:" + context.MessageHeaders[Headers.OriginatingEndpoint]);
         return Task.CompletedTask;
     }
 }

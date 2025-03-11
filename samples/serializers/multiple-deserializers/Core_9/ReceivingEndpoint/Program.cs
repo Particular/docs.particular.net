@@ -1,45 +1,48 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Bson;
 using NServiceBus;
 using NServiceBus.MessageMutator;
 
-static class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "ReceivingEndpoint";
+Console.Title = "ReceivingEndpoint";
 
-        #region configAll
+var builder = Host.CreateApplicationBuilder(args);
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.MultipleDeserializers.ReceivingEndpoint");
+#region configAll
 
-        // Xml
-        endpointConfiguration.UseSerialization<XmlSerializer>();
+var endpointConfiguration = new EndpointConfiguration("Samples.MultipleDeserializers.ReceivingEndpoint");
 
-        // Json
-        endpointConfiguration.AddDeserializer<SystemJsonSerializer>();
+// Xml
+endpointConfiguration.UseSerialization<XmlSerializer>();
 
-        // External Newtonsoft Json
-        var externalNewtonsoftJson = endpointConfiguration.AddDeserializer<NewtonsoftJsonSerializer>();
-        externalNewtonsoftJson.ContentTypeKey("NewtonsoftJson");
+// Json
+endpointConfiguration.AddDeserializer<SystemJsonSerializer>();
 
-        // External Newtonsoft Bson
-        var externalNewtonsoftBson = endpointConfiguration.AddDeserializer<NewtonsoftJsonSerializer>();
-        externalNewtonsoftBson.ReaderCreator(stream => new BsonDataReader(stream));
-        externalNewtonsoftBson.WriterCreator(stream => new BsonDataWriter(stream));
-        externalNewtonsoftBson.ContentTypeKey("NewtonsoftBson");
+// External Newtonsoft Json
+var externalNewtonsoftJson = endpointConfiguration.AddDeserializer<NewtonsoftJsonSerializer>();
+externalNewtonsoftJson.ContentTypeKey("NewtonsoftJson");
 
-        // register the mutator so the the message on the wire is written
-        endpointConfiguration.RegisterMessageMutator(new IncomingMessageBodyWriter());
+// External Newtonsoft Bson
+var externalNewtonsoftBson = endpointConfiguration.AddDeserializer<NewtonsoftJsonSerializer>();
+externalNewtonsoftBson.ReaderCreator(stream => new BsonDataReader(stream));
+externalNewtonsoftBson.WriterCreator(stream => new BsonDataWriter(stream));
+externalNewtonsoftBson.ContentTypeKey("NewtonsoftBson");
 
-        #endregion
+// register the mutator so the the message on the wire is written
+builder.Services.AddSingleton<IncomingMessageBodyWriter>();
 
-        endpointConfiguration.UseTransport(new LearningTransport());
+var serviceProvider = builder.Services.BuildServiceProvider();
+var incomingMessageBodyWriter = serviceProvider.GetRequiredService<IncomingMessageBodyWriter>();
+endpointConfiguration.RegisterMessageMutator(incomingMessageBodyWriter);
+#endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop();
-    }
-}
+endpointConfiguration.UseTransport(new LearningTransport());
+
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
+
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

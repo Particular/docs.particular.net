@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
-class MySession :
+class MySession(ILogger<MySession> logger) :
     IMySession,
     IDisposable
 {
-    ILog log = LogManager.GetLogger<MySession>();
+  
     List<object> entities = new List<object>();
 
     public void Dispose()
@@ -23,7 +23,7 @@ class MySession :
     public Task Commit()
     {
         var entitiesStored = string.Join(", ", entities);
-        log.Info($"Entities {entitiesStored} stored in DB by session {GetHashCode()}");
+        logger.LogInformation($"Entities {entitiesStored} stored in DB by session {GetHashCode()}");
         return Task.CompletedTask;
     }
 
