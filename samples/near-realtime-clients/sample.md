@@ -22,7 +22,7 @@ A better solution is to avoid implementing each client as an NServiceBus endpoin
 
 This sample demonstrates how to use a SignalR server that also acts as an NServiceBus endpoint, to push subscribed NServiceBus events to any connected SignalR clients.
 
-## Project structure
+## Solution structure
 
 Before running the sample, review the solution structure, the projects, and the classes.
 
