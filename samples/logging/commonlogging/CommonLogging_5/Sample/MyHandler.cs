@@ -2,7 +2,7 @@
 using Common.Logging;
 using NServiceBus;
 
-public class MyHandler():
+public class MyHandler:
     IHandleMessages<MyMessage>
 {
     static ILog log = LogManager.GetLogger<MyHandler>();
