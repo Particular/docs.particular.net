@@ -5,7 +5,6 @@ using Microsoft.Extensions.Logging;
 public class OrderReceivedHandler(ILogger<OrderReceivedHandler> logger) :
     IHandleMessages<OrderReceived>
 {
-
     public Task Handle(OrderReceived message, IMessageHandlerContext context)
     {
         logger.LogInformation($"Subscriber has received OrderReceived event with OrderId {message.OrderId}.");
