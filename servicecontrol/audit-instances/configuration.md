@@ -117,7 +117,7 @@ The virtual directory to bind the embedded HTTP server to; modify this setting t
 
 _Added in version 6.5.0_
 
-The maximum allowed time for the process to complet the shutdown.
+The maximum allowed time for the process to complete the shutdown.
 
 | Context | Name |
 | --- | --- |
@@ -130,7 +130,7 @@ The maximum allowed time for the process to complet the shutdown.
 | TimeSpan | `00:00:05` (5 seconds) |
 
 > [!NOTE]
-> When installing the instance on Windows as a service via PowerShell or the ServiceControl Managememnt Utility (SCMU) the ShutdownTimeout value is set to 2 minutes (`00:02:00`).
+> When installing the instance as a Windows service via PowerShell or the ServiceControl Management Utility (SCMU) the ShutdownTimeout value is set to 2 minutes (`00:02:00`).
 
 ## Embedded database
 
