@@ -7,11 +7,11 @@ using NServiceBus;
 public class MessageWithLargePayloadHandler(ILogger<MessageWithLargePayloadHandler> logger) :
     IHandleMessages<MessageWithLargePayload>
 {
-    
+
     public Task Handle(MessageWithLargePayload message, IMessageHandlerContext context)
     {
         //ToDo check this
-       // logger.LogInformation($"Message received, size of blob property: {message.LargeBlob.Length} Bytes");
+        logger.LogInformation($"Message received, size of blob property: {message.LargeBlob} Bytes");
         return Task.CompletedTask;
     }
 }

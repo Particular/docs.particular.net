@@ -8,8 +8,8 @@ Console.Title = "Receiver";
 
 var builder = Host.CreateApplicationBuilder(args);
 var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver");
-var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
-dataBus.BasePath(@"..\..\..\..\storage");
+var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, SystemJsonClaimCheckSerializer>();
+claimCheck.BasePath(@"..\..\..\..\storage");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
 Console.WriteLine("Press any key, the application is starting");
