@@ -8,15 +8,10 @@ using Microsoft.Extensions.Logging;
 
 namespace Sales
 {
-    public class PlaceOrderHandler :
+    public class PlaceOrderHandler (ILogger<PlaceOrderHandler> logger) :
         IHandleMessages<PlaceOrder>
     {
-        private static readonly ILogger<PlaceOrderHandler> logger =
-        LoggerFactory.Create(builder =>
-        {
-            builder.AddConsole();
-        }).CreateLogger<PlaceOrderHandler>();
-
+     
         public Task Handle(PlaceOrder message, IMessageHandlerContext context)
         {
             logger.LogInformation($"Received PlaceOrder, OrderId = {message.OrderId}");

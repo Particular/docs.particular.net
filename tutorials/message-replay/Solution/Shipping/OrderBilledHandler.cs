@@ -5,15 +5,9 @@ using Microsoft.Extensions.Logging;
 
 namespace Shipping
 {
-    public class OrderBilledHandler :
+    public class OrderBilledHandler(ILogger<OrderBilledHandler> logger) :
         IHandleMessages<OrderBilled>
     {
-        private static readonly ILogger<OrderBilledHandler> logger =
-          LoggerFactory.Create(builder =>
-          {
-              builder.AddConsole();
-          }).CreateLogger<OrderBilledHandler>();
-
         public Task Handle(OrderBilled message, IMessageHandlerContext context)
         {
             logger.LogInformation($"Received OrderBilled, OrderId = {message.OrderId} - Should we ship now?");

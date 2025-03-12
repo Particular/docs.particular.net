@@ -5,15 +5,10 @@ using Microsoft.Extensions.Logging;
 
 namespace Billing
 {
-    public class OrderPlacedHandler :
+    public class OrderPlacedHandler (ILogger<OrderPlacedHandler> logger):
         IHandleMessages<OrderPlaced>
     {
-        private static readonly ILogger<OrderPlacedHandler> logger =
-        LoggerFactory.Create(builder =>
-        {
-            builder.AddConsole();
-        }).CreateLogger<OrderPlacedHandler>();
-
+     
         public Task Handle(OrderPlaced message, IMessageHandlerContext context)
         {
             logger.LogInformation($"Received OrderPlaced, OrderId = {message.OrderId} - Charging credit card...");
