@@ -117,7 +117,10 @@ The virtual directory to bind the embedded HTTP server to; modify this setting t
 
 _Added in version 6.5.0_
 
-The maximum allowed time for the process to complete the shutdown.
+The maximum allowed time for the process to gracefully complete the shutdown after which the process will try to terminate.
+
+> [!NOTE]
+> An ungraceful shutdown could result in the next start to require a lengthy database recovery operation.
 
 | Context | Name |
 | --- | --- |
