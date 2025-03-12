@@ -26,9 +26,10 @@ This sample demonstrates how to use a SignalR server that also acts as an NServi
 
 Before running the sample, review the solution structure, the projects, and the classes.
 
-- `Publisher` project: command-line application that hosts an instance of NServiceBus.
-- `ClientHub` project: command-line application that hosts an instance of NServiceBus and a SignalR server.
-- `Client` project: command-line application that hosts a SignalR client.
+Projects in the solution:
+- `Publisher`: command-line application that hosts an instance of NServiceBus.
+- `ClientHub`: command-line application that hosts an instance of NServiceBus and a SignalR server.
+- `Client`: command-line application that hosts a SignalR client.
 
 ## Sharing message types with SignalR
 
