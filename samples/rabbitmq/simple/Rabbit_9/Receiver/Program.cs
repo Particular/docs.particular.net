@@ -1,26 +1,22 @@
 ﻿using System;
+using Microsoft.Extensions.Hosting;
+using NServiceBus;
 
-namespace Receiver
-{
-    using System.Threading.Tasks;
-    using NServiceBus;
 
-    class Program
-    {
-        static async Task Main()
-        {
-            Console.Title = "SimpleReceiver";
-            var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.SimpleReceiver");
-            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-            transport.UseConventionalRoutingTopology(QueueType.Quorum);
-            transport.ConnectionString("host=localhost");
-            endpointConfiguration.EnableInstallers();
+Console.Title = "SimpleReceiver";
+var builder = Host.CreateApplicationBuilder(args);
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
-            Console.WriteLine("Press any key to exit");
-            Console.ReadKey();
-            await endpointInstance.Stop();
-        }
-    }
-}
+var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.SimpleReceiver");
+var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+transport.UseConventionalRoutingTopology(QueueType.Quorum);
+transport.ConnectionString("host=localhost");
+endpointConfiguration.EnableInstallers();
+
+
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
+
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

@@ -3,17 +3,11 @@ using Microsoft.Extensions.Logging;
 using NServiceBus;
 #region theordersaga
 
-public class OrderSaga :
+public class OrderSaga(ILogger<OrderSaga> logger) :
     Saga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>,
     IHandleMessages<CompleteOrder>
 {
-    private static readonly ILogger<Program> logger =
-       LoggerFactory.Create(builder =>
-       {
-           builder.AddConsole();
-       }).CreateLogger<Program>();
-
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
         mapper.MapSaga(saga => saga.OrderId)

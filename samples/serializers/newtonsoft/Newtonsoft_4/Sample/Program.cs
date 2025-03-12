@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using NServiceBus;
 using NServiceBus.MessageMutator;
+using Sample;
 
 
 Console.Title = "ExternalJson";
+
+var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddHostedService<InputLoopService>();
 
 #region config
 
@@ -23,42 +29,19 @@ serialization.Settings(settings);
 endpointConfiguration.UseTransport(new LearningTransport());
 
 #region registermutator
+builder.Services.AddSingleton<MessageBodyWriter>();
 
-endpointConfiguration.RegisterMessageMutator(new MessageBodyWriter());
-
-#endregion
-
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-#region message
-
-var message = new CreateOrder
-{
-    OrderId = 9,
-    Date = DateTime.Now,
-    CustomerId = 12,
-    OrderItems = new List<OrderItem>
-            {
-                new OrderItem
-                {
-                    ItemId = 6,
-                    Quantity = 2
-                },
-                new OrderItem
-                {
-                    ItemId = 5,
-                    Quantity = 4
-                },
-            }
-};
-
-await endpointInstance.SendLocal(message);
+// Then later get it from the service provider when needed
+var serviceProvider = builder.Services.BuildServiceProvider();
+var messageBodyWriter = serviceProvider.GetRequiredService<MessageBodyWriter>();
+endpointConfiguration.RegisterMessageMutator(messageBodyWriter);
 
 #endregion
 
-Console.WriteLine("Order Sent");
-Console.WriteLine("Press any key to exit");
+
+Console.WriteLine("Press any key, the application is starting");
 Console.ReadKey();
+Console.WriteLine("Starting...");
 
-await endpointInstance.Stop();
-
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

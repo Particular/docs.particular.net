@@ -2,15 +2,8 @@ using Microsoft.Extensions.Logging;
 using Shared;
 
 #region UpdatePriceHandler
-public class UpdatePriceHandler : IHandleMessages<UpdatePrice>
+public class UpdatePriceHandler(ILogger<UpdatePriceHandler> logger) : IHandleMessages<UpdatePrice>
 {
-    private static readonly ILogger<UpdatePriceHandler> logger =
-    LoggerFactory.Create(builder =>
-    {
-        builder.AddConsole();
-    }).CreateLogger<UpdatePriceHandler>();
-
-
     public Task Handle(UpdatePrice message, IMessageHandlerContext context)
     {
         logger.LogInformation("Price update received from the webclient, going to push to RemoteSite");

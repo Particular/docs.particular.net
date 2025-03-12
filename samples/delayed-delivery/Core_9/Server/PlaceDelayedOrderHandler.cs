@@ -3,15 +3,9 @@ using NServiceBus;
 using Microsoft.Extensions.Logging;
 #region PlaceDelayedOrderHandler
 
-public class PlaceDelayedOrderHandler :
+public class PlaceDelayedOrderHandler(ILogger<PlaceDelayedOrderHandler> logger) :
     IHandleMessages<PlaceDelayedOrder>
-{
-    private static readonly ILogger<PlaceDelayedOrderHandler> logger =
-    LoggerFactory.Create(builder =>
-    {
-        builder.AddConsole();
-    }).CreateLogger<PlaceDelayedOrderHandler>();
-
+{   
 
     public Task Handle(PlaceDelayedOrder message, IMessageHandlerContext context)
     {

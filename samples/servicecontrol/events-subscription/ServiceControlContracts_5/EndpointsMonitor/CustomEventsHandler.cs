@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NServiceBus;
 using Microsoft.Extensions.Logging;
+using NServiceBus;
 using ServiceControl.Contracts;
 
 #region ServiceControlEventsHandlers

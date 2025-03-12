@@ -1,30 +1,25 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using SampleApp;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "DispatchNotification";
 
-        #region endpoint-configuration
-        var endpointConfiguration = new EndpointConfiguration("Samples.DispatchNotification");
-        endpointConfiguration.UseTransport(new LearningTransport());
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.NotifyDispatch(new SampleDispatchNotifier());
-        #endregion
+Console.Title = "DispatchNotification";
 
-        var endpoint = await Endpoint.Start(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddHostedService<InputService>();
+#region endpoint-configuration
+var endpointConfiguration = new EndpointConfiguration("Samples.DispatchNotification");
+endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.NotifyDispatch(new SampleDispatchNotifier());
+#endregion
 
-        Console.WriteLine("Press any key to send a message");
-        Console.WriteLine("Press Escape to exit");
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
 
-        while (Console.ReadKey(true).Key != ConsoleKey.Escape)
-        {
-            await endpoint.SendLocal(new SomeMessage());
-        }
-
-        await endpoint.Stop();
-    }
-}
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

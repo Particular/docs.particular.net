@@ -4,7 +4,7 @@ using Microsoft.Azure.Cosmos;
 using NServiceBus;
 using Microsoft.Extensions.Logging;
 
-public class ShipOrderHandler :
+public class ShipOrderHandler(ILogger<ShipOrderHandler> logger) :
     IHandleMessages<ShipOrder>
 {
     public Task Handle(ShipOrder message, IMessageHandlerContext context)
@@ -37,10 +37,5 @@ public class ShipOrderHandler :
         session.Batch.CreateItem(orderShippingInformation, requestOptions);
     }
 
-    private static readonly ILogger<ShipOrderHandler> logger =
-     LoggerFactory.Create(builder =>
-     {
-         builder.AddConsole();
-     }).CreateLogger<ShipOrderHandler>();
 
 }

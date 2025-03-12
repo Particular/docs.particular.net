@@ -4,14 +4,9 @@ using System.Threading.Tasks;
 using NServiceBus;
 using Microsoft.Extensions.Logging;
 
-public class PlaceOrderHandler :
+public class PlaceOrderHandler(ILogger<PlaceDelayedOrderHandler> logger) :
     IHandleMessages<PlaceOrder>
 {
-    private static readonly ILogger<PlaceOrderHandler> logger =
-    LoggerFactory.Create(builder =>
-    {
-        builder.AddConsole();
-    }).CreateLogger<PlaceOrderHandler>();
 
     static List<Guid> wasMessageDelayed = new List<Guid>();
 

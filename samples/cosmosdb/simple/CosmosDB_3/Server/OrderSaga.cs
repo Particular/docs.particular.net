@@ -6,17 +6,12 @@ using Microsoft.Extensions.Logging;
 
 #region thesaga
 
-public class OrderSaga :
+public class OrderSaga(ILogger<OrderSaga> logger) :
     Saga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>,
     IHandleTimeouts<CompleteOrder>
 {
-    private readonly ILogger<OrderSaga> logger;
-
-    public OrderSaga(ILogger<OrderSaga> logger)
-    {
-        this.logger = logger;
-    }
+   
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
         mapper.MapSaga(saga => saga.OrderId).ToMessage<StartOrder>(msg => msg.OrderId);

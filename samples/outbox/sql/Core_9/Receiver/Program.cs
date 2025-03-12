@@ -23,7 +23,8 @@ class Program
          {
              Console.Title = "Receiver";
 
-             // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlOutbox;Integrated Security=True;Max Pool Size=100;Encrypt=false
+             //for local instance or SqlExpress
+             //string connectionString = @"Data Source=(localdb)\mssqllocaldb;Database=NsbSamplesSqlOutbox;Trusted_Connection=True;MultipleActiveResultSets=true";
              var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlOutbox;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
 
              var endpointConfiguration = new EndpointConfiguration("Samples.SqlOutbox.Receiver");
