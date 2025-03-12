@@ -12,7 +12,6 @@ namespace Endpoint1
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             Console.WriteLine("Press 'enter' to send a message");
-            Console.WriteLine("Press any other key to exit");
             while (true)
             {
                 var key = Console.ReadKey();
