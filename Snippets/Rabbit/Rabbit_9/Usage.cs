@@ -136,7 +136,7 @@ class Usage
         #region rabbitmq-client-certificate
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.SetClientCertificate(X509CertificateLoader.LoadCertificateFromFile("/path/to/certificate"));
+        transport.SetClientCertificate(new X509Certificate2("/path/to/certificate"));
 
         #endregion
     }
