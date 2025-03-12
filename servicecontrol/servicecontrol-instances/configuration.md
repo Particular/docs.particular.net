@@ -126,7 +126,7 @@ A configuration that specifies one or more attached Audit instances. See also [S
 
 ### ServiceControl/ShutdownTimeout
 
-_Added in version 6.4.1_
+_Added in version 6.5.0_
 
 The maximum allowed time for the process to complet the shutdown.
 

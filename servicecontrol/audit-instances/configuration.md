@@ -115,7 +115,7 @@ The virtual directory to bind the embedded HTTP server to; modify this setting t
 
 ### ServiceControl.Audit/ShutdownTimeout
 
-_Added in version 6.4.1_
+_Added in version 6.5.0_
 
 The maximum allowed time for the process to complet the shutdown.
 

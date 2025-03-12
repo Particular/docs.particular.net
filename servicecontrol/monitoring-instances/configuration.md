@@ -77,7 +77,7 @@ _Not applicable to container deployments. Containers always expose port `33633`.
 
 ### Monitoring/ShutdownTimeout
 
-_Added in version 6.4.1_
+_Added in version 6.5.0_
 
 The maximum allowed time for the process to complet the shutdown.
 
