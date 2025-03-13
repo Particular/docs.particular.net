@@ -33,8 +33,6 @@ Configure the endpoint to use Azure Table Persistence.
 
 snippet: AzureTableConfig
 
-The Saga ID is derived from the Order ID.
-
 ## Behaviors
 
 Most messages implement `IProvideOrderId`. By default, Saga IDs are deterministically derived from the saga data, the correlation property name, and the correlation property value. `IProvidePartitionKeyFromSagaId` is a helper that can be injected into behaviors in the logical pipeline stage if the Saga ID is used as a partition key.
