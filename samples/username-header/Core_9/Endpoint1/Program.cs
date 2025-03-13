@@ -3,6 +3,7 @@ using System.Security.Principal;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
 using NServiceBus.MessageMutator;
 
@@ -19,13 +20,15 @@ endpointConfiguration.UseTransport(new LearningTransport());
 #region component-registration-sender
 
 // Register both services
+builder.Services.AddSingleton<PrincipalAccessor>();
 
-builder.Services.AddSingleton<IPrincipalAccessor, PrincipalAccessor>();
-builder.Services.AddSingleton<AddUserNameToOutgoingHeadersMutator>();
-builder.Services.AddHostedService<InputLoopService>();
 var serviceProvider = builder.Services.BuildServiceProvider();
-var principalAccessor = serviceProvider.GetRequiredService<IPrincipalAccessor>(); // Use the interface type here
-var mutator = serviceProvider.GetRequiredService<AddUserNameToOutgoingHeadersMutator>();
+
+var accessor = serviceProvider.GetRequiredService<PrincipalAccessor>();
+var logger = serviceProvider.GetRequiredService<ILogger<AddUserNameToOutgoingHeadersMutator>>();
+var mutator = new AddUserNameToOutgoingHeadersMutator(accessor, logger);
+
+builder.Services.AddHostedService<InputLoopService>();
 
 endpointConfiguration.RegisterMessageMutator(mutator);
 
@@ -36,5 +39,7 @@ Console.ReadKey();
 Console.WriteLine("Starting...");
 
 builder.UseNServiceBus(endpointConfiguration);
+
+
 await builder.Build().RunAsync();
 

@@ -15,19 +15,9 @@ class Program
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>
      Host.CreateDefaultBuilder(args)
-         .ConfigureServices((hostContext, services) =>
+     .UseNServiceBus(x =>
          {
-             Console.Title = "Server";
-             services.AddSingleton<RotatingSessionKeyProvider>(); // Register the service
-             services.AddHostedService<ReceivingLoopService>();
-             // Register FilterIncomingMessages if it's a service
-             services.AddSingleton<FilterIncomingMessages>();
 
-
-
-         }).UseNServiceBus(x =>
-         {
-             Console.Title = "Receiver";
              var endpointConfiguration = new EndpointConfiguration("Samples.SessionFilter.Receiver");
 
              endpointConfiguration.UsePersistence<LearningPersistence>();
@@ -35,12 +25,17 @@ class Program
              endpointConfiguration.UseTransport(new LearningTransport());
 
              var sessionKeyProvider = new RotatingSessionKeyProvider();
-             // Register FilterIncomingMessages if it's a service
+             //Register FilterIncomingMessages if it's a service
              var logger = new LoggerFactory().CreateLogger<FilterIncomingMessages>();
              endpointConfiguration.ApplySessionFilter(sessionKeyProvider, logger);
 
 
              return endpointConfiguration;
+         }).ConfigureServices((hostContext, services) =>
+         {
+             Console.Title = "Receiver";
+             services.AddSingleton<RotatingSessionKeyProvider>(); // Register the service
+             services.AddHostedService<ReceivingLoopService>();
          });
 
 

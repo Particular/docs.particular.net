@@ -12,8 +12,9 @@ namespace Receiver
         {
             PrintMenu(sessionKeyProvider);
 
-            while (!stoppingToken.IsCancellationRequested)
+            while (true)
             {
+
                 switch (Console.ReadKey(true).Key)
                 {
                     case ConsoleKey.C:
@@ -24,7 +25,6 @@ namespace Receiver
                         return Task.CompletedTask;
                 }
             }
-            return Task.CompletedTask;
         }
 
         static void PrintMenu(ISessionKeyProvider sessionKeyProvider)
