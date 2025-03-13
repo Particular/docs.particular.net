@@ -91,6 +91,8 @@ asb-transport endpoint subscribe <queue name> <eventtype>
 
 See the [full documentation](/transports/azure-service-bus/operational-scripting.md#available-commands-asb-transport-endpoint-subscribe) for the `asb-transport endpoint subscribe` command for more details.
 
+partial: topology
+
 partial: assembly-scanner
 
 ## Package requirements
