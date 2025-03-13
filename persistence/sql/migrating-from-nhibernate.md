@@ -18,7 +18,6 @@ Current schemas can be found via their respective scripting pages:
 
 - NHibernate: stores sagas as a table structure.
 - SQL Persistence: stores sagas as a JSON BLOB, similar to a key/value store.
-- Each saga type has its own table or table structure for both NHibernate and SQL Persistence.
 
 ### Subscriptions
 
