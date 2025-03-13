@@ -418,4 +418,18 @@ After the swap operation, the new Lucene-based index must be rebuilt. Depending 
 
 When ServiceControl is restarted, the Corax-based index may get recreated. To prevent the ServiceControl instance from recreating the index, the index can be locked.
 
-To lock an index, from the RavenDB studio, while ServiceControl is still in maintenance mode, look for the index that was set to use Lucene and click the `🔓 Unlocked` button. Change the setting to `🔒 Locked` ([Locked Ignore](https://ravendb.net/docs/article-page/7.0/csharp/client-api/operations/maintenance/indexes/set-index-lock#lock-modes)). The RavenDB studio will notify the operation completion with the message: _Lock mode was set to: Locked (ignore)_. 
+To lock an index, from the RavenDB studio, while ServiceControl is still in maintenance mode, look for the index that was set to use Lucene and click the `🔓 Unlocked` button. Change the setting to `🔒 Locked` ([Locked Ignore](https://ravendb.net/docs/article-page/7.0/csharp/client-api/operations/maintenance/indexes/set-index-lock#lock-modes)). The RavenDB studio will notify the operation completion with the message: _Lock mode was set to: Locked (ignore)_.
+
+## RavenDB dirty memory
+
+Each ServiceControl instance stores its data in a RavenDB database. RavenDB immediately writes data to the journal files and sysnchronizes writes to the data files in background. The amount of data that needs to be flushed to disk is called "dirty memory."
+
+A continuos increase of dirty memory is a sign of too much pressure on the ServiceControl instance database. When that happen the following custom check message is presented:
+
+> There is a high level of RavenDB dirty memory (_dirty memory value in kb_). Check the ServiceControl troubleshooting guide for guidance on how to mitigate the issue. Visit the `https://docs.particular.net/servicecontrol/troubleshooting#ravendb-dirty-memory` page for more information.
+
+Dirty memory issues can be mitigated using one or more of the following strategies:
+
+- Consider adding faster storage to reduce I/O impact and allow the RavenDB instance to flush dirty memory faster
+- Reduce the instance max concurrency level by reducing the MaximumConcurrencyLevel setting ([error instance documentation](servicecontrol-instances/configuration.md#performance-tuning-servicecontrolmaximumconcurrencylevel), [audit instance documentation](audit-instances/configuration.md#performance-tuning-servicecontrol-auditmaximumconcurrencylevel))
+- If the issue affects an audit instance, consider [scaling it out using a sharding or a competing consumer approach](servicecontrol-instances/remotes.md).
