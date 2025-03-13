@@ -33,9 +33,13 @@ Configure the endpoint to use Azure Table Persistence.
 
 snippet: AzureTableConfig
 
-## Behaviors
+## Using Behaviors
 
-Most messages implement `IProvideOrderId`. By default, Saga IDs are deterministically derived from the saga data, the correlation property name, and the correlation property value. `IProvidePartitionKeyFromSagaId` is a helper that can be injected into behaviors in the logical pipeline stage if the Saga ID is used as a partition key.
+The following shows two different ways to provide OrderIDs to the saga using [behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md).
+
+1. Most messages implement `IProvideOrderId` allowing the OrderId to be used as the partition key.
+2. 
+Most messages implement `IProvideOrderId`. If the Saga ID is used as a partition key, `IProvidePartitionKeyFromSagaId` can be injected into behaviors in the logical pipeline stage.
 
 snippet: BehaviorUsingIProvidePartitionKeyFromSagaId
 
