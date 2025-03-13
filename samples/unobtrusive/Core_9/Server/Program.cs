@@ -1,7 +1,10 @@
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Server;
 
 Console.Title = "Server";
 var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddHostedService<InputLoopService>();
 
 var endpointConfiguration = new EndpointConfiguration("Samples.Unobtrusive.Server");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
@@ -13,9 +16,6 @@ endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>(
 
 endpointConfiguration.ApplyCustomConventions();
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
-await CommandSender.Start(endpointInstance);
-await endpointInstance.Stop();
 builder.UseNServiceBus(endpointConfiguration);
 
 await builder.Build().RunAsync();
