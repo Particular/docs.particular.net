@@ -34,6 +34,9 @@ The subscriber needs to override the subscription mapping accordingly:
 
 Snippet: SubscriberAppsettings
 
+> [!NOTE]
+> While in the vast majority of cases there is a one-to-one correspondence between event types and topic names, the `SubscribedEventToTopicsMap` maps arrays of topics in order to support [event inheritence](/transports/azure-service-bus/topology.md#subscription-rule-matching-interface-based-inheritance). Due to a limitation of the .NET configuration infrastructure, it is not possible to provide a converter that simplifies the syntax in a way similar to when [loading the topology configuration directly from json](/transports/azure-service-bus/configuration.md#entity-creation-topology-options).
+
 ### Validation
 
 The transport provides integration with Microsoft.Extensions.Options and has a built-in options validator. With the generic host it is possible to register the validator to make sure the configuration loaded fulfills the requirements of the broker (e.g. topic name length) and is self-consistent.
