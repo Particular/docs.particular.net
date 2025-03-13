@@ -2,7 +2,7 @@ using Events;
 
 class CommandSender
 {
-    public static async Task Start(IEndpointInstance endpointInstance)
+    public static async Task Start(IMessageSession messageSession)
     {
         Console.WriteLine("Press 'E' to publish an event");
         Console.WriteLine("Press any other key to exit");
@@ -15,14 +15,14 @@ class CommandSender
             switch (key.Key)
             {
                 case ConsoleKey.E:
-                    await PublishEvent(endpointInstance);
+                    await PublishEvent(messageSession);
                     continue;
             }
             return;
         }
     }
 
-    static Task PublishEvent(IEndpointInstance endpointInstance)
+    static Task PublishEvent(IMessageSession messageSession)
     {
         var eventId = Guid.NewGuid();
 
@@ -31,6 +31,6 @@ class CommandSender
         {
             EventId = eventId
         };
-        return endpointInstance.Publish(myEvent);
+        return messageSession.Publish(myEvent);
     }
 }

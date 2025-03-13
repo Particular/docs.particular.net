@@ -1,12 +1,16 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using Raven.Client.Documents;
 using Raven.Client.Exceptions;
 using Raven.Client.ServerWide;
 using Raven.Client.ServerWide.Operations;
 
+
 Console.Title = "Server";
+
+var builder = Host.CreateApplicationBuilder(args);
 
 #region Config
 
@@ -36,12 +40,14 @@ endpointConfiguration.UseTransport(transport);
 
 await EnsureDatabaseExists(documentStore);
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-Console.WriteLine("Press any key to exit");
+
+Console.WriteLine("Press any key, the application is starting");
 Console.ReadKey();
+Console.WriteLine("Starting...");
 
-await endpointInstance.Stop();
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();
 
 static async Task EnsureDatabaseExists(DocumentStore documentStore)
 {

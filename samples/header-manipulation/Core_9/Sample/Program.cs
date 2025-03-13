@@ -1,45 +1,42 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.MessageMutator;
+using Sample;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Headers";
-        var endpointConfiguration = new EndpointConfiguration("Samples.Headers");
 
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
+Console.Title = "Headers";
+var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddHostedService<InputLoopService>();
+var endpointConfiguration = new EndpointConfiguration("Samples.Headers");
 
-        endpointConfiguration.RegisterMessageMutator(new MutateIncomingMessages());
-        endpointConfiguration.RegisterMessageMutator(new MutateIncomingTransportMessages());
-        endpointConfiguration.RegisterMessageMutator(new MutateOutgoingMessages());
-        endpointConfiguration.RegisterMessageMutator(new MutateOutgoingTransportMessages());
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        #region pipeline-config
+endpointConfiguration.RegisterMessageMutator(new MutateIncomingMessages());
+endpointConfiguration.RegisterMessageMutator(new MutateIncomingTransportMessages());
+endpointConfiguration.RegisterMessageMutator(new MutateOutgoingMessages());
+endpointConfiguration.RegisterMessageMutator(new MutateOutgoingTransportMessages());
 
-        endpointConfiguration.Pipeline.Register(typeof(IncomingHeaderBehavior), "Manipulates incoming headers");
-        endpointConfiguration.Pipeline.Register(typeof(OutgoingHeaderBehavior), "Manipulates outgoing headers");
+#region pipeline-config
 
-        #endregion
+endpointConfiguration.Pipeline.Register(typeof(IncomingHeaderBehavior), "Manipulates incoming headers");
+endpointConfiguration.Pipeline.Register(typeof(OutgoingHeaderBehavior), "Manipulates outgoing headers");
 
-        #region global-all-outgoing
+#endregion
 
-        endpointConfiguration.AddHeaderToAllOutgoingMessages("AllOutgoing", "ValueAllOutgoing");
+#region global-all-outgoing
 
-        #endregion
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        #region sending
+endpointConfiguration.AddHeaderToAllOutgoingMessages("AllOutgoing", "ValueAllOutgoing");
 
-        var myMessage = new MyMessage();
-        await endpointInstance.SendLocal(myMessage);
+#endregion
 
-        #endregion
 
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop();
-    }
-}
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
+
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

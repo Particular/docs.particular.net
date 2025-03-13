@@ -1,19 +1,17 @@
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
-class MyMessageHandler :
+class MyMessageHandler(ILogger<MyMessageHandler> logger) :
     IHandleMessages<MyMessage>
 {
-    static ILog log = LogManager.GetLogger<MyMessageHandler>();
-
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         var signature = context.MessageHeaders["X-Message-Signature"];
 
-        log.Info("Handling message...");
-        log.Info($"  Contents = {message.Contents}");
-        log.Info($"  Signature = {signature}");
+        logger.LogInformation("Handling message...");
+        logger.LogInformation($"  Contents = {message.Contents}");
+        logger.LogInformation($"  Signature = {signature}");
 
         return Task.CompletedTask;
     }

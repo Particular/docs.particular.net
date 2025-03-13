@@ -9,8 +9,10 @@ using NServiceBus.Persistence;
 using NServiceBus.Persistence.Sql;
 using NServiceBus.TransactionalSession;
 
-// for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;Encrypt=false
-const string ConnectionString = @"Server=localhost,1433;Initial Catalog=nservicebus;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
+//for local instance or SqlExpress
+const string ConnectionString = @"Data Source=(localdb)\mssqllocaldb;Database=nservicebus;Trusted_Connection=True;MultipleActiveResultSets=true";
+//const string ConnectionString = @"Server=localhost,1433;Initial Catalog=nservicebus;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
+
 
 using (var myDataContext = new MyDataContext(new DbContextOptionsBuilder<MyDataContext>()
            .UseSqlServer(new SqlConnection(ConnectionString))

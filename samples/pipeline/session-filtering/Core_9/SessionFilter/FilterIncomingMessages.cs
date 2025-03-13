@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Threading.Tasks;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 using NServiceBus.Pipeline;
 using NServiceBus.Transport;
 
 #region filter-incoming-messages
-public class FilterIncomingMessages : Behavior<ITransportReceiveContext>
+public class FilterIncomingMessages: Behavior<ITransportReceiveContext>
 {
     readonly ISessionKeyProvider sessionKeyProvider;
+    private readonly ILogger<FilterIncomingMessages> logger;
 
-    public FilterIncomingMessages(ISessionKeyProvider sessionKeyProvider)
+    public FilterIncomingMessages(ISessionKeyProvider sessionKeyProvider, ILogger<FilterIncomingMessages> logger)
     {
         this.sessionKeyProvider = sessionKeyProvider;
+        this.logger = logger;
     }
 
     public override async Task Invoke(ITransportReceiveContext context, Func<Task> next)
@@ -22,7 +24,7 @@ public class FilterIncomingMessages : Behavior<ITransportReceiveContext>
         }
         else
         {
-            Log.Debug($"Dropping message {context.Message.MessageId} as it does not match the current session");
+            logger.LogDebug($"Dropping message {context.Message.MessageId} as it does not match the current session");
         }
     }
 
@@ -30,6 +32,5 @@ public class FilterIncomingMessages : Behavior<ITransportReceiveContext>
         => message.Headers.TryGetValue("NServiceBus.SessionKey", out string sessionKey)
            && sessionKey == sessionKeyProvider.SessionKey;
 
-    static ILog Log = LogManager.GetLogger<FilterIncomingMessages>();
 }
 #endregion

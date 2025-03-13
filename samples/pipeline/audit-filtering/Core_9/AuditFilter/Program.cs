@@ -1,54 +1,42 @@
 using System;
-using System.Threading.Tasks;
+using AuditFilter;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "AuditFilter";
-        var endpointConfiguration = new EndpointConfiguration("Samples.AuditFilter");
+Console.Title = "AuditFilter";
+var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddHostedService<InputService>();
+var endpointConfiguration = new EndpointConfiguration("Samples.AuditFilter");
 
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.UsePersistence<LearningPersistence>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        #region addFilterBehaviors
+#region addFilterBehaviors
 
-        endpointConfiguration.AuditProcessedMessagesTo("audit");
+endpointConfiguration.AuditProcessedMessagesTo("audit");
 
-        var pipeline = endpointConfiguration.Pipeline;
-        pipeline.Register(
-            stepId: "AuditFilter.Filter",
-            behavior: typeof(AuditFilterBehavior),
-            description: "prevents marked messages from being forwarded to the audit queue");
-        pipeline.Register(
-            stepId: "AuditFilter.Rules",
-            behavior: typeof(AuditRulesBehavior),
-            description: "checks whether a message should be forwarded to the audit queue");
-        pipeline.Register(
-            stepId: "AuditFilter.Context",
-            behavior: typeof(AuditFilterContextBehavior),
-            description: "adds a shared state for the rules and filter behaviors");
+var pipeline = endpointConfiguration.Pipeline;
+pipeline.Register(
+    stepId: "AuditFilter.Filter",
+    behavior: typeof(AuditFilterBehavior),
+    description: "prevents marked messages from being forwarded to the audit queue");
+pipeline.Register(
+    stepId: "AuditFilter.Rules",
+    behavior: typeof(AuditRulesBehavior),
+    description: "checks whether a message should be forwarded to the audit queue");
+pipeline.Register(
+    stepId: "AuditFilter.Context",
+    behavior: typeof(AuditFilterContextBehavior),
+    description: "adds a shared state for the rules and filter behaviors");
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-        #endregion
+#endregion
 
-        var auditThisMessage = new AuditThisMessage
-        {
-            Content = "See you in the audit queue!"
-        };
-        await endpointInstance.SendLocal(auditThisMessage);
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
 
-        var doNotAuditThisMessage = new DoNotAuditThisMessage
-        {
-            Content = "Don't look for me!"
-        };
-        await endpointInstance.SendLocal(doNotAuditThisMessage);
-
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop();
-    }
-}
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

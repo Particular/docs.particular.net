@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
-public class OrderLifecycleSaga :
+public class OrderLifecycleSaga(ILogger<OrderLifecycleSaga> logger) :
     Saga<OrderLifecycleSaga.SagaData>,
     IAmStartedByMessages<OrderSubmitted>,
     IHandleTimeouts<OrderTimeout>
 {
-    static ILog log = LogManager.GetLogger<OrderLifecycleSaga>();
-
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
     {
         mapper.MapSaga(saga => saga.OrderId)
@@ -24,7 +22,7 @@ public class OrderLifecycleSaga :
 
     public Task Timeout(OrderTimeout state, IMessageHandlerContext context)
     {
-        log.Info("Got timeout");
+        logger.LogInformation("Got timeout");
         return Task.CompletedTask;
     }
 

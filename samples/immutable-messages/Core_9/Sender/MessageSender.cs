@@ -1,11 +1,12 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-class MessageSender
+public class MessageSender(IMessageSession messageSession) : BackgroundService
 {
-
-    public static async Task Start(IEndpointInstance endpointInstance)
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         Console.WriteLine("Press 'C' to send a message (using a class with a non-default constructor");
         Console.WriteLine("Press 'I' to send a message (using a private class that implements a shared interface");
@@ -19,36 +20,38 @@ class MessageSender
             switch (key.Key)
             {
                 case ConsoleKey.C:
-                    await SendMessageAsClass(endpointInstance);
+                    await SendMessageAsClass(messageSession);
                     continue;
                 case ConsoleKey.I:
-                    await SendMessageAsInterface(endpointInstance);
+                    await SendMessageAsInterface(messageSession);
                     continue;
             }
             return;
         }
+
     }
 
-    static Task SendMessageAsClass(IEndpointInstance endpointInstance)
+
+    static Task SendMessageAsClass(IMessageSession messageSession)
     {
         var data = Guid.NewGuid().ToString();
 
         Console.WriteLine($"Message sent, data: {data}");
         var myMessage = new UsingClasses.Messages.MyMessage(data);
-        return endpointInstance.Send(myMessage);
+        return messageSession.Send(myMessage);
     }
 
-    static Task SendMessageAsInterface(IEndpointInstance endpointInstance)
+    static Task SendMessageAsInterface(IMessageSession messageSession)
     {
         var data = Guid.NewGuid().ToString();
 
         Console.WriteLine($"Message sent, data: {data}");
-#region immutable-messages-as-interface-sending
+        #region immutable-messages-as-interface-sending
         var myMessage = new Messages.MyMessageImpl()
         {
             Data = data
         };
-        return endpointInstance.Send(myMessage);
-#endregion
+        return messageSession.Send(myMessage);
+        #endregion
     }
 }

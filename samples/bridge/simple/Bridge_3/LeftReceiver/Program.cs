@@ -1,26 +1,27 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-static class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "LeftReceiver";
-        var endpointConfiguration = new EndpointConfiguration("Samples.Bridge.LeftReceiver");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
+Console.Title = "LeftReceiver";
 
-        endpointConfiguration.Conventions().DefiningMessagesAs(t => t.Name == "OrderResponse");
-        endpointConfiguration.Conventions().DefiningEventsAs(t => t.Name == "OrderReceived");
+var builder = Host.CreateApplicationBuilder(args);
 
-        endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.EnableInstallers();
+var endpointConfiguration = new EndpointConfiguration("Samples.Bridge.LeftReceiver");
+endpointConfiguration.UsePersistence<LearningPersistence>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop();
-    }
-}
+endpointConfiguration.Conventions().DefiningMessagesAs(t => t.Name == "OrderResponse");
+endpointConfiguration.Conventions().DefiningEventsAs(t => t.Name == "OrderReceived");
+
+endpointConfiguration.SendFailedMessagesTo("error");
+endpointConfiguration.EnableInstallers();
+
+
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
+
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

@@ -1,66 +1,35 @@
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using Sender;
 using Shared;
 using System;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Sender";
-        var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Sender");
+
+Console.Title = "Sender";
+var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddHostedService<InputLoopService>();
+var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Sender");
 
 #pragma warning disable CS0618 // Type or member is obsolete
-        #region ConfigureDataBus
+#region ConfigureDataBus
 
-        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
-        dataBus.BasePath(@"..\..\..\..\storage");
+var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
+dataBus.BasePath(@"..\..\..\..\storage");
 
-        #endregion
+#endregion
 #pragma warning restore CS0618 // Type or member is obsolete
 
-        #region CustomJsonSerializerOptions
-        var jsonSerializerOptions = new JsonSerializerOptions();
-        jsonSerializerOptions.Converters.Add(new DatabusPropertyConverterFactory());
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>().Options(jsonSerializerOptions);
-        #endregion
+#region CustomJsonSerializerOptions
+var jsonSerializerOptions = new JsonSerializerOptions();
+jsonSerializerOptions.Converters.Add(new DatabusPropertyConverterFactory());
+endpointConfiguration.UseSerialization<SystemJsonSerializer>().Options(jsonSerializerOptions);
+#endregion
 
-        endpointConfiguration.UseTransport(new LearningTransport());
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press 'D' to send a databus large message");
-        Console.WriteLine("Press any other key to exit");
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        while (true)
-        {
-            var key = Console.ReadKey();
-            Console.WriteLine();
+builder.UseNServiceBus(endpointConfiguration);
 
-            if (key.Key == ConsoleKey.D)
-            {
-                await SendMessageLargePayload(endpointInstance);
-                continue;
-            }
-            break;
-        }
-        await endpointInstance.Stop();
-    }
-
-    static async Task SendMessageLargePayload(IEndpointInstance endpointInstance)
-    {
-#pragma warning disable CS0618 // Type or member is obsolete
-        #region SendMessageLargePayload
-
-        var message = new MessageWithLargePayload
-        {
-            SomeProperty = "This message contains a large blob that will be sent on the data bus",
-            LargeBlob = new DataBusProperty<byte[]>(new byte[1024*1024*5]) //5MB
-        };
-        await endpointInstance.Send("Samples.DataBus.Receiver", message);
-
-        #endregion
-#pragma warning restore CS0618 // Type or member is obsolete
-
-        Console.WriteLine(@"Message sent, the payload is stored in: ..\..\..\storage");
-    }
-}
+await builder.Build().RunAsync();

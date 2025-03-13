@@ -1,18 +1,19 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 #region handler-using-custom-header
 
 public class HandlerUsingAccessor :
     IHandleMessages<MyMessage>
 {
-    static ILog log = LogManager.GetLogger("HandlerUsingAccessor");
     readonly IPrincipalAccessor principalAccessor;
+    private readonly ILogger<HandlerUsingAccessor> logger;
 
-    public HandlerUsingAccessor(IPrincipalAccessor principalAccessor)
+    public HandlerUsingAccessor(IPrincipalAccessor principalAccessor, ILogger<HandlerUsingAccessor> logger)
     {
         this.principalAccessor = principalAccessor;
+        this.logger = logger;
     }
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
@@ -20,8 +21,8 @@ public class HandlerUsingAccessor :
         var headers = context.MessageHeaders;
         var usernameFromHeader = headers["UserName"];
         var usernameFromAccessor = principalAccessor?.CurrentPrincipal?.Identity?.Name ?? "null";
-        log.Info($"Username extracted from header: {usernameFromHeader}");
-        log.Info($"Username extracted from accessor: {usernameFromAccessor}");
+        logger.LogInformation($"Username extracted from header: {usernameFromHeader}");
+        logger.LogInformation($"Username extracted from accessor: {usernameFromAccessor}");
         return Task.CompletedTask;
     }
 }

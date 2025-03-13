@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <LangVersion>13.0</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
+    <PackageReference Include="NServiceBus" Version="9.2.6" />
+    <PackageReference Include="NServiceBus.Heartbeat" Version="5.0.1" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="4.0.1" />
+  </ItemGroup>
+</Project>

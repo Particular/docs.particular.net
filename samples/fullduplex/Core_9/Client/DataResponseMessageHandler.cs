@@ -1,16 +1,15 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
 #region DataResponseMessageHandler
-class DataResponseMessageHandler :
+class DataResponseMessageHandler(ILogger<DataResponseMessageHandler> logger) :
     IHandleMessages<DataResponseMessage>
 #endregion
 {
-    static ILog log = LogManager.GetLogger<DataResponseMessageHandler>();
     public Task Handle(DataResponseMessage message, IMessageHandlerContext context)
     {
-        log.Info($"Response received with description: {message.String}");
+        logger.LogInformation($"Response received with description: {message.String}");
         return Task.CompletedTask;
     }
 }

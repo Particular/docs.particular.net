@@ -4,14 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NServiceBus;
+using Receiver;
 
 // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlNativeIntegration;Integrated Security=True;Max Pool Size=100;Encrypt=false
 var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlNativeIntegration;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
 
 Console.Title = "NativeIntegration";
+var builder = Host.CreateApplicationBuilder(args);
+
+builder.Services.AddSingleton(provider => new InputLoopService(connectionString));
+builder.Services.AddHostedService(sp => sp.GetRequiredService<InputLoopService>());
 
 #region EndpointConfiguration
 var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.NativeIntegration");
@@ -32,61 +39,13 @@ endpointConfiguration.EnableInstallers();
 
 await SqlHelper.EnsureDatabaseExists(connectionString);
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
 Console.WriteLine("Press enter to send a message");
 Console.WriteLine("Press any key to exit");
 
-while (true)
-{
-    var key = Console.ReadKey();
-    Console.WriteLine();
 
-    if (key.Key != ConsoleKey.Enter)
-    {
-        break;
-    }
+builder.UseNServiceBus(endpointConfiguration);
 
-    await PlaceOrder(connectionString);
-}
-
-await endpointInstance.Stop();
-
-static async Task PlaceOrder(string connectionString)
-{
-    #region MessagePayload
-
-    var message = @"{
-                           $type: 'PlaceOrder, Receiver',
-                           OrderId: 'Order from ADO.net sender'
-                        }";
-
-    #endregion
-
-    #region SendingUsingAdoNet
-
-    var insertSql = @"insert into [Samples.SqlServer.NativeIntegration]
-                                      (Id, Recoverable, Headers, Body)
-                               values (@Id, @Recoverable, @Headers, @Body)";
-    using (var connection = new SqlConnection(connectionString))
-    {
-        await connection.OpenAsync();
-
-        using (var command = new SqlCommand(insertSql, connection))
-        {
-            var parameters = command.Parameters;
-            parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
-            parameters.Add("Headers", SqlDbType.NVarChar).Value = "";
-            var body = Encoding.UTF8.GetBytes(message);
-            parameters.Add("Body", SqlDbType.VarBinary).Value = body;
-            parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
-
-            await command.ExecuteNonQueryAsync();
-        }
-    }
-
-    #endregion
-}
+await builder.Build().RunAsync();
 
 
 class SkipAssemblyNameForMessageTypesBinder(Type[] messageTypes) : ISerializationBinder

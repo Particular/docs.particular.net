@@ -1,20 +1,19 @@
 ﻿using System.Threading.Tasks;
 using Messages.Events;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 namespace NServiceBusSubscriber
 {
     #region NSBMessageHandler
-    public class MassTransitEventHandler : IHandleMessages<MassTransitEvent>
+    public class MassTransitEventHandler (ILogger<MassTransitEventHandler> logger): IHandleMessages<MassTransitEvent>
     {
         public Task Handle(MassTransitEvent message, IMessageHandlerContext context)
         {
-            logger.Info($"Received Text: {message.Text}");
+            logger.LogInformation($"Received Text: {message.Text}");
             return Task.CompletedTask;
         }
 
-        static ILog logger = LogManager.GetLogger<MassTransitEventHandler>();
     }
     #endregion
 }

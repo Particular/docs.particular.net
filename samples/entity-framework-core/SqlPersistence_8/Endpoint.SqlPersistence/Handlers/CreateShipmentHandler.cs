@@ -2,13 +2,11 @@ using System;
 using System.Linq;
 using NServiceBus;
 using System.Threading.Tasks;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
-public class CreateShipmentHandler(ReceiverDataContext dataContext) :
+public class CreateShipmentHandler(ReceiverDataContext dataContext, ILogger<CreateShipmentHandler> logger) :
     IHandleMessages<OrderSubmitted>
 {
-    static readonly ILog log = LogManager.GetLogger<CreateShipmentHandler>();
-
     public Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
         #region StoreShipment
@@ -25,7 +23,7 @@ public class CreateShipmentHandler(ReceiverDataContext dataContext) :
 
         #endregion
 
-        log.Info($"Shipment for {message.OrderId} created.");
+        logger.LogInformation($"Shipment for {message.OrderId} created.");
 
         return Task.CompletedTask;
     }

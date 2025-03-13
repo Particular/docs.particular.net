@@ -1,30 +1,23 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Server";
 
-        #region mongoDbConfig
+Console.Title = "Server";
+var builder = Host.CreateApplicationBuilder(args);
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.MongoDB.Server");
-        var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
-        persistence.DatabaseName("Samples_MongoDB_Server");
+#region mongoDbConfig
 
-        #endregion
+var endpointConfiguration = new EndpointConfiguration("Samples.MongoDB.Server");
+var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
+persistence.DatabaseName("Samples_MongoDB_Server");
 
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
+#endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-
-        await endpointInstance.Stop();
-    }
-}
+endpointConfiguration.EnableInstallers();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
+Console.ReadKey();
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

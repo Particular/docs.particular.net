@@ -1,39 +1,32 @@
 using System;
 using System.Threading.Tasks;
+using Endpoint;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
+var builder = Host.CreateApplicationBuilder(args);
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "UnitOfWorkEndpoint";
+Console.Title = "UnitOfWorkEndpoint";
+builder.Services.AddHostedService<InputLoopService>();
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.Pipeline.UnitOfWork.Endpoint");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
+var endpointConfiguration = new EndpointConfiguration("Samples.Pipeline.UnitOfWork.Endpoint");
+endpointConfiguration.UsePersistence<LearningPersistence>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        #region configuration
-        var sessionProvider = new MySessionProvider();
+#region configuration
+builder.Services.AddSingleton<MySessionProvider>();
 
-        var pipeline = endpointConfiguration.Pipeline;
-        pipeline.Register(new MyUowBehavior(sessionProvider), "Manages the session");
-        #endregion
+// Then later get it from the service provider when needed
+var serviceProvider = builder.Services.BuildServiceProvider();
+var sessionProvider = serviceProvider.GetRequiredService<MySessionProvider>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-        var key = default(ConsoleKeyInfo);
+var pipeline = endpointConfiguration.Pipeline;
+pipeline.Register(new MyUowBehavior(sessionProvider), "Manages the session");
+#endregion
 
-        Console.WriteLine("Press any key to send messages, 'q' to exit");
-        while (key.KeyChar != 'q')
-        {
-            key = Console.ReadKey();
 
-            var options = new SendOptions();
-            options.RouteToThisEndpoint();
-            await endpointInstance.Send(new MyMessage(), options);
-        }
 
-        await endpointInstance.Stop();
-    }
-}
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

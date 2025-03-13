@@ -1,34 +1,40 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 #pragma warning disable 618
 
 class Program
 {
-    // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlMultiInstanceReceiver;Integrated Security=True;Max Pool Size=100;Encrypt=false
-    const string ConnectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlMultiInstanceReceiver;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
-
-    static async Task Main()
+    public static async Task Main(string[] args)
     {
-        Console.Title = "MultiInstanceReceiver";
-
-        #region ReceiverConfiguration
-
-        var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceReceiver");
-        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(ConnectionString);
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.EnableInstallers();
-
-        #endregion
-
-        SqlHelper.EnsureDatabaseExists(ConnectionString);
-
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-        Console.WriteLine("Press any key to exit");
-        Console.WriteLine("Waiting for Order messages from the Sender");
-        Console.ReadKey();
-        await endpointInstance.Stop();
+        await CreateHostBuilder(args).Build().RunAsync();
     }
+
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+     Host.CreateDefaultBuilder(args)
+         .ConfigureServices((hostContext, services) =>
+         {
+             Console.Title = "MultiInstanceReceiver";
+
+         }).UseNServiceBus(x =>
+         {
+             #region ReceiverConfiguration
+             var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceReceiver");
+             var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+             transport.ConnectionString(ConnectionString);
+             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+             endpointConfiguration.EnableInstallers();
+             #endregion
+
+             SqlHelper.EnsureDatabaseExists(ConnectionString);
+             Console.WriteLine("Waiting for Order messages from the Sender");
+             return endpointConfiguration;
+         });
+
+    //for local instance or SqlExpress
+    const string ConnectionString = @"Data Source=(localdb)\mssqllocaldb;Database=NsbSamplesSqlMultiInstanceReceiver;Trusted_Connection=True;MultipleActiveResultSets=true";
+
+   // const string ConnectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlMultiInstanceReceiver;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
+
 }

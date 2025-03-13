@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
-public class Handler2 :
+public class Handler2(ILogger<Handler2> logger) :
     IHandleMessages<HandlerMessage>
 {
-    static ILog log = LogManager.GetLogger<Handler2>();
-    static Random random = new Random();
+     static Random random = new Random();
 
     public Task Handle(HandlerMessage message, IMessageHandlerContext context)
     {
         var milliseconds = random.Next(100, 1000);
-        log.Info($"HandlerMessage received going to Task.Delay({milliseconds}ms)");
+        logger.LogInformation($"HandlerMessage received going to Task.Delay({milliseconds}ms)");
         return Task.Delay(milliseconds, context.CancellationToken);
     }
 }

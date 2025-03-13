@@ -1,15 +1,13 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
-public class Message2Handler :
+public class Message2Handler(ILogger<Message2Handler> logger) :
     IHandleMessages<Message2>
 {
-    static ILog log = LogManager.GetLogger<Message2Handler>();
-
     public Task Handle(Message2 message, IMessageHandlerContext context)
     {
-        log.Info($"Received Message2: {message.Property}");
+        logger.LogInformation($"Received Message2: {message.Property}");
         return Task.CompletedTask;
     }
 }

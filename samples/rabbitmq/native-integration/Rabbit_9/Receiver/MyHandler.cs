@@ -1,13 +1,11 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 using RabbitMQ.Client.Events;
 
-public class MyHandler :
+public class MyHandler(ILogger<MyHandler> logger) :
     IHandleMessages<MyMessage>
 {
-    static ILog log = LogManager.GetLogger<MyHandler>();
-
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         #region AccessToNativeMessageDetails
@@ -16,7 +14,7 @@ public class MyHandler :
 
         #endregion
 
-        log.Info($"Got `MyMessage` with id: {context.MessageId}, property value: {message.SomeProperty}, native application id: {nativeAppId}");
+        logger.LogInformation($"Got `MyMessage` with id: {context.MessageId}, property value: {message.SomeProperty}, native application id: {nativeAppId}");
         return Task.CompletedTask;
     }
 }

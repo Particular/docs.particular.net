@@ -1,19 +1,18 @@
 using System;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Endpoint2";
-        var endpointConfiguration = new EndpointConfiguration("Samples.MessageBodyEncryption.Endpoint2");
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
-        endpointConfiguration.RegisterMessageEncryptor();
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop();
-    }
-}
+
+Console.Title = "Endpoint2";
+var builder = Host.CreateApplicationBuilder(args);
+
+var endpointConfiguration = new EndpointConfiguration("Samples.MessageBodyEncryption.Endpoint2");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.RegisterMessageEncryptor();
+
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

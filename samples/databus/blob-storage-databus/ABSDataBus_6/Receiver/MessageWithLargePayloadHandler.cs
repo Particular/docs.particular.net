@@ -1,17 +1,16 @@
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 #region MessageWithLargePayloadHandler
 
-public class MessageWithLargePayloadHandler :
+public class MessageWithLargePayloadHandler(ILogger<MessageWithLargePayloadHandler> logger) :
     IHandleMessages<MessageWithLargePayload>
 {
-    static ILog log = LogManager.GetLogger<MessageWithLargePayloadHandler>();
-
+  
     public Task Handle(MessageWithLargePayload message, IMessageHandlerContext context)
     {
-        log.Info($"Message received. Description: '{message.Description}'. Size of payload property: {message.LargePayload.Value.Length} Bytes");
+        logger.LogInformation($"Message received. Description: '{message.Description}'. Size of payload property: {message.LargePayload.Value.Length} Bytes");
         return Task.CompletedTask;
     }
 }

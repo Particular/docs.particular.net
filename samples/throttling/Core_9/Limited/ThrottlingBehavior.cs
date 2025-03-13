@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 using NServiceBus.Pipeline;
 using Octokit;
 
 #region ThrottlingBehavior
-public class ThrottlingBehavior :
+public class ThrottlingBehavior(ILogger<ThrottlingBehavior> logger) :
     Behavior<IInvokeHandlerContext>
 {
-    static ILog log = LogManager.GetLogger<ThrottlingBehavior>();
     static DateTime? nextRateLimitReset;
 
     public override async Task Invoke(IInvokeHandlerContext context, Func<Task> next)
@@ -18,7 +17,7 @@ public class ThrottlingBehavior :
         if (rateLimitReset.HasValue && rateLimitReset >= DateTime.UtcNow)
         {
             var localTime = rateLimitReset?.ToLocalTime();
-            log.Info($"Rate limit exceeded. Retry after {rateLimitReset} UTC ({localTime} local).");
+            logger.LogInformation($"Rate limit exceeded. Retry after {rateLimitReset} UTC ({localTime} local).");
             await DelayMessage(context, rateLimitReset.Value);
             return;
         }
@@ -31,7 +30,7 @@ public class ThrottlingBehavior :
         {
             var nextReset = nextRateLimitReset = exception.Reset.UtcDateTime;
             var localTime = nextReset?.ToLocalTime();
-            log.Info($"Rate limit exceeded. Limit resets at {nextReset} UTC ({localTime} local).");
+            logger.LogInformation($"Rate limit exceeded. Limit resets at {nextReset} UTC ({localTime} local).");
             await DelayMessage(context, nextReset.Value);
         }
     }

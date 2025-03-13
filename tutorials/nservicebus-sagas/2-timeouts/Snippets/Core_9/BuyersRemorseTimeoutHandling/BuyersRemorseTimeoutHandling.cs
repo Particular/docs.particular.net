@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 namespace Core_9.BuyersRemorseTimeoutHandling;
 

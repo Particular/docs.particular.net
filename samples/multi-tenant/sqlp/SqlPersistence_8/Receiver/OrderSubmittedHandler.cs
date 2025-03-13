@@ -1,16 +1,15 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
-public class OrderSubmittedHandler :
+public class OrderSubmittedHandler(ILogger<OrderSubmittedHandler> logger) :
     IHandleMessages<OrderSubmitted>
 {
-    static readonly ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
 
     public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
-        log.Info($"Order {message.OrderId} worth {message.Value} submitted");
+        logger.LogInformation($"Order {message.OrderId} worth {message.Value} submitted");
 
         var order = new Order
         {

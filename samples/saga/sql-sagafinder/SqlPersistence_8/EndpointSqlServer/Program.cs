@@ -3,43 +3,39 @@ using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
+using Microsoft.Extensions.Hosting;
+using EndpointSqlServer;
+using Microsoft.Extensions.DependencyInjection;
 
-class Program
-{
-    static async Task Main()
+
+Console.Title = "SqlServer";
+var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddHostedService<InputLoopService>();
+
+var endpointConfiguration = new EndpointConfiguration("Samples.SqlSagaFinder.SqlServer");
+endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.UseSerialization<XmlSerializer>();
+endpointConfiguration.EnableInstallers();
+
+#region sqlServerConfig
+
+//for local instance or SqlExpress
+//var connectionString = @"Data Source=(localdb)\mssqllocaldb;Database=NsbSamplesSqlSagaFinder;Trusted_Connection=True;MultipleActiveResultSets=true";
+var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlSagaFinder;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
+var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+persistence.SqlDialect<SqlDialect.MsSqlServer>();
+persistence.ConnectionBuilder(
+    connectionBuilder: () =>
     {
-        Console.Title = "SqlServer";
-        var endpointConfiguration = new EndpointConfiguration("Samples.SqlSagaFinder.SqlServer");
-        endpointConfiguration.UseTransport(new LearningTransport());
-        endpointConfiguration.UseSerialization<XmlSerializer>();
-        endpointConfiguration.EnableInstallers();
+        return new SqlConnection(connectionString);
+    });
+var subscriptions = persistence.SubscriptionSettings();
+subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
-        #region sqlServerConfig
+#endregion
 
-        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlSagaFinder;Integrated Security=True;Encrypt=false
-        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlSagaFinder;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
-        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        persistence.SqlDialect<SqlDialect.MsSqlServer>();
-        persistence.ConnectionBuilder(
-            connectionBuilder: () =>
-            {
-                return new SqlConnection(connectionString);
-            });
-        var subscriptions = persistence.SubscriptionSettings();
-        subscriptions.CacheFor(TimeSpan.FromMinutes(1));
+await SqlHelper.EnsureDatabaseExists(connectionString);
 
-        #endregion
+builder.UseNServiceBus(endpointConfiguration);
 
-        await SqlHelper.EnsureDatabaseExists(connectionString);
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        var startOrder = new StartOrder
-        {
-            OrderId = "123"
-        };
-        await endpointInstance.SendLocal(startOrder);
-
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop();
-    }
-}
+await builder.Build().RunAsync();

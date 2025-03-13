@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
 
 public class CreateOrderHandler :
     IHandleMessages<CreateOrderPhase2>

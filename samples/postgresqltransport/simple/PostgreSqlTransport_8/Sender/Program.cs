@@ -1,8 +1,13 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using Sender;
 
 Console.Title = "SimpleSender";
+var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddHostedService<InputLoopService>();
 var endpointConfiguration = new EndpointConfiguration("PostgreSql.SimpleSender");
 endpointConfiguration.EnableInstallers();
 
@@ -18,32 +23,6 @@ routing.RouteToEndpoint(typeof(MyCommand), "PostgreSql.SimpleReceiver");
 #endregion
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+builder.UseNServiceBus(endpointConfiguration);
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-await SendMessages(endpointInstance);
-
-await endpointInstance.Stop();
-
-static async Task SendMessages(IMessageSession messageSession)
-{
-    Console.WriteLine("Press [c] to send a command, or [e] to publish an event. Press [Esc] to exit.");
-    while (true)
-    {
-        var input = Console.ReadKey();
-        Console.WriteLine();
-
-        switch (input.Key)
-        {
-            case ConsoleKey.C:
-                await messageSession.Send(new MyCommand());
-                break;
-            case ConsoleKey.E:
-                await messageSession.Publish(new MyEvent());
-                break;
-            case ConsoleKey.Escape:
-                return;
-        }
-    }
-}
-
+await builder.Build().RunAsync();

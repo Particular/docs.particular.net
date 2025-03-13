@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 using NServiceBus.Persistence.Sql;
 
 public class OrderLifecycleSaga :
@@ -9,7 +9,12 @@ public class OrderLifecycleSaga :
     IAmStartedByMessages<OrderSubmitted>,
     IHandleTimeouts<OrderTimeout>
 {
-    static ILog log = LogManager.GetLogger<OrderLifecycleSaga>();
+    private readonly ILogger<OrderLifecycleSaga> logger;
+
+    public OrderLifecycleSaga(ILogger<OrderLifecycleSaga> logger)
+    {
+        this.logger = logger;
+    }
 
     protected override void ConfigureMapping(IMessagePropertyMapper mapper)
     {
@@ -30,7 +35,7 @@ public class OrderLifecycleSaga :
 
     public Task Timeout(OrderTimeout state, IMessageHandlerContext context)
     {
-        log.Info("Got timeout");
+        logger.LogInformation("Got timeout");
         return Task.CompletedTask;
     }
 

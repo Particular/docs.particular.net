@@ -3,26 +3,28 @@ using Shared;
 using System;
 using System.Threading.Tasks;
 using NServiceBus.ClaimCheck;
+using Microsoft.Extensions.Hosting;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Receiver";
-        var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver");
 
-        #region ConfigureReceiverCustomDataBusSerializer
+Console.Title = "Receiver";
+var builder = Host.CreateApplicationBuilder(args);
 
-        var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, BsonClaimCheckSerializer>();
-        claimCheck.BasePath(@"..\..\..\..\storage");
+var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver");
 
-        #endregion
+#region ConfigureReceiverCustomDataBusSerializer
 
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop();
-    }
-}
+var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, BsonClaimCheckSerializer>();
+claimCheck.BasePath(@"..\..\..\..\storage");
+
+#endregion
+
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
+
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
+
+builder.UseNServiceBus(endpointConfiguration);
+
+await builder.Build().RunAsync();

@@ -2,15 +2,13 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 using Store.Messages.Events;
 using Store.Messages.RequestResponse;
 
-public class ProvisionDownloadResponseHandler :
+public class ProvisionDownloadResponseHandler(ILogger<ProvisionDownloadResponseHandler> logger) :
     IHandleMessages<ProvisionDownloadResponse>
-{
-    static ILog log = LogManager.GetLogger<ProvisionDownloadResponseHandler>();
-
+{   
     Dictionary<string, string> productIdToUrlMap = new Dictionary<string, string>
         {
             {"videos", "https://particular.net/videos-and-presentations"},
@@ -27,9 +25,9 @@ public class ProvisionDownloadResponseHandler :
             Debugger.Break();
         }
 
-        log.Info($"Download for Order # {message.OrderNumber} has been provisioned, Publishing Download ready event");
+        logger.LogInformation($"Download for Order # {message.OrderNumber} has been provisioned, Publishing Download ready event");
 
-        log.Info($"Downloads for Order #{message.OrderNumber} is ready, publishing it.");
+        logger.LogInformation($"Downloads for Order #{message.OrderNumber} is ready, publishing it.");
         var downloadIsReady = new DownloadIsReady
         {
             OrderNumber = message.OrderNumber,

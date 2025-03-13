@@ -1,46 +1,23 @@
 using System;
-using System.Threading;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
-using NServiceBus.Logging;
+using Sample;
 
-partial class Program
-{
-    static ILog log = LogManager.GetLogger<Program>();
 
-    static async Task Main()
-    {
-        Console.Title = "SchedulingTimer";
-        var endpointConfiguration = new EndpointConfiguration("Samples.Scheduling.Timer");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
+Console.Title = "SchedulingTimer";
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddHostedService<InputLoopService>();
 
-        #region ScheduleUsingTimer
-        var interval = TimeSpan.FromSeconds(5);
+var endpointConfiguration = new EndpointConfiguration("Samples.Scheduling.Timer");
+endpointConfiguration.UsePersistence<LearningPersistence>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        var timer = new Timer(async state =>
-        {
-            try
-            {
-                await endpointInstance.SendLocal(new MyScheduledTask());
-                log.Info(nameof(MyScheduledTask) + " scheduled");
-            }
-            catch (Exception ex)
-            {
-                log.Error(nameof(MyScheduledTask) + " could not be scheduled", ex);
-            }
-        }, null, interval, interval);
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
 
-        #endregion
-
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-
-        timer.Dispose();
-
-        await endpointInstance.Stop();
-    }
-}
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

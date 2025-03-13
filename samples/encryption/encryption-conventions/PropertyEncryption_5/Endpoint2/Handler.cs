@@ -1,19 +1,17 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
-public class Handler :
+public class Handler(ILogger<Handler> logger) :
     IHandleMessages<MessageWithSecretData>
 {
-    static ILog log = LogManager.GetLogger<Handler>();
-
     public Task Handle(MessageWithSecretData message, IMessageHandlerContext context)
     {
-        log.Info($"I know the secret - it's '{message.EncryptedSecret}'");
-        log.Info($"SubSecret: {message.SubProperty.EncryptedSecret}");
+        logger.LogInformation($"I know the secret - it's '{message.EncryptedSecret}'");
+        logger.LogInformation($"SubSecret: {message.SubProperty.EncryptedSecret}");
         foreach (var creditCard in message.CreditCards)
         {
-            log.Info($"CreditCard: {creditCard.EncryptedNumber} is valid to {creditCard.ValidTo}");
+            logger.LogInformation($"CreditCard: {creditCard.EncryptedNumber} is valid to {creditCard.ValidTo}");
         }
         return Task.CompletedTask;
     }

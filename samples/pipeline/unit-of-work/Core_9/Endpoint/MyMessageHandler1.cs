@@ -1,19 +1,17 @@
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 #region message-handlers
 
-class MyMessageHandler1 :
+class MyMessageHandler1(ILogger<MyMessageHandler1> logger) :
     IHandleMessages<MyMessage>
 {
-    static ILog log = LogManager.GetLogger<MyMessageHandler1>();
-
-    public async Task Handle(MyMessage message, IMessageHandlerContext context)
+   public async Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         await context.Store(new MyEntity());
 
-        log.Info($"{context.MessageId} got UoW instance {context.GetSession().GetHashCode()}");
+        logger.LogInformation($"{context.MessageId} got UoW instance {context.GetSession().GetHashCode()}");
     }
 }
 

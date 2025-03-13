@@ -1,25 +1,18 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "ReceivingEndpoint";
+Console.Title = "ReceivingEndpoint";
+var builder = Host.CreateApplicationBuilder(args);
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.Pipeline.SigningAndEncryption.ReceivingEndpoint");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
+var endpointConfiguration = new EndpointConfiguration("Samples.Pipeline.SigningAndEncryption.ReceivingEndpoint");
+endpointConfiguration.UsePersistence<LearningPersistence>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        endpointConfiguration.RegisterSigningBehaviors();
+endpointConfiguration.RegisterSigningBehaviors();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-        Console.WriteLine("Waiting to receive messages. Press Enter to exit.");
-        Console.ReadLine();
-
-        await endpointInstance.Stop();
-    }
-}
+Console.WriteLine("Waiting to receive messages. Press Enter to exit.");
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

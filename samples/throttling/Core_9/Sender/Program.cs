@@ -1,33 +1,34 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using Sender;
 
 class Program
 {
-    static async Task Main()
+    public static async Task Main(string[] args)
     {
-        Console.Title = "Sender";
-
-        var endpointConfiguration = new EndpointConfiguration("Samples.Throttling.Sender");
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
-        #region Sending
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Sending messages...");
-        for (var i = 0; i < 100; i++)
-        {
-            var searchGitHub = new SearchGitHub
-            {
-                Repository = "NServiceBus",
-                Owner = "Particular",
-                Branch = "master"
-            };
-            await endpointInstance.Send("Samples.Throttling.Limited", searchGitHub);
-        }
-        #endregion
-        Console.WriteLine("Messages sent.");
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop();
+        await CreateHostBuilder(args).Build().RunAsync();
     }
+
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+     Host.CreateDefaultBuilder(args)
+         .ConfigureServices((hostContext, services) =>
+         {
+             services.AddHostedService<InputLoopService>();
+         }).UseNServiceBus(x =>
+         {
+             Console.Title = "Sender";
+
+             var endpointConfiguration = new EndpointConfiguration("Samples.Throttling.Sender");
+             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+             endpointConfiguration.UseTransport(new LearningTransport());
+
+             Console.WriteLine("Press any key");
+             Console.ReadKey();
+
+             return endpointConfiguration;
+         });
+
 }

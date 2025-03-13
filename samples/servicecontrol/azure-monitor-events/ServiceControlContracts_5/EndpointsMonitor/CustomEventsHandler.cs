@@ -2,9 +2,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.ApplicationInsights;
-using Microsoft.ApplicationInsights.DataContracts;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 using ServiceControl.Contracts;
 
 #region AzureMonitorConnectorEventsHandler
@@ -13,11 +12,12 @@ public class MessageFailedHandler :
     IHandleMessages<MessageFailed>
 {
     readonly TelemetryClient telemetryClient;
-    static ILog log = LogManager.GetLogger<CustomEventsHandler>();
+    private readonly ILogger<MessageFailedHandler> logger;
 
-    public MessageFailedHandler(TelemetryClient telemetryClient)
+    public MessageFailedHandler(TelemetryClient telemetryClient, ILogger<MessageFailedHandler> logger)
     {
         this.telemetryClient = telemetryClient;
+        this.logger = logger;
     }
 
     public Task Handle(MessageFailed message, IMessageHandlerContext context)
@@ -28,7 +28,7 @@ public class MessageFailedHandler :
             {"MessageId", message.FailedMessageId},
         });
 
-        log.Error($"Received ServiceControl 'MessageFailed' event for a {message.MessageType} with ID {message.FailedMessageId}.");
+        logger.LogError($"Received ServiceControl 'MessageFailed' event for a {message.MessageType} with ID {message.FailedMessageId}.");
         return Task.CompletedTask;
     }
 }
@@ -44,11 +44,12 @@ public class CustomEventsHandler :
     IHandleMessages<MessageFailureResolvedManually>
 {
     readonly TelemetryClient telemetryClient;
-    static ILog log = LogManager.GetLogger<CustomEventsHandler>();
+    private readonly ILogger<CustomEventsHandler> logger;
 
-    public CustomEventsHandler(TelemetryClient telemetryClient)
+    public CustomEventsHandler(TelemetryClient telemetryClient, ILogger<CustomEventsHandler> logger)
     {
         this.telemetryClient = telemetryClient;
+        this.logger = logger;
     }
 
     public Task Handle(HeartbeatStopped message, IMessageHandlerContext context)
@@ -58,7 +59,7 @@ public class CustomEventsHandler :
             {"EndpointName", message.EndpointName},
         });
 
-        log.Warn($"Heartbeats from {message.EndpointName} have stopped.");
+        logger.LogWarning($"Heartbeats from {message.EndpointName} have stopped.");
         return Task.CompletedTask;
     }
 
@@ -69,7 +70,7 @@ public class CustomEventsHandler :
             {"EndpointName", message.EndpointName},
         });
 
-        log.Info($"Heartbeats from {message.EndpointName} have been restored.");
+        logger.LogInformation($"Heartbeats from {message.EndpointName} have been restored.");
         return Task.CompletedTask;
     }
 
@@ -80,7 +81,7 @@ public class CustomEventsHandler :
             {"MessagesIds", string.Join(",", message.FailedMessagesIds)},
         });
 
-        log.Error($"Received ServiceControl 'FailedMessageArchived' with ID {message.FailedMessagesIds.FirstOrDefault()}.");
+        logger.LogError($"Received ServiceControl 'FailedMessageArchived' with ID {message.FailedMessagesIds.FirstOrDefault()}.");
         return Task.CompletedTask;
     }
     
@@ -91,7 +92,7 @@ public class CustomEventsHandler :
             {"MessagesIds", string.Join(",", message.FailedMessagesIds)},
         });
 
-        log.Error($"Received ServiceControl 'FailedMessagesUnArchived' MessagesCount: {message.FailedMessagesIds.Length}.");
+        logger.LogError($"Received ServiceControl 'FailedMessagesUnArchived' MessagesCount: {message.FailedMessagesIds.Length}.");
         return Task.CompletedTask;
     }   
     
@@ -102,7 +103,7 @@ public class CustomEventsHandler :
             {"MessageId", message.FailedMessageId},
         });
 
-        log.Error($"Received ServiceControl 'MessageFailureResolvedByRetry' with ID {message.FailedMessageId}.");
+        logger.LogError($"Received ServiceControl 'MessageFailureResolvedByRetry' with ID {message.FailedMessageId}.");
         return Task.CompletedTask;
     }
 
@@ -113,7 +114,7 @@ public class CustomEventsHandler :
             {"MessageId", message.FailedMessageId},
         });
 
-        log.Error($"Received ServiceControl 'MessageFailureResolvedManually'  with ID {message.FailedMessageId}.");
+        logger.LogError($"Received ServiceControl 'MessageFailureResolvedManually'  with ID {message.FailedMessageId}.");
         return Task.CompletedTask;
     }
 }

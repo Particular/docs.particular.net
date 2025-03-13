@@ -1,57 +1,49 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 class Program
 {
-    static async Task Main()
+    public static async Task Main(string[] args)
     {
-        Console.Title = "NServiceBusEndpoint";
-        var endpointConfiguration = new EndpointConfiguration("NServiceBusEndpoint");
-        endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
-
-        #region DisableRetries
-
-        var recoverability = endpointConfiguration.Recoverability();
-
-        recoverability.Delayed(
-            customizations: retriesSettings =>
-            {
-                retriesSettings.NumberOfRetries(0);
-            });
-        recoverability.Immediate(
-            customizations: retriesSettings =>
-            {
-                retriesSettings.NumberOfRetries(0);
-            });
-
-        #endregion
-
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press 'Enter' to send a new message. Press any other key to finish.");
-        while (true)
-        {
-            var key = Console.ReadKey();
-
-            if (key.Key != ConsoleKey.Enter)
-            {
-                break;
-            }
-
-            var guid = Guid.NewGuid();
-
-            var simpleMessage = new SimpleMessage
-            {
-                Id = guid
-            };
-            await endpointInstance.Send("NServiceBusEndpoint", simpleMessage);
-            Console.WriteLine($"Sent a new message with Id = {guid}.");
-
-            Console.WriteLine("Press 'Enter' to send a new message. Press any other key to finish.");
-        }
-        await endpointInstance.Stop();
+        await CreateHostBuilder(args).Build().RunAsync();
     }
+
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+     Host.CreateDefaultBuilder(args)
+       .UseNServiceBus(x =>
+         {           
+             var endpointConfiguration = new EndpointConfiguration("NServiceBusEndpoint");
+             endpointConfiguration.UseTransport<LearningTransport>();
+             endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+             endpointConfiguration.EnableInstallers();
+             endpointConfiguration.SendFailedMessagesTo("error");
+
+             #region DisableRetries
+
+             var recoverability = endpointConfiguration.Recoverability();
+
+             recoverability.Delayed(
+                 customizations: retriesSettings =>
+                 {
+                     retriesSettings.NumberOfRetries(0);
+                 });
+             recoverability.Immediate(
+                 customizations: retriesSettings =>
+                 {
+                     retriesSettings.NumberOfRetries(0);
+                 });
+
+             #endregion
+
+             return endpointConfiguration;
+         }).ConfigureServices((hostContext, services) =>
+         {
+             Console.Title = "NServiceBusEndpoint";
+             services.AddHostedService<InputLoopService>();
+
+         });
+
 }
