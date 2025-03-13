@@ -20,18 +20,16 @@ endpointConfiguration.UseTransport(new LearningTransport());
 #region component-registration-sender
 
 // Register both services
-builder.Services.AddSingleton<PrincipalAccessor>();
+
+var principalAccessor = new PrincipalAccessor();
+builder.Services.AddSingleton<IPrincipalAccessor>(principalAccessor);
 
 var serviceProvider = builder.Services.BuildServiceProvider();
-
-var accessor = serviceProvider.GetRequiredService<PrincipalAccessor>();
-var logger = serviceProvider.GetRequiredService<ILogger<AddUserNameToOutgoingHeadersMutator>>();
-var mutator = new AddUserNameToOutgoingHeadersMutator(accessor, logger);
-
 builder.Services.AddHostedService<InputLoopService>();
 
+var logger = serviceProvider.GetRequiredService<ILogger<AddUserNameToOutgoingHeadersMutator>>();
+var mutator = new AddUserNameToOutgoingHeadersMutator(principalAccessor, logger);
 endpointConfiguration.RegisterMessageMutator(mutator);
-
 #endregion
 
 Console.WriteLine("Press any key, the application is starting");
