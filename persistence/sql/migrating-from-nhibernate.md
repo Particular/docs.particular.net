@@ -1,7 +1,7 @@
 ---
 title: Migrating from NHibernate to SQL persister
 summary: Learn how to migrate from NHibernate to SQL persister
-reviewed: 2025-03-06
+reviewed: 2025-03-13
 component: SqlPersistence
 ---
 
@@ -47,12 +47,12 @@ An extended retention period combined with high message throughput can cause mig
 
 Subscription, timeouts, and outbox data have well-defined schemas that can be converted using scripts to map between the two persisters. However, saga state migration is more complex because of the need to convert from table structures to JSON blobs.
 
-### Downtime migration
+### Migration downtime
 
-Downtime migration depends on custom scripting with a deep knowledge of saga state serialization differences.
+Migration downtime is influenced by a variety of factors:
 
- - No complex deployment required
- - Requires custom saga migration mappings
- - Downtime is relative to the size of the data set
- - Straightforward if the saga state schema is fairly flat
- - Required for outbox, timeouts, and subscriptions
+ - The complexity of the deployment required
+ - The need for and use of custom saga migration mappings
+ - The size of the data set
+ - The complexity of the structure of the saga state
+ - Whether outbox, timeouts, and subscriptions need to be migrated
