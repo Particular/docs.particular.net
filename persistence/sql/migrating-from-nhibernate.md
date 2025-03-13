@@ -26,8 +26,8 @@ Current schemas can be found via their respective scripting pages:
 
 ### Timeouts
 
-NHibernate: has a `TimeoutEntity` table with an `Endpoint` column 
-SQL Persistence: has a `<endpoint_name>_TimeoutData` table for each endpoint.
+- NHibernate: has a `TimeoutEntity` table with an `Endpoint` column 
+- SQL Persistence: has a `<endpoint_name>_TimeoutData` table for each endpoint.
 
 ### Outbox
 
