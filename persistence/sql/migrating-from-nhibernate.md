@@ -45,9 +45,7 @@ An extended retention period combined with high message throughput can cause mig
 
 ### Conversion
 
-Subscription, timeouts, and outbox data can be converted using scripts that map between the schemas.
-
-Saga state migration is more complex due to custom schemas that cannot be easily migrated.
+Subscription, timeouts, and outbox data have well-defined schemas that can be converted using scripts to map between the two persisters. However, saga state migration is more complex because of the need to convert from table structures to JSON blobs.
 
 ### Downtime migration
 
