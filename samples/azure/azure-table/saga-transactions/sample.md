@@ -35,7 +35,7 @@ snippet: AzureTableConfig
 
 ## Using Behaviors
 
-Most messages implement `IProvideOrderId`. Since Saga IDs are deterministically derived from saga data (the correlation property name and value), the Saga ID can be used as a partition key. Then, `IProvidePartitionKeyFromSagaId` can be injected into behaviors in the logical pipeline stage.
+Most messages implement `IProvideOrderId`. Since Saga IDs are deterministically derived from saga data (the correlation property name and value), they can be used as a partition key. Then, `IProvidePartitionKeyFromSagaId` can be injected into behaviors in the logical pipeline stage.
 
 snippet: BehaviorUsingIProvidePartitionKeyFromSagaId
 
