@@ -30,6 +30,7 @@ Projects in the solution:
 - `Publisher`: command-line application that hosts an instance of NServiceBus.
 - `ClientHub`: command-line application that hosts an instance of NServiceBus and a SignalR server.
 - `Client`: command-line application that hosts a SignalR client.
+- `StockEvents`: contains the `StockTick` message class
 
 ## Sharing message types with SignalR
 
