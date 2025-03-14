@@ -422,6 +422,8 @@ To lock an index, from the RavenDB studio, while ServiceControl is still in main
 
 ## RavenDB dirty memory
 
+_Available in version 6.5_
+
 Each ServiceControl instance stores its data in a RavenDB database. RavenDB immediately writes data to the journal files and synchronizes writes to the data files in the background. The amount of data that needs to be flushed to disk is called "dirty memory."
 
 Continuous dirty memory increase indicates too much pressure on the ServiceControl instance database. When that happens, the following custom check message is presented:
