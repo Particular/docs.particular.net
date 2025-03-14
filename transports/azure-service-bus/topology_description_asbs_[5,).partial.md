@@ -125,7 +125,7 @@ flowchart LR
 
 ##### Evolution of the message contract
 
-As mentioned in [versioning of shared contracts](/nservicebus/messaging/sharing-contracts.md#versioning), and shown in the examples above, NServiceBus uses the fully-qualified assembly name in the message header. [Evolving the message contract](/nservicebus/messaging/evolving-contracts.md) encourages creating entirely new contract types and then adding a version number to the original name. For example, when evolving `Shipping.OrderAccepted`, the publisher creates a new contract called `Shipping.OrderAcceptedV2`. When the publisher publishes `Shipping.OrderAcceptedV2` events, these are be published by default to the `Shipping.OrderAcceptedV2` topic and therefore existing subscribers interested in the previous version would not receive those events. 
+As mentioned in [versioning of shared contracts](/nservicebus/messaging/sharing-contracts.md#versioning), and shown in the examples above, NServiceBus uses the fully-qualified assembly name in the message header. [Evolving the message contract](/nservicebus/messaging/evolving-contracts.md) encourages creating entirely new contract types and then adding a version number to the original name. For example, when evolving `Shipping.OrderAccepted`, the publisher creates a new contract called `Shipping.OrderAcceptedV2`. When the publisher publishes `Shipping.OrderAcceptedV2` events, by default, these are published to the `Shipping.OrderAcceptedV2` topic and therefore existing subscribers interested in the previous version would not receive those events. 
 
 Use one of the following options when evolving message contracts:
 
