@@ -1,5 +1,6 @@
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using NServiceBus;
+using NServiceBus.Transport.AzureServiceBus;
 
 #region asb-function-default
 [assembly: FunctionsStartup(typeof(Startup))]
@@ -14,7 +15,7 @@ class Startup : FunctionsStartup
 }
 #endregion
 
-namespace ASBFunctions_5_0
+namespace ASBFunctions_6_0
 {
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Http;

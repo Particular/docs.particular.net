@@ -1,5 +1,5 @@
 ﻿#pragma warning disable 162
-namespace ASBFunctions_5_0
+namespace ASBFunctions_6_0
 {
     using System.Threading.Tasks;
     using Azure.Messaging.ServiceBus;
