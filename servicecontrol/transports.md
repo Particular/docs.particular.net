@@ -71,11 +71,11 @@ In addition to the [connection string options of the transport](/transports/rabb
 * `UseExternalAuthMechanism=true|false(default)` - Specifies that an [external authentication mechanism should be used for client authentication](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-external-authentication).
 * `DisableRemoteCertificateValidation=true|false(default)` - Allows ServiceControl to connect to the broker [even if the remote server certificate is invalid](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-remote-certificate-validation).
 
-These options are available for only quorum queues in version 6.3 and above:
+These options are available for only quorum queues in version 6.5 and above:
 
-* `ValidateDeliveryLimits=<true(default)|false>` - Validate that the delivery limit of quorum queues in RabbitMQ are set to unlimited (-1).
-* `ManagementApiUrl=<SCHEME://HOST:PORT>` - The URL of the RabbitMQ management API.  If this option is not set, the default value will be used based on the broker connection string.
-* `ManagementApiUserName=<USERNAME>` - The username used to connect to the RabbitMQ management API.  If this option is not set, the credentials from the broker connection string will be used to set the value.
+* `ValidateDeliveryLimits=<true(default)|false>` - Validate that the delivery limit of each quorum queue used by NServiceBus is set to unlimited (-1).
+* `ManagementApiUrl=<SCHEME://HOST:PORT>` - The URL of the RabbitMQ management API.  If this option is not set, the transport will attempt to automatically generate the URL based on the broker connection string.
+* `ManagementApiUserName=<USERNAME>` - The username used to connect to the RabbitMQ management API.  If this option is not set, the credentials from the broker connection string will be used to set the value.  Note that the configured user must have at least `policymaker` rights in RabbitMQ.
 * `ManagementApiPassword=<PASSWORD>` - The password used to connect to the RabbitMQ management API.  If this option is not set, the credentials from the broker connection string will be used to set the value.
 
 ## SQL
