@@ -35,15 +35,11 @@ snippet: AzureTableConfig
 
 ## Using Behaviors
 
-The following shows two different ways to provide OrderIDs to the saga using [behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md).
-
-1. Most messages implement `IProvideOrderId` allowing the OrderId to be used as the partition key.
-2. 
-Most messages implement `IProvideOrderId`. If the Saga ID is used as a partition key, `IProvidePartitionKeyFromSagaId` can be injected into behaviors in the logical pipeline stage.
+Most messages implement `IProvideOrderId`. Since Saga IDs are deterministically derived from saga data (the correlation property name and value), the Saga ID can be used as a partition key. Then, `IProvidePartitionKeyFromSagaId` can be injected into behaviors in the logical pipeline stage.
 
 snippet: BehaviorUsingIProvidePartitionKeyFromSagaId
 
-One of the handlers replies with a message that does not implement `IProvideOrderId`. However, transactionality is still maintained because messages that are part of a saga conversation flow automatically have the Saga ID set as a header. In these cases, there is no need to extract correlation property information to derive the Saga ID.
+Even though one of the handlers replies with a message that does not implement `IProvideOrderId`, transactionality is still maintained because messages that are part of a saga conversation flow automatically have the Saga ID set as a header. In these cases, there is no need to extract correlation property information to derive the Saga ID.
 
 Finally the above behavior is registered in the pipeline.
 
