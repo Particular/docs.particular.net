@@ -424,12 +424,15 @@ To lock an index, from the RavenDB studio, while ServiceControl is still in main
 
 Each ServiceControl instance stores its data in a RavenDB database. RavenDB immediately writes data to the journal files and synchronizes writes to the data files in the background. The amount of data that needs to be flushed to disk is called "dirty memory."
 
-Continuous dirty memory increases indicate too much pressure on the ServiceControl instance database. When that happens the following custom check message is presented:
+Continuous dirty memory increase indicates too much pressure on the ServiceControl instance database. When that happens, the following custom check message is presented:
 
 > There is a high level of RavenDB dirty memory ({dirtyMemoryKb}kb). See `https://docs.particular.net/servicecontrol/troubleshooting#ravendb-dirty-memory` for guidance on how to mitigate the issue.
+
+> [!NOTE]
+> The same message is logged with a warning severity in the ServiceControl instance logs.
 
 Dirty memory issues can be mitigated using one or more of the following strategies:
 
 - Consider adding faster storage to reduce I/O impact and allow the RavenDB instance to flush dirty memory faster
-- Reduce the instance max concurrency level by reducing the MaximumConcurrencyLevel setting ([error instance documentation](servicecontrol-instances/configuration.md#performance-tuning-servicecontrolmaximumconcurrencylevel), [audit instance documentation](audit-instances/configuration.md#performance-tuning-servicecontrol-auditmaximumconcurrencylevel))
+- Reduce the instance max concurrency level by reducing the `MaximumConcurrencyLevel` setting ([error instance documentation](servicecontrol-instances/configuration.md#performance-tuning-servicecontrolmaximumconcurrencylevel), [audit instance documentation](audit-instances/configuration.md#performance-tuning-servicecontrol-auditmaximumconcurrencylevel))
 - If the issue affects an audit instance, consider [scaling it out using a sharding or a competing consumer approach](servicecontrol-instances/remotes.md).
