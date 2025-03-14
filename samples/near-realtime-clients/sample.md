@@ -9,9 +9,6 @@ related:
  - samples/showcase
 ---
 
-> [!NOTE]
-> SignalR can be used in many different ways. For general guidance, check out the official [SignalR tutorials](https://learn.microsoft.com/en-us/aspnet/core/tutorials/signalr?tabs=visual-studio&view=aspnetcore-6.0) and [SignalR samples](https://github.com/aspnet/SignalR-samples). This guide specifically focuses on how to relay NServiceBus events to SignalR clients.
-
 For "near real-time" [occasionally-connected](https://en.wikipedia.org/wiki/Occasionally_connected_computing) clients, messages are only useful for a short period of time. A classic example is stock ticker updates, where the latest prices matter, but old ones quickly become irrelevant.
 
 One of the key features of message queuing is the ability for the receiving endpoints to maintain service even when offline. Messages remain in the queue for processing when the system comes back online. However, while this feature is critical for some systems, the long lasting, durable nature of message queuing can result in a backlog of messages that are no longer relevant for occasionally-connected ones. If the client is disconnected long enough, it can result in queue quotas being exceeded, which in turn can generate exceptions on the message sender and possibly impact other parts of the system.
@@ -21,6 +18,9 @@ One way to prevent this is to [unsubscribe](/nservicebus/messaging/publish-subsc
 A better solution is to avoid implementing each client as an NServiceBus endpoint. Instead, use a push-based technology like [SignalR](https://signalr.net/) to only send updates when clients are connected.
 
 This sample demonstrates how to use a SignalR server that also acts as an NServiceBus endpoint, to push subscribed NServiceBus events to any connected SignalR clients.
+
+> [!NOTE]
+> SignalR can be used in many different ways. For general guidance, check out the official [SignalR tutorials](https://learn.microsoft.com/en-us/aspnet/core/tutorials/signalr?tabs=visual-studio&view=aspnetcore-6.0) and [SignalR samples](https://github.com/aspnet/SignalR-samples). This guide specifically focuses on how to relay NServiceBus events to SignalR clients.
 
 ## Solution structure
 
