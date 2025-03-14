@@ -306,6 +306,8 @@
         Title: Version 3 to 4
       - Url: nservicebus/upgrades/azure-functions-service-bus-isolated-4to5
         Title: Version 4 to 5
+      - Url: nservicebus/upgrades/azure-functions-service-bus-isolated-5to6
+        Title: Version 5 to 6
     - Title: Azure Functions (in-process) with Service Bus
       Articles:
       - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-1to2
@@ -314,6 +316,8 @@
         Title: Version 2 to 3
       - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-3to4
         Title: Version 3 to 4
+      - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-5to6
+        Title: Version 5 to 6
       - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-isolated-worker
         Title: Migrate to Azure Functions using Isolated Workers
     - Title: Gateway
