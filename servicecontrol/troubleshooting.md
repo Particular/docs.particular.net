@@ -426,7 +426,7 @@ Each ServiceControl instance stores its data in a RavenDB database. RavenDB imme
 
 Continuous dirty memory increases indicate too much pressure on the ServiceControl instance database. When that happens the following custom check message is presented:
 
-> There is a high level of RavenDB dirty memory (_dirty memory value in kb_). Check the ServiceControl troubleshooting guide for guidance on how to mitigate the issue. Visit the `https://docs.particular.net/servicecontrol/troubleshooting#ravendb-dirty-memory` page for more information.
+> There is a high level of RavenDB dirty memory ({dirtyMemoryKb}kb). See `https://docs.particular.net/servicecontrol/troubleshooting#ravendb-dirty-memory` for guidance on how to mitigate the issue.
 
 Dirty memory issues can be mitigated using one or more of the following strategies:
 
