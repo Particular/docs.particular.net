@@ -38,10 +38,6 @@ The `StockEvents` project contains the definition of a message class that is sha
 
 snippet: MessageConventionsForNonNSB
 
-## Hosting SignalR with NServiceBus
-
-The sample shows how to host a self-hosted SignalR server side-by-side with an NServiceBus endpoint.
-
 ## Bridging the bus to clients using SignalR
 
 The `ClientHub` project subscribes to the `StockTick` event published by `Publisher`.
@@ -53,8 +49,6 @@ snippet: StockTickHub
 When the `StockTick` event is handled, it invokes the `PushStockTick` method on the `StockTickHub`.
 
 snippet: StockTickHandler
-
-
 
 ## Web applications
 
