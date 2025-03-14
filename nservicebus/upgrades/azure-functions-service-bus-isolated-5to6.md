@@ -2,7 +2,7 @@
 title: Azure Functions (Isolated Worker) Upgrade Version 5 to 6
 summary: How to upgrade Azure Functions (Isolated Worker) with Service Bus from version 5 to 6
 component: ASBFunctionsWorker
-reviewed: 2025-3-14
+reviewed: 2025-03-14
 isUpgradeGuide: true
 ---
 
