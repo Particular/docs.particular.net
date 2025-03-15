@@ -10,7 +10,7 @@ upgradeGuideCoreVersions:
  - 9
 ---
 
-## RabbitMQ Management API access is now required
+## RabbitMQ management API access is now required
 
 The transport now uses the RabbitMQ management API to [verify broker requirements](/transports/rabbitmq/#broker-compatibility) and enable [delivery limit validation](/transports/rabbitmq/connection-settings.md#delivery-limit-validation).
 
