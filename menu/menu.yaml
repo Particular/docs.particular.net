@@ -1438,6 +1438,8 @@
     Articles:
     - Title: Upgrade tips
       Url: servicecontrol/upgrades
+    - Title: Version 6.4 to 6.5
+      Url: servicecontrol/upgrades/6.4to6.5
     - Title: Version 6.3 to 6.4
       Url: servicecontrol/upgrades/6.3to6.4
     - Title: Version 5 to 6
