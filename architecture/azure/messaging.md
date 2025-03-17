@@ -26,7 +26,7 @@ Azure Service Bus has two pricing tiers: [Standard and Premium](https://learn.mi
 - The maximum message size is 256 KB on the Standard tier
 - Cross-entity transactions are limited to 100 messages
 - No cross-namespace communication
-- No emulator for local development or testing available
+- Emulator for local development and testing [does not have required features](/transports/azure-service-bus/#transport-at-a-glance) to work with the Particular Service Platform.
 
 [**Try the Azure Service Bus Tutorial →**](https://learn.microsoft.com/en-us/azure/service-bus-messaging/build-message-driven-apps-nservicebus?tabs=Sender)
 
