@@ -8,7 +8,7 @@ redirects:
  - nservicebus/rabbitmq/connection-settings
 ---
 
-The RabbitMQ transport requires a connection string to connect to the RabbitMQ broker, and there are two different styles to choose from. It can accept the standard [AMQP URI](https://www.rabbitmq.com/uri-spec.html) connection strings, or a custom format documented below.
+The RabbitMQ transport requires a connection string to connect to the RabbitMQ broker, and there are two different styles to choose from. It can accept the standard [amqp URI](https://www.rabbitmq.com/uri-spec.html) connection strings, or a custom format documented below.
 
 
 ### Specifying the connection string via code
