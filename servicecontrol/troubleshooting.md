@@ -394,16 +394,16 @@ When the following conditions are met:
 - There is a constant load on the database due to:
   - Continuously ingesting messages from the audit queue
   - Deletion of expired audit messages
-- Database full-text indexes use the Corax indexing engine
+- The database full-text indexes use the Corax indexing engine
 
-There is a higher probability that the database engine cannot shutdown gracefully because due to normal operation the continious ingestion and cleaning up tombstones the flushing of index data during stop to take considerably longer.
+There is a higher probability that the database engine cannot shut down gracefully because flushing index and journal data during a shutdown can take a considerably long time. That is due to regular operations, continuous ingestion of messages, and tombstone cleaning created by deleting expired messages.
 
 > [!NOTE]
-> Although no data will be lost an ungraceful shutdown will delay a restart as the database engine will might require to run a lenghty recovery operation which will result in a lot of storage IO.
+> Although no data will be lost, an ungraceful shutdown will delay a restart. The database engine will be required to run a lengthy recovery operation, resulting in a lot of storage I/O.
 
 To mitigate this situation, migrating full-text search indexes from Corax to the Lucene indexing engine can solve the issue.
 
-It might be sufficient to migrate to Lucene the `MessagesViewIndex` (regardless of the fact that full-text search is enabled or not), which is the one with the highest load.
+It might be sufficient to migrate to Lucene the `MessagesViewIndex` (even though full-text search is enabled), which has the highest load.
 
 1. Migrate full-text indexes from the Corax to the Lucene index engine
 2. Lock the index to ensure the index will not be recreated using Corax at restart
