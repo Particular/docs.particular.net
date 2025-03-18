@@ -2,7 +2,7 @@
 
 The transport uses the RabbitMQ management API to verify broker requirements and enable [delivery limit validation](#delivery-limit-validation).
 
-The [RabbitMQ management plugin](https://www.rabbitmq.com/docs/management) must be enabled, and the plugin's [statistics and metrics collection must not be disabled](https://www.rabbitmq.com/docs/management#disable-stats)
+The [RabbitMQ management plugin](https://www.rabbitmq.com/docs/management) must be enabled, and the plugin's [statistics and metrics collection must not be disabled](https://www.rabbitmq.com/docs/management#disable-stats). The port that the management API is using needs to be accessible by the transport. The default port is `15672` for HTTP and `15671` for HTTPS.
 
 By default, the transport will infer the settings to use to access the management API from the connection string. If the broker configuration requires different settings to access the management API, custom settings can be provided:
 

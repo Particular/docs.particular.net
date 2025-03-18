@@ -14,7 +14,7 @@ upgradeGuideCoreVersions:
 
 The transport now uses the RabbitMQ management API to [verify broker requirements](/transports/rabbitmq/#broker-compatibility) and enable [delivery limit validation](/transports/rabbitmq/connection-settings.md#delivery-limit-validation).
 
-The [RabbitMQ management plugin](https://www.rabbitmq.com/docs/management) must be enabled, and the plugin's [statistics and metrics collection must not be disabled](https://www.rabbitmq.com/docs/management#disable-stats). See [Configuring RabbitMQ management API access](/transports/rabbitmq/connection-settings.md#configuring-rabbitmq-management-api-access) for configuration options.
+The [RabbitMQ management plugin](https://www.rabbitmq.com/docs/management) must be enabled, and the plugin's [statistics and metrics collection must not be disabled](https://www.rabbitmq.com/docs/management#disable-stats). The port that the management API is using needs to be accessible by the transport. The default port is `15672` for HTTP and `15671` for HTTPS. See [Configuring RabbitMQ management API access](/transports/rabbitmq/connection-settings.md#configuring-rabbitmq-management-api-access) for configuration options.
 
 ## RabbitMQ Client v7 Upgrade
 
