@@ -203,6 +203,10 @@ endpointConfiguration.EnableOutbox();
 
 `ITransportReceiveContext.AbortReceiveOperation` has been deprecated in favor of throwing an [`OperationCanceledException`](https://docs.microsoft.com/en-us/dotnet/api/system.operationcanceledexception). This will preserve the NServiceBus version 7 behavior of immediately retrying the message without invoking [recoverability](/nservicebus/recoverability).
 
+## Header manipulation for failed messages
+
+In NServiceBus Version 8 the [header customization API](/nservicebus/recoverability/configure-error-handling.md#error-message-header-customizations) only allows manipulation of [error forwarding headers](/nservicebus/messaging/headers.md#error-forwarding-headers). Use the new [recoverability pipeline](/nservicebus/recoverability/pipeline.md) to get access to all headers on the failed message.
+
 ## Renamed extension method types
 
 The following static extension method types have been renamed:

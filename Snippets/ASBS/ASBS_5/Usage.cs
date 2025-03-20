@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Security.Cryptography;
-using System.Text;
-
+using System.IO;
+using System.Text.Json;
 using Azure.Identity;
 using Azure.Messaging.ServiceBus;
 using NServiceBus;
 using NServiceBus.Transport;
+using NServiceBus.Transport.AzureServiceBus;
 using Shipping;
 
 class Usage
@@ -54,6 +54,20 @@ class Usage
 
         #endregion
 #pragma warning restore CS0618 // Type or member is obsolete
+
+        #region asb-options-validation-disable
+
+        transport.Topology.OptionsValidator = new TopologyOptionsDisableValidationValidator();
+
+        #endregion
+
+        #region asb-options-options-loading
+
+        using var stream = File.OpenRead("topology-options.json");
+        var options = JsonSerializer.Deserialize<TopologyOptions>(stream, TopologyOptionsSerializationContext.Default.Options);
+        var jsonTopology = TopicTopology.FromOptions(options);
+
+        #endregion
 
         var topology = TopicTopology.Default;
         #region asb-interface-based-inheritance

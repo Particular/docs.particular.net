@@ -12,7 +12,7 @@ upgradeGuideCoreVersions:
  - 9
 ---
 
-Upgrading from Azure Service Bus transport version 4 to version 5 is a major upgrade and requires careful planning. Read the entire upgrade guide before beginning the upgrade process.
+Upgrading Azure Service Bus transport from version 4 to version 5 is a major upgrade and requires careful planning. Read the entire upgrade guide before beginning the upgrade process.
 
 Version 5 of the transport introduces the concept of choosing a topic topology. The following two topologies are supported:
 
@@ -155,6 +155,7 @@ Generally, it does not matter whether the publisher or the subscriber is upgrade
 Switching the event delivery path to the new topic-per-event-type approach is a two-step process.
 
 First, ensure that the infrastructure for the event delivery (topic and all subscriptions) is created. This can be done in a number of ways:
+
 - If endpoints have installers enabled, the subscribers can be restarted after the event is marked as "migrated" in the topology configuration. This means that during the startup process the necessary infrastructure for the event is created. The old infrastructure (subscription on the common topic) still exists and is being used to deliver the events
 - Using the [provided tool](/transports/azure-service-bus/operational-scripting.md)
 - Using infrastructure-as-code tools such as Bicep, Terraform, or Pulumi
@@ -173,6 +174,9 @@ Once all events have been migrated, the old single topic can be deleted.
 
 ### Migrating from non-default topics or hierarchies
 
+> [!NOTE]
+> The methods are already obsoleted to give early notice when the migration topology will be phased out. Due to the obsoletion the methods have `[EditorBrowsable(EditorBrowsableState.Never)]` which may hide those members depending on the IDE settings. This can be solved by explicitly typing out the method signatures as shown below or configure the IDE to show members independent of their browsable state ([Visual Studio](https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.editorbrowsableattribute#remarks) or Rider under Editor > General > Code Completion > Filter members by EditorBrowsable attribute).
+
 Use either `TopicTopology.MigrateFromNamedSingleTopic(string topicName)` or `TopicTopology.MigrateFromTopicHierarchy(string topicToPublishTo, string topicToSubscribeOn)`.
 
 The default topic name is `bundle-1`. In case that one is used create the migration topology with `TopicTopology.MigrateFromSingleDefaultTopic()`.
@@ -184,7 +188,7 @@ Previous versions of the transport allowed mapping from queue names to subscript
 Starting with v5 of the transport, subscription names can be assigned directly:
 
 ```csharp
-topology.OverrideSubscriptionNameFor("QueueName", "SubscriptionName")
+topology.OverrideSubscriptionNameFor("QueueNameThatIsLongerThanFiftyCharactersAndStillValid", "SubscriptionName")
 ```
 
 For more advanced scenarios, mappings can be stored in configuration:
@@ -193,12 +197,30 @@ For more advanced scenarios, mappings can be stored in configuration:
 {
   ...
   "QueueNameToSubscriptionNameMap": {
-    "QueueName": "SubscriptionName"
+    "QueueNameThatIsLongerThanFiftyCharactersAndStillValid": "SubscriptionName"
   }
 }
 ```
 
 The assumption is that any previous delegate invocation would needed to be idempotent to create reliable runtime behavior. Subscription names must adhere to the limits outlined in the [Microsoft documentation on subscription creation](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas) and are automatically validated during startup.
+
+For example, if previously an MD5 hash was used as the sanitization function it might be required to preserve the same entity names.
+For queue names that crossed the threshold of 50 characters, it would be necessary to precalculate the MD5 hash and store that as the subscription name. Alternatively simply configure the subscription name already used in production as a hardcoded value. Below is the MD5 hash as a GUID for a queue name called `QueueNameThatIsLongerThanFiftyCharactersAndStillValid`:
+
+```csharp
+topology.OverrideSubscriptionNameFor("QueueNameThatIsLongerThanFiftyCharactersAndStillValid", "7b7139c2-dd0e-2870-424a-891c84f89477")
+```
+
+the hash was calculated assuming the previously known `ValidateAndHashIfNeeded` strategy.
+
+```csharp
+static string HashName(string input)
+{
+    var inputBytes = Encoding.Default.GetBytes(input);
+    var hashBytes = MD5.HashData(inputBytes);
+    return new Guid(hashBytes).ToString();
+}
+```
 
 ### Migrating rule name customizations
 
@@ -215,12 +237,29 @@ Or via configuration:
   "$type": "migration-topology-options",
   ...
   "EventsToMigrateMap": [
-    "Namespace.Event1"
+    "Namespace.Subnamespace.VeryLongEventName1"
   ],
   "SubscribedEventToRuleNameMap": {
-    "Namespace.Event1": "Event1Rule"
+    "Namespace.Subnamespace.VeryLongEventName1": "MyRuleName"
   }
 }
 ```
 
 The assumption is that any previous delegate invocation would needed to be idempotent to create reliable runtime behavior. Rules names must adhere to the limits outlined in the [Microsoft documentation on subscription creation](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas) and are automatically validated during startup.
+
+For example, if previously an MD5 hash was used as the sanitization function it might be required to preserve the same entity names. For rule names that crossed the threshold of 50 characters, it would then be necessary to precalculate the MD5 hash and store that as the rule name. Alternatively simply configure the rule name already used in production as a hardcoded value. Below is the MD5 hash as a GUID for a rule name called `Namespace.Subnamespace.VeryLongEventName1`:
+
+```csharp
+topology.EventToMigrate<Namespace.Subnamespace.VeryLongEventName1>("76b98b1a-3a59-490a-a064-de65c0bc9aa6")
+```
+
+the hash was calculated assuming the previously known `ValidateAndHashIfNeeded` strategy.
+
+```csharp
+static string HashName(string input)
+{
+    var inputBytes = Encoding.Default.GetBytes(input);
+    var hashBytes = MD5.HashData(inputBytes);
+    return new Guid(hashBytes).ToString();
+}
+```

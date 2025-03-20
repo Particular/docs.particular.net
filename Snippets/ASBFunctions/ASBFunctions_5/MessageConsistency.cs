@@ -9,15 +9,8 @@ namespace ASBFunctions_5_0
     using NServiceBus;
     using ExecutionContext = Microsoft.Azure.WebJobs.ExecutionContext;
 
-    class MessageConsistency
+    class MessageConsistency(IFunctionEndpoint endpoint)
     {
-        IFunctionEndpoint endpoint;
-
-        public MessageConsistency(IFunctionEndpoint endpoint)
-        {
-            this.endpoint = endpoint;
-        }
-
         #region asb-function-message-consistency-process-non-transactionally
         [FunctionName("ProcessMessage")]
         public async Task Run(

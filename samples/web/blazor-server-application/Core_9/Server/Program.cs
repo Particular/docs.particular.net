@@ -3,7 +3,6 @@ using NServiceBus;
 using System;
 
 Console.Title = "BlazorServer";
-
 var builder = Host.CreateApplicationBuilder(args);
 var endpointConfiguration = new EndpointConfiguration(Console.Title = "BlazorServer");
 endpointConfiguration.EnableCallbacks(makesRequests: false);

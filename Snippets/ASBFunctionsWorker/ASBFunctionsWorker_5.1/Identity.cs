@@ -1,4 +1,4 @@
-﻿using NServiceBus;
+using NServiceBus;
 
 #region asb-function-isolated-identity-connection
 [assembly: NServiceBusTriggerFunction("WorkerDemoEndpoint", Connection = "MyConnectionName")]

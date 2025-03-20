@@ -32,7 +32,8 @@ namespace ASBFunctions_4_0
         {
             builder.UseNServiceBus(configuration =>
             {
-                configuration.Transport.SubscriptionNamingConvention = (name) => name.Replace("X", "Y");
+                var transport = configuration.Transport;
+                // Configure transport
             });
         }
     }

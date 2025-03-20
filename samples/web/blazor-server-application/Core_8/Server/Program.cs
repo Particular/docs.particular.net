@@ -1,12 +1,13 @@
-using NServiceBus;
 using System;
 using System.Threading.Tasks;
+using NServiceBus;
 
 class Program
 {
     public static async Task Main()
     {
-        var endpointConfiguration = new EndpointConfiguration(Console.Title = "BlazorServer");
+        Console.Title = "BlazorServer";
+        var endpointConfiguration = new EndpointConfiguration("Samples.Blazor.Server");
         endpointConfiguration.EnableCallbacks(makesRequests: false);
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());

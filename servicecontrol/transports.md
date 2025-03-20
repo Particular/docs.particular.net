@@ -27,7 +27,11 @@ Follow the link for each transport for additional information on configuration o
 
 ## Azure Service Bus
 
-In addition to the [connection string options of the transport](/transports/azure-service-bus/configuration.md#configuring-an-endpoint) the following ServiceControl specific options are available in versions 4.4 and above:
+Starting from version 6.4, ServiceControl runs Azure Service Bus transport that, by default, uses [topic-per-event topology](/transports/azure-service-bus/topology.md), as opposed to previously used [single-topic topology](/transports/azure-service-bus/topology.md?version=asbs_4). This change affects the publishing of [integration events](/servicecontrol/contracts.md). In oder to continue using the single-topic topology, the topic name has to be specified exlicitly using the `TopicName=<topic-bundle-name>` connection string option.
+
+The new topology uses event type's full name as the name of the topic to which an event is published e.g. `servicecontrol.contracts.messagefailed`. This mapping can be customized by providing the [topology description in json](/transports/azure-service-bus/configuration.md#entity-creation-topology-options) using `ServiceControl.Transport.ASBS/Toplogy` application setting or `ServiceControl_Transport_ASBS_Toplogy` environment variable.
+
+Furthermore, in addition to the [connection string options of the transport](/transports/azure-service-bus/configuration.md#configuring-an-endpoint) the following ServiceControl specific options are available in versions 4.4 and above:
 
 * `TransportType=AmqpWebSockets` - Configures the transport to use [AMQP over websockets](/transports/azure-service-bus/configuration.md#connectivity).
 * `TopicName=<topic-bundle-name>` - Specifies the [topic name](/transports/azure-service-bus/configuration.md#entity-creation) to be used by the instance. The default value is `bundle-1`.
@@ -55,17 +59,24 @@ ServiceControl does not add any connection settings beyond the Azure Storage con
 
 RabbitMQ contains different `TransportType` options based on the topology and queue type used by the system:
 
-| Queue Type | Topology | `TransporType` value |
+| Queue Type | Topology | `TransportType` value |
 | --- | --- | --- |
 | [Quorum](https://www.rabbitmq.com/docs/quorum-queues) | [Conventional](/transports/rabbitmq/routing-topology.md#conventional-routing-topology) | `RabbitMQ.QuorumConventionalRouting` (Preferred) |
 | [Quorum](https://www.rabbitmq.com/docs/quorum-queues) | [Direct](/transports/rabbitmq/routing-topology.md#direct-routing-topology) | `RabbitMQ.QuorumDirectRouting` |
 | [Classic](https://www.rabbitmq.com/docs/classic-queues) | [Conventional](/transports/rabbitmq/routing-topology.md#conventional-routing-topology) | `RabbitMQ.ClassicConventionalRouting` |
 | [Classic](https://www.rabbitmq.com/docs/classic-queues) | [Direct](/transports/rabbitmq/routing-topology.md#direct-routing-topology) | `RabbitMQ.ClassicDirectRouting` |
 
-In addition to the [connection string options of the transport](/transports/rabbitmq/connection-settings.md) the following ServiceControl specific options are available in versions 4.4 and above:
+In addition to the [connection string options of the transport](/transports/rabbitmq/connection-settings.md), the following options are available in versions 4.4 and above:
 
 * `UseExternalAuthMechanism=true|false(default)` - Specifies that an [external authentication mechanism should be used for client authentication](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-external-authentication).
 * `DisableRemoteCertificateValidation=true|false(default)` - Allows ServiceControl to connect to the broker [even if the remote server certificate is invalid](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-remote-certificate-validation).
+
+These options are available in version 6.5 and above:
+
+* `ManagementApiUrl=<SCHEME://HOST:PORT>` - The URL of the RabbitMQ management API. If this option is not set, the transport will attempt to automatically generate the URL based on the broker connection string.
+* `ManagementApiUserName=<USERNAME>` - The username used to connect to the RabbitMQ management API. If this option is not set, the credentials from the broker connection string will be used.
+* `ManagementApiPassword=<PASSWORD>` - The password used to connect to the RabbitMQ management API. If this option is not set, the credentials from the broker connection string will be used.
+* `ValidateDeliveryLimits=<true(default)|false>` - Controls the [delivery limit validation](/transports/rabbitmq/connection-settings.md#delivery-limit-validation) of the ServiceControl queues.
 
 ## SQL
 

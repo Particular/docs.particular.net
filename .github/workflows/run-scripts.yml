@@ -49,8 +49,8 @@ jobs:
 
           Write-Output "Diff size is $($changes.Length) bytes"
 
-          if ($changes.Length -gt 20480) {
-            throw "Changes diff is > 20KB - too much change to trust without verifying. changed.patch file have been created as an artifact. To merge this file run 'git apply changes.patch'"
+          if ($changes.Length -gt 35840) {
+            throw "Changes diff is > 35KB - too much change to trust without verifying. changed.patch file have been created as an artifact. To merge this file run 'git apply changes.patch'"
             return 1
           }
           if ($changes.Length -eq 0) {

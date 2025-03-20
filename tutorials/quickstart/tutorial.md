@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Quickstart: Sending your first messages"
-reviewed: 2024-04-16
+reviewed: 2025-02-18
 summary: "Part 1: See why software systems built on asynchronous messaging using NServiceBus are superior to traditional synchronous HTTP-based web services."
 extensions:
 - !!tutorial
@@ -8,11 +8,13 @@ extensions:
   nextUrl: tutorials/quickstart/tutorial-reliability
 ---
 
-Want to quickly learn what NServiceBus is all about? You're in the right place. In less than one hour, learn how to:
+Want to learn what NServiceBus is all about? You're in the right place. 
 
-* Connect different parts of a system using messages
-* Build a failure-resistant system using messages
-* Create a system that can be easily extended as new requirements are added
+In just 10 minutes, see how to:
+
+* Send and process command messages
+* Publish and subscribe to event messages
+* All fully abstracted from the underlying queuing system
 
 > [!NOTE]
 > * If you're new here, check out the [overview of NServiceBus](https://particular.net/nservicebus).
@@ -36,11 +38,11 @@ downloadbutton
 
 ## **RetailDemo** Project structure
 
-The solution contains five projects: **Billing**, **ClientUI**, **Messages**, **Platform**, and **Sales**.
+The solution contains five projects: **Billing**, **ClientUI**, **Messages**, **PlatformLauncher**, and **Sales**.
 
 The **Billing**, **ClientUI**, and **Sales** projects are [endpoints](/nservicebus/endpoints/). They communicate with each other using NServiceBus messages. The **ClientUI** endpoint is implemented as a web application and is the entry point to our system. The **Sales** and **Billing** endpoints, are console applications, that contain business logic related to processing and fulfilling orders.
 
-Each endpoint project references the **Messages** assembly, which contains the shared definitions of messages as class files. The **Platform** project will provide a demonstration of the Particular Service Platform, but initially, its code is commented out.
+Each endpoint project references the **Messages** assembly, which contains the shared definitions of messages as class files. The **PlatformLauncher** project will provide a demonstration of the Particular Service Platform, but initially, its code is commented out.
 
 ![Solution Explorer view](solution-explorer-2.png "width=300")
 

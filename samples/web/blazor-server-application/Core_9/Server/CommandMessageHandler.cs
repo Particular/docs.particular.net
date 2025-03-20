@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
 
 using System.Threading.Tasks;
@@ -12,6 +12,7 @@ public class CommandMessageHandler(ILogger<CommandMessageHandler> logger) :
     {
         logger.LogInformation("Hello from CommandMessageHandler");
         Task reply;
+
         if (message.Id % 2 == 0)
         {
             reply = context.Reply(ErrorCodes.Fail);
@@ -20,6 +21,7 @@ public class CommandMessageHandler(ILogger<CommandMessageHandler> logger) :
         {
             reply = context.Reply(ErrorCodes.None);
         }
+
         return reply;
     }
 }

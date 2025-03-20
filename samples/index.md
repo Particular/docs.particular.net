@@ -72,7 +72,7 @@ In many samples, messages are defined in a shared project along with reusable he
 
 ### [Message destinations](/nservicebus/messaging/routing.md)
 
-Many samples make use of `SendLocal` or send to an endpoint directly by specifing the destination using a string in code. This is done to simplify the amount of configuration in samples. In a production solution, most message destinations should be defined via [routing configuration](/nservicebus/messaging/routing.md).
+Many samples make use of `SendLocal` or send to an endpoint directly by specifying the destination using a string in code. This is done to simplify the amount of configuration in samples. In a production solution, most message destinations should be defined via [routing configuration](/nservicebus/messaging/routing.md).
 
 ### [Dependency injection](/nservicebus/dependency-injection/)
 

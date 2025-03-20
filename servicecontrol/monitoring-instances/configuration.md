@@ -75,6 +75,23 @@ _Not applicable to container deployments. Containers always expose port `33633`.
 | --- | --- |
 | int | `33633` |
 
+### Monitoring/ShutdownTimeout
+
+_Added in version 6.5.0_
+
+The maximum allowed time for the process to complete the shutdown.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_SHUTDOWNTIMEOUT` |
+| **App config key** | `Monitoring/ShutdownTimeout` |
+| **SCMU field** | N/A |
+
+| Environment/Installation type            | Type     | Default value |
+| Containers | TimeSpan | `00:00:05` (5 seconds) |
+| Installation via PowerShell (on Windows) | TimeSpan | `00:02:00` (2 minutes) |
+| Installation via ServiceControl Management Utility (SCMU) (on Windows) | TimeSpan | `00:02:00` (2 minutes) |
+
 ## Logging
 
 ### Monitoring/LogPath

@@ -40,7 +40,7 @@ A single Azure Service Bus topic [can hold up to 2,000 subscriptions, and each P
 By allocating a separate topic for each concrete event type, the overall system can scale more effectively:
 
 - Each topic is dedicated to one event type, so message consumption is isolated.
-- Failure domain size is reduced from entire system to single topic so if any single topic hits its 5 GB quota, only that event type is affected.
+- Failure domain size is reduced from the entire system to a single topic so if any single topic hits its 5 GB quota, only that event type is affected.
 - The maximum limit of 1,000 topics per messaging unit can comfortably support hundreds of event types, especially when factoring that not all event types are high-volume
 
 > [!NOTE]
@@ -48,7 +48,7 @@ By allocating a separate topic for each concrete event type, the overall system 
 
 #### Subscription rule matching
 
-In this topology, no SQL or Correlation filtering is required on the topic itself because messages in a topic are all of the same event type. Subscriptions can use a default “match-all” rule (`1=1`) or the default catch-all rule on each topic subscription.
+In this topology, no SQL or Correlation filtering is required on the topic itself, because messages in a topic are all of the same event type. Subscriptions can use a default “match-all” rule (`1=1`) or the default catch-all rule on each topic subscription.
 
 Since there is only one event type per topic:
 
@@ -56,7 +56,7 @@ Since there is only one event type per topic:
 - Interface-based inheritance does require extra care if multiple interfaces or base classes are in play (see below).
 
 > [!NOTE]
-> With the mapping API it is possible to multiplex multiple (related) events over the same topic. This is only advisable when all the subscribers on the same topic are interested in all the (related) events on the topic. Otherwise it would be necessary to re-introduce SQL or corelation filter rules which can impact the throughput on the topic. By disabling auto-subscribe and removing the manage rights the transport assumes all required events arrive in the input queue due to "forwarding" on the subscriptions and would never try to update the existing rules which allows tweaking the runtime behavior to even more complex multiplexing needs.
+> With the mapping API it is possible to multiplex multiple (related) events over the same topic. This is only advisable when all the subscribers on the same topic are interested in all the (related) events on the topic. Otherwise it would be necessary to re-introduce SQL or Correlation filter rules, which can impact the throughput on the topic. By disabling auto-subscribe and removing the manage rights, the transport assumes all required events arrive in the input queue due to "forwarding" on the subscriptions and would never try to update the existing rules. This allows tweaking the runtime behavior to an even more complex multiplexing needs.
 
 ##### Interface-based inheritance
 
@@ -96,11 +96,11 @@ If the subscriber is interested only in the interface `IOrderStatusChanged`, it 
 
 snippet: asb-interface-based-inheritance
 
-When a publisher starts publishing `Shipping.OrderDeclined` the event is needs to be mapped
+When a publisher starts publishing `Shipping.OrderDeclined` the event needs to be mapped
 
 snippet: asb-interface-based-inheritance-declined
 
-in order to opt into receiving the event into the subscriber's input queue and therefore requires a topology change.
+to opt into receiving the event into the subscriber's input queue and therefore requires a topology change.
 
 ```mermaid
 flowchart LR
@@ -125,12 +125,14 @@ flowchart LR
 
 ##### Evolution of the message contract
 
-As mentioned in [versioning of shared contracts](/nservicebus/messaging/sharing-contracts.md#versioning) and also shown in the examples above, NServiceBus uses the fully-qualified assembly name in the message header. [Evolving the message contract](/nservicebus/messaging/evolving-contracts.md) encourages creating entirely new contract types and then adding a version number to the original name. For example, when evolving `Shipping.OrderAccepted`, the publisher would create a new contract called `Shipping.OrderAcceptedV2`. When the publisher publishes `Shipping.OrderAcceptedV2` events, those would be published by default to `Shipping.OrderAcceptedV2` topic and therefore existing subscribers interested in the previous version would not receive those events. The following options are available:
+As mentioned in [versioning of shared contracts](/nservicebus/messaging/sharing-contracts.md#versioning), and shown in the examples above, NServiceBus uses the fully-qualified assembly name in the message header. [Evolving the message contract](/nservicebus/messaging/evolving-contracts.md) encourages creating entirely new contract types and then adding a version number to the original name. For example, when evolving `Shipping.OrderAccepted`, the publisher creates a new contract called `Shipping.OrderAcceptedV2`. When the publisher publishes `Shipping.OrderAcceptedV2` events, by default, these are published to the `Shipping.OrderAcceptedV2` topic and therefore existing subscribers interested in the previous version would not receive those events. 
+
+Use one of the following options when evolving message contracts:
 
 - Publish both versions of the event on the publisher side to individual topics and setting up the subscribers where necessary to receive both _or_
-- Multiplex all versions of the event to the same topic and filter the versions on the subscriber side within specialized filter rules
+- Multiplex all versions of the event to the same topic and filter the versions on the subscriber within specialized filter rules
 
-When publishing both versions of the event the subscribers need to opt-in to receiving those events by adding an explicit mapping:
+When publishing both versions of the event, the subscribers need to opt-in to receiving those events by adding an explicit mapping:
 
 snippet: asb-versioning-subscriber-mapping
 
@@ -142,18 +144,18 @@ and then a customization that promotes the full name to a property of the native
 
 snippet: asb-versioning-publisher-customization
 
-which would allow adding either a correlation filter (preferred) or a SQL filter to filter out based on the promoted full name.
+which would allow adding either a Correlation filter (preferred) or a SQL filter based on the promoted full name.
 
 #### Handling overflow and scaling
 
-In the single-topic model, a high volume of messages in one event type can degrade overall system performance for all events when the topic saturates. With topic-per-event, each event type has its own 5 GB quota and its own topic partitioning, providing a more localized failure domain
+In the single-topic model, a high volume of messages in one event type can degrade overall system performance for all events when the topic is saturated. With the topic-per-event model, each event type has its own 5 GB quota and its own topic partitioning. This provides a more localized failure domain:
 
-- Failure isolation: If one event type experiences a surge, only that topic can get throttled or fill its quota.
-- Load distribution: The broker spreads load across multiple internal partitions, often improving throughput compared to a single large topic.
+- Failure isolation: If one event type experiences a surge, only that topic will be throttled or fill its quota.
+- Load distribution: The broker spreads load across multiple internal partitions, often improving throughput when compared to a single large topic.
 
 #### Observability
 
-Monitoring is often simpler because each event type’s topic can be tracked with distinct metrics (message count, size, etc.). You can see which event types are experiencing spikes without filtering through a single large “bundle” topic
+Monitoring is often simpler because each event type’s topic can be tracked with distinct metrics (message count, size, etc.). You can see which event types are experiencing spikes without needing to filter a single large “bundle” topic.
 
 #### Topology highlights
 

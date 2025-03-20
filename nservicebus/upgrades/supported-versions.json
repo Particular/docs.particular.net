@@ -12,10 +12,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "9.1",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "9.2",
           "SupportLevel": "Mainstream"
         }
@@ -30,14 +26,6 @@
         },
         {
           "Minor": "6.2",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "7.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "7.1",
           "SupportLevel": "Mainstream"
         },
         {
@@ -98,6 +86,10 @@
         {
           "Minor": "5.0",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "6.0",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -114,6 +106,10 @@
         },
         {
           "Minor": "5.2",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "6.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -513,6 +509,10 @@
         {
           "Minor": "4.0",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "4.1",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -746,11 +746,11 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "9.1",
+          "Minor": "9.2",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "9.2",
+          "Minor": "10.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -944,6 +944,10 @@
         {
           "Minor": "4.2",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "5.0",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -1084,10 +1088,6 @@
       "PackageId": "Particular.PlatformSample",
       "Versions": [
         {
-          "Minor": "3.22",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "3.23",
           "SupportLevel": "Mainstream"
         },
@@ -1105,6 +1105,14 @@
         },
         {
           "Minor": "3.32",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.33",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.34",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -1183,7 +1191,7 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "6.3",
+          "Minor": "6.5",
           "SupportLevel": "Mainstream"
         }
       ]
