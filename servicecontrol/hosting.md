@@ -2,7 +2,7 @@
 title: ServiceControl Hosting Options
 summary: Hosting options for running ServiceControl instances
 component: ServiceControl
-reviewed: 2025-01-20
+reviewed: 2025-03-20
 ---
 
 ServiceControl instances can be hosted on:
@@ -39,29 +39,9 @@ That Particular Platform images are OCI compliant and can be used in various env
 
 - Docker
 - Kubernetes
+- Podman
 
 ### Supported architectures
 
 - `linux/arm64`
 - `linux/amd64`
-
-### Supported environments
-
-The following environments are supported:
-
-- Azure Container Apps
-- Azure Managed Kubernetes Service (AKS) 
-- Amazon Elastic Kubernetes Service (EKS)
-- Amazon Elastic Container Service (ECS)
-- Docker Engine on Windows 2022
-
-### Known working environments
-
-Docker and Kubernetes are available in many configurations and environments. Many will "just work" but are unsupported for production deployments.
-
-The following additional environments are known to work:
-
-- Docker Desktop for Windows
-- Docker Desktop for Mac
-- Docker on Fedora
-- Podman on Fedora Workstation 41
