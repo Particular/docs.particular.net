@@ -1,25 +1,27 @@
 ﻿using System.Security.Principal;
 using System.Threading.Tasks;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 using NServiceBus.MessageMutator;
 
 #region set-principal-from-header-mutator
 public class SetCurrentPrincipalBasedOnHeaderMutator :
     IMutateIncomingTransportMessages
 {
-    static ILog log = LogManager.GetLogger("Handler");
+  
     readonly IPrincipalAccessor principalAccessor;
+    private readonly ILogger<SetCurrentPrincipalBasedOnHeaderMutator> logger;
 
-    public SetCurrentPrincipalBasedOnHeaderMutator(IPrincipalAccessor principalAccessor)
+    public SetCurrentPrincipalBasedOnHeaderMutator(IPrincipalAccessor principalAccessor, ILogger<SetCurrentPrincipalBasedOnHeaderMutator> logger)
     {
         this.principalAccessor = principalAccessor;
+        this.logger = logger;
     }
 
     public Task MutateIncoming(MutateIncomingTransportMessageContext context)
     {
         if (context.Headers.TryGetValue("UserName", out var userNameHeader))
         {
-            log.Info("Adding CurrentPrincipal user from headers");
+            logger.LogInformation("Adding CurrentPrincipal user from headers");
             var identity = new GenericIdentity(userNameHeader);
             principalAccessor.CurrentPrincipal = new GenericPrincipal(identity, new string[0]);
         }

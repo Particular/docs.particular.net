@@ -1,16 +1,14 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 partial class Program
 {
-    public class MyScheduledTaskHandler : IHandleMessages<MyScheduledTask>
+    public class MyScheduledTaskHandler(ILogger<MyScheduledTaskHandler> logger) : IHandleMessages<MyScheduledTask>
     {
-        static ILog log = LogManager.GetLogger<MyHandler>();
-
         public Task Handle(MyScheduledTask message, IMessageHandlerContext context)
         {
-            log.Info(nameof(MyScheduledTask) + " invoked");
+            logger.LogInformation(nameof(MyScheduledTask) + " invoked");
             return Task.CompletedTask;
         }
     }

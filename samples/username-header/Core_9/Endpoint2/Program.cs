@@ -1,35 +1,42 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.MessageMutator;
 
-class Program
+
+Console.Title = "Endpoint2";
+
+var builder = Host.CreateApplicationBuilder(args);
+
+var endpointConfiguration = new EndpointConfiguration("Samples.UsernameHeader.Endpoint2");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
+
+#region component-registration-receiver
+// Register both services
+builder.Services.AddSingleton<IPrincipalAccessor, PrincipalAccessor>();
+builder.Services.AddSingleton<SetCurrentPrincipalBasedOnHeaderMutator>();
+
+var serviceProvider = builder.Services.BuildServiceProvider();
+var principalAccessor = serviceProvider.GetRequiredService<IPrincipalAccessor>(); // Use the interface type here
+var mutator = serviceProvider.GetRequiredService<SetCurrentPrincipalBasedOnHeaderMutator>();
+
+endpointConfiguration.RegisterMessageMutator(mutator);
+
+endpointConfiguration.RegisterComponents(c =>
 {
-    static async Task Main()
-    {
-        Console.Title = "Endpoint2";
-        var endpointConfiguration = new EndpointConfiguration("Samples.UsernameHeader.Endpoint2");
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
+    //Register the accessor in the container so that the handler can access it
+    c.AddSingleton<IPrincipalAccessor>(principalAccessor);
+});
 
-        #region component-registration-receiver
+#endregion
 
-        var principalAccessor = new PrincipalAccessor();
-        var mutator = new SetCurrentPrincipalBasedOnHeaderMutator(principalAccessor);
-        endpointConfiguration.RegisterMessageMutator(mutator);
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
 
-        endpointConfiguration.RegisterComponents(c =>
-        {
-            //Register the accessor in the container so that the handler can access it
-            c.AddSingleton<IPrincipalAccessor>(principalAccessor);
-        });
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();
 
-        #endregion
-
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop();
-    }
-}

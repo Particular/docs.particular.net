@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0;net6.0;net48</TargetFrameworks>
     <OutputType>Exe</OutputType>
@@ -8,5 +8,6 @@
     <PackageReference Include="Common.Logging" Version="3.*" />
     <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.CommonLogging" Version="5.0.*" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="1.1.0" />
   </ItemGroup>
 </Project>

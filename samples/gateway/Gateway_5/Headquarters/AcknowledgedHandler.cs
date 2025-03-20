@@ -1,14 +1,12 @@
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 using Shared;
 
 #region AcknowledgedHandler
-public class AcknowledgedHandler : IHandleMessages<PriceUpdateAcknowledged>
+public class AcknowledgedHandler(ILogger<AcknowledgedHandler> logger) : IHandleMessages<PriceUpdateAcknowledged>
 {
-    static readonly ILog log = LogManager.GetLogger<AcknowledgedHandler>();
-
     public Task Handle(PriceUpdateAcknowledged message, IMessageHandlerContext context)
     {
-        log.Info($"Price update received by: {message.BranchOffice}");
+        logger.LogInformation($"Price update received by: {message.BranchOffice}");
         return Task.CompletedTask;
     }
 }

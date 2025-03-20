@@ -2,23 +2,21 @@
 using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
-public class SimpleMessageHandler :
+public class SimpleMessageHandler(ILogger<SimpleMessageHandler> logger) :
     IHandleMessages<SimpleMessage>
 {
-    static ILog log = LogManager.GetLogger<SimpleMessageHandler>();
-
     public Task Handle(SimpleMessage message, IMessageHandlerContext context)
     {
         #region ReceiverHandler
 
-        log.Info($"Received message with Id = {message.Id}.");
+        logger.LogInformation($"Received message with Id = {message.Id}.");
         if (message.Id.Any(char.IsLower))
         {
             throw new Exception("Lowercase characters are not allowed in message Id.");
         }
-        log.Info($"Successfully processed message with Id = {message.Id}.");
+        logger.LogInformation($"Successfully processed message with Id = {message.Id}.");
         return Task.CompletedTask;
 
         #endregion

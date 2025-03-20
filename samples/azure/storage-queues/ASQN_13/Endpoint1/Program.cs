@@ -1,54 +1,54 @@
 ﻿using System;
-
+using System.Threading.Tasks;
+using Endpoint1;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-
-#region endpointName
-
-var endpointName = "Samples.Azure.StorageQueues.Endpoint1.With.A.Very.Long.Name.And.Invalid.Characters";
-var endpointConfiguration = new EndpointConfiguration(endpointName);
-
-#endregion
-
-Console.Title = endpointName;
-
-#region config
-
-var transport = new AzureStorageQueueTransport("UseDevelopmentStorage=true");
-var routingSettings = endpointConfiguration.UseTransport(transport);
-
-#endregion
-
-#region sanitization
-
-transport.QueueNameSanitizer = BackwardsCompatibleQueueNameSanitizer.WithMd5Shortener;
-
-#endregion
-
-routingSettings.DisablePublishing();
-endpointConfiguration.UsePersistence<LearningPersistence>();
-endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-endpointConfiguration.EnableInstallers();
-
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
-Console.WriteLine("Press 'enter' to send a message");
-Console.WriteLine("Press any other key to exit");
-
-while (true)
+class Program
 {
-    var key = Console.ReadKey();
-    Console.WriteLine();
-
-    if (key.Key != ConsoleKey.Enter)
+    public static async Task Main(string[] args)
     {
-        break;
+        await CreateHostBuilder(args).Build().RunAsync();
     }
 
-    var message = new Message1
-    {
-        Property = "Hello from Endpoint1"
-    };
-    await endpointInstance.Send("Samples-Azure-StorageQueues-Endpoint2", message);
-    Console.WriteLine("Message1 sent");
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureServices((hostContext, services) =>
+            {
+                services.AddHostedService<InputLoopService>();
+
+            }).UseNServiceBus(x =>
+            {
+                #region endpointName
+
+                var endpointName = "Samples.Azure.StorageQueues.Endpoint1.With.A.Very.Long.Name.And.Invalid.Characters";
+                var endpointConfiguration = new EndpointConfiguration(endpointName);
+
+                #endregion
+
+                Console.Title = endpointName;
+
+                #region config
+
+                var transport = new AzureStorageQueueTransport("UseDevelopmentStorage=true");
+                var routingSettings = endpointConfiguration.UseTransport(transport);
+
+                #endregion
+
+                #region sanitization
+
+                transport.QueueNameSanitizer = BackwardsCompatibleQueueNameSanitizer.WithMd5Shortener;
+
+                #endregion
+
+                routingSettings.DisablePublishing();
+                endpointConfiguration.UsePersistence<LearningPersistence>();
+                endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+                endpointConfiguration.EnableInstallers();
+
+
+                return endpointConfiguration;
+            });
+
 }
-await endpointInstance.Stop();

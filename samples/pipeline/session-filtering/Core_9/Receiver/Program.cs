@@ -1,62 +1,45 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
+using Receiver;
 
 class Program
 {
-    static async Task Main(string[] args)
+    public static async Task Main(string[] args)
     {
-        Console.Title = "Receiver";
-        var endpointConfiguration = new EndpointConfiguration("Samples.SessionFilter.Receiver");
-
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
-
-        var sessionKeyProvider = new RotatingSessionKeyProvider();
-
-        endpointConfiguration.ApplySessionFilter(sessionKeyProvider);
-
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-        MainLoop(sessionKeyProvider);
-
-        await endpointInstance.Stop();
+        await CreateHostBuilder(args).Build().RunAsync();
     }
 
-    static void MainLoop(RotatingSessionKeyProvider sessionKeyProvider)
-    {
-        PrintMenu(sessionKeyProvider);
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+     Host.CreateDefaultBuilder(args)
+     .UseNServiceBus(x =>
+         {
 
-        while (true)
-        {
+             var endpointConfiguration = new EndpointConfiguration("Samples.SessionFilter.Receiver");
 
-            switch (Console.ReadKey(true).Key)
-            {
-                case ConsoleKey.C:
-                    sessionKeyProvider.NextKey();
-                    PrintMenu(sessionKeyProvider);
-                    break;
-                case ConsoleKey.Escape:
-                    return;
-            }
-        }
-    }
+             endpointConfiguration.UsePersistence<LearningPersistence>();
+             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+             endpointConfiguration.UseTransport(new LearningTransport());
 
-    static void PrintMenu(ISessionKeyProvider sessionKeyProvider)
-    {
-        Console.Clear();
-        Console.WriteLine($"Session Key: {sessionKeyProvider.SessionKey}");
-        Console.WriteLine("C)   Change Session Key");
-        Console.WriteLine("ESC) Close");
-    }
+             var sessionKeyProvider = new RotatingSessionKeyProvider();
+             //Register FilterIncomingMessages if it's a service
+             var logger = new LoggerFactory().CreateLogger<FilterIncomingMessages>();
+             endpointConfiguration.ApplySessionFilter(sessionKeyProvider, logger);
+
+
+             return endpointConfiguration;
+         }).ConfigureServices((hostContext, services) =>
+         {
+             Console.Title = "Receiver";
+             services.AddSingleton<RotatingSessionKeyProvider>(); // Register the service
+             services.AddHostedService<ReceivingLoopService>();
+         });
+
+
+
+
 }
 
-class SomeMessageHandler : IHandleMessages<SomeMessage>
-{
-    public Task Handle(SomeMessage message, IMessageHandlerContext context)
-    {
-        Console.WriteLine($"Got message {message.Counter}");
-        return Task.CompletedTask;
-    }
-}

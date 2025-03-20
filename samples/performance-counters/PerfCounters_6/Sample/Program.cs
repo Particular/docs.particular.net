@@ -1,5 +1,11 @@
 
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Sample;
+
 Console.Title = "PerfCounters";
+var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddHostedService<InputLoopService>();
 var endpointConfiguration = new EndpointConfiguration("Samples.PerfCounters");
 endpointConfiguration.EnableInstallers();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
@@ -11,24 +17,10 @@ var performanceCounters = endpointConfiguration.EnableWindowsPerformanceCounters
 performanceCounters.EnableSLAPerformanceCounters(TimeSpan.FromSeconds(100));
 #endregion
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
 Console.WriteLine("Press enter to send 10 messages with random sleep");
-Console.WriteLine("Press any key to exit");
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
 
-while (true)
-{
-    var key = Console.ReadKey();
-    Console.WriteLine();
-
-    if (key.Key != ConsoleKey.Enter)
-    {
-        break;
-    }
-    for (var i = 0; i < 10; i++)
-    {
-        var myMessage = new MyMessage();
-        await endpointInstance.SendLocal(myMessage);
-    }
-}
-await endpointInstance.Stop();
-
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

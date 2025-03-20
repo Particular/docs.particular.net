@@ -3,7 +3,7 @@ using Messages;
 
 public class CommandSender
 {
-    public static async Task Start(IEndpointInstance endpointInstance)
+    public static async Task Start(IMessageSession messageSession)
     {
         Console.WriteLine("Press 'C' to send a command");
         Console.WriteLine("Press 'R' to send a request");
@@ -19,16 +19,16 @@ public class CommandSender
             switch (key.Key)
             {
                 case ConsoleKey.C:
-                    await SendCommand(endpointInstance);
+                    await SendCommand(messageSession);
                     continue;
                 case ConsoleKey.R:
-                    await SendRequest(endpointInstance);
+                    await SendRequest(messageSession);
                     continue;
                 case ConsoleKey.D:
-                    await Data(endpointInstance);
+                    await Data(messageSession);
                     continue;
                 case ConsoleKey.X:
-                    await Expiration(endpointInstance);
+                    await Expiration(messageSession);
                     continue;
             }
             return;
@@ -37,17 +37,17 @@ public class CommandSender
     }
 
     // Shut down server before sending this message, after 30 seconds, the message will be moved to Transactional dead-letter messages queue.
-    static Task Expiration(IEndpointInstance endpointInstance)
+    static Task Expiration(IMessageSession messageSession)
     {
         var messageThatExpires = new MessageThatExpires
         {
             RequestId = Guid.NewGuid()
         };
         Console.WriteLine("message with expiration was sent");
-        return endpointInstance.Send("Samples.Unobtrusive.Server", messageThatExpires);
+        return messageSession.Send("Samples.Unobtrusive.Server", messageThatExpires);
     }
 
-    static Task Data(IEndpointInstance endpointInstance)
+    static Task Data(IMessageSession messageSession)
     {
         var requestId = Guid.NewGuid();
 
@@ -57,10 +57,10 @@ public class CommandSender
             LargeDataBus = new byte[1024 * 1024 * 5]
         };
         Console.WriteLine($"Request sent id: {requestId}");
-        return endpointInstance.Send("Samples.Unobtrusive.Server", largeMessage);
+        return messageSession.Send("Samples.Unobtrusive.Server", largeMessage);
     }
 
-    static Task SendRequest(IEndpointInstance endpointInstance)
+    static Task SendRequest(IMessageSession messageSession)
     {
         var requestId = Guid.NewGuid();
 
@@ -69,10 +69,10 @@ public class CommandSender
             RequestId = requestId
         };
         Console.WriteLine($"Request sent id: {requestId}");
-        return endpointInstance.Send("Samples.Unobtrusive.Server", request);
+        return messageSession.Send("Samples.Unobtrusive.Server", request);
     }
 
-    static Task SendCommand(IEndpointInstance endpointInstance)
+    static Task SendCommand(IMessageSession messageSession)
     {
         var commandId = Guid.NewGuid();
 
@@ -81,6 +81,6 @@ public class CommandSender
             CommandId = commandId,
         };
         Console.WriteLine($"Command sent id: {commandId}");
-        return endpointInstance.Send("Samples.Unobtrusive.Server", myCommand);
+        return messageSession.Send("Samples.Unobtrusive.Server", myCommand);
     }
 }

@@ -1,16 +1,15 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 #region PlaceDelayedOrderHandler
 
-public class PlaceDelayedOrderHandler :
+public class PlaceDelayedOrderHandler(ILogger<PlaceDelayedOrderHandler> logger) :
     IHandleMessages<PlaceDelayedOrder>
-{
-    static ILog log = LogManager.GetLogger<PlaceDelayedOrderHandler>();
+{   
 
     public Task Handle(PlaceDelayedOrder message, IMessageHandlerContext context)
     {
-        log.Info($"[Defer Message Delivery] Order for Product:{message.Product} placed with id: {message.Id}");
+        logger.LogInformation($"[Defer Message Delivery] Order for Product:{message.Product} placed with id: {message.Id}");
         return Task.CompletedTask;
     }
 }

@@ -1,16 +1,14 @@
-﻿using NServiceBus.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 #region handler
 
-public class MyHandler : IHandleMessages<MyMessage>
+public class MyHandler(ILogger<MyHandler> logger) : IHandleMessages<MyMessage>
 {
-    static readonly ILog log = LogManager.GetLogger<MyHandler>();
-
     public async Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         var sleepTime = Random.Shared.Next(1, 1000);
         await Task.Delay(sleepTime, context.CancellationToken);
-        log.Info($"Hello from MyHandler. Slept for {sleepTime} ms");
+        logger.LogInformation($"Hello from MyHandler. Slept for {sleepTime} ms");
     }
 }
 

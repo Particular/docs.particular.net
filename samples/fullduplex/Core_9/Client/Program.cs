@@ -1,47 +1,22 @@
 using System;
-using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Client;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Client";
-        LogManager.Use<DefaultFactory>()
-            .Level(LogLevel.Info);
-        var endpointConfiguration = new EndpointConfiguration("Samples.FullDuplex.Client");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press enter to send a message");
-        Console.WriteLine("Press any key to exit");
+Console.Title = "Client";
+var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddHostedService<ClientLoopService>();
+var endpointConfiguration = new EndpointConfiguration("Samples.FullDuplex.Client");
+endpointConfiguration.UsePersistence<LearningPersistence>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        #region ClientLoop
+Console.WriteLine("Press enter to send a message");
 
-        while (true)
-        {
-            var key = Console.ReadKey();
-            Console.WriteLine();
+#region ClientLoop
 
-            if (key.Key != ConsoleKey.Enter)
-            {
-                break;
-            }
-            var guid = Guid.NewGuid();
-            Console.WriteLine($"Requesting to get data by id: {guid:N}");
-
-            var message = new RequestDataMessage
-            {
-                DataId = guid,
-                String = "String property value"
-            };
-            await endpointInstance.Send("Samples.FullDuplex.Server", message);
-        }
-
-        #endregion
-        await endpointInstance.Stop();
-    }
-}
+#endregion
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

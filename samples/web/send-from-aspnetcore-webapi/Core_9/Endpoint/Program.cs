@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-static class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "ASPNETCoreEndpoint";
-        var endpointConfiguration = new EndpointConfiguration("Samples.ASPNETCore.Endpoint");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseTransport(new LearningTransport());
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop();
-    }
-}
+Console.Title = "ASPNETCoreEndpoint";
+var builder = Host.CreateApplicationBuilder(args);
+
+var endpointConfiguration = new EndpointConfiguration("Samples.ASPNETCore.Endpoint");
+endpointConfiguration.UsePersistence<LearningPersistence>();
+endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
+Console.WriteLine("Press any key");
+Console.ReadKey();
+
+builder.UseNServiceBus(endpointConfiguration);
+
+await builder.Build().RunAsync();

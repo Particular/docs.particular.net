@@ -1,21 +1,20 @@
 ﻿using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 using NServiceBus.MessageMutator;
 
 #region incomingmutator
-public class IncomingMessageBodyWriter :
-    IMutateIncomingTransportMessages
+public class IncomingMessageBodyWriter(ILogger<IncomingMessageBodyWriter> logger) :
+    IMutateIncomingTransportMessages, IIncomingMessageBodyWriter
 {
-    static ILog log = LogManager.GetLogger<IncomingMessageBodyWriter>();
-
     public Task MutateIncoming(MutateIncomingTransportMessageContext context)
     {
         var bodyAsString = Encoding.UTF8
             .GetString(context.Body.ToArray());
         var contentType = context.Headers[Headers.ContentType];
-        log.Info($"ContentType '{contentType}'. Serialized Message Body:\r\n{bodyAsString}");
+
+        logger.LogInformation($"ContentType '{contentType}'. Serialized Message Body:\r\n{bodyAsString}");
         return Task.CompletedTask;
     }
 }

@@ -1,64 +1,44 @@
 using System;
 using System.Threading.Tasks;
+using LeftSender;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 static class Program
 {
-    static async Task Main()
+
+    public static async Task Main(string[] args)
     {
-        Console.Title = "LeftSender";
-        var endpointConfiguration = new EndpointConfiguration("Samples.Bridge.LeftSender");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-
-        endpointConfiguration.Conventions().DefiningCommandsAs(t => t.Name == "PlaceOrder");
-        endpointConfiguration.Conventions().DefiningMessagesAs(t => t.Name == "OrderResponse");
-        endpointConfiguration.Conventions().DefiningEventsAs(t => t.Name == "OrderReceived");
-
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        var routing = endpointConfiguration.UseTransport(new LearningTransport());
-        routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.Bridge.RightReceiver");
-
-        endpointConfiguration.SendFailedMessagesTo("error");
-        endpointConfiguration.EnableInstallers();
-
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        await Start(endpointInstance);
-        await endpointInstance.Stop();
+        await CreateHostBuilder(args).Build().RunAsync();
     }
 
-    static async Task Start(IEndpointInstance endpointInstance)
-    {
-        Console.WriteLine("Press '1' to send the PlaceOrder command");
-        Console.WriteLine("Press '2' to publish the OrderReceived event");
-        Console.WriteLine("Press 'esc' other key to exit");
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+     Host.CreateDefaultBuilder(args)
+         .UseNServiceBus(x =>
+         {
 
-        while (true)
-        {
-            var key = Console.ReadKey();
-            Console.WriteLine();
+             var endpointConfiguration = new EndpointConfiguration("Samples.Bridge.LeftSender");
+             endpointConfiguration.UsePersistence<LearningPersistence>();
 
-            var orderId = Guid.NewGuid();
-            switch (key.Key)
-            {
-                case ConsoleKey.D1:
-                    var placeOrder = new PlaceOrder
-                    {
-                        OrderId = orderId
-                    };
-                    await endpointInstance.Send(placeOrder);
-                    Console.WriteLine($"Send PlaceOrder Command with Id {orderId}");
-                    break;
-                case ConsoleKey.D2:
-                    var orderReceived = new OrderReceived
-                    {
-                        OrderId = orderId
-                    };
-                    await endpointInstance.Publish(orderReceived);
-                    Console.WriteLine($"Published OrderReceived Event with Id {orderId}.");
-                    break;
-                case ConsoleKey.Escape:
-                    return;
-            }
-        }
-    }
+             endpointConfiguration.Conventions().DefiningCommandsAs(t => t.Name == "PlaceOrder");
+             endpointConfiguration.Conventions().DefiningMessagesAs(t => t.Name == "OrderResponse");
+             endpointConfiguration.Conventions().DefiningEventsAs(t => t.Name == "OrderReceived");
+
+             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+             var routing = endpointConfiguration.UseTransport(new LearningTransport());
+             routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.Bridge.RightReceiver");
+
+             endpointConfiguration.SendFailedMessagesTo("error");
+             endpointConfiguration.EnableInstallers();
+
+             return endpointConfiguration;
+         }).ConfigureServices((hostContext, services) =>
+         {
+             services.AddHostedService<InputLoopService>();
+             Console.Title = "LeftSender";
+         });
+
+
+
 }

@@ -1,17 +1,16 @@
-﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
+
+using System.Threading.Tasks;
 
 #region Handler
 
-public class CommandMessageHandler : IHandleMessages<Command>
+public class CommandMessageHandler(ILogger<CommandMessageHandler> logger) :
+    IHandleMessages<Command>
 {
-    static readonly ILog log = LogManager.GetLogger<CommandMessageHandler>();
-
     public Task Handle(Command message, IMessageHandlerContext context)
     {
-        log.Info("Hello from CommandMessageHandler");
-
+        logger.LogInformation("Hello from CommandMessageHandler");
         Task reply;
 
         if (message.Id % 2 == 0)
