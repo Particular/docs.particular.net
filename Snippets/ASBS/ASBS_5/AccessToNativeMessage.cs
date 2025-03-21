@@ -42,6 +42,16 @@ public class AccessToNativeMessage
             #endregion
         }
 
+        void Customize(AzureServiceBusTransport transport)
+        {
+            #region access-native-outgoing-message-over-transport
+            transport.OutgoingNativeMessageCustomization = (operation, message) =>
+            {
+                // Customize the outgoing message based on the operation
+            };
+            #endregion
+        }
+
         class MyCommand { }
         class MyEvent { }
     }
