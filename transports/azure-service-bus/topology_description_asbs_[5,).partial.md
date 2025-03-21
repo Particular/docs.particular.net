@@ -125,7 +125,7 @@ flowchart LR
 
 ##### Evolution of the message contract
 
-As mentioned in [versioning of shared contracts](/nservicebus/messaging/sharing-contracts.md#versioning), and shown in the examples above, NServiceBus uses the fully-qualified assembly name in the message header. [Evolving the message contract](/nservicebus/messaging/evolving-contracts.md) encourages creating entirely new contract types and then adding a version number to the original name. For example, when evolving `Shipping.OrderAccepted`, the publisher creates a new contract called `Shipping.OrderAcceptedV2`. When the publisher publishes `Shipping.OrderAcceptedV2` events, by default, these are published to the `Shipping.OrderAcceptedV2` topic and therefore existing subscribers interested in the previous version would not receive those events. 
+As mentioned in [versioning of shared contracts](/nservicebus/messaging/sharing-contracts.md#versioning), and shown in the examples above, NServiceBus uses the fully-qualified assembly name in the message header. [Evolving the message contract](/nservicebus/messaging/evolving-contracts.md) encourages creating entirely new contract types and then adding a version number to the original name. For example, when evolving `Shipping.OrderAccepted`, the publisher creates a new contract called `Shipping.OrderAcceptedV2`. When the publisher publishes `Shipping.OrderAcceptedV2` events, by default, these are published to the `Shipping.OrderAcceptedV2` topic and therefore existing subscribers interested in the previous version would not receive those events.
 
 Use one of the following options when evolving message contracts:
 
@@ -145,6 +145,104 @@ and then a customization that promotes the full name to a property of the native
 snippet: asb-versioning-publisher-customization
 
 which would allow adding either a Correlation filter (preferred) or a SQL filter based on the promoted full name.
+
+##### Advanced Multiplexing Strategies
+
+While the **topic-per-event** topology offers strong benefits for performance, observability, and isolation, certain scenarios may benefit from strategically multiplexing multiple events onto a shared topic. These scenarios include:
+
+- Multi-tenancy architectures
+- Entity quota constraints
+- Deployment simplification (e.g., when using infrastructure-as-code)
+- Semantic grouping of related events
+
+> [!WARNING]
+> Multiplexing is only advisable when all subscribers bound to a shared topic are intended to process all event types sent to that topic. Introducing filtering within a multiplexed topic may reintroduce the complexity and performance limitations the topic-per-event topology seeks to avoid.
+
+---
+
+###### Publisher-Side Multiplexing
+
+The publishing side can be configured to route multiple event types to a shared topic using the `PublishTo` API:
+
+```csharp
+topology.PublishTo<CustomerCreated>("Tenant.CustomerLifecycle");
+topology.PublishTo<CustomerUpdated>("Tenant.CustomerLifecycle");
+topology.PublishTo<CustomerDeleted>("Tenant.CustomerLifecycle");
+```
+
+In this configuration, all listed events are published to the same `Tenant.CustomerLifecycle` topic. All subscribers to this topic must be prepared to handle all published event types:
+
+```csharp
+class CustomerCreatedHandler : IHandleMessages<CustomerCreated> { ... }
+class CustomerUpdatedHandler : IHandleMessages<CustomerUpdated> { ... }
+class CustomerDeletedHandler : IHandleMessages<CustomerDeleted> { ... }
+```
+
+###### Subscriber-Side Multiplexing
+
+Alternatively, interface-based event grouping can be employed by subscribing explicitly to multiple topics:
+
+```csharp
+topology.SubscribeTo<ICustomerLifecycleEvent>("Tenant.CustomerCreated");
+topology.SubscribeTo<ICustomerLifecycleEvent>("Tenant.CustomerUpdated");
+topology.SubscribeTo<ICustomerLifecycleEvent>("Tenant.CustomerDeleted");
+```
+
+This approach preserves per-event topic isolation while grouping handler logic by shared interfaces.
+
+###### Multiplexing Derived Events
+
+For inheritance scenarios, it is possible to map multiple derived events to a common topic:
+
+```csharp
+topology.PublishTo<OrderAccepted>("Shipping.IOrderStatusChanged");
+topology.PublishTo<OrderDeclined>("Shipping.IOrderStatusChanged");
+```
+
+In this case, the topic `Shipping.IOrderStatusChanged` serves as a common destination for multiple concrete event types. Subscribers will receive all messages sent to that topic and must handle the full range of possible types.
+
+###### Filtering Within a Multiplexed Topic
+
+If selective consumption is required within a multiplexed topic, a promoted message property such as the full event type name can be added using the following customization (Subject used for demonstration purposes only):
+
+```csharp
+transport.OutgoingNativeMessageCustomization = (operation, message) =>
+{
+    if (operation is MulticastTransportOperation multicast)
+    {
+        // Subject is used for demonstration purposes only, choose a property that fits your scenario
+        message.Subject = multicast.MessageType.FullName;
+    }
+};
+```
+
+This property can then be used to define a `CorrelationFilter` (sample here uses bicep):
+
+```bicep
+resource subscription 'Microsoft.ServiceBus/namespaces/topics/subscriptions@2021-06-01-preview' = {
+  name: '${topic.name}/subscriber'
+  properties: {
+    rule: {
+      name: 'CustomerUpdatedOnly'
+      filterType: 'CorrelationFilter'
+      correlationFilter: {
+        subject: 'MyNamespace.CustomerUpdated'
+      }
+    }
+  }
+}
+```
+
+This configuration enables selective routing while using a shared topic, though it reintroduces filtering overhead and should be applied judiciously.
+
+##### Strategy Comparison
+
+| Strategy                      | Topic Count | Filter Required | Subscriber Code Complexity | Recommended Scenarios                     |
+|------------------------------|-------------|------------------|-----------------------------|--------------------------------------------|
+| Per-event topic (default)    | High        | No               | Low                         | General purpose and high isolation         |
+| Publisher-side multiplexing  | Low         | No               | Medium                      | All consumers handle all related events    |
+| Subscriber-side multiplexing | High        | No               | Medium                      | Inheritance- or Interface-driven subscriptions             |
+| Multiplexing with filtering  | Low         | Yes              | High                        | Selective consumption with entity limits   |
 
 #### Handling overflow and scaling
 
