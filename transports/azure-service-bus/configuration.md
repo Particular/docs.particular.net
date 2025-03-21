@@ -2,7 +2,7 @@
 title: Configuration
 summary: Explains the configuration options
 component: ASBS
-reviewed: 2022-11-15
+reviewed: 2025-03-21
 ---
 
 ## Configuring an endpoint
@@ -26,7 +26,7 @@ partial: custom-token-credentials
 These settings control how the transport creates entities in the Azure Service Bus namespace.
 
 > [!WARNING]
-> Entity creation settings are applied only at creation time of the corresponding entities; they are not updated on subsequent startups.
+> Entity creation settings are applied only at the time the corresponding entities are created; they are not updated on subsequent startups.
 
 partial: access-rights
 
