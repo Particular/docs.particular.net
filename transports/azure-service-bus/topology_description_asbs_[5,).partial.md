@@ -132,7 +132,7 @@ On the subscriber-side the endpoint can be configure so that, although the type 
 
 snippet: asb-interface-based-inheritance-declined
 
-This will make auto-subscribe create these three topics instead and wire the subscription to them.
+This will make auto-subscribe create these two topics instead and wire the subscription to them.
 
 Alternatively, the publisher can be configure to publish all its derived events onto the single `IOrderStatusChanged`  topic that multi-plexes all status changed related events:
 
