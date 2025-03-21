@@ -128,7 +128,7 @@ Depending on the desired use-cases it is possible to map in two ways:
 - Subscriber-side
 - Publisher-side
 
-On the subscriber-side you can inform the endpoint that, although the type accepted by the handler is `IOrderStatusChanged`, the actual topics interested in are named after the derived types:
+On the subscriber-side the endpoint can be configure so that, although the type accepted by the handler is `IOrderStatusChanged`, the actual topics interested in are named after the derived types:
 
 snippet: asb-interface-based-inheritance-declined
 
