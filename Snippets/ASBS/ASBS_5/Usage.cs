@@ -84,8 +84,8 @@ class Usage
         #endregion
 
         #region asb-interface-based-inheritance-publisher
-        topology.SubscribeTo<OrderAccepted>("Shipping.OrderStatusChanged");
-        topology.SubscribeTo<OrderDeclined>("Shipping.OrderStatusChanged");
+        topology.PublishTo<OrderAccepted>("Shipping.OrderStatusChanged");
+        topology.PublishTo<OrderDeclined>("Shipping.OrderStatusChanged");
         #endregion
 
         #region asb-versioning-publisher-mapping
