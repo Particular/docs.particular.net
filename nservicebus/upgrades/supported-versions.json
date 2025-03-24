@@ -1114,6 +1114,10 @@
         {
           "Minor": "3.34",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.36",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
