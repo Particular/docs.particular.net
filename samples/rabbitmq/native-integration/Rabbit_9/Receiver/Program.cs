@@ -1,7 +1,4 @@
-using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
-using NServiceBus;
 
 Console.Title = "Receiver";
 var builder = Host.CreateApplicationBuilder(args);
@@ -15,10 +12,6 @@ transport.ConnectionString("host=localhost");
 
 endpointConfiguration.UseSerialization<XmlSerializer>();
 endpointConfiguration.EnableInstallers();
-
-Console.WriteLine("Press any key, the application is starting");
-Console.ReadKey();
-Console.WriteLine("Starting...");
 
 builder.UseNServiceBus(endpointConfiguration);
 await builder.Build().RunAsync();

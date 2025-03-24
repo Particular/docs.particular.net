@@ -1,16 +1,14 @@
-﻿namespace Receiver
-{
-    using System.Threading.Tasks;
-    using Microsoft.Extensions.Logging;
-    using NServiceBus;
+﻿namespace Receiver;
 
-    public class MyEventHandler(ILogger<MyEventHandler> logger) : IHandleMessages<MyEvent>
+using Microsoft.Extensions.Logging;
+using Shared;
+
+public class MyEventHandler(ILogger<MyEventHandler> logger) : IHandleMessages<MyEvent>
+{
+    public Task Handle(MyEvent eventMessage, IMessageHandlerContext context)
     {
-      
-        public Task Handle(MyEvent eventMessage, IMessageHandlerContext context)
-        {
-            logger.LogInformation($"Hello from {nameof(MyEventHandler)}");
-            return Task.CompletedTask;
-        }
+        logger.LogInformation($"Hello from {nameof(MyEventHandler)}");
+
+        return Task.CompletedTask;
     }
 }
