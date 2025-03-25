@@ -72,7 +72,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.1.7) | 2024-06-25     | -                 | -                                 |
-| [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.0.0) | ~~2024-04-16~~ | ~~2024-09-25~~    | ~~Superseded by 8.1.x~~           |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/7.0.9) | 2023-08-28     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.3.8) | 2021-06-23     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
@@ -159,7 +158,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.1.1) | 2024-06-25     | -                 | -                                 |
-| [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.0.0) | ~~2024-04-16~~ | ~~2024-09-25~~    | ~~Superseded by 8.1.x~~           |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/7.0.6) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [6.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.6.5) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
@@ -168,7 +166,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.1.1) | 2024-06-25     | -                 | -                                 |
-| [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.0.0) | ~~2024-04-16~~ | ~~2024-09-25~~    | ~~Superseded by 8.1.x~~           |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/7.0.6) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [6.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/6.6.5) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
@@ -550,7 +547,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.36.x](https://www.nuget.org/packages/Particular.PlatformSample/3.36.0) | 2025-03-21     | -                 | -                                 |
+| [3.37.x](https://www.nuget.org/packages/Particular.PlatformSample/3.37.0) | 2025-03-24     | -                 | -                                 |
+| [3.36.x](https://www.nuget.org/packages/Particular.PlatformSample/3.36.0) | 2025-03-21     | 2025-06-24        | Superseded by 3.37.x              |
 | [3.34.x](https://www.nuget.org/packages/Particular.PlatformSample/3.34.0) | 2025-03-17     | 2025-06-21        | Superseded by 3.36.x              |
 | [3.33.x](https://www.nuget.org/packages/Particular.PlatformSample/3.33.0) | 2025-03-03     | 2025-06-17        | Superseded by 3.34.x              |
 | [3.32.x](https://www.nuget.org/packages/Particular.PlatformSample/3.32.0) | 2025-02-21     | 2025-06-03        | Superseded by 3.33.x              |
