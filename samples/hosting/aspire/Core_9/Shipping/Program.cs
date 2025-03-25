@@ -38,6 +38,10 @@ dialect.JsonBParameterModifier(
     });
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
+
+var metrics = endpointConfiguration.EnableMetrics();
+metrics.SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromSeconds(1));
 
 #region enable-installers
 endpointConfiguration.EnableInstallers();
