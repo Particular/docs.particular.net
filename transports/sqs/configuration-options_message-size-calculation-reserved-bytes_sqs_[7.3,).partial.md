@@ -1,4 +1,4 @@
-## Payload size padding
+## Reserve bytes when calculating message size
 
 Amazon [SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html) and [SNS](https://docs.aws.amazon.com/general/latest/gr/sns.html) allows for a maximum message size of 256KiB.
 
