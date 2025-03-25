@@ -3,8 +3,8 @@
   <Sdk Name="Aspire.AppHost.Sdk" Version="9.1.0" />
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
     <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
+    <OutputType>Exe</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <IsAspireHost>true</IsAspireHost>
