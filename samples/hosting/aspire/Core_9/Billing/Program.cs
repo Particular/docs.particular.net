@@ -1,33 +1,25 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using NServiceBus;
 
-namespace Billing
-{
-    class Program
-    {
-        static Task Main()
-        {
-            var builder = Host.CreateApplicationBuilder();
+var builder = Host.CreateApplicationBuilder();
 
-            builder.AddServiceDefaults();
+builder.AddServiceDefaults();
 
-            var endpointConfiguration = new EndpointConfiguration("Billing");
-            endpointConfiguration.EnableOpenTelemetry();
+var endpointConfiguration = new EndpointConfiguration("Billing");
+endpointConfiguration.EnableOpenTelemetry();
 
-            var connectionString = builder.Configuration.GetConnectionString("transport");
-            var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
-            var routing = endpointConfiguration.UseTransport(transport);
+var connectionString = builder.Configuration.GetConnectionString("transport");
+var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
+var routing = endpointConfiguration.UseTransport(transport);
 
-            endpointConfiguration.EnableInstallers();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
 
-            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+var metrics = endpointConfiguration.EnableMetrics();
+metrics.SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromSeconds(1));
 
-            builder.UseNServiceBus(endpointConfiguration);
+endpointConfiguration.EnableInstallers();
 
-            return builder.Build().RunAsync();
-        }
-    }
-}
+builder.UseNServiceBus(endpointConfiguration);
+
+await builder.Build().RunAsync();

@@ -2,58 +2,51 @@
 using Microsoft.Extensions.Hosting;
 using Npgsql;
 using NpgsqlTypes;
-using NServiceBus;
-using System.Threading.Tasks;
 
-namespace Shipping
-{
-    class Program
+#region always-config
+var builder = Host.CreateApplicationBuilder();
+
+var endpointConfiguration = new EndpointConfiguration("Shipping");
+endpointConfiguration.EnableOpenTelemetry();
+
+builder.AddServiceDefaults();
+#endregion
+
+#region transport-config
+var connectionString = builder.Configuration.GetConnectionString("transport");
+var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
+#endregion
+
+var routing = endpointConfiguration.UseTransport(transport);
+
+#region persistence-config
+var persistenceConnection = builder.Configuration.GetConnectionString("shipping-db");
+var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+persistence.ConnectionBuilder(
+    connectionBuilder: () =>
     {
-        static Task Main()
-        {
-            #region always-config
-            var builder = Host.CreateApplicationBuilder();
+        return new NpgsqlConnection(persistenceConnection);
+    });
+#endregion
 
-            var endpointConfiguration = new EndpointConfiguration("Shipping");
-            endpointConfiguration.EnableOpenTelemetry();
+var dialect = persistence.SqlDialect<SqlDialect.PostgreSql>();
+dialect.JsonBParameterModifier(
+    modifier: parameter =>
+    {
+        var npgsqlParameter = (NpgsqlParameter)parameter;
+        npgsqlParameter.NpgsqlDbType = NpgsqlDbType.Jsonb;
+    });
 
-            builder.AddServiceDefaults();
-            #endregion
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
 
-            #region transport-config
-            var connectionString = builder.Configuration.GetConnectionString("transport");
-            var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
-            #endregion
+var metrics = endpointConfiguration.EnableMetrics();
+metrics.SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromSeconds(1));
 
-            var routing = endpointConfiguration.UseTransport(transport);
+#region enable-installers
+endpointConfiguration.EnableInstallers();
+#endregion
 
-            #region persistence-config
-            var persistenceConnection = builder.Configuration.GetConnectionString("shipping-db");
-            var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-            persistence.ConnectionBuilder(
-                connectionBuilder: () =>
-                {
-                    return new NpgsqlConnection(persistenceConnection);
-                });
-            #endregion
+builder.UseNServiceBus(endpointConfiguration);
 
-            var dialect = persistence.SqlDialect<SqlDialect.PostgreSql>();
-            dialect.JsonBParameterModifier(
-                modifier: parameter =>
-                {
-                    var npgsqlParameter = (NpgsqlParameter)parameter;
-                    npgsqlParameter.NpgsqlDbType = NpgsqlDbType.Jsonb;
-                });
-
-            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-
-            #region enable-installers
-            endpointConfiguration.EnableInstallers();
-            #endregion
-
-            builder.UseNServiceBus(endpointConfiguration);
-
-            return builder.Build().RunAsync();
-        }
-    }
-}
+await builder.Build().RunAsync();

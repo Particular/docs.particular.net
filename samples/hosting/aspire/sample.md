@@ -33,6 +33,8 @@ The [.NET Aspire orchestration project](https://learn.microsoft.com/en-us/dotnet
   - `billing`
   - `sales`
   - `shipping` - also has a reference to the `shipping-db` resource
+- ServiceControl error, audit and monitoring instances
+- ServicePulse
 
 snippet: app-host
 

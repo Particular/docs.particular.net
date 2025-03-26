@@ -1,39 +1,31 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using ClientUI;
 using Messages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NServiceBus;
 
-namespace ClientUI
-{
-    class Program
-    {
-        static Task Main()
-        {
-            var builder = Host.CreateApplicationBuilder();
+var builder = Host.CreateApplicationBuilder();
 
-            builder.AddServiceDefaults();
+builder.AddServiceDefaults();
 
-            var endpointConfiguration = new EndpointConfiguration("ClientUI");
-            endpointConfiguration.EnableOpenTelemetry();
+var endpointConfiguration = new EndpointConfiguration("ClientUI");
+endpointConfiguration.EnableOpenTelemetry();
 
-            var connectionString = builder.Configuration.GetConnectionString("transport");
-            var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
-            var routing = endpointConfiguration.UseTransport(transport);
-            routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
+var connectionString = builder.Configuration.GetConnectionString("transport");
+var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
+var routing = endpointConfiguration.UseTransport(transport);
+routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
-            endpointConfiguration.EnableInstallers();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
 
+var metrics = endpointConfiguration.EnableMetrics();
+metrics.SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromSeconds(1));
 
-            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.EnableInstallers();
 
-            builder.UseNServiceBus(endpointConfiguration);
+builder.UseNServiceBus(endpointConfiguration);
 
-            builder.Services.AddHostedService<MessageSenderService>();
+builder.Services.AddHostedService<MessageSenderService>();
 
-            return builder.Build().RunAsync();
-        }
-    }
-}
+await builder.Build().RunAsync();
