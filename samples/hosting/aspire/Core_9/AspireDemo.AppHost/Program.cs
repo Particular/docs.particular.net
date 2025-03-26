@@ -48,7 +48,6 @@ var serviceControl = builder.AddContainer("ServiceControl", "particular/servicec
     .WithEnvironment("TRANSPORTTYPE", "RabbitMQ.QuorumConventionalRouting")
     .WithEnvironment("CONNECTIONSTRING", transport)
     .WithEnvironment("RAVENDB_CONNECTIONSTRING", ravenDB.GetEndpoint("http"))
-    //.WithEnvironment("REMOTEINSTANCES", $"[{{\"api_uri\":\"{audit.GetEndpoint("http")}\"}}]") //Aspire bug prevents this from working
     .WithEnvironment("REMOTEINSTANCES", () =>
     {
         var endpoint = audit.GetEndpoint("http");
