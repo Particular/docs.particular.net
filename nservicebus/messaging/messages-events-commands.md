@@ -81,11 +81,6 @@ Ideally, a good message type will:
 * Favor simplicity and redundancy over object-oriented practices like inheritance
 * Not be re-used for other purposes (e.g., domain objects, data access objects, or UI binding objects)
 
-> [!NOTE]
-> Prior to NServiceBus version 7.2, messages had to be defined as a `class`. Defining them as a `struct` would result in a runtime exception.
-> - `struct` is supported since 7.2+.
-> - `record` is supported since 9.0+.
-
 Generic message definitions (e.g., `MyMessage<T>`) are not supported. It is recommended to use dedicated, simple types for each message.
 
 Messages define the data contracts between endpoints. More details are available in the [sharing message contracts documentation](sharing-contracts.md).

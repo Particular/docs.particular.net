@@ -13,15 +13,12 @@ Usually messages are designed as [DTOs](https://en.wikipedia.org/wiki/Data_trans
 
 Message objects can be made immutable at runtime by:
 
-1. Using record types
+1. Using [record types](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records)
 2. Creating properties with only public getters and initializing these properties via constructor initialization.
 3. Having regular message classes with public getters/setters at the sender, where these classes implement an interface with only public getters. Receivers reference only the interface.
 
 
 ## Record types
-
-> [!NOTE]
-> Record types are supported starting with NServiceBus 9
 
 ```c#
 public record CancelOrder(int OrderId);
