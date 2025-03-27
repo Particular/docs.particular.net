@@ -175,7 +175,7 @@ Once all events have been migrated, the old single topic can be deleted.
 ### Migrating from non-default topics or hierarchies
 
 > [!NOTE]
-> The methods are already obsoleted to give early notice when the migration topology will be phased out. Due to the obsoletion the methods have `[EditorBrowsable(EditorBrowsableState.Never)]` which may hide those members depending on the IDE settings. This can be solved by explicitly typing out the method signatures as shown below or configure the IDE to show members independent of their browsable state ([Visual Studio](https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.editorbrowsableattribute#remarks) or Rider under Editor > General > Code Completion > Filter members by EditorBrowsable attribute).
+> The methods are already obsoleted to give early notice when the migration topology will be phased out. Due to the obsoletion, the methods have `[EditorBrowsable(EditorBrowsableState.Never)]` which may hide those members depending on the IDE settings. This can be solved by explicitly typing out the method signatures as shown below or configure the IDE to show members independent of their browsable state ([Visual Studio](https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.editorbrowsableattribute#remarks) or Rider under Editor > General > Code Completion > Filter members by EditorBrowsable attribute).
 
 Use either `TopicTopology.MigrateFromNamedSingleTopic(string topicName)` or `TopicTopology.MigrateFromTopicHierarchy(string topicToPublishTo, string topicToSubscribeOn)`.
 
