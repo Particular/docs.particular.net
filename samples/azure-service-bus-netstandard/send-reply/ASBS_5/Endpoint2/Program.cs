@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 Console.Title = "Endpoint2";
 
+var builder = Host.CreateApplicationBuilder(args);
+
 var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.SendReply.Endpoint2");
 endpointConfiguration.EnableInstallers();
-
 
 var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
 if (string.IsNullOrWhiteSpace(connectionString))
@@ -18,9 +20,9 @@ var transport = new AzureServiceBusTransport(connectionString, TopicTopology.Def
 endpointConfiguration.UseTransport(transport);
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-Console.WriteLine("Press any key to exit");
+Console.WriteLine("Press any key, the application is starting");
 Console.ReadKey();
+Console.WriteLine("Starting...");
 
-await endpointInstance.Stop();
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

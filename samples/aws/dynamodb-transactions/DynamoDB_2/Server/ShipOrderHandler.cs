@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Amazon.DynamoDBv2.Model;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
-public class ShipOrderHandler :
+public class ShipOrderHandler(ILogger<ShipOrderHandler> logger) :
     IHandleMessages<ShipOrder>
 {
     public async Task Handle(ShipOrder message, IMessageHandlerContext context)
@@ -31,7 +31,7 @@ public class ShipOrderHandler :
 
         #endregion
 
-        Log.Info($"Order Shipped. OrderId {message.OrderId}");
+        logger.LogInformation($"Order Shipped. OrderId {message.OrderId}");
 
         await context.Publish(new OrderShipped
         {
@@ -40,5 +40,4 @@ public class ShipOrderHandler :
         });
     }
 
-    static ILog Log = LogManager.GetLogger<ShipOrderHandler>();
 }

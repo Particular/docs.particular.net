@@ -1,18 +1,17 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 #region NativeMessageHandler
 
-public class NativeMessageHandler :
+public class NativeMessageHandler(ILogger<NativeMessageHandler> logger) :
     IHandleMessages<NativeMessage>
 {
-    static readonly ILog Log = LogManager.GetLogger<NativeMessageHandler>();
-
+   
     public Task Handle(NativeMessage message, IMessageHandlerContext context)
     {
-        Log.Info($"Message content: {message.Content}");
-        Log.Info($"Received native message sent on {message.SentOnUtc} UTC");
+        logger.LogInformation($"Message content: {message.Content}");
+        logger.LogInformation($"Received native message sent on {message.SentOnUtc} UTC");
         return Task.CompletedTask;
     }
 }

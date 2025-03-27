@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Buffers.Text;
 using System.Collections.Generic;
-
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Azure.Transports.WindowsAzureStorageQueues;
 
 
 var endpointName = "native-integration-asq";
 Console.Title = endpointName;
+
+var builder = Host.CreateApplicationBuilder(args);
 
 var endpointConfiguration = new EndpointConfiguration(endpointName);
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
@@ -39,9 +40,10 @@ endpointConfiguration.Recoverability().Delayed(settings => settings.NumberOfRetr
 
 endpointConfiguration.UsePersistence<LearningPersistence>();
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-Console.WriteLine("Press any key to exit");
+Console.WriteLine("Press any key, the application is starting");
 Console.ReadKey();
+Console.WriteLine("Starting...");
 
-await endpointInstance.Stop();
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();
