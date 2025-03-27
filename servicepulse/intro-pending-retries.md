@@ -14,7 +14,7 @@ A pending retry message that is retried will remain in the pending retry list un
 > [!NOTE]
 > Supported in ServicePulse versions 1.6.6 and above.
 
-## Howto enable Pending Retries view
+## Enabling the Pending Retries view
 
 To make it visible, follow the steps according to the ServicePulse version that is used.
 
