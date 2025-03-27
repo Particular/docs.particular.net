@@ -35,7 +35,7 @@ The subscriber needs to override the subscription mapping accordingly:
 Snippet: SubscriberAppsettings
 
 > [!NOTE]
-> While in the vast majority of cases there is a one-to-one correspondence between event types and topic names, the `SubscribedEventToTopicsMap` maps arrays of topics in order to support [event inheritence](/transports/azure-service-bus/topology.md#subscription-rule-matching-interface-based-inheritance). Due to a limitation of the .NET configuration infrastructure, it is not possible to provide a converter that simplifies the syntax in a way similar to when [loading the topology configuration directly from json](/transports/azure-service-bus/configuration.md#entity-creation-topology-options).
+> While in the vast majority of cases there is a one-to-one correspondence between event types and topic names, the `SubscribedEventToTopicsMap` maps arrays of topics in order to support [event inheritence](/transports/azure-service-bus/topology.md#subscription-rule-matching-interface-based-inheritance). Due to a limitation of the .NET configuration infrastructure, it is not possible to provide a converter that simplifies the syntax in a way similar to when [loading the topology configuration directly from json](/transports/azure-service-bus/configuration.md#entity-creation-topology-mapping-options).
 
 ### Validation
 
