@@ -9,8 +9,6 @@ ServiceControl instances can be hosted on:
 
 - Windows Server (virtual machines)
 - Linux containers
-
-
 Deployment options:
 
 - [Monitoring instances](/servicecontrol/monitoring-instances/deployment/)
