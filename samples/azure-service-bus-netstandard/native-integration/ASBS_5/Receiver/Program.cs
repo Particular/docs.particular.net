@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 Console.Title = "NativeIntegration";
+
+var builder = Host.CreateApplicationBuilder(args);
 
 #region EndpointName
 
@@ -23,7 +26,10 @@ if (string.IsNullOrWhiteSpace(connectionString))
 var transport = new AzureServiceBusTransport(connectionString, TopicTopology.Default);
 endpointConfiguration.UseTransport(transport);
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
-Console.WriteLine("Press any key to exit");
+
+Console.WriteLine("Press any key, the application is starting");
 Console.ReadKey();
-await endpointInstance.Stop();
+Console.WriteLine("Starting...");
+
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();
