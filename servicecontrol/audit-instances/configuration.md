@@ -256,7 +256,24 @@ Controls the maximum time delay to wait before restarting the audit ingestion pi
 
 Valid settings are between 5 seconds and 1 hour.
 
+### ServiceControl.Audit/IngestAuditMessages
+
+Set to `false` to disable ingesting new audit messages. Useful in some upgrade scenarios.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_INGESTAUDITMESSAGES` |
+| **App config key** | `ServiceControl.Audit/IngestAuditMessages` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
 ### ServiceControl/IngestAuditMessages
+
+> [!WARNING]
+> This is the same setting as `ServiceControl.Audit/IngestAuditMessages` but kept for backward compatibility
 
 Set to `false` to disable ingesting new audit messages. Useful in some upgrade scenarios.
 
@@ -269,6 +286,7 @@ Set to `false` to disable ingesting new audit messages. Useful in some upgrade s
 | Type | Default value |
 | --- | --- |
 | bool | `true` |
+
 
 ## Data retention
 
