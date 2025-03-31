@@ -50,7 +50,7 @@ A volume must be mounted to `/var/lib/ravendb/data` to provide persistent storag
 #end-if
 
 > [!NOTE]
-> RavenDB has specific requirements about the types of storage it supports. See the [RavenDB container requirements documentation](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/running-in-docker-container#requirements) for more information.
+> RavenDB has specific requirements about the types of storage it supports. See the [RavenDB deployment storage considerations documentation](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/deployment-considerations#storage-considerations) for more information.
 > 
 > If providing these storage requirements is not possible, it is also possible to connect to an external, separately-licensed RavenDB server. The external server must be using the same Major and Minor version noted in the version map below.
 
@@ -60,7 +60,7 @@ As the ServiceControl RavenDB container extends the official RavenDB container, 
 
 | ServiceControl Versions | RavenDB Version | Container Documentation |
 |:-:|:-:|:-:|
-| 6.x | 6.2 | [RavenDB 6.2 container docs](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/running-in-docker-container)
+| 6.x | 6.2 | [RavenDB 6.2 container docs](https://ravendb.net/docs/article-page/6.2/csharp/start/containers/general-guide)
 | 5.4 to 5.11 | 5.4 | [RavenDB 5.4 container docs](https://ravendb.net/docs/article-page/5.4/csharp/start/installation/running-in-docker-container) |
 
 > [!NOTE]
