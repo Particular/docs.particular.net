@@ -1,0 +1,2 @@
+> [!WARNING]
+> NServiceBus.NLog is obsolete. NServiceBus is now providing support for logging libraries through the Microsoft.Extensions.Logging. Please see [Logging in .NET Core and ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/) for further details.
