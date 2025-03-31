@@ -4,7 +4,7 @@ summary: Tips on how to get the best performance from the Azure Storage Queues t
 component: ASQ
 isLearningPath: true
 versions: '[7,]'
-reviewed: 2022-12-23
+reviewed: 2025-03-31
 related:
  - nservicebus/operations
 redirects:
