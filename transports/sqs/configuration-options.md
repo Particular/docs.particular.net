@@ -96,7 +96,7 @@ snippet: S3ClientFactory
 #if-version [7.3,)
 ### Payload signing
 
-Amazon S3 required the payload to be signed when uploaded to the S3 bucket. The SQS transport allows disabling the payload signing by setting the `DisablePayloadSigning` to true to enable support for alternate storages, such as Cloudflare R2.
+Amazon S3 requires the payload to be signed when uploaded to the S3 bucket. The SQS transport allows disabling the payload signing by setting the `DisablePayloadSigning` to true to enable support for alternate storages, such as Cloudflare R2.
 #end-if
 
 ### Encryption
