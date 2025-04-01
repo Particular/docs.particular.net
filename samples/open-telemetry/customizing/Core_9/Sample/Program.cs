@@ -17,7 +17,6 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .AddSource(CustomActivitySources.Name)
     .AddProcessor(new NetHostProcessor())
     .AddConsoleExporter()
-    .AddOtlpExporter(c => c.Endpoint = new Uri("http://localhost:4317"))
     .Build();
 
 #endregion
@@ -32,8 +31,7 @@ endpointConfiguration.EnableOpenTelemetry();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport<LearningTransport>();
 
-endpointConfiguration.Pipeline.Register(new TraceOutgoingMessageSizeBehavior(), "Captures body size of outgoing messages as OpenTelemetry tags"
-);
+endpointConfiguration.Pipeline.Register(new TraceOutgoingMessageSizeBehavior(), "Captures body size of outgoing messages as OpenTelemetry tags");
 
 var endpoint = await Endpoint.Start(endpointConfiguration);
 
