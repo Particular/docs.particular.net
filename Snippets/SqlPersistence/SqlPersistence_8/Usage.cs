@@ -108,9 +108,6 @@ class Usage
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
-                // If using a version of Npgsql below 7.0 - https://www.npgsql.org/doc/basic-usage.html#connections-without-a-data-source
-                // return new NpgsqlConnection(connection);
-
                 return dataSource.CreateConnection();
             });
 

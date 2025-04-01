@@ -101,10 +101,13 @@ class Usage
                 var npgsqlParameter = (NpgsqlParameter)parameter;
                 npgsqlParameter.NpgsqlDbType = NpgsqlDbType.Jsonb;
             });
+
+        var dataSource = NpgsqlDataSource.Create(connection);
+
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
-                return new NpgsqlConnection(connection);
+                return dataSource.CreateConnection();
             });
 
         #endregion
@@ -455,7 +458,7 @@ class Usage
         await ScriptRunner.Install(
             sqlDialect: new SqlDialect.MsSqlServer(),
             tablePrefix: "MyEndpoint",
-            connectionBuilder: () => new SqlConnection(connectionString), 
+            connectionBuilder: () => new SqlConnection(connectionString),
             scriptDirectory: @"C:\Scripts",
             shouldInstallOutbox: true,
             shouldInstallSagas: true,
