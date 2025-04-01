@@ -102,10 +102,16 @@ class Usage
                 var npgsqlParameter = (NpgsqlParameter)parameter;
                 npgsqlParameter.NpgsqlDbType = NpgsqlDbType.Jsonb;
             });
+
+        var dataSource = NpgsqlDataSource.Create(connection);
+
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
-                return new NpgsqlConnection(connection);
+                // If using a version of Npgsql below 7.0 - https://www.npgsql.org/doc/basic-usage.html#connections-without-a-data-source
+                // return new NpgsqlConnection(connection);
+
+                return dataSource.CreateConnection();
             });
 
         #endregion
