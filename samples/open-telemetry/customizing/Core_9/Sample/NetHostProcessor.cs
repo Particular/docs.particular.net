@@ -6,12 +6,7 @@ using System.Net;
 
 class NetHostProcessor : BaseProcessor<Activity>
 {
-    string hostName;
-
-    public NetHostProcessor()
-    {
-        hostName = Dns.GetHostName();
-    }
+    readonly string hostName = Dns.GetHostName();
 
     public override void OnStart(Activity data)
     {
