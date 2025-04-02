@@ -203,7 +203,7 @@ migrate-timeouts preview nhb --source "Data Source=localhost;Initial Catalog=myT
 ```
 
 ```
-migrate-timeouts preview sqlp --source "Data Source=localhost;Initial Catalog=myTestDB;User=sa;Password=mypassword;" --dialect MsSqlServer msmq --target "Data Source=localhost;Initial Catalog=myTestDB;User=sa;Password=mypassword;" --dialect MsSqlServer
+migrate-timeouts preview sqlp --source "Data Source=localhost;Initial Catalog=myTestDB;User=sa;Password=mypassword;" --dialect MsSqlServer msmq --target "Data Source=localhost;Initial Catalog=myTestDB;User=sa;Password=mypassword;"
 ```
 
 ## How the tool works
