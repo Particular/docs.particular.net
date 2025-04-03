@@ -4,6 +4,7 @@ using NServiceBus.Logging;
 
 namespace LambdaFunctions;
 
+#region TriggerMessageHandler
 class TriggerMessageHandler : IHandleMessages<TriggerMessage>
 {
     static readonly ILog Log = LogManager.GetLogger<TriggerMessageHandler>();
@@ -14,3 +15,4 @@ class TriggerMessageHandler : IHandleMessages<TriggerMessage>
         await context.Send(new ResponseMessage());
     }
 }
+#endregion

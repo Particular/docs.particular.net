@@ -4,6 +4,7 @@ using NServiceBus.AwsLambda.SQS;
 
 namespace LambdaFunctions;
 
+#region EndpointSetup
 [Amazon.Lambda.Annotations.LambdaStartup]
 public class Startup
 {
@@ -20,3 +21,4 @@ public class Startup
         });
     }
 }
+#endregion

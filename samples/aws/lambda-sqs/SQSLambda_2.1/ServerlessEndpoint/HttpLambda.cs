@@ -11,6 +11,7 @@ namespace LambdaFunctions;
 
 public class HttpLambda(AwsLambdaSQSEndpoint serverlessEndpoint)
 {
+    #region HttpFunctionHandler
     [LambdaFunction(Policies = "AWSLambda_FullAccess, AmazonSQSFullAccess")]
     [HttpApi(LambdaHttpMethod.Get, "/")]
     public async Task<string> HttpGetHandler(ILambdaContext context)
@@ -18,4 +19,5 @@ public class HttpLambda(AwsLambdaSQSEndpoint serverlessEndpoint)
         await serverlessEndpoint.Send(new TriggerMessage(), context);
         return $"{nameof(TriggerMessage)} sent.";
     }
+    #endregion
 }

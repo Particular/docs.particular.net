@@ -11,6 +11,7 @@ namespace LambdaFunctions;
 
 public class SqsLambda(AwsLambdaSQSEndpoint serverlessEndpoint)
 {
+    #region SqsFunctionHandler
     [LambdaFunction]
     [SQSEvent("arn:aws:sqs:eu-south-1:714232833252:ServerlessEndpoint")]
     public async Task FunctionHandler(SQSEvent evnt, ILambdaContext context)
@@ -20,6 +21,7 @@ public class SqsLambda(AwsLambdaSQSEndpoint serverlessEndpoint)
 
         await serverlessEndpoint.Process(evnt, context, cancellationTokenSource.Token);
     }
+    #endregion
 
     static readonly TimeSpan DefaultRemainingTimeGracePeriod = TimeSpan.FromSeconds(10);
 }
