@@ -15,7 +15,6 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .SetResourceBuilder(resourceBuilder)
     .AddSource("NServiceBus.Core")
     .AddSource(CustomActivitySources.Name)
-    .AddProcessor(new NetHostProcessor())
     .AddConsoleExporter()
     .Build();
 
