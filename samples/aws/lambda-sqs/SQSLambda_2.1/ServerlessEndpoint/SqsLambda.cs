@@ -13,7 +13,7 @@ public class SqsLambda(AwsLambdaSQSEndpoint serverlessEndpoint)
 {
     #region SqsFunctionHandler
     [LambdaFunction]
-    [SQSEvent("arn:aws:sqs:eu-south-1:714232833252:ServerlessEndpoint")]
+    [SQSEvent("ServerlessEndpoint")]
     public async Task FunctionHandler(SQSEvent evnt, ILambdaContext context)
     {
         using var cancellationTokenSource =
