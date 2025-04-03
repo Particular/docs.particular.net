@@ -1,7 +1,7 @@
 ---
 title: Optimizing ServiceControl for use in different environments
 summary: Optimize ServiceControl installation and deployment for better performance; hardware, message throughput, plugin and performance considerations
-reviewed: 2023-01-03
+reviewed: 2025-04-03
 isLearningPath: true
 ---
 
