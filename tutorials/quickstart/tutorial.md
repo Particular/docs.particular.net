@@ -21,11 +21,11 @@ In just 10 minutes, see how to:
 > * The [Glossary of messaging terms](/nservicebus/concepts/glossary.md) may help as you go along this tutorial.
 > * If you're already familiar with the basic benefits of messaging, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/) for a deeper dive instead.
 
-## About the **RetailDemo** solution
+## About the solution
 
 The solution mimics a real-life retail system where a [command](/nservicebus/messaging/messages-events-commands.md) to place an order is sent as a result of customer interaction. An [event](/nservicebus/messaging/messages-events-commands.md) is published to kick off processes in the background. Using the [publish-subscribe pattern](/nservicebus/messaging/publish-subscribe/) allows us to isolate the component that performs billing from the one that places orders. This reduces coupling and makes the system easier to maintain in the long run. Later in this tutorial, you will learn how to add a second subscriber to that event in a new **Shipping** endpoint which will begin the process of shipping orders.
 
-## Download the **RetailDemo** solution
+## Download the solution
 
 The solution has no prerequisites — no message queue or database to install, just a compatible IDE. To get started, download the solution, extract the files, and then open the **RetailDemo.sln** file.
 
@@ -36,7 +36,7 @@ downloadbutton
   img.center { border-style: none !important; }
 </style>
 
-## **RetailDemo** Project structure
+## Project structure
 
 The solution contains five projects: **Billing**, **ClientUI**, **Messages**, **PlatformLauncher**, and **Sales**.
 
