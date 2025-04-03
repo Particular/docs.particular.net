@@ -9,11 +9,11 @@ Console.Title = "MyEndpoint";
 #region open-telemetry-config
 
 var resourceBuilder = ResourceBuilder.CreateDefault()
-    .AddService("MyEndpoint");
+    .AddService(serviceName: "MyEndpoint", serviceInstanceId: Environment.MachineName);
 
 using var tracerProvider = Sdk.CreateTracerProviderBuilder()
     .SetResourceBuilder(resourceBuilder)
-    .AddSource("NServiceBus.Core")
+    .AddSource("NServiceBus.*")
     .AddSource(CustomActivitySources.Name)
     .AddConsoleExporter()
     .Build();
