@@ -1,7 +1,7 @@
 ---
 title: MSMQ Transport Configuration
 summary: Explains the mechanics of MSMQ transport, its configuration options, and other configuration settings that were coupled to this transport
-reviewed: 2023-01-31
+reviewed: 2025-04-03
 component: MsmqTransport
 related:
  - transports/msmq/connection-strings

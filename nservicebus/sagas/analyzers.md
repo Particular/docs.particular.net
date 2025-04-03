@@ -124,7 +124,7 @@ The generic class constraints on `Saga<TSagaData>` require the saga data class t
 
 A benefit to inheriting the `ContainSagaData` class is that in NServiceBus version 7 and above, the implemented properties are decorated with `[EditorBrowsable(EditorBrowsableState.Never)]`, which means that those properties that are _only_ needed by the saga infrastructure will not appear in IntelliSense. So, it is less likely that one of these reserved properties will be used accidentally.
 
-One exception comes when [using NHibernate's `[RowVersion]` attribute to control optimistic concurrency](/persistence/nhibernate/saga-concurrency.md#custom-behavior-explicit-version). This attribute is not compatible with derived classes. In this case, the saga data class must implement `IContainSagaData` directly. The `NSB0012` diagnostic can be suppressed for this scenario to remove the warning.
+One exception comes when [using NHibernate's `[RowVersion]` attribute to control optimistic concurrency](/persistence/nhibernate/saga-concurrency.md#customizing-concurrency-behavior-explicit-version). This attribute is not compatible with derived classes. In this case, the saga data class must implement `IContainSagaData` directly. The `NSB0012` diagnostic can be suppressed for this scenario to remove the warning.
 
 ## Reply in Saga should be ReplyToOriginator
 
