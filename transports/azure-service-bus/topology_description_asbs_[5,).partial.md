@@ -123,6 +123,23 @@ flowchart LR
     S1 -->|Subscribe| T2
 ```
 
+Depending on the desired use-cases it is possible to map in two ways:
+
+- Subscriber-side
+- Publisher-side
+
+On the subscriber-side the endpoint can be configure so that, although the type accepted by the handler is `IOrderStatusChanged`, the actual topics interested in are named after the derived types:
+
+snippet: asb-interface-based-inheritance-declined
+
+This will make auto-subscribe create these two topics instead and wire the subscription to them.
+
+Alternatively, the publisher can be configure to publish all its derived events onto the single `IOrderStatusChanged`  topic that multi-plexes all status changed related events:
+
+snippet: asb-interface-based-inheritance-publisher
+
+This second option requires less entities on the broker side but forces the subscribers to all have handlers for all the multiplexed derived events that are and will be published to that topic since the subscription in this topology doesn't apply filtering by design.
+
 ##### Evolution of the message contract
 
 As mentioned in [versioning of shared contracts](/nservicebus/messaging/sharing-contracts.md#versioning), and shown in the examples above, NServiceBus uses the fully-qualified assembly name in the message header. [Evolving the message contract](/nservicebus/messaging/evolving-contracts.md) encourages creating entirely new contract types and then adding a version number to the original name. For example, when evolving `Shipping.OrderAccepted`, the publisher creates a new contract called `Shipping.OrderAcceptedV2`. When the publisher publishes `Shipping.OrderAcceptedV2` events, by default, these are published to the `Shipping.OrderAcceptedV2` topic and therefore existing subscribers interested in the previous version would not receive those events.
