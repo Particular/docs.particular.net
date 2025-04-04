@@ -134,7 +134,7 @@ Now when we run the solution, we'll see the following output in the **Billing** 
 
 ```
  info: Billing.OrderPlacedHandler[0]
-       Received OrderPlaced, OrderId = a875a956-2ab2-4bb5-aec9-c1048d5faa2b - Charging credit card...
+       Received OrderPlaced, charging OrderId: a875a956-2ab2-4bb5-aec9-c1048d5faa2b
 ```
 
 That's great, but why stop there? The whole point of Publish/Subscribe is that we can have *multiple* subscribers.
