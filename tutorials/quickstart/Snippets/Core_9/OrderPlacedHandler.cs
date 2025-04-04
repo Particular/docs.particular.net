@@ -5,34 +5,24 @@ using NServiceBus;
 using Messages;
 using Microsoft.Extensions.Logging;
 
-namespace Shipping
+namespace Shipping;
+
+public class OrderPlacedHandler :
+    IHandleMessages<OrderPlaced>
 {
-    public class OrderPlacedHandler :
-        IHandleMessages<OrderPlaced>
+    private readonly ILogger<OrderPlacedHandler> logger;
+
+    public OrderPlacedHandler(ILogger<OrderPlacedHandler> logger)
     {
-        private readonly ILogger<OrderPlacedHandler> logger;
+        this.logger = logger;
+    }
 
-        public OrderPlacedHandler(ILogger<OrderPlacedHandler> logger)
-        {
-            this.logger = logger;
-        }
-
-        public Task Handle(OrderPlaced message, IMessageHandlerContext context)
-        {
-            logger.LogInformation(
-              $"Shipping has received OrderPlaced, OrderId = {message.OrderId}");
-            return Task.CompletedTask;
-        }
+    public Task Handle(OrderPlaced message, IMessageHandlerContext context)
+    {
+        logger.LogInformation(
+            $"Shipping has received OrderPlaced, OrderId = {message.OrderId}");
+        return Task.CompletedTask;
     }
 }
 
 #endregion
-
-namespace Messages
-{
-    public class OrderPlaced
-        : IEvent
-    {
-        public string OrderId { get; set; }
-    }
-}
