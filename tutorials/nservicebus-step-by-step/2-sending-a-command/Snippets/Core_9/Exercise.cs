@@ -67,7 +67,7 @@ namespace Core_9
                         };
 
                         // Send the command
-                        Console.WriteLine($"Sending PlaceOrder command, OrderId = {command.OrderId}");
+                        Console.WriteLine($"PlaceOrder sent, OrderId = {command.OrderId}");
                         await messageSession.SendLocal(command, stoppingToken);
 
                         break;
