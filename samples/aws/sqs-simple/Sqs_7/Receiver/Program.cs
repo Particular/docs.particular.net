@@ -1,7 +1,11 @@
 using System;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 Console.Title = "SimpleReceiver";
+
+var builder = Host.CreateApplicationBuilder(args);
+
 var endpointConfiguration = new EndpointConfiguration("Samples.Sqs.SimpleReceiver");
 endpointConfiguration.EnableInstallers();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
@@ -12,7 +16,10 @@ var transport = new SqsTransport
 };
 endpointConfiguration.UseTransport(transport);
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
-Console.WriteLine("Press any key to exit");
+
+Console.WriteLine("Press any key, the application is starting");
 Console.ReadKey();
-await endpointInstance.Stop();
+Console.WriteLine("Starting...");
+
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

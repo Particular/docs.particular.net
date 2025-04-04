@@ -1,14 +1,12 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
-public class NativeMessageHandler : IHandleMessages<NativeMessage>
+public class NativeMessageHandler(ILogger<NativeMessageHandler> logger) : IHandleMessages<NativeMessage>
 {
-    static ILog log = LogManager.GetLogger<NativeMessageHandler>();
-
     public Task Handle(NativeMessage message, IMessageHandlerContext context)
     {
-        log.Info($"Message content: {message.Content}");
+        logger.LogInformation($"Message content: {message.Content}");
 
         return Task.CompletedTask;
     }
