@@ -33,7 +33,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.SqlServer/7.0.9) | 2023-08-28     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.SqlServer/7.0.10) | 2023-08-28     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.SqlServer/6.3.8) | 2021-06-23     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
 #### [NServiceBus.Transport.AzureServiceBus](/nuget/NServiceBus.Transport.AzureServiceBus)
@@ -65,14 +65,14 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/8.1.7) | 2024-06-25     | -                 | -                                 |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/8.1.8) | 2024-06-25     | -                 | -                                 |
 
 #### [NServiceBus.Transport.SqlServer](/nuget/NServiceBus.Transport.SqlServer)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.1.7) | 2024-06-25     | -                 | -                                 |
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/7.0.9) | 2023-08-28     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.1.8) | 2024-06-25     | -                 | -                                 |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/7.0.10) | 2023-08-28     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.3.8) | 2021-06-23     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
 ### Persistence packages
