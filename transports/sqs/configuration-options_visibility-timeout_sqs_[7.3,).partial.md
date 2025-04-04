@@ -2,14 +2,14 @@
 
 To prevent messages from being reprocessed while a handler is still executing, the transport automatically renews the message visibility timeout during processing. This is especially important for long-running handlers where the processing time may exceed the original visibility timeout.
 
-The transport calculates when to renew using the following logic:
+The transport calculates when to renew the message visibility using the following logic:
 
 ```text
 buffer = Min(remainingTime / 2, 10 seconds)
 renewAfter = remainingTime - buffer
 ```
 
-Renewal is triggered after renewAfter has elapsed since the last renewal. If the remaining time is less than 400ms the renewal is attempted immediately. This ensures the message visibility is extended consistently and early enough to avoid expiration, even under system load or scheduling delays.
+Renewal is triggered after `renewAfter` has elapsed since the last renewal. If the remaining time is less than 400ms, the renewal is attempted immediately. This ensures the message visibility is extended consistently and early enough to avoid expiration, even under system load or scheduling delays.
 
 When renewing, the transport extends the visibility timeout by:
 
@@ -62,7 +62,7 @@ sequenceDiagram
     end
 ```
 
-Message visibility timeout extension is a best effort operation and can fail due to several reasons like:
+The message visibility timeout extension is a best effort operation and can fail due to several reasons including:
 
 - Larger clock skew between the client and the SQS service time
 - Network interruptions for longer periods of time between the client and the SQS service
@@ -74,9 +74,9 @@ Message visibility timeout extension is a best effort operation and can fail due
 
 **Default**: `TimeSpan.FromMinutes(5)`
 
-This allows increasing or decreasing the maximimum time the message visibility renewal is attempted while the message processing still takes place.
+This allows increasing or decreasing the maximimum time the message visibility renewal is attempted during message processing.
 
-By setting it to `TimeSpan.Zero` the message visibility renewal is disabled meaning the default message visibility time applies when the message is received.
+By setting it to `TimeSpan.Zero`, the message visibility renewal is disabled, thus the default message visibility time applies when the message is received.
 
 ### MessageVisibilityTimeout
 
@@ -84,4 +84,4 @@ By setting it to `TimeSpan.Zero` the message visibility renewal is disabled mean
 
 **Default**: `null`
 
-By default the transport acquires the message visibility timeout of the queue by reading the MessageVisibilityTimeout attribute. By setting an explicit value the message visibility timeout on the queue is overruled by the timeout specified in this settings that will be used on every receive request.
+By default the transport acquires the message visibility timeout of the queue by reading the `MessageVisibilityTimeout` attribute. By setting an explicit value, the message visibility timeout on the queue is overruled by the timeout specified in this setting which will be used on every receive request.
