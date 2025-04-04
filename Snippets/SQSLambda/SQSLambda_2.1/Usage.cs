@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Amazon.Lambda.Annotations;
+using Amazon.Lambda.Annotations.SQS;
 using Amazon.Lambda.Core;
 using Amazon.Lambda.SQSEvents;
+using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 
-class Usage
+class Usage(IAwsLambdaSQSEndpoint serverlessEndpoint)
 {
     #region aws-endpoint-creation
 
@@ -14,7 +17,7 @@ class Usage
     {
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAwsLambdaNServiceBusEndpoint("endpoint-name", (endpointConfiguration, _) =>
+            services.AddAwsLambdaSQSEndpoint("endpoint-name", (endpointConfiguration, _) =>
             {
                 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
