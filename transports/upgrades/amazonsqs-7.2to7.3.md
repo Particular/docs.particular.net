@@ -8,12 +8,12 @@ upgradeGuideCoreVersions:
  - 9
 ---
 
-The transport automatically extends the visibility timeout from message handling that takes longer. This ensures messages are not prematurely reprocessed if the handler execution time excees the visibility timeotu configured on the queue or on the receive request.
+The transport now automatically extends the visibility timeout during message processing when the handler execution exceeds the configured timeout on the queue or receive request. This prevents messages from being prematurely reprocessed.
 
-Without visibility renewal, long-running message handlers may experience:
+Without visibility renewal, long-running handlers may encounter:
 
 - Duplicate processing due to expired visibility
-- Message deletion failures, resulting in message reappearance
-- Misleading delivery attempt counts for poison message detection
+- Message deletion failures, causing messages to reappear
+- Misleading delivery attempt counts affecting poison message detection
 
-The message visibility timeout extension is enabled by default and will be attempted up to 5 minutes. It is possible to configure the message visibility timeout and the maximum time to extend it. For more information consult the transport configuration documentation.
+By default, visibility extension is enabled and will be attempted for up to 5 minutes. Both the initial visibility timeout and the maximum extension duration are configurable. For more details, refer to the [transport configuration documentation](/transports/sqs/configuration-options.md#message-visibility).
