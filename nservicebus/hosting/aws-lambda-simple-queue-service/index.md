@@ -17,9 +17,7 @@ An NServiceBus endpoint is hosted in AWS Lambda by creating an `AwsLambdaSQSEndp
 
 ### `AwsLambdaSQSEndpoint` creation
 
-The endpoint should be instantiated only once, when the lambda is first called, and assigned to a `static` field:
-
-snippet: aws-endpoint-creation
+partial: endpoint-creation
 
 Since the cost of starting an `AwsLambdaSQSEndpoint` endpoint can be high, it is recommended to [configure the lambda's concurrency](https://docs.aws.amazon.com/lambda/latest/dg/configuration-concurrency.html) to minimize cold starts.
 
