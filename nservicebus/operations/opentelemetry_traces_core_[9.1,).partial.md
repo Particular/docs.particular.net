@@ -11,7 +11,7 @@ NServiceBus endpoints generate OpenTelemetry traces for incoming and outgoing me
 
 snippet: opentelemetry-enabletracing
 
-### Emitted span structure
+### Span relationships
 
 #### Send operations
 
