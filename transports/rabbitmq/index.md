@@ -17,6 +17,16 @@ Provides support for sending messages over [RabbitMQ](https://www.rabbitmq.com/)
 
 partial: broker-compatibility
 
+### Hosted broker options
+
+The transport has been confirmed to work with the following hosting providers:
+
+- [Amazon MQ](https://aws.amazon.com/amazon-mq/)
+- [CloudAMQP](https://www.cloudamqp.com/)
+
+> [!NOTE]
+> Other hosted options may work as long as they meet the requirements specified above.
+
 ## Transport at a glance
 
 |Feature                    |   |
