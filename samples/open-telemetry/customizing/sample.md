@@ -25,13 +25,9 @@ NServiceBus OpenTelemetry instrumentation is not enabled by default. It must be 
 
 snippet: enable-opentelemetry
 
-OpenTelemetry is configured to export all traces to the command line. It includes the `NServiceBus.Core` source which is built into NServiceBus and a custom activity source defined in the sample (see below).
+OpenTelemetry is configured to export all traces to the command line. It includes the `NServiceBus.*` sources built into NServiceBus and a custom activity source defined in the sample (see below).
 
 snippet: open-telemetry-config
-
-A custom processor is registered which adds the machine name as a tag to every activity created by this trace listener.
-
-snippet: custom-processor
 
 ### Custom activities
 

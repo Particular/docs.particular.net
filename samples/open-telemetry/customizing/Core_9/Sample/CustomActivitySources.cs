@@ -4,6 +4,6 @@
 static class CustomActivitySources
 {
     public const string Name = "Sample.ActivitySource";
-    public static ActivitySource Main = new ActivitySource(Name);
+    public static readonly ActivitySource Main = new(Name);
 }
 #endregion
