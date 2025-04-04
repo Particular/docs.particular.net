@@ -9,7 +9,7 @@ using NServiceBus;
 
 namespace LambdaFunctions;
 
-public class SqsLambda(AwsLambdaSQSEndpoint serverlessEndpoint)
+public class SqsLambda(IAwsLambdaSQSEndpoint serverlessEndpoint)
 {
     #region SqsFunctionHandler
     [LambdaFunction]
