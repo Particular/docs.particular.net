@@ -18,7 +18,7 @@ public class PlaceOrderHandler(ILogger<PlaceOrderHandler> log) : IHandleMessages
         }
 
         var publishOptions = new PublishOptions();
-        // https://docs.particular.net/nservicebus/operations/opentelemetry#traces-emitted-span-structure-publish-operations
+        // https://docs.particular.net/nservicebus/operations/opentelemetry#traces-span-relationships-publish-operations
         publishOptions.ContinueExistingTraceOnReceive();
 
         var orderPlaced = new OrderPlaced
