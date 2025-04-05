@@ -107,6 +107,8 @@ or to provide a custom key:
 
 snippet: S3ServerSideCustomerEncryption
 
+partial: visibility-timeout
+
 partial: v1compatibilitymode
 
 partial: delayeddelivery
