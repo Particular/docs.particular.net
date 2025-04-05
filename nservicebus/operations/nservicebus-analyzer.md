@@ -1,7 +1,7 @@
 ---
 title: NServiceBus Analyzer
 summary: How to use the NServiceBus analyzer to avoid missing awaits
-reviewed: 2023-01-10
+reviewed: 2025-03-31
 component: Core
 versions: '[6,]'
 ---
@@ -44,7 +44,7 @@ The analyzer also works when building a .NET Core application using `dotnet buil
 
 ## Disabling the analyzer
 
-The analyzer can be disabled in several ways. However, disabling the analyzer is not recommended as it highlights missing `await` operators, which can cause duplicate messages, message loss, transaction issues, and more.
+The analyzer can be disabled in several ways. However, it is not recommended to do so. The analyzer helps identify missing await operators, which, if not added, can lead to issues such as duplicate messages, message loss, transaction inconsistencies, and more.
 
 
 ### Disable analyzer warning for a single call site
