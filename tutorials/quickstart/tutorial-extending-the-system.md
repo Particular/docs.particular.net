@@ -68,11 +68,16 @@ To create the message handler:
 1. Mark the handler class as public, and implement the `IHandleMessages<OrderPlaced>` interface.
 1. Add a logger instance, which will allow you to take advantage of the logging system used by NServiceBus. This has an important advantage over `Console.WriteLine()`: the entries written with the logger will appear in the log file in addition to the console. Use this code to add the logger instance to the handler class:
     ```cs
-    static ILog log = LogManager.GetLogger<OrderPlacedHandler>();
+    private readonly ILogger<OrderPlacedHandler> logger;
+
+    public OrderPlacedHandler(ILogger<OrderPlacedHandler> logger)
+    {
+        this.logger = logger;
+    }
     ```
 1. Within the `Handle` method, use the logger to record when the `OrderPlaced` message is received, including the value of the `OrderId` message property:
     ```cs
-    log.Info($"Shipping has received OrderPlaced, OrderId = {message.OrderId}");
+    logger.Information($"Shipping has received OrderPlaced, OrderId = {orderId}, message.OrderId");
     ```
 1. Since everything in this handler method is synchronous, you can return `Task.CompletedTask`.
 

@@ -38,7 +38,7 @@ namespace ClientUI.Controllers
             // Send the command
             await _messageSession.Send(command);
 
-            _log.LogInformation($"Sending PlaceOrder, OrderId = {orderId}");
+            _log.LogInformation("Sending PlaceOrder, OrderId = {orderId}", orderId);
 
             dynamic model = new ExpandoObject();
             model.OrderId = orderId;
