@@ -1666,6 +1666,21 @@
     - Title: Upgrading to native queue length metric
       Url: monitoring/upgrade-guides/native-queue-length
 
+- Name: Legacy System Modernization
+  Topics:
+  - Title: Introduction
+    Url: legacy-system-modernization
+  - Title: Bridging the old with the new
+    Url: legacy-system-modernization/messaging-bridge
+  - Title: Maintaining data integrity
+    Url: legacy-system-modernization/transactional-session-and-outbox
+  - Title: Integrating with native systems
+    Url: legacy-system-modernization/native-integration
+  - Title: System monitoring and management
+    Url: legacy-system-modernization/service-pulse
+  - Title: Ongoing support
+    Url: legacy-system-modernization/production-support
+
 - Name: Shape the future
   Topics:
   - Title: Introduction
