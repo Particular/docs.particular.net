@@ -1,47 +1,37 @@
 using System;
 using Messages;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-namespace ClientUI
-{   
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            Console.Title = "ClientUI";
+Console.Title = "ClientUI";
 
-            var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
 
-            var endpointConfiguration = new EndpointConfiguration("ClientUI");
-            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+var endpointConfiguration = new EndpointConfiguration("ClientUI");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
-            var routing = transport.Routing();
-            routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
+var routing = transport.Routing();
+routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
-            endpointConfiguration.SendFailedMessagesTo("error");
-            endpointConfiguration.AuditProcessedMessagesTo("audit");
-            endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
+endpointConfiguration.SendFailedMessagesTo("error");
+endpointConfiguration.AuditProcessedMessagesTo("audit");
+endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
 
-            var metrics = endpointConfiguration.EnableMetrics();
-            metrics.SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromMilliseconds(500));
+var metrics = endpointConfiguration.EnableMetrics();
+metrics.SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromMilliseconds(500));
 
-            builder.UseNServiceBus(endpointConfiguration);
+builder.UseNServiceBus(endpointConfiguration);
 
-            builder.Services.AddControllers();
-            builder.Services.AddMvc();
+builder.Services.AddControllers();
+builder.Services.AddMvc();
 
-            var app = builder.Build();
-            app.UseStaticFiles();
-            app.UseRouting();
-            app.UseAuthorization();
-            app.MapControllers();
+var app = builder.Build();
 
-            app.Run();
-        }
-    }
-}
+app.UseStaticFiles();
+app.UseRouting();
+app.UseAuthorization();
+app.MapControllers();
+
+app.Run();
