@@ -1,5 +1,5 @@
 ---
-title: Using NServiceBus in AWS Lambda with SQS and the annotations programming model
+title: Using NServiceBus in AWS Lambda with annotations and SQS
 reviewed: 2024-03-07
 component: SQSLambda
 related:
