@@ -7,20 +7,13 @@ using Microsoft.Extensions.Logging;
 
 namespace Shipping;
 
-public class OrderPlacedHandler :
+public class OrderPlacedHandler(ILogger<OrderPlacedHandler> logger) :
     IHandleMessages<OrderPlaced>
 {
-    private readonly ILogger<OrderPlacedHandler> logger;
-
-    public OrderPlacedHandler(ILogger<OrderPlacedHandler> logger)
-    {
-        this.logger = logger;
-    }
-
     public Task Handle(OrderPlaced message, IMessageHandlerContext context)
     {
         logger.LogInformation(
-            $"Shipping has received OrderPlaced, OrderId = {message.OrderId}");
+            "Shipping has received OrderPlaced, OrderId = {orderId}", message.OrderId);
         return Task.CompletedTask;
     }
 }
