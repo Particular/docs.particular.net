@@ -515,7 +515,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.2.1) | 2024-09-02     | -                 | -                                 |
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.1.0) | ~~2024-07-05~~ | ~~2024-12-02~~    | ~~Superseded by 3.2.x~~           |
-| [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.0.0) | ~~2024-04-16~~ | ~~2024-10-05~~    | ~~Superseded by 3.1.x~~           |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/2.0.3) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/1.0.3) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
