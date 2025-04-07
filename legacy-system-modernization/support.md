@@ -4,7 +4,7 @@ summary: Modernizing legacy systems with design, development and production supp
 reviewed: 2025-04-07
 ---
 
-Particular provide support at every step of the journey, from design to production:
+Particular provides support at every step of the journey, from design to production:
 
 - [Architecture guidance](https://particular.net/adsd)
 - [On-site training](https://particular.net/onsite-training)
