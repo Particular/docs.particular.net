@@ -9,7 +9,7 @@ buffer = Min(remainingTime / 2, 10 seconds)
 renewAfter = remainingTime - buffer
 ```
 
-Renewal is triggered after `renewAfter` has elapsed since the last renewal. If the remaining time is less than 400ms, the renewal is attempted immediately. This ensures the message visibility is extended consistently and early enough to avoid expiration, even under system load or scheduling delays.
+A message visibility timeout renewal is triggered after `renewAfter` has elapsed since the last renewal attempt. The renewal is attempted immediately if the remaining time is less than 400ms. This ensures the message visibility is extended consistently and early enough to avoid expiration, even under system load or scheduling delays.
 
 When renewing, the transport extends the visibility timeout by:
 
@@ -64,8 +64,8 @@ sequenceDiagram
 
 The message visibility timeout extension is a best effort operation and can fail due to several reasons including:
 
-- Larger clock skew between the client and the SQS service time
-- Network interruptions for longer periods of time between the client and the SQS service
+- Significant clock skew between the client and the SQS service time
+- Network interruptions for extensive periods of time between the client and the SQS service
 - Backpressure from the SQS service due to throttling
 
 ### MaxAutoMessageVisibilityRenewalDuration
@@ -74,7 +74,7 @@ The message visibility timeout extension is a best effort operation and can fail
 
 **Default**: `TimeSpan.FromMinutes(5)`
 
-This allows increasing or decreasing the maximimum time the message visibility renewal is attempted during message processing.
+This configures the allowed maximum message visibility timeout, after which the transport stops renewing the visibility. Amazon SQS supports a maximum value of 12 hours.
 
 By setting it to `TimeSpan.Zero`, the message visibility renewal is disabled, thus the default message visibility time applies when the message is received.
 

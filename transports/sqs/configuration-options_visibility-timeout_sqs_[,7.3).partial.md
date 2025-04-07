@@ -8,4 +8,4 @@ Without a message visibility extension mechanism (supported in version 7.3 and a
 - Message deletion failures, causing the message to reappear on the queue
 - Inaccurate delivery attempt counters, impacting poison message detection
 
-To avoid these issues, the visibility timeout should be set to at least match the maximum expected processing time of a message.
+To avoid these issues, configure the visibility timeout at the queue level, when creating, to at least match the maximum expected processing time of a message.
