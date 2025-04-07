@@ -1670,16 +1670,16 @@
   Topics:
   - Title: Introduction
     Url: legacy-system-modernization
-  - Title: Bridging the old with the new
+  - Title: Bridging the gap
     Url: legacy-system-modernization/messaging-bridge
-  - Title: Maintaining data integrity
-    Url: legacy-system-modernization/transactional-session-and-outbox
   - Title: Integrating with native systems
     Url: legacy-system-modernization/native-integration
+  - Title: Ensuring data integrity
+    Url: legacy-system-modernization/transactional-session-and-outbox  
   - Title: System monitoring and management
-    Url: legacy-system-modernization/service-pulse
+    Url: legacy-system-modernization/system-monitoring-and-management
   - Title: Ongoing support
-    Url: legacy-system-modernization/production-support
+    Url: legacy-system-modernization/support
 
 - Name: Shape the future
   Topics:

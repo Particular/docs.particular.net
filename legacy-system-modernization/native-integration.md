@@ -1,5 +1,5 @@
 ---
-title: NServiceBus integrations
+title: Integrating with native systems
 summary: Modernizing legacy systems by integrating with native systems
 reviewed: 2025-04-07
 ---
