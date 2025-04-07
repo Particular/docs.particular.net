@@ -99,6 +99,12 @@ In addition to the [connection string options of the transport](/transports/post
 
 ## Amazon SQS
 
+Similar to a SQL connection string, the ServiceControl AmazonSQS `ConnectionString` consists of key-value pairs separated by a semicolon:
+
+```text
+AccessKeyId=<value>;SecretAccessKey=<value>;Region=<value>
+```
+
 The following ServiceControl connection string options are available:
 
 * `AccessKeyId=<value>` - AssessKeyId value,
