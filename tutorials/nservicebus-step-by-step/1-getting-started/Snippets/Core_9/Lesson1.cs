@@ -23,7 +23,10 @@ class StepByStep
 
         builder.UseNServiceBus(endpointConfiguration);
 
-        await builder.Build().RunAsync();
+        var app = builder.Build()
+
+        await app.RunAsync();
+
         #endregion
     }
 
@@ -51,7 +54,9 @@ class StepByStep
         #region Startup
         builder.UseNServiceBus(endpointConfiguration);
 
-        await builder.Build().RunAsync();
+        var app = builder.Build();
+
+        await app.RunAsync();
         #endregion
     }
 }

@@ -12,7 +12,9 @@ public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) :
 {
     public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
-        logger.LogInformation("Received PlaceOrder, OrderId = {orderId}", message.OrderId);
+        logger.LogInformation(
+            "Received PlaceOrder, OrderId = {orderId}", message.OrderId);
+
         return Task.CompletedTask;
     }
 }

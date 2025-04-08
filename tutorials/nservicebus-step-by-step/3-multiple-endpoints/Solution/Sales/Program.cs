@@ -14,4 +14,6 @@ endpointConfiguration.UseTransport(new LearningTransport());
 
 builder.UseNServiceBus(endpointConfiguration);
 
-await builder.Build().RunAsync();
+var app = builder.Build();
+
+await app.RunAsync();
