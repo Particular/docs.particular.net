@@ -13,7 +13,7 @@ Modernizing a legacy .NET system is not a one-time event — it’s a journey. T
 
 This section demonstrates how it can guide and support each step of a typical modernization journey.
 
-### Step 1: Begin the strangle
+### Step 1: Begin the "strangle"
 
 Modernization often starts with identifying a small piece of functionality to extract. New services can be built around the legacy system resulting in [hybrid solutions](/architecture/hybrid-systems.md).
 
