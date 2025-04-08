@@ -23,7 +23,7 @@ class StepByStep
 
         builder.UseNServiceBus(endpointConfiguration);
 
-        var app = builder.Build()
+        var app = builder.Build();
 
         await app.RunAsync();
 
