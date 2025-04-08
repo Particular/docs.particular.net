@@ -63,6 +63,18 @@ Disposing the transactional session without committing will roll back any change
 > [!NOTE]
 > The `Commit` operation may fail and throw an exception for reasons outlined in the [failure scenarios section](#failure-scenarios).
 
+## Remote processor 
+
+//TODO: This section needs to be versioned once we have decided what version this will be released in
+
+The transactional session supports configuring a remote endpoint as the processing endpoint. The key use case for this is to allow the transactional session to be used in [send-only](/nservicebus/hosting/index.md#send-only-hosting) endpoints.
+
+snippet: configuring-remote-processor
+
+### Outbox cleanup
+
+To avoid multiple endpoints running [outbox cleanup](/nservicebus/outbox/index.md#outbox-expiration-duration) consider disabling it for the endpoint that is not processing the control messages.
+
 ## Requirements
 
 The transactional session feature requires a supported persistence package to store outgoing messages. This feature is currently supported for the following persistence packages:
