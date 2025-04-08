@@ -180,7 +180,6 @@ If dispatching the control message fails, the transactional session changes will
 
 ## Limitations
 
-* The transactional session cannot be used in send-only endpoints. A full endpoint is required to send a control message to the local queue.
 * The transport must have the same or higher availability guarantees as the database.
 
 ## Advanced configuration
