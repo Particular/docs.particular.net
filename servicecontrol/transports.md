@@ -31,7 +31,11 @@ Starting from version 6.4, ServiceControl runs Azure Service Bus transport that,
 
 The new topology uses event type's full name as the name of the topic to which an event is published e.g. `servicecontrol.contracts.messagefailed`. This mapping can be customized by providing the [topology description in json](/transports/azure-service-bus/configuration.md#entity-creation-topology-mapping-options) using `ServiceControl.Transport.ASBS/Toplogy` application setting or `ServiceControl_Transport_ASBS_Toplogy` environment variable.
 
-Furthermore, in addition to the [connection string options of the transport](/transports/azure-service-bus/configuration.md#configuring-an-endpoint) the following ServiceControl specific options are available in versions 4.4 and above:
+In versions 4.4 and above, the following ServiceControl options can be appended to the `ConnectionString` [used by the transport](/transports/azure-service-bus/configuration.md#configuring-an-endpoint):
+
+```text
+Endpoint=sb://[NAMESPACE].servicebus.windows.net/;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]
+```
 
 * `TransportType=AmqpWebSockets` - Configures the transport to use [AMQP over websockets](/transports/azure-service-bus/configuration.md#connectivity).
 * `TopicName=<topic-bundle-name>` - Specifies the [topic name](/transports/azure-service-bus/configuration.md#entity-creation) to be used by the instance. The default value is `bundle-1`.
@@ -53,7 +57,11 @@ As of versions 4.33.3 and 5.0.5 of ServiceControl, support for partitioned entit
 
 ## Azure Storage Queues
 
-ServiceControl does not add any connection settings beyond the Azure Storage connection string.
+ServiceControl does not add any connection settings beyond the Azure Storage connection string:
+
+```text
+DefaultEndpointsProtocol=[http|https];AccountName=myAccountName;AccountKey=myAccountKey
+```
 
 ## RabbitMQ
 
@@ -66,7 +74,11 @@ RabbitMQ contains different `TransportType` options based on the topology and qu
 | [Classic](https://www.rabbitmq.com/docs/classic-queues) | [Conventional](/transports/rabbitmq/routing-topology.md#conventional-routing-topology) | `RabbitMQ.ClassicConventionalRouting` |
 | [Classic](https://www.rabbitmq.com/docs/classic-queues) | [Direct](/transports/rabbitmq/routing-topology.md#direct-routing-topology) | `RabbitMQ.ClassicDirectRouting` |
 
-In addition to the [connection string options of the transport](/transports/rabbitmq/connection-settings.md), the following options are available in versions 4.4 and above:
+In versions 4.4 and above, the following ServiceControl options can be appended to the `ConnectionString` [used by the transport](/transports/rabbitmq/connection-settings.md):
+
+```text
+host=localhost;
+```
 
 * `UseExternalAuthMechanism=true|false(default)` - Specifies that an [external authentication mechanism should be used for client authentication](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-external-authentication).
 * `DisableRemoteCertificateValidation=true|false(default)` - Allows ServiceControl to connect to the broker [even if the remote server certificate is invalid](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-remote-certificate-validation).
@@ -80,7 +92,11 @@ These options are available in version 6.5 and above:
 
 ## SQL
 
-In addition to the [connection string options of the transport](/transports/sql/connection-settings.md#connection-configuration) the following ServiceControl specific options are available in versions 4.4 and above:
+In versions 4.4 and above, the following ServiceControl options can be appended to the `ConnectionString` [used by the transport](/transports/sql/connection-settings.md#connection-configuration):
+
+```text
+Server=localhost;Database=postgres;Port=5432;User Id=myUserId;Password=myPassword;
+```
 
 * `Queue Schema=<schema_name>` - Specifies custom schema for the ServiceControl input queue.
 * `Subscriptions Table=<subscription_table_name>` - Specifies SQL subscription table name.
@@ -89,7 +105,12 @@ In addition to the [connection string options of the transport](/transports/sql/
 
 ## PostgreSQL
 
-In addition to the [connection string options of the transport](/transports/postgresql/connection-settings.md#connection-configuration) the following ServiceControl specific options are available in versions 5.10 and above:
+In versions 5.10 and above, the following ServiceControl options can be appended to the `ConnectionString` [used by the transport](/transports/postgresql/connection-settings.md#connection-configuration):
+
+```text
+Server=localhost;Database=postgres;Port=5432;User Id=myUserId;Password=myPassword;
+```
+
 
 * `Queue Schema=<schema_name>` - Specifies a custom schema for the ServiceControl input queue.
 * `Subscriptions Table=<subscription_table_name>` - Specifies PostgreSQL subscription table name.
