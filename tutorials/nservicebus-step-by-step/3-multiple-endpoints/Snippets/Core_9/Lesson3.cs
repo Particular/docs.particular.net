@@ -77,7 +77,7 @@ class Snippets
         #endregion
 
     }
-    
+
     class Program
     {
         static async Task Main(string[] args)
@@ -95,7 +95,9 @@ class Snippets
 
             builder.UseNServiceBus(endpointConfiguration);
 
-            await builder.Build().RunAsync();
+            var app = builder.Build();
+
+            await app.RunAsync();
             #endregion
         }
     }

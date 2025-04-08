@@ -21,4 +21,6 @@ builder.UseNServiceBus(endpointConfiguration);
 
 builder.Services.AddHostedService<InputLoopService>();
 
-await builder.Build().RunAsync();
+var app = builder.Build();
+
+await app.RunAsync();
