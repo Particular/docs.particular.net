@@ -18,7 +18,7 @@ class Usage(IAwsLambdaSQSEndpoint serverlessEndpoint)
 {
     #region aws-endpoint-creation
 
-    [Amazon.Lambda.Annotations.LambdaStartup]
+    [LambdaStartup]
     public class Startup
     {
         public void ConfigureServices(IServiceCollection services)
