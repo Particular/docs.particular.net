@@ -4,9 +4,15 @@ using System.Threading.Tasks;
 using Amazon.Lambda.Annotations;
 using Amazon.Lambda.Annotations.SQS;
 using Amazon.Lambda.Core;
+using Amazon.Lambda.Serialization.SystemTextJson;
 using Amazon.Lambda.SQSEvents;
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
+
+[assembly:LambdaSerializer(typeof(DefaultLambdaJsonSerializer))]
+
+// The namespace is required because the Lambda source generators expect it
+namespace SQSLambdaSnippets;
 
 class Usage(IAwsLambdaSQSEndpoint serverlessEndpoint)
 {
