@@ -109,6 +109,7 @@ The following ServiceControl connection string options are available:
 * `S3BucketForLargeMessages=<value>` - S3 bucket for large messages [option](/transports/sqs/configuration-options.md#offload-large-messages-to-s3),
 * `S3KeyPrefix=<value>` - S3 key prefix [option](/transports/sqs/configuration-options.md#offload-large-messages-to-s3-key-prefix).
 * `DoNotWrapOutgoingMessages=true` - Do not wrap outgoing messages [option](/transports/sqs/configuration-options.md#do-not-wrap-message-payload-in-a-transport-envelope).
+* `ReservedBytes=<value>` - Reserve bytes in message calculation [option](/transports/sqs/configuration-options.md#reserve-bytes-when-calculating-message-size).
 
 > [!NOTE]
 > When using SQS as a transport, for local development purposes it is possible to set up ServiceControl to connect to a LocalStack instance.
