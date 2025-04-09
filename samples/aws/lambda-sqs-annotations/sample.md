@@ -25,6 +25,9 @@ The [`Amazon.Lambda.Tools` CLI](https://github.com/aws/aws-lambda-dotnet) can be
 3. Update the `s3-bucket` settings in aws-lambda-tools-defaults.json file found in the **ServerlessEndpoint** project with the name of the bucket
 4. Optionally change the `stack-name` setting
 
+> [!NOTE]
+> The AWS Lambda annotation model requires specifying resources ARN. Before deploying and running the Lambda, open the `SqsLambda.cs` and update the `FunctionHandler` method `SQSEvent` attribute, replacing the `region` and `account-id` values with valid ones.
+
 ## Running the sample
 
 > [!NOTE]
