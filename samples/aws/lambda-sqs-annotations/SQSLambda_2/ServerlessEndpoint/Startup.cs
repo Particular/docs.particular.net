@@ -10,7 +10,7 @@ public class Startup
 {
     public void ConfigureServices(IServiceCollection services)
     {
-        services.AddAwsLambdaNServiceBusEndpoint("ServerlessEndpoint", (endpointConfiguration, _) =>
+        services.AddAwsLambdaSQSEndpoint("ServerlessEndpoint", (endpointConfiguration, _) =>
         {
             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
