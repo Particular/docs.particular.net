@@ -9,7 +9,7 @@ using NServiceBus;
 
 namespace LambdaFunctions;
 
-public class HttpLambda(AwsLambdaSQSEndpoint serverlessEndpoint)
+public class HttpLambda(IAwsLambdaSQSEndpoint serverlessEndpoint)
 {
     #region HttpFunctionHandler
     [LambdaFunction(Policies = "AWSLambda_FullAccess, AmazonSQSFullAccess")]
