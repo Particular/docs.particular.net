@@ -60,7 +60,3 @@ netsh http show urlacl
 
 For more information see the relevant [Netsh commands for HTTP
 ](https://msdn.microsoft.com/en-us/library/windows/desktop/cc307236).
-
-## ServicePointManager HTTP connections
-
-include: servicepoint-manager-connection-limit
