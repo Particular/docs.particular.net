@@ -1,25 +1,25 @@
 ---
-title: System modernization
-summary: Simplifying legacy system modernization with the Particular Service Platform and NServiceBus
+title: Modernization
+summary: Simplifying legacy application modernization with the Particular Service Platform and NServiceBus
 reviewed: 2025-04-07
 callsToAction: ['solution-architect','architecture-review']
 ---
 
-Legacy system modernization is an ongoing challenge: today's modern systems are tomorrow's legacy.
+Legacy application modernization is an ongoing challenge: today's modern applications are tomorrow's legacy.
 
 ## The journey
 
-Modernizing a legacy .NET system is not a one-time event — it’s a journey. The [Particular Service Platform](/platform/) with [NServiceBus](/nservicebus/) enables that journey to proceed safely, incrementally, and successfully.
+Modernizing a legacy .NET application is not a one-time event — it’s a journey. The [Particular Service Platform](/platform/) with [NServiceBus](/nservicebus/) enables that journey to proceed safely, incrementally, and successfully.
 
 This section demonstrates how it can guide and support each step of a typical modernization journey.
 
 ### Step 1: Begin the "strangle"
 
-Modernization often starts with identifying a small piece of functionality to extract. New services can be built around the legacy system resulting in [hybrid solutions](/architecture/hybrid-systems.md).
+Modernization often starts with identifying a small piece of functionality to extract. New services can be built around the legacy application resulting in [hybrid solutions](/architecture/hybrid-systems.md).
 
 ### Step 2: Introduce asynchronous messaging
 
-Messaging patterns offer a more flexible, reliable and less disruptive way to connect a legacy system to a new one, especially when handling data format differences and gradual migrations.
+Messaging patterns offer a more flexible, reliable and less disruptive way to connect a legacy application to a new one, especially when handling data format differences and gradual migrations.
 
 Furthermore, asynchronous messaging enables old and new components to communicate reliably, without tight coupling.
 
@@ -30,7 +30,7 @@ It includes first-class support for [modern architecture concepts](/architecture
 
 As more services come online, system communication becomes essential.
 
-The [native integration](./native-integration.md) and [messaging bridge](./messaging-bridge.md) features of NServiceBus allow new services to evolve independently while maintaining seamless interactions with the legacy system, even if they use different brokers ([transports](/transports/)) or architectures.
+The [native integration](./native-integration.md) and [messaging bridge](./messaging-bridge.md) features of NServiceBus allow new services to evolve independently while maintaining seamless interactions with the legacy application, even if they use different brokers ([transports](/transports/)) or architectures.
 
 ### Step 4: Ensure data integrity
 
@@ -44,7 +44,7 @@ The Particular Platform provides tools to effectively handle [system management]
 
 ### Step 6: Support
 
-Knowing that [expert support](./support.md) is available throughout the legacy system modernization journey provides peace of mind and allows developers to focus on other aspects of their business.
+Knowing that [expert support](./support.md) is available throughout the legacy application modernization journey provides peace of mind and allows developers to focus on other aspects of their business.
 
 ## Useful links
 
