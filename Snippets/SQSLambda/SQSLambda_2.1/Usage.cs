@@ -107,5 +107,5 @@ class Usage(IAwsLambdaSQSEndpoint serverlessEndpoint)
         #endregion
     }
 
-    class ACommand { }
+    class ACommand;
 }

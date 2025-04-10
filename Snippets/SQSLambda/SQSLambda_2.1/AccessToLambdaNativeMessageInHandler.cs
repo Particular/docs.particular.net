@@ -16,6 +16,4 @@ public class AccessToLambdaNativeMessageInHandler : IHandleMessages<TestMessage>
 
 #endregion
 
-public class TestMessage
-{
-}
+public class TestMessage;
