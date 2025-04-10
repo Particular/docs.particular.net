@@ -1,11 +1,15 @@
 ﻿using System;
 
 using Azure.Data.Tables;
-
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
 
 
 Console.Title = "Server";
+
+var builder = Host.CreateApplicationBuilder(args);
 
 #region AzureTableConfig
 
@@ -25,9 +29,12 @@ persistence.DefaultTable("Server");
 
 #endregion
 
+
 #region BehaviorRegistration
 
-endpointConfiguration.Pipeline.Register(new OrderIdHeaderAsPartitionKeyBehavior(), "Extracts a partition key from a header");
+var serviceProvider = builder.Services.BuildServiceProvider();
+var logger = serviceProvider.GetRequiredService<ILogger<OrderIdHeaderAsPartitionKeyBehavior>>();
+endpointConfiguration.Pipeline.Register(new OrderIdHeaderAsPartitionKeyBehavior(logger), "Extracts a partition key from a header");
 endpointConfiguration.Pipeline.Register(new OrderIdAsPartitionKeyBehavior.Registration());
 
 #endregion
@@ -37,9 +44,10 @@ var transport = endpointConfiguration.UseTransport<LearningTransport>();
 transport.Transactions(TransportTransactionMode.ReceiveOnly);
 endpointConfiguration.EnableInstallers();
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-Console.WriteLine("Press any key to exit");
+Console.WriteLine("Press any key, the application is starting");
 Console.ReadKey();
+Console.WriteLine("Starting...");
 
-await endpointInstance.Stop();
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

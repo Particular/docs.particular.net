@@ -1,29 +1,26 @@
 ﻿using System.Threading.Tasks;
 using Amazon.SQS.Model;
+using Microsoft.Extensions.Logging;
 using NativeIntegration.Receiver;
 using NServiceBus;
-using NServiceBus.Logging;
-
 #region HandlerAccessingNativeMessage
-public class SomeNativeMessageHandler : IHandleMessages<SomeNativeMessage>
+public class SomeNativeMessageHandler(ILogger<SomeNativeMessageHandler> logger) : IHandleMessages<SomeNativeMessage>
 {
-    static readonly ILog log = LogManager.GetLogger<SomeNativeMessageHandler>();
-
     public async Task Handle(SomeNativeMessage eventMessage, IMessageHandlerContext context)
     {
         var nativeMessage = context.Extensions.Get<Message>();
         var nativeAttributeFound = nativeMessage.MessageAttributes.TryGetValue("SomeKey", out var attributeValue);
 
-        log.Info($"Received {nameof(SomeNativeMessage)} with message {eventMessage.ThisIsTheMessage}.");
+        logger.LogInformation($"Received {nameof(SomeNativeMessage)} with message {eventMessage.ThisIsTheMessage}.");
 
         if (nativeAttributeFound)
         {
-            log.Info($"Found attribute 'SomeKey' with value '{attributeValue.StringValue}'");
+            logger.LogInformation($"Found attribute 'SomeKey' with value '{attributeValue.StringValue}'");
         }
 
         if (context.ReplyToAddress != null)
         {
-            log.Info($"Sending reply to '{context.ReplyToAddress}'");
+            logger.LogInformation($"Sending reply to '{context.ReplyToAddress}'");
 
             await context.Reply(new SomeReply());
         }

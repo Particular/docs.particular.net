@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 using NServiceBus.Persistence.AzureTable;
 using NServiceBus.Pipeline;
 using NServiceBus.Sagas;
@@ -11,9 +11,11 @@ using NServiceBus.Sagas;
 
 class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
 {
-    public OrderIdAsPartitionKeyBehavior(IProvidePartitionKeyFromSagaId partitionKeyFromSagaId)
+    public OrderIdAsPartitionKeyBehavior(IProvidePartitionKeyFromSagaId partitionKeyFromSagaId,
+        ILogger<OrderIdAsPartitionKeyBehavior> logger)
     {
         partitionKeyFromSagaId1 = partitionKeyFromSagaId;
+        this.logger = logger;
     }
 
     public override async Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
@@ -29,15 +31,17 @@ class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
 
         if (context.Headers.TryGetValue(Headers.SagaId, out var sagaIdHeader))
         {
-            Log.Info($"Saga Id Header: {sagaIdHeader}");
+            logger.LogInformation($"Saga Id Header: {sagaIdHeader}");
         }
 
         if (context.Extensions.TryGet<TableInformation>(out var tableInformation))
         {
-            Log.Info($"Table Information: {tableInformation.TableName}");
+
+            logger.LogInformation($"Table Information: {tableInformation.TableName}");
         }
 
-        Log.Info($"Found partition key '{context.Extensions.Get<TableEntityPartitionKey>().PartitionKey}' from '{nameof(IProvideOrderId)}'");
+
+        logger.LogInformation($"Found partition key '{context.Extensions.Get<TableEntityPartitionKey>().PartitionKey}' from '{nameof(IProvideOrderId)}'");
 
         await next();
     }
@@ -48,13 +52,16 @@ class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
             base(nameof(OrderIdAsPartitionKeyBehavior),
                 typeof(OrderIdAsPartitionKeyBehavior),
                 "Determines the PartitionKey from the logical message",
-                provider => new OrderIdAsPartitionKeyBehavior(provider.GetRequiredService<IProvidePartitionKeyFromSagaId>()))
+                provider => new OrderIdAsPartitionKeyBehavior(
+                    provider.GetRequiredService<IProvidePartitionKeyFromSagaId>(),
+                    provider.GetRequiredService<ILogger<OrderIdAsPartitionKeyBehavior>>()
+                    ))
         {
             InsertBefore(nameof(LogicalOutboxBehavior));
         }
     }
 
     IProvidePartitionKeyFromSagaId partitionKeyFromSagaId1;
-    static readonly ILog Log = LogManager.GetLogger<OrderIdAsPartitionKeyBehavior>();
+    private readonly ILogger<OrderIdAsPartitionKeyBehavior> logger;
 }
 #endregion
