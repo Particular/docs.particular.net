@@ -1,16 +1,14 @@
 ---
-title: Using NServiceBus in AWS Lambda with SQS
+title: Using NServiceBus in AWS Lambda with annotations and SQS
 reviewed: 2024-03-07
 component: SQSLambda
 related:
  - samples/aws/sqs-simple
  - samples/aws/sqs-native-integration
-redirects:
-- samples/previews/aws-lambda/sqs
-- samples/hosting/aws-lambda-sqs
+ - samples/aws/lambda-sqs
 ---
 
-This sample shows how to host NServiceBus within an AWS Lambda, in this case, a function triggered by incoming SQS messages. This enables hosting message handlers in AWS Lambda, gaining the abstraction of message handlers implemented using `IHandleMessages<T>` and also taking advantage of NServiceBus's extensible message-processing pipeline. This sample also shows a function triggered by an HTTP call and how to use NServiceBus to dispatch messages from within this context.
+This sample shows how to host NServiceBus within an AWS Lambda when using the annotations programming model, in this case, a function triggered by incoming SQS messages. This enables hosting message handlers in AWS Lambda, gaining the abstraction of message handlers implemented using `IHandleMessages<T>` and also taking advantage of NServiceBus's extensible message-processing pipeline. This sample also shows a function triggered by an HTTP call and how to use NServiceBus to dispatch messages from within this context.
 
 When hosting NServiceBus within AWS Lambda, the function handler class hosts an NServiceBus endpoint that is capable of processing multiple message types.
 
@@ -26,6 +24,9 @@ The [`Amazon.Lambda.Tools` CLI](https://github.com/aws/aws-lambda-dotnet) can be
 2. Make sure an S3 bucket is available in the AWS region of choice
 3. Update the `s3-bucket` settings in aws-lambda-tools-defaults.json file found in the **ServerlessEndpoint** project with the name of the bucket
 4. Optionally change the `stack-name` setting
+
+> [!NOTE]
+> The AWS Lambda annotation model requires specifying resources ARN. Before deploying and running the Lambda, open the `SqsLambda.cs` and update the `FunctionHandler` method `SQSEvent` attribute, replacing the `region` and `account-id` values with valid ones.
 
 ## Running the sample
 
@@ -51,11 +52,11 @@ To try the AWS Lambda
 
 ## Code walk-through
 
-The static NServiceBus endpoint must be configured using details that come from the AWS Lambda `ILambdaContext`. Since that is not available until a message is handled by the function, the NServiceBus endpoint instance is deferred until the first message is processed, using a lambda expression such as:
+The NServiceBus endpoint is configured at Lambda startup time, and registered in the service collection as follows:
 
 snippet: EndpointSetup
 
-The same class defines the AWS Lambda, which makes up the hosting for the NServiceBus endpoint. The `FunctionHandler` method hands-off processing of messages to NServiceBus:
+The `FunctionHandler` method hands-off processing of messages to NServiceBus:
 
 snippet: SqsFunctionHandler
 
