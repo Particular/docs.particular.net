@@ -51,20 +51,20 @@ As of versions 4.33.3 and 5.0.5 of ServiceControl, support for partitioned entit
 
 * `EnablePartitioning=<True|False>` — Configures the transport to create entities that support partitioning. The default value is `false`.
 
-### Example
+### Example connection string
 
 ```text
-Endpoint=sb://[NAMESPACE].servicebus.windows.net/;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY];TopicName=<topic-bundle-name>;
+Endpoint=sb://[namespace].servicebus.windows.net; SharedSecretIssuer=<owner>;SharedSecretValue=<someSecret>;QueueLengthQueryDelayInterval=<IntervalInMilliseconds(Default=500ms)>;TopicName=<TopicBundleName(Default=bundle-1)>;EnablePartitioning=<true|false(Default=false)>
 ```
 
 ## Azure Storage Queues
 
 ServiceControl does not add any connection settings beyond the Azure Storage connection string.
 
-### Example
+### Example connection string
 
 ```text
-DefaultEndpointsProtocol=[http|https];AccountName=myAccountName;AccountKey=myAccountKey
+DefaultEndpointsProtocol=[http|https];AccountName=<MyAccountName>;AccountKey=<MyAccountKey>;Subscriptions Table=tablename
 ```
 
 ## RabbitMQ
@@ -90,10 +90,10 @@ These options are available in version 6.5 and above:
 * `ManagementApiPassword=<PASSWORD>` - The password used to connect to the RabbitMQ management API. If this option is not set, the credentials from the broker connection string will be used.
 * `ValidateDeliveryLimits=<true(default)|false>` - Controls the [delivery limit validation](/transports/rabbitmq/connection-settings.md#delivery-limit-validation) of the ServiceControl queues.
 
-### Example
+### Example connection string
 
 ```text
-host=localhost;UseExternalAuthMechanism=false;
+host=<HOSTNAME>;username=<USERNAME>;password=<PASSWORD>;DisableRemoteCertificateValidation=<true|false(default)>;UseExternalAuthMechanism=<true|false(default)>;ValidateDeliveryLimits=<true(default)|false>;ManagementApiUrl=<SCHEME://HOST:PORT>;ManagementApiUserName=<USERNAME>;ManagementApiPassword=<PASSWORD>
 ```
 
 ## SQL
@@ -105,10 +105,10 @@ In addition to the [connection string options of the transport](/transports/sql/
   * *Optional* `Subscriptions Table=<subscription_table_name>@<schema>` - to specify the schema.
   * *Optional* `Subscriptions Table=<subscription_table_name>@<schema>@<catalog>` - to specify the schema and catalog.
 
-### Example
+### Example connection string
 
 ```text
-Server=localhost;Database=postgres;Port=5432;User Id=myUserId;Password=myPassword;Queue Schema=<schema_name>;
+Data Source=<SQLInstance>;Initial Catalog=nservicebus;Integrated Security=True;Queue Schema=myschema;Subscriptions Table=tablename@schema@catalog
 ```
 
 ## PostgreSQL
@@ -121,10 +121,10 @@ In addition to the [connection string options of the transport](/transports/post
   * *Optional* `Subscriptions Table=schema.multi.table.name` - to specify the schema with a table name containing `.`.
   * *Optional* `Subscriptions Table==&quot;multi.table.name=&quot;` - to specify a table name containing `.` without a schema. In this case, `Queue Schema` will be used if specified, otherwise the default schema (`public`) will be used.
 
-### Example
+### Example connection string
 
 ```text
-Server=localhost;Database=postgres;Port=5432;User Id=myUserId;Password=myPassword;Queue Schema=<schema_name>;
+Server=<ServerName>;Database=nservicebus;Port=5432;User Id=<Username>;Password=<Password>;Queue Schema=myschema;Subscriptions Table=schema.tablename
 ```
 
 ## Amazon SQS
@@ -144,10 +144,10 @@ The following ServiceControl connection string options are available:
 > When using SQS as a transport, for local development purposes it is possible to set up ServiceControl to connect to a LocalStack instance.
 > Refer to the [documentation](/nservicebus/aws/local-development.md) about how to configure the environment to use LocalStack.
 
-### Example
+### Example connection string
 
 ```text
-AccessKeyId=<value>;SecretAccessKey=<value>;Region=<value>
+Region=<REGION>;QueueNamePrefix=<prefix>;TopicNamePrefix=<prefix>;AccessKeyId=<ACCESSKEYID>;SecretAccessKey=<SECRETACCESSKEY>;S3BucketForLargeMessages=<BUCKETNAME>;S3KeyPrefix=<KEYPREFIX>
 ```
 
 ## MSMQ
