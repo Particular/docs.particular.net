@@ -9,6 +9,11 @@ class CreateOrderHandler : IHandleMessages<CreateOrder>
     {
         using var activity = CustomActivitySources.Main.StartActivity("Billing Order");
 
+        if (message.SimulateFailure)
+        {
+            throw new MyBusinessException{ ReasonCode = 1};
+        }
+
         Console.WriteLine($"Billing order {message.OrderId}");
         activity?.AddTag("sample.billing.system", "paypal");
         // Calculate order cost

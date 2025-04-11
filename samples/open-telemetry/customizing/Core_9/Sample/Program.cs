@@ -31,6 +31,7 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport<LearningTransport>();
 
 endpointConfiguration.Pipeline.Register(new TraceOutgoingMessageSizeBehavior(), "Captures body size of outgoing messages as OpenTelemetry tags");
+endpointConfiguration.Pipeline.Register(new TraceCustomExceptionInHandlerBehavior(), "Captures custom exception and sets reason code as a tag");
 
 var endpoint = await Endpoint.Start(endpointConfiguration);
 
@@ -47,6 +48,9 @@ while (!done)
             break;
         case ConsoleKey.O:
             await endpoint.SendLocal(new CreateOrder { OrderId = Guid.NewGuid() });
+            break;
+        case ConsoleKey.F:
+            await endpoint.SendLocal(new CreateOrder { OrderId = Guid.NewGuid(), SimulateFailure = true });
             break;
     }
 }
