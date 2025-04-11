@@ -10,10 +10,10 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/3.7.416.7/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.SQS" target="_blank">AWSSDK.SQS</a> | <a href="https://www.nuget.org/packages/AWSSDK.SQS/3.7.400.131/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/3.7.401.80/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/3.7.400.131/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/3.7.416.8/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.SQS" target="_blank">AWSSDK.SQS</a> | <a href="https://www.nuget.org/packages/AWSSDK.SQS/3.7.400.132/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/3.7.401.81/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/3.7.400.132/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.5.3/license" target="_blank">View License</a> | <i>None provided</i> |
 
 ### NServiceBus.Autofac
@@ -162,7 +162,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2" target="_blank">AWSSDK.DynamoDBv2</a> | <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2/3.7.406.19/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2" target="_blank">AWSSDK.DynamoDBv2</a> | <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2/3.7.406.20/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 
 ### NServiceBus.Persistence.ServiceFabric
 
@@ -256,13 +256,14 @@
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Autofac" target="_blank">Autofac</a> | <a href="https://www.nuget.org/packages/Autofac/8.2.1/license" target="_blank">MIT</a> | <a href="https://autofac.org/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch" target="_blank">AWSSDK.CloudWatch</a> | <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch/3.7.402.79/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/3.7.401.80/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch" target="_blank">AWSSDK.CloudWatch</a> | <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch/3.7.402.80/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/3.7.401.81/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.Identity" target="_blank">Azure.Identity</a> | <a href="https://www.nuget.org/packages/Azure.Identity/1.13.2/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Identity_1.13.2/sdk/identity/Azure.Identity/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.Monitor.Query" target="_blank">Azure.Monitor.Query</a> | <a href="https://www.nuget.org/packages/Azure.Monitor.Query/1.6.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Monitor.Query_1.6.0/sdk/monitor/Azure.Monitor.Query/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.ResourceManager.ServiceBus" target="_blank">Azure.ResourceManager.ServiceBus</a> | <a href="https://www.nuget.org/packages/Azure.ResourceManager.ServiceBus/1.1.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.ResourceManager.ServiceBus_1.1.0/sdk/servicebus/Azure.ResourceManager.ServiceBus/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/ByteSize" target="_blank">ByteSize</a> | <a href="https://www.nuget.org/packages/ByteSize/2.1.2/license" target="_blank">MIT</a> | <a href="https://github.com/omar/ByteSize" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Caliburn.Micro" target="_blank">Caliburn.Micro</a> | <a href="https://www.nuget.org/packages/Caliburn.Micro/4.0.230/license" target="_blank">MIT</a> | <a href="http://caliburnmicro.com/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/DnsClient" target="_blank">DnsClient</a> | <a href="https://www.nuget.org/packages/DnsClient/1.8.0/license" target="_blank">Apache-2.0</a> | <a href="http://dnsclient.michaco.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/FluentValidation" target="_blank">FluentValidation</a> | <a href="https://www.nuget.org/packages/FluentValidation/11.11.0/license" target="_blank">Apache-2.0</a> | <a href="https://fluentvalidation.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft-WindowsAPICodePack-Shell" target="_blank">Microsoft-WindowsAPICodePack-Shell</a> | <a href="https://github.com/contre/Windows-API-Code-Pack-1.1/LICENSE" target="_blank">View License</a> | <a href="https://github.com/contre/Windows-API-Code-Pack-1.1" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection" target="_blank">Microsoft.Extensions.DependencyInjection</a> | <a href="https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection/9.0.4/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
@@ -306,6 +307,7 @@
 | <a href="https://www.npmjs.com/package/bootstrap-icons" target="_blank">bootstrap-icons</a> | <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> | <a href="https://icons.getbootstrap.com/" target="_blank">Project Site</a> |
 | <a href="https://www.npmjs.com/package/bootstrap" target="_blank">bootstrap</a> | <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> | <a href="https://getbootstrap.com/" target="_blank">Project Site</a> |
 | <a href="https://www.npmjs.com/package/codemirror" target="_blank">codemirror</a> | <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> | <a href="https://github.com/codemirror/basic-setup#readme" target="_blank">Project Site</a> |
+| <a href="https://www.npmjs.com/package/hex-to-css-filter" target="_blank">hex-to-css-filter</a> | <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> | <a href="https://github.com/willmendesneto/hex-to-css-filter#readme" target="_blank">Project Site</a> |
 | <a href="https://www.npmjs.com/package/lodash.debounce" target="_blank">lodash.debounce</a> | <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> | <a href="https://lodash.com/" target="_blank">Project Site</a> |
 | <a href="https://www.npmjs.com/package/lossless-json" target="_blank">lossless-json</a> | <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> | <a href="https://github.com/josdejong/lossless-json#readme" target="_blank">Project Site</a> |
 | <a href="https://www.npmjs.com/package/memoize-one" target="_blank">memoize-one</a> | <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> | <a href="https://github.com/alexreardon/memoize-one#readme" target="_blank">Project Site</a> |
