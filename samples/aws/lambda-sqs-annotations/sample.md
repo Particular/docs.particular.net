@@ -8,7 +8,7 @@ related:
  - samples/aws/lambda-sqs
 ---
 
-This sample shows how to host NServiceBus within an AWS Lambda when using the annotations programming model, in this case, a function triggered by incoming SQS messages. This enables hosting message handlers in AWS Lambda, gaining the abstraction of message handlers implemented using `IHandleMessages<T>` and also taking advantage of NServiceBus's extensible message-processing pipeline. This sample also shows a function triggered by an HTTP call and how to use NServiceBus to dispatch messages from within this context.
+This sample shows how to host NServiceBus within an AWS Lambda when using the [annotations programming model](https://github.com/aws/aws-lambda-dotnet/tree/master/Libraries/src/Amazon.Lambda.Annotations), in this case, a function triggered by incoming SQS messages. This enables hosting message handlers in AWS Lambda, gaining the abstraction of message handlers implemented using `IHandleMessages<T>` and also taking advantage of NServiceBus's extensible message-processing pipeline. This sample also shows a function triggered by an HTTP call and how to use NServiceBus to dispatch messages from within this context.
 
 When hosting NServiceBus within AWS Lambda, the function handler class hosts an NServiceBus endpoint that is capable of processing multiple message types.
 
