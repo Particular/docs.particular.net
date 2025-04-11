@@ -3,7 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
-#region add-tags-from-outgoing-behavior
+#region add-tags-from-handler-behavior
 
 class TraceCustomExceptionInHandlerBehavior : Behavior<IInvokeHandlerContext>
 {

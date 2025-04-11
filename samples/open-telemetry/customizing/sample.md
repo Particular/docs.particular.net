@@ -52,6 +52,9 @@ Send CreateOrder
 
 ### Adding tags
 
+> [!NOTE]
+> `Activity.Current` may be `null` if there are no configured trace listeners. Always check if the value is null before calling methods on an `Activity` instance, or use the null-conditional operator (`?.`).
+
 The handler for `ShipOrder` adds tags to the ambient behavior.
 
 snippet: add-tags-from-handler
@@ -68,5 +71,4 @@ A behavior in the outgoing pipeline adds the size of the message as a tag for al
 
 snippet: add-tags-from-outgoing-behavior
 
-> [!WARNING]
-> `Activity.Current` may be `null` if there are no configured trace listeners. Always check if the value is null before calling methods on an `Activity` instance, or use the null-conditional operator (`?.`).
+partial: handler-behavior
