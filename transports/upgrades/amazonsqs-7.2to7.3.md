@@ -17,3 +17,5 @@ Without visibility renewal, long-running handlers may encounter:
 - Misleading delivery attempt counters affecting poison message detection
 
 By default, the message visibility extension is enabled and will be attempted for up to 5 minutes. Both the initial visibility timeout and the maximum extension duration are configurable. For more details, refer to the [transport configuration documentation](/transports/sqs/configuration-options.md#message-visibility).
+
+The CancellationToken available on the message handler context will be cancelled when the transport fails to renew the message vibility timeout. This makes it possible to cancel the message handling operations in cases when the message visibility was clearly lost and the current message being processed could not be successfully ackknowledged.
