@@ -40,7 +40,7 @@ Console.WriteLine("Endpoint started.");
 var done = false;
 while (!done)
 {
-    Console.WriteLine("Press ESC to stop.\nO. to create an order");
+    Console.WriteLine("Press ESC to stop.\nO. to create an order. \nF. to create an order that fails processing.");
     switch (Console.ReadKey(true).Key)
     {
         case ConsoleKey.Escape:
