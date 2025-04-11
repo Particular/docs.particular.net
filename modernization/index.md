@@ -7,47 +7,82 @@ callsToAction: ['solution-architect','architecture-review']
 
 Legacy application modernization is an ongoing challenge: today's modern applications are tomorrow's legacy.
 
-## The journey
+## The process
 
-Modernizing a legacy .NET application is not a one-time event — it’s a journey. The [Particular Service Platform](/platform/) with [NServiceBus](/nservicebus/) enables that journey to proceed safely, incrementally, and successfully.
+Modernizing a legacy .NET application into a distributed system is a lengthy process that often involves multiple teams over many months or years. It should therefore be approached [strategically](https://medium.com/nick-tune-tech-strategy-blog/forming-an-architecture-modernization-enabling-team-amet-50d70a789331) to increase the chances of a successful modernization.
 
-This section demonstrates how it can guide and support each step of a typical modernization journey.
+ The [Particular Service Platform](/platform/) with [NServiceBus](/nservicebus/) can help to enable that process to proceed safely, incrementally, and successfully.
 
-### Step 1: Begin the "strangle"
+This section demonstrates how the platform capabilities can help to overcome various challenges of modernization.
 
-Modernization often starts with identifying a small piece of functionality to extract. New services can be built around the legacy application resulting in [hybrid solutions](/architecture/hybrid-systems.md).
+## The challenges
 
-### Step 2: Introduce asynchronous messaging
+### Hybrid system interoperability
 
-Messaging patterns offer a more flexible, reliable and less disruptive way to connect a legacy application to a new one, especially when handling data format differences and gradual migrations.
+Knowing [where to start](https://domainanalysis.io/p/application-and-architecture-modernization) is one of the first challenges when modernizing.
+Small pieces of functionality to extract can be identified, and new services can be built around the legacy application resulting in [hybrid system](/architecture/hybrid-systems.md).
+
+These systems need to communicate, and messaging patterns offer a flexible, reliable and less disruptive way to connect, especially when handling data format differences and gradual migrations.
 
 Furthermore, asynchronous messaging enables old and new components to communicate reliably, without tight coupling.
 
 [NServiceBus](/nservicebus) simplifies building distributed systems by providing a messaging framework that abstracts away the complexities of message queues, enhancing scalability, reliability, and maintainability.
 It includes first-class support for [modern architecture concepts](/architecture/#concepts) like [pub/sub](/nservicebus/messaging/publish-subscribe/) and [sagas](/nservicebus/sagas/), helping teams coordinate complex workflows and build event-driven systems with minimal boilerplate.
 
-### Step 3: Bridge the gap
+### Bridging the gap
 
 As more services come online, system communication becomes essential.
 
-The [native integration](./native-integration.md) and [messaging bridge](./messaging-bridge.md) features of NServiceBus allow new services to evolve independently while maintaining seamless interactions with the legacy application, even if they use different brokers ([transports](/transports/)) or architectures.
+The [NServiceBus Messaging Bridge](/nservicebus/bridge) acts as a connector, allowing endpoints using different brokers ([transports](/transports/)) to exchange messages seamlessly and reliably.
 
-### Step 4: Ensure data integrity
+NServiceBus further enables this communication by providing native integrations with:
 
-Legacy applications often rely on distributed transactions to keep data consistent. NServiceBus provides features that help to move away from MSDTC while [ensuring data integrity](./transactional-session-and-outbox.md).
+- [RabbitMQ](/transports/rabbitmq/native-integration.md)
+- [SQLServer and PostgreSQL](/transports/sql/native-integration.md)
+- [Azure Storage Queues](/transports/azure-storage-queues/native-integration.md)
+- [AmazonSQS](/transports/sqs/native-integration.md)
+- [Azure Service Bus](/transports/azure-service-bus/native-integration.md)
 
-### Step 5: System monitoring
+### Ensuring data integrity
 
-Organizations must monitor their systems and have the ability to gracefully recover from errors, as failure to do so can lead to significant operational, financial, and reputational risks.
+Modifying business data and sending messages in one transaction is a common requirement - achieving this in ASP.NET applications while ensuring data integrity and consistency isn't trivial.
 
-The Particular Platform provides tools to effectively handle [system management](./system-monitoring-and-management.md).
+Legacy applications often rely on the Microsoft Distributed Transaction Coordinator (MSDTC) to keep data consistent.
+MSDTC is not ideal for modern distributed applications because it relies on two-phase commit, which limits scalability, resilience, and flexibility in cloud-native environments.
 
-### Step 6: Support
+NServiceBus provides features such as the [transactional session](/nservicebus/transactional-session/) and the [outbox](/nservicebus/outbox/), which help to move away from MSDTC while ensuring data integrity.
 
-Knowing that [expert support](./support.md) is available throughout the legacy application modernization journey provides peace of mind and allows developers to focus on other aspects of their business.
+### System monitoring
+
+The Particular Platform provides tools to effectively handle error management and stability monitoring, which is often something not present in legacy applications.
+
+This is crucial to ensuring system correctness and consistency, as failure to do so can lead to significant operational, financial, and reputational risks.
+
+[ServicePulse](/servicepulse/) is a web application designed for administrators. It provides:
+
+- a clear, near real-time, high-level overview of how a system is currently functioning
+- common failure recovery operations, such as retrying failed messages
+- endpoint health
+- real time monitoring
+
+### Support
+
+Knowing that expert support is available throughout the legacy application modernization process provides peace of mind and allows developers to focus on other aspects of their business.
+
+Particular provides platform support at every step of the process, from design to production:
+
+- [Architecture guidance](https://particular.net/adsd)
+- [Non-critical (development) support](https://particular.net/support)
+- [Critical (production) support](https://particular.net/support)
 
 ## Useful links
 
+- [Tales from the .NET Migration Trenches](https://www.jimmybogard.com/tales-from-the-net-migration-trenches)
+- [Forming an Architecture Modernization Enabling Team (AMET)](https://medium.com/nick-tune-tech-strategy-blog/forming-an-architecture-modernization-enabling-team-amet-50d70a789331)
+- [Legacy Architecture Modernisation With Strategic Domain-Driven Design](https://medium.com/nick-tune-tech-strategy-blog/legacy-architecture-modernisation-with-strategic-domain-driven-design-3e7c05bb383f)
+- [Modernization Strategy Selector](https://medium.com/nick-tune-tech-strategy-blog/modernization-strategy-selector-e06eb722dee)
+- [Application and Architecture Modernization](https://domainanalysis.io/p/application-and-architecture-modernization)
+- [Architecture Modernization Execution: When did estimates turn into deadlines?](https://domainanalysis.io/p/architecture-modernization-execution)
 - [NServiceBus quick start guide](/tutorials/quickstart/)
 - [Q&A with the creator of NServiceBus](https://particular.net/webinars/2023-live-qa-with-udi)
 - [Design more decoupled services with one weird trick](https://particular.net/videos/design-more-decoupled-services-with-one-weird-trick)

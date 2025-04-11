@@ -1670,16 +1670,6 @@
   Topics:
   - Title: Introduction
     Url: modernization
-  - Title: Bridging the gap
-    Url: modernization/messaging-bridge
-  - Title: Integrating with native systems
-    Url: modernization/native-integration
-  - Title: Ensuring data integrity
-    Url: modernization/transactional-session-and-outbox  
-  - Title: System monitoring and management
-    Url: modernization/system-monitoring-and-management
-  - Title: Ongoing support
-    Url: modernization/support
 
 - Name: Shape the future
   Topics:
