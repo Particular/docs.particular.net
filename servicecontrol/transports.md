@@ -31,11 +31,7 @@ Starting from version 6.4, ServiceControl runs Azure Service Bus transport that,
 
 The new topology uses event type's full name as the name of the topic to which an event is published e.g. `servicecontrol.contracts.messagefailed`. This mapping can be customized by providing the [topology description in json](/transports/azure-service-bus/configuration.md#entity-creation-topology-mapping-options) using `ServiceControl.Transport.ASBS/Toplogy` application setting or `ServiceControl_Transport_ASBS_Toplogy` environment variable.
 
-In versions 4.4 and above, the following ServiceControl options can be appended to the `ConnectionString` [used by the transport](/transports/azure-service-bus/configuration.md#configuring-an-endpoint):
-
-```text
-Endpoint=sb://[NAMESPACE].servicebus.windows.net/;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]
-```
+Furthermore, in addition to the [connection string options of the transport](/transports/azure-service-bus/configuration.md#configuring-an-endpoint) the following ServiceControl specific options are available in versions 4.4 and above:
 
 * `TransportType=AmqpWebSockets` - Configures the transport to use [AMQP over websockets](/transports/azure-service-bus/configuration.md#connectivity).
 * `TopicName=<topic-bundle-name>` - Specifies the [topic name](/transports/azure-service-bus/configuration.md#entity-creation) to be used by the instance. The default value is `bundle-1`.
@@ -55,9 +51,17 @@ As of versions 4.33.3 and 5.0.5 of ServiceControl, support for partitioned entit
 
 * `EnablePartitioning=<True|False>` — Configures the transport to create entities that support partitioning. The default value is `false`.
 
+### Example
+
+```text
+Endpoint=sb://[NAMESPACE].servicebus.windows.net/;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY];TopicName=<topic-bundle-name>;
+```
+
 ## Azure Storage Queues
 
-ServiceControl does not add any connection settings beyond the Azure Storage connection string:
+ServiceControl does not add any connection settings beyond the Azure Storage connection string.
+
+### Example
 
 ```text
 DefaultEndpointsProtocol=[http|https];AccountName=myAccountName;AccountKey=myAccountKey
@@ -74,11 +78,7 @@ RabbitMQ contains different `TransportType` options based on the topology and qu
 | [Classic](https://www.rabbitmq.com/docs/classic-queues) | [Conventional](/transports/rabbitmq/routing-topology.md#conventional-routing-topology) | `RabbitMQ.ClassicConventionalRouting` |
 | [Classic](https://www.rabbitmq.com/docs/classic-queues) | [Direct](/transports/rabbitmq/routing-topology.md#direct-routing-topology) | `RabbitMQ.ClassicDirectRouting` |
 
-In versions 4.4 and above, the following ServiceControl options can be appended to the `ConnectionString` [used by the transport](/transports/rabbitmq/connection-settings.md):
-
-```text
-host=localhost;
-```
+In addition to the [connection string options of the transport](/transports/rabbitmq/connection-settings.md), the following options are available in versions 4.4 and above:
 
 * `UseExternalAuthMechanism=true|false(default)` - Specifies that an [external authentication mechanism should be used for client authentication](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-external-authentication).
 * `DisableRemoteCertificateValidation=true|false(default)` - Allows ServiceControl to connect to the broker [even if the remote server certificate is invalid](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-remote-certificate-validation).
@@ -90,27 +90,30 @@ These options are available in version 6.5 and above:
 * `ManagementApiPassword=<PASSWORD>` - The password used to connect to the RabbitMQ management API. If this option is not set, the credentials from the broker connection string will be used.
 * `ValidateDeliveryLimits=<true(default)|false>` - Controls the [delivery limit validation](/transports/rabbitmq/connection-settings.md#delivery-limit-validation) of the ServiceControl queues.
 
-## SQL
-
-In versions 4.4 and above, the following ServiceControl options can be appended to the `ConnectionString` [used by the transport](/transports/sql/connection-settings.md#connection-configuration):
+### Example
 
 ```text
-Server=localhost;Database=postgres;Port=5432;User Id=myUserId;Password=myPassword;
+host=localhost;UseExternalAuthMechanism=false;
 ```
+
+## SQL
+
+In addition to the [connection string options of the transport](/transports/sql/connection-settings.md#connection-configuration) the following ServiceControl specific options are available in versions 4.4 and above:
 
 * `Queue Schema=<schema_name>` - Specifies custom schema for the ServiceControl input queue.
 * `Subscriptions Table=<subscription_table_name>` - Specifies SQL subscription table name.
   * *Optional* `Subscriptions Table=<subscription_table_name>@<schema>` - to specify the schema.
   * *Optional* `Subscriptions Table=<subscription_table_name>@<schema>@<catalog>` - to specify the schema and catalog.
 
-## PostgreSQL
-
-In versions 5.10 and above, the following ServiceControl options can be appended to the `ConnectionString` [used by the transport](/transports/postgresql/connection-settings.md#connection-configuration):
+### Example
 
 ```text
-Server=localhost;Database=postgres;Port=5432;User Id=myUserId;Password=myPassword;
+Server=localhost;Database=postgres;Port=5432;User Id=myUserId;Password=myPassword;Queue Schema=<schema_name>;
 ```
 
+## PostgreSQL
+
+In addition to the [connection string options of the transport](/transports/postgresql/connection-settings.md#connection-configuration) the following ServiceControl specific options are available in versions 5.10 and above:
 
 * `Queue Schema=<schema_name>` - Specifies a custom schema for the ServiceControl input queue.
 * `Subscriptions Table=<subscription_table_name>` - Specifies PostgreSQL subscription table name.
@@ -118,13 +121,13 @@ Server=localhost;Database=postgres;Port=5432;User Id=myUserId;Password=myPasswor
   * *Optional* `Subscriptions Table=schema.multi.table.name` - to specify the schema with a table name containing `.`.
   * *Optional* `Subscriptions Table==&quot;multi.table.name=&quot;` - to specify a table name containing `.` without a schema. In this case, `Queue Schema` will be used if specified, otherwise the default schema (`public`) will be used.
 
-## Amazon SQS
-
-Similar to a SQL connection string, the ServiceControl AmazonSQS `ConnectionString` consists of key-value pairs separated by a semicolon:
+### Example
 
 ```text
-AccessKeyId=<value>;SecretAccessKey=<value>;Region=<value>
+Server=localhost;Database=postgres;Port=5432;User Id=myUserId;Password=myPassword;Queue Schema=<schema_name>;
 ```
+
+## Amazon SQS
 
 The following ServiceControl connection string options are available:
 
@@ -140,6 +143,12 @@ The following ServiceControl connection string options are available:
 > [!NOTE]
 > When using SQS as a transport, for local development purposes it is possible to set up ServiceControl to connect to a LocalStack instance.
 > Refer to the [documentation](/nservicebus/aws/local-development.md) about how to configure the environment to use LocalStack.
+
+### Example
+
+```text
+AccessKeyId=<value>;SecretAccessKey=<value>;Region=<value>
+```
 
 ## MSMQ
 
