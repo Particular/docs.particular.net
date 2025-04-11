@@ -2,37 +2,22 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
 var transport = builder.AddRabbitMQ("transport")
-    .WithManagementPlugin(15672);
+    .WithManagementPlugin(15672)
+    .WithUrlForEndpoint("management", url => url.DisplayText = "RabbitMQ Management");
 
-builder.AddProject<Projects.Billing>("Billing")
-    .WithReference(transport)
-    .WaitFor(transport);
+var database = builder.AddPostgres("database");
 
-var sales = builder.AddProject<Projects.Sales>("Sales")
-    .WithReference(transport)
-    .WaitFor(transport);
-
-builder.AddProject<Projects.ClientUI>("ClientUI")
-    .WithReference(transport)
-    .WaitFor(transport)
-    .WaitFor(sales);
-
-var database = builder.AddPostgres("database")
-    // NOTE: This is needed as the call to AddDatabase below
-    // does not actually create the database
-    .WithEnvironment("POSTGRES_DB", "shipping-db")
-    .WithPgWeb();
+database.WithPgAdmin(resource =>
+{
+    resource.WithParentRelationship(database);
+    resource.WithUrlForEndpoint("http", url => url.DisplayText = "pgAdmin");
+});
 
 var shippingDb = database.AddDatabase("shipping-db");
 
-builder.AddProject<Projects.Shipping>("Shipping")
-    .WithReference(transport)
-    .WaitFor(transport)
-    .WithReference(shippingDb)
-    .WaitFor(shippingDb);
-
 var ravenDB = builder.AddContainer("ServiceControl-RavenDB", "particular/servicecontrol-ravendb")
-    .WithHttpEndpoint(8080, 8080);
+    .WithHttpEndpoint(8080, 8080)
+    .WithUrlForEndpoint("http", url => url.DisplayText = "Management Studio");
 
 var audit = builder.AddContainer("ServiceControl-Audit", "particular/servicecontrol-audit")
     .WithEnvironment("TRANSPORTTYPE", "RabbitMQ.QuorumConventionalRouting")
@@ -67,12 +52,32 @@ var monitoring = builder.AddContainer("ServiceControl-Monitoring", "particular/s
     .WithHttpHealthCheck("connection")
     .WaitFor(transport);
 
-builder.AddContainer("ServicePulse", "particular/servicepulse")
+var servicePulse = builder.AddContainer("ServicePulse", "particular/servicepulse")
     .WithEnvironment("ENABLE_REVERSE_PROXY", "false")
     .WithHttpEndpoint(9090, 9090)
+    .WithUrlForEndpoint("http", url => url.DisplayText = "ServicePulse")
     .WaitFor(serviceControl)
     .WaitFor(audit)
     .WaitFor(monitoring);
+
+builder.AddProject<Projects.Billing>("Billing")
+    .WithReference(transport)
+    .WaitFor(servicePulse);
+
+var sales = builder.AddProject<Projects.Sales>("Sales")
+    .WithReference(transport)
+    .WaitFor(servicePulse);
+
+builder.AddProject<Projects.ClientUI>("ClientUI")
+    .WithReference(transport)
+    .WaitFor(sales)
+    .WaitFor(servicePulse);
+
+builder.AddProject<Projects.Shipping>("Shipping")
+    .WithReference(transport)
+    .WithReference(shippingDb)
+    .WaitFor(shippingDb)
+    .WaitFor(servicePulse);
 
 builder.Build().Run();
 #endregion
