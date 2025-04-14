@@ -183,12 +183,17 @@ The default topic name is `bundle-1`. In case that one is used create the migrat
 
 ### Migrating subscription name customizations
 
-Previous versions of the transport allowed mapping from queue names to subscription names using function delegates. While flexible, this approach made it difficult to store logic in application configuration.
+Previous versions of the transport allowed mapping from queue names to subscription names [using function delegates](/transports/azure-service-bus/configuration.md?version=asbs_4#entity-creation-settings). While flexible, this approach made it difficult to store logic in application configuration.
+
+```csharp
+//Use the first 9 characters so QueueNameThatIsLongerThanFiftyCharactersAndStillValid becomes QueueName
+transport.SubscriptionNamingConvention(x => x.Substring(0, 9));
+```
 
 Starting with v5 of the transport, subscription names can be assigned directly:
 
 ```csharp
-topology.OverrideSubscriptionNameFor("QueueNameThatIsLongerThanFiftyCharactersAndStillValid", "SubscriptionName")
+topology.OverrideSubscriptionNameFor("QueueNameThatIsLongerThanFiftyCharactersAndStillValid", "QueueName");
 ```
 
 For more advanced scenarios, mappings can be stored in configuration:
@@ -197,7 +202,7 @@ For more advanced scenarios, mappings can be stored in configuration:
 {
   ...
   "QueueNameToSubscriptionNameMap": {
-    "QueueNameThatIsLongerThanFiftyCharactersAndStillValid": "SubscriptionName"
+    "QueueNameThatIsLongerThanFiftyCharactersAndStillValid": "QueueName"
   }
 }
 ```
@@ -211,7 +216,7 @@ For queue names that crossed the threshold of 50 characters, it would be necessa
 topology.OverrideSubscriptionNameFor("QueueNameThatIsLongerThanFiftyCharactersAndStillValid", "7b7139c2-dd0e-2870-424a-891c84f89477")
 ```
 
-the hash was calculated assuming the previously known `ValidateAndHashIfNeeded` strategy.
+the hash was calculated assuming the  known `ValidateAndHashIfNeeded` strategy.
 
 ```csharp
 static string HashName(string input)
@@ -224,10 +229,16 @@ static string HashName(string input)
 
 ### Migrating rule name customizations
 
-Previously, rule names could be assigned using function delegates. Starting with v5, rule names can be mapped directly:
+Previously, rule names could be [assigned using function delegates](/transports/azure-service-bus/configuration.md?version=asbs_4#entity-creation-settings) 
 
 ```csharp
-topology.EventToMigrate<TEventType>("MyRuleName")
+transport.SubscriptionRuleNamingConvention(x => "MyPrefix-"+x);
+```
+
+Starting with v5, rule names [can be mapped directly](/transports/azure-service-bus/compatibility.md#conditions-sanitization-rules-must-be-aligned):
+
+```csharp
+topology.EventToMigrate<MyEvent>("MyPrefix-MyEvent")
 ```
 
 Or via configuration:
