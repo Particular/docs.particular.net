@@ -110,7 +110,7 @@ The following ServiceControl connection string options are available:
 * `S3KeyPrefix=<value>` - S3 key prefix [option](/transports/sqs/configuration-options.md#offload-large-messages-to-s3-key-prefix).
 * `DoNotWrapOutgoingMessages=true` - Do not wrap outgoing messages [option](/transports/sqs/configuration-options.md#do-not-wrap-message-payload-in-a-transport-envelope).
 #if-version [7.3,)
-* `ReservedBytes=<value>` - Reserve bytes in message calculation [option](/transports/sqs/configuration-options.md#reserve-bytes-when-calculating-message-size).
+* `ReservedBytesInMessageSize=<value>` - Reserve bytes in message size calculation [option](/transports/sqs/configuration-options.md#reserve-bytes-when-calculating-message-size).
 #end-if
 
 > [!NOTE]
