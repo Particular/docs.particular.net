@@ -5,7 +5,7 @@ using NServiceBus;
 
 class Usage
 {
-    Usage(EndpointConfiguration endpointConfiguration)
+    public Usage(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-config-basic
 
@@ -14,7 +14,7 @@ class Usage
         #endregion
     }
 
-    void CustomConnectionString(EndpointConfiguration endpointConfiguration)
+    public void CustomConnectionString(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-config-connectionstring-in-code
 
@@ -24,7 +24,7 @@ class Usage
         #endregion
     }
 
-    void CustomIdStrategy(EndpointConfiguration endpointConfiguration)
+    public void CustomIdStrategy(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-config-custom-id-strategy
 
@@ -39,7 +39,7 @@ class Usage
         #endregion
     }
 
-    void UseConventionalRoutingTopology(EndpointConfiguration endpointConfiguration)
+    public void UseConventionalRoutingTopology(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-config-useconventionalroutingtopology
 
@@ -49,7 +49,7 @@ class Usage
         #endregion
     }
 
-    void UseDirectRoutingTopology(EndpointConfiguration endpointConfiguration)
+    public void UseDirectRoutingTopology(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-config-usedirectroutingtopology
 
@@ -59,7 +59,7 @@ class Usage
         #endregion
     }
 
-    void UseDirectRoutingTopologyWithCustomConventions(EndpointConfiguration endpointConfiguration)
+    public void UseDirectRoutingTopologyWithCustomConventions(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-config-usedirectroutingtopologywithcustomconventions
 
@@ -77,7 +77,7 @@ class Usage
         throw new NotImplementedException();
     }
 
-    void UseRoutingTopology5_0(EndpointConfiguration endpointConfiguration)
+    public void UseRoutingTopology5_0(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-config-useroutingtopologyDelegate
 
@@ -91,7 +91,7 @@ class Usage
         #endregion
     }
 
-    void UseCustomCircuitBreakerSettings(EndpointConfiguration endpointConfiguration)
+    public void UseCustomCircuitBreakerSettings(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-custom-breaker-settings-time-to-wait-before-triggering-code
 
@@ -101,7 +101,7 @@ class Usage
         #endregion
     }
 
-    void PrefetchMultiplier(EndpointConfiguration endpointConfiguration)
+    public void PrefetchMultiplier(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-config-prefetch-multiplier
 
@@ -111,7 +111,7 @@ class Usage
         #endregion
     }
 
-    void PrefetchCount(EndpointConfiguration endpointConfiguration)
+    public void PrefetchCount(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-config-prefetch-count
 
@@ -121,7 +121,7 @@ class Usage
         #endregion
     }
 
-    void SetClientCertificateFile(EndpointConfiguration endpointConfiguration)
+    public void SetClientCertificateFile(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-client-certificate-file
 
@@ -131,7 +131,7 @@ class Usage
         #endregion
     }
 
-    void SetClientCertificate(EndpointConfiguration endpointConfiguration)
+    public void SetClientCertificate(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-client-certificate
 
@@ -141,7 +141,7 @@ class Usage
         #endregion
     }
 
-    void DisableRemoteCertificateValidation(EndpointConfiguration endpointConfiguration)
+    public void DisableRemoteCertificateValidation(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-disable-remote-certificate-validation
 
@@ -151,7 +151,7 @@ class Usage
         #endregion
     }
 
-    void UseExternalAuthMechanism(EndpointConfiguration endpointConfiguration)
+    public void UseExternalAuthMechanism(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-external-auth-mechanism
 
@@ -161,7 +161,7 @@ class Usage
         #endregion
     }
 
-    void ChangeRequestedHeartbeatForDebugging(EndpointConfiguration endpointConfiguration)
+    public void ChangeRequestedHeartbeatForDebugging(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-debug-api
 
@@ -171,7 +171,7 @@ class Usage
         #endregion
     }
 
-    void ChangeHeartbeatInterval(EndpointConfiguration endpointConfiguration)
+    public void ChangeHeartbeatInterval(EndpointConfiguration endpointConfiguration)
     {
         #region change-heartbeat-interval
 
@@ -181,7 +181,7 @@ class Usage
         #endregion
     }
 
-    void ChangeNetworkRecoveryInterval(EndpointConfiguration endpointConfiguration)
+    public void ChangeNetworkRecoveryInterval(EndpointConfiguration endpointConfiguration)
     {
         #region change-network-recovery-interval
 
@@ -191,7 +191,7 @@ class Usage
         #endregion
     }
 
-    void DisableDurableExchangesAndQueues(EndpointConfiguration endpointConfiguration)
+    public void DisableDurableExchangesAndQueues(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-disable-durable-exchanges
 
@@ -201,7 +201,7 @@ class Usage
         #endregion
     }
 
-    void AddClusterNode(EndpointConfiguration endpointConfiguration)
+    public void AddClusterNode(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-add-cluster-node
 
@@ -217,7 +217,7 @@ class Usage
         #endregion
     }
 
-    void DisableDelayedDelivery(EndpointConfiguration endpointConfiguration)
+    public void DisableDelayedDelivery(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-disable-delayed-delivery
 
@@ -232,7 +232,7 @@ class Usage
         #endregion
     }
 
-    void SetManagementApiConfiguration(EndpointConfiguration endpointConfiguration)
+    public void SetManagementApiConfiguration(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-management-api-configuration
 
@@ -244,5 +244,16 @@ class Usage
         );
 
         #endregion
+    }
+
+    public void DisableBrokerRequirementChecks(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-disable-broker-requirement-checks
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+        transport.DisableBrokerRequirementChecks(BrokerRequirementChecks.Version310OrNewer | BrokerRequirementChecks.StreamsEnabled);
+
+        #endregion
+
     }
 }

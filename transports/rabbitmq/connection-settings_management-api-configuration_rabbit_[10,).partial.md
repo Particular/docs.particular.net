@@ -9,3 +9,12 @@ By default, the transport will infer the settings to use to access the managemen
 snippet: rabbitmq-management-api-configuration
 
 There are also overloads to specify just the URL or just the credentials and continue to rely on the connection string for the unspecified settings.
+
+### Disabling broker requirement checks
+
+Starting in version 10.1, it is possible to disable the the broker requirement checks that the transport uses the management API to make. This should only be done in extreme circumstances when it not possible to give the transport access to the management API.
+
+snippet: rabbitmq-disable-broker-requirement-checks
+
+> [!CAUTION]
+> Using a broker that does not meet all of the requirements can result in message loss or other incorrect operation, so disabling checks is not recommended.
