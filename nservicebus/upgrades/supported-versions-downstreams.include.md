@@ -333,7 +333,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/2.0.1) | 2024-04-16     | -                 | -                                 |
+| [2.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/2.1.0) | 2025-04-11     | -                 | -                                 |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/2.0.1) | 2024-04-16     | 2025-07-11        | Superseded by 2.1.x               |
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/1.1.2) | 2023-09-21     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [0.6.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/0.6.0) | 2023-04-27     | 2024-05-09        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-05-09 |
 
@@ -575,7 +576,6 @@
 | [~~3.6.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.6.0) | ~~2024-08-01~~ | ~~2024-11-12~~    | ~~Superseded by 3.7.x~~           |
 | [~~3.5.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.5.0) | ~~2024-07-23~~ | ~~2024-11-01~~    | ~~Superseded by 3.6.x~~           |
 | [~~3.4.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.4.0) | ~~2024-07-12~~ | ~~2024-10-23~~    | ~~Superseded by 3.5.x~~           |
-| [~~3.3.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.3.0) | ~~2024-07-08~~ | ~~2024-10-12~~    | ~~Superseded by 3.4.x~~           |
 | [~~2.40.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.40.0) | ~~2023-11-15~~ | ~~2024-12-01~~    | ~~Superseded by 3.0.x~~           |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)

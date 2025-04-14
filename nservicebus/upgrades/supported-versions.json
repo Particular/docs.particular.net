@@ -61,6 +61,10 @@
         {
           "Minor": "2.0",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "2.1",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
