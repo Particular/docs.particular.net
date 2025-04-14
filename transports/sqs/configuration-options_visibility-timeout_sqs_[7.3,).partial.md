@@ -78,6 +78,8 @@ This configures the allowed maximum message visibility timeout, after which the 
 
 By setting it to `TimeSpan.Zero`, the message visibility renewal is disabled, thus the default message visibility time applies when the message is received.
 
+snippet: MaxAutoMessageVisibilityRenewalDuration
+
 ### MessageVisibilityTimeout
 
 **Optional**
@@ -85,3 +87,5 @@ By setting it to `TimeSpan.Zero`, the message visibility renewal is disabled, th
 **Default**: `null`
 
 By default the transport acquires the message visibility timeout of the queue by reading the `MessageVisibilityTimeout` attribute. By setting an explicit value, the message visibility timeout on the queue is overruled by the timeout specified in this setting which will be used on every receive request.
+
+snippet: MessageVisibilityTimeout
