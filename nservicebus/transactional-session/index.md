@@ -75,6 +75,8 @@ snippet: configuring-remote-processor
 
 To avoid multiple endpoints running [outbox cleanup](/nservicebus/outbox/index.md#outbox-expiration-duration) consider disabling it for the endpoint that is not processing the control messages.
 
+See the specific [documentation for the selected persistence](/persistence/) for more details.
+
 ## Requirements
 
 The transactional session feature requires a supported persistence package to store outgoing messages. This feature is currently supported for the following persistence packages:
