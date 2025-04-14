@@ -93,12 +93,6 @@ snippet: S3ClientFactory
 > If a custom S3 client is provided, it will not be disposed of when the endpoint is stopped.
 #end-if
 
-#if-version [7.3,)
-### Payload signing
-
-Amazon S3 requires the payload to be signed when uploaded to the S3 bucket. The SQS transport allows disabling the payload signing by setting the `DisablePayloadSigning` to true to enable support for alternate storages, such as [Cloudflare R2](https://www.cloudflare.com/developer-platform/products/r2/).
-#end-if
-
 ### Encryption
 
 **Optional**
@@ -112,6 +106,8 @@ snippet: S3ServerSideEncryption
 or to provide a custom key:
 
 snippet: S3ServerSideCustomerEncryption
+
+partial: payload-signing
 
 partial: visibility-timeout
 
