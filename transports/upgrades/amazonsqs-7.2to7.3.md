@@ -19,3 +19,23 @@ Without visibility renewal, long-running handlers may encounter:
 By default, the message visibility extension is enabled and will be attempted for up to 5 minutes. Both the initial visibility timeout and the maximum extension duration are configurable. For more details, refer to the [transport configuration documentation](/transports/sqs/configuration-options.md#message-visibility).
 
 The cancellation token available on the message handler context will be cancelled when the transport fails to renew the message visibility timeout. This makes it possible to cancel the message handling operations in cases when the message visibility was clearly lost and the current message being processed could not be successfully acknowledged.
+
+## Visibility timeout subscription settings
+
+Setting the message visibility timeout on the message driven pubsub compatibility mode has been deprecated in favour of the `MessageVisibilityTimeout` setting on the transport.
+
+Replace
+
+```csharp
+var migrationSettings = routing.EnableMessageDrivenPubSubCompatibilityMode();
+migrationSettings.MessageVisibilityTimeout(timeoutInSeconds: 10);
+```
+
+with
+
+```csharp
+var transport = new SqsTransport
+{
+    MessageVisibilityTimeout = TimeSpan.FromSeconds(10)
+};
+```
