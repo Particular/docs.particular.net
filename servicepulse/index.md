@@ -1,7 +1,7 @@
 ---
 title: ServicePulse
 summary: Monitor the health of an NServiceBus system real-time using ServicePulse
-reviewed: 2024-04-19
+reviewed: 2025-04-15
 component: ServicePulse
 isLearningPath: true
 related:
@@ -11,12 +11,17 @@ related:
 
 include: servicepulse
 
+#### Pre-requisites
+
 ServicePulse uses information provided by ServiceControl. In order to use ServicePulse, first set up [ServiceControl](/servicecontrol/).
+  - For failed message viewing and retries, only the base [error instance](/servicecontrol/servicecontrol-instances/) is required.
+  - For message flow visualisation and viewing successful messages, one or more [audit instances](/servicecontrol/audit-instances/) are required.
+  - For monitoring throughput and other metrics, a [monitoring instance](/servicecontrol/monitoring-instances/) is required
 
 > [!NOTE]
 > By default ServicePulse can be accessed on the hosting machine at the following URL: `http://localhost:9090`
 
-### Relationship between ServicePulse, ServiceControl, Monitoring, and Endpoints
+## Relationship between ServicePulse, ServiceControl, Monitoring, and Endpoints
 
 ```mermaid
 graph RL
@@ -30,14 +35,16 @@ SC[ServiceControl]-- HTTP API & SignalR ---SP
 SCM[Monitoring]-- HTTP API ---SP[ServicePulse]
 ```
 
-## System status overview
+## ServicePulse views
+
+### System status overview
 
 The dashboard provides a visual overview of the current state of the monitored NServiceBus system. It provides information about the latest events in the system, such as detecting a new endpoint or a message processing failure.
 
 ![Dashboard](images/dashboard-overview.png 'width=500')
 
 
-## Endpoint health
+### Endpoint health
 
 ServicePulse automatically detects existing endpoints in the system by analyzing metadata from [audited messages](/nservicebus/operations/auditing.md). By default all detected endpoints will be listed in the Endpoints tab but will not be automatically monitored.
 
@@ -48,7 +55,7 @@ In order to monitor an endpoint's health and activity, it is necessary to [confi
  * [Heartbeats in ServicePulse](/monitoring/heartbeats/in-servicepulse.md).
 
 
-## Real-time monitoring
+### Real-time monitoring
 
 The monitoring view shows an overview of all logical endpoints in a system showing various metrics. Navigate to the details by clicking on an endpoint name. This shows the same metrics split by message type or endpoint instance.
 
@@ -60,7 +67,12 @@ youtube: https://www.youtube.com/watch?v=is9kF7eWkrQ
  * [Setup Monitoring tutorial](/tutorials/monitoring-setup/)
 
 
-## Failed messages
+### All messages
+
+The all messages view shows messages that have been processed by the system during a specified timeframe. If [audit instances](/servicecontrol/audit-instances/) are not deployed, this will only show failed messages, and the individual message view will not contain any of the detailed flow/sequence/saga views.
+
+
+### Failed messages
 
 Failed messages are indicated in the ServicePulse dashboard by a red icon showing the number of failing messages.
 
@@ -78,7 +90,7 @@ The Failed Messages tab allows inspection of failed messages in more detail and 
  * [Deleted Message Management in ServicePulse](/servicepulse/intro-archived-messages.md)
 
 
-## Custom checks
+### Custom checks
 
 Endpoint health monitoring ensures that the endpoint is functional, i.e. it can receive, process and send messages. However, in some situations, the system's operation might depend on other factors, such as a third party webservice.
 
