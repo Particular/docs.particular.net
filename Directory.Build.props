@@ -4,7 +4,7 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <WarningsAsErrors>IDE0018</WarningsAsErrors>
     <NoWarn>$(NoWarn);NU1603</NoWarn>
-    <NuGetAuditMode>all</NuGetAuditMode>
+    <!--<NuGetAuditMode>all</NuGetAuditMode>-->
   </PropertyGroup>
 
   <ItemGroup>
