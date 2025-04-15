@@ -12,7 +12,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.2.0) | 2024-12-05     | -                 | -                                 |
+| [7.3.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.3.0) | 2025-04-14     | -                 | -                                 |
+| [7.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.2.0) | 2024-12-05     | 2025-07-14        | Superseded by 7.3.x               |
 | [~~7.1.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.1.1) | ~~2024-11-26~~ | ~~2025-03-05~~    | ~~Superseded by 7.2.x~~           |
 | [~~7.0.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.0.2) | ~~2024-04-16~~ | ~~2025-02-26~~    | ~~Superseded by 7.1.x~~           |
 | [6.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.2.1) | 2023-11-20     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
@@ -22,7 +23,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [10.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.0.1) | 2025-03-11     | -                 | -                                 |
+| [10.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.1.0) | 2025-04-14     | -                 | -                                 |
+| [10.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.0.1) | 2025-03-11     | 2025-07-14        | Superseded by 10.1.x              |
 | [9.2.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.2.0) | 2024-11-25     | 2026-03-11        | Superseded by 10.0.x              |
 | [~~9.1.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.1.1) | ~~2024-08-08~~ | ~~2025-02-25~~    | ~~Superseded by 9.2.x~~           |
 | [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.0.1) | ~~2024-04-16~~ | ~~2024-11-08~~    | ~~Superseded by 9.1.x~~           |
