@@ -120,20 +120,26 @@
 
 - Name: Service Platform
   Topics:
-  - Title: About
+  - Title: Introduction
     Url: platform
-  - Title: Platform installation
+  - Title: Installation
     Url: platform/installation
   - Title: Platform Sample installation
     Url: platform/platform-sample-package
-  - Title: Connecting endpoints
-    Url: platform/connecting
-  - Title: Connection schema
-    Url: platform/json-schema
+  - Title: MassTransit Error Management
+    Url: platform/masstransit
+  - Title: Connecting NServiceBus
+    Articles:
+    - Title: Using the NuGet package
+      Url: platform/connecting
+    - Title: Configuration schema
+      Url: platform/json-schema
   - Title: Contributing
     Url: platform/contributing
   - Title: Release notifications
     Url: nservicebus/release-notifications
+  - Title: Third-party licenses
+    Url: platform/third-party-licenses
 
 - Name: NServiceBus
   Topics:
@@ -185,8 +191,6 @@
     Articles:
     - Url: nservicebus/upgrades
       Title: About upgrading NServiceBus
-    - Url: nservicebus/upgrades/third-party-licenses
-      Title: Third-party licenses
     - Url: nservicebus/upgrades/callbacks-1to2
       Title: Callbacks 1 to 2
     - Url: nservicebus/upgrades/sqs-lambda-1to2
@@ -302,6 +306,8 @@
         Title: Version 3 to 4
       - Url: nservicebus/upgrades/azure-functions-service-bus-isolated-4to5
         Title: Version 4 to 5
+      - Url: nservicebus/upgrades/azure-functions-service-bus-isolated-5to6
+        Title: Version 5 to 6
     - Title: Azure Functions (in-process) with Service Bus
       Articles:
       - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-1to2
@@ -310,6 +316,8 @@
         Title: Version 2 to 3
       - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-3to4
         Title: Version 3 to 4
+      - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-5to6
+        Title: Version 5 to 6
       - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-isolated-worker
         Title: Migrate to Azure Functions using Isolated Workers
     - Title: Gateway
@@ -457,8 +465,8 @@
         Title: Troubleshooting
       - Url: nservicebus/gateway/scale-out
         Title: Scale-Out
-      - Url: nservicebus/rawmessaging
-        Title: Raw messaging
+    - Url: nservicebus/rawmessaging
+      Title: Raw messaging
     - Url: nservicebus/outbox
       Title: Outbox
     - Url: nservicebus/transactional-session
@@ -778,29 +786,8 @@
       Title: Overview
     - Url: nservicebus/tools/migrate-to-native-delivery
       Title: Migrating timeouts
-    - Url: nservicebus/usage
-      Title: Measuring system usage
-    - Url: servicepulse/usage
-      Title: System usage via ServicePulse
     - Url: nservicebus/throughput-tool
-      Title: System usage via Endpoint Throughput tool
-      Articles:
-        - Url: nservicebus/throughput-tool/azure-service-bus
-          Title: using Azure Service Bus
-        - Url: nservicebus/throughput-tool/amazon-sqs
-          Title: using Amazon SQS
-        - Url: nservicebus/throughput-tool/rabbitmq
-          Title: using RabbitMQ
-        - Url: nservicebus/throughput-tool/sql-transport
-          Title: using SQL Transport
-        - Url: nservicebus/throughput-tool/postgresql-transport
-          Title: using PostgreSQL Transport
-        - Url: nservicebus/throughput-tool/service-control
-          Title: using ServiceControl
-        - Url: nservicebus/throughput-tool/determine-transport
-          Title: Determining message transport
-        - Url: nservicebus/throughput-tool/faq
-          Title: FAQ
+      Title: Measuring usage using legacy tool
   - Title: Troubleshooting
     Articles:
     - Url: nservicebus/troubleshooting/message-loss
@@ -839,6 +826,8 @@
         Title: Version 6 to 7
     - Title: Azure Service Bus
       Articles:
+      - Url: transports/upgrades/asbs-4to5
+        Title: Version 4 to 5
       - Url: transports/upgrades/asbs-3to4
         Title: Version 3 to 4
       - Url: transports/upgrades/asbs-2to3
@@ -846,11 +835,11 @@
       - Url: transports/upgrades/asbs-1to2
         Title: Version 1 to 2
       - Url: transports/upgrades/asbs-1.7to1.8
-        Title: Verson 1.7 to 1.8
+        Title: Version 1.7 to 1.8
     - Title: Azure Service Bus (Legacy)
       Articles:
       - Url: transports/upgrades/asb-10toasbs-1
-        Title: Verson 10 to ASB 1
+        Title: Version 10 to ASB 1
       - Url: transports/upgrades/asb-9to10
         Title: Version 9 to 10
       - Url: transports/upgrades/asb-9to9.1
@@ -863,6 +852,8 @@
         Title: Version 6 to 7
     - Title: RabbitMQ
       Articles:
+      - Url: transports/upgrades/rabbitmq-9to10
+        Title: Version 9 to 10
       - Url: transports/upgrades/rabbitmq-7to8
         Title: Version 7 to 8
       - Url: transports/upgrades/rabbitmq-classic-to-quorum-migration
@@ -905,6 +896,8 @@
         Title: Version 1.x to 1.2.5
     - Title: Amazon SQS
       Articles:
+      - Url: transports/upgrades/amazonsqs-7.2to7.3
+        Title: Version 7.2 to 7.3
       - Url: transports/upgrades/amazonsqs-6to7
         Title: Version 6 to 7
       - Url: transports/upgrades/amazonsqs-5to6
@@ -1415,7 +1408,7 @@
     - Url: servicepulse/support-policy
       Title: Support Policy
     - Url: servicepulse/usage
-      Title: Usage
+      Title: Measuring system usage
   - Title: Configuration
     Articles:
     - Url: servicepulse/host-config
@@ -1449,6 +1442,10 @@
     Articles:
     - Title: Upgrade tips
       Url: servicecontrol/upgrades
+    - Title: Version 6.4 to 6.5
+      Url: servicecontrol/upgrades/6.4to6.5
+    - Title: Version 6.3 to 6.4
+      Url: servicecontrol/upgrades/6.3to6.4
     - Title: Version 5 to 6
       Url: servicecontrol/upgrades/5to6
     - Title: Version 5.1 to 5.2
@@ -1588,6 +1585,12 @@
       Url: servicecontrol/contracts
     - Title: Transport adapter
       Url: servicecontrol/transport-adapter
+  - Title: MassTransit
+    Articles:
+    - Title: Introduction
+      Url: servicecontrol/masstransit
+    - Title: Deployment
+      Url: servicecontrol/masstransit/docker-deployment
   - Title: Migrations
     Articles:
     - Title: Overview
@@ -1666,6 +1669,11 @@
     Articles:
     - Title: Upgrading to native queue length metric
       Url: monitoring/upgrade-guides/native-queue-length
+
+- Name: Modernization
+  Topics:
+  - Title: Introduction
+    Url: modernization
 
 - Name: Shape the future
   Topics:

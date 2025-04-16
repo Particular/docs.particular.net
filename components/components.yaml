@@ -507,6 +507,7 @@
   DocsUrl: /nservicebus/dotnet-templates
   GitHubOwner: Particular
   Category: Host
+  SupportLevel: Tool
   ProjectUrl: https://github.com/Particular/ParticularTemplates
   NugetOrder:
     - ParticularTemplates

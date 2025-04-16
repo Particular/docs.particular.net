@@ -35,6 +35,4 @@ The Azure Service Bus transport doesn't support namespace aliases.
 
 If the legacy transport [sanitizes](/transports/azure-service-bus/configuration.md#entity-creation) entity names, the sanitization logic must be updated to be compatible with the new transport.
 
-For example, for the `ValidateAndHashIfNeeded` strategy, the sanitization functions must include the strategy logic to preserve the same entity names.
-
-snippet: asb-sanitization-compatibility
+partial: Shortening

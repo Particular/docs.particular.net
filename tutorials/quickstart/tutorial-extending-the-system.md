@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Quick Start: Extending the system"
-reviewed: 2024-04-16
+reviewed: 2025-02-18
 summary: "Part 3: Learn how easy it is to extend a distributed system by adding new functionality without affecting the other components of the system"
 extensions:
 - !!tutorial

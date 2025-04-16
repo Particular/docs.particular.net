@@ -1,7 +1,7 @@
 ---
 title: Hosting endpoints in Docker Linux containers
 summary: Hosting multiple endpoints in several Docker Linux containers managed by Docker Compose
-reviewed: 2022-06-29
+reviewed: 2024-12-28
 component: Core
 related:
 - nservicebus/hosting/docker-host
@@ -10,7 +10,7 @@ redirects:
 - samples/hosting/kubernetes-simple
 ---
 
-This sample demonstrates how to use Docker Linux containers to host NServiceBus endpoints communicating over the [RabbitMQ transport](/transports/rabbitmq/). While this sample uses [Docker Compose](https://docs.docker.com/compose/) to demonstrate how to orchestrate a multi-container application, the containers are compatible withe other orchestration technologies, for example [Kubernetes](https://kubernetes.io/docs/home/).
+This sample demonstrates how to use Docker Linux containers to host NServiceBus endpoints communicating over the [RabbitMQ transport](/transports/rabbitmq/). While this sample uses [Docker Compose](https://docs.docker.com/compose/) to demonstrate how to orchestrate a multi-container application, the containers are compatible with other orchestration technologies, such as [Kubernetes](https://kubernetes.io/docs/home/).
 
 The endpoints use the [.NET SDK Container Building Tools](https://github.com/dotnet/sdk-container-builds) to enable the creation of containers via the `dotnet publish` command. See the [Microsoft tutorial](https://learn.microsoft.com/en-us/dotnet/core/docker/publish-as-container?pivots=dotnet-8-0) and [customization documentation](https://github.com/dotnet/sdk-container-builds/blob/main/docs/ContainerCustomization.md) for more details.
 

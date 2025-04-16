@@ -69,7 +69,7 @@ NHibernate does not alter columns manually.
 
 ### Use an explicit version column for optimistic concurrency control
 
-NHibernate persistence has an option to use an [explicit version column](/persistence/nhibernate/saga-concurrency.md#custom-behavior-explicit-version) for optimistic concurrency checks (OCC) and during an update or delete, only a single `int` column will be compared.
+NHibernate persistence has an option to use an [explicit version column](/persistence/nhibernate/saga-concurrency.md#customizing-concurrency-behavior-explicit-version) for optimistic concurrency checks (OCC) and during an update or delete, only a single `int` column will be compared.
 
 This requires adding a version property to the saga code, as well as altering the database saga table schema by adding a column.
 

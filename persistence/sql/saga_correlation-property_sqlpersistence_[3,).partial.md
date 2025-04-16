@@ -1,4 +1,4 @@
-For NServiceBus sagas, in most cases the correlation property can be inferred at compile time by inspecting the intermediate language (IL) for calls to `.ToSaga(sagaData => sagaData.CorrelationPropertyName)`. There are a few unsupported instances where this is impossible and an exception will be thrown:
+For NServiceBus sagas, an attempt will be made to infer the correlation property at compile time by inspecting the intermediate language (IL) for calls to `.ToSaga(sagaData => sagaData.CorrelationPropertyName)`. There are a few unsupported scenarios where this is impossible and an exception will be thrown:
 
 * Use of an external method or delegate
 * Branching or looping logic inside the `ConfigureHowToFindSaga` method
@@ -16,9 +16,9 @@ snippet: correlation-with-attribute
 
 ### Transitional correlation ID
 
-In cases where business requirements dictate that the correlation property for a saga must change, a transitional correlation property can be used to gradually make that change over time, taking into account that there may be in-flight messages and in-progress sagas that are not updated with the new data.
+In cases where business requirements dictate that the correlation property for a saga must change, a transitional correlation property can be used to gradually make that change over time. This takes into account in-flight messages and in-progress sagas that do not contain the new data.
 
-If an incoming message cannot be mapped to a saga data instance using the correlation property, a saga that has a defined _transitional_ correlation property will also query against the additional column for a match. Once all sagas have been updated to contain the transitional ID, the old correlation property can be retired and the transitional property can become the new standard correlation property.
+If an incoming message cannot be mapped to a saga data instance using the correlation property, a saga that has a defined _transitional_ correlation property will also query against the additional column for a match. Once all sagas have been updated to contain the transitional correlation property, the old correlation property can be retired and the transitional property can become the new standard correlation property.
 
 To define a transitional correlation property on a saga, use the `[SqlSaga]` attribute:
 

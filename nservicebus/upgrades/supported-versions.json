@@ -12,14 +12,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "9.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "9.1",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "9.2",
           "SupportLevel": "Mainstream"
         }
@@ -37,15 +29,11 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "7.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "7.1",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "7.2",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "7.3",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -77,6 +65,10 @@
         {
           "Minor": "2.0",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "2.1",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -98,6 +90,14 @@
         {
           "Minor": "4.4",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "5.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "6.0",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -114,6 +114,10 @@
         },
         {
           "Minor": "5.2",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "6.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -513,6 +517,10 @@
         {
           "Minor": "4.0",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "4.1",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -746,11 +754,15 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "9.1",
+          "Minor": "9.2",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "9.2",
+          "Minor": "10.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "10.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -861,10 +873,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "4.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "4.1",
           "SupportLevel": "Mainstream"
         }
@@ -879,10 +887,6 @@
         },
         {
           "Minor": "3.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "4.0",
           "SupportLevel": "Mainstream"
         },
         {
@@ -950,11 +954,11 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "4.0",
+          "Minor": "4.2",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "4.2",
+          "Minor": "5.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -1096,60 +1100,47 @@
       "PackageId": "Particular.PlatformSample",
       "Versions": [
         {
-          "Minor": "3.13",
+          "Minor": "3.23",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "3.14",
+          "Minor": "3.24",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "3.15",
+          "Minor": "3.25",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "3.16",
+          "Minor": "3.26",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "3.17",
+          "Minor": "3.32",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "3.18",
+          "Minor": "3.33",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "3.19",
+          "Minor": "3.34",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "3.20",
+          "Minor": "3.36",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "3.21",
+          "Minor": "3.37",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "3.22",
-          "SupportLevel": "Mainstream"
-        }
-      ]
-    },
-    {
-      "PackageId": "ParticularTemplates",
-      "Versions": [
-        {
-          "Minor": "5.0",
+          "Minor": "3.39",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "6.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "6.1",
+          "Minor": "3.42",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -1228,7 +1219,7 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "6.1",
+          "Minor": "6.5",
           "SupportLevel": "Mainstream"
         }
       ]

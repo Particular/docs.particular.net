@@ -5,11 +5,11 @@ reviewed: 2024-05-27
 component: PostgreSqlTransport
 ---
 
-## Using connection pooling
+## Connection pooling
 
-The PostgreSQL transport is built on top of [ADO.NET](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/index) and will use connection pooling. This may result in the connection pool being shared by the transport, as well as other parts of the endpoint process and the business logic.
+The PostgreSQL transport is built on top of [ADO.NET](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/index) and will use connection pooling. This may result in sharing of the connection pool by the transport, as well as other parts of the endpoint process and the business logic.
 
-In scenarios where the concurrent message processing limit is changed, or the database connection is used for other purposes mentioned above, change the connection pool size to ensure it will not be exhausted.
+If increasing the concurrent message processing limit, or if the database connection is used for other purposes mentioned above, increase the connection pool size to ensure it is not exhausted.
 
 > [!NOTE]
 > If the maximum pool size is not explicitly set on the connection string, a warning message will be logged. See also [Tuning endpoint message processing](/nservicebus/operations/tuning.md).
@@ -22,24 +22,29 @@ snippet: postgresql-config-connectionstring
 
 ### Token Authentication
 
-To connect using token credentials, a User ID must still be supplied in the connection string with the password supplied from the access token. Given that the token is short-lived, a [data source builder must be utilized to handle password refreshes](https://devblogs.microsoft.com/dotnet/using-postgre-sql-with-dotnet-and-entra-id/). The following example uses Microsoft Entra ID.
+To connect using token credentials, the following must be provided in the connection string:
+
+- A User ID.
+- The password taken from the access token. 
+
+Since tokens are short-lived, a [data source builder must be utilized to handle password refreshes](https://devblogs.microsoft.com/dotnet/using-postgre-sql-with-dotnet-and-entra-id/). The following example uses Microsoft Entra ID.
 
 snippet: postgresql-config-entra
 
 ## Custom database schemas
 
-The PostgreSQL transport uses `public` as a default schema. It is used for every queue if no other schema is explicitly provided in a transport address. This includes all local queues, error, audit, and remote queues of other endpoints.
+The transport uses `public` as a default schema. It is used for every queue if no other schema is explicitly provided in a transport address. This includes all local queues, error, audit, and remote queues of other endpoints.
 
 The default schema can be overridden using the `DefaultSchema` method:
 
 snippet: postgresql-non-standard-schema
 
 > [!NOTE]
-> When subscribing to events between endpoints in different database schemas or catalogs, a [shared subscription table must be configured](/transports/postgresql/native-publish-subscribe.md#configure-subscription-table).
+> Subscribing to events between endpoints in different database schemas or catalogs requires a [shared subscription table to be configured](/transports/postgresql/native-publish-subscribe.md#configure-subscription-table).
 
-## Custom PostgreSQL transport connection factory
+## Custom connection factory
 
-In some environments, it might be necessary to adapt to the database server settings or to perform additional operations. This can be done by passing a custom factory method to the transport which will provide connection strings at runtime and can perform custom actions:
+Some environments need additional connection operations, such as adapting to the database server settings. To achieve this, pass a custom factory method to the transport that will provide connection strings at runtime and can perform custom actions:
 
 snippet: postgresql-custom-connection-factory
 

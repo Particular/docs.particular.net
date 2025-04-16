@@ -1,10 +1,10 @@
 ---
 title: Security Advisory 2020-03-11
 summary: ServicePulse directory traversal vulnerability
-reviewed: 2022-12-02
+reviewed: 2025-03-18
 ---
 
-This advisory discloses a security vulnerability that has been found in [ServicePulse](/servicepulse/) and fixed in a recently released version.
+This advisory discloses a security vulnerability that has been found in [ServicePulse](/servicepulse/) and fixed.
 
  * ServicePulse versions 1.24 or 1.24.1 should be upgraded to the latest version of ServicePulse to fix this vulnerability.
  * Users using [IIS to host ServicePulse](/servicepulse/install-servicepulse-in-iis.md) are not affected
@@ -38,7 +38,6 @@ If it is not possible to immediately upgrade ServicePulse to the latest version,
 This vulnerability can be fixed by upgrading ServicePulse to the latest version. Upgrades should be performed as follows:
 
 [Download](https://particular.net/start-servicepulse-download) and run the latest version of the ServicePulse installer, following the online [installation instructions](/servicepulse/installation.md#installation)
-
 
 ### Contact info
 

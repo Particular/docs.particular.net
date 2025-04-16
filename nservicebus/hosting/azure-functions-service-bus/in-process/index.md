@@ -78,7 +78,7 @@ Use the [`asb-transport` command line (CLI) tool](/transports/azure-service-bus/
 asb-transport endpoint create <queue name>
 ```
 
-See the [full documentation](/transports/azure-service-bus/operational-scripting.md#operational-scripting-asb-transport-endpoint-create) for the `asb-transport endpoint create` command for more details.
+See the [full documentation](/transports/azure-service-bus/operational-scripting.md#available-commands-asb-transport-endpoint-create) for the `asb-transport endpoint create` command for more details.
 
 > [!WARNING]
 > If the `asb-tranport` command-line tool is not used to create the queue, it is recommended to set the `MaxDeliveryCount` setting to the maximum value.
@@ -89,7 +89,9 @@ See the [full documentation](/transports/azure-service-bus/operational-scripting
 asb-transport endpoint subscribe <queue name> <eventtype>
 ```
 
-See the [full documentation](/transports/azure-service-bus/operational-scripting.md#operational-scripting-asb-transport-endpoint-subscribe) for the `asb-transport endpoint subscribe` command for more details.
+See the [full documentation](/transports/azure-service-bus/operational-scripting.md#available-commands-asb-transport-endpoint-subscribe) for the `asb-transport endpoint subscribe` command for more details.
+
+partial: topology
 
 partial: assembly-scanner
 

@@ -1,51 +1,40 @@
 ﻿#region ShippingProgram
 
 using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-namespace Shipping
-{
-    class Program
-    {
-        static async Task Main(string[] args)
-        {
-            Console.Title = "Shipping";
-            await CreateHostBuilder(args).RunConsoleAsync();
-        }
+Console.Title = "Shipping";
 
-        public static IHostBuilder CreateHostBuilder(string[] args)
-        {
-            return Host.CreateDefaultBuilder(args)
-                       .UseNServiceBus(context =>
-                       {
-                           // Define the endpoint name
-                           var endpointConfiguration = new EndpointConfiguration("Shipping");
+var builder = Host.CreateApplicationBuilder(args);
 
-                           // Choose JSON to serialize and deserialize messages
-                           endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+// Define the endpoint name
+var endpointConfig = new EndpointConfiguration("Shipping");
 
-                           // Select the learning (filesystem-based) transport to communicate
-                           // with other endpoints
-                           endpointConfiguration.UseTransport<LearningTransport>();
+// Choose JSON to serialize and deserialize messages
+endpointConfig.UseSerialization<SystemJsonSerializer>();
 
-                           // Enable monitoring errors, auditing, and heartbeats with the
-                           // Particular Service Platform tools
-                           endpointConfiguration.SendFailedMessagesTo("error");
-                           endpointConfiguration.AuditProcessedMessagesTo("audit");
-                           endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
+// Select the learning (filesystem-based) transport to
+// communicate with other endpoints
+endpointConfig.UseTransport<LearningTransport>();
 
-                           // Enable monitoring endpoint performance
-                           var metrics = endpointConfiguration.EnableMetrics();
-                           metrics.SendMetricDataToServiceControl("Particular.Monitoring",
-                               TimeSpan.FromMilliseconds(500));
+// Enable monitoring errors, auditing, and heartbeats
+// with the Particular Service Platform tools
+endpointConfig.SendFailedMessagesTo("error");
+endpointConfig.AuditProcessedMessagesTo("audit");
+endpointConfig.SendHeartbeatTo("Particular.ServiceControl");
 
-                           // Return the completed configuration
-                           return endpointConfiguration;
-                       });
-        }
-    }
-}
+// Enable monitoring endpoint performance
+var metrics = endpointConfig.EnableMetrics();
+metrics.SendMetricDataToServiceControl(
+    "Particular.Monitoring",
+    TimeSpan.FromMilliseconds(500)
+);
+
+builder.UseNServiceBus(endpointConfig);
+
+var app = builder.Build();
+
+await app.RunAsync();
 
 #endregion

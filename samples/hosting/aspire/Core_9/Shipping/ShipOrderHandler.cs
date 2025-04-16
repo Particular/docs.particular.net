@@ -1,18 +1,13 @@
 ﻿using Messages;
-using NServiceBus;
-using NServiceBus.Logging;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
-namespace Shipping
+namespace Shipping;
+
+class ShipOrderHandler(ILogger<ShipOrderHandler> log) : IHandleMessages<ShipOrder>
 {
-    class ShipOrderHandler : IHandleMessages<ShipOrder>
+    public Task Handle(ShipOrder message, IMessageHandlerContext context)
     {
-        static ILog log = LogManager.GetLogger<ShipOrderHandler>();
-
-        public Task Handle(ShipOrder message, IMessageHandlerContext context)
-        {
-            log.Info($"Order [{message.OrderId}] - Successfully shipped.");
-            return Task.CompletedTask;
-        }
+        log.LogInformation($"Order [{message.OrderId}] - Successfully shipped.");
+        return Task.CompletedTask;
     }
 }

@@ -107,6 +107,10 @@ or to provide a custom key:
 
 snippet: S3ServerSideCustomerEncryption
 
+partial: payload-signing
+
+partial: visibility-timeout
+
 partial: v1compatibilitymode
 
 partial: delayeddelivery
@@ -116,3 +120,5 @@ partial: topics
 partial: policy
 
 partial: message-driven-pubsub-compatibility-mode
+
+partial: message-size-calculation-reserved-bytes

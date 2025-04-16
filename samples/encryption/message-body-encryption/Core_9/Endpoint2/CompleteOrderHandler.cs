@@ -1,15 +1,15 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class CompleteOrderHandler :
+public class CompleteOrderHandler(ILogger<CompleteOrderHandler> logger) :
     IHandleMessages<CompleteOrder>
 {
-    static ILog log = LogManager.GetLogger<CompleteOrderHandler>();
-
+    
     public Task Handle(CompleteOrder message, IMessageHandlerContext context)
     {
-        log.Info($"Received CompleteOrder with credit card number {message.CreditCard}");
+        logger.LogInformation($"Received CompleteOrder with credit card number {message.CreditCard}");
         return Task.CompletedTask;
     }
 }

@@ -1,17 +1,15 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 using UsingClasses.Messages;
 
 #region immutable-messages-as-class-handling
-public class MyMessageAsClassHandler :
+public class MyMessageAsClassHandler(ILogger<MyMessageAsClassHandler> logger) :
     IHandleMessages<MyMessage>
 {
-    static ILog log = LogManager.GetLogger<MyMessageAsClassHandler>();
-
-    public Task Handle(MyMessage message, IMessageHandlerContext context)
+     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        log.Info($"MyMessage (as class) received from server with data: {message.Data}");
+        logger.LogInformation($"MyMessage (as class) received from server with data: {message.Data}");
         return Task.CompletedTask;
     }
 }

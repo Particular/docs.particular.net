@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Receiver";
-        var endpointConfiguration = new EndpointConfiguration("Samples.QuartzScheduler.Receiver");
-        endpointConfiguration.UseTransport(new LearningTransport());
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+Console.Title = "Receiver";
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press any key to exit");
-        Console.WriteLine("Waiting for messages from the Sender");
-        Console.ReadKey();
-        await endpointInstance.Stop();
-    }
-}
+var builder = Host.CreateApplicationBuilder(args);
+
+var endpointConfiguration = new EndpointConfiguration("Samples.QuartzScheduler.Receiver");
+endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
+Console.WriteLine("Waiting for messages from the Sender");
+Console.WriteLine("Starting...");
+
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

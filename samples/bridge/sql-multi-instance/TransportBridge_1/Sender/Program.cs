@@ -1,58 +1,45 @@
 using System;
 using System.Threading.Tasks;
 using Messages;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using Sender;
 
 public class Program
 {
-    // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlMultiInstanceSender;Integrated Security=True;Max Pool Size=100;Encrypt=false
-    const string ConnectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlMultiInstanceSender;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
+    //for local instance or SqlExpress
+    const string ConnectionString = @"Data Source=(localdb)\mssqllocaldb;Database=NsbSamplesSqlMultiInstanceSender;Trusted_Connection=True;MultipleActiveResultSets=true;Max Pool Size=100;Encrypt=false";
+    //const string ConnectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlMultiInstanceSender;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
 
-    static async Task Main()
+    public static async Task Main(string[] args)
     {
-        Console.Title = "MultiInstanceSender";
-
-        #region SenderConfiguration
-
-        var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceSender");
-        var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
-        transport.ConnectionString(ConnectionString);
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.EnableInstallers();
-
-        transport.Routing().RouteToEndpoint(typeof(ClientOrder), "Samples.SqlServer.MultiInstanceReceiver");
-
-        #endregion
-
-        SqlHelper.EnsureDatabaseExists(ConnectionString);
-
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-        Console.WriteLine("Press <enter> to send a message");
-        Console.WriteLine("Press any other key to exit");
-        while (true)
-        {
-            if (Console.ReadKey().Key != ConsoleKey.Enter)
-            {
-                break;
-            }
-            await PlaceOrder(endpointInstance);
-        }
-        await endpointInstance.Stop();
+        await CreateHostBuilder(args).Build().RunAsync();
     }
 
-    static async Task PlaceOrder(IEndpointInstance endpoint)
-    {
-        #region SendMessage
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+     Host.CreateDefaultBuilder(args)
+       .UseNServiceBus(x =>
+         {
+             #region SenderConfiguration
+             var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceSender");
+             var transport = endpointConfiguration.UseTransport<SqlServerTransport>();
+             transport.ConnectionString(ConnectionString);
+             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+             endpointConfiguration.EnableInstallers();
 
-        var order = new ClientOrder
-        {
-            OrderId = Guid.NewGuid()
-        };
-        await endpoint.Send(order);
+             transport.Routing().RouteToEndpoint(typeof(ClientOrder), "Samples.SqlServer.MultiInstanceReceiver");
+             #endregion
 
-        #endregion
+             SqlHelper.EnsureDatabaseExists(ConnectionString);
+             Console.WriteLine("Press <enter> to send a message");
+             return endpointConfiguration;
+         }).ConfigureServices((hostContext, services) =>
+         {
+             Console.Title = "MultiInstanceSender";
+             services.AddHostedService<InputLoopService>();
+         });
 
-        Console.WriteLine($"ClientOrder message sent with ID {order.OrderId}");
-    }
+
+
 }

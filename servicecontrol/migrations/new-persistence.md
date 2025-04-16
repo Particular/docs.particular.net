@@ -2,7 +2,7 @@
 title: New persistence format
 summary: How to migrate ServiceControl Audit instances to the new persistence format introduced in version 4.26
 isUpgradeGuide: true
-reviewed: 2022-10-21
+reviewed: 2025-02-10
 component: ServiceControl
 redirects:
   - servicecontrol/upgrades/new-persistence
@@ -25,7 +25,7 @@ To switch to the new persistence format, follow the steps for [zero downtime upg
 
 ## How to determine which persistence format is used
 
-Audit instances created using ServiceControl version 4.25 and below use the old instance format. Even if this instance is upgraded to a newer version, it will continue to use the old format.
+Audit instances created using ServiceControl version 4.25 and below use the old persistence format. Even if this instance is upgraded to a newer version, it will continue to use the old format.
 
 The persistence format of an instance can be verified using ServiceControl Management or the `Get-ServiceControlAuditInstances` powershell cmdlet after installing ServiceControl 4.26 or above.
 

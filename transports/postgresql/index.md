@@ -24,13 +24,13 @@ The PostgreSQL transport implements a message queuing mechanism on top of [Postg
 
 ## Usage
 
-A basic use of the PostgreSQL transport is as follows:
+A basic use of the transport is as follows:
 
 snippet: usage
 
 ## How it works
 
-PostgreSQL transport uses tables to represent queues and store messages. The PostgreSQL transport is best considered as a brokered transport, like RabbitMQ, rather than a store-and-forward transport, such as MSMQ.
+Tables are used to represent queues and store messages. The transport is best considered as a brokered transport, like RabbitMQ, rather than a store-and-forward transport, such as MSMQ.
 
 ## Advantages
 
@@ -41,9 +41,9 @@ PostgreSQL transport uses tables to represent queues and store messages. The Pos
 
 ## Disadvantages
 
-* No local store-and-forward mechanism; when a PostgreSQL instance is down, the endpoint cannot send nor receive messages.
+* No local store-and-forward mechanism; when a PostgreSQL instance is down, the endpoint cannot send or receive messages.
 * In centralized deployment scenarios, maximum throughput applies for the whole system, not individual endpoints. For example, if PostgreSQL can handle 2000 msg/s on the given hardware, each one of the 10 endpoints deployed on this machine can only receive a maximum of 200 msg/s (on average).
-* When using PostgreSQL transport, a database table serves as a queue for the messages for the endpoints. These tables are polled periodically to see if messages need to be processed by the endpoints. Although the polling interval is one second, this may still lead to delays in processing a message. For environments where low latency is required, consider using other transports that use queuing technologies, such as RabbitMQ.
+* When using PostgreSQL transport, a database table serves as a queue for the messages for the endpoints. These tables are polled to see if there are messages to be processed by the endpoints. Although the polling interval is, by default, one second, this may still lead to delays in processing a message. For environments where low latency is required, consider using other transports that use dedicated queuing technologies, such as RabbitMQ.
 
 ## Deployment considerations
 
@@ -71,4 +71,10 @@ By default, PostgreSQL [limits the maximum number](https://www.postgresql.org/do
 
 ## Transactions
 
-PostgreSQL transport supports following [transaction handling modes](/transports/transactions.md): receive only, send atomic with receive, and no transactions. It does not support Transaction scope mode due to the limitations in the design of the PostgreSQL database and the System.Transactions library.
+PostgreSQL transport supports the following [transaction handling modes](/transports/transactions.md): 
+
+- receive only 
+- send atomic with receive 
+- no transactions. 
+
+It does not support Transaction scope mode due to the limitations in the design of the PostgreSQL database and the System.Transactions library.

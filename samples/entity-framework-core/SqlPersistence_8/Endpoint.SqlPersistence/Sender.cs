@@ -1,12 +1,18 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using NServiceBus.Routing;
 
-public class Sender
+public class Sender(IMessageSession messageSession) : BackgroundService
 {
-    public static async Task Start(IEndpointInstance endpointInstance)
+
+
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+
         var random = new Random();
         const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
         var locations = new[] { "London", "Paris", "Oslo", "Madrid" };
@@ -15,7 +21,6 @@ public class Sender
         {
 
             Console.WriteLine("Press enter to send a message");
-            Console.WriteLine("Press any key to exit");
 
             while (true)
             {
@@ -34,12 +39,12 @@ public class Sender
                     Value = random.Next(100),
                     ShipTo = shipTo
                 };
-                await endpointInstance.SendLocal(orderSubmitted);
+                await messageSession.SendLocal(orderSubmitted);
             }
         }
         finally
         {
-            await endpointInstance.Stop();
+
         }
     }
 }

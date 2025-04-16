@@ -1,25 +1,27 @@
 ﻿using System.Threading.Tasks;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 using NServiceBus.MessageMutator;
 
 #region username-header-mutator
 
-public class AddUserNameToOutgoingHeadersMutator :
+public class AddUserNameToOutgoingHeadersMutator:
     IMutateOutgoingTransportMessages
 {
-    static ILog log = LogManager.GetLogger("Handler");
     readonly IPrincipalAccessor principalAccessor;
+    private readonly ILogger<AddUserNameToOutgoingHeadersMutator> logger;
 
-    public AddUserNameToOutgoingHeadersMutator(IPrincipalAccessor principalAccessor)
+    public AddUserNameToOutgoingHeadersMutator(IPrincipalAccessor principalAccessor, ILogger<AddUserNameToOutgoingHeadersMutator> logger)
     {
         this.principalAccessor = principalAccessor;
+        this.logger = logger;
     }
 
     public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
     {
         if (principalAccessor.CurrentPrincipal?.Identity.Name != null)
         {
-            log.Info("Adding CurrentPrincipal user to headers");
+
+            logger.LogInformation("Adding CurrentPrincipal user to headers");
             context.OutgoingHeaders["UserName"] = principalAccessor.CurrentPrincipal.Identity.Name;
         }
 

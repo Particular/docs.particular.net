@@ -2,17 +2,16 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 using Store.Messages.Commands;
 using Store.Messages.Events;
 
-public class ProcessOrderSaga :
+public class ProcessOrderSaga(ILogger<ProcessOrderSaga> logger) :
     Saga<ProcessOrderSaga.OrderData>,
     IAmStartedByMessages<SubmitOrder>,
     IHandleMessages<CancelOrder>,
     IHandleTimeouts<ProcessOrderSaga.BuyersRemorseIsOver>
 {
-    static ILog log = LogManager.GetLogger<ProcessOrderSaga>();
 
     public Task Handle(SubmitOrder message, IMessageHandlerContext context)
     {
@@ -25,7 +24,7 @@ public class ProcessOrderSaga :
         Data.ProductIds = message.ProductIds;
         Data.ClientId = message.ClientId;
 
-        log.Info($"Starting cool down period for order #{Data.OrderNumber}.");
+        logger.LogInformation($"Starting cool down period for order #{Data.OrderNumber}.");
         return RequestTimeout(context, TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
     }
 
@@ -38,7 +37,7 @@ public class ProcessOrderSaga :
 
         MarkAsComplete();
 
-        log.Info($"Cooling down period for order #{Data.OrderNumber} has elapsed.");
+        logger.LogInformation($"Cooling down period for order #{Data.OrderNumber} has elapsed.");
 
         var orderAccepted = new OrderAccepted
         {
@@ -56,7 +55,7 @@ public class ProcessOrderSaga :
             Debugger.Break();
         }
 
-        log.Info($"Order #{message.OrderNumber} was cancelled.");
+        logger.LogInformation($"Order #{message.OrderNumber} was cancelled.");
 
         MarkAsComplete();
 

@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Quickstart: Recovering from failure"
-reviewed: 2024-04-16
+reviewed: 2025-02-18
 summary: "Part 2: Learn how to handle exceptions with NServiceBus in distributed systems and automatically retry them"
 extensions:
 - !!tutorial
@@ -97,8 +97,8 @@ snippet: ThrowFatalException
 
 Next, let's enable the Particular Service Platform tools and see what they do.
 
-1. In the **Platform** project, locate and open the **Program.cs** file.
-2. Ensure the code inside the **Main** method shown here is uncommented. This is responsible for launching the platform when we start our project.
+1. In the **PlatformLauncher** project, locate and open the **Program.cs** file.
+2. Within **Main**, replace the line `await Task.CompletedTask;` with `await Particular.PlatformLauncher.Launch();`. This is responsible for launching the platform when we start our project.
 
 snippet: PlatformMain
 

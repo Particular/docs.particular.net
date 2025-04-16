@@ -1,45 +1,43 @@
 using System;
 using System.Security.Principal;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
 using NServiceBus.MessageMutator;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Endpoint1";
-        var endpointConfiguration = new EndpointConfiguration("Samples.UsernameHeader.Endpoint1");
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
 
-        #region component-registration-sender
+Console.Title = "Endpoint1";
 
-        var principalAccessor = new PrincipalAccessor();
-        var mutator = new AddUserNameToOutgoingHeadersMutator(principalAccessor);
-        endpointConfiguration.RegisterMessageMutator(mutator);
+var builder = Host.CreateApplicationBuilder(args);
 
-        #endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var endpointConfiguration = new EndpointConfiguration("Samples.UsernameHeader.Endpoint1");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        #region send-message
+#region component-registration-sender
 
-        async Task SendMessage(int userNumber)
-        {
-            var identity = new GenericIdentity($"FakeUser{userNumber}");
-            principalAccessor.CurrentPrincipal = new GenericPrincipal(identity, new string[0]);
+// Register both services
 
-            var message = new MyMessage();
-            await endpointInstance.Send("Samples.UsernameHeader.Endpoint2", message);
-        }
+var principalAccessor = new PrincipalAccessor();
+builder.Services.AddSingleton<IPrincipalAccessor>(principalAccessor);
 
-        await Task.WhenAll(SendMessage(1), SendMessage(2));
+var serviceProvider = builder.Services.BuildServiceProvider();
+builder.Services.AddHostedService<InputLoopService>();
 
-        #endregion
+var logger = serviceProvider.GetRequiredService<ILogger<AddUserNameToOutgoingHeadersMutator>>();
+var mutator = new AddUserNameToOutgoingHeadersMutator(principalAccessor, logger);
+endpointConfiguration.RegisterMessageMutator(mutator);
+#endregion
 
-        Console.WriteLine("Message sent. Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop();
-    }
-}
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
+
+builder.UseNServiceBus(endpointConfiguration);
+
+
+await builder.Build().RunAsync();
+

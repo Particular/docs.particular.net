@@ -1,6 +1,6 @@
 ---
 title: Immutable Messages
-reviewed: 2024-08-13
+reviewed: 2025-02-19
 component: Core
 related:
 - samples/immutable-messages
@@ -13,8 +13,16 @@ Usually messages are designed as [DTOs](https://en.wikipedia.org/wiki/Data_trans
 
 Message objects can be made immutable at runtime by:
 
-1. Creating properties with only public getters and initializing these properties via constructor initialization.
-2. Having regular message classes with public getters/setters at the sender, where these classes implement an interface with only public getters. Receivers reference only the interface.
+1. Using [record types](https://learn.microsoft.com/en-us/dotnet/csharp/fundamentals/types/records)
+2. Creating properties with only public getters and initializing these properties via constructor initialization.
+3. Having regular message classes with public getters/setters at the sender, where these classes implement an interface with only public getters. Receivers reference only the interface.
+
+
+## Record types
+
+```c#
+public record CancelOrder(int OrderId);
+```
 
 ## Properties with only public getters
 

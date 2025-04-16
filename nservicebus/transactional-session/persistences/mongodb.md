@@ -2,7 +2,7 @@
 title: Transactional Session with MongoDB Persistence
 summary: How to configure the transactional session with MongoDB Persistence
 component: TransactionalSession.MongoDB
-reviewed: 2022-09-12
+reviewed: 2025-01-24
 redirects:
 related:
 - persistence/mongodb
@@ -25,7 +25,7 @@ snippet: open-transactional-session-mongo
 
 ## Transaction usage
 
-Message and database operations made via the the transactional session are committed together once the session is committed:
+Message and database operations made via the transactional session are committed together once the session is committed:
 
 snippet: use-transactional-session-mongo
 

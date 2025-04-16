@@ -1,0 +1,22 @@
+name: outbox
+services:
+  rabbit:
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_DEFAULT_USER: rabbitmq
+      RABBITMQ_DEFAULT_PASS: rabbitmq
+      RABBITMQ_DEFAULT_VHOST: /
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+  cosmosdb:
+    image: mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator
+    container_name: cosmosdb
+    ports:
+      - "8081:8081"       # HTTPS endpoint
+      - "11252:10252"  # Change this if necessary, e.g., "11252:10252"
+    environment:
+      # You can configure the number of partitions (default is 1)
+      AZURE_COSMOS_EMULATOR_PARTITION_COUNT: 1
+      # Enable persistence if you need to retain data between restarts
+      AZURE_COSMOS_EMULATOR_ENABLE_DATA_PERSISTENCE: "true"

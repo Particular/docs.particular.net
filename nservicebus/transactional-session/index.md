@@ -1,7 +1,7 @@
 ---
 title: Transactional session
 summary: Atomicity when modifying data and sending messages outside the context of a message handler
-reviewed: 2022-09-12
+reviewed: 2025-01-24
 component: TransactionalSession
 related:
 - samples/transactional-session/aspnetcore-webapi
@@ -18,7 +18,7 @@ Consider an ASP.NET Core controller that creates a user in the business database
 
 1. **Zombie record**: The controller creates the `User` in the database first, then publishes the `UserCreated` event. If a failure occurs between these two operations:
     * The user is created in the database, but the `UserCreated` event is not published.
-    * This results is a user in the database, known as a zombie record, which is never announced to the rest of the system.
+    * This results in a user in the database, known as a zombie record, which is never announced to the rest of the system.
 2. **Ghost message**: The controller publishes the `UserCreated` event first, then creates the user in the database. If a failure occurs between these two operations:
     * The `UserCreated` event is published, but the user is not created in the database.
     * The rest of the system is notified about the creation of the user, but the user record is never created. This inconsistency causes errors, as parts of the system expect the record to exist in the database.
@@ -62,36 +62,6 @@ Disposing the transactional session without committing will roll back any change
 
 > [!NOTE]
 > The `Commit` operation may fail and throw an exception for reasons outlined in the [failure scenarios section](#failure-scenarios).
-
-### Advanced configuration
-
-#### Maximum commit duration
-
-The maximum commit duration limits the amount of time it can take for a transaction to commit the changes before the operation times out. The value can be configured when opening the session.
-
-The default value for the maximum commit duration is `TimeSpan.FromSeconds(15)`.
-
-snippet: configuring-timeout-transactional-session
-
-The maximum commit duration does not represent the total transaction time, but rather the time it takes to complete the commit operation (as observed from the perspective of the control message). In practice, the observed total commit time might be longer due to delays in the transport caused by latency, delayed delivery, load on the input queue, endpoint concurrency limits, and more.
-
-When the control message is consumed, but the outbox record is not yet available in storage, the following formula is applied to delay the message (see [Phase 2](#how-it-works-phase-2)):
-
-```text
-CommitDelayIncrement = 2 * CommitDelayIncrement;
-RemainingCommitDuration = RemainingCommitDuration -
-   (CommitDelayIncrement > RemainingCommitDuration ? RemainingCommitDuration : CommitDelayIncrement)
-```
-
-The default commit delay increment is set to `Timespan.FromSeconds(2)`and cannot be overridden.
-
-partial: config
-
-#### Metadata
-
-It is possible to add metadata (e.g. tenant information) transactional session control message via custom headers. These headers can be accessed by a [custom behavior](/nservicebus/pipeline/manipulate-with-behaviors.md#add-a-new-step) when the control message is received in the `TransportReceive` part of the pipeline.
-
-snippet: configuring-metadata-transactional-session
 
 ## Requirements
 
@@ -172,24 +142,29 @@ Internally, the transactional session doesn't use a single transaction that span
 ### Phase 1
 
 1. The user opens a transactional session.
-2. A set of `PendingOperations` is initialized and collects the message operations.
+2. A set of `PendingTransportOperations` is initialized and collects the message operations.
 3. A transaction is started on the storage seam.
-4. The user can execute any required message operations using the transactional session.
-5. The user can store any data using the persistence-specific session, which is accessible through the transactional session.
-6. When all operations are registered, the user calls `Commit` on the transactional session.
-7. A control message to complete the transaction is dispatched to the local queue. The control message is independent of the message operations and is not stored in the outbox record.
-8. The message operations are converted and stored into an outbox record.
-9. The transaction is committed, and the outbox record and business data modifications are stored atomically.
+4. The storage returns an open transaction.
+5. The user can execute any required message operations using the transactional session.
+6. Transport operations are captured by the `PendingTransportOperations`
+7. The user can store any data using the persistence-specific session, which is accessible through the transactional session.
+8. When all operations are registered, the user calls `Commit` on the transactional session.
+9. A control message to complete the transaction is dispatched to the local queue. The control message is independent of the message operations and is not stored in the outbox record.
+10. The message operations are converted into an outbox record.
+11. The outbox record is returned to the transactional session
+12. The outbox record is saved to the storage seam.
+13. The transaction is committed, and the outbox record and business data modifications are stored atomically.
 
 > [!NOTE]
-> Steps 7 and 8 are skipped, and as a consequence Phase 2, when no message operations are executed in the transactional session to avoid wasting queue and database resources.
+> When no message operations are executed in the transactional session, steps 9 through 12 are skipped (and as a consequence Phase 2 is also skipped) to avoid wasting queue and database resources.
 
 ### Phase 2
 
 The endpoint receives the control message and processes it as follows:
 
 * Find the outbox record.
-  * If it exists, and it hasn't been marked as dispatched, and there are pending operations they are dispatched, and the outbox record is set as dispatched.
+  * If it exists, and it hasn't been marked as dispatched, and there are pending operations:
+    * Dispatched the messages, and the outbox record is set as dispatched.
   * If it doesn't exist yet, delay the processing of the control message.
 
 ## Failure scenarios
@@ -199,7 +174,7 @@ The transactional session provides atomic store-and-send guarantees, similar to 
 * Transaction finishes with data being stored, and outgoing messages eventually sent - when the `Commit` path successfully stores the `OutboxRecord`
 * Transaction finishes with no visible side effects - when the control message stores the `OutboxRecord`
 
-Sending the control message first ensures that eventually, the transaction will have an atomic outcome. If the `Commit` of the `OutboxRecord` succeeds, the control message will ensure the outgoing operations are sent. If the `Commit` fails, the control message will (after the [maximum commit duration](#usage-advanced-configuration-maximum-commit-duration) elapses) eventually be consumed, leaving no side effects.
+Sending the control message first ensures that eventually, the transaction will have an atomic outcome. If the `Commit` of the `OutboxRecord` succeeds, the control message will ensure the outgoing operations are sent. If the `Commit` fails, the control message will (after the [maximum commit duration](#advanced-configuration-maximum-commit-duration) elapses) eventually be consumed, leaving no side effects.
 
 If dispatching the control message fails, the transactional session changes will roll back, and an error will be raised to the user committing the session.
 
@@ -207,3 +182,33 @@ If dispatching the control message fails, the transactional session changes will
 
 * The transactional session cannot be used in send-only endpoints. A full endpoint is required to send a control message to the local queue.
 * The transport must have the same or higher availability guarantees as the database.
+
+## Advanced configuration
+
+### Maximum commit duration
+
+The maximum commit duration limits the amount of time it can take for a transaction to commit the changes before the operation times out. The value can be configured when opening the session.
+
+The default value for the maximum commit duration is `TimeSpan.FromSeconds(15)`.
+
+snippet: configuring-timeout-transactional-session
+
+The maximum commit duration does not represent the total transaction time, but rather the time it takes to complete the commit operation (as observed from the perspective of the control message). In practice, the observed total commit time might be longer due to delays in the transport caused by latency, delayed delivery, load on the input queue, endpoint concurrency limits, and more.
+
+When the control message is consumed, but the outbox record is not yet available in storage, the following formula is applied to delay the message (see [Phase 2](#how-it-works-phase-2)):
+
+```csharp
+CommitDelayIncrement = 2 * CommitDelayIncrement;
+RemainingCommitDuration = RemainingCommitDuration
+  - (CommitDelayIncrement > RemainingCommitDuration 
+      ? RemainingCommitDuration
+      : CommitDelayIncrement);
+```
+
+partial: config
+
+### Metadata
+
+It is possible to add metadata (e.g. tenant information) transactional session control message via custom headers. These headers can be accessed by a [custom behavior](/nservicebus/pipeline/manipulate-with-behaviors.md#add-a-new-step) when the control message is received in the `TransportReceive` part of the pipeline.
+
+snippet: configuring-metadata-transactional-session

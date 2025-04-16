@@ -3,7 +3,7 @@ title: Startup diagnostics
 summary: Describes the mechanism for gathering diagnostic information when endpoints start
 component: Core
 versions: '[7,)'
-reviewed: 2023-01-03
+reviewed: 2025-03-31
 ---
 
 > [!NOTE]

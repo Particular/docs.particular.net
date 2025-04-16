@@ -1,15 +1,13 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 using Store.Messages.Commands;
 using Store.Messages.Events;
 
-public class SubmitOrderHandler :
+public class SubmitOrderHandler(ILogger<SubmitOrderHandler> logger) :
     IHandleMessages<SubmitOrder>
 {
-    static ILog log = LogManager.GetLogger<SubmitOrderHandler>();
-
     public Task Handle(SubmitOrder message, IMessageHandlerContext context)
     {
         if (DebugFlagMutator.Debug)
@@ -17,11 +15,11 @@ public class SubmitOrderHandler :
             Debugger.Break();
         }
 
-        log.Info($"Received an order #{message.OrderNumber} for [{string.Join(", ", message.ProductIds)}] products(s).");
+        logger.LogInformation($"Received an order #{message.OrderNumber} for [{string.Join(", ", message.ProductIds)}] products(s).");
 
-        log.Info("The credit card values will be encrypted when looking at the messages in the queues");
-        log.Info($"CreditCard Number is {message.CreditCardNumber}");
-        log.Info($"CreditCard Expiration Date is {message.ExpirationDate}");
+        logger.LogInformation("The credit card values will be encrypted when looking at the messages in the queues");
+        logger.LogInformation($"CreditCard Number is {message.CreditCardNumber}");
+        logger.LogInformation($"CreditCard Expiration Date is {message.ExpirationDate}");
 
         // tell the client the order was received
         var orderPlaced = new OrderPlaced

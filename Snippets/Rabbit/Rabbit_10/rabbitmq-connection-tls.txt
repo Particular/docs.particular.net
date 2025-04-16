@@ -1,0 +1,3 @@
+﻿startcode rabbitmq-connection-tls
+host=broker1;UseTls=true
+endcode

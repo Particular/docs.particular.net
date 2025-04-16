@@ -1,21 +1,19 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 using Store.Messages.Events;
 
-class SendLimitedTimeOffer :
+class SendLimitedTimeOffer(ILogger<SendLimitedTimeOffer> logger) :
     IHandleMessages<ClientBecamePreferred>
 {
-    static ILog log = LogManager.GetLogger<SendLimitedTimeOffer>();
-
-    public Task Handle(ClientBecamePreferred message, IMessageHandlerContext context)
+      public Task Handle(ClientBecamePreferred message, IMessageHandlerContext context)
     {
         if (DebugFlagMutator.Debug)
         {
             Debugger.Break();
         }
-        log.Info($"Handler WhenCustomerIsPreferredSendLimitedTimeOffer invoked for CustomerId: {message.ClientId}");
+        logger.LogInformation($"Handler WhenCustomerIsPreferredSendLimitedTimeOffer invoked for CustomerId: {message.ClientId}");
         return Task.CompletedTask;
     }
 }

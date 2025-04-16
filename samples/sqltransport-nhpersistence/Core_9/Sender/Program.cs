@@ -1,11 +1,15 @@
 using System;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NHibernate.Driver;
 using NServiceBus;
 using NServiceBus.Persistence;
 using NServiceBus.Transport.SqlServer;
-
+using Sender;
+var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddHostedService<InputLoopService>();
 Console.Title = "Sender";
 
 // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlNHibernate;Integrated Security=True;Max Pool Size=100;Encrypt=false
@@ -45,29 +49,8 @@ routing.RouteToEndpoint(typeof(OrderAccepted), "Samples.SqlNHibernate.Sender");
 
 await SqlHelper.CreateSchema(connectionString, "sender");
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
 Console.WriteLine("Press enter to send a message");
 Console.WriteLine("Press any key to exit");
+builder.UseNServiceBus(endpointConfiguration);
 
-while (true)
-{
-    var key = Console.ReadKey();
-    Console.WriteLine();
-
-    if (key.Key != ConsoleKey.Enter)
-    {
-        break;
-    }
-
-    var orderSubmitted = new OrderSubmitted
-    {
-        OrderId = Guid.NewGuid(),
-        Value = Random.Shared.Next(100)
-    };
-
-    await endpointInstance.Publish(orderSubmitted);
-
-    Console.WriteLine("Published OrderSubmitted message");
-}
-await endpointInstance.Stop();
+await builder.Build().RunAsync();

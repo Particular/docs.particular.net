@@ -45,7 +45,7 @@
         sendOptions.SetDestination("Samples.Blazor.Server");
 
         var code = await messageSession.Request<ErrorCodes>(command, sendOptions);
-        ResponseText = Enum.GetName(typeof(ErrorCodes), code);
+        ResponseText = Enum.GetName<ErrorCodes>(code);
 
         #endregion
     }

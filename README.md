@@ -58,6 +58,7 @@ As part of a full review, the following should be done:
 * Content is correct up to and including the current released version
 * Content can benefit from having its own header so that it is picked up while searching for a related topic.
 * Summary and title are adequate
+* Consider what is the best place to direct the reader after they are done reading the current page. Add a link to that page at the bottom.
 * Update the reviewed date in the header, even if no changes were made.
 * Remove [security advisories](https://docs.particular.net/security-advisories/) for no longer supported versions
 
@@ -294,13 +295,13 @@ Samples can be targeted to multiple [target frameworks](https://docs.microsoft.c
 When multi-targeting samples for NServiceBus 8 and earlier, The recommended set of frameworks is:
 
 ```xml
-<TargetFrameworks>net8.0;net6.0;net48</TargetFrameworks>
+<TargetFrameworks>net8.0;net48</TargetFrameworks>
 ```
 
 For NServiceBus 9, samples can't currently be multi-targeted, so they should be singled targeted:
 
 ```xml
-<TargetFramework>net8.0</TargetFramework>
+<TargetFramework>net9.0</TargetFramework>
 ```
 
 Some things to keep in mind:
@@ -1155,6 +1156,10 @@ Paragraph after…
 ```
 
 The engine will parse the video ID out of the YouTube URL and create a properly styled embed.
+
+### Related content
+
+- Consider what is the best place to direct the reader after they are done reading the current page. Add a link to that page at the bottom.
 
 ### Terminology
 

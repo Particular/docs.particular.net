@@ -1,17 +1,15 @@
 ---
 title: Self-Hosting in Azure WebJobs
-summary: Uses NServiceBus the self-hosting capability to host an endpoint in an Azure WebJob.
+summary: Host an NServiceBus endpoint in Azure WebJobs.
 component: Core
-reviewed: 2022-11-08
+reviewed: 2025-03-06
 isLearningPath: true
-related:
-- samples/dependency-injection/aspnetcore
 redirects:
 - samples/azure/self-host
 - samples/azure/shared-host
 ---
 
-This sample is compatible with Azure WebJobs SDK 3.0.
+This is an example of how an NServiceBus endpoint can be hosted using Azure WebJobs. This sample is compatible with Azure WebJobs SDK 3.0.
 
 ## Running in development mode
 
@@ -26,17 +24,17 @@ This sample contains one project:
 
 ### Receiver
 
-The receiver uses the self-hosting capability to start an end endpoint inside a continuously running WebJob.
+The receiver uses the self-hosting capability to start an endpoint inside a WebJob.
 
 The `UseNServiceBus` method of [`NServiceBus.Extensions.Hosting`](/nservicebus/hosting/extensions-hosting.md) is used to configure and start the endpoint:
 
 snippet: WebJobHost_Start
 
 > [!NOTE]
-> If dependencies need to be shared between the service collection and NServiceBus infrastructure, such as message handlers, see the [ASP.NET Core sample](/samples/dependency-injection/#related-samples).
+> If dependencies need to be shared between the service collection and NServiceBus infrastructure (e.g., message handlers), refer to the [ASP.NET Core sample](/samples/dependency-injection/aspnetcore).
 
-A critical error action must be defined to restart the host when a critical error is raised:
+A [critical error](/nservicebus/hosting/critical-errors.md) action must be defined to restart the host when a critical error occurs:
 
 snippet: WebJobHost_CriticalError
 
-When the WebJob host stops, the endpoint endpoint is automatically stopped with the host. This is taken care off by the hosting extension.
+When the WebJob host stops, the endpoint is automatically stopped with it by the hosting extension.

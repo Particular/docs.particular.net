@@ -54,7 +54,7 @@ class Snippets
         routing.RouteToEndpoint(typeof(DoSomething).Assembly, "SomeEndpoint");
 
         // Specify the routing for all messages in a given assembly and namespace
-        routing.RouteToEndpoint(typeof(DoSomething).Assembly, "Specific.Namespace", "SomeEndpoint");
+        routing.RouteToEndpoint(typeof(DoSomething).Assembly, "Namespace.A", "SomeEndpoint");
 
         #endregion
     }
@@ -77,7 +77,7 @@ class Snippets
         #endregion
 
     }
-    
+
     class Program
     {
         static async Task Main(string[] args)
@@ -95,7 +95,9 @@ class Snippets
 
             builder.UseNServiceBus(endpointConfiguration);
 
-            await builder.Build().RunAsync();
+            var app = builder.Build();
+
+            await app.RunAsync();
             #endregion
         }
     }

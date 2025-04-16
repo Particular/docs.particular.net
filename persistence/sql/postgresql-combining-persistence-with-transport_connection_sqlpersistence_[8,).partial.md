@@ -1,6 +1,6 @@
-When using the [outbox](/nservicebus/outbox/), SQL Persistence always opens its own connection. In order to force using a separate connection even when the [outbox](/nservicebus/outbox/) is disabled, use the following API:
+This behavior may be disabled, to force the persistance to create its own connection, as it does when the outbox is enabled:
 
 snippet: PostgreSqlDoNotShareConnection
 
 > [!WARNING]
-> In this mode NServiceBus does not guarantee *exactly-once* message processing behavior which means that saga message handling logic might be called multiple times for a single incoming message in case the previous processing attempts failed just before consuming the message.
+> In this mode NServiceBus does not guarantee *exactly-once* message processing behavior. A single incoming message could result in multiple calls of the saga message handling logic, if the previous processing attempt failed just before consuming the message.

@@ -1,21 +1,19 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 using Store.Messages.Events;
 
-class SendWelcomePacket :
+class SendWelcomePacket(ILogger<SendWelcomePacket> logger) :
     IHandleMessages<ClientBecamePreferred>
-{
-    static ILog log = LogManager.GetLogger<SendWelcomePacket>();
-
+{  
     public Task Handle(ClientBecamePreferred message, IMessageHandlerContext context)
     {
         if (DebugFlagMutator.Debug)
         {
             Debugger.Break();
         }
-        log.Info($"Handler WhenCustomerIsPreferredSendWelcomeEmail invoked for CustomerId: {message.ClientId}");
+        logger.LogInformation($"Handler WhenCustomerIsPreferredSendWelcomeEmail invoked for CustomerId: {message.ClientId}");
         return Task.CompletedTask;
     }
 }

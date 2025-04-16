@@ -1,7 +1,7 @@
 ---
 title: Heartbeat plugin installation
 summary: Monitor endpoint instance availability by installing the heartbeat plugin
-reviewed: 2023-02-10
+reviewed: 2025-04-08
 component: Heartbeats
 versions: 'Heartbeats:*'
 ---

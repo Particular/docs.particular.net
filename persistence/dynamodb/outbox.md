@@ -2,7 +2,7 @@
 title: Outbox (DynamoDB)
 summary: How to configure Outbox persistence in DynamoDB
 component: DynamoDB
-reviewed: 2023-03-16
+reviewed: 2025-04-08
 related:
 - persistence/dynamodb
 - nservicebus/outbox

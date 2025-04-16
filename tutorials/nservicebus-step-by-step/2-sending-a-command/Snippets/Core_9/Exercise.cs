@@ -40,7 +40,9 @@ namespace Core_9
             // Add this line:
             builder.Services.AddHostedService<InputLoopService>();
 
-            await builder.Build().RunAsync();
+            var app = builder.Build();
+
+            await app.RunAsync();
             #endregion
         }
     }
@@ -67,7 +69,7 @@ namespace Core_9
                         };
 
                         // Send the command
-                        Console.WriteLine($"Sending PlaceOrder command, OrderId = {command.OrderId}");
+                        Console.WriteLine($"PlaceOrder sent, OrderId = {command.OrderId}");
                         await messageSession.SendLocal(command, stoppingToken);
 
                         break;

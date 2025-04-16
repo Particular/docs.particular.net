@@ -1,7 +1,10 @@
 using System;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 Console.Title = "Receiver";
+var builder = Host.CreateApplicationBuilder(args);
+
 var endpointConfiguration = new EndpointConfiguration("FixMalformedMessages.Receiver");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport<LearningTransport>();
@@ -22,10 +25,9 @@ recoverability.Immediate(
     });
 
 #endregion
-
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
 Console.WriteLine("Press 'Enter' to finish.");
 Console.ReadLine();
 
-await endpointInstance.Stop();
+builder.UseNServiceBus(endpointConfiguration);
+
+await builder.Build().RunAsync();

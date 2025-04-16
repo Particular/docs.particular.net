@@ -1,10 +1,18 @@
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NHibernate.Driver;
 using NServiceBus.Persistence;
+using Sample;
+
+
 
 var endpointName = "Samples.NHibernateCustomSagaFinder";
 Console.Title = endpointName;
+
+var builder = Host.CreateApplicationBuilder(args);
+
 var endpointConfiguration = new EndpointConfiguration(endpointName);
 endpointConfiguration.EnableInstallers();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
@@ -28,13 +36,12 @@ var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>()
 #endregion
 
 SqlHelper.EnsureDatabaseExists(connectionString);
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
-var startOrder = new StartOrder
-{
-    OrderId = "123"
-};
-await endpointInstance.SendLocal(startOrder);
 
 Console.WriteLine("Press any key to exit");
 Console.ReadKey();
-await endpointInstance.Stop();
+
+
+builder.UseNServiceBus(endpointConfiguration);
+
+builder.Services.AddHostedService<InputLoopService>();
+await builder.Build().RunAsync();

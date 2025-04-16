@@ -29,6 +29,14 @@ Specific versions of RavenDB Persistence are tied to a major version of NService
 
 See the [NServiceBus Packages Supported Versions](/nservicebus/upgrades/supported-versions.md#persistence-packages-nservicebus-ravendb) to see the support details for each version of RavenDB Persistence.
 
+RavenDB client are compatible with their corresponding server version and newer versions:
+
+- [FAQ: Backward Compatibility | RavenDB 6.2 Documentation](https://ravendb.net/docs/article-page/6.2/csharp/client-api/faq/backward-compatibility#ravendb-4.2-and-higher-compatibility)
+
+#### Example
+
+NServiceBus.RavenDB 9.0 uses RavenDB.Client v5.4.116.* which is compatible with RavenDB Server 5.4, 6.0, 6.1.x, 6.2.x, 7.0.x, and future newer versions of RavenDB Server
+
 ## Connection options for RavenDB
 
 There are a variety of options for configuring the connection to a RavenDB Server. See [RavenDB Connection Options](connection.md) for more details.

@@ -13,14 +13,16 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4.1.0
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: |
+            9.0.x
+            8.0.x
         # Caching is done to limit data transfer on each PR, not to optimize CI speed
       - name: Check docstool version for cache
         run: |
            curl --connect-timeout 5 --max-time 15 --silent --show-error https://s3.amazonaws.com/particular.downloads/Particular.DocsTool/version.json >> docstool-version.json
       - name: Cache docstool
         id: cache-docstool
-        uses: actions/cache@v4.0.2
+        uses: actions/cache@v4.2.2
         with:
           path: |
              ~/.dotnet/tools/docstool
@@ -40,7 +42,9 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4.1.0
         with:
-          dotnet-version: 8.0.x
+          dotnet-version: |
+            9.0.x
+            8.0.x
       - name: Run integrity tests
         run: dotnet test tests/IntegrityTests/IntegrityTests.csproj --configuration Release --logger "GitHubActions;report-warnings=false"
   build-projects:
@@ -52,9 +56,9 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4.1.0
         with:
-          dotnet-version: 8.0.x
-      - name: Update .NET workloads # To be removed once the base GitHub image has the Aspire workload 8.2
-        run: dotnet workload update
+          dotnet-version: |
+            9.0.x
+            8.0.x
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
       - name: Build affected samples & snippets

@@ -1,6 +1,6 @@
 ---
 title: HTTPS Certificate Validation
-reviewed: 2022-12-22
+reviewed: 2025-03-31
 summary: ServiceInsight refuses to connect to a ServiceControl instance running over HTTPS with a self-signed certificate.
 component: ServiceInsight
 ---

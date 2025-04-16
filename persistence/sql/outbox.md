@@ -1,7 +1,7 @@
 ---
 title: Outbox with SQL persistence
 component: SqlPersistence
-reviewed: 2022-11-24
+reviewed: 2025-03-21
 related:
 - nservicebus/outbox
 ---

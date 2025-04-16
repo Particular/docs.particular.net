@@ -1,0 +1,17 @@
+# startcode topology-options-inheritance
+{
+  "$type": "topology-options",
+  "PublishedEventToTopicsMap": {
+    "MyNamespace.SomeEvent": "some-event"
+  },
+  "SubscribedEventToTopicsMap": {
+    "MyNamespace.SomeEvent": [
+      "some-event",
+      "some-other-event"
+    ]
+  },
+  "QueueNameToSubscriptionNameMap": {
+    "Publisher": "PublisherSubscriptionName"
+  }
+}
+# endcode topology-options-inheritance

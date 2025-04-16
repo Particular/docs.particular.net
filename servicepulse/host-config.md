@@ -33,7 +33,7 @@ ServicePulse runs as a Windows Service.
 
 ServicePulse will, by default, attempt to connect to ServiceControl and ServiceControl Monitoring using the URLs `http://localhost:33333/api/` and `http://localhost:33633/`, respectively.
 
-This configuration is stored in a Javascript file located in the ServicePulse isntallation folder. By default, this is `%ProgramFiles(x86)%\Particular Software\ServicePulse\app\js\app.constants.js`.
+This configuration is stored in a Javascript file located in the ServicePulse installation folder. By default, this is `%ProgramFiles(x86)%\Particular Software\ServicePulse\app\js\app.constants.js`.
 
 ## Configuring connections via the ServicePulse UI
 

@@ -2,7 +2,7 @@
 title: Installing ServicePulse
 summary: Describes how ServicePulse is installed - and its basic requirements
 component: ServicePulse
-reviewed: 2022-11-08
+reviewed: 2025-02-19
 related:
 - servicepulse/troubleshooting
 ---

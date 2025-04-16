@@ -1,23 +1,18 @@
 using System;
-using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Hosting;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Server";
-        LogManager.Use<DefaultFactory>()
-            .Level(LogLevel.Info);
-        var endpointConfiguration = new EndpointConfiguration("Samples.FullDuplex.Server");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
+Console.Title = "Server";
+var builder = Host.CreateApplicationBuilder(args);
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop();
-    }
-}
+var endpointConfiguration = new EndpointConfiguration("Samples.FullDuplex.Server");
+endpointConfiguration.UsePersistence<LearningPersistence>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
+
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
+Console.WriteLine("Press any key to exit");
+Console.ReadKey();
+await endpointInstance.Stop();
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();
