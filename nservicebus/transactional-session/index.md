@@ -73,9 +73,7 @@ snippet: configuring-remote-processor
 
 ### Outbox cleanup
 
-To avoid multiple endpoints running [outbox cleanup](/nservicebus/outbox/index.md#outbox-expiration-duration) consider disabling it for the endpoint that is not processing the control messages.
-
-See the specific [documentation for the selected persistence](/persistence/) for more details.
+[Outbox cleanup](/nservicebus/outbox/index.md#outbox-expiration-duration) will be automatically disabled on endpoints with a remote processor configured to prevent concurrent cleanup from happening.
 
 ## Requirements
 
