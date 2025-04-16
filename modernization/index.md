@@ -78,6 +78,7 @@ Particular provides platform support at every step of the process, from design t
 ## Useful links
 
 - [Tales from the .NET Migration Trenches](https://www.jimmybogard.com/tales-from-the-net-migration-trenches)
+- [Surviving API Breakage: Lessons from Modernizing Legacy Systems](https://netapinotes.com/surviving-api-breakage-lessons-from-modernizing-legacy-systems/)
 - [Forming an Architecture Modernization Enabling Team (AMET)](https://medium.com/nick-tune-tech-strategy-blog/forming-an-architecture-modernization-enabling-team-amet-50d70a789331)
 - [Legacy Architecture Modernisation With Strategic Domain-Driven Design](https://medium.com/nick-tune-tech-strategy-blog/legacy-architecture-modernisation-with-strategic-domain-driven-design-3e7c05bb383f)
 - [Modernization Strategy Selector](https://medium.com/nick-tune-tech-strategy-blog/modernization-strategy-selector-e06eb722dee)
