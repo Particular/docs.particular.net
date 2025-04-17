@@ -70,6 +70,8 @@ With mapping in place, loaded customers can be mapped into the storage session a
 
 snippet: DynamoDBMapperContextUsage
 
+partial: options
+
 ## Testing
 
 When [unit testing](/samples/unit-testing/) a message handler, the `TestableDynamoDBSynchronizedStorageSession` class can be used:
