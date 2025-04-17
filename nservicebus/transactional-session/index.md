@@ -65,10 +65,6 @@ Disposing the transactional session without committing will roll back any change
 
 partial: remote-processor
 
-### Outbox cleanup
-
-[Outbox cleanup](/nservicebus/outbox/#outbox-expiration-duration) will be automatically disabled on endpoints with a remote processor configured to prevent concurrent cleanup from happening.
-
 ## Requirements
 
 The transactional session feature requires a supported persistence package to store outgoing messages. This feature is currently supported for the following persistence packages:
