@@ -5,6 +5,7 @@ component: DynamoDB
 reviewed: 2023-03-16
 related:
 - persistence/dynamodb
+- samples/aws/dynamodb-transactions
 ---
 
 The [DynamoDB TransactWriteItems](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transactions.html) API is used to commit outbox and saga changes in a single transaction. Message handlers can add further operations to this transaction with the synchronized session:
