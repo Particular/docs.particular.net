@@ -13,10 +13,10 @@ include: servicepulse
 
 #### Pre-requisites
 
-ServicePulse uses information provided by ServiceControl. In order to use ServicePulse, first set up [ServiceControl](/servicecontrol/).
+ServicePulse uses information provided by ServiceControl. To use ServicePulse, first set up [ServiceControl](/servicecontrol/).
   - For failed message viewing and retries, only the base [error instance](/servicecontrol/servicecontrol-instances/) is required.
   - For message flow visualisation and viewing successful messages, one or more [audit instances](/servicecontrol/audit-instances/) are required.
-  - For monitoring throughput and other metrics, a [monitoring instance](/servicecontrol/monitoring-instances/) is required
+  - For monitoring throughput and other metrics, a [monitoring instance](/servicecontrol/monitoring-instances/) is required.
 
 > [!NOTE]
 > By default ServicePulse can be accessed on the hosting machine at the following URL: `http://localhost:9090`
