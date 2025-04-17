@@ -1378,56 +1378,56 @@
 
 - Name: ServicePulse
   Topics:
-- Title: Introduction
-  Articles:
-    - Url: servicepulse
-      Title: About ServicePulse
-    - Url: servicepulse/installation
-      Title: Installation
-    - Url: servicepulse/containerization
-      Title: Container deployment
-    - Url: servicepulse/support-policy
-      Title: Support Policy
-- Title: Configuration
-  Articles:
-    - Url: servicepulse/host-config
-      Title: Hosting
-    - Url: servicepulse/how-to-configure-endpoints-for-monitoring
-      Title: Monitoring endpoints
-    - Url: servicepulse/usage-config
-      Title: Usage Setup
-    - Url: servicepulse/install-servicepulse-in-iis
-      Title: Install in IIS
-    - Url: servicepulse/troubleshooting
-      Title: Troubleshooting
-- Title: Features
-  Articles:
-    - Url: servicepulse/intro-messages
-      Title: All Messages
-    - Url: servicepulse/intro-failed-messages
-      Title: Failed Messages
-    - Url: servicepulse/message-details
-      Title: Message Details
-    - Url: servicepulse/sequence-diagram
-      Title: Sequence Diagram
-    - Url: servicepulse/intro-failed-message-retries
-      Title: Retrying Failed Messages
-    - Url: servicepulse/intro-editing-messages
-      Title: Fixing malformed messages
-    - Url: servicepulse/intro-archived-messages
-      Title: Deleted Messages
-    - Url: servicepulse/intro-pending-retries
-      Title: Pending Retries
-    - Url: servicepulse/redirect
-      Title: Redirects
-    - Url: servicepulse/event-types
-      Title: Events
-    - Url: servicepulse/health-check-notifications
-      Title: Health check notifications
-    - Url: servicepulse/endpoint-connection
-      Title: Endpoint connection settings
-    - Url: servicepulse/usage
-      Title: Measuring system usage
+    - Title: Introduction
+      Articles:
+        - Url: servicepulse
+          Title: About ServicePulse
+        - Url: servicepulse/installation
+          Title: Installation
+        - Url: servicepulse/containerization
+          Title: Container deployment
+        - Url: servicepulse/support-policy
+          Title: Support Policy
+    - Title: Configuration
+      Articles:
+        - Url: servicepulse/host-config
+          Title: Hosting
+        - Url: servicepulse/how-to-configure-endpoints-for-monitoring
+          Title: Monitoring endpoints
+        - Url: servicepulse/usage-config
+          Title: Usage Setup
+        - Url: servicepulse/install-servicepulse-in-iis
+          Title: Install in IIS
+        - Url: servicepulse/troubleshooting
+          Title: Troubleshooting
+    - Title: Features
+      Articles:
+        - Url: servicepulse/intro-messages
+          Title: All Messages
+        - Url: servicepulse/intro-failed-messages
+          Title: Failed Messages
+        - Url: servicepulse/message-details
+          Title: Message Details
+        - Url: servicepulse/sequence-diagram
+          Title: Sequence Diagram
+        - Url: servicepulse/intro-failed-message-retries
+          Title: Retrying Failed Messages
+        - Url: servicepulse/intro-editing-messages
+          Title: Fixing malformed messages
+        - Url: servicepulse/intro-archived-messages
+          Title: Deleted Messages
+        - Url: servicepulse/intro-pending-retries
+          Title: Pending Retries
+        - Url: servicepulse/redirect
+          Title: Redirects
+        - Url: servicepulse/event-types
+          Title: Events
+        - Url: servicepulse/health-check-notifications
+          Title: Health check notifications
+        - Url: servicepulse/endpoint-connection
+          Title: Endpoint connection settings
+        - Url: servicepulse/usage
+          Title: Measuring system usage
 
 
 - Name: ServiceControl
