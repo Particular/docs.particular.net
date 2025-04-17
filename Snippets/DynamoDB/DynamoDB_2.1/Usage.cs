@@ -45,6 +45,7 @@ public class Usage
         var customerMap = Mapper.ToMap(customer, serializerOptions);
 
         // sample modifier showing advanced extensibility using the json type info resolver
+        // In source generator mode the custom attributes cannot be introspected
         static void SupportObjectModelAttributes(JsonTypeInfo typeInfo)
         {
             if (typeInfo.Kind != JsonTypeInfoKind.Object)
