@@ -1142,6 +1142,10 @@
         {
           "Minor": "3.42",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.43",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -1219,7 +1223,7 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "6.5",
+          "Minor": "6.6",
           "SupportLevel": "Mainstream"
         }
       ]
