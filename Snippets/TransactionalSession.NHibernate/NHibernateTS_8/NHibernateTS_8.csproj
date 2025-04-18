@@ -8,4 +8,10 @@
 		<PackageReference Include="NServiceBus.NHibernate.TransactionalSession" Version="8.*" />
 	</ItemGroup>
 
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="System.Net.Http" Version="4.*" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="4.*" />
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.*" />
+  </ItemGroup>
+
 </Project>

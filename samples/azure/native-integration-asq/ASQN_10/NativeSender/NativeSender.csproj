@@ -7,9 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Azure.Storage.Queues" Version="12.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Azure.Storage.Queues" Version="12.*" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
+  </ItemGroup>
+
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="System.Drawing.Common" Version="4.*" />
+  </ItemGroup>
+  
 </Project>

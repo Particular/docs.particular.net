@@ -16,6 +16,11 @@
     <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="11.*" />
   </ItemGroup>
 
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="System.Private.Uri" Version="4.*" />
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.*" />
+  </ItemGroup>
+
   <ItemGroup Label="To disable Dashboard logging (https://docs.microsoft.com/en-us/azure/app-service/webjobs-sdk-get-started#enable-console-logging)">
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.*" />
   </ItemGroup>

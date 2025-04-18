@@ -9,4 +9,10 @@
     <PackageReference Include="StructureMap.Microsoft.DependencyInjection" Version="2.*" />
     <PackageReference Include="Unity.Microsoft.DependencyInjection" Version="5.*" />
   </ItemGroup>
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="4.*" />
+    <PackageReference Include="System.Text.Encodings.Web" Version="4.*" />
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.*" />
+  </ItemGroup>
 </Project>

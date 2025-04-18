@@ -1,8 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="ServiceControl.TransportAdapter" Version="2.*" />
   </ItemGroup>
+
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" NoWarn="NU1608" />
+  </ItemGroup>
+
 </Project>

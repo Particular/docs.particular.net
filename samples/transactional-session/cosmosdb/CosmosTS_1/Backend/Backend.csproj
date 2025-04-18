@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -7,12 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="1.*" />
-    <PackageReference Include="NServiceBus.Persistence.CosmosDB" Version="1.*" />
+    <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Shared\Shared.csproj" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="1.*" />
+    <PackageReference Include="NServiceBus.Persistence.CosmosDB" Version="1.*" />
+  </ItemGroup>
+  
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="System.Drawing.Common" Version="4.*" />
   </ItemGroup>
 
 </Project>
