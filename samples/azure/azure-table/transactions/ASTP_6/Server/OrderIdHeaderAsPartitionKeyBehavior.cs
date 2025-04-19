@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 using NServiceBus.Pipeline;
 
 #region BehaviorUsingHeader
-class OrderIdHeaderAsPartitionKeyBehavior : Behavior<ITransportReceiveContext>
+class OrderIdHeaderAsPartitionKeyBehavior(ILogger<OrderIdHeaderAsPartitionKeyBehavior> logger) : Behavior<ITransportReceiveContext>
 {
     public override Task Invoke(ITransportReceiveContext context, Func<Task> next)
     {
         if (context.Message.Headers.TryGetValue("Sample.AzureTable.Transaction.OrderId", out var orderId))
         {
-            Log.Info($"Found partition key '{orderId}' from header 'Sample.AzureTable.Transaction'");
+            logger.LogInformation($"Found partition key '{orderId}' from header 'Sample.AzureTable.Transaction'");
 
             context.Extensions.Set(new TableEntityPartitionKey(orderId));
         }
@@ -19,6 +19,5 @@ class OrderIdHeaderAsPartitionKeyBehavior : Behavior<ITransportReceiveContext>
         return next();
     }
 
-    static readonly ILog Log = LogManager.GetLogger<OrderIdHeaderAsPartitionKeyBehavior>();
 }
 #endregion

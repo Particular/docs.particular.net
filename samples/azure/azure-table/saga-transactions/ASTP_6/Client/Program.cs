@@ -1,36 +1,21 @@
 ﻿using System;
-
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 Console.Title = "Client";
+
+var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddHostedService<InputLoopService>();
+
 var endpointConfiguration = new EndpointConfiguration("Samples.AzureTable.Transactions.Client");
 endpointConfiguration.UsePersistence<LearningPersistence>();
 endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
 
-Console.WriteLine("Press 'S' to send a StartOrder message to the server endpoint");
-
-Console.WriteLine("Press any other key to exit");
-
-while (true)
-{
-    var key = Console.ReadKey();
-    Console.WriteLine();
-
-    var orderId = Guid.NewGuid();
-    var startOrder = new StartOrder
-    {
-        OrderId = orderId
-    };
-    if (key.Key == ConsoleKey.S)
-    {
-        await endpointInstance.Send("Samples.AzureTable.Transactions.Server", startOrder);
-        Console.WriteLine($"StartOrder Message sent to Server with OrderId {orderId}");
-        continue;
-    }
-    break;
-}
-
-await endpointInstance.Stop();
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

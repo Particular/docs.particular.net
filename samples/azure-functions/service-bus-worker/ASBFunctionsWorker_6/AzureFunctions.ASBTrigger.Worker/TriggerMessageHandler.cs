@@ -1,16 +1,15 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 #region TriggerMessageHandler
 
-public class TriggerMessageHandler : IHandleMessages<TriggerMessage>
+public class TriggerMessageHandler(ILogger<TriggerMessageHandler> logger) : IHandleMessages<TriggerMessage>
 {
-    static readonly ILog Log = LogManager.GetLogger<TriggerMessageHandler>();
-
+  
     public Task Handle(TriggerMessage message, IMessageHandlerContext context)
     {
-        Log.Warn($"Handling {nameof(TriggerMessage)} in {nameof(TriggerMessageHandler)}");
+        logger.LogWarning($"Handling {nameof(TriggerMessage)} in {nameof(TriggerMessageHandler)}");
 
         return context.SendLocal(new FollowupMessage());
     }
