@@ -10,7 +10,7 @@ A license can be configured via code-first configuration API:
 snippet: License
 
 > [!NOTE]
-> Licenses configured via code-first API take precendence over every other license source.
+> Licenses configured via code-first API take precedence over every other license source.
 
 ### Application-specific license location
 
@@ -62,7 +62,6 @@ license id=&quot;1222e1d1-2222-4a46-b1c6-943c442ca710&quot; expiration=&quot;201
 &lt;/license&gt;" />
 </appSettings>
 ```
-
 
 ### Windows Registry
 
