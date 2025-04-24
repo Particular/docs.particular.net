@@ -148,7 +148,7 @@ Let's take a closer look at the case when we want to place an order. In order to
 
 Because `SendLocal()` returns a `Task`, we need to be sure to `await` it properly.
 
-Now let's modify `Program.cs` method and register the `InputLookService` in the host:
+Now let's modify `Program.cs` method and register the `InputLoopService` in the host:
 
 snippet: AddInputLoopService
 
