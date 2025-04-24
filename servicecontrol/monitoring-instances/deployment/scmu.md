@@ -11,6 +11,8 @@ The ServiceControl installation package includes a utility to manage the install
 
 Use a Monitoring instance to vizualize [endpoint performance metrics](/monitoring/#endpoint-performance) in ServicePulse.
 
+Monitoring instances are not as [resource intensive as the Error and Audit instances](/servicecontrol/servicecontrol-instances/hardware.md) since they do not rely on a RavenDB instance for storing state.
+
 ## Transport support
 
 Monitoring supports the same transports as [ServiceControl](/servicecontrol/transports.md).
