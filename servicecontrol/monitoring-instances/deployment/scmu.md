@@ -39,9 +39,6 @@ Clicking the upgrade link will:
 
 Click on the `+ NEW` link at the top of the screen and select "Monitoring instance" to launch the "New instance form". Complete the form to register a new monitoring instance.
 
-> [!WARNING]
-> The ability to add multiple instances is primarily intended to assist development and test environments.
-
 ## Service name and plugins
 
 When adding a monitoring instance, the default Windows Service name is `Particular.Monitoring`. It is possible to change this name to a custom Windows Service name. In doing so, this is also changing the queue name associated with this instance.
