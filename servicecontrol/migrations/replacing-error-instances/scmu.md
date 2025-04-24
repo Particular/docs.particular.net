@@ -23,7 +23,7 @@ Configure the Error instance so that it will no longer ingest new messages from 
 1. Open ServiceControl Management.
 2. For the Error instance, click the **Installation Path > Browse** button to open the installation folder in Windows Explorer.
 3. Edit the `ServiceControl.exe.config` file.
-4. In the `appSettings` section, add a setting key for []`ServiceControl/IngestErrorMessages`](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontrolingesterrormessages) with a value of `false`.
+4. In the `appSettings` section, add a setting key for [`ServiceControl/IngestErrorMessages`](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontrolingesterrormessages) with a value of `false`.
 5. In ServiceControl Management, stop and restart the Error instance for the changes to take effect.
 
 ## Replace the Error instance
