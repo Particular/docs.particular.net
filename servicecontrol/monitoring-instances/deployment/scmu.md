@@ -1,6 +1,6 @@
 ---
 title: Deploying ServiceControl Monitoring instances using SCMU
-reviewed: 2023-03-31
+reviewed: 2025-04-17
 redirects:
  - servicecontrol/monitoring-instances/installation
 ---
@@ -11,7 +11,7 @@ The ServiceControl installation package includes a utility to manage the install
 
 Use a Monitoring instance to vizualize [endpoint performance metrics](/monitoring/#endpoint-performance) in ServicePulse.
 
-Monitoring instances are not as [resource intensive as the Error and Audit instances](/servicecontrol/servicecontrol-instances/hardware.md) and can be run on the same machine as the Error instance.
+Monitoring instances are not as [resource intensive as the Error and Audit instances](/servicecontrol/servicecontrol-instances/hardware.md) since they do not rely on a RavenDB instance for storing state.
 
 ## Transport support
 
@@ -20,9 +20,6 @@ Monitoring supports the same transports as [ServiceControl](/servicecontrol/tran
 ## Using ServiceControl Management to upgrade monitoring instances
 
 ServiceControl Management provides a simple means of setting up one or more monitoring instances.
-
-> [!WARNING]
-> The ability to add multiple instances is primarily intended to assist development and test environments.
 
 ServiceControl Management can be launched automatically at the end of the installation process to enable adding or upgrading ServiceControl or monitoring instances.
 
