@@ -75,6 +75,7 @@ rabbitmq-transport delays verify [options]
 `--managementApiUrl` : Overrides the value inferred from the connection string<br />
 `--managementApiUserName` : Overrides the value inferred from the connection string. If provided, the `--managementApiPassword` option must also be provided or this option will be ignored<br />
 `--managementApiPassword` : Overrides the value inferred from the connection string. If provided, the `--managementApiUserName` option must also be provided or this option will be ignored<br />
+`--disableCertValidation`: Disable remote certificate validation when connecting to the broker<br />
 
 ### `endpoint create`
 
@@ -152,3 +153,4 @@ rabbitmq-transport queue validate-delivery-limit <queueName> [options]
 `--managementApiUrl` : Overrides the value inferred from the connection string<br />
 `--managementApiUserName` : Overrides the value inferred from the connection string. If provided, the `--managementApiPassword` option must also be provided or this option will be ignored<br />
 `--managementApiPassword` : Overrides the value inferred from the connection string. If provided, the `--managementApiUserName` option must also be provided or this option will be ignored<br />
+`--disableCertValidation`: The passphrase for client certificate file for when using a client certificate<br />
