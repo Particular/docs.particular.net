@@ -1,42 +1,23 @@
 ﻿using System;
-using System.Threading.Tasks;
-
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Client";
-        var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Simple.Client");
-        endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+Console.Title = "Client";
 
-        Console.WriteLine("Press 'S' to send a StartOrder message to the server endpoint");
+var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddHostedService<InputLoopService>();
 
-        Console.WriteLine("Press any other key to exit");
+var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Simple.Client");
+endpointConfiguration.UseTransport<LearningTransport>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        while (true)
-        {
-            var key = Console.ReadKey();
-            Console.WriteLine();
 
-            var orderId = Guid.NewGuid();
-            var startOrder = new StartOrder
-            {
-                OrderId = orderId
-            };
-            if (key.Key == ConsoleKey.S)
-            {
-                await endpointInstance.Send("Samples.DynamoDB.Simple.Server", startOrder);
-                Console.WriteLine($"StartOrder Message sent to Server with OrderId {orderId}");
-                continue;
-            }
-            break;
-        }
 
-        await endpointInstance.Stop();
-    }
-}
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
+
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

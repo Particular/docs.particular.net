@@ -1,10 +1,14 @@
 using System;
 
 using Azure.Data.Tables;
-
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
 
 Console.Title = "Server";
+
+var builder = Host.CreateApplicationBuilder(args);
 
 #region AzureTableConfig
 
@@ -28,16 +32,19 @@ endpointConfiguration.EnableInstallers();
 
 #region BehaviorRegistration
 
-endpointConfiguration.Pipeline.Register(new BehaviorProvidingDynamicTable(), "Provides a non-default table for sagas started by ship order message");
+var serviceProvider = builder.Services.BuildServiceProvider();
+var logger = serviceProvider.GetRequiredService<ILogger<BehaviorProvidingDynamicTable>>();
+endpointConfiguration.Pipeline.Register(new BehaviorProvidingDynamicTable(logger), "Provides a non-default table for sagas started by ship order message");
 
 #endregion
 
 var tableClient = tableServiceClient.GetTableClient("ShipOrderSagaData");
 await tableClient.CreateIfNotExistsAsync();
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-Console.WriteLine("Press any key to exit");
+Console.WriteLine("Press any key, the application is starting");
 Console.ReadKey();
+Console.WriteLine("Starting...");
 
-await endpointInstance.Stop();
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

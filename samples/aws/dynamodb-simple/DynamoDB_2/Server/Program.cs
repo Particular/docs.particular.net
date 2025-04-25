@@ -3,46 +3,42 @@ using System.Threading.Tasks;
 
 using Amazon.DynamoDBv2;
 using Amazon.Runtime;
-
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Persistence.DynamoDB;
 
-class Program
-{
-    static async Task Main()
+Console.Title = "Server";
+
+var builder = Host.CreateApplicationBuilder(args);
+#region DynamoDBConfig
+
+var amazonDynamoDbClient = new AmazonDynamoDBClient(
+    new BasicAWSCredentials("localdb", "localdb"),
+    new AmazonDynamoDBConfig
     {
-        Console.Title = "Server";
+        ServiceURL = "http://localhost:8000"
+    });
 
-        #region DynamoDBConfig
+var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Simple.Server");
 
-        var amazonDynamoDbClient = new AmazonDynamoDBClient(
-            new BasicAWSCredentials("localdb", "localdb"),
-            new AmazonDynamoDBConfig
-            {
-                ServiceURL = "http://localhost:8000"
-            });
+var persistence = endpointConfiguration.UsePersistence<DynamoPersistence>();
+persistence.DynamoClient(amazonDynamoDbClient);
+persistence.UseSharedTable(new TableConfiguration
+{
+    TableName = "Samples.DynamoDB.Simple"
+});
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Simple.Server");
+#endregion
 
-        var persistence = endpointConfiguration.UsePersistence<DynamoPersistence>();
-        persistence.DynamoClient(amazonDynamoDbClient);
-        persistence.UseSharedTable(new TableConfiguration
-        {
-            TableName = "Samples.DynamoDB.Simple"
-        });
+endpointConfiguration.UseTransport<LearningTransport>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        #endregion
+endpointConfiguration.EnableInstallers();
 
-        endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        endpointConfiguration.EnableInstallers();
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-
-        await endpointInstance.Stop();
-    }
-}
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

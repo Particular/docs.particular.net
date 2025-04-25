@@ -1,15 +1,13 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 #region TriggerMessageHandler
-public class TriggerMessageHandler : IHandleMessages<TriggerMessage>
+public class TriggerMessageHandler(ILogger<TriggerMessageHandler> logger) : IHandleMessages<TriggerMessage>
 {
-    static readonly ILog Log = LogManager.GetLogger<TriggerMessageHandler>();
-
     public async Task Handle(TriggerMessage message, IMessageHandlerContext context)
     {
-        Log.Info($"Handling {nameof(TriggerMessage)} in ServerlessEndpoint.");
+        logger.LogInformation($"Handling {nameof(TriggerMessage)} in ServerlessEndpoint.");
         await context.Send(new ResponseMessage());
     }
 }
