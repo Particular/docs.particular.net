@@ -46,12 +46,6 @@ public static class TransactionalSessionConfigurationExtensions
     }
 }
 
-//TODO: remove once we update to the new 3.3 package that contains this type
-public class TransactionalSessionOptions
-{
-    public string ProcessorAddress { get; init; }
-}
-
 public class MyPersistence : PersistenceDefinition
 {
 }
