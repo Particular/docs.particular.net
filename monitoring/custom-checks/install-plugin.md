@@ -1,7 +1,7 @@
 ---
 title: Installing the Custom Checks Plugin
 summary: Enabling custom endpoint instance monitoring by installing the custom checks plugin
-reviewed: 2023-05-01
+reviewed: 2024-04-30
 component: CustomChecks
 versions: 'CustomChecks:*'
 ---
