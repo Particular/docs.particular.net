@@ -15,3 +15,7 @@ Configure the processor to [use the same table prefix](/persistence/sql/install.
 ### Outbox cleanup
 
 For persisters where [Outbox cleanup](/nservicebus/outbox/#outbox-expiration-duration) is performed by the endpoint only the remote processing endpoint will have the cleanup disabled to prevent concurrent cleanup from happening.
+
+Applies to:
+
+- SQL Persistence
