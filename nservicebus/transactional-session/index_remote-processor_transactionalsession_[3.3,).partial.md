@@ -10,7 +10,7 @@ The processor endpoint must use the same outbox storage as the transactional ses
 
 #### SQL Persistence
 
-TODO: Discuss
+Configure the processor to [use the same table prefix](/persistence/sql/install.md#table-prefix) as the transactional session endpoint.
 
 ### Outbox cleanup
 
