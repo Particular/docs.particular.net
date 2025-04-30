@@ -4,6 +4,14 @@ The transactional session supports configuring a remote endpoint as the processi
 
 snippet: configure-remote-processor
 
+### Shared outbox storage
+
+The processor endpoint must use the same outbox storage as the transactional session endpoint.
+
+#### SQL Persistence
+
+TODO: Discuss
+
 ### Outbox cleanup
 
 For persisters where [Outbox cleanup](/nservicebus/outbox/#outbox-expiration-duration) is performed by the endpoint only the remote processing endpoint will have the cleanup disabled to prevent concurrent cleanup from happening.
