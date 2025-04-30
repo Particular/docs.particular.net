@@ -2,7 +2,7 @@
 title: DynamoDB persistence transactions
 summary: How to use transactions with DynamoDB persistence
 component: DynamoDB
-reviewed: 2023-03-16
+reviewed: 2025-04-28
 related:
 - persistence/dynamodb
 - samples/aws/dynamodb-transactions
@@ -75,6 +75,6 @@ partial: options
 
 ## Testing
 
-When [unit testing](/samples/unit-testing/) a message handler, the `TestableDynamoDBSynchronizedStorageSession` class can be used:
+When [unit testing](/samples/unit-testing/) a message handler, the `TestableDynamoSynchronizedStorageSession` class can be used:
 
 snippet: DynamoDBTestingSessionUsage
