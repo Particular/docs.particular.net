@@ -14,7 +14,9 @@ Configure the processor to [use the same table prefix](/persistence/sql/install.
 
 #### CosmosDB
 
-Make sure that the processor [uses the same database name](/persistence/cosmosdb/#usage-customizing-the-database-used) and [container name](/persistence/cosmosdb/#usage-customizing-the-container-used) as the transactional session endpoint.
+Make sure that the processor [uses the same database name](/persistence/cosmosdb/#usage-customizing-the-database-used) 
+
+If a [default container is configured](/persistence/cosmosdb/#usage-customizing-the-container-used) it must also be configured by the transactional session endpoint.
 
 ### Outbox cleanup
 
