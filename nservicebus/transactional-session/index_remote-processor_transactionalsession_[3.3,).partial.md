@@ -12,6 +12,10 @@ The processor endpoint must use the same outbox storage as the transactional ses
 
 Configure the processor to [use the same table prefix](/persistence/sql/install.md#table-prefix) as the transactional session endpoint.
 
+#### CosmosDB
+
+Make sure that the processor [uses the same database name](/persistence/cosmosdb/#usage-customizing-the-database-used) and [container name](/persistence/cosmosdb/#usage-customizing-the-container-used) as the transactional session endpoint.
+
 ### Outbox cleanup
 
 For persisters where [Outbox cleanup](/nservicebus/outbox/#outbox-expiration-duration) is performed by the endpoint instances, only the remote processing endpoint will have the cleanup enabled to prevent concurrent cleanup from happening.
