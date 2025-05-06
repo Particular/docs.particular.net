@@ -165,6 +165,22 @@ class q1,q3 usedQueue
 end
 ```
 
+## Backwards compatibility
+
+### Non-native to native
+
+It is safe to operate a combination of native-delay and non-native-delay endpoints at the same time. Native endpoints can send delayed messages to endpoints that are not yet aware of the native delay infrastructure. Native endpoints can continue to receive delayed messages from non-native endpoints as well.
+
+partial: timeout-manager
+
+#### Migrating timeouts to native delayed delivery
+
+To migrate timeouts to the native-delay delivery implementation, the [migration tool](/nservicebus/tools/migrate-to-native-delivery.md) can be used.
+
+partial: v1-to-v2
+
+partial: disabledelayeddelivery
+
 ## RabbitMQ upgrade
 
 When upgrading the RabbitMQ cluster, it is recommended to use the [rolling (in-place)](https://www.rabbitmq.com/docs/upgrade#rolling-upgrade) method.
