@@ -18,6 +18,26 @@ Make sure that the processor [uses the same database name](/persistence/cosmosdb
 
 If a [default container is configured](/persistence/cosmosdb/#usage-customizing-the-container-used) it must also be configured by the transactional session endpoint.
 
+### RavenDB
+
+Make sure that the processor [uses the same database name](/persistence/ravendb/connection.md#database-used)
+
+### Azure Table
+
+TODO
+
+### CosmosDB
+
+TODO
+
+### NHibernate
+
+TODO
+
+### MongoDB
+
+TODOD
+
 ### Outbox cleanup
 
 For persisters where [Outbox cleanup](/nservicebus/outbox/#outbox-expiration-duration) is performed by the endpoint instances, only the remote processing endpoint will have the cleanup enabled to prevent concurrent cleanup from happening.
