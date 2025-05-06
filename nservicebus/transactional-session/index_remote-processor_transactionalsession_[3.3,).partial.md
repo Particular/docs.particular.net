@@ -26,10 +26,6 @@ Make sure that the processor [uses the same database name](/persistence/ravendb/
 
 TODO
 
-### CosmosDB
-
-TODO
-
 ### NHibernate
 
 TODO
