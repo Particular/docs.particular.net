@@ -4,6 +4,9 @@ The transactional session supports configuring a remote endpoint as the processi
 
 snippet: configure-remote-processor
 
+> [!WARN]
+> Depending on the persister used additional configuration might be needed for the processor endpoint to share the same outbox storage. See below for more details.
+
 ### Shared outbox storage
 
 The processor endpoint must use the same outbox storage as the transactional session endpoint.
@@ -20,7 +23,10 @@ If a [default container is configured](/persistence/cosmosdb/#usage-customizing-
 
 ### RavenDB
 
-Make sure that the processor [uses the same database name](/persistence/ravendb/connection.md#database-used)
+Make sure that the processor endpoint:
+
+- [Uses the same database name](/persistence/ravendb/connection.md#database-used) 
+- Is [configured use the same endpoint name](/persistence/ravendb/outbox.md#overriding-endpoint-name) as the endpoint it's processing on behalf of.
 
 ### Azure Table
 
