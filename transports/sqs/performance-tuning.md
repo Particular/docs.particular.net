@@ -62,7 +62,7 @@ var servicePoint = ServicePointManager.FindServicePoint(new Uri("sqs-endpoint-ur
 servicePoint.UseNagleAlgorithm = false;
 ```
 
-To find the endpoint URIs used, consult the [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) documentation. It is also possible to disable Nagle globally for the Application Domain by applying:
+To find the endpoint URIs used, consult the [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) documentation. It is also possible to disable Nagle's Algorithm globally for the Application Domain by applying:
 
 ```
 ServicePointManager.UseNagleAlgorithm = false;
