@@ -95,7 +95,7 @@ Messages sent from a [saga](/nservicebus/sagas/) using the `ReplyToOriginator` m
 
 ### NServiceBus.ConversationId
 
-The identifier of the conversation that this message is part of. It enables the tracking of message flows that span more than one message exchange. `ConversationId`, `RelatedTo`, `OriginatingEndpoint`, and `ProcessingEndpoint` fields allow [ServiceInsight](/serviceinsight/#flow-diagram) to reconstruct the entire message flow.
+The identifier of the conversation that this message is part of. It enables the tracking of message flows that span more than one message exchange. `ConversationId`, `RelatedTo`, `OriginatingEndpoint`, and `ProcessingEndpoint` fields allow [ServicePulse](/servicepulse/message-details.md#messages-with-audited-conversation-data-flow-diagram) to reconstruct the entire message flow.
 
 The first message sent in a new flow is automatically assigned a unique `ConversationId` that gets propagated to all the messages that are sent afterward, forming a _conversation_. Each message sent within a conversation has a `RelatedTo` value that identifies the message that caused it to be sent.
 
@@ -310,7 +310,7 @@ The timestamp when the message should be delivered. Used for more accurate calcu
 The endpoint name the message was sent from.
 
 > [!NOTE]
-> Used for linking messages in ServiceInsight. See [NServiceBus.ConversationId](#messaging-interaction-headers-nservicebus-conversationid)
+> Used for linking messages in ServiceInsight and ServicePulse. See [NServiceBus.ConversationId](#messaging-interaction-headers-nservicebus-conversationid)
 
 ### NServiceBus.OriginatingMachine
 
@@ -341,7 +341,7 @@ The timestamp when the processing of a message ended.
 Name of the endpoint where the message was processed.
 
 > [!NOTE]
-> Used for linking messages in ServiceInsight. See [NServiceBus.ConversationId](#messaging-interaction-headers-nservicebus-conversationid)
+> Used for linking messages in ServiceInsight and ServicePulse. See [NServiceBus.ConversationId](#messaging-interaction-headers-nservicebus-conversationid)
 
 ### NServiceBus.ProcessingMachine
 

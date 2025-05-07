@@ -92,9 +92,9 @@ A timeout message is a special type of loopback message where handling is deferr
 
 ### Differences from UML sequence diagrams
 
-The language used in the sequence diagram is largely modeled after the standard defined by UML sequence diagrams. However, due to technical limitations and specifics related to messaging systems, the sequence diagram in ServiceInsight has some notable differences:
+The language used in the sequence diagram is largely modeled after the standard defined by UML sequence diagrams. However, due to technical limitations and specifics related to messaging systems, the sequence diagram in ServicePulse has some notable differences:
 
-| Item | ServiceInsight | UML |
+| Item | ServicePulse | UML |
 | :--- | :---: | :---: |
 | **Start of sequence** | ![Sequence beginning](images/sequence-diagram/sequence-beginning.png) | ![Sequence beginning](images/sequence-diagram/uml-sequence-beginning.png) |
 | | Represented by a black rectangle with a white "play" icon. This representation is used because metadata about what precedes the sequence is unavailable. | Represented by an incoming message (gate) from outside the diagram. |
@@ -107,7 +107,7 @@ The language used in the sequence diagram is largely modeled after the standard 
 | **Open arrow style** | - | ![UML open arrow](images/sequence-diagram/uml-open-arrow.png) |
 | | N/A | Used for response messages and asynchronous messages. |
 | **Asynchronous messages** | - | ![UML asynchronous messages](images/sequence-diagram/uml-asynchronous.png) |
-| | N/A - all NServiceBus messages are asynchronous so the ServiceInsight sequence diagram has no special representation for asynchronous messages and no representation for synchronous messages, even though messages may exhibit synchronous behavior by design. | Represented by a sloping dashed or solid line with an open arrow. |
+| | N/A - all NServiceBus messages are asynchronous so the ServicePulse sequence diagram has no special representation for asynchronous messages and no representation for synchronous messages, even though messages may exhibit synchronous behavior by design. | Represented by a sloping dashed or solid line with an open arrow. |
 | **Send to self / loopback messages** | ![Loopback message](images/sequence-diagram/loopback-si.png) | ![UML loopback message](images/sequence-diagram/uml-loopback.png)
 | | Represented by a short uni-directional arrow that does not connect to another endpoint lifeline and a specific icon. | Represented by an arrow that connects back to the sending object's lifeline. It is immediately followed by its handler, which usually overlaps the handler that sent the loopback message. |
 | **Handlers** | - | ![UML handler](images/sequence-diagram/uml-handler.png) |

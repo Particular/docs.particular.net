@@ -15,4 +15,4 @@ It provides advanced debugging, visualizations of messages flowing through the s
 Using message flow diagrams, sequence diagrams, and other visualizations provided by ServicePulse, anomalies and incorrect behavior in a system can be quickly and easily detected. More detailed information, such as message headers and message metadata, is also shown when viewing individual messages.
 
 > [!NOTE]
-> ServicePulse developer functionality was previously available in a product called ServiceInsight
+> ServicePulse developer functionality was previously only available in a product called ServiceInsight
