@@ -25,7 +25,7 @@ graph LR
 ```
 
 > [!NOTE]
-> Monitoring instances store data about each endpoint in memory for 10 > minutes. Monitoring instances do not store data in a persistent store.
+> Monitoring instances store data about each endpoint in memory for 10 minutes. Monitoring instances do not store data in a persistent store.
 > Restarting the monitoring instance will clear the in-memory cache.
 
 Each environment should have a single monitoring instance that all endpoints are configured to use.
