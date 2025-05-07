@@ -15,16 +15,15 @@ include: cluster-configuration-info
 
 The [Outbox](/nservicebus/outbox) feature requires persistence in order to store messages and enable deduplication.
 
-## Extra collections created by the RavenDB Outbox persistence
+## Storage format
 
-To keep track of duplicate messages, the RavenDB implementation of Outbox creates a special collection of documents called `OutboxRecord`.
-
-All endpoints connected to the same database will store outbox records in this collection with the key `Outbox/{Endpoint-name}/{Message-id}`
+The persister stores outbox data for all endpoints in a [collection](https://ravendb.net/docs/article-page/7.0/csharp/client-api/faq/what-is-a-collection) called `OutboxRecords`. To separate data for individual endpoints stored documents will have their endpoint name embedded in the document ID using the following format `Outbox/{Endpoint-name}/{Message-id}`.
 
 ### Overriding endpoint name
 
 TODO: Version this part and pull code into a snippet
-To override the endpoint name use:
+
+To enable scenarios like being a [processor endpoint for the transactional session](/nservicebus/transactional-session/index.md#remote-processor) the endpoint name used can be configured:
 
 ```
 var outboxSettings = endpointConfiguration.EnableOutbox();
