@@ -31,7 +31,7 @@ The transport has been confirmed to work with the following hosting providers:
 
 |Feature                    |   |
 |:---                       |---
-|Transactions |None, ReceiveOnly
+|Transactions |ReceiveOnly
 |Pub/Sub                    |Native
 |Timeouts                   |Native
 |Large message bodies       |Broker can handle arbitrary message size within available resources, very large messages via data bus
