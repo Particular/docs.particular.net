@@ -18,10 +18,7 @@ ServicePulse uses information provided by ServiceControl. To use ServicePulse, f
   - For message flow visualisation and viewing successful messages, one or more [audit instances](/servicecontrol/audit-instances/) are required.
   - For monitoring throughput and other metrics, a [monitoring instance](/servicecontrol/monitoring-instances/) is required.
 
-> [!NOTE]
-> By default ServicePulse can be accessed on the hosting machine at the following URL: `http://localhost:9090`
-
-## Relationship between ServicePulse, ServiceControl, Monitoring, and Endpoints
+#### Relationship between ServicePulse, ServiceControl, Monitoring, and Endpoints
 
 ```mermaid
 graph RL
@@ -31,18 +28,19 @@ EP-- Metrics -->MQ
 EQ(Error Queue)-- Ingests -->SC
 MQ(Metrics Queue)-- Ingests -->SCM
 AQ(Audit Queue)-- Ingests -->SC
-SC[ServiceControl]-- HTTP API & SignalR ---SP
+SC[ServiceControl]-- HTTP API ---SP
 SCM[Monitoring]-- HTTP API ---SP[ServicePulse]
 ```
 
 ## ServicePulse views
+
+ServicePulse provides a variety of views to help monitor and manage the health of an NServiceBus system. These views offer insights into system status, endpoint health, real-time metrics, and message processing. Each view is designed to give users actionable information to ensure smooth operation and quick resolution of issues.
 
 ### System status overview
 
 The dashboard provides a visual overview of the current state of the monitored NServiceBus system. It provides information about the latest events in the system, such as detecting a new endpoint or a message processing failure.
 
 ![Dashboard](images/dashboard-overview.png 'width=500')
-
 
 ### Endpoint health
 
@@ -53,7 +51,6 @@ In order to monitor an endpoint's health and activity, it is necessary to [confi
 **Learn more:**
 
  * [Heartbeats in ServicePulse](/monitoring/heartbeats/in-servicepulse.md).
-
 
 ### Real-time monitoring
 
@@ -66,11 +63,9 @@ youtube: https://www.youtube.com/watch?v=is9kF7eWkrQ
  * [Explanation of metrics](/monitoring/metrics/)
  * [Setup Monitoring tutorial](/tutorials/monitoring-setup/)
 
-
 ### All messages
 
 The all messages view shows messages that have been processed by the system during a specified timeframe. If [audit instances](/servicecontrol/audit-instances/) are not deployed, this will only show failed messages, and the individual message view will not contain any of the detailed flow/sequence/saga views.
-
 
 ### Failed messages
 
@@ -88,7 +83,6 @@ The Failed Messages tab allows inspection of failed messages in more detail and 
 
  * [Failed Message Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md)
  * [Deleted Message Management in ServicePulse](/servicepulse/intro-archived-messages.md)
-
 
 ### Custom checks
 
