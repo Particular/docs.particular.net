@@ -28,6 +28,13 @@ Make sure that the processor endpoint:
 - [Uses the same database name](/persistence/ravendb/connection.md#database-used) 
 - Is [configured use the same endpoint name](/persistence/ravendb/outbox.md#overriding-endpoint-name) as the endpoint it's processing on behalf of.
 
+### DynamoDB
+
+Make sure that the processor endpoint:
+
+- [Uses the same database name](/persistence/dynamodb/index.md#usage) 
+- Is [configured use the same endpoint name](/persistence/dynamodb/outbox.md#todo) as the endpoint it's processing on behalf of.
+
 ### Azure Table
 
 TODO
