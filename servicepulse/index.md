@@ -52,6 +52,10 @@ The dashboard provides a visual overview of the current state of the monitored N
 
 ![Dashboard](images/dashboard-overview.png 'width=500')
 
+**Learn more:**
+
+ * [ServicePulse events](/servicepulse/event-types.md).
+
 ### Heartbeats
 
 ServicePulse automatically detects existing endpoint's health in the system by analyzing metadata from [audited messages](/nservicebus/operations/auditing.md). By default all detected endpoints will be listed  but will not be automatically monitored.
@@ -60,7 +64,7 @@ In order to monitor an endpoint's health and activity, it is necessary to [confi
 
 **Learn more:**
 
- * [Heartbeats in ServicePulse](/monitoring/heartbeats/in-servicepulse.md).
+ * [Managing endpoint heartbeats in ServicePulse](/monitoring/heartbeats/in-servicepulse.md).
 
 ### Monitoring
 
@@ -76,6 +80,10 @@ youtube: https://www.youtube.com/watch?v=is9kF7eWkrQ
 ### All messages
 
 The "All Messages" view displays messages processed by the system within a specified timeframe. If [audit instances](/servicecontrol/audit-instances/)  are not deployed, only failed messages will be shown, and the individual message view will lack detailed flow, sequence, and saga information.
+
+**Learn more:**
+
+ * [ Audited/Failed Message Display and Discovery](/servicepulse/intro-messages.md).
 
 ### Failed messages
 
@@ -102,4 +110,12 @@ ServicePulse supports the development of custom health checks using custom .NET 
 
 **Learn more:**
 
- * [Custom Check Monitoring in ServicePulse](/monitoring/custom-checks/in-servicepulse.md).
+ * [Managing custom checks in ServicePulse](/monitoring/custom-checks/in-servicepulse.md).
+
+### Events
+
+This dedicated events page which shows all events captured within ServiceControl.
+
+**Learn more:**
+
+ * [ServicePulse events](/servicepulse/event-types.md).
