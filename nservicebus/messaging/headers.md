@@ -37,7 +37,7 @@ NServiceBus: yyyy-MM-dd HH:mm:ss:ffffff Z
 
 When doing native intergration and there is a need to parse the timestamp the `.` as second and milli/microsecond separator is where regular timestamp parsers often fail.
 
-Use the following code to generate or read our custom timestamp format.
+Use the following code to generate or read the NServiceBus custom timestamp format.
 
 ```cs
 const string Format = "yyyy-MM-dd HH:mm:ss:ffffff Z"; // Not ISO 8601
