@@ -56,3 +56,11 @@ Events can manually be subscribed and unsubscribed to:
 snippet: ExplicitSubscribe
 
 In NServiceBus version 6 and above, `Subscribe` and `Unsubscribe` are accessible via the `IMessageSession` available on the `IEndpointInstance` or within a [feature startup task](/nservicebus/pipeline/features.md#feature-startup-tasks).
+
+### Decomissioning event handlers
+
+An event it not automatically unsubscribed when an message handler for an event is removed. The subscription remains active until it is unsubscribed.
+
+Unsubscribing can be done at startup via `IMessageSession.Unsubscribe`. For example via a background service:
+
+snippet: UnsubscribeBackgroundService
