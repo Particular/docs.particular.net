@@ -75,6 +75,7 @@ The transactional session feature requires a supported persistence package to st
 * [NHibernate](/persistence/nhibernate)
 * [RavenDB](/persistence/ravendb)
 * [MongoDB](/persistence/mongodb)
+* [MongoDB](/persistence/dynamodb/)
 
 ## Transaction consistency
 
