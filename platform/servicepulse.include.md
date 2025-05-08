@@ -1,18 +1,3 @@
-ServicePulse is a web application designed for both administrators and developers. 
+ServicePulse is a web application designed to provide both administrators and developers with powerful tools for monitoring and managing systems. It offers a clear, near real-time, high-level overview of system functionality, along with common failure recovery operations such as retrying failed messages. Additionally, it provides a rich, graphical view of [detailed performance metrics](/monitoring/metrics/in-servicepulse.md), including insights into logical endpoints, physical instances, and individual message types.
 
-#### For Administrators
-
-It provides a clear, near real-time, high-level overview of how a system is currently functioning. The UI also provides common failure recovery operations, such as retrying failed messages.
-
-ServicePulse provides a rich, graphical view of [detailed performance metrics](/monitoring/metrics/in-servicepulse.md). These are shown for logical endpoints, physical instances, and individual message types.
-
-ServicePulse is required to generate [usage reports](/servicepulse/usage.md) for determining licensing requirements.
-
-#### For Developers
-
-It provides advanced debugging, visualizations of messages flowing through the system, saga state changes, and more.
-
-Using message flow diagrams, sequence diagrams, and other visualizations provided by ServicePulse, anomalies and incorrect behavior in a system can be quickly and easily detected. More detailed information, such as message headers and message metadata, is also shown when viewing individual messages.
-
-> [!NOTE]
-> ServicePulse developer functionality was previously only available in a product called ServiceInsight
+For administrators, ServicePulse simplifies system oversight and is essential for generating [usage reports](/servicepulse/usage.md) to determine licensing requirements. For developers, it offers advanced debugging capabilities, including visualizations of message flows, saga state changes, and other system behaviors. Tools like message flow diagrams and sequence diagrams make it easy to detect anomalies and incorrect behavior. Developers can also access detailed information, such as message headers and metadata, when viewing individual messages.
