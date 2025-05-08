@@ -7,10 +7,10 @@ related:
 - serviceinsight/managing-errors-and-retries
 ---
 
-Each message can be browsed to see in-depth details about a given message. If it's a failed message, it can be deleted or retried.
+Each message can be browsed to see in-depth details about a given message. Individual messages can be accessed by clicking the respective entry in any of the message list views. If it's a failed message, it can be deleted or retried.
 ![Failed Messages Page](images/failed-message-page.png 'width=500')
 
-Individual messages can be accessed by clicking the respective entry in any of the message list views.
+
 
 Each individual message page allows for viewing the following message details:
 
