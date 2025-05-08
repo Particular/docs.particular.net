@@ -21,16 +21,17 @@ The details of each component are discussed below. A Particular Service Platform
 
 include: nservicebus
 
-
 ## [ServiceControl](/servicecontrol) - data collection
 
 include: servicecontrol
 
-
-## [ServicePulse](/servicepulse) - monitoring and visualization
+## [ServicePulse](/servicepulse) - debug, retry and monitor
 
 include: servicepulse
 
+## [ServiceInsight](/serviceinsight) - visualization
+
+include: serviceinsight
 
 ## Working with the platform
 
