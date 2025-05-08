@@ -23,7 +23,6 @@ Additional headers are used to determine endpoint names, message intent, and oth
 > [!NOTE]
 > Due to performance reasons, only the last 50 messages in a conversation are loaded.
 
-
 ## What is on the diagram
 
 ### Endpoints and lifelines
@@ -31,7 +30,6 @@ Additional headers are used to determine endpoint names, message intent, and oth
 ![Endpoint](images/sequence-diagram/endpoint.png)
 
 Each endpoint involved in the conversation is represented by a gray box along the top of the diagram. Hover on the endpoint to get additional information, such as the host that the endpoint is running on. Extending from the bottom of each endpoint is a lifeline that shows time flowing from top to bottom.
-
 
 ### Start of conversation
 
@@ -41,7 +39,6 @@ Each conversation starts with a single command or event. This message is often t
 
 > [!NOTE]
 > The Start of Conversation marker may not always be visible. This can happen if the conversation started a long time ago and the initiating message has expired. It can also happen if the number of messages in the conversation is very large. The diagram will show only the last 50 messages from the conversation, and this may not include the initiating message.
-
 
 ### Messages
 
@@ -62,7 +59,6 @@ A message arrow shown leaving a processing box represents an outgoing message th
 
 If the processing of a message failed, the processing box is displayed in red with an exclamation mark. If the message has not already been (automatically) retried, it can be retried manually via the retry button.
 
-
 ### Events
 
 ![Event](images/sequence-diagram/event.png 'width=500')
@@ -72,13 +68,11 @@ Events are represented similarly to other messages, but with dashed lines and a 
 > [!NOTE]
 > Each event published will appear once for each subscriber, as if individual messages were sent to each subscriber by the sender, regardless of whether unicast or multicast routing is used. [Learn more about message routing](/nservicebus/messaging/routing.md).
 
-
 ### Loopback messages
 
 ![Loopback message](images/sequence-diagram/loopback.png)
 
 A loopback message is a message that an endpoint sends to itself and is represented by a short arrow with a special icon that does not connect to another endpoint lifeline. As with any other message, hovering over or selecting the message will highlight the processing for that message in the lifeline.
-
 
 ### Timeout messages
 
@@ -88,7 +82,6 @@ A timeout message is a special type of loopback message where handling is deferr
 
 > [!NOTE]
 > The time of processing may not correspond to the time at which a timeout message was sent back for processing by the timeout message scheduler. The sequence diagram does not currently support visualization of the time at which the timeout message was sent back, and will only indicate when it was processed.
-
 
 ### Differences from UML sequence diagrams
 
@@ -108,7 +101,7 @@ The language used in the sequence diagram is largely modeled after the standard 
 | | N/A | Used for response messages and asynchronous messages. |
 | **Asynchronous messages** | - | ![UML asynchronous messages](images/sequence-diagram/uml-asynchronous.png) |
 | | N/A - all NServiceBus messages are asynchronous so the ServicePulse sequence diagram has no special representation for asynchronous messages and no representation for synchronous messages, even though messages may exhibit synchronous behavior by design. | Represented by a sloping dashed or solid line with an open arrow. |
-| **Send to self / loopback messages** | ![Loopback message](images/sequence-diagram/loopback-si.png) | ![UML loopback message](images/sequence-diagram/uml-loopback.png)
+| **Send to self / loopback messages** | ![Loopback message](images/sequence-diagram/loopback-si.png) | ![UML loopback message](images/sequence-diagram/uml-loopback.png) |
 | | Represented by a short uni-directional arrow that does not connect to another endpoint lifeline and a specific icon. | Represented by an arrow that connects back to the sending object's lifeline. It is immediately followed by its handler, which usually overlaps the handler that sent the loopback message. |
 | **Handlers** | - | ![UML handler](images/sequence-diagram/uml-handler.png) |
 | | N/A - currently it's not possible to collect telemetry data to visualize message handlers. | Represented by rectangles directly attached to arrow heads. |
