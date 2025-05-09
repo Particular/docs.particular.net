@@ -14,7 +14,7 @@ While Visual Studio contains specific support for .NET projects, VS Code is a mo
 ## Prerequisities
 
 * This article assumes knowledge of NServiceBus solutions.
-* VS Code must have the [C#](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) extension installed.
+* VS Code must have the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) installed.
 
 ## Configuration files
 
@@ -36,8 +36,8 @@ Both of these files can be generated from within VS Code, but the default values
 To create the initial file:
 
  1. After opening a folder with the project in Visual Studio Code, you may receive a notification saying `Required assets to build and debug are missing. Add them?`. If you decide to add them, then Visual Studio Code will create predefined configurations like `.NET Core Launch`.
- 1. Alternatively, you can click a button "Generate C# Assets for Build and Debug` in the `Run and Debug` pane.
- 1. Alternatively, you can run command **Tasks: Configure Task**, then **Create tasks.json from template**, and then select **.NET Core**.
+ 1. Alternatively, you can click the button `Generate C# Assets for Build and Debug` in the `Run and Debug` pane.
+ 1. Alternatively, you can run the command **Tasks: Configure Task**, then **Create tasks.json from template**, and then select **.NET Core**.
 
 The file created by VS Code may work as-is if the project contains only one solution file in the project's root directory.
 
@@ -69,7 +69,7 @@ For more information on **tasks.json**, see [Visual Studio Code: Integrate with 
 
 To create the initial file:
 
- 1. Run command **Debug: Add Configuration**.
+ 1. Run the command **Debug: Add Configuration**.
  1. Select **.NET 5+ and .NET Core**.
 
 The high-level structure of the **launch.json** file contains a collection of individual project objects in `configurations` and an optional [`compounds` collection](#launch-json-compounds) that lists multiple configurations that should be launched at the same time.
