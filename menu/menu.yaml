@@ -140,6 +140,8 @@
     Url: nservicebus/release-notifications
   - Title: Third-party licenses
     Url: platform/third-party-licenses
+  - Title: Usage Report Requirements
+    Url: platform/throughput-report
 
 - Name: NServiceBus
   Topics:
