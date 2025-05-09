@@ -1,10 +1,11 @@
 ---
 title: Usage Report Requirements
 summary: Minimal setup required for generating a usage report for licensing of the Particular Service Platform.
-reviewed: 2025-05-08
+reviewed: 2025-05-09
 related:
   - nservicebus/licensing
   - servicepulse/usage
+  - servicepulse/usage-config
 ---
 
 The Particular Service Platform is licensed based on the number of NServiceBus endpoints and the message throughput of those endpoints. In order to determine these values, a monitor needs to be run over the transport broker for a representative period of time (24 hours) and a report generated from this data to be sent to Particular.
