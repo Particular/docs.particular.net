@@ -11,7 +11,7 @@ partial: pub-sub-diagram
 
 ## SQS
 
-Amazon SQS exposes queue endpoints that are publicly available via [HTTPS](https://en.wikipedia.org/wiki/HTTPS). Endpoints may access SQS queues whether they are deployed in AWS or not; as long as the endpoint can reach both SQS and S3 via HTTPS it can use the transport.
+Amazon SQS exposes queues via [service endpoints](https://docs.aws.amazon.com/general/latest/gr/sqs-service.html#sqs_region) that are publicly available via [HTTPS](https://en.wikipedia.org/wiki/HTTPS). An [NServiceBus endpoints](/nservicebus/concepts/glossary.md#endpoint) can access SQS Queues whether they are deployed in AWS or not; as long as the endpoint can reach both SQS and S3 via HTTPS it can use the transport. By default, NServiceBus endpoints [process messages from an SQS queue with the same name](/nservicebus/endpoints/specify-endpoint-name.md#input-queue) as the endpoint.
 
 The transport initiates all network connections to SQS and S3; hence the endpoint itself does not need to be publicly accessible and can reside behind a firewall or proxy.
 
