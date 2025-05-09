@@ -36,21 +36,13 @@ SCM[Monitoring]-- HTTP API ---SP[ServicePulse]
 
 ServicePulse provides a variety of views to help monitor and manage the health of an NServiceBus system. These views offer insights into system status, endpoint health, real-time metrics, and message processing. Each view is designed to give users actionable information to ensure smooth operation and quick resolution of issues. The following views are available in ServicePulse,
 
-- Dashboard
-- Heartbeats
-- Monitoring
-- All Messages
-- Failed Messages
-- Custom Checks
-- Events
-- Usage
-- Configuration
+![ServicePulse](images/servicepulse-overview.png 'width=500')
 
 ### Dashboard
 
 The dashboard provides a visual overview of the current state of the monitored NServiceBus system. The includes unhealthy endpoints, failed messages and failing custom checks.  It also provides information about the latest events in the system, such as detecting a new endpoint or a message processing failure.
 
-![Dashboard](images/dashboard-overview.png 'width=500')
+
 
 **Learn more:**
 
