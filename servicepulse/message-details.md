@@ -59,7 +59,7 @@ Each message is represented by a box (node) indicating the message type and disp
 ### Saga diagram
 
 Sagas play a critical role in NServiceBus systems. As coordinators of processes, they are started by certain messages and interact with a variety of messages and services. The saga diagram illustrates how the saga was initiated and other messages that were sent or handled, with detailed message data, time information, and details on saga data changes.
-TODO: saga image
+![Saga Diagram](images/saga-diagram.png 'width=800')
 
 ### Sequence diagram
 
