@@ -7,7 +7,7 @@ public sealed class Endpoint2ResponseHandler(ILogger<Endpoint2ResponseHandler> l
 {
     public Task Handle(Endpoint2.MyResponse message, IMessageHandlerContext context)
     {
-        logger.LogInformation("Received Message2: {Property}", message.Property);
+        logger.LogInformation("Received MyResponse: {Property}", message.Property);
         return Task.CompletedTask;
     }
 }

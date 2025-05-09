@@ -26,7 +26,7 @@ public sealed class InputLoopService(IMessageSession messageSession) : Backgroun
 
             await messageSession.Send(message, stoppingToken);
 
-            Console.WriteLine("Message1 sent");
+            Console.WriteLine("MyRequest sent");
         }
     }
 }

@@ -50,12 +50,12 @@ class Program
                 break;
             }
 
-            var message = new Message1
+            var message = new MyRequest
             {
                 Property = "Hello from Endpoint1"
             };
             await endpointInstance.Send("Samples-Azure-StorageQueues-Endpoint2", message);
-            Console.WriteLine("Message1 sent");
+            Console.WriteLine("MyRequest sent");
         }
         await endpointInstance.Stop();
     }
