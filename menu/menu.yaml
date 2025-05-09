@@ -1434,6 +1434,8 @@
       Url: servicecontrol/how
     - Title: Licensing
       Url: servicecontrol/license
+    - Title: Hosting
+      Url: servicecontrol/hosting
     - Title: Support policy
       Url: servicecontrol/upgrades/support-policy
     - Title: Supported versions
