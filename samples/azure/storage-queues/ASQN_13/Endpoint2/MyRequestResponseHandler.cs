@@ -8,7 +8,7 @@ public sealed class MyRequestResponseHandler(ILogger<MyRequestResponseHandler> l
     public Task Handle(Endpoint2.MyRequest message, IMessageHandlerContext context)
     {
         logger.LogInformation("Received MyRequest: {Property}", message.Property);
-        var MyResponse = new Endpoint2.MyResponse("Hello from Endpoint2");
-        return context.Reply(MyResponse);
+        var myResponse = new Endpoint2.MyResponse("Hello from Endpoint2");
+        return context.Reply(myResponse);
     }
 }
