@@ -4,7 +4,7 @@ summary: Describes how ServicePulse detects and monitors failed messages
 component: ServicePulse
 reviewed: 2023-04-15
 related:
-- serviceinsight/managing-errors-and-retries
+- servicepulse/intro-failed-message-retries
 - servicepulse/message-details
 ---
 

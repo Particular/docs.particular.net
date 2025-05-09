@@ -1408,8 +1408,12 @@
           Title: Failed Messages
         - Url: servicepulse/message-details
           Title: Message Details
+        - Url: servicepulse/flow-diagram
+          Title: Flow Diagram
         - Url: servicepulse/sequence-diagram
           Title: Sequence Diagram
+        - Url: servicepulse/saga-diagram
+          Title: Saga Diagram
         - Url: servicepulse/intro-failed-message-retries
           Title: Retrying Failed Messages
         - Url: servicepulse/intro-editing-messages

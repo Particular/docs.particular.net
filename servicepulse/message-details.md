@@ -4,13 +4,12 @@ summary: Describes how ServicePulse displays details about messages. Also descri
 component: ServicePulse
 reviewed: 2025-04-15
 related:
-- serviceinsight/managing-errors-and-retries
+- servicepulse/intro-pending-retries
 ---
 
 Each message can be browsed to see in-depth details about a given message. Individual messages can be accessed by clicking the respective entry in any of the message list views. If it's a failed message, it can be deleted or retried.
+
 ![Failed Messages Page](images/failed-message-page.png 'width=500')
-
-
 
 Each individual message page allows for viewing the following message details:
 
