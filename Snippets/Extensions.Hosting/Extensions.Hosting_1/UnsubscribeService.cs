@@ -1,12 +1,21 @@
-using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
+using NServiceBus;
 
 #region UnsubscribeBackgroundService
-public class UnsubscribeService(IMessageSession messageSession) : BackgroundService
+public sealed class UnsubscribeService : BackgroundService
 {
-	protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    readonly IMessageSession _messageSession;
+
+    public UnsubscribeService(IMessageSession messageSession)
     {
-        await messageSession.Unsubscribe<MyEvent>();
+        _messageSession = messageSession;
+    }
+
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    {
+        await _messageSession.Unsubscribe<MyEvent>();
     }
 }
 
@@ -16,3 +25,7 @@ public class UnsubscribeService(IMessageSession messageSession) : BackgroundServ
 //  })
 //  .Build();
 #endregion
+
+public record MyEvent
+{
+}
