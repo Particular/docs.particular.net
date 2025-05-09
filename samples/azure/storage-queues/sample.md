@@ -84,7 +84,7 @@ Run only `Endpoint1` and send a message. Notice the contents of the message in t
     "NServiceBus.OriginatingEndpoint": "Samples-Azure-StorageQueues-Endpoint1",
     "$.diagnostics.originating.hostid": "27bfc91ba004f906eed90fc507597a11",
     "NServiceBus.ContentType": "application/json",
-    "NServiceBus.EnclosedMessageTypes": "MyRequest, Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
+    "NServiceBus.EnclosedMessageTypes": "Endpoint2.MyRequest, Shared, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null",
     "NServiceBus.Version": "7.4.4",
     "NServiceBus.TimeSent": "2020-11-09 23:37:11:901738 Z"
   },
