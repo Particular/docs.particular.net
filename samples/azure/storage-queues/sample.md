@@ -1,6 +1,6 @@
 ---
 title: Azure Storage Queues Transport
-reviewed: 2023-05-10
+reviewed: 2025-05-09
 component: ASQ
 related:
 - nservicebus/azure
