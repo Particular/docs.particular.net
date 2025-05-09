@@ -1,7 +1,7 @@
 ---
 title: Monitoring instances
 summary: Information about monitoring instances in ServiceControl
-reviewed: 2023-04-14
+reviewed: 2025-05-06
 component: ServiceControl
 ---
 
@@ -25,6 +25,7 @@ graph LR
 ```
 
 > [!NOTE]
-> Monitoring instances store data about each endpoint in memory for 10 minutes. Monitoring instances do not store persistent data. Restarting the monitoring instance will clear the in-memory cache.
+> Monitoring instances store data about each endpoint in memory for 10 minutes. Monitoring instances do not store data in a persistent store.
+> Restarting the monitoring instance will clear the in-memory cache.
 
 Each environment should have a single monitoring instance that all endpoints are configured to use.

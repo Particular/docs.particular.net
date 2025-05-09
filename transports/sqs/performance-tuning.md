@@ -2,7 +2,7 @@
 title: Performance Tuning
 summary: Guidance to tweak the performance of the SQS transport
 component: SQS
-reviewed: 2023-05-02
+reviewed: 2025-05-06
 ---
 
 > [!NOTE]
@@ -62,7 +62,7 @@ var servicePoint = ServicePointManager.FindServicePoint(new Uri("sqs-endpoint-ur
 servicePoint.UseNagleAlgorithm = false;
 ```
 
-to find the endpoint URIs used, consult the [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) documentation. It is also possible to disable Nagle globally for the Application Domain by applying:
+To find the endpoint URIs used, consult the [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) documentation. It is also possible to disable Nagle's Algorithm globally for the Application Domain by applying:
 
 ```
 ServicePointManager.UseNagleAlgorithm = false;
@@ -70,4 +70,4 @@ ServicePointManager.UseNagleAlgorithm = false;
 
 ## Known Limitations
 
-- The transport uses a single client for all operations on SQS. The throughput of a single endpoint is thus limited to the number of connections a single client can handle
+The transport uses a single client for all operations on SQS. The throughput of a single endpoint is thus limited to the number of connections a single client can handle.
