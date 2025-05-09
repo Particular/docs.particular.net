@@ -5,4 +5,10 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.Persistence.CosmosDB" Version="1.*" />
   </ItemGroup>
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
+    <PackageReference Include="System.Drawing.Common" Version="4.*" />
+    <PackageReference Include="System.Net.Http" Version="4.*" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="4.*" />
+  </ItemGroup>
 </Project>

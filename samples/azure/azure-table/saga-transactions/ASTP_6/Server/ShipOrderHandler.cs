@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Azure.Data.Tables;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 using NServiceBus.Persistence.AzureTable;
 
-public class ShipOrderHandler :
+public class ShipOrderHandler(ILogger<ShipOrderHandler> logger) :
     IHandleMessages<ShipOrder>
 {
     public Task Handle(ShipOrder message, IMessageHandlerContext context)
@@ -19,7 +19,8 @@ public class ShipOrderHandler :
 
         Store(orderShippingInformation, context);
 
-        Log.Info($"Order Shipped. OrderId {message.OrderId}");
+
+        logger.LogInformation($"Order Shipped. OrderId {message.OrderId}");
 
         return context.Reply(new OrderShipped { OrderId = orderShippingInformation.OrderId, ShippingDate = orderShippingInformation.ShippedAt });
     }
@@ -32,6 +33,5 @@ public class ShipOrderHandler :
 
         session.Batch.Add(new TableTransactionAction(TableTransactionActionType.Add, orderShippingInformation));
     }
-
-    static ILog Log = LogManager.GetLogger<ShipOrderHandler>();
+ 
 }

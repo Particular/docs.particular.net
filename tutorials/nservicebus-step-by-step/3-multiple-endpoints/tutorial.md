@@ -19,7 +19,7 @@ In the next 15-20 minutes, you will learn how to send messages between multiple 
 
 ## Sending messages
 
-We've already shown how an endpoint can "send a message to itself" using the `SendLocal()` method, which is available via the `IEndpointInstance` that we used in the endpoint to create a UI, and also via the `IMessageHandlerContext` that can be access while handling a message.
+We've already shown how an endpoint can "send a message to itself" using the `SendLocal()` method, which is available via the `IMessageSession` that we used in the endpoint to create a UI, and also via the `IMessageHandlerContext` that can be access while handling a message.
 
 snippet: SendLocal
 

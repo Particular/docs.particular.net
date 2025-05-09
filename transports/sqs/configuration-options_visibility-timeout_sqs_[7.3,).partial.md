@@ -76,7 +76,7 @@ The message visibility timeout extension is a best effort operation and can fail
 
 This configures the allowed maximum message visibility timeout, after which the transport stops renewing the visibility. Amazon SQS supports a maximum value of 12 hours.
 
-By setting it to `TimeSpan.Zero`, the message visibility renewal is disabled, thus the default message visibility time applies when the message is received.
+By setting it to `TimeSpan.Zero`, the message visibility renewal is disabled; thus, the default message visibility time applies when the message is received.
 
 snippet: MaxAutoMessageVisibilityRenewalDuration
 
@@ -86,6 +86,6 @@ snippet: MaxAutoMessageVisibilityRenewalDuration
 
 **Default**: `null`
 
-By default the transport acquires the message visibility timeout of the queue by reading the `MessageVisibilityTimeout` attribute. By setting an explicit value, the message visibility timeout on the queue is overruled by the timeout specified in this setting which will be used on every receive request.
+By default, the transport acquires the message visibility timeout of the queue by reading the `MessageVisibilityTimeout` attribute. By setting an explicit value, the message visibility timeout on the queue is overruled by the timeout specified in this setting which will be used on every receive request.
 
 snippet: MessageVisibilityTimeout

@@ -14,6 +14,10 @@
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
   </ItemGroup>
 
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="System.Private.Uri" Version="4.*" />
+  </ItemGroup>
+  
   <ItemGroup>
     <Compile Include="..\..\Phase1\EndpointSqlServer\Program.cs" />
     <Compile Include="..\..\Phase1\EndpointSqlServer\SqlHelper.cs" />

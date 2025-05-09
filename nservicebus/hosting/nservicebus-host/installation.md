@@ -1,7 +1,7 @@
 ---
 title: Installation
 summary: How to install the NServiceBus.Host as a Windows service
-reviewed: 2023-03-27
+reviewed: 2025-05-02
 ---
 
 include: host-deprecated-warning

@@ -2,7 +2,7 @@
 title: Sagas (DynamoDB)
 summary: How to configure saga persistence in DynamoDB
 component: DynamoDB
-reviewed: 2023-03-16
+reviewed: 2025-04-24
 related:
 - persistence/dynamodb
 - nservicebus/sagas
@@ -22,6 +22,8 @@ snippet: DynamoSagaTableConfiguration
 ## Saga data mapping
 
 Saga data is automatically mapped using the built-in mapper described in the [transaction documentation](/persistence/dynamodb/transactions.md#mapping).
+
+partial: options
 
 ## Saga concurrency
 
@@ -43,3 +45,5 @@ snippet: DynamoDBLeaseDuration
 When a client attempts to acquire a lease on a saga data record that is locked, it will retry acquiring a lease for a configurable amount of time before timing out. The default retry duration is 10 seconds and can be changed with the following code:
 
 snippet: DynamoDBLeaseAcquisitionTimeout
+
+partial: consistency

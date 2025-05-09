@@ -1,8 +1,13 @@
 using System;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using NServiceBus;
 
 Console.Title = "SimpleReceiver";
+
+var builder = Host.CreateApplicationBuilder(args);
 
 var endpointConfiguration = new EndpointConfiguration("Samples.Sqs.SimpleReceiver");
 endpointConfiguration.EnableInstallers();
@@ -23,11 +28,17 @@ serialization.Settings(new JsonSerializerSettings
 endpointConfiguration.UseTransport(transport);
 
 #region RegisterBehaviorInPipeline
-endpointConfiguration.Pipeline.Register(new AccessToAmazonSqsNativeMessageBehavior(), "Demonstrates how to access the native message from a pipeline behavior");
+
+var serviceProvider = builder.Services.BuildServiceProvider();
+var logger = serviceProvider.GetRequiredService<ILogger<AccessToAmazonSqsNativeMessageBehavior>>();
+endpointConfiguration.Pipeline.Register(new AccessToAmazonSqsNativeMessageBehavior(logger), "Demonstrates how to access the native message from a pipeline behavior");
 #endregion
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
-Console.WriteLine("Press any key to exit");
-Console.ReadKey();
 
-await endpointInstance.Stop();
+
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
+
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

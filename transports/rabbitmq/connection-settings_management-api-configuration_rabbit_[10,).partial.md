@@ -12,7 +12,7 @@ There are also overloads to specify just the URL or just the credentials and con
 
 ### Disabling broker requirement checks
 
-Starting in version 10.1, it is possible to disable the the broker requirement checks that the transport uses the management API to make. This should only be done in extreme circumstances when it not possible to give the transport access to the management API.
+Starting in version 10.1, it is possible to disable the broker requirement checks that the transport uses the management API to make. This should only be done in extreme circumstances when it not possible to give the transport access to the management API.
 
 snippet: rabbitmq-disable-broker-requirement-checks
 

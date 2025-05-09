@@ -39,7 +39,7 @@ Data about audit messages is exposed via an HTTP API from a ServiceControl Error
 
 Each ServiceControl Audit instance stores message data in a RavenDB database. For instances deployed using the ServiceControl Management utility or PowerShell this database is embedded with the ServiceControl Audit instance. For ServiceControl Audit instances deployed using containers the database resides in a [separate container](/servicecontrol/ravendb/containers.md).
 
-By default, audit data is retained for 30 days. [This retention period can be customized](/servicecontrol/audit-instances/configuration.md#data-retention).
+By default, audit data is retained for 7 days. [This retention period can be customized](/servicecontrol/audit-instances/configuration.md#data-retention).
 
 include: ravendb-exclusive-use-warning
 

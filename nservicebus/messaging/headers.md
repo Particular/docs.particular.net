@@ -19,8 +19,28 @@ The headers of a message are similar to HTTP headers and contain metadata about 
 
 For all timestamp message headers, the format is `yyyy-MM-dd HH:mm:ss:ffffff Z` where the time is UTC. The helper class `DateTimeExtensions` supports converting from UTC to wire format and vice versa by using the `ToWireFormattedString()` and `ToUtcDateTime()` methods.
 
+### ISO 8601 format
+
+This is NOT the [ISO 8601 format](https://nl.wikipedia.org/wiki/ISO_8601) but a custom format.
+
+Differences:
+
+1. a `T` between date and time
+2. uses a `.` between seconds and milli/microseconds
+3. no space between the timestamp and the `Z`
+
+
+```
+ISO 8601:    yyyy-MM-ddTHH:mm:ss.ffffffZ
+NServiceBus: yyyy-MM-dd HH:mm:ss:ffffff Z
+```
+
+When doing native intergration and there is a need to parse the timestamp the `.` as second and milli/microsecond separator is where regular timestamp parsers often fail.
+
+Use the following code to generate or read the NServiceBus custom timestamp format.
+
 ```cs
-const string Format = "yyyy-MM-dd HH:mm:ss:ffffff Z";
+const string Format = "yyyy-MM-dd HH:mm:ss:ffffff Z"; // Not ISO 8601
 
 public static string ToWireFormattedString(DateTime dateTime)
 {
@@ -47,7 +67,9 @@ The `TimeToBeReceived` header [controls when a message becomes obsolete and can 
 
 ### NServiceBus.Transport.Encoding
 
-States what type of body serialization is used. Used only by the legacy Azure Service Bus transport which is no longer supported.
+States what type of body serialization is used.
+
+Used only by the legacy Azure Service Bus transport (`NServiceBus.Azure.Transports.WindowsAzureServiceBus` package) which is no longer supported.
 
 ## Serialization headers
 
@@ -55,7 +77,9 @@ The following headers include information for the receiving endpoint on the [mes
 
 ### NServiceBus.ContentType
 
-The type of serialization used for the message, for example `text/xml`, `text/json`, `application/json`, or `application/json; systemjson`. In some cases, it may be useful to use the `NServiceBus.Version` header to determine how to use the value in this header appropriately.
+The type of serialization used for the message, for example `text/xml`, `text/json`, `application/json`, or `application/json; systemjson`.
+
+In some cases, it may be useful to use the `NServiceBus.Version` header to determine how to use the value in this header appropriately.
 
 > [!WARNING]
 > Although this header mimicks the [HTTP Content-Type header](https://www.rfc-editor.org/rfc/rfc9110.html#name-content-type) the values are case-sensitive. The header value does not behave like HTTP headers where everything after `;` is used to order and match the best qualified (application/json) serializer. Adding a suffix like `; systemjson` requires **all** endpoints involved to use this full key (for example: `application/json; systemjson`).
@@ -64,8 +88,8 @@ The type of serialization used for the message, for example `text/xml`, `text/js
 
 The fully qualified .NET type name of the enclosed message(s). The receiving endpoint will use this type when deserializing an incoming message. Depending on the [versioning strategy](/samples/versioning/) the type can be specified in the following ways:
 
- * Full type name: `Namespace.ClassName`.
- * Assembly qualified name: `Namespace.ClassName, AssemblyName, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null`.
+* Full type name: `Namespace.ClassName`.
+* Assembly qualified name: `Namespace.ClassName, AssemblyName, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null`.
 
 See the [message type detection documentation](/nservicebus/messaging/message-type-detection.md) for more details.
 
@@ -107,10 +131,9 @@ partial: conversationid
 
 > [!WARNING]
 > Attempting to override an existing Conversation ID is not supported and will produce the following error:
-
-```
-Cannot set the NServiceBus.ConversationId header to 'XXXXX' as it cannot override the incoming header value ('2f4076a0-d8de-4297-9d18-a830015dd42a').
-```
+> ```
+> Cannot set the NServiceBus.ConversationId header to 'XXXXX' as it cannot override the incoming header value ('2f4076a0-d8de-4297-9d18-a830015dd42a').
+> ```
 
 > [!NOTE]
 > `Conversation Id` is very similar to `Correlation Id`. Both headers are copied to each new message that an endpoint produces. Whereas `Conversation Id` is always copied from the incoming message being handled, `Correlation Id` can come from another source (such as when replying from a saga using `ReplyToOriginator(...)`).
@@ -130,13 +153,13 @@ The `MessageId` that caused the current message to be sent. Whenever a message i
 
 Message intent can have one of the following values:
 
-| Value         | Description |
-| ------------- |-------------|
-| Send |Regular point-to-point send. Note that messages sent to the error queue will also have a `Send` intent|
-| Publish |The message is an event that has been published and will be sent to all subscribers.|
-| Subscribe |A [control message](#messaging-interaction-headers-nservicebus-messageintent) indicating that the source endpoint would like to subscribe to a specific message.|
-| Unsubscribe |A [control message](#messaging-interaction-headers-nservicebus-messageintent) indicating that the source endpoint would like to unsubscribe to a specific message.|
-| Reply | The message has been initiated by doing a Reply or a Return from within a Handler or a Saga. |
+| Value       | Description                                                                                                                                                        |
+|-------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Send        | Regular point-to-point send. Note that messages sent to the error queue will also have a `Send` intent                                                             |
+| Publish     | The message is an event that has been published and will be sent to all subscribers.                                                                               |
+| Subscribe   | A [control message](#messaging-interaction-headers-nservicebus-messageintent) indicating that the source endpoint would like to subscribe to a specific message.   |
+| Unsubscribe | A [control message](#messaging-interaction-headers-nservicebus-messageintent) indicating that the source endpoint would like to unsubscribe to a specific message. |
+| Reply       | The message has been initiated by doing a Reply or a Return from within a Handler or a Saga.                                                                       |
 
 ### NServiceBus.ControlMessage
 
@@ -160,10 +183,10 @@ In the above example, headers are for a Send and hence the `MessageIntent` heade
 
 When replying to a message:
 
- * The `MessageIntent` is `Reply`.
- * The `RelatedTo` will be the same as the initiating `MessageID`.
- * The `ConversationId` will be the same as the initiating `ConversationId`.
- * The `CorrelationId` will be the same as the initiating `CorrelationId`.
+* The `MessageIntent` is `Reply`.
+* The `RelatedTo` will be the same as the initiating `MessageID`.
+* The `ConversationId` will be the same as the initiating `ConversationId`.
+* The `CorrelationId` will be the same as the initiating `CorrelationId`.
 
 
 ### Example reply headers
@@ -188,8 +211,8 @@ snippet: HeaderWriterPublish
 
 When returning a message instead of replying:
 
- * The Return has the same points as the Reply example above with some additions.
- * The `ReturnMessage.ErrorCode` contains the value that was supplied to the `Bus.Return` method.
+* The Return has the same points as the Reply example above with some additions.
+* The `ReturnMessage.ErrorCode` contains the value that was supplied to the `Bus.Return` method.
 
 
 ### Example return headers
@@ -230,8 +253,8 @@ A header to indicate that this message resulted from a Defer.
 
 When a message is dispatched from within a saga the message will contain the following:
 
- * An `OriginatingSagaId` header which matches the ID used as the index for the saga data stored in persistence.
- * An `OriginatingSagaType` which is the fully qualified type name of the saga that sent the message.
+* An `OriginatingSagaId` header which matches the ID used as the index for the saga data stored in persistence.
+* An `OriginatingSagaType` which is the fully qualified type name of the saga that sent the message.
 
 
 ### Example "send from saga" headers
@@ -243,9 +266,9 @@ snippet: HeaderWriterSagaSending
 
 A message reply is performed from a saga will have the following headers:
 
- * The send headers are the same as a normal reply headers with a few additions.
- * Since this reply is from a secondary saga then `OriginatingSagaId` and `OriginatingSagaType` will match the second saga.
- * Since this is a reply to the initial saga then the headers will contain `SagaId` and `SagaType` headers that match the initial saga.
+* The send headers are the same as a normal reply headers with a few additions.
+* Since this reply is from a secondary saga then `OriginatingSagaId` and `OriginatingSagaType` will match the second saga.
+* Since this is a reply to the initial saga then the headers will contain `SagaId` and `SagaType` headers that match the initial saga.
 
 
 ### Example "replying to a saga" headers
@@ -265,9 +288,9 @@ snippet: HeaderWriterSagaReplyingToOriginator
 
 When requesting a timeout from a saga:
 
- * The `OriginatingSagaId`, `OriginatingSagaType`, `SagaId` and `SagaType` will all match the Saga that requested the Timeout.
- * The `Timeout.RouteExpiredTimeoutTo` header contains the queue name for where the callback for the timeout should be sent.
- * The `Timeout.Expire` header contains the timestamp for when the timeout should fire.
+* The `OriginatingSagaId`, `OriginatingSagaType`, `SagaId` and `SagaType` will all match the Saga that requested the Timeout.
+* The `Timeout.RouteExpiredTimeoutTo` header contains the queue name for where the callback for the timeout should be sent.
+* The `Timeout.Expire` header contains the timestamp for when the timeout should fire.
 
 
 #### Example timeout headers
@@ -293,9 +316,9 @@ Headers used to give visibility into "where", "when" and "by whom" of a message.
 
 The [host details](/nservicebus/hosting/override-hostid.md) of the endpoint where the message was being processed. This header contains three parts:
 
- * `$.diagnostics.hostdisplayname`
- * `$.diagnostics.hostid`
- * `$.diagnostics.originating.hostid`
+* `$.diagnostics.hostdisplayname`
+* `$.diagnostics.hostid`
+* `$.diagnostics.originating.hostid`
 
 ### NServiceBus.TimeSent
 
@@ -324,13 +347,13 @@ The NServiceBus version number.
 
 These headers are added when [OpenTelemetry](/nservicebus/operations/opentelemetry.md) is enabled for an endpoint, in accordance with the [W3C Trace Context specification](https://www.w3.org/TR/trace-context):
 
-- [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header)
-- [`tracestate`](https://www.w3.org/TR/trace-context/#tracestate-header)
-- [`baggage`](https://www.w3.org/TR/baggage/#baggage-http-header-format)
+* [`traceparent`](https://www.w3.org/TR/trace-context/#traceparent-header)
+* [`tracestate`](https://www.w3.org/TR/trace-context/#tracestate-header)
+* [`baggage`](https://www.w3.org/TR/baggage/#baggage-http-header-format)
 
 ## Audit headers
 
-Headers added when a message is [audited](/nservicebus/operations/auditing.md)
+Headers added when a message is [audited](/nservicebus/operations/auditing.md).
 
 ### NServiceBus.ProcessingEnded
 
@@ -518,7 +541,6 @@ Part of the control message send back to ServiceControl to signal that a message
 
 Contains the [NServiceBus.MessageId](#messaging-interaction-headers-nservicebus-messageid) value of the message that was succesfully processed.
 
-Part of the control message send back to
-
+Part of the control message send back to ServiceControl to signal that a message that was manually retried in ServicePulse/Control and flag as processed succesful.
 
 The presence of any header key that starts with `ServiceControl.` would indicate its a message that is manually retried.

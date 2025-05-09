@@ -7,10 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.*" />
     <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="12.*" />
-    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="System.Private.Uri" Version="4.*" />
   </ItemGroup>
 
   <ItemGroup Label="Force a later version of a transitive dependency">
