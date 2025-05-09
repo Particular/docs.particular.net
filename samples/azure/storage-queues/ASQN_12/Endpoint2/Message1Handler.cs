@@ -9,7 +9,7 @@ public class MyRequestHandler :
 
     public Task Handle(MyRequest message, IMessageHandlerContext context)
     {
-        log.Info("Received MyRequest: {Property}", message.Property);
+        log.Info($"Received Message1: {message.Property}");
         var MyResponse = new MyResponse
         {
             Property = "Hello from Endpoint2"

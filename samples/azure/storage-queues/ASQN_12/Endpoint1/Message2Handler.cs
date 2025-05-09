@@ -9,7 +9,7 @@ public class MyResponseHandler :
 
     public Task Handle(MyResponse message, IMessageHandlerContext context)
     {
-        log.Info("Received MyResponse: {Property}", message.Property);
+        log.Info($"Received Message2: {message.Property}");
         return Task.CompletedTask;
     }
 }
