@@ -75,7 +75,7 @@ The "All Messages" view displays messages processed by the system within a speci
 
 **Learn more:**
 
- * [ Audited/Failed Message Display and Discovery](/servicepulse/intro-messages.md).
+ * [ Audited/Failed Message Display and Discovery](/servicepulse/all-messages.md).
 
 ### Failed messages
 

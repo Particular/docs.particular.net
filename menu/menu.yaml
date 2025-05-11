@@ -1402,7 +1402,7 @@
           Title: Troubleshooting
     - Title: Features
       Articles:
-        - Url: servicepulse/intro-messages
+        - Url: servicepulse/all-messages
           Title: All Messages
         - Url: servicepulse/intro-failed-messages
           Title: Failed Messages

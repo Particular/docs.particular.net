@@ -90,7 +90,7 @@ The following actions can also be taken on each message or a selection of messag
 
 ### Message details page
 
-The failed [message details](message-details.md) page is shared with [All Messages](intro-messages.md).
+The failed [message details](message-details.md) page is shared with [All Messages](all-messages.md).
 
 #### Sharing message data from ServicePulse
 

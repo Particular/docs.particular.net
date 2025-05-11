@@ -1,7 +1,7 @@
 ---
 title: ServicePulse Troubleshooting
 summary: ServicePulse installation and common issues troubleshooting
-reviewed: 2024-11-27
+reviewed: 2024-05-11
 component: ServicePulse
 ---
 
