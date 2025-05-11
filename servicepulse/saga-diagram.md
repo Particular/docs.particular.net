@@ -44,7 +44,7 @@ The "Saga Diagram" tab in ServicePulse appears when viewing a message involved i
 
 The top of the diagram displays the following saga metadata:
 
-- **Saga Name**: The human-readable name of the saga class
+- **Saga Name**: The name of the saga class
 - **Saga ID**: The unique identifier (GUID) for this saga instance. This information helps identify and correlate the saga across different systems
 
 All saga events are displayed in chronological order from top to bottom. This timeline provides a clear progression of the saga's lifecycle. The Saga Diagram visualizes the saga lifecycle using a three-column layout. This layout clearly represnts the full saga execution flow, from incoming messages(left column) to state changes(center column) to outgoing messages(right column).
