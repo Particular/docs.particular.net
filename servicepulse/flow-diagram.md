@@ -1,17 +1,15 @@
 ---
 title: Flow Diagram
-summary: Describes how ServicePulse  illustrates the message and all related messages from the same conversation
+summary: Describes how ServicePulse illustrates the flow of a message and its related messages within the same conversation.
 component: ServicePulse
 reviewed: 2025-05-08
 related:
 - servicepulse/message-details
 ---
 
+The Flow Diagram in ServicePulse visually represents how a message and its related messages flow through the system, across endpoints, and through sagas. It helps users trace message conversations, understand relationships, and diagnose issues in distributed workflows.
 
 ![Flow Diagram](images/flow-diagram.png 'width=800')
-
-
-The Flow Diagram in ServicePulse visually represents how a message and its related messages flow through the system, across endpoints, and through sagas. It helps users trace message conversations, understand relationships, and diagnose issues in distributed workflows.
 
 ## Overview
 
