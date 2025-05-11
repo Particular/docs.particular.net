@@ -39,12 +39,12 @@ Each node in the flow diagram represents a message. The message node includes an
 
 | Node Image | Description |
 |------------|-------------|
-| ![Flow Diagram](images/flow-diagram-command-message.png)| Command Message|
-| ![Flow Diagram](images/flow-diagram-event-message.png) | Event Message|
-| ![Flow Diagram](images/flow-diagram-timeout-message.png)| Timeout Message|
-| ![Flow Diagram](images/flow-diagram-selected-failed-message.png)| Selected Failed Message|
-| ![Flow Diagram](images/flow-diagram-failed-message.png)|  Failed Message|
-| ![Flow Diagram](images/flow-diagram-selected-message.png)| Selected Message|
+| ![Flow Diagram](images/flow-diagram-command-message.png 'width=300')| Command Message|
+| ![Flow Diagram](images/flow-diagram-event-message.png  'width=300') | Event Message|
+| ![Flow Diagram](images/flow-diagram-timeout-message.png  'width=300')| Timeout Message|
+| ![Flow Diagram](images/flow-diagram-selected-failed-message.png  'width=300')| Selected Failed Message|
+| ![Flow Diagram](images/flow-diagram-failed-message.png  'width=300')|  Failed Message|
+| ![Flow Diagram](images/flow-diagram-selected-message.png  'width=300')| Selected Message|
 
 ### Saga Indicators
  A message that starts a saga displays a "Saga Initiated" icon. If a message updates an ongoing saga's state, this is also indicated. When a saga concludes, the associated message is marked to show "Saga Completed." These visual cues make it easy to follow the lifecycle of long-running business processes across multiple messages.
