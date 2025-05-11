@@ -9,6 +9,8 @@ related:
 
 Sagas in NServiceBus coordinate long-running workflows by maintaining state, handling timeouts, and correlating related messages. ServicePulse offers the **Saga Diagram**, which renders a chronological visualization of state transitions and message flows for each saga instance. It provides a visual representation of saga execution, allowing users to trace how a saga instance processes incoming messages, changes state, and emits outgoing messages and timeouts. This visualization is especially useful for understanding complex workflows, debugging message flows, and validating long-running business processes.
 
+![Saga Diagram Overview](images/saga-diagram-overview.png 'width=800')
+
 ## Prerequisites
 
 The Saga Diagram relies on audit data collected via the `NServiceBus.SagaAudit` plugin, which tracks saga state changes and message relationships, sending them to ServiceControl. ServicePulse uses this data to generate saga visualizations.
