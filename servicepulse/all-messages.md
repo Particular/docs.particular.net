@@ -1,6 +1,6 @@
 ---
 title: Audited/Failed Message Display and Discovery
-summary: Describes how ServicePulse displays, and allows filtering for, audited and failed messages
+summary: Describes how ServicePulse displays and allows filtering for audited and failed messages
 component: ServicePulse
 reviewed: 2025-05-11
 related:
@@ -21,7 +21,7 @@ ServicePulse provides visibility into the flow of messages through the system, i
 
 ![All Message Info](images/all-messages-info.png 'width=800')
 
-Each row in the list represents a message in the system. Successfully processed messages are prefixed with <img src="images/success-message-icon.png" width="20" alt="failed message">, and failed messages are prefixed  <img src="images/failed-message-icon.png" width="20" alt="successful message">. The following time-related information about the message is also displayed:
+Each row in the list represents a message in the system. Successfully processed messages are prefixed with <img src="images/success-message-icon.png" width="20" alt="successful message">, and failed messages are prefixed with <img src="images/failed-message-icon.png" width="20" alt="failed message">. The following time-related information about the message is also displayed:
 
 - **[Processing Time](/monitoring/metrics/definitions.md#metrics-captured-processing-time):** The time taken by the receiving endpoint to successfully process an incoming message.
 - **[Critical Time](/monitoring/metrics/definitions.md#metrics-captured-critical-time):** The total duration from when a message is sent to when it is fully processed.
@@ -39,7 +39,7 @@ The results can be filtered by one or more of the following criteria:
 - **Endpoint:** Select a specific endpoint.
 - **Custom Filter:** Perform a free-text search across message data. This also supports wildcards.
 
-By default, the view displays 100 messages, but can be customized to display up to a maximum of 500 messages. To display more messages, modify the filters to narrow down the search results.
+By default, the view displays 100 messages but can be customized to display up to a maximum of 500 messages. To display more messages, modify the filters to narrow down the search results.
 
 > [!NOTE]
 > A message's body is searchable only if the body size is under 85kB, within the `ServiceControl.Audit/MaxBodySizeToStore` size limit, and is a non-binary content type.
