@@ -21,7 +21,24 @@ ServicePulse provides visibility into the flow of messages through the system, i
 
 ![All Message Info](images/all-messages-info.png 'width=800')
 
-Each row in the list represents a message in the system. Successfully processed messages are prefixed with <img src="images/success-message-icon.png" width="20" alt="successful message">, and failed messages are prefixed with <img src="images/failed-message-icon.png" width="20" alt="failed message">. The following time-related information about the message is also displayed:
+Each row in the list represents a message in the system. Each message is prefixed with a status icon that shows the nature of the message.
+
+
+| Status Icon | Description |
+|------------|-------------|
+| ![Success Message](images/success-message-icon.png 'width=30')| Shows when a message was processed successfully on first attempt|
+| ![Resolved Successfully Message](images/resolved-successfully-message-icon.png 'width=30')|Shows when a message succeeded after retries|
+| ![Failed Message](images/failed-message-icon.png 'width=30')| Shows when a message has failed|
+| ![Archived Message](images/archived-message-icon.png 'width=30')|Shows when a failed message has been deleted|
+| ![Repeated Failed Message](images/repeated-failed-message-icon.png 'width=30')| Shows when a message has failed multiple times|
+| ![Retry Message](images/retry-issued-message-icon.png 'width=30')| Shows when a retry has been requested for a failed message|
+
+A warning symbol <img src="images/warning-icon.png" width="20" alt="warning"> also appears when any of these conditions are met:
+
+- When a message needed retries to succeed.
+- When any of the timing metrics (critical, processing, or delivery time) have negative values, which could indicate timing issues or clock synchronization problems
+
+The following time-related information about the message is also displayed:
 
 - **[Processing Time](/monitoring/metrics/definitions.md#metrics-captured-processing-time):** The time taken by the receiving endpoint to successfully process an incoming message.
 - **[Critical Time](/monitoring/metrics/definitions.md#metrics-captured-critical-time):** The total duration from when a message is sent to when it is fully processed.
@@ -71,6 +88,6 @@ The view supports both manual and automatic refresh. These options update the di
   - Every 10 minutes
   - Every 30 minutes
   - Every 1 hour
-  
+
   > [!NOTE]
   > Having a low auto-refresh time continually active can have a negative impact on ServiceControl's performance

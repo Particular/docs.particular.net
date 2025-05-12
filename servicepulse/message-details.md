@@ -54,14 +54,20 @@ The full .NET exception stacktrace. Can be copied to clipboard.
 Displays a flow diagram of the conversation that contains the message. This illustrates the message and all related messages from the same conversation, along with the nature of the messages and the endpoints involved. Other messages in the conversation can also be viewed and link to their respective details pages.
 
 Each message is represented by a box (node) indicating the message type and displaying details including time information and, optionally, the sending and receiving endpoints. Published events and sent commands have different icons and illustrations.
+
+Read more about the [flow Diagram](flow-diagram.md).
 ![Flow Diagram](images/flow-diagram.png 'width=800')
 
 ### Saga diagram
 
 Sagas play a critical role in NServiceBus systems. As coordinators of processes, they are started by certain messages and interact with a variety of messages and services. The saga diagram illustrates how the saga was initiated and other messages that were sent or handled, with detailed message data, time information, and details on saga data changes.
+
+Read more about the [Saga Diagram](saga-diagram.md).
 ![Saga Diagram](images/saga-diagram.png 'width=800')
 
 ### Sequence diagram
 
-While a flow diagram is useful for showing why each message in a conversation was sent, a sequence diagram is better for understanding when messages were sent and handled. Read more about the [Sequence Diagram](sequence-diagram.md).
+While a flow diagram is useful for showing why each message in a conversation was sent, a sequence diagram is better for understanding when messages were sent and handled.
+
+Read more about the [Sequence Diagram](sequence-diagram.md).
 ![Sequence Diagram](images/sequence-diagram.png 'width=800')
