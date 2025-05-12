@@ -10,10 +10,10 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/3.7.416.25/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.SQS" target="_blank">AWSSDK.SQS</a> | <a href="https://www.nuget.org/packages/AWSSDK.SQS/3.7.400.149/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/3.7.401.98/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/3.7.400.149/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/3.7.416.26/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.SQS" target="_blank">AWSSDK.SQS</a> | <a href="https://www.nuget.org/packages/AWSSDK.SQS/3.7.400.150/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/3.7.401.99/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/3.7.400.150/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.5.3/license" target="_blank">View License</a> | <i>None provided</i> |
 
 ### NServiceBus.Autofac
@@ -155,14 +155,14 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos" target="_blank">Microsoft.Azure.Cosmos</a> | <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos/3.49.0/license" target="_blank">View License</a> | <a href="https://github.com/Azure/azure-cosmos-dotnet-v3" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos" target="_blank">Microsoft.Azure.Cosmos</a> | <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos/3.50.0/license" target="_blank">View License</a> | <a href="https://github.com/Azure/azure-cosmos-dotnet-v3" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Newtonsoft.Json" target="_blank">Newtonsoft.Json</a> | <a href="https://www.nuget.org/packages/Newtonsoft.Json/13.0.3/license" target="_blank">MIT</a> | <a href="https://www.newtonsoft.com/json" target="_blank">Project Site</a> |
 
 ### NServiceBus.Persistence.DynamoDB
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2" target="_blank">AWSSDK.DynamoDBv2</a> | <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2/3.7.407.10/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2" target="_blank">AWSSDK.DynamoDBv2</a> | <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2/3.7.407.11/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 
 ### NServiceBus.Persistence.ServiceFabric
 
@@ -207,7 +207,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Azure.Core" target="_blank">Azure.Core</a> | <a href="https://www.nuget.org/packages/Azure.Core/1.46.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Core_1.46.0/sdk/core/Azure.Core/README.md" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Azure.Core" target="_blank">Azure.Core</a> | <a href="https://www.nuget.org/packages/Azure.Core/1.46.1/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Core_1.46.1/sdk/core/Azure.CoreREADME.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.Messaging.ServiceBus" target="_blank">Azure.Messaging.ServiceBus</a> | <a href="https://www.nuget.org/packages/Azure.Messaging.ServiceBus/7.19.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Messaging.ServiceBus_7.19.0/sdk/servicebus/Azure.Messaging.ServiceBus/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.5.3/license" target="_blank">View License</a> | <i>None provided</i> |
 
