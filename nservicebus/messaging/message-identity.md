@@ -10,7 +10,7 @@ Each message dispatched from an [Endpoint](/nservicebus/endpoints/) has a unique
 Many features take advantage of message identity. For example, the [Outbox](/nservicebus/outbox) uses message identity to deduplicate messages and [recoverability](/nservicebus/recoverability/) uses message identity to keep track of how many times the endpoint has tried to process a message.
 
 > [!WARNING]
-> Message identities are not guaranteed to be unique across endpoints. As an example, the message ID of a published event will always be the same for all subscribers.
+> Message identities are not guaranteed to be unique from a processing perspective. For example, a published event's message identity will always be the same for all subscribers. To ensure a globally unique identity for processed messages, the endpoint name of the processing endpoint must be combined with the message identity.
 
 ## Specifying message identity
 
