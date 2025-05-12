@@ -14,9 +14,6 @@ ServicePulse provides visibility into the flow of messages through the system, i
 
 ![All Messages](images/all-messages.png 'width=800')
 
-> [!NOTE]
-> Currently, ServicePulse can be connected to only one ServiceControl instance at a time. To view the message list for other ServiceControl instances, go to the [connections in the configuration tab](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui) to set up the URL.
-
 ## Message Information
 
 ![All Message Info](images/all-messages-info.png 'width=800')
