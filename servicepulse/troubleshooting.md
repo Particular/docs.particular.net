@@ -109,7 +109,7 @@ To address this issue:
 
 Note that only new saga updates will be captured, not historical ones
 
-### Saga state changes are not visible in  "Saga Diagram' tab
+### Saga state changes are not visible in the "Saga Diagram' tab
 
 Sometimes the message which is part of the saga may not have the state changes visible in saga updates.
 
