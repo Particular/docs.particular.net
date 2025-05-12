@@ -1,7 +1,7 @@
 ---
 title: ServicePulse Troubleshooting
 summary: ServicePulse installation and common issues troubleshooting
-reviewed: 2024-11-27
+reviewed: 2024-05-11
 component: ServicePulse
 ---
 
@@ -86,3 +86,31 @@ To address this issue:
 
 * Add the heartbeat plugin to all NServiceBus version 3 endpoints, which will add the required header with the host information.
 * Restart ServiceControl to clear the endpoint counter.
+
+### Saga Audit plugin needed message seen in "Saga Diagram' tab
+
+If the message is part of a saga but the saga audit plugin is not installed, ServicePulse will display a notification with instructions to install it.
+
+![Saga Diagram Plugin Needed](images/saga-diagram-plugin-needed.png 'width=800')
+
+To address this issue:
+
+1. Install the NServiceBus.SagaAudit package in the relevant endpoint:
+
+   ```
+   install-package NServiceBus.SagaAudit
+   ```
+3. Configure the saga audit feature in your endpoint configuration:
+   ```csharp
+   endpointConfiguration.AuditSagaStateChanges(
+       serviceControlQueue: "particular.servicecontrol");
+   ```
+4. Restart the endpoint to apply the changes
+
+Note that only new saga updates will be captured, not historical ones
+
+### Saga state changes are not visible in the "Saga Diagram' tab
+
+Sometimes the message which is part of the saga may not have the state changes visible in saga updates.
+
+This is normal for messages that don't modify the core business state of the saga. This could mean that the incoming message didn't modify any saga properties and/or that only standard properties (Id, Originator, OriginalMessageId) were modified, which are filtered out of the view.  Verify if the message triggered any outgoing messages or timeouts instead.

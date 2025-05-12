@@ -66,9 +66,9 @@ Find out more about [failed messages](/servicepulse/intro-failed-messages.md) in
 
 ### Audit instances
 
-To enable ServiceInsight to visualize the message flow through the system, it must have access to every message that has been successfully processed by the system. This requires endpoints to [enable auditing](/nservicebus/operations/auditing.md). ServiceControl consumes these messages and stores them in its database.
+To enable ServiceInsight and ServicePulse to visualize the message flow through the system, ServiceControl must have access to every message that has been successfully processed by the system. This requires endpoints to [enable auditing](/nservicebus/operations/auditing.md). ServiceControl consumes these messages and stores them in its database.
 
-ServiceInsight will retrieve the data from ServiceControl via the HTTP API and use header information (added by NServiceBus during message processing) to figure out which message caused other messages to be sent, including which sagas were accessed when the [SagaAudit plugin](/nservicebus/sagas/saga-audit.md) is configured in an endpoint.
+ServiceInsight or ServicePulse will retrieve the data from ServiceControl via the HTTP API and use header information (added by NServiceBus during message processing) to figure out which message caused other messages to be sent, including which sagas were accessed when the [SagaAudit plugin](/nservicebus/sagas/saga-audit.md) is configured in an endpoint.
 
 ### Monitoring instances
 

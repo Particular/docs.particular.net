@@ -14,11 +14,11 @@ redirects:
 > [!WARNING]
 > This plugin will result in an increase in the load placed on ServiceControl and the endpoint it is installed in. Make sure the environment is prepared for the increased load. Consider [scaling out audit processing](/servicecontrol/servicecontrol-instances/remotes.md) if necessary.
 
-The SagaAudit plugin enables the [Saga View feature in ServiceInsight](/serviceinsight/#the-saga-view).
+The SagaAudit plugin enables the Saga View feature in [ServiceInsight](/serviceinsight/#the-saga-view) and [ServicePulse](/servicepulse/message-details.md#messages-with-audited-conversation-data-saga-diagram).
 
 ![SagaAudit View in ServiceInsight](saga-audit-screenshot.png)
 
-It is built specifically to help developers verify saga logic during development. It does this by capturing saga message behavior and changes in saga data/state as the saga is being processed. It then sends this information to a ServiceControl instance set up in the development environment. The information is available in the *Saga* view in ServiceInsight.
+It is built specifically to help developers verify saga logic during development. It does this by capturing saga message behavior and changes in saga data/state as the saga is being processed. It then sends this information to a ServiceControl instance set up in the development environment. The information is available in the *Saga* view in ServiceInsight and ServicePulse.
 
 
 > [!NOTE]

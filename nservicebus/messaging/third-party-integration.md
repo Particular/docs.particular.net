@@ -19,7 +19,7 @@ The [RabbitMQ](/samples/rabbitmq/native-integration/), [SQL](/samples/sqltranspo
 
 ## Visualization
 
-To visualize messages from third-party systems correctly within ServiceInsight, additional headers are necessary
+To visualize messages from third-party systems correctly within ServicePulse, additional headers are necessary.
 
 - [`NServiceBus.ConversationId`](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-conversationid) - used to show related messages in the Flow Diagram and Sequence Diagram. If this header is not provided, the message won't be included in the conversation it started, but a `ConversationId` will be generated for subsequent messages sent using NServiceBus.
 - [`NServiceBus.OriginatingEndpoint`](/nservicebus/messaging/headers.md#diagnostic-and-informational-headers-nservicebus-originatingendpoint) - used in all views, to show the logical endpoint that sent the message. This should be the name of the third-party endpoint sending the message. For example, _BizTalk.ProcessOrder_.
