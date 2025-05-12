@@ -23,7 +23,7 @@ When a message is selected from the message list, the Flow Diagram presents all 
 
 ![Flow Diagram](images/flow-diagram-message-flow.png 'width=800')
 
- Command messages are represented with solid arrows, indicating a direct relationship between sender and receiver. Events are represented using dashed arrows to reflect their publish-subscribe nature. This visualization is particularly useful for troubleshooting issues or understanding the complete lifecycle of a message, including how it interacts with sagas or leads to other message activity. Zooming and panning are supported and users can interact with the diagram to explore message behavior and diagnose issues.
+Command messages are represented with solid arrows, indicating a direct relationship between sender and receiver. Events are represented using dashed arrows to reflect their publish-subscribe nature. This visualization is particularly useful for troubleshooting issues or understanding the complete lifecycle of a message, including how it interacts with sagas or leads to other message activity. Zooming and panning are supported and users can interact with the diagram to explore message behavior and diagnose issues.
 
 ## Node Information
 
