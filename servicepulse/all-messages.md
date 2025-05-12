@@ -89,5 +89,5 @@ The view supports both manual and automatic refresh. These options update the di
   - Every 30 minutes
   - Every 1 hour
 
-  > [!NOTE]
-  > Having a low auto-refresh time continually active can have a negative impact on ServiceControl's performance
+> [!NOTE]
+> Having a low auto-refresh time continually active can have a negative impact on ServiceControl's performance
