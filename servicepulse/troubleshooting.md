@@ -89,7 +89,7 @@ To address this issue:
 
 ### Saga Audit plugin needed message seen in "Saga Diagram' tab
 
-If the message is part of the saga but saga audit plugin is not installed, ServicePulse will display a notification with instructions to install it.
+If the message is part of a saga but the saga audit plugin is not installed, ServicePulse will display a notification with instructions to install it.
 
 ![Saga Diagram Plugin Needed](images/saga-diagram-plugin-needed.png 'width=800')
 
