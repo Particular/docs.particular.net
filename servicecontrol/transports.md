@@ -27,15 +27,24 @@ Follow the link for each transport for additional information on configuration o
 
 ## Azure Service Bus
 
-Starting from version 6.4, ServiceControl runs Azure Service Bus transport that, by default, uses [topic-per-event topology](/transports/azure-service-bus/topology.md), as opposed to previously used [single-topic topology](/transports/azure-service-bus/topology.md?version=asbs_4). This change affects the publishing of [integration events](/servicecontrol/contracts.md). In order to continue using the single-topic topology, the topic name has to be specified exlicitly using the `TopicName=<topic-bundle-name>` connection string option.
+### Topic per event topology for integration events
 
-The new topology uses event type's full name as the name of the topic to which an event is published e.g. `servicecontrol.contracts.messagefailed`. This mapping can be customized by providing the [topology description in json](/transports/azure-service-bus/configuration.md#entity-creation-topology-mapping-options) using `ServiceControl.Transport.ASBS/Toplogy` application setting or `ServiceControl_Transport_ASBS_Toplogy` environment variable.
+Starting from version 6.4.0, ServiceControl runs Azure Service Bus transport that, by default, uses [topic-per-event topology](/transports/azure-service-bus/topology.md), as opposed to previously used [single-topic topology](/transports/azure-service-bus/topology.md?version=asbs_4). This breaking change affects the publishing of [integration events](/servicecontrol/contracts.md).
+
+In order to continue using the single-topic topology, the topic name has to be specified explicitly using the `TopicName=<topic-bundle-name>` connection string option.
+
+> [!WARNING]
+> If any subscribers exist for these integration events and these endpoints are not yet upgraded to NServiceBus.Transport.AzureServiceBus 5.x with NServiceBus 9.x then ServiceControl must be configured to use `TopicName=bundle-<topic-bundle-name>`
+
+The new topology uses event type's full name as the name of the topic to which an event is published e.g. `servicecontrol.contracts.messagefailed`. This mapping can be customized by providing the [topology description in json](/transports/azure-service-bus/configuration.md#entity-creation-topology-mapping-options) using `ServiceControl.Transport.ASBS/Topology` application setting or `ServiceControl_Transport_ASBS_Topology` environment variable.
 
 Furthermore, in addition to the [connection string options of the transport](/transports/azure-service-bus/configuration.md#configuring-an-endpoint) the following ServiceControl specific options are available in versions 4.4 and above:
 
 * `TransportType=AmqpWebSockets` - Configures the transport to use [AMQP over websockets](/transports/azure-service-bus/configuration.md#connectivity).
 * `TopicName=<topic-bundle-name>` - Specifies the [topic name](/transports/azure-service-bus/configuration.md#entity-creation) to be used by the instance. The default value is `bundle-1`.
 * `QueueLengthQueryDelayInterval=<value_in_milliseconds>` - Specifies the delay between queue length refresh queries for queue length monitoring. The default value is 500 ms.
+
+### Enabling Managed Identity
 
 As of version 4.21.8 of ServiceControl, the following options can be used to enable [Managed Identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview) authentication:
 
@@ -46,6 +55,8 @@ As of version 4.21.8 of ServiceControl, the following options can be used to ena
   * The fully-qualified namespace will be parsed from the `Endpoint=sb://my-namespace.servicebus.windows.net/` connection string option
   * When specifying managed identity for the connection string, a [`ManagedIdentityCredential`](https://docs.microsoft.com/en-us/dotnet/api/azure.identity.managedidentitycredential) will be used.
   * Set the `ClientId=some-client-id` connectionstring option to use a specific [user-assigned identity](https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview#managed-identity-types)
+
+### Enabling Partitioned Entities
 
 As of versions 4.33.3 and 5.0.5 of ServiceControl, support for partitioned entities can be enabled by adding the following connection string parameter:
 
