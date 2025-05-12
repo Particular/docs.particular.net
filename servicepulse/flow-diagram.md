@@ -27,7 +27,7 @@ Command messages are represented with solid arrows, indicating a direct relation
 
 ## Node Information
 
-Each node in the flow diagram represents a message. The message node includes an icon and background color that reflect its status. Failed messages appear with a red border and a selected failed message appears with a red background. Selected processed message appears in a gray background. .
+Each node in the flow diagram represents a message. The message node includes an icon and background color to reflect its status. Failed messages appear with a red border and a selected failed message appears with a red background. A selected processed message appears with a gray background.
 
 - The sending endpoint at the top (with host name)
 - Message type with a specific icon
