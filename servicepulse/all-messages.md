@@ -59,7 +59,7 @@ The results can be filtered by one or more of the following criteria:
 By default, the view displays 100 messages but can be customized to display up to a maximum of 500 messages. To display specific messages, modify the filters to narrow down the displayed results.
 
 > [!NOTE]
-> A message's body is searchable only if the body size is under 85kB, within the [`ServiceControl.Audit/MaxBodySizeToStore` size limit](/servicecontrol/audit-instances/configuration#performance-tuning-servicecontrol-auditmaxbodysizetostore), and is a non-binary content type.
+> A message's body is searchable only if the body size is under 85kB, within the [`ServiceControl.Audit/MaxBodySizeToStore` size limit](/servicecontrol/audit-instances/configuration.md#performance-tuning-servicecontrol-auditmaxbodysizetostore), and is a non-binary content type.
 
 ## Sorting Options
 
