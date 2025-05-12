@@ -45,7 +45,7 @@ Each node in the flow diagram represents a message. The message node includes an
 | ![Flow Diagram](images/flow-diagram-selected-message.png  'width=300')| Selected Message|
 
 ### Saga Indicators
- A message that starts a saga displays a "Saga Initiated" icon. If a message updates an ongoing saga's state, this is also indicated. When a saga concludes, the associated message is marked to show "Saga Completed." These visual cues make it easy to follow the lifecycle of long-running business processes across multiple messages.
+A message that starts a saga displays a "Saga Initiated" icon. If a message updates an ongoing saga's state then this is also indicated. When a saga concludes, the associated message is marked to show "Saga Completed". These visual cues assist with following the lifecycle of long-running business processes across multiple messages.
 
 | Saga Icon| Description |
 |------------|-------------|
