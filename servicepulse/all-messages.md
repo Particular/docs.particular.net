@@ -39,7 +39,7 @@ The results can be filtered by one or more of the following criteria:
 - **Endpoint:** Select a specific endpoint.
 - **Custom Filter:** Perform a free-text search across message data. This also supports wildcards.
 
-By default, the view displays 100 messages but can be customized to display up to a maximum of 500 messages. To display more messages, modify the filters to narrow down the search results.
+By default, the view displays 100 messages but can be customized to display up to a maximum of 500 messages. To display specific messages, modify the filters to narrow down the displayed results.
 
 > [!NOTE]
 > A message's body is searchable only if the body size is under 85kB, within the `ServiceControl.Audit/MaxBodySizeToStore` size limit, and is a non-binary content type.
@@ -71,3 +71,6 @@ The view supports both manual and automatic refresh. These options update the di
   - Every 10 minutes
   - Every 30 minutes
   - Every 1 hour
+  
+  > [!NOTE]
+  > Having a low auto-refresh time continually active can have a negative impact on ServiceControl's performance

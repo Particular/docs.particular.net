@@ -17,7 +17,7 @@ The Saga Diagram relies on audit data collected via the `NServiceBus.SagaAudit` 
 
 To view saga diagrams in ServicePulse:
 
-1. Install the `NServiceBus.SagaAudit` package in the endpoints:
+1. Install the `NServiceBus.SagaAudit` package in all endpoints that are participating in the Saga:
    ```
    install-package NServiceBus.SagaAudit
    ```
@@ -35,7 +35,7 @@ The "Saga Diagram" tab in ServicePulse appears when viewing a message involved i
 - Navigate to a message in ServicePulse (from the [All Messages](/servicepulse/all-messages.md) or [Failed Messages](/servicepulse/intro-failed-messages.md) view).
 - If the message is part of a saga, the "Saga Diagram" tab will be visible.
 - Click on the "Saga Diagram" tab to view the saga visualization.
-- The selected message is highlighted in blue in the "Saga Diagram."
+- The selected message is highlighted in blue in the "Saga Diagram".
 - If the saga audit plugin isn't installed, ServicePulse will display a notification with installation instructions.
 
 ![Saga Diagram Plugin Needed](images/saga-diagram-plugin-needed.png 'width=400')
@@ -57,11 +57,11 @@ Each message includes the following details:
 - Timestamp of processing.
 - Message type: Command <img src="images/message-command-icon.png" width="20" alt="command">, Event <img src="images/message-event-icon.png" width="20" alt="event">, Timeout <img src="images/message-timeout-icon.png" width="20" alt="timeout">.
 
-![Saga Diagram](images/saga-diagram-message.png 'width=350')
+![Saga Diagram Message](images/saga-diagram-message.png 'width=350')
 
 ### Incoming Messages (Left Column)
 
-The left column of the layout displays all messages that triggered the saga (e.g., events, commands, or timeouts). The first message usually initiates the saga.
+The left column of the layout displays all messages that triggered a state change in the saga (e.g., events, commands, or timeouts). The first message usually initiates the saga.
 
 **Example:** A `PlaceOrder` command message might be shown as the incoming message that initiated a saga.
 
@@ -79,7 +79,7 @@ The center column represents how saga data evolves after processing each message
 
 ![Saga Diagram Center View](images/saga-diagram-center-view.png 'width=800')
 
-- **State Changes View**: State transitions are shown using a diff view, highlighting properties that have changed. The left panel shows the previous state, and the right panel shows the current state. If no visible state changes appear, it’s likely because the message didn’t alter core business properties or only modified standard fields (e.g., `Id`, `Originator`, `OriginalMessageId`), which are filtered out. The diff view also has a maximize option that allows viewing the state changes in a larger modal popup.
+- **State Changes View**: State transitions are shown using a diff view, highlighting properties that have changed. The left panel shows the previous state, and the right panel shows the current state. If no visible state changes appear, it’s likely because the message didn’t alter core business properties or only modified standard fields (e.g., `Id`, `Originator`, `OriginalMessageId`), which are filtered out. The diff view also has a maximize option to enable viewing the state changes in a larger modal popup.
 
 **Example:** After an `OrderBilled` event, the saga state is updated with new values for `RunningTotal` properties.
 
@@ -87,7 +87,7 @@ The center column represents how saga data evolves after processing each message
 
 ### Outgoing Messages (Right Column)
 
-The right column of the saga diagram visualizes all outbound communications from a saga instance, including commands, events, and timeout requests, which represent delayed messages the saga requests for future processing. An outgoing item can be:
+The right column of the saga diagram visualizes all outbound communications from a saga instance, including commands, events, and timeout requests. An outgoing item can be:
 
 - **Command Messages**: These are direct commands sent to specific handlers and are displayed with the command name and timestamp.
 - **Event Messages**: These are events published by the saga and are displayed with the event name and timestamp.
@@ -97,7 +97,7 @@ The right column of the saga diagram visualizes all outbound communications from
 
 ### Message Data Viewer
 
-The layout also has a "Show Message Data" <img src="images/show-message-data.png" width="100" alt="show-message-data"> toggle button that shows/hides the message data beneath each incoming or outgoing message. The data view also has a maximize option that allows viewing the data in a larger modal popup with an option to copy to the clipboard.
+The layout also has a "Show Message Data" <img src="images/show-message-data.png" width="100" alt="show-message-data"> toggle button that shows/hides the message data beneath each incoming or outgoing message. The data view also has a maximize option to enable viewing the data in a larger modal popup, with an option to copy to the clipboard.
 
 ### Timeout Behavior
 
