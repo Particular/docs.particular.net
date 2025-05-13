@@ -1390,6 +1390,10 @@
           Title: Container deployment
         - Url: servicepulse/support-policy
           Title: Support Policy
+    - Title: Upgrade Guides
+      Articles:
+      - Title: Version 1 to 2
+        Url: servicepulse/1to2
     - Title: Configuration
       Articles:
         - Url: servicepulse/host-config
