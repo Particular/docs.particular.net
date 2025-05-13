@@ -20,6 +20,8 @@ The next step involves integrating the Particular Service Platform into the faç
 
 ![Figure 2 - Strangler Fig with NServiceBus](images/figure-2.png)
 
+In cases where legacy clients expect synchronous request/response behavior, [NServiceBus client-side callbacks](/nservicebus/messaging/callbacks.md) can be used to support gradual adoption of messaging while maintaining compatibility.
+
 ### Platform capabilities and initial benefits
 
 By introducing the Particular Service Platform at the API façade level, the system gains several operational benefits immediately—even before any business functionality is migrated:
@@ -60,7 +62,7 @@ The API façade may then be removed entirely, especially if no longer required f
 
 ---
 
-### Useful links
+### Additional resources
 
 For more information, see the following resources:
 
