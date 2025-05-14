@@ -142,7 +142,7 @@ The performance of the outbox feature depends on the scope of the transactions u
 
 ### Errors when dispatching the outbox messages
 
-The dispatch of the outbox messages is triggered in two different ways:
+The dispatch of the pending messages is triggered in two different ways:
 
 * In the incoming scenario, by the flow processing the message. This happens after the user transaction has been committed but before the incoming messsage is acknowledged.
 * In the non-incoming scenario, by the control message. This happens when processing the control message.
