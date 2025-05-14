@@ -17,7 +17,7 @@ This article discusses throughput characteristics of the SQL Server transport in
 
 A small set of stress tests has been done to estimate the maximum throughput on a single queue. It yielded the following results:
 
-| vCore | messages/s|
+| vCores | messages/second|
 |-|-|
 |8|600|
 |16|800|
@@ -31,7 +31,7 @@ Here are the CPU usage values:
 
 * 2 vCPU
 
-| messages/s | resource % |
+| messages/second | resource % |
 |-|-|
 |25 | 30% IO, 35% CPU|
 |50 | 65% IO, 65% CPU|
@@ -39,7 +39,7 @@ Here are the CPU usage values:
 
 * 4 vCPU
 
-| messages/s | resource % |
+| messages/second | resource % |
 |-|-|
 |25 | 15% IO, 15% CPU|
 |50 | 35% IO, 35% CPU|
@@ -48,7 +48,7 @@ Here are the CPU usage values:
 
 * 8 vCPU
 
-| messages/s | resource % |
+| messages/second | resource % |
 |-|-|
 |25 | 8% IO, 8% CPU|
 |50 | 17% IO, 17% CPU|
@@ -58,7 +58,7 @@ Here are the CPU usage values:
 
 * 16 vCPU
 
-| messages/s | resource % |
+| messages/second | resource % |
 |-|-|
 |25 | 9% IO, 4% CPU|
 |50 | 17% IO, 9% CPU|
@@ -70,7 +70,7 @@ Here are the CPU usage values:
 
 The total system throughput (for 15 endpoints in the test) for different per-endpoint throughputs are:
 
-| single endpoint messages/s | total messages/s |
+| single endpoint messages/second | total messages/second |
 |-|-|
 |25 | 375 |
 |50 | 750 |
@@ -81,7 +81,7 @@ The total system throughput (for 15 endpoints in the test) for different per-end
 
 In these scenarios the database is used both as a transport and as a data store for the application state, so it is recommended to assume that the CPU usage of the transport should not exceed 35% on average. That means that for a system consisting of 15 endpoints, the recommended vCPU count as a function of total throughput is:
 
-| total messages/s | vCores |
+| total messages/second | vCores |
 |-|-|
 |0-375 | 2  |
 |375-750 | 4  |
