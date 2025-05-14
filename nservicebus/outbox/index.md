@@ -182,7 +182,9 @@ In order to gradually convert an entire system from the DTC to the outbox:
 
 ## Message identity
 
-The outbox only uses the incoming [message identifier](/nservicebus/messaging/message-identity.md) as a unique key for deduplicating messages. If the sender does not use the outbox when sending messages, it is responsible for ensuring that the message identifier value is consistent when that message is sent multiple times.
+The outbox uses the incoming [message identifier](/nservicebus/messaging/message-identity.md) as a unique key for deduplicating messages. If the sender [specifies a custom message id](/nservicebus/messaging/message-identity.md#specifying-message-identity) when sending messages, it is responsible for ensuring that the message identifier value is consistent if the message is sent multiple times.
+
+Since message identifier are [only unique with in the scope of a logical endpoint from a processing perspective](/nservicebus/messaging/message-identity.md) its the responsibility of the persister to ensure that message identities are scoped to the [logical endpoint](/nservicebus/endpoints/#logical-endpoints) that is processing the message.
 
 ## Outbox expiration duration
 
