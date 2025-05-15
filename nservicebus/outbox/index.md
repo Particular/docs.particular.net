@@ -140,6 +140,12 @@ The performance of the outbox feature depends on the scope of the transactions u
 * Transactions scoped to multiple databases on a single server, also known as _cross-database transactions_, are supported by some persisters, such as those which use SQL Server. These transactions may have reasonably good performance but they may introduce other concerns. For example, [cross-database transactions are not supported by all types of tables in SQL Server](https://docs.microsoft.com/en-us/sql/relational-databases/in-memory-oltp/cross-database-queries).
 * Transactions scoped to multiple databases on multiple servers, also known as _distributed transactions_, are supported by persisters which use SQL Server, but they require the use of MSDTC and should generally be avoided for the same reasons as those listed in the [comparison with MSDTC](#comparison-with-msdtc) below.
 
+### Errors when dispatching the outbox messages
+
+The dispatch of the pending messages is triggered by the flow processing the message. This happens after the user transaction has been committed but before the incoming messsage is acknowledged.
+
+If the message triggering the dispatch fails to process but has been able to commit the database transaction, the message processing is retried as usual. However, if the message fails to process through all the retry attempts, the message will be moved to the error queue, and the outbox messages will not be dispatched. Once the error is resolved, the failed message should be retried to ensure the outgoing messages are dispatched. If this doesn't happen, this may result in zombie records. If that's undesirable, the system should be returned to a consistent state through another action.
+
 ## Comparison with MSDTC
 
 The [Microsoft Distributed Transaction Coordinator (DTC)](https://en.wikipedia.org/wiki/Microsoft_Distributed_Transaction_Coordinator) is a Windows technology that enlists multiple local transactions (called resource managers) within a single distributed `TransactionScope`. All enlisted transactions either complete successfully as a set or are all rolled back.
