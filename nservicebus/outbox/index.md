@@ -142,10 +142,7 @@ The performance of the outbox feature depends on the scope of the transactions u
 
 ### Errors when dispatching the outbox messages
 
-The dispatch of the pending messages is triggered in two different ways:
-
-* In the incoming scenario, by the flow processing the message. This happens after the user transaction has been committed but before the incoming messsage is acknowledged.
-* In the non-incoming scenario, by the control message. This happens when processing the control message.
+The dispatch of the pending messages is triggered by the flow processing the message. This happens after the user transaction has been committed but before the incoming messsage is acknowledged.
 
 If the message triggering the dispatch fails to process but has been able to commit the database transaction, the message processing is retried as usual. However, if the message fails to process through all the retry attempts, the message will be moved to the error queue, and the outbox messages will not be dispatched. Once the error is resolved, the failed message should be retried to ensure the outgoing messages are dispatched. If this doesn't happen, this may result in zombie records. If that's undesirable, the system should be returned to a consistent state through another action.
 
