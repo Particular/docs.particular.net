@@ -169,7 +169,7 @@ The endpoint receives the control message and processes it as follows:
 
 ## Failure scenarios
 
-The transactional session provides atomic store-and-send guarantees, similar to the outbox feature (except for incoming message de-duplication). That said, it cannot rely on the recoverability mechanism used by the outbox, which uses [retries](/nservicebus/recoverability) to ensure outgoing messages are dispatched when failures occur. Instead, the control message is used to ensure that **exactly one** of the following outcomes occur:
+The transactional session provides atomic store-and-send guarantees, similar to the outbox feature (except for incoming message de-duplication). The control message is used to ensure that **exactly one** of the following outcomes occur:
 
 * Transaction finishes with data being stored, and outgoing messages eventually sent - when the `Commit` path successfully stores the `OutboxRecord`
 * Transaction finishes with no visible side effects - when the control message stores the `OutboxRecord`
@@ -177,6 +177,8 @@ The transactional session provides atomic store-and-send guarantees, similar to 
 Sending the control message first ensures that eventually, the transaction will have an atomic outcome. If the `Commit` of the `OutboxRecord` succeeds, the control message will ensure the outgoing operations are sent. If the `Commit` fails, the control message will (after the [maximum commit duration](#advanced-configuration-maximum-commit-duration) elapses) eventually be consumed, leaving no side effects.
 
 If dispatching the control message fails, the transactional session changes will roll back, and an error will be raised to the user committing the session.
+
+If the transaction completes and the control message fails to process through all the retry attempts, the control message will be moved to the error queue, and the outgoing messages will not be dispatched. Once the error is resolved, the control message must be manually retried in ServicePulse to ensure the outgoing messages are dispatched. If this doesn't happen, the stored outgoing messages will never delivered. If that's undesirable, the system should be returned to a consistent state through another action.
 
 ## Limitations
 
