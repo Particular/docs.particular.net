@@ -26,12 +26,12 @@ The following methods can be used to install these requirements:
 
 > [!NOTE]
 > When installing ServiceControl, a connection string to a [transport](/transports/) is required. Since this may differ in format from the native connection string for the underlying queuing technology, please check the associated `Configuration` or `Connection Settings` page for your selected transport.
-> - [Azure Service Bus](/transports/azure-service-bus/configuration)
-> - [Azure Storage Queues](/transports/azure-storage-queues/configuration)
-> - [Amazon SQS](/transports/sqs/configuration-options)
-> - [RabbitMQ](/transports/rabbitmq/connection-settings)
-> - [SQL Server](/transports/sql/connection-settings)
-> - [PostgreSQL](/transports/postgresql/connection-settings)
+> - [Azure Service Bus](/transports/azure-service-bus/configuration.md)
+> - [Azure Storage Queues](/transports/azure-storage-queues/configuration.md)
+> - [Amazon SQS](/transports/sqs/configuration-options.md)
+> - [RabbitMQ](/transports/rabbitmq/connection-settings.md)
+> - [SQL Server](/transports/sql/connection-settings.md)
+> - [PostgreSQL](/transports/postgresql/connection-settings.md)
 
 ## Windows Installation
 
