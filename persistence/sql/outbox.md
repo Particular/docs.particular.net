@@ -13,7 +13,7 @@ The [outbox](/nservicebus/outbox) feature requires persistence in order to store
 
 To keep track of duplicate messages, the SQL persistence implementation of outbox requires the creation of dedicated outbox tables. The names of the outbox tables are generated automatically according to the rules for a given SQL dialect, for example the maximum name length limit.
 
-By default the endpoint name is used as the [table prefix](/persistence/sql/install.md#table-prefix) to [ensure that message identities for each endpoint is separated from each other](/nservicebus/outbox/#message-identity).
+By default, the endpoint name is used as the [table prefix](/persistence/sql/install.md#table-prefix) to [ensure that message identities for each endpoint are separated from each other](/nservicebus/outbox/#message-identity).
 
 > [!WARNING]
 > Configuring the same [table prefix](/persistence/sql/install.md#table-prefix) for endpoints sharing the same database will cause message loss for endpoints that are subscribed to the same event.
