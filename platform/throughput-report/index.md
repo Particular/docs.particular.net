@@ -5,6 +5,7 @@ reviewed: 2025-05-08
 related:
   - nservicebus/licensing
   - servicepulse/usage
+  - servicepulse/usage-config
 ---
 
 The Particular Service Platform is licensed based on the number of NServiceBus endpoints and the message throughput of those endpoints. In order to determine these values, a monitor needs to be run over the transport broker for a representative period of time (24 hours) and a report generated from this data to be sent to Particular.
@@ -23,6 +24,14 @@ The following methods can be used to install these requirements:
 - Linux or Windows
   - ServiceControl and ServicePulse through [Containers](#container-installation)
 
+> [!NOTE]
+> When installing ServiceControl, a connection string to a [transport](/transports/) is required. Since this may differ in format from the native connection string for the underlying queuing technology, please check the associated `Configuration` or `Connection Settings` page for your selected transport.
+> - [Azure Service Bus](/transports/azure-service-bus/configuration)
+> - [Azure Storage Queues](/transports/azure-storage-queues/configuration)
+> - [Amazon SQS](/transports/sqs/configuration-options)
+> - [RabbitMQ](/transports/rabbitmq/connection-settings)
+> - [SQL Server](/transports/sql/connection-settings)
+> - [PostgreSQL](/transports/postgresql/connection-settings)
 
 ## Windows Installation
 
