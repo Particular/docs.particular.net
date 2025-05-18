@@ -2,7 +2,7 @@
 title: Use Bridge to connect to ServiceControl running on different transport
 summary: Centralize monitoring of mixed transport solution with the Bridge
 component: Bridge
-reviewed: 2023-05-16
+reviewed: 2025-05-19
 related:
  - servicecontrol
  - nservicebus/bridge
