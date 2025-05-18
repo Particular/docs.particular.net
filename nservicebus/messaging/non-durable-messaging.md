@@ -29,7 +29,7 @@ Each transport implements non-durable messaging differently based on its underly
 
 MSMQ typically uses _Store and Forward_ by default, storing messages durably on disk before delivery. With non-durable messaging, MSMQ sends messages in [Express Mode](https://msdn.microsoft.com/en-us/library/ms704130) by setting [`Message.Recoverable`](https://msdn.microsoft.com/en-us/library/system.messaging.message.recoverable) to `false`.
 
-Non-durable messages require non-transactional queues. Configure this by setting `useTransactionalQueues` to `false` in the transport [connection string](/transports/msmq/connection-strings.md).
+Non-durable messages require [non-transactional queues](https://msdn.microsoft.com/en-us/library/ms704006). Configure this by setting `useTransactionalQueues` to `false` in the [transport connection string](/transports/msmq/connection-strings.md).
 
 > [!NOTE]
 > When using non-transactional queues, endpoints must be [configured not to use transactions](/transports/transactions.md#transactions-unreliable-transactions-disabled).
