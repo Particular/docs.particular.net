@@ -2,12 +2,12 @@
 using NServiceBus;
 using Microsoft.Extensions.Logging;
 
-class MyMessageHandler(ILogger<MyMessageHandler> logger) :
+sealed class MyMessageHandler(ILogger<MyMessageHandler> logger) :
     IHandleMessages<MyMessage>
 {
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Processing message {message.Id}");
+        logger.LogInformation("Processing message {MessageId}", message.Id);
         return FailureSimulator.Invoke();
     }
 }
