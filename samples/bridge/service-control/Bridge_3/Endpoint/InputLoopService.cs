@@ -29,11 +29,7 @@ public class InputLoopService(IMessageSession messageSession) : BackgroundServic
             if (lowerInvariant == 'o')
             {
                 var id = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                var message = new MyMessage
-                {
-                    Id = id,
-                };
-
+                var message = new MyMessage(id);
                 await messageSession.Send(message, stoppingToken);
             }
             if (lowerInvariant == 'f')

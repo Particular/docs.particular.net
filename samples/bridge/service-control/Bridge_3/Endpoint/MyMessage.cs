@@ -1,7 +1,3 @@
 ﻿using NServiceBus;
 
-class MyMessage :
-    IMessage
-{
-    public string Id { get; set; }
-}
+record MyMessage(string Id) : IMessage;
