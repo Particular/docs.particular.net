@@ -6,7 +6,7 @@ using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 
-public class InputLoopService(IMessageSession messageSession) : BackgroundService
+public sealed class InputLoopService(IMessageSession messageSession) : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {

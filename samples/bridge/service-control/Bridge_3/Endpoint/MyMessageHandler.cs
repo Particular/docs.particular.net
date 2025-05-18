@@ -2,7 +2,7 @@
 using NServiceBus;
 using Microsoft.Extensions.Logging;
 
-class MyMessageHandler(ILogger<MyMessageHandler> logger) :
+sealed class MyMessageHandler(ILogger<MyMessageHandler> logger) :
     IHandleMessages<MyMessage>
 {
     public Task Handle(MyMessage message, IMessageHandlerContext context)
