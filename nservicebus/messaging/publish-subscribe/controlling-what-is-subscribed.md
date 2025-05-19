@@ -63,8 +63,8 @@ In NServiceBus version 6 and above, `Subscribe` and `Unsubscribe` are accessible
 
 ## Decomissioning event handlers
 
-An event it not automatically unsubscribed when an message handler for an event is removed. The subscription remains active until it is unsubscribed.
+An event is not automatically unsubscribed when a message handler is removed. The subscription remains active until it is unsubscribed.
 
-Unsubscribing can be done at startup via `IMessageSession.Unsubscribe`. For example via a background service:
+Unsubscribing can be done at startup via `IMessageSession.Unsubscribe`. For example, via a background service:
 
 snippet: UnsubscribeBackgroundService
