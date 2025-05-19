@@ -1,6 +1,6 @@
 ## NServiceBus Endpoint
 
-The `nsbendpoint` template will create a C# project for an NServiceBus endpoint. By selecting options, the endpoint is preconfigured with choices of:
+The `nsbendpoint` template creates a C# project for an NServiceBus endpoint. By selecting options, the endpoint is preconfigured with choices of:
 
 *  Target framework
 *  [Message transport](/transports/)
