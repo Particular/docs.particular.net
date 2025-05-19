@@ -25,6 +25,7 @@ var audit = builder.AddContainer("ServiceControl-Audit", "particular/servicecont
     .WithEnvironment("RAVENDB_CONNECTIONSTRING", ravenDB.GetEndpoint("http"))
     .WithArgs("--setup-and-run")
     .WithHttpEndpoint(44444, 44444)
+    .WithUrlForEndpoint("http", url => url.DisplayLocation = UrlDisplayLocation.DetailsOnly)
     .WithHttpHealthCheck("api/configuration")
     .WaitFor(transport)
     .WaitFor(ravenDB);
@@ -33,13 +34,10 @@ var serviceControl = builder.AddContainer("ServiceControl", "particular/servicec
     .WithEnvironment("TRANSPORTTYPE", "RabbitMQ.QuorumConventionalRouting")
     .WithEnvironment("CONNECTIONSTRING", transport)
     .WithEnvironment("RAVENDB_CONNECTIONSTRING", ravenDB.GetEndpoint("http"))
-    .WithEnvironment("REMOTEINSTANCES", () =>
-    {
-        var endpoint = audit.GetEndpoint("http");
-        return $"[{{\"api_uri\":\"http://{endpoint.Resource.Name}:{endpoint.Port}\"}}]";
-    })
+    .WithEnvironment("REMOTEINSTANCES", $"[{{\"api_uri\":\"{audit.GetEndpoint("http")}\"}}]")
     .WithArgs("--setup-and-run")
     .WithHttpEndpoint(33333, 33333)
+    .WithUrlForEndpoint("http", url => url.DisplayLocation = UrlDisplayLocation.DetailsOnly)
     .WithHttpHealthCheck("api/configuration")
     .WaitFor(transport)
     .WaitFor(ravenDB);
@@ -49,6 +47,7 @@ var monitoring = builder.AddContainer("ServiceControl-Monitoring", "particular/s
     .WithEnvironment("CONNECTIONSTRING", transport)
     .WithArgs("--setup-and-run")
     .WithHttpEndpoint(33633, 33633)
+    .WithUrlForEndpoint("http", url => url.DisplayLocation = UrlDisplayLocation.DetailsOnly)
     .WithHttpHealthCheck("connection")
     .WaitFor(transport);
 
