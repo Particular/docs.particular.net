@@ -1093,7 +1093,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.47.x](https://www.nuget.org/packages/Particular.PlatformSample/3.47.0) | 2025-05-13     | -                 | -                                 |
+| [3.49.x](https://www.nuget.org/packages/Particular.PlatformSample/3.49.0) | 2025-05-19     | -                 | -                                 |
+| [3.47.x](https://www.nuget.org/packages/Particular.PlatformSample/3.47.0) | 2025-05-13     | 2025-08-19        | Superseded by 3.49.x              |
 | [3.45.x](https://www.nuget.org/packages/Particular.PlatformSample/3.45.0) | 2025-04-29     | 2025-08-13        | Superseded by 3.47.x              |
 | [3.43.x](https://www.nuget.org/packages/Particular.PlatformSample/3.43.0) | 2025-04-16     | 2025-07-29        | Superseded by 3.45.x              |
 | [3.42.x](https://www.nuget.org/packages/Particular.PlatformSample/3.42.0) | 2025-04-09     | 2025-07-16        | Superseded by 3.43.x              |
@@ -1103,7 +1104,7 @@
 | [3.34.x](https://www.nuget.org/packages/Particular.PlatformSample/3.34.0) | 2025-03-17     | 2025-06-21        | Superseded by 3.36.x              |
 | [3.33.x](https://www.nuget.org/packages/Particular.PlatformSample/3.33.0) | 2025-03-03     | 2025-06-17        | Superseded by 3.34.x              |
 | [3.32.x](https://www.nuget.org/packages/Particular.PlatformSample/3.32.0) | 2025-02-21     | 2025-06-03        | Superseded by 3.33.x              |
-| [3.26.x](https://www.nuget.org/packages/Particular.PlatformSample/3.26.0) | 2025-02-03     | 2025-05-21        | Superseded by 3.32.x              |
+| [~~3.26.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.26.0) | ~~2025-02-03~~ | ~~2025-05-21~~    | ~~Superseded by 3.32.x~~          |
 | [~~3.25.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.25.0) | ~~2025-01-27~~ | ~~2025-05-03~~    | ~~Superseded by 3.26.x~~          |
 | [~~3.24.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.24.0) | ~~2025-01-22~~ | ~~2025-04-27~~    | ~~Superseded by 3.25.x~~          |
 | [~~3.23.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.23.0) | ~~2024-12-20~~ | ~~2025-04-22~~    | ~~Superseded by 3.24.x~~          |
