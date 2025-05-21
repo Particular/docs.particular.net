@@ -4,7 +4,7 @@ summary: Legacy Modernization with NServiceBus and the Strangler Fig Pattern
 reviewed: 2025-05-12
 ---
 
-For teams maintaining legacy .NET systems, modernization can feel daunting. Rewrites are risky, and big-bang migrations rarely go to plan. An alternative approach involves introducing the [Particular Platform](https://particular.net/platform) into a legacy environment using the [Strangler Fig pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/strangler-fig).
+For teams maintaining legacy .NET systems, modernization can feel daunting. Rewrites are risky, and big-bang migrations rarely go to plan. An alternative approach involves introducing the [Particular Platform](/platform) into a legacy environment using the [Strangler Fig pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/strangler-fig).
 
 ## Establishing the façade
 
