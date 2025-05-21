@@ -74,4 +74,3 @@ For more information, see the following resources:
 - [Particular Platform Overview](/platform)
 - [NServiceBus Documentation](/nservicebus)
 - [ServicePulse Documentation](/servicepulse)
-- [ServiceInsight Documentation](/serviceinsight)
