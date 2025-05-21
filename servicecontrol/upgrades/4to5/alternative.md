@@ -4,8 +4,6 @@ reviewed: 2025-05-21
 summary: Advanced alternative ServiceControl v4 migration for environment that cannot retry all messages immediately
 ---
 
-# Obsolete v4 primary instance
-
 The approach available at </servicecontrol/upgrades/4to5/> assumes that all failed message can be retried without side-effects. Not all users are able to analyze all failures but do want to upgrade a supported version.
 
 This is an alternative migration which will ensure the existing old instance to no longer ingest error messages.
