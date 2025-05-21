@@ -117,4 +117,4 @@ Re-run setup so the queues for this instance are created:
 
 Steps:
 
-- Add a new error instance on this machine, on another VM, or host this as a container using our existing guidance.
+- Add a new error instance on this machine, on another VM, as normally.
