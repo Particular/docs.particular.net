@@ -22,7 +22,7 @@ Monitor instance are stateless and can be upgraded without any issues. It is OK 
 
 V4 instance do not need to be migrated and can remain active until the retention period has passed. After that the database no longer contains any messages and can be removed.
 
-However, we need to configure the instance to longer ingest messages from the audit queue.
+However, the instance needs to be configured to longer ingest messages from the audit queue.
 
 Steps:
 
@@ -70,7 +70,7 @@ Steps:
 
 ### Change ServiceControl instance queue
 
-We need to update the queue as existing endpoints are sending heartbeats to this.
+Change the queue name used as existing endpoints are sending heartbeats to this.
 
 > [!NOTE]
 > If you are not using heartbeats this step it not required
