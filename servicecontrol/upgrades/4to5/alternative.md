@@ -1,3 +1,10 @@
+---
+title: Alternative ServiceControl v4 to newer migration
+reviewed: 2025-05-21
+summary: Advanced alternative ServiceControl v4 migration for environment that cannot retry all messages immediately
+redirects:
+- tutorials/monitoring
+---
 
 # Obsolete v4 primary instance
 
@@ -8,10 +15,10 @@ This is an alternative migration which will ensure the existing old instance to 
 > [!NOTE]
 > This results in **2** separate error instances. ServicePulse *cannot* show data for both simultaniously. [ServicePulse can be configured to connect to a different instance](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui)
 
-
 ## Monitor instances
 
 Monitor instance are stateless and can be upgraded without any issues. It is OK to remove the instance from (virtual) machine 1 and install with the same name on (virtual) machine 2.
+
 
 ## Audit instances
 
@@ -49,6 +56,7 @@ Steps:
 - Navigate error instance service, right click and open properties
 - Select `Startup type` is `Disabled` and select `Apply`
 - Select `Stop`
+
 
 ### Configure to stop ingestion of error queue
 
