@@ -40,6 +40,10 @@ With messaging in place, new components can take on specific responsibilities ou
 
 ![Figure 3 - Strangler Fig with NServiceBus - Migrating Functionality](images/figure-3.png)
 
+> [!NOTE]
+> **Don’t forget your batch jobs**  
+> Legacy systems often rely on scheduled batch jobs for critical business operations, but these are often brittle and opaque. As you modernize, consider replacing them with message-driven handlers to improve reliability, visibility, and alignment with an asynchronous architecture. See [*Death to the Batch Job*](https://particular.net/blog/death-to-the-batch-job/) for more.
+
 ### Intermediate benefits
 
 As business logic moves into new services, the benefits compound:
