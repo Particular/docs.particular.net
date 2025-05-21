@@ -110,7 +110,7 @@ Re-run setup so the queues for this instance are created:
 
 ### Add new error instance
 
-> [!NOTE
+> [!NOTE]
 > It is essential that the previous service name is used
 
 Steps:
