@@ -27,7 +27,7 @@ In cases where legacy clients expect synchronous request/response behavior, [NSe
 By introducing the Particular Service Platform at the API façade level, the system gains several operational benefits immediately—even before any business functionality is migrated:
 
 - **Reliability & resilience**: Messages are durably stored, automatically retried on failure, and protected from data loss. The system can recover from transient failures without manual intervention.
-- **Observability & diagnostics**: ServiceInsight offers out-of-the-box observability tools, including near real-time monitoring, message flow visualization, debugging insights, and recovery operations such as retrying failed messages. These capabilities provide visibility into system behavior often absent from legacy applications.
+- **Observability & diagnostics**: ServicePulse offers out-of-the-box observability tools, including near real-time monitoring, message flow visualization, debugging insights, and recovery operations such as retrying failed messages. These capabilities provide visibility into system behavior often absent from legacy applications.
 - **Backpressure & decoupling**: Queues absorb spikes in load, and messaging decouples producers and consumers, reducing direct dependencies on the legacy system.
 - **Error handling**: Failed messages are routed to an error queue and can be retried once the issue is resolved. While this does not eliminate failures in the legacy app, it improves transparency and recovery.
 - **Operational safety**: New logic can be introduced into the façade or new services with reduced risk, enabling safer, incremental delivery.
