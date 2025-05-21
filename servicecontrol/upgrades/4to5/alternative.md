@@ -2,8 +2,6 @@
 title: Alternative ServiceControl v4 to newer migration
 reviewed: 2025-05-21
 summary: Advanced alternative ServiceControl v4 migration for environment that cannot retry all messages immediately
-redirects:
-- tutorials/monitoring
 ---
 
 # Obsolete v4 primary instance
