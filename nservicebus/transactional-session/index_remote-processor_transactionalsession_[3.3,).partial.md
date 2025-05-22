@@ -4,7 +4,7 @@ If used in a [send-only](/nservicebus/hosting/#self-hosting-send-only-hosting) e
 
 snippet: configure-remote-processor
 
-> [!WARN]
+> [!WARNING]
 > Both the send only endpoint and the processor endpoint must be connected to the same database. See [documentation for the individual persisters](/persistence/) for more details.
 
 ### Outbox cleanup
