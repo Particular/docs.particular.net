@@ -29,7 +29,7 @@ class Api
 
         var transactionalSessionOptions = new TransactionalSessionOptions
         {
-            ProcessorAddress = "MyRemoteProcessor"
+            ProcessorEndpoint = "MyProcessorEndpoint"
         };
 
         endpointConfiguration.UsePersistence<MyPersistence>()
