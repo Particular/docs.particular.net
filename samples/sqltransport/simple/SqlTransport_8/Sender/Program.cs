@@ -1,14 +1,18 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 Console.Title = "SimpleSender";
+
 var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.SimpleSender");
 endpointConfiguration.EnableInstallers();
 
 #region TransportConfiguration
 // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=SqlServerSimple;Integrated Security=True;Max Pool Size=100;Encrypt=false
-var connectionString = @"Server=localhost,1433;Initial Catalog=SqlServerSimple;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
+var connectionString = @"Server=localhost,1433;Initial Catalog=nservicebus;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
 var routing = endpointConfiguration.UseTransport(new SqlServerTransport(connectionString)
 {
     TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
@@ -22,31 +26,39 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
 await SqlHelper.EnsureDatabaseExists(connectionString);
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-await SendMessages(endpointInstance);
+var builder = Host.CreateApplicationBuilder(args);
+builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddHostedService<InputLoop>();
+using var host = builder.Build();
 
-await endpointInstance.Stop();
+await host.RunAsync();
 
-static async Task SendMessages(IMessageSession messageSession)
+sealed class InputLoop(IMessageSession messageSession) : BackgroundService
 {
-    Console.WriteLine("Press [c] to send a command, or [e] to publish an event. Press [Esc] to exit.");
-    while (true)
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        var input = Console.ReadKey();
-        Console.WriteLine();
-
-        switch (input.Key)
+        Console.WriteLine("Press [c] to send a command, or [e] to publish an event. Press CTRL+C to exit.");
+        while (true)
         {
-            case ConsoleKey.C:
-                await messageSession.Send(new MyCommand());
-                break;
-            case ConsoleKey.E:
-                await messageSession.Publish(new MyEvent());
-                break;
-            case ConsoleKey.Escape:
-                return;
+            if (!Console.KeyAvailable)
+            {
+                await Task.Delay(100, stoppingToken);
+                continue;
+            }
+
+            var input = Console.ReadKey();
+            Console.WriteLine();
+
+            switch (input.Key)
+            {
+                case ConsoleKey.C:
+                    await messageSession.Send(new MyCommand(), cancellationToken: stoppingToken);
+                    break;
+                case ConsoleKey.E:
+                    await messageSession.Publish(new MyEvent(), cancellationToken: stoppingToken);
+                    break;
+            }
         }
     }
 }
-
