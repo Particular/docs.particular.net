@@ -12,7 +12,7 @@ endpointConfiguration.EnableInstallers();
 
 #region TransportConfiguration
 // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=SqlServerSimple;Integrated Security=True;Max Pool Size=100;Encrypt=false
-var connectionString = @"Server=localhost,1433;Initial Catalog=nservicebus;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
+var connectionString = @"Server=localhost,1433;Initial Catalog=SqlServerSimple;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
 var routing = endpointConfiguration.UseTransport(new SqlServerTransport(connectionString)
 {
     TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
@@ -26,11 +26,11 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
 await SqlHelper.EnsureDatabaseExists(connectionString);
 
-
 var builder = Host.CreateApplicationBuilder(args);
 builder.UseNServiceBus(endpointConfiguration);
 builder.Services.AddHostedService<InputLoop>();
-using var host = builder.Build();
+
+var host = builder.Build();
 
 await host.RunAsync();
 
