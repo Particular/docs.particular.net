@@ -9,7 +9,7 @@ static class Program
 {
     static async Task Main()
     {
-        Console.Title = "Sample.Unity";
+        Console.Title = "UnitySample";
 
         var endpointConfiguration = new EndpointConfiguration("Sample.Unity");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
