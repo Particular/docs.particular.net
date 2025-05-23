@@ -7,6 +7,7 @@ class Program
     static async Task Main()
     {
         MsmqUtils.SetUpDummyQueue();
+
         var endpointConfiguration = new EndpointConfiguration("SampleEndpoint");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new MsmqTransport());
