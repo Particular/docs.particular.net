@@ -19,6 +19,6 @@ When connecting to an external RavenDB instance, the RavenDB client certificate 
 1. An environment variable `RAVENDB_CLIENTCERTIFICATEBASE64` can be used to supply the client certificate as a Base64-encoded string.
 2. An environment variable `RAVENDB_CLIENTCERTIFICATEPATH` can be used to identify the local path to a certificate that has added to the container via a mounted volume.
 3. The app will attempt to load the certificate from `/app/raven-client-certificate.pfx`.
-4. The app will attempte to access the database without a client certificate.
+4. The app will attempt to access the database without a client certificate.
 
 In any of the above cases, the certificate can be password-protected, in which case the password can be supplied using the `RAVENDB_CLIENTCERTIFICATEPASSWORD` environment variable.

@@ -2,9 +2,7 @@ using System;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-
 Console.Title = "SimpleReceiver";
-var builder = Host.CreateApplicationBuilder(args);
 
 var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.SimpleReceiver");
 
@@ -20,11 +18,11 @@ endpointConfiguration.UseTransport(new SqlServerTransport(connectionString)
 endpointConfiguration.EnableInstallers();
 
 await SqlHelper.EnsureDatabaseExists(connectionString);
-Console.WriteLine("Press any key to exit");
-Console.WriteLine("Waiting for message from the Sender");
-Console.ReadKey();
 
-
+var builder = Host.CreateApplicationBuilder(args);
 builder.UseNServiceBus(endpointConfiguration);
 
-await builder.Build().RunAsync();
+var host = builder.Build();
+
+Console.WriteLine("Press CTRL+C to exit");
+await host.RunAsync();

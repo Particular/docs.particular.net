@@ -140,6 +140,12 @@ The performance of the outbox feature depends on the scope of the transactions u
 * Transactions scoped to multiple databases on a single server, also known as _cross-database transactions_, are supported by some persisters, such as those which use SQL Server. These transactions may have reasonably good performance but they may introduce other concerns. For example, [cross-database transactions are not supported by all types of tables in SQL Server](https://docs.microsoft.com/en-us/sql/relational-databases/in-memory-oltp/cross-database-queries).
 * Transactions scoped to multiple databases on multiple servers, also known as _distributed transactions_, are supported by persisters which use SQL Server, but they require the use of MSDTC and should generally be avoided for the same reasons as those listed in the [comparison with MSDTC](#comparison-with-msdtc) below.
 
+### Errors when dispatching the outbox messages
+
+The dispatch of the pending messages is triggered by the flow processing the message. This happens after the user transaction has been committed but before the incoming messsage is acknowledged.
+
+If the message triggering the dispatch fails to process but has been able to commit the database transaction, the message processing is retried as usual. However, if the message fails to process through all the retry attempts, the message will be moved to the error queue, and the outbox messages will not be dispatched. Once the error is resolved, the failed message should be retried to ensure the outgoing messages are dispatched. If this doesn't happen, this may result in zombie records. If that's undesirable, the system should be returned to a consistent state through another action.
+
 ## Comparison with MSDTC
 
 The [Microsoft Distributed Transaction Coordinator (DTC)](https://en.wikipedia.org/wiki/Microsoft_Distributed_Transaction_Coordinator) is a Windows technology that enlists multiple local transactions (called resource managers) within a single distributed `TransactionScope`. All enlisted transactions either complete successfully as a set or are all rolled back.
@@ -182,7 +188,9 @@ In order to gradually convert an entire system from the DTC to the outbox:
 
 ## Message identity
 
-The outbox only uses the incoming [message identifier](/nservicebus/messaging/message-identity.md) as a unique key for deduplicating messages. If the sender does not use the outbox when sending messages, it is responsible for ensuring that the message identifier value is consistent when that message is sent multiple times.
+The outbox uses the incoming [message identifier](/nservicebus/messaging/message-identity.md) as a unique key for deduplicating messages. When sending messages with a [custom message id](/nservicebus/messaging/message-identity.md#specifying-message-identity), the sender should ensure that the message identifier value is consistent if the message is sent multiple times.
+
+Since message identifiers are [unique only within the scope of a logical endpoint from a processing perspective](/nservicebus/messaging/message-identity.md) it is the responsibility of the persister to ensure that message identities are scoped to the [logical endpoint](/nservicebus/endpoints/#logical-endpoints) that is processing the message to allow multiple endpoints to use the same database.
 
 ## Outbox expiration duration
 

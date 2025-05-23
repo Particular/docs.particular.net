@@ -54,14 +54,14 @@ Using `--setup-and-run` removes the need to repeat a setup process when the cont
 
 ## Required settings
 
-_Environment variable:_ `REMOTEINSTANCES`
-
 The following environment settings are required to run a ServiceControl error instance.
 
 include: servicecontrol-container-transport
 include: servicecontrol-container-ravenconnectionstring
 
 ### Remote instances
+
+_Environment variable:_ `REMOTEINSTANCES`
 
 A JSON structure that provides URLs for the Error instance to access any [remote audit instances](/servicecontrol/servicecontrol-instances/remotes.md). When requesting audit data via the ServiceControl API, the Error instance will communicate to each of the remote audit instances in a scatter-gather pattern and then return the combined results. The URLs must be accessible by the Error instance directly, not constructed to be accessible from an external browser.
 

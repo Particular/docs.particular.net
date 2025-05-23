@@ -1,54 +1,42 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Endpoint1;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-class Program
-{
-    public static async Task Main(string[] args)
+var host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices((hostContext, services) => { services.AddHostedService<InputLoopService>(); })
+    .UseNServiceBus(x =>
     {
-        await CreateHostBuilder(args).Build().RunAsync();
-    }
+        #region endpointName
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureServices((hostContext, services) =>
-            {
-                services.AddHostedService<InputLoopService>();
+        var endpointName = "Samples.Azure.StorageQueues.Endpoint1.With.A.Very.Long.Name.And.Invalid.Characters";
+        var endpointConfiguration = new EndpointConfiguration(endpointName);
 
-            }).UseNServiceBus(x =>
-            {
-                #region endpointName
+        #endregion
 
-                var endpointName = "Samples.Azure.StorageQueues.Endpoint1.With.A.Very.Long.Name.And.Invalid.Characters";
-                var endpointConfiguration = new EndpointConfiguration(endpointName);
+        Console.Title = endpointName;
 
-                #endregion
+        #region config
 
-                Console.Title = endpointName;
+        var transport = new AzureStorageQueueTransport("UseDevelopmentStorage=true");
+        var routingSettings = endpointConfiguration.UseTransport(transport);
+        routingSettings.RouteToEndpoint(typeof(Endpoint2.MyRequest), "Samples-Azure-StorageQueues-Endpoint2");
 
-                #region config
+        #endregion
 
-                var transport = new AzureStorageQueueTransport("UseDevelopmentStorage=true");
-                var routingSettings = endpointConfiguration.UseTransport(transport);
+        #region sanitization
 
-                #endregion
+        transport.QueueNameSanitizer = BackwardsCompatibleQueueNameSanitizer.WithMd5Shortener;
 
-                #region sanitization
+        #endregion
 
-                transport.QueueNameSanitizer = BackwardsCompatibleQueueNameSanitizer.WithMd5Shortener;
+        routingSettings.DisablePublishing();
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        endpointConfiguration.EnableInstallers();
 
-                #endregion
+        return endpointConfiguration;
+    }).Build();
 
-                routingSettings.DisablePublishing();
-                endpointConfiguration.UsePersistence<LearningPersistence>();
-                endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-                endpointConfiguration.EnableInstallers();
-
-
-                return endpointConfiguration;
-            });
-
-}
+await host.RunAsync();

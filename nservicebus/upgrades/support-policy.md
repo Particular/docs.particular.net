@@ -18,7 +18,7 @@ Supported versions of NServiceBus and its associated packages are determined by 
 
 ### NServiceBus package
 
-- Major versions are supported for a period of two years after the release of the next major version.
+- Major versions are supported for two years after the release of the next major version.
 - Minor versions of a supported major version are supported for a period of six months after the release of the next minor version.
 - Only the latest patch release of each supported minor version is supported.
 

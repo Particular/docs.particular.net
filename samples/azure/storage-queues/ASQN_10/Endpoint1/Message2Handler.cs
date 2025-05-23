@@ -2,12 +2,12 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class Message2Handler :
-    IHandleMessages<Message2>
+public class MyResponseHandler :
+    IHandleMessages<MyResponse>
 {
-    static ILog log = LogManager.GetLogger<Message2Handler>();
+    static ILog log = LogManager.GetLogger<MyResponseHandler>();
 
-    public Task Handle(Message2 message, IMessageHandlerContext context)
+    public Task Handle(MyResponse message, IMessageHandlerContext context)
     {
         log.Info($"Received Message2: {message.Property}");
         return Task.CompletedTask;

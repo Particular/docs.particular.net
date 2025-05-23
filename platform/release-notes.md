@@ -1,7 +1,7 @@
 ---
 title: Platform Releases
 summary: Links to current and previous releases as well as release notes for the Particular Service Platform applications
-reviewed: 2023-05-23
+reviewed: 2025-05-13
 ---
 
 ## Applications and tools

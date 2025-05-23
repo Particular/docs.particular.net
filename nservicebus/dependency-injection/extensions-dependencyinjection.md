@@ -1,7 +1,7 @@
 ---
 title: NServiceBus.Extensions.DependencyInjection
 summary: Integration with Microsoft.Extensions.DependencyInjection
-reviewed: 2023-06-02
+reviewed: 2025-05-13
 component: Extensions.DependencyInjection
 related:
  - samples/dependency-injection/extensions-dependency-injection

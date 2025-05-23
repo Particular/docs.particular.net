@@ -1,7 +1,7 @@
 ---
 title: System.Text.Json Serializer sample
 summary: NServiceBus sample that shows how to use the builtin System.Text.Json serializer in an endpoint
-reviewed: 2023-06-12
+reviewed: 2025-05-19
 component: SystemJson
 related:
  - nservicebus/serialization/system-json

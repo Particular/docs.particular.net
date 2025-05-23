@@ -1,10 +1,11 @@
 ---
 title: Failed Message Monitoring
-summary: Describes how ServicePulse detects and monitors failed messages, and allows retrying, or deleting of failed messages
+summary: Describes how ServicePulse detects and monitors failed messages
 component: ServicePulse
-reviewed: 2023-11-07
+reviewed: 2023-04-15
 related:
-- serviceinsight/managing-errors-and-retries
+- servicepulse/intro-failed-message-retries
+- servicepulse/message-details
 ---
 
 When an NServiceBus endpoint fails to process a message, it performs a set of configurable attempts to recover from message failure. These attempts are referred to as "immediate retries" and "delayed retries" and in many cases allow the endpoint to overcome intermittent communication failures. See [recoverability](/nservicebus/recoverability/) for more details.
@@ -89,27 +90,7 @@ The following actions can also be taken on each message or a selection of messag
 
 ### Message details page
 
-As of version 1.8.0 and above, each message can be browsed to see in-depth details about a given failed message, delete or to retry that message.
-
-![Failed Messages Page](images/failed-message-page.png 'width=500')
-
-Individual messages can be accessed by clicking the respective entry in any of the message list views.
-
-Each individual failed message page allows for viewing the following additional message details:
-
-* **Message metadata** - Failure timestamp, endpoint name and location, retry status.
-* **StackTrace** - Full .NET exception stacktrace.
-* **Headers** - Complete set of message headers.
-* **Body** - Serialized message body.
-* **Flow diagram** - Displays a flow diagram of the conversation that contains the failed message. Other failed messages in the conversation can also be viewed and link to their respective details pages.
-
-![Flow Diagram](images/flow-diagram.png 'width=500')
-
-The following actions can also be taken on any given message:
-
-* **Retry** - Sends message to be [retried](/servicepulse/intro-failed-message-retries.md) by the corresponding endpoint.
-* **Delete** - Deletes the message.
-* **View in ServiceInsight** - Launches [ServiceInsight](/serviceinsight/), focusing on the failed message for in-depth analysis of the failure causes. This only works if ServiceInsight is installed on the local machine.
+The failed [message details](message-details.md) page is shared with [All Messages](all-messages.md).
 
 #### Sharing message data from ServicePulse
 

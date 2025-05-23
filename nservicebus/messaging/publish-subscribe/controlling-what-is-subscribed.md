@@ -5,7 +5,6 @@ component: Core
 reviewed: 2025-05-09
 ---
 
-
 ## Automatic subscriptions
 
 The default mode for managing subscriptions is *auto-subscribe*. Every time a subscriber endpoint starts, it determines which events it needs to subscribe to and automatically subscribes to them. For more information on how publish and subscribe works, refer to [Publish-Subscribe](/nservicebus/messaging/publish-subscribe).

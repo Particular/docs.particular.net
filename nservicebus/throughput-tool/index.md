@@ -1,5 +1,5 @@
 ---
-title: Collecting usage data using legacy Endpoint Throughput tool
+title: Collecting usage data using legacy Endpoint Throughput Counter tool
 summary: Use the Particular endpoint throughput counter tool to measure the usage of an NServiceBus system.
 reviewed: 2024-05-22
 related:
@@ -484,7 +484,7 @@ If these steps aren't possible, such as if the Message Queuing service doesn't e
 
 ### For MSMQ or Azure Storage Queues
 
-When using the MSMQ or Azure Storage Queues transport, the only way to collect throughput data using the throughput tool is if the system also has an instance of [ServiceControl](/servicecontrol/) installed. ServiceControl is an optional tool, so it's possible that a system might not have it.
+When using the MSMQ or Azure Storage Queues transport, the only way to collect throughput data using the throughput tool is if the system also has an instance of [ServiceControl](/servicecontrol/) installed.
 
 Note that ServiceControl is a form of a database, and is commonly installed on its own virtual machine.
 

@@ -34,7 +34,7 @@ public class AzureHelper
             return;
         }
 
-        Console.WriteLine("No messages found in the 'samples-azure-storagequeues-endpoint2' queue. Execute 'Endpoint1' without running 'Endpoint2' and then try again.");
+        Console.WriteLine($"No messages found in the '{queueName}' queue. Execute 'Endpoint1' without running 'Endpoint2' and then try again");
     }
 
     static void WriteOutMessage(PeekedMessage message)

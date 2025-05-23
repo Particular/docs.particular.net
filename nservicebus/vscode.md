@@ -2,7 +2,7 @@
 title: Debugging NServiceBus in Visual Studio Code
 summary: How to configure Visual Studio Code to build and debug multiple NServiceBus endpoints simultaneously
 component: Core
-reviewed: 2023-03-12
+reviewed: 2025-05-09
 ---
 
 This article describes how to configure [Visual Studio Code](https://code.visualstudio.com/) (or "VS Code") to build an NServiceBus solution with multiple projects and debug multiple endpoints simultaneously.
@@ -14,7 +14,7 @@ While Visual Studio contains specific support for .NET projects, VS Code is a mo
 ## Prerequisities
 
 * This article assumes knowledge of NServiceBus solutions.
-* VS Code must have the [C# for Visual Studio Code (powered by OmniSharp)](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) extension installed.
+* VS Code must have the [C# extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp) installed.
 
 ## Configuration files
 
@@ -35,10 +35,9 @@ Both of these files can be generated from within VS Code, but the default values
 
 To create the initial file:
 
- 1. Attempt to start debugging.
- 2. Click **Configure Task** in the error dialog that appears.
- 3. Select **Create tasks.json from template**.
- 4. Select **.NET Core**.
+ 1. After opening a folder with the project in Visual Studio Code, you may receive a notification saying `Required assets to build and debug are missing. Add them?`. If you decide to add them, then Visual Studio Code will create predefined configurations like `.NET Core Launch`.
+ 1. Alternatively, you can click the button `Generate C# Assets for Build and Debug` in the `Run and Debug` pane.
+ 1. Alternatively, you can run the command **Tasks: Configure Task**, then **Create tasks.json from template**, and then select **.NET Core**.
 
 The file created by VS Code may work as-is if the project contains only one solution file in the project's root directory.
 
@@ -70,16 +69,15 @@ For more information on **tasks.json**, see [Visual Studio Code: Integrate with 
 
 To create the initial file:
 
- 1. In the Debug toolbar, click the **No Configurations** dropdown.
- 1. Select **Add Configuration**.
- 1. Select **.NET Core**.
+ 1. Run the command **Debug: Add Configuration**.
+ 1. Select **.NET 5+ and .NET Core**.
 
 The high-level structure of the **launch.json** file contains a collection of individual project objects in `configurations` and an optional [`compounds` collection](#launch-json-compounds) that lists multiple configurations that should be launched at the same time.
 
 ```json
 {
     "version": "0.2.0",
-    "configurations: [
+    "configurations": [
 
     ],
     "compounds": [
@@ -98,7 +96,7 @@ Here is an example configuration for an NServiceBus endpoint hosted as a console
     "type": "coreclr",
     "request": "launch",
     "preLaunchTask": "build",
-    "program": "${workspaceFolder}/path/to/Sales/bin/Debug/net5.0/Sales.dll",
+    "program": "${workspaceFolder}/path/to/Sales/bin/Debug/net9.0/Sales.dll",
     "args": [],
     "cwd": "${workspaceFolder}/path/to/Sales",
     "stopAtEntry": false,
@@ -115,7 +113,7 @@ Most of the values can be considered boilerplate, except for the `program` and `
 * `program`: Identifies the DLL to use as the entry point.
 * `args`: Specifies any command-line arguments that are needed.
 * `cwd`: Specifies the current working directory for the launched `dotnet` process.
-* `stopAtEntry`: If set to true, the debugger will break at the entry point even when a breakpoint has not been set.
+* `stopAtEntry`: If set to `true`, the debugger will break at the entry point even when a breakpoint has not been set.
 * `console`: Set to `externalTerminal` to use external console windows rather than VS Code's built-in terminal. This is useful when running multiple NServiceBus endpoints.
 
 ### Web application
@@ -206,7 +204,7 @@ This example shows an entire **launch.json** file with **Sales** and **Billing**
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/Billing/bin/Debug/net5.0/Billing.dll",
+            "program": "${workspaceFolder}/src/Billing/bin/Debug/net9.0/Billing.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Billing",
             "stopAtEntry": true,
@@ -217,7 +215,7 @@ This example shows an entire **launch.json** file with **Sales** and **Billing**
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/Sales/bin/Debug/net5.0/Sales.dll",
+            "program": "${workspaceFolder}/src/Sales/bin/Debug/net9.0/Sales.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Sales",
             "stopAtEntry": false,
@@ -228,7 +226,7 @@ This example shows an entire **launch.json** file with **Sales** and **Billing**
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/Website/bin/Debug/net5.0/Website.dll",
+            "program": "${workspaceFolder}/src/Website/bin/Debug/net9.0/Website.dll",
             "args": [],
             "cwd": "${workspaceFolder}/src/Website",
             "stopAtEntry": false,
@@ -260,7 +258,7 @@ This example shows an entire **launch.json** file with **Sales** and **Billing**
             "request": "attach",
             "processId": "${command:pickProcess}"
         }
-    ,],
+    ],
     "compounds": [
         {
             "name": "Debug All",
@@ -278,5 +276,5 @@ This example shows an entire **launch.json** file with **Sales** and **Billing**
 
 See the following articles for more information on debugging with VS Code:
 
-* [OmniSharp: Configuring launch.json for C# debugging](https://github.com/OmniSharp/omnisharp-vscode/blob/master/debugger-launchjson.md)
-* [Visual Studio Code: Integrate with External Tools via Tasks](https://code.visualstudio.com/docs/editor/tasks)
+* [Configuring C# debugging](https://code.visualstudio.com/docs/csharp/debugger-settings)
+* [Integrate with External Tools via Tasks](https://code.visualstudio.com/docs/editor/tasks)

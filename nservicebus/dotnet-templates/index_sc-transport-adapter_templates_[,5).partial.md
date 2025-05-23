@@ -9,7 +9,7 @@ The template can be used via the following command:
 
 snippet: scadapterservice-usage
 
-This will create a new directory named `MyAdapter` containing a windows service `.csproj` also named `MyAdapter`.
+This will create a new directory named `MyAdapter` containing a Windows service `.csproj` also named `MyAdapter`.
 
 To add to an existing solution:
 

@@ -215,7 +215,7 @@ Resolution:
 - Consider disabling message bodies and headers *Full-Text search* as this causes most resource utilization for CPU and disk IO. This can be disabled in the latest version of ServiceControl by configuring each ServiceControl instance: open configuration (gear icon), scroll down to Advanced Configuration and set "Full-Text Search On Message Bodies" to Off, finally select Save, and then restart the instance.
 
 > [!WARNING]
-> Disabling *Full-Text Search* causes text search to be unavailable in ServiceInsight.
+> Disabling *Full-Text Search* causes text search to be unavailable in ServiceInsight and ServicePulse.
 
 ## Saga audit data retention custom check failure
 

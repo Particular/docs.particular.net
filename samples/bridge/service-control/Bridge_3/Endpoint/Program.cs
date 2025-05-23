@@ -1,53 +1,42 @@
 using System;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-class Program
-{
-    public static async Task Main(string[] args)
+var host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices((hostContext, services) =>
     {
-        await CreateHostBuilder(args).Build().RunAsync();
-    }
+        Console.Title = "Endpoint";
+        services.AddHostedService<InputLoopService>();
+    })
+    .UseNServiceBus(x =>
+    {
+        var endpointConfiguration = new EndpointConfiguration(
+            "Samples.Bridge.Endpoint");
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureServices((hostContext, services) =>
-            {
-                Console.Title = "Endpoint";
-                services.AddHostedService<InputLoopService>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        endpointConfiguration.UseTransport(new LearningTransport
+        {
+            StorageDirectory = $"{LearningTransportInfrastructure.FindStoragePath()}2"
+        });
 
-            }).UseNServiceBus(x =>
-            {
-                var endpointConfiguration = new EndpointConfiguration(
-                    "Samples.Bridge.Endpoint");
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Immediate(
+            customizations: immediate => { immediate.NumberOfRetries(0); });
+        recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
 
-                endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-                endpointConfiguration.UseTransport(new LearningTransport
-                {
-                    StorageDirectory = $"{LearningTransportInfrastructure.FindStoragePath()}2"
-                }); 
+        endpointConfiguration.SendFailedMessagesTo("error");
+        endpointConfiguration.AuditProcessedMessagesTo("audit");
+        endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.EnableMetrics()
+            .SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromSeconds(1));
 
-                var recoverability = endpointConfiguration.Recoverability();
-                recoverability.Immediate(
-                    customizations: immediate =>
-                    {
-                        immediate.NumberOfRetries(0);
-                    });
-                recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
+        var routing = endpointConfiguration.UseTransport(new LearningTransport());
+        routing.RouteToEndpoint(typeof(MyMessage), "Endpoint");
 
-                endpointConfiguration.SendFailedMessagesTo("error");
-                endpointConfiguration.AuditProcessedMessagesTo("audit");
-                endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
-                endpointConfiguration.EnableInstallers();
-                endpointConfiguration.EnableMetrics().SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromSeconds(1));
+        return endpointConfiguration;
+    })
+    .Build();
 
-                var routing = endpointConfiguration.UseTransport(new LearningTransport());
-                routing.RouteToEndpoint(typeof(MyMessage), "Endpoint");
-
-                return endpointConfiguration;
-            });
-
-}
+await host.RunAsync();

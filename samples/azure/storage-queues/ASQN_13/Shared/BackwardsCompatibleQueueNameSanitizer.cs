@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 #region BackwardsCompatibleQueueNameSanitizer
 
-public static class BackwardsCompatibleQueueNameSanitizer
+public static partial class BackwardsCompatibleQueueNameSanitizer
 {
     public static string WithMd5Shortener(string queueName)
     {
@@ -38,31 +38,27 @@ public static class BackwardsCompatibleQueueNameSanitizer
     static string SanitizeQueueName(string queueName)
     {
         // this can lead to multiple '-' occurrences in a row
-        var sanitized = invalidCharacters.Replace(queueName, "-");
-        return multipleDashes.Replace(sanitized, "-");
+        var sanitized = InvalidCharacters().Replace(queueName, "-");
+        return MultipleDashes().Replace(sanitized, "-");
     }
 
     static string ShortenWithMd5(string test)
     {
         //use MD5 hash to get a 16-byte hash of the string
-        using (var provider = MD5.Create())
-        {
-            var inputBytes = Encoding.Default.GetBytes(test);
-            var hashBytes = provider.ComputeHash(inputBytes);
-            //generate a guid from the hash:
-            return new Guid(hashBytes).ToString();
-        }
+        using var provider = MD5.Create();
+        var inputBytes = Encoding.Default.GetBytes(test);
+        var hashBytes = provider.ComputeHash(inputBytes);
+        //generate a guid from the hash:
+        return new Guid(hashBytes).ToString();
     }
 
     static string ShortenWithSha1(string queueName)
     {
-        using (var provider = SHA1.Create())
-        {
-            var inputBytes = Encoding.Default.GetBytes(queueName);
-            var hashBytes = provider.ComputeHash(inputBytes);
+        using var provider = SHA1.Create();
+        var inputBytes = Encoding.Default.GetBytes(queueName);
+        var hashBytes = provider.ComputeHash(inputBytes);
 
-            return ToChars(hashBytes);
-        }
+        return ToChars(hashBytes);
     }
 
     static string ToChars(byte[] hashBytes)
@@ -84,8 +80,10 @@ public static class BackwardsCompatibleQueueNameSanitizer
         return a > 9 ? (char)(a - 10 + 97) : (char)(a + 48);
     }
 
-    static Regex invalidCharacters = new Regex(@"[^a-z0-9\-]", RegexOptions.Compiled);
-    static Regex multipleDashes = new Regex(@"\-+", RegexOptions.Compiled);
+    [GeneratedRegex(@"[^a-z0-9\-]", RegexOptions.Compiled)]
+    private static partial Regex InvalidCharacters();
+    [GeneratedRegex(@"\-+", RegexOptions.Compiled)]
+    private static partial Regex MultipleDashes();
 }
 
 #endregion

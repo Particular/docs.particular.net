@@ -14,7 +14,14 @@ redirects:
 
 ## Supported database versions
 
-SQL persistence supports [PostgreSQL 10](https://www.postgresql.org/docs/10/release-10.html) and above, as well as AWS Aurora PostgreSQL.
+SQL persistence supports:
+
+- [PostgreSQL 10](https://www.postgresql.org/docs/10/release-10.html) and above
+- AWS Aurora PostgreSQL
+
+### PostGIS / NetTopologySuite
+
+[PostGIS](https://postgis.net/) and [NetTopologySuite](https://github.com/NetTopologySuite/NetTopologySuite) are a popular extension. The [PostGIS/NetTopologySuite Type Plugin guidance at npgsql.org](https://www.npgsql.org/doc/types/nts.html) explains how to setup these extensions with PostgreSQL. 
 
 ## Usage
 
