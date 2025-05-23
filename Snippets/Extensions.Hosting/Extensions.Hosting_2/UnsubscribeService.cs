@@ -4,11 +4,18 @@ using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 #region UnsubscribeBackgroundService
-public sealed class UnsubscribeService(IMessageSession messageSession) : BackgroundService
+public sealed class UnsubscribeService : BackgroundService
 {
+    readonly IMessageSession _messageSession;
+
+    public UnsubscribeService(IMessageSession messageSession)
+    {
+        _messageSession = messageSession;
+    }
+
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        await messageSession.Unsubscribe<MyEvent>();
+        await _messageSession.Unsubscribe<MyEvent>();
     }
 }
 #endregion
