@@ -63,6 +63,8 @@ Disposing the transactional session without committing will roll back any change
 > [!NOTE]
 > The `Commit` operation may fail and throw an exception for reasons outlined in the [failure scenarios section](#failure-scenarios).
 
+partial: remote-processor
+
 ## Requirements
 
 The transactional session feature requires a supported persistence package to store outgoing messages. This feature is currently supported for the following persistence packages:
@@ -73,6 +75,7 @@ The transactional session feature requires a supported persistence package to st
 * [NHibernate](/persistence/nhibernate)
 * [RavenDB](/persistence/ravendb)
 * [MongoDB](/persistence/mongodb)
+* [MongoDB](/persistence/dynamodb/)
 
 ## Transaction consistency
 
@@ -182,7 +185,6 @@ If the transaction completes and the control message fails to process through al
 
 ## Limitations
 
-* The transactional session cannot be used in send-only endpoints. A full endpoint is required to send a control message to the local queue.
 * The transport must have the same or higher availability guarantees as the database.
 
 ## Advanced configuration
