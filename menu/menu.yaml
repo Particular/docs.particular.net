@@ -1691,6 +1691,8 @@
   Topics:
   - Title: Introduction
     Url: modernization
+  - Title: NServiceBus and Strangler Fig
+    Url: modernization/stranglerfig
 
 - Name: Shape the future
   Topics:
