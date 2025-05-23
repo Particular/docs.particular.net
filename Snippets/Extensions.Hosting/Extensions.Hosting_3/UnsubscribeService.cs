@@ -11,12 +11,6 @@ public sealed class UnsubscribeService(IMessageSession messageSession) : Backgro
         await messageSession.Unsubscribe<MyEvent>();
     }
 }
-
-// var host = Host.CreateDefaultBuilder(args)
-//  .ConfigureServices(services => {
-//    services.AddHostedService<UnsubscribeService>();
-//  })
-//  .Build();
 #endregion
 
 public record MyEvent
