@@ -27,16 +27,16 @@ Follow the link for each transport for additional information on configuration o
 
 ## Azure Service Bus
 
-### Topic per event topology for integration events
+### Topic-per-event topology for integration events
 
 Starting from version 6.4.0, ServiceControl runs Azure Service Bus transport that, by default, uses [topic-per-event topology](/transports/azure-service-bus/topology.md), as opposed to previously used [single-topic topology](/transports/azure-service-bus/topology.md?version=asbs_4). This breaking change affects the publishing of [integration events](/servicecontrol/contracts.md).
 
 In order to continue using the single-topic topology, the topic name has to be specified explicitly using the `TopicName=<topic-bundle-name>` connection string option.
 
 > [!WARNING]
-> If any subscribers exist for these integration events and these endpoints are not yet upgraded to NServiceBus.Transport.AzureServiceBus 5.x with NServiceBus 9.x then ServiceControl must be configured to use `TopicName=bundle-<topic-bundle-name>`
+> If any subscribers exist for these integration events and these endpoints have not yet been upgraded to NServiceBus.Transport.AzureServiceBus 5.x, then ServiceControl must be configured to use `TopicName=bundle-<topic-bundle-name>`
 
-The new topology uses event type's full name as the name of the topic to which an event is published e.g. `servicecontrol.contracts.messagefailed`. This mapping can be customized by providing the [topology description in json](/transports/azure-service-bus/configuration.md#entity-creation-topology-mapping-options) using `ServiceControl.Transport.ASBS/Topology` application setting or `ServiceControl_Transport_ASBS_Topology` environment variable.
+The new topology uses the event type's full name as the name of the topic to which an event is published e.g. `servicecontrol.contracts.messagefailed`. This mapping can be customized by providing the [topology description in JSON](/transports/azure-service-bus/configuration.md#entity-creation-topology-mapping-options) using `ServiceControl.Transport.ASBS/Topology` application setting or `ServiceControl_Transport_ASBS_Topology` environment variable.
 
 Furthermore, in addition to the [connection string options of the transport](/transports/azure-service-bus/configuration.md#configuring-an-endpoint) the following ServiceControl specific options are available in versions 4.4 and above:
 
