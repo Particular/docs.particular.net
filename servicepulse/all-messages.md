@@ -23,7 +23,7 @@ Each row in the list represents a message in the system. Each message is prefixe
 
 | Status Icon | Description |
 |------------|-------------|
-| ![Success Message](images/success-message-icon.png 'width=30')| Shows when a message was processed successfully on first attempt|
+| ![Success Message](images/success-message-icon.png 'width=30')| Shows when a message was processed successfully on the first attempt|
 | ![Resolved Successfully Message](images/resolved-successfully-message-icon.png 'width=30')|Shows when a message succeeded after retries|
 | ![Failed Message](images/failed-message-icon.png 'width=30')| Shows when a message has failed|
 | ![Archived Message](images/archived-message-icon.png 'width=30')|Shows when a failed message has been deleted|
@@ -32,7 +32,7 @@ Each row in the list represents a message in the system. Each message is prefixe
 
 A warning symbol <img src="images/warning-icon.png" width="20" alt="warning"> also appears when any of these conditions are met:
 
-- When a message needed retries to succeed.
+- When a message needed retries to succeed
 - When any of the timing metrics (critical, processing, or delivery time) have negative values, which could indicate timing issues or clock synchronization problems
 
 The following time-related information about the message is also displayed:
@@ -87,4 +87,4 @@ The view supports both manual and automatic refresh. These options update the di
   - Every 1 hour
 
 > [!NOTE]
-> Having a low auto-refresh time continually active can have a negative impact on ServiceControl's performance
+> Having a low auto-refresh time, continually active,e can have a negative impact on ServiceControl's performance
