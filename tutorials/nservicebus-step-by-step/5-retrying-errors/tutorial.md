@@ -57,7 +57,7 @@ In order to deal with exceptions that arise, the code for each handler is wrappe
 
 With this kind of protection in place, we're free to try to process a message as many times as we need, or at least as many times as makes sense.
 
-[**Immediate retries**](/nservicebus/recoverability/#immediate-retries) deal with transient exceptions like deadlocks. By default, messages will be immediately retried up to 5 times. If a handler method continues to throw an exception after 5 consecutive attempts, it is clearly not a transient exception.
+[**Immediate retries**](/nservicebus/recoverability/#immediate-retries) deal with transient exceptions like deadlocks. By default, messages will be immediately retried up to 3 times. If a handler method continues to throw an exception after 3 consecutive attempts, it is clearly not a transient exception.
 
 [**Delayed retries**](/nservicebus/recoverability/#delayed-retries) deal with semi-transient exceptions, like a flaky web service, or database failover. It uses a series of successively longer delays between retries in order to give the failing resource some breathing room. After immediate retries are exhausted, the message is moved aside for a short time (10 seconds by default) and then another set of retries is attempted. If this fails, the time to wait is increased and then the message handler will try again.
 
