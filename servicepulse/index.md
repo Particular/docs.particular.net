@@ -40,7 +40,7 @@ ServicePulse provides a variety of views to help monitor and manage the health o
 
 ### Dashboard
 
-The dashboard provides a visual overview of the current state of the monitored NServiceBus system. The includes unhealthy endpoints, failed messages and failing custom checks.  It also provides information about the latest events in the system, such as detecting a new endpoint or a message processing failure.
+The dashboard provides a visual overview of the current state of the monitored NServiceBus system. This includes unhealthy endpoints, failed messages and failing custom checks. It also provides information about the latest events in the system, such as detecting a new endpoint or a message processing failure.
 
 
 
@@ -50,7 +50,7 @@ The dashboard provides a visual overview of the current state of the monitored N
 
 ### Heartbeats
 
-ServicePulse automatically detects existing endpoint's health in the system by analyzing metadata from [audited messages](/nservicebus/operations/auditing.md). By default all detected endpoints will be listed  but will not be automatically monitored.
+ServicePulse automatically detects existing endpoints' health in the system by analyzing metadata from [audited messages](/nservicebus/operations/auditing.md). By default, all detected endpoints will be listed but will not be automatically monitored.
 
 In order to monitor an endpoint's health and activity, it is necessary to [configure it for monitoring](/servicepulse/how-to-configure-endpoints-for-monitoring.md).
 
@@ -98,7 +98,7 @@ The Failed Messages tab allows inspection of failed messages in more detail and 
 
 Endpoint health monitoring verifies that an endpoint is operational—able to receive, process, and send messages. However, in some cases, overall system functionality may depend on external factors, such as third-party web services.
 
-ServicePulse supports the development of custom health checks using custom .NET code. Custom checks allow an endpoint to notify ServicePulse if a business related condition is not met. If a condition is not met, ServicePulse will raise an alert.
+ServicePulse supports the development of custom health checks using custom .NET code. Custom checks allow an endpoint to notify ServicePulse if a business-related condition is not met. If a condition is not met, ServicePulse will raise an alert.
 
 **Learn more:**
 
@@ -106,7 +106,7 @@ ServicePulse supports the development of custom health checks using custom .NET 
 
 ### Events
 
-This dedicated events page which shows all events captured within ServiceControl.
+This dedicated events page shows all events captured within ServiceControl.
 
 **Learn more:**
 
