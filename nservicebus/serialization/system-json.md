@@ -1,13 +1,13 @@
 ---
 title: System.Text.Json serializer
 summary: A json serializer using System.Text.Json
-reviewed: 2023-06-15
+reviewed: 2025-05-26
 component: SystemJson
 related:
  - samples/serializers/system-json
 ---
 
-The System.Text.Json message serializer uses the JSON serialization built in to .NET to serialize and deserialize messages. This serializer should be the default choice for serialization for new projects.
+The System.Text.Json message serializer uses the built-in JSON serialization in .NET to serialize and deserialize messages. This serializer should be the default choice for serialization in new projects.
 
 ## Usage
 
@@ -15,7 +15,7 @@ snippet: SystemJsonSerialization
 
 ### Specifying content type
 
-The default content type used is `application/json` but can be changed using:
+The default content type used is `application/json`, but can be changed using:
 
 snippet: SystemJsonContentType
 
