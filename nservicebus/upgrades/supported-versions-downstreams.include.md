@@ -549,7 +549,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.49.x](https://www.nuget.org/packages/Particular.PlatformSample/3.49.0) | 2025-05-19     | -                 | -                                 |
+| [3.51.x](https://www.nuget.org/packages/Particular.PlatformSample/3.51.0) | 2025-05-23     | -                 | -                                 |
+| [3.49.x](https://www.nuget.org/packages/Particular.PlatformSample/3.49.0) | 2025-05-19     | 2025-08-23        | Superseded by 3.51.x              |
 | [3.47.x](https://www.nuget.org/packages/Particular.PlatformSample/3.47.0) | 2025-05-13     | 2025-08-19        | Superseded by 3.49.x              |
 | [3.45.x](https://www.nuget.org/packages/Particular.PlatformSample/3.45.0) | 2025-04-29     | 2025-08-13        | Superseded by 3.47.x              |
 | [3.43.x](https://www.nuget.org/packages/Particular.PlatformSample/3.43.0) | 2025-04-16     | 2025-07-29        | Superseded by 3.45.x              |
@@ -577,7 +578,6 @@
 | [~~3.12.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.12.0) | ~~2024-09-04~~ | ~~2024-12-13~~    | ~~Superseded by 3.13.x~~          |
 | [~~3.11.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.11.0) | ~~2024-09-02~~ | ~~2024-12-04~~    | ~~Superseded by 3.12.x~~          |
 | [~~3.10.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.10.0) | ~~2024-08-26~~ | ~~2024-12-02~~    | ~~Superseded by 3.11.x~~          |
-| [~~3.9.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.9.0) | ~~2024-08-16~~ | ~~2024-11-26~~    | ~~Superseded by 3.10.x~~          |
 | [~~2.40.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.40.0) | ~~2023-11-15~~ | ~~2024-12-01~~    | ~~Superseded by 3.0.x~~           |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
