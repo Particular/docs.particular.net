@@ -14,7 +14,7 @@ NServiceBus supports sending different types of messages (see [Messages, Events,
 
 ## Message sending/publishing interface summary
 
-| Feature      | IMessageSessionContext | IEndpointInstance | IMessageSession |
+| Feature      | IMessageHandlerContext | IEndpointInstance | IMessageSession |
 |--------------|------------------------|-------------------|-----------------|
 | Can send/publish/reply to messages          | ✅  | ✅ | ✅ |
 | Use inside a handler          | ✅ |  |  |
@@ -24,7 +24,7 @@ NServiceBus supports sending different types of messages (see [Messages, Events,
 | Access to endpoint lifecycle control          |  | ✅ |  |
 |||||
 
-### IMessageSessionContext
+### IMessageHandlerContext
 
 - Used from inside of the message handling pipeline
 - Take part in the same transaction as that of the message handler (when using a transaction mode that supports it)
