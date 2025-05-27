@@ -58,7 +58,7 @@ Once all the operations that are part of the atomic request have been executed, 
 
 snippet: committing-transactional-session
 
-Disposing the transactional session without committing will roll back any changes that were made.
+Disposing of the transactional session without committing will roll back any changes that were made.
 
 > [!NOTE]
 > The `Commit` operation may fail and throw an exception for reasons outlined in the [failure scenarios section](#failure-scenarios).
@@ -75,7 +75,7 @@ The transactional session feature requires a supported persistence package to st
 * [NHibernate](/persistence/nhibernate)
 * [RavenDB](/persistence/ravendb)
 * [MongoDB](/persistence/mongodb)
-* [MongoDB](/persistence/dynamodb/)
+* [DynamoDB](/persistence/dynamodb/)
 
 ## Transaction consistency
 
