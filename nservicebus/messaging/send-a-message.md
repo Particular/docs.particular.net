@@ -28,6 +28,7 @@ NServiceBus supports sending different types of messages (see [Messages, Events,
 
 - Used from inside of the message handling pipeline
 - Take part in the same transaction as that of the message handler (when using a transaction mode that supports it)
+- Provides access to the incoming message being processed.
 
 ### IEndpointInstance
 
