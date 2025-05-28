@@ -1,5 +1,5 @@
 ### Program.cs
 
-The `EndpointConfiguration` for the endpoint will be defined in the template in a `.UseNServiceBus(…)` method, and contains TODO statements that must be filled in.
+The `EndpointConfiguration` for the endpoint is defined in the template using the `.UseNServiceBus(…)` method. The generated code includes `TODO` comments to guide further customization—these should be completed to configure the endpoint appropriately.
 
-There are also methods that handle endpoint failures and exceptions, which should be modified to fit the needs of the endpoint.
+Additional methods are available to handle endpoint failures and exceptions. These should be modified as needed to suit the specific behavior of the endpoint.
