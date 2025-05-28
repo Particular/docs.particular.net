@@ -33,6 +33,7 @@ public class AuditTransportBehavior :
         return new TransportOperations(new TransportOperation(message, new UnicastAddressTag(auditQueueAddress)));
     }
 
+    #region behaviorRegistration
     public class Registration : RegisterStep
     {
         //public Registration(Func<IServiceProvider, AuditTransportBehavior> factory) : base("AuditTransport", typeof(AuditTransportBehavior), "Sends the audit message to ASQ", b => factory(b))
@@ -44,4 +45,5 @@ public class AuditTransportBehavior :
             //InsertAfter("MarkAsAcknowledgedBehavior");
         }
     }
+    #endregion
 }
