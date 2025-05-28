@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.Azure.Amqp;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-namespace CustomAuditTransport
-{
-    public class InputService(IMessageSession messageSession, IHostApplicationLifetime appLifetime) : BackgroundService
+public class InputService(IMessageSession messageSession, IHostApplicationLifetime appLifetime) : BackgroundService
     {
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
@@ -20,35 +17,39 @@ namespace CustomAuditTransport
                     if (Console.KeyAvailable)
                     {
                         var input = Console.ReadKey(intercept: true);
-                        Console.WriteLine();
 
                         switch (input.Key)
                         {
                             case ConsoleKey.S:
-                                var auditThisMessage = new AuditThisMessage
-                                {
-                                    Content = $"{DateTime.UtcNow.ToShortTimeString()} - see you in the audit queue!"
-                                };
-                                await messageSession.SendLocal(auditThisMessage, stoppingToken);
-                                Console.WriteLine("Message sent to local endpoint for auditing.");
+                                await SendAuditMessageAsync(messageSession, stoppingToken);
                                 break;
                             case ConsoleKey.Escape:
-                                Console.WriteLine("Exiting...");
+                                Console.WriteLine("\nExiting...");
                                 appLifetime.StopApplication();
                                 return;
                         }
                     }
                     else
                     {
-                        await Task.Delay(100, stoppingToken); // Avoid busy-waiting
+                        await Task.Delay(20, stoppingToken); // More responsive polling
                     }
                 }
             }
             catch (Exception ex) when (ex is not OperationCanceledException)
             {
-                Console.WriteLine($"Unexpected error: {ex.Message}");
+                Console.WriteLine($"\nUnexpected error: {ex.Message}");
             }
         }
 
+        private static async Task SendAuditMessageAsync(IMessageSession messageSession, CancellationToken cancellationToken)
+        {
+            var auditThisMessage = new AuditThisMessage
+            {
+                Content = $"{DateTime.UtcNow.ToShortTimeString()} - see you in the audit queue!"
+            };
+            await messageSession.SendLocal(auditThisMessage, cancellationToken);
+            Console.WriteLine("\nMessage sent to local endpoint for auditing.");
+        }
     }
-}
+
+

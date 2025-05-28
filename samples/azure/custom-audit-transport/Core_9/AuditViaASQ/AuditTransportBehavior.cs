@@ -1,11 +1,8 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using CustomAuditTransport;
-using NServiceBus;
-using NServiceBus.Pipeline;
+﻿using NServiceBus.Pipeline;
 using NServiceBus.Routing;
 using NServiceBus.Transport;
+
+namespace AuditViaASQ;
 
 public class AuditTransportBehavior :
     Behavior<IAuditContext>
@@ -36,7 +33,6 @@ public class AuditTransportBehavior :
     #region behaviorRegistration
     public class Registration : RegisterStep
     {
-        //public Registration(Func<IServiceProvider, AuditTransportBehavior> factory) : base("AuditTransport", typeof(AuditTransportBehavior), "Sends the audit message to ASQ", b => factory(b))
         public Registration() : base("AuditTransport", typeof(AuditTransportBehavior), "Sends the audit message to ASQ")
         {
             InsertAfterIfExists("AuditHostInformation");
