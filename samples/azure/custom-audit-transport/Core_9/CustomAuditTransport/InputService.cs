@@ -24,7 +24,7 @@ namespace CustomAuditTransport
                         {
                             Content = "See you in the audit queue!"
                         };
-                        await messageSession.SendLocal(auditThisMessage);
+                        await messageSession.SendLocal(auditThisMessage, stoppingToken);
                         Console.WriteLine("Messages sent to local endpoint for auditing. Press any key to exit...");
                         break;                    
                     case ConsoleKey.Escape:

@@ -1,42 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
+﻿using System.Threading;
 using System.Threading.Tasks;
-using NServiceBus.Features;
 using NServiceBus;
+using NServiceBus.Features;
 
 namespace CustomAuditTransport
 {
-    class AuditViaASQFeatureStartup :
-    FeatureStartupTask,
-    IDisposable
+    class AuditViaASQFeatureStartup(EndpointConfiguration endpointConfiguration) :
+        FeatureStartupTask
     {
         public static IEndpointInstance auditEndpoint;
-        EndpointConfiguration endpointConfiguration;
-
-        public AuditViaASQFeatureStartup(EndpointConfiguration endpointConfiguration)
-        {
-            this.endpointConfiguration = endpointConfiguration;
-        }
 
         protected override async Task OnStart(IMessageSession session, CancellationToken cancellationToken)
         {            
-            auditEndpoint = await Endpoint.Start(endpointConfiguration);
+            auditEndpoint = await Endpoint.Start(endpointConfiguration, cancellationToken);
         }
 
-        protected override async Task OnStop(IMessageSession session, CancellationToken cnCancellationToken)
+        protected override async Task OnStop(IMessageSession session, CancellationToken cancellationToken)
         {
             if (auditEndpoint != null)
             {
-                await auditEndpoint.Stop();
+                await auditEndpoint.Stop(cancellationToken);
             }
-        }
-
-        public void Dispose()
-        {
-            auditEndpoint = null;
         }
     }
 }
