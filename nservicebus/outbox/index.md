@@ -220,7 +220,7 @@ For more information on the outbox persistence options available refer to the de
 * [Azure Table](/persistence/azure-table)
 * [CosmosDB](/persistence/cosmosdb)
 * [DynamoDB](/persistence/dynamodb)
-* [MongoDB](/persistence/mongodb/#outbox-cleanup)
+* [MongoDB](/persistence/mongodb/#outbox)
 * [NHibernate](/persistence/nhibernate/outbox.md)
 * [RavenDB](/persistence/ravendb/outbox.md)
 * [ServiceFabric](/persistence/service-fabric/outbox.md)
