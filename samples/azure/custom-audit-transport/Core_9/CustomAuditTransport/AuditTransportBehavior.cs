@@ -2,8 +2,6 @@
 using System.Threading.Tasks;
 using NServiceBus.Pipeline;
 
-#region customAuditTransportBehavior
-
 public class AuditTransportBehavior :
     Behavior<IAuditContext>
 {
@@ -21,5 +19,3 @@ public class AuditTransportBehavior :
         return Task.CompletedTask;
     }
 }
-
-#endregion
