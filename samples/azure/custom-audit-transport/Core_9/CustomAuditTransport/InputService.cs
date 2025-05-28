@@ -10,12 +10,12 @@ namespace CustomAuditTransport
     {
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-
             var auditThisMessage = new AuditThisMessage
             {
                 Content = "See you in the audit queue!"
             };
-            await messageSession.SendLocal(auditThisMessage);
+
+            await messageSession.SendLocal(auditThisMessage, stoppingToken);
 
             Console.WriteLine("Message sent to local endpoint for auditing. Press any key to exit...");
             Console.ReadKey();
