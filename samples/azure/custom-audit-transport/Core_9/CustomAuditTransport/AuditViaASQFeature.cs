@@ -18,18 +18,13 @@ namespace CustomAuditTransport
 
         protected override void Setup(FeatureConfigurationContext context)
         {
-            //if (!context.Settings.TryGetAuditQueueAddress(out var auditQueueAddress))
-            //{
-            //    throw new InvalidOperationException("No configured audit queue was found");
-            //}
-
             //this is a send only endpoint so it does not have a queue, so its name can be anything
-            var endpointConfiguration = new EndpointConfiguration("customaudit");
+            var endpointConfiguration = new EndpointConfiguration("audit-via-asq");
             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
             endpointConfiguration.SendOnly();
 
             var transport = new AzureStorageQueueTransport("UseDevelopmentStorage=true");
-            transport.DelayedDelivery.DelayedDeliveryPoisonQueue = "customaudit-delayed-poison";
+            transport.DelayedDelivery.DelayedDeliveryPoisonQueue = "audit-via-asq-delayed-poison";
 
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UseTransport(transport);
