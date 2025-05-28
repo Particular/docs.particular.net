@@ -24,13 +24,13 @@ Main endpoint that is running on Azure Service Bus. It enables the `audit` featu
 
 ### AuditViaASQ
 
-Feature that uses Azure Storage Queues for audit messages instead of the transport used by the endpoint being audited.
+[Feature](/nservicebus/pipeline/features.md) that uses Azure Storage Queues for audit messages instead of the transport used by the endpoint being audited.
 
 The feature is turned on by default providing that Auditing is enabled and an audit queue has been defined.
 
 snippet: featureSetup
 
-It uses [behavior](/nservicebus/pipeline/manipulate-with-behaviors) to register a new step to run after the inbuilt steps of the audit pipeline.
+It uses [behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) to register a new step to run after the inbuilt steps of the audit pipeline.
 
 snippet: behaviorRegistration
 
