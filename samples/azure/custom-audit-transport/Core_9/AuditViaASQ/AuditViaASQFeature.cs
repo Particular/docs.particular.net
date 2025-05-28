@@ -1,5 +1,6 @@
 ﻿using NServiceBus;
 using NServiceBus.Features;
+using static AuditTransportBehavior;
 
 namespace CustomAuditTransport
 {
@@ -19,10 +20,11 @@ namespace CustomAuditTransport
         {
             context.RegisterStartupTask(() => new AuditViaASQFeatureStartup());
 
-            context.Pipeline.Register(
-                stepId: "AuditTransport",
-                behavior: typeof(AuditTransportBehavior),
-                description: "sends audit messages to azure storage queues");
+            context.Pipeline.Register(new Registration());
+            //context.Pipeline.Register(
+            //    stepId: "AuditTransport",
+            //    behavior: typeof(AuditTransportBehavior),
+            //    description: "sends audit messages to azure storage queues");
         }
     }
 }

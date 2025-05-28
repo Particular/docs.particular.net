@@ -7,30 +7,48 @@ using NServiceBus;
 
 namespace CustomAuditTransport
 {
-    public class InputService(IMessageSession messageSession) : BackgroundService
+    public class InputService(IMessageSession messageSession, IHostApplicationLifetime appLifetime) : BackgroundService
     {
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             Console.WriteLine("Press [s] to send a message. Press [Esc] to exit.");
-            while (true)
-            {
-                var input = Console.ReadKey();
-                Console.WriteLine();
 
-                switch (input.Key)
+            try
+            {
+                while (!stoppingToken.IsCancellationRequested)
                 {
-                    case ConsoleKey.S:
-                        var auditThisMessage = new AuditThisMessage
+                    if (Console.KeyAvailable)
+                    {
+                        var input = Console.ReadKey(intercept: true);
+                        Console.WriteLine();
+
+                        switch (input.Key)
                         {
-                            Content = "See you in the audit queue!"
-                        };
-                        await messageSession.SendLocal(auditThisMessage, stoppingToken);
-                        Console.WriteLine("Messages sent to local endpoint for auditing. Press any key to exit...");
-                        break;                    
-                    case ConsoleKey.Escape:
-                        return;
+                            case ConsoleKey.S:
+                                var auditThisMessage = new AuditThisMessage
+                                {
+                                    Content = $"{DateTime.UtcNow.ToShortTimeString()} - see you in the audit queue!"
+                                };
+                                await messageSession.SendLocal(auditThisMessage, stoppingToken);
+                                Console.WriteLine("Message sent to local endpoint for auditing.");
+                                break;
+                            case ConsoleKey.Escape:
+                                Console.WriteLine("Exiting...");
+                                appLifetime.StopApplication();
+                                return;
+                        }
+                    }
+                    else
+                    {
+                        await Task.Delay(100, stoppingToken); // Avoid busy-waiting
+                    }
                 }
             }
+            catch (Exception ex) when (ex is not OperationCanceledException)
+            {
+                Console.WriteLine($"Unexpected error: {ex.Message}");
+            }
         }
+
     }
 }

@@ -10,9 +10,9 @@ namespace CustomAuditTransport
     class AuditViaASQFeatureStartup() :
         FeatureStartupTask
     {
-        public static IMessageDispatcher AsqDispatcher;
+        public static IMessageDispatcher? AsqDispatcher;
 
-        private TransportInfrastructure transportInfrastructure;
+        private TransportInfrastructure? transportInfrastructure;
 
         protected override async Task OnStart(IMessageSession session, CancellationToken cancellationToken)
         {
@@ -29,6 +29,7 @@ namespace CustomAuditTransport
             var transport = new AzureStorageQueueTransport("UseDevelopmentStorage=true");
             transport.DelayedDelivery.DelayedDeliveryPoisonQueue = "audit-via-asq-delayed-poison";
 
+            transport.MessageWrapperSerializationDefinition = new SystemJsonSerializer();
             transportInfrastructure = await transport.Initialize(hostSettings, [], [], cancellationToken);
             AsqDispatcher = transportInfrastructure.Dispatcher;
         }

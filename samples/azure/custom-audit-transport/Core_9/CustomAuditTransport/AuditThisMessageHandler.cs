@@ -7,7 +7,7 @@ public class AuditThisMessageHandler(ILogger<AuditThisMessageHandler> logger) :
 {
     public Task Handle(AuditThisMessage message, IMessageHandlerContext context)
     {
-        logger.LogInformation("Handling {messageType}", message.GetType().Name);
+        logger.LogInformation($"Handling {message.GetType().Name} with content: {message.Content}");
         return Task.CompletedTask;
     }
 }
