@@ -25,6 +25,17 @@ This creates a new `bundle-2` topic, a subscription called `forward-bundle-2` on
 > [!NOTE]
 > While it is technically possible to create even deeper hierarchies (e.g. attaching a `bundle-3` to `bundle-2`), it is strongly discouraged to do so due to the complexity and limitations of the number of hops a message can be routed through. The maximum allowed number of hops in Azure Service Bus is four and needs to be considered when creating a topology hierarchy. In addition, introducing more forwarding hops also increases the number of operations used, affecting pricing or memory/CPU used depending on the selected Azure Service Bus tier.
 
+#### Topic creation
+
+In the ForwardingTopology, all events are published to a single shared topic (default: bundle-1). This topic is considered shared infrastructure and is automatically created by any endpoint that requires it — whether it’s a publisher or a subscriber.
+
+With installers enabled, each endpoint ensures the topic exists as part of its startup process. This allows publishing to succeed even if no subscribers are yet active.
+
+In systems using a topic hierarchy (e.g., bundle-2 subscribing to bundle-1), the endpoint will automatically create:
+- The new secondary topic (e.g., bundle-2)
+- A forwarding subscription on the upstream topic (e.g., bundle-1 → bundle-2), if it doesn’t already exist
+- Its own subscription under that topic
+
 #### Subscription rule matching
 
 ```sql

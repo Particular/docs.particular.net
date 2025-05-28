@@ -46,6 +46,16 @@ By allocating a separate topic for each concrete event type, the overall system 
 > [!NOTE]
 > If the system has numerous event types beyond these limits, an architectural review is recommended. Additional messaging units or other partitioning strategies may be required.
 
+#### Topic creation
+
+In this topology, topics are created exclusively by subscribers.
+
+When an endpoint subscribes to an event, it creates the corresponding topic when installers are enabled and a subscription to that topic. If no endpoint subscribes to a given event, the topic for that event will not be created—even if another endpoint publishes it.
+
+Even with installers enabled, an endpoint will only provision infrastructure for the events it explicitly subscribes to. As a result, a publisher may receive a 404 Not Found from Azure Service Bus when attempting to publish an event that has no subscribers yet.
+
+This behavior is intentional. NServiceBus establishes subscriptions at runtime, so at transport startup, publishers have no knowledge of which events they will publish. Although topic names can be inferred through mapping conventions, the existence of a mapping does not imply that the topic should be created.
+
 #### Subscription rule matching
 
 In this topology, no SQL or Correlation filtering is required on the topic itself, because messages in a topic are all of the same event type. Subscriptions can use a default “match-all” rule (`1=1`) or the default catch-all rule on each topic subscription.
