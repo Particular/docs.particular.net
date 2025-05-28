@@ -133,6 +133,20 @@ The maximum allowed time for the process to gracefully complete the shutdown aft
 | Installation via PowerShell (on Windows) | TimeSpan | `00:02:00` (2 minutes) |
 | Installation via ServiceControl Management Utility (SCMU) (on Windows) | TimeSpan | `00:02:00` (2 minutes) |
 
+### ServiceControl.Audit/MaintenanceMode
+
+Run [ServiceControl audit instance in maintenance mode](/servicecontrol/ravendb/accessing-database.md) in order to do database maintenance.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_MAINTENANCEMODE` |
+| **App config key** | `ServiceControl.Audit/MaintenanceMode` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| boolean | `False` |
+
 ## Embedded database
 
 These settings are not valid for ServiceControl instances hosted in a container.
