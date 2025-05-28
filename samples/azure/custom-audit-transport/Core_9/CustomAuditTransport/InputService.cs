@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Azure.Amqp;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
@@ -10,15 +11,26 @@ namespace CustomAuditTransport
     {
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-
-            var auditThisMessage = new AuditThisMessage
+            Console.WriteLine("Press [s] to send a message. Press [Esc] to exit.");
+            while (true)
             {
-                Content = "See you in the audit queue!"
-            };
-            await messageSession.SendLocal(auditThisMessage);
+                var input = Console.ReadKey();
+                Console.WriteLine();
 
-            Console.WriteLine("Message sent to local endpoint for auditing. Press any key to exit...");
-            Console.ReadKey();
+                switch (input.Key)
+                {
+                    case ConsoleKey.S:
+                        var auditThisMessage = new AuditThisMessage
+                        {
+                            Content = "See you in the audit queue!"
+                        };
+                        await messageSession.SendLocal(auditThisMessage);
+                        Console.WriteLine("Messages sent to local endpoint for auditing. Press any key to exit...");
+                        break;                    
+                    case ConsoleKey.Escape:
+                        return;
+                }
+            }
         }
     }
 }

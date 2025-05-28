@@ -21,12 +21,11 @@ namespace CustomAuditTransport
 
         protected override void Setup(FeatureConfigurationContext context)
         {                        
-            //TOO get queue name from context
-            var endpointConfiguration = new EndpointConfiguration("audit");
+            var endpointConfiguration = new EndpointConfiguration("customaudit"); //this is the name of this sendonly endpoint which means it does not have a queue so the name here does not matter much
             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
             endpointConfiguration.SendOnly();
             var transport = new AzureStorageQueueTransport("UseDevelopmentStorage=true");
-            transport.DelayedDelivery.DelayedDeliveryPoisonQueue = "audit-delayed-poison";
+            transport.DelayedDelivery.DelayedDeliveryPoisonQueue = "customaudit-delayed-poison";
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UseTransport(transport);            
 
