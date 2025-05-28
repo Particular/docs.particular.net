@@ -143,7 +143,7 @@ The maximum allowed time for the process to complete the shutdown.
 
 ### ServiceControl/MaintenanceMode
 
-Run [ServiceControl error instance in maintenance mode](https://docs.particular.net/servicecontrol/ravendb/accessing-database) in order to do database maintenance.
+Run [ServiceControl error instance in maintenance mode](/servicecontrol/ravendb/accessing-database.md) in order to do database maintenance.
 
 | Context | Name |
 | --- | --- |

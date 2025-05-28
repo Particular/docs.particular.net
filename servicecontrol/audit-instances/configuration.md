@@ -135,7 +135,7 @@ The maximum allowed time for the process to gracefully complete the shutdown aft
 
 ### ServiceControl.Audit/MaintenanceMode
 
-Run [ServiceControl audit instance in maintenance mode](https://docs.particular.net/servicecontrol/ravendb/accessing-database) in order to do database maintenance.
+Run [ServiceControl audit instance in maintenance mode](/servicecontrol/ravendb/accessing-database.md) in order to do database maintenance.
 
 | Context | Name |
 | --- | --- |
