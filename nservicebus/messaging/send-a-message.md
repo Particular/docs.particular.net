@@ -50,7 +50,7 @@ It represents either an `IMessageSession` or `IMessageHandlerContext` depending 
 
 ### ITransactionalSession
 
-[ITransactionalSession](./../transactional-session/index.md) is a stand alone package that helps to achieve consistency when modifying business data and sending messages outside the context of an NServiceBus message handler, such as from an ASP.NET Core controller. When combined with the [outbox](./../outbox/index.md) it guarantees atomic consistency across database and message operations.
+[ITransactionalSession](./../transactional-session/) is a stand alone package that helps to achieve consistency when modifying business data and sending messages outside the context of an NServiceBus message handler, such as from an ASP.NET Core controller. When combined with the [outbox](./../outbox/) it guarantees atomic consistency across database and message operations.
 
 ## Outside a message handler
 
