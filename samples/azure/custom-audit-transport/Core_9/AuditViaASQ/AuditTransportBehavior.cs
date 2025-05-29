@@ -14,7 +14,9 @@ public class AuditTransportBehavior :
 
         foreach (var item in context.AuditMetadata)
         {
-            context.Message.Headers.Add(item.Key, item.Value);
+            //if(context.Message.Headers)            
+            //context.Message.Headers.Add(item.Key, item.Value);
+            context.Message.Headers[item.Key] = item.Value;
         }
 
         var transportOperations = CreateTransportOperations(context.Message, context.AuditAddress);
@@ -38,7 +40,7 @@ public class AuditTransportBehavior :
             InsertAfterIfExists("AuditHostInformation");
             InsertAfterIfExists("LicenseReminder");
             InsertAfterIfExists("AuditProcessingStatistics");
-            //InsertAfter("MarkAsAcknowledgedBehavior");
+            InsertAfterIfExists("MarkAsAcknowledgedBehavior");
         }
     }
     #endregion

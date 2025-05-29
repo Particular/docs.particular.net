@@ -8,7 +8,7 @@ public class InputService(IMessageSession messageSession, IHostApplicationLifeti
     {
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            Console.WriteLine("Press [s] to send a message. Press [Esc] to exit.");
+            Console.WriteLine("Press [s] to send a message, [e] to stimulate failure. Press [Esc] to exit.");
 
             try
             {
@@ -21,9 +21,12 @@ public class InputService(IMessageSession messageSession, IHostApplicationLifeti
                         switch (input.Key)
                         {
                             case ConsoleKey.S:
-                                await SendAuditMessageAsync(messageSession, stoppingToken);
+                                await SendAuditMessageAsync(messageSession, false, stoppingToken);
                                 break;
-                            case ConsoleKey.Escape:
+                        case ConsoleKey.E:
+                            await SendAuditMessageAsync(messageSession, true, stoppingToken);
+                            break;
+                        case ConsoleKey.Escape:
                                 Console.WriteLine("\nExiting...");
                                 appLifetime.StopApplication();
                                 return;
@@ -41,11 +44,12 @@ public class InputService(IMessageSession messageSession, IHostApplicationLifeti
             }
         }
 
-        private static async Task SendAuditMessageAsync(IMessageSession messageSession, CancellationToken cancellationToken)
+        private static async Task SendAuditMessageAsync(IMessageSession messageSession, bool error ,CancellationToken cancellationToken)
         {
             var auditThisMessage = new AuditThisMessage
             {
-                Content = $"{DateTime.UtcNow.ToShortTimeString()} - see you in the audit queue!"
+                Content = $"{DateTime.UtcNow.ToShortTimeString()} - see you in the audit queue!",
+                Error = error
             };
             await messageSession.SendLocal(auditThisMessage, cancellationToken);
             Console.WriteLine("\nMessage sent to local endpoint for auditing.");
