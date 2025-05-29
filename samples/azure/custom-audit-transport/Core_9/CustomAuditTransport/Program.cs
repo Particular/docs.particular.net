@@ -1,12 +1,11 @@
 using System;
-using CustomAuditTransport;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 Console.Title = "CustomAuditTransport";
 var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<InputService>();
+
 var endpointConfiguration = new EndpointConfiguration("Samples.CustomAuditTransport");
 
 endpointConfiguration.UsePersistence<LearningPersistence>();
@@ -28,4 +27,7 @@ Console.ReadKey();
 Console.WriteLine("Starting...");
 
 builder.UseNServiceBus(endpointConfiguration);
+
+builder.Services.AddHostedService<InputService>();
+
 await builder.Build().RunAsync();
