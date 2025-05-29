@@ -48,6 +48,10 @@ NServiceBus supports sending different types of messages (see [Messages, Events,
 [IUniformSession](./uniformsession.md) was introduced in NServiceBus v6 and is an opt-in for a uniform session approach that works seamlessly as a message session outside the pipeline and as a pipeline context inside the message handling pipeline.
 It represents either an `IMessageSession` or `IMessageHandlerContext` depending on where it's used.
 
+### ITransactionalSession
+
+[ITransactionalSession](./../transactional-session/index.md) is a stand alone package that helps to achieve consistency when modifying business data and sending messages outside the context of an NServiceBus message handler, such as from an ASP.NET Core controller. When combined with the [outbox](./../outbox/index.md) it guarantees atomic consistency across database and message operations.
+
 ## Outside a message handler
 
 In some cases, messages that need to be sent may not be related to an incoming message. Some examples are:
