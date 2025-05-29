@@ -14,17 +14,14 @@ public class AuditTransportBehavior :
 
         foreach (var item in context.AuditMetadata)
         {
-            //if(context.Message.Headers)            
-            //context.Message.Headers.Add(item.Key, item.Value);
             context.Message.Headers[item.Key] = item.Value;
         }
 
         var transportOperations = CreateTransportOperations(context.Message, context.AuditAddress);
-
-        // TODO: Can we get this from anywhere?
-        TransportTransaction? transportTransaction = null;
-
-        await AuditViaASQFeatureStartup.AsqDispatcher!.Dispatch(transportOperations, transportTransaction, context.CancellationToken);
+        
+        //Transport transaction is being set to null since we cannot use the existing ASB transaction here.
+        //Each audit message is processed one at a time so there's also no point in creating an ASQ transaction for it.
+        await AuditViaASQFeatureStartup.AsqDispatcher!.Dispatch(transportOperations, null, context.CancellationToken);
     }
 
     private static TransportOperations CreateTransportOperations(OutgoingMessage message, string auditQueueAddress)
