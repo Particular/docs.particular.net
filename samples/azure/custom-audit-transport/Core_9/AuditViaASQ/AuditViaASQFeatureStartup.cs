@@ -40,6 +40,7 @@ class AuditViaASQFeatureStartup() :
 
     public static void OnCriticalError(string errorMessage, Exception exception, CancellationToken cancellationToken = default)
     {
+        //Do something with the critical error
     }
 }
 
