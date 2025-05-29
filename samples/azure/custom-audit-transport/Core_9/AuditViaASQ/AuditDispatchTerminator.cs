@@ -4,10 +4,11 @@ using NServiceBus.Transport;
 
 namespace AuditViaASQ;
 
-public class AuditTransportBehavior :
-    Behavior<IAuditContext>
-{
-    public override async Task Invoke(IAuditContext context, Func<Task> next)
+#region auditDispatchTerminator
+public class AuditDispatchTerminator :
+    PipelineTerminator<IAuditContext>
+{    
+    protected override async Task Terminate(IAuditContext context)
     {
         var sendOptions = new SendOptions();
         sendOptions.SetDestination(context.AuditAddress);
@@ -17,8 +18,9 @@ public class AuditTransportBehavior :
             context.Message.Headers[item.Key] = item.Value;
         }
 
+        //NOTE the ASQ transport has a message size limit of 64KB, so if the message is larger than that, it will be rejected. Some checks would need to be put in place to handle that scenario.
         var transportOperations = CreateTransportOperations(context.Message, context.AuditAddress);
-        
+
         //Transport transaction is being set to null since we cannot use the existing ASB transaction here.
         //Each audit message is processed one at a time so there's also no point in creating an ASQ transaction for it.
         await AuditViaASQFeatureStartup.AsqDispatcher!.Dispatch(transportOperations, null, context.CancellationToken);
@@ -28,17 +30,5 @@ public class AuditTransportBehavior :
     {
         return new TransportOperations(new TransportOperation(message, new UnicastAddressTag(auditQueueAddress)));
     }
-
-    #region behaviorRegistration
-    public class Registration : RegisterStep
-    {
-        public Registration() : base("AuditTransport", typeof(AuditTransportBehavior), "Sends the audit message to ASQ")
-        {
-            InsertAfterIfExists("AuditHostInformation");
-            InsertAfterIfExists("LicenseReminder");
-            InsertAfterIfExists("AuditProcessingStatistics");
-            InsertAfterIfExists("MarkAsAcknowledgedBehavior");
-        }
-    }
-    #endregion
 }
+#endregion
