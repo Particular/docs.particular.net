@@ -17,12 +17,12 @@
 
                 var subscriptionMessageType = headers[Headers.SubscriptionMessageType];
 
-                // messageIntent will be either MessageIntent.Unsubscribe or MessageIntent.Subscribe
+                //messageIntent will be either MessageIntent.Unsubscribe or MessageIntent.Subscribe
                 var messageIntent = (MessageIntent)Enum.Parse(typeof(MessageIntent), headers[Headers.MessageIntent], true);
 
                 var endpointName = headers[Headers.SubscriberEndpoint].ToLowerInvariant();
 
-                // true to allow, false to disallow
+                //true to allow, false to disallow
                 return true;
             });
 
