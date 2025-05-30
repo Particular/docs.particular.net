@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -7,65 +6,58 @@ using NServiceBus;
 using NServiceBus.Transport.SqlServer;
 using Sender;
 
-class Program
-{
-    public static async Task Main(string[] args)
+var host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices((hostContext, services) =>
     {
-        await CreateHostBuilder(args).Build().RunAsync();
-    }
+        services.AddHostedService<InputLoopService>();
+        Console.Title = "Sender";
+    })
+    .UseNServiceBus(x =>
+    {
+        var endpointConfiguration = new EndpointConfiguration("Samples.SqlOutbox.Sender");
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.SendFailedMessagesTo("error");
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-     Host.CreateDefaultBuilder(args)
-         .ConfigureServices((hostContext, services) =>
-         {
-             services.AddHostedService<InputLoopService>();
-             Console.Title = "Sender";
-         }).UseNServiceBus(x =>
-         {
+        #region SenderConfiguration
 
-             var endpointConfiguration = new EndpointConfiguration("Samples.SqlOutbox.Sender");
-             endpointConfiguration.EnableInstallers();
-             endpointConfiguration.SendFailedMessagesTo("error");
+        //for local instance or SqlExpress
+        // string connectionString = @"Data Source=(localdb)\mssqllocaldb;Database=NsbSamplesSqlOutbox;Trusted_Connection=True;MultipleActiveResultSets=true";
+        var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlOutbox;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
 
-             #region SenderConfiguration
+        var transport = new SqlServerTransport(connectionString)
+        {
+            DefaultSchema = "sender",
+            TransportTransactionMode = TransportTransactionMode.ReceiveOnly
+        };
+        transport.SchemaAndCatalog.UseSchemaForQueue("error", "dbo");
+        transport.SchemaAndCatalog.UseSchemaForQueue("audit", "dbo");
 
-             //for local instance or SqlExpress
-             // string connectionString = @"Data Source=(localdb)\mssqllocaldb;Database=NsbSamplesSqlOutbox;Trusted_Connection=True;MultipleActiveResultSets=true";
-              var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlOutbox;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
+        endpointConfiguration.UseTransport(transport);
 
-             var transport = new SqlServerTransport(connectionString)
-             {
-                 DefaultSchema = "sender",
-                 TransportTransactionMode = TransportTransactionMode.ReceiveOnly
-             };
-             transport.SchemaAndCatalog.UseSchemaForQueue("error", "dbo");
-             transport.SchemaAndCatalog.UseSchemaForQueue("audit", "dbo");
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        persistence.ConnectionBuilder(
+            connectionBuilder: () => new SqlConnection(connectionString)
+        );
+        var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
+        dialect.Schema("sender");
+        persistence.TablePrefix("");
 
-             endpointConfiguration.UseTransport(transport);
+        transport.Subscriptions.DisableCaching = true;
+        transport.Subscriptions.SubscriptionTableName = new SubscriptionTableName(
+            table: "Subscriptions",
+            schema: "dbo"
+        );
 
-             var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-             persistence.ConnectionBuilder(
-                 connectionBuilder: () =>
-                 {
-                     return new SqlConnection(connectionString);
-                 });
-             var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
-             dialect.Schema("sender");
-             persistence.TablePrefix("");
+        endpointConfiguration.EnableOutbox();
 
-             transport.Subscriptions.DisableCaching = true;
-             transport.Subscriptions.SubscriptionTableName = new SubscriptionTableName(
-                 table: "Subscriptions",
-                 schema: "dbo");
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-             endpointConfiguration.EnableOutbox();
+        #endregion
 
-             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        SqlHelper.CreateSchema(connectionString, "sender");
+        Console.WriteLine("Press enter to send a message");
+        return endpointConfiguration;
+    })
+    .Build();
 
-             #endregion
-
-             SqlHelper.CreateSchema(connectionString, "sender");
-             Console.WriteLine("Press enter to send a message");
-             return endpointConfiguration;
-         });
-}
+await host.RunAsync();
