@@ -14,7 +14,7 @@ This sample demonstrates how an endpoint can use a different transport for audti
 In this instance, Azure Service Bus is the main transport used by the endpoint, and Azure Storage Queues is used as the transport for audit messages.
 
 > [!WARNING]
-> Two different transports are being used, which means the Azure Storate Queue transport dispatcher does not participate in the handler transaction. Hence there could be a scenario where the audit message is successfully sent, but an error occurs later in the pipeline that causes the receiver operation to be rolled back. This would result in two instances of the same message being visible in the Service Pulse [all messages view](/servicepulse/all-messages.md)
+> Two different transports are being used, which means the Azure Storage Queue transport dispatcher does not participate in the handler transaction. Hence there could be a scenario where the audit message is successfully sent, but an error occurs later in the pipeline that causes the receiver operation to be rolled back. This would result in two conflicting instances of the same message being visible in the Service Pulse [all messages view](/servicepulse/all-messages.md), one showing as an error and the other as successfully processed.
 
 ## Prerequisites
 
