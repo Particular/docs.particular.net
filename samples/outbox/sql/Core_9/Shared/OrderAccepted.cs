@@ -1,8 +1,4 @@
 ﻿using System;
 using NServiceBus;
 
-public class OrderAccepted :
-    IMessage
-{
-    public Guid OrderId { get; set; }
-}
+public record OrderAccepted(Guid OrderId) : IMessage;

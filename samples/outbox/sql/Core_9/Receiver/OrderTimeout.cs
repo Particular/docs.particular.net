@@ -1,3 +1,1 @@
-﻿public class OrderTimeout
-{
-}
+﻿public record OrderTimeout;

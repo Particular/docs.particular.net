@@ -1,38 +1,38 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
-using NServiceBus.Routing;
 
-namespace Sender
+namespace Sender;
+
+public class InputLoopService(IMessageSession messageSession) : BackgroundService
 {
-    public class InputLoopService(IMessageSession messageSession) : BackgroundService
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        var random = new Random();
+
+        while (true)
         {
-            var random = new Random();
-
-            while (true)
+            if (!Console.KeyAvailable)
             {
-                var key = Console.ReadKey();
-                Console.WriteLine();
+                await Task.Delay(100, stoppingToken);
+                continue;
+            }
+            var key = Console.ReadKey();
+            Console.WriteLine();
 
-                if (key.Key != ConsoleKey.Enter)
-                {
-                    break;
-                }
-                var orderSubmitted = new OrderSubmitted
-                {
-                    OrderId = Guid.NewGuid(),
-                    Value = random.Next(100)
-                };
-                await messageSession.Publish(orderSubmitted);
+            if (key.Key != ConsoleKey.Enter)
+            {
+                break;
             }
 
+            var orderSubmitted = new OrderSubmitted(
+                OrderId: Guid.NewGuid(),
+                Value: random.Next(100)
+            );
+
+            await messageSession.Publish(orderSubmitted, cancellationToken: stoppingToken);
         }
     }
 }

@@ -4,18 +4,11 @@ using NServiceBus;
 using Microsoft.Extensions.Logging;
 using NServiceBus.Persistence.Sql;
 
-public class OrderLifecycleSaga :
+public class OrderLifecycleSaga(ILogger<OrderLifecycleSaga> logger) :
     SqlSaga<OrderLifecycleSaga.SagaData>,
     IAmStartedByMessages<OrderSubmitted>,
     IHandleTimeouts<OrderTimeout>
 {
-    private readonly ILogger<OrderLifecycleSaga> logger;
-
-    public OrderLifecycleSaga(ILogger<OrderLifecycleSaga> logger)
-    {
-        this.logger = logger;
-    }
-
     protected override void ConfigureMapping(IMessagePropertyMapper mapper)
     {
         mapper.ConfigureMapping<OrderSubmitted>(_ => _.OrderId);
