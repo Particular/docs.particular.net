@@ -1,7 +1,7 @@
 ---
 title: Using Outbox with SQL Server
 summary: A sample demonstrating the SQL Server transport with SQL Persistence and ADO.NET user data store using outbox
-reviewed: 2023-06-18
+reviewed: 2025-05-30
 component: Core
 related:
  - transports/sql
@@ -13,65 +13,76 @@ redirects:
  - samples/outbox/sqltransport-nhpersistence
 ---
 
-
-Integrates the [SQL Server transport](/transports/sql) with [SQL persistence](/persistence/sql/) and ADO.NET user data store using outbox.
+Demonstrates integration of the [SQL Server transport](/transports/sql) with [SQL persistence](/persistence/sql/) and an ADO.NET user data store using the outbox feature.
 
 ## Prerequisites
 
 include: sql-prereq
 
-The database created by this sample is `NsbSamplesSqlOutbox`.
+This sample uses the `NsbSamplesSqlOutbox` database.
 
-The [outbox](/nservicebus/outbox) feature is designed to provide *exactly once* delivery guarantees without the [Distributed Transaction Coordinator (DTC)](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms684146(v=vs.85)) running. Disable the DTC service to avoid seeing warning messages in the console window. If the DTC service is not disabled, when the sample project is started it will display a `DtcRunningWarning` message in the console window.
+The [outbox](/nservicebus/outbox) feature ensures *exactly-once* delivery guarantees without requiring the [Distributed Transaction Coordinator (DTC)](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms684146(v=vs.85)). To prevent warnings in the console, disable the DTC service. If not disabled, a `DtcRunningWarning` will appear when starting the sample.
 
 ## Running the project
 
- 1. Start the Solution
- 1. The text `Press <enter> to send a message` is displayed in the Sender's console window.
- 1. Press <kbd>enter</kbd> to send a new message.
+1. Start the solution.
+1. The Sender console displays `Press <enter> to send a message`.
+1. Press <kbd>enter</kbd> to send a new message.
 
-## Verifying that the sample works correctly
+## Verifying correct behavior
 
- 1. The Receiver displays information that an order was submitted.
- 1. The Sender displays information that the order was accepted.
- 1. After a few seconds, the Receiver displays confirmation that the timeout message has been received.
- 1. Open SQL Server Management Studio and go to the `NsbSamplesSqlOutbox` database. Verify that there is a row in the saga state table (`receiver.OrderLifecycleSaga`) and in the orders table (`receiver.SubmittedOrder`)
+1. The Receiver logs that an order was submitted.
+1. The Sender logs that the order was accepted.
+1. After a few seconds, the Receiver logs that the timeout message was received.
+1. Open SQL Server Management Studio and check the `NsbSamplesSqlOutbox` database:
+   * One row should exist in the saga state table (`receiver.OrderLifecycleSaga`).
+   * One row should exist in the orders table (`receiver.SubmittedOrder`).
 
 ## Code walk-through
 
-This sample contains three projects:
+This sample includes three projects:
 
-* Shared - A class library containing common code including the message definitions.
-* Sender - A console application responsible for sending the initial `OrderSubmitted` message and processing the follow-up `OrderAccepted` message.
-* Receiver - A console application responsible for processing the order message.
+* **Shared** — Contains shared types such as message definitions.
+* **Sender** — A console app that sends the initial `OrderSubmitted` message and handles the follow-up `OrderAccepted`.
+* **Receiver** — A console app that handles incoming order messages.
 
-Sender and Receiver use different schemas in the same database. Apart from business data the database also contains tables representing queues for the NServiceBus endpoint and tables for NServiceBus persistence.
+Sender and Receiver use different schemas within the same database. The database includes business data, NServiceBus queue tables, and persistence tables.
 
 ### Sender project
 
-The Sender does not store any data. It mimics the front-end system where orders are submitted by the users and passed via the bus to the back-end. It is configured to use the [SQL Server transport](/transports/sql/) with [SQL persistence](/persistence/sql/) (backed by SQL Server) and the outbox feature.
+The Sender does not persist data. It simulates a front-end system that submits orders, which are passed to the back-end via the bus. It's configured to use:
+
+* [SQL Server transport](/transports/sql/)
+* [SQL persistence](/persistence/sql/)
+* Outbox support
 
 snippet: SenderConfiguration
 
 ### Receiver project
 
-The Receiver mimics a back-end system. It is also configured to use the SQL Server transport with SQL persistence and the outbox. It uses [ADO.NET](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview) to store business data (orders).
+The Receiver simulates a back-end system and is also configured with SQL Server transport, SQL persistence, and the outbox. It uses [ADO.NET](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/ado-net-overview) to store business data (orders).
 
 snippet: ReceiverConfiguration
 
-When the message arrives at the Receiver, it is dequeued using a native SQL Server transaction. Then a separate Outbox SQL Server transaction is created that encompasses
+When a message arrives:
 
-* persisting business data:
+1. It's dequeued using a native SQL Server transaction.
+2. A separate Outbox SQL transaction begins
+
+
+This transaction codes:
+
+* Business data persistence:
 
 snippet: StoreUserData
 
-* persisting saga data of `OrderLifecycleSaga` ,
-* storing the reply message and the timeout request in the Outbox:
+* `OrderLifecycleSaga` saga state persistence
+* Storing the reply and timeout messages in the outbox:
 
 snippet: Reply
 
 snippet: Timeout
 
-Once the outbox transaction is committed, both the business data changes and the outgoing messages are durably stored in the database. Finally the messages in the outbox are pushed to their destinations. The timeout message gets stored in the NServiceBus timeout store and is sent back to the saga after the requested delay of 5 seconds.
+Once the outbox transaction commits, both business data and outgoing messages are durably persisted. The outbox messages are then dispatched. The timeout message is stored in the NServiceBus timeout table and sent back to the saga after a 5-second delay.
 
-See [Accessing the ambient database details](/samples/sqltransport-sqlpersistence/#receiver-project-accessing-the-ambient-database-details) for information about using other ORMs.
+For use with other ORMs, see [Accessing the ambient database details](/samples/sqltransport-sqlpersistence/#receiver-project-accessing-the-ambient-database-details).
