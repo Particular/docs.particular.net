@@ -1,6 +1,6 @@
 ## Send only 
 
-If used in a [send-only](/nservicebus/hosting/#self-hosting-send-only-hosting) endpoint the transactional session must be configured with a remote endpoint that will manage the outbox on behalf of the endpoint. This processor endpoint must have both the outbox and the transactional session enabled.
+If used in a [send-only](/nservicebus/hosting/#self-hosting-send-only-hosting) endpoint, the transactional session must be configured with a remote endpoint(processor endpoint) that will manage the outbox on behalf of the send-only endpoint.
 
 snippet: configure-remote-processor
 
