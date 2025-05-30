@@ -4,7 +4,7 @@ using NServiceBus;
 using Microsoft.Extensions.Logging;
 using NServiceBus.Persistence.Sql;
 
-public class OrderLifecycleSaga(ILogger<OrderLifecycleSaga> logger) :
+sealed class OrderLifecycleSaga(ILogger<OrderLifecycleSaga> logger) :
     SqlSaga<OrderLifecycleSaga.SagaData>,
     IAmStartedByMessages<OrderSubmitted>,
     IHandleTimeouts<OrderTimeout>

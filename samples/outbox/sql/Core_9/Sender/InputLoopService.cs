@@ -6,7 +6,7 @@ using NServiceBus;
 
 namespace Sender;
 
-public class InputLoopService(IMessageSession messageSession) : BackgroundService
+class InputLoopService(IMessageSession messageSession) : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
