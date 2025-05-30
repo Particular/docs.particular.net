@@ -1,14 +1,14 @@
 ## Send only 
 
-If used in a [send-only](/nservicebus/hosting/#self-hosting-send-only-hosting) endpoint, the transactional session must be configured with a remote endpoint(processor endpoint) that will manage the outbox on behalf of the send-only endpoint.
+When used in a [send-only](/nservicebus/hosting/#self-hosting-send-only-hosting) endpoint, the transactional session must be configured with a remote endpoint(processor endpoint) that will manage the outbox on behalf of the send-only endpoint.
 
 snippet: configure-remote-processor
 
 > [!WARNING]
-> Both the send only endpoint and the processor endpoint must be connected to the same database. See [documentation for the individual persisters](/persistence/) for more details.
+> Both the send-only endpoint and the processor endpoint must be connected to the same database. See [documentation for the individual persisters](/persistence/) for more details.
 
 > [!NOTE]
-> If migrating to this mode from an endpoint couldn't be made send only due to the previous limitations of the transactional session, see the migration guidance below.
+> If migrating to this mode from an endpoint couldn't be made send-only due to the previous limitations of the transactional session, see the migration guidance below.
 
 ### Outbox cleanup
 
@@ -21,13 +21,13 @@ Applies to:
 
 ### Migration to send only endpoint mode
 
-For endpoints that couldn't be send only due the limitations of the transactional session use the following procedure to migrate your endpoint.
+For endpoints that previously couldn't be send-only due to limitations of the transactional session, use the following procedure to migrate your endpoint.
 
 #### Preparation
 
-1. Ensure that no message handlers exists in the endpoint
+1. Ensure that no message handlers exist in the endpoint
 1. Deploy a new processor endpoint
-1. Stop the endpoint and ensure that all messages in the input queue is consumed
+1. Stop the endpoint and ensure that all messages in the input queue are consumed
 
 #### Configuration
 
@@ -36,9 +36,9 @@ For endpoints that couldn't be send only due the limitations of the transactiona
 1. Start the endpoint
 
 > [!NOTE]
-> The send only endpoint will now use the outbox of the new processor endpoint. Since [message deduplication is not possible when using the transactional session](https://github.com/Particular/NServiceBus.TransactionalSession/issues/97) no data migration is needed
+> The send-only endpoint will now use the outbox of the new processor endpoint. Since [message deduplication is not possible when using the transactional session](https://github.com/Particular/NServiceBus.TransactionalSession/issues/97), no data migration is needed
 
 #### Cleanup
 
-1. Remove the no longer used input queue of the send only endpoint
-1. As needed remove any database artefacts (tables, documents, etc) related to the send only endpoint.  See [documentation for the individual persisters](/persistence/) for more details.
+1. Remove the no longer used input queue of the send-only endpoint
+1. As needed, remove any database artefacts (tables, documents, etc) related to the send-only endpoint.  See [documentation for the individual persisters](/persistence/) for more details.
