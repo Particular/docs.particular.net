@@ -9,10 +9,6 @@ public class AuditViaASQFeature : Feature
     {
         EnableByDefault();
         DependsOn<Audit>();
-
-        Prerequisite(config =>
-            config.Settings.TryGetAuditQueueAddress(out var auditQueueAddress) && !string.IsNullOrEmpty(auditQueueAddress),
-            "No configured audit queue was found");
     }        
 
     protected override void Setup(FeatureConfigurationContext context)

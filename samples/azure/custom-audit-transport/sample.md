@@ -37,6 +37,8 @@ To see how the auditing messages appear in ServicePulse, two ServiceControl inst
 
 Main endpoint that is running on Azure Service Bus. It enables the `audit` feature.
 
+The configured queue name to `AuditProcessedMessagesTo` will be used as the queue name on the Azure Storage Queue transport.
+
 ### AuditViaASQ
 
 A [feature](/nservicebus/pipeline/features.md) that uses Azure Storage Queues for audit messages instead of the transport used by the endpoint being audited.
