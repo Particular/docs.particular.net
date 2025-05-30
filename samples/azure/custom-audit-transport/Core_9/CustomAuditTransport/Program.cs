@@ -10,8 +10,6 @@ var builder = Host.CreateApplicationBuilder(args);
 var endpointConfiguration = new EndpointConfiguration("Samples.CustomAuditTransport");
 
 endpointConfiguration.UsePersistence<LearningPersistence>();
-//var persistence = endpointConfiguration.UsePersistence<AzureTablePersistence>();
-//persistence.ConnectionString("UseDevelopmentStorage=true");
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
@@ -21,8 +19,6 @@ if (string.IsNullOrWhiteSpace(connectionString))
     throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
 }
 var transport = new AzureServiceBusTransport(connectionString, TopicTopology.Default);
-//transport.TransportTransactionMode = TransportTransactionMode.ReceiveOnly;
-//endpointConfiguration.EnableOutbox();
 endpointConfiguration.UseTransport(transport);
 
 endpointConfiguration.AuditProcessedMessagesTo("audit");

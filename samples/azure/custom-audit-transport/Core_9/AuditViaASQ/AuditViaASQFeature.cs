@@ -19,7 +19,9 @@ public class AuditViaASQFeature : Feature
     {
         context.RegisterStartupTask(() => new AuditViaASQFeatureStartup());
 
-        context.Pipeline.Register(new AuditTransportBehavior.Registration());
+        #region auditToDispatchConnectorReplacement
+        context.Pipeline.Replace("AuditToDispatchConnector", new AuditDispatchTerminator());
+        #endregion
     }
     #endregion
 }

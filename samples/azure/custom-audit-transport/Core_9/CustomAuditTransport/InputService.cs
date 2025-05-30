@@ -48,7 +48,7 @@ public class InputService(IMessageSession messageSession, IHostApplicationLifeti
         {
             var auditThisMessage = new AuditThisMessage
             {
-                Content = $"{DateTime.UtcNow.ToShortTimeString()} - see you in the audit queue!",
+                Content = $"{DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss")} - see you in the audit queue!",
                 Error = error
             };
             await messageSession.SendLocal(auditThisMessage, cancellationToken);
