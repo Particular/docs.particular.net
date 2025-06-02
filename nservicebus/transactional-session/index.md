@@ -90,7 +90,7 @@ With the outbox disabled, database and message operations are not applied until 
 
 The transactional session feature guarantees that all outgoing message operations are eventually consistent with the data operations.
 
-Returning to the earlier example of a message handler which creates a `User` and then publishes a `UserCreated` event, the following process occurs. Details are described following the diagram.
+Returning to the earlier example of a message handler that creates a `User` and then publishes a `UserCreated` event, the following process occurs. Details are described following the diagram.
 
 ```mermaid
 sequenceDiagram
@@ -172,7 +172,7 @@ The endpoint receives the control message and processes it as follows:
 
 ## Failure scenarios
 
-The transactional session provides atomic store-and-send guarantees, similar to the outbox feature (except for incoming message de-duplication). The control message is used to ensure that **exactly one** of the following outcomes occur:
+The transactional session provides atomic store-and-send guarantees, similar to the outbox feature (except for incoming message de-duplication). The control message is used to ensure that **exactly one** of the following outcomes occurs:
 
 * Transaction finishes with data being stored, and outgoing messages eventually sent - when the `Commit` path successfully stores the `OutboxRecord`
 * Transaction finishes with no visible side effects - when the control message stores the `OutboxRecord`
@@ -183,13 +183,13 @@ Sending the control message first ensures that eventually, the transaction will 
 
 If dispatching the control message fails, the transactional session changes will roll back, and an error will be raised to the user committing the session.
 
-If the transaction completes and the control message fails to process through all the retry attempts, the control message will be moved to the error queue, and the outgoing messages will not be dispatched. Once the error is resolved, the control message must be manually retried in ServicePulse to ensure the outgoing messages are dispatched. If this doesn't happen, the stored outgoing messages will never delivered. If that's undesirable, the system should be returned to a consistent state through another action.
+If the transaction completes and the control message fails to process through all the retry attempts, the control message will be moved to the error queue, and the outgoing messages will not be dispatched. Once the error is resolved, the control message must be manually retried in ServicePulse to ensure the outgoing messages are dispatched. If this doesn't happen, the stored outgoing messages will never be delivered. If that's undesirable, the system should be returned to a consistent state through another action.
 
 ### Failure to commit the outbox record
 
 If the `Commit` fails, the control message will (after the [maximum commit duration](#advanced-configuration-maximum-commit-duration) elapses) eventually be consumed, leaving no side effects.
 
-### Commit takes to long
+### Commit takes too long
 
 When the commit takes longer than the [maximum commit duration](#advanced-configuration-maximum-commit-duration) the control message will result in a tombstone record in the outbox preventing the commit to succeed. The following exception is thrown:
 
