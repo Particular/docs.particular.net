@@ -8,7 +8,7 @@ snippet: configure-remote-processor
 > Both the send-only endpoint and the processor endpoint must be connected to the same database. See [documentation for the individual persisters](/persistence/) for more details.
 
 > [!NOTE]
-The processor endpoint [must have both the outbox and the transactional session enabled](#commit-takes-too-long).
+The processor endpoint [must have both the outbox and the transactional session enabled](/nservicebus/transactional-session#commit-takes-too-long).
 
 > [!NOTE]
 > If migrating to this mode from an endpoint couldn't be made send-only due to the previous limitations of the transactional session, see the migration guidance below.
