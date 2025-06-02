@@ -1,4 +1,4 @@
-## Send only 
+## Send-only 
 
 When used in a [send-only](/nservicebus/hosting/#self-hosting-send-only-hosting) endpoint, the transactional session must be configured with a remote endpoint(processor endpoint) that will manage the outbox on behalf of the send-only endpoint.
 
@@ -21,7 +21,7 @@ Applies to:
 
 ### Migration to send only endpoint mode
 
-For endpoints that previously couldn't be send-only due to limitations of the transactional session, use the following procedure to migrate your endpoint.
+For endpoints that previously couldn't be send-only because of the transactional session limitations, you can use the following procedure to migrate your endpoint.
 
 #### Preparation
 
