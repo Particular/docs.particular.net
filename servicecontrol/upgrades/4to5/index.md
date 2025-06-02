@@ -212,7 +212,7 @@ After completing the transport upgrade:
 
 - Upgrade the ServiceControl instance to **v4.33.5**.
 - Note the **instance name** and **database folder path**.
-- Remove the instance via the 🔧 (advanced options), but **retain the database folder**.
+- Remove the instance via the 🔧 (advanced options), leave the "Remove DB subdirectory and data" unchecked in the Remove instance dialog.
 - Recreate a **new v4.33.5 instance**:
   - Use the **same instance name**.
   - Use the **same database path**.
