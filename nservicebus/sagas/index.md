@@ -30,7 +30,7 @@ With NServiceBus, behavior is specified by writing a class that inherits from `S
 snippet: simple-saga
 
 > [!NOTE]
-> SQL Persistence imposes restrictions on the length of the saga name depending on the SQL implementation. Refer to the [implementation-specific documentation](https://docs.particular.net/persistence/sql/#supported-sql-implementations) for more details on supported name lengths.
+> SQL Persistence imposes restrictions on the number of characters in the name of the saga, depending on the SQL implementation. Refer to the [implementation-specific documentation](https://docs.particular.net/persistence/sql/#supported-sql-implementations) for more details on supported name lengths.
 
 ## Long-running means stateful
 
@@ -157,7 +157,7 @@ Make sure to configure appropriate [saga persistence](/persistence/).
 snippet: saga-configure
 
 > [!NOTE]
-> SQL Persistence imposes restrictions on the length of the saga name depending on the SQL implementation. Refer to the [implementation-specific documentation](https://docs.particular.net/persistence/sql/#supported-sql-implementations) for more details on supported name lengths.
+> SQL Persistence imposes restrictions on the number of characters in the name of the saga, depending on the SQL implementation. Refer to the [implementation-specific documentation](https://docs.particular.net/persistence/sql/#supported-sql-implementations) for more details on supported name lengths.
 
 ## Sagas and automatic subscriptions
 
