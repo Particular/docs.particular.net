@@ -1252,7 +1252,7 @@
       Title: Troubleshooting
   - Title: Cosmos DB
     Articles:
-    - Title: Overiew
+    - Title: Overview
       Url: persistence/cosmosdb
     - Title: Saga concurrency
       Url: persistence/cosmosdb/saga-concurrency
