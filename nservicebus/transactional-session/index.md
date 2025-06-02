@@ -195,7 +195,7 @@ When the commit takes longer than the [maximum commit duration](#advanced-config
 
 `Failed to commit the transactional session. This might happen if the maximum commit duration is exceeded`
 
-A variation of this is when using a remote processing endpoint that does not have the transactional session enabled. In this scenario the tombstone record will be created immediately when the control message is processed and force a rollback of the commit. When this happens the following exception is thrown:
+A variation of this is when using a remote processing endpoint that does not have the transactional session enabled. In this scenario, the tombstone record will be created immediately when the control message is processed, forcing a rollback of the commit. When this happens, the following exception is thrown:
 
 `Failed to commit the transactional session. This might happen if the maximum commit duration is exceeded or if the transactional session has not been enabled on the configured processor endpoint - MyProcessorEndpoint`
 
