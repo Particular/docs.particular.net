@@ -29,6 +29,9 @@ With NServiceBus, behavior is specified by writing a class that inherits from `S
 
 snippet: simple-saga
 
+> [!NOTE]
+> SQL Persistence imposes restrictions on the length of the saga name depending on the SQL implementation. Refer to the [implementation-specific documentation](https://docs.particular.net/persistence/sql/#supported-sql-implementations) for more details on supported name lengths.
+
 ## Long-running means stateful
 
 Any process that involves multiple network calls (or messages sent and received) has an interim state. That state may be kept in memory, persisted to disk, or stored in a distributed cache; it may be as simple as 'Response 1 received, pending response 2', but the state exists.
@@ -152,6 +155,9 @@ This is one of the methods on the saga base class that would be very difficult t
 Make sure to configure appropriate [saga persistence](/persistence/).
 
 snippet: saga-configure
+
+> [!NOTE]
+> SQL Persistence imposes restrictions on the length of the saga name depending on the SQL implementation. Refer to the [implementation-specific documentation](https://docs.particular.net/persistence/sql/#supported-sql-implementations) for more details on supported name lengths.
 
 ## Sagas and automatic subscriptions
 
