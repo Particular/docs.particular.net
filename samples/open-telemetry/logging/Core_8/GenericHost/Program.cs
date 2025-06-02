@@ -27,10 +27,8 @@ builder.ConfigureServices(services =>
 
 #region otel-logging
 
-builder.ConfigureLogging((ctx, logging) =>
+builder.ConfigureLogging((_, logging) =>
 {
-    logging.AddConfiguration(ctx.Configuration.GetSection("Logging"));
-
     logging.AddOpenTelemetry(loggingOptions =>
     {
         loggingOptions.IncludeFormattedMessage = true;
