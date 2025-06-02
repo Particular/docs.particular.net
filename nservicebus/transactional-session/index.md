@@ -177,11 +177,27 @@ The transactional session provides atomic store-and-send guarantees, similar to 
 * Transaction finishes with data being stored, and outgoing messages eventually sent - when the `Commit` path successfully stores the `OutboxRecord`
 * Transaction finishes with no visible side effects - when the control message stores the `OutboxRecord`
 
-Sending the control message first ensures that eventually, the transaction will have an atomic outcome. If the `Commit` of the `OutboxRecord` succeeds, the control message will ensure the outgoing operations are sent. If the `Commit` fails, the control message will (after the [maximum commit duration](#advanced-configuration-maximum-commit-duration) elapses) eventually be consumed, leaving no side effects.
+Sending the control message first ensures that eventually, the transaction will have an atomic outcome. If the `Commit` of the `OutboxRecord` succeeds, the control message will ensure the outgoing operations are sent. 
+
+### Failure to dispatch the control message
 
 If dispatching the control message fails, the transactional session changes will roll back, and an error will be raised to the user committing the session.
 
 If the transaction completes and the control message fails to process through all the retry attempts, the control message will be moved to the error queue, and the outgoing messages will not be dispatched. Once the error is resolved, the control message must be manually retried in ServicePulse to ensure the outgoing messages are dispatched. If this doesn't happen, the stored outgoing messages will never delivered. If that's undesirable, the system should be returned to a consistent state through another action.
+
+### Failure to commit the outbox record
+
+If the `Commit` fails, the control message will (after the [maximum commit duration](#advanced-configuration-maximum-commit-duration) elapses) eventually be consumed, leaving no side effects.
+
+### Commit takes to long
+
+When the commit takes longer than the [maximum commit duration](#advanced-configuration-maximum-commit-duration) the control message will result in a tombstone record in the outbox preventing the commit to succeed. The following exception is thrown:
+
+`Failed to commit the transactional session. This might happen if the maximum commit duration is exceeded`
+
+A variation of this is when using a remote processing endpoint that does not have the transactional session enabled. In this scenario the tombstone record will be created immediately when the control message is processed and force a rollback of the commit. When this happens the following exception is thrown:
+
+`Failed to commit the transactional session. This might happen if the maximum commit duration is exceeded or if the transactional session has not been enabled on the configured processor endpoint - MyProcessorEndpoint`
 
 ## Limitations
 
