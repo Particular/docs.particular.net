@@ -4,15 +4,8 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-class MessageGenerator : BackgroundService
+class MessageGenerator(IMessageSession messageSession) : BackgroundService
 {
-    private readonly IMessageSession messageSession;
-
-    public MessageGenerator(IMessageSession messageSession)
-    {
-        this.messageSession = messageSession;
-    }
-
     protected override async Task ExecuteAsync(CancellationToken cancellationToken)
     {
         try
