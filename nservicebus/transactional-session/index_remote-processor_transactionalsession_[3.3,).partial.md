@@ -12,7 +12,7 @@ snippet: configure-remote-processor
 
 ### Outbox cleanup
 
-For persisters where [Outbox cleanup](/nservicebus/outbox/#outbox-expiration-duration) is performed by the endpoint instances, only the remote processing endpoint will have the cleanup enabled to prevent concurrent cleanup from happening.
+For persisters where [Outbox cleanup](/nservicebus/outbox/#outbox-expiration-duration) is performed by the endpoint instances, only the remote processing endpoint should have the cleanup enabled to prevent concurrent cleanup from happening.
 
 Applies to:
 
