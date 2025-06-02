@@ -518,7 +518,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.2.1) | 2024-09-02     | -                 | -                                 |
-| [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.1.0) | ~~2024-07-05~~ | ~~2024-12-02~~    | ~~Superseded by 3.2.x~~           |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/2.0.3) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/1.0.3) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
@@ -560,7 +559,7 @@
 | [3.36.x](https://www.nuget.org/packages/Particular.PlatformSample/3.36.0) | 2025-03-21     | 2025-06-24        | Superseded by 3.37.x              |
 | [3.34.x](https://www.nuget.org/packages/Particular.PlatformSample/3.34.0) | 2025-03-17     | 2025-06-21        | Superseded by 3.36.x              |
 | [3.33.x](https://www.nuget.org/packages/Particular.PlatformSample/3.33.0) | 2025-03-03     | 2025-06-17        | Superseded by 3.34.x              |
-| [3.32.x](https://www.nuget.org/packages/Particular.PlatformSample/3.32.0) | 2025-02-21     | 2025-06-03        | Superseded by 3.33.x              |
+| [~~3.32.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.32.0) | ~~2025-02-21~~ | ~~2025-06-03~~    | ~~Superseded by 3.33.x~~          |
 | [~~3.26.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.26.0) | ~~2025-02-03~~ | ~~2025-05-21~~    | ~~Superseded by 3.32.x~~          |
 | [~~3.25.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.25.0) | ~~2025-01-27~~ | ~~2025-05-03~~    | ~~Superseded by 3.26.x~~          |
 | [~~3.24.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.24.0) | ~~2025-01-22~~ | ~~2025-04-27~~    | ~~Superseded by 3.25.x~~          |
@@ -577,8 +576,6 @@
 | [~~3.13.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.13.0) | ~~2024-09-13~~ | ~~2024-12-24~~    | ~~Superseded by 3.14.x~~          |
 | [~~3.12.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.12.0) | ~~2024-09-04~~ | ~~2024-12-13~~    | ~~Superseded by 3.13.x~~          |
 | [~~3.11.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.11.0) | ~~2024-09-02~~ | ~~2024-12-04~~    | ~~Superseded by 3.12.x~~          |
-| [~~3.10.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.10.0) | ~~2024-08-26~~ | ~~2024-12-02~~    | ~~Superseded by 3.11.x~~          |
-| [~~2.40.x~~](https://www.nuget.org/packages/Particular.PlatformSample/2.40.0) | ~~2023-11-15~~ | ~~2024-12-01~~    | ~~Superseded by 3.0.x~~           |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 
