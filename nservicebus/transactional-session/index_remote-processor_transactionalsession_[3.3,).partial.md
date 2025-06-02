@@ -22,7 +22,7 @@ Applies to:
 - SQL Persistence
 - NHibernate
 
-### Migration to send only endpoint mode
+### Migration to send-only endpoint mode
 
 For endpoints that previously couldn't be send-only because of the transactional session limitations, you can use the following procedure to migrate your endpoint.
 
