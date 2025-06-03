@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net9.0;net8.0;net6.0;net48</TargetFrameworks>
+    <TargetFrameworks>net9.0;net8.0;net48</TargetFrameworks>
     <OutputType>exe</OutputType>
-    <LangVersion>10.0</LangVersion>
+    <LangVersion>12.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,7 +19,7 @@
     <PackageReference Include="ServiceStack.OrmLite.SqlServer.Data.Core" Version="6.*" />
   </ItemGroup>
 
-  <ItemGroup Label="Resolves vulnerabilities">    
+  <ItemGroup Label="Resolves vulnerabilities">
     <PackageReference Include="System.Text.RegularExpressions" Version="4.*" />
     <PackageReference Include="System.Private.Uri" Version="4.*" />
   </ItemGroup>
