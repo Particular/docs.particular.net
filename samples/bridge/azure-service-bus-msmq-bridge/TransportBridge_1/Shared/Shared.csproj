@@ -4,6 +4,6 @@
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-	<PackageReference Include="NServiceBus" Version="8.*" />
+  <PackageReference Include="NServiceBus" Version="8.*" />
   </ItemGroup>
 </Project>
