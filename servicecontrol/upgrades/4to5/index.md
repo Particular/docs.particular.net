@@ -16,8 +16,8 @@ Upgrading ServiceControl from version 4 to version 5 is a major upgrade and requ
 * The ServiceControl PowerShell module is no longer installed with ServiceControl. Instead, the PowerShell module can be [installed from the PowerShell Gallery](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management/).
 * The [ServiceControl PowerShell module](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management/) requires PowerShell 7.2 or greater to run.
 * PowerShell: The `Transport` parameter no longer accepts the DisplayName descriptions but only the Name code. See [PowerShell Transport argument](#powershell-transport-argument)
-
-* ServiceControl instances using **Azure Service Bus - Endpoint-oriented topology (Legacy)** as the message transport cannot be upgraded to ServiceControl version 5. Systems using this deprecated configuration must first use the upgrade steps documented in [Azure Service Bus Transport (Legacy) Upgrade Version 9 to 9.1](/transports/upgrades/asb-9to9.1.md). After this process is complete, a ServiceControl 4.x instance can be switched to the supported **Azure Service Bus** transport, and then an upgrade to ServiceControl 5 can occur.
+* ServiceControl instances using **Azure Service Bus - Endpoint-oriented topology (Legacy)** as the message transport cannot be upgraded to ServiceControl version 5.
+  * [Migrating Azure Service Bus](#migrating-azure-service-bus)
 * `!disable` is no longer supported as an error and/or audit queue names. Instead, dedicated settings i.e. [`ServiceControl/IngestErrorMessages`](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicecontrolingesterrormessages) and [`ServiceControl/IngestAuditMessages`](/servicecontrol/audit-instances/configuration.md#transport-servicecontrolingestauditmessages) should be used to control the message ingestion process. These settings are useful for upgrade scenarios, such as the one that will be described later in this article.
 * The setting `IndexStoragePath` is no longer supported.  Use [symbolic links (soft links) to map any storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
 * The [`ServiceControl.Audit/RavenDBLogLevel`](/servicecontrol/audit-instances/configuration.md#host-settings-servicecontrol-auditravendbloglevel) and [`ServiceControl/RavenDBLogLevel`](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolravendbloglevel) settings use new values. The previous values are mapped to new values native to RavenDB5.
@@ -189,3 +189,36 @@ Invoke-ServiceControlInstanceUpgrade -Name <InstanceName> -Force
 ## Support for version 4
 
 Version 4 is supported for one year after version 5 is released as defined by the [ServiceControl support policy](/servicecontrol/upgrades/support-policy.md). The ServiceControl support end-date is available at [ServiceControl supported versions](/servicecontrol/upgrades/supported-versions.md).
+
+
+## Migrating Azure Service Bus
+
+ServiceControl instances using **Azure Service Bus – Endpoint-oriented topology (Legacy)** cannot be directly upgraded to version 5.
+
+To upgrade, follow these steps:
+
+### 1. Upgrade the Transport
+
+> [!NOTE]
+> This step is only required if there are subscribers for [ServiceControl integration events](/servicecontrol/contracts.md).
+
+Migrate those subscribers to the supported **Azure Service Bus (Forwarding Topology)** transport using the following guide:
+
+- [Azure Service Bus Transport (Legacy) Upgrade Version 9 to 9.1](/transports/upgrades/asb-9to9.1.md)
+
+### 2. Reconfigure ServiceControl 4.x
+
+After completing the transport upgrade:
+
+- Upgrade the ServiceControl instance to **v4.33.5**.
+- Note the **instance name** and **database folder path**.
+- Remove the instance via the 🔧 (advanced options), leave the "Remove DB subdirectory and data" unchecked in the Remove instance dialog.
+- Recreate a **new v4.33.5 instance**:
+  - Use the **same instance name**.
+  - Use the **same database path**.
+  - Select the **Azure Service Bus (Forwarding Topology)** transport.
+
+### 3. Upgrade to ServiceControl v5
+
+Once the instance is reconfigured and running with the supported transport, you can safely upgrade to **ServiceControl v5**.
+With the instance now using the supported transport, you can [upgrade your error instance to **ServiceControl v5**](#upgrading-to-version-5)
