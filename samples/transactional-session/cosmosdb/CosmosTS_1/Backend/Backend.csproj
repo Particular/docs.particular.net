@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net9.0;net8.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
 
@@ -14,7 +14,7 @@
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="1.*" />
     <PackageReference Include="NServiceBus.Persistence.CosmosDB" Version="1.*" />
   </ItemGroup>
-  
+
   <ItemGroup Label="Resolves vulnerabilities">
     <PackageReference Include="System.Drawing.Common" Version="4.*" />
   </ItemGroup>

@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net9.0;net8.0;net6.0;net48</TargetFrameworks>
+    <TargetFrameworks>net9.0;net8.0;net48</TargetFrameworks>
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
 
@@ -12,5 +12,5 @@
   <ItemGroup Label="Resolves vulnerabilities">
     <PackageReference Include="System.Drawing.Common" Version="4.*" />
   </ItemGroup>
-  
+
 </Project>

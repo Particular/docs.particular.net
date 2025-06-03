@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net9.0;net8.0;net6.0;net48</TargetFrameworks>
+    <TargetFrameworks>net9.0;net8.0;net48</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <LangVersion>10.0</LangVersion>
   </PropertyGroup>
@@ -13,7 +13,7 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
-    <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="9.*" />    
+    <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="9.*" />
   </ItemGroup>
 
   <ItemGroup Label="Resolves vulnerabilities">
