@@ -8,7 +8,7 @@ related:
 - samples/transactional-session/cosmosdb
 ---
 
-This article describes how to achieve consistency when modifying business data and sending messages, similar to the [outbox](/nservicebus/outbox), outside the context of an NServiceBus message handler.
+This article describes how to achieve consistency when modifying business data and sending messages, similar to the [outbox](/nservicebus/outbox), but outside the context of an NServiceBus message handler.
 
 youtube: https://www.youtube.com/watch?v=-UOyxjnlYXs
 
@@ -58,10 +58,12 @@ Once all the operations that are part of the atomic request have been executed, 
 
 snippet: committing-transactional-session
 
-Disposing the transactional session without committing will roll back any changes that were made.
+Disposing of the transactional session without committing will roll back any changes that were made.
 
 > [!NOTE]
 > The `Commit` operation may fail and throw an exception for reasons outlined in the [failure scenarios section](#failure-scenarios).
+
+partial: remote-processor
 
 ## Requirements
 
@@ -73,6 +75,7 @@ The transactional session feature requires a supported persistence package to st
 * [NHibernate](/persistence/nhibernate)
 * [RavenDB](/persistence/ravendb)
 * [MongoDB](/persistence/mongodb)
+* [DynamoDB](/persistence/dynamodb/)
 
 ## Transaction consistency
 
@@ -87,7 +90,7 @@ With the outbox disabled, database and message operations are not applied until 
 
 The transactional session feature guarantees that all outgoing message operations are eventually consistent with the data operations.
 
-Returning to the earlier example of a message handler which creates a `User` and then publishes a `UserCreated` event, the following process occurs. Details are described following the diagram.
+Returning to the earlier example of a message handler that creates a `User` and then publishes a `UserCreated` event, the following process occurs. Details are described following the diagram.
 
 ```mermaid
 sequenceDiagram
@@ -169,20 +172,35 @@ The endpoint receives the control message and processes it as follows:
 
 ## Failure scenarios
 
-The transactional session provides atomic store-and-send guarantees, similar to the outbox feature (except for incoming message de-duplication). The control message is used to ensure that **exactly one** of the following outcomes occur:
+The transactional session provides atomic store-and-send guarantees, similar to the outbox feature (except for incoming message de-duplication). The control message is used to ensure that **exactly one** of the following outcomes occurs:
 
 * Transaction finishes with data being stored, and outgoing messages eventually sent - when the `Commit` path successfully stores the `OutboxRecord`
 * Transaction finishes with no visible side effects - when the control message stores the `OutboxRecord`
 
-Sending the control message first ensures that eventually, the transaction will have an atomic outcome. If the `Commit` of the `OutboxRecord` succeeds, the control message will ensure the outgoing operations are sent. If the `Commit` fails, the control message will (after the [maximum commit duration](#advanced-configuration-maximum-commit-duration) elapses) eventually be consumed, leaving no side effects.
+Sending the control message first ensures that eventually, the transaction will have an atomic outcome. If the `Commit` of the `OutboxRecord` succeeds, the control message will ensure the outgoing operations are sent. 
+
+### Failure to dispatch the control message
 
 If dispatching the control message fails, the transactional session changes will roll back, and an error will be raised to the user committing the session.
 
-If the transaction completes and the control message fails to process through all the retry attempts, the control message will be moved to the error queue, and the outgoing messages will not be dispatched. Once the error is resolved, the control message must be manually retried in ServicePulse to ensure the outgoing messages are dispatched. If this doesn't happen, the stored outgoing messages will never delivered. If that's undesirable, the system should be returned to a consistent state through another action.
+If the transaction completes and the control message fails to process through all the retry attempts, the control message will be moved to the error queue, and the outgoing messages will not be dispatched. Once the error is resolved, the control message must be manually retried in ServicePulse to ensure the outgoing messages are dispatched. If this doesn't happen, the stored outgoing messages will never be delivered. If that's undesirable, the system should be returned to a consistent state through another action.
+
+### Failure to commit the outbox record
+
+If the `Commit` fails, the control message will (after the [maximum commit duration](#advanced-configuration-maximum-commit-duration) elapses) eventually be consumed, leaving no side effects.
+
+### Commit takes too long
+
+When the commit takes longer than the [maximum commit duration](#advanced-configuration-maximum-commit-duration) the control message will result in a tombstone record in the outbox preventing the commit to succeed. The following exception is thrown:
+
+`Failed to commit the transactional session. This might happen if the maximum commit duration is exceeded`
+
+A variation of this is when using a remote processing endpoint that does not have the transactional session enabled. In this scenario, the tombstone record will be created immediately when the control message is processed, forcing a rollback of the commit. When this happens, the following exception is thrown:
+
+`Failed to commit the transactional session. This might happen if the maximum commit duration is exceeded or if the transactional session has not been enabled on the configured processor endpoint - MyProcessorEndpoint`
 
 ## Limitations
 
-* The transactional session cannot be used in send-only endpoints. A full endpoint is required to send a control message to the local queue.
 * The transport must have the same or higher availability guarantees as the database.
 
 ## Advanced configuration
