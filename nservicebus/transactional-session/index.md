@@ -8,7 +8,7 @@ related:
 - samples/transactional-session/cosmosdb
 ---
 
-This article describes how to achieve consistency when modifying business data and sending messages, similar to the outbox, but outside the context of an NServiceBus message handler.
+This article describes how to achieve consistency when modifying business data and sending messages, similar to the [outbox](/nservicebus/outbox), but outside the context of an NServiceBus message handler.
 
 youtube: https://www.youtube.com/watch?v=-UOyxjnlYXs
 
