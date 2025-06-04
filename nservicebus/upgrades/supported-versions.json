@@ -538,6 +538,10 @@
         {
           "Minor": "10.0",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "10.1",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -554,6 +558,10 @@
         },
         {
           "Minor": "10.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "10.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -602,6 +610,10 @@
         {
           "Minor": "6.0",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "6.1",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -618,6 +630,10 @@
         },
         {
           "Minor": "6.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "6.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -636,6 +652,10 @@
         {
           "Minor": "3.0",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.1",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -652,6 +672,10 @@
         },
         {
           "Minor": "3.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -670,6 +694,10 @@
         {
           "Minor": "2.1",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "2.2",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -686,6 +714,10 @@
         },
         {
           "Minor": "2.1",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "2.2",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -730,6 +762,10 @@
         {
           "Minor": "8.1",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "8.2",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -746,6 +782,10 @@
         },
         {
           "Minor": "8.1",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "8.2",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -789,6 +829,10 @@
         {
           "Minor": "9.0",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "9.1",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -805,6 +849,10 @@
         },
         {
           "Minor": "9.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "9.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -883,6 +931,10 @@
         {
           "Minor": "4.1",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "4.2",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -899,6 +951,10 @@
         },
         {
           "Minor": "4.1",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "4.2",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -946,6 +1002,10 @@
         },
         {
           "Minor": "3.2",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.3",
           "SupportLevel": "Mainstream"
         }
       ]
