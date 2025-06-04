@@ -8,7 +8,7 @@ public class InputLoopService(IMessageSession messageSession) : BackgroundServic
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-      
+
         Console.WriteLine("Press 'S' to send a StartOrder message to the server endpoint");
 
         Console.WriteLine("Press any other key to exit");
@@ -18,13 +18,14 @@ public class InputLoopService(IMessageSession messageSession) : BackgroundServic
             var key = Console.ReadKey();
             Console.WriteLine();
 
-            var orderId = Guid.NewGuid();
-            var startOrder = new StartOrder
-            {
-                OrderId = orderId
-            };
             if (key.Key == ConsoleKey.S)
             {
+                var orderId = Guid.NewGuid();
+                var startOrder = new StartOrder
+                {
+                    OrderId = orderId
+                };
+
                 await messageSession.Send("Samples.DynamoDB.Simple.Server", startOrder);
                 Console.WriteLine($"StartOrder Message sent to Server with OrderId {orderId}");
                 continue;

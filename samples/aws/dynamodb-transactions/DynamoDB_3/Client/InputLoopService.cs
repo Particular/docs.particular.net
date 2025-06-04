@@ -16,13 +16,14 @@ public class InputLoopService(IMessageSession messageSession) : BackgroundServic
             var key = Console.ReadKey();
             Console.WriteLine();
 
-            var orderId = Guid.NewGuid();
-            var startOrder = new StartOrder
-            {
-                OrderId = orderId
-            };
             if (key.Key == ConsoleKey.S)
             {
+                var orderId = Guid.NewGuid();
+                var startOrder = new StartOrder
+                {
+                    OrderId = orderId
+                };
+
                 await messageSession.Send("Samples.DynamoDB.Transactions.Server", startOrder);
                 Console.WriteLine($"StartOrder Message sent to Server with OrderId {orderId}");
                 continue;
