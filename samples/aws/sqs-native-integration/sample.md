@@ -1,6 +1,6 @@
 ---
 title: AmazonSQS transport native integration sample
-reviewed: 2024-02-06
+reviewed: 2025-05-04
 component: Sqs
 related:
 - transports/sqs
@@ -10,7 +10,7 @@ redirects:
 
 This sample demonstrates how to enable an NServiceBus endpoint to receive messages sent by a native (i.e. non-NServiceBus-based) implementation.
 
-In this sample, an external system sends a message to an SQS queue using the Amazon SQS SDK.
+In this sample, an external system sends a message to an SQS queue using the Amazon SQS .NET SDK.
 
 snippet: NativeMessage
 
