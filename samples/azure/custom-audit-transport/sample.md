@@ -31,6 +31,8 @@ To see how the auditing messages appear in ServicePulse, two ServiceControl inst
 - [ServiceControl Error instance](/servicecontrol/servicecontrol-instances/) with an Azure Service Bus transport and the same connection string as used in the sample.
 - [ServiceControl Audit instance](/servicecontrol/audit-instances/) with an Azure Storage Queue transport and the same connection string as used in the sample (the default local emulator `UseDevelopmentStorage=true`).
 
+There's a `docker-compose.yml` file provided which will setup the instances in a local container environment.
+
 ## Projects
 
 ### CustomAuditTransport
@@ -60,4 +62,34 @@ Build the solution and run the `CustomAuditTransport` project.
 Press `s` to send a message that will be successfully processed.
 Press `e` to send a message that will error.
 
-Open ServicePulse and see how the messages appear in the `All Messages` view.
+### ServiceControl and ServicePulse
+
+#### Pull the latest images
+
+Before running the containers, ensure you're using the latest version of each image by executing the following command:
+
+ ```shell
+ docker compose pull
+ ```
+
+ This command checks for any updates to the images specified in the docker-compose.yml file and pulls them if available.
+
+#### Start the containers
+
+After pulling the latest images, modify the `service-platform-error.env` and `env/service-platform-audit.env` environment files, if necessary, and then start up the containers using:
+
+```shell
+docker compose up -d
+```
+
+Once composed, [ServicePulse](/servicepulse/) can be accessed at [http://localhost:9090](http://localhost:9090) to see how the messages appear in the `All Messages` view.
+
+#### Implementation details
+
+- The ports for all services are exposed to localhost:
+  - `33333`: ServiceControl API
+  - `44444`: Audit API
+  - `8080`: Database backend
+  - `9090` ServicePulse UI
+- One instance of the [`servicecontrol-ravendb` container](/servicecontrol/ravendb/containers.md) is used for both the [`servicecontrol`](/servicecontrol/servicecontrol-instances/deployment/containers.md) and [`servicecontrol-audit`](/servicecontrol/audit-instances/deployment/containers.md) containers.
+  - _A single database container should not be shared between multiple ServiceControl instances in production scenarios._
