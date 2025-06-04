@@ -1,6 +1,6 @@
 ---
 title: Simple AmazonSQS Transport usage
-reviewed: 2024-01-06
+reviewed: 2025-05-04
 component: Sqs
 related:
 - transports/sqs
@@ -59,4 +59,3 @@ The large message contents can be viewed in the [S3 management UI](https://conso
 ![](s3bucket.png "width=300")
 
 See also [Receiving and Deleting a Message from an Amazon SQS Queue](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-receive-delete-message.html).
-
