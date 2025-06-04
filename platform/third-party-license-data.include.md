@@ -10,7 +10,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/3.7.417.2/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/3.7.417.3/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SQS" target="_blank">AWSSDK.SQS</a> | <a href="https://www.nuget.org/packages/AWSSDK.SQS/3.7.400.159/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/3.7.401.108/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/3.7.400.159/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
@@ -26,7 +26,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Amazon.Lambda.Core" target="_blank">Amazon.Lambda.Core</a> | <a href="https://www.nuget.org/packages/Amazon.Lambda.Core/2.5.1/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-lambda-dotnet" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Amazon.Lambda.Core" target="_blank">Amazon.Lambda.Core</a> | <a href="https://www.nuget.org/packages/Amazon.Lambda.Core/2.6.0/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-lambda-dotnet" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Amazon.Lambda.SQSEvents" target="_blank">Amazon.Lambda.SQSEvents</a> | <a href="http://aws.amazon.com/apache2.0/" target="_blank">View License</a> | <a href="https://github.com/aws/aws-lambda-dotnet" target="_blank">Project Site</a> |
 
 ### NServiceBus.Azure.Transports.WindowsAzureServiceBus
@@ -150,6 +150,7 @@
 | <a href="https://www.nuget.org/packages/Azure.Data.Tables" target="_blank">Azure.Data.Tables</a> | <a href="https://www.nuget.org/packages/Azure.Data.Tables/12.11.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Data.Tables_12.11.0/sdk/tables/Azure.Data.Tables/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Newtonsoft.Json" target="_blank">Newtonsoft.Json</a> | <a href="https://www.nuget.org/packages/Newtonsoft.Json/13.0.3/license" target="_blank">MIT</a> | <a href="https://www.newtonsoft.com/json" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.Linq.Async" target="_blank">System.Linq.Async</a> | <a href="https://www.nuget.org/packages/System.Linq.Async/6.0.1/license" target="_blank">MIT</a> | <a href="https://github.com/dotnet/reactive" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/System.Text.Json" target="_blank">System.Text.Json</a> | <a href="https://www.nuget.org/packages/System.Text.Json/9.0.5/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
 ### NServiceBus.Persistence.CosmosDB
 
