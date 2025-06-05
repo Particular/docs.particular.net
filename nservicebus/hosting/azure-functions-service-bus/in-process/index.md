@@ -38,7 +38,7 @@ snippet: asb-dispatching-outside-message-handler
 
 ## Transport configuration constraints and limitations
 
-The configuration API exposes NServiceBus transport configuration options via the `configuration.Transport` property to allow customization. However, not all options will be applicable for execution within Azure Functions (see [analysers. md](./analyzers.md).
+The configuration API exposes NServiceBus transport configuration options via the `configuration.Transport` property to allow customization. However, not all options will be applicable for execution within Azure Functions (for more details, see [analysers](./analyzers.md)).
 
 Concurrency-related settings are controlled via the Azure Function `host.json` configuration file. See [Concurrency in Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-concurrency#service-bus) for details.
 
