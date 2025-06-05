@@ -61,7 +61,7 @@ Steps:
 - Open the file `servicecontrol.exe.config` in an elevated editor
 - Add the following setting to `servicecontrol.exe.config`:
   - ```xml
-    <add key="ServiceControl/IngestErrorMessages" value="True" />
+    <add key="ServiceControl/IngestErrorMessages" value="False" />
     ```
 - Save the file
 
@@ -74,22 +74,32 @@ Change the queue name used as existing endpoints are sending heartbeats to this.
 > If you are not using heartbeats this step it not required
 
 - Adjust primary instance service name:
-  - Open Regedit and navigate to `HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\`
+  - Open Regedit and navigate to:
+    - ```
+      HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\
+      ```
   - Locate the "map" that represents the service
   - Right click the node and select `EXPORT` to make a backup
   - Locate the sub item `ImagePath`
   - Notice its value for `--serviceName`
   - **Write down the *current* service name**
-  - Modify its value and change the service name value to a unique value like `--serviceName=particular.servicecontrol_v4`
+  - Modify its value and change the service name value to a unique value
+    - ```
+      --serviceName=particular.servicecontrol_v4
+      ```
 
 ### Run setup
 
 Re-run setup so the queues for this instance are created:
 
-- Locate to the installation folder via an elevated command prompt (i.e. `C:\Program Files (x86)\Particular Software\Particular.ServiceControl`)
-- Run `servicecontrol.exe -s --serviceName=particular.servicecontrol_v4`
-  - Notice the `-s` that will run setup
-
+- Locate to the installation folder via an elevated command prompt, i.e
+  - ```
+    C:\Program Files (x86)\Particular Software\Particular.ServiceControl
+    ```
+- Run setup with the `-s` (setup) argument:
+  - ```
+    servicecontrol.exe -s --serviceName=particular.servicecontrol_v4
+    ```
 
 ### Enable and start v4 error instance
 
