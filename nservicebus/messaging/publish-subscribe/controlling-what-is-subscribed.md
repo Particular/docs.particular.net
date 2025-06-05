@@ -22,7 +22,7 @@ partial: missing-publisher-info-error
 partial: exclude-event-types
 
 
-### Exclude sagas from auto-subscribe
+## Exclude sagas from auto-subscribe
 
 Sagas are treated the same as handlers and will cause an endpoint to subscribe to a given event. It is possible to opt-in to the old exclude saga event handling behavior using:
 
@@ -37,7 +37,7 @@ snippet: DoNotAutoSubscribeSagas
 In NServiceBus version 6 and above, it is possible to subscribe to messages not defined as events by [manually subscribing](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#manually-subscribing-to-a-message) to the message type.
 
 
-## When a subscriber stops or uninstalls
+# When a subscriber stops or uninstalls
 
 A subscriber will not auto unsubscribe when it stops; it will remain registered at the publisher to receive events. The publisher still sends events to the queue of the stopped subscriber. When the subscriber is started, it will consume the messages from its queue. The subscriber will never lose an event.
 
@@ -56,3 +56,11 @@ Events can manually be subscribed and unsubscribed to:
 snippet: ExplicitSubscribe
 
 In NServiceBus version 6 and above, `Subscribe` and `Unsubscribe` are accessible via the `IMessageSession` available on the `IEndpointInstance` or within a [feature startup task](/nservicebus/pipeline/features.md#feature-startup-tasks).
+
+## Decomissioning event handlers
+
+An event is not automatically unsubscribed when a message handler is removed. The subscription remains active until it is unsubscribed.
+
+Unsubscribing can be done at startup via `IMessageSession.Unsubscribe`. For example, via a background service:
+
+snippet: UnsubscribeBackgroundService
