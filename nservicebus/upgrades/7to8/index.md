@@ -9,6 +9,8 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
+include: upgrade-major
+
 This document focuses on changes that are affecting general endpoint configuration and message handlers. For more upgrade guides, see the following additional guides:
 
 * [Changes for downstream implementations like custom/community transports, persistence, message serializers](implementations.md)
