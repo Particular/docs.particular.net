@@ -12,7 +12,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.3.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.3.0) | 2025-04-14     | -                 | -                                 |
+| [8.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/8.0.0) | 2025-06-04     | -                 | -                                 |
+| [7.3.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.3.0) | 2025-04-14     | 2026-06-04        | Superseded by 8.0.x               |
 | [7.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.2.0) | 2024-12-05     | 2025-07-14        | Superseded by 7.3.x               |
 | [~~7.1.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.1.1) | ~~2024-11-26~~ | ~~2025-03-05~~    | ~~Superseded by 7.2.x~~           |
 | [~~7.0.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.0.2) | ~~2024-04-16~~ | ~~2025-02-26~~    | ~~Superseded by 7.1.x~~           |
@@ -136,7 +137,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/2.2.1) | 2025-06-03     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/3.0.0) | 2025-06-04     | -                 | -                                 |
+| [2.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/2.2.1) | 2025-06-03     | 2026-06-04        | Superseded by 3.0.x               |
 | [2.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/2.1.0) | 2025-04-23     | 2025-09-03        | Superseded by 2.2.x               |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/2.0.2) | 2024-04-16     | 2025-07-23        | Superseded by 2.1.x               |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/1.0.2) | 2023-05-09     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
@@ -145,7 +147,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/2.2.1) | 2025-06-03     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/3.0.0) | 2025-06-04     | -                 | -                                 |
+| [2.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/2.2.1) | 2025-06-03     | 2026-06-04        | Superseded by 3.0.x               |
 | [2.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/2.1.0) | 2025-04-23     | 2025-09-03        | Superseded by 2.2.x               |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/2.0.2) | 2024-04-16     | 2025-07-23        | Superseded by 2.1.x               |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/1.0.2) | 2023-05-09     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
@@ -468,9 +471,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/4.0.3) | 2024-09-15     | -                 | -                                 |
 | [3.1.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/3.1.2) | 2024-09-05     | 2025-09-15        | Superseded by 4.0.x               |
-| [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.MessagingBridge/3.0.3) | ~~2024-04-18~~ | ~~2024-12-05~~    | ~~Superseded by 3.1.x~~           |
 | [2.3.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.3.2) | 2024-09-05     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
-| [~~2.2.x~~](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.2.3) | ~~2024-02-26~~ | ~~2024-12-05~~    | ~~Superseded by 2.3.x~~           |
 
 #### [NServiceBus.Metrics](/nuget/NServiceBus.Metrics)
 
