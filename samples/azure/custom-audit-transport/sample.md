@@ -15,6 +15,8 @@ In this instance, Azure Service Bus is the main transport used by the endpoint, 
 
 > [!WARNING]
 > Two different transports are being used, which means the Azure Storage Queue transport dispatcher does not participate in the handler transaction. Hence there could be a scenario where the audit message is successfully sent, but an error occurs later in the pipeline that causes the receiver operation to be rolled back. This would result in two conflicting instances of the same message being visible in the Service Pulse [all messages view](/servicepulse/all-messages.md), one showing as an error and the other as successfully processed.
+>
+> Additionally, the audit instance cannot directly communicate with the error instance, hence plugin messages (e.g. Heartbeats, Custom Checks, Saga Audit, etc) will fail to send. There will be a [No destination specified for message](/servicecontrol/troubleshooting.md#no-destination-specified-for-message) errors in the audit instance log file.
 
 ## Prerequisites
 
@@ -31,7 +33,7 @@ To see how the auditing messages appear in ServicePulse, two ServiceControl inst
 - [ServiceControl Error instance](/servicecontrol/servicecontrol-instances/) with an Azure Service Bus transport and the same connection string as used in the sample.
 - [ServiceControl Audit instance](/servicecontrol/audit-instances/) with an Azure Storage Queue transport and the same connection string as used in the sample (the default local emulator `UseDevelopmentStorage=true`).
 
-There's a `docker-compose.yml` file provided which will setup the instances in a local container environment.
+There's a `docker-compose.yml` file provided which will [setup the instances in a local container environment](#running-the-sample-servicecontrol-and-servicepulse).
 
 ## Projects
 
@@ -56,6 +58,8 @@ snippet: auditToDispatchConnectorReplacement
 snippet: auditDispatchTerminator
 
 ## Running the sample
+
+### CustomAuditTransport endpoint
 
 Build the solution and run the `CustomAuditTransport` project.
 
