@@ -45,7 +45,7 @@ Steps:
 1. [Stop and disable the v4 error instance](#error-instances-stop-and-disable-v4-error-instance)  
 2. [Prevent error queue ingestion](#error-instances-configure-to-stop-ingestion-of-error-queue)  
 3. [Change the instance’s queue name](#error-instances-change-servicecontrol-instance-queue)  
-4. [Run setup](#run-setup)  
+4. [Run setup](#error-instances-run-setup)  
 5. [Enable and start the v4 error instance](#error-instances-enable-and-start-v4-error-instance)  
 6. [Verify the instance](#error-instances-verify-instance-is-running-without-issues)  
 7. [Add a new error instance](#error-instances-add-new-error-instance)  
