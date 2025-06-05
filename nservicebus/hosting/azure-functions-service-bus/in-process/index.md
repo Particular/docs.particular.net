@@ -1,14 +1,14 @@
 ---
 title: Azure Functions with Azure Service Bus (In Process)
 component: ASBFunctions
-summary: Hosting NServiceBus endpoints with Azure Functions triggered by Azure Service Bus
+summary: Hosting NServiceBus endpoints with Azure Functions (in-process hosting model) triggered by Azure Service Bus
 redirects:
  - previews/azure-functions-service-bus
  - nservicebus/hosting/azure-functions
  - nservicebus/hosting/azure-functions/service-bus
 related:
  - samples/azure-functions/service-bus
-reviewed: 2023-06-28
+reviewed: 2025-06-05
 ---
 
 Host NServiceBus endpoints with [Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/) and [Azure Service Bus](https://azure.microsoft.com/en-us/services/service-bus/) triggers.
@@ -38,7 +38,7 @@ snippet: asb-dispatching-outside-message-handler
 
 ## Transport configuration constraints and limitations
 
-The configuration API exposes NServiceBus transport configuration options via the `configuration.Transport` property to allow customization. However, not all of the options will be [applicable for execution within Azure Functions](./analyzers.md).
+The configuration API exposes NServiceBus transport configuration options via the `configuration.Transport` property to allow customization. However, not all options will be applicable for execution within Azure Functions (for more details, see [analysers](./analyzers.md)).
 
 Concurrency-related settings are controlled via the Azure Function `host.json` configuration file. See [Concurrency in Azure Functions](https://docs.microsoft.com/en-us/azure/azure-functions/functions-concurrency#service-bus) for details.
 
