@@ -26,49 +26,119 @@ BsonSerializer.RegisterSerializer(new GuidSerializer(GuidRepresentation.CSharpLe
 
 The above example configures the legacy GUID representation mode.
 
-### Taking full control over the saga data via class mapping
+### Switching the mode on a mapping level
+
+Assuming the following saga data as a baseline
 
 ```csharp
-var classMap = new BsonClassMap(typeof(SagaData));
-classMap.MapIdProperty(nameof(SagaData.Id))
-    .SetElementName("_id")
-    .SetSerializer(new GuidSerializer(GuidRepresentation.CSharpLegacy));
-...
-classMap.SetIgnoreExtraElements(true);
+public class OrderSagaData : ContainSagaData
+{
+    public Guid OrderId { get; set; }
+
+    public string OrderDescription { get; set; }
+}
 ```
 
-### Taking full control over the saga data via class mapping and attributes
+#### Overriding the base class map
 
 ```csharp
-class SagaData : IContainSagaData
+BsonClassMap.RegisterClassMap<ContainSagaData>(m =>
 {
+    m.SetIsRootClass(true);
+    m.MapIdProperty(s => s.Id)
+        .SetElementName("_id")
+        .SetSerializer(new GuidSerializer(GuidRepresentation.CSharpLegacy));
+    m.AutoMap();
+    m.SetIgnoreExtraElements(true);
+});
+```
+
+#### Overriding the saga map
+
+```csharp
+BsonClassMap.RegisterClassMap<OrderSagaData>(m =>
+{
+    m.MapProperty(s => s.OrderId)
+        .SetSerializer(new GuidSerializer(GuidRepresentation.CSharpLegacy));
+    m.AutoMap();
+    m.SetIgnoreExtraElements(true);
+});
+```
+
+#### Overriding with attributes
+
+```csharp
+#pragma warning disable NSB0012
+class SagaData : IContainSagaData
+#pragma warning restore NSB0012
+{
+    [BsonId]
     [BsonGuidRepresentation(GuidRepresentation.CSharpLegacy)]
     [BsonElement("_id")]
     public Guid Id { get; set; }
     public string Originator { get; set; }
     public string OriginalMessageId { get; set; }
+
+    [BsonGuidRepresentation(GuidRepresentation.CSharpLegacy)]
+    public Guid OrderId { get; set; }
+    public string OrderDescription { get; set; }
 }
-
-var classMap = new BsonClassMap(typeof(SagaData));
-classMap.AutoMap();
-classMap.SetIgnoreExtraElements(true);
-
-BsonClassMap.RegisterClassMap(classMap);
 ```
 
-### Representing GUIDs as strings
+#### Representing GUIDs as strings
 
 Alternatively it is supported to represent GUIDs as strings. This option was previously not available and may only be used for new sagas should you wish to represent the saga IDs as strings.
 
+```csharp
+BsonClassMap.RegisterClassMap<ContainSagaData>(m =>
+{
+    m.SetIsRootClass(true);
+    m.MapIdProperty(s => s.Id)
+        .SetElementName("_id")
+        .SetSerializer(new GuidSerializer(BsonType.String));
+    m.AutoMap();
+    m.SetIgnoreExtraElements(true);
+});
 ```
-var classMap = new BsonClassMap(typeof(SagaData));
-classMap.MapIdProperty(nameof(SagaData.Id))
-    .SetElementName("_id")
-    // This instructs MongoDB to treat the Guid as a string in the database and not longer
-    // as a binary value with a subtype, which is the default behavior
-    .SetSerializer(new GuidSerializer(BsonType.String));
-...
-classMap.SetIgnoreExtraElements(true);
 
-BsonClassMap.RegisterClassMap(classMap);
+### A GuidSerializer using the Unspecified representation is already registered
+
+In certain cases it is possible that the persistence raises the following exception at startup:
+
+```text
+A GuidSerializer using the Unspecified representation is already registered which indicates the default serializer has already been used. Register the GuidSerializer with the preferred representation before using the mongodb client as early as possible.
+```
+
+This exception indicates that the GuidSerializer with the Unspecified representation has already been used. This can be caused by incorrect order of class mappings. For example instead of declaring the class map as follows
+
+```csharp
+BsonClassMap.RegisterClassMap<ContainSagaData>(m =>
+{
+    // This maps all GUID properties to unspecified causing the exception
+    m.AutoMap();
+
+    m.SetIsRootClass(true);
+    m.MapIdProperty(s => s.Id)
+        .SetElementName("_id")
+        .SetSerializer(new GuidSerializer(BsonType.String));
+
+    m.SetIgnoreExtraElements(true);
+});
+```
+
+change the order to
+
+```csharp
+BsonClassMap.RegisterClassMap<ContainSagaData>(m =>
+{
+    m.SetIsRootClass(true);
+    m.MapIdProperty(s => s.Id)
+        .SetElementName("_id")
+        .SetSerializer(new GuidSerializer(BsonType.String));
+
+    // This maps all not yet mapped properties
+    m.AutoMap();
+
+    m.SetIgnoreExtraElements(true);
+});
 ```
