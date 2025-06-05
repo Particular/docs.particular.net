@@ -16,7 +16,7 @@ In this instance, Azure Service Bus is the main transport used by the endpoint, 
 > [!WARNING]
 > Two different transports are being used, which means the Azure Storage Queue transport dispatcher does not participate in the handler transaction. Hence there could be a scenario where the audit message is successfully sent, but an error occurs later in the pipeline that causes the receiver operation to be rolled back. This would result in two conflicting instances of the same message being visible in the Service Pulse [all messages view](/servicepulse/all-messages.md), one showing as an error and the other as successfully processed.
 >
-> Additionally, the audit instance cannot directly communicate with the error instance, hence plugin messages (e.g. Heartbeats, Custom Checks, Saga Audit, etc) will fail to send. There will be a [No destination specified for message](/servicecontrol/troubleshooting.md#no-destination-specified-for-message) errors in the audit instance log file.
+> Additionally, the audit instance cannot directly communicate with the error instance, hence plugin messages (e.g. Heartbeats, Custom Checks, Saga Audit, etc) will fail to send. There will be [No destination specified for message](/servicecontrol/troubleshooting.md#no-destination-specified-for-message) errors in the audit instance log file.
 
 ## Prerequisites
 
