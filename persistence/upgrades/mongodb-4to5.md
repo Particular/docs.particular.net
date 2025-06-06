@@ -1,7 +1,7 @@
 ---
 title: MongoDB Persistence Upgrade Version 4 to 5
 summary: Migration instructions on how to upgrade to MongoDB Persistence version 5
-reviewed: 2025-05-06
+reviewed: 2025-06-06
 component: mongodb
 related:
 - persistence/mongodb
@@ -10,9 +10,9 @@ isUpgradeGuide: true
 
 ## Upgraded the MongoDB.Driver to version 3
 
-The [MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver) introduces [breaking changes](https://www.mongodb.com/docs/drivers/csharp/current/upgrade/v3/), such as enforcing the `GuidRepresentationMode.V3` to be the only supported mode which affects the storing and loading of saga data. The persistence has been updated internally to accommodate these changes and uses this default mode unless explicitely configured.
+The [MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver) introduces [breaking changes](https://www.mongodb.com/docs/drivers/csharp/current/upgrade/v3/), such as enforcing the `GuidRepresentationMode.V3` to be the only supported mode which affects the storing and loading of saga data. The persistence has been updated internally to accommodate these changes and uses this default mode unless explicitly configured.
 
-The enforcement for choosing a GUID representation mode has been introduced in the previous versions of the client. For saga data that requires to remain backward compatible it is necessary to choose the GUID representation mode explicitely either on a global level by overriding the GuidSerializer or by adjusting the class mappings.
+The enforcement for choosing a GUID representation mode has been introduced in the previous versions of the client. For saga data that requires to remain backward compatible, it is necessary to choose the GUID representation mode explicitly, either on a global level by overriding the `GuidSerializer` or by adjusting the class mappings.
 
 Here are a few examples to indicate some of the possible options. It is necessary to evaluate those options on a case by case basis to make sure previously stored sagas can still be retrieved. To learn more about serializing GUIDs in the .NET/C# Driver, see the [GUIDs page](https://www.mongodb.com/docs/drivers/csharp/current/fundamentals/serialization/guid-serialization/#std-label-csharp-guids).
 
@@ -67,7 +67,7 @@ BsonClassMap.RegisterClassMap<OrderSagaData>(m =>
 
 #### Overriding with attributes
 
-When using attributes it is necessary to directly implement `IContainSagaData` since `ContainsSagaData` is persistence agnostic and therefore doesn't contain the necessary attributes to mark the saga ID as a document ID.
+When using attributes, it is necessary to directly implement `IContainSagaData` since `ContainsSagaData` is persistence-agnostic and therefore doesn't contain the necessary attributes to mark the saga ID as a document ID.
 
 ```csharp
 #pragma warning disable NSB0012
@@ -89,7 +89,7 @@ class SagaData : IContainSagaData
 
 #### Representing GUIDs as strings
 
-Alternatively it is supported to represent GUIDs as strings. This option was previously not available and may only be used for new sagas should you wish to represent the saga IDs as strings.
+Alternatively, it is supported to represent GUIDs as strings. This option was previously not available and may only be used for new sagas should you wish to represent the saga IDs as strings.
 
 ```csharp
 BsonClassMap.RegisterClassMap<ContainSagaData>(m =>
@@ -105,13 +105,13 @@ BsonClassMap.RegisterClassMap<ContainSagaData>(m =>
 
 ### A GuidSerializer using the Unspecified representation is already registered
 
-In certain cases it is possible that the persistence raises the following exception at startup:
+In certain cases, the persistence may raise the following exception at startup:
 
 ```text
 A GuidSerializer using the Unspecified representation is already registered which indicates the default serializer has already been used. Register the GuidSerializer with the preferred representation before using the mongodb client as early as possible.
 ```
 
-This exception indicates that the GuidSerializer with the Unspecified representation has already been used. This can be caused by incorrect order of class mappings. For example instead of declaring the class map as follows
+This exception indicates that the GuidSerializer with the Unspecified representation has already been used. This can be caused by incorrect order of class mappings. For example, instead of declaring the class map as follows
 
 ```csharp
 BsonClassMap.RegisterClassMap<ContainSagaData>(m =>
