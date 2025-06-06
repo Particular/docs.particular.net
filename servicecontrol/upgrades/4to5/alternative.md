@@ -1,28 +1,23 @@
 ---
-title: Alternative ServiceControl v4 to newer migration
+title: Alternative ServiceControl v4 upgrade option
 reviewed: 2025-05-21
-summary: Advanced alternative ServiceControl v4 migration for environment that cannot retry all messages immediately
+summary: Advanced alternative ServiceControl v4 upgrade option for environments that cannot retry all messages immediately
 ---
 
-The approach available at </servicecontrol/upgrades/4to5/> assumes that all failed message can be retried without side-effects. Not all users are able to analyze all failures but do want to upgrade a supported version.
-
-This is an alternative migration which will ensure the existing old instance to no longer ingest error messages.
+The [standard guide to upgrade ServiceControl from 4 to 5](/servicecontrol/upgrades/4to5/) assumes that all failed messages can be retried without side-effects. In cases where this cannot be confirmed, the approach below can be used to upgrade ServiceControl v4.
 
 > [!NOTE]
 > This results in **2** separate error instances. ServicePulse *cannot* show data for both simultaniously. [ServicePulse can be configured to connect to a different instance](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui)
 
 ## Monitor instances
 
-Monitor instance are stateless and can be upgraded without any issues. It is OK to remove the instance from (virtual) machine 1 and install with the same name on (virtual) machine 2.
+Monitor instance are stateless and can be upgraded without any issues. It is OK to remove the instance from one (virtual) machine and install with the same name on another (virtual) machine.
 
+## Audit instance
 
-## Audit instances
+ServiceControl V4 audit instances do not need to be upgraded and can remain active until the retention period has passed. After the database no longer contains any messages, they can be removed. However, the instance needs to be configured to stop ingesting messages from the audit queue.
 
-V4 instance do not need to be migrated and can remain active until the retention period has passed. After that the database no longer contains any messages and can be removed.
-
-However, the instance needs to be configured to longer ingest messages from the audit queue.
-
-Steps:
+### How to stop the audit instance from ingesting messages
 
 - Stop and DISABLE old audit instances in Windows Service Manager
 - Add the following setting to `servicecontrol.audit.exe.config`:
@@ -30,18 +25,18 @@ Steps:
     <add key="ServiceControl.Audit/IngestAuditMessages" value="False" />
 	```
 - Enable and Start the old audit instance in Windows Service Manager
-- Validate if the instance is no longer ingesting messages from the audit queue by observing the number of messages building up in the audit queue.
+- Validate that the instance is no longer ingesting messages from the audit queue by observing the number of messages building up in the audit queue.
 
 
 ## Error instance
 
-- Stop and disable v4 error instance
-- Configure to stop ingestion of error queue
-- Change ServiceControl instance queue
+- Stop and disable the ServiceControl v4 error instance
+- Configure the error instance to stop ingestion of messages from the error queue
+- Change the ServiceControl instance queue
 - Run setup
 - Enable and start v4 error instance
-- Verify instance is running without issues
-- Add new error instance
+- Verify the instance is running without issues
+- Add a new error instance
 
 
 ### Stop and disable v4 error instance
