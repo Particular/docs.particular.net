@@ -1,7 +1,7 @@
 ---
 title: MongoDB Persistence Upgrade Version 4 to 5
 summary: Migration instructions on how to upgrade to MongoDB Persistence version 5
-reviewed: 2020-11-06
+reviewed: 2025-05-06
 component: mongodb
 related:
 - persistence/mongodb
@@ -66,6 +66,8 @@ BsonClassMap.RegisterClassMap<OrderSagaData>(m =>
 ```
 
 #### Overriding with attributes
+
+When using attributes it is necessary to directly implement `IContainSagaData` since `ContainsSagaData` is persistence agnostic and therefore doesn't contain the necessary attributes to mark the saga ID as a document ID.
 
 ```csharp
 #pragma warning disable NSB0012
