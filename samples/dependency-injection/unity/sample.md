@@ -7,6 +7,7 @@ related:
 - nservicebus/dependency-injection/unity
 redirects:
  - samples/containers/unity
+versions: '[,7]'
 ---
 
 ### Configuring an endpoint to use Unity
