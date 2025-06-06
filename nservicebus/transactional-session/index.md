@@ -183,7 +183,7 @@ Sending the control message first ensures that eventually, the transaction will 
 
 If dispatching the control message fails, the transactional session changes will roll back, and an error will be raised to the user committing the session.
 
-If the transaction completes and the control message fails to process through all the retry attempts, the control message will be moved to the error queue, and the outgoing messages will not be dispatched. Once the error is resolved, the control message must be manually retried in ServicePulse to ensure the outgoing messages are dispatched. If this doesn't happen, the stored outgoing messages will never be delivered. If that's undesirable, the system should be returned to a consistent state through another action.
+If the transaction completes and the control message fails to process through all the retry attempts, the control message will be moved to the error queue, and the outgoing messages will not be dispatched. Once the error is resolved, the control message must be manually retried in ServicePulse to ensure the outgoing messages are dispatched. If the messages are not manually retried, the stored outgoing messages will never be delivered. If that's undesirable, the system must be returned to a consistent state via other means.
 
 ### Failure to commit the outbox record
 
