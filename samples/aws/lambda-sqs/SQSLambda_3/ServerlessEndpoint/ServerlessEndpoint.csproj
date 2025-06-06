@@ -18,7 +18,7 @@
     <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.*" />
     <PackageReference Include="Amazon.Lambda.SQSEvents" Version="2.*" />
     <PackageReference Include="NServiceBus.AmazonSQS" Version="8.*" />
-    <PackageReference Include="NServiceBus.AwsLambda.SQS" Version="3.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.AwsLambda.SQS" Version="3.*" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.*" />
   </ItemGroup>
 
