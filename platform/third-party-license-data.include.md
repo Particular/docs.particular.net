@@ -163,7 +163,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2" target="_blank">AWSSDK.DynamoDBv2</a> | <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2/4.0.1.2/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2" target="_blank">AWSSDK.DynamoDBv2</a> | <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2/4.0.1.3/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 
 ### NServiceBus.Persistence.ServiceFabric
 
@@ -208,7 +208,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Azure.Core" target="_blank">Azure.Core</a> | <a href="https://www.nuget.org/packages/Azure.Core/1.46.1/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Core_1.46.1/sdk/core/Azure.CoreREADME.md" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Azure.Core" target="_blank">Azure.Core</a> | <a href="https://www.nuget.org/packages/Azure.Core/1.46.2/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Core_1.46.2/sdk/core/Azure.CoreREADME.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.Messaging.ServiceBus" target="_blank">Azure.Messaging.ServiceBus</a> | <a href="https://www.nuget.org/packages/Azure.Messaging.ServiceBus/7.19.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Messaging.ServiceBus_7.19.0/sdk/servicebus/Azure.Messaging.ServiceBus/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.5.3/license" target="_blank">View License</a> | <i>None provided</i> |
 
@@ -334,6 +334,6 @@
 | <a href="https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Owin" target="_blank">Microsoft.AspNet.WebApi.Owin</a> | <a href="https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Owin/5.3.0/license" target="_blank">View License</a> | <a href="https://www.asp.net/web-api" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.Extensions.FileProviders.Embedded" target="_blank">Microsoft.Extensions.FileProviders.Embedded</a> | <a href="https://www.nuget.org/packages/Microsoft.Extensions.FileProviders.Embedded/9.0.5/license" target="_blank">MIT</a> | <a href="https://asp.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.Owin.SelfHost" target="_blank">Microsoft.Owin.SelfHost</a> | <a href="https://www.nuget.org/packages/Microsoft.Owin.SelfHost/4.2.2/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aspnet/AspNetKatana" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/WixToolset.Dtf.CustomAction" target="_blank">WixToolset.Dtf.CustomAction</a> | <a href="https://www.nuget.org/packages/WixToolset.Dtf.CustomAction/6.0.0/license" target="_blank">View License</a> | <a href="https://wixtoolset.org/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/WixToolset.Dtf.CustomAction" target="_blank">WixToolset.Dtf.CustomAction</a> | <a href="https://www.nuget.org/packages/WixToolset.Dtf.CustomAction/6.0.1/license" target="_blank">View License</a> | <a href="https://wixtoolset.org/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Yarp.ReverseProxy" target="_blank">Yarp.ReverseProxy</a> | <a href="https://www.nuget.org/packages/Yarp.ReverseProxy/2.3.0/license" target="_blank">MIT</a> | <a href="https://github.com/dotnet/yarp" target="_blank">Project Site</a> |
 
