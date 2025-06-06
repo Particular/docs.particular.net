@@ -110,16 +110,16 @@ There is no single transaction that spans all the operations. The operations occ
    * If the outgoing messages have already been sent, the incoming message is a duplicate, so skip to **step 4**.
    * If the outgoing messages have not yet been sent, continue to **Step 2**.
 2. Send the outgoing messages to the queue.
-   * If processing fails at this point, duplicate messages may be sent to the queue. Any duplicates will have the same `MessageId`, so they will be deduplicated by the outbox feature (in **phase 1, step 2**) in the endpoint that receives them.
+   * If processing fails at this point, duplicate messages may be sent to the queue. Any duplicates will have the same `MessageId`, so they will be deduplicated by the outbox feature (in **Phase 1, step 2**) in the endpoint that receives them.
 3. Update outbox storage to show that the outgoing messages have been sent.
 4. Acknowledge (ACK) receipt of the incoming message so that it is removed from the queue and will not be delivered again.
 
-In Phase 1, outgoing messages are not sent immediately. They are serialized and persisted in outbox storage. This occurs in a single transaction (steps 3 to 6), which also includes changes to business data made by message handlers. This guarantees that changes to business data are not made without capturing outgoing messages, and vice versa.
+Outgoing messages are not sent immediately. They are serialized and persisted in outbox storage. This occurs in a single transaction (Phase 1, steps 3 to 6), which also includes changes to business data made by message handlers. This guarantees that changes to business data are not made without capturing outgoing messages, and vice versa.
 
 > [!NOTE]
 > This guarantee does not apply to operations in message handlers that do not enlist in [an outbox transaction](/nservicebus/handlers/accessing-data.md#synchronized-storage-session), such as sending emails, changing the file system, etc.
 
-In Phase 2, outgoing messages are sent to the messaging infrastructure, and the outbox storage is updated to indicate that the outgoing messages have been sent (steps 1 to 3). Due to possible failures, a given message may be sent multiple times. For example, if an exception is thrown in step 3 (failure to update outbox storage), the message will be re-read from the outbox storage and sent again. As long as the receiving endpoints use the outbox feature, these duplicates will be handled by the deduplication in Phase 1, step 2.
+Outgoing messages are sent to the messaging infrastructure, and the outbox storage is updated to indicate that the outgoing messages have been sent (Phase 2, steps 1 to 3). Due to possible failures, a given message may be sent multiple times. For example, if an exception is thrown in step 3 (failure to update outbox storage), the message will be re-read from the outbox storage and sent again. As long as the receiving endpoints use the outbox feature, these duplicates will be handled by the deduplication(Phase 1, step 2).
 
 ## Important design considerations
 
