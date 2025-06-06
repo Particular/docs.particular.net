@@ -36,7 +36,16 @@ Run the following command from the `ServerlessEndpoint` directory to deploy the 
 
 `dotnet lambda deploy-serverless`
 
-The deployment will ask for a stack name and an S3 bucket name to deploy the serverless stack.
+By default, the deployment uses the following settings
+
+- `stack-name`: `nservicebus-aws-lambda-sample`
+- `s3-bucket`: `nservicebus-aws-lambda-sample`
+
+If an S3 bucket with the same name exists in a different region to the one the serverless function is deployed to, the deployment process raises the following warning and will likely fail:
+
+> Unable to determine region for bucket nservicebus-aws-lambda-sample, assuming bucket is in correct region: All access to this object has been disabled
+
+Ensure to use an S3 bucket with a unique bucket name in the same region as the deployment.
 
 After that, running the sample will launch a single console window:
 
