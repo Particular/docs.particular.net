@@ -1,10 +1,10 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using NServiceBus;
+using Sample.Data;
 
 #region txsession-handler
+namespace Sample.Receiver;
+
 public class MyHandler : IHandleMessages<MyMessage>
 {
     readonly MyDataContext dataContext;
@@ -21,8 +21,9 @@ public class MyHandler : IHandleMessages<MyMessage>
         logger.LogInformation("Message received at endpoint");
 
         var entity = await dataContext.MyEntities.Where(e => e.Id == message.EntityId)
-           .FirstAsync(cancellationToken: context.CancellationToken);
+            .FirstAsync(cancellationToken: context.CancellationToken);
         entity.Processed = true;
     }
 }
+
 #endregion

@@ -4,6 +4,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NServiceBus.TransactionalSession;
+using Sample.Data;
+using Sample.WebApplication;
+
 
 [ApiController]
 [Route("")]
@@ -25,7 +28,7 @@ public class SendMessageController : Controller
         await dataContext.MyEntities.AddAsync(new MyEntity { Id = id, Processed = false });
 
         var message = new MyMessage { EntityId = id };
-        await messageSession.SendLocal(message);
+        await messageSession.Send(message);
 
         return $"Message with entity ID '{id}' sent to endpoint";
     }
