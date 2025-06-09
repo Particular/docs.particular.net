@@ -41,9 +41,9 @@ snippet: txsession-nsb-configuration
 
 The transactional session is enabled via the `endpointConfiguration.EnableTransactionalSession()` method call. Note that the transactional session feature requires [the outbox](/nservicebus/outbox/) to be configured to ensure that operations across the storage and the message broker are atomic. See the documentation on [transaction consistency](/nservicebus/transactional-session/#transaction-consistency) for more details.
 
-partial: transactional_session_options
+partial: transactionalsessionoptions
 
-partial: processor_configuration
+partial: processorconfiguration
 
 ASP.NET Core uses `ConfigureWebHostDefaults` for configuration and a custom result filter is registered for the `ITransactionalSession` lifetime management:
 
