@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NServiceBus.TransactionalSession;
-using Sample.Data;
+using Data;
 using Sample.WebApplication;
 
 

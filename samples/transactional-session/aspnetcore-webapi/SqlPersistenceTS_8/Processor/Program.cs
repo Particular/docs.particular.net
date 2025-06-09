@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using NServiceBus.TransactionalSession;
 
-Console.Title = "Sample.Processor";
+Console.Title = "Processor";
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -10,7 +10,7 @@ var builder = Host.CreateApplicationBuilder(args);
 const string ConnectionString = @"Server=localhost,1433;Initial Catalog=nservicebus;User Id=SA;Password=MyPassword1234!;Encrypt=false";
 
 
-var endpointConfiguration = new EndpointConfiguration("Sample.Processor");
+var endpointConfiguration = new EndpointConfiguration("Processor");
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 

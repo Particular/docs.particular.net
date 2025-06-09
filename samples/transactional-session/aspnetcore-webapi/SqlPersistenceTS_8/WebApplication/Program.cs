@@ -6,7 +6,7 @@ using NServiceBus;
 using NServiceBus.Persistence;
 using NServiceBus.Persistence.Sql;
 using NServiceBus.TransactionalSession;
-using Sample.Data;
+using Data;
 using Sample.WebApplication;
 
 // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;Encrypt=false
@@ -35,7 +35,7 @@ persistence.SqlDialect<SqlDialect.MsSqlServer>();
 persistence.ConnectionBuilder(() => new SqlConnection(ConnectionString));
 
 #region txsession-nsb-txsessionoptions
-var transactionalSessionOptions = new TransactionalSessionOptions { ProcessorEndpoint = "Sample.Processor" };
+var transactionalSessionOptions = new TransactionalSessionOptions { ProcessorEndpoint = "Processor" };
 persistence.EnableTransactionalSession(transactionalSessionOptions);
 #endregion
 

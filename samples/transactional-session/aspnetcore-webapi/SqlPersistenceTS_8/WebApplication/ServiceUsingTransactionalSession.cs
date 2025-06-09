@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 using NServiceBus.TransactionalSession;
-using Sample.Data;
+using Data;
 
 namespace Sample.WebApplication;
 

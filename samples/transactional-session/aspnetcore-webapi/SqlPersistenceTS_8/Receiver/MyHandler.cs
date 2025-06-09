@@ -1,9 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using Sample.Data;
+
+namespace Receiver;
 
 #region txsession-handler
-namespace Sample.Receiver;
 
 public class MyHandler : IHandleMessages<MyMessage>
 {

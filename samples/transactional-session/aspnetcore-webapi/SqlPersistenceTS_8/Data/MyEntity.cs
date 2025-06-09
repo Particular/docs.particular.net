@@ -1,4 +1,4 @@
-﻿namespace Sample.Data;
+﻿namespace Data;
 
 public class MyEntity
 {
