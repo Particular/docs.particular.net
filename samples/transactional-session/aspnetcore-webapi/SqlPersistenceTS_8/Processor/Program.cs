@@ -7,8 +7,7 @@ Console.Title = "Processor";
 var builder = Host.CreateApplicationBuilder(args);
 
 // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;Encrypt=false
-const string ConnectionString = @"Server=localhost,1433;Initial Catalog=nservicebus;User Id=SA;Password=MyPassword1234!;Encrypt=false";
-
+const string ConnectionString = @"Server=localhost,1433;Initial Catalog=nservicebus;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 
 var endpointConfiguration = new EndpointConfiguration("Processor");
 
@@ -30,3 +29,6 @@ endpointConfiguration.EnableOutbox();
 builder.UseNServiceBus(endpointConfiguration);
 
 await builder.Build().RunAsync();
+
+
+
