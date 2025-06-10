@@ -36,10 +36,10 @@ The following is an overview of all queues based on the default instance names.
 | [servicecontrol.throughputdata](#error-instance-throughput-data)   |  CR   |       |     W      |
 
 R = Read (Dequeue)
-W = Write (Queue)
+W = Write (Enqueue)
 C = Create
 
-Queue are only created during "Setup". Setup is ran when an instance is created or updated via ServiceControl Management Utility (SCMU) or Powershell or when using `--setup` or `--setup-and-run` when using containers.
+Queues are only created during "Setup". Setup is run when an instance is created or updated via ServiceControl Management Utility (SCMU), via Powershell, or when using `--setup` or `--setup-and-run` when using containers.
 
 
 
