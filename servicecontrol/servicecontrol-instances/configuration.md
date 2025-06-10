@@ -155,6 +155,19 @@ Run [ServiceControl error instance in maintenance mode](/servicecontrol/ravendb/
 | --- | --- |
 | boolean | `False` |
 
+### ServiceControl/DisableExternalIntegrationsPublishing
+
+[ServiceControl publishes integration events](https://docs.particular.net/servicecontrol/contracts), if no subscribers exist this can be disabled.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_DISABLEEXTERNALINTEGRATIONSPUBLISHING` |
+| **App config key** | `ServiceControl/DisableExternalIntegrationsPublishing` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | False |
 
 ## Embedded database
 

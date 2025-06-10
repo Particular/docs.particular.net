@@ -104,3 +104,23 @@ An event will also be published and displayed in the ServicePulse dashboard with
 ```
 
 To avoid this situation it is important to properly decommission an endpoint that subscribes to ServiceControl events. To do this, [disable auto-subscription](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#disabling-auto-subscription) and then [unsubscribe from all events](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#manually-subscribing-to-a-message).
+
+## Disabling integration 
+
+[](host-settings-servicecontrol-DisableExternalIntegrationsPublishing
+
+
+### ServiceControl/DisableExternalIntegrationsPublishing
+
+[ServiceControl publishes integration events](https://docs.particular.net/servicecontrol/contracts), if no subscribers exist this can be disabled.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_DISABLEEXTERNALINTEGRATIONSPUBLISHING` |
+| **App config key** | `ServiceControl/DisableExternalIntegrationsPublishing` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | False |
+)
