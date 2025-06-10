@@ -1,13 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Data;
 
-public class MyDataContext : DbContext
+public class MyDataContext(DbContextOptions options) : DbContext(options)
 {
-    public MyDataContext(DbContextOptions options)
-        : base(options)
-    {
-    }
-
     public DbSet<MyEntity> MyEntities { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

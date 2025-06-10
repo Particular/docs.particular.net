@@ -6,15 +6,13 @@ using NServiceBus;
 using NServiceBus.Persistence;
 using NServiceBus.Persistence.Sql;
 using NServiceBus.TransactionalSession;
-using Data;
-using Sample.WebApplication;
 
 // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;Encrypt=false
 const string ConnectionString = @"Server=localhost,1433;Initial Catalog=nservicebus;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 
-using (var myDataContext = new MyDataContext(new DbContextOptionsBuilder<MyDataContext>()
-           .UseSqlServer(new SqlConnection(ConnectionString))
-           .Options))
+await using (var myDataContext = new MyDataContext(new DbContextOptionsBuilder<MyDataContext>()
+                 .UseSqlServer(new SqlConnection(ConnectionString))
+                 .Options))
 {
     myDataContext.Database.EnsureCreated();
 }

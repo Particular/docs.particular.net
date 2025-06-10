@@ -1,7 +1,5 @@
-﻿namespace Data;
-
-public class MyEntity
+﻿public class MyEntity
 {
-    public virtual required string Id { get; set; }
-    public virtual bool Processed { get; set; }
+    public required string Id { get; set; }
+    public bool Processed { get; set; }
 }

@@ -1,22 +1,10 @@
-﻿using Data;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-
-namespace Receiver;
 
 #region txsession-handler
 
-public class MyHandler : IHandleMessages<MyMessage>
+public class MyHandler(MyDataContext dataContext, ILogger<MyHandler> logger) : IHandleMessages<MyMessage>
 {
-    readonly MyDataContext dataContext;
-    private readonly ILogger<MyHandler> logger;
-
-    public MyHandler(MyDataContext dataContext, ILogger<MyHandler> logger)
-    {
-        this.dataContext = dataContext;
-        this.logger = logger;
-    }
-
     public async Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         logger.LogInformation("Message received at endpoint");

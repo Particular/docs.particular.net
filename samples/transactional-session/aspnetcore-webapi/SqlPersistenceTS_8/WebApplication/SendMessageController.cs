@@ -4,21 +4,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NServiceBus.TransactionalSession;
-using Data;
-using Sample.WebApplication;
-
 
 [ApiController]
 [Route("")]
-public class SendMessageController : Controller
+public class SendMessageController(MyDataContext dataContext) : Controller
 {
-    readonly MyDataContext dataContext;
-
-    public SendMessageController(MyDataContext dataContext)
-    {
-        this.dataContext = dataContext;
-    }
-
     #region txsession-controller
     [HttpGet]
     public async Task<string> Get([FromServices] ITransactionalSession messageSession)

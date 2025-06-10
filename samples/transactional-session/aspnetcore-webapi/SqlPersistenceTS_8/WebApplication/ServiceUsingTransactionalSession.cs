@@ -1,9 +1,6 @@
 using System;
 using System.Threading.Tasks;
 using NServiceBus.TransactionalSession;
-using Data;
-
-namespace Sample.WebApplication;
 
 public class ServiceUsingTransactionalSession(MyDataContext dataContext, ITransactionalSession messageSession)
 {
