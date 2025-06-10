@@ -8,9 +8,11 @@ redirects:
  - nservicebus/sqlserver
  - transports/sqlserver
 related:
+ - samples/sqltransport/simple
  - samples/sqltransport-sqlpersistence
  - samples/sqltransport-nhpersistence
  - samples/outbox/sql
+ - samples/sqltransport/native-integration
 ---
 
 The SQL Server transport implements a message queuing mechanism on top of [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/). It provides support for sending messages using SQL Server tables. It does **not** make use of a [service broker](https://technet.microsoft.com/en-us/library/ms166104.aspx).
