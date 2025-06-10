@@ -13,7 +13,7 @@ include: webhost-warning
 
 This sample shows how to send messages and modify data in a database atomically within the scope of a web request using the `NServiceBus.TransactionalSession` package with ASP.NET Core. The ASP.NET Core application hosts a [send-only endpoint](/nservicebus/hosting/#self-hosting-send-only-hosting). The operations are triggered by an incoming HTTP request to ASP.NET Core that will manage the `ITransactionalSession` lifetime using a request middleware.
 
-> **_NOTE:_**  From 8.2.0, `NServiceBus.Persistence.Sql.TransactionalSession` is supported in send-only endpoints. Refer to the [documentation](/nservicebus/transactional-session/#send-only) for more details.
+> **_NOTE:_**  From 8.2.0, `NServiceBus.Persistence.Sql.TransactionalSession` is supported in send-only endpoints. Refer to the [documentation](/nservicebus/transactional-session/#remote-processor) for more details.
 
 ## Prerequisites
 
