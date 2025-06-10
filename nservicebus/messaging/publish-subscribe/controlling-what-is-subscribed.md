@@ -67,4 +67,12 @@ An event is not automatically unsubscribed when a message handler is removed. Th
 
 Unsubscribing can be done at startup via `IMessageSession.Unsubscribe`. For example, via a background service:
 
-snippet: UnsubscribeBackgroundService
+```c#
+public sealed class UnsubscribeService(IMessageSession messageSession) : BackgroundService
+{
+	protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    {
+        await messageSession.Unsubscribe<MyEvent>();
+    }
+}
+```
