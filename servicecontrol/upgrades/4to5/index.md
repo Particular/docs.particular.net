@@ -16,8 +16,8 @@ Upgrading ServiceControl from version 4 to version 5 is a major upgrade and requ
 * The ServiceControl PowerShell module is no longer installed with ServiceControl. Instead, the PowerShell module can be [installed from the PowerShell Gallery](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management/).
 * The [ServiceControl PowerShell module](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management/) requires PowerShell 7.2 or greater to run.
 * PowerShell: The `Transport` parameter no longer accepts the DisplayName descriptions but only the Name code. See [PowerShell Transport argument](#powershell-transport-argument)
-* ServiceControl instances using **Azure Service Bus - Endpoint-oriented topology (Legacy)** as the message transport cannot be upgraded to ServiceControl version 5.
-  * [Migrating Azure Service Bus](#migrating-azure-service-bus)
+* ServiceControl instances using **Azure Service Bus - Endpoint-oriented topology (Legacy)** as the message transport cannot be directly upgraded to ServiceControl version 5.
+  * See [Migrating Azure Service Bus](#migrating-azure-service-bus)
 * `!disable` is no longer supported as an error and/or audit queue names. Instead, dedicated settings i.e. [`ServiceControl/IngestErrorMessages`](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicecontrolingesterrormessages) and [`ServiceControl/IngestAuditMessages`](/servicecontrol/audit-instances/configuration.md#transport-servicecontrolingestauditmessages) should be used to control the message ingestion process. These settings are useful for upgrade scenarios, such as the one that will be described later in this article.
 * The setting `IndexStoragePath` is no longer supported.  Use [symbolic links (soft links) to map any storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
 * The [`ServiceControl.Audit/RavenDBLogLevel`](/servicecontrol/audit-instances/configuration.md#host-settings-servicecontrol-auditravendbloglevel) and [`ServiceControl/RavenDBLogLevel`](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolravendbloglevel) settings use new values. The previous values are mapped to new values native to RavenDB5.
@@ -212,7 +212,7 @@ After completing the transport upgrade:
 
 - Upgrade the ServiceControl instance to **v4.33.5**.
 - Note the **instance name** and **database folder path**.
-- Remove the instance via the 🔧 (advanced options), leave the "Remove DB subdirectory and data" unchecked in the Remove instance dialog.
+- Remove the instance via the 🔧 (advanced options). Leave "Remove DB subdirectory and data" unchecked in the Remove instance dialog.
 - Recreate a **new v4.33.5 instance**:
   - Use the **same instance name**.
   - Use the **same database path**.
