@@ -29,6 +29,3 @@ endpointConfiguration.EnableOutbox();
 builder.UseNServiceBus(endpointConfiguration);
 
 await builder.Build().RunAsync();
-
-
-
