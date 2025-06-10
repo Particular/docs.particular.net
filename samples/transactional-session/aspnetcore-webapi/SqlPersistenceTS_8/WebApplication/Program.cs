@@ -10,9 +10,9 @@ using NServiceBus.TransactionalSession;
 // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;Encrypt=false
 const string ConnectionString = @"Server=localhost,1433;Initial Catalog=nservicebus;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 
-using (var myDataContext = new MyDataContext(new DbContextOptionsBuilder<MyDataContext>()
-           .UseSqlServer(new SqlConnection(ConnectionString))
-           .Options))
+await using (var myDataContext = new MyDataContext(new DbContextOptionsBuilder<MyDataContext>()
+                 .UseSqlServer(new SqlConnection(ConnectionString))
+                 .Options))
 {
     myDataContext.Database.EnsureCreated();
 }
@@ -23,16 +23,22 @@ var hostBuilder = WebApplication.CreateBuilder();
 var endpointConfiguration = new EndpointConfiguration("Samples.ASPNETCore.Sender");
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
 endpointConfiguration.EnableInstallers();
-endpointConfiguration.UseTransport(new LearningTransport { TransportTransactionMode = TransportTransactionMode.ReceiveOnly });
+
+endpointConfiguration.UseTransport(new LearningTransport { TransportTransactionMode = TransportTransactionMode.ReceiveOnly }).RouteToEndpoint(typeof(MyMessage), "Sample.Receiver");
 
 var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
 persistence.SqlDialect<SqlDialect.MsSqlServer>();
 persistence.ConnectionBuilder(() => new SqlConnection(ConnectionString));
 
-persistence.EnableTransactionalSession();
+#region txsession-nsb-txsessionoptions
+var transactionalSessionOptions = new TransactionalSessionOptions { ProcessorEndpoint = "Processor" };
+persistence.EnableTransactionalSession(transactionalSessionOptions);
+#endregion
 
 endpointConfiguration.EnableOutbox();
+endpointConfiguration.SendOnly();
 
 hostBuilder.UseNServiceBus(endpointConfiguration);
 #endregion

@@ -7,15 +7,8 @@ using NServiceBus.TransactionalSession;
 
 [ApiController]
 [Route("")]
-public class SendMessageController : Controller
+public class SendMessageController(MyDataContext dataContext) : Controller
 {
-    readonly MyDataContext dataContext;
-
-    public SendMessageController(MyDataContext dataContext)
-    {
-        this.dataContext = dataContext;
-    }
-
     #region txsession-controller
     [HttpGet]
     public async Task<string> Get([FromServices] ITransactionalSession messageSession)
@@ -25,7 +18,7 @@ public class SendMessageController : Controller
         await dataContext.MyEntities.AddAsync(new MyEntity { Id = id, Processed = false });
 
         var message = new MyMessage { EntityId = id };
-        await messageSession.SendLocal(message);
+        await messageSession.Send(message);
 
         return $"Message with entity ID '{id}' sent to endpoint";
     }
