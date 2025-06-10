@@ -136,7 +136,7 @@ Outgoing messages are sent to the messaging infrastructure, and the outbox stora
 
 The performance of the outbox feature depends on the scope of the transactions used to update business data and outbox data. Transactions may be scoped to a single database, multiple databases on a single server, or multiple databases on multiple servers.
 
-* All persisters support transactions scoped to a single database and typically offer the best performance. Therefore, it is generally recommended to store outbox data in the same database as business data.
+* All persisters support transactions scoped to a single database, and these typically offer the best performance. Therefore, it is generally recommended to store outbox data in the same database as business data.
 * Transactions scoped to multiple databases on a single server, also known as cross-database transactions, are supported by some persisters, such as those that use SQL Server. These transactions may have reasonably good performance, but they may introduce other concerns. For example, [cross-database transactions are not supported by all types of tables in SQL Server](https://docs.microsoft.com/en-us/sql/relational-databases/in-memory-oltp/cross-database-queries).
 * Transactions scoped to multiple databases on multiple servers, also known as _distributed transactions_, are supported by persisters which use SQL Server, but they require the use of MSDTC and should generally be avoided for the same reasons as those listed in the [comparison with MSDTC](#comparison-with-msdtc) below.
 
