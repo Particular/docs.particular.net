@@ -10,11 +10,11 @@ isUpgradeGuide: true
 
 ## Upgraded the MongoDB.Driver to version 3
 
-The [MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver) introduces [breaking changes](https://www.mongodb.com/docs/drivers/csharp/current/upgrade/v3/), such as enforcing the `GuidRepresentationMode.V3` to be the only supported mode which affects the storing and loading of saga data. The persistence has been updated internally to accommodate these changes and uses this default mode unless explicitly configured.
+The [MongoDB.Driver](https://www.nuget.org/packages/MongoDB.Driver) introduces [breaking changes](https://www.mongodb.com/docs/drivers/csharp/current/upgrade/v3/), such as enforcing the `GuidRepresentationMode.V3` to be the only supported mode which affects the storing and loading of saga data. The persistence has been updated internally to accommodate these changes and uses this default mode unless explicitly configured otherwise.
 
-The enforcement for choosing a GUID representation mode has been introduced in the previous versions of the client. For saga data that requires to remain backward compatible, it is necessary to choose the GUID representation mode explicitly, either on a global level by overriding the `GuidSerializer` or by adjusting the class mappings.
+The enforcement for choosing a GUID representation mode has been introduced in the previous versions of the client. For saga data that requires backward compatibility, it is necessary to choose the GUID representation mode explicitly. This is achieved either on a global level, by overriding the `GuidSerializer`, or by adjusting the class mappings.
 
-Here are a few examples to indicate some of the possible options. It is necessary to evaluate those options on a case by case basis to make sure previously stored sagas can still be retrieved. To learn more about serializing GUIDs in the .NET/C# Driver, see the [GUIDs page](https://www.mongodb.com/docs/drivers/csharp/current/fundamentals/serialization/guid-serialization/#std-label-csharp-guids).
+The following sections demonstrate a few examples to indicate some of the possible options. It is necessary to evaluate those options on a case-by-case basis to make sure previously stored sagas can still be retrieved. To learn more about serializing GUIDs in the .NET/C# Driver, see the [GUIDs page](https://www.mongodb.com/docs/drivers/csharp/current/fundamentals/serialization/guid-serialization/#std-label-csharp-guids).
 
 ### Switching the mode on a global level
 
@@ -89,7 +89,7 @@ class SagaData : IContainSagaData
 
 #### Representing GUIDs as strings
 
-Alternatively, it is supported to represent GUIDs as strings. This option was previously not available and may only be used for new sagas should you wish to represent the saga IDs as strings.
+Alternatively, GUIDs can be represented as strings. This option was previously not available and may only be used for new sagas should you wish to represent the saga IDs as strings.
 
 ```csharp
 BsonClassMap.RegisterClassMap<ContainSagaData>(m =>
