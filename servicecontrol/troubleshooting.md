@@ -142,7 +142,7 @@ A warning message is seen in the logs when the Indexing lag exceeds the default 
 
 This can be resolved by temporarily stopping message ingestion to let the indexes catch up:
 
-* For Windows instances, launch the ServiceControl instance in [maintenance mode](/servicecontrol/ravendb/accessing-database#windows-deployment-maintenance-mode), which runs the database but does not ingest new messages.
+* For Windows instances, launch the ServiceControl instance in maintenance mode, which runs the database but does not ingest new messages.
 * For container instances, stop the ServiceControl container temporarily, but keep the connected database container running.
 
 While message ingestion is disabled, the database engine still runs and messages will continue to queue. This ensures that any tasks related to index rebuilding or index scanning can run without interruption. This is useful to resolve situations where the storage isn't fast enough to do both message ingestion and index operations, such as when an unexpected spike in message processing occurred.
