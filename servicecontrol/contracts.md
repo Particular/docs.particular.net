@@ -112,7 +112,7 @@ To avoid this situation it is important to properly decommission an endpoint tha
 
 ### ServiceControl/DisableExternalIntegrationsPublishing
 
-[ServiceControl publishes integration events](/servicecontrol/contracts), if no subscribers exist this can be disabled.
+[ServiceControl publishes integration events](/servicecontrol/contracts.md), if no subscribers exist this can be disabled.
 
 | Context | Name |
 | --- | --- |
