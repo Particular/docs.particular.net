@@ -10,13 +10,13 @@ related:
  - nservicebus/pipeline/manipulate-with-behaviors
 ---
 
-This sample demonstrates how an endpoint can use a different transport for audting to its main transport.
+This sample demonstrates how an endpoint can audit to a different transport than its main transport.
 In this instance, Azure Service Bus is the main transport used by the endpoint, and Azure Storage Queues is used as the transport for audit messages.
 
 > [!WARNING]
-> Two different transports are being used, which means the Azure Storage Queue transport dispatcher does not participate in the handler transaction. Hence there could be a scenario where the audit message is successfully sent, but an error occurs later in the pipeline that causes the receiver operation to be rolled back. This would result in two conflicting instances of the same message being visible in the Service Pulse [all messages view](/servicepulse/all-messages.md), one showing as an error and the other as successfully processed.
+> Two different transports are being used, which means the Azure Storage Queue transport dispatcher does not participate in the handler transaction. This could result in a scenario where the audit message is successfully sent, but an error occurs later in the pipeline that causes the receiver operation to be rolled back. The result of this would be two conflicting instances of the same message being visible in the ServicePulse [all messages view](/servicepulse/all-messages.md), one showing as an error and the other (erroneously) as successfully processed.
 >
-> Additionally, the audit instance cannot directly communicate with the error instance, hence plugin messages (e.g. Heartbeats, Custom Checks, Saga Audit, etc) will fail to send. There will be [No destination specified for message](/servicecontrol/troubleshooting.md#no-destination-specified-for-message) errors in the audit instance log file.
+> Additionally, the audit instance cannot directly communicate with the error instance, hence plugin messages (e.g. Heartbeats, Custom Checks, Saga Audit, etc.) will fail to send. There will be [No destination specified for message](/servicecontrol/troubleshooting.md#no-destination-specified-for-message) errors in the audit instance log file if these features are used.
 
 ## Prerequisites
 
@@ -33,25 +33,25 @@ To see how the auditing messages appear in ServicePulse, two ServiceControl inst
 - [ServiceControl Error instance](/servicecontrol/servicecontrol-instances/) with an Azure Service Bus transport and the same connection string as used in the sample.
 - [ServiceControl Audit instance](/servicecontrol/audit-instances/) with an Azure Storage Queue transport and the same connection string as used in the sample (the default local emulator `UseDevelopmentStorage=true`).
 
-There's a `docker-compose.yml` file provided which will [setup the instances in a local container environment](#running-the-sample-servicecontrol-and-servicepulse).
+A `docker-compose.yml` file is provided which will [setup the instances in a local container environment](#running-the-sample-servicecontrol-and-servicepulse).
 
 ## Projects
 
 ### CustomAuditTransport
 
-Main endpoint that is running on Azure Service Bus. It enables the `audit` feature.
+The main endpoint that is running on Azure Service Bus. It enables the `audit` feature.
 
-The configured queue name to `AuditProcessedMessagesTo` will be used as the queue name on the Azure Storage Queue transport.
+The configured audit queue name, `AuditProcessedMessagesTo`, will be used as the queue name on the Azure Storage Queue transport.
 
 ### AuditViaASQ
 
 A [feature](/nservicebus/pipeline/features.md) that uses Azure Storage Queues for audit messages instead of the transport used by the endpoint being audited.
 
-The feature is turned on by default providing that Auditing is enabled and an audit queue has been defined.
+The feature is turned on by default if Auditing is enabled and an audit queue has been defined.
 
 snippet: featureSetup
 
-It uses a PipelineTerminator, which is a special type of [behavior](/nservicebus/pipeline/manipulate-with-behaviors.md), to replace the existing [AuditToRoutingConnector](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/Audit/AuditToRoutingConnector.cs) process, which is the last step in the audit pipeline.
+It uses a PipelineTerminator, which is a special type of [behavior](/nservicebus/pipeline/manipulate-with-behaviors.md). This replaces the existing [AuditToRoutingConnector](https://github.com/Particular/NServiceBus/blob/master/src/NServiceBus.Core/Audit/AuditToRoutingConnector.cs) process, which is the last step in the audit pipeline.
 
 snippet: auditToDispatchConnectorReplacement
 
@@ -76,7 +76,7 @@ Before running the containers, ensure you're using the latest version of each im
  docker compose pull
  ```
 
- This command checks for any updates to the images specified in the docker-compose.yml file and pulls them if available.
+This command checks for any updates to the images specified in the docker-compose.yml file and pulls them if available.
 
 #### Start the containers
 
