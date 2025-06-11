@@ -157,7 +157,7 @@ Run [ServiceControl error instance in maintenance mode](/servicecontrol/ravendb/
 
 ### ServiceControl/DisableExternalIntegrationsPublishing
 
-[ServiceControl publishes integration events](https://docs.particular.net/servicecontrol/contracts), if no subscribers exist this can be disabled.
+[ServiceControl publishes integration events](/servicecontrol/contracts), if no subscribers exist this can be disabled.
 
 | Context | Name |
 | --- | --- |
