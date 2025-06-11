@@ -41,7 +41,7 @@ A `docker-compose.yml` file is provided which will [setup the instances in a loc
 
 The main endpoint that is running on Azure Service Bus. It enables the `audit` feature.
 
-The configured audit queue name, `AuditProcessedMessagesTo`, will be used as the queue name on the Azure Storage Queue transport.
+The configured audit queue name, specified in `AuditProcessedMessagesTo`, will be used as the queue name on the Azure Storage Queue transport.
 
 ### AuditViaASQ
 
