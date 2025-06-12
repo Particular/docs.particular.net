@@ -1,21 +1,45 @@
 ---
-title: Replacing an Audit instance
-summary: Instructions on how to replace a ServiceControl Audit instance with zero downtime
-reviewed: 2024-07-10
+title: Migrate ServiceControl data between instances
+summary: Instructions on how to migrate ServiceControl data between instances.
+reviewed: 2025-06-12
 component: ServiceControl
 related:
-  - servicecontrol/migrations/replacing-error-instances
+    - servicecontrol/migrations/replacing-audit-instances
+    - servicecontrol/migrations/replacing-error-instances
+    - servicecontrol/backup-sc-database
 redirects:
-  - servicecontrol/upgrades/zero-downtime
+    - servicecontrol/data-migration
 ---
 
-ServiceControl, which exists to serve the management of distributed systems, is itself a distributed system. As a result, pieces of the system can be upgraded and managed separately.
+ServiceControl, which exists to serve the management of distributed systems, is itself a distributed system. As a result, migrating all ServiceControl data between instances means each piece of the system that accesses and writes data is migrated separately.
 
-This document describes in general terms how to replace a ServiceControl Audit instance, and links to more specific information on how to accomplish these tasks for each potential deployment method.
-
-See [Replacing an Error Instance](../replacing-error-instances/) for similar guidance for Error instances.
+This document describes in general terms how to migrate ServiceControl data, and links to more specific information on how to accomplish these tasks for each potential deployment method.
 
 ## Overview
+
+ServiceControl data consists of audit and error message data, managed by audit instances and error instances respectively.
+
+> [!NOTE]
+> It is worth assessing whether audit and error message data retention is required. For scenarios where retaining audit and error message data is not required (e.g. transient or test environment data that does not merit effort to retain), this process is not necessary.
+
+### Audit data
+
+
+
+### Error data
+
+## Alternative migration strategies
+
+Data migration can also be achieved by [manually backing up the ServiceControl data](/servicecontrol/backup-sc-database.md) and restoring it to the new instance's deployment.
+
+> [!WARNING]
+> The [restrictions](/servicecontrol/backup-sc-database.md#important-notes-and-restrictions) should be strongly considered before moving forward with this approach.
+
+---
+old stuff
+
+---
+See [Replacing an Error Instance](/servicecontrol/migrations/replacing-error-instances/) for similar guidance for Error instances.
 
 ServiceControl Audit instances store audit data for a configured period of time, after which expired audit data is removed. Using the [ServiceControl remotes feature](/servicecontrol/servicecontrol-instances/remotes.md), multiple audit instances can store a portion of the overall audit data (sharding) which is queried in a scatter-gather fashion.
 
@@ -26,7 +50,7 @@ Using this capability, an Audit instance that can't be upgraded can be replaced 
 3. Decommission the old audit instance when all audit information is expired
 
 > [!NOTE]
-> For scenarios where retaining audit message data is not required (e.g. transient data that does not merit effort to retain), this process is not necessary -- the audit instance can simply be deleted and recreated with the same name.
+> It is worth assessing whether audit and error message data retention is required.For scenarios where retaining audit message data is not required (e.g. transient data that does not merit effort to retain), this process is not necessary -- the audit instance can simply be deleted and recreated with the same name.
 
 ## Initial state
 
@@ -57,17 +81,17 @@ class sca ServiceControlRemote
 
 ## Add a new audit instance
 
-The first step is to create a new audit instance:
+The first step is to create a new audit instance, and add it to the Error instance's remotes collection:
 
-* [Adding a new audit instance with ServiceControl Management](scmu.md#add-a-new-audit-instance)
-* [Adding a new audit instance with PowerShell](powershell.md#add-a-new-audit-instance)
-* [Adding a new audit instance with Containers](containers.md#add-a-new-audit-instance)
+* [Adding a new audit instance with ServiceControl Management](/servicecontrol/migrations/replacing-audit-instances/scmu.md#add-a-new-audit-instance)
+* [Adding a new audit instance with PowerShell](/servicecontrol/migrations/replacing-audit-instances/powershell.md#add-a-new-audit-instance)
+* [Adding a new audit instance with Containers](/servicecontrol/migrations/replacing-audit-instances/containers.md#add-a-new-audit-instance)
 
 Then, the new Audit instance must be added to the Error instance's remotes collection:
 
-* [Updating the remotes collection with ServiceControl Management](scmu.md#add-the-instance-to-remoteinstances)
-* [Updating the remotes collection with PowerShell](powershell.md#add-the-instance-to-remoteinstances)
-* [Updating the remotes collection with Containers](containers.md#add-the-instance-to-remoteinstances)
+* [Updating the remotes collection with ServiceControl Management](/servicecontrol/migrations/replacing-audit-instances/scmu.md#add-the-instance-to-remoteinstances)
+* [Updating the remotes collection with PowerShell](/servicecontrol/migrations/replacing-audit-instances/powershell.md#add-the-instance-to-remoteinstances)
+* [Updating the remotes collection with Containers](/servicecontrol/migrations/replacing-audit-instances/containers.md#add-the-instance-to-remoteinstances)
 
 After this step the installation looks like this:
 
@@ -102,9 +126,9 @@ Although both ServiceControl Audit instances ingest messages from the audit queu
 
 Now that the new audit instance exists, the old audit instance must be configured so that it does not ingest any new audit data from the audit queue. This will make the old audit instance effectively read-only. The only reason it is not fully read-only is that old audit data that the old instance will continue to delete expired audit data that has passed the [audit retention period](/servicecontrol/audit-instances/configuration.md#data-retention-servicecontrol-auditauditretentionperiod).
 
-* [Disabling audit queue ingestion with ServiceControl Management](scmu.md#disable-audit-queue-ingestion-on-the-old-instance)
-* [Disabling audit queue ingestion with PowerShell](powershell.md#disable-audit-queue-ingestion-on-the-old-instance)
-* [Disabling audit queue ingestion with Containers](containers.md#disable-audit-queue-ingestion-on-the-old-instance)
+* [Disabling audit queue ingestion with ServiceControl Management](/servicecontrol/migrations/replacing-audit-instances/scmu.md#disable-audit-queue-ingestion-on-the-old-instance)
+* [Disabling audit queue ingestion with PowerShell](/servicecontrol/migrations/replacing-audit-instances/powershell.md#disable-audit-queue-ingestion-on-the-old-instance)
+* [Disabling audit queue ingestion with Containers](/servicecontrol/migrations/replacing-audit-instances/containers.md#disable-audit-queue-ingestion-on-the-old-instance)
 
 After this step the installation looks like this:
 
@@ -145,9 +169,9 @@ As the original audit instance is no longer ingesting messages, it will be empty
 
 When the `ProcessedMessages` collection is empty, the audit instance can be decomissioned:
 
-* [Decommissioning the old audit instance using ServiceControl Management](scmu.md#decommission-the-old-audit-instance)
-* [Decommissioning the old audit instance using PowerShell](powershell.md#decommission-the-old-audit-instance)
-* [Decommissioning the old audit instance using Containers](containers.md#decommission-the-old-audit-instance)
+* [Decommissioning the old audit instance using ServiceControl Management](/servicecontrol/migrations/replacing-audit-instances/scmu.md#decommission-the-old-audit-instance)
+* [Decommissioning the old audit instance using PowerShell](/servicecontrol/migrations/replacing-audit-instances/powershell.md#decommission-the-old-audit-instance)
+* [Decommissioning the old audit instance using Containers](/servicecontrol/migrations/replacing-audit-instances/containers.md#decommission-the-old-audit-instance)
 
 After this step the installation looks like this:
 
