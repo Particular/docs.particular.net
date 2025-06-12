@@ -13,6 +13,14 @@ The processor endpoint [must have both the outbox and the transactional session 
 > [!NOTE]
 > If migrating to this mode from an endpoint couldn't be made send-only due to the previous limitations of the transactional session, see the migration guidance below.
 
+### Benefits
+
+In addition to unlopcking the use of send-only endpoint using a dedicated processor endpoint has the following benefits since it would only process transactional session control messages:
+
+- More predicable dispatch: Since the endpoint is dedicated to dispatching outbox records processing times will be more reliable. And redeployment of the endpoint is only needed when new versions of the transactional session is released.
+- Targeted scaling: Scaling can be tailored to the load of control messages
+- Auditing can be turned off: There is no need to audit the control messages since the resulting business messages will be audited individually when processed.                          
+
 ### Outbox cleanup
 
 For persisters where [Outbox cleanup](/nservicebus/outbox/#outbox-expiration-duration) is performed by the endpoint instances, only the remote processing endpoint should have the cleanup enabled to prevent concurrent cleanup from happening.
