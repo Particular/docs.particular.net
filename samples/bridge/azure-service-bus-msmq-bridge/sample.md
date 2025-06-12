@@ -1,7 +1,7 @@
 ---
 title: Bridge messages between endpoints using MSMQ and Azure Service Bus
 summary: A sample showing how to send messages between endpoints using different transports using NServiceBus Messaging Bridge
-reviewed: 2026-06-06
+reviewed: 2025-06-12
 component: Bridge
 related:
 - transports/azure-service-bus
