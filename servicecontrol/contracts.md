@@ -107,20 +107,4 @@ To avoid this situation it is important to properly decommission an endpoint tha
 
 ## Disabling integration 
 
-[](host-settings-servicecontrol-DisableExternalIntegrationsPublishing
-
-
-### ServiceControl/DisableExternalIntegrationsPublishing
-
-[ServiceControl publishes integration events](/servicecontrol/contracts.md), if no subscribers exist this can be disabled.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_DISABLEEXTERNALINTEGRATIONSPUBLISHING` |
-| **App config key** | `ServiceControl/DisableExternalIntegrationsPublishing` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| bool | False |
-)
+In systems that have significant load but not having subscribers for the integration events it can be beneficial to disable the intergration to prevent unneeded traffic to the broker for these events. The integration can be disabled by setting [`DisableExternalIntegrationsPublishing` to `True`](./servicecontrol-instances/configuration.md#host-settings-servicecontrol-disableexternalintegrationspublishing).
