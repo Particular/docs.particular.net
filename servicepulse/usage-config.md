@@ -27,19 +27,22 @@ Look at the [Diagnostics](#diagnostics) tab to diagnose connection issues.
 
 Steps:
 
-1. Create an application Id for ServiceControl
-2. Assign the role `Monitoring Reader` to this application Id
-3. Update ServiceControl configuration and set at minimum `TenantId`, `SubscriptionId`, `ClientId` (aka ApplicationId) and its accompanying `ClientSecret`
+1. Create an **Application ID** for ServiceControl
+2. Assign the **Monitoring Reader** role to this Application ID
+3. Configure at minimum `TenantId`, `SubscriptionId`, `ClientId` (aka Application ID), and its accompanying `ClientSecret` for the ServiceControl instance  
+
+This can be 
+
 
 #### Using Azure Portal
 
-- Create App
-  -* *Home > App registrations** > ➕ New registration
-- Assign application to role:
-  - **Home > Service Bus > {service bus namespace} > Access control (IAM) > ➕ Add
-    - Role: `Monitoring Reader`
-    - Members: ➕ Select Members > {application name}
-    - Review and Assign
+1. Create App
+    - **Home > App registrations** > ➕ New registration
+2. Assign application to role:
+    - **Home > Service Bus > {service bus namespace} > Access control (IAM)** > ➕ Add
+      - Role: `Monitoring Reader`
+      - Members: ➕ Select Members > {application name}
+      - Review and Assign
 
 
 #### Setup using Azure CLI
