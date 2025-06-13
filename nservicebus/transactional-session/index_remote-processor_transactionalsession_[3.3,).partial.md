@@ -17,7 +17,7 @@ The processor endpoint [must have both the outbox and the transactional session 
 
 Using the transactional session in send-only endpoints has the following benefits:
 
-- More predictable dispatch:
+- Predictable control message dispatch:
   - Processing of control messages will be more reliable since the processor is dedicated to dispatching outbox records
   - Downtime is limited since redeployment of the processor is only necessary when new versions of the transactional session are released
 - Simplified management: For short-lived endpoints, there is no longer a need to make sure that all control messages have been processed before decommissioning them 
