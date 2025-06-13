@@ -15,11 +15,13 @@ The processor endpoint [must have both the outbox and the transactional session 
 
 ### Benefits
 
-In addition to unlocking the use of a send-only endpoint, using a dedicated processor endpoint has the following benefits since it would only process transactional session control messages:
+Using the transactional session in send-only endpoints has the following benefits:
 
-- More predictable dispatch: Since the endpoint is dedicated to dispatching outbox records, processing times will be more reliable. Redeployment of the endpoint is only necessary when new versions of the transactional session are released.
-- Targeted scaling: Scaling can be tailored with only the load of control messages in mind
-- Auditing can be turned off: There is no need to audit the control messages since the resulting business messages will be audited individually when processed.                          
+- More predictable dispatch:
+  - Processing of control messages will be more reliable since the processor is dedicated to dispatching outbox records
+  - Downtime is limited since redeployment of the processor is only necessary when new versions of the transactional session are released
+- Simplified management: For short-lived endpoints, there is no longer a need to make sure that all control messages have been processed before decommissioning them 
+- Targeted scaling: Scaling can be tailored with only the load of control messages in mind                       
 
 ### Outbox cleanup
 
