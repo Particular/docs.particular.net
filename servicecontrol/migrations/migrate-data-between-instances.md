@@ -11,191 +11,42 @@ redirects:
     - servicecontrol/data-migration
 ---
 
-ServiceControl, which exists to serve the management of distributed systems, is itself a distributed system. As a result, migrating all ServiceControl data between instances means each piece of the system that accesses and writes data is migrated separately.
+ServiceControl, which exists to serve the management of distributed systems, is itself a distributed system. As a result, migrating all ServiceControl data between deployments means each piece of the system that accesses and writes data is migrated separately.
 
-This document describes in general terms how to migrate ServiceControl data, and links to more specific information on how to accomplish these tasks for each potential deployment method.
+This document describes in general terms how to migrate ServiceControl data, and links to more specific information on how to accomplish data migration for each piece of the system.
 
 ## Overview
 
-ServiceControl data consists of audit and error message data, managed by audit instances and error instances respectively.
+ServiceControl data consists of audit and error message data, managed by [audit instances](/servicecontrol/audit-instances/) and [error instances](/servicecontrol/servicecontrol-instances/) respectively. To migrate all ServiceControl data from one deployment to another means replacing both audit and error instances.
+
+[Monitoring instances](/servicecontrol/monitoring-instances/) do not use a persistent data store, and therefore do not require data migration.
 
 > [!NOTE]
 > It is worth assessing whether audit and error message data retention is required. For scenarios where retaining audit and error message data is not required (e.g. transient or test environment data that does not merit effort to retain), this process is not necessary.
 
 ### Audit data
 
+Migrating audit data involves:
 
+1. Adding the new audit instance as a remote
+2. Disabling audit queue ingestion on the old audit instance
+3. Decommission of the old audit instance _**after**_ all audit information is expired
+
+Follow the [detailed audit instance replacement process](/servicecontrol/migrations/replacing-audit-instances/) to accomplish migration of this data.
 
 ### Error data
 
+Migrating error data involves:
+
+1. Disabling error message ingestion so that new error messages will be temporarily held in the error queue
+2. Retrying or archiving any failed messages so that the old error instance contains only ephemeral data like heartbeats and custom checks
+3. Creating a new error instance configured to use the same audit instance(s)
+
+Follow the [detailed error instance replacement process](/servicecontrol/migrations/replacing-error-instances/) to accomplish migration of this data.
+
 ## Alternative migration strategies
 
-Data migration can also be achieved by [manually backing up the ServiceControl data](/servicecontrol/backup-sc-database.md) and restoring it to the new instance's deployment.
+Data migration can also be achieved by [backing up the ServiceControl data](/servicecontrol/backup-sc-database.md) and restoring it to the new instance's deployment.
 
 > [!WARNING]
 > The [restrictions](/servicecontrol/backup-sc-database.md#important-notes-and-restrictions) should be strongly considered before moving forward with this approach.
-
----
-old stuff
-
----
-See [Replacing an Error Instance](/servicecontrol/migrations/replacing-error-instances/) for similar guidance for Error instances.
-
-ServiceControl Audit instances store audit data for a configured period of time, after which expired audit data is removed. Using the [ServiceControl remotes feature](/servicecontrol/servicecontrol-instances/remotes.md), multiple audit instances can store a portion of the overall audit data (sharding) which is queried in a scatter-gather fashion.
-
-Using this capability, an Audit instance that can't be upgraded can be replaced without downtime. The process follows these steps:
-
-1. Add a new audit instance as a remote
-2. Disable audit queue ingestion on the old audit instance
-3. Decommission the old audit instance when all audit information is expired
-
-> [!NOTE]
-> It is worth assessing whether audit and error message data retention is required.For scenarios where retaining audit message data is not required (e.g. transient data that does not merit effort to retain), this process is not necessary -- the audit instance can simply be deleted and recreated with the same name.
-
-## Initial state
-
-Before doing anything, the deployment looks like this:
-
-```mermaid
-graph TD
-endpoints -- send errors to --> errorQ[Error Queue]
-endpoints -- send audits to --> auditQ[Audit Queue]
-errorQ -- ingested by --> sc[ServiceControl<br/>Error]
-auditQ -- ingested by --> sca[Original<br/>ServiceControl<br/>audit]
-sc -. connected to .-> sca
-sp[ServicePulse] -. connected to .-> sc
-si[ServiceInsight] -. connected to .-> sc
-
-classDef Endpoints fill:#00A3C4,stroke:#00729C,color:#FFFFFF
-classDef ServiceInsight fill:#878CAA,stroke:#585D80,color:#FFFFFF
-classDef ServicePulse fill:#409393,stroke:#205B5D,color:#FFFFFF
-classDef ServiceControlError fill:#A84198,stroke:#92117E,color:#FFFFFF,stroke-width:4px
-classDef ServiceControlRemote fill:#A84198,stroke:#92117E,color:#FFFFFF
-
-class endpoints Endpoints
-class si ServiceInsight
-class sp ServicePulse
-class sc ServiceControlError
-class sca ServiceControlRemote
-```
-
-## Add a new audit instance
-
-The first step is to create a new audit instance, and add it to the Error instance's remotes collection:
-
-* [Adding a new audit instance with ServiceControl Management](/servicecontrol/migrations/replacing-audit-instances/scmu.md#add-a-new-audit-instance)
-* [Adding a new audit instance with PowerShell](/servicecontrol/migrations/replacing-audit-instances/powershell.md#add-a-new-audit-instance)
-* [Adding a new audit instance with Containers](/servicecontrol/migrations/replacing-audit-instances/containers.md#add-a-new-audit-instance)
-
-Then, the new Audit instance must be added to the Error instance's remotes collection:
-
-* [Updating the remotes collection with ServiceControl Management](/servicecontrol/migrations/replacing-audit-instances/scmu.md#add-the-instance-to-remoteinstances)
-* [Updating the remotes collection with PowerShell](/servicecontrol/migrations/replacing-audit-instances/powershell.md#add-the-instance-to-remoteinstances)
-* [Updating the remotes collection with Containers](/servicecontrol/migrations/replacing-audit-instances/containers.md#add-the-instance-to-remoteinstances)
-
-After this step the installation looks like this:
-
-```mermaid
-graph TD
-endpoints -- send errors to --> errorQ[Error Queue]
-endpoints -- send audits to --> auditQ[Audit Queue]
-errorQ -- ingested by --> sc[ServiceControl<br/>Error]
-auditQ -- ingested by --> sca[Original<br/>ServiceControl<br/>audit]
-auditQ -- ingested by --> sca2[New<br/>ServiceControl<br/>audit]
-sc -. connected to .-> sca
-sc -. connected to .-> sca2
-sp[ServicePulse] -. connected to .-> sc
-si[ServiceInsight] -. connected to .-> sc
-
-classDef Endpoints fill:#00A3C4,stroke:#00729C,color:#FFFFFF
-classDef ServiceInsight fill:#878CAA,stroke:#585D80,color:#FFFFFF
-classDef ServicePulse fill:#409393,stroke:#205B5D,color:#FFFFFF
-classDef ServiceControlError fill:#A84198,stroke:#92117E,color:#FFFFFF,stroke-width:4px
-classDef ServiceControlRemote fill:#A84198,stroke:#92117E,color:#FFFFFF
-
-class endpoints Endpoints
-class si ServiceInsight
-class sp ServicePulse
-class sc ServiceControlError
-class sca,sca2 ServiceControlRemote
-```
-
-Although both ServiceControl Audit instances ingest messages from the audit queue, each message only ends up in a single instance. The ServiceControl Error instance queries both Audit instances transparently.
-
-## Disable audit queue ingestion on the old instance
-
-Now that the new audit instance exists, the old audit instance must be configured so that it does not ingest any new audit data from the audit queue. This will make the old audit instance effectively read-only. The only reason it is not fully read-only is that old audit data that the old instance will continue to delete expired audit data that has passed the [audit retention period](/servicecontrol/audit-instances/configuration.md#data-retention-servicecontrol-auditauditretentionperiod).
-
-* [Disabling audit queue ingestion with ServiceControl Management](/servicecontrol/migrations/replacing-audit-instances/scmu.md#disable-audit-queue-ingestion-on-the-old-instance)
-* [Disabling audit queue ingestion with PowerShell](/servicecontrol/migrations/replacing-audit-instances/powershell.md#disable-audit-queue-ingestion-on-the-old-instance)
-* [Disabling audit queue ingestion with Containers](/servicecontrol/migrations/replacing-audit-instances/containers.md#disable-audit-queue-ingestion-on-the-old-instance)
-
-After this step the installation looks like this:
-
-```mermaid
-graph TD
-endpoints -- send errors to --> errorQ[Error Queue]
-endpoints -- send audits to --> auditQ[Audit Queue]
-errorQ -- ingested by --> sc[ServiceControl<br/>error]
-auditQ -- ingested by --> sca2[New<br/>ServiceControl<br/>audit]
-sc -. connected to .-> sca[Original<br/>ServiceControl<br/>audit]
-sc -. connected to .-> sca2
-sp[ServicePulse] -. connected to .-> sc
-si[ServiceInsight] -. connected to .-> sc
-
-classDef Endpoints fill:#00A3C4,stroke:#00729C,color:#FFFFFF
-classDef ServiceInsight fill:#878CAA,stroke:#585D80,color:#FFFFFF
-classDef ServicePulse fill:#409393,stroke:#205B5D,color:#FFFFFF
-classDef ServiceControlError fill:#A84198,stroke:#92117E,color:#FFFFFF,stroke-width:4px
-classDef ServiceControlRemote fill:#A84198,stroke:#92117E,color:#FFFFFF
-
-class endpoints Endpoints
-class si ServiceInsight
-class sp ServicePulse
-class sc ServiceControlError
-class sca,sca2 ServiceControlRemote
-```
-
-The ServiceControl Error instance continues to query both instances but the original Audit instance no longer reads new messages.
-
-## Decommission the old audit instance, when it is empty
-
-As the original audit instance is no longer ingesting messages, it will be empty after the audit retention period has elapsed and can be removed. The following steps describe how to determine when an audit instance is empty:
-
-1. [Access the database directly](/servicecontrol/ravendb/accessing-database.md)
-2. Launch RavenDB Management Studio with a browser.
-3. If the instance is using RavenDB 3.5 for persistence, go to the `<system>` database. If the instance is using RavenDB 5, go to the `audit` database.
-4. Check the documents count in the `ProcessedMessages` collection.
-
-When the `ProcessedMessages` collection is empty, the audit instance can be decomissioned:
-
-* [Decommissioning the old audit instance using ServiceControl Management](/servicecontrol/migrations/replacing-audit-instances/scmu.md#decommission-the-old-audit-instance)
-* [Decommissioning the old audit instance using PowerShell](/servicecontrol/migrations/replacing-audit-instances/powershell.md#decommission-the-old-audit-instance)
-* [Decommissioning the old audit instance using Containers](/servicecontrol/migrations/replacing-audit-instances/containers.md#decommission-the-old-audit-instance)
-
-After this step the installation looks like this:
-
-```mermaid
-graph TD
-endpoints -- send errors to --> errorQ[Error Queue]
-endpoints -- send audits to --> auditQ[Audit Queue]
-errorQ -- ingested by --> sc[ServiceControl<br/>error]
-auditQ -- ingested by --> sca2[New<br/>ServiceControl<br/>audit]
-sc -. connected to .-> sca2
-sp[ServicePulse] -. connected to .-> sc
-si[ServiceInsight] -. connected to .-> sc
-
-classDef Endpoints fill:#00A3C4,stroke:#00729C,color:#FFFFFF
-classDef ServiceInsight fill:#878CAA,stroke:#585D80,color:#FFFFFF
-classDef ServicePulse fill:#409393,stroke:#205B5D,color:#FFFFFF
-classDef ServiceControlError fill:#A84198,stroke:#92117E,color:#FFFFFF,stroke-width:4px
-classDef ServiceControlRemote fill:#A84198,stroke:#92117E,color:#FFFFFF
-
-class endpoints Endpoints
-class si ServiceInsight
-class sp ServicePulse
-class sc ServiceControlError
-class sca2 ServiceControlRemote
-```
-
-At this point, the old Audit instance has been completely replaced by the new instance.
