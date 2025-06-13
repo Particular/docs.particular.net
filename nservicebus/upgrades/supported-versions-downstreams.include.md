@@ -24,8 +24,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [10.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.1.2) | 2025-04-14     | -                 | -                                 |
-| [10.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.0.3) | 2025-03-11     | 2025-07-14        | Superseded by 10.1.x              |
+| [10.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.1.3) | 2025-04-14     | -                 | -                                 |
+| [10.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.0.4) | 2025-03-11     | 2025-07-14        | Superseded by 10.1.x              |
 | [9.2.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.2.1) | 2024-11-25     | 2026-03-11        | Superseded by 10.0.x              |
 | [~~9.1.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.1.1) | ~~2024-08-08~~ | ~~2025-02-25~~    | ~~Superseded by 9.2.x~~           |
 | [8.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/8.0.8) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
@@ -432,7 +432,6 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [5.1.x](https://www.nuget.org/packages/NServiceBus.Gateway/5.1.0) | 2024-09-11     | -                 | -                                 |
-| [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.Gateway/5.0.0) | ~~2024-04-16~~ | ~~2024-12-11~~    | ~~Superseded by 5.1.x~~           |
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Gateway/4.0.2) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [3.3.x](https://www.nuget.org/packages/NServiceBus.Gateway/3.3.1) | 2022-01-24     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
@@ -592,7 +591,6 @@
 | [~~3.15.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.15.0) | ~~2024-09-26~~ | ~~2024-12-27~~    | ~~Superseded by 3.16.x~~          |
 | [~~3.14.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.14.0) | ~~2024-09-24~~ | ~~2024-12-26~~    | ~~Superseded by 3.15.x~~          |
 | [~~3.13.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.13.0) | ~~2024-09-13~~ | ~~2024-12-24~~    | ~~Superseded by 3.14.x~~          |
-| [~~3.12.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.12.0) | ~~2024-09-04~~ | ~~2024-12-13~~    | ~~Superseded by 3.13.x~~          |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 

@@ -27,42 +27,65 @@ Look at the [Diagnostics](#diagnostics) tab to diagnose connection issues.
 
 Steps:
 
-1. Create an application Id for ServiceControl
-2. Assign the role `Monitoring Reader` to this application Id
-3. Update ServiceControl configuration and set at minimum `TenantId`, `SubscriptionId`, `ClientId` (aka ApplicationId) and its accompanying `ClientSecret`
+1. Create an **ApplicationId (aka ClientId)** for ServiceControl
+2. Assign it the **Monitoring Reader** role
+3. Configure for the ServiceControl instance at minimum:
+    - `TenantId`
+    - `SubscriptionId`
+    - `ClientId`
+    - `ClientSecret`
+
 
 #### Using Azure Portal
 
-- Create App
-  -* *Home > App registrations** > ➕ New registration
-- Assign application to role:
-  - **Home > Service Bus > {service bus namespace} > Access control (IAM) > ➕ Add
-    - Role: `Monitoring Reader`
-    - Members: ➕ Select Members > {application name}
-    - Review and Assign
+Instructions when using the Azure Portal, alternative is using the Azure CLI listed below.
 
 
-#### Setup using Azure CLI
+1. Create App
+    - Native to: **Home > App registrations**
+    - Select **➕ New registration**
+2. Assign application to role:
+    - Natigate to: **Home > Service Bus > {service bus namespace} > Access control (IAM)**
+    - Select: **➕ Add**
+    - Enter:
+      - Role: `Monitoring Reader`
+      - Members: Select **➕ Select Members > {application name}**
+    - Select: **Review and Assign**
+
+#### Using Azure CLI
+
+Instructions when using the Azure CLI or scripting, alternative is using the Azure Portal above.
 
 ```ps1
-# set correct context and subscription
+# Set context first
 az account set --subscription "YourAzureSubscriptionName"
-Set-AzContext -Subscription "YourAzureSubscriptionName"
 
-# Application ID: az ad app create --display-name ServiceControlUsageReporting
+# Create ApplicationId (ClientId)
+az ad app create --display-name ServiceControlUsageReporting
+
+# Store your ApplicationId (ClientId)
 $applicationId = "<Your Application ID>"
 
-# Azure Service Bus subscription ID: az servicebus namespace list
+# List subscription ID
+az servicebus namespace list
+
+# Store your Subscription ID
 $subscriptionId = "<Your Subscription ID>"
 
-# Resource group name: az group list
-$resourceGroupName = "<Your Resource group Name>"
+# List resource group
+az group list
+
+# Store resource group name
+$resourceGroupName = "<Your Resource Group Name>"
+
 # Assign role to resource group
-
 $scope = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
-# or to specific resource in resource group
-#$scope = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.ServiceBus/namespaces/$namespaceName
 
+# or to specific resource in resource group
+$scope = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.ServiceBus/namespaces/$namespaceName
+# end alternative
+
+# assign Monitoring Reader role to ApplicationId
 New-AzRoleAssignment -ApplicationId $applicationId -RoleDefinitionName "Monitoring Reader" -Scope $scope
 ```
 

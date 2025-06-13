@@ -50,11 +50,9 @@ By allocating a separate topic for each concrete event type, the overall system 
 
 In this topology, topics are created exclusively by subscribers.
 
-When an endpoint subscribes to an event, it creates the corresponding topic when installers are enabled and a subscription to that topic. If no endpoint subscribes to a given event, the topic for that event will not be created—even if another endpoint publishes it.
+When an endpoint subscribes to an event, it creates the corresponding topic if installers are enabled and a subscription to that topic exists. If no endpoint subscribes to a given event, the topic for that event will *not* be created, even if another endpoint publishes it.
 
-Even with installers enabled, an endpoint will only provision infrastructure for the events it explicitly subscribes to. As a result, a publisher may receive a 404 Not Found from Azure Service Bus when attempting to publish an event that has no subscribers yet.
-
-This behavior is intentional. NServiceBus establishes subscriptions at runtime, so at transport startup, publishers have no knowledge of which events they will publish. Although topic names can be inferred through mapping conventions, the existence of a mapping does not imply that the topic should be created.
+Even with installers enabled, an endpoint will only provision infrastructure for the events it explicitly subscribes to. As a result, a publisher may receive a `404 Not Found` from Azure Service Bus when attempting to publish an event that has no subscribers yet. This behavior is intentional. NServiceBus establishes subscriptions at runtime, so at transport startup, publishers have no knowledge of which events they will publish. Although topic names can be inferred through mapping conventions, the existence of a mapping does not imply that the topic should be created.
 
 #### Subscription rule matching
 

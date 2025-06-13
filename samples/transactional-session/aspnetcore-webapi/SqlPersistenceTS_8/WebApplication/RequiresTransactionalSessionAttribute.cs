@@ -5,19 +5,10 @@ using NServiceBus.TransactionalSession;
 
 #region txsession-filter-attribute
 
-public sealed class RequiresTransactionalSessionAttribute : TypeFilterAttribute
+public sealed class RequiresTransactionalSessionAttribute() : TypeFilterAttribute(typeof(TransactionalSessionFilter))
 {
-    public RequiresTransactionalSessionAttribute() : base(typeof(TransactionalSessionFilter))
+    class TransactionalSessionFilter(ITransactionalSession transactionalSession) : IAsyncResourceFilter
     {
-    }
-
-    private class TransactionalSessionFilter : IAsyncResourceFilter
-    {
-        public TransactionalSessionFilter(ITransactionalSession transactionalSession)
-        {
-            this.transactionalSession = transactionalSession;
-        }
-
         public async Task OnResourceExecutionAsync(ResourceExecutingContext context, ResourceExecutionDelegate next)
         {
             await transactionalSession.Open(new SqlPersistenceOpenSessionOptions());
@@ -29,8 +20,6 @@ public sealed class RequiresTransactionalSessionAttribute : TypeFilterAttribute
                 await transactionalSession.Commit();
             }
         }
-
-        private readonly ITransactionalSession transactionalSession;
     }
 }
 
