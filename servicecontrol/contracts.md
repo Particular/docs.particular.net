@@ -107,4 +107,4 @@ To avoid this situation it is important to properly decommission an endpoint tha
 
 ## Disabling integration 
 
-In systems that have significant load but not having subscribers for the integration events it can be beneficial to disable the intergration to prevent unneeded traffic to the broker for these events. The integration can be disabled by setting [`DisableExternalIntegrationsPublishing` to `True`](./servicecontrol-instances/configuration.md#host-settings-servicecontrol-disableexternalintegrationspublishing).
+In systems that have significant load but not having subscribers for the integration events it can be beneficial to disable the intergration to prevent unneeded traffic to the broker for these events. The integration can be disabled by setting [`DisableExternalIntegrationsPublishing` to `True`](./servicecontrol-instances/configuration.md#host-settings-servicecontroldisableexternalintegrationspublishing).
