@@ -57,7 +57,7 @@ class sca ServiceControlRemote
 
 ## Add a new audit instance
 
-The first step is to create a new audit instance, and add it to the Error instance's remotes collection:
+The first step is to create a new audit instance:
 
 * [Adding a new audit instance with ServiceControl Management](scmu.md#add-a-new-audit-instance)
 * [Adding a new audit instance with PowerShell](powershell.md#add-a-new-audit-instance)
