@@ -64,7 +64,7 @@ Once all endpoints are migrated, the bridge can be updated to include only SQL S
 
 Every transport has [pros and cons](/transports/selecting.md). Some offer higher throughput, while others prioritize reliability or consistency. In many cases, certain messages are better handled in the cloud, where hosting is managed by a provider. Other messages, however, may need to remain on-premises for security or compliance reasons.
 
-In a distributed or microservices-based system, each endpoint should be free to choose the transport that best meets its specific requirements. This approach is not only valid—it is encouraged. The NServiceBus Messaging Bridge allows endpoints on different transports to communicate seamlessly. Unlike migration scenarios, these transports may remain in place permanently, making this a stable and supported pattern.
+In a distributed or microservices-based system, each endpoint should be free to choose the transport that best meets its specific requirements. This approach is not only validâ€”it is encouraged. The NServiceBus Messaging Bridge allows endpoints on different transports to communicate seamlessly. Unlike migration scenarios, these transports may remain in place permanently, making this a stable and supported pattern.
 
 ### Particular Platform
 
