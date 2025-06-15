@@ -1,14 +1,12 @@
 ---
-title: "NServiceBus Quickstart: Sending your first messages"
-reviewed: 2025-02-18
-summary: "Part 1: See why software systems built on asynchronous messaging using NServiceBus are superior to traditional synchronous HTTP-based web services."
+title: "Quickstart: Sending and processing your first messages"
+reviewed: 2025-06-15
+summary: "Part 1: See why software systems built on asynchronous messaging are superior to traditional synchronous HTTP-based web services."
 extensions:
 - !!tutorial
   nextText: "Next: Recovering from failure"
   nextUrl: tutorials/quickstart/tutorial-reliability
 ---
-
-Want to learn what NServiceBus is all about? You're in the right place. 
 
 In just 10 minutes, see how to:
 
@@ -17,9 +15,9 @@ In just 10 minutes, see how to:
 * All fully abstracted from the underlying queuing system
 
 > [!NOTE]
-> * If you're new here, check out the [overview of NServiceBus](https://particular.net/nservicebus).
+> * If you're new here, check out the [overview](https://particular.net/nservicebus).
 > * The [Glossary of messaging terms](/nservicebus/concepts/glossary.md) may help as you go along this tutorial.
-> * If you're already familiar with the basic benefits of messaging, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/) for a deeper dive instead.
+> * If you're already familiar with the basic benefits of messaging, check out our [step-by-step tutorial](/tutorials/nservicebus-step-by-step/) for a deeper dive instead.
 
 ## About the solution
 
