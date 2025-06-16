@@ -70,7 +70,7 @@ Steps:
 ### Change ServiceControl Instance Queue
 
 > [!NOTE]  
-> This step is only needed if **heartbeats** are used.
+> The swapping of the instance names is only needed if **heartbeats** are used to avoid requiring to update the configuration of all endpoints.
 
 1. Open **regedit** and navigate to:  
    ```
