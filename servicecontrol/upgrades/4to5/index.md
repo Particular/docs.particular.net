@@ -208,15 +208,18 @@ Migrate those subscribers to the supported **Azure Service Bus (Forwarding Topol
 
 ### 2. Reconfigure ServiceControl 4.x
 
+> [!WARNING]
+> Make sure you’re using v4.x — NOT v5.x or newer!
+
 After completing the transport upgrade:
 
-- Upgrade the ServiceControl instance to **v4.33.5**.
-- Note the **instance name** and **database folder path**.
-- Remove the instance via the 🔧 (advanced options). Leave "Remove DB subdirectory and data" unchecked in the Remove instance dialog.
-- Recreate a **new v4.33.5 instance**:
-  - Use the **same instance name**.
-  - Use the **same database path**.
-  - Select the **Azure Service Bus (Forwarding Topology)** transport.
+1. Upgrade **ServiceControl** to **v4.33.5**.
+2. Note the **instance name** and **database folder path**.
+3. Remove the instance via 🔧 (Advanced options), but **leave “Remove DB subdirectory and data” unchecked** in the Remove instance dialog.
+4. Re-create a **new v4.33.5 instance**:
+    - Reuse the **same instance name**.
+    - Point it to the **same database path**.
+    - Select **Azure Service Bus (Forwarding Topology)** as the transport.
 
 ### 3. Upgrade to ServiceControl v5
 
