@@ -1,5 +1,5 @@
 ---
-title: Retain ServiceControl data for new instances
+title: Retain ServiceControl data between instances
 summary: Instructions on how to retain ServiceControl data between instances.
 reviewed: 2025-06-12
 component: ServiceControl
