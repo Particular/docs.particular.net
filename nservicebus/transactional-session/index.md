@@ -82,8 +82,8 @@ The transactional session feature requires a supported persistence package to st
 It's recommended to not mix the processing of control messages with business messages in order to get:
 
 - Predictable control message dispatch: Processing of control messages will be more reliable since there is no risk of getting delayed behind slow business messages
-- More accurate metrics: Metrics like critical time and queue lenght will accurately represent the performance of the control message processing and not be skewed by business messages
-- Simplified management: Knowning that the endpoint only processes control message makes it possible to always retry all failed message related to the endpoint via tools like ServicePulse
+- More accurate metrics: Metrics like critical time and queue length will accurately represent the performance of the control message processing and not be skewed by business messages
+- Simplified management: Knowing that the endpoint only processes control messages makes it possible to always retry all failed messages related to the endpoint via tools like ServicePulse
 
 ## Transaction consistency
 
