@@ -26,6 +26,12 @@ The messaging bridge enables several scenarios:
 
 More details on these scenarios are provided in the [messaging bridge scenarios](scenarios.md) article.
 
+## Hosting
+
+While it's technically possible to co-host the bridge within the same process as a regular NServiceBus endpoint, it's generally recommended to run the bridge in a dedicated hosting process. The bridge's purpose is purely infrastructural—it connects logical endpoints. 
+
+To fulfill this role as efficiently as possible, it may be necessary to scale the bridge either [vertically](performance.md#performance-tuning) or [horizontally](performance.md#scaling-out). Because of its infrastructural nature, the bridge also exhibits significantly different CPU, memory, and monitoring characteristics compared to a typical NServiceBus endpoint that handles business logic.
+
 ## Bridge configuration
 
 partial: configuration
