@@ -1,7 +1,7 @@
 ---
-title: Alternative ServiceControl v4 to newer migration  
-reviewed: 2025-05-21  
-summary: Advanced alternative ServiceControl v4 migration for environments that cannot retry all messages immediately.  
+title: Alternative ServiceControl v4 to newer migration
+reviewed: 2025-05-21
+summary: Advanced alternative ServiceControl v4 migration for environments that cannot retry all messages immediately
 ---
 
 The standard [upgrade guide](/servicecontrol/upgrades/4to5/) assumes all failed messages can be retried without side effects. Not all users are able to analyze all failures, yet still want to upgrade to a supported version.
@@ -59,13 +59,13 @@ Steps:
 
 ### Configure to Stop Ingestion of Error Queue
 
-1. Locate the instance folder (via ServiceControl Management Utility → *Installation location* → 📁 **Browse...**).
-2. Open `servicecontrol.exe.config` in an elevated text editor.
+1. Locate the instance folder (via ServiceControl Management Utility → *Installation location* → 📁 **Browse...**)
+2. Open `servicecontrol.exe.config` in an elevated text editor
 3. Add:
    ```xml
    <add key="ServiceControl/IngestErrorMessages" value="False" />
    ```
-4. Save the file.
+4. Save the file
 
 ### Change ServiceControl Instance Queue
 
@@ -76,9 +76,9 @@ Steps:
    ```
    HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\
    ```
-2. Find the key representing the ServiceControl service.
-3. Export it as a backup.
-4. Locate `ImagePath`, note the `--serviceName` argument.
+2. Find the key representing the ServiceControl service
+3. Export it as a backup
+4. Locate `ImagePath`, note the `--serviceName` argument
 5. Modify the service name to a unique value, e.g.:
    ```
    --serviceName=particular.servicecontrol_v4
@@ -86,7 +86,7 @@ Steps:
 
 ### Run Setup
 
-1. Open an elevated command prompt.
+1. Open an elevated command prompt
 2. Navigate to the install folder, e.g.:
    ```
    C:\Program Files (x86)\Particular Software\Particular.ServiceControl
@@ -98,21 +98,21 @@ Steps:
 
 ### Enable and Start v4 Error Instance
 
-1. Open *Windows Services*.
-2. Locate the error instance, right-click → **Properties**.
-3. Set `Startup type` to `Automatic` → Apply.
-4. Click **Start**.
+1. Open *Windows Services*
+2. Locate the error instance, right-click → **Properties**
+3. Set `Startup type` to `Automatic` → Apply
+4. Click **Start**
 
 ### Verify Instance is Running Without Issues
 
-1. Open the log folder (via ServiceControl Management Utility → *Log Path* → 📁 **Browse...**).
-2. Open the latest `logfile.{YYYY-MM-DD}`.
-3. Scroll to the end and ensure no errors are present.
+1. Open the log folder (via ServiceControl Management Utility → *Log Path* → 📁 **Browse...**)
+2. Open the latest `logfile.{YYYY-MM-DD}`
+3. Scroll to the end and ensure no errors are present
 
 ### Add New Error Instance
 
 > [!NOTE]  
 > Use the **original** service name (before the rename) for this new instance.
 
-1. Add a new error instance as usual (on the same machine or a new one).
-2. Configure it as needed to take over ingestion.
+1. Add a new error instance as usual (on the same machine or a new one)
+2. Configure it as needed to take over ingestion
