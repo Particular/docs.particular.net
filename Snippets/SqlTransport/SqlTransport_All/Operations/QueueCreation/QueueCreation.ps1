@@ -107,7 +107,7 @@ function CreateQueue {
             [Body] [varbinary](max),
             [RowVersion] [bigint] identity(1,1) not null
         );
-        create clustered index [Index_RowVersion] on [{0}].[{1}]
+        create nonclustered index [Index_RowVersion] on [{0}].[{1}]
         (
             [RowVersion]
         )

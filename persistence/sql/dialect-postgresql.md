@@ -21,7 +21,7 @@ SQL persistence supports:
 
 ### PostGIS / NetTopologySuite
 
-[PostGIS](https://postgis.net/) and [NetTopologySuite](https://github.com/NetTopologySuite/NetTopologySuite) are a popular extension. The [PostGIS/NetTopologySuite Type Plugin guidance at npgsql.org](https://www.npgsql.org/doc/types/nts.html) explains how to setup these extensions with PostgreSQL. 
+[PostGIS](https://postgis.net/) and [NetTopologySuite](https://github.com/NetTopologySuite/NetTopologySuite) are popular extensions. The [PostGIS/NetTopologySuite Type Plugin guidance at npgsql.org](https://www.npgsql.org/doc/types/nts.html) explains how to setup these extensions with PostgreSQL. 
 
 ## Usage
 

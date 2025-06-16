@@ -29,7 +29,7 @@ Follow the link for each transport for additional information on configuration o
 
 ### Topic-per-event topology for integration events
 
-Starting from version 6.4.0, ServiceControl runs Azure Service Bus transport that, by default, uses [topic-per-event topology](/transports/azure-service-bus/topology.md), as opposed to previously used [single-topic topology](/transports/azure-service-bus/topology.md?version=asbs_4). This breaking change affects the publishing of [integration events](/servicecontrol/contracts.md).
+Starting with version 6.4.0, ServiceControl runs versions of the Azure Service Bus transport that, by default, use [topic-per-event topology](/transports/azure-service-bus/topology.md), as opposed to previously used [single-topic topology](/transports/azure-service-bus/topology.md?version=asbs_4). This breaking change affects the publishing of [integration events](/servicecontrol/contracts.md).
 
 In order to continue using the single-topic topology, the topic name has to be specified explicitly using the `TopicName=<topic-bundle-name>` connection string option.
 

@@ -16,7 +16,7 @@ This sample shows a .NET Aspire AppHost project that orchestrates multiple NServ
 3. Review the metrics, traces, and structured log entries of each of the resources
 
 > [!NOTE]
-> This sample requires [Docker](https://www.docker.com/) to run.
+> This sample requires [Docker](https://www.docker.com/) to run. Ensure the predefined container ports are free and available.
 
 ## Code walkthrough
 

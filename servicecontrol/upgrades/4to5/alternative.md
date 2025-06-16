@@ -1,12 +1,10 @@
 ---
-title: Alternative ServiceControl v4 to newer migration
+title: Alternative ServiceControl v4 upgrade option
 reviewed: 2025-05-21
-summary: Advanced alternative ServiceControl v4 migration for environments that cannot retry all messages immediately
+summary: Advanced alternative ServiceControl v4 upgrade option for environments that cannot retry all messages immediately
 ---
 
-The standard [upgrade guide](/servicecontrol/upgrades/4to5/) assumes all failed messages can be retried without side effects. Not all users are able to analyze all failures, yet still want to upgrade to a supported version.
-
-This alternative migration ensures the existing (v4) instance stops ingesting error messages while allowing a newer instance to take over.
+The [standard guide to upgrade ServiceControl from 4 to 5](/servicecontrol/upgrades/4to5/) assumes that all failed messages can be retried without side-effects. In cases where this cannot be confirmed, the approach below can be used to upgrade ServiceControl v4.
 
 > [!NOTE]  
 > This setup results in **two** separate error instances.  

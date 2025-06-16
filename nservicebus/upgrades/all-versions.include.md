@@ -132,8 +132,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [10.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.1.2) | 2025-04-14     | -                 | -                                 |
-| [10.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.0.3) | 2025-03-11     | 2025-07-14        | Superseded by 10.1.x              |
+| [10.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.1.3) | 2025-04-14     | -                 | -                                 |
+| [10.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.0.4) | 2025-03-11     | 2025-07-14        | Superseded by 10.1.x              |
 | [9.2.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.2.1) | 2024-11-25     | 2026-03-11        | Superseded by 10.0.x              |
 | [~~9.1.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.1.1) | ~~2024-08-08~~ | ~~2025-02-25~~    | ~~Superseded by 9.2.x~~           |
 | [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.0.1) | ~~2024-04-16~~ | ~~2024-11-08~~    | ~~Superseded by 9.1.x~~           |
@@ -325,9 +325,9 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.1.0) | 2025-06-03     | -                 | -                                 |
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.0.1) | 2024-04-16     | 2025-09-03        | Superseded by 3.1.x               |
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/2.0.2) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.1.1) | 2025-06-03     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.0.2) | 2024-04-16     | 2025-09-03        | Superseded by 3.1.x               |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/2.0.3) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.2.2) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 | [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.1.1) | ~~2022-01-20~~ | ~~2022-12-19~~    | ~~Superseded by 1.2.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.0.0) | ~~2021-08-09~~ | ~~2022-04-20~~    | ~~Superseded by 1.1.x~~           |
@@ -338,9 +338,9 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/3.1.0) | 2025-06-03     | -                 | -                                 |
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/3.0.1) | 2024-04-16     | 2025-09-03        | Superseded by 3.1.x               |
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/2.0.2) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/3.1.1) | 2025-06-03     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/3.0.2) | 2024-04-16     | 2025-09-03        | Superseded by 3.1.x               |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/2.0.3) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/1.2.2) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
 #### [NServiceBus.Persistence.DynamoDB](/nuget/NServiceBus.Persistence.DynamoDB)
@@ -472,7 +472,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.2.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/4.2.0) | 2025-06-03     | -                 | -                                 |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/5.0.0) | 2025-06-07     | -                 | -                                 |
+| [4.2.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/4.2.0) | 2025-06-03     | 2026-06-07        | Superseded by 5.0.x               |
 | [4.1.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/4.1.1) | 2024-09-17     | 2025-09-03        | Superseded by 4.2.x               |
 | [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/4.0.0) | ~~2024-04-16~~ | ~~2024-12-17~~    | ~~Superseded by 4.1.x~~           |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/3.0.5) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
@@ -485,7 +486,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.2.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/4.2.0) | 2025-06-03     | -                 | -                                 |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/5.0.0) | 2025-06-07     | -                 | -                                 |
+| [4.2.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/4.2.0) | 2025-06-03     | 2026-06-07        | Superseded by 5.0.x               |
 | [4.1.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/4.1.1) | 2024-09-17     | 2025-09-03        | Superseded by 4.2.x               |
 | [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/4.0.0) | ~~2024-04-16~~ | ~~2024-12-17~~    | ~~Superseded by 4.1.x~~           |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/3.0.5) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
@@ -759,7 +761,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/2.1.0) | 2025-04-11     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/3.0.0) | 2025-06-06     | -                 | -                                 |
+| [2.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/2.1.0) | 2025-04-11     | 2026-06-06        | Superseded by 3.0.x               |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/2.0.1) | 2024-04-16     | 2025-07-11        | Superseded by 2.1.x               |
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/1.1.2) | 2023-09-21     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/1.0.1) | ~~2023-05-09~~ | ~~2023-12-21~~    | ~~Superseded by 1.1.x~~           |
@@ -1121,7 +1124,7 @@
 | [3.37.x](https://www.nuget.org/packages/Particular.PlatformSample/3.37.0) | 2025-03-24     | 2025-07-08        | Superseded by 3.39.x              |
 | [3.36.x](https://www.nuget.org/packages/Particular.PlatformSample/3.36.0) | 2025-03-21     | 2025-06-24        | Superseded by 3.37.x              |
 | [3.34.x](https://www.nuget.org/packages/Particular.PlatformSample/3.34.0) | 2025-03-17     | 2025-06-21        | Superseded by 3.36.x              |
-| [3.33.x](https://www.nuget.org/packages/Particular.PlatformSample/3.33.0) | 2025-03-03     | 2025-06-17        | Superseded by 3.34.x              |
+| [~~3.33.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.33.0) | ~~2025-03-03~~ | ~~2025-06-17~~    | ~~Superseded by 3.34.x~~          |
 | [~~3.32.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.32.0) | ~~2025-02-21~~ | ~~2025-06-03~~    | ~~Superseded by 3.33.x~~          |
 | [~~3.26.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.26.0) | ~~2025-02-03~~ | ~~2025-05-21~~    | ~~Superseded by 3.32.x~~          |
 | [~~3.25.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.25.0) | ~~2025-01-27~~ | ~~2025-05-03~~    | ~~Superseded by 3.26.x~~          |

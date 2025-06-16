@@ -77,6 +77,14 @@ The transactional session feature requires a supported persistence package to st
 * [MongoDB](/persistence/mongodb)
 * [DynamoDB](/persistence/dynamodb/)
 
+## Design considerations
+
+It's recommended to not mix the processing of control messages with business messages in order to get:
+
+- Predictable control message dispatch: Processing of control messages will be more reliable since there is no risk of getting delayed behind slow business messages
+- More accurate metrics: Metrics like critical time and queue length will accurately represent the performance of the control message processing and not be skewed by business messages
+- Simplified management: Knowing that the endpoint only processes control messages makes it possible to always retry all failed messages related to the endpoint via tools like ServicePulse
+
 ## Transaction consistency
 
 To guarantee atomic consistency across database and message operations, the transactional session requires the [outbox](/nservicebus/outbox) to be enabled. This combination of features provides the strongest consistency guarantees and is, therefore, the recommended, safe-by-default configuration.
@@ -177,13 +185,13 @@ The transactional session provides atomic store-and-send guarantees, similar to 
 * Transaction finishes with data being stored, and outgoing messages eventually sent - when the `Commit` path successfully stores the `OutboxRecord`
 * Transaction finishes with no visible side effects - when the control message stores the `OutboxRecord`
 
-Sending the control message first ensures that eventually, the transaction will have an atomic outcome. If the `Commit` of the `OutboxRecord` succeeds, the control message will ensure the outgoing operations are sent. 
+Sending the control message first ensures that, eventually, the transaction will have an atomic outcome. If the `Commit` of the `OutboxRecord` succeeds, the control message will ensure the outgoing operations are sent. 
 
 ### Failure to dispatch the control message
 
 If dispatching the control message fails, the transactional session changes will roll back, and an error will be raised to the user committing the session.
 
-If the transaction completes and the control message fails to process through all the retry attempts, the control message will be moved to the error queue, and the outgoing messages will not be dispatched. Once the error is resolved, the control message must be manually retried in ServicePulse to ensure the outgoing messages are dispatched. If this doesn't happen, the stored outgoing messages will never be delivered. If that's undesirable, the system should be returned to a consistent state through another action.
+If the transaction completes and the control message fails to process through all the retry attempts, the control message will be moved to the error queue and the outgoing messages will not be dispatched. Once the error is resolved, the control message must be manually retried in ServicePulse to ensure the outgoing messages are dispatched. If the messages are not manually retried, the stored outgoing messages will never be delivered. If that's undesirable, the system must be returned to a consistent state via other means.
 
 ### Failure to commit the outbox record
 
@@ -191,7 +199,7 @@ If the `Commit` fails, the control message will (after the [maximum commit durat
 
 ### Commit takes too long
 
-When the commit takes longer than the [maximum commit duration](#advanced-configuration-maximum-commit-duration) the control message will result in a tombstone record in the outbox preventing the commit to succeed. The following exception is thrown:
+When the commit takes longer than the [maximum commit duration](#advanced-configuration-maximum-commit-duration), the control message will result in a tombstone record in the outbox preventing the commit from succeeding. The following exception is thrown:
 
 `Failed to commit the transactional session. This might happen if the maximum commit duration is exceeded`
 

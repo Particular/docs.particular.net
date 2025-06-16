@@ -1,7 +1,7 @@
 ---
 title: Configuring Hosting
 summary: Describes how to configure the ServicePulse host and connections
-reviewed: 2023-06-30
+reviewed: 2025-06-13
 component: ServicePulse
 redirects:
  - servicepulse/servicepulse-host-config

@@ -1,7 +1,7 @@
 ---
 title: Bridge messages between endpoints using MSMQ and Azure Service Bus
-summary: A sample showing how to send messages between endpoints using different transports
-reviewed: 2023-06-02
+summary: A sample showing how to send messages between endpoints using different transports using NServiceBus Messaging Bridge
+reviewed: 2026-06-06
 component: Bridge
 related:
 - transports/azure-service-bus
@@ -18,7 +18,7 @@ Common examples include:
 * A hybrid solution that spans across endpoints deployed on-premises and in a cloud environment.
 * Departments within organization integrating their systems that use different messaging technologies for historical reasons.
 
-Traditionally, these integrations would require native messaging or relaying. Bridging is an alternative, allowing endpoints to communicate over different transports without getting into the low-level messaging technology.
+Traditionally, these integrations would require native messaging or relaying. Bridging is an alternative that allows endpoints to communicate over different transports without requiring knowledge of low-level messaging technology.
 
 ## Prerequisites
 
@@ -38,9 +38,9 @@ The scenarios covered by the sample include:
 
 ### Bridging
 
-Endpoints are bridged using [NServiceBus.MessagingBridge](/nservicebus/bridge/), which is a standalone process that runs side-by-side with the bridged endpoints, `MsmqEndpoint` and `AsbEndpoint`.  These endpoints are not aware that there is a bridge involved in the sending and receiving of messages.  They send/publish messages as if entire system uses the same transport.  All of the configuration to bridge different transports is handled in the bridge code.
+Endpoints are bridged using [NServiceBus.MessagingBridge](/nservicebus/bridge/), which is a standalone process that runs side-by-side with the bridged endpoints, `MsmqEndpoint` and `AsbEndpoint`.  These endpoints are not aware that there is a bridge involved in the sending and receiving of messages.  They send/publish messages as if the entire system uses the same transport.  All configuration for bridging different transports is handled in the bridge code.
 
-The bridge is connecting the MSMQ and Azure Service Bus endpoints and providing the configuration settings required by each transport. For example, Azure Service Bus requires a connection string and the topology to be set.
+The bridge connects the MSMQ and Azure Service Bus endpoints, providing the configuration settings required by each transport. For example, Azure Service Bus requires a connection string and the topology to be set.
 
 #### Azure Service Bus bridge endpoint configuration
 
@@ -52,7 +52,7 @@ To subscribe to an event published by the MSMQ endpoint, the Azure Service Bus e
 
 snippet: asb-subscribe-to-event-via-bridge
 
-When the bridge endpoint has been created and the publisher has been registered, the endpoint is added to the transport and then the transport is added to the bridge configuration.
+When the bridge endpoint has been created and the publisher has been registered, the endpoint is added to the transport, and then the transport is added to the bridge configuration.
 
 snippet: asb-bridge-configuration
 
@@ -69,7 +69,7 @@ To subscribe to an event published by the Azure Service Bus endpoint, the MSMQ e
 
 snippet: msmq-subscribe-to-event-via-bridge
 
-When the bridge endpoint has been created and the publisher has been registered, the endpoint is added to the transport and then the transport is added to the bridge configuration.
+When the bridge endpoint has been created and the publisher has been registered, the endpoint is added to the transport, and then the transport is added to the bridge configuration.
 
 snippet: msmq-bridge-configuration
 

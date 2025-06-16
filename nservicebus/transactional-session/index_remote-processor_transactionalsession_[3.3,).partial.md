@@ -1,6 +1,6 @@
-## Send-only 
+## Remote processor
 
-When used in a [send-only](/nservicebus/hosting/#self-hosting-send-only-hosting) endpoint, the transactional session must be configured with a remote endpoint(processor endpoint) that will manage the outbox on behalf of the send-only endpoint.
+When used together with the [outbox](/nservicebus/outbox/) in a [send-only](/nservicebus/hosting/#self-hosting-send-only-hosting) endpoint, the transactional session must be configured with a remote processor endpoint that will manage the outbox on behalf of the send-only endpoint.
 
 snippet: configure-remote-processor
 
@@ -12,6 +12,13 @@ The processor endpoint [must have both the outbox and the transactional session 
 
 > [!NOTE]
 > If migrating to this mode from an endpoint couldn't be made send-only due to the previous limitations of the transactional session, see the migration guidance below.
+
+### Benefits
+
+Using the transactional session in send-only endpoints has the following benefits:
+
+- Simplified management: For short-lived endpoints, there is no longer a need to make sure that all control messages have been processed before decommissioning them 
+- Targeted scaling: Scaling can be tailored with only the load of control messages in mind since the incoming load to store the records are handled by the endpoint using the processor.                       
 
 ### Outbox cleanup
 

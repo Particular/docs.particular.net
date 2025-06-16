@@ -2,17 +2,8 @@ using System;
 using System.Threading.Tasks;
 using NServiceBus.TransactionalSession;
 
-public class ServiceUsingTransactionalSession
+public class ServiceUsingTransactionalSession(MyDataContext dataContext, ITransactionalSession messageSession)
 {
-    private readonly MyDataContext dataContext;
-    private readonly ITransactionalSession messageSession;
-
-    public ServiceUsingTransactionalSession(MyDataContext dataContext, ITransactionalSession messageSession)
-    {
-        this.dataContext = dataContext;
-        this.messageSession = messageSession;
-    }
-
     public async Task<string> Execute()
     {
         var id = Guid.NewGuid().ToString();
@@ -20,7 +11,7 @@ public class ServiceUsingTransactionalSession
         await dataContext.MyEntities.AddAsync(new MyEntity { Id = id, Processed = false });
 
         var message = new MyMessage { EntityId = id };
-        await messageSession.SendLocal(message);
+        await messageSession.Send(message);
 
         return id;
     }

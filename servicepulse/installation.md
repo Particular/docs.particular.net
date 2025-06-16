@@ -13,8 +13,15 @@ related:
 ## Prerequisites
 
  * .NET Framework 4.5 or later
- * A currently-supported version of Microsoft Edge, Chrome, Firefox, or Safari
+ * A currently-supported version of:
+     - Microsoft Edge
+     - Chrome
+     - Firefox
+     - Safari
  * A running instance of [ServiceControl](/servicecontrol)
+
+> [!NOTE]
+> Internet Explorer (IE) is NOT supported
 
 ## Installation
 
