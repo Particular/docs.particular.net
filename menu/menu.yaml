@@ -1598,8 +1598,6 @@
     Articles:
     - Title: Data expiration
       Url: servicecontrol/how-purge-expired-data
-    - Title: Data migration
-      Url: servicecontrol/migrations/migrate-data-between-instances
     - Title: Accessing ServiceControl database
       Url: servicecontrol/ravendb/accessing-database
     - Title: Backup
@@ -1628,6 +1626,8 @@
       Url: servicecontrol/migrations
     - Title: Windows hosting to Containers
       Url: servicecontrol/migrations/windows-to-containers
+    - Title: Retaining data between instances
+      Url: servicecontrol/migrations/retain-data-between-instances
     - Title: Replacing Error instances
       Url: servicecontrol/migrations/replacing-error-instances
       Articles:
@@ -1648,8 +1648,6 @@
         Url: servicecontrol/migrations/replacing-audit-instances/containers
     - Title: New persistence format
       Url: servicecontrol/migrations/new-persistence
-    - Title: Migrating data between instances
-      Url: servicecontrol/migrations/migrate-data-between-instances
   - Title: Troubleshooting
     Articles:
     - Title: ServiceControl troubleshooting
