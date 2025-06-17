@@ -11,6 +11,9 @@ redirects:
 
 The `NServiceBus.Metrics.ServiceControl` component enables sending monitoring data gathered with `NServiceBus.Metrics` to a `ServiceControl.Monitoring` service.
 
+> [!NOTE]
+> The metrics feature can't be used on send-only endpoints
+
 ## Configuration
 
 The package allows collection and propagation of metrics to ServiceControl.
@@ -18,9 +21,6 @@ The package allows collection and propagation of metrics to ServiceControl.
 It can be enabled via:
 
 snippet: SendMetricDataToServiceControl
-
-> [!NOTE]
-> The metrics feature can't be used on send-only endpoints
 
 ### Service Control Metrics Address
 

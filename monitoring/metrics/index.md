@@ -44,7 +44,7 @@ To enable collecting metrics in an environment:
 4. [View the performance data collected for endpoints in ServicePulse](in-servicepulse.md)
 
 > [!NOTE]
-> [NServiceBus monitoring setup tutorial](/tutorials/monitoring-setup/) is an in-depth, step-by-step tutorial about installing and configuring everything to get the most out of performance monitoring.
+> [NServiceBus monitoring setup tutorial](/tutorials/monitoring-setup/) is an in-depth, step-by-step tutorial about installing and configuring everything to get the most out of performance monitoring. The metrics feature can't be used on send-only endpoints.
 
 
 ## Performance impact on system resources
