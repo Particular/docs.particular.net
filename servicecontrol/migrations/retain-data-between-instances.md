@@ -58,4 +58,4 @@ Follow the [detailed error instance replacement process](/servicecontrol/migrati
 Data retention can also be achieved by [backing up the ServiceControl data](/servicecontrol/backup-sc-database.md) and restoring it to the new instance.
 
 > [!WARNING]
-> The [restrictions](/servicecontrol/backup-sc-database.md#important-notes-and-restrictions) should be strongly considered before moving forward with this approach.
+> The [restrictions](/servicecontrol/backup-sc-database.md#important-notes-and-restrictions) must be considered before moving forward with this approach.
