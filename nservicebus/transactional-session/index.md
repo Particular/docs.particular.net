@@ -63,8 +63,6 @@ Disposing of the transactional session without committing will roll back any cha
 > [!NOTE]
 > The `Commit` operation may fail and throw an exception for reasons outlined in the [failure scenarios section](#failure-scenarios).
 
-partial: remote-processor
-
 ## Requirements
 
 The transactional session feature requires a supported persistence package to store outgoing messages. This feature is currently supported for the following persistence packages:
@@ -84,6 +82,8 @@ It's recommended to not mix the processing of control messages with business mes
 - Predictable control message dispatch: Processing of control messages will be more reliable since there is no risk of getting delayed behind slow business messages
 - More accurate metrics: Metrics like critical time and queue length will accurately represent the performance of the control message processing and not be skewed by business messages
 - Simplified management: Knowing that the endpoint only processes control messages makes it possible to always retry all failed messages related to the endpoint via tools like ServicePulse
+
+partial: remote-processor
 
 ## Transaction consistency
 
