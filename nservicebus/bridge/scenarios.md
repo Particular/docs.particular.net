@@ -18,7 +18,7 @@ Migrating from one transport to another can be a complex task. In-flight message
 - Messages in the error queue, waiting to be retried (or picked up by ServiceControl)
 - Messages in ServiceControl, waiting to be retried
 
-When planning to move or retire an endpoint, re-configuring the routing for any endpoint is straightforward. NServiceBus automatically handles new messages sent after the endpoint is redeployed on the new transport. However in-flight messages must be carefully considered to ensure these messages arrive at the correct destination, which is not always the place where these messages were originally sent to.
+When planning to move an endpoint, NServiceBus automatically handles new messages sent after the endpoint is redeployed on the new transport. However in-flight messages must be carefully considered to ensure these messages arrive at the correct destination, which is not always the place where these messages were originally sent.
 
 For example, consider a system migrating from the MSMQ transport to SQL Server. Migrating all endpoints at once is risky, as in-flight messages would remain stuck in MSMQ. Instead, the NServiceBus Messaging Bridge allows endpoints to be migrated incrementally, enabling safe and controlled transitions between transports.
 
@@ -35,7 +35,7 @@ B[Endpoint B] <---> D[Endpoint D]
 
 ### Initiating the migration
 
-To slowly migrate endpoints to the other transport say SQL Server and to prevent moving all endpoints at once, the migration will start with two endpoints and move them to the SQL Server transport.
+To slowly migrate endpoints to the other transport (in this case, SQL Server) and to prevent moving all endpoints at once, the migration will start with two endpoints and move them to the SQL Server transport.
 
 ```mermaid
 flowchart LR
