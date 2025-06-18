@@ -495,7 +495,7 @@ To find where a ServiceControl instance might be:
 
 If a ServiceControl instance can't be found, email contact@particular.net for instructions on how to estimate the number of endpoints and system throughput.
 
-## Questions
+## Frequently Asked Questions
 
 ### What does the tool do
 
@@ -510,6 +510,10 @@ It assists in gathering the information needed for licensing NServiceBus and the
 ### Does the tool automatically submit the report to Particular Software
 
 No, the tool does not automatically submit report data to Particular Software or any other party. The collected data is only used to generate a local report. That report can then be sent to Particular Software as needed.
+
+### Where do I find the generated local report?
+
+The generated local report can be found in the same directory from which the tool ran.
 
 ### How do I choose a data collection method from all of the options
 
