@@ -22,7 +22,7 @@ redirects:
 >
 > If necessary, [open a support case](https://customers.particular.net/request-support/licensing) to get help with installing or configuring ServicePulse for usage data collection.
 
-The Particular endpoint throughput counter tool can typically be installed on a [user's workstation](#questions-does-the-tool-need-to-run-on-my-production-server) and run against a production system to measure the throughput of each endpoint over a period of time.
+The Particular endpoint throughput counter tool can typically be installed on a [user's workstation](#frequently-asked-questions-does-the-tool-need-to-run-on-my-production-server) and run against a production system to measure the throughput of each endpoint over a period of time.
 
 ## Installation
 
@@ -511,7 +511,7 @@ It assists in gathering the information needed for licensing NServiceBus and the
 
 No, the tool does not automatically submit report data to Particular Software or any other party. The collected data is only used to generate a local report. That report can then be sent to Particular Software as needed.
 
-### Where do I find the generated local report?
+### Where do I find the generated local report
 
 The generated local report can be found in the same directory from which the tool ran.
 
