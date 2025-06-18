@@ -210,7 +210,8 @@ Migrate those subscribers to the supported **Azure Service Bus (Forwarding Topol
 
 After completing the transport upgrade:
 
-1. Upgrade **ServiceControl** to **v4.33.5** (Do NOT use v5.x or newer! Validate the version of the ServiceControl Management Utility that you have open).
+1. Upgrade **ServiceControl** to **v4.33.5** (Do NOT use v5.x or newer. Validate the version of the ServiceControl Management Utility that you have open).
+
 2. Note the **instance name** and **database folder path**.
 3. Remove the instance via 🔧 (Advanced options), but **leave “Remove DB subdirectory and data” unchecked** in the Remove instance dialog.
 4. Re-create a **new v4.33.5 instance**:
