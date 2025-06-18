@@ -523,7 +523,7 @@ The data collection method to use depends on the message transport of the system
 
 No, in most cases, the tool does not need to be run on a production server. Often, the tool can be run on a developer workstation that has access to a production environment. The ability to do this depends on the configuration of the production system.
 
-See [How does the tool measure throughput](#questions-how-does-the-tool-measure-throughput) below for details on how the tool behaves when analyzing data from each collection method.
+See [How does the tool measure throughput](#frequently-asked-questions-how-does-the-tool-measure-throughput) below for details on how the tool behaves when analyzing data from each collection method.
 
 ### How do I decide which data collection option to use
 
