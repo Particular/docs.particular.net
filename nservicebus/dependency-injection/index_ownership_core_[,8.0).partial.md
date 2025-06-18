@@ -1,4 +1,11 @@
-NServiceBus supports two modes of operation for containers, *internally managed* and *externally managed*.
+NServiceBus automatically registers and invokes message handlers, sagas, and other user-provided extension points using a dependency injection container.
+
+## Modes of operation
+
+NServiceBus supports two modes for dependency injection:
+
+- **Internally managed:** NServiceBus manages the container lifecycle as part of the endpoint lifecycle.
+- **Externally managed:** The application or host provides and controls the container lifecycle.
 
 ## Internally managed mode
 

@@ -9,7 +9,7 @@ related:
 
 ### Configuring the endpoint
 
-The sample configures an endpoint to use [externally managed mode](/nservicebus/dependency-injection/#externally-managed-mode) with [Microsoft's dependency injection container](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection) and registers some dependencies.
+The sample configures an endpoint to use [externally managed mode](/nservicebus/dependency-injection/#modes-of-operation-externally-managed-mode) with [Microsoft's dependency injection container](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection) and registers some dependencies.
 
 snippet: ContainerConfiguration
 

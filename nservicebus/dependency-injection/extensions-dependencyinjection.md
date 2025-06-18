@@ -12,7 +12,7 @@ redirects:
 ---
 
 > [!WARNING]
-> Starting with NServiceBus version 8, the `NServiceBus.Extensions.DependencyInjection` package is no longer required. NServiceBus directly supports the `Microsoft.Extensions.DependencyInjection` model via the [externally managed container mode](/nservicebus/dependency-injection/#externally-managed-mode). Visit the [dependency injection upgrade guide](/nservicebus/upgrades/7to8/dependency-injection.md) for further information.
+> Starting with NServiceBus version 8, the `NServiceBus.Extensions.DependencyInjection` package is no longer required. NServiceBus directly supports the `Microsoft.Extensions.DependencyInjection` model via the [externally managed container mode](/nservicebus/dependency-injection/#modes-of-operation-externally-managed-mode). Visit the [dependency injection upgrade guide](/nservicebus/upgrades/7to8/dependency-injection.md) for further information.
 
 The `NServiceBus.Extensions.DependencyInjection` package provides integration with the `Microsoft.Extensions.DependencyInjection` dependency injection abstraction.
 
@@ -84,7 +84,7 @@ The `NServiceBus.Extensions.DependencyInjection` package does not support proper
 
 ## Externally managed mode
 
-The package allows the container to be used in [externally managed mode](/nservicebus/dependency-injection/#externally-managed-mode) for full control of the dependency injection container via the `EndpointWithExternallyManagedServiceProvider` extension point:
+The package allows the container to be used in [externally managed mode](/nservicebus/dependency-injection/#modes-of-operation-externally-managed-mode) for full control of the dependency injection container via the `EndpointWithExternallyManagedServiceProvider` extension point:
 
 snippet: externally-managed-mode
 
