@@ -233,7 +233,7 @@ The queue name to which a timeout should be routed back to when it expires.
 
 ### NServiceBus.IsDeferredMessage
 
-A header to indicate that this message resulted from a message Defer request.
+A header to indicate that this message resulted from a message deferral.
 
 ## Saga-related headers
 
