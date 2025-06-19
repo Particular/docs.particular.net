@@ -35,6 +35,18 @@ ServiceControl data consists of audit and error message data, managed by [audit 
 > [!NOTE]
 > It is worth assessing whether audit and error message data retention is required. For scenarios where retaining audit and error message data is not required (e.g. transient or test environment data that does not merit effort to retain), these strategies are not necessary.
 
+Each of the strategies presented here have trade-offs:
+
+- Instance replacement
+  - Requires little to no downtime
+  - Does not require ServiceControl version, instance name, and operating system to be the same
+  - Requires that old instances remain in service for the duration of the audit message retention period
+
+- Database backup and restore
+  - Requires downtime from when the database is backed up to when it is restored
+  - Requires ServiceControl version, instance name, and operating system to be the same
+  - Allows old instance decommission immediately after the new instance is running with restored data
+
 ### Instance replacement
 
 This strategy is an incremental approach to data retention. Data is retained by replacing audit and error instances separately and allowing new instances to access old data through remote configuration and stopping ingestion. The following instance replacement guides should be followed for this strategy.
