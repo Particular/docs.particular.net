@@ -33,7 +33,7 @@ persistence.SqlDialect<SqlDialect.MsSqlServer>();
 persistence.ConnectionBuilder(() => new SqlConnection(ConnectionString));
 
 #region txsession-nsb-txsessionoptions
-var transactionalSessionOptions = new TransactionalSessionOptions { ProcessorEndpoint = "Processor" };
+var transactionalSessionOptions = new TransactionalSessionOptions { ProcessorEndpoint = "TransactionalSessionProcessor" };
 persistence.EnableTransactionalSession(transactionalSessionOptions);
 #endregion
 

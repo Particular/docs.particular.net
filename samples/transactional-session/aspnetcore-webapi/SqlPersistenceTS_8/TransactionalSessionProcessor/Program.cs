@@ -2,14 +2,14 @@
 using Microsoft.Extensions.Hosting;
 using NServiceBus.TransactionalSession;
 
-Console.Title = "Processor";
+Console.Title = "TransactionalSessionProcessor";
 
 var builder = Host.CreateApplicationBuilder(args);
 
 // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=nservicebus;Integrated Security=True;Encrypt=false
 const string ConnectionString = @"Server=localhost,1433;Initial Catalog=nservicebus;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 
-var endpointConfiguration = new EndpointConfiguration("Processor");
+var endpointConfiguration = new EndpointConfiguration("TransactionalSessionProcessor");
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
