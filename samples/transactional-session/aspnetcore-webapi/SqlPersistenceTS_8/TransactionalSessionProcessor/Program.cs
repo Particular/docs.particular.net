@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Hosting;
 using NServiceBus.TransactionalSession;
 
-Console.Title = "TransactionalSessionProcessor";
+Console.Title = "TXSessionProcessor";
 
 var builder = Host.CreateApplicationBuilder(args);
 
