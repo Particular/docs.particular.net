@@ -173,7 +173,7 @@ When a message is sent, the headers will be as follows:
 
 snippet: HeaderWriterSend
 
-In the above example, the headers are for a Send, and hence, the `MessageIntent` header is `Send`. If the message were published instead, the `MessageIntent` header would be `Publish`.
+In the above example, the headers are for a Send operation, and hence, the `MessageIntent` header is `Send`. If the message were published instead, the `MessageIntent` header would be `Publish`.
 
 ## Reply headers
 
