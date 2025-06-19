@@ -4,7 +4,7 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication", "WebApplication\WebApplication.csproj", "{EC947750-3A9B-4822-A7D9-BC7E837784A1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Processor", "Processor\Processor.csproj", "{B5E4035E-FFEC-41E6-ABAE-7B2835531E6B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionalSessionProcessor", "TransactionalSessionProcessor\TransactionalSessionProcessor.csproj", "{B5E4035E-FFEC-41E6-ABAE-7B2835531E6B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Receiver", "Receiver\Receiver.csproj", "{D9CD05FE-0755-4B65-832A-2B99EEED80BA}"
 EndProject
