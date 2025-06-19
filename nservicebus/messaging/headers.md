@@ -478,7 +478,7 @@ This is used by the ServiceControl transport adapter to bridge failed messages b
 
 Value: Queue name
 
-Used by the messaging bridge to return failed messages back to the correct queue
+Used by the [messaging bridge](/nservicebus/bridge) to return failed messages back to the correct queue
 
 ### ServiceControl.Retry.AcknowledgementQueue
 
