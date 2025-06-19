@@ -17,7 +17,13 @@ The headers of a message are similar to HTTP headers and contain metadata about 
 
 ## Timestamp format
 
+#if-version [8,)
+For all timestamp message headers, the format is `yyyy-MM-dd HH:mm:ss:ffffff Z` where the time is UTC. The helper class `DateTimeOffsetHelper` supports converting from UTC to wire format and vice versa by using the `ToWireFormattedString()` and `ToDateTimeOffset()` methods.
+#end-if
+
+#if-version [,8)
 For all timestamp message headers, the format is `yyyy-MM-dd HH:mm:ss:ffffff Z` where the time is UTC. The helper class `DateTimeExtensions` supports converting from UTC to wire format and vice versa by using the `ToWireFormattedString()` and `ToUtcDateTime()` methods.
+#end-if
 
 ### ISO 8601 format
 
@@ -42,17 +48,30 @@ Use the following code to generate or read the NServiceBus custom timestamp form
 ```cs
 const string Format = "yyyy-MM-dd HH:mm:ss:ffffff Z"; // Not ISO 8601
 
+#if-version [8,)
+public static string ToWireFormattedString(DateTimeOffset dateTime)
+{
+    return dateTime.ToUniversalTime().ToString(format, CultureInfo.InvariantCulture);
+}
+public static DateTimeOffset ToUtcDateTime(string wireFormattedString)
+{
+    return DateTimeOffset.ParseExact(wireFormattedString, Format, CultureInfo.InvariantCulture)
+       .ToUniversalTime();
+}
+#end-if
+
+#if-version [,8)
 public static string ToWireFormattedString(DateTime dateTime)
 {
     return dateTime.ToUniversalTime()
         .ToString(Format, CultureInfo.InvariantCulture);
 }
-
 public static DateTime ToUtcDateTime(string wireFormattedString)
 {
     return DateTime.ParseExact(wireFormattedString, Format, CultureInfo.InvariantCulture)
        .ToUniversalTime();
 }
+#end-if
 ```
 
 ## Transport headers
