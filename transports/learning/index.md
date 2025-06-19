@@ -32,6 +32,9 @@ include: learning-usages
 |Installers                 |Not supported, the transport always creates the required folder structure
 |Native integration         |Not supported
 
+> [!NOTE]
+> If the file-system is case-sensitive (which is most common on Linux environments) ensure endpoints and addresses have identical casing.
+
 ### Publish and subscribe
 
 The learning transport simulates a [multicast transport](/transports/types.md#multicast-enabled-transports), which means that routing configuration isn't needed in order to publish events. See the [native publish/subscribe](/nservicebus/messaging/publish-subscribe/#mechanics-native) documentation for further details.
