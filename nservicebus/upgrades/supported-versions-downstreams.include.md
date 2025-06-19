@@ -42,7 +42,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/5.0.1) | 2025-02-26     | -                 | -                                 |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/5.0.2) | 2025-02-26     | -                 | -                                 |
 | [4.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.2.4) | 2024-09-24     | 2026-02-26        | Superseded by 5.0.x               |
 | [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.0.4) | ~~2024-04-16~~ | ~~2024-12-24~~    | ~~Superseded by 4.2.x~~           |
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.2.6) | 2023-03-23     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
@@ -52,15 +52,15 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [13.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/13.0.2) | 2024-04-16     | -                 | -                                 |
-| [12.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/12.0.3) | 2022-11-23     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [13.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/13.0.3) | 2024-04-16     | -                 | -                                 |
+| [12.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/12.0.4) | 2022-11-23     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [10.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/10.0.6) | 2021-03-16     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
 #### [NServiceBus.Transport.Msmq](/nuget/NServiceBus.Transport.Msmq)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.5) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.6) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.5) | 2021-10-29     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
 #### [NServiceBus.Transport.PostgreSql](/nuget/NServiceBus.Transport.PostgreSql)
@@ -119,7 +119,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.1.1) | 2025-06-03     | -                 | -                                 |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.1.2) | 2025-06-03     | -                 | -                                 |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.0.2) | 2024-04-16     | 2025-09-03        | Superseded by 3.1.x               |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/2.0.3) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.2.2) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
@@ -128,7 +128,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/3.1.1) | 2025-06-03     | -                 | -                                 |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/3.1.2) | 2025-06-03     | -                 | -                                 |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/3.0.2) | 2024-04-16     | 2025-09-03        | Superseded by 3.1.x               |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/2.0.3) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/1.2.2) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
@@ -227,7 +227,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.5) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/2.0.6) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Transport.Msmq/1.2.5) | 2021-10-29     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
 ### Serializer packages
