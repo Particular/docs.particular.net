@@ -30,7 +30,7 @@ With NServiceBus, behavior is specified by writing a class that inherits from `S
 snippet: simple-saga
 
 > [!NOTE]
-> SQL Persistence imposes restrictions on the number of characters in the name of the saga, depending on the SQL implementation. Refer to the [implementation-specific documentation](https://docs.particular.net/persistence/sql/#supported-sql-implementations) for more details on supported name lengths.
+> The choice of persistence can impact the design of saga data, for e.g. the length of the name of the saga class, virtual properties in saga etc. While NServiceBus persister tries to abstract things away, sometimes the limitations of the specific implementations can have an impact.
 
 ## Long-running means stateful
 
@@ -44,8 +44,7 @@ snippet: simple-saga-data
 
 Saga data types should not be shared across different sagas. Sharing types can result in persisters physically sharing the same storage structure which should be avoided.
 
-> [!WARNING]
-> Sharing property types should also be avoided. Depending on the persister implementation, sharing property types can result in storage structure being shared between endpoints.
+partial: limitationnote
 
 partial: disable-shared-state-check
 
@@ -156,8 +155,7 @@ Make sure to configure appropriate [saga persistence](/persistence/).
 
 snippet: saga-configure
 
-> [!NOTE]
-> SQL Persistence imposes restrictions on the number of characters in the name of the saga, depending on the SQL implementation. Refer to the [implementation-specific documentation](https://docs.particular.net/persistence/sql/#supported-sql-implementations) for more details on supported name lengths.
+partial: limitationnote
 
 ## Sagas and automatic subscriptions
 
