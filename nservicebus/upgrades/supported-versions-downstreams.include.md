@@ -35,7 +35,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.SqlServer/7.0.10) | 2023-08-28     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.SqlServer/7.0.11) | 2023-08-28     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.SqlServer/6.3.8) | 2021-06-23     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
 #### [NServiceBus.Transport.AzureServiceBus](/nuget/NServiceBus.Transport.AzureServiceBus)
@@ -67,14 +67,14 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/8.1.8) | 2024-06-25     | -                 | -                                 |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/8.1.9) | 2024-06-25     | -                 | -                                 |
 
 #### [NServiceBus.Transport.SqlServer](/nuget/NServiceBus.Transport.SqlServer)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.1.8) | 2024-06-25     | -                 | -                                 |
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/7.0.10) | 2023-08-28     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.1.9) | 2024-06-25     | -                 | -                                 |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/7.0.11) | 2023-08-28     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.3.8) | 2021-06-23     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
 ### Persistence packages
@@ -83,18 +83,18 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [10.1.x](https://www.nuget.org/packages/NServiceBus.NHibernate/10.1.0) | 2025-06-03     | -                 | -                                 |
-| [10.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate/10.0.2) | 2024-04-16     | 2025-09-03        | Superseded by 10.1.x              |
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate/9.0.4) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [10.1.x](https://www.nuget.org/packages/NServiceBus.NHibernate/10.1.1) | 2025-06-03     | -                 | -                                 |
+| [10.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate/10.0.3) | 2024-04-16     | 2025-09-03        | Superseded by 10.1.x              |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate/9.0.5) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [8.6.x](https://www.nuget.org/packages/NServiceBus.NHibernate/8.6.4) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
 #### [NServiceBus.NHibernate.TransactionalSession](/nuget/NServiceBus.NHibernate.TransactionalSession)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [10.1.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/10.1.0) | 2025-06-03     | -                 | -                                 |
-| [10.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/10.0.2) | 2024-04-16     | 2025-09-03        | Superseded by 10.1.x              |
-| [9.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/9.0.4) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [10.1.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/10.1.1) | 2025-06-03     | -                 | -                                 |
+| [10.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/10.0.3) | 2024-04-16     | 2025-09-03        | Superseded by 10.1.x              |
+| [9.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/9.0.5) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [8.6.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/8.6.4) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
 #### [NServiceBus.Persistence.AzureTable](/nuget/NServiceBus.Persistence.AzureTable)
@@ -572,7 +572,7 @@
 | [3.39.x](https://www.nuget.org/packages/Particular.PlatformSample/3.39.0) | 2025-04-08     | 2025-07-09        | Superseded by 3.42.x              |
 | [3.37.x](https://www.nuget.org/packages/Particular.PlatformSample/3.37.0) | 2025-03-24     | 2025-07-08        | Superseded by 3.39.x              |
 | [3.36.x](https://www.nuget.org/packages/Particular.PlatformSample/3.36.0) | 2025-03-21     | 2025-06-24        | Superseded by 3.37.x              |
-| [3.34.x](https://www.nuget.org/packages/Particular.PlatformSample/3.34.0) | 2025-03-17     | 2025-06-21        | Superseded by 3.36.x              |
+| [~~3.34.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.34.0) | ~~2025-03-17~~ | ~~2025-06-21~~    | ~~Superseded by 3.36.x~~          |
 | [~~3.33.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.33.0) | ~~2025-03-03~~ | ~~2025-06-17~~    | ~~Superseded by 3.34.x~~          |
 | [~~3.32.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.32.0) | ~~2025-02-21~~ | ~~2025-06-03~~    | ~~Superseded by 3.33.x~~          |
 | [~~3.26.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.26.0) | ~~2025-02-03~~ | ~~2025-05-21~~    | ~~Superseded by 3.32.x~~          |
