@@ -29,8 +29,7 @@ With NServiceBus, behavior is specified by writing a class that inherits from `S
 
 snippet: simple-saga
 
-> [!NOTE]
-> The choice of persistence can impact the design of saga data, for e.g. the length of the name of the saga class, virtual properties in saga etc. While NServiceBus persister tries to abstract things away, sometimes the limitations of the specific implementations can have an impact.
+partial: limitationnote
 
 ## Long-running means stateful
 
@@ -44,7 +43,8 @@ snippet: simple-saga-data
 
 Saga data types should not be shared across different sagas. Sharing types can result in persisters physically sharing the same storage structure which should be avoided.
 
-partial: limitationnote
+> [!WARNING]
+> Sharing property types should also be avoided. Depending on the persistence implementation, sharing property types can result in the storage structure being shared between endpoints.
 
 partial: disable-shared-state-check
 
