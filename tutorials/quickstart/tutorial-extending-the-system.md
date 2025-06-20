@@ -72,7 +72,7 @@ To create the message handler:
     ```
 1. Within the `Handle` method, use the logger to record when the `OrderPlaced` message is received, including the value of the `OrderId` message property:
     ```cs
-    logger.Info($"Shipping has received OrderPlaced, OrderId = {message.OrderId}");
+    logger.LogInformation("Shipping has received OrderPlaced, OrderId = {OrderId}", message.OrderId);
     ```
 1. Since everything in this handler method is synchronous, you can return `Task.CompletedTask`.
 
