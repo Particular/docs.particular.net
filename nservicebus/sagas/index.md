@@ -29,6 +29,8 @@ With NServiceBus, behavior is specified by writing a class that inherits from `S
 
 snippet: simple-saga
 
+partial: limitationnote
+
 ## Long-running means stateful
 
 Any process that involves multiple network calls (or messages sent and received) has an interim state. That state may be kept in memory, persisted to disk, or stored in a distributed cache; it may be as simple as 'Response 1 received, pending response 2', but the state exists.
@@ -42,7 +44,7 @@ snippet: simple-saga-data
 Saga data types should not be shared across different sagas. Sharing types can result in persisters physically sharing the same storage structure which should be avoided.
 
 > [!WARNING]
-> Sharing property types should also be avoided. Depending on the persister implementation, sharing property types can result in storage structure being shared between endpoints.
+> Sharing property types should also be avoided. Depending on the persister implementation, sharing property types can result in the storage structure being shared between endpoints.
 
 partial: disable-shared-state-check
 
@@ -152,6 +154,8 @@ This is one of the methods on the saga base class that would be very difficult t
 Make sure to configure appropriate [saga persistence](/persistence/).
 
 snippet: saga-configure
+
+partial: limitationnote
 
 ## Sagas and automatic subscriptions
 
