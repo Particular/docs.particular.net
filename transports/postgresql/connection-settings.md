@@ -25,7 +25,7 @@ snippet: postgresql-config-connectionstring
 To connect using token credentials, the following must be provided in the connection string:
 
 - A User ID.
-- The password taken from the access token. 
+- The password taken from the access token.
 
 Since tokens are short-lived, a [data source builder must be utilized to handle password refreshes](https://devblogs.microsoft.com/dotnet/using-postgre-sql-with-dotnet-and-entra-id/). The following example uses Microsoft Entra ID.
 
@@ -60,6 +60,6 @@ A built-in circuit breaker is used to handle intermittent PostgreSQL connectivit
 
 ### Wait time
 
-The circuit breaker's default time to wait before triggering is two minutes. Use the `TimeToWaitBeforeTriggeringCircuitBreaker` method to change it.
+The circuit breaker's default time to wait before triggering is 30 seconds. Use the `TimeToWaitBeforeTriggeringCircuitBreaker` method to change it.
 
 snippet: postgresql-TimeToWaitBeforeTriggeringCircuitBreaker

@@ -55,4 +55,9 @@ snippet: sqlserver-custom-connection-factory
 
 A built-in circuit breaker is used to handle intermittent SQL Server connectivity problems. When a failure occurs while trying to connect, a circuit breaker enters an *armed* state. If the failure is not resolved before the configured *wait time* elapses, the circuit breaker triggers the [critical errors](/nservicebus/hosting/critical-errors.md) handling procedure.
 
-partial: circuit-breaker
+### Wait time
+
+The circuit breaker's default time to wait before triggering is 30 seconds. Use the `TimeToWaitBeforeTriggeringCircuitBreaker` method to change it.
+
+snippet: sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker
+
