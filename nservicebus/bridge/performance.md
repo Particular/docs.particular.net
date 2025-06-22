@@ -32,7 +32,7 @@ The bridge accesses messages using NServiceBus transport packages. These package
 
 It is possible to use multiple logical instances of the bridge. Each logical instance may be configured to mimic only specific endpoints. In the diagram below, one bridge mimics only endpoints B and C, and the other mimics endpoints A and D. Although not shown in the diagram, this setup still allows full message routing. Endpoint B can still send messages to endpoint D, but those are processed by bridge 2. Similarly, when endpoint A sends a message to endpoint C, those messages are processed by bridge 1.
 
-This approach can be useful when system resources such as CPU and disk are fully utilized, and the competing consumers pattern is not a suitable solution..
+This approach can be useful when system resources such as CPU and disk are fully utilized, and the competing consumers pattern is not a suitable solution.
 
 > [!NOTE]
 > Splitting logical endpoints can improve throughput for *specific messages*. However, with the bridge, this benefit is lost, as each endpoint that is mimicked by the bridge has its own message processing pipeline, separate from other mimicked endpoints. As a result, there’s no shared throughput benefit between mimicked endpoints.
