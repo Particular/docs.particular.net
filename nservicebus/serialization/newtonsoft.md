@@ -2,13 +2,13 @@
 title: Json.NET Serializer
 summary: A JSON serializer that uses Newtonsoft Json.NET.
 component: Newtonsoft
-reviewed: 2023-06-28
+reviewed: 2025-06-21
 related:
  - samples/serializers/newtonsoft
  - samples/serializers/newtonsoft-bson
 ---
 
-This serialiser uses [JSON](https://en.wikipedia.org/wiki/Json) via a NuGet dependency on [Json.NET](https://www.newtonsoft.com/json).
+This serializer uses [JSON](https://en.wikipedia.org/wiki/Json) via a NuGet dependency on [Json.NET](https://www.newtonsoft.com/json).
 
 ## Usage
 
