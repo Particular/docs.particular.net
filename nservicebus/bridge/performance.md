@@ -17,7 +17,7 @@ snippet: custom-concurrency
 
 ## Scaling out
 
-The performance of regular endpoints is impacted by many factors, including databases containing business data and third party services like SMTP servers or a web services. In contrast, the performance of the bridge is affected mainly by infrastructure resources like CPU, network, and disk. This makes it easier to determine when and how to scale out the bridge.
+The performance of regular endpoints is impacted by many factors, including databases containing business data and third party services like SMTP servers or web services. In contrast, the performance of the bridge is affected mainly by infrastructure resources like CPU, network, and disk. This makes it easier to determine when and how to scale out the bridge.
 
 ### Competing consumers
 
