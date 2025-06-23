@@ -57,7 +57,7 @@ This option will not be displayed for non-broker transports (e.g. MSMQ and Azure
 
 The usage summary may contain detected queues that should not be counted as part of a license with Particular Software.
 
-Once a report is submitted to Particular, it is reviewed and any system queues that should not be counted for licensing purposes are removed.
+Once a report is submitted to Particular, it is reviewed, and any system queues that should not be counted for licensing purposes are removed.
 
 In addition, the detected endpoints and broker queues screens provide an option to set the endpoint type, which specifies a reason as to why a queue should not be included in the licensing calculations. Any changes made to the endpoint type are automatically saved.
 
@@ -75,7 +75,7 @@ NServiceBus endpoint that is no longer in use, usually this would have zero thro
 
 #### Transactional Session Processor Endpoint
 
-An [endpoint that is only processing transactional session control messages](/nservicebus/transactional-session/#design-considerations). These are [specialized endpoints](/nservicebus/transactional-session/#remote-processor) dedicated to handle the coordination of transactional sessions and and its is excluded during licensing calculations.
+An [endpoint that is only processing transactional session control messages](/nservicebus/transactional-session/#design-considerations). These are [specialized endpoints](/nservicebus/transactional-session/#remote-processor) dedicated to handling the coordination of transactional sessions, and it is excluded during licensing calculations.
 
 #### Send-Only Endpoint
 
