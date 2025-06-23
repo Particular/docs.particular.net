@@ -15,6 +15,8 @@ related:
 
 ## Overview
 
+[Azure Migrate](https://azure.microsoft.com/en-us/products/azure-migrate) is an option for getting on-premises systems into the cloud quickly.
+
 Something about azure service bus and queues being cloud offerings supported by nservicebus and messaging bridge making it possible to migrate. Can probably sync whatever is here with what goes in the sqs page.
 
 The [NServiceBus Messaging Bridge](/nservicebus/bridge) acts as a connector, allowing on premises endpoints to exchange messages seamlessly and reliably with those using the [Azure Service Bus Transport](/transports/azure-service-bus) and [Azure Storage Queues Transport](/transports/azure-storage-queues).
