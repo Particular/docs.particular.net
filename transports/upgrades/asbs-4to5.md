@@ -7,9 +7,6 @@ related:
  - transports/azure-service-bus
  - samples/azure-service-bus-netstandard/topology-migration
 isUpgradeGuide: true
-upgradeGuideCoreVersions:
- - 8
- - 9
 ---
 
 Upgrading Azure Service Bus transport from version 4 to version 5 is a major upgrade and requires careful planning. Read the entire upgrade guide before beginning the upgrade process.
