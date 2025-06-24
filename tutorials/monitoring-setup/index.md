@@ -81,9 +81,9 @@ Both of these instance types can be set-up and managed with the `ServiceControl 
 
 In order to configure an environment for monitoring with the Particular Service Platform you will need to install and configure the components in the order listed. This tutorial shows the graphical installation approach using the `ServiceControl Management Utility`. It is also possible to run the platform with containers:
 
-- [Deploying ServiceControl Error instances using containers](/servicecontrol/servicecontrol-instances/deployment/containers)
-- [Deploying ServiceControl Audit instances using containers](/servicecontrol/audit-instances/deployment/containers)
-- [Deploying ServiceControl Monitoring instances using containers](/servicecontrol/monitoring-instances/deployment/containers)
+- [Deploying ServiceControl Error instances using containers](/servicecontrol/servicecontrol-instances/deployment/containers.md)
+- [Deploying ServiceControl Audit instances using containers](/servicecontrol/audit-instances/deployment/containers.md)
+- [Deploying ServiceControl Monitoring instances using containers](/servicecontrol/monitoring-instances/deployment/containers.md)
 - [Running ServicePulse in containers](/servicepulse/containerization/)
 
 ### Install ServiceControl
