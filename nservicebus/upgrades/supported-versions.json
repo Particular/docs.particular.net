@@ -1188,10 +1188,6 @@
       "PackageId": "Particular.PlatformSample",
       "Versions": [
         {
-          "Minor": "3.36",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "3.37",
           "SupportLevel": "Mainstream"
         },
