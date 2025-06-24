@@ -47,11 +47,7 @@ NServiceBus will perform a check at startup to ensure that saga data types are n
 
 The startup check can be disabled by turning off the best practice validation:
 
-#if-version [8, )
-
 snippet: disable-shared-state-validation
-
-#end-if
 
 > [!NOTE]
 > If a saga property is a [record type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record), that record type must be mutable so it can be deserialized.
