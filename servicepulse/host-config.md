@@ -29,6 +29,12 @@ netsh http add urlacl url=http://+:9090/ user=Everyone
 
 ServicePulse runs as a Windows Service.
 
+ServicePulse uses connection URLs in the following order:
+
+1. The query string of the ServicePulse URL.
+2. Local storage.
+3. Default values.
+
 ## Default connections to ServiceControl and ServiceControl Monitoring
 
 ServicePulse will, by default, attempt to connect to ServiceControl and ServiceControl Monitoring using the URLs `http://localhost:33333/api/` and `http://localhost:33633/`, respectively.
@@ -45,11 +51,7 @@ The ServiceControl Monitoring connection URL is optional and can be disabled by 
 
 Full URLs must be specified, including scheme and port number. The URLs are persisted in local storage and are also embedded in the query string of ServicePulse URL in the browser address bar, for bookmarking and sharing.
 
-ServicePulse uses connection URLs in the following order:
-
-1. The query string of the ServicePulse URL.
-2. Local storage.
-3. Default values.
+## Configuring connections via ServicePulse URL query string parameters
 
 In order to use the query string to specify a ServiceControl instance that ServicePulse should connect to, the browser URL should be of the format:
 
