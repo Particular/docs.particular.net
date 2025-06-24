@@ -197,7 +197,7 @@
     - Url: nservicebus/upgrades/sqs-lambda-1to2
       Title: AwsLambda SQS 1 to 2
     - Url: nservicebus/upgrades/sqs-lambda-2to3
-      Title: AwsLambda SQS 2 to 3      
+      Title: AwsLambda SQS 2 to 3
     - Url: nservicebus/upgrades/9to9.1
       Title: NServiceBus 9 to 9.1
     - Url: nservicebus/upgrades/9.1to9.2
@@ -1141,7 +1141,7 @@
     - Title: DynamoDB
       Articles:
       - Url: persistence/upgrades/dynamodb-2to3
-        Title: Version 2 to 3        
+        Title: Version 2 to 3
     - Title: NHibernate
       Articles:
       - Url: persistence/upgrades/nhibernate-8to9
@@ -1157,7 +1157,7 @@
     - Title: MongoDB
       Articles:
       - Url: persistence/upgrades/mongodb-4to5
-        Title: Version 4 to 5 
+        Title: Version 4 to 5
     - Title: RavenDB
       Articles:
       - Url: persistence/upgrades/ravendb-6to7
@@ -1626,6 +1626,8 @@
       Url: servicecontrol/migrations
     - Title: Windows hosting to Containers
       Url: servicecontrol/migrations/windows-to-containers
+    - Title: Retaining data between instances
+      Url: servicecontrol/migrations/retain-data-between-instances
     - Title: Replacing Error instances
       Url: servicecontrol/migrations/replacing-error-instances
       Articles:
