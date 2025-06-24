@@ -83,6 +83,8 @@ It's recommended to not mix the processing of control messages with business mes
 - More accurate metrics: Metrics like critical time and queue length will accurately represent the performance of the control message processing and not be skewed by business messages
 - Simplified management: Knowing that the endpoint only processes control messages makes it possible to always retry all failed messages related to the endpoint via tools like ServicePulse
 
+When configuring endpoints for usage measurement in ServicePulse, mark dedicated transactional session processor endpoints with the appropriate [endpoint type indicator](/servicepulse/usage.md#setting-an-endpoint-type-endpoint-type-indicators).
+
 partial: remote-processor
 
 ## Transaction consistency

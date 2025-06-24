@@ -57,9 +57,37 @@ This option will not be displayed for non-broker transports (e.g. MSMQ and Azure
 
 The usage summary may contain detected queues that should not be counted as part of a license with Particular Software.
 
-Once a report is submitted to Particular, it is reviewed and any system queues that should not be counted for licensing purposes are removed.
+Once a report is submitted to Particular, it is reviewed, and any system queues that should not be counted for licensing purposes are removed.
 
 In addition, the detected endpoints and broker queues screens provide an option to set the endpoint type, which specifies a reason as to why a queue should not be included in the licensing calculations. Any changes made to the endpoint type are automatically saved.
+
+### Endpoint type indicators
+
+The following endpoint type indicators are available to help categorize endpoints appropriately:
+
+#### NServiceBus Endpoint
+
+Known NServiceBus [endpoint](/nservicebus/endpoints/). These endpoints are included in licensing calculations as they represent active NServiceBus endpoints processing business messages.
+
+#### No longer in use
+
+NServiceBus endpoint that is no longer in use, usually this would have zero throughput. These endpoints are not included in licensing calculations since they are inactive.
+
+#### Transactional Session Processor Endpoint
+
+An [endpoint that is only processing transactional session control messages](/nservicebus/transactional-session/#design-considerations). These are [specialized endpoints](/nservicebus/transactional-session/#remote-processor) dedicated to handling the coordination of transactional sessions, and it is excluded during licensing calculations.
+
+#### Send-Only Endpoint
+
+An endpoint that [only sends](/nservicebus/hosting/#self-hosting-send-only-hosting) messages and does not process any messages. These endpoints have different licensing considerations since they don't process incoming messages.
+
+#### Planned to be decommissioned
+
+If the endpoint is planned to no longer be used in the next 30 days. These endpoints may be excluded from licensing calculations as they represent temporary infrastructure.
+
+#### Not an NServiceBus Endpoint
+
+Not an NServiceBus endpoint. These are broker queues or other messaging infrastructure that should not be included in NServiceBus licensing calculations.
 
 ### Bulk endpoint updates
 
