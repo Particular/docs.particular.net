@@ -51,3 +51,10 @@ See also:
  * [NuGet Package Manager Dialog - Updating a Package](https://docs.microsoft.com/en-us/nuget/tools/package-manager-ui#updating-a-package)
  * [NuGet Package Manager Console - Updating a Package](https://docs.microsoft.com/en-us/nuget/tools/package-manager-console#updating-a-package)
 
+## Public API Deprecation
+
+When preparing for a major NServiceBus upgrade, it is crucial to proactively address any potential breaking changes by thoroughly checking your system for warnings and errors at compile time.
+
+As part of the [release policy](https://docs.particular.net/nservicebus/upgrades/release-policy#deprecation), APIs are marked as obsolete in a major version before removing them in the next. These obsolete APIs will generate build warnings, providing you with a clear indication of the code that needs to be updated. Treating these warnings as errors and resolving them ensures that your system will not fail at runtime after the upgrade.
+
+To facilitate a smooth transition, always follow the detailed step-by-step upgrade guide provided for the specific version you are moving to. This guide will not only outline the necessary changes for deprecated APIs but also provide instructions on how to adapt to the new APIs and features, ensuring a successful and stable upgrade.
