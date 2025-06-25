@@ -17,10 +17,22 @@ related:
 
 [Azure Migrate](https://azure.microsoft.com/en-us/products/azure-migrate) is an option for getting on-premises systems into the cloud quickly.
 
-Something about azure service bus and queues being cloud offerings supported by nservicebus and messaging bridge making it possible to migrate. Can probably sync whatever is here with what goes in the sqs page.
+It provides a centralized hub to assess and migrate on-premises systems to the Azure cloud. It supports a range of migration scenarios, including virtual machines, databases, and applications.
 
-The [NServiceBus Messaging Bridge](/nservicebus/bridge) acts as a connector, allowing on premises endpoints to exchange messages seamlessly and reliably with those using the [Azure Service Bus Transport](/transports/azure-service-bus) and [Azure Storage Queues Transport](/transports/azure-storage-queues).
+Azure Service Bus and Azure Storage Queues are fully managed messaging services supported by NServiceBus. For systems using SQL Server transport, Azure SQL Database or SQL Server on Azure Virtual Machines offer cloud-hosted alternatives that maintain compatibility with NServiceBus transports.
+
+The [NServiceBus Messaging Bridge](/nservicebus/bridge) acts as a connector between on-premises endpoints and those using Azure-native transports. This enables a phased migration approach minimizes risk by allowing incremental migration, service-by-service, while ensuring the system remains fully functional throughout the transition.
+
+## Azure supported transports
+
+- [Azure Service Bus Transport](/transports/azure-service-bus/)
+- [Azure Storage Queues](/transports/azure-storage-queues/)
+- [SQL Server Transport](/transports/sql/)  using [Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/database/) or [SQL Server on Azure VM](https://azure.microsoft.com/en-us/products/virtual-machines/sql-server/)
+- [PostgreSQL Transport](/transports/postgresql/)  using [Azure Database for PostgreSQL](https://azure.microsoft.com/en-us/products/postgresql/)
 
 ## On premise transports
 
-list here and add links to each transport
+- [MSMQ](/transports/msmq/)
+- [RabbitMQ](/transports/rabbitmq/)
+- [SQL Server](/transports/sql/)
+- [PostgreSQL](/transports/postgresql/)
