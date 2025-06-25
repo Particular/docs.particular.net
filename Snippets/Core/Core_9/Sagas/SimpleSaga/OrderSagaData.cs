@@ -15,7 +15,7 @@
     {
         void Simple(EndpointConfiguration endpointConfiguration)
         {
-            #region disable-shared-state-validation 9.0
+            #region disable-shared-state-validation [9.0,)
 
             endpointConfiguration.Sagas().DisableBestPracticeValidation();
 
