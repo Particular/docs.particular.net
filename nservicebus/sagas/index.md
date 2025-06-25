@@ -45,9 +45,7 @@ Sharing complex property types should also be avoided. Depending on the persiste
 
 NServiceBus will perform a check at startup to ensure that saga data types are not shared across sagas. An exception will be thrown at startup if any shared root types are found. Complex types in properties that are shared between sagas are not included in this check.
 
-The startup check can be disabled by turning off the best practice validation:
-
-snippet: disable-shared-state-validation
+partial: disable-shared-state-check
 
 > [!NOTE]
 > If a saga property is a [record type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record), that record type must be mutable so it can be deserialized.
