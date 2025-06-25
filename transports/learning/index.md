@@ -31,9 +31,7 @@ include: learning-usages
 |Scripted Deployment        |Not supported
 |Installers                 |Not supported, the transport always creates the required folder structure
 |Native integration         |Not supported
-
-> [!NOTE]
-> If the file-system is case-sensitive (which is most common on Linux environments) ensure endpoints and addresses have identical casing.
+|Case Sensitive             |Yes
 
 ### Publish and subscribe
 
