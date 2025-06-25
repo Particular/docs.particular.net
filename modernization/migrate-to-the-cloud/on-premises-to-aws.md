@@ -16,10 +16,18 @@ related:
 
 [AWS Application Migration Service](https://aws.amazon.com/application-migration-service/when-to-choose-aws-mgn/) is an option for getting on-premises systems into the cloud quickly.
 
-Something about aws sqs being a cloud offering supported by nservicebus and messaging bridge making it possible to migrate. Can probably sync whatever is here with what goes in the azure page.
+Amazon Simple Queue Service ([Amazon SQS](https://aws.amazon.com/sqs/)) is a fully managed cloud-based queueing service supported by the [NServiceBus Amazon SQS Transport](/transports/sqs).
 
-The [NServiceBus Messaging Bridge](/nservicebus/bridge) acts as a connector, allowing on premises endpoints to exchange messages seamlessly and reliably with those using the [Amazon SQS Transport](/transports/sqs).
+The [NServiceBus Messaging Bridge](/nservicebus/bridge) acts as a connector, enabling seamless and reliable message exchange between on-premises endpoints and those using the Amazon SQS Transport in AWS. This allows you to migrate endpoints to AWS gradually, without disrupting existing operations.
+
+## AWS supported transports
+
+- [Amazon SQS Transport](/transports/sqs/)
+- [RabbitMQ](/transports/rabbitmq/) with [Amazon MQ](https://aws.amazon.com/amazon-mq/)
 
 ## On premise transports
 
-list here and add links to each transport
+- [MSMQ](/transports/msmq/)
+- [RabbitMQ](/transports/rabbitmq/)
+- [SQL Server](/transports/sql/)
+- [PostgreSQL](/transports/postgresql/)
