@@ -31,7 +31,7 @@ The transport has been confirmed to work with the following hosting providers:
 
 |Feature                    |   |
 |:---                       |---
-|Transactions |ReceiveOnly
+|Transactions               |ReceiveOnly
 |Pub/Sub                    |Native
 |Timeouts                   |Native
 |Large message bodies       |Broker can handle arbitrary message size within available resources, very large messages via data bus
@@ -39,6 +39,7 @@ The transport has been confirmed to work with the following hosting providers:
 |Scripted Deployment        |Not supported
 |Installers                 |Mandatory
 |Native integration         |[Supported](native-integration.md)
+|Case Sensitive             |Yes
 
 ## Configuring the endpoint
 

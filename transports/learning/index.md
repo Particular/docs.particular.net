@@ -31,6 +31,7 @@ include: learning-usages
 |Scripted Deployment        |Not supported
 |Installers                 |Not supported, the transport always creates the required folder structure
 |Native integration         |Not supported
+|Case Sensitive             |Yes
 
 ### Publish and subscribe
 

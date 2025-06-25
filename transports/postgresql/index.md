@@ -21,6 +21,7 @@ The PostgreSQL transport implements a message queuing mechanism on top of [Postg
 |Scripted Deployment        |SQL Scripts |
 |Installers                 |Optional |
 |Native integration         |Supported, see [SQL statements used by the transport](https://github.com/Particular/NServiceBus.SqlServer/blob/master/src/NServiceBus.Transport.PostgreSql/PostgreSqlConstants.cs) |
+|Case Sensitive             |Depending on the collation
 
 ## Usage
 

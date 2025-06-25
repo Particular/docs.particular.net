@@ -30,6 +30,7 @@ include: azure-transports
 |Scripted Deployment        |Not supported
 |Installers                 |Mandatory
 |Native integration         |[Supported](native-integration.md)
+|Case Sensitive             |No
 
 ## Configuring the endpoint
 

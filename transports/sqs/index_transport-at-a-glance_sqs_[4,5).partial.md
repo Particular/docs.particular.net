@@ -10,4 +10,5 @@
 |Scripted Deployment        |PowerShell, CloudFormation, C#
 |Installers                 |Optional
 |Native integration         |Not supported
+|Case Sensitive             |Yes
 |Local development          |[Supported via LocalStack](/nservicebus/aws/local-development.md)

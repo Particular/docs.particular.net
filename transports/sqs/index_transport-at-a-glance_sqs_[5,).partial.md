@@ -10,4 +10,5 @@
 |Scripted Deployment        |Built-in CLI, C#
 |Installers                 |Optional
 |Native integration         |[Supported](native-integration.md)
+|Case Sensitive             |Yes
 |Local development          |[Supported via LocalStack](/nservicebus/aws/local-development.md)

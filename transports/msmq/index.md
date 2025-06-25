@@ -27,6 +27,7 @@ redirects:
 |Scripted Deployment        |C#, PowerShell
 |Installers                 |Optional
 |Native integration         |[Supported](native-integration.md)
+|Case Sensitive             |No
 
 ## Configuring the endpoint
 
