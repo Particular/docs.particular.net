@@ -20,7 +20,7 @@ Amazon Simple Queue Service ([Amazon SQS](https://aws.amazon.com/sqs/)) is a ful
 
 The [NServiceBus Messaging Bridge](/nservicebus/bridge) acts as a connector, enabling seamless and reliable message exchange between on-premises endpoints and those using the Amazon SQS Transport in AWS. This allows you to migrate endpoints to AWS gradually, without disrupting existing operations.
 
-## AWS supported transport
+## AWS supported transports
 
 - [Amazon SQS Transport](/transports/sqs/)
 - [RabbitMQ](/transports/rabbitmq/) with [Amazon MQ](https://aws.amazon.com/amazon-mq/)
