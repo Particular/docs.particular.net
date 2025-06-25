@@ -162,7 +162,7 @@ Internally, the transactional session doesn't use a single transaction that span
 6. Transport operations are captured by the `PendingTransportOperations`
 7. The user can store any data using the persistence-specific session, which is accessible through the transactional session.
 8. When all operations are registered, the user calls `Commit` on the transactional session.
-9. A control message to complete the transaction is dispatched to the local queue. The control message is independent of the message operations and is not stored in the outbox record.
+9. A control message to complete the transaction is dispatched. The control message is independent of the message operations and is not stored in the outbox record.
 10. The message operations are converted into an outbox record.
 11. The outbox record is returned to the transactional session
 12. The outbox record is saved to the storage seam.
@@ -173,7 +173,7 @@ Internally, the transactional session doesn't use a single transaction that span
 
 ### Phase 2
 
-The endpoint receives the control message and processes it as follows:
+The control message is processed as follows:
 
 * Find the outbox record.
   * If it exists, and it hasn't been marked as dispatched, and there are pending operations:
@@ -187,7 +187,7 @@ The transactional session provides atomic store-and-send guarantees, similar to 
 * Transaction finishes with data being stored, and outgoing messages eventually sent - when the `Commit` path successfully stores the `OutboxRecord`
 * Transaction finishes with no visible side effects - when the control message stores the `OutboxRecord`
 
-Sending the control message first ensures that, eventually, the transaction will have an atomic outcome. If the `Commit` of the `OutboxRecord` succeeds, the control message will ensure the outgoing operations are sent. 
+Sending the control message first ensures that, eventually, the transaction will have an atomic outcome. If the `Commit` of the `OutboxRecord` succeeds, the control message will ensure the outgoing operations are sent.
 
 ### Failure to dispatch the control message
 
