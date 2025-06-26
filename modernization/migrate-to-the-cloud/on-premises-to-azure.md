@@ -27,6 +27,10 @@ The [NServiceBus Messaging Bridge](/nservicebus/bridge) acts as a connector betw
 
 - [Azure Service Bus Transport](/transports/azure-service-bus/)
 - [Azure Storage Queues](/transports/azure-storage-queues/)
+
+> [!NOTE]
+> While SQL transports are supported, it is not recommended to migrate *to* them, as dedicated queueing technologies are more efficient.
+
 - [SQL Server Transport](/transports/sql/)  using [Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/database/) or [SQL Server on Azure VM](https://azure.microsoft.com/en-us/products/virtual-machines/sql-server/)
 - [PostgreSQL Transport](/transports/postgresql/)  using [Azure Database for PostgreSQL](https://azure.microsoft.com/en-us/products/postgresql/)
 
