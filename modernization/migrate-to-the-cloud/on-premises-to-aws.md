@@ -18,7 +18,7 @@ related:
 
 Amazon Simple Queue Service ([Amazon SQS](https://aws.amazon.com/sqs/)) is a fully managed cloud-based queueing service supported by the [NServiceBus Amazon SQS Transport](/transports/sqs).
 
-The [NServiceBus Messaging Bridge](/nservicebus/bridge) acts as a connector, enabling seamless and reliable message exchange between on-premises endpoints and those using the an AWS supported transport. This allows you to migrate endpoints to AWS gradually, without disrupting existing operations.
+The [NServiceBus Messaging Bridge](/nservicebus/bridge) acts as a connector, enabling seamless and reliable message exchange between on-premises endpoints and those using AWS-native transports. This allows you to migrate endpoints to AWS gradually, without disrupting existing operations.
 
 ```mermaid
 flowchart LR
@@ -28,9 +28,7 @@ on-prem["MSMQ
   SQL Server
   PostgreSQL"]
 cloud["Amazon SQS
-  RabbitMQ with Amazon MQ
-  Amazon RDS for SQL Server
-  Amazon RDS for PostgreSQL"]
+  RabbitMQ with Amazon MQ"]
 bridge[[NServiceBus Messaging Bridge]]
 on-prem <--> bridge <--> cloud
 

@@ -31,9 +31,7 @@ on-prem["MSMQ
   SQL Server
   PostgreSQL"]
 cloud["Azure Service Bus
-  Azure Storage Queues
-  SQL Server on Azure DB/VM
-  Azure DB for PostgreSQL"]
+  Azure Storage Queues"]
 bridge[[NServiceBus Messaging Bridge]]
 on-prem <--> bridge <--> cloud
 
