@@ -29,6 +29,20 @@ Queueing technologies do not inherently communicate with each other. As on-premi
 
 The [NServiceBus Messaging Bridge](/nservicebus/bridge) acts as a connector, allowing on-premises endpoints to exchange messages seamlessly and reliably with those in the cloud.
 
+```mermaid
+flowchart LR
+
+Br[[Bridge]]
+Sales[Endpoint Sales] <---> Br
+Br <---> Billing[Endpoint Billing]
+subgraph ON-PREMISES
+  Sales
+end
+subgraph CLOUD
+  Billing
+end
+```
+
 ## Useful links
 
 - [Legacy Architecture Modernisation With Strategic Domain-Driven Design](https://medium.com/nick-tune-tech-strategy-blog/legacy-architecture-modernisation-with-strategic-domain-driven-design-3e7c05bb383f)

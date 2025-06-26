@@ -18,18 +18,39 @@ related:
 
 Amazon Simple Queue Service ([Amazon SQS](https://aws.amazon.com/sqs/)) is a fully managed cloud-based queueing service supported by the [NServiceBus Amazon SQS Transport](/transports/sqs).
 
-The [NServiceBus Messaging Bridge](/nservicebus/bridge) acts as a connector, enabling seamless and reliable message exchange between on-premises endpoints and those using the Amazon SQS Transport in AWS. This allows you to migrate endpoints to AWS gradually, without disrupting existing operations.
+The [NServiceBus Messaging Bridge](/nservicebus/bridge) acts as a connector, enabling seamless and reliable message exchange between on-premises endpoints and those using the an AWS supported transport. This allows you to migrate endpoints to AWS gradually, without disrupting existing operations.
+
+```mermaid
+flowchart LR
+
+on-prem["MSMQ
+  RabbitMQ
+  SQL Server
+  PostgreSQL"]
+cloud["Amazon SQS
+  RabbitMQ with Amazon MQ
+  Amazon RDS for SQL Server
+  Amazon RDS for PostgreSQL"]
+bridge[[NServiceBus Messaging Bridge]]
+on-prem <--> bridge <--> cloud
+
+subgraph ON-PREMISES
+  on-prem
+end
+subgraph CLOUD
+  cloud
+end
+```
 
 ## AWS supported transports
 
 - [Amazon SQS Transport](/transports/sqs/)
 - [RabbitMQ](/transports/rabbitmq/) with [Amazon MQ](https://aws.amazon.com/amazon-mq/)
+- [SQL Server Transport](/transports/sql/)  using [Amazon RDS for SQL Server](https://aws.amazon.com/rds/sqlserver/)
+- [PostgreSQL Transport](/transports/postgresql/)  using [Amazon RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/) or [Amazon Aurora](https://aws.amazon.com/rds/aurora/)
 
 > [!NOTE]
 > While SQL transports are supported, it is not recommended to migrate *to* them, as dedicated queueing technologies are more efficient.
-
-- [SQL Server Transport](/transports/sql/)  using [Amazon RDS for SQL Server](https://aws.amazon.com/rds/sqlserver/)
-- [PostgreSQL Transport](/transports/postgresql/)  using [Amazon RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/) or [Amazon Aurora](https://aws.amazon.com/rds/aurora/)
 
 ## On premise transports
 
