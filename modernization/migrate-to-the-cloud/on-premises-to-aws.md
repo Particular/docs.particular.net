@@ -44,10 +44,10 @@ end
 
 ## AWS supported transports
 
-- [Amazon SQS Transport](/transports/sqs/)
+- [Amazon SQS](/transports/sqs/)
 - [RabbitMQ](/transports/rabbitmq/) with [Amazon MQ](https://aws.amazon.com/amazon-mq/)
-- [SQL Server Transport](/transports/sql/)  using [Amazon RDS for SQL Server](https://aws.amazon.com/rds/sqlserver/)
-- [PostgreSQL Transport](/transports/postgresql/)  using [Amazon RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/) or [Amazon Aurora](https://aws.amazon.com/rds/aurora/)
+- [SQL Server](/transports/sql/)  using [Amazon RDS for SQL Server](https://aws.amazon.com/rds/sqlserver/)
+- [PostgreSQL](/transports/postgresql/)  using [Amazon RDS for PostgreSQL](https://aws.amazon.com/rds/postgresql/) or [Amazon Aurora](https://aws.amazon.com/rds/aurora/)
 
 > [!NOTE]
 > While SQL transports are supported, it is not recommended to migrate *to* them, as dedicated queueing technologies are more efficient.

@@ -23,16 +23,37 @@ Azure Service Bus and Azure Storage Queues are fully managed messaging services 
 
 The [NServiceBus Messaging Bridge](/nservicebus/bridge) acts as a connector between on-premises endpoints and those using Azure-native transports. This enables a phased migration approach minimizes risk by allowing incremental migration, service-by-service, while ensuring the system remains fully functional throughout the transition.
 
+```mermaid
+flowchart LR
+
+on-prem["MSMQ
+  RabbitMQ
+  SQL Server
+  PostgreSQL"]
+cloud["Azure Service Bus
+  Azure Storage Queues
+  SQL Server on Azure DB/VM
+  Azure DB for PostgreSQL"]
+bridge[[NServiceBus Messaging Bridge]]
+on-prem <--> bridge <--> cloud
+
+subgraph ON-PREMISES
+  on-prem
+end
+subgraph CLOUD
+  cloud
+end
+```
+
 ## Azure supported transports
 
-- [Azure Service Bus Transport](/transports/azure-service-bus/)
+- [Azure Service Bus](/transports/azure-service-bus/)
 - [Azure Storage Queues](/transports/azure-storage-queues/)
+- [SQL Server](/transports/sql/)  using [Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/database/) or [SQL Server on Azure VM](https://azure.microsoft.com/en-us/products/virtual-machines/sql-server/)
+- [PostgreSQL](/transports/postgresql/)  using [Azure Database for PostgreSQL](https://azure.microsoft.com/en-us/products/postgresql/)
 
 > [!NOTE]
 > While SQL transports are supported, it is not recommended to migrate *to* them, as dedicated queueing technologies are more efficient.
-
-- [SQL Server Transport](/transports/sql/)  using [Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/database/) or [SQL Server on Azure VM](https://azure.microsoft.com/en-us/products/virtual-machines/sql-server/)
-- [PostgreSQL Transport](/transports/postgresql/)  using [Azure Database for PostgreSQL](https://azure.microsoft.com/en-us/products/postgresql/)
 
 ## On premise transports
 
