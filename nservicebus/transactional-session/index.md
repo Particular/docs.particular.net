@@ -77,11 +77,11 @@ The transactional session feature requires a supported persistence package to st
 
 ## Design considerations
 
-It's recommended to not mix the processing of control messages with business messages in order to get:
+It's recommended to not mix the processing of dispatch messages with business messages in order to get:
 
-- Predictable control message dispatch: Processing of control messages will be more reliable since there is no risk of getting delayed behind slow business messages
-- More accurate metrics: Metrics like critical time and queue length will accurately represent the performance of the control message processing and not be skewed by business messages
-- Simplified management: Knowing that the endpoint only processes control messages makes it possible to always retry all failed messages related to the endpoint via tools like ServicePulse
+- Predictable dispatch message dispatch: Processing of dispatch messages will be more reliable since there is no risk of getting delayed behind slow business messages
+- More accurate metrics: Metrics like critical time and queue length will accurately represent the performance of the dispatch message processing and not be skewed by business messages
+- Simplified management: Knowing that the endpoint only processes dispatch messages makes it possible to always retry all failed messages related to the endpoint via tools like ServicePulse
 
 When configuring endpoints for usage measurement in ServicePulse, mark dedicated transactional session processor endpoints with the appropriate [endpoint type indicator](/servicepulse/usage.md#setting-an-endpoint-type-endpoint-type-indicators).
 
@@ -162,7 +162,7 @@ Internally, the transactional session doesn't use a single transaction that span
 6. Transport operations are captured by the `PendingTransportOperations`
 7. The user can store any data using the persistence-specific session, which is accessible through the transactional session.
 8. When all operations are registered, the user calls `Commit` on the transactional session.
-9. A control message to complete the transaction is dispatched. The control message is independent of the message operations and is not stored in the outbox record.
+9. A dispatch message to complete the transaction is sent. The dispatch message is independent of the message operations and is not stored in the outbox record.
 10. The message operations are converted into an outbox record.
 11. The outbox record is returned to the transactional session
 12. The outbox record is saved to the storage seam.
@@ -173,39 +173,39 @@ Internally, the transactional session doesn't use a single transaction that span
 
 ### Phase 2
 
-The control message is processed as follows:
+The dispatch message is processed as follows:
 
 * Find the outbox record.
   * If it exists, and it hasn't been marked as dispatched, and there are pending operations:
     * Dispatched the messages, and the outbox record is set as dispatched.
-  * If it doesn't exist yet, delay the processing of the control message.
+  * If it doesn't exist yet, delay the processing of the dispatch message.
 
 ## Failure scenarios
 
-The transactional session provides atomic store-and-send guarantees, similar to the outbox feature (except for incoming message de-duplication). The control message is used to ensure that **exactly one** of the following outcomes occurs:
+The transactional session provides atomic store-and-send guarantees, similar to the outbox feature (except for incoming message de-duplication). The dispatch message is used to ensure that **exactly one** of the following outcomes occurs:
 
 * Transaction finishes with data being stored, and outgoing messages eventually sent - when the `Commit` path successfully stores the `OutboxRecord`
-* Transaction finishes with no visible side effects - when the control message stores the `OutboxRecord`
+* Transaction finishes with no visible side effects - when the dispatch message stores the `OutboxRecord`
 
-Sending the control message first ensures that, eventually, the transaction will have an atomic outcome. If the `Commit` of the `OutboxRecord` succeeds, the control message will ensure the outgoing operations are sent.
+Sending the dispatch message first ensures that, eventually, the transaction will have an atomic outcome. If the `Commit` of the `OutboxRecord` succeeds, the dispatch message will ensure the outgoing operations are sent.
 
-### Failure to dispatch the control message
+### Failure to send the dispatch message
 
-If dispatching the control message fails, the transactional session changes will roll back, and an error will be raised to the user committing the session.
+If sending the dispatch message fails, the transactional session changes will roll back, and an error will be raised to the user committing the session.
 
-If the transaction completes and the control message fails to process through all the retry attempts, the control message will be moved to the error queue and the outgoing messages will not be dispatched. Once the error is resolved, the control message must be manually retried in ServicePulse to ensure the outgoing messages are dispatched. If the messages are not manually retried, the stored outgoing messages will never be delivered. If that's undesirable, the system must be returned to a consistent state via other means.
+If the transaction completes and the dispatch message fails to process through all the retry attempts, the dispatch message will be moved to the error queue and the outgoing messages will not be dispatched. Once the error is resolved, the dispatch message must be manually retried in ServicePulse to ensure the outgoing messages are dispatched. If the messages are not manually retried, the stored outgoing messages will never be delivered. If that's undesirable, the system must be returned to a consistent state via other means.
 
 ### Failure to commit the outbox record
 
-If the `Commit` fails, the control message will (after the [maximum commit duration](#advanced-configuration-maximum-commit-duration) elapses) eventually be consumed, leaving no side effects.
+If the `Commit` fails, the dispatch message will (after the [maximum commit duration](#advanced-configuration-maximum-commit-duration) elapses) eventually be consumed, leaving no side effects.
 
 ### Commit takes too long
 
-When the commit takes longer than the [maximum commit duration](#advanced-configuration-maximum-commit-duration), the control message will result in a tombstone record in the outbox preventing the commit from succeeding. The following exception is thrown:
+When the commit takes longer than the [maximum commit duration](#advanced-configuration-maximum-commit-duration), the dispatch message will result in a tombstone record in the outbox preventing the commit from succeeding. The following exception is thrown:
 
 `Failed to commit the transactional session. This might happen if the maximum commit duration is exceeded`
 
-A variation of this is when using a remote processing endpoint that does not have the transactional session enabled. In this scenario, the tombstone record will be created immediately when the control message is processed, forcing a rollback of the commit. When this happens, the following exception is thrown:
+A variation of this is when using a remote processing endpoint that does not have the transactional session enabled. In this scenario, the tombstone record will be created immediately when the dispatch message is processed, forcing a rollback of the commit. When this happens, the following exception is thrown:
 
 `Failed to commit the transactional session. This might happen if the maximum commit duration is exceeded or if the transactional session has not been enabled on the configured processor endpoint - MyProcessorEndpoint`
 
@@ -223,9 +223,9 @@ The default value for the maximum commit duration is `TimeSpan.FromSeconds(15)`.
 
 snippet: configuring-timeout-transactional-session
 
-The maximum commit duration does not represent the total transaction time, but rather the time it takes to complete the commit operation (as observed from the perspective of the control message). In practice, the observed total commit time might be longer due to delays in the transport caused by latency, delayed delivery, load on the input queue, endpoint concurrency limits, and more.
+The maximum commit duration does not represent the total transaction time, but rather the time it takes to complete the commit operation (as observed from the perspective of the dispatch message). In practice, the observed total commit time might be longer due to delays in the transport caused by latency, delayed delivery, load on the input queue, endpoint concurrency limits, and more.
 
-When the control message is consumed, but the outbox record is not yet available in storage, the following formula is applied to delay the message (see [Phase 2](#how-it-works-phase-2)):
+When the dispatch message is consumed, but the outbox record is not yet available in storage, the following formula is applied to delay the message (see [Phase 2](#how-it-works-phase-2)):
 
 ```csharp
 CommitDelayIncrement = 2 * CommitDelayIncrement;
@@ -239,6 +239,6 @@ partial: config
 
 ### Metadata
 
-It is possible to add metadata (e.g. tenant information) transactional session control message via custom headers. These headers can be accessed by a [custom behavior](/nservicebus/pipeline/manipulate-with-behaviors.md#add-a-new-step) when the control message is received in the `TransportReceive` part of the pipeline.
+It is possible to add metadata (e.g. tenant information) transactional session dispatch message via custom headers. These headers can be accessed by a [custom behavior](/nservicebus/pipeline/manipulate-with-behaviors.md#add-a-new-step) when the dispatch message is received in the `TransportReceive` part of the pipeline.
 
 snippet: configuring-metadata-transactional-session
