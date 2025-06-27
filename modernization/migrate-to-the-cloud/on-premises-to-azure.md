@@ -1,6 +1,6 @@
 ---
-title: Migrate from on premises to Azure
-summary: Migration options from on premise transports to Azure
+title: Migrate from on-premises to Azure
+summary: Migration options from on-premise transports to Azure
 reviewed: 2025-06-19
 callsToAction: ['solution-architect','architecture-review']
 related:
@@ -32,7 +32,7 @@ on-prem["MSMQ
   PostgreSQL"]
 cloud["Azure Service Bus
   Azure Storage Queues"]
-bridge[[NServiceBus Messaging Bridge]]
+bridge[[Messaging Bridge]]
 on-prem <--> bridge <--> cloud
 
 subgraph ON-PREMISES

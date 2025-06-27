@@ -1,6 +1,6 @@
 ---
-title: Migrate from on premises to AWS
-summary: Migration options from on premise transports to AWS
+title: Migrate from on-premises to AWS
+summary: Migration options from on-premise transports to AWS
 reviewed: 2025-06-19
 callsToAction: ['solution-architect','architecture-review']
 related:
@@ -29,7 +29,7 @@ on-prem["MSMQ
   PostgreSQL"]
 cloud["Amazon SQS
   RabbitMQ with Amazon MQ"]
-bridge[[NServiceBus Messaging Bridge]]
+bridge[[Messaging Bridge]]
 on-prem <--> bridge <--> cloud
 
 subgraph ON-PREMISES
