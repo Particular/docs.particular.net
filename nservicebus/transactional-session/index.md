@@ -34,7 +34,7 @@ The `TransactionalSession`, when combined with [outbox](/nservicebus/outbox), so
 
 ## Usage
 
-partial:sendonly
+partial: sendonly
 
 To use the transactional session, first install the [transactional session package for a supported persister](/nservicebus/transactional-session/persistences) in the project.
 
