@@ -1705,6 +1705,15 @@
   Topics:
   - Title: Introduction
     Url: modernization
+  - Title: Migrate to the Cloud
+    Articles:
+    - Title: Overview
+      Url: modernization/migrate-to-the-cloud
+      Articles:
+      - Title: On-premises to AWS
+        Url: modernization/migrate-to-the-cloud/on-premises-to-aws
+      - Title: On-premises to Azure
+        Url: modernization/migrate-to-the-cloud/on-premises-to-azure
 
 - Name: Shape the future
   Topics:
