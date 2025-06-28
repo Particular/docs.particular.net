@@ -10,7 +10,7 @@ related:
 This sample demonstrates how to configure an NServiceBus bridge that forwards messages between two endpoints running on different transports.
 
 For this sample to work without installing any prerequisites, all endpoints use the [LearningTransport](/transports/learning/). To demonstrate that it can still bridge different transports, the LearningTransport on one side of the bridge is configured to store messages in a different location on disk.
-This sample uses  [LearningTransport](/transports/learning/) with separate StorageDirectory paths to simulate endpoints running on two differen transports. This approach allows you to test cross-transport messaging behavior locally, without setting up multiple transport infrastructures.
+This sample uses [LearningTransport](/transports/learning/) with separate StorageDirectory paths to simulate endpoints running on two different transports. This approach allows you to test cross-transport messaging behavior locally, without setting up multiple transport infrastructures.
 
 ## Projects
 
