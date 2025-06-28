@@ -75,7 +75,7 @@ NServiceBus endpoint that is no longer in use, usually this would have zero thro
 
 #### Transactional Session Processor Endpoint
 
-An [endpoint that is only processing transactional session control messages](/nservicebus/transactional-session/#design-considerations). These are [specialized endpoints](/nservicebus/transactional-session/#remote-processor) dedicated to handling the coordination of transactional sessions, and it is excluded during licensing calculations.
+An [endpoint that is only processing transactional session dispatch messages](/nservicebus/transactional-session/#design-considerations). These are [specialized endpoints](/nservicebus/transactional-session/#remote-processor) dedicated to handling the coordination of transactional sessions, and it is excluded during licensing calculations.
 
 #### Send-Only Endpoint
 
