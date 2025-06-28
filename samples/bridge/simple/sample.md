@@ -1,7 +1,7 @@
 ---
 title: Simple Bridge Usage
 summary: How to use the NServiceBus messaging bridge to connect endpoints on different transports
-reviewed: 2023-07-04
+reviewed: 2025-06-27
 component: Bridge
 related:
  - nservicebus/bridge
