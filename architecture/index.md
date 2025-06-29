@@ -1,7 +1,7 @@
 ---
 title: Architecture
 summary: Architectural guidance for building distributed systems with the Particular Service Platform both in the cloud and on-premises.
-reviewed: 2023-07-18
+reviewed: 2025-06-29
 suppressRelated: true
 callsToAction: ['architecture-review']
 redirects:
