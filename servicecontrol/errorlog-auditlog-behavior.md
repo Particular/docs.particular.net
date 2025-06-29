@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Forwarding Log Queues
 summary: Details of the ServiceControl audit and error configuration and forwarding behavior
-reviewed: 2023-07-08
+reviewed: 2025-06-27
 ---
 
 ## Audit and error queues
@@ -13,7 +13,7 @@ ServiceControl can also forward these messages to two log queues:
  * Error messages are optionally forwarded to the _error_ log queue. Default: `error.log`.
  * Audit messages are optionally forwarded to the _audit_ log queue. Default: `audit.log`.
 
-This behavior can be set through ServiceControl Management.
+This forwarding behavior can be enabled or disabled through ServiceControl Management.
 
 ![](managementutil-queueconfig.png 'width=500')
 
@@ -33,12 +33,12 @@ Forwarding by Custom Processor:
 
    "error" -> Custom Processor -> "error.log" -> ServiceControl
 
-This will prioritize the custom processor over ServiceControl for audit and error processing
+This gives the custom processor control over message handling before ServiceControl does for audit and error processing.
 
 
 ## Error and audit log queues
 
-The log queues retain a copy of the original messages ingested by ServiceControl.
+The log queues(error.log, audit.log) retain a copy of the original messages ingested by ServiceControl.
 The queues are not directly managed by ServiceControl and are meant as points of external integration.
 
 > [!NOTE]
