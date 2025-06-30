@@ -7,7 +7,7 @@ class ShipOrderHandler(ILogger<ShipOrderHandler> log) : IHandleMessages<ShipOrde
 {
     public Task Handle(ShipOrder message, IMessageHandlerContext context)
     {
-        log.LogInformation($"Order [{message.OrderId}] - Successfully shipped.");
+        log.LogInformation("Order [{OrderId}] - Successfully shipped.", message.OrderId);
         return Task.CompletedTask;
     }
 }

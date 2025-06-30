@@ -9,7 +9,7 @@ public class OrderLifecycleSaga(ILogger<OrderLifecycleSaga> logger) :
     IAmStartedByMessages<OrderSubmitted>,
     IHandleTimeouts<OrderLifecycleSaga.OrderTimeout>
 {
-   
+
     protected override void ConfigureMapping(IMessagePropertyMapper mapper)
     {
         mapper.ConfigureMapping<OrderSubmitted>(m => m.OrderId);
@@ -27,7 +27,7 @@ public class OrderLifecycleSaga(ILogger<OrderLifecycleSaga> logger) :
             OrderId = message.OrderId,
         };
 
-        logger.LogInformation($"Order process {message.OrderId} started.");
+        logger.LogInformation("Order process {OrderId} started.", message.OrderId);
 
         await context.Reply(orderAccepted);
     }

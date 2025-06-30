@@ -24,7 +24,7 @@ public class ProcessOrderSaga(ILogger<ProcessOrderSaga> logger) :
         Data.ProductIds = message.ProductIds;
         Data.ClientId = message.ClientId;
 
-        logger.LogInformation($"Starting cool down period for order #{Data.OrderNumber}.");
+        logger.LogInformation("Starting cool down period for order #{OrderNumber}.", Data.OrderNumber);
         return RequestTimeout(context, TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
     }
 
@@ -37,7 +37,7 @@ public class ProcessOrderSaga(ILogger<ProcessOrderSaga> logger) :
 
         MarkAsComplete();
 
-        logger.LogInformation($"Cooling down period for order #{Data.OrderNumber} has elapsed.");
+        logger.LogInformation("Cooling down period for order #{OrderNumber} has elapsed.", Data.OrderNumber);
 
         var orderAccepted = new OrderAccepted
         {
@@ -55,7 +55,7 @@ public class ProcessOrderSaga(ILogger<ProcessOrderSaga> logger) :
             Debugger.Break();
         }
 
-        logger.LogInformation($"Order #{message.OrderNumber} was cancelled.");
+        logger.LogInformation("Order #{OrderNumber} was cancelled.", message.OrderNumber);
 
         MarkAsComplete();
 

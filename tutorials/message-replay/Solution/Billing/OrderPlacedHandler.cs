@@ -8,10 +8,10 @@ namespace Billing
     public class OrderPlacedHandler (ILogger<OrderPlacedHandler> logger):
         IHandleMessages<OrderPlaced>
     {
-     
+
         public Task Handle(OrderPlaced message, IMessageHandlerContext context)
         {
-            logger.LogInformation($"Received OrderPlaced, OrderId = {message.OrderId} - Charging credit card...");
+            logger.LogInformation("Received OrderPlaced, OrderId = {OrderId} - Charging credit card...", message.OrderId);
 
             var orderBilled = new OrderBilled
             {

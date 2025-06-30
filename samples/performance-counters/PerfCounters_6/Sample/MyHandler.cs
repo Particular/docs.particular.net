@@ -8,7 +8,7 @@ public class MyHandler(ILogger<MyHandler> logger) : IHandleMessages<MyMessage>
     {
         var sleepTime = Random.Shared.Next(1, 1000);
         await Task.Delay(sleepTime, context.CancellationToken);
-        logger.LogInformation($"Hello from MyHandler. Slept for {sleepTime} ms");
+        logger.LogInformation("Hello from MyHandler. Slept for {SleepTime} ms", sleepTime);
     }
 }
 

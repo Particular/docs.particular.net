@@ -18,7 +18,7 @@ public class CreateOrderHandler(ReceiverDataContext dataContext, ILogger<CreateO
 
         #endregion
 
-        logger.LogInformation($"Order {message.OrderId} worth {message.Value} created.");
+        logger.LogInformation("Order {OrderId} worth {Value} created.", message.OrderId, message.Value);
 
         return Task.CompletedTask;
     }

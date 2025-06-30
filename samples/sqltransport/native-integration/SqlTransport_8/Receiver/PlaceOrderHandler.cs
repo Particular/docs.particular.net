@@ -7,7 +7,7 @@ public class PlaceOrderHandler(ILogger<LegacyOrderDetectedHandler> logger) :
 {
     public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Order {message.OrderId} placed");
+        logger.LogInformation("Order {OrderId} placed", message.OrderId);
         return Task.CompletedTask;
     }
 }

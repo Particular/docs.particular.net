@@ -9,7 +9,7 @@ class OrderAcceptedHandler(ILogger<OrderAcceptedHandler> logger) :
     {
         var tenant = context.MessageHeaders["tenant_id"];
 
-        logger.LogInformation($"Processing OrderAccepted message for tenant {tenant}");
+        logger.LogInformation("Processing OrderAccepted message for tenant {Tenant}", tenant);
 
         return Task.CompletedTask;
     }

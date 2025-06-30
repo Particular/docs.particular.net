@@ -16,7 +16,7 @@ public class MyHandler :
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Message received. Id: {message.Id}");
+        logger.LogInformation("Message received. Id: {Id}", message.Id);
         //throw new ArgumentNullException("Uh oh - something went wrong....");
         //throw new DivideByZeroException("DivideByZeroException - something went wrong....");
         return Task.CompletedTask;

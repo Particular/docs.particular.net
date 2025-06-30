@@ -5,7 +5,7 @@ public class ResponseHandler(ILogger<ResponseHandler> logger) : IHandleMessages<
 {
     public Task Handle(Response message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Response received from server for request with id:{message.ResponseId}");
+        logger.LogInformation("Response received from server for request with id:{ResponseId}", message.ResponseId);
         return Task.CompletedTask;
     }
 }

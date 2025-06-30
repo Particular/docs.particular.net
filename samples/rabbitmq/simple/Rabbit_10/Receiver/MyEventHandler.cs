@@ -7,7 +7,7 @@ public class MyEventHandler(ILogger<MyEventHandler> logger) : IHandleMessages<My
 {
     public Task Handle(MyEvent eventMessage, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Hello from {nameof(MyEventHandler)}");
+        logger.LogInformation("Hello from {HandlerType}", nameof(MyEventHandler));
 
         return Task.CompletedTask;
     }

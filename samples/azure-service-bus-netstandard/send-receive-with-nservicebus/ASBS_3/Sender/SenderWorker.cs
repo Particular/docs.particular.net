@@ -28,7 +28,7 @@ namespace Sender
                 {
                     await messageSession.Send(new Ping { Round = round++ });
 
-                    logger.LogInformation($"Message #{round}");
+                    logger.LogInformation("Message #{Round}", round);
 
                     await Task.Delay(1_000, stoppingToken);
                 }

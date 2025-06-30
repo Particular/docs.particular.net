@@ -54,7 +54,7 @@ class Program
              var transactionInformation = persistence.TransactionInformation();
              transactionInformation.ExtractContainerInformationFromMessage<ShipOrder>(m =>
              {
-                 logger.LogInformation($"Message '{m.GetType().AssemblyQualifiedName}' destined to be handled by '{nameof(ShipOrderSaga)}' will use 'ShipOrderSagaData' container.");
+                 logger.LogInformation("Message '{MessageType}' destined to be handled by '{SagaType}' will use 'ShipOrderSagaData' container.", m.GetType().AssemblyQualifiedName, nameof(ShipOrderSaga));
                  return new ContainerInformation("ShipOrderSagaData", new PartitionKeyPath("/id"));
              });
              #endregion
@@ -63,7 +63,7 @@ class Program
              {
                  if (headers.TryGetValue(Headers.SagaType, out var sagaTypeHeader) && sagaTypeHeader.Contains(nameof(ShipOrderSaga)))
                  {
-                     logger.LogInformation($"Message '{headers[Headers.EnclosedMessageTypes]}' destined to be handled by '{nameof(ShipOrderSaga)}' will use 'ShipOrderSagaData' container.");
+                     logger.LogInformation("Message '{EnclosedMessageTypes}' destined to be handled by '{SagaType}' will use 'ShipOrderSagaData' container.", headers[Headers.EnclosedMessageTypes], nameof(ShipOrderSaga));
 
                      return new ContainerInformation("ShipOrderSagaData", new PartitionKeyPath("/id"));
                  }

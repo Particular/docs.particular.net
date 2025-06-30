@@ -23,7 +23,7 @@ public class CreateShipmentHandler(ReceiverDataContext dataContext, ILogger<Crea
 
         #endregion
 
-        logger.LogInformation($"Shipment for {message.OrderId} created.");
+        logger.LogInformation("Shipment for {OrderId} created.", message.OrderId);
 
         return Task.CompletedTask;
     }

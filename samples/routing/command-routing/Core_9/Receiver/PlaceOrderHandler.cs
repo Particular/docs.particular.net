@@ -6,8 +6,7 @@ class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) :
 {
     public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
-
-        logger.LogInformation($"PlaceOrder command received: {message.OrderId} {message.Value}");
+        logger.LogInformation("PlaceOrder command received: {OrderId} {Value}", message.OrderId, message.Value);
         return Task.CompletedTask;
     }
 }

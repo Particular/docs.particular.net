@@ -52,7 +52,7 @@ namespace ClientUI
                         };
 
                         // Send the command
-                        logger.LogInformation($"Sending PlaceOrder command, OrderId = {command.OrderId}");
+                        logger.LogInformation("Sending PlaceOrder command, OrderId = {OrderId}", command.OrderId);
                         await endpointInstance.Send(command);
 
                         break;
