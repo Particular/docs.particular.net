@@ -1,15 +1,15 @@
 ---
-title: Configuration order for persistence
+title: Configuration Order for Persistence
 summary: When configuring persistence, order is important
 component: Core
-reviewed: 2023-07-08
+reviewed: 2025-06-30
 versions: '[5.0,)'
 redirects:
 - nservicebus/persistence-order
 - nservicebus/persistence/order
 ---
 
-When using different persistence options for storage types, the configuration order is important. When specifying multiple persistence options for the same storage type, the last-configured option will be used. Using the generic `UsePersistence<TPersistenceOption>` (without specifying a storage type) applies the persistence to all its supported storage types.
+When using different persistence options for storage types, the order of configuration is important. When specifying multiple persistence options for the same storage type, the last-configured option will be used. Using the generic `UsePersistence<TPersistenceOption>`  (without specifying a storage type) applies the persistence to all its supported storage types.
 
 
 ### Example 1
@@ -28,6 +28,6 @@ snippet: PersistenceOrder_Explicit
 
 ### Example 3
 
-Instead of explicitly defining all storage types, the generic persistence option can specified before the explicit overwrites. In this example, RavenDB persistence will be used for all storage types except for the outbox and subscriptions.
+Instead of explicitly defining all storage types, the generic persistence option can be specified before the explicit overwrites. In this example, RavenDB persistence will be used for all storage types except for the outbox and subscriptions.
 
 snippet: PersistenceOrder_Correct
