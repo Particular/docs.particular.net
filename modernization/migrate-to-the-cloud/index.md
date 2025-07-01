@@ -8,7 +8,7 @@ related:
   - modernization
 ---
 
-Moving on-premises systems to the cloud allows them to benefit from [the advantages](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html) offered by  cloud computing.
+Moving on-premises systems to the cloud allows them to benefit from [the advantages](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/six-advantages-of-cloud-computing.html) offered by cloud computing.
 
 NServiceBus supports queuing technologies provided by cloud providers like AWS and Azure, so any on-premise NServiceBus endpoints can be migrated to the cloud. The following migration guides provide more details on specific cloud providers:
 
@@ -47,5 +47,5 @@ end
 
 - [Legacy Architecture Modernisation With Strategic Domain-Driven Design](https://medium.com/nick-tune-tech-strategy-blog/legacy-architecture-modernisation-with-strategic-domain-driven-design-3e7c05bb383f)
 - [Modernization Strategy Selector](https://medium.com/nick-tune-tech-strategy-blog/modernization-strategy-selector-e06eb722dee)
-- [NServiceBus quick start guide](/tutorials/quickstart/)
+- [NServiceBus Quickstart guide](/tutorials/quickstart/)
 - [What they don't tell you about migrating a message-based system to the cloud](https://particular.net/blog/messaging-bridge-migrating-to-the-cloud)
