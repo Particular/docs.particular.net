@@ -21,7 +21,7 @@ It provides a centralized hub to assess and migrate on-premises systems to the A
 
 Azure Service Bus and Azure Storage Queues are fully managed messaging services supported by NServiceBus. For systems using SQL Server transport, Azure SQL Database or SQL Server on Azure Virtual Machines offer cloud-hosted alternatives that maintain compatibility with NServiceBus transports.
 
-The [NServiceBus Messaging Bridge](/nservicebus/bridge) acts as a connector between on-premises endpoints and those using Azure-native transports. This enables a phased migration approach minimizes risk by allowing incremental migration, service-by-service, while ensuring the system remains fully functional throughout the transition.
+The [NServiceBus Messaging Bridge](/nservicebus/bridge) acts as a connector between on-premises endpoints and those using Azure-native transports. It enables a phased migration approach to minimize risk by allowing incremental migration, service-by-service, while ensuring the system remains fully functional throughout the transition.
 
 ```mermaid
 flowchart LR
@@ -48,7 +48,7 @@ end
 - [Azure Service Bus](/transports/azure-service-bus/)
 - [Azure Storage Queues](/transports/azure-storage-queues/)
 - [SQL Server](/transports/sql/)  using [Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/database/) or [SQL Server on Azure VM](https://azure.microsoft.com/en-us/products/virtual-machines/sql-server/)
-- [PostgreSQL](/transports/postgresql/)  using [Azure Database for PostgreSQL](https://azure.microsoft.com/en-us/products/postgresql/)
+- [PostgreSQL](/transports/postgresql/) using [Azure Database for PostgreSQL](https://azure.microsoft.com/en-us/products/postgresql/)
 
 > [!NOTE]
 > While SQL transports are supported, it is not recommended to migrate *to* them, as dedicated queueing technologies are more efficient.
