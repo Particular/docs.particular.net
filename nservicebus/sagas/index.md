@@ -145,7 +145,7 @@ Make sure to configure appropriate [saga persistence](/persistence/).
 
 snippet: saga-configure
 
-The choice of persistence can impact the design of saga data, for e.g. the length of the name of the saga class, virtual properties in saga etc. While NServiceBus persister tries to abstract things away, sometimes the limitations of the specific implementations can have an impact.
+The choice of persistence can affect the design of saga data, such as the length of the saga class name, the use of virtual properties of the saga, etc. While the NServiceBus persister aims to abstract away these details, sometimes the limitations of the specific implementation can have an impact.
 
 ## Sagas and automatic subscriptions
 
