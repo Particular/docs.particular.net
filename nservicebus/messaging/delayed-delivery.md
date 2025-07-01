@@ -2,7 +2,7 @@
 title: Delayed Delivery
 summary: Delay delivery of messages until a later time.
 component: core
-reviewed: 2023-07-16
+reviewed: 2025-07-01
 related:
  - samples/delayed-delivery
 ---
@@ -13,25 +13,19 @@ Delayed delivery is used for:
 
 * [Timeout messages](/nservicebus/sagas/timeouts.md) sent by [sagas](/nservicebus/sagas/)
 * [Delayed retries](/nservicebus/recoverability/#delayed-retries), to retry a message after successive delays when [immediate retries](/nservicebus/recoverability/#immediate-retries) don't result in successful processing
-* Explicitly sending a message with a delay, as described below
+* Explicitly sending a message with a delay using `SendOptions` as described below
 
 > [!NOTE]
 > Only send operations can be deferred. Publish and reply operations cannot be deferred.
 
-## Delaying message dispatching
-
-
-Delaying a message is done using `SendOptions` and the `DelayDeliveryWith` method. This allows to defer the sending of a message to any endpoint. The behavior of delayed handling using `DelayDeliveryWith` can be seen in [Delayed Delivery Sample](/samples/delayed-delivery).
-
-
-## Using a TimeSpan
+## Delay using a TimeSpan
 
 Delays delivery of a message for a specified duration.
 
 snippet: delayed-delivery-timespan
 
 
-## Using a DateTime
+## Delay using a DateTime
 
 Delays delivery of a message until a specified point in time.
 
