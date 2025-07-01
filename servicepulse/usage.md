@@ -71,7 +71,7 @@ Known NServiceBus [endpoint](/nservicebus/endpoints/). These endpoints are inclu
 
 #### No longer in use
 
-NServiceBus endpoint that is no longer in use, usually this would have zero throughput. These endpoints are not included in licensing calculations since they are inactive.
+NServiceBus endpoint that is no longer in use, usually with zero throughput. These endpoints are not included in licensing calculations since they are inactive.
 
 #### Transactional Session Processor Endpoint
 
@@ -83,7 +83,7 @@ An endpoint that [only sends](/nservicebus/hosting/#self-hosting-send-only-hosti
 
 #### Planned to be decommissioned
 
-If the endpoint is planned to no longer be used in the next 30 days. These endpoints may be excluded from licensing calculations as they represent temporary infrastructure.
+An endpoint that is expected to no longer be used within the next 30 days. These endpoints may be excluded from licensing calculations as they represent temporary infrastructure.
 
 #### Not an NServiceBus Endpoint
 
