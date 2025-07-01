@@ -32,7 +32,7 @@ The SQL Server transport implements a message queuing mechanism on top of [Micro
 |Scripted Deployment        |Sql Scripts
 |Installers                 |Optional
 |Native integration         |[Supported](native-integration.md)
-|Case Sensitive             |Depending on the collation
+|Case Sensitive             |Depends on the collation
 
 partial: packages
 
