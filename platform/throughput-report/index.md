@@ -12,7 +12,7 @@ The Particular Service Platform is licensed based on the number of NServiceBus e
 
 The minimal installation required to generate the usage report is:
 
-- [ServiceControl](/servicecontrol/). Only a single [error instance](/servicecontrol/servicecontrol-instances/) is required, as this is the primary service that contains the monitoring logic. 
+- [ServiceControl](/servicecontrol/). Only a single [error instance](/servicecontrol/servicecontrol-instances/) is required, as this is the primary service that contains the monitoring logic.
 - [ServicePulse](/servicepulse/). This is the UI that interfaces with the ServiceControl service to allow users to specify which endpoints are NServiceBus related and generate the usage report to send to Particular.
 
 The following methods can be used to install these requirements:
@@ -41,7 +41,7 @@ ServiceControl is installed as a Windows service, and starts automatically. It i
 
 #### ServiceControl Management Utility (SCMU)
 
-- [Download](https://particular.net/start-servicecontrol-download) the latest SCMU 
+- [Download](https://particular.net/start-servicecontrol-download) the latest SCMU
 - Run the executable. This will require Admin priveleges
 - Add a new ServiceControl and Audit instance
 ![Add new ServiceControl and Audit Instance](scmu-1.png 'width=500')
@@ -70,7 +70,7 @@ Follow the [installation instructions](/servicepulse/installation.md) and ensure
 
 ## Container Installation
 
-When installing ServiceControl directly, through one of the [above solutions](#windows-installation), it includes an embedded RavenDB instance that stores all the data required for generating usage reports (and any other functions of ServiceControl that you may use). When using containers, a separate RavenDB database is required. This can also be containerized, allowing for a single docker compose to install all dependencies. An example of this can be found in the [Platform Container Examples repository](https://github.com/Particular/PlatformContainerExamples).
+When installing ServiceControl directly, through one of the [above solutions](#windows-installation), it includes an embedded RavenDB instance that stores all the data required for generating usage reports (and any other functions of ServiceControl that you may use). When using containers, a separate RavenDB database is required that can also be containerized. An example of this can be found in the [Platform Container Examples repository](https://github.com/Particular/PlatformContainerExamples).
 
 The containers required for generating a usage report are:
 
@@ -79,7 +79,7 @@ The containers required for generating a usage report are:
 - [ServiceControl](/servicecontrol/servicecontrol-instances/deployment/containers.md)
 > [!WARNING]
 > By default, the ServiceControl instance will immediately start reading from the `error` queue when it starts. If this is not desired, e.g. if you have another process that monitors the error queue, then one of the following parameters should be supplied to the `docker run` command
->  - -e SERVICEBUS_ERRORQUEUE=<<name of non-existing queue, e.g. `errornotused`>> 
+>  - -e SERVICEBUS_ERRORQUEUE=<<name of non-existing queue, e.g. `errornotused`>>
 >  - -e SERVICECONTROL_INGESTERRORMESSAGES=false
 - [ServicePulse](/servicepulse/containerization/)
 
