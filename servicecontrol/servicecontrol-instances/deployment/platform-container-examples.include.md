@@ -1,2 +1,2 @@
 > [!TIP]
-> For examples of ServiceControl containers used together, including Docker Compose and Kubernetes examples, see the [Platform Container Examples repository](https://github.com/Particular/PlatformContainerExamples).
+> For examples of ServiceControl containers used together, including Docker Compose and Helm chart, see the [Platform Container Examples repository](https://github.com/Particular/PlatformContainerExamples).
