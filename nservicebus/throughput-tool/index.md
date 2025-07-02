@@ -22,7 +22,7 @@ redirects:
 >
 > If necessary, [open a support case](https://customers.particular.net/request-support/licensing) to get help with installing or configuring ServicePulse for usage data collection.
 
-The Particular endpoint throughput counter tool can typically be installed on a [user's workstation](#questions-does-the-tool-need-to-run-on-my-production-server) and run against a production system to measure the throughput of each endpoint over a period of time.
+The Particular endpoint throughput counter tool can typically be installed on a [user's workstation](#frequently-asked-questions-does-the-tool-need-to-run-on-my-production-server) and run against a production system to measure the throughput of each endpoint over a period of time.
 
 ## Installation
 
@@ -495,7 +495,7 @@ To find where a ServiceControl instance might be:
 
 If a ServiceControl instance can't be found, email contact@particular.net for instructions on how to estimate the number of endpoints and system throughput.
 
-## Questions
+## Frequently Asked Questions
 
 ### What does the tool do
 
@@ -511,6 +511,10 @@ It assists in gathering the information needed for licensing NServiceBus and the
 
 No, the tool does not automatically submit report data to Particular Software or any other party. The collected data is only used to generate a local report. That report can then be sent to Particular Software as needed.
 
+### Where do I find the generated local report
+
+The generated local report can be found in the same directory from which the tool ran.
+
 ### How do I choose a data collection method from all of the options
 
 The data collection method to use depends on the message transport of the system being measured. Refer to the documentation on [Running the tool](/nservicebus/throughput-tool/#running-the-tool) to learn more about the data collection methods for different message transport configurations.
@@ -519,7 +523,7 @@ The data collection method to use depends on the message transport of the system
 
 No, in most cases, the tool does not need to be run on a production server. Often, the tool can be run on a developer workstation that has access to a production environment. The ability to do this depends on the configuration of the production system.
 
-See [How does the tool measure throughput](#questions-how-does-the-tool-measure-throughput) below for details on how the tool behaves when analyzing data from each collection method.
+See [How does the tool measure throughput](#frequently-asked-questions-how-does-the-tool-measure-throughput) below for details on how the tool behaves when analyzing data from each collection method.
 
 ### How do I decide which data collection option to use
 
