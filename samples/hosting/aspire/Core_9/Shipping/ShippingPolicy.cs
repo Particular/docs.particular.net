@@ -16,7 +16,7 @@ class ShippingPolicy(ILogger<ShippingPolicy> log) : Saga<ShippingPolicyData>,
 
     public Task Handle(OrderPlaced message, IMessageHandlerContext context)
     {
-        log.LogInformation($"OrderPlaced message received.");
+        log.LogInformation("OrderPlaced message received.");
         Data.IsOrderPlaced = true;
 
         return ProcessOrder(context);
@@ -24,7 +24,7 @@ class ShippingPolicy(ILogger<ShippingPolicy> log) : Saga<ShippingPolicyData>,
 
     public Task Handle(OrderBilled message, IMessageHandlerContext context)
     {
-        log.LogInformation($"OrderBilled message received.");
+        log.LogInformation("OrderBilled message received.");
         Data.IsOrderBilled = true;
 
         return ProcessOrder(context);

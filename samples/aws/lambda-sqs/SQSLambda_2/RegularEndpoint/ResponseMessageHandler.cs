@@ -7,7 +7,7 @@ public class ResponseMessageHandler(ILogger<ResponseMessageHandler> logger) : IH
 
     public Task Handle(ResponseMessage message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Handling {nameof(ResponseMessage)} in RegularEndpoint");
+        logger.LogInformation("Handling {MessageType} in RegularEndpoint", nameof(ResponseMessage));
         return Task.CompletedTask;
     }
 }

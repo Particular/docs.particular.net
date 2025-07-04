@@ -24,7 +24,7 @@ public class FilterIncomingMessages: Behavior<ITransportReceiveContext>
         }
         else
         {
-            logger.LogDebug($"Dropping message {context.Message.MessageId} as it does not match the current session");
+            logger.LogDebug("Dropping message {MessageId} as it does not match the current session", context.Message.MessageId);
         }
     }
 

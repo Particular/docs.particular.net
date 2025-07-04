@@ -17,7 +17,7 @@ class ShipWithMapleHandler(ILogger<ShipWithMapleHandler> logger) : IHandleMessag
     {
         var waitingTime = Random.Shared.Next(MaximumTimeMapleMightRespond);
 
-        logger.LogInformation($"ShipWithMapleHandler: Delaying Order [{message.OrderId}] {waitingTime} seconds.");
+        logger.LogInformation("ShipWithMapleHandler: Delaying Order [{OrderId}] {WaitingTime} seconds.", message.OrderId, waitingTime);
 
         await Task.Delay(waitingTime * 1000, CancellationToken.None);
 

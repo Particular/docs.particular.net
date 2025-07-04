@@ -10,7 +10,7 @@ namespace EntityFramework
     {
         public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
         {
-            logger.LogInformation($"Order {message.OrderId} worth {message.Value} persisted by EF");
+            logger.LogInformation("Order {OrderId} worth {Value} persisted by EF", message.OrderId, message.Value);
 
             #region StoreDataEf
 

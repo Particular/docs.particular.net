@@ -8,11 +8,11 @@ public class RequestDataMessageHandler (ILogger<RequestDataMessageHandler> logge
     IHandleMessages<RequestDataMessage>
 #endregion
 {
-    
+
     public async Task Handle(RequestDataMessage message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Received request {message.DataId}.");
-        logger.LogInformation($"String received: {message.String}.");
+        logger.LogInformation("Received request {DataId}.", message.DataId);
+        logger.LogInformation("String received: {Description}.", message.String);
 
         #region DataResponseReply
 

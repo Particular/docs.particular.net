@@ -13,7 +13,7 @@ class SendLimitedTimeOffer(ILogger<SendLimitedTimeOffer> logger) :
         {
             Debugger.Break();
         }
-        logger.LogInformation($"Handler WhenCustomerIsPreferredSendLimitedTimeOffer invoked for CustomerId: {message.ClientId}");
+        logger.LogInformation("Handler WhenCustomerIsPreferredSendLimitedTimeOffer invoked for CustomerId: {ClientId}", message.ClientId);
         return Task.CompletedTask;
     }
 }

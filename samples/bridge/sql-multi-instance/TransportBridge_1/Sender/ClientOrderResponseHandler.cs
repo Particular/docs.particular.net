@@ -8,7 +8,7 @@ public class ClientOrderResponseHandler(ILogger<ClientOrderResponseHandler> logg
 {
     public Task Handle(ClientOrderResponse message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Received ClientOrderResponse for ID {message.OrderId}");
+        logger.LogInformation("Received ClientOrderResponse for ID {OrderId}", message.OrderId);
         return Task.CompletedTask;
     }
 }

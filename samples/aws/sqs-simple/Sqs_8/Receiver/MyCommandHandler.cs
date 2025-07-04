@@ -5,7 +5,7 @@ public class MyCommandHandler(ILogger<MyCommandHandler> logger) : IHandleMessage
 {
     public Task Handle(MyCommand commandMessage, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Received {nameof(MyCommand)} with a payload of {commandMessage.Data?.Length ?? 0} bytes.");
+        logger.LogInformation("Received {Command} with a payload of {Length} bytes.", nameof(MyCommand), commandMessage.Data?.Length ?? 0);
         return Task.CompletedTask;
     }
 }

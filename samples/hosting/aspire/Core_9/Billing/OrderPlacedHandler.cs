@@ -7,7 +7,7 @@ public class OrderPlacedHandler(ILogger<OrderPlacedHandler> log) : IHandleMessag
 {
     public Task Handle(OrderPlaced message, IMessageHandlerContext context)
     {
-        log.LogInformation($"Received OrderPlaced, OrderId = {message.OrderId} - Charging credit card...");
+        log.LogInformation("Received OrderPlaced, OrderId = {OrderId} - Charging credit card...", message.OrderId);
 
         var orderBilled = new OrderBilled
         {

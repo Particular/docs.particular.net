@@ -31,7 +31,7 @@ class ThirdPartyMonitor : CustomCheck
 
             if (response.IsSuccessStatusCode)
             {
-                logger.LogInformation($"Succeeded in contacting {url}");
+                logger.LogInformation("Succeeded in contacting {Url}", url);
                 return CheckResult.Pass;
             }
 

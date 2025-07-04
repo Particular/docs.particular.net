@@ -4,7 +4,7 @@ public class StageInventoryHandler(ILogger<StageInventoryHandler> logger) : IHan
 {
     public async Task Handle(OrderReceived message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Staging inventory for order {message.OrderId}.");
+        logger.LogInformation("Staging inventory for order {OrderId}.", message.OrderId);
 
         await Task.Delay(TimeSpan.FromSeconds(Random.Shared.Next(2, 5)), context.CancellationToken);
 

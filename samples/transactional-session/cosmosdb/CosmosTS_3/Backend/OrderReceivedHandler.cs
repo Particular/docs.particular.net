@@ -13,7 +13,7 @@ class OrderReceivedHandler : IHandleMessages<OrderReceived>
 
     public async Task Handle(OrderReceived message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Received {nameof(OrderReceived)} event for order #{message.OrderId}");
+        logger.LogInformation("Received {Event} event for order #{OrderId}", nameof(OrderReceived), message.OrderId);
 
         var session = context.SynchronizedStorageSession.CosmosPersistenceSession();
 

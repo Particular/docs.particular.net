@@ -9,6 +9,6 @@ class MyMessageHandler2 (ILogger<MyMessageHandler2> logger):
     {
         await context.Store(new MyOtherEntity());
 
-        logger.LogInformation($"{context.MessageId} got UoW instance {context.GetSession().GetHashCode()}");
+        logger.LogInformation("{MessageId} got UoW instance {SessionHash}", context.MessageId, context.GetSession().GetHashCode());
     }
 }

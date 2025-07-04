@@ -16,7 +16,7 @@ namespace Sender
 
         public Task Handle(Pong message, IMessageHandlerContext context)
         {
-            logger.LogInformation($"Processing Pong message: {message.Acknowledgement}");
+            logger.LogInformation("Processing Pong message: {Acknowledgement}", message.Acknowledgement);
 
             return Task.CompletedTask;
         }

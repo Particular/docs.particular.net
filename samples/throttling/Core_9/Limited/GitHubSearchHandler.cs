@@ -13,10 +13,10 @@ public class GitHubSearchHandler(ILogger<GitHubSearchHandler> logger) :
 
     public async Task Handle(SearchGitHub message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Received search request for branch '{message.Branch}' on '{message.Owner}/{message.Repository}'");
+        logger.LogInformation("Received search request for branch '{Branch}' on '{Owner}/{Repository}'", message.Branch, message.Owner, message.Repository);
 
         var result = await GitHubClient.Repository.Branch.Get(message.Owner, message.Repository, "master");
-        logger.LogInformation($"Found commit '{result.Commit.Sha}' for branch '{message.Branch}'. Replying.");
+        logger.LogInformation("Found commit '{CommitSha}' for branch '{Branch}'. Replying.", result.Commit.Sha, message.Branch);
         var response = new SearchResponse
         {
             Branch = message.Branch,

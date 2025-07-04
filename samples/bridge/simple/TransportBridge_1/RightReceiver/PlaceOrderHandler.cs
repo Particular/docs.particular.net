@@ -6,7 +6,7 @@ public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) : IHandleMessa
 {
     public async Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Received PlaceOrder Command with Id {message.OrderId}");
+        logger.LogInformation("Received PlaceOrder Command with Id {OrderId}", message.OrderId);
 
         await context.Reply(new OrderResponse { OrderId = message.OrderId });
     }

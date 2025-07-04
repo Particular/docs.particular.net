@@ -7,8 +7,7 @@ class CancelOrderHandler(ILogger<CancelOrderHandler> logger) :
 {
     public Task Handle(CancelOrder message, IMessageHandlerContext context)
     {
-
-        logger.LogInformation($"CancelOrder command received: {message.OrderId}");
+        logger.LogInformation("CancelOrder command received: {OrderId}", message.OrderId);
         return Task.CompletedTask;
     }
 

@@ -2,7 +2,7 @@
 {
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Received message #{message.Number}");
+        logger.LogInformation("Received message #{Number}", message.Number);
         return Task.CompletedTask;
     }
 }

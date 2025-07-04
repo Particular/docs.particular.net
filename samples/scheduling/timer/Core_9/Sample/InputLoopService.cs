@@ -21,7 +21,7 @@ namespace Sample
                 {
                     await messageSession.SendLocal(new MyScheduledTask());
 
-                    logger.LogInformation(nameof(MyScheduledTask) + " scheduled");
+                    logger.LogInformation("{Task} scheduled", nameof(MyScheduledTask));
                 }
                 catch (Exception ex)
                 {

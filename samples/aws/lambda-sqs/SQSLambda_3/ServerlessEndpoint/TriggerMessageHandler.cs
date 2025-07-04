@@ -7,7 +7,7 @@ public class TriggerMessageHandler(ILogger<TriggerMessageHandler> logger) : IHan
 {
     public async Task Handle(TriggerMessage message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Handling {nameof(TriggerMessage)} in ServerlessEndpoint.");
+        logger.LogInformation("Handling {MessageType} in ServerlessEndpoint.", nameof(TriggerMessage));
         await context.Send(new ResponseMessage());
     }
 }

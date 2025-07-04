@@ -12,7 +12,7 @@ class MyMessageHandler1(IMySession session, ILogger<MyMessageHandler1> logger) :
     {
         await session.Store(new MyEntity());
 
-        logger.LogInformation($"{context.MessageId} got UOW instance {session.GetHashCode()}");
+        logger.LogInformation("{MessageId} got UOW instance {SessionHash}", context.MessageId, session.GetHashCode());
     }
 }
 

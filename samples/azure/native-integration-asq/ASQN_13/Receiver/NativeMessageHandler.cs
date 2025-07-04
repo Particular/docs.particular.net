@@ -6,7 +6,7 @@ public class NativeMessageHandler(ILogger<NativeMessageHandler> logger) : IHandl
 {
     public Task Handle(NativeMessage message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Message content: {message.Content}");
+        logger.LogInformation("Message content: {Content}", message.Content);
 
         return Task.CompletedTask;
     }

@@ -7,7 +7,7 @@ public class GitHubSearchResponseHandler(ILogger<GitHubSearchResponseHandler> lo
 {
     public Task Handle(SearchResponse message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Found commit '{message.CommitSha}' for branch '{message.Branch}'.");
+        logger.LogInformation("Found commit '{CommitSha}' for branch '{Branch}.'", message.CommitSha, message.Branch);
         return Task.CompletedTask;
     }
 }

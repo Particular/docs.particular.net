@@ -8,7 +8,7 @@ partial class Program
     {
         public Task Handle(MyScheduledTask message, IMessageHandlerContext context)
         {
-            logger.LogInformation(nameof(MyScheduledTask) + " invoked");
+            logger.LogInformation("{Task} invoked", nameof(MyScheduledTask));
             return Task.CompletedTask;
         }
     }

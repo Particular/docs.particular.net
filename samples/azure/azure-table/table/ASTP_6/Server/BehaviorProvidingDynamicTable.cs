@@ -14,13 +14,13 @@ class BehaviorProvidingDynamicTable(ILogger<BehaviorProvidingDynamicTable> logge
             context.Headers.TryGetValue(Headers.SagaType, out var sagaTypeHeader) && sagaTypeHeader.Contains(nameof(ShipOrderSaga)))
         {
 
-            logger.LogInformation($"Message '{context.Message.MessageType.FullName}' destined to be handled by '{nameof(ShipOrderSaga)}' will use 'ShipOrderSagaData' table.");
+            logger.LogInformation("Message '{MessageType}' destined to be handled by '{SagaType}' will use '{TableName}' table.", context.Message.MessageType.FullName, nameof(ShipOrderSaga), "ShipOrderSagaData");
 
             context.Extensions.Set(new TableInformation("ShipOrderSagaData"));
         }
         else
         {
-            logger.LogInformation($"Message '{context.Message.MessageType.FullName}' destined to be handled by '{nameof(OrderSaga)}' will the default table.");
+            logger.LogInformation("Message '{MessageType}' destined to be handled by '{SagaType}' will use the default table.", context.Message.MessageType.FullName, nameof(OrderSaga));
         }
 
         return next();

@@ -10,7 +10,7 @@ namespace Shipping
     {
         public Task Handle(OrderBilled message, IMessageHandlerContext context)
         {
-            logger.LogInformation($"Received OrderBilled, OrderId = {message.OrderId} - Should we ship now?");
+            logger.LogInformation("Received OrderBilled, OrderId = {OrderId} - Should we ship now?", message.OrderId);
             return Task.CompletedTask;
         }
     }

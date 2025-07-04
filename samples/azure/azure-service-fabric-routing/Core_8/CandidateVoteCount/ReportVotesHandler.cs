@@ -6,7 +6,7 @@ public class ReportVotesHandler :
 {
     public Task Handle(ReportVotes message, IMessageHandlerContext context)
     {
-        Logger.Log($"Closing voting, {message.Candidate} got {message.NumberOfVotes} votes ");
+        Logger.Log("Closing voting, {Candidate} got {NumberOfVotes} votes", message.Candidate, message.NumberOfVotes);
 
         return Task.FromResult(true);
     }

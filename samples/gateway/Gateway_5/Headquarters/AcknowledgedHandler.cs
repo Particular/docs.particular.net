@@ -6,7 +6,7 @@ public class AcknowledgedHandler(ILogger<AcknowledgedHandler> logger) : IHandleM
 {
     public Task Handle(PriceUpdateAcknowledged message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Price update received by: {message.BranchOffice}");
+        logger.LogInformation("Price update received by: {BranchOffice}", message.BranchOffice);
         return Task.CompletedTask;
     }
 }

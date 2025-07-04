@@ -11,7 +11,7 @@ public class MyHandler(ILogger<MyHandler> logger) : IHandleMessages<MyMessage>
         var nativeAppId = context.Extensions.Get<BasicDeliverEventArgs>().BasicProperties.AppId;
         #endregion
 
-        logger.LogInformation($"Got `MyMessage` with id: {context.MessageId}, property value: {message.SomeProperty}, native application id: {nativeAppId}");
+        logger.LogInformation("Got `MyMessage` with id: {MessageId}, property value: {SomeProperty}, native application id: {NativeAppId}", context.MessageId, message.SomeProperty, nativeAppId);
         return Task.CompletedTask;
     }
 }

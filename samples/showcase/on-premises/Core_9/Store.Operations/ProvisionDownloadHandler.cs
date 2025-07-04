@@ -15,7 +15,7 @@ public class ProvisionDownloadHandler(ILogger<ProvisionDownloadHandler> logger) 
         }
 
         var products = string.Join(", ", message.ProductIds);
-        logger.LogInformation($"Provision the products and make the Urls available to the Content management for download ...[{products}] product(s) to provision");
+        logger.LogInformation("Provision the products and make the Urls available to the Content management for download ...[{Products}] product(s) to provision", products);
 
         var response = new ProvisionDownloadResponse
         {

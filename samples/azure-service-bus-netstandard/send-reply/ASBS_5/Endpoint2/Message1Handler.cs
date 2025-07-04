@@ -5,10 +5,10 @@ using NServiceBus;
 public class Message1Handler (ILogger<Message1Handler> logger):
     IHandleMessages<Message1>
 {
- 
+
     public Task Handle(Message1 message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Received Message1: {message.Property}");
+        logger.LogInformation("Received Message1: {Property}", message.Property);
 
         var message2 = new Message2
         {

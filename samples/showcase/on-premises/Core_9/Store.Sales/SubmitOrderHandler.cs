@@ -15,11 +15,11 @@ public class SubmitOrderHandler(ILogger<SubmitOrderHandler> logger) :
             Debugger.Break();
         }
 
-        logger.LogInformation($"Received an order #{message.OrderNumber} for [{string.Join(", ", message.ProductIds)}] products(s).");
+        logger.LogInformation("Received an order #{OrderNumber} for [{ProductIds}] products(s).", message.OrderNumber, string.Join(", ", message.ProductIds));
 
         logger.LogInformation("The credit card values will be encrypted when looking at the messages in the queues");
-        logger.LogInformation($"CreditCard Number is {message.CreditCardNumber}");
-        logger.LogInformation($"CreditCard Expiration Date is {message.ExpirationDate}");
+        logger.LogInformation("CreditCard Number is {CreditCardNumber}", message.CreditCardNumber);
+        logger.LogInformation("CreditCard Expiration Date is {ExpirationDate}", message.ExpirationDate);
 
         // tell the client the order was received
         var orderPlaced = new OrderPlaced

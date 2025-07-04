@@ -7,11 +7,11 @@ public class Handler(ILogger<Handler> logger) :
 {
     public Task Handle(MessageWithSecretData message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"I know the secret - it's '{message.EncryptedSecret}'");
-        logger.LogInformation($"SubSecret: {message.SubProperty.EncryptedSecret}");
+        logger.LogInformation("I know the secret - it's '{EncryptedSecret}'", message.EncryptedSecret);
+        logger.LogInformation("SubSecret: {SubSecret}", message.SubProperty.EncryptedSecret);
         foreach (var creditCard in message.CreditCards)
         {
-            logger.LogInformation($"CreditCard: {creditCard.EncryptedNumber} is valid to {creditCard.ValidTo}");
+            logger.LogInformation("CreditCard: {EncryptedNumber} is valid to {ValidTo}", creditCard.EncryptedNumber, creditCard.ValidTo);
         }
         return Task.CompletedTask;
     }

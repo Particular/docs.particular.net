@@ -9,7 +9,7 @@ public class OrderLifecycleSaga(ILogger<OrderLifecycleSaga> logger) :
     IAmStartedByMessages<OrderSubmitted>,
     IHandleTimeouts<OrderTimeout>
 {
-  
+
     public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
         Data.OrderId = message.OrderId;
@@ -19,7 +19,7 @@ public class OrderLifecycleSaga(ILogger<OrderLifecycleSaga> logger) :
 
     public Task Timeout(OrderTimeout state, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Order {Data.OrderId} has timed out");
+        logger.LogInformation("Order {OrderId} has timed out", Data.OrderId);
 
         return Task.CompletedTask;
     }

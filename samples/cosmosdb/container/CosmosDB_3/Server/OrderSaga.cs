@@ -20,7 +20,7 @@ public class OrderSaga(ILogger<OrderSaga> logger) :
         Data.OrderId = message.OrderId;
         Data.OrderDescription = $"The saga for order {message.OrderId}";
 
-        logger.LogInformation($"Received StartOrder message {Data.OrderId}. Starting Saga");
+        logger.LogInformation("Received StartOrder message {OrderId}. Starting Saga", Data.OrderId);
 
         var shipOrder = new ShipOrder
         {
@@ -32,7 +32,7 @@ public class OrderSaga(ILogger<OrderSaga> logger) :
 
     public Task Handle(CompleteOrder message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Saga with OrderId {Data.OrderId} completed");
+        logger.LogInformation("Saga with OrderId {OrderId} completed", Data.OrderId);
         MarkAsComplete();
         var orderCompleted = new OrderCompleted
         {

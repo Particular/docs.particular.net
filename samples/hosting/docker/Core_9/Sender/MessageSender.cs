@@ -18,7 +18,7 @@ class MessageSender(ILogger<MessageSender> logger, IMessageSession messageSessio
 
         await messageSession.Send(message, cancellationToken);
 
-        logger.LogInformation($"Message sent, requesting to get data by id: {guid:N}");
+        logger.LogInformation("Message sent, requesting to get data by id: {Guid}", guid.ToString("N"));
         logger.LogInformation("Use 'docker-compose down' to stop containers.");
     }
 

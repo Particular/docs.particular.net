@@ -10,7 +10,7 @@ public class OrderHandler (ILogger<OrderHandler> logger):
 
     public Task Handle(ClientOrder message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Handling ClientOrder with ID {message.OrderId}");
+        logger.LogInformation("Handling ClientOrder with ID {OrderId}", message.OrderId);
         var clientOrderAccepted = new ClientOrderResponse
         {
             OrderId = message.OrderId

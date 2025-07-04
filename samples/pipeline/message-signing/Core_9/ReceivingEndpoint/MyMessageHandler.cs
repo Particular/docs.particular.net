@@ -10,8 +10,8 @@ class MyMessageHandler(ILogger<MyMessageHandler> logger) :
         var signature = context.MessageHeaders["X-Message-Signature"];
 
         logger.LogInformation("Handling message...");
-        logger.LogInformation($"  Contents = {message.Contents}");
-        logger.LogInformation($"  Signature = {signature}");
+        logger.LogInformation("  Contents = {Contents}", message.Contents);
+        logger.LogInformation("  Signature = {Signature}", signature);
 
         return Task.CompletedTask;
     }

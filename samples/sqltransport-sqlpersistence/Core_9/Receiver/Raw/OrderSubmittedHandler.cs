@@ -10,7 +10,7 @@ namespace Raw
     {
         public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
         {
-            logger.LogInformation($"Order {message.OrderId} worth {message.Value} persisted by raw sql");
+            logger.LogInformation("Order {OrderId} worth {Value} persisted by raw sql", message.OrderId, message.Value);
 
             #region StoreDataRaw
 

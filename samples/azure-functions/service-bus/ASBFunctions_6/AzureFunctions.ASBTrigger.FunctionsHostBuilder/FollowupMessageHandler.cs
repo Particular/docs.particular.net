@@ -6,11 +6,11 @@ using NServiceBus;
 
 public class FollowupMessageHandler(CustomComponent customComponent, ILogger<FollowupMessageHandler> logger) : IHandleMessages<FollowupMessage>
 {
-   
+
     public Task Handle(FollowupMessage message, IMessageHandlerContext context)
     {
-        logger.LogWarning($"Handling {nameof(FollowupMessage)} in {nameof(FollowupMessageHandler)}.");
-        logger.LogWarning($"Custom component returned: {customComponent.GetValue()}");
+        logger.LogWarning("Handling {MessageType} in {HandlerType}.", nameof(FollowupMessage), nameof(FollowupMessageHandler));
+        logger.LogWarning("Custom component returned: {Value}", customComponent.GetValue());
 
         return Task.CompletedTask;
     }

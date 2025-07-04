@@ -33,7 +33,7 @@ public class ValidationMessageMutator(ILogger<ValidationMessageMutator> logger) 
 
         if (isValid)
         {
-            logger.LogInformation($"Validation succeeded for message: {message}");
+            logger.LogInformation("Validation succeeded for message: {Message}", message);
             return;
         }
 

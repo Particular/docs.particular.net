@@ -20,7 +20,7 @@ public class ShipOrderHandler(ILogger<ShipOrderHandler> logger) :
         Store(orderShippingInformation, context);
 
 
-        logger.LogInformation($"Order Shipped. OrderId {message.OrderId}");
+        logger.LogInformation("Order Shipped. OrderId {OrderId}", message.OrderId);
 
         return context.Reply(new OrderShipped { OrderId = orderShippingInformation.OrderId, ShippingDate = orderShippingInformation.ShippedAt });
     }
@@ -33,5 +33,5 @@ public class ShipOrderHandler(ILogger<ShipOrderHandler> logger) :
 
         session.Batch.Add(new TableTransactionAction(TableTransactionActionType.Add, orderShippingInformation));
     }
- 
+
 }

@@ -9,7 +9,7 @@ public class AuditThisMessageHandler(ILogger<AuditThisMessageHandler> logger) :
     {
         if(message.Error) throw new System.Exception("Simulated error in message handler");
 
-        logger.LogInformation($"Handling {message.GetType().Name} with content: {message.Content}");
+        logger.LogInformation("Handling {MessageType} with content: {Content}", message.GetType().Name, message.Content);
         return Task.CompletedTask;
     }
 }

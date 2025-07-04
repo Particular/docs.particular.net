@@ -6,7 +6,7 @@ public class ReportZipCodeHandler :
 {
     public Task Handle(ReportZipCode message, IMessageHandlerContext context)
     {
-        Logger.Log($"Closing voting, {message.ZipCode} voted {message.NumberOfVotes} times ");
+        Logger.Log("Closing voting, {ZipCode} voted {NumberOfVotes} times", message.ZipCode, message.NumberOfVotes);
 
         return Task.FromResult(true);
     }

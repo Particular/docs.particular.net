@@ -9,7 +9,7 @@ namespace Receiver
     {
         public Task Handle(SomeMessage message, IMessageHandlerContext context)
         {
-           logger.LogInformation($"Got message {message.Counter}");
+           logger.LogInformation("Got message {Counter}", message.Counter);
             return Task.CompletedTask;
         }
     }

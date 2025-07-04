@@ -7,7 +7,7 @@ public class PlaceOrderHandler(ILogger<PlaceOrderHandler> log) : IHandleMessages
 {
     public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
-        log.LogInformation($"Received PlaceOrder, OrderId = {message.OrderId}");
+        log.LogInformation("Received PlaceOrder, OrderId = {OrderId}", message.OrderId);
 
         // This is normally where some business logic would occur
 

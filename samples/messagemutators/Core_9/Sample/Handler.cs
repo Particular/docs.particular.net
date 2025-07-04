@@ -11,7 +11,7 @@ public class Handler(ILogger<Handler> logger) :
 
     public Task Handle(CreateProductCommand message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Received a CreateProductCommand message: {message}");
+        logger.LogInformation("Received a CreateProductCommand message: {Message}", message);
         return Task.CompletedTask;
     }
 }

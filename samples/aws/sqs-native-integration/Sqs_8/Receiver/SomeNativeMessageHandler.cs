@@ -11,16 +11,16 @@ public class SomeNativeMessageHandler(ILogger<SomeNativeMessageHandler> logger) 
         var nativeMessage = context.Extensions.Get<Message>();
         var nativeAttributeFound = nativeMessage.MessageAttributes.TryGetValue("SomeKey", out var attributeValue);
 
-        logger.LogInformation($"Received {nameof(SomeNativeMessage)} with message {eventMessage.ThisIsTheMessage}.");
+        logger.LogInformation("Received {MessageType} with message {Message}", nameof(SomeNativeMessage), eventMessage.ThisIsTheMessage);
 
         if (nativeAttributeFound)
         {
-            logger.LogInformation($"Found attribute 'SomeKey' with value '{attributeValue.StringValue}'");
+            logger.LogInformation("Found attribute 'SomeKey' with value '{AttributeValue}'", attributeValue.StringValue);
         }
 
         if (context.ReplyToAddress != null)
         {
-            logger.LogInformation($"Sending reply to '{context.ReplyToAddress}'");
+            logger.LogInformation("Sending reply to '{ReplyToAddress}'", context.ReplyToAddress);
 
             await context.Reply(new SomeReply());
         }

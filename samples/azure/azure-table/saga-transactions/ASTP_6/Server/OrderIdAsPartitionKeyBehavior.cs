@@ -31,17 +31,17 @@ class OrderIdAsPartitionKeyBehavior : Behavior<IIncomingLogicalMessageContext>
 
         if (context.Headers.TryGetValue(Headers.SagaId, out var sagaIdHeader))
         {
-            logger.LogInformation($"Saga Id Header: {sagaIdHeader}");
+            logger.LogInformation("Saga Id Header: {SagaIdHeader}", sagaIdHeader);
         }
 
         if (context.Extensions.TryGet<TableInformation>(out var tableInformation))
         {
 
-            logger.LogInformation($"Table Information: {tableInformation.TableName}");
+            logger.LogInformation("Table Information: {TableName}", tableInformation.TableName);
         }
 
 
-        logger.LogInformation($"Found partition key '{context.Extensions.Get<TableEntityPartitionKey>().PartitionKey}' from '{nameof(IProvideOrderId)}'");
+        logger.LogInformation("Found partition key '{PartitionKey}' from '{TypeName}'", context.Extensions.Get<TableEntityPartitionKey>().PartitionKey, nameof(IProvideOrderId));
 
         await next();
     }

@@ -8,7 +8,7 @@ namespace Dapper
     {
         public Task Handle(OrderSubmitted message, IMessageHandlerContext context)
         {
-            logger.LogInformation($"Order {message.OrderId} worth {message.Value} persisted by Dapper");
+            logger.LogInformation("Order {OrderId} worth {Value} persisted by Dapper", message.OrderId, message.Value);
 
             #region StoreDataDapper
 

@@ -17,7 +17,7 @@ class AccessToAmazonSqsNativeMessageBehavior(ILogger<AccessToAmazonSqsNativeMess
         //do something useful with the native message
         if (nativeAttributeFound)
         {
-            logger.LogInformation($"Intercepted the native message and found attribute 'SomeKey' with value '{attributeValue.StringValue}'");
+            logger.LogInformation("Intercepted the native message and found attribute 'SomeKey' with value '{AttributeValue}'", attributeValue.StringValue);
         }
 
         return next();

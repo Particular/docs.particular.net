@@ -11,7 +11,7 @@ public class DeleteBlobFunction(BlobContainerClient containerClient, ILogger<Del
     {
         var blob = containerClient.GetBlobClient(blobData.Name);
 
-        logger.LogInformation($"Deleting blob at {blobData.Name}");
+        logger.LogInformation("Deleting blob at {Name}", blobData.Name);
 
         await blob.DeleteIfExistsAsync();
     }
