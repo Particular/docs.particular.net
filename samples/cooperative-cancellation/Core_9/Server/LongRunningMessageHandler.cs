@@ -1,22 +1,14 @@
-using NServiceBus;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using NServiceBus;
 
-public class LongRunningMessageHandler :
+public class LongRunningMessageHandler(ILogger<LongRunningMessageHandler> logger) :
     IHandleMessages<LongRunningMessage>
 {
-    private readonly ILogger<LongRunningMessageHandler> logger;
-
-    public LongRunningMessageHandler(ILogger<LongRunningMessageHandler> logger)
-    {
-        this.logger = logger;
-    }
-
     #region LongRunningMessageHandler
     public async Task Handle(LongRunningMessage message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Received message {message.DataId}. Entering loop.");
+        logger.LogInformation("Received message {MessageDataId}. Entering loop.", message.DataId);
 
         while (true)
         {
