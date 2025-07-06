@@ -1,7 +1,7 @@
 ---
 title: Metrics
 summary: Collect metric data about endpoint performance using the Metrics plugin
-reviewed: 2024-10-30
+reviewed: 2025-07-06
 component: Metrics
 versions: 'Metrics:*'
 related:
@@ -28,11 +28,10 @@ end
 
 MetricsSC -- Metric Data --> MQ
 
-MQ[Metrics Queue] -- Metric Data --> Monitoring[ServiceControl<br>Monitoring<br>Instance]
+MQ[Monitoring Queue] -- Metric Data --> Monitoring[ServiceControl<br>Monitoring<br>Instance]
 
 Monitoring -- Endpoint<br>performance<br>data --> ServicePulse
 ```
-
 
 ## Set up metrics
 

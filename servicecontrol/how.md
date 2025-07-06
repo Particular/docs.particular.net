@@ -1,7 +1,7 @@
 ---
 title: How does ServiceControl work?
 summary: An overview of how ServiceControl collects and processes messages and data from an NServiceBus system
-reviewed: 2025-02-14
+reviewed: 2025-07-06
 ---
 
 ServiceControl is a background process that will collect and store data and make it available via an HTTP API to ServicePulse and ServiceInsight.
@@ -23,21 +23,21 @@ graph LR
   end
 
   Audit -- Audit<br>data --> AuditQ(Audit queue)
-  AuditQ --> ServiceControlAudit[ServiceControl<br>audit instance]
-  ServiceControlAudit --> AuditLog(Audit.Log<br>queue)
+  AuditQ --> ServiceControlAudit[ServiceControl<br>Audit Instance]
+  ServiceControlAudit --> AuditLog(audit.log<br>queue)
   ServiceControlAudit -. Integration<br>events .-> Watchers
 
   Plugins -- Plugin data --> SCQ
   Plugins -- SagaAudit<br>data --> AuditQ(Audit queue)
-  SCQ(ServiceControl<br>queue) --> ServiceControlError
+  SCQ(ServiceControl<br> input queue<br>Particular.ServiceControl) --> ServiceControlError
 
   Error -- Error<br>data --> ErrorQ(Error queue)
-  ErrorQ --> ServiceControlError[ServiceControl<br>error instance]
-  ServiceControlError --> ErrorLog(Error.Log<br>queue)
+  ErrorQ --> ServiceControlError[ServiceControl<br>Error Instance]
+  ServiceControlError --> ErrorLog(error.log<br>queue)
   ServiceControlError -. Integration<br>events .-> Watchers[Subscribers]
 
-  Monitoring --> MonQ(Monitoring queue)
-  MonQ --> ServiceControlMonitoring[Monitoring instance]
+  Monitoring --> MonQ(Monitoring queue<br>Particular.Monitoring)
+  MonQ --> ServiceControlMonitoring[ServiceControl<br>Monitoring Instance]
 
   classDef Endpoints fill:#00A3C4,stroke:#00729C,color:#FFFFFF
   classDef ServiceControlInstance fill:#A84198,stroke:#92117E,color:#FFFFFF,stroke-width:4px

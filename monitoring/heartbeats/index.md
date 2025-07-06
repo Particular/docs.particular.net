@@ -1,7 +1,7 @@
 ---
 title: Heartbeats
 summary: Use the Heartbeat plugin to monitor the health of the endpoints
-reviewed: 2024-10-31
+reviewed: 2025-07-06
 component: Heartbeats
 isLearningPath: true
 versions: 'Heartbeats:*'
@@ -20,12 +20,12 @@ The Heartbeat plugin enables endpoint health monitoring by sending regular heart
 graph LR
 
 subgraph Endpoint
-Heartbeats
+Heartbeats[Heartbeats Plugin]
 end
 
 Heartbeats -- Heartbeat<br>Data --> SCQ
 
-SCQ[ServiceControl<br>Input Queue] --> SC[ServiceControl]
+SCQ[ServiceControl<br>Input Queue] --> SC[ServiceControl Error Instance]
 
 SC -. Integration<br/>Events .-> Integration[Integration<br/>Event Handler]
 
