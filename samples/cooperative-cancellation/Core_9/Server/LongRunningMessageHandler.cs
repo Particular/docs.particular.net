@@ -16,7 +16,7 @@ public class LongRunningMessageHandler :
     #region LongRunningMessageHandler
     public async Task Handle(LongRunningMessage message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Received message {message.DataId}. Entering loop.");
+        logger.LogInformation("Received message {DataId}. Entering loop.", message.DataId);
 
         while (true)
         {

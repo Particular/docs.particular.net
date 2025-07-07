@@ -20,11 +20,11 @@ public class PlaceOrderHandler(ILogger<PlaceDelayedOrderHandler> logger) :
             options.DelayDeliveryWith(TimeSpan.FromSeconds(5));
             options.RouteToThisEndpoint();
             await context.Send(message, options);
-            logger.LogInformation($"[Defer Message Handling] Deferring Message with Id: {message.Id}");
+            logger.LogInformation("[Defer Message Handling] Deferring Message with Id: {Id}", message.Id);
             return;
         }
 
-        logger.LogInformation($"[Defer Message Handling] Order for Product:{message.Product} placed with id: {message.Id}");
+        logger.LogInformation("[Defer Message Handling] Order for Product:{Product} placed with id: {Id}", message.Product, message.Id);
     }
     #endregion
 
