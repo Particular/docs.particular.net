@@ -131,7 +131,7 @@ sequenceDiagram
 
     User->>TransactionalSession: Commit()
     activate TransactionalSession
-    TransactionalSession->>Transport: Dispatch(controlMessage)
+    TransactionalSession->>Transport: Dispatch(dispatchMessage)
     TransactionalSession->>PendingTransportOperations: ConvertToOutboxOperations
     activate PendingTransportOperations
     PendingTransportOperations-->>TransactionalSession: outboxRecord
