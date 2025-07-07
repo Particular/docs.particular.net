@@ -7,7 +7,7 @@ public class MyCommandHandler(ILogger<MyCommandHandler> logger) : IHandleMessage
 {
     public Task Handle(MyCommand commandMessage, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Hello from {nameof(MyCommandHandler)}");
+        logger.LogInformation("Hello from {HandlerType}", nameof(MyCommandHandler));
 
         return Task.CompletedTask;
     }

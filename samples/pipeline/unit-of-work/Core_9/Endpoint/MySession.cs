@@ -7,7 +7,7 @@ class MySession(ILogger<MySession> logger) :
     IMySession,
     IDisposable
 {
-  
+
     List<object> entities = new List<object>();
 
     public void Dispose()
@@ -23,7 +23,7 @@ class MySession(ILogger<MySession> logger) :
     public Task Commit()
     {
         var entitiesStored = string.Join(", ", entities);
-        logger.LogInformation($"Entities {entitiesStored} stored in DB by session {GetHashCode()}");
+        logger.LogInformation("Entities {EntitiesStored} stored in DB by session {SessionHash}", entitiesStored, GetHashCode());
         return Task.CompletedTask;
     }
 

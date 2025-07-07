@@ -9,7 +9,7 @@ public class RequestMessageHandler(ILogger<RequestMessageHandler> logger) : IHan
 {
     public Task Handle(RequestMessage message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Request received with description: {message.Data}");
+        logger.LogInformation("Request received with description: {Data}", message.Data);
 
         var response = new ResponseMessage
         {
