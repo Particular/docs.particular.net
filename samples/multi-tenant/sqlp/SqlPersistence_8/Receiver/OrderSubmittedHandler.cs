@@ -9,7 +9,7 @@ public class OrderSubmittedHandler(ILogger<OrderSubmittedHandler> logger) :
 
     public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Order {message.OrderId} worth {message.Value} submitted");
+        logger.LogInformation("Order {OrderId} worth {Value} submitted", message.OrderId, message.Value);
 
         var order = new Order
         {

@@ -7,7 +7,7 @@ public class OrderAcceptedHandler(ILogger<OrderAcceptedHandler> logger) :
 
     public Task Handle(OrderAccepted message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Order {message.OrderId} accepted.");
+        logger.LogInformation("Order {OrderId} accepted.", message.OrderId);
         return Task.CompletedTask;
     }
 }
