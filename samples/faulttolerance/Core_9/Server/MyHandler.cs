@@ -8,7 +8,7 @@ public class MyHandler(ILogger<MyHandler> logger):
 {
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Message received. Id: {message.Id}");
+        logger.LogInformation("Message received. Id: {Id}", message.Id);
         // throw new Exception("Uh oh - something went wrong....");
         return Task.CompletedTask;
     }

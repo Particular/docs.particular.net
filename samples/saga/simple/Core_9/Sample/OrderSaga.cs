@@ -27,11 +27,9 @@ public class OrderSaga :
     public async Task Handle(StartOrder message, IMessageHandlerContext context)
     {
         // Correlation property Data.OrderId is automatically assigned with the value from message.OrderId;
-        logger.LogInformation($"StartOrder received with OrderId {message.OrderId}");
+        logger.LogInformation("StartOrder received with OrderId {OrderId}", message.OrderId);
 
-        logger.LogInformation($@"Sending a CompleteOrder that will be delayed by 10 seconds
-Stop the endpoint now to see the saga data in:
-{LearningLocationHelper.GetSagaLocation<OrderSaga>(Data.Id)}");
+        logger.LogInformation("Sending a CompleteOrder that will be delayed by 10 seconds. Stop the endpoint now to see the saga data in: {SagaLocation}", LearningLocationHelper.GetSagaLocation<OrderSaga>(Data.Id));
         var completeOrder = new CompleteOrder
         {
             OrderId = Data.OrderId
@@ -50,14 +48,14 @@ Stop the endpoint now to see the timeout data in the delayed directory
 
     public Task Handle(CompleteOrder message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"CompleteOrder received with OrderId {message.OrderId}");
+        logger.LogInformation("CompleteOrder received with OrderId {OrderId}", message.OrderId);
         MarkAsComplete();
         return Task.CompletedTask;
     }
 
     public Task Timeout(CancelOrder state, IMessageHandlerContext context)
     {
-        logger.LogInformation($"CompleteOrder not received soon enough OrderId {Data.OrderId}. Calling MarkAsComplete");
+        logger.LogInformation("CompleteOrder not received soon enough OrderId {OrderId}. Calling MarkAsComplete", Data.OrderId);
         MarkAsComplete();
         return Task.CompletedTask;
     }
