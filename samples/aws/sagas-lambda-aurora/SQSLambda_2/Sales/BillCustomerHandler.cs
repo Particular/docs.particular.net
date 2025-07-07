@@ -5,7 +5,7 @@ public class BillCustomerHandler(ILogger<BillCustomerHandler> logger) : IHandleM
   public async Task Handle(OrderReceived message, IMessageHandlerContext context)
     {
 
-        logger.LogInformation($"Billing customer for order {message.OrderId}.");
+        logger.LogInformation("Billing customer for order {OrderId}.", message.OrderId);
 
         await Task.Delay(TimeSpan.FromSeconds(Random.Shared.Next(2, 5)), context.CancellationToken);
 

@@ -31,7 +31,7 @@ public class ShipOrderHandler(ILogger<ShipOrderHandler> logger) :
 
         #endregion
 
-        logger.LogInformation($"Order Shipped. OrderId {message.OrderId}");
+        logger.LogInformation("Order Shipped. OrderId {OrderId}", message.OrderId);
 
         await context.Publish(new OrderShipped
         {
