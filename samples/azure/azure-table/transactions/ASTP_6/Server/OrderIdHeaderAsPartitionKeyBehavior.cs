@@ -11,7 +11,7 @@ class OrderIdHeaderAsPartitionKeyBehavior(ILogger<OrderIdHeaderAsPartitionKeyBeh
     {
         if (context.Message.Headers.TryGetValue("Sample.AzureTable.Transaction.OrderId", out var orderId))
         {
-            logger.LogInformation($"Found partition key '{orderId}' from header 'Sample.AzureTable.Transaction'");
+            logger.LogInformation("Found partition key '{PartitionKey}' from header 'Sample.AzureTable.Transaction'", orderId);
 
             context.Extensions.Set(new TableEntityPartitionKey(orderId));
         }

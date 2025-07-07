@@ -1,14 +1,22 @@
-﻿using System.Threading.Tasks;
+﻿
+using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
 using NServiceBus.Persistence.ServiceFabric;
 
 [ServiceFabricSaga(CollectionName = "candidate-votes")]
 public class CandidateVotesSaga :
     Saga<CandidateVotesSaga.CandidateVoteData>,
-        IAmStartedByMessages<VotePlaced>,
-        IHandleMessages<CloseElection>,
-        IHandleMessages<TrackZipCodeReply>
+    IAmStartedByMessages<VotePlaced>,
+    IHandleMessages<CloseElection>,
+    IHandleMessages<TrackZipCodeReply>
 {
+    private readonly ILogger<CandidateVotesSaga> logger;
+
+    public CandidateVotesSaga(ILogger<CandidateVotesSaga> logger)
+    {
+        this.logger = logger;
+    }
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<CandidateVoteData> mapper)
     {
@@ -47,7 +55,7 @@ public class CandidateVotesSaga :
 
     public Task Handle(TrackZipCodeReply message, IMessageHandlerContext context)
     {
-        Logger.Log($"##### CandidateVote saga for {Data.Candidate} got reply for zip code '{message.ZipCode}' tracking with current count of {message.CurrentCount}");
+        logger.LogInformation("##### CandidateVote saga for {Candidate} got reply for zip code '{ZipCode}' tracking with current count of {CurrentCount}", Data.Candidate, message.ZipCode, message.CurrentCount);
         return Task.CompletedTask;
     }
 

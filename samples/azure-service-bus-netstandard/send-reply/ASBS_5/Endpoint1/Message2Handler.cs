@@ -6,7 +6,7 @@ public class Message2Handler(ILogger<Message2Handler> logger) :
 {
     public Task Handle(Message2 message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Received Message2: {message.Property}");
+        logger.LogInformation("Received Message2: {Property}", message.Property);
         return Task.CompletedTask;
     }
 }
