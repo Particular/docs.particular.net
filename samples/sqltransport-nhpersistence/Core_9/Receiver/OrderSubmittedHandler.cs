@@ -5,10 +5,10 @@ using Microsoft.Extensions.Logging;
 public class OrderSubmittedHandler(ILogger<OrderSubmittedHandler> logger) :
     IHandleMessages<OrderSubmitted>
 {
-  
+
     public Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Order {message.OrderId} worth {message.Value} submitted");
+        logger.LogInformation("Order {OrderId} worth {Value} submitted", message.OrderId, message.Value);
 
         #region StoreUserData
 

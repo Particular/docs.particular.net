@@ -8,7 +8,7 @@ using Store.Messages.RequestResponse;
 public class OrderAcceptedHandler(ILogger<OrderAcceptedHandler> logger) :
     IHandleMessages<OrderAccepted>
 {
-   
+
     public Task Handle(OrderAccepted message, IMessageHandlerContext context)
     {
         if (DebugFlagMutator.Debug)
@@ -16,7 +16,7 @@ public class OrderAcceptedHandler(ILogger<OrderAcceptedHandler> logger) :
             Debugger.Break();
         }
 
-        logger.LogInformation($"Order # {message.OrderNumber} has been accepted, Let's provision the download -- Sending ProvisionDownloadRequest to the Store.Operations endpoint");
+        logger.LogInformation("Order # {OrderNumber} has been accepted, Let's provision the download -- Sending ProvisionDownloadRequest to the Store.Operations endpoint", message.OrderNumber);
 
         // send out a request (a event will be published when the response comes back)
         var request = new ProvisionDownloadRequest

@@ -8,7 +8,7 @@ using Store.Messages.RequestResponse;
 
 public class ProvisionDownloadResponseHandler(ILogger<ProvisionDownloadResponseHandler> logger) :
     IHandleMessages<ProvisionDownloadResponse>
-{   
+{
     Dictionary<string, string> productIdToUrlMap = new Dictionary<string, string>
         {
             {"videos", "https://particular.net/videos-and-presentations"},
@@ -25,9 +25,9 @@ public class ProvisionDownloadResponseHandler(ILogger<ProvisionDownloadResponseH
             Debugger.Break();
         }
 
-        logger.LogInformation($"Download for Order # {message.OrderNumber} has been provisioned, Publishing Download ready event");
+        logger.LogInformation("Download for Order # {OrderNumber} has been provisioned, Publishing Download ready event", message.OrderNumber);
 
-        logger.LogInformation($"Downloads for Order #{message.OrderNumber} is ready, publishing it.");
+        logger.LogInformation("Downloads for Order #{OrderNumber} is ready, publishing it.", message.OrderNumber);
         var downloadIsReady = new DownloadIsReady
         {
             OrderNumber = message.OrderNumber,
