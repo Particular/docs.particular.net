@@ -5,7 +5,7 @@ public class MyEventHandler(ILogger<MyEventHandler> logger) : IHandleMessages<My
 {
     public Task Handle(MyEvent message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"MyEvent received from server with id:{message.EventId}");
+        logger.LogInformation("MyEvent received from server with id:{EventId}", message.EventId);
         return Task.CompletedTask;
     }
 }

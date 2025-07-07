@@ -4,7 +4,7 @@ public class RequestMessageHandler(ILogger<RequestMessageHandler> logger) : IHan
 {
     public Task Handle(Request message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Request received with id:{message.RequestId}");
+        logger.LogInformation("Request received with id:{RequestId}", message.RequestId);
 
         var response = new Response
         {

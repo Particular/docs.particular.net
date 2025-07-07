@@ -17,7 +17,7 @@ public class ThrottlingBehavior(ILogger<ThrottlingBehavior> logger) :
         if (rateLimitReset.HasValue && rateLimitReset >= DateTime.UtcNow)
         {
             var localTime = rateLimitReset?.ToLocalTime();
-            logger.LogInformation($"Rate limit exceeded. Retry after {rateLimitReset} UTC ({localTime} local).");
+            logger.LogInformation("Rate limit exceeded. Retry after {RateLimitReset} UTC ({LocalTime} local).", rateLimitReset, localTime);
             await DelayMessage(context, rateLimitReset.Value);
             return;
         }
@@ -30,7 +30,7 @@ public class ThrottlingBehavior(ILogger<ThrottlingBehavior> logger) :
         {
             var nextReset = nextRateLimitReset = exception.Reset.UtcDateTime;
             var localTime = nextReset?.ToLocalTime();
-            logger.LogInformation($"Rate limit exceeded. Limit resets at {nextReset} UTC ({localTime} local).");
+            logger.LogInformation("Rate limit exceeded. Limit resets at {NextReset} UTC ({LocalTime} local).", nextReset, localTime);
             await DelayMessage(context, nextReset.Value);
         }
     }
