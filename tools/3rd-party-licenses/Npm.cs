@@ -12,7 +12,7 @@ public class Npm(params (string name, string npmFolder)[] npmFolders)
         foreach (var (name, npmFolder) in npmFolders)
         {
             var list = new List<DependencyInfo>();
-            Console.WriteLine($"Getting packages for {npmFolder}");
+            Console.WriteLine($"Getting packages for {Path.GetFullPath(npmFolder)}");
 
             var result = await Runner.ExecuteCommand(npmFolder, "npm", "install");
             Console.WriteLine("npm install");
@@ -26,14 +26,15 @@ public class Npm(params (string name, string npmFolder)[] npmFolders)
             var client = new HttpClient();
             foreach (var resultJsonDependency in resultJson.Dependencies)
             {
-                var json = await client.GetFromJsonAsync<NpmRegistry>(resultJsonDependency.Value.Resolved.Split("/-/")[0]);
+                var registryJsonUrl = resultJsonDependency.Value.Resolved.Split("/-/")[0];
+                var json = await client.GetFromJsonAsync<NpmRegistry>(registryJsonUrl);
                 string licenseUrl = json.License switch
                 {
                     "MIT" => "https://opensource.org/licenses/MIT",
                     "Apache-2.0" => "https://opensource.org/licenses/Apache-2.0",
                     "ISC" => "https://opensource.org/licenses/ISC",
                     "BSD-3-Clause" => "https://opensource.org/licenses/BSD-3-Clause",
-                    _ => throw new Exception(json.License)
+                    _ => $"https://npmjs.com/package/{resultJsonDependency.Key}"
                 };
                 list.Add(new DependencyInfo {
                     RegistryUrl = $"https://www.npmjs.com/package/{resultJsonDependency.Key}",
