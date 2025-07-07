@@ -7,7 +7,7 @@ class MyMessageHandler (ILogger<MyMessageHandler> logger):
 {
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Processing message {message.Id}");
+        logger.LogInformation("Processing message {Id}", message.Id);
         return FailureSimulator.Invoke();
     }
 }
