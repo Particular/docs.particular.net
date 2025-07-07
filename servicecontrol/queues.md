@@ -13,7 +13,7 @@ Queues are only created during "Setup". Setup is run when an instance is created
 
 - ServiceControl Management Utility (SCMU) or
 - PowerShell scripts or
-- Container flags like `--setup `or `--setup-and-run`
+- Container flags like `--setup` or `--setup-and-run`
 
 These queues can also be manually created before deploying a ServiceControl instance. The technique used will differ depending on the transport in use:
 
