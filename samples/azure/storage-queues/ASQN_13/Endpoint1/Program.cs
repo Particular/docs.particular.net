@@ -1,11 +1,10 @@
 ﻿using System;
-using Endpoint1;
+using Endpoint2;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 var host = Host.CreateDefaultBuilder(args)
-    .ConfigureServices((hostContext, services) => { services.AddHostedService<InputLoopService>(); })
     .UseNServiceBus(x =>
     {
         #region endpointName
@@ -39,4 +38,26 @@ var host = Host.CreateDefaultBuilder(args)
         return endpointConfiguration;
     }).Build();
 
-await host.RunAsync();
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+Console.WriteLine("Press 'enter' to send a message");
+while (true)
+{
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    if (key.Key != ConsoleKey.Enter)
+    {
+        break;
+    }
+
+    var message = new MyRequest("Hello from Endpoint1");
+
+    await messageSession.Send(message);
+
+    Console.WriteLine("MyRequest sent");
+}
+
+await host.StopAsync();
