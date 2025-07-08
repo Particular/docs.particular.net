@@ -84,6 +84,12 @@ namespace IntegrityTests
                     solutionLangVersion ??= fallbackLangVersion;
 
                     var solutionLangVersionString = solutionLangVersion.Value.ToString("N1");
+
+                    if (supportPhase.TryGetValue(solutionLangVersionString, out var value))
+                    {
+                        solutionLangVersionString = value;
+                    }
+
                     bool valid = true;
 
                     foreach (var projectFile in projectFiles)
@@ -162,6 +168,12 @@ namespace IntegrityTests
             { "net8.0-windows", 12 },
             { "net9.0", 13 },
             { "net9.0-windows", 13 },
+            {"net10.0", 14}
+        };
+
+        private static readonly Dictionary<string, string> supportPhase = new()
+        {
+            {"14.0", "preview"}
         };
     }
 }
