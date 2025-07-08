@@ -231,7 +231,7 @@ The Monitoring instance collects performance and health data from endpoints usin
 
 ### Input queue
 
-Endpoints send monitoring data — including metrics, heartbeats, and custom checks — to the Monitoring instance via its input queue. Messages are sent to this queue even if the Monitoring instance is offline. Once available, it will process any backlog.
+Endpoints send monitoring data to the Monitoring instance via its input queue. Messages are sent to this queue even if the Monitoring instance is offline. Once available, it will process any backlog.
 
 - Template: `<instance name>`
 - Default value: **_Particular.Monitoring_**

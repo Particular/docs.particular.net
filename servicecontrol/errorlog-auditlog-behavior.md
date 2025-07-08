@@ -6,7 +6,7 @@ reviewed: 2025-07-25
 
 ## Audit and error queues
 
-ServiceControl consumes messages from endpoint-defined `audit` and `error` queues. These are specified during instance setup and ingested through the instance's configured input queues, such as `Particular.ServiceControl` and `Particular.ServiceControl.Audit`. Once received, messages are persisted to ServiceControl's embedded RavenDB database. These input queues names are specified at install time.
+ServiceControl Error and Audit instances consume messages from endpoint-defined `audit` and `error` queues. These are specified during instance setup and ingested through the instance's configured input queues, such as `Particular.ServiceControl` and `Particular.ServiceControl.Audit`. Once received, messages are persisted to ServiceControl's embedded RavenDB database. These input queues names are specified at install time.
 
 Optionally, ServiceControl can forward these messages to external log queues:
 
