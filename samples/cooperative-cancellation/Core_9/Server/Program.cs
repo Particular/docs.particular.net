@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
-using Server;
 
 
 var builder = Host.CreateApplicationBuilder(args);
@@ -15,10 +14,13 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
 
 builder.UseNServiceBus(endpointConfiguration);
-builder.Services.AddHostedService<InputLoopService>();
 
 var host =  builder.Build();
 await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+await messageSession.SendLocal(new LongRunningMessage { DataId = Guid.NewGuid() }, CancellationToken.None);
 
 Console.ReadKey();
 
