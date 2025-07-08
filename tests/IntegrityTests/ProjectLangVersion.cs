@@ -173,6 +173,7 @@ namespace IntegrityTests
 
         private static readonly Dictionary<string, string> supportPhase = new()
         {
+            // When C# is not preview anymore, remove this entry, not the whole dictionary
             {"14.0", "preview"}
         };
     }
