@@ -16,9 +16,7 @@ jobs:
       - name: Setup .NET SDK
         uses: actions/setup-dotnet@v4.1.0
         with:
-          dotnet-version: |
-            9.0.x
-            8.0.x
+          global-json-file: global.json
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
       - name: Restore NuGet Cache
