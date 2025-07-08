@@ -168,7 +168,8 @@ namespace IntegrityTests
             { "net8.0-windows", 12 },
             { "net9.0", 13 },
             { "net9.0-windows", 13 },
-            {"net10.0", 14}
+            { "net10.0", 14 },
+            { "net10.0-windows", 14 }
         };
 
         private static readonly Dictionary<string, string> supportPhase = new()
