@@ -1,5 +1,5 @@
 using NServiceBus;
 
-namespace Endpoint2;
+namespace Shared;
 
 public record MyResponse(string Property) : IMessage;
