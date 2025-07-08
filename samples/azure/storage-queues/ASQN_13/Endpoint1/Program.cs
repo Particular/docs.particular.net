@@ -1,8 +1,8 @@
 ﻿using System;
-using Endpoint2;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using Shared;
 
 var host = Host.CreateDefaultBuilder(args)
     .UseNServiceBus(x =>
@@ -20,7 +20,7 @@ var host = Host.CreateDefaultBuilder(args)
 
         var transport = new AzureStorageQueueTransport("UseDevelopmentStorage=true");
         var routingSettings = endpointConfiguration.UseTransport(transport);
-        routingSettings.RouteToEndpoint(typeof(Endpoint2.MyRequest), "Samples-Azure-StorageQueues-Endpoint2");
+        routingSettings.RouteToEndpoint(typeof(MyRequest), "Samples-Azure-StorageQueues-Endpoint2");
 
         #endregion
 
