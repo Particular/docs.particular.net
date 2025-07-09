@@ -5,10 +5,14 @@ using NServiceBus;
 
 var builder = Host.CreateApplicationBuilder(args);
 
+#region config
+
 var endpointConfiguration = new EndpointConfiguration("Samples.SimpleSaga");
 endpointConfiguration.UsePersistence<LearningPersistence>();
 endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
+#endregion
 
 builder.UseNServiceBus(endpointConfiguration);
 
