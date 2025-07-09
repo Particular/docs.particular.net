@@ -55,7 +55,7 @@ public class CustomEventsHandler(ILogger<CustomEventsHandler> logger) :
 
     public Task Handle(MessageFailureResolvedManually message, IMessageHandlerContext context)
     {
-        logger.LogError("Received ServiceControl 'MessageFailureResolvedManually'  with ID {FailedMessageId}.", message.FailedMessageId);
+        logger.LogError("Received ServiceControl 'MessageFailureResolvedManually' with ID {FailedMessageId}.", message.FailedMessageId);
         return Task.CompletedTask;
     }
 }
