@@ -9,7 +9,7 @@ related:
 - transports/sql/deployment-options
 ---
 
-This is sample shows how to use the [NServiceBus Messaging Bridge](/nservicebus/bridge/) instead of the deprecated [SQL Server transport multi-instance mode](/transports/upgrades/sqlserver-31to4.md#multi-instance-mode).
+This sample shows how to use the [NServiceBus Messaging Bridge](/nservicebus/bridge/) instead of the deprecated [SQL Server transport multi-instance mode](/transports/upgrades/sqlserver-31to4.md#multi-instance-mode).
 
 ## Prerequisites
 
