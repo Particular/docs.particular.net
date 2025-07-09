@@ -55,6 +55,8 @@ See also:
 
 When preparing for a major NServiceBus upgrade, it is crucial to proactively address any potential breaking changes by thoroughly checking your system for warnings and errors at compile time.
 
-As part of the [release policy](/nservicebus/upgrades/release-policy.md#deprecation), APIs are marked as obsolete in a major version before removing them in the next. These obsolete APIs will generate build warnings, providing you with a clear indication of the code that needs to be updated. Treating these warnings as errors and resolving them ensures that your system will not fail at runtime after the upgrade.
+As part of the [release policy](/nservicebus/upgrades/release-policy.md#deprecation), APIs are phased out systematically. Initially, an API targeted for removal is marked as obsolete, which will generate a compile-time warning. This warning includes guidance on the recommended action.
+
+In a subsequent release, this will be escalated to a compile-time error, before the API is completely removed in a future version. To ensure your project continues to function after an upgrade, it's best practice to treat these warnings as errors. This allows you to find and update the affected code with guidance from your IDE before it becomes a breaking change.
 
 To facilitate a smooth transition, always follow the detailed step-by-step upgrade guide provided for the specific version you are moving to. This guide will not only outline the necessary changes for deprecated APIs but also provide instructions on how to adapt to the new APIs and features, ensuring a successful and stable upgrade.
