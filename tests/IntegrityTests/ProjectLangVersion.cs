@@ -83,10 +83,7 @@ namespace IntegrityTests
 
                     solutionLangVersion ??= fallbackLangVersion;
 
-                    if (!supportPhase.TryGetValue(solutionLangVersion, out var solutionLangVersionString))
-                    {
-                        solutionLangVersionString = solutionLangVersion.Value.ToString("N1");
-                    }
+                    var solutionLangVersionString = solutionLangVersion > latestStableVersion ? "preview" : solutionLangVersion.Value.ToString("N1");
 
                     bool valid = true;
 
@@ -170,10 +167,7 @@ namespace IntegrityTests
             { "net10.0-windows", 14 }
         };
 
-        private static readonly Dictionary<int?, string> supportPhase = new()
-        {
-            // When C# is not preview anymore, remove this entry, not the whole dictionary
-            {14, "preview"}
-        };
+        // This allows us to use the preview version of C# before is officially released
+        private const int latestStableVersion = 14;
     }
 }
