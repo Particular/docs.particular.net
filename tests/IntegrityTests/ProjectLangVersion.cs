@@ -83,7 +83,7 @@ namespace IntegrityTests
 
                     solutionLangVersion ??= fallbackLangVersion;
 
-                    var solutionLangVersionString = solutionLangVersion > latestStableLangVersion ? "preview" : solutionLangVersion.Value.ToString("N1");
+                    var solutionLangVersionString = solutionLangVersion > latestReleasedLangVersion ? "preview" : solutionLangVersion.Value.ToString("N1");
 
                     bool valid = true;
 
@@ -167,7 +167,7 @@ namespace IntegrityTests
             { "net10.0-windows", 14 }
         };
 
-        // This allows us to use the preview version of C# before is officially released
-        private const int latestStableLangVersion = 13;
+        // This needs to be kept up to date with the latest released version of C#
+        private const int latestReleasedLangVersion = 13;
     }
 }
