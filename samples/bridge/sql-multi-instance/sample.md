@@ -67,4 +67,4 @@ The bridge is configured with two transports. As both transports are of the same
 
 snippet: BridgeConfiguration
 
-Both transports have the endpoints defined on their side and as a result, the bridge will mimic those endpoints on the other side. This way it becomes transparent to actual endpoints on either side that those endpoints are actually bridged.
+Each transport configured in the bridge defines the endpoints it supports on its end. The bridge then creates corresponding shadow endpoints on the opposite side, effectively mirroring them. This setup allows messages to flow seamlessly across the transports without requiring the actual sender or receiver to be aware that bridging is occurring—their communication appears direct and uninterrupted.
