@@ -8,14 +8,17 @@ related:
   - servicepulse/usage-config
 ---
 
-The Particular Service Platform is licensed based on the number of NServiceBus endpoints and the message throughput of those endpoints. In order to determine these values, a monitor needs to be run over the transport broker for a representative period of time (24 hours) and a report generated from this data to be sent to Particular.
+The Particular Service Platform is licensed based on the number of NServiceBus endpoints and the message throughput of those endpoints. In order to determine these values, a process needs to be run that queries the transport broker for up to 24 hours and a report generated from this data to be sent to Particular.
 
 The minimal installation required to generate the usage report is:
 
-- [ServiceControl](/servicecontrol/). Only a single [error instance](/servicecontrol/servicecontrol-instances/) is required, as this is the primary service that contains the monitoring logic.
+- [ServiceControl](/servicecontrol/). Only a single [error instance](/servicecontrol/servicecontrol-instances/) is required, as this is the primary service that contains the broker querying logic.
 - [ServicePulse](/servicepulse/). This is the UI that interfaces with the ServiceControl service to allow users to specify which endpoints are NServiceBus related and generate the usage report to send to Particular.
 
 ## Installation options
+
+> [!WARNING]
+> By default, the ServiceControl instance will immediately start reading from the `error` queue when it starts. If this is not desired, e.g. if you have another process that monitors the error queue, then set the [`SERVICECONTROL_INGESTERRORMESSAGES`](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontrolingesterrormessages) environment variable to `false` in any of the following installation options. This variable needs to be set for the account under which the ServiceControl instance is running or on the container.
 
 The following methods can be used to install these requirements:
 
@@ -45,18 +48,11 @@ The containers required for generating a usage report are:
 - [RavenDB](/servicecontrol/ravendb/containers.md)
   - Alternatively another RavenDB source can be used. The [connection string](/servicecontrol/servicecontrol-instances/deployment/containers.md#required-settings-ravendb-connection-string) must be supplied when installing ServiceControl
 - [ServiceControl](/servicecontrol/servicecontrol-instances/deployment/containers.md)
-
-> [!WARNING]
-> By default, the ServiceControl instance will immediately start reading from the `error` queue when it starts. If this is not desired, e.g. if you have another process that monitors the error queue, then one of the following parameters should be supplied to the `docker run` command
->
-> - -e SERVICEBUS_ERRORQUEUE=<<name of non-existing queue, e.g. `errornotused`>>
-> - -e SERVICECONTROL_INGESTERRORMESSAGES=false
-
 - [ServicePulse](/servicepulse/containerization/)
 
 ### Cloud environments
 
-When hosting containers in the cloud, it is suggested to use [RavenDB Cloud](https://ravendb.net/cloud) to host the database. This is because the [storage requirements](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/deployment-considerations#storage-considerations) of RavenDB generally cannot be met on most cloud offerings.
+When hosting containers in Kubernetes in any of the major Cloud providers, it is possible to host RavenDB in Kubernetes using the recommended storage providers by the Cloud infrastructure, see [these example manifests](https://github.com/Particular/PlatformContainerExamples/blob/main/helm/README.md#ravendb-deployment) for deployments in AKS or EKS. If the [storage requirements](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/deployment-considerations#storage-considerations) of RavenDB cannot be met, it is suggested to use [RavenDB Cloud](https://ravendb.net/cloud) to host the database.
 
 ## Windows Installation
 
@@ -67,19 +63,13 @@ ServiceControl is installed as a Windows service, and starts automatically. It i
 #### ServiceControl Management Utility (SCMU)
 
 - [Download](https://particular.net/start-servicecontrol-download) the latest SCMU
-- Run the executable. This will require Admin priveleges
-- Add a new ServiceControl and Audit instance
-![Add new ServiceControl and Audit Instance](scmu-1.png 'width=500')
+- Run the executable. This will require Admin privileges
+- Add a new ServiceControl instance
+    ![Add new ServiceControl Instance](scmu-1.png 'width=500')
 - Uncheck the `ServiceControl Audit` node, since this isn't required for usage reports
-![Uncheck Audit Instance](scmu-2.png 'width=500')
+    ![Uncheck Audit Instance](scmu-2.png 'width=500')
 - Choose your transport and supply the connection string
-![Choose transport](scmu-3.png 'width=500')
-
-> [!WARNING]
-> By default, the ServiceControl instance will immediately start reading from the `error` queue when it starts. If this is not desired, e.g. if you have another process that monitors the error queue, then expand the `ServiceControl` node and change the value of `Error Queue Name` to a non-existing queue name before clicking 'Add'
-> ![Change Error Queue Name](scmu-4.png 'width=500')
-> Alternatively, set the [`SERVICECONTROL_INGESTERRORMESSAGES`](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontrolingesterrormessages) environment variable to `false` before clicking `Add`
-
+    ![Choose transport](scmu-3.png 'width=500')
 - Click 'Add'
 
 #### Powershell
@@ -88,9 +78,6 @@ ServiceControl is installed as a Windows service, and starts automatically. It i
 - Install and import the [Particular.ServiceControl.Management module](/servicecontrol/servicecontrol-instances/deployment/powershell.md#installing-and-using-the-powershell-module)
 - Run the [New-ServiceControlInstance cmdlet](/servicecontrol/servicecontrol-instances/deployment/powershell.md#error-instance-cmdlets-and-aliases-deploying-an-error-instance)
   - Most of the parameters can be left as per the example, with the `-Transport` and `-ConnectionString` parameters set according to your environment.
-
-> [!WARNING]
-> By default, the ServiceControl instance will immediately start reading from the `error` queue when it starts. If this is not desired, e.g. if you have another process that monitors the error queue, either set the `-ErrorQueue` parameter to a non-existing queue name, or set the [`SERVICECONTROL_INGESTERRORMESSAGES`](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontrolingesterrormessages) environment variable to `false` before running the cmdlet
 
 ### ServicePulse
 
