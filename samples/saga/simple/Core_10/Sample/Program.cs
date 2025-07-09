@@ -2,7 +2,6 @@ using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
-using Sample;
 
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -12,10 +11,38 @@ endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
 builder.UseNServiceBus(endpointConfiguration);
-builder.Services.AddHostedService<InputLoopService>();
 
 Console.Title = "Server";
 
 var host = builder.Build();
+
 await host.StartAsync();
 
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+Console.WriteLine();
+Console.WriteLine("Storage locations:");
+Console.WriteLine($"Learning Persister: {LearningLocationHelper.SagaDirectory}");
+Console.WriteLine($"Learning Transport: {LearningLocationHelper.TransportDirectory}");
+
+Console.WriteLine();
+Console.WriteLine("Press 'Enter' to send a StartOrder message");
+Console.WriteLine();
+
+while (true)
+{
+    if (Console.ReadKey().Key != ConsoleKey.Enter)
+    {
+        break;
+    }
+    var orderId = Guid.NewGuid();
+    var startOrder = new StartOrder
+    {
+        OrderId = orderId
+    };
+    await messageSession.SendLocal(startOrder);
+
+    Console.WriteLine($"Sent StartOrder with OrderId {orderId}.");
+}
+
+await host.StopAsync();
