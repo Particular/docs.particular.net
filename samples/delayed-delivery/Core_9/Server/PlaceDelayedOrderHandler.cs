@@ -9,7 +9,7 @@ public class PlaceDelayedOrderHandler(ILogger<PlaceDelayedOrderHandler> logger) 
 
     public Task Handle(PlaceDelayedOrder message, IMessageHandlerContext context)
     {
-        logger.LogInformation("[Defer Message Delivery] Order for Product:{Product} placed with id: {Id}", message.Product, message.Id);
+        logger.LogInformation("[Defer Message Delivery] Order for Product: {Product} placed with id: {Id}", message.Product, message.Id);
         return Task.CompletedTask;
     }
 }
