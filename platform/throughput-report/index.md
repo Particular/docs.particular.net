@@ -23,7 +23,7 @@ The minimal installation required to generate the usage report is:
 The following methods can be used to install these requirements:
 
 - [Linux, Windows or cloud environments via Containers](#container-installation)
-  - ServiceControl and ServicePulse through Containers
+  - ServiceControl and ServicePulse through [Containers](#container-installation)
 - [Windows Only](#windows-installation)
   - ServiceControl through [ServiceControl Management Utility](#windows-installation-servicecontrol-servicecontrol-management-utility-scmu)
   - ServiceControl through [Powershell](#windows-installation-servicecontrol-powershell)
