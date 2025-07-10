@@ -57,7 +57,9 @@ The receiver mimics a back-end system. It is configured to use the SQL Server tr
 
 snippet: ReceiverConfiguration
 
-Note that the endpoint configuration contains no routing information, as the response message is a regular reply and NServiceBus, together with the bridge, will take care of all the routing with reply messages. The receiver replies with `ClientOrderResponse` back to the sender.
+> [!NOTE]
+
+> The endpoint configuration contains no routing information. The receiver responds to the sender with a `ClientOrderResponse` message using the [Reply method](/nservicebus/messaging/reply-to-a-message.md). Using this method, NServiceBus, together with the bridge, handles the routing of reply messages without any additional configuration.
 
 snippet: Reply
 
