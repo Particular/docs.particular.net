@@ -6,7 +6,7 @@ public class SomethingHappenedHandler(ILogger<SomethingHappenedHandler> logger) 
 {
     public Task Handle(ISomethingHappened message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Something happened with some data '{message.SomeData}'");
+        logger.LogInformation("Something happened with some data '{SomeData}'", message.SomeData);
         return Task.CompletedTask;
     }
 }
