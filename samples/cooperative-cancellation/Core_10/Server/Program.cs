@@ -5,7 +5,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
 
-
 var builder = Host.CreateApplicationBuilder(args);
 
 var endpointConfiguration = new EndpointConfiguration("Samples.Cooperative.Cancellation");
