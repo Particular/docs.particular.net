@@ -10,7 +10,7 @@ namespace NServiceBusSubscriber
     {
         public Task Handle(MassTransitEvent message, IMessageHandlerContext context)
         {
-            logger.LogInformation($"Received Text: {message.Text}");
+            logger.LogInformation("Received Text: {Text}", message.Text);
             return Task.CompletedTask;
         }
 
