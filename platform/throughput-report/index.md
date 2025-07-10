@@ -52,7 +52,8 @@ The containers required for generating a usage report are:
 
 ### Cloud environments
 
-When hosting containers in Kubernetes in any of the major Cloud providers, it is possible to host RavenDB in Kubernetes using the recommended storage providers by the Cloud infrastructure, see [these example manifests](https://github.com/Particular/PlatformContainerExamples/blob/main/helm/README.md#ravendb-deployment) for deployments in AKS or EKS. If the [storage requirements](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/deployment-considerations#storage-considerations) of RavenDB cannot be met, it is suggested to use [RavenDB Cloud](https://ravendb.net/cloud) to host the database.
+When hosting containers in Kubernetes in any of the major Cloud providers, it is possible to host RavenDB in Kubernetes using the recommended storage providers by the Cloud infrastructure, see [these example manifests](https://github.com/Particular/PlatformContainerExamples/blob/main/helm/README.md#ravendb-deployment) for deployments in AKS or EKS. 
+In other hosting environments where the RavenDB [storage requirements](https://ravendb.net/docs/article-page/6.2/csharp/start/installation/deployment-considerations#storage-considerations) cannot be met, it is suggested to use [RavenDB Cloud](https://ravendb.net/cloud) to host the database.
 
 ## Windows Installation
 
