@@ -14,7 +14,7 @@ endpointConfiguration.UseTransport(new LearningTransport());
 
 builder.UseNServiceBus(endpointConfiguration);
 
-var host =  builder.Build();
+var host = builder.Build();
 await host.StartAsync();
 
 var messageSession = host.Services.GetRequiredService<IMessageSession>();
@@ -23,7 +23,7 @@ await messageSession.SendLocal(new LongRunningMessage { DataId = Guid.NewGuid() 
 
 Console.ReadKey();
 
-ILogger logger = host.Services.GetService<ILogger<Program>>();
+var logger = host.Services.GetService<ILogger<Program>>();
 logger.LogInformation("Giving the endpoint 1 second to gracefully stop before sending a cancel signal to the cancellation token");
 
 #region StoppingEndpointWithCancellationToken
