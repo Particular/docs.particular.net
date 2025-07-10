@@ -1,6 +1,0 @@
-<Solution>
-  <Configurations>
-    <BuildType Name="Debug" />
-  </Configurations>
-  <Project Path="Sample/Sample.csproj" />
-</Solution>
