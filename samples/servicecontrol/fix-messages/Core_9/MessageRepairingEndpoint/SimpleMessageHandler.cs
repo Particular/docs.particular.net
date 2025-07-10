@@ -8,11 +8,11 @@ public class SimpleMessageHandler(ILogger<SimpleMessageHandler> logger) : IHandl
     {
         #region RepairAndForward
 
-        logger.LogInformation($"Repairing message with Id = {message.Id}.");
+        logger.LogInformation("Repairing message with Id = {Id}.", message.Id);
 
         message.Id = message.Id.ToUpperInvariant();
 
-        logger.LogInformation($"Forwarding repaired message with Id = {message.Id} to the Receiver.");
+        logger.LogInformation("Forwarding repaired message with Id = {Id} to the Receiver.", message.Id);
 
         return context.Send("FixMalformedMessages.Receiver", message);
 
