@@ -14,7 +14,7 @@ public class IncomingMessageBodyWriter(ILogger<IncomingMessageBodyWriter> logger
             .GetString(context.Body.ToArray());
         var contentType = context.Headers[Headers.ContentType];
 
-        logger.LogInformation("ContentType '{ContentType}'. Serialized Message Body:\n{Body}", contentType, bodyAsString);
+        logger.LogInformation("ContentType '{ContentType}'. Serialized Message Body:\r\n{Body}", contentType, bodyAsString);
         return Task.CompletedTask;
     }
 }
