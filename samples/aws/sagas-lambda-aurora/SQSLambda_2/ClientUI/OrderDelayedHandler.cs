@@ -10,7 +10,7 @@ public class OrderDelayedHandler(ILogger<OrderDelayedHandler> logger) : IHandleM
                 .Select(s => s[Random.Shared.Next(s.Length)])
                 .ToArray());
 
-        logger.LogInformation($"Order {message.OrderId} is slightly delayed. We are sorry for the inconvenience. Use the coupon code '{coupon}' to get 10% off your next order.");
+        logger.LogInformation("Order {OrderId} is slightly delayed. We are sorry for the inconvenience. Use the coupon code '{Coupon}' to get 10% off your next order.", message.OrderId, coupon);
 
         return Task.CompletedTask;
     }

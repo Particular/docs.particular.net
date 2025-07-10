@@ -3,7 +3,7 @@ public class OrderShippedHandler(ILogger<OrderShippedHandler> logger) : IHandleM
 {
     public Task Handle(OrderShipped message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Order {message.OrderId} has shipped.");
+        logger.LogInformation("Order {OrderId} has shipped.", message.OrderId);
 
         return Task.CompletedTask;
     }
