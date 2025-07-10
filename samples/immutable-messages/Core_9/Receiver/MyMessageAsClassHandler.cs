@@ -9,7 +9,7 @@ public class MyMessageAsClassHandler(ILogger<MyMessageAsClassHandler> logger) :
 {
      public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"MyMessage (as class) received from server with data: {message.Data}");
+        logger.LogInformation("MyMessage (as class) received from server with data: {Data}", message.Data);
         return Task.CompletedTask;
     }
 }

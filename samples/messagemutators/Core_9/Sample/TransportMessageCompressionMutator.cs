@@ -10,10 +10,10 @@ public class TransportMessageCompressionMutator(ILogger<TransportMessageCompress
     IMutateIncomingTransportMessages,
     IMutateOutgoingTransportMessages
 {
-   
+
     public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
     {
-        logger.LogInformation($"transportMessage.Body size before compression: {context.OutgoingBody.Length}");
+        logger.LogInformation("transportMessage.Body size before compression: {Length}", context.OutgoingBody.Length);
 
         var mStream = new MemoryStream(context.OutgoingBody.ToArray(), false);
         var outStream = new MemoryStream();
@@ -26,7 +26,7 @@ public class TransportMessageCompressionMutator(ILogger<TransportMessageCompress
         // otherwise, not all the compressed message will be copied.
         context.OutgoingBody = outStream.ToArray();
         context.OutgoingHeaders["IWasCompressed"] = "true";
-        logger.LogInformation($"transportMessage.Body size after compression: {context.OutgoingBody.Length}");
+        logger.LogInformation("transportMessage.Body size after compression: {Length}", context.OutgoingBody.Length);
         return Task.CompletedTask;
     }
 
