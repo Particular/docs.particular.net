@@ -27,7 +27,7 @@ public class OrderSaga(ILogger<OrderSagaData> logger) :
             OrderId = message.OrderId
         };
 
-        logger.LogInformation("Order will complete in {Seconds} seconds", 5);
+      logger.LogInformation("Order will complete in 5 seconds");
         var timeoutData = new CompleteOrder
         {
             OrderDescription = orderDescription,
