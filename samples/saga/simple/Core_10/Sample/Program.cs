@@ -3,20 +3,20 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-var builder = Host.CreateApplicationBuilder(args);
+Console.Title = "Server";
+var endpointConfiguration = new EndpointConfiguration("Samples.SimpleSaga");
 
 #region config
 
-var endpointConfiguration = new EndpointConfiguration("Samples.SimpleSaga");
 endpointConfiguration.UsePersistence<LearningPersistence>();
 endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
 #endregion
 
-builder.UseNServiceBus(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder(args);
 
-Console.Title = "Server";
+builder.UseNServiceBus(endpointConfiguration);
 
 var host = builder.Build();
 
@@ -31,7 +31,7 @@ Console.WriteLine($"Learning Transport: {LearningLocationHelper.TransportDirecto
 
 Console.WriteLine();
 Console.WriteLine("Press 'Enter' to send a StartOrder message");
-Console.WriteLine();
+Console.WriteLine("Press any other key to exit");
 
 while (true)
 {
