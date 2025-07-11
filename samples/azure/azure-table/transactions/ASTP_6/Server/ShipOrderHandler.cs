@@ -21,7 +21,7 @@ public class ShipOrderHandler (ILogger<ShipOrderHandler> logger):
         Store(orderShippingInformation, context);
 
 
-        logger.LogInformation($"Order Shipped. OrderId {message.OrderId}");
+        logger.LogInformation("Order Shipped. OrderId {OrderId}", message.OrderId);
 
         var options = new PublishOptions();
         options.SetHeader("Sample.AzureTable.Transaction.OrderId", message.OrderId.ToString());
