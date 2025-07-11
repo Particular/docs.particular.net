@@ -33,8 +33,8 @@ Both read and send permissions are required for each of these queues:
  * `{InstanceName}.staging`: Both read and send permissions are required.
  * `error` (see the [`ServiceBus/ErrorQueue`](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicebuserrorqueue) setting): Read permission is required.
  * `error.log` (optional, see the [`ServiceBus/ErrorLogQueue`](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicebuserrorlogqueue) setting): Send permission is required.
- * The Error instance will require send permission for every endpoint queue to allow for [failed message retries](https://docs.particular.net/servicepulse/intro-failed-messages).
- * If subscribing to [ServiceControl integration events](https://docs.particular.net/servicecontrol/contracts), send/publish permission to the subscriber queues and/or any pub/sub mechanism for the transport will be required.
+ * The Error instance will require send permission for every endpoint queue to allow for [failed message retries](/servicepulse/intro-failed-message-retries.md).
+ * If subscribing to [ServiceControl integration events](/servicecontrol/contracts.md), send/publish permission to the subscriber queues and/or any pub/sub mechanism for the transport will be required.
 
 ### [Audit instances](/servicecontrol/audit-instances/):
 
