@@ -11,6 +11,6 @@ class MyMessageHandler2(IMySession session, ILogger<MyMessageHandler2> logger) :
     {
         await session.Store(new MyOtherEntity());
 
-        logger.LogInformation($"{context.MessageId} got UOW instance {session.GetHashCode()}");
+        logger.LogInformation("{MessageId} got UOW instance {SessionHash}", context.MessageId, session.GetHashCode());
     }
 }

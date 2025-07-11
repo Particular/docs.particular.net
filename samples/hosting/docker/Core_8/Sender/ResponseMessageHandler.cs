@@ -9,7 +9,7 @@ public class ResponseMessageHandler(ILogger<ResponseMessageHandler> logger) : IH
 {
     public Task Handle(ResponseMessage message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Response received with description: {message.Data}");
+        logger.LogInformation("Response received with description: {Data}", message.Data);
         return Task.CompletedTask;
     }
 }

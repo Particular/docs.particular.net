@@ -22,7 +22,7 @@ public class OrderSaga(ILogger<OrderSaga> logger) :
     {
         Data.PaymentTransactionId = Guid.NewGuid().ToString();
 
-        logger.LogInformation($"Saga with OrderId {Data.OrderId} received StartOrder with OrderId {message.OrderId}");
+        logger.LogInformation("Saga with OrderId {SagaOrderId} received StartOrder with OrderId {MessageOrderId}", Data.OrderId, message.OrderId);
         var issuePaymentRequest = new IssuePaymentRequest
         {
             PaymentTransactionId = Data.PaymentTransactionId
@@ -32,7 +32,7 @@ public class OrderSaga(ILogger<OrderSaga> logger) :
 
     public Task Handle(CompletePaymentTransaction message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Transaction with Id {Data.PaymentTransactionId} completed for order id {Data.OrderId}");
+        logger.LogInformation("Transaction with Id {PaymentTransactionId} completed for order id {OrderId}", Data.PaymentTransactionId, Data.OrderId);
         var completeOrder = new CompleteOrder
         {
             OrderId = Data.OrderId
@@ -42,7 +42,7 @@ public class OrderSaga(ILogger<OrderSaga> logger) :
 
     public Task Handle(CompleteOrder message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Saga with OrderId {Data.OrderId} received CompleteOrder with OrderId {message.OrderId}");
+        logger.LogInformation("Saga with OrderId {SagaOrderId} received CompleteOrder with OrderId {MessageOrderId}", Data.OrderId, message.OrderId);
         MarkAsComplete();
         return Task.CompletedTask;
     }

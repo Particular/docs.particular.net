@@ -1,14 +1,15 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
 using Microsoft.Extensions.Logging;
+using Shared;
 
 public sealed class MyRequestResponseHandler(ILogger<MyRequestResponseHandler> logger)
-    : IHandleMessages<Endpoint2.MyRequest>
+    : IHandleMessages<MyRequest>
 {
-    public Task Handle(Endpoint2.MyRequest message, IMessageHandlerContext context)
+    public Task Handle(MyRequest message, IMessageHandlerContext context)
     {
         logger.LogInformation("Received MyRequest: {Property}", message.Property);
-        var myResponse = new Endpoint2.MyResponse("Hello from Endpoint2");
+        var myResponse = new MyResponse("Hello from Endpoint2");
         return context.Reply(myResponse);
     }
 }

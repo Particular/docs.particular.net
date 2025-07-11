@@ -87,6 +87,8 @@ It's recommended to not mix the processing of dispatch messages with business me
 
 When configuring endpoints for usage measurement in ServicePulse, mark dedicated transactional session processor endpoints with the appropriate [endpoint type indicator](/servicepulse/usage.md#setting-an-endpoint-type-endpoint-type-indicators).
 
+partial: design-considerations
+
 partial: remote-processor
 
 ## Transaction consistency
@@ -129,7 +131,7 @@ sequenceDiagram
 
     User->>TransactionalSession: Commit()
     activate TransactionalSession
-    TransactionalSession->>Transport: Dispatch(controlMessage)
+    TransactionalSession->>Transport: Dispatch(dispatchMessage)
     TransactionalSession->>PendingTransportOperations: ConvertToOutboxOperations
     activate PendingTransportOperations
     PendingTransportOperations-->>TransactionalSession: outboxRecord

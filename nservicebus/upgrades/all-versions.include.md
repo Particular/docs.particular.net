@@ -763,7 +763,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/3.0.0) | 2025-06-06     | -                 | -                                 |
 | [2.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/2.1.0) | 2025-04-11     | 2026-06-06        | Superseded by 3.0.x               |
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/2.0.1) | 2024-04-16     | 2025-07-11        | Superseded by 2.1.x               |
+| [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/2.0.1) | ~~2024-04-16~~ | ~~2025-07-11~~    | ~~Superseded by 2.1.x~~           |
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/1.1.2) | 2023-09-21     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/1.0.1) | ~~2023-05-09~~ | ~~2023-12-21~~    | ~~Superseded by 1.1.x~~           |
 | [0.6.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/0.6.0) | 2023-04-27     | 2024-05-09        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-05-09 |
@@ -1120,7 +1120,7 @@
 | [3.45.x](https://www.nuget.org/packages/Particular.PlatformSample/3.45.0) | 2025-04-29     | 2025-08-13        | Superseded by 3.47.x              |
 | [3.43.x](https://www.nuget.org/packages/Particular.PlatformSample/3.43.0) | 2025-04-16     | 2025-07-29        | Superseded by 3.45.x              |
 | [3.42.x](https://www.nuget.org/packages/Particular.PlatformSample/3.42.0) | 2025-04-09     | 2025-07-16        | Superseded by 3.43.x              |
-| [3.39.x](https://www.nuget.org/packages/Particular.PlatformSample/3.39.0) | 2025-04-08     | 2025-07-09        | Superseded by 3.42.x              |
+| [~~3.39.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.39.0) | ~~2025-04-08~~ | ~~2025-07-09~~    | ~~Superseded by 3.42.x~~          |
 | [~~3.37.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.37.0) | ~~2025-03-24~~ | ~~2025-07-08~~    | ~~Superseded by 3.39.x~~          |
 | [~~3.36.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.36.0) | ~~2025-03-21~~ | ~~2025-06-24~~    | ~~Superseded by 3.37.x~~          |
 | [~~3.34.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.34.0) | ~~2025-03-17~~ | ~~2025-06-21~~    | ~~Superseded by 3.36.x~~          |

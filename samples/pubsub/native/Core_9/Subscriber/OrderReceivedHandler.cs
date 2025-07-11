@@ -6,7 +6,7 @@ public class OrderReceivedHandler (ILogger<OrderReceivedHandler> logger):
 {
     public Task Handle(OrderReceived message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Subscriber has received OrderReceived event with OrderId {message.OrderId}.");
+        logger.LogInformation("Subscriber has received OrderReceived event with OrderId {OrderId}.", message.OrderId);
         return Task.CompletedTask;
     }
 }

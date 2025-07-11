@@ -7,11 +7,11 @@ public class LargeMessageHandler(ILogger<LargeMessageHandler> logger) : IHandleM
     {
         if (message.LargeDataBus == null)
         {
-            logger.LogInformation($"Message [{message.GetType()}] received, id:{message.RequestId}");
+            logger.LogInformation("Message [{MessageType}] received, id:{RequestId}", message.GetType(), message.RequestId);
         }
         else
         {
-            logger.LogInformation($"Message [{message.GetType()}] received, id:{message.RequestId} and payload {message.LargeDataBus.Length} bytes");
+            logger.LogInformation("Message [{MessageType}] received, id:{RequestId} and payload {PayloadLength} bytes", message.GetType(), message.RequestId, message.LargeDataBus.Length);
         }
         return Task.CompletedTask;
     }

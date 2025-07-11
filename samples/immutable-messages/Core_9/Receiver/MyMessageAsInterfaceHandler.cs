@@ -9,7 +9,7 @@ public class MyMessageAsInterfaceHandler(ILogger<MyMessageAsInterfaceHandler> lo
 {
     public Task Handle(IMyMessage message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"IMyMessage (as interface) received from server with data: {message.Data}");
+        logger.LogInformation("IMyMessage (as interface) received from server with data: {Data}", message.Data);
         return Task.CompletedTask;
     }
 }

@@ -13,6 +13,8 @@ The processor endpoint [must have both the outbox and the transactional session 
 > [!NOTE]
 > If migrating to this mode from an endpoint couldn't be made send-only due to the previous limitations of the transactional session, see the migration guidance below.
 
+youtube: https://www.youtube.com/watch?v=71r78OupG0A
+
 ### Benefits
 
 Using the transactional session in send-only endpoints has the following benefits:

@@ -31,7 +31,8 @@ jobs:
           git config user.name "internalautomation[bot]"
       - uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 9.0.x
+          global-json-file: global.json
+          dotnet-version: 9.0
       - uses: actions/setup-node@v4
         with:
           node-version: 20

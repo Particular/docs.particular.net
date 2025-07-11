@@ -83,7 +83,8 @@ namespace IntegrityTests
 
                     solutionLangVersion ??= fallbackLangVersion;
 
-                    var solutionLangVersionString = solutionLangVersion.Value.ToString("N1");
+                    var solutionLangVersionString = solutionLangVersion > latestReleasedLangVersion ? "preview" : solutionLangVersion.Value.ToString("N1");
+
                     bool valid = true;
 
                     foreach (var projectFile in projectFiles)
@@ -162,6 +163,11 @@ namespace IntegrityTests
             { "net8.0-windows", 12 },
             { "net9.0", 13 },
             { "net9.0-windows", 13 },
+            { "net10.0", 14 },
+            { "net10.0-windows", 14 }
         };
+
+        // This needs to be kept up to date with the latest released version of C#
+        private const int latestReleasedLangVersion = 13;
     }
 }

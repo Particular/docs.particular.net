@@ -6,7 +6,7 @@ public class MessageThatExpiresHandler(ILogger<MessageThatExpiresHandler> logger
 
     public Task Handle(MessageThatExpires message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"Message [{message.GetType()}] received, id: [{message.RequestId}]");
+        logger.LogInformation("Message [{MessageType}] received, id: [{RequestId}]", message.GetType(), message.RequestId);
         return Task.CompletedTask;
     }
 }
