@@ -1,7 +1,7 @@
 ---
 title: Configuring a Non-Privileged Account
 summary: Using a low privilege account for ServiceControl
-reviewed: 2024-07-17
+reviewed: 2025-07-11
 ---
 
 To use a low-privileged accounts for ServiceControl instances, the following should be considered:
@@ -10,31 +10,36 @@ To use a low-privileged accounts for ServiceControl instances, the following sho
 
 The transport connection string used by ServiceControl must enable access to all of the ServiceControl queues as configured by the `InstanceName` setting:
 
- * [ServiceControl/InstanceName](/servicecontrol/servicecontrol-instances/configuration.md) <!-- TODO: Add the InstanceName setting and link -->
- * [ServiceControl.Audit/InstanceName](/servicecontrol/audit-instances/configuration.md) <!-- TODO: Add the InstanceName setting and link -->
- * [ServiceControl.Monitoring/InstanceName](/servicecontrol/monitoring-instances/configuration.md) <!-- TODO: Add the InstanceName setting and link -->
+ * [ServiceControl/InstanceName](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolinstancename)
+ * [ServiceControl.Audit/InstanceName](/servicecontrol/audit-instances/configuration.md#host-settings-servicecontrol-auditinstancename)
+ * [ServiceControl.Monitoring/InstanceName](/servicecontrol/monitoring-instances/configuration.md#host-settings-monitoringinstancename)
 
 The queues that ServiceControl needs to access will reflect the `InstanceName` used and the [instance type](/servicecontrol/#servicecontrol-instance-types):
 
+> [!WARNING]
+> If the connection string does not provide appropriate rights, the service may fail to start or may experience errors when certain operations are performed.
+
 ### All instance types:
 
- * `{InstanceName}`
+Both read and send permissions are required for each of these queues:
+
+ * `{InstanceName}`: 
  * `{InstanceName}.errors`
  * `{InstanceName}.timeouts` (only when using [MSMQ](/servicecontrol/transports.md#msmq))
  * `{InstanceName}.timeoutsdispatcher` (only when using [MSMQ](/servicecontrol/transports.md#msmq))
 
 ### [Error instances](/servicecontrol/servicecontrol-instances/):
 
- * `{InstanceName}.staging`
- * `error` (see the [`ServiceBus/ErrorQueue`](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicebuserrorqueue) setting)
- * `error.log` (optional, see the [`ServiceBus/ErrorLogQueue`](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicebuserrorlogqueue) setting)
+ * `{InstanceName}.staging`: Both read and send permissions are required.
+ * `error` (see the [`ServiceBus/ErrorQueue`](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicebuserrorqueue) setting): Read permission is required.
+ * `error.log` (optional, see the [`ServiceBus/ErrorLogQueue`](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicebuserrorlogqueue) setting): Send permission is required.
+ * The Error instance will require send permission for every endpoint queue to allow for [failed message retries](https://docs.particular.net/servicepulse/intro-failed-messages).
+ * If subscribing to [ServiceControl integration events](https://docs.particular.net/servicecontrol/contracts), send/publish permission to the subscriber queues and/or any pub/sub mechanism for the transport will be required.
 
 ### [Audit instances](/servicecontrol/audit-instances/):
 
- * `audit` (see the [`ServiceBus/AuditQUeue`](/servicecontrol/audit-instances/configuration.md#transport-servicebusauditqueue) setting)
- * `audit.log` (optional, see the [`ServiceBus/AuditLogQueue`](/servicecontrol/audit-instances/configuration.md#transport-servicebusauditlogqueue) setting)
-
-If the connection string does not provide appropriate rights, the service will fail to start.
+ * `audit` (see the [`ServiceBus/AuditQueue`](/servicecontrol/audit-instances/configuration.md#transport-servicebusauditqueue) setting): Read permission is required.
+ * `audit.log` (optional, see the [`ServiceBus/AuditLogQueue`](/servicecontrol/audit-instances/configuration.md#transport-servicebusauditlogqueue) setting): Send permission is required.
 
 > [!NOTE]
 > For [MSMQ](/servicecontrol/transports.md#msmq), the ACL default for a queue allows Administrators full access. Switching to a low-privileged account requires modification of rights to give full control to the custom account.
