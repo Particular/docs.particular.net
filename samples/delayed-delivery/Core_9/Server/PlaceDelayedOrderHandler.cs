@@ -5,11 +5,11 @@ using Microsoft.Extensions.Logging;
 
 public class PlaceDelayedOrderHandler(ILogger<PlaceDelayedOrderHandler> logger) :
     IHandleMessages<PlaceDelayedOrder>
-{   
+{
 
     public Task Handle(PlaceDelayedOrder message, IMessageHandlerContext context)
     {
-        logger.LogInformation($"[Defer Message Delivery] Order for Product:{message.Product} placed with id: {message.Id}");
+        logger.LogInformation("[Defer Message Delivery] Order for Product: {Product} placed with id: {Id}", message.Product, message.Id);
         return Task.CompletedTask;
     }
 }
