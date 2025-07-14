@@ -1,28 +1,82 @@
 using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
+using Shared;
 
 Console.Title = "SimpleReceiver";
 
+// Configure the NServiceBus endpoint for the receiver
 var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.SimpleReceiver");
-
-// for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=SqlServerSimple;Integrated Security=True;Max Pool Size=100;Encrypt=false
-var connectionString = @"Server=localhost,1433;Initial Catalog=SqlServerSimple;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
-
+endpointConfiguration.EnableInstallers();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
+// Example connection strings for different SQL Server setups
+// for SqlExpress:
+//var connectionString = @"Data Source=.\SqlExpress;Initial Catalog=SqlServerSimple;Integrated Security=True;Max Pool Size=100;Encrypt=false";
+// for SqlServer:
+//var connectionString = @"Server=localhost,1433;Initial Catalog=SqlServerSimple;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
+// for LocalDB:
+var connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=SqlServerSimple;Integrated Security=True;Connect Timeout=30;Max Pool Size=100;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
+
+// Configure SQL Server transport
 endpointConfiguration.UseTransport(new SqlServerTransport(connectionString)
 {
     TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
 });
 
-endpointConfiguration.EnableInstallers();
-
+// Ensure the database exists before starting
 await SqlHelper.EnsureDatabaseExists(connectionString);
 
+// Set up the generic host and register NServiceBus
 var builder = Host.CreateApplicationBuilder(args);
 builder.UseNServiceBus(endpointConfiguration);
 
+// Configure logging
+builder.Logging.AddConsole();
+builder.Logging.SetMinimumLevel(LogLevel.Information);
+
 var host = builder.Build();
 
-Console.WriteLine("Press CTRL+C to exit");
-await host.RunAsync();
+// Get the required services from the host
+var logger = host.Services.GetRequiredService<ILogger<Program>>();
+
+// Create a token source to signal cancellation
+var cts = new CancellationTokenSource();
+
+// Set up the Ctrl+C handler
+Console.CancelKeyPress += (sender, e) =>
+{
+    logger.LogInformation("Ctrl+C detected. Shutting down gracefully...");
+
+    // Prevent the process from terminating immediately
+    e.Cancel = true;
+    cts.Cancel();
+};
+
+logger.LogInformation("Press CTRL+C to exit");
+
+try
+{
+    // Run the host and listen for messages until cancellation is requested
+    await host.RunAsync(cts.Token);
+}
+catch (TaskCanceledException)
+{
+    // This exception is expected when cts.Cancel() is called.
+    // We can safely ignore it and let the application exit.
+    logger.LogInformation("Application cancelled gracefully");
+}
+catch (Exception ex)
+{
+    // Log any unexpected errors with full exception details
+    logger.LogError(ex, "An unexpected error occurred");
+    throw; // Re-throw to maintain error handling behavior
+}
+finally
+{
+    logger.LogInformation("Host stopped successfully");
+}

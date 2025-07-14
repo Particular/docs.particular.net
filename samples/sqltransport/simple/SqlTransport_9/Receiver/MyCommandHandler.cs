@@ -1,6 +1,9 @@
 using System.Threading.Tasks;
 using NServiceBus;
 using Microsoft.Extensions.Logging;
+using Shared;
+
+namespace Receiver;
 
 sealed class MyCommandHandler(ILogger<MyCommandHandler> logger) : IHandleMessages<MyCommand>
 {
