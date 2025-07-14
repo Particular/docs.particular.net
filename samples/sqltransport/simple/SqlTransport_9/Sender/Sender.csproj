@@ -9,7 +9,4 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="NServiceBus.Transport.SqlServer" Version="9.0.0-alpha.1" />
   </ItemGroup>
-  <ItemGroup>
-    <PackageReference Update="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="4.14.0" />
-  </ItemGroup>
 </Project>

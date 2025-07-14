@@ -1,6 +1,4 @@
 using System;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -44,39 +42,10 @@ var host = builder.Build();
 // Get the required services from the host
 var logger = host.Services.GetRequiredService<ILogger<Program>>();
 
-// Create a token source to signal cancellation
-var cts = new CancellationTokenSource();
-
-// Set up the Ctrl+C handler
-Console.CancelKeyPress += (sender, e) =>
-{
-    logger.LogInformation("Ctrl+C detected. Shutting down gracefully...");
-
-    // Prevent the process from terminating immediately
-    e.Cancel = true;
-    cts.Cancel();
-};
+// Get the application stopping token to handle graceful shutdown
+var ct = host.Services.GetRequiredService<IHostApplicationLifetime>().ApplicationStopping;
 
 logger.LogInformation("Press CTRL+C to exit");
 
-try
-{
-    // Run the host and listen for messages until cancellation is requested
-    await host.RunAsync(cts.Token);
-}
-catch (TaskCanceledException)
-{
-    // This exception is expected when cts.Cancel() is called.
-    // We can safely ignore it and let the application exit.
-    logger.LogInformation("Application cancelled gracefully");
-}
-catch (Exception ex)
-{
-    // Log any unexpected errors with full exception details
-    logger.LogError(ex, "An unexpected error occurred");
-    throw; // Re-throw to maintain error handling behavior
-}
-finally
-{
-    logger.LogInformation("Host stopped successfully");
-}
+// Run the host and listen for messages until cancellation is requested
+await host.RunAsync(ct);
