@@ -2,6 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 
+namespace Endpoint;
+
 #region ServiceInterface
 public interface IDataService
 {

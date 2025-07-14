@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
-using NServiceBus.Features;
+
+namespace Endpoint;
 
 public static class SqlHelper
 {

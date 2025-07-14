@@ -1,10 +1,12 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
 
+namespace Endpoint;
+
 #region Handler
-public class TestMessageHandler(IDataService dataService) : IHandleMessages<TestMsg>
+public class TestMessageHandler(IDataService dataService, ILogger<TestMessageHandler> logger) : IHandleMessages<TestMsg>
 {
     public async Task Handle(TestMsg message, IMessageHandlerContext context)
     {
@@ -17,10 +19,10 @@ public class TestMessageHandler(IDataService dataService) : IHandleMessages<Test
 
         var isSame = dataService.IsSame(currentConnection, currentTransaction);
 
-        Console.WriteLine($"DataService details same as NServiceBus: {isSame}");
+        logger.LogInformation("DataService details same as NServiceBus: {isSame}", isSame);
 
         // Use the DataService to write business data to the database
-        Console.WriteLine($"Saving business data: {message.Id}");
+        logger.LogInformation("Saving business data: {messageId}", message.Id);
 
         await dataService.SaveBusinessDataAsync(message.Id);
     }

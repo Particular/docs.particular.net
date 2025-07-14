@@ -1,5 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 
+namespace Endpoint;
+
 #region ConnectionHolder
 public class ConnectionHolder
 {

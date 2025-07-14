@@ -5,6 +5,8 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 
+namespace Endpoint;
+
 #region Behavior
 public class SqlConnectionBehavior : Behavior<IIncomingLogicalMessageContext>
 {
