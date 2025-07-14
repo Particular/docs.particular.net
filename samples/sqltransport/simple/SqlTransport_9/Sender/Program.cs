@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -41,7 +42,6 @@ builder.UseNServiceBus(endpointConfiguration);
 
 // Configure logging to output to console with minimum Information level
 builder.Logging.AddConsole();
-builder.Logging.SetMinimumLevel(LogLevel.Information);
 
 var host = builder.Build();
 
@@ -49,52 +49,42 @@ await host.StartAsync();
 
 // Get the required services from the host
 var messageSession = host.Services.GetRequiredService<IMessageSession>();
-// Get the application stopping token to handle graceful shutdown
-var ct = host.Services.GetRequiredService<IHostApplicationLifetime>().ApplicationStopping;
 var logger = host.Services.GetRequiredService<ILogger<Program>>();
 
-try
+// Get the application stopping cancellation token to handle graceful shutdown
+var ct = host.Services.GetRequiredService<IHostApplicationLifetime>().ApplicationStopping;
+
+logger.LogInformation("Press [c] to send a command, or [e] to publish an event. Press CTRL+C to exit.");
+while (!ct.IsCancellationRequested)
 {
-    logger.LogInformation("Press [c] to send a command, or [e] to publish an event. Press CTRL+C to exit.");
-    while (!ct.IsCancellationRequested)
+    if (!Console.KeyAvailable)
     {
-        if (!Console.KeyAvailable)
-        {
-            // Wait a short time before checking again, respecting cancellation
-            await Task.Delay(100, ct);
-            continue;
-        }
+        // Wait a short time before checking again
+        await Task.Delay(100, CancellationToken.None);
+        continue;
+    }
 
-        var input = Console.ReadKey();
-        Console.WriteLine();
+    var input = Console.ReadKey();
+    Console.WriteLine();
 
-        switch (input.Key)
-        {
-            case ConsoleKey.C:
-                // Send a command message to the configured receiver endpoint
-                logger.LogInformation("Sending command...");
-                await messageSession.Send(new MyCommand(), ct);
-                logger.LogInformation("Command sent successfully");
-                break;
-            case ConsoleKey.E:
-                // Publish an event message to all interested subscribers
-                logger.LogInformation("Publishing event...");
-                await messageSession.Publish(new MyEvent(), ct);
-                logger.LogInformation("Event published successfully");
-                break;
-        }
+    switch (input.Key)
+    {
+        case ConsoleKey.C:
+            // Send a command message to the configured receiver endpoint
+            logger.LogInformation("Sending command...");
+            await messageSession.Send(new MyCommand(), ct);
+            logger.LogInformation("Command sent successfully");
+            break;
+        case ConsoleKey.E:
+            // Publish an event message to all interested subscribers
+            logger.LogInformation("Publishing event...");
+            await messageSession.Publish(new MyEvent(), ct);
+            logger.LogInformation("Event published successfully");
+            break;
     }
 }
-catch (TaskCanceledException)
-{
-    // This exception is expected when cts.Cancel() is called during shutdown.
-    // We can safely ignore it and proceed with graceful shutdown.
-    logger.LogInformation("Application cancelled gracefully");
-}
-finally
-{
-    // Ensure the host is stopped gracefully, regardless of how the try block exits
-    logger.LogInformation("Stopping host...");
-    await host.StopAsync();
-    logger.LogInformation("Host stopped successfully");
-}
+
+// Ensure the host is stopped gracefully
+logger.LogInformation("Stopping host...");
+await host.StopAsync();
+logger.LogInformation("Host stopped successfully");

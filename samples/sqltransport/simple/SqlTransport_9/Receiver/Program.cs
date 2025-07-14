@@ -35,7 +35,6 @@ builder.UseNServiceBus(endpointConfiguration);
 
 // Configure logging
 builder.Logging.AddConsole();
-builder.Logging.SetMinimumLevel(LogLevel.Information);
 
 var host = builder.Build();
 
