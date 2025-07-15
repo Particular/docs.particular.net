@@ -12,9 +12,6 @@ endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.EnableInstallers();
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-
 Console.WriteLine("Press any key, the application is starting");
 Console.ReadKey();
 Console.WriteLine("Starting...");

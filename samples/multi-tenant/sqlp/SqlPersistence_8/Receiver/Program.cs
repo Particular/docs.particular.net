@@ -1,11 +1,10 @@
 ﻿using System;
-using Microsoft.Data.SqlClient;
 using System.IO;
-using System.Threading.Tasks;
+using System.Threading;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
-using System.Threading;
-using Microsoft.Extensions.Hosting;
 
 const string tablePrefix = "";
 
@@ -49,8 +48,6 @@ var pipeline = endpointConfiguration.Pipeline;
 
 pipeline.Register(new StoreTenantIdBehavior(), "Stores tenant ID in the session");
 pipeline.Register(new PropagateTenantIdBehavior(), "Propagates tenant ID to outgoing messages");
-
-var startableEndpoint = await Endpoint.Create(endpointConfiguration);
 
 await SqlHelper.EnsureDatabaseExists(Connections.TenantA);
 await SqlHelper.EnsureDatabaseExists(Connections.TenantB);
