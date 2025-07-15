@@ -21,9 +21,16 @@ Running the solution starts 3 console windows. Wait a moment until the ServicePu
 The sender is a program that uses NServiceBus to send simple test messages.
 
 ```cmd
-2024-09-12 09:38:38.902 INFO  Logging to 'C:\Particular\docs.particular.net\samples\servicecontrol\retry-messages\Core_9\Sender\bin\Debug\net8.0\' with level Info
-2024-09-12 09:38:39.070 INFO  Selected active license from C:\ProgramData\ParticularSoftware\license.xml
-License Expiration: 2029-10-31
+info: NServiceBus.LicenseManager[0]
+      Selected active license from C:\ProgramData\ParticularSoftware\license.xml
+      License Expiration: 2026-07-15
+Press 'Enter' to send a new message. Press any other key to finish.
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\git\p\docs.particular.net\samples\servicecontrol\retry-messages\Core_9\Sender\bin\Debug\net9.0
 Press 'Enter' to send a new message. Press any other key to finish.
 ```
 
@@ -34,46 +41,36 @@ Press <kbd>Enter</kbd> in the Sender console window to send one.
 The receiver reads messages off a queue and processes them. By default, it runs in a fault simulation mode, which causes message processing to fail, including the one that has just been sent.
 
 ```cmd
-2024-09-12 09:38:38.826 INFO  Logging to 'C:\Particular\docs.particular.net\samples\servicecontrol\retry-messages\Core_9\Receiver\bin\Debug\net8.0\' with level Info
-2024-09-12 09:38:38.983 INFO  Selected active license from C:\ProgramData\ParticularSoftware\license.xml
-License Expiration: 2029-10-31
-Press 't' to toggle fault mode or `Esc` to stop.
-2024-09-12 09:41:32.540 INFO  Received message.
-2024-09-12 09:41:32.744 ERROR Moving message 'b287b065-1fb1-4fb1-8b71-b1e9007ec40d' to the error queue 'error' because processing failed due to an exception:
-System.Exception: Simulated error.
-   at SimpleMessageHandler.Handle(SimpleMessage message, IMessageHandlerContext context) in C:\Particular\docs.particular.net\samples\servicecontrol\retry-messages\Core_9\Receiver\SimpleMessageHandler.cs:line 19
-   ...
-   at NServiceBus.LearningTransportMessagePump.ProcessFile(ILearningTransportTransaction transaction, String messageId, CancellationToken messageProcessingCancellationToken) in /_/src/NServiceBus.Core/Transports/Learning/LearningTransportMessagePump.cs:line 340
-Exception details:
-        Message type: SimpleMessage
-        Handler type: SimpleMessageHandler
-        Handler start time: 2024-09-12 07:41:32:540082 Z
-        Handler failure time: 2024-09-12 07:41:32:573794 Z
-        Handler canceled: False
-        Message ID: b287b065-1fb1-4fb1-8b71-b1e9007ec40d
-        Transport message ID: 75fe4ddd-ffde-49b1-a1dc-37c9ab8c40c6
-        Pipeline canceled: False
+info: NServiceBus.LicenseManager[0]
+      Selected active license from C:\ProgramData\ParticularSoftware\license.xml
+      License Expiration: 2026-07-15
+Press 't' to toggle fault mode.
+info: Microsoft.Hosting.Lifetime[0]
+      Application started. Press Ctrl+C to shut down.
+info: Microsoft.Hosting.Lifetime[0]
+      Hosting environment: Production
+info: Microsoft.Hosting.Lifetime[0]
+      Content root path: C:\git\p\docs.particular.net\samples\servicecontrol\retry-messages\Core_9\Receiver\bin\Debug\net9.0
+info: Toggle[0]
+      Received message.
+fail: NServiceBus.MoveToError[0]
+      Moving message '6e387659-ea6b-47ee-8223-b31b00aa3d9f' to the error queue 'error' because processing failed due to an exception:
+      System.Exception: Simulated error.
+         at SimpleMessageHandler.Handle(SimpleMessage message, IMessageHandlerContext context) in C:\git\p\docs.particular.net\samples\servicecontrol\retry-messages\Core_9\Receiver\SimpleMessageHandler.cs:line 25
+         at NServiceBus.Pipeline.MessageHandler.Invoke(Object message, IMessageHandlerContext handlerContext) in /_/src/NServiceBus.Core/Pipeline/Incoming/MessageHandler.cs:line 43
+(...)
 ```
 
 Press <kbd>t</kbd> to disable the fault simulation mode so that the message is processed correctly once retried.
 
 ```cmd
-Exception details:
-        Message type: SimpleMessage
-        Handler type: SimpleMessageHandler
-        Handler start time: 2024-09-12 07:41:32:540082 Z
-        Handler failure time: 2024-09-12 07:41:32:573794 Z
-        Handler canceled: False
-        Message ID: b287b065-1fb1-4fb1-8b71-b1e9007ec40d
-        Transport message ID: 75fe4ddd-ffde-49b1-a1dc-37c9ab8c40c6
-        Pipeline canceled: False
 t
 Fault mode disabled
 ```
 
 ### ServicePulse
 
-Going back to the ServicePulse browser window, there is a notification on the dashboard about one failed message. 
+Going back to the ServicePulse browser window, there is a notification on the dashboard about one failed message.
 
 ![service-pulse-dash-error](service-pulse-dash-error.png)
 
@@ -94,19 +91,12 @@ Once the process is completed, go back to the Receiver console window.
 You can now notice that the message has been successfully processed.
 
 ```cmd
-Exception details:
-        Message type: SimpleMessage
-        Handler type: SimpleMessageHandler
-        Handler start time: 2024-09-12 07:41:32:540082 Z
-        Handler failure time: 2024-09-12 07:41:32:573794 Z
-        Handler canceled: False
-        Message ID: b287b065-1fb1-4fb1-8b71-b1e9007ec40d
-        Transport message ID: 75fe4ddd-ffde-49b1-a1dc-37c9ab8c40c6
-        Pipeline canceled: False
 t
 Fault mode disabled
-2024-09-12 09:44:43.779 INFO  Received message.
-2024-09-12 09:44:43.781 INFO  Successfully processed message.
+info: Toggle[0]
+      Received message.
+info: Toggle[0]
+      Successfully processed message.
 ```
 
 ## Code walk-through
