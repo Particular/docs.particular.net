@@ -1,12 +1,11 @@
 using System;
-using Endpoint;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 Console.Title = "UnitOfWorkEndpoint";
 var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<InputLoopService>();
+
 var endpointConfiguration = new EndpointConfiguration("Samples.Pipeline.UnitOfWork.Endpoint");
 endpointConfiguration.UsePersistence<LearningPersistence>();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
@@ -28,5 +27,27 @@ Console.ReadKey();
 Console.WriteLine("Starting...");
 
 builder.UseNServiceBus(endpointConfiguration);
-await builder.Build().RunAsync();
 
+var host = builder.Build();
+
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+var key = default(ConsoleKeyInfo);
+
+Console.WriteLine("Press any key to send messages, 'q' to exit");
+while (key.KeyChar != 'q')
+{
+    key = Console.ReadKey();
+
+    for (var i = 1; i < 4; i++)
+    {
+        var options = new SendOptions();
+        options.SetHeader("tenant", "tenant" + i);
+        options.RouteToThisEndpoint();
+        await messageSession.Send(new MyMessage(), options);
+    }
+}
+
+await host.StopAsync();
