@@ -25,11 +25,11 @@ This style is suitable for simple business domains. Without careful design, the 
 
 The web-queue-worker architecture style can make use of Azure's managed services like [Azure App Services](/architecture/azure/compute.md#platform-as-a-service-azure-app-services), [Azure Static Web Apps](https://azure.microsoft.com/en-us/products/app-service/static), [Azure Functions](/architecture/azure/compute.md#platform-as-a-service-azure-app-services), and [Cosmos DB](/architecture/azure/data-stores.md#azure-cosmos-db).
 
-For containerized or [more flexible deployments](https://docs.particular.net/architecture/azure/compute), [Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/) and [Azure Virtual Machines](/architecture/azure/compute.md#infrastructure-as-a-service) can be used to host web or worker services.
+For containerized or [more flexible deployments](/architecture/azure/compute), [Azure Container Apps](https://learn.microsoft.com/en-us/azure/container-apps/) and [Azure Virtual Machines](/architecture/azure/compute.md#infrastructure-as-a-service) can be used to host web or worker services.
 
 [Azure Storage Queues](https://learn.microsoft.com/en-us/azure/storage/queues/) is a good messaging solution for sending small messages. [Azure Service Bus](/architecture/azure/messaging.md#azure-service-bus) is a powerful alternative which caters to larger messages and provides additional advanced features.
 
-Web and worker services can persist data using [Azure SQL Database](/architecture/azure/data-stores.md#azure-sql-database), [Azure Cosmos DB](/architecture/azure/data-stores.md#azure-cosmos-db), or other Azure-supported [data stores](https://docs.particular.net/architecture/azure/data-stores).
+Web and worker services can persist data using [Azure SQL Database](/architecture/azure/data-stores.md#azure-sql-database), [Azure Cosmos DB](/architecture/azure/data-stores.md#azure-cosmos-db), or other Azure-supported [data stores](/architecture/azure/data-stores).
 
 ## Additional resources
 
