@@ -13,6 +13,11 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
+        endpointConfiguration.SendHeartbeatTo(
+            serviceControlQueue: "Particular.ServiceControl",
+            frequency: TimeSpan.FromSeconds(10),
+            timeToLive: TimeSpan.FromSeconds(30));
+
         #region DisableRetries
 
         var recoverability = endpointConfiguration.Recoverability();

@@ -1,57 +1,80 @@
 ﻿using System;
-using System.Threading.Tasks;
+using System.Threading;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using NServiceBusEndpoint;
 
-class Program
-{
-    static async Task Main()
+Console.Title = "NServiceBusEndpoint";
+
+var host = Host.CreateDefaultBuilder(args)
+    .UseNServiceBus(x =>
     {
-        Console.Title = "NServiceBusEndpoint";
         var endpointConfiguration = new EndpointConfiguration("NServiceBusEndpoint");
         endpointConfiguration.UseTransport<LearningTransport>();
         endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
-        #region DisableRetries
+        endpointConfiguration.SendHeartbeatTo(
+            serviceControlQueue: "Particular.ServiceControl",
+            frequency: TimeSpan.FromSeconds(10),
+            timeToLive: TimeSpan.FromSeconds(30));
 
         var recoverability = endpointConfiguration.Recoverability();
 
-        recoverability.Delayed(
-            customizations: retriesSettings =>
-            {
-                retriesSettings.NumberOfRetries(0);
-            });
-        recoverability.Immediate(
-            customizations: retriesSettings =>
-            {
-                retriesSettings.NumberOfRetries(0);
-            });
-
-        #endregion
-
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press 'Enter' to send a new message. Press any other key to finish.");
-        while (true)
+        recoverability.Delayed(retriesSettings =>
         {
-            var key = Console.ReadKey();
+            retriesSettings.NumberOfRetries(0);
+        });
 
-            if (key.Key != ConsoleKey.Enter)
-            {
-                break;
-            }
+        recoverability.Immediate(retriesSettings =>
+        {
+            retriesSettings.NumberOfRetries(0);
+        });
 
-            var guid = Guid.NewGuid();
+        return endpointConfiguration;
+    })
+    .Build();
 
-            var simpleMessage = new SimpleMessage
-            {
-                Id = guid
-            };
-            await endpointInstance.Send("NServiceBusEndpoint", simpleMessage);
-            Console.WriteLine($"Sent a new message with Id = {guid}.");
 
-            Console.WriteLine("Press 'Enter' to send a new message. Press any other key to finish.");
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+Console.WriteLine("Press 'Enter' to send a new message. Press any other key to finish.");
+
+var cts = new CancellationTokenSource();
+
+Console.CancelKeyPress += (_, eventArgs) =>
+{
+    eventArgs.Cancel = true; // Prevent the process from terminating.
+    cts.Cancel();
+};
+
+while (!cts.IsCancellationRequested)
+{
+    try
+    {
+        var key = await ConsoleHelper.ReadKeyAsync(cts.Token);
+
+        if (key != ConsoleKey.Enter)
+        {
+            break;
         }
-        await endpointInstance.Stop();
+
+        var message = new SimpleMessage
+        {
+            Id = Guid.NewGuid()
+        };
+        await messageSession.Send("NServiceBusEndpoint", message);
+
+        Console.WriteLine($"Sent a new message with Id = {message.Id}.");
+        Console.WriteLine("Press 'Enter' to send a new message.");
+    }
+    catch (Exception e) when (e is OperationCanceledException)
+    {
     }
 }
+
+await host.StopAsync();
