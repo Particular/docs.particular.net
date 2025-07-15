@@ -11,8 +11,6 @@ endpointConfiguration.UsePersistence<LearningPersistence>();
 endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-Console.ReadKey();
-
 builder.UseNServiceBus(endpointConfiguration);
 
 await builder.Build().RunAsync();
