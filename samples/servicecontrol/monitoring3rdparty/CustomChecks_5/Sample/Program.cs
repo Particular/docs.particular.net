@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
@@ -22,9 +23,7 @@ class Program
              endpointConfiguration.UseTransport<LearningTransport>();
 
              endpointConfiguration.ReportCustomChecksTo("Particular.ServiceControl");
-
-             Console.WriteLine("Press any key to exit");
-             Console.ReadKey();
+             
              return endpointConfiguration;
          });
 
