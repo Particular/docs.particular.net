@@ -18,6 +18,5 @@
 
   <ItemGroup Label="Resolves vulnerabilities">
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
-    <PackageReference Include="System.Text.Json" Version="8.*" />
   </ItemGroup>
 </Project>
