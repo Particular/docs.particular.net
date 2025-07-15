@@ -8,8 +8,6 @@ var endpointConfiguration = new EndpointConfiguration("FixMalformedMessages.Mess
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport<LearningTransport>();
 
-Console.WriteLine("Press 'Enter' to finish.");
-Console.ReadLine();
 builder.UseNServiceBus(endpointConfiguration);
 
 await builder.Build().RunAsync();

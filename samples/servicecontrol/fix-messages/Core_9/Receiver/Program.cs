@@ -25,8 +25,6 @@ recoverability.Immediate(
     });
 
 #endregion
-Console.WriteLine("Press 'Enter' to finish.");
-Console.ReadLine();
 
 builder.UseNServiceBus(endpointConfiguration);
 
