@@ -4,14 +4,15 @@ using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.MessageMutator;
 
+namespace EndpointVersion2;
+
 #region mutator
-public class ReplyMutator :
-    IMutateIncomingTransportMessages
+public class ReplyMutator : IMutateIncomingTransportMessages
 {
     readonly static Dictionary<string, string> sagaRenameMap = new Dictionary<string, string>
     {
-        {"MyNamespace1.MyReplySagaVersion1", typeof(MyNamespace2.MyReplySagaVersion2).AssemblyQualifiedName},
-        {"MyNamespace1.MyTimeoutSagaVersion1", typeof(MyNamespace2.MyTimeoutSagaVersion2).AssemblyQualifiedName}
+        {"EndpointVersion1.MyReplySagaVersion1", typeof(EndpointVersion2.MyReplySagaVersion2).AssemblyQualifiedName},
+        {"EndpointVersion1.MyTimeoutSagaVersion1", typeof(EndpointVersion2.MyTimeoutSagaVersion2).AssemblyQualifiedName}
     };
 
     public Task MutateIncoming(MutateIncomingTransportMessageContext context)

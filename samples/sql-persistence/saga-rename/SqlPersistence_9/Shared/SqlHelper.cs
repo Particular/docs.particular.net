@@ -1,5 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 
+namespace Shared;
+
 public static class SqlHelper
 {
     public static void ExecuteSql(string connectionString, string sql)

@@ -1,8 +1,9 @@
 ﻿using System;
 using NServiceBus;
 
-public class Request:
-    IMessage
+namespace Shared;
+
+public record Request : IMessage
 {
     public Guid TheId { get; set; }
 }

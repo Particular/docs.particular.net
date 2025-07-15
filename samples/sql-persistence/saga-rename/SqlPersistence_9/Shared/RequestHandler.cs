@@ -2,9 +2,10 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
+namespace Shared;
+
 #region replyHandler
-public class RequestHandler :
-    IHandleMessages<Request>
+public class RequestHandler : IHandleMessages<Request>
 {
     readonly static ILog log = LogManager.GetLogger<RequestHandler>();
 

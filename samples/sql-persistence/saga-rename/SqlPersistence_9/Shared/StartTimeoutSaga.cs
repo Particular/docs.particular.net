@@ -1,8 +1,9 @@
 ﻿using System;
 using NServiceBus;
 
-public class StartTimeoutSaga:
-    IMessage
+namespace Shared;
+
+public record StartTimeoutSaga : IMessage
 {
     public Guid TheId { get; set; }
 }

@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
+using Shared;
 
 #region timeoutSaga1
-
-namespace MyNamespace1
+namespace EndpointVersion1
 {
     public class MyTimeoutSagaVersion1 :
         Saga<MyTimeoutSagaVersion1.SagaData>,
@@ -38,8 +38,7 @@ namespace MyNamespace1
             throw new Exception("Expected Timeout in MyTimeoutSagaVersion2. EndpointVersion1 may have been incorrectly started.");
         }
 
-        public class SagaData :
-            ContainSagaData
+        public class SagaData : ContainSagaData
         {
             public Guid TheId { get; set; }
         }

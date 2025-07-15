@@ -3,12 +3,12 @@ using Microsoft.Data.SqlClient;
 using NServiceBus;
 using NServiceBus.Logging;
 using NServiceBus.MessageMutator;
-
+using Shared;
 
 var defaultFactory = LogManager.Use<DefaultFactory>();
 defaultFactory.Level(LogLevel.Warn);
 
-Console.Title = "Version2";
+Console.Title = "EndpointVersion2";
 
 Console.WriteLine("Renaming SQL tables:");
 Console.WriteLine("    from Samples_RenameSaga_MyReplySagaVersion1 to Samples_RenameSaga_MyReplySagaVersion2");
@@ -16,8 +16,12 @@ Console.WriteLine("    from Samples_RenameSaga_MyTimeoutSagaVersion1 to Samples_
 
 #region renameTables
 
-// for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlPersistenceRenameSaga;Integrated Security=True;Encrypt=false
-var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlPersistenceRenameSaga;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
+// for SqlExpress: 
+//var connectionString = @"Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlPersistenceRenameSaga;Integrated Security=True;Encrypt=false";
+// for SQL Server:
+//var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlPersistenceRenameSaga;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
+// for LocalDB:
+var connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=NsbSamplesSqlPersistenceRenameSaga;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
 
 using var connection = new SqlConnection(connectionString);
 
@@ -40,7 +44,7 @@ SharedConfiguration.Apply(endpointConfiguration);
 
 #region registerMutator
 
-endpointConfiguration.RegisterMessageMutator(new ReplyMutator());
+endpointConfiguration.RegisterMessageMutator(new EndpointVersion2.ReplyMutator());
 
 #endregion
 

@@ -1,8 +1,9 @@
 ﻿using System;
 using NServiceBus;
 
-public class StartReplySaga:
-    IMessage
+namespace Shared;
+
+public record StartReplySaga : IMessage
 {
     public Guid TheId { get; set; }
 }

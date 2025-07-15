@@ -2,12 +2,13 @@
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
+using Shared;
 
 
 var defaultFactory = LogManager.Use<DefaultFactory>();
 defaultFactory.Level(LogLevel.Warn);
 
-Console.Title = "Version1";
+Console.Title = "EndpointVersion1";
 
 var endpointConfiguration = new EndpointConfiguration("Samples.RenameSaga");
 
@@ -16,7 +17,7 @@ SharedConfiguration.Apply(endpointConfiguration);
 endpointConfiguration.PurgeOnStartup(true);
 var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-Console.WriteLine("Version1 of Sagas starting. Will exit in 5 seconds. After exit, start Phase 2 Endpoint.");
+Console.WriteLine("EndpointVersion1 of Sagas starting. Will exit in 5 seconds. After exit, start Phase 2 Endpoint.");
 
 #region startSagas
 var startReplySaga = new StartReplySaga

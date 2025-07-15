@@ -2,44 +2,43 @@
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Logging;
+using Shared;
 
 #region replySaga2
-namespace MyNamespace2
+namespace EndpointVersion2;
+
+public class MyReplySagaVersion2 :
+    Saga<MyReplySagaVersion2.SagaData>,
+    IAmStartedByMessages<StartReplySaga>,
+    IHandleMessages<Reply>
 {
-    public class MyReplySagaVersion2 :
-        Saga<MyReplySagaVersion2.SagaData>,
-        IAmStartedByMessages<StartReplySaga>,
-        IHandleMessages<Reply>
+    readonly static ILog log = LogManager.GetLogger<MyReplySagaVersion2>();
+
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
     {
-        readonly static ILog log = LogManager.GetLogger<MyReplySagaVersion2>();
+        mapper.MapSaga(saga => saga.TheId)
+            .ToMessage<StartReplySaga>(msg => msg.TheId)
+            .ToMessage<Reply>(msg => msg.TheId);
+    }
 
-        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
-        {
-            mapper.MapSaga(saga => saga.TheId)
-                .ToMessage<StartReplySaga>(msg => msg.TheId)
-                .ToMessage<Reply>(msg => msg.TheId);
-        }
+    public Task Handle(StartReplySaga message, IMessageHandlerContext context)
+    {
+        // throw only for sample purposes
+        throw new Exception("Expected StartReplySaga in MyReplySagaVersion1.");
+    }
 
-        public Task Handle(StartReplySaga message, IMessageHandlerContext context)
-        {
-            // throw only for sample purposes
-            throw new Exception("Expected StartReplySaga in MyReplySagaVersion1.");
-        }
+    public Task Handle(Reply reply, IMessageHandlerContext context)
+    {
+        log.Warn($"Received Reply from {reply.OriginatingSagaType}");
 
-        public Task Handle(Reply reply, IMessageHandlerContext context)
-        {
-            log.Warn($"Received Reply from {reply.OriginatingSagaType}");
+        MarkAsComplete();
 
-            MarkAsComplete();
+        return Task.CompletedTask;
+    }
 
-            return Task.CompletedTask;
-        }
-
-        public class SagaData :
-            ContainSagaData
-        {
-            public Guid TheId { get; set; }
-        }
+    public class SagaData : ContainSagaData
+    {
+        public Guid TheId { get; set; }
     }
 }
 #endregion
