@@ -1,17 +1,15 @@
 ﻿using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
 namespace Shared;
 
 #region replyHandler
-public class RequestHandler : IHandleMessages<Request>
+public class RequestHandler(ILogger<RequestHandler> logger) : IHandleMessages<Request>
 {
-    readonly static ILog log = LogManager.GetLogger<RequestHandler>();
-
     public Task Handle(Request message, IMessageHandlerContext context)
     {
-        log.Warn("Got Request. Will send Reply");
+        logger.LogInformation("Got request {requestId}", message.TheId);
 
         var headers = context.MessageHeaders;
 
@@ -20,6 +18,8 @@ public class RequestHandler : IHandleMessages<Request>
             TheId = message.TheId,
             OriginatingSagaType = headers["NServiceBus.OriginatingSagaType"]
         };
+
+        logger.LogInformation("Sending reply {replyId} to {originatingSaga}", reply.TheId, reply.OriginatingSagaType);
 
         return context.Reply(reply);
     }

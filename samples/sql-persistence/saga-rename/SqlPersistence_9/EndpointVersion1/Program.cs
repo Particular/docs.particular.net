@@ -1,23 +1,33 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 using Shared;
-
-
-var defaultFactory = LogManager.Use<DefaultFactory>();
-defaultFactory.Level(LogLevel.Warn);
 
 Console.Title = "EndpointVersion1";
 
+// Cnfigure the endpoint
 var endpointConfiguration = new EndpointConfiguration("Samples.RenameSaga");
-
 SharedConfiguration.Apply(endpointConfiguration);
-
 endpointConfiguration.PurgeOnStartup(true);
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-Console.WriteLine("EndpointVersion1 of Sagas starting. Will exit in 5 seconds. After exit, start Phase 2 Endpoint.");
+var builder = Host.CreateApplicationBuilder(args);
+builder.UseNServiceBus(endpointConfiguration);
+
+// Configure logging to output to console with minimum Information level
+builder.Logging.AddConsole();
+
+// Build and start the host
+var host = builder.Build();
+await host.StartAsync();
+
+// Get required services
+var logger = host.Services.GetRequiredService<ILogger<Program>>();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+logger.LogInformation("EndpointVersion1 of Sagas starting. Will exit in 5 seconds. After exit, start Phase 2 Endpoint.");
 
 #region startSagas
 var startReplySaga = new StartReplySaga
@@ -25,16 +35,16 @@ var startReplySaga = new StartReplySaga
     TheId = Guid.NewGuid()
 };
 
-await endpointInstance.SendLocal(startReplySaga);
+await messageSession.SendLocal(startReplySaga);
 
 var startTimeoutSaga = new StartTimeoutSaga
 {
     TheId = Guid.NewGuid()
 };
 
-await endpointInstance.SendLocal(startTimeoutSaga);
+await messageSession.SendLocal(startTimeoutSaga);
 #endregion
 
 await Task.Delay(TimeSpan.FromSeconds(5));
 
-await endpointInstance.Stop();
+await host.StopAsync();

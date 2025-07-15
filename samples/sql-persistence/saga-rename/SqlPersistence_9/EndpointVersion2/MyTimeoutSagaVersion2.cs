@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 using Shared;
 
 #region timeoutSaga2
 namespace EndpointVersion2;
 
-public class MyTimeoutSagaVersion2 :
+public class MyTimeoutSagaVersion2(ILogger<MyTimeoutSagaVersion2> logger) :
     Saga<MyTimeoutSagaVersion2.SagaData>,
     IAmStartedByMessages<StartTimeoutSaga>,
     IHandleTimeouts<SagaTimeout>
 {
-    readonly static ILog log = LogManager.GetLogger<MyTimeoutSagaVersion2>();
-
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
     {
         mapper.MapSaga(saga => saga.TheId)
@@ -28,14 +26,13 @@ public class MyTimeoutSagaVersion2 :
 
     public Task Timeout(SagaTimeout state, IMessageHandlerContext context)
     {
-        log.Warn($"Received Timeout from {state.OriginatingSagaType}");
+        logger.LogInformation("Received Timeout from {originatingSaga}", state.OriginatingSagaType);
 
         MarkAsComplete();
         return Task.CompletedTask;
     }
 
-    public class SagaData :
-        ContainSagaData
+    public class SagaData : ContainSagaData
     {
         public Guid TheId { get; set; }
     }

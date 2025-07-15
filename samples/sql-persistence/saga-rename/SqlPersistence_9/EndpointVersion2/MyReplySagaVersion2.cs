@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 using Shared;
 
 #region replySaga2
 namespace EndpointVersion2;
 
-public class MyReplySagaVersion2 :
+public class MyReplySagaVersion2(ILogger<MyReplySagaVersion2> logger) :
     Saga<MyReplySagaVersion2.SagaData>,
     IAmStartedByMessages<StartReplySaga>,
     IHandleMessages<Reply>
 {
-    readonly static ILog log = LogManager.GetLogger<MyReplySagaVersion2>();
-
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
     {
         mapper.MapSaga(saga => saga.TheId)
@@ -29,10 +27,9 @@ public class MyReplySagaVersion2 :
 
     public Task Handle(Reply reply, IMessageHandlerContext context)
     {
-        log.Warn($"Received Reply from {reply.OriginatingSagaType}");
+        logger.LogInformation("Received reply {replyId} from {originatingSaga}", reply.TheId, reply.OriginatingSagaType);
 
         MarkAsComplete();
-
         return Task.CompletedTask;
     }
 

@@ -9,7 +9,7 @@ namespace EndpointVersion2;
 #region mutator
 public class ReplyMutator : IMutateIncomingTransportMessages
 {
-    readonly static Dictionary<string, string> sagaRenameMap = new Dictionary<string, string>
+    readonly static Dictionary<string, string> sagaRenameMap = new()
     {
         {"EndpointVersion1.MyReplySagaVersion1", typeof(EndpointVersion2.MyReplySagaVersion2).AssemblyQualifiedName},
         {"EndpointVersion1.MyTimeoutSagaVersion1", typeof(EndpointVersion2.MyTimeoutSagaVersion2).AssemblyQualifiedName}

@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 using Shared;
 
 #region replySaga1
 namespace EndpointVersion1;
 
-public class MyReplySagaVersion1 :
+public class MyReplySagaVersion1(ILogger<MyReplySagaVersion1> logger) :
     Saga<MyReplySagaVersion1.SagaData>,
     IAmStartedByMessages<StartReplySaga>,
     IHandleMessages<Reply>
 {
-    readonly static ILog log = LogManager.GetLogger<MyReplySagaVersion1>();
-
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
     {
         mapper.MapSaga(saga => saga.TheId)
@@ -32,7 +30,7 @@ public class MyReplySagaVersion1 :
             TheId = message.TheId
         };
 
-        log.Warn("Saga started. Sending Request");
+        logger.LogInformation("Saga started. Sending request {requestId}", request.TheId);
 
         return context.Send(request, sendOptions);
     }
