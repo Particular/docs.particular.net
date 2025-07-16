@@ -1,9 +1,5 @@
-﻿using System;
-using System.IO;
-using System.Threading;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Hosting;
-using NServiceBus;
 using NServiceBus.Persistence.Sql;
 
 const string tablePrefix = "";
