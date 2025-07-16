@@ -1,22 +1,32 @@
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
 
 
 var host = Host.CreateDefaultBuilder(args)
-    .UseNServiceBus(x =>
+    .ConfigureServices((hostContext, services) =>
+    {
+        #region logging
+        services.AddLogging(x =>
+        {
+            x.SetMinimumLevel(LogLevel.Critical);
+        });
+        #endregion
+
+    })
+    .UseNServiceBus(context =>
     {
         #region endpointConfig
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Notifications");
         SubscribeToNotifications.Subscribe(endpointConfiguration);
 
-        #endregion
-
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
+        #endregion
 
         #region customDelayedRetries
 
