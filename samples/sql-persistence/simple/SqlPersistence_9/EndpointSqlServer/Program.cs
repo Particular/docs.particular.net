@@ -1,5 +1,9 @@
 ﻿using System;
+using EndpointSqlServer;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
 
 Console.Title = "EndpointSqlServer";
@@ -8,6 +12,7 @@ var endpointConfiguration = new EndpointConfiguration("Samples.SqlPersistence.En
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
 #region sqlServerConfig
+
 var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
 persistence.SqlDialect<SqlDialect.MsSqlServer>();
 
@@ -19,6 +24,7 @@ persistence.SqlDialect<SqlDialect.MsSqlServer>();
 var connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=NsbSamplesSqlPersistence;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
 
 persistence.ConnectionBuilder(() => new SqlConnection(connectionString));
+
 #endregion
 
 var subscriptions = persistence.SubscriptionSettings();
@@ -29,9 +35,18 @@ SqlHelper.EnsureDatabaseExists(connectionString);
 endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.EnableInstallers();
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder(args);
+builder.UseNServiceBus(endpointConfiguration);
+builder.Logging.AddConsole();
 
-Console.WriteLine("Press any key to exit");
+// Build and start the host
+var host = builder.Build();
+await host.StartAsync();
+
+// Get required services
+var logger = host.Services.GetRequiredService<ILogger<Program>>();
+
+logger.LogWarning("Press any key to exit");
 Console.ReadKey();
 
-await endpointInstance.Stop();
+await host.StopAsync();

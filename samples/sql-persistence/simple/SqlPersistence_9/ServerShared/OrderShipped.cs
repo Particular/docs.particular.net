@@ -1,7 +1,10 @@
 ﻿using System;
+using NServiceBus;
 
-public class OrderShipped
+namespace ServerShared;
+
+public record OrderShipped : IEvent
 {
-    public Guid Id { get; set; }
-    public DateTime ShippingDate { get; set; }
+    public required Guid Id { get; set; }
+    public required DateTime ShippingDate { get; set; }
 }

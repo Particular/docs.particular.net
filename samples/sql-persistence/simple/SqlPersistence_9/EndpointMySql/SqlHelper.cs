@@ -1,5 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 
+namespace EndpointMySql;
+
 public static class SqlHelper
 {
     public static void EnsureDatabaseExists(string connectionString)

@@ -1,5 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 
+namespace EndpointSqlServer;
+
 public static class SqlHelper
 {
     public static void EnsureDatabaseExists(string connectionString)

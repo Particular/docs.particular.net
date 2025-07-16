@@ -1,8 +1,11 @@
 ﻿using System;
+using EndpointPostgreSql;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Npgsql;
 using NpgsqlTypes;
 using NServiceBus;
-
 
 Console.Title = "EndpointPostgreSql";
 
@@ -10,12 +13,14 @@ var endpointConfiguration = new EndpointConfiguration("EndpointPostgreSql");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
 #region PostgreSqlConfig
+
 var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
 var dialect = persistence.SqlDialect<SqlDialect.PostgreSql>();
 
 var connection = "Host=localhost;Username=postgres;Password=yourStrong(!)Password;Database=NsbSamplesSqlPersistence";
 
 persistence.ConnectionBuilder(() => new NpgsqlConnection(connection));
+
 #endregion
 
 dialect.JsonBParameterModifier(
@@ -33,9 +38,18 @@ endpointConfiguration.EnableInstallers();
 
 SqlHelper.EnsureDatabaseExists(connection);
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder(args);
+builder.UseNServiceBus(endpointConfiguration);
+builder.Logging.AddConsole();
 
-Console.WriteLine("Press any key to exit");
+// Build and start the host
+var host = builder.Build();
+await host.StartAsync();
+
+// Get required services
+var logger = host.Services.GetRequiredService<ILogger<Program>>();
+
+logger.LogWarning("Press any key to exit");
 Console.ReadKey();
 
-await endpointInstance.Stop();
+await host.StopAsync();

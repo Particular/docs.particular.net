@@ -1,6 +1,8 @@
 ﻿using System.Data.Common;
 using Npgsql;
 
+namespace EndpointPostgreSql;
+
 public static class SqlHelper
 {
     public static void EnsureDatabaseExists(string connectionString)

@@ -1,8 +1,9 @@
 ﻿using System;
 using NServiceBus;
 
-public class ShipOrder :
-    IMessage
+namespace ServerShared;
+
+public record ShipOrder : ICommand
 {
-    public Guid OrderId { get; set; }
+    public required Guid OrderId { get; set; }
 }

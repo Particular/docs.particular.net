@@ -1,8 +1,9 @@
 using System;
 using NServiceBus;
 
-public class OrderCompleted :
-    IEvent
+namespace SharedMessages;
+
+public record OrderCompleted : IEvent
 {
-    public Guid OrderId { get; set; }
+    public required Guid OrderId { get; set; }
 }

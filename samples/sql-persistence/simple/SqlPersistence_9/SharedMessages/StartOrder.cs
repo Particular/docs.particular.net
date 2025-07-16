@@ -1,8 +1,9 @@
 using System;
 using NServiceBus;
 
-public class StartOrder :
-    IMessage
+namespace SharedMessages;
+
+public record StartOrder : ICommand
 {
-    public Guid OrderId { get; set; }
+    public required Guid OrderId { get; set; }
 }
