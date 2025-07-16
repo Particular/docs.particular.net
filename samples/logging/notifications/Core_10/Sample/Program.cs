@@ -22,12 +22,12 @@ var host = Host.CreateDefaultBuilder(args)
 
         var endpointConfiguration = new EndpointConfiguration("Samples.Notifications");
         SubscribeToNotifications.Subscribe(endpointConfiguration);
+        #endregion
 
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
-        #endregion
-
+       
         #region customDelayedRetries
 
         var recoverability = endpointConfiguration.Recoverability();
