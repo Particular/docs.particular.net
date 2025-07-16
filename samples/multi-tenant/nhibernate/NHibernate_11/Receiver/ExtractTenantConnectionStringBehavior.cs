@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using NServiceBus.Pipeline;
+﻿using NServiceBus.Pipeline;
 
 class ExtractTenantConnectionStringBehavior :
     Behavior<ITransportReceiveContext>

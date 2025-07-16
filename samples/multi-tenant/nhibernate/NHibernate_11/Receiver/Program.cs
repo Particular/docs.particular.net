@@ -1,9 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
-using NHibernate.Dialect;
+﻿using NHibernate.Dialect;
 using NHibernate.Driver;
 using NHibernate.Mapping.ByCode;
-using NServiceBus;
 using NServiceBus.NHibernate;
 using NServiceBus.Persistence;
 using Configuration = NHibernate.Cfg.Configuration;
