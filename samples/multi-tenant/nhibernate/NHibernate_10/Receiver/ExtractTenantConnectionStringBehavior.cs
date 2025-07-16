@@ -19,7 +19,7 @@ class ExtractTenantConnectionStringBehavior :
 
         Console.WriteLine($"Setting connection for tenant {tenant}");
 
-        var connectionString = Connections.GetTenant(tenant);
+        var connectionString = Connections.GetForTenant(tenant);
 
         ConnectionStringHolder.Value = connectionString;
         try
