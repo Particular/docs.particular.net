@@ -1,5 +1,7 @@
 ## Configuration
 
+`ServiceBusTriggeredEndpointConfiguration` can be used to configure the endpoint. It exposes details of the transport via `Transport` property. To access the regular `EndpointConfiguration` object (i.e., to configure persistence), use the `AdvancedConfiguration` property.
+
 `ServiceBusTriggeredEndpointConfiguration` loads certain configuration values from the Azure Function host environment in the following order:
 
 1. `IConfiguration`
