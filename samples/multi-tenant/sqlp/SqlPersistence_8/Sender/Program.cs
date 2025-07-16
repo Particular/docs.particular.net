@@ -26,6 +26,7 @@ var messageSession = host.Services.GetRequiredService<IMessageSession>();
 const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
 var random = new Random();
 Console.WriteLine("Press A or B to publish a message (A and B are tenant IDs)");
+Console.WriteLine("Press Escape to exit");
 var acceptableInput = new List<char> { 'A', 'B' };
 
 while (true)
