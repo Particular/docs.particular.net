@@ -33,7 +33,6 @@ Console.ReadKey();
 Console.WriteLine("Starting...");
 
 builder.UseNServiceBus(endpointConfiguration);
-
 var host = builder.Build();
 
 await host.StartAsync();
