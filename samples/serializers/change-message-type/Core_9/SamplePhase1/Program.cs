@@ -1,30 +1,30 @@
 using System;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-static class Program
+Console.Title = "Phase1";
+
+var builder = Host.CreateApplicationBuilder(args);
+
+var endpointConfiguration = new EndpointConfiguration("ChangeMessageIdentity.Phase1");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
+
+builder.UseNServiceBus(endpointConfiguration);
+var host = builder.Build();
+await host.StartAsync();
+
+var newOrder = new CreateOrderPhase1
 {
-    static async Task Main()
-    {
-        Console.Title = "Phase1";
+    OrderDate = DateTime.Now
+};
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
 
-        var endpointConfiguration = new EndpointConfiguration("ChangeMessageIdentity.Phase1");
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
+await messageSession.Send("ChangeMessageIdentity.Phase2", newOrder);
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+Console.WriteLine("CreateOrderPhase1 Sent");
+Console.WriteLine("Press any key to exit");
+Console.ReadKey();
 
-        var newOrder = new CreateOrderPhase1
-        {
-            OrderDate = DateTime.Now
-        };
-
-        await endpointInstance.Send("ChangeMessageIdentity.Phase2", newOrder);
-
-        Console.WriteLine("CreateOrderPhase1 Sent");
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-
-        await endpointInstance.Stop();
-    }
-}
+await host.StopAsync();

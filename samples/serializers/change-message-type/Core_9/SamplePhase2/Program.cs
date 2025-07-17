@@ -1,30 +1,29 @@
 using System;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.MessageMutator;
 
-static class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Phase2";
+Console.Title = "Phase2";
 
-        var endpointConfiguration = new EndpointConfiguration("ChangeMessageIdentity.Phase2");
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
+var builder = Host.CreateApplicationBuilder(args);
 
-        #region RegisterMessageMutator
 
-        endpointConfiguration.RegisterMessageMutator(new MessageIdentityMutator());
+var endpointConfiguration = new EndpointConfiguration("ChangeMessageIdentity.Phase2");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        #endregion
+#region RegisterMessageMutator
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+endpointConfiguration.RegisterMessageMutator(new MessageIdentityMutator());
 
-        Console.WriteLine("Waiting for orders..");
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
+#endregion
 
-        await endpointInstance.Stop();
-    }
-}
+builder.UseNServiceBus(endpointConfiguration);
+var host = builder.Build();
+await host.StartAsync();
+
+Console.WriteLine("Waiting for orders..");
+Console.WriteLine("Press any key to exit");
+Console.ReadKey();
+
+await host.StopAsync();
