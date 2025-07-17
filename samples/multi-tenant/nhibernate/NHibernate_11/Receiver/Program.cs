@@ -93,17 +93,17 @@ create synonym OutboxRecord FOR [NHibernateMultiTenantReceiver].[dbo].[OutboxRec
     static Configuration CreateNHibernateConfig()
     {
         var hibernateConfig = new Configuration();
-        hibernateConfig.DataBaseIntegration(x =>
+        hibernateConfig.DataBaseIntegration(configuration =>
         {
             #region ConnectionProvider
 
-            x.ConnectionProvider<MultiTenantConnectionProvider>();
+            configuration.ConnectionProvider<MultiTenantConnectionProvider>();
 
             #endregion
 
-            x.Dialect<MsSql2012Dialect>();
-            x.Driver<MicrosoftDataSqlClientDriver>();
-            x.ConnectionString = Connections.Shared;
+            configuration.Dialect<MsSql2012Dialect>();
+            configuration.Driver<MicrosoftDataSqlClientDriver>();
+            configuration.ConnectionString = Connections.Shared;
         });
         return hibernateConfig;
     }
