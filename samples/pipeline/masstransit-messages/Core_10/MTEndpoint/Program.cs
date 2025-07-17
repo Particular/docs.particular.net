@@ -31,7 +31,6 @@ namespace MTEndpoint
                         rmq.SetQuorumQueue(3);
                 });
             });
-            builder.Services.AddMassTransitHostedService();
 
             builder.Services.AddHostedService<Worker>();
 
