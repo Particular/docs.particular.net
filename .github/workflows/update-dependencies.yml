@@ -19,6 +19,6 @@ jobs:
   renovate:
     uses: particular/shared-workflows/.github/workflows/dependency-updates.yml@main
     with:
-      dryRun: ${{ true || inputs.dryRun || false }}
+      dryRun: ${{ inputs.dryRun || false }}
       debugMode: ${{ inputs.debugMode || false }}
     secrets: inherit
