@@ -16,9 +16,6 @@ endpointConfiguration.PurgeOnStartup(true);
 var builder = Host.CreateApplicationBuilder(args);
 builder.UseNServiceBus(endpointConfiguration);
 
-// Configure logging to output to console with minimum Information level
-builder.Logging.AddConsole();
-
 // Build and start the host
 var host = builder.Build();
 await host.StartAsync();

@@ -22,9 +22,6 @@ endpointConfiguration.RegisterMessageMutator(new EndpointVersion2.ReplyMutator()
 var builder = Host.CreateApplicationBuilder(args);
 builder.UseNServiceBus(endpointConfiguration);
 
-// Configure logging to output to console with minimum Information level
-builder.Logging.AddConsole();
-
 var host = builder.Build();
 
 // Get required services
