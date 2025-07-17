@@ -9,7 +9,7 @@ class MultiTenantConnectionProvider :
         #region GetConnectionFromContext
 
         var connectionString = ExtractTenantConnectionStringBehavior.ConnectionStringHolder.Value;
-        if (connectionString != null)
+        if (!string.IsNullOrEmpty(connectionString))
         {
             var connection = Driver.CreateConnection();
             connection.ConnectionString = connectionString;
