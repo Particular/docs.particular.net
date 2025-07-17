@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using Raven.Client.Documents;
 using Raven.Client.Documents.Operations;
-using Raven.Client.Documents.Operations.Expiration;
 using Raven.Client.Exceptions;
 using Raven.Client.Exceptions.Database;
 using Raven.Client.ServerWide;
 using Raven.Client.ServerWide.Operations;
-
 
 Console.Title = "Receiver";
 var builder = Host.CreateApplicationBuilder(args);
