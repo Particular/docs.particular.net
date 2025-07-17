@@ -1,9 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NServiceBus;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 Console.Title = "Sender";
 
@@ -13,10 +9,6 @@ var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Sende
 endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.EnableInstallers();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-
-Console.WriteLine("Press any key, the application is starting");
-Console.ReadKey();
-Console.WriteLine("Starting...");
 
 builder.UseNServiceBus(endpointConfiguration);
 

@@ -1,6 +1,4 @@
-﻿using System;
-
-public static class Connections
+﻿public static class Connections
 {
     static Connections()
     {
