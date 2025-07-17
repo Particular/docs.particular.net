@@ -57,11 +57,6 @@ pipeline.Register(new StoreTenantIdBehavior(), "Stores tenant ID in the session"
 pipeline.Register(new PropagateTenantIdBehavior(), "Propagates tenant ID to outgoing messages");
 
 var startableEndpoint = await Endpoint.Create(endpointConfiguration);
-
-Console.WriteLine("Press any key, the application is starting");
-Console.ReadKey();
-Console.WriteLine("Starting...");
-
 builder.UseNServiceBus(endpointConfiguration);
 await builder.Build().RunAsync();
 
