@@ -30,7 +30,7 @@ public class MyReplySagaVersion1(ILogger<MyReplySagaVersion1> logger) :
             TheId = message.TheId
         };
 
-        logger.LogInformation("Saga started. Sending request {requestId}", request.TheId);
+        logger.LogInformation("Saga started. Sending request {RequestId}", request.TheId);
 
         return context.Send(request, sendOptions);
     }
