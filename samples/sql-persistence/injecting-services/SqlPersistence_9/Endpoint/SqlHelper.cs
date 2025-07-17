@@ -32,11 +32,9 @@ public static class SqlHelper
         var masterConnection = connectionString.Replace(builder.InitialCatalog, "master");
 
         using var connection = new SqlConnection(masterConnection);
-
         connection.Open();
 
         using var command = connection.CreateCommand();
-
         command.CommandText = $@"if(db_id('{database}') is null) create database [{database}]";
         command.ExecuteNonQuery();
     }
@@ -44,11 +42,9 @@ public static class SqlHelper
     static void CreateTable(string connectionString)
     {
         using var connection = new SqlConnection(connectionString);
-
         connection.Open();
 
         using var command = connection.CreateCommand();
-
         command.CommandText = $@"
 if not exists (select * from sys.tables where name = 'ReceivedMessageIds')
 begin

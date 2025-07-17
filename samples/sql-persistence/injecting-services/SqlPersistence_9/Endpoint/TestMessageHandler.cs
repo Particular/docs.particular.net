@@ -19,10 +19,10 @@ public class TestMessageHandler(IDataService dataService, ILogger<TestMessageHan
 
         var isSame = dataService.IsSame(currentConnection, currentTransaction);
 
-        logger.LogInformation("DataService details same as NServiceBus: {isSame}", isSame);
+        logger.LogInformation("DataService details same as NServiceBus: {IsSame}", isSame);
 
         // Use the DataService to write business data to the database
-        logger.LogInformation("Saving business data: {messageId}", message.Id);
+        logger.LogInformation("Saving business data: {MessageId}", message.Id);
 
         await dataService.SaveBusinessDataAsync(message.Id);
     }

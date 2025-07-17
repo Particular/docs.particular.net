@@ -56,9 +56,6 @@ SqlHelper.EnsureDatabaseExists(connectionString);
 var builder = Host.CreateApplicationBuilder(args);
 builder.UseNServiceBus(endpointConfiguration);
 
-// Configure logging to output to console with minimum Information level
-builder.Logging.AddConsole();
-
 var host = builder.Build();
 
 await host.StartAsync();
@@ -70,7 +67,7 @@ var logger = host.Services.GetRequiredService<ILogger<Program>>();
 // Get the application stopping cancellation token to handle graceful shutdown
 var ct = host.Services.GetRequiredService<IHostApplicationLifetime>().ApplicationStopping;
 
-logger.LogInformation("Press [S] to send a message, or [CTRL+C] to exit.");
+Console.WriteLine("Press [S] to send a message, or [CTRL+C] to exit.");
 while (!ct.IsCancellationRequested)
 {
     if (!Console.KeyAvailable)
