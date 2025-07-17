@@ -17,8 +17,11 @@ routing.RouteToEndpoint(typeof(RequestMessage), "Samples.Docker.Receiver");
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.DefineCriticalErrorAction(CriticalErrorActions.RestartContainer);
-endpointConfiguration.EnableInstallers();
 
+var metrics = endpointConfiguration.EnableMetrics();
+metrics.SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromSeconds(1));
+
+endpointConfiguration.EnableInstallers();
 builder.UseNServiceBus(endpointConfiguration);
 builder.Services.AddHostedService<MessageSender>();
 

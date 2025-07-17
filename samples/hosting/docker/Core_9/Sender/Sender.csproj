@@ -15,8 +15,9 @@
 
   <ItemGroup>
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.RabbitMQ" Version="9.*" />
-    <PackageReference Include="RabbitMQ.Client" Version="6.*" />
+    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="6.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="11.0.0-alpha.1" />
+    <PackageReference Include="RabbitMQ.Client" Version="7.*" />
   </ItemGroup>
 
   <ItemGroup>

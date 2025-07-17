@@ -18,8 +18,11 @@ endpointConfiguration.UseTransport(transport);
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.DefineCriticalErrorAction(CriticalErrorActions.RestartContainer);
-endpointConfiguration.EnableInstallers();
 
+var metrics = endpointConfiguration.EnableMetrics();
+metrics.SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromSeconds(1));
+
+endpointConfiguration.EnableInstallers();
 builder.UseNServiceBus(endpointConfiguration);
 
 await builder.Build()

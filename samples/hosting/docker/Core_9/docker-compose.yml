@@ -1,23 +1,97 @@
 # startcode compose
 services:
+    servicecontrol:
+      image: particular/servicecontrol:${SERVICECONTROL_TAG}
+      env_file: .env
+      ports:
+        - "33333:33333"
+      environment:
+        RAVENDB_CONNECTIONSTRING: http://servicecontrol-db:8080
+        REMOTEINSTANCES: '[{"api_uri":"http://servicecontrol-audit:44444/api"}]'
+      command: --setup-and-run
+      restart: unless-stopped
+      depends_on:
+        servicecontrol-db:
+          condition: service_healthy
+        rabbitmq:
+          condition: service_healthy
+
+    # WARNING: A single database container should not be shared between multiple ServiceControl instances in production scenarios.
+    servicecontrol-db:
+      image: particular/servicecontrol-ravendb:${SERVICECONTROL_TAG}
+      ports:
+        - "8080:8080"
+      volumes:
+        - raven-config:/var/lib/ravendb/config
+        - raven-data:/var/lib/ravendb/data
+
+    servicecontrol-audit:
+      image: particular/servicecontrol-audit:${SERVICECONTROL_TAG}
+      env_file: .env
+      ports:
+        - "44444:44444"
+      environment:
+        RAVENDB_CONNECTIONSTRING: http://servicecontrol-db:8080
+        SERVICECONTROLQUEUEADDRESS: Particular.ServiceControl
+      command: --setup-and-run
+      restart: unless-stopped
+      depends_on:
+        servicecontrol-db:
+          condition: service_healthy
+        rabbitmq:
+          condition: service_healthy
+
+    servicecontrol-monitoring:
+      image: particular/servicecontrol-monitoring:${SERVICECONTROL_TAG}
+      env_file: .env
+      restart: unless-stopped
+      command: --setup-and-run
+      ports:
+        - "33633:33633"
+      depends_on:
+        rabbitmq:
+          condition: service_healthy
+
+    servicepulse:
+      image: particular/servicepulse:${SERVICEPULSE_TAG}
+      ports:
+        - "9090:9090"
+      environment:
+        SERVICECONTROL_URL: http://servicecontrol:33333
+        MONITORING_URL: http://servicecontrol-monitoring:33633
+      restart: unless-stopped
+      depends_on:
+        servicecontrol:
+          condition: service_healthy
+        servicecontrol-monitoring:
+          condition: service_healthy
+        rabbitmq:
+          condition: service_healthy
+
+    rabbitmq:
+      image: "rabbitmq:3-management"
+      ports:
+        - "15672:15672"
+        - "5672:5672"
+      healthcheck:
+        test: rabbitmq-diagnostics check_port_connectivity
+        interval: 30s
+        timeout: 30s
+        retries: 3
+
     sender:
         image: sender
         depends_on:
             rabbitmq:
-                condition: service_healthy    
+                condition: service_healthy
     receiver:
         image: receiver
         depends_on:
             rabbitmq:
-                condition: service_healthy    
-    rabbitmq:
-        image: "rabbitmq:3-management"
-        ports:
-            - "15672:15672"
-            - "5672:5672"
-        healthcheck:
-            test: rabbitmq-diagnostics check_port_connectivity
-            interval: 30s
-            timeout: 30s
-            retries: 3
+                condition: service_healthy
+
+volumes:
+  rabbitmq-data:
+  raven-config:
+  raven-data:
 # endcode
