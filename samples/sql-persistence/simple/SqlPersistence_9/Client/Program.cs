@@ -31,11 +31,11 @@ var logger = host.Services.GetRequiredService<ILogger<Program>>();
 // Get the application stopping cancellation token to handle graceful shutdown
 var ct = host.Services.GetRequiredService<IHostApplicationLifetime>().ApplicationStopping;
 
-logger.LogWarning("Press [S] to send a StartOrder message to the SqlServer endpoint");
-logger.LogWarning("Press [M] to send a StartOrder message to the MySql endpoint");
-logger.LogWarning("Press [O] to send a StartOrder message to the Oracle endpoint");
-logger.LogWarning("Press [P] to send a StartOrder message to the PostgreSql endpoint"); 
-logger.LogWarning("Press [CTRL+C] to exit");
+Console.WriteLine("Press [S] to send a StartOrder message to the SqlServer endpoint");
+Console.WriteLine("Press [M] to send a StartOrder message to the MySql endpoint");
+Console.WriteLine("Press [O] to send a StartOrder message to the Oracle endpoint");
+Console.WriteLine("Press [P] to send a StartOrder message to the PostgreSql endpoint");
+Console.WriteLine("Press [CTRL+C] to exit");
 
 while (!ct.IsCancellationRequested)
 {
@@ -58,7 +58,7 @@ while (!ct.IsCancellationRequested)
     if (key.Key == ConsoleKey.M)
     {
         await messageSession.Send("Samples.SqlPersistence.EndpointMySql", startOrder);
-        logger.LogInformation("StartOrder Message sent to EndpointMySql with OrderId {orderId}", startOrder.OrderId);
+        logger.LogInformation("StartOrder Message sent to EndpointMySql with OrderId {OrderId}", startOrder.OrderId);
         continue;
     }
     if (key.Key == ConsoleKey.S)
