@@ -1,0 +1,3 @@
+{
+    enabledManagers: [ "github-actions" ]
+}
