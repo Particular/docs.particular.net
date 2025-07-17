@@ -33,9 +33,6 @@ await SqlHelper.EnsureDatabaseExists(connectionString);
 var builder = Host.CreateApplicationBuilder(args);
 builder.UseNServiceBus(endpointConfiguration);
 
-// Configure logging
-builder.Logging.AddConsole();
-
 var host = builder.Build();
 
 // Get the required services from the host
@@ -44,7 +41,7 @@ var logger = host.Services.GetRequiredService<ILogger<Program>>();
 // Get the application stopping token to handle graceful shutdown
 var ct = host.Services.GetRequiredService<IHostApplicationLifetime>().ApplicationStopping;
 
-logger.LogInformation("Press CTRL+C to exit");
+Console.WriteLine("Press CTRL+C to exit");
 
 // Run the host and listen for messages until cancellation is requested
 await host.RunAsync(ct);
