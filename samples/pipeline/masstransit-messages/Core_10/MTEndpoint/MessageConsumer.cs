@@ -7,15 +7,8 @@ namespace MTEndpoint
 {
     #region MassTransitConsumer
 
-    public class MessageConsumer : IConsumer<MassTransitEvent>
+    public class MessageConsumer(ILogger<MessageConsumer> logger) : IConsumer<MassTransitEvent>
     {
-        readonly ILogger<MessageConsumer> logger;
-
-        public MessageConsumer(ILogger<MessageConsumer> logger)
-        {
-            this.logger = logger;
-        }
-
         public Task Consume(ConsumeContext<MassTransitEvent> context)
         {
             logger.LogInformation("Received Text: {Text}", context.Message.Text);
