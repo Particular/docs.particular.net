@@ -1,6 +1,4 @@
-﻿using System;
-
-public static class Connections
+﻿public static class Connections
 {
     // For SQL Server Express use:         Data Source=.\SqlExpress;Integrated Security=True;Encrypt=false;Max Pool Size=100
     // For SQL Server Express LocalDb use: Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True;Encrypt=false;Max Pool Size=100

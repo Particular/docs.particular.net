@@ -1,7 +1,5 @@
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using NServiceBus;
 
 public class OrderSubmittedHandler(ILogger<OrderSubmittedHandler> logger) :
     IHandleMessages<OrderSubmitted>
