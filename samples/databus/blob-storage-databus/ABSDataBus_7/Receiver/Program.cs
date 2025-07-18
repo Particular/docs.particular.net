@@ -1,7 +1,6 @@
 using Azure.Storage.Blobs;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
-using System;
 
 
 Console.Title = "Receiver";
@@ -19,7 +18,7 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.EnableInstallers();
 
-Console.WriteLine("Press any key, the application is starting");
+Console.WriteLine("Press any key to start the application");
 Console.ReadKey();
 Console.WriteLine("Starting...");
 builder.UseNServiceBus(endpointConfiguration);
