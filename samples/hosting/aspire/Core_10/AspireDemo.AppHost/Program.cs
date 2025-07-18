@@ -1,9 +1,14 @@
 #region app-host
+
+using AspireDemo.AppHost;
+
 var builder = DistributedApplication.CreateBuilder(args);
 
 var transport = builder.AddRabbitMQ("transport")
     .WithManagementPlugin(15672)
     .WithUrlForEndpoint("management", url => url.DisplayText = "RabbitMQ Management");
+
+var RabbitMQConnectionString = await transport.GetRabbitMqConnectionString();
 
 var database = builder.AddPostgres("database");
 
@@ -21,7 +26,7 @@ var ravenDB = builder.AddContainer("ServiceControl-RavenDB", "particular/service
 
 var audit = builder.AddContainer("ServiceControl-Audit", "particular/servicecontrol-audit")
     .WithEnvironment("TRANSPORTTYPE", "RabbitMQ.QuorumConventionalRouting")
-    .WithEnvironment("CONNECTIONSTRING", transport)
+    .WithEnvironment("CONNECTIONSTRING", RabbitMQConnectionString)
     .WithEnvironment("RAVENDB_CONNECTIONSTRING", ravenDB.GetEndpoint("http"))
     .WithArgs("--setup-and-run")
     .WithHttpEndpoint(44444, 44444)
@@ -32,7 +37,7 @@ var audit = builder.AddContainer("ServiceControl-Audit", "particular/servicecont
 
 var serviceControl = builder.AddContainer("ServiceControl", "particular/servicecontrol")
     .WithEnvironment("TRANSPORTTYPE", "RabbitMQ.QuorumConventionalRouting")
-    .WithEnvironment("CONNECTIONSTRING", transport)
+    .WithEnvironment("CONNECTIONSTRING", RabbitMQConnectionString)
     .WithEnvironment("RAVENDB_CONNECTIONSTRING", ravenDB.GetEndpoint("http"))
     .WithEnvironment("REMOTEINSTANCES", $"[{{\"api_uri\":\"{audit.GetEndpoint("http")}\"}}]")
     .WithArgs("--setup-and-run")
@@ -44,7 +49,7 @@ var serviceControl = builder.AddContainer("ServiceControl", "particular/servicec
 
 var monitoring = builder.AddContainer("ServiceControl-Monitoring", "particular/servicecontrol-monitoring")
     .WithEnvironment("TRANSPORTTYPE", "RabbitMQ.QuorumConventionalRouting")
-    .WithEnvironment("CONNECTIONSTRING", transport)
+    .WithEnvironment("CONNECTIONSTRING", RabbitMQConnectionString)
     .WithArgs("--setup-and-run")
     .WithHttpEndpoint(33633, 33633)
     .WithUrlForEndpoint("http", url => url.DisplayLocation = UrlDisplayLocation.DetailsOnly)
