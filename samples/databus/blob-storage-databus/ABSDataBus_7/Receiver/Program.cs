@@ -1,8 +1,8 @@
+using System;
 using Azure.Storage.Blobs;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
-using System;
-
+using NServiceBus.ClaimCheck;
 
 Console.Title = "Receiver";
 var builder = Host.CreateApplicationBuilder(args);
