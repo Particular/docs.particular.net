@@ -1,4 +1,5 @@
 using NServiceBus;
+using NServiceBus.ClaimCheck;
 using System;
 using System.Threading.Tasks;
 
@@ -13,13 +14,18 @@ class Program
 
         var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, SystemJsonClaimCheckSerializer>();
         claimCheck.BasePath(@"..\..\..\..\storage");
+        
+        // Configure ClaimCheck properties using conventions
+        endpointConfiguration.Conventions()
+            .DefiningClaimCheckPropertiesAs(property => property.Name.EndsWith("Blob"));
+
         #endregion
 
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press 'D' to send a databus large message");
+        Console.WriteLine("Press 'D' to send a claim check large message");
         Console.WriteLine("Press 'N' to send a normal large message exceed the size limit and throw");
         Console.WriteLine("Press any other key to exit");
 
@@ -47,18 +53,16 @@ class Program
 
     static async Task SendMessageLargePayload(IEndpointInstance endpointInstance)
     {
-#pragma warning disable CS0618 // Type or member is obsolete
         #region SendMessageLargePayload
 
         var message = new MessageWithLargePayload
         {
-            SomeProperty = "This message contains a large blob that will be sent on the data bus",
-            LargeBlob = new DataBusProperty<byte[]>(new byte[1024 * 1024 * 5]) //5MB
+            SomeProperty = "This message contains a large blob that will be sent via claim check",
+            LargeBlob = new byte[1024 * 1024 * 5] //5MB
         };
         await endpointInstance.Send("Samples.DataBus.Receiver", message);
 
         #endregion
-#pragma warning restore CS0618 // Type or member is obsolete
 
         Console.WriteLine(@"Message sent, the payload is stored in: ..\..\..\storage");
     }
