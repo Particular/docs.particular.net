@@ -1,7 +1,4 @@
-using System;
 using Microsoft.Extensions.Hosting;
-using NServiceBus;
-
 
 Console.Title = "Billing";
 var builder = Host.CreateApplicationBuilder(args);
