@@ -7,7 +7,7 @@ using Shared;
 
 class Program
 {
-    static Task Main(string[] args)
+    static async Task Main(string[] args)
     {
         Console.Title = "Receiver";
 
@@ -23,6 +23,6 @@ class Program
 
         var host = builder.Build();
 
-        return host.RunAsync();
+        await host.RunAsync();
     }
 }
