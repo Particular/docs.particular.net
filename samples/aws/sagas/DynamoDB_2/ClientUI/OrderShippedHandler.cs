@@ -1,14 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
-public class OrderShippedHandler : IHandleMessages<OrderShipped>
+public class OrderShippedHandler(ILogger<OrderShippedHandler> logger) : IHandleMessages<OrderShipped>
 {
-  static readonly ILog Log = LogManager.GetLogger<OrderShippedHandler>();
-
   public Task Handle(OrderShipped message, IMessageHandlerContext context)
   {
-    Log.Info($"Order {message.OrderId} has shipped.");
+    logger.LogInformation("Order {OrderId} has shipped.", message.OrderId);
 
     return Task.CompletedTask;
   }
