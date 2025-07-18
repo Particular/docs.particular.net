@@ -1,50 +1,40 @@
-using System;
-using System.Threading.Tasks;
-using NServiceBus;
+Console.Title = "Receiver";
+var endpointConfiguration = new EndpointConfiguration("FixMalformedMessages.Receiver");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.EnableInstallers();
+endpointConfiguration.SendFailedMessagesTo("error");
 
-class Program
-{
-    static async Task Main()
+#region DisableRetries
+
+var recoverability = endpointConfiguration.Recoverability();
+
+recoverability.Delayed(
+    customizations: retriesSettings =>
     {
-        Console.Title = "Receiver";
-        var endpointConfiguration = new EndpointConfiguration("FixMalformedMessages.Receiver");
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.SendFailedMessagesTo("error");
+        retriesSettings.NumberOfRetries(0);
+    });
+recoverability.Immediate(
+    customizations: retriesSettings =>
+    {
+        retriesSettings.NumberOfRetries(0);
+    });
 
-        #region DisableRetries
+#endregion
 
-        var recoverability = endpointConfiguration.Recoverability();
+#region RegisterFixBehavior
 
-        recoverability.Delayed(
-            customizations: retriesSettings =>
-            {
-                retriesSettings.NumberOfRetries(0);
-            });
-        recoverability.Immediate(
-            customizations: retriesSettings =>
-            {
-                retriesSettings.NumberOfRetries(0);
-            });
+var pipeline = endpointConfiguration.Pipeline;
 
-        #endregion
+pipeline.Register(
+    behavior: new FixMessageIdBehavior(),
+    description: "Fix message Id");
 
-        #region RegisterFixBehavior
+#endregion
 
-        var pipeline = endpointConfiguration.Pipeline;
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-        pipeline.Register(
-            behavior: new FixMessageIdBehavior(),
-            description: "Fix message Id");
+Console.WriteLine("Press 'Enter' to finish.");
+Console.ReadLine();
 
-        #endregion
-
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-        Console.WriteLine("Press 'Enter' to finish.");
-        Console.ReadLine();
-
-        await endpointInstance.Stop();
-    }
-}
+await endpointInstance.Stop();
