@@ -9,9 +9,7 @@ public class MessageWithLargePayloadHandler(ILogger<MessageWithLargePayloadHandl
 
     public Task Handle(MessageWithLargePayload message, IMessageHandlerContext context)
     {
-        #pragma warning disable CS0618 // Type or member is obsolete
-        logger.LogInformation("Message received containing {MeasurementCount} measurements", message.LargeData.Value.Length);
-        #pragma warning restore CS0618 // Type or member is obsolete
+        logger.LogInformation("Message received containing {MeasurementCount} measurements", message.LargeData.Length);
         return Task.CompletedTask;
     }
 }
