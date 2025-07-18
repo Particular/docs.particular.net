@@ -1,28 +1,27 @@
+using System;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
-using Shared;
-using System;
-using System.Text.Json;
-using System.Threading.Tasks;
-
+using NServiceBus.ClaimCheck;
 
 Console.Title = "Receiver";
 var builder = Host.CreateApplicationBuilder(args);
 var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver");
-#pragma warning disable CS0618 // Type or member is obsolete
-var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
-dataBus.BasePath(@"..\..\..\..\storage");
-#pragma warning restore CS0618 // Type or member is obsolete
 
-//CustomJsonSerializerOptions
-var jsonSerializerOptions = new JsonSerializerOptions();
-jsonSerializerOptions.Converters.Add(new DatabusPropertyConverterFactory());
-endpointConfiguration.UseSerialization<SystemJsonSerializer>().Options(jsonSerializerOptions);
+#region ConfigureClaimCheck
+var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, SystemJsonClaimCheckSerializer>();
+claimCheck.BasePath(@"..\..\..\..\storage");
+#endregion
 
+#region ClaimCheckConventions
+endpointConfiguration.Conventions().DefiningClaimCheckPropertiesAs(prop => prop.Name.StartsWith("Large"));
+#endregion
+
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
+
 Console.WriteLine("Press any key, the application is starting");
 Console.ReadKey();
 Console.WriteLine("Starting...");
-builder.UseNServiceBus(endpointConfiguration);
 
+builder.UseNServiceBus(endpointConfiguration);
 await builder.Build().RunAsync();
