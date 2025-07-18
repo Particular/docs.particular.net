@@ -67,8 +67,8 @@ static async Task CreateDatabase(IDocumentStore documentStore)
         }
         catch (ConcurrencyException)
         {
-        // This exception is thrown if the database already exists.
-        // We can safely ignore it, as our goal is simply to ensure it exists.
+            // This exception is thrown if the database already exists.
+            // We can safely ignore it, as our goal is simply to ensure it exists.
         }
     }
 }
@@ -90,8 +90,8 @@ static async Task CreateTenantDatabase(DocumentStore documentStore, string tenan
         }
         catch (ConcurrencyException)
         {
-        // This exception is thrown if the database already exists.
-        // We can safely ignore it, as our goal is simply to ensure it exists.
+            // This exception is thrown if the database already exists.
+            // We can safely ignore it, as our goal is simply to ensure it exists.
         }
     }
 
