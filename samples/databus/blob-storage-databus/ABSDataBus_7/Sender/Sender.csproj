@@ -5,6 +5,7 @@
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.25.0-beta.1" />
     <PackageReference Include="NServiceBus" Version="10.0.0-alpha.1" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.1" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
