@@ -6,7 +6,7 @@ var builder = Host.CreateApplicationBuilder(args);
 var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Receiver");
 endpointConfiguration.CustomDiagnosticsWriter((_, __) => Task.CompletedTask);
 
-var connectionString = "host=rabbitmq";
+var connectionString = Environment.GetEnvironmentVariable("CONNECTIONSTRING");
 
 #region TransportConfiguration
 

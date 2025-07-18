@@ -8,7 +8,7 @@ var builder = Host.CreateApplicationBuilder(args);
 var endpointConfiguration = new EndpointConfiguration("Samples.Docker.Sender");
 endpointConfiguration.CustomDiagnosticsWriter((d, ct) => Task.CompletedTask);
 
-var connectionString = "host=rabbitmq";
+var connectionString = Environment.GetEnvironmentVariable("CONNECTIONSTRING");
 var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
 
 var routing = endpointConfiguration.UseTransport(transport);

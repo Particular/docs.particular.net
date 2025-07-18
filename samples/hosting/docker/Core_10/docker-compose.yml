@@ -81,11 +81,13 @@ services:
 
     sender:
         image: sender
+        env_file: .env
         depends_on:
             rabbitmq:
                 condition: service_healthy
     receiver:
         image: receiver
+        env_file: .env
         depends_on:
             rabbitmq:
                 condition: service_healthy
