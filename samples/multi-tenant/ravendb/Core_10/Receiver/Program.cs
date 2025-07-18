@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Hosting;
-using NServiceBus;
+﻿using Microsoft.Extensions.Hosting;
 using Raven.Client.Documents;
 using Raven.Client.Documents.Operations;
 using Raven.Client.Exceptions;
@@ -70,6 +67,8 @@ static async Task CreateDatabase(IDocumentStore documentStore)
         }
         catch (ConcurrencyException)
         {
+            // This exception is thrown if the database already exists.
+            // We can safely ignore it, as our goal is simply to ensure it exists.
         }
     }
 }
@@ -91,6 +90,8 @@ static async Task CreateTenantDatabase(DocumentStore documentStore, string tenan
         }
         catch (ConcurrencyException)
         {
+            // This exception is thrown if the database already exists.
+            // We can safely ignore it, as our goal is simply to ensure it exists.
         }
     }
 
