@@ -1,4 +1,5 @@
 Console.Title = "Receiver";
+
 var endpointConfiguration = new EndpointConfiguration("FixMalformedMessages.Receiver");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());

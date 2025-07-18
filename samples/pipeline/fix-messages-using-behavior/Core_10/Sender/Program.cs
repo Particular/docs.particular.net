@@ -4,6 +4,7 @@ var endpointConfiguration = new EndpointConfiguration("FixMalformedMessages.Send
 endpointConfiguration.EnableInstallers();
 endpointConfiguration.SendFailedMessagesTo("error");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
 var routing = endpointConfiguration.UseTransport(new LearningTransport());
 routing.RouteToEndpoint(typeof(SimpleMessage), "FixMalformedMessages.Receiver");
 
