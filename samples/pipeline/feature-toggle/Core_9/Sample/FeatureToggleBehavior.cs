@@ -2,22 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 using NServiceBus.Pipeline;
+using Microsoft.Extensions.DependencyInjection;
 
 #region FeatureToggleBehavior
-class FeatureToggleBehavior :
-    Behavior<IInvokeHandlerContext>
+class FeatureToggleBehavior(IList<Func<IInvokeHandlerContext, bool>> toggles) : Behavior<IInvokeHandlerContext>
 {
-    static ILog log = LogManager.GetLogger<FeatureToggleBehavior>();
-
-    IList<Func<IInvokeHandlerContext, bool>> toggles;
-
-    public FeatureToggleBehavior(IList<Func<IInvokeHandlerContext, bool>> toggles)
-    {
-        this.toggles = toggles;
-    }
-
     public override async Task Invoke(IInvokeHandlerContext context, Func<Task> next)
     {
         if (toggles.All(toggle => toggle(context)))
@@ -26,7 +17,8 @@ class FeatureToggleBehavior :
         }
         else
         {
-            log.InfoFormat("Feature toggle skipped execution of handler: {0}", context.MessageHandler.HandlerType, context.MessageHandler);
+            var logger = context.Builder.GetService<ILogger<FeatureToggleBehavior>>();
+            logger.LogInformation("Feature toggle skipped execution of handler: {HandlerType}", context.MessageHandler.HandlerType);
         }
     }
 }

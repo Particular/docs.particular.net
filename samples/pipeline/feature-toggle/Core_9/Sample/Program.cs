@@ -1,14 +1,12 @@
 using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using Sample;
 
 Console.Title = "PipelineFeatureToggle";
 
 var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<InputService>();
 var endpointConfiguration = new EndpointConfiguration("Samples.PipelineFeatureToggle");
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
@@ -19,14 +17,31 @@ endpointConfiguration.UseTransport(new LearningTransport());
 var toggles = endpointConfiguration.EnableFeatureToggles();
 toggles.AddToggle(ctx => ctx.MessageHandler.HandlerType == typeof(Handler2));
 
-
 #endregion
 
-
-
-Console.WriteLine("Press any key, the application is starting");
-Console.ReadKey();
 Console.WriteLine("Starting...");
 
 builder.UseNServiceBus(endpointConfiguration);
-await builder.Build().RunAsync();
+var host = builder.Build();
+await host.StartAsync();
+
+var messageSession = host.Services.GetService<IMessageSession>();
+var logger = host.Services.GetService<ILogger<Program>>();
+Console.WriteLine("Press 'Enter' to send a Message or 'Escape' to exit");
+
+while (true)
+{
+    var key = Console.ReadKey();
+    if (key.Key == ConsoleKey.Escape)
+    {
+        break;
+    }
+    if (key.Key == ConsoleKey.Enter)
+    {
+        logger.LogInformation("Message sent");
+        var message = new Message();
+        await messageSession.SendLocal(message);
+    }
+}
+
+await host.StopAsync();
