@@ -3,57 +3,60 @@ using Microsoft.Extensions.Hosting;
 
 Console.Title = "Sender";
 
-var builder = Host.CreateApplicationBuilder(args);
-
+// Configure the NServiceBus endpoint
 var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Sender");
 endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.EnableInstallers();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
+var builder = Host.CreateApplicationBuilder(args);
 builder.UseNServiceBus(endpointConfiguration);
 
 var host = builder.Build();
 await host.StartAsync();
 
+// Get the required services
 var messageSession = host.Services.GetRequiredService<IMessageSession>();
+// Register a cancellation token to gracefully handle application shutdown
+var ct = host.Services.GetRequiredService<IHostApplicationLifetime>().ApplicationStopping;
 
-const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
-var random = new Random();
+Console.WriteLine("Press A or B to publish a message (A and B are tenant IDs). Press Ctrl+C to shut down.");
 
-Console.WriteLine("Press A or B to publish a message (A and B are tenant IDs)");
-Console.WriteLine("Press Escape to exit");
-var acceptableInput = new List<char> { 'A', 'B' };
-
-while (true)
+// Wait for user input to publish messages
+while (!ct.IsCancellationRequested)
 {
-    var key = Console.ReadKey(true);
-
-    if (key.Key == ConsoleKey.Escape)
+    if (!Console.KeyAvailable)
     {
-        break;
+        // If no key is pressed, wait for a short time before checking again
+        await Task.Delay(100, CancellationToken.None);
+        continue;
     }
-    var uppercaseKey = char.ToUpperInvariant(key.KeyChar);
 
-    if (acceptableInput.Contains(uppercaseKey))
+    var input = Console.ReadKey();
+    Console.WriteLine();
+
+    var inputKey = char.ToUpperInvariant(input.KeyChar);
+    if (inputKey is 'A' or 'B')
     {
-        var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+        // Send a message to the specified tenant
         var message = new OrderSubmitted
         {
-            OrderId = orderId,
-            Value = random.Next(100)
+            OrderId = GenerateOrderId(),
+            Value = GenerateOrderValue()
         };
 
         var options = new PublishOptions();
-        options.SetHeader("tenant_id", uppercaseKey.ToString());
+        options.SetHeader("tenant_id", inputKey.ToString());
 
         await messageSession.Publish(message, options);
-
-        Console.WriteLine($"Submitted order {message.OrderId} for tenant {uppercaseKey}");
     }
     else
     {
-        Console.WriteLine($"[{uppercaseKey}] is not a valid tenant identifier.");
+        Console.WriteLine($"[{inputKey}] is not a valid tenant identifier.");
     }
 }
 
 await host.StopAsync();
+
+static string GenerateOrderId() => Guid.NewGuid().ToString("N")[..6].ToUpperInvariant();
+static int GenerateOrderValue(int max = 100) => Random.Shared.Next(max);
