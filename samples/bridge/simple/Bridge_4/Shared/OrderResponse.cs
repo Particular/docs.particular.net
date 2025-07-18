@@ -2,5 +2,5 @@
 
 public class OrderResponse
 {
-    public Guid OrderId { get; set; }
+    public required Guid OrderId { get; set; }
 }

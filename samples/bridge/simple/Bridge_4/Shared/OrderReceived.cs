@@ -2,5 +2,5 @@ using System;
 
 public class OrderReceived
 {
-    public Guid OrderId { get; set; }
+    public required Guid OrderId { get; set; }
 }

@@ -2,5 +2,5 @@
 
 public class PlaceOrder
 {
-    public Guid OrderId { get; set; }
+    public required Guid OrderId { get; set; }
 }
