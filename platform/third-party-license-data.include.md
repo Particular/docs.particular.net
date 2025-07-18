@@ -10,7 +10,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/4.0.5/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/4.0.5.1/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SQS" target="_blank">AWSSDK.SQS</a> | <a href="https://www.nuget.org/packages/AWSSDK.SQS/4.0.0.15/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/4.0.1.5/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/4.0.0.14/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
@@ -156,7 +156,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos" target="_blank">Microsoft.Azure.Cosmos</a> | <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos/3.52.0/license" target="_blank">View License</a> | <a href="https://github.com/Azure/azure-cosmos-dotnet-v3" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos" target="_blank">Microsoft.Azure.Cosmos</a> | <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos/3.52.1/license" target="_blank">View License</a> | <a href="https://github.com/Azure/azure-cosmos-dotnet-v3" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Newtonsoft.Json" target="_blank">Newtonsoft.Json</a> | <a href="https://www.nuget.org/packages/Newtonsoft.Json/13.0.3/license" target="_blank">MIT</a> | <a href="https://www.newtonsoft.com/json" target="_blank">Project Site</a> |
 
 ### NServiceBus.Persistence.DynamoDB
