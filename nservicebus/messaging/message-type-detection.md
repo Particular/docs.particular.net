@@ -1,7 +1,7 @@
 ---
 title: Message type detection
 summary: Describes the rules for mapping a transport message to a message type
-reviewed: 2023-08-04
+reviewed: 2025-07-18
 component: Core
 related:
 - samples/consumer-driven-contracts
