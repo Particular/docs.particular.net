@@ -13,7 +13,7 @@ Gathering metrics is important to know how a system works and if it works proper
 
 ## Metrics captured
 
-NServiceBus and ServiceControl capture a number of different metrics about running endpoints including the processing time, the number of messages in each queue (differentiating between those pulled from the queue, those processed successfully, and those that  failed processing), as well as "critical time".
+NServiceBus and ServiceControl capture a number of different metrics about a running endpoint including the processing time, the number of messages in each queue (differentiating between those pulled from the queue, those processed successfully, and those that  failed processing), as well as "critical time".
 
 ### Handler time
 
@@ -46,18 +46,18 @@ This metric measures the total number of messages that the endpoint has failed t
 
 ### Critical time
 
-Critical time is the amount of time between when a message is sent and when it is fully processed. It is a combination of:
+Critical time is the amount of time between when a message is sent and when it is fully processed. It is a sum of the amounts of time it takes to perform all of the following :
 
-- committing the sender outbox transaction (if outbox is enabled)
-- network send time: the amount of time that a message spends on the network before arriving in the destination queue
-- queue wait time: the amount of time that a message spends in the destination queue before being picked up and processed
-- processing time: the amount of time that it takes for the destination endpoint to process the message
-- outgoing messages dispatch time: The amount of time that it takes to transmit outgoing messages to the transport
+- Committing the sender outbox transaction (if outbox is enabled)
+- Network send time: the amount of time that a message spends on the network before arriving in the destination queue
+- Queue wait time: the amount of time that a message spends in the destination queue before being picked up and processed
+- Processing time: the amount of time that it takes for the destination endpoint to process the message
+- Outgoing messages dispatch time: The amount of time that it takes to transmit outgoing messages to the transport
 
 Critical time does _not_ include:
 
-- the amount of time to complete the incoming message (i.e. commit the transport transaction or acknowledge)
-- the amount of time that a delayed message is held by a timeout mechanism (NServiceBus version 7.7 and above)
+- The amount of time to complete the incoming message (i.e. commit the transport transaction or acknowledge)
+- The amount of time that a delayed message is held by a timeout mechanism (NServiceBus version 7.7 and above)
 
 > [!NOTE]
 > Due to the fact that the critical time is calculated based on timestamps taken on two different machines (the sender and the receiver of a message), it is affected by the [clock drift problem](https://en.wikipedia.org/wiki/Clock_drift). In cases where the clocks of the machines differ significantly, the critical time may be reported as a negative value. Use well-known clock synchronization solutions, such as NTP, to mitigate the issue.
