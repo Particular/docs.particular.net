@@ -1,15 +1,11 @@
 using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
-using SampleApp;
-
 
 Console.Title = "DispatchNotification";
 
 var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<InputService>();
 #region endpoint-configuration
 var endpointConfiguration = new EndpointConfiguration("Samples.DispatchNotification");
 endpointConfiguration.UseTransport(new LearningTransport());
@@ -17,9 +13,18 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.NotifyDispatch(new SampleDispatchNotifier());
 #endregion
 
-Console.WriteLine("Press any key, the application is starting");
-Console.ReadKey();
-Console.WriteLine("Starting...");
-
 builder.UseNServiceBus(endpointConfiguration);
-await builder.Build().RunAsync();
+var host = builder.Build();
+await host.StartAsync();
+
+var messageSession = host.Services.GetService<IMessageSession>();
+Console.WriteLine("Press any key to send a message. Press 'Escape' to exit.");
+while (true) 
+{ 
+    var key = Console.ReadKey(true);
+    if (key.Key == ConsoleKey.Escape) break;
+
+    await messageSession.SendLocal(new SomeMessage());
+}
+
+await host.StopAsync();
