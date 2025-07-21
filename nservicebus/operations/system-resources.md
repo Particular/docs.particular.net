@@ -9,7 +9,7 @@ related:
 
 System resources (pieces of infrastructure) required by endpoints to run can be deployed automatically using [installers](/nservicebus/operations/installers). When deploying infrastructure manually without using installers (i.e., with Infrastructure as Code), there arem any areas that need to be considered.
 
-# Areas for manual deployment
+## Areas
 
 > [!NOTE]
 > This section may be incomplete. Consult documentation for the elements that are used to learn more. This section may also include deprecated and legacy elements which may be of importance when deploying endpoints using older versions of NServiceBus.
@@ -94,7 +94,7 @@ Community components:
 > Attention should be payed to deprecated and legacy elements if older version of NServiceBus is used.
 
 
-# Automation
+## Automation
 
 [Installers](/nservicebus/operations/installers) can be used be used to deploy the infrastructure automatically. For other mechanisms, consult the following public issues and voice your interest accordingly:
 
