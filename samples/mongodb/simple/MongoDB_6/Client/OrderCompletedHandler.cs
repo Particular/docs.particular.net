@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
+﻿using Microsoft.Extensions.Logging;
 
 public class OrderCompletedHandler(ILogger<OrderCompletedHandler> logger) : IHandleMessages<OrderCompleted>
 {

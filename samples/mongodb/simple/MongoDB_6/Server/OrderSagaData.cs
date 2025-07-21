@@ -1,7 +1,4 @@
-﻿using System;
-using NServiceBus;
-
-#region sagadata
+﻿#region sagadata
 
 public class OrderSagaData : ContainSagaData
 {
