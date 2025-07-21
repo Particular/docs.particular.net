@@ -14,7 +14,7 @@ System resources (infrastructure components) required by endpoints to run can be
 > [!NOTE]
 > This section may be incomplete. Review the documentation for each implemented feature or functionality to learn more. This section may also include deprecated and legacy elements, which may be of importance when deploying endpoints using older versions of NServiceBus.
 
-Components:
+The following list collects general information needed when deploying endpoints:
 
 - What versions of [NServiceBus](/nservicebus/) are used
 - What message types are used (including inheritance hierarchy)
