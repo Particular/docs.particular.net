@@ -17,7 +17,7 @@ System resources (infrastructure components) required by endpoints to run can be
 The following list collects general information needed when deploying endpoints:
 
 - What versions of [NServiceBus](/nservicebus/) are used
-- What message types are used (including inheritance hierarchy)
+- What message types are used (including inheritance hierarchy and message assemblies versions)
 - What assemblies are used (including dynamic assemblies and automatically scanned assemblies)
 - What Platform components are used (i.e., [error instance](/servicecontrol/servicecontrol-instances/), [audit instance](/servicecontrol/audit-instances/), [monitoring instance](/servicecontrol/monitoring-instances/), etc)
 - Whether [MassTransit Connector](/servicecontrol/masstransit/) is used
