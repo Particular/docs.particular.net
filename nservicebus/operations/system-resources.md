@@ -96,7 +96,7 @@ Community components:
 
 # Automation
 
-[Installers](/nservicebus/operations/installers) can be used be used to deploy the infrastructure automatically. For other mechanisms, please consult the following public issues and voice your interest accordingly:
+[Installers](/nservicebus/operations/installers) can be used be used to deploy the infrastructure automatically. For other mechanisms, consult the following public issues and voice your interest accordingly:
 
 - https://github.com/Particular/NServiceBus/issues/7370
 - https://github.com/Particular/NServiceBus/issues/7189
