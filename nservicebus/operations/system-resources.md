@@ -16,20 +16,20 @@ System resources (pieces of infrastructure) required by endpoints to run can be 
 
 Components:
 
-- What versions of NServiceBus are used
+- What versions of [NServiceBus](/nservicebus/) are used
 - What message types are used (including inheritance hierarchy)
 - What assemblies are used (including dynamic assemblies and automatically scanned assemblies)
-- What Platform components are used (i.e., monitoring instance, error instance, audit instance, etc.)
-- Whether MassTransit Connector is used
-- Whether transport adapters are used
-- Whether message bridges are used
-- Whether gateways are used
-- What community components are used
+- What Platform components are used (i.e., [error instance](/servicecontrol/servicecontrol-instances/), [audit instance](/servicecontrol/audit-instances/), [monitoring instance](/servicecontrol/monitoring-instances/), etc)
+- Whether [MassTransit Connector](/servicecontrol/masstransit/) is used
+- Whether any legacy [transport adapter](/servicecontrol/transport-adapter) is used
+- Whether the [messaging bridge](/nservicebus/bridge/) is used
+- Whether [gateways](/nservicebus/gateway/) are used
+- What [community components](/nservicebus/community/) are used
 
 Core components:
 
 - Name of the endpoint
-- Discriminators the endpoint uses
+- If the endpoint is configured to be [uniquely addressable](/nservicebus/messaging/routing#make-instance-uniquely-addressable)
 - Queues required by the endpoint (i.e., input queue, error queue, audit queue, queues for metrics, queues for heartbeats, etc.)
 - Subscriptions created by the endpoint (i.e., subscription for every event type, manually created subscriptions, etc.)
 - Whether outbox is used
