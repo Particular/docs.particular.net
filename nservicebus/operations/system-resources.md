@@ -22,7 +22,9 @@ The following list collects general information needed when deploying endpoints:
 - What Platform components are used (i.e., [error instance](/servicecontrol/servicecontrol-instances/), [audit instance](/servicecontrol/audit-instances/), [monitoring instance](/servicecontrol/monitoring-instances/), etc)
 - Whether the [MassTransit Connector](/servicecontrol/masstransit/) is used
 - Whether any legacy [transport adapter](/servicecontrol/transport-adapter) is used
-- Whether the [messaging bridge](/nservicebus/bridge/) is used
+- Whether the [messaging bridge](/nservicebus/bridge/) is used, how many bridges have been implemented, and for each one of them:
+  - What are the endpoints they are responsible for bridging
+  - What are the transports they are supporting
 - Whether [gateways](/nservicebus/gateway/) are used
 - What [community components](/nservicebus/community/) are used
 
