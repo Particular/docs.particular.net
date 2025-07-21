@@ -16,11 +16,12 @@ partial class Program
         endpointConfiguration.EnableInstallers();
 
         // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlPersistenceTransition;Integrated Security=True;Encrypt=false
-        var connectionString = "Server=localhost,1433;Initial Catalog=NsbSamplesSqlPersistenceTransition;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
+        //var connectionString = "Server=localhost,1433;Initial Catalog=NsbSamplesSqlPersistenceTransition;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
+        // for LocalDB:
+        var connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=NsbSamplesSqlPersistenceTransition;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False";
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SqlDialect<SqlDialect.MsSqlServer>();
-
         persistence.ConnectionBuilder(
             () => new SqlConnection(connectionString));
 
@@ -30,11 +31,9 @@ partial class Program
         SqlHelper.EnsureDatabaseExists(connectionString);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
         await SendMessage(endpointInstance);
 
         Console.WriteLine("StartOrder Message sent");
-
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
 

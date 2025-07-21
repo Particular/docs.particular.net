@@ -16,7 +16,6 @@ public static class SqlHelper
         if (DatabaseIsMissing(connection, database))
         {
             using var command = connection.CreateCommand();
-
             command.CommandText = $"CREATE DATABASE \"{database}\"";
             command.ExecuteNonQuery();
         }
@@ -26,7 +25,6 @@ public static class SqlHelper
     {
         using var command = connection.CreateCommand();
         command.CommandText = $"SELECT 1 FROM pg_database WHERE datname = '{database}'";
-
         return command.ExecuteScalar() == null;
     }
 }

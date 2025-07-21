@@ -13,7 +13,6 @@ public static class SqlHelper
         connection.Open();
 
         using var command = connection.CreateCommand();
-
         command.CommandText = $@"
     create database if not exists {database}
 ";
