@@ -48,7 +48,7 @@ await host.StartAsync();
 // Get the application stopping token to handle graceful shutdown
 var ct = host.Services.GetRequiredService<IHostApplicationLifetime>().ApplicationStopping;
 
-Console.WriteLine("Press [Enter] to send a message, and [CTRL+C] to exit.");
+Console.WriteLine("Press [Enter] to send a message, or [CTRL+C] to exit.");
 
 while (!ct.IsCancellationRequested)
 {
@@ -59,8 +59,15 @@ while (!ct.IsCancellationRequested)
         continue;
     }
 
-    var key = Console.ReadKey();
+    var input = Console.ReadKey();
     Console.WriteLine();
+
+    switch (input.Key)
+    {
+        case ConsoleKey.Enter:
+            await PlaceOrder(connectionString, ct);
+            break;
+    }
 
     await PlaceOrder(connectionString, ct);
 }
