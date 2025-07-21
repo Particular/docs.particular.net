@@ -1,6 +1,6 @@
 ---
-title: Deployment-required system resources
-summary: Describes all the system resources and infrastructure components needed for endpoints to work properly
+title: Deployment requirements for NServiceBus systems
+summary: Outlines the infrastructure, configuration, and runtime resources required to successfully deploy an NServiceBus system to production.
 reviewed: 2025-07-21
 component: core
 related:
