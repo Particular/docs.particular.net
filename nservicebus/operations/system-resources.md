@@ -25,7 +25,7 @@ The following list collects general information needed when deploying endpoints:
 - Whether the [messaging bridge](/nservicebus/bridge/) is used, how many bridges have been implemented, and for each one of them:
   - What are the endpoints they are responsible for bridging
   - What are the transports they are supporting
-- Whether [gateways](/nservicebus/gateway/) are used
+- Whether any [gateway](/nservicebus/gateway/) is used and their configured  persistence type
 - What [community components](/nservicebus/community/) are used
 
 Core components:
