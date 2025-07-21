@@ -7,7 +7,7 @@ related:
  - nservicebus/operations
 ---
 
-System resources (pieces of infrastructure) required by endpoints to run can be deployed automatically using [installers](/nservicebus/operations/installers). When deploying infrastructure manually without using installers (i.e., with Infrastructure as Code), there arem any areas that need to be considered.
+System resources (infrastructure components) required by endpoints to run can be deployed automatically using [installers](/nservicebus/operations/installers). When deploying infrastructure manually without using installers (i.e., with Infrastructure as Code), several key areas must be considered.
 
 ## Areas
 
