@@ -2,8 +2,10 @@ using System;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -37,30 +39,35 @@ endpointConfiguration.EnableInstallers();
 
 await SqlHelper.EnsureDatabaseExists(connectionString);
 
-Console.WriteLine("Press enter to send a message");
-Console.WriteLine("Press any key to exit");
-
 builder.UseNServiceBus(endpointConfiguration);
 
 var host = builder.Build();
+
 await host.StartAsync();
 
-while (true)
+// Get the application stopping token to handle graceful shutdown
+var ct = host.Services.GetRequiredService<IHostApplicationLifetime>().ApplicationStopping;
+
+Console.WriteLine("Press [Enter] to send a message, and [CTRL+C] to exit.");
+
+while (!ct.IsCancellationRequested)
 {
+    if (!Console.KeyAvailable)
+    {
+        // Wait a short time before checking again
+        await Task.Delay(100, CancellationToken.None);
+        continue;
+    }
+
     var key = Console.ReadKey();
     Console.WriteLine();
 
-    if (key.Key != ConsoleKey.Enter)
-    {
-        break;
-    }
-
-    await PlaceOrder(connectionString);
+    await PlaceOrder(connectionString, ct);
 }
 
 await host.StopAsync();
 
-static async Task PlaceOrder(string connectionString)
+static async Task PlaceOrder(string connectionString, CancellationToken ct)
 {
     #region MessagePayload
 
@@ -78,7 +85,7 @@ static async Task PlaceOrder(string connectionString)
                                values (@Id, @Recoverable, @Headers, @Body)";
     using (var connection = new SqlConnection(connectionString))
     {
-        await connection.OpenAsync();
+        await connection.OpenAsync(ct);
 
         using (var command = new SqlCommand(insertSql, connection))
         {
@@ -89,7 +96,7 @@ static async Task PlaceOrder(string connectionString)
             parameters.Add("Body", SqlDbType.VarBinary).Value = body;
             parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
 
-            await command.ExecuteNonQueryAsync();
+            await command.ExecuteNonQueryAsync(ct);
         }
     }
 
