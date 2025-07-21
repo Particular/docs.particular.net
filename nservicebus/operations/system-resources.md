@@ -7,7 +7,12 @@ related:
  - nservicebus/operations
 ---
 
-System resources (pieces of infrastructure) required by endpoints to run can be deployed automatically using [installers](installers). When deploying infrastructure manually without using installers (i.e., with Infrastructure as Code), the following elements need to be handled:
+System resources (pieces of infrastructure) required by endpoints to run can be deployed automatically using [installers](/nservicebus/operations/installers). When deploying infrastructure manually without using installers (i.e., with Infrastructure as Code), there arem any areas that need to be considered.
+
+# Areas for manual deployment
+
+> [!NOTE]
+> This section may be incomplete. Consult documentation for the elements that are used to learn more. This section may also include deprecated and legacy elements which may be of importance when deploying endpoints using older versions of NServiceBus.
 
 Components:
 
@@ -19,6 +24,7 @@ Components:
 - Whether transport adapters are used
 - Whether message bridges are used
 - Whether gateways are used
+- What community components are used
 
 Core components:
 
@@ -38,6 +44,7 @@ Transport specific:
 - Attributes of the infrastructure (i.e., quotas, delivery count, TTL, etc.)
 - Attributes of the subscription (i.e., topics, table prefixes, table names, etc.)
 - Queues required by the transport (i.e., timeout queues, delay queues, dead letter queues, etc.)
+- Technology-specific queues (i.e., queues for delays that differ between versions, queues for quorum, etc.)
 
 Persistence specific:
 
@@ -48,14 +55,48 @@ Persistence specific:
 
 Platform specific:
 
+- Main instance:
+ - Queues (i.e., input queue, error queue, error forwarding, saga audit queue, audit forwarding queue, queue used for Service Pulse, acknowledgement queue, staging queue for Edit & Retry, throughput data, internal errors)
+ - Databases (i.e., RavenDB instances)
+- Audit instance
+ - Queues (i.e., input queue)
+- Metrics instance
+ - Queues (i.e., input queue)
+
 MassTransit connector specific:
+
+- Queues used by MassTransit (i.e., the queues on "the other end")
+- Error queues
+- Connector-specific queues (i.e., return queue, poison queue, etc.)
 
 Message bridge specific:
 
+- Queues (i.e., error queue, etc.)
+
 Transport adapter specific:
 
+- Queues (i.e., audit queue, error queue, control queue, poison message queue, etc.)
+
 Gateway specific:
+
+- Queues (i.e., input queue, etc.)
+
+Community components:
+
+- Elements required by community components
 
 
 > [!NOTE]
 > Different endpoints may have different requirements regarding the infrastructure (i.e., subscriptions or tables). Every endpoint needs to be considered when capturing the list of infrastructure pieces. Special attention should be payed to different versions of the transports as they may require different topologies or attributes.
+
+
+> [!NOTE]
+> Attention should be payed to deprecated and legacy elements if older version of NServiceBus is used.
+
+
+# Automation
+
+[Installers](/nservicebus/operations/installers) can be used be used to deploy the infrastructure automatically. For other mechanisms, please consult the following public issues and voice your interest accordingly:
+
+- https://github.com/Particular/NServiceBus/issues/7370
+- https://github.com/Particular/NServiceBus/issues/7189
