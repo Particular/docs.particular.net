@@ -1,5 +1,4 @@
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.DependencyInjection;
 using Shared;
 
 #region AcknowledgedHandler
