@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using NServiceBus.MessageMutator;
 #region ValidationMessageMutator
