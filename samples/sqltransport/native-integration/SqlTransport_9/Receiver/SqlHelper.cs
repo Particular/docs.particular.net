@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 
+namespace Receiver;
+
 public static class SqlHelper
 {
     public static async Task ExecuteSql(string connectionString, string sql)

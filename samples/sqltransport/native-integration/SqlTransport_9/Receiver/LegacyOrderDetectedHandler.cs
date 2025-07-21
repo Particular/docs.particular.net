@@ -2,6 +2,8 @@ using System.Threading.Tasks;
 using NServiceBus;
 using Microsoft.Extensions.Logging;
 
+namespace Receiver;
+
 public class LegacyOrderDetectedHandler(ILogger<LegacyOrderDetectedHandler> logger) :
     IHandleMessages<LegacyOrderDetected>
 {

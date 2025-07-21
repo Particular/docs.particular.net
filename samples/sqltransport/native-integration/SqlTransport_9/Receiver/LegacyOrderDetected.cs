@@ -1,7 +1,8 @@
 ﻿using NServiceBus;
 
-public class LegacyOrderDetected :
-    IMessage
+namespace Receiver;
+
+public record LegacyOrderDetected : IMessage
 {
-    public string OrderId { get; set; }
+    public required string OrderId { get; set; }
 }

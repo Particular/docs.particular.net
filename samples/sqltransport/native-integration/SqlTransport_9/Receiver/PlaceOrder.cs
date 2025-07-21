@@ -1,9 +1,12 @@
 ﻿using NServiceBus;
 
+namespace Receiver;
+
 #region MessageContract
-public class PlaceOrder :
-    IMessage
+
+public record PlaceOrder : IMessage
 {
-    public string OrderId { get; set; }
+    public required string OrderId { get; set; }
 }
+
 #endregion
