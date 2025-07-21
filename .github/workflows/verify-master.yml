@@ -9,7 +9,7 @@ env:
 jobs:
   content-verification:
     name: Content verification
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -54,7 +54,7 @@ jobs:
           exit $(If ($result.ok) { 0 } Else { 1 })
   integrity-tests:
     name: Integrity tests
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
