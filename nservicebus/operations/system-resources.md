@@ -1,6 +1,6 @@
 ---
-title: System resources
-summary: System resources consist of all infrastructure pieces needed for the endpoint to work properly
+title: Deployment-required system resources
+summary: Describes all the system resources and infrastructure components needed for endpoints to work properly
 reviewed: 2025-07-21
 component: core
 related:
