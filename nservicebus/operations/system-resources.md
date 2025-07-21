@@ -28,7 +28,7 @@ The following list collects general information needed when deploying endpoints:
 - Whether any [gateway](/nservicebus/gateway/) is used and their configured  persistence type
 - What [community components](/nservicebus/community/) are used
 
-Core components:
+For each endpoint that needs to be deployed, the following information must be collected to successfully deploy systems without using installers:
 
 - Name of the endpoint
 - If the endpoint is configured to be [uniquely addressable](/nservicebus/messaging/routing#make-instance-uniquely-addressable)
