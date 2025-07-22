@@ -1,4 +1,4 @@
-using NServiceBus.Logging;
+﻿using NServiceBus.Logging;
 
 public class Greeter
 {
