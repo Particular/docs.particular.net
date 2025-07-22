@@ -7,7 +7,7 @@ related:
  - nservicebus/operations
 ---
 
-System resources (infrastructure components) required by endpoints to run can be deployed automatically using [installers](/nservicebus/operations/installers.md). When deploying infrastructure manually without using installers (e.g., with Infrastructure as Code), several key areas must be considered.
+System resources (infrastructure components) required by endpoints to run can be deployed automatically using [installers](/nservicebus/operations/installers.md). When deploying infrastructure manually without using installers (e.g., with Infrastructure as Code), several information must be gathered.
 
 > [!NOTE]
 > To request other mechanisms for provisioning NServiceBus systems, consult the following public issues and voice your interest accordingly:
@@ -15,7 +15,7 @@ System resources (infrastructure components) required by endpoints to run can be
 > - https://github.com/Particular/NServiceBus/issues/7370
 > - https://github.com/Particular/NServiceBus/issues/7189
 
-## Areas
+## Required information
 
 > [!NOTE]
 > This section may be incomplete. Review the documentation for each implemented feature or functionality to learn more. This section may also include deprecated and legacy elements, which may be of importance when deploying endpoints using older versions of NServiceBus.
@@ -24,29 +24,21 @@ The following general information is needed when provisioning endpoints:
 
 - What versions of [NServiceBus](/nservicebus/) are used
 - What message types are used (including inheritance hierarchy and message assemblies versions)
-- What assemblies are used (including dynamic assemblies and automatically scanned assemblies)
+- What assemblies defining message [handlers](/nservicebus/handlers/), [sagas](/nservicebus/sagas/), or [features](/nservicebus/pipeline/features) are deployed alongside the endpoint. These assemblies may require additional infrastructure
 - What Platform components are used (i.e., [error instance](/servicecontrol/servicecontrol-instances/), [audit instance](/servicecontrol/audit-instances/), [monitoring instance](/servicecontrol/monitoring-instances/), etc.)
 - Whether the [MassTransit Connector](/servicecontrol/masstransit/) is used
 - Whether any legacy [transport adapter](/servicecontrol/transport-adapter.md) is used
 
 ### Endpoint details
 
-For each endpoint that needs to be deployed, the following information must be collected to successfully deploy systems without using installers:
-  - What are the endpoints they are responsible for bridging
-  - What are the transports they are supporting
-- Whether any [gateway](/nservicebus/gateway/) components are used and their configured persistence type
-- What [community components](/nservicebus/community/) are used
-
 For each endpoint that needs to be deployed, the following information must be collected to successfully provision infrastructure without using installers:
 
-- Name of the endpoint
+- Name of the endpoint, which by default determines the [main input queue](/nservicebus/endpoints/specify-endpoint-name#input-queue) name
 - If the endpoint is configured to be [uniquely addressable](/nservicebus/messaging/routing.md#make-instance-uniquely-addressable)
-- Queues required by the endpoint (e.g., input queue, error queue, audit queue, queues for metrics, queues for heartbeats, etc.)
+- Additional queues required by the endpoint (e.g., error, audit, metrics monitoring, heartbeats, and custom checks queues)
+- Any custom endpoint [satellite](/nservicebus/satellites/) queue
 - Subscriptions required by the endpoint (e.g., subscription for every event type, manually created subscriptions, etc.)
 - Whether outbox is enabled
-- Whether auditing is enabled
-- Whether saga auditing is enabled
-- Whether satellites are used
 - Message types processed by this endpoint (including inheritance hierarchy, dynamically laoded types, and assembly scanning)
 
 ### Transport specific details
