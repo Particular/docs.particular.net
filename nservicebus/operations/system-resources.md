@@ -27,7 +27,7 @@ The following general information is needed when provisioning endpoints:
 - What assemblies are used (including dynamic assemblies and automatically scanned assemblies)
 - What Platform components are used (i.e., [error instance](/servicecontrol/servicecontrol-instances/), [audit instance](/servicecontrol/audit-instances/), [monitoring instance](/servicecontrol/monitoring-instances/), etc.)
 - Whether the [MassTransit Connector](/servicecontrol/masstransit/) is used
-- Whether any legacy [transport adapter](/servicecontrol/transport-adapter) is used
+- Whether any legacy [transport adapter](/servicecontrol/transport-adapter.md) is used
 
 ### Endpoint details
 
@@ -40,7 +40,7 @@ For each endpoint that needs to be deployed, the following information must be c
 For each endpoint that needs to be deployed, the following information must be collected to successfully provision infrastructure without using installers:
 
 - Name of the endpoint
-- If the endpoint is configured to be [uniquely addressable](/nservicebus/messaging/routing#make-instance-uniquely-addressable)
+- If the endpoint is configured to be [uniquely addressable](/nservicebus/messaging/routing.md#make-instance-uniquely-addressable)
 - Queues required by the endpoint (e.g., input queue, error queue, audit queue, queues for metrics, queues for heartbeats, etc.)
 - Subscriptions required by the endpoint (e.g., subscription for every event type, manually created subscriptions, etc.)
 - Whether outbox is enabled
@@ -85,7 +85,7 @@ For each endpoint that needs to be deployed, the following information must be c
 
 ### Message bridge details
 
-- Queues (e.g., the error queue for the bridge, the [endpoint queues](areas-endpoint-details) that the bridge is connecting, etc.)
+- Queues (e.g., the error queue for the bridge, the [endpoint queues](#areas-endpoint-details) that the bridge is connecting, etc.)
 - Any [subscriptions](#areas-endpoint-details) that need to be bridged
 
 ### Legacy transport adapter details
