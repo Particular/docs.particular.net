@@ -1,5 +1,3 @@
 ﻿using NServiceBus;
 
-public class MyMessage : IMessage
-{
-}
+public record MyMessage : IMessage;
