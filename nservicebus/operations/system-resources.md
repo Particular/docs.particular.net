@@ -11,7 +11,7 @@ System resources (infrastructure components) required by endpoints to run can be
 
 > [!NOTE]
 > To request other mechanisms for provisioning NServiceBus systems, consult the following public issues and voice your interest accordingly:
-> 
+>
 > - https://github.com/Particular/NServiceBus/issues/7370
 > - https://github.com/Particular/NServiceBus/issues/7189
 
@@ -73,7 +73,7 @@ For each endpoint that needs to be deployed, the following information must be c
 ### MassTransit connector details
 
 - The return queue for messages being retried back into production
-- [Platform specific queues](#areas-platform-specific-details)
+- [Platform specific queues](#required-information-platform-specific-details)
 
 ### Message bridge details
 
