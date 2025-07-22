@@ -1,9 +1,14 @@
 #region app-host
+
+using AspireDemo.AppHost;
+
 var builder = DistributedApplication.CreateBuilder(args);
 
 var transport = builder.AddRabbitMQ("transport")
     .WithManagementPlugin(15672)
     .WithUrlForEndpoint("management", url => url.DisplayText = "RabbitMQ Management");
+
+var rabbitMqConnectionString = await transport.GetRabbitMqConnectionString();
 
 var database = builder.AddPostgres("database");
 
@@ -15,36 +20,36 @@ database.WithPgAdmin(resource =>
 
 var shippingDb = database.AddDatabase("shipping-db");
 
-var ravenDB = builder.AddContainer("ServiceControl-RavenDB", "particular/servicecontrol-ravendb")
+var ravenDb = builder.AddContainer("ServiceControl-RavenDB", "particular/servicecontrol-ravendb")
     .WithHttpEndpoint(8080, 8080)
     .WithUrlForEndpoint("http", url => url.DisplayText = "Management Studio");
 
 var audit = builder.AddContainer("ServiceControl-Audit", "particular/servicecontrol-audit")
     .WithEnvironment("TRANSPORTTYPE", "RabbitMQ.QuorumConventionalRouting")
-    .WithEnvironment("CONNECTIONSTRING", transport)
-    .WithEnvironment("RAVENDB_CONNECTIONSTRING", ravenDB.GetEndpoint("http"))
+    .WithEnvironment("CONNECTIONSTRING", rabbitMqConnectionString)
+    .WithEnvironment("RAVENDB_CONNECTIONSTRING", ravenDb.GetEndpoint("http"))
     .WithArgs("--setup-and-run")
     .WithHttpEndpoint(44444, 44444)
     .WithUrlForEndpoint("http", url => url.DisplayLocation = UrlDisplayLocation.DetailsOnly)
     .WithHttpHealthCheck("api/configuration")
     .WaitFor(transport)
-    .WaitFor(ravenDB);
+    .WaitFor(ravenDb);
 
 var serviceControl = builder.AddContainer("ServiceControl", "particular/servicecontrol")
     .WithEnvironment("TRANSPORTTYPE", "RabbitMQ.QuorumConventionalRouting")
-    .WithEnvironment("CONNECTIONSTRING", transport)
-    .WithEnvironment("RAVENDB_CONNECTIONSTRING", ravenDB.GetEndpoint("http"))
+    .WithEnvironment("CONNECTIONSTRING", rabbitMqConnectionString)
+    .WithEnvironment("RAVENDB_CONNECTIONSTRING", ravenDb.GetEndpoint("http"))
     .WithEnvironment("REMOTEINSTANCES", $"[{{\"api_uri\":\"{audit.GetEndpoint("http")}\"}}]")
     .WithArgs("--setup-and-run")
     .WithHttpEndpoint(33333, 33333)
     .WithUrlForEndpoint("http", url => url.DisplayLocation = UrlDisplayLocation.DetailsOnly)
     .WithHttpHealthCheck("api/configuration")
     .WaitFor(transport)
-    .WaitFor(ravenDB);
+    .WaitFor(ravenDb);
 
 var monitoring = builder.AddContainer("ServiceControl-Monitoring", "particular/servicecontrol-monitoring")
     .WithEnvironment("TRANSPORTTYPE", "RabbitMQ.QuorumConventionalRouting")
-    .WithEnvironment("CONNECTIONSTRING", transport)
+    .WithEnvironment("CONNECTIONSTRING", rabbitMqConnectionString)
     .WithArgs("--setup-and-run")
     .WithHttpEndpoint(33633, 33633)
     .WithUrlForEndpoint("http", url => url.DisplayLocation = UrlDisplayLocation.DetailsOnly)
