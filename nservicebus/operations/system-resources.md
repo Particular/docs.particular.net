@@ -39,24 +39,18 @@ For each endpoint that needs to be deployed, the following information must be c
 - Any custom endpoint [satellite](/nservicebus/satellites/) queue
 - Subscriptions required by the endpoint (e.g., subscription for every event type, manually created subscriptions, etc.)
 - Whether outbox is enabled
-- Message types processed by this endpoint (including inheritance hierarchy, dynamically laoded types, and assembly scanning)
+- Message types processed by this endpoint alongside their inheritance hierarchy
 
 ### Transport specific details
 
 - Topology (e.g., bundle topics, hierarchy bundle, filtering for subscriptions, etc.)
-- Attributes of the infrastructure (e.g., quotas, delivery count, TTL, etc.)
-- Attributes of the subscriptions (e.g., topics, table prefixes, table names, etc.)
-- Queues required by the transport (e.g., timeout queues, delay queues, dead letter queues, etc.)
-- Technology-specific queues (e.g., queues for delays that differ between versions, queues for quorum, etc.)
-- Attributes of the infrastructure (i.e., quotas, delivery count, TTL, etc.)
-- Attributes of the subscription (i.e., topics, table prefixes, table names, etc.)
-- Queues required by the transport (i.e., timeout queues, delay queues, dead letter queues, etc.)
-- Technology-specific queues (i.e., queues for delays that differ between versions, queues for quorum, etc.)
+- Infrastructure entity-specific attributes (e.g., queue quotas and delivery count, message TTL, topic names, table name prefixes and schema, etc.)
+- Transport-specific entities (e.g., timeout queues, delay queues, dead letter queues, etc.)
 
 ### Persistence specific details
 
-- Outbox details (e.g., prefixes and table names, etc.)
-- Saga details (e.g., prefixes and table names, etc.)
+- Outbox configuration details (e.g., table schema, names, and prefixes, etc.)
+- Saga details (e.g., table schema, names, and prefixes, etc.)
 - (Legacy) Timeout details (e.g., prefix and table names for timeout manager, etc.)
 - (Legacy) Subscription cache (e.g., prefix and table names, etc.)
 
