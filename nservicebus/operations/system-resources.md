@@ -24,7 +24,7 @@ The following general information is needed when provisioning endpoints:
 
 - What versions of [NServiceBus](/nservicebus/) are used
 - What message types are used (including inheritance hierarchy and message assemblies versions)
-- What assemblies defining message [handlers](/nservicebus/handlers/), [sagas](/nservicebus/sagas/), or [features](/nservicebus/pipeline/features) are deployed alongside the endpoint. These assemblies may require additional infrastructure
+- What assemblies defining message [handlers](/nservicebus/handlers/), [sagas](/nservicebus/sagas/), or [features](/nservicebus/pipeline/features.md) are deployed alongside the endpoint. These assemblies may require additional infrastructure
 - What Platform components are used (i.e., [error instance](/servicecontrol/servicecontrol-instances/), [audit instance](/servicecontrol/audit-instances/), [monitoring instance](/servicecontrol/monitoring-instances/), etc.)
 - Whether the [MassTransit Connector](/servicecontrol/masstransit/) is used
 - Whether any legacy [transport adapter](/servicecontrol/transport-adapter.md) is used
@@ -33,7 +33,7 @@ The following general information is needed when provisioning endpoints:
 
 For each endpoint that needs to be deployed, the following information must be collected to successfully provision infrastructure without using installers:
 
-- Name of the endpoint, which by default determines the [main input queue](/nservicebus/endpoints/specify-endpoint-name#input-queue) name
+- Name of the endpoint, which by default determines the [main input queue](/nservicebus/endpoints/specify-endpoint-name.md#input-queue) name
 - If the endpoint is configured to be [uniquely addressable](/nservicebus/messaging/routing.md#make-instance-uniquely-addressable)
 - Additional queues required by the endpoint (e.g., error, audit, metrics monitoring, heartbeats, and custom checks queues)
 - Any custom endpoint [satellite](/nservicebus/satellites/) queue
@@ -77,8 +77,8 @@ For each endpoint that needs to be deployed, the following information must be c
 
 ### Message bridge details
 
-- Queues (e.g., the error queue for the bridge, the [endpoint queues](#areas-endpoint-details) that the bridge is connecting, etc.)
-- Any [subscriptions](#areas-endpoint-details) that need to be bridged
+- Queues (e.g., the error queue for the bridge, the [endpoint queues](#required-information-endpoint-details) that the bridge is connecting, etc.)
+- Any [subscriptions](#required-information-endpoint-details) that need to be bridged
 
 ### Legacy transport adapter details
 
