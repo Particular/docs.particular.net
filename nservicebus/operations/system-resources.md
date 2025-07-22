@@ -28,7 +28,9 @@ The following general information is needed when provisioning endpoints:
 - What Platform components are used (i.e., [error instance](/servicecontrol/servicecontrol-instances/), [audit instance](/servicecontrol/audit-instances/), [monitoring instance](/servicecontrol/monitoring-instances/), etc.)
 - Whether the [MassTransit Connector](/servicecontrol/masstransit/) is used
 - Whether any legacy [transport adapter](/servicecontrol/transport-adapter) is used
-- Whether the [messaging bridge](/nservicebus/bridge/) is used, how many bridges have been implemented, and for each one of them:
+### Endpoint details
+
+For each endpoint that needs to be deployed, the following information must be collected to successfully deploy systems without using installers:
   - What are the endpoints they are responsible for bridging
   - What are the transports they are supporting
 - Whether any [gateway](/nservicebus/gateway/) components are used and their configured persistence type
