@@ -28,6 +28,7 @@ The following general information is needed when provisioning endpoints:
 - What Platform components are used (i.e., [error instance](/servicecontrol/servicecontrol-instances/), [audit instance](/servicecontrol/audit-instances/), [monitoring instance](/servicecontrol/monitoring-instances/), etc.)
 - Whether the [MassTransit Connector](/servicecontrol/masstransit/) is used
 - Whether any legacy [transport adapter](/servicecontrol/transport-adapter) is used
+
 ### Endpoint details
 
 For each endpoint that needs to be deployed, the following information must be collected to successfully deploy systems without using installers:
@@ -80,12 +81,12 @@ For each endpoint that needs to be deployed, the following information must be c
 ### MassTransit connector details
 
 - The return queue for messages being retried back into production
-- [Platform specific queues](#platform-specific-details)
+- [Platform specific queues](#areas-platform-specific-details)
 
 ### Message bridge details
 
-- Queues (e.g., the error queue for the bridge, the [endpoint queues](#endpoint-details) that the bridge is connecting, etc.)
-- Any [subscriptions](#endpoint-details) that need to be bridged
+- Queues (e.g., the error queue for the bridge, the [endpoint queues](areas-endpoint-details) that the bridge is connecting, etc.)
+- Any [subscriptions](#areas-endpoint-details) that need to be bridged
 
 ### Legacy transport adapter details
 
