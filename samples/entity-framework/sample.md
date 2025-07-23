@@ -8,7 +8,7 @@ related:
 ---
 
 > [!WARNING]
-> Support for `.NET Framework 4.*` ended with `NServiceBus 8.*`, along with support for `Entity Framework 6.*`. Please see the [Entity Framework Core](/samples/entity-framework-core/) example if you are targeting `NServiceBus 9.*` and above.
+> `NServiceBus 8.*` is the last major version to support `.NET Framework 4.*` and `Entity Framework 6.*`. If you are targeting `NServiceBus 9.*` or newer, please see the [Entity Framework Core](/samples/entity-framework-core/) sample.
 
 ## Prerequisites
 
