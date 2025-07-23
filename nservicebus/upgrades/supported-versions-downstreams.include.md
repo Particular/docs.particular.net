@@ -582,7 +582,6 @@
 | [~~3.22.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.22.0) | ~~2024-11-19~~ | ~~2025-03-20~~    | ~~Superseded by 3.23.x~~          |
 | [~~3.21.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.21.0) | ~~2024-11-18~~ | ~~2025-02-19~~    | ~~Superseded by 3.22.x~~          |
 | [~~3.20.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.20.0) | ~~2024-10-23~~ | ~~2025-02-18~~    | ~~Superseded by 3.21.x~~          |
-| [~~3.19.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.19.0) | ~~2024-10-17~~ | ~~2025-01-23~~    | ~~Superseded by 3.20.x~~          |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 

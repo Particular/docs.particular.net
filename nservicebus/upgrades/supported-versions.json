@@ -684,10 +684,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "2.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "2.1",
           "SupportLevel": "Mainstream"
         },
@@ -706,10 +702,6 @@
       "Versions": [
         {
           "Minor": "1.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "2.0",
           "SupportLevel": "Mainstream"
         },
         {
