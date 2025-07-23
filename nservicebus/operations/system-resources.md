@@ -13,7 +13,7 @@ System resources (infrastructure components) required by endpoints to run can be
 > To request other mechanisms for provisioning NServiceBus systems, consult the following public issues and voice your interest accordingly:
 >
 > - [Ability to export resources manfiest required for endpoints deployment](https://github.com/Particular/NServiceBus/issues/7370)
-> - [Endpoints do not support “desired state” deployment styles (e.g., AWS CDK or Terraform) ](https://github.com/Particular/NServiceBus/issues/7189)
+> - [Endpoints do not support “desired state” deployment styles (e.g., AWS CDK, Bicep, or Terraform)](https://github.com/Particular/NServiceBus/issues/7189)
 
 ## Required information
 
