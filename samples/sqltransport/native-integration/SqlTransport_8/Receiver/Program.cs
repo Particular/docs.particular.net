@@ -69,7 +69,6 @@ while (!ct.IsCancellationRequested)
             break;
     }
 
-    await PlaceOrder(connectionString, ct);
 }
 
 await host.StopAsync();
