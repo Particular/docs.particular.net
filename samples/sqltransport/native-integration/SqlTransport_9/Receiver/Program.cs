@@ -63,11 +63,9 @@ while (!ct.IsCancellationRequested)
     var input = Console.ReadKey();
     Console.WriteLine();
 
-    switch (input.Key)
+    if(input.Key == ConsoleKey.Enter)
     {
-        case ConsoleKey.Enter:
-            await PlaceOrder(connectionString, ct);
-            break;
+        await PlaceOrder(connectionString, ct);
     }
 }
 
