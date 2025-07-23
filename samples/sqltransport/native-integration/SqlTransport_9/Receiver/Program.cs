@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using NServiceBus;
+using Receiver;
 
 // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlNativeIntegration;Integrated Security=True;Max Pool Size=100;Encrypt=false
 //var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlNativeIntegration;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
@@ -41,14 +42,14 @@ await SqlHelper.EnsureDatabaseExists(connectionString);
 
 builder.UseNServiceBus(endpointConfiguration);
 
+// Build and start the host
 var host = builder.Build();
-
 await host.StartAsync();
 
 // Get the application stopping token to handle graceful shutdown
 var ct = host.Services.GetRequiredService<IHostApplicationLifetime>().ApplicationStopping;
 
-Console.WriteLine("Press [Enter] to send a message, or [CTRL+C] to exit.");
+Console.WriteLine("Press [Enter] to send a message, and [CTRL+C] to exit.");
 
 while (!ct.IsCancellationRequested)
 {
@@ -62,7 +63,7 @@ while (!ct.IsCancellationRequested)
     var input = Console.ReadKey();
     Console.WriteLine();
 
-    if (input.Key == ConsoleKey.Enter)
+    if(input.Key == ConsoleKey.Enter)
     {
         await PlaceOrder(connectionString, ct);
     }
@@ -86,22 +87,18 @@ static async Task PlaceOrder(string connectionString, CancellationToken ct)
     var insertSql = @"insert into [Samples.SqlServer.NativeIntegration]
                                       (Id, Recoverable, Headers, Body)
                                values (@Id, @Recoverable, @Headers, @Body)";
-    using (var connection = new SqlConnection(connectionString))
-    {
-        await connection.OpenAsync(ct);
+    using var connection = new SqlConnection(connectionString);
+    await connection.OpenAsync(ct);
 
-        using (var command = new SqlCommand(insertSql, connection))
-        {
-            var parameters = command.Parameters;
-            parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
-            parameters.Add("Headers", SqlDbType.NVarChar).Value = "";
-            var body = Encoding.UTF8.GetBytes(message);
-            parameters.Add("Body", SqlDbType.VarBinary).Value = body;
-            parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
+    using var command = new SqlCommand(insertSql, connection);
+    var parameters = command.Parameters;
+    parameters.Add("Id", SqlDbType.UniqueIdentifier).Value = Guid.NewGuid();
+    parameters.Add("Headers", SqlDbType.NVarChar).Value = "";
+    var body = Encoding.UTF8.GetBytes(message);
+    parameters.Add("Body", SqlDbType.VarBinary).Value = body;
+    parameters.Add("Recoverable", SqlDbType.Bit).Value = true;
 
-            await command.ExecuteNonQueryAsync(ct);
-        }
-    }
+    await command.ExecuteNonQueryAsync(ct);
 
     #endregion
 }
@@ -110,8 +107,26 @@ class SkipAssemblyNameForMessageTypesBinder(Type[] messageTypes) : ISerializatio
 {
     public Type BindToType(string assemblyName, string typeName)
     {
-        return messageTypes.FirstOrDefault(messageType => messageType.FullName == typeName);
+        // First try exact match with full name
+        var exactMatch = messageTypes.FirstOrDefault(messageType => messageType.FullName == typeName);
+        if (exactMatch != null)
+            return exactMatch;
+
+        // Try matching with "TypeName, AssemblyName" pattern
+        if (typeName.Contains(", "))
+        {
+            var typeNameOnly = typeName.Split(',')[0].Trim();
+            var match = messageTypes.FirstOrDefault(messageType =>
+                messageType.FullName == typeNameOnly ||
+                messageType.Name == typeNameOnly);
+            if (match != null)
+                return match;
+        }
+
+        // Try simple name match
+        return messageTypes.FirstOrDefault(messageType => messageType.Name == typeName);
     }
+
 
     public void BindToName(Type serializedType, out string assemblyName, out string typeName)
     {
