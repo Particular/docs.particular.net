@@ -41,7 +41,7 @@ When sending a message using the NServiceBus Message attachments mechanism, the 
 }
 ```
 
-`Key` represents the Azure storage blob name used to store the message property's original value.
+`Key` represents the Azure Storage blob name used to store the message property's original value.
 
 The `TimeToBeReceived` attribute instructs the NServiceBus framework that it is allowed to clean the message after three minutes if it was not received by the receiver. The message payload will be removed from Azure storage after three minutes.
 
