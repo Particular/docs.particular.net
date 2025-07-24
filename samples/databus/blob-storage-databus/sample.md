@@ -47,7 +47,7 @@ The `TimeToBeReceived` attribute instructs the NServiceBus framework that it is 
 
 ### Configuring the DataBus location
 
-Both the `Sender` and `Receiver` projects need to share a common location to store large binary objects. This is done by specifying an Azure storage connection string. This code instructs NServiceBus to use the specified Azure storage account for the attachment.
+Both the `Sender` and `Receiver` projects need to share a common location to store large binary objects. This is done by specifying an Azure Storage connection string. This code instructs NServiceBus to use the specified Azure Storage Account for the attachment.
 
 snippet: ConfiguringDataBusLocation
 
