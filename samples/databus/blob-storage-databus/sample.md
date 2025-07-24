@@ -28,7 +28,7 @@ snippet: MessageWithLargePayload
 
 `DataBusProperty<byte[]>` is an NServiceBus data type that instructs NServiceBus to treat the `LargePayload` property as an attachment. It is not transported in the NServiceBus normal flow.
 
-When sending a message using the NServiceBus Message attachments mechanism, the message's payload resides on Azure storage as a blob. Value assigned to the property while message is being transported is a special value that allows to reconnect message`s property with its original value once the message is received. An inspected message in flight would look like the following:
+When sending a message using the NServiceBus Message attachments mechanism, the message's payload resides on Azure Storage as a blob. The value assigned to the property while the message is being transported is a special value that allows the message's property to reconnect with its original value once the message is received. An inspected message in flight would look like the following:
 
 ```json
 {
