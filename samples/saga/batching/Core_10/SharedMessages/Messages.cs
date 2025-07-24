@@ -1,13 +1,13 @@
 ﻿using System;
 using NServiceBus;
 
-public class StartProcessing : ICommand
+public record StartProcessing : ICommand
 {
     public Guid ProcessId { get; set; }
     public int WorkCount { get; set; }
 }
 
-public class ProcessWorkOrder : ICommand
+public record ProcessWorkOrder : ICommand
 {
     public Guid ProcessId { get; set; }
     public int WorkOrder { get; set; }
@@ -19,7 +19,7 @@ public enum WorkStatus
     Failed
 }
 
-public class WorkOrderCompleted : IMessage
+public record WorkOrderCompleted : IMessage
 {
     public Guid ProcessId { get; set; }
     public int WorkOrderNo { get; set; }
@@ -27,7 +27,7 @@ public class WorkOrderCompleted : IMessage
     public string Error { get; set; }
 }
 
-public class WorkAllDone : IMessage
+public record WorkAllDone : IMessage
 {
     public Guid ProcessId { get; set; }
 }
