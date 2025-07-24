@@ -1,4 +1,4 @@
 ﻿public record CompletePaymentTransaction : IMessage
 {
-    public string PaymentTransactionId { get; init; }
+    public required string PaymentTransactionId { get; init; }
 }

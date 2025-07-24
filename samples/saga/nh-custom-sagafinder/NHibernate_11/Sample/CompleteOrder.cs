@@ -1,4 +1,4 @@
 public record CompleteOrder : IMessage
 {
-    public string OrderId { get; init; }
+    public required string OrderId { get; init; }
 }
