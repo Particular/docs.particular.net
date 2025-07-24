@@ -1,7 +1,7 @@
 ---
 title: NServiceBus and BizTalk
 summary: How to use NServiceBus in combination with BizTalk servers
-reviewed: 2023-08-08
+reviewed: 2025-07-24
 redirects:
 - nservicebus/nservicebus-and-biztalk
 - nservicebus/architecture/nservicebus-and-biztalk
