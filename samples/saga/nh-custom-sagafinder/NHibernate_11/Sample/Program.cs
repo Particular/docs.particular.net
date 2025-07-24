@@ -4,7 +4,6 @@ using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NHibernate.Driver;
 using NServiceBus.Persistence;
-using Sample;
 
 
 
@@ -37,11 +36,31 @@ var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>()
 
 SqlHelper.EnsureDatabaseExists(connectionString);
 
-Console.WriteLine("Press any key to exit");
-Console.ReadKey();
-
-
 builder.UseNServiceBus(endpointConfiguration);
 
-builder.Services.AddHostedService<InputLoopService>();
-await builder.Build().RunAsync();
+var host = builder.Build();
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+Console.WriteLine("Press 'enter' to send a StartOrder message. Press any other key to exit.");
+while (true)
+{
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    if (key.Key != ConsoleKey.Enter)
+    {
+        break;
+    }
+
+    var startOrder = new StartOrder
+    {
+        OrderId = "123"
+    };
+    await messageSession.SendLocal(startOrder);
+
+    Console.WriteLine("StartOrder message sent");
+}
+
+await host.StopAsync();
