@@ -48,8 +48,10 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 ## Supported SQL implementations
 
-partial: supportedimpls
-
+* [SQL Server](/persistence/sql/dialect-mssql.md)
+* [MySQL](/persistence/sql/dialect-mysql.md) (including AWS Aurora MySQL)
+* [Oracle](/persistence/sql/dialect-oracle.md)
+* [PostgreSQL](/persistence/sql/dialect-postgresql.md) (including AWS Aurora PostgreSQL)
 
 ## NuGet Packages
 
