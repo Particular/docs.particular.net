@@ -8,15 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NHibernate" Version="5.5.2" />
+    <PackageReference Include="NHibernate" Version="5.*" />
     <PackageReference Include="NServiceBus" Version="10.0.0-alpha.1" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.1" />
     <PackageReference Include="NServiceBus.NHibernate" Version="11.0.0-alpha.1" />
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Update="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="4.14.0" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.*" />
   </ItemGroup>
 
 </Project>
