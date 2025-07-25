@@ -8,6 +8,9 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.1" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="8.*" />
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Update="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="4.14.0" />
   </ItemGroup>
 </Project>

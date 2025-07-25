@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using Npgsql;
 using NpgsqlTypes;
 using NServiceBus;
-using NServiceBus.Persistence.Sql;
 
 
 Console.Title = "PostgreSql";
@@ -18,11 +16,13 @@ endpointConfiguration.EnableInstallers();
 
 var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
 var password = Environment.GetEnvironmentVariable("PostgreSqlPassword");
+password = "yourStrong(!)Password";
 if (string.IsNullOrWhiteSpace(password))
 {
     throw new Exception("Could not extract 'PostgreSqlPassword' from Environment variables.");
 }
 var username = Environment.GetEnvironmentVariable("PostgreSqlUserName");
+username = "postgres";
 if (string.IsNullOrWhiteSpace(username))
 {
     throw new Exception("Could not extract 'PostgreSqlUserName' from Environment variables.");

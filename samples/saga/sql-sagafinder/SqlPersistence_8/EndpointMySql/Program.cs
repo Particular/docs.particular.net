@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using MySql.Data.MySqlClient;
 using NServiceBus;
-using NServiceBus.Persistence.Sql;
 
 
 Console.Title = "MySql";
@@ -18,11 +16,13 @@ endpointConfiguration.EnableInstallers();
 
 var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
 var password = Environment.GetEnvironmentVariable("MySqlPassword");
+password = "yourStrong(!)Password";
 if (string.IsNullOrWhiteSpace(password))
 {
     throw new Exception("Could not extract 'MySqlPassword' from Environment variables.");
 }
 var username = Environment.GetEnvironmentVariable("MySqlUserName");
+username = "root";
 if (string.IsNullOrWhiteSpace(username))
 {
     throw new Exception("Could not extract 'MySqlUserName' from Environment variables.");

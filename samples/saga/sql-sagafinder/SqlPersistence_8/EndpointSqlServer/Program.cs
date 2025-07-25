@@ -1,11 +1,9 @@
 ﻿using System;
-using Microsoft.Data.SqlClient;
-using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.Persistence.Sql;
-using Microsoft.Extensions.Hosting;
 using EndpointSqlServer;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using NServiceBus;
 
 
 Console.Title = "SqlServer";
@@ -22,6 +20,7 @@ endpointConfiguration.EnableInstallers();
 //for local instance or SqlExpress
 //var connectionString = @"Data Source=(localdb)\mssqllocaldb;Database=NsbSamplesSqlSagaFinder;Trusted_Connection=True;MultipleActiveResultSets=true";
 var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlSagaFinder;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
+//var connectionString = @"Server=host.docker.internal,1433;Initial Catalog=NsbSamplesSqlSagaFinder;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
 persistence.SqlDialect<SqlDialect.MsSqlServer>();
 persistence.ConnectionBuilder(
