@@ -6,9 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
-    <PackageReference Include="MySql.Data" Version="9.4.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Update="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="4.14.0" />
-  </ItemGroup>
+    <PackageReference Include="MySql.Data" Version="6.*" />
+  </ItemGroup> 
 </Project>
