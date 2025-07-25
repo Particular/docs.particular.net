@@ -1,7 +1,7 @@
 ---
 title: Web-queue-worker architecture style on Azure
 summary: Gives a description of web-queue-worker including the components, challenges, and technology options for Azure
-reviewed: 2023-07-18
+reviewed: 2025-07-24
 callsToAction: ['solution-architect', 'ADSD']
 ---
 

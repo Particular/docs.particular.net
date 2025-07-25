@@ -57,7 +57,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [8.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/8.0.0) | 2025-06-04     | -                 | -                                 |
 | [7.3.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.3.0) | 2025-04-14     | 2026-06-04        | Superseded by 8.0.x               |
-| [7.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.2.0) | 2024-12-05     | 2025-07-14        | Superseded by 7.3.x               |
+| [~~7.2.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.2.0) | ~~2024-12-05~~ | ~~2025-07-14~~    | ~~Superseded by 7.3.x~~           |
 | [~~7.1.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.1.1) | ~~2024-11-26~~ | ~~2025-03-05~~    | ~~Superseded by 7.2.x~~           |
 | [~~7.0.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.0.2) | ~~2024-04-16~~ | ~~2025-02-26~~    | ~~Superseded by 7.1.x~~           |
 | [6.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.2.1) | 2023-11-20     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
@@ -133,7 +133,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [10.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.1.3) | 2025-04-14     | -                 | -                                 |
-| [10.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.0.4) | 2025-03-11     | 2025-07-14        | Superseded by 10.1.x              |
+| [~~10.0.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.0.4) | ~~2025-03-11~~ | ~~2025-07-14~~    | ~~Superseded by 10.1.x~~          |
 | [9.2.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.2.1) | 2024-11-25     | 2026-03-11        | Superseded by 10.0.x              |
 | [~~9.1.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.1.1) | ~~2024-08-08~~ | ~~2025-02-25~~    | ~~Superseded by 9.2.x~~           |
 | [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.0.1) | ~~2024-04-16~~ | ~~2024-11-08~~    | ~~Superseded by 9.1.x~~           |
@@ -350,7 +350,7 @@
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/3.0.0) | 2025-06-04     | -                 | -                                 |
 | [2.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/2.2.1) | 2025-06-03     | 2026-06-04        | Superseded by 3.0.x               |
 | [2.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/2.1.0) | 2025-04-23     | 2025-09-03        | Superseded by 2.2.x               |
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/2.0.2) | 2024-04-16     | 2025-07-23        | Superseded by 2.1.x               |
+| [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/2.0.2) | ~~2024-04-16~~ | ~~2025-07-23~~    | ~~Superseded by 2.1.x~~           |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/1.0.2) | 2023-05-09     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 
 #### [NServiceBus.Persistence.DynamoDB.TransactionalSession](/nuget/NServiceBus.Persistence.DynamoDB.TransactionalSession)
@@ -360,7 +360,7 @@
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/3.0.0) | 2025-06-04     | -                 | -                                 |
 | [2.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/2.2.1) | 2025-06-03     | 2026-06-04        | Superseded by 3.0.x               |
 | [2.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/2.1.0) | 2025-04-23     | 2025-09-03        | Superseded by 2.2.x               |
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/2.0.2) | 2024-04-16     | 2025-07-23        | Superseded by 2.1.x               |
+| [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/2.0.2) | ~~2024-04-16~~ | ~~2025-07-23~~    | ~~Superseded by 2.1.x~~           |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/1.0.2) | 2023-05-09     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 
 #### [NServiceBus.Persistence.NonDurable](/nuget/NServiceBus.Persistence.NonDurable)
@@ -1114,12 +1114,13 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.51.x](https://www.nuget.org/packages/Particular.PlatformSample/3.51.0) | 2025-05-23     | -                 | -                                 |
+| [3.54.x](https://www.nuget.org/packages/Particular.PlatformSample/3.54.0) | 2025-07-15     | -                 | -                                 |
+| [3.51.x](https://www.nuget.org/packages/Particular.PlatformSample/3.51.0) | 2025-05-23     | 2025-10-15        | Superseded by 3.54.x              |
 | [3.49.x](https://www.nuget.org/packages/Particular.PlatformSample/3.49.0) | 2025-05-19     | 2025-08-23        | Superseded by 3.51.x              |
 | [3.47.x](https://www.nuget.org/packages/Particular.PlatformSample/3.47.0) | 2025-05-13     | 2025-08-19        | Superseded by 3.49.x              |
 | [3.45.x](https://www.nuget.org/packages/Particular.PlatformSample/3.45.0) | 2025-04-29     | 2025-08-13        | Superseded by 3.47.x              |
 | [3.43.x](https://www.nuget.org/packages/Particular.PlatformSample/3.43.0) | 2025-04-16     | 2025-07-29        | Superseded by 3.45.x              |
-| [3.42.x](https://www.nuget.org/packages/Particular.PlatformSample/3.42.0) | 2025-04-09     | 2025-07-16        | Superseded by 3.43.x              |
+| [~~3.42.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.42.0) | ~~2025-04-09~~ | ~~2025-07-16~~    | ~~Superseded by 3.43.x~~          |
 | [~~3.39.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.39.0) | ~~2025-04-08~~ | ~~2025-07-09~~    | ~~Superseded by 3.42.x~~          |
 | [~~3.37.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.37.0) | ~~2025-03-24~~ | ~~2025-07-08~~    | ~~Superseded by 3.39.x~~          |
 | [~~3.36.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.36.0) | ~~2025-03-21~~ | ~~2025-06-24~~    | ~~Superseded by 3.37.x~~          |

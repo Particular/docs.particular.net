@@ -26,11 +26,6 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
 #endregion
 
-
-Console.WriteLine("Press any key, the application is starting");
-Console.ReadKey();
-Console.WriteLine("Starting...");
-
 builder.UseNServiceBus(endpointConfiguration);
 
 var app = builder.Build();

@@ -1,7 +1,7 @@
 ---
 title: On-Premises Showcase
 summary: Implements a fictional store using several features of NServiceBus.
-reviewed: 2024-03-27
+reviewed: 2025-07-15
 component: Core
 redirects:
   - samples/show-case/on-premises

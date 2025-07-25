@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using Raven.Client.Documents;
 using Raven.Client.Documents.Operations;
-using Raven.Client.Documents.Operations.Expiration;
 using Raven.Client.Exceptions;
 using Raven.Client.Exceptions.Database;
 using Raven.Client.ServerWide;
 using Raven.Client.ServerWide.Operations;
-
 
 Console.Title = "Receiver";
 var builder = Host.CreateApplicationBuilder(args);
@@ -55,12 +52,6 @@ var pipeline = endpointConfiguration.Pipeline;
 
 pipeline.Register(new StoreTenantIdBehavior(), "Stores tenant ID in the session");
 pipeline.Register(new PropagateTenantIdBehavior(), "Propagates tenant ID to outgoing messages");
-
-var startableEndpoint = await Endpoint.Create(endpointConfiguration);
-
-Console.WriteLine("Press any key, the application is starting");
-Console.ReadKey();
-Console.WriteLine("Starting...");
 
 builder.UseNServiceBus(endpointConfiguration);
 await builder.Build().RunAsync();

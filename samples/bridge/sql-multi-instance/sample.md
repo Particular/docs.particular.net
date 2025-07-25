@@ -1,7 +1,7 @@
 ---
 title: Multi-Instance Mode
 summary: SQL Server transport running in multi-instance mode using Bridge
-reviewed: 2023-07-04
+reviewed: 2025-07-14
 component: Bridge
 related:
 - nservicebus/bridge

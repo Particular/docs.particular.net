@@ -151,7 +151,7 @@ For timeouts, the safe period of time to leave the mutator in place is dependent
 select Id
 from Samples_RenameSaga_TimeoutData
 where json_value(Headers,'$."NServiceBus.OriginatingSagaType"')
-    like 'MyNamespace1.MyTimeoutSagaVersion1%'
+    like 'EndpointVersion1.MyTimeoutSagaVersion1%'
 ```
 
 If a saga is extremely long running then the data can be migrated programmatically in SQL using [json_modify](https://docs.microsoft.com/en-us/sql/t-sql/functions/json-modify-transact-sql) and [json_value](https://docs.microsoft.com/en-us/sql/t-sql/functions/json-value-transact-sql). For example:
@@ -161,9 +161,9 @@ update Samples_RenameSaga_TimeoutData
 set Headers = json_modify(
         Headers,
         '$."NServiceBus.OriginatingSagaType"',
-        'MyNamespace1.MyTimeoutSagaVersion1, Endpoint, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null')
+        'EndpointVersion1.MyTimeoutSagaVersion1, Endpoint, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null')
 where json_value(Headers, '$."NServiceBus.OriginatingSagaType"')
-    like 'MyNamespace1.MyTimeoutSagaVersion1%'
+    like 'EndpointVersion1.MyTimeoutSagaVersion1%'
 ```
 
 

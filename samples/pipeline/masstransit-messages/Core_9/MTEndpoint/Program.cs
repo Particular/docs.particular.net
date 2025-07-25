@@ -1,4 +1,5 @@
 using MassTransit;
+using MassTransit.RabbitMqTransport;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -22,6 +23,12 @@ namespace MTEndpoint
                         rabbitConfig.Password("guest");
                     });
                     cfg.ConfigureEndpoints(context);
+                });
+
+                x.AddConfigureEndpointsCallback((name, cfg) =>
+                {
+                    if (cfg is IRabbitMqReceiveEndpointConfigurator rmq)
+                        rmq.SetQuorumQueue(3);
                 });
             });
             builder.Services.AddMassTransitHostedService();

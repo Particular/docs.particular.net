@@ -1,7 +1,7 @@
 ---
 title: Consistency
 summary: Achieving consistency in distributed, message-driven systems
-reviewed: 2023-07-18
+reviewed: 2025-07-15
 callsToAction: ['solution-architect']
 redirects:
 - nservicebus/azure/understanding-transactionality-in-azure
