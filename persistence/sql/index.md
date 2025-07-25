@@ -14,7 +14,7 @@ related:
  - persistence/upgrades/sql-2to3
  - persistence/upgrades/sql-1to2
  - persistence/upgrades/sql-1.0.0-1.0.1
-reviewed: 2023-08-14
+reviewed: 2025-07-25
 ---
 
 
