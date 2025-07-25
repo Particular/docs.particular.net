@@ -6,6 +6,11 @@ related:
  - samples/sql-persistence/simple
  - samples/sql-persistence/transitioning-correlation-ids
  - samples/saga/sql-sagafinder
+ - persistence/upgrades/sql-4.0to4.1.1.md
+ - persistence/upgrades/sql-4.2to4.3.md
+ - persistence/upgrades/sql-4to5.md
+ - persistence/upgrades/sql-5to6.md
+ - persistence/upgrades/sql-6to7.md
  - persistence/upgrades/sql-2to3
  - persistence/upgrades/sql-1to2
  - persistence/upgrades/sql-1.0.0-1.0.1
