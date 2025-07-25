@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Amazon.SQS.Model;
+﻿using Amazon.SQS.Model;
 using Microsoft.Extensions.Logging;
 using NServiceBus.Pipeline;
 

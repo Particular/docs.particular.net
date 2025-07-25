@@ -1,8 +1,7 @@
-﻿using System.Threading.Tasks;
-using Amazon.SQS.Model;
+﻿using Amazon.SQS.Model;
 using Microsoft.Extensions.Logging;
 using NativeIntegration.Receiver;
-using NServiceBus;
+
 #region HandlerAccessingNativeMessage
 public class SomeNativeMessageHandler(ILogger<SomeNativeMessageHandler> logger) : IHandleMessages<SomeNativeMessage>
 {

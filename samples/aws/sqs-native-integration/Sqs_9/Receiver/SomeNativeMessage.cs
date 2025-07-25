@@ -1,6 +1,4 @@
-﻿using NServiceBus;
-
-namespace NativeIntegration.Receiver
+﻿namespace NativeIntegration.Receiver
 {
     public class SomeNativeMessage : IMessage
     {

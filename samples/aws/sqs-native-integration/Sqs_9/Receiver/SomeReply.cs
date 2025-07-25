@@ -1,9 +1,6 @@
-﻿using NServiceBus;
+﻿namespace NativeIntegration.Receiver;
 
-namespace NativeIntegration.Receiver
+public class SomeReply : IMessage
 {
-    public class SomeReply : IMessage
-    {
-        public string ThisIsTheMessage { get; set; }
-    }
+    public string ThisIsTheMessage { get; set; }
 }
