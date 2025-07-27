@@ -1,7 +1,7 @@
 ---
 title: File Share Data Bus Usage
 summary: The file share data bus allows large properties to be transferred via a Windows file share.
-reviewed: 2023-08-05
+reviewed: 2025-07-27
 component: FileShareDataBus
 redirects:
  - nservicebus/attachments-databus-sample
