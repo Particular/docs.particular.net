@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using Sender;
+using Shared;
 using System;
 
 Console.Title = "Sender";
@@ -10,11 +11,12 @@ var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddHostedService<InputLoopService>();
 
 var endpointConfiguration = new EndpointConfiguration("Samples.ClaimCheck.Sender");
+var storagePath = new SolutionDirectoryFinder().GetDirectory("storage");
 
 #region ConfigureDataBus
 
 var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, SystemJsonClaimCheckSerializer>();
-claimCheck.BasePath(@"..\..\..\..\storage");
+claimCheck.BasePath(storagePath);
 
 #endregion
 

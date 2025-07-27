@@ -1,4 +1,5 @@
 using NServiceBus;
+using Shared;
 using System;
 using Microsoft.Extensions.Hosting;
 
@@ -7,7 +8,8 @@ Console.Title = "Receiver";
 var builder = Host.CreateApplicationBuilder(args);
 var endpointConfiguration = new EndpointConfiguration("Samples.ClaimCheck.Receiver");
 var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, SystemJsonClaimCheckSerializer>();
-claimCheck.BasePath(@"..\..\..\..\storage");
+var storagePath = new SolutionDirectoryFinder().GetDirectory("storage");
+claimCheck.BasePath(storagePath);
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
 

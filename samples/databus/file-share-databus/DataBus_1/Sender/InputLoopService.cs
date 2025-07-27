@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using Shared;
 
 namespace Sender
 {
@@ -51,7 +52,8 @@ namespace Sender
 
             #endregion
 
-            Console.WriteLine(@"Message sent, the payload is stored in: ..\..\..\storage");
+            var storagePath = new SolutionDirectoryFinder().GetDirectory("storage");
+            Console.WriteLine($"Message sent, the payload is stored in: {storagePath}");
         }
 
         static async Task SendMessageTooLargePayload(IMessageSession messageSession)
