@@ -1,6 +1,9 @@
 using Shared;
+using Microsoft.Extensions.Hosting;
 
 Console.Title = "Receiver";
+
+var builder = Host.CreateApplicationBuilder(args);
 
 var endpointConfiguration = new EndpointConfiguration("Samples.ClaimCheck.Receiver");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
@@ -10,9 +13,13 @@ var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, System
 var storagePath = new SolutionDirectoryFinder().GetDirectory("storage");
 claimCheck.BasePath(storagePath);
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
+builder.UseNServiceBus(endpointConfiguration);
+
+var host = builder.Build();
+await host.StartAsync();
 
 Console.WriteLine("Press any key to exit");
 Console.ReadKey();
 
-await endpointInstance.Stop();
+await host.StopAsync();
+

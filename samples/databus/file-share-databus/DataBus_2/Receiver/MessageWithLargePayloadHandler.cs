@@ -1,17 +1,13 @@
-using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.Logging;
-
+using Microsoft.Extensions.Logging;
 #region MessageWithLargePayloadHandler
 
-public class MessageWithLargePayloadHandler :
+public class MessageWithLargePayloadHandler(ILogger<MessageWithLargePayloadHandler> logger) :
     IHandleMessages<MessageWithLargePayload>
 {
-    static ILog log = LogManager.GetLogger<MessageWithLargePayloadHandler>();
 
     public Task Handle(MessageWithLargePayload message, IMessageHandlerContext context)
     {
-        log.Info($"Message received, size of blob property: {message.LargeBlob.Value.Length} Bytes");
+        logger.LogInformation("Message received, size of blob property: {BlobSize} Bytes", message.LargeBlob.Value.Length);
         return Task.CompletedTask;
     }
 }
