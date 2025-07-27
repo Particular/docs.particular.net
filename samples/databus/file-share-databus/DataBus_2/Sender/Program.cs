@@ -10,11 +10,11 @@ Console.Title = "Sender";
 var builder = Host.CreateApplicationBuilder(args);
 
 var endpointConfiguration = new EndpointConfiguration("Samples.ClaimCheck.Sender");
+var storagePath = new SolutionDirectoryFinder().GetDirectory("storage");
 
 #region ConfigureDataBus
 
 var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, SystemJsonClaimCheckSerializer>();
-var storagePath = new SolutionDirectoryFinder().GetDirectory("storage");
 claimCheck.BasePath(storagePath);
 
 #endregion
