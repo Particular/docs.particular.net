@@ -11,8 +11,5 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.RegisterMessageEncryptor();
 
-Console.WriteLine("Press any key, the application is starting");
-Console.ReadKey();
-Console.WriteLine("Starting...");
 builder.UseNServiceBus(endpointConfiguration);
 await builder.Build().RunAsync();
