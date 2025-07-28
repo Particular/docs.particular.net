@@ -8,7 +8,7 @@ related:
 
 System resources (infrastructure components) required by endpoints to run can be provisioned automatically using [installers](/nservicebus/operations/installers.md). When provisioning infrastructure manually without using installers (e.g., with Infrastructure as Code), several information must be gathered to provision the required infrastructure successfully.
 
-If you're using infrastructure as code tools today, e.g., Azure Bicep, Azure ARM Templates, Terraform, or the AWS CDK, tell us what's missing by voicing your interest on the following public issues:
+If you're using infrastructure as code tools today, e.g., [Azure Bicep, Azure ARM Templates](https://learn.microsoft.com/en-us/azure/templates/), [Terraform](https://developer.hashicorp.com/terraform), the [AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/home.html), or [Polumi](https://www.pulumi.com/), tell us what's missing by voicing your interest on the following public issues:
 
 - [Ability to export resources manifest required for endpoints deployment](https://github.com/Particular/NServiceBus/issues/7370)
 - [Endpoints do not support “desired state” deployment styles (e.g., AWS CDK, Bicep, or Terraform)](https://github.com/Particular/NServiceBus/issues/7189)
