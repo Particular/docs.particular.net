@@ -1,7 +1,7 @@
 ﻿using NServiceBus;
 
-public class CompletePaymentTransaction :
+public record CompletePaymentTransaction :
     IMessage
 {
-    public string PaymentTransactionId { get; set; }
+    public string PaymentTransactionId { get; init; }
 }
