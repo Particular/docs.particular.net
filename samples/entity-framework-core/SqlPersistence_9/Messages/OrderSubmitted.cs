@@ -1,7 +1,6 @@
 ﻿using NServiceBus;
 
-public class OrderSubmitted :
-    IMessage
+public class OrderSubmitted : IEvent
 {
     public string OrderId { get; set; }
     public decimal Value { get; set; }
