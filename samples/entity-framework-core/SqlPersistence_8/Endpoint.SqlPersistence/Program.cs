@@ -3,12 +3,12 @@ using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
 using System;
+using System.Linq;
 using Microsoft.Data.SqlClient;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 
 var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<Sender>();
 
 //for local instance or SqlExpress
 //var connectionString = @"Data Source=(localdb)\mssqllocaldb;Database=NsbSamplesEfCoreUowSql;Trusted_Connection=True;MultipleActiveResultSets=true";
@@ -63,10 +63,35 @@ endpointConfiguration.RegisterComponents(c =>
 
 #endregion
 
-Console.WriteLine("Press any key, the application is starting");
-Console.ReadKey();
-Console.WriteLine("Starting...");
-
 builder.UseNServiceBus(endpointConfiguration);
 
-await builder.Build().RunAsync();
+var host = builder.Build();
+await host.StartAsync();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+var random = new Random();
+const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
+var locations = new[] { "London", "Paris", "Oslo", "Madrid" };
+
+while (true)
+{
+    Console.WriteLine("Press enter to send a message, any other key to exit");
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    if (key.Key != ConsoleKey.Enter)
+    {
+        break;
+    }
+    var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+    var shipTo = locations[random.Next(locations.Length)];
+    var orderSubmitted = new OrderSubmitted
+    {
+        OrderId = orderId,
+        Value = random.Next(100),
+        ShipTo = shipTo
+    };
+    await messageSession.SendLocal(orderSubmitted);
+}
+
+await host.StopAsync();
