@@ -13,7 +13,7 @@ var builder = Host.CreateApplicationBuilder(args);
 //for local instance or SqlExpress
 //var connectionString = @"Data Source=(localdb)\mssqllocaldb;Database=NsbSamplesEfCoreUowSql;Trusted_Connection=True;MultipleActiveResultSets=true";
 
-var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesEfCoreUowSql;User Id=SA;Password=NServiceBus!;Encrypt=false;Max Pool Size=100;TrustServerCertificate=True";
+var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesEfCoreUowSql;User Id=SA;Password=yourStrong(!)Password;Encrypt=false;Max Pool Size=100;TrustServerCertificate=True";
 Console.Title = "EntityFrameworkUnitOfWork";
 
 using (var receiverDataContext = new ReceiverDataContext(new DbContextOptionsBuilder<ReceiverDataContext>()
