@@ -91,7 +91,7 @@ while (true)
         Value = random.Next(100),
         ShipTo = shipTo
     };
-    await messageSession.SendLocal(orderSubmitted);
+    await messageSession.Publish(orderSubmitted);
 }
 
 await host.StopAsync();
