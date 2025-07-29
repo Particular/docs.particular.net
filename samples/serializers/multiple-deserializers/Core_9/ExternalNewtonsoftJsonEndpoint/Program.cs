@@ -1,31 +1,34 @@
 ﻿using System;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-static class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "NewtonsoftJsonEndpoint";
-        #region configExternalNewtonsoftJson
-        var endpointConfiguration = new EndpointConfiguration("Samples.MultipleDeserializers.ExternalNewtonsoftJsonEndpoint");
-        var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
-        serialization.ContentTypeKey("NewtonsoftJson");
-        endpointConfiguration.RegisterOutgoingMessageLogger();
+Console.Title = "NewtonsoftJsonEndpoint";
 
-        #endregion
-        endpointConfiguration.UseTransport(new LearningTransport());
+#region configExternalNewtonsoftJson
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var endpointConfiguration = new EndpointConfiguration("Samples.MultipleDeserializers.ExternalNewtonsoftJsonEndpoint");
+var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+serialization.ContentTypeKey("NewtonsoftJson");
+endpointConfiguration.RegisterOutgoingMessageLogger();
 
-        var message = MesasgeBuilder.BuildMessage();
+#endregion
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        await endpointInstance.Send("Samples.MultipleDeserializers.ReceivingEndpoint", message);
+var builder = Host.CreateApplicationBuilder(args);
+builder.UseNServiceBus(endpointConfiguration);
 
-        Console.WriteLine("Order Sent");
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
+var host = builder.Build();
+await host.StartAsync();
 
-        await endpointInstance.Stop();
-    }
-}
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+var message = MessageBuilder.BuildMessage();
+
+await messageSession.Send("Samples.MultipleDeserializers.ReceivingEndpoint", message);
+
+Console.WriteLine("Order Sent");
+Console.WriteLine("Press any key to exit");
+Console.ReadKey();
+
+await host.StopAsync();

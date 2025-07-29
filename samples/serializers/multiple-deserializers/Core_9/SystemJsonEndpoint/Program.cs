@@ -1,33 +1,35 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-static class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "SystemJsonEndpoint";
+Console.Title = "SystemJsonEndpoint";
 
-        #region configSystemJson
-        var endpointConfiguration = new EndpointConfiguration("Samples.MultipleDeserializers.SystemJsonEndpoint");
-        var serialization = endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+#region configSystemJson
+var endpointConfiguration = new EndpointConfiguration("Samples.MultipleDeserializers.SystemJsonEndpoint");
 
-        endpointConfiguration.RegisterOutgoingMessageLogger();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        #endregion
+endpointConfiguration.RegisterOutgoingMessageLogger();
 
-        endpointConfiguration.UseTransport(new LearningTransport());
+#endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        var message = MesasgeBuilder.BuildMessage();
+var builder = Host.CreateApplicationBuilder(args);
+builder.UseNServiceBus(endpointConfiguration);
 
-        await endpointInstance.Send("Samples.MultipleDeserializers.ReceivingEndpoint", message);
+var host = builder.Build();
+await host.StartAsync();
 
-        Console.WriteLine("Order Sent");
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+var message = MessageBuilder.BuildMessage();
 
-        await endpointInstance.Stop();
-    }
-}
+await messageSession.Send("Samples.MultipleDeserializers.ReceivingEndpoint", message);
+
+Console.WriteLine("Order Sent");
+Console.WriteLine("Press any key to exit");
+Console.ReadKey();
+
+await host.StopAsync();

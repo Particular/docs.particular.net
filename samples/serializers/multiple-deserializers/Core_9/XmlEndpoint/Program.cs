@@ -1,33 +1,33 @@
 ﻿using System;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-static class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "XmlEndpoint";
+Console.Title = "XmlEndpoint";
 
-        #region configXml
+#region configXml
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.MultipleDeserializers.XmlEndpoint");
-        endpointConfiguration.UseSerialization<XmlSerializer>();
-        endpointConfiguration.RegisterOutgoingMessageLogger();
+var endpointConfiguration = new EndpointConfiguration("Samples.MultipleDeserializers.XmlEndpoint");
+endpointConfiguration.UseSerialization<XmlSerializer>();
+endpointConfiguration.RegisterOutgoingMessageLogger();
 
-        #endregion
+#endregion
 
-        endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder(args);
+builder.UseNServiceBus(endpointConfiguration);
 
-        var message = MesasgeBuilder.BuildMessage();
+var host = builder.Build();
+await host.StartAsync();
 
-        await endpointInstance.Send("Samples.MultipleDeserializers.ReceivingEndpoint", message);
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+var message = MessageBuilder.BuildMessage();
 
-        Console.WriteLine("Order Sent");
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
+await messageSession.Send("Samples.MultipleDeserializers.ReceivingEndpoint", message);
 
-        await endpointInstance.Stop();
-    }
-}
+Console.WriteLine("Order Sent");
+Console.WriteLine("Press any key to exit");
+Console.ReadKey();
+
+await host.StopAsync();

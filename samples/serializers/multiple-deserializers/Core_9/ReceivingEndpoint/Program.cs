@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Bson;
@@ -30,7 +29,7 @@ externalNewtonsoftBson.ReaderCreator(stream => new BsonDataReader(stream));
 externalNewtonsoftBson.WriterCreator(stream => new BsonDataWriter(stream));
 externalNewtonsoftBson.ContentTypeKey("NewtonsoftBson");
 
-// register the mutator so the the message on the wire is written
+// Register the mutator so the message on the wire is written
 builder.Services.AddSingleton<IncomingMessageBodyWriter>();
 
 var serviceProvider = builder.Services.BuildServiceProvider();
@@ -39,10 +38,12 @@ endpointConfiguration.RegisterMessageMutator(incomingMessageBodyWriter);
 #endregion
 
 endpointConfiguration.UseTransport(new LearningTransport());
-
-Console.WriteLine("Press any key, the application is starting");
-Console.ReadKey();
-Console.WriteLine("Starting...");
-
 builder.UseNServiceBus(endpointConfiguration);
-await builder.Build().RunAsync();
+
+var host = builder.Build();
+await host.StartAsync();
+
+Console.WriteLine("Press any key to exit");
+Console.ReadKey();
+
+await host.StopAsync();

@@ -23,7 +23,7 @@ public static class OutgoingMessageBodyWriterHelper
 {
     public static void RegisterOutgoingMessageLogger(this EndpointConfiguration endpointConfiguration)
     {
-        // register the mutator so the the message on the wire is written
+        // Register the mutator so the message on the wire is written
         endpointConfiguration.RegisterMessageMutator(new OutgoingMessageBodyWriter());
     }
 }

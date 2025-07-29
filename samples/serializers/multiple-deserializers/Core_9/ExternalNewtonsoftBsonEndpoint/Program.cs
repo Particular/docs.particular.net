@@ -1,38 +1,37 @@
 ﻿using System;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Bson;
 using NServiceBus;
 
-static class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "NewtonsoftBsonEndpoint";
+Console.Title = "NewtonsoftBsonEndpoint";
 
-        #region configExternalNewtonsoftBson
-        var endpointConfiguration = new EndpointConfiguration("Samples.MultipleDeserializers.ExternalNewtonsoftBsonEndpoint");
+#region configExternalNewtonsoftBson
+var endpointConfiguration = new EndpointConfiguration("Samples.MultipleDeserializers.ExternalNewtonsoftBsonEndpoint");
 
-        var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 
-        serialization.ReaderCreator(stream => new BsonDataReader(stream));
-        serialization.WriterCreator(stream => new BsonDataWriter(stream));
-        serialization.ContentTypeKey("NewtonsoftBson");
+serialization.ReaderCreator(stream => new BsonDataReader(stream));
+serialization.WriterCreator(stream => new BsonDataWriter(stream));
+serialization.ContentTypeKey("NewtonsoftBson");
 
-        endpointConfiguration.RegisterOutgoingMessageLogger();
+endpointConfiguration.RegisterOutgoingMessageLogger();
 
-        #endregion
-        endpointConfiguration.UseTransport(new LearningTransport());
+#endregion
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder(args);
+builder.UseNServiceBus(endpointConfiguration);
 
-        var message = MesasgeBuilder.BuildMessage();
+var host = builder.Build();
+await host.StartAsync();
 
-        await endpointInstance.Send("Samples.MultipleDeserializers.ReceivingEndpoint", message);
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+var message = MessageBuilder.BuildMessage();
+await messageSession.Send("Samples.MultipleDeserializers.ReceivingEndpoint", message);
 
-        Console.WriteLine("Order Sent");
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
+Console.WriteLine("Order Sent");
+Console.WriteLine("Press any key to exit");
+Console.ReadKey();
 
-        await endpointInstance.Stop();
-    }
-}
+await host.StopAsync();
