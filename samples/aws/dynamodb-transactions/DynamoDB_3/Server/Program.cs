@@ -4,7 +4,6 @@ using Amazon.Runtime;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-
 Console.Title = "Server";
 
 var builder = Host.CreateApplicationBuilder(args);
@@ -38,8 +37,6 @@ endpointConfiguration.UseTransport(new LearningTransport
     TransportTransactionMode = TransportTransactionMode.ReceiveOnly
 });
 endpointConfiguration.EnableInstallers();
-
-
 
 Console.WriteLine("Press any key, the application is starting");
 Console.ReadKey();
