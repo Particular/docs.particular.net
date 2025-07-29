@@ -5,4 +5,4 @@ services:
     image: "amazon/dynamodb-local:latest"
     container_name: dynamodb-local
     ports:
-      - "8080:8000"
+      - "8000:8000"
