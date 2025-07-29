@@ -32,8 +32,6 @@ var logger = serviceProvider.GetRequiredService<ILogger<AccessToAmazonSqsNativeM
 endpointConfiguration.Pipeline.Register(new AccessToAmazonSqsNativeMessageBehavior(logger), "Demonstrates how to access the native message from a pipeline behavior");
 #endregion
 
-
-
 Console.WriteLine("Press any key, the application is starting");
 Console.ReadKey();
 Console.WriteLine("Starting...");

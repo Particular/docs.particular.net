@@ -11,10 +11,10 @@ while (true)
 {
     Console.WriteLine("Press [s] to send a message or [ESC] to exit.");
 
-    var line = Console.ReadKey();
+    var key = Console.ReadKey();
     Console.WriteLine();
 
-    if (line.Key == ConsoleKey.S)
+    if (key.Key == ConsoleKey.S)
     {
         #region SendingANativeMessage
         await SendTo(new Dictionary<string, MessageAttributeValue>
@@ -24,7 +24,7 @@ while (true)
         #endregion
         Console.WriteLine("Message was sent.");
     }
-    else if (line.Key == ConsoleKey.Escape)
+    else if (key.Key == ConsoleKey.Escape)
     {
         return;
     }
