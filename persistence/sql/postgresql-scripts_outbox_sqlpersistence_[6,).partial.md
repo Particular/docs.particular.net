@@ -1,7 +1,7 @@
+<!-- markdownlint-disable MD041 -->
 ##### Optimistic (default) mode
 
 snippet: PostgreSQL_OutboxOptimisticStoreSql
-
 
 ##### Pessimistic mode
 
