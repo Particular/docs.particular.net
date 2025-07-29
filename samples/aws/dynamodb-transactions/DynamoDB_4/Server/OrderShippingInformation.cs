@@ -1,6 +1,4 @@
-﻿using System;
-
-public class OrderShippingInformation
+﻿public class OrderShippingInformation
 {
     public Guid Id { get; set; }
 

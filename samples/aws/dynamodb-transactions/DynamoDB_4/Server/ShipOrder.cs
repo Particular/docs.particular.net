@@ -1,7 +1,4 @@
-﻿using System;
-using NServiceBus;
-
-public class ShipOrder :
+﻿public class ShipOrder :
     IMessage
 {
     public Guid OrderId { get; set; }

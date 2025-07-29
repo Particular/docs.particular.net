@@ -1,8 +1,5 @@
-﻿using System;
-using System.Threading.Tasks;
-using Amazon.DynamoDBv2.Model;
+﻿using Amazon.DynamoDBv2.Model;
 using Microsoft.Extensions.Logging;
-using NServiceBus;
 
 public class ShipOrderHandler(ILogger<ShipOrderHandler> logger) :
     IHandleMessages<ShipOrder>

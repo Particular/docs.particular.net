@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Amazon.DynamoDBv2.Model;
 using NServiceBus.Persistence.DynamoDB;
 

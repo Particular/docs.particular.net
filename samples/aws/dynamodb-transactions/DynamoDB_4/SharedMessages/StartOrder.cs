@@ -1,6 +1,3 @@
-using System;
-using NServiceBus;
-
 public class StartOrder :
     IMessage
 {
