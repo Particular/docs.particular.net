@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL Scripts
 component: SqlPersistence
-reviewed: 2023-09-14
+reviewed: 2025-07-29
 related:
  - nservicebus/operations
  - persistence/sql/operational-scripting
@@ -121,7 +121,7 @@ snippet: PostgreSQL_SagaUpdateSql
 
 #### Select used by Saga Finder
 
-snippet: postgresql_SagaSelectSql
+snippet: PostgreSQL_SagaSelectSql
 
 ### Subscriptions
 
