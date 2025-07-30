@@ -1,7 +1,7 @@
 ---
 title: Outbox
 summary: Ensure message consistency with the NServiceBus Outbox, handling message deduplication and transactional integrity in distributed systems.
-reviewed: 2026-06-05
+reviewed: 2025-06-05
 component: Core
 isLearningPath: true
 versions: "[6,)"
