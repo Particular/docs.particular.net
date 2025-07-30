@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
@@ -7,6 +9,7 @@ Console.Title = "RegularEndpoint";
 
 var endpointConfiguration = new EndpointConfiguration("RegularEndpoint");
 
+var endpointConfiguration = new EndpointConfiguration("RegularEndpoint");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport<SqsTransport>();
 
