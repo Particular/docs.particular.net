@@ -1,0 +1,4 @@
+M:System.Threading.Tasks.Task.ConfigureAwait(System.Boolean); ConfigureAwait should only be used if the sample/snippet absolutely requires it
+M:System.Threading.Tasks.Task`1.ConfigureAwait(System.Boolean); ConfigureAwait should only be used if the sample/snippet absolutely requires it
+M:System.Threading.Tasks.ValueTask.ConfigureAwait(System.Boolean); ConfigureAwait should only be used if the sample/snippet absolutely requires it
+M:System.Threading.Tasks.ValueTask`1.ConfigureAwait(System.Boolean); ConfigureAwait should only be used if the sample/snippet absolutely requires it
