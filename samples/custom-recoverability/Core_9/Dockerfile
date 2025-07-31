@@ -1,6 +1,6 @@
 # Custom Recoverability Sample - Core 9 Version
 # This Dockerfile builds and runs the Custom Recoverability sample
-# 
+#
 # Build from the repository root directory:
 # Docker: docker build -f samples/custom-recoverability/Core_9/Dockerfile -t custom-recoverability-core9 .
 # Podman: podman build -f samples/custom-recoverability/Core_9/Dockerfile -t custom-recoverability-core9 .

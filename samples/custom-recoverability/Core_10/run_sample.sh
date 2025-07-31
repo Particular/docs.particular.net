@@ -73,7 +73,7 @@ sleep 35
 echo "Checking fault scenario behavior..."
 if grep -q "Immediate Retry is going to retry" server_fault.log && grep -q "ArgumentNullException" server_fault.log; then
     echo "✓ SUCCESS: Custom recoverability policy working - ArgumentNullException triggered retries"
-    
+
     # Show relevant log entries
     echo "Fault scenario log output:"
     grep -E "(Message received|Immediate Retry|Delayed Retry|ArgumentNullException)" server_fault.log | head -10 || true

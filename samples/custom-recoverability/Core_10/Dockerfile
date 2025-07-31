@@ -1,6 +1,6 @@
 # Custom Recoverability Sample - Core 10 Version
 # This Dockerfile builds and runs the Custom Recoverability sample
-# 
+#
 # Build from the repository root directory:
 # Docker: docker build -f samples/custom-recoverability/Core_10/Dockerfile -t custom-recoverability-core10 .
 # Podman: podman build -f samples/custom-recoverability/Core_10/Dockerfile -t custom-recoverability-core10 .
@@ -26,7 +26,7 @@ WORKDIR /src/sample
 
 # Build the normal version (build projects individually to avoid .NET 10 preview file locking issues)
 RUN dotnet build Shared --framework net10.0
-RUN dotnet build Server --framework net10.0  
+RUN dotnet build Server --framework net10.0
 RUN dotnet build Client --framework net10.0
 
 # Create fault scenario version by modifying the handler
