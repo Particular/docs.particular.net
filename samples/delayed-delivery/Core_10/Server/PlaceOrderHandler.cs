@@ -8,7 +8,7 @@ public class PlaceOrderHandler(ILogger<PlaceDelayedOrderHandler> logger) :
     IHandleMessages<PlaceOrder>
 {
 
-    static List<Guid> wasMessageDelayed = new List<Guid>();
+    static List<Guid> wasMessageDelayed = [];
 
     #region PlaceOrderHandler
     public async Task Handle(PlaceOrder message, IMessageHandlerContext context)
