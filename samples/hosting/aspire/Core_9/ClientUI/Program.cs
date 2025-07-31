@@ -18,6 +18,7 @@ routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
+endpointConfiguration.AuditProcessedMessagesTo("Particular.ServiceControl.Audit");
 
 var metrics = endpointConfiguration.EnableMetrics();
 metrics.SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromSeconds(1));
