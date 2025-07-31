@@ -16,7 +16,7 @@ echo -e "${YELLOW}Starting Consumer1...${NC}"
 dotnet run --project Consumer1 --framework net10.0 > /app/logs/consumer1.log 2>&1 &
 CONSUMER1_PID=$!
 
-# Start Consumer2 in background  
+# Start Consumer2 in background
 echo -e "${YELLOW}Starting Consumer2...${NC}"
 dotnet run --project Consumer2 --framework net10.0 > /app/logs/consumer2.log 2>&1 &
 CONSUMER2_PID=$!# Wait for consumers to initialize by checking log files

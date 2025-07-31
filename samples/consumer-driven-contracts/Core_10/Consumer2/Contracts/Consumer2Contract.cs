@@ -1,10 +1,8 @@
-﻿namespace Subscriber2.Contracts
-{
-    using NServiceBus;
+﻿namespace Subscriber2.Contracts;
 
-    public interface Consumer2Contract :
-        IEvent
-    {
-        string Consumer2Property { get; set; }
-    }
+using NServiceBus;
+
+public interface Consumer2Contract : IEvent
+{
+    string Consumer2Property { get; set; }
 }
