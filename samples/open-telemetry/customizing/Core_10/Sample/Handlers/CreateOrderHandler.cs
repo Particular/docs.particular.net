@@ -1,8 +1,4 @@
-﻿using NServiceBus;
-using System;
-using System.Threading.Tasks;
-
-class CreateOrderHandler : IHandleMessages<CreateOrder>
+﻿class CreateOrderHandler : IHandleMessages<CreateOrder>
 {
     #region custom-activity-in-handler
     public async Task Handle(CreateOrder message, IMessageHandlerContext context)

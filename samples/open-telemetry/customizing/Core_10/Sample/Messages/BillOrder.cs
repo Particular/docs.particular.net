@@ -1,7 +1,4 @@
-﻿using NServiceBus;
-using System;
-
-class BillOrder : IMessage
+﻿class BillOrder : IMessage
 {
     public Guid OrderId { get; set;}
 }

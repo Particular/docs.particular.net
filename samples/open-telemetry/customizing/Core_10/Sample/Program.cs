@@ -1,8 +1,6 @@
-using NServiceBus;
 using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
-using System;
 
 Console.Title = "MyEndpoint";
 
