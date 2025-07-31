@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.Reflection;
-using System.Threading.Tasks;
-using NServiceBus;
 using NServiceBus.Features;
 using NServiceBus.Settings;
 

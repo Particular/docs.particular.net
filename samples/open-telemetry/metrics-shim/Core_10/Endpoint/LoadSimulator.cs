@@ -1,8 +1,3 @@
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using NServiceBus;
-
 // Simulates busy (almost no delay) / quite time in a sine wave
 class LoadSimulator
 {

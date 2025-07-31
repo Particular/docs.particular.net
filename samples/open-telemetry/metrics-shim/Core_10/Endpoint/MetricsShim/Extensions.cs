@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using NServiceBus;
-
 static class Extensions
 {
     public static bool TryGetTimeSent(this ReceivePipelineCompleted completed, out DateTimeOffset timeSent)
