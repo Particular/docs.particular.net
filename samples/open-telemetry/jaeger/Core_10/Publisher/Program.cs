@@ -1,10 +1,7 @@
-using NServiceBus;
 using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using Shared;
-using System;
-using System.Threading.Tasks;
 
 class Program
 {
