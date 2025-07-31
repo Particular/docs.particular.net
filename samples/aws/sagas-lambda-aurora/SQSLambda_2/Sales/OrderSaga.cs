@@ -1,7 +1,6 @@
 ﻿
 #region OrderSaga
 
-using Microsoft.Extensions.Logging;
 using NServiceBus.Logging;
 
 public class OrderSaga : Saga<OrderSagaData>,
