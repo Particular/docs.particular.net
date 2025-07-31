@@ -26,7 +26,7 @@ public class RecoverabilityTests
     [Test]
     public void ShouldFailImmediatelyAndSendToCustomErrorQueue()
     {
-        var unrecoverableExceptions = new HashSet<Type> { typeof(DivideByZeroException) };
+        HashSet<Type> unrecoverableExceptions = [typeof(DivideByZeroException)];
 
         var policy = CreatePolicy(unrecoverableExceptions: unrecoverableExceptions);
         var errorContext = CreateErrorContext(numberOfDeliveryAttempts: 1, exception: new DivideByZeroException());
@@ -65,9 +65,9 @@ public class RecoverabilityTests
             exception ?? new Exception(),
             retryNumber.HasValue
                 ? new Dictionary<string, string> { { Headers.DelayedRetries, retryNumber.ToString() } }
-                : headers ?? new Dictionary<string, string>(),
+                : headers ?? [],
             "message-id",
-            new ReadOnlyMemory<byte>(new byte[0]),
+            new ReadOnlyMemory<byte>([]),
             new TransportTransaction(),
             numberOfDeliveryAttempts,
             "receive-address",
@@ -79,7 +79,7 @@ public class RecoverabilityTests
 
     static Func<ErrorContext, RecoverabilityAction> CreatePolicy(int maxImmediateRetries = 2, int maxDelayedRetries = 2, TimeSpan? delayedRetryDelay = null, HashSet<Type> unrecoverableExceptions = null)
     {
-        var failedConfig = new FailedConfig("errorQueue", unrecoverableExceptions ?? new HashSet<Type>());
+        var failedConfig = new FailedConfig("errorQueue", unrecoverableExceptions ?? []);
         var config = new RecoverabilityConfig(new ImmediateConfig(maxImmediateRetries), new DelayedConfig(maxDelayedRetries, delayedRetryDelay.GetValueOrDefault(TimeSpan.FromSeconds(2))), failedConfig);
         return context => CustomizedRecoverabilityPolicy.MyCustomRetryPolicy(config, context);
     }
