@@ -13,10 +13,6 @@ var endpointConfiguration = new EndpointConfiguration("Samples.PubSub.Subscriber
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
 
-Console.WriteLine("Press any key, application loading");
-Console.ReadKey();
-Console.WriteLine("Starting...");
-
 builder.UseNServiceBus(endpointConfiguration);
 
 await builder.Build().RunAsync();
