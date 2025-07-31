@@ -28,6 +28,7 @@ var audit = builder.AddContainer("ServiceControl-Audit", "particular/servicecont
     .WithEnvironment("TRANSPORTTYPE", "RabbitMQ.QuorumConventionalRouting")
     .WithEnvironment("CONNECTIONSTRING", rabbitMqConnectionString)
     .WithEnvironment("RAVENDB_CONNECTIONSTRING", ravenDb.GetEndpoint("http"))
+    .WithEnvironment("SERVICEBUS_AUDITQUEUE", "Particular.ServiceControl.Audit")
     .WithArgs("--setup-and-run")
     .WithHttpEndpoint(44444, 44444)
     .WithUrlForEndpoint("http", url => url.DisplayLocation = UrlDisplayLocation.DetailsOnly)
