@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using NServiceBus;
-
-class SomeMessageHandler : IHandleMessages<SomeMessage>
+﻿class SomeMessageHandler : IHandleMessages<SomeMessage>
 {
     public async Task Handle(SomeMessage message, IMessageHandlerContext context)
     {

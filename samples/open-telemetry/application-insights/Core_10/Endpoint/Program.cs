@@ -1,11 +1,7 @@
 using Azure.Monitor.OpenTelemetry.Exporter;
-using NServiceBus;
-using System;
 using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
-using System.Collections.Generic;
-using System.Threading;
 using OpenTelemetry.Metrics;
 
 var endpointName = "Samples.OpenTelemetry.AppInsights";
