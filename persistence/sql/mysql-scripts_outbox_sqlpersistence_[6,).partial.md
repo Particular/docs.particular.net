@@ -2,7 +2,6 @@
 
 snippet: MySql_OutboxOptimisticStoreSql
 
-
 ##### Pessimistic mode
 
 snippet: MySql_OutboxPessimisticBeginSql
