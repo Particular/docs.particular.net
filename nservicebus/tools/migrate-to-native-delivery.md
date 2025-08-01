@@ -1,7 +1,7 @@
 ---
 title: Migrating from timeout manager to native delivery
 summary: An overview of the tool supporting migrating from timeout manager to native delivery
-reviewed: 2023-08-11
+reviewed: 2025-08-01
 redirects:
 - samples/sqltransport/native-time-migration
 ---
