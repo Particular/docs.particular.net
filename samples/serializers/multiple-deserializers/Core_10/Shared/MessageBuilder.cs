@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public static class MesasgeBuilder
+public static class MessageBuilder
 {
 
     public static CreateOrder BuildMessage()
@@ -11,19 +11,21 @@ public static class MesasgeBuilder
             OrderId = 9,
             Date = DateTime.Now,
             CustomerId = 12,
-            OrderItems = new List<OrderItem>
-            {
+            OrderItems =
+            [
                 new OrderItem
                 {
                     ItemId = 6,
                     Quantity = 2
                 },
+
                 new OrderItem
                 {
                     ItemId = 5,
                     Quantity = 4
-                },
-            }
+                }
+
+            ]
         };
     }
 }
