@@ -1,7 +1,7 @@
 ---
 title: MS SQL Server Scripts
 component: SqlPersistence
-reviewed: 2023-09-14
+reviewed: 2025-08-01
 related:
  - nservicebus/operations
  - persistence/sql/operational-scripting
