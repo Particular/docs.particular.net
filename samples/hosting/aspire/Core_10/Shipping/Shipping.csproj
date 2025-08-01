@@ -20,6 +20,7 @@
     <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="6.0.0-alpha.1" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="9.0.0-alpha.1" />
     <PackageReference Include="NServiceBus.RabbitMQ" Version="11.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.SagaAudit" Version="6.0.0-alpha.1" />
   </ItemGroup>
 
 </Project>
