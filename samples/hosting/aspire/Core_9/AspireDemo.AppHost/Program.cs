@@ -4,7 +4,10 @@ using AspireDemo.AppHost;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-var transport = builder.AddRabbitMQ("transport")
+var rabbitUser = builder.AddParameterFromConfiguration("rabbitUser", "RabbitMQ:UserName", true);
+var rabbitPassword = builder.AddParameterFromConfiguration("rabbitPassword", "RabbitMQ:Password", true);
+
+var transport = builder.AddRabbitMQ("transport", rabbitUser, rabbitPassword)
     .WithManagementPlugin(15672)
     .WithUrlForEndpoint("management", url => url.DisplayText = "RabbitMQ Management");
 
