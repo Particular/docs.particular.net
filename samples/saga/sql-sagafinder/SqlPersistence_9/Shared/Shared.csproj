@@ -4,10 +4,10 @@
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="9.*" />
+    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.1" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="8.*" />
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="9.0.0-alpha.1" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.0" />
   </ItemGroup>
 </Project>
