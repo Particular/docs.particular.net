@@ -1,5 +1,4 @@
 ﻿using System;
-using EndpointSqlServer;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -8,7 +7,6 @@ using NServiceBus;
 
 Console.Title = "SqlServer";
 var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<InputLoopService>();
 
 var endpointConfiguration = new EndpointConfiguration("Samples.SqlSagaFinder.SqlServer");
 endpointConfiguration.UseTransport(new LearningTransport());
@@ -36,4 +34,31 @@ await SqlHelper.EnsureDatabaseExists(connectionString);
 
 builder.UseNServiceBus(endpointConfiguration);
 
-await builder.Build().RunAsync();
+var host = builder.Build();
+
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+Console.WriteLine("Press 'enter' to send a message");
+while (true)
+{
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    if (key.Key != ConsoleKey.Enter)
+    {
+        break;
+    }
+
+    var startOrder = new StartOrder
+    {
+        OrderId = "123"
+    };
+    await messageSession.SendLocal(startOrder);
+
+    Console.WriteLine($"StartOrder sent: {startOrder.OrderId}");
+}
+
+await host.StopAsync();
+

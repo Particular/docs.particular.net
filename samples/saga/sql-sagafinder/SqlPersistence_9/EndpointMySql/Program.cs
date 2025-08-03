@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using MySql.Data.MySqlClient;
 using NServiceBus;
@@ -37,16 +38,32 @@ subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
 #endregion
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
-var startOrder = new StartOrder
-{
-    OrderId = "123"
-};
-await endpointInstance.SendLocal(startOrder);
-
-Console.WriteLine("Press any key to exit");
-Console.ReadKey();
-await endpointInstance.Stop();
 builder.UseNServiceBus(endpointConfiguration);
 
-await builder.Build().RunAsync();
+var host = builder.Build();
+
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+Console.WriteLine("Press 'enter' to send a message");
+while (true)
+{
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    if (key.Key != ConsoleKey.Enter)
+    {
+        break;
+    }
+
+    var startOrder = new StartOrder
+    {
+        OrderId = "123"
+    };
+    await messageSession.SendLocal(startOrder);
+
+    Console.WriteLine($"StartOrder sent: {startOrder.OrderId}");
+}
+
+await host.StopAsync();
