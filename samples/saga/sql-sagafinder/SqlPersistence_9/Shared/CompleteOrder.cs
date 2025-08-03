@@ -1,7 +1,7 @@
 using NServiceBus;
 
-public class CompleteOrder :
+public record CompleteOrder :
     IMessage
 {
-    public string OrderId { get; set; }
+    public string OrderId { get; init; }
 }
