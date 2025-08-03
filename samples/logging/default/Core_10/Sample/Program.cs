@@ -17,9 +17,9 @@ var host = Host.CreateDefaultBuilder(args)
 
         // Default log level is Info
         defaultFactory.Level(NServiceBus.Logging.LogLevel.Debug);
-
-        var endpointConfiguration = new EndpointConfiguration("Samples.Logging.Default");
         #endregion
+        
+        var endpointConfiguration = new EndpointConfiguration("Samples.Logging.Default");
 
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();
@@ -32,8 +32,7 @@ await host.StartAsync();
 
 var endpointInstance = host.Services.GetRequiredService<IMessageSession>();
 
-var myMessage = new MyMessage();
-await endpointInstance.SendLocal(myMessage);
+await endpointInstance.SendLocal(new MyMessage());
 
 Console.WriteLine("Press any key to exit");
 Console.ReadKey();
