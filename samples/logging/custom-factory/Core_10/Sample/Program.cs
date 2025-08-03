@@ -11,10 +11,8 @@ var host = Host.CreateDefaultBuilder(args)
         #region ConfigureLogging
         var loggerDefinition = LogManager.Use<ConsoleLoggerDefinition>();
         loggerDefinition.Level(LogLevel.Info);
-
-        var endpointConfiguration = new EndpointConfiguration("Samples.Logging.CustomFactory");
-
         #endregion
+        var endpointConfiguration = new EndpointConfiguration("Samples.Logging.CustomFactory");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

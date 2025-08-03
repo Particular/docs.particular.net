@@ -11,9 +11,6 @@ class ConsoleLoggerDefinition :
         this.level = level;
     }
 
-    protected override ILoggerFactory GetLoggingFactory()
-    {
-        return new ConsoleLoggerFactory(level);
-    }
+    protected override ILoggerFactory GetLoggingFactory() => new ConsoleLoggerFactory(level);
 }
 #endregion
