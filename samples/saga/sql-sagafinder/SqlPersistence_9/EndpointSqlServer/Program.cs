@@ -1,11 +1,9 @@
 ﻿using System;
-using Microsoft.Data.SqlClient;
-using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.Persistence.Sql;
-using Microsoft.Extensions.Hosting;
 using EndpointSqlServer;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using NServiceBus;
 
 
 Console.Title = "SqlServer";
@@ -14,7 +12,7 @@ builder.Services.AddHostedService<InputLoopService>();
 
 var endpointConfiguration = new EndpointConfiguration("Samples.SqlSagaFinder.SqlServer");
 endpointConfiguration.UseTransport(new LearningTransport());
-endpointConfiguration.UseSerialization<XmlSerializer>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.EnableInstallers();
 
 #region sqlServerConfig

@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using MySql.Data.MySqlClient;
 using NServiceBus;
-using NServiceBus.Persistence.Sql;
 
 
 Console.Title = "MySql";
@@ -11,7 +9,7 @@ var builder = Host.CreateApplicationBuilder(args);
 
 var endpointConfiguration = new EndpointConfiguration("Samples.SqlSagaFinder.MySql");
 endpointConfiguration.UseTransport(new LearningTransport());
-endpointConfiguration.UseSerialization<XmlSerializer>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.SendFailedMessagesTo("error");
 endpointConfiguration.EnableInstallers();
 #region MySqlConfig
