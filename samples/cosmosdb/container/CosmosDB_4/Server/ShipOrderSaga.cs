@@ -20,7 +20,7 @@ public class ShipOrderSaga(ILogger<ShipOrderSaga> logger) :
         Data.OrderId = message.OrderId;
 
         logger.LogInformation("Order will complete in 5 seconds");
-        var timeoutData = new CompleteOrder();
+        CompleteOrder timeoutData = new();
         return RequestTimeout(context, TimeSpan.FromSeconds(5), timeoutData);
     }
 

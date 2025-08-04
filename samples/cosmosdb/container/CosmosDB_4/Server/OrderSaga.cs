@@ -22,7 +22,7 @@ public class OrderSaga(ILogger<OrderSaga> logger) :
 
         logger.LogInformation($"Received StartOrder message {Data.OrderId}. Starting Saga");
 
-        var shipOrder = new ShipOrder
+        ShipOrder shipOrder = new()
         {
             OrderId = message.OrderId
         };
@@ -34,7 +34,7 @@ public class OrderSaga(ILogger<OrderSaga> logger) :
     {
         logger.LogInformation($"Saga with OrderId {Data.OrderId} completed");
         MarkAsComplete();
-        var orderCompleted = new OrderCompleted
+        OrderCompleted orderCompleted = new()
         {
             OrderId = Data.OrderId
         };
