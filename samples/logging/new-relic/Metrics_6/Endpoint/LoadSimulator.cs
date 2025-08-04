@@ -42,10 +42,7 @@ class LoadSimulator(IEndpointInstance endpointInstance, TimeSpan minimumDelay, T
         return delay;
     }
 
-    Task Work()
-    {
-        return endpointInstance.SendLocal(new SomeCommand());
-    }
+    Task Work() => endpointInstance.SendLocal(new SomeCommand());
 
     public Task Stop()
     {

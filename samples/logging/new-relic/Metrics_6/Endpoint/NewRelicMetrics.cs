@@ -69,10 +69,7 @@
             #endregion
         }
 
-        static string FormatMetric(string name, string prefix)
-        {
-            return Normalize($"Custom/NServiceBus/{prefix}/{{0}}/{name}");
-        }
+        static string FormatMetric(string name, string prefix) => Normalize($"Custom/NServiceBus/{prefix}/{{0}}/{name}");
 
         static string Normalize(string name)
         {
