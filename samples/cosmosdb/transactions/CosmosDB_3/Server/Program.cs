@@ -61,8 +61,6 @@ class Program
 
              endpointConfiguration.EnableInstallers();
 
-             Console.ReadKey();
-
              return endpointConfiguration;
          });
 
