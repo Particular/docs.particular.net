@@ -37,10 +37,10 @@ public class OrderSaga(ILogger<OrderSaga> logger) :
             OrderId = Data.OrderId,
         };
 
-        return Task.WhenAll(
+        return Task.WhenAll([
             context.SendLocal(shipOrder),
             RequestTimeout(context, TimeSpan.FromSeconds(5), timeoutData)
-        );
+        ]);
     }
 
     public Task Handle(OrderShipped message, IMessageHandlerContext context)
