@@ -26,7 +26,8 @@ class Program
              endpointConfiguration.EnableOutbox();
 
              var persistence = endpointConfiguration.UsePersistence<CosmosPersistence>();
-             var connection = @"AccountEndpoint = https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
+             var connection = Environment.GetEnvironmentVariable("COSMOS_CONNECTION_STRING") ??
+                             @"AccountEndpoint = https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
              persistence.DatabaseName("Samples.CosmosDB.Transactions");
              persistence.CosmosClient(new CosmosClient(connection));
              persistence.DefaultContainer("Server", "/OrderId");
