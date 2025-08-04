@@ -1,15 +1,42 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Client;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 
 class Program
 {
     public static async Task Main(string[] args)
     {
-        await CreateHostBuilder(args).Build().RunAsync();
+        var host = CreateHostBuilder(args).Build();
+
+        await host.StartAsync();
+
+        var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+        Console.WriteLine("Press 'S' to send a StartOrder message to the server endpoint");
+        Console.WriteLine("Press any other key to exit");
+
+        while (true)
+        {
+            var key = Console.ReadKey();
+            Console.WriteLine();
+
+            var orderId = Guid.NewGuid();
+            var startOrder = new StartOrder
+            {
+                OrderId = orderId
+            };
+            if (key.Key == ConsoleKey.S)
+            {
+                await messageSession.Send("Samples.CosmosDB.Simple.Server", startOrder);
+                Console.WriteLine($"StartOrder Message sent to Server with OrderId {orderId}");
+                continue;
+            }
+            break;
+        }
+
+        await host.StopAsync();
     }
 
     public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -17,15 +44,12 @@ class Program
          .ConfigureServices((hostContext, services) =>
          {
              Console.Title = "Client";
-             services.AddHostedService<InputLoopService>();
-
          }).UseNServiceBus(x =>
          {
              var endpointConfiguration = new EndpointConfiguration("Samples.CosmosDB.Simple.Client");
              endpointConfiguration.UsePersistence<LearningPersistence>();
              endpointConfiguration.UseTransport(new LearningTransport());
              endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-             Console.WriteLine("Press 'S' to send a StartOrder message to the server endpoint");
 
              return endpointConfiguration;
          });
