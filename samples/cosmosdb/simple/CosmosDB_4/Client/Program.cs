@@ -23,7 +23,7 @@ class Program
             Console.WriteLine();
 
             var orderId = Guid.NewGuid();
-            var startOrder = new StartOrder
+            StartOrder startOrder = new()
             {
                 OrderId = orderId
             };
