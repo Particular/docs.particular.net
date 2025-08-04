@@ -1,15 +1,29 @@
 using System;
+using Microsoft.Extensions.Hosting;
 using Endpoint;
+using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 
-var endpointConfiguration = new EndpointConfiguration(Console.Title = "TracingEndpoint");
+Console.Title = "TracingEndpoint";
 
-endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-endpointConfiguration.UseTransport<LearningTransport>();
+var host = Host.CreateDefaultBuilder(args)
+    .UseConsoleLifetime()
+    .UseNServiceBus(_ =>
+    {
+        var endpointConfiguration = new EndpointConfiguration("TracingEndpoint");
 
-NewRelicMetrics.Setup(endpointConfiguration);
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        endpointConfiguration.UseTransport<LearningTransport>();
 
-var endpointInstance = await NServiceBus.Endpoint.Start(endpointConfiguration);
+        NewRelicMetrics.Setup(endpointConfiguration);
+
+        return endpointConfiguration;
+    })
+    .Build();
+
+await host.StartAsync();
+
+var endpointInstance = host.Services.GetRequiredService<IMessageSession>();
 
 #region newrelic-load-simulator
 
@@ -22,13 +36,13 @@ try
 {
     Console.WriteLine("Endpoint started.");
     Console.WriteLine("Press [ENTER] to send additional messages.");
-    Console.WriteLine("Press [ESC] to quit.");
+    Console.WriteLine("Press [Q] to quit.");
 
     while (true)
     {
         switch (Console.ReadKey(true).Key)
         {
-            case ConsoleKey.Escape:
+            case ConsoleKey.Q:
                 return;
             case ConsoleKey.Enter:
                 await endpointInstance.SendLocal(new SomeCommand());
@@ -39,5 +53,5 @@ try
 finally
 {
     await simulator.Stop();
-    await endpointInstance.Stop();
+    await host.StopAsync();
 }
