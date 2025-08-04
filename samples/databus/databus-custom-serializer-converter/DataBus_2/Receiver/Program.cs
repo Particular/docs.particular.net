@@ -4,25 +4,33 @@ using System;
 using System.Text.Json;
 using Microsoft.Extensions.Hosting;
 
-
 Console.Title = "Receiver";
+
 var builder = Host.CreateApplicationBuilder(args);
 
 var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver");
-var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, SystemJsonClaimCheckSerializer>();
-claimCheck.BasePath(@"..\..\..\..\storage");
 
-//CustomJsonSerializerOptions
+#region ConfigureDataBus
+
+var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, SystemJsonClaimCheckSerializer>();
+claimCheck.BasePath(SolutionDirectoryFinder.Find("storage"));
+
+#endregion
+
+#region CustomJsonSerializerOptions
 var jsonSerializerOptions = new JsonSerializerOptions();
 jsonSerializerOptions.Converters.Add(new ClaimCheckPropertyConverterFactory());
 endpointConfiguration.UseSerialization<SystemJsonSerializer>().Options(jsonSerializerOptions);
+#endregion
 
-endpointConfiguration.UseTransport(new LearningTransport());
-
-Console.WriteLine("Press any key, the application is starting");
-Console.ReadKey();
-Console.WriteLine("Starting...");
+endpointConfiguration.UseTransport<LearningTransport>();
 
 builder.UseNServiceBus(endpointConfiguration);
 
-await builder.Build().RunAsync();
+var host = builder.Build();
+await host.StartAsync();
+
+Console.WriteLine("Press any key to exit");
+Console.ReadKey();
+
+await host.StopAsync();

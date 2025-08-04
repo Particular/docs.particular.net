@@ -1,7 +1,7 @@
 ---
 title: Databus with SystemJsonSerializer message serializer
 summary: The file share data bus allows large properties to be transferred via a Windows file share using custom converter for SystemJsonSerializer
-reviewed: 2023-09-03
+reviewed: 2025-08-03
 component: FileShareDataBus
 related:
  - nservicebus/messaging/claimcheck
