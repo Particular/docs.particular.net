@@ -1,0 +1,11 @@
+services:
+  sample:
+    image: cosmosdb-container-sample
+    environment:
+      - COSMOS_CONNECTION_STRING=${COSMOS_CONNECTION_STRING}
+    networks:
+      - cosmosdb-network
+
+networks:
+  cosmosdb-network:
+    driver: bridge
