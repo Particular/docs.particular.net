@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using NServiceBus;
 
 // Simulates busy (almost no delay) / quiet time in a sine wave
-class LoadSimulator(IEndpointInstance endpointInstance, TimeSpan minimumDelay, TimeSpan idleDuration)
+class LoadSimulator(IMessageSession messageSession, TimeSpan minimumDelay, TimeSpan idleDuration)
 {
     CancellationTokenSource tokenSource = new();
     TimeSpan idleDuration = TimeSpan.FromTicks(idleDuration.Ticks / 2);
@@ -43,7 +43,7 @@ class LoadSimulator(IEndpointInstance endpointInstance, TimeSpan minimumDelay, T
         return delay;
     }
 
-    Task Work() => endpointInstance.SendLocal(new SomeCommand());
+    Task Work() => messageSession.SendLocal(new SomeCommand());
 
     public Task Stop()
     {

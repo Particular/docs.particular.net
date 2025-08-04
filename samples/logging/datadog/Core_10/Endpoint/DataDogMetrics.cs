@@ -86,8 +86,8 @@ public static class DataDogMetrics
         return tags.ToArray();
     }
 
-    static readonly Dictionary<string, string> nameMapping = new Dictionary<string, string>
-        {
+    static readonly Dictionary<string, string> nameMapping = new()
+    {
             {"# of msgs successfully processed / sec", "nservicebus.processed"},
             {"# of msgs pulled from the input queue /sec", "nservicebus.fetched"},
             {"# of msgs failures / sec", "nservicebus.failed"},
