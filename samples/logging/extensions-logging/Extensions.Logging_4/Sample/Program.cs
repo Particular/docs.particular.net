@@ -48,8 +48,7 @@ await host.StartAsync();
 
 var endpointInstance = host.Services.GetRequiredService<IMessageSession>();
 
-var myMessage = new MyMessage();
-await endpointInstance.SendLocal(myMessage);
+await endpointInstance.SendLocal(new MyMessage());
 
 Console.WriteLine("Press any key to exit");
 Console.ReadKey();
