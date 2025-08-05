@@ -6,9 +6,8 @@
     "All the command line options for the Lambda command can be specified in this file."
   ],
   "profile": "default",
-  "region": "",
   "configuration": "Release",
-  "framework": "net8.0",
+  "framework": "net10.0",
   "template": "serverless.template",
   "template-parameters": ""
 }
