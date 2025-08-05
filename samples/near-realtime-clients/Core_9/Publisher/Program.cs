@@ -3,11 +3,9 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
-using Publisher;
 
 Console.Title = "Publisher";
 var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<InputService>();
 var endpointConfiguration = new EndpointConfiguration("Samples.NearRealTimeClients.Publisher");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
@@ -28,4 +26,44 @@ Console.ReadKey();
 Console.WriteLine("Starting...");
 
 builder.UseNServiceBus(endpointConfiguration);
-await builder.Build().RunAsync();
+var host = builder.Build();
+
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+var rand = new Random();
+
+Console.WriteLine("Press any key to start publishing");
+Console.ReadKey(true);
+
+string[] symbols =
+[
+    "MSFT",
+    "AAPL",
+    "GOOGL",
+    "ORCL",
+    "INTC",
+    "HPQ",
+    "CSCO"
+];
+
+do
+{
+    while (!Console.KeyAvailable)
+    {
+        var stockSymbol = symbols[rand.Next(0, symbols.Length - 1)];
+
+        var stockTick = new StockTick
+        {
+            Symbol = stockSymbol,
+            Timestamp = DateTime.UtcNow
+        };
+        await messageSession.Publish(stockTick);
+
+        await Task.Delay(500);
+
+        Console.WriteLine($"Published StockTick Event with Symbol {stockSymbol}. Press escape to stop publishing events.");
+    }
+} while (Console.ReadKey(true).Key != ConsoleKey.Escape);
+
+await host.StopAsync();
