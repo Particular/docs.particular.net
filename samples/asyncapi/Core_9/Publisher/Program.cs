@@ -1,56 +1,37 @@
 ﻿using Infrastructure;
-//using Saunter;
-//using Saunter.AsyncApiSchema.v2;
-//using Saunter.Generation;
+using Microsoft.AspNetCore.Mvc;
+using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddControllers();
 
-//builder.Services.AddEndpointsApiExplorer();
-//builder.Services.AddSwaggerGen();
-//builder.Services.AddTransient<IDocumentGenerator, ApiDocumentGenerator>();
-//builder.Services.AddAsyncApiSchemaGeneration(options =>
-//{
-//    options.AsyncApi = new AsyncApiDocument
-//    {
-//        Info = new Info("Publisher API", "3.0.0")
-//        {
-//            Description = "Some example.",
-//            License = new License("Apache 2.0")
-//            {
-//                Url = "https://www.apache.org/licenses/LICENSE-2.0"
-//            }
-//        },
-//        Servers = { { "amqp", new Server("sb://example.servicebus.windows.net/", "amqp") } }
-//    };
-//});
+// Add services to the container.
+builder.Services.AddOpenApi();
 
 var endpointConfiguration = new EndpointConfiguration("Publisher");
 endpointConfiguration.UseTransport<LearningTransport>();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-//var conventions = endpointConfiguration.Conventions();
-//conventions.Add(new PublishedEventsConvention());
-//conventions.Add(new SubscribedEventsConvention());
 endpointConfiguration.SendOnly();
 endpointConfiguration.EnableAsyncApiSupport();
 
 builder.UseNServiceBus(endpointConfiguration);
 
 var app = builder.Build();
-app.UseRouting();
-app.UseHttpsRedirection();
-app.UseAuthorization();
-app.MapControllers();
 
+// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    //app.UseSwagger();
-    //app.UseSwaggerUI();
-    //app.UseEndpoints(endpoints =>
-    //{
-    //    endpoints.MapAsyncApiDocuments();
-    //    endpoints.MapAsyncApiUi();
-    //});
+    app.MapOpenApi(); // See - /openapi/v1.json
+    app.MapScalarApiReference(); // See - /scalar
 }
+
+app.UseHttpsRedirection();
+
+app.MapGet("/publish", async ([FromServices] ILogger logger, [FromServices] IMessageSession messageSession) =>
+{
+    var now = DateTime.UtcNow.ToString();
+    await messageSession.Publish(new SomeEventThatIsBeingPublished { SomeValue = now, SomeOtherValue = now });
+
+    return Results.Ok($"Published event at {now}");
+});
 
 app.Run();
