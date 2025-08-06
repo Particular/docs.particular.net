@@ -17,7 +17,7 @@ public class SomeEventController : ControllerBase
     public async Task Get()
     {
         var now = DateTime.UtcNow.ToString();
-        //await messageSession.Publish(new SomeEventThatIsBeingPublished { SomeValue = now, SomeOtherValue = now });
-        await messageSession.Publish(new SomeEvent { SomeValue = now, SomeOtherValue = now });
+        await messageSession.Publish(new SomeEventThatIsBeingPublished { SomeValue = now, SomeOtherValue = now });
+        //await messageSession.Publish(new SomeEvent { SomeValue = now, SomeOtherValue = now });
     }
 }

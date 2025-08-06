@@ -28,11 +28,11 @@ builder.Services.AddControllers();
 var endpointConfiguration = new EndpointConfiguration("Publisher");
 endpointConfiguration.UseTransport<LearningTransport>();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-var conventions = endpointConfiguration.Conventions();
-conventions.Add(new PublishedEventsConvention());
-conventions.Add(new SubscribedEventsConvention());
+//var conventions = endpointConfiguration.Conventions();
+//conventions.Add(new PublishedEventsConvention());
+//conventions.Add(new SubscribedEventsConvention());
 endpointConfiguration.SendOnly();
-//endpointConfiguration.EnableAsyncApiSupport();
+endpointConfiguration.EnableAsyncApiSupport();
 
 builder.UseNServiceBus(endpointConfiguration);
 

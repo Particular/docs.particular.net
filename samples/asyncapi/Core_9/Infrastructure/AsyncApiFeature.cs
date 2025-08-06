@@ -36,7 +36,7 @@ public sealed class AsyncApiFeature : Feature
                 {
                     var subscribedType =
                         proxyGenerator.CreateTypeFrom($"{subscribedEvent.EventName}V{subscribedEvent.Version}");
-                    subscribedEventCache.Add(subscribedType.FullName,
+                    subscribedEventCache.Add(subscribedType.FullName!,
                         (SubscribedType: subscribedType, ActualType: messageMetadata.MessageType));
                 }
             }
@@ -46,27 +46,27 @@ public sealed class AsyncApiFeature : Feature
             }
         }
 
-        //if (context.Settings.GetOrDefault<bool>("Installers.Enable"))
-        //{
-        //    context.RegisterStartupTask(static provider => new ManualSubscribe(provider.GetRequiredService<TypeCache>()
-        //        .SubscribedEventCache.Values.Select(x => x.SubscribedType).ToArray()));
-        //}
+        if (context.Settings.GetOrDefault<bool>("Installers.Enable"))
+        {
+            context.RegisterStartupTask(static provider => new ManualSubscribe(provider.GetRequiredService<TypeCache>()
+                .SubscribedEventCache.Values.Select(x => x.SubscribedType).ToArray()));
+        }
 
-        //context.Pipeline.Register(
-        //    static provider =>
-        //        new ReplaceOutgoingEnclosedMessageTypeHeaderBehavior(provider.GetRequiredService<TypeCache>().PublishedEventCache),
-        //    "Replaces the outgoing enclosed message type header with the published event type fullname");
-        //context.Pipeline.Register(
-        //    static provider => new ReplaceMulticastRoutingBehavior(provider.GetRequiredService<TypeCache>().PublishedEventCache),
-        //    "Replaces the multicast routing strategies that match the actual published event type with the published event type name");
+        context.Pipeline.Register(
+            static provider =>
+                new ReplaceOutgoingEnclosedMessageTypeHeaderBehavior(provider.GetRequiredService<TypeCache>().PublishedEventCache),
+            "Replaces the outgoing enclosed message type header with the published event type fullname");
+        context.Pipeline.Register(
+            static provider => new ReplaceMulticastRoutingBehavior(provider.GetRequiredService<TypeCache>().PublishedEventCache),
+            "Replaces the multicast routing strategies that match the actual published event type with the published event type name");
 
-        //if (!context.Settings.GetOrDefault<bool>("Endpoint.SendOnly"))
-        //{
-        //    context.Pipeline.Register(
-        //        static provider =>
-        //            new ReplaceIncomingEnclosedMessageTypeHeaderBehavior(provider.GetRequiredService<TypeCache>()
-        //                .SubscribedEventCache), "Replaces the incoming published event type name with the actual local event type name");
-        //}
+        if (!context.Settings.GetOrDefault<bool>("Endpoint.SendOnly"))
+        {
+            context.Pipeline.Register(
+                static provider =>
+                    new ReplaceIncomingEnclosedMessageTypeHeaderBehavior(provider.GetRequiredService<TypeCache>()
+                        .SubscribedEventCache), "Replaces the incoming published event type name with the actual local event type name");
+        }
 
         // with v8 registration will follow the regular MS DI stuff
         context.Services.AddSingleton(new TypeCache
