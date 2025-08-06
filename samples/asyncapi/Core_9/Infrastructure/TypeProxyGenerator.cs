@@ -17,7 +17,7 @@ class TypeProxyGenerator
     public Type CreateTypeFrom(string typeName)
     {
         var typeBuilder = moduleBuilder.DefineType(typeName,
-            TypeAttributes.Serializable | TypeAttributes.Class | TypeAttributes.Public | TypeAttributes.Sealed,
+            TypeAttributes.Class | TypeAttributes.Public | TypeAttributes.Sealed,
             typeof(object)
         );
 

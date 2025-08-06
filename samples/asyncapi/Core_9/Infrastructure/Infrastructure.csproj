@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <PackageReference Include="NServiceBus" Version="9.*" />
-      <PackageReference Include="Saunter" Version="0.9.1" />
     </ItemGroup>
 
 </Project>
