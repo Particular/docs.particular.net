@@ -45,7 +45,7 @@ static async Task SendOrder(IMessageSession messageSession)
                     Id = id
                 };
                 await messageSession.Send("Samples.DelayedDelivery.Server", placeOrder);
-                Console.WriteLine($"[Defer Message Handling] Sent a PlaceOrder message with id: {id.ToString("N")}");
+                Console.WriteLine($"[Defer Message Handling] Sent a PlaceOrder message with id: {id:N}");
                 #endregion
                 continue;
             case ConsoleKey.D2:
@@ -61,7 +61,7 @@ static async Task SendOrder(IMessageSession messageSession)
                 options.SetDestination("Samples.DelayedDelivery.Server");
                 options.DelayDeliveryWith(TimeSpan.FromSeconds(5));
                 await messageSession.Send(placeDelayedOrder, options);
-                Console.WriteLine($"[Defer Message Delivery] Deferred a PlaceDelayedOrder message with id: {id.ToString("N")}");
+                Console.WriteLine($"[Defer Message Delivery] Deferred a PlaceDelayedOrder message with id: {id:N}");
                 #endregion
                 continue;
             default:
