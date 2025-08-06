@@ -21,6 +21,11 @@ public class AvroMessageSerializer(SchemaCache schemaCache, ClassCache classCach
 
     public object[] Deserialize(ReadOnlyMemory<byte> body, IList<Type> messageTypes = null)
     {
+        if(messageTypes == null)
+        {
+            throw new InvalidOperationException("The Avro serializer does not support auto detecting message types from the payload");
+        }
+
         var messages = new List<object>();
         foreach (var messageType in messageTypes)
         {
