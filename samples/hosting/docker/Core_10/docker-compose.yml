@@ -1,0 +1,23 @@
+# startcode compose
+services:
+    sender:
+        image: sender
+        depends_on:
+            rabbitmq:
+                condition: service_healthy    
+    receiver:
+        image: receiver
+        depends_on:
+            rabbitmq:
+                condition: service_healthy    
+    rabbitmq:
+        image: "rabbitmq:3-management"
+        ports:
+            - "15672:15672"
+            - "5672:5672"
+        healthcheck:
+            test: rabbitmq-diagnostics check_port_connectivity
+            interval: 30s
+            timeout: 30s
+            retries: 3
+# endcode

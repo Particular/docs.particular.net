@@ -12,22 +12,24 @@ Console.Title = "NativeIntegration";
 
 while (true)
 {
-    Console.WriteLine("Enter 's' to send a message, enter 'exit' to stop");
-    var line = Console.ReadLine();
-    switch (line?.ToLowerInvariant())
-    {
-        case "exit":
-            return;
-        case "s":
+    Console.WriteLine("Press [s] to send a message or [ESC] to exit.");
 
-            #region SendingANativeMessage
-            await SendTo(new Dictionary<string, MessageAttributeValue>
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    if (key.Key == ConsoleKey.S)
+    {
+        #region SendingANativeMessage
+        await SendTo(new Dictionary<string, MessageAttributeValue>
                     {
                         {"SomeKey", new MessageAttributeValue {DataType = "String", StringValue = "something"}}, //optional attributes that the receiver might need
                     }, MessageToSend);
-            #endregion
-            Console.WriteLine("Message was sent.");
-            break;
+        #endregion
+        Console.WriteLine("Message was sent.");
+    }
+    else if (key.Key == ConsoleKey.Escape)
+    {
+        return;
     }
 }
 

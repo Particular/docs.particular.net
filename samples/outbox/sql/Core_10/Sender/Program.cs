@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
@@ -7,11 +6,8 @@ using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Transport.SqlServer;
 
+Console.Title = "Sender";
 var host = Host.CreateDefaultBuilder(args)
-    .ConfigureServices((hostContext, services) =>
-    {
-        Console.Title = "Sender";
-    })
     .UseNServiceBus(x =>
     {
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlOutbox.Sender");
@@ -21,8 +17,8 @@ var host = Host.CreateDefaultBuilder(args)
         #region SenderConfiguration
 
         //for local instance or SqlExpress
-         string connectionString = @"Data Source=(localdb)\mssqllocaldb;Database=NsbSamplesSqlOutbox;Trusted_Connection=True;MultipleActiveResultSets=true";
-        // var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlOutbox;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
+        // string connectionString = @"Data Source=(localdb)\mssqllocaldb;Database=NsbSamplesSqlOutbox;Trusted_Connection=True;MultipleActiveResultSets=true";
+        const string connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlOutbox;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
 
         var transport = new SqlServerTransport(connectionString)
         {
@@ -61,14 +57,15 @@ var host = Host.CreateDefaultBuilder(args)
     .Build();
 
 await host.StartAsync();
+
+var messageSession = host.Services.GetService<IMessageSession>();
 var random = new Random();
-var messageSession = host.Services.GetRequiredService<IMessageSession>();
-var cts = new CancellationTokenSource();
+
 while (true)
 {
     if (!Console.KeyAvailable)
     {
-        await Task.Delay(100, cts.Token);
+        await Task.Delay(100);
         continue;
     }
     var key = Console.ReadKey();
@@ -84,7 +81,7 @@ while (true)
         Value: random.Next(100)
     );
 
-    await messageSession.Publish(orderSubmitted, cancellationToken: cts.Token);
+    await messageSession.Publish(orderSubmitted);
 }
 
 await host.StopAsync();

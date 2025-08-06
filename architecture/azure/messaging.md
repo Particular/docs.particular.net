@@ -1,11 +1,11 @@
 ---
 title: Azure messaging
 summary: Describes the Azure messaging options available for the Particular Service Platform
-reviewed: 2023-07-18
+reviewed: 2025-07-18
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
-Azure offers [several messaging services](https://learn.microsoft.com/en-us/azure/service-bus-messaging/compare-messaging-services), each built for specific purposes. The Particular Service Platform supports [Azure Service Bus and Azure Storage Queues](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted).
+Azure offers [several messaging services](https://learn.microsoft.com/en-us/azure/service-bus-messaging/compare-messaging-services), each built for specific purposes. The Particular Service Platform supports [Azure Service Bus and Azure Storage Queues](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted). Additionally the Particular Platform supports using [Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/database) tables as message queues.
 
 ## Azure Service Bus
 
@@ -81,7 +81,7 @@ SQL transport is an NServiceBus feature that can use existing SQL Server databas
 
 ### When to use SQL transport
 
-Consider using SQL transport if an existing application already uses a SQL Server-compatible data store and only a limited amount of messaging is being introduced. SQL transport can be a good stepping-stone when introducing messaging into an existing system without the introduction of new infrastructure.
+Consider using SQL transport if an existing application already uses a SQL Server-compatible data store and the system requires high transactional consistency between message and business data operations and very high message throughput or performance is less important. SQL transport can be a good stepping-stone when introducing messaging into an existing system without the introduction of new infrastructure.
 
 ## Other services
 

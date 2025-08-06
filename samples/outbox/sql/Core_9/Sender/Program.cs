@@ -1,17 +1,13 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Transport.SqlServer;
-using Sender;
 
+Console.Title = "Sender";
 var host = Host.CreateDefaultBuilder(args)
-    .ConfigureServices((hostContext, services) =>
-    {
-        services.AddHostedService<InputLoopService>();
-        Console.Title = "Sender";
-    })
     .UseNServiceBus(x =>
     {
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlOutbox.Sender");
@@ -60,4 +56,32 @@ var host = Host.CreateDefaultBuilder(args)
     })
     .Build();
 
-await host.RunAsync();
+await host.StartAsync();
+
+var messageSession = host.Services.GetService<IMessageSession>();
+var random = new Random();
+
+while (true)
+{
+    if (!Console.KeyAvailable)
+    {
+        await Task.Delay(100);
+        continue;
+    }
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    if (key.Key != ConsoleKey.Enter)
+    {
+        break;
+    }
+
+    var orderSubmitted = new OrderSubmitted(
+        OrderId: Guid.NewGuid(),
+        Value: random.Next(100)
+    );
+
+    await messageSession.Publish(orderSubmitted);
+}
+
+await host.StopAsync();

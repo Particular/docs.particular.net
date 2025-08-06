@@ -3,16 +3,9 @@ using Microsoft.Data.SqlClient;
 using NServiceBus;
 using Microsoft.Extensions.Logging;
 
-sealed class OrderSubmittedHandler :
+sealed class OrderSubmittedHandler(ILogger<OrderSubmittedHandler> logger) :
     IHandleMessages<OrderSubmitted>
 {
-    private readonly ILogger<OrderSubmittedHandler> logger;
-
-    public OrderSubmittedHandler(ILogger<OrderSubmittedHandler> logger)
-    {
-        this.logger = logger;
-    }
-
     public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
         logger.LogInformation("Order {OrderId} worth {OrderValue} submitted",

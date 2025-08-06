@@ -1,7 +1,7 @@
 ---
 title: Windows Service Installation
 summary: How to install an NServiceBus endpoint as a Windows service
-reviewed: 2023-09-15
+reviewed: 2025-07-31
 component: Core
 isLearningPath: true
 related:
@@ -20,8 +20,10 @@ sc.exe create SalesEndpoint binpath= "c:\SalesEndpoint\SalesEndpoint.exe --run-a
 sc.exe delete SalesEndpoint
 ```
 
-For completeness, here are some other common usages of the Service Control tool:
+> [!NOTE]
+> A space is required between an option and its value (for example, `binpath= "c:\SalesEndpoint\SalesEndpoint.exe --run-as-service"`). If the space is omitted, the operation will fail.
 
+For completeness, here are some other common usages of the Service Control tool:
 
 ### Setting the Windows Service name
 
@@ -32,7 +34,6 @@ sc.exe create [ServiceName] binpath= [BinaryPathName]
 sc.exe create SalesEndpoint binpath= "c:\SalesEndpoint\SalesEndpoint.exe --run-as-service"
 ```
 
-
 ### Setting the Display name
 
 The display name can be configured, at creation time, using the `displayname` argument:
@@ -41,7 +42,6 @@ The display name can be configured, at creation time, using the `displayname` ar
 sc.exe create [ServiceName] displayname= [Description] binpath= [BinaryPathName]
 sc.exe create SalesEndpoint displayname= "Sales Endpoint" binpath= "c:\SalesEndpoint\SalesEndpoint.exe --run-as-service"
 ```
-
 
 ### Setting the Description
 
@@ -52,16 +52,14 @@ sc.exe description [ServiceName] [Description]
 sc.exe description SalesEndpoint "Service for hosting the Sales Endpoint"
 ```
 
-
 ### Specifying Service dependencies
 
-The dependencies of a Windows Service can be configured after it has been created using the [sc config](https://technet.microsoft.com/en-us/library/cc990290.aspx) command.
+The dependencies of a Windows Service can be configured after it has been created using the [sc config](https://technet.microsoft.com/en-us/library/cc990290.aspx) command. Dependencies are listed one after the other, separated by a `/` (forward slash).
 
 ```shell
-sc.exe config [ServiceName] depend= <Dependencies(separated by / (forward slash))>
+sc.exe config [ServiceName] depend= [Dependency1]/[Dependency2]
 sc.exe config SalesEndpoint depend= MSMQ/MSDTC/RavenDB
 ```
-
 
 ### Setting the Restart Recovery Options
 
@@ -72,7 +70,6 @@ The endpoint can fail when self-hosting and implementing a critical error handle
 If Windows Service Recovery is not configured, message processing will halt. Therefore it's important to configure recovery options when hosting an NServiceBus endpoint as a Windows Service.
 
 The recovery options can be adjusted via the Services dialog or via `sc.exe`. Note that the command line tool has advanced configuration options.
-
 
 #### Configuring Windows Service Recovery via sc.exe
 
@@ -85,7 +82,6 @@ sc.exe failure [ServiceName] reset= [seconds] actions= restart/[milliseconds]/re
 sc.exe failure SalesEndpoint reset= 3600 actions= restart/5000/restart/10000/restart/60000
 ```
 
-
 #### Configuring Service Recovery via Windows Service properties
 
 Open the services window, select the endpoint Windows Service and open its properties. Then open the Recovery tab to adjust the settings:
@@ -94,7 +90,6 @@ Open the services window, select the endpoint Windows Service and open its prope
 
 > [!NOTE]
 > Restart durations are only configurable using `sc.exe`.
-
 
 ### Username and password
 
@@ -105,7 +100,6 @@ sc.exe create [ServiceName] obj= [AccountName] password= [Password] binpath= [Bi
 sc.exe create SalesEndpoint obj= MyDomain\SalesUser password= 9t6X7gkz binpath= "c:\SalesEndpoint\SalesEndpoint.exe --run-as-service"
 ```
 
-
 ### Start mode
 
 The Windows Service start mode can be configured at creation time using the `start` parameter.
@@ -114,7 +108,6 @@ The Windows Service start mode can be configured at creation time using the `sta
 sc.exe create [ServiceName] start= {auto | demand | disabled} binpath= [BinaryPathName]
 sc.exe create SalesEndpoint start= demand binpath= "c:\SalesEndpoint\SalesEndpoint.exe --run-as-service"
 ```
-
 
 ### Uninstall
 
