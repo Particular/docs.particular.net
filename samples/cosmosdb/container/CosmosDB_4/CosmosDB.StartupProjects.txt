@@ -1,0 +1,2 @@
+Client\Client.csproj
+Server\Server.csproj
