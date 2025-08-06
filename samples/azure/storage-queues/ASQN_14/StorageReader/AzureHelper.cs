@@ -46,7 +46,7 @@ public class AzureHelper
         Console.WriteLine("Message contents:");
         Console.WriteLine(JsonConvert.SerializeObject((object) parsedJson, Formatting.Indented));
 
-        var body = (string)parsedJson.Body;
+        var body = (string)parsedJson?.Body;
         Console.WriteLine("Deserialized message body:");
         Console.WriteLine(body.Base64Decode());
     }
