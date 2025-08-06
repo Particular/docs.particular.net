@@ -81,7 +81,7 @@ public class ApiDocumentGenerator : IDocumentGenerator
         return publishChannels;
     }
 
-    private static IMessage GenerateMessageFromType(Type actualType, Type publishedType,
+    private static Saunter.AsyncApiSchema.v2.IMessage GenerateMessageFromType(Type actualType, Type publishedType,
         AsyncApiSchemaResolver schemaResolver, JsonSchemaGenerator jsonSchemaGenerator)
     {
         var message = new Message

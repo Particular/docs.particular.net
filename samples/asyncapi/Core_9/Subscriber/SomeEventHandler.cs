@@ -5,7 +5,7 @@ public class SomeEventHandler : IHandleMessages<SomeEvent>
 {
     public Task Handle(SomeEvent message, IMessageHandlerContext context)
     {
-        Log.Debug("Received Some Event");
+        Log.Info("Received Some Event");
         return Task.CompletedTask;
     }
 

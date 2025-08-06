@@ -10,6 +10,7 @@ await Host.CreateDefaultBuilder(args)
     {
         var endpointConfiguration = new EndpointConfiguration("Sender");
         endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         endpointConfiguration.EnableInstallers();
         return endpointConfiguration;

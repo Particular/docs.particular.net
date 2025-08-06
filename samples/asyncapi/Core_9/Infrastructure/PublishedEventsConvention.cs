@@ -3,7 +3,7 @@ using NServiceBus;
 
 namespace Infrastructure;
 
-class PublishedEventsConvention : IMessageConvention
+public class PublishedEventsConvention : IMessageConvention
 {
     public bool IsMessageType(Type type)
     {

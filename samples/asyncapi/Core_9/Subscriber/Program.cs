@@ -11,8 +11,12 @@ await Host.CreateDefaultBuilder(args)
     {
         var endpointConfiguration = new EndpointConfiguration("Subscriber");
         endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        endpointConfiguration.EnableAsyncApiSupport();
+        //endpointConfiguration.EnableAsyncApiSupport();
+        var conventions = endpointConfiguration.Conventions();
+        conventions.Add(new PublishedEventsConvention());
+        conventions.Add(new SubscribedEventsConvention());
 
         endpointConfiguration.EnableInstallers();
         return endpointConfiguration;
