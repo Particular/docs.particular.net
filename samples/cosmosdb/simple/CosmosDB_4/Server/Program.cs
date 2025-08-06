@@ -25,10 +25,10 @@ class Program
              var endpointConfiguration = new EndpointConfiguration("Samples.CosmosDB.Simple.Server");
 
              var persistence = endpointConfiguration.UsePersistence<CosmosPersistence>();
-             var connection = Environment.GetEnvironmentVariable("COSMOS_CONNECTION_STRING") 
-                 ?? @"AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==";
+             var connection = Environment.GetEnvironmentVariable("COSMOS_CONNECTION_STRING")
+                 ?? """AccountEndpoint=https://localhost:8081/;AccountKey=C2y6yDjf5/R+ob0N8A7Cgv30VRDJIWEHLM+4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw/Jw==""";
              persistence.DatabaseName("Samples.CosmosDB.Simple");
-             persistence.CosmosClient(new CosmosClient(connection));
+             persistence.CosmosClient(new(connection));
              persistence.DefaultContainer("Server", "/id");
 
              #endregion
@@ -36,7 +36,7 @@ class Program
              endpointConfiguration.UseTransport(new LearningTransport());
              endpointConfiguration.UseSerialization<SystemJsonSerializer>();
              endpointConfiguration.EnableInstallers();
-                      
+
              return endpointConfiguration;
          });
 
