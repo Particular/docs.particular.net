@@ -10,6 +10,6 @@
     <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="14.0.0-alpha.2" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.2" />
-    <PackageReference Update="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="4.14.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="4.14.0" />
   </ItemGroup>
 </Project>
