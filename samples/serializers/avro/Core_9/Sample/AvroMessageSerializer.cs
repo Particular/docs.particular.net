@@ -5,8 +5,6 @@ using Avro.IO;
 using Avro.Reflect;
 using NServiceBus.Serialization;
 
-namespace Sample;
-
 public class AvroMessageSerializer(SchemaCache schemaCache, ClassCache classCache) : IMessageSerializer
 {
     public string ContentType => "avro/binary";
@@ -21,7 +19,7 @@ public class AvroMessageSerializer(SchemaCache schemaCache, ClassCache classCach
 
     public object[] Deserialize(ReadOnlyMemory<byte> body, IList<Type> messageTypes = null)
     {
-        if(messageTypes == null)
+        if (messageTypes == null)
         {
             throw new InvalidOperationException("The Avro serializer does not support auto detecting message types from the payload");
         }

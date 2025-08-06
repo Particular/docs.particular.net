@@ -4,10 +4,11 @@ using Microsoft.Extensions.Logging;
 using NServiceBus.MessageMutator;
 
 #region mutator
+
 public class MessageBodyWriter(ILogger<MessageBodyWriter> logger) :
     IMutateIncomingTransportMessages
 {
-       public Task MutateIncoming(MutateIncomingTransportMessageContext context)
+    public Task MutateIncoming(MutateIncomingTransportMessageContext context)
     {
         var bodyAsString = Encoding.UTF8
             .GetString(context.Body.ToArray());
@@ -18,4 +19,5 @@ public class MessageBodyWriter(ILogger<MessageBodyWriter> logger) :
         return Task.CompletedTask;
     }
 }
+
 #endregion

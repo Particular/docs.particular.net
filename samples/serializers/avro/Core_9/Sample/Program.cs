@@ -1,11 +1,8 @@
 ﻿using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json;
 using NServiceBus;
 using NServiceBus.MessageMutator;
-using Sample;
-
 
 Console.Title = "ExternalJson";
 
@@ -16,13 +13,14 @@ builder.Services.AddHostedService<InputLoopService>();
 
 var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.Avro");
 
-var serialization = endpointConfiguration.UseSerialization<AvroSerializer>();
+endpointConfiguration.UseSerialization<AvroSerializer>();
 
 #endregion
 
 endpointConfiguration.UseTransport(new LearningTransport());
 
 #region registermutator
+
 builder.Services.AddSingleton<MessageBodyWriter>();
 
 // Then later get it from the service provider when needed
@@ -31,7 +29,6 @@ var messageBodyWriter = serviceProvider.GetRequiredService<MessageBodyWriter>();
 endpointConfiguration.RegisterMessageMutator(messageBodyWriter);
 
 #endregion
-
 
 Console.WriteLine("Press any key, the application is starting");
 Console.ReadKey();

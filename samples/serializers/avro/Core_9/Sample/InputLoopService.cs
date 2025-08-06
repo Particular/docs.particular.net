@@ -1,44 +1,39 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-namespace Sample
+public class InputLoopService(IMessageSession messageSession) : BackgroundService
 {
-    public class InputLoopService(IMessageSession messageSession) : BackgroundService
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-        {
-            #region message
+        #region message
 
-            var message = new CreateOrder
-            {
-                OrderId = 9,
-                Date = DateTime.Now,
-                CustomerId = 12,
-                OrderItems = new List<OrderItem>
-            {
+        var message = new CreateOrder
+        {
+            OrderId = 9,
+            Date = DateTime.Now,
+            CustomerId = 12,
+            OrderItems =
+            [
                 new OrderItem
                 {
                     ItemId = 6,
                     Quantity = 2
                 },
+
                 new OrderItem
                 {
                     ItemId = 5,
                     Quantity = 4
-                },
-            }
-            };
+                }
+            ]
+        };
 
-            await messageSession.SendLocal(message);
-            Console.WriteLine("Order Sent");
+        await messageSession.SendLocal(message, cancellationToken: stoppingToken);
+        Console.WriteLine("Order Sent");
 
-            #endregion
-
-        }
+        #endregion
     }
-
 }

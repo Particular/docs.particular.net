@@ -1,18 +1,9 @@
 using System;
 using System.IO;
 
-namespace Sample;
-
-public class ReadOnlyStream : Stream
+public class ReadOnlyStream(ReadOnlyMemory<byte> memory) : Stream
 {
-    readonly ReadOnlyMemory<byte> memory;
-    int position;
-
-    public ReadOnlyStream(ReadOnlyMemory<byte> memory)
-    {
-        this.memory = memory;
-        position = 0;
-    }
+    int position = 0;
 
     public override void Flush() => throw new NotSupportedException();
 
@@ -55,5 +46,10 @@ public class ReadOnlyStream : Stream
     public override bool CanSeek => false;
     public override bool CanWrite => false;
     public override long Length => memory.Length;
-    public override long Position { get => position; set => position = (int)value; }
+
+    public override long Position
+    {
+        get => position;
+        set => position = (int)value;
+    }
 }
