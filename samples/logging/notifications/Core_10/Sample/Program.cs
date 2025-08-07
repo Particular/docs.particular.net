@@ -16,6 +16,7 @@ var host = Host.CreateDefaultBuilder(args)
         #endregion
 
     })
+    .UseConsoleLifetime()
     .UseNServiceBus(context =>
     {
         #region endpointConfig
@@ -42,7 +43,6 @@ var host = Host.CreateDefaultBuilder(args)
         return endpointConfiguration;
     }).Build();
 
-await host.StartAsync();
 
 var messageSession = host.Services.GetRequiredService<IMessageSession>();
 
@@ -53,7 +53,5 @@ var message = new MyMessage
 
 await messageSession.SendLocal(message);
 
-Console.WriteLine("Press any key to exit");
-Console.ReadKey();
-
-await host.StopAsync();
+Console.WriteLine("Press Ctrl+C to exit");
+await host.RunAsync();
