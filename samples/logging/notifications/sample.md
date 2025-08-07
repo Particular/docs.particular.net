@@ -20,7 +20,7 @@ This sample uses several non-standard settings.
 
 ### Logging
 
-All errors below Fatal are suppressed to reduce the noise related to raising multiple exceptions
+All errors below Critical are suppressed to reduce the noise related to raising multiple exceptions
 
 snippet: logging
 
