@@ -15,7 +15,7 @@ public class AvroSerializer : SerializationDefinition
     {
         var registry = settings.Get<MessageMetadataRegistry>();
         var messageTypes = registry.GetAllMessages().Select(m => m.MessageType);
-        var schemaCache = new SchemaCache();
+        var schemaCache = new SchemaRegistry();
         var assembly = Assembly.GetExecutingAssembly();
 
         foreach (var messageType in messageTypes)

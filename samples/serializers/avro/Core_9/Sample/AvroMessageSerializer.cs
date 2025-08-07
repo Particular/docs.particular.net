@@ -5,14 +5,15 @@ using Avro.IO;
 using Avro.Reflect;
 using NServiceBus.Serialization;
 
-public class AvroMessageSerializer(SchemaCache schemaCache, ClassCache classCache) : IMessageSerializer
+public class AvroMessageSerializer(SchemaRegistry schemaRegistry, ClassCache classCache) : IMessageSerializer
 {
-    public string ContentType => "avro/json";
+    public string ContentType => "avro/binary";
 
     public void Serialize(object message, Stream stream)
     {
-        var schema = schemaCache.GetSchema(message.GetType());
-        var writer = new ReflectDefaultWriter(message.GetType(), schema, classCache);
+        var messageType = message.GetType();
+        var schema = schemaRegistry.GetSchema(messageType);
+        var writer = new ReflectDefaultWriter(messageType, schema, classCache);
 
         writer.Write(message, new BinaryEncoder(stream));
     }
@@ -28,7 +29,7 @@ public class AvroMessageSerializer(SchemaCache schemaCache, ClassCache classCach
         var messages = new List<object>();
         foreach (var messageType in messageTypes)
         {
-            var schema = schemaCache.GetSchema(messageType);
+            var schema = schemaRegistry.GetSchema(messageType);
             var reader = new ReflectDefaultReader(messageType, schema, schema, classCache);
             using var stream = new ReadOnlyStream(body);
             var message = reader.Read(null, schema, schema, new BinaryDecoder(stream));
