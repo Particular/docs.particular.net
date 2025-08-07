@@ -1,22 +1,22 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
-using NServiceBus.MessageMutator;
+using NServiceBus.Pipeline;
 
-#region mutator
+#region write-body-behavior
 
-public class MessageBodyWriter(ILogger<MessageBodyWriter> logger) :
-    IMutateIncomingTransportMessages
+public class MessageBodyWriter(ILogger<MessageBodyWriter> logger) : Behavior<IIncomingPhysicalMessageContext>
 {
-    public Task MutateIncoming(MutateIncomingTransportMessageContext context)
+    public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
     {
         var bodyAsString = Encoding.UTF8
-            .GetString(context.Body.ToArray());
+            .GetString(context.Message.Body.ToArray());
 
         logger.LogInformation("Serialized Message Body:");
         logger.LogInformation(bodyAsString);
 
-        return Task.CompletedTask;
+        return next();
     }
 }
 

@@ -8,32 +8,39 @@ public class InputLoopService(IMessageSession messageSession) : BackgroundServic
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        #region message
-
-        var message = new CreateOrder
+        while (!stoppingToken.IsCancellationRequested)
         {
-            OrderId = 9,
-            Date = DateTime.Now,
-            CustomerId = 12,
-            OrderItems =
-            [
-                new OrderItem
-                {
-                    ItemId = 6,
-                    Quantity = 2
-                },
+            Console.WriteLine("Press any key, to send a message");
+            Console.ReadKey();
 
-                new OrderItem
-                {
-                    ItemId = 5,
-                    Quantity = 4
-                }
-            ]
-        };
+            #region message
 
-        await messageSession.SendLocal(message, cancellationToken: stoppingToken);
-        Console.WriteLine("Order Sent");
+            var message = new CreateOrder
+            {
+                OrderId = 9,
+                Date = DateTime.Now,
+                CustomerId = 12,
+                OrderItems =
+                [
+                    new OrderItem
+                    {
+                        ItemId = 6,
+                        Quantity = 2
+                    },
 
-        #endregion
+                    new OrderItem
+                    {
+                        ItemId = 5,
+                        Quantity = 4
+                    }
+                ]
+            };
+
+            await messageSession.SendLocal(message, cancellationToken: stoppingToken);
+            Console.WriteLine("Message Sent");
+
+            #endregion
+        }
+
     }
 }

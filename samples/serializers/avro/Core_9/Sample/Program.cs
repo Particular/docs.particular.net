@@ -4,7 +4,7 @@ using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.MessageMutator;
 
-Console.Title = "ExternalJson";
+Console.Title = "Avro";
 
 var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddHostedService<InputLoopService>();
@@ -19,20 +19,11 @@ endpointConfiguration.UseSerialization<AvroSerializer>();
 
 endpointConfiguration.UseTransport(new LearningTransport());
 
-#region registermutator
+#region register-body-writer
 
-builder.Services.AddSingleton<MessageBodyWriter>();
-
-// Then later get it from the service provider when needed
-var serviceProvider = builder.Services.BuildServiceProvider();
-var messageBodyWriter = serviceProvider.GetRequiredService<MessageBodyWriter>();
-endpointConfiguration.RegisterMessageMutator(messageBodyWriter);
+endpointConfiguration.Pipeline.Register(typeof(MessageBodyWriter), "Logs the message body received");
 
 #endregion
-
-Console.WriteLine("Press any key, the application is starting");
-Console.ReadKey();
-Console.WriteLine("Starting...");
 
 builder.UseNServiceBus(endpointConfiguration);
 await builder.Build().RunAsync();
