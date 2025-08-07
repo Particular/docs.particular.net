@@ -1,7 +1,7 @@
 ---
 title: Automatic Retries
 summary: Shows immediate and delayed retries when a handler throws an exception.
-reviewed: 2023-09-15
+reviewed: 2025-08-04
 component: Core
 related:
 - nservicebus/recoverability
@@ -13,26 +13,26 @@ This sample shows the different ways that NServiceBus [recoverability features](
 
 Run the sample **without debugging**.
 
-The message handler in both endpoints is set to throw an exception, causing the handled message to end up in the error queue. The portable Particular Service Platform will list the messages arriving in the error queue.
+The message handler in both endpoints (`WithoutDelayedRetries` and `WithDelayedRetries`) is set to throw an exception, causing the handled message to end up in the error queue. The portable Particular Service Platform will list the messages arriving in the error queue.
 
 snippet: handler
 
-The "With Delayed Retries" endpoint uses the standard Delayed Retries settings.
+The `WithDelayedRetries` endpoint uses the standard Delayed Retries settings.
 
-The "Disable Delayed Retries" endpoint disables Delayed Retries with the following:
+The `WithoutDelayedRetries` endpoint disables Delayed Retries with the following:
 
 snippet: Disable
 
 ## The output
 
 > [!WARNING]
-> This sample uses `Console.Writeline` instead of standard logging only for brevity and should not be used in production code.
+> This sample uses `Console.WriteLine` instead of standard logging only for brevity and should not be used in production code.
 
 ### Without Delayed Retries
 
 In this endpoint, the message is retried successively without any delay and then, after the final failure, it is forwarded to the configured error queue.
 
-```
+```bash
 Handling MyMessage with MessageId:b5d0ea24-63c7-4729-8fd3-a6dc0161a7f8
 Handling MyMessage with MessageId:b5d0ea24-63c7-4729-8fd3-a6dc0161a7f8
 Handling MyMessage with MessageId:b5d0ea24-63c7-4729-8fd3-a6dc0161a7f8
@@ -45,9 +45,9 @@ System.Exception: An exception occurred in the handler.
 
 ### With Delayed Retries
 
-In this endpoint, the message is tried successively first and then delayed for the configured amount of time and then retried again. After the final configured retry, the message is moved to the error queue. The sample displays the retry number for clarity.
+In this endpoint, the message is first [retried immediately](/nservicebus/recoverability/#immediate-retries), then retried again after a [configured delay](/nservicebus/recoverability/configure-delayed-retries.md). After the final configured retry, the message is moved to the error queue. The sample displays the retry number for clarity.
 
-```
+```bash
 This is retry number 1
 Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
 Handling MyMessage with MessageId:05b97154-04b9-405a-92d7-a6dc0163273f
