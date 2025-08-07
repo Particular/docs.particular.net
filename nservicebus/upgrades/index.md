@@ -19,9 +19,9 @@ The process of upgrading endpoints consists of a common sequence of steps. Being
 
 The recommended approach is to upgrade one endpoint at a time. Start with simple, low-risk endpoints to ensure that the process is well understood, before tackling the more complex and critical endpoints. For example, endpoints that send emails or generate documents tend to be easy to upgrade. 
 
-Thanks to wire-compatibility guarantees, it is not necessary for every endpoint in the solution to use the same version of NServiceBus. This means that a single endpoint can be upgraded, tested, and deployed to production before upgrading another one. This keeps the scope of changes to a minimum, reducing risk and isolating potential problems. In the same way, a new endpoint can be added and deployed with a newer version of NServiceBus, while endpoints in production remain on an older version. 
+It is not necessary for every endpoint in the solution to use the same version of NServiceBus. This means that a single endpoint can be upgraded, tested, and deployed to production before upgrading another one. This keeps the scope of changes to a minimum, reducing risk and isolating potential problems. In the same way, a new endpoint can be added and deployed with a newer version of NServiceBus, while endpoints in production remain on an older version. 
 
-Note however that while NServiceBus guarantees wire-compatibility on the transport level, there may be some limitations with the chosen persistence and it might be necessary to transform stored data as part of the upgrade. Verify the detailed upgrade recommendations for the selected persistence.
+Note however that there may be some limitations with the chosen persistence and it might be necessary to transform stored data as part of the upgrade. Verify the detailed upgrade recommendations for the selected persistence.
 
 Another factor to consider is the investment required to maintain the codebase. It may be cheaper in the long run to maintain a codebase containing one version of NServiceBus than to invest in training and knowledge sharing around multiple versions.
 

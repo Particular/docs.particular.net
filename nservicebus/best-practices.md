@@ -102,7 +102,7 @@ For occasionally connected clients, consider another communication medium, such 
 
 By default, NServiceBus will identify classes implementing `ICommand` as commands, `IEvent` as events, and `IMessage` as other types of messages, such as replies. This is quick and easy but also causes message projects to depend on the NServiceBus NuGet package.
 
-Because NServiceBus is wire-compatible between major versions, in a complex system, it's useful to be able to upgrade one endpoint at a time. But message assemblies are shared between multiple endpoints, which can cause challenges during upgrades when one endpoint using a message assembly has upgraded to the next major version but the other has not.
+In a complex system, it's useful to be able to upgrade one endpoint at a time. Message assemblies are shared between multiple endpoints, which can cause challenges during upgrades when one endpoint using a message assembly has upgraded to the next major version but the other has not.
 
 These versioning problems can be addressed using [unobtrusive-mode messages](/nservicebus/messaging/unobtrusive-mode.md) by defining [message conventions](/nservicebus/messaging/conventions.md) independent of the `ICommand`/`IEvent`/`IMessage` interfaces.
 
