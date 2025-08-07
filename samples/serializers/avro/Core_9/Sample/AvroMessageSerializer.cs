@@ -7,7 +7,7 @@ using NServiceBus.Serialization;
 
 public class AvroMessageSerializer(SchemaCache schemaCache, ClassCache classCache) : IMessageSerializer
 {
-    public string ContentType => "avro/binary";
+    public string ContentType => "avro/json";
 
     public void Serialize(object message, Stream stream)
     {
@@ -21,7 +21,8 @@ public class AvroMessageSerializer(SchemaCache schemaCache, ClassCache classCach
     {
         if (messageTypes == null)
         {
-            throw new InvalidOperationException("The Avro serializer does not support auto detecting message types from the payload");
+            // Avro is not able to infer message types from the body content
+            return [];
         }
 
         var messages = new List<object>();
