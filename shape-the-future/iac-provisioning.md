@@ -1,5 +1,5 @@
 ---
-title: Provisioning infrastructure with code (IaC) for NServiceBus systems
+title: Provisioning infrastructure as code (IaC) for NServiceBus systems
 summary: Help us shape the future by describing how IaC is used to provision infrastructure to deploy NServiceBus systems
 reviewed: 2025-07-21
 related:
