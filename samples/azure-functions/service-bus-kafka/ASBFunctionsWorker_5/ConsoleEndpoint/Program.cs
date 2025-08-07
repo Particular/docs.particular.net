@@ -19,7 +19,7 @@ class Program
             throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
         }
 
-        var transport = new AzureServiceBusTransport(connectionString);
+        var transport = new AzureServiceBusTransport(connectionString, TopicTopology.Default);
         endpointConfiguration.UseTransport(transport);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);

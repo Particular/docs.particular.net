@@ -21,7 +21,7 @@ public class Program
                 cfg.UseSerialization<SystemJsonSerializer>();
 
                 var connectionString = Environment.GetEnvironmentVariable("AzureWebJobsServiceBus");
-                var transport = new AzureServiceBusTransport(connectionString);
+                var transport = new AzureServiceBusTransport(connectionString, TopicTopology.Default);
                 var routing = cfg.UseTransport(transport);
 
                 routing.RouteToEndpoint(typeof(FollowUp), "Samples.KafkaTrigger.ConsoleEndpoint");
