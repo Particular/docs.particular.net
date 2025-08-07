@@ -8,6 +8,13 @@
 
     <ItemGroup>
       <PackageReference Include="NServiceBus" Version="9.*" />
+      <PackageReference Include="Neuroglia.AsyncApi.AspNetCore" Version="3.0.6" />
+      <PackageReference Include="Neuroglia.AsyncApi.AspNetCore.UI" Version="3.0.6" />
+      <PackageReference Include="Neuroglia.AsyncApi.Core" Version="3.0.6" />
+      <PackageReference Include="Neuroglia.AsyncApi.DependencyInjectionExtensions" Version="3.0.6" />
+      <PackageReference Include="Neuroglia.AsyncApi.FluentBuilders" Version="3.0.6" />
+      <PackageReference Include="Neuroglia.AsyncApi.Generation" Version="3.0.6" />
+      <PackageReference Include="Neuroglia.AsyncApi.Validation" Version="3.0.6" />
     </ItemGroup>
 
 </Project>

@@ -1,96 +1,109 @@
-//using System.Reflection;
-//using Microsoft.Extensions.DependencyInjection;
-//using NJsonSchema.Generation;
-//using Saunter;
-//using Saunter.AsyncApiSchema.v2;
-//using Saunter.Generation;
-//using Saunter.Generation.Filters;
-//using Saunter.Generation.SchemaGeneration;
-//using Saunter.Utils;
+#nullable enable
+using System.Reflection;
+using System.Threading.Channels;
+using Json.Schema;
+using Json.Schema.Generation;
+using Microsoft.AspNetCore.Hosting.Server;
+using Microsoft.Extensions.DependencyInjection;
+using Neuroglia;
+using Neuroglia.AsyncApi;
+using Neuroglia.AsyncApi.Bindings;
+using Neuroglia.AsyncApi.FluentBuilders.v3;
+using Neuroglia.AsyncApi.Generation;
+using Neuroglia.AsyncApi.v2;
+using Neuroglia.AsyncApi.v3;
+using NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions;
 
-//namespace Infrastructure;
+namespace Infrastructure;
 
-//public class ApiDocumentGenerator : IDocumentGenerator
-//{
-//    private IServiceProvider serviceProvider;
+public class ApiDocumentGenerator : IAsyncApiDocumentGenerator
+{
+    private IServiceProvider serviceProvider;
 
-//    public ApiDocumentGenerator(IServiceProvider serviceProvider)
-//    {
-//        this.serviceProvider = serviceProvider;
-//    }
+    public ApiDocumentGenerator(IServiceProvider serviceProvider)
+    {
+        this.serviceProvider = serviceProvider;
+    }
 
-//    public AsyncApiDocument GenerateDocument(TypeInfo[] asyncApiTypes, AsyncApiOptions options, AsyncApiDocument prototype,
-//        IServiceProvider serviceProvider)
-//    {
-//        var asyncApiSchema = prototype.Clone();
+    public async Task<IEnumerable<IAsyncApiDocument>> GenerateAsync(IEnumerable<Type> markupTypes, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(options);
 
-//        var schemaResolver = new AsyncApiSchemaResolver(asyncApiSchema, options.JsonSchemaGeneratorSettings);
+        //only creating one document for the one NSB endpoint
+        var documents = new List<IAsyncApiDocument>(1);
 
-//        var generator = new JsonSchemaGenerator(options.JsonSchemaGeneratorSettings);
-//        asyncApiSchema.Channels = GenerateChannels(schemaResolver, generator);
+        var document = serviceProvider.GetRequiredService<IV3AsyncApiDocumentBuilder>();
+        options.V3BuilderSetup?.Invoke(document);
 
-//        var filterContext = new DocumentFilterContext(asyncApiTypes, schemaResolver, generator);
-//        foreach (var filterType in options.DocumentFilters)
-//        {
-//            var filter = (IDocumentFilter)serviceProvider.GetRequiredService(filterType);
-//            filter.Apply(asyncApiSchema, filterContext);
-//        }
+        await GenerateChannels(document, options, cancellationToken);
 
-//        return asyncApiSchema;
-//    }
+        documents.Add(document.Build());
 
-//    IDictionary<string, ChannelItem> GenerateChannels(AsyncApiSchemaResolver schemaResolver, JsonSchemaGenerator schemaGenerator)
-//    {
-//        // Need to resolve here the feature specific type because of ordering issues with Saunter
-//        var typeCache = serviceProvider.GetRequiredService<TypeCache>();
-//        var channels = new Dictionary<string, ChannelItem>();
+        return documents;
+    }
 
-//        channels.AddRange(GenerateEventChannels(typeCache.PublishedEventCache.Select(kvp => (kvp.Key, kvp.Value)), schemaResolver, schemaGenerator));
-//        return channels;
-//    }
+    protected async Task GenerateChannels(IV3AsyncApiDocumentBuilder document, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(document);
+        ArgumentNullException.ThrowIfNull(options);
+        IV3ChannelDefinitionBuilder channelBuilder = null!;
 
-//    IDictionary<string, ChannelItem> GenerateEventChannels(IEnumerable<(Type Key, Type Value)> eventTypes, AsyncApiSchemaResolver schemaResolver, JsonSchemaGenerator schemaGenerator)
-//    {
-//        var publishChannels = new Dictionary<string, ChannelItem>();
-//        foreach (var (actualType, publishedType) in eventTypes)
-//        {
-//            // TODO: Is there a better way to handle the version?
-//            var operationId = publishedType.FullName;
-//            var subscribeOperation = new Operation
-//            {
-//                OperationId = operationId,
-//                Summary = string.Empty,
-//                Description = string.Empty,
-//                Message = GenerateMessageFromType(actualType, publishedType, schemaResolver, schemaGenerator),
-//                Bindings = null,
-//            };
+        //get all published events
+        var typeCache = serviceProvider.GetRequiredService<TypeCache>();
 
-//            var channelItem = new ChannelItem
-//            {
-//                Description = actualType.FullName,
-//                Parameters = new Dictionary<string, IParameter>(),
-//                Publish = null,
-//                Subscribe = subscribeOperation,
-//                Bindings = null,
-//                Servers = null,
-//            };
+        foreach (var (actualType, publishedType) in typeCache.PublishedEventCache.Select(kvp => (kvp.Key, kvp.Value)))
+        {
+            var channelName =$"{publishedType.FullName!}";
+            document.WithChannel(channelName, channel =>
+            {
+                channelBuilder = channel;
+                channel
+                    //.WithAddress() //Can this somehow be the endpointname address thats publishing the message
+                    .WithDescription(actualType.FullName);
+            });
+            await GenerateV3OperationForAsync(document, channelName, channelBuilder, actualType, publishedType, options, cancellationToken);
+        }        
+    }
 
-//            publishChannels.Add(operationId, channelItem);
-//        }
+    protected Task GenerateV3OperationForAsync(IV3AsyncApiDocumentBuilder document, string channelName, IV3ChannelDefinitionBuilder channel, Type actualType, Type publishedType, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
+    {
+        ArgumentNullException.ThrowIfNull(document);
+        ArgumentException.ThrowIfNullOrWhiteSpace(channelName);
+        ArgumentNullException.ThrowIfNull(channel);
+        ArgumentNullException.ThrowIfNull(actualType);
+        ArgumentNullException.ThrowIfNull(publishedType);
+        ArgumentNullException.ThrowIfNull(options);
 
-//        return publishChannels;
-//    }
+        var requestMessagePayloadSchema = new JsonSchemaBuilder().FromType(actualType, JsonSchemaGeneratorConfiguration.Default).Build();
+        var messageName = publishedType.FullName!;
 
-//    private static Saunter.AsyncApiSchema.v2.IMessage GenerateMessageFromType(Type actualType, Type publishedType,
-//        AsyncApiSchemaResolver schemaResolver, JsonSchemaGenerator jsonSchemaGenerator)
-//    {
-//        var message = new Message
-//        {
-//            Payload = jsonSchemaGenerator.Generate(actualType, schemaResolver),
-//            // TODO Should this also use the operation id?
-//            Name = publishedType.FullName
-//        };
+        //NOTE not sure how a component message can be used since the operation message requires a reference to a channel message
+        //var messageComponentReference = $"#/components/messages/{publishedType.FullName!}";
+        //document.WithMessageComponent(messageName, message =>
+        //    message
+        //        .WithName(messageName)
+        //        .WithPayloadSchema(schema => schema
+        //            .WithFormat("application/vnd.aai.asyncapi+json;version=3.0.0")
+        //            .WithSchema(requestMessagePayloadSchema)));
 
-//        return schemaResolver.GetMessageOrReference(message);
-//    }
-//}
+        var messageChannelReference = $"#/channels/{channelName}/messages/{publishedType.FullName!}";
+        channel.WithMessage(messageName, message =>
+        {
+            message
+                .WithName(messageName)
+                .WithPayloadSchema(schema => schema
+                    .WithFormat("application/vnd.aai.asyncapi+json;version=3.0.0")
+                    .WithSchema(requestMessagePayloadSchema));
+        });
+
+        var operationName = $"{publishedType.FullName!}";
+        document.WithOperation(operationName, operation =>
+        {
+            operation
+                .WithAction(V3OperationAction.Send)
+                .WithChannel($"#/channels/{channelName}")
+                .WithMessage(messageChannelReference);
+        });
+        return Task.CompletedTask;
+    }
+}

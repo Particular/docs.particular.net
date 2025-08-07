@@ -6,7 +6,6 @@ using Neuroglia.AsyncApi.v3;
 
 namespace Publisher;
 
-[Neuroglia.AsyncApi.v3.AsyncApi("Streetlights API", "1.0.0", Description = "The **Smartylighting Streetlights API** allows you to remotely manage the city lights.", LicenseName = "Apache 2.0", LicenseUrl = "https://www.apache.org/licenses/LICENSE-2.0")]
 [Server("http", "http://fake-http-server.com", AsyncApiProtocol.Http, PathName = "/{environment}", Description = "A sample **HTTP** server declared using attributes", Bindings = "#/components/serverBindings/http")]
 [ServerVariable("http", "environment", Description = "The **environment** to use.", Enum = ["dev", "stg", "prod"])]
 [HttpServerBinding("http")]
@@ -26,14 +25,14 @@ public class PublisherService : ControllerBase
         this.messageSession = messageSession;
     }
 
-    [Operation("publish", V3OperationAction.Send, "#/channels/lightingMeasuredMQTT", Description = "Notifies remote **consumers** about environmental lighting conditions for a particular **streetlight**."), Neuroglia.AsyncApi.v3.Tag(Reference = "#/components/tags/measurement")]
+    [Operation("publish", V3OperationAction.Send, "#/channels/lightingMeasuredMQTT", Description = "Notifies remote **consumers** about environmental lighting conditions for a particular **streetlight**."), Tag(Reference = "#/components/tags/measurement")]
     [HttpGet(Name = "")]
     public async Task<string> Get()
     {
-            var now = DateTime.UtcNow.ToString();
+        var now = DateTime.UtcNow.ToString();
 
-            await messageSession.Publish(new SomeEventThatIsBeingPublished { SomeValue = now, SomeOtherValue = now });
+        await messageSession.Publish(new SomeEventThatIsBeingPublished { SomeValue = now, SomeOtherValue = now });
 
-            return $"Published event at {now}";
+        return $"Published event at {now}";
     }
 }
