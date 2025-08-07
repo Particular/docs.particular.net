@@ -1,11 +1,9 @@
 ﻿using Infrastructure;
-using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Mvc;
 using Neuroglia.AsyncApi;
 using Neuroglia.AsyncApi.Generation;
 using Neuroglia.AsyncApi.v3;
 using Neuroglia.Data.Schemas.Json;
-using Publisher;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -25,11 +23,19 @@ builder.Services.AddTransient<IAsyncApiDocumentGenerator, ApiDocumentGenerator>(
 //    V3BuilderSetup = asyncApi =>
 //    {
 //        //Setup V3 documents, by configuring servers, for example
-//        asyncApi.WithServer("mosquitto", setup =>
+//        asyncApi.WithTitle("Publisher Service");
+//        asyncApi.WithVersion("1.0.0");
+//        asyncApi.WithLicense("Apache 2.0", new Uri("https://www.apache.org/licenses/LICENSE-2.0"));
+
+//        asyncApi.WithServer("amqp", setup =>
 //        {
 //            setup
-//                .WithProtocol("http")
-//                .WithHost("http://mosquitto");
+//                .WithProtocol(AsyncApiProtocol.Amqp)
+//                .WithHost("sb://example.servicebus.windows.net/")
+//                .WithBinding(new Neuroglia.AsyncApi.Bindings.Amqp.AmqpServerBindingDefinition
+//                {
+//                    BindingVersion = "0.1.0",
+//                });
 //        });
 //    }
 //};
@@ -85,12 +91,20 @@ app.MapRazorPages();
 
 app.UseHttpsRedirection();
 
-app.MapGet("/publish", async ([FromServices] ILogger logger, [FromServices] IMessageSession messageSession) =>
+app.MapGet("/publishfirst", async ([FromServices] ILogger logger, [FromServices] IMessageSession messageSession) =>
 {
     var now = DateTime.UtcNow.ToString();
-    await messageSession.Publish(new SomeEventThatIsBeingPublished { SomeValue = now, SomeOtherValue = now });
+    await messageSession.Publish(new FirstEventThatIsBeingPublished { SomeValue = now, SomeOtherValue = now });
 
-    return Results.Ok($"Published event at {now}");
+    return Results.Ok($"Published first event at {now}");
+});
+
+app.MapGet("/publishsecond", async ([FromServices] ILogger logger, [FromServices] IMessageSession messageSession) =>
+{
+    var now = DateTime.UtcNow.ToString();
+    await messageSession.Publish(new SecondEventThatIsBeingPublished { SomeValue = now, SomeOtherValue = now });
+
+    return Results.Ok($"Published second event at {now}");
 });
 
 app.Run();

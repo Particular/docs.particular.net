@@ -47,10 +47,11 @@ public class ApiDocumentGenerator : IAsyncApiDocumentGenerator
         ArgumentNullException.ThrowIfNull(document);
         ArgumentNullException.ThrowIfNull(options);
         IV3ChannelDefinitionBuilder channelBuilder = null!;
-
-        //get all published events
+        
         var typeCache = serviceProvider.GetRequiredService<TypeCache>();
 
+        //get all published events
+        //TODO should all published events be coming from the one channel, ie this endpoint name?
         foreach (var (actualType, publishedType) in typeCache.PublishedEventCache.Select(kvp => (kvp.Key, kvp.Value)))
         {
             var channelName =$"{publishedType.FullName!}";
@@ -62,20 +63,35 @@ public class ApiDocumentGenerator : IAsyncApiDocumentGenerator
                     .WithDescription(actualType.FullName);
             });
             await GenerateV3OperationForAsync(document, channelName, channelBuilder, actualType, publishedType, options, cancellationToken);
-        }        
+        }
+
+        ////get all subscribed events??
+        //foreach (var (actualType, subscribedType) in typeCache.SubscribedEventCache.Select(kvp => (kvp.Value.ActualType, kvp.Value.SubscribedType)))
+        //{
+        //    var channelName = $"{subscribedType.FullName}";
+        //    document.WithChannel(channelName, channel =>
+        //    {
+        //        channelBuilder = channel;
+        //        channel
+        //            //.WithAddress() //Can this somehow be the endpointname address thats publishing the message
+        //            .WithDescription(actualType.FullName);
+        //    });
+        //    await GenerateV3OperationForAsync(document, channelName, channelBuilder, actualType, subscribedType, options, cancellationToken);
+        //}
+
     }
 
-    protected Task GenerateV3OperationForAsync(IV3AsyncApiDocumentBuilder document, string channelName, IV3ChannelDefinitionBuilder channel, Type actualType, Type publishedType, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
+    protected Task GenerateV3OperationForAsync(IV3AsyncApiDocumentBuilder document, string channelName, IV3ChannelDefinitionBuilder channel, Type actualType, Type producedType, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentException.ThrowIfNullOrWhiteSpace(channelName);
         ArgumentNullException.ThrowIfNull(channel);
         ArgumentNullException.ThrowIfNull(actualType);
-        ArgumentNullException.ThrowIfNull(publishedType);
+        ArgumentNullException.ThrowIfNull(producedType);
         ArgumentNullException.ThrowIfNull(options);
 
         var requestMessagePayloadSchema = new JsonSchemaBuilder().FromType(actualType, JsonSchemaGeneratorConfiguration.Default).Build();
-        var messageName = publishedType.FullName!;
+        var messageName = producedType.FullName!;
 
         //NOTE not sure how a component message can be used since the operation message requires a reference to a channel message
         //var messageComponentReference = $"#/components/messages/{publishedType.FullName!}";
@@ -86,7 +102,7 @@ public class ApiDocumentGenerator : IAsyncApiDocumentGenerator
         //            .WithFormat("application/vnd.aai.asyncapi+json;version=3.0.0")
         //            .WithSchema(requestMessagePayloadSchema)));
 
-        var messageChannelReference = $"#/channels/{channelName}/messages/{publishedType.FullName!}";
+        var messageChannelReference = $"#/channels/{channelName}/messages/{producedType.FullName!}";
         channel.WithMessage(messageName, message =>
         {
             message
@@ -96,7 +112,7 @@ public class ApiDocumentGenerator : IAsyncApiDocumentGenerator
                     .WithSchema(requestMessagePayloadSchema));
         });
 
-        var operationName = $"{publishedType.FullName!}";
+        var operationName = $"{producedType.FullName!}";
         document.WithOperation(operationName, operation =>
         {
             operation
