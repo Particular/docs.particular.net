@@ -5,9 +5,15 @@ using Azure.Core;
 using Azure.Identity;
 using Azure.Security.KeyVault.Secrets;
 
+// -------------------------------------------------------------------
+// If you want to use this class in your project, then
+// - Install package Azure.Security.KeyVault.Secrets
+// -- dotnet add package Azure.Security.KeyVault.Secrets
+// - Install package Azure.Identity
+// -- dotnet add package Azure.Identity
+// -------------------------------------------------------------------
 namespace Shared
 {
-    #region config
     /// <summary>
     /// Provides configuration using KeyVault
     /// Authenticates using built-in Azure mechanisms
@@ -24,16 +30,9 @@ namespace Shared
         /// </summary>
         /// <param name="key">Name of the setting parameter</param>
         /// <returns>Value of the setting parameter</returns>
+        #region config
         public async Task<string> GetConfiguration(string key)
         {
-            // -------------------------------------------------------------------
-            // If you want to use this class in your project, then
-            // - Install package Azure.Security.KeyVault.Secrets
-            // -- dotnet add package Azure.Security.KeyVault.Secrets
-            // - Install package Azure.Identity
-            // -- dotnet add package Azure.Identity
-            // -------------------------------------------------------------------
-
             // We take the provided TokenCredential or use the default one
             // The default one uses many mechanisms to authenticate, e.g., environment variables, VisualStudio, Azure CLI, Azure PowerShell
             TokenCredential actualTokenCredential = TokenCredential ?? new DefaultAzureCredential();
@@ -47,6 +46,6 @@ namespace Shared
 
             return secret.Value;
         }
+        #endregion
     }
-    #endregion
 }
