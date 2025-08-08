@@ -1,0 +1,42 @@
+{
+  "type": "record",
+  "name": "CreateOrder",
+  "namespace": "net.particular.samples.serializers.avro",
+  "fields": [
+    {
+      "name": "OrderId",
+      "type": "int"
+    },
+    {
+      "name": "Date",
+      "type": {
+        "type": "long",
+        "logicalType": "timestamp-millis"
+      }
+    },
+    {
+      "name": "CustomerId",
+      "type": "int"
+    },
+    {
+      "name": "OrderItems",
+      "type": {
+        "type": "array",
+        "items": {
+          "type": "record",
+          "name": "OrderItem",
+          "fields": [
+            {
+              "name": "ItemId",
+              "type": "int"
+            },
+            {
+              "name": "Quantity",
+              "type": "int"
+            }
+          ]
+        }
+      }
+    }
+  ]
+}
