@@ -19,3 +19,4 @@ net8.0-windows: .NET 8
 net9.0: .NET 9
 net9.0-windows: .NET 9
 net10.0: .NET 10
+net10.0-windows: .NET 10
