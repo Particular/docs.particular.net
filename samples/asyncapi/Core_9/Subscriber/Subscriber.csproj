@@ -2,19 +2,17 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
-        <LangVersion>12.0</LangVersion>
+        <TargetFramework>net9.0</TargetFramework>
+        <LangVersion>13.0</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="NServiceBus" Version="9.*" />
-      <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.1" />
+      <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.*" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
-      <ProjectReference Include="..\Shared\Shared.csproj" />
+      <ProjectReference Include="..\AsyncAPI.Feature\AsyncAPI.Feature.csproj" />
     </ItemGroup>
 
 </Project>

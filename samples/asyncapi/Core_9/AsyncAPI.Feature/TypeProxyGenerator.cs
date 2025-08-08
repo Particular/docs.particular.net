@@ -22,7 +22,7 @@ class TypeProxyGenerator
         );
 
         typeBuilder.DefineDefaultConstructor(MethodAttributes.Public);
-
+        //TODO do we also handle IMessage and ICommand?
         typeBuilder.AddInterfaceImplementation(typeof(IEvent));
 
         return typeBuilder.CreateTypeInfo()!.AsType();

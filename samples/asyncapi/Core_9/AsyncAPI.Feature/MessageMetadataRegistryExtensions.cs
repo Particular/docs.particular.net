@@ -5,7 +5,7 @@ namespace Infrastructure;
 
 static class MessageMetadataRegistryExtensions
 {
-    // This is still a bit ugly
+//TODO can this be improved?
     public static IEnumerable<MessageMetadata> GetAllMessages(this MessageMetadataRegistry registry)
     {
         var methodInfo =
