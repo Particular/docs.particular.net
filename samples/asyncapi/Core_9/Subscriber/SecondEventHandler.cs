@@ -1,13 +1,10 @@
-using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
-public class SecondEventHandler : IHandleMessages<SecondEvent>
+public class SecondEventHandler(ILogger<SecondEventHandler> logger) : IHandleMessages<SecondEvent>
 {
     public Task Handle(SecondEvent message, IMessageHandlerContext context)
     {
-        Log.Info("Received Second Event");
+        logger.LogInformation("Received second event #{SomeValue}", message.SomeValue);
         return Task.CompletedTask;
     }
-
-    private static ILog Log = LogManager.GetLogger<SecondEventHandler>();
 }

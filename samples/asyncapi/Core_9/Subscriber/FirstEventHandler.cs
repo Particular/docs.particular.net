@@ -1,13 +1,10 @@
-using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
-public class FirstEventHandler : IHandleMessages<FirstEvent>
+public class FirstEventHandler(ILogger<FirstEventHandler> logger) : IHandleMessages<FirstEvent>
 {
     public Task Handle(FirstEvent message, IMessageHandlerContext context)
     {
-        Log.Info("Received First Event");
+        logger.LogInformation("Received first event #{SomeOtherValue}", message.SomeOtherValue);
         return Task.CompletedTask;
     }
-
-    private static ILog Log = LogManager.GetLogger<FirstEventHandler>();
 }
