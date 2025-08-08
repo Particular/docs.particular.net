@@ -1,7 +1,7 @@
 ---
 title: How to contribute
 summary: The Particular Platform is open source and takes contributions from the community.
-reviewed: 2023-09-15
+reviewed: 2025-08-08
 ---
 
 ## Getting started
@@ -28,6 +28,4 @@ When opening a pull request in a Particular Software repository, the [CLA assist
  * [GitHub introduction](https://guides.github.com/activities/hello-world/)
  * [General GitHub documentation](https://help.github.com/)
  * [Filtering issues and pull requests](https://help.github.com/articles/filtering-issues-and-pull-requests/)
- * [Sorting issues and pull requests](https://help.github.com/articles/sorting-issues-and-pull-requests/)
- * [Using search to filter issues and pull requests](https://help.github.com/articles/using-search-to-filter-issues-and-pull-requests/)
  * [Pluralsight: GitHub for Windows Developers](https://www.pluralsight.com/courses/github-windows-developers)
