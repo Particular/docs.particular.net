@@ -1,7 +1,6 @@
 ﻿using Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using Neuroglia.AsyncApi;
-using Neuroglia.AsyncApi.Generation;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);

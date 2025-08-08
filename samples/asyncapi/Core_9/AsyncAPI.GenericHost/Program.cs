@@ -1,6 +1,5 @@
 ﻿using Infrastructure;
 using Neuroglia.AsyncApi;
-using Neuroglia.AsyncApi.Generation;
 
 var builder = Host.CreateApplicationBuilder(args);
 
