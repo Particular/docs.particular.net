@@ -1,6 +1,3 @@
-#region generic-host-worker
-using NServiceBus.Routing;
-
 class Worker(IMessageSession messageSession) : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken cancellationToken)
@@ -49,4 +46,3 @@ class Worker(IMessageSession messageSession) : BackgroundService
         }
     }
 }
-#endregion
