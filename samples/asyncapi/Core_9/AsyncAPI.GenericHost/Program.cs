@@ -1,11 +1,8 @@
 ﻿using Infrastructure;
 using Neuroglia.AsyncApi;
 using Neuroglia.AsyncApi.Generation;
-using Neuroglia.AsyncApi.IO;
 
 var builder = Host.CreateApplicationBuilder(args);
-
-builder.Services.AddWindowsService();
 
 builder.Services.AddAsyncApi();
 builder.Services.AddTransient<IAsyncApiDocumentGenerator, ApiDocumentGenerator>();
