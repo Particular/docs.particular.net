@@ -18,7 +18,6 @@ var transport = new AzureServiceBusTransport(connectionString);
 endpointConfiguration.UseTransport(transport);
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-
 Console.WriteLine("Press any key, the application is starting");
 Console.TreatControlCAsInput = true;
 var input = Console.ReadKey();

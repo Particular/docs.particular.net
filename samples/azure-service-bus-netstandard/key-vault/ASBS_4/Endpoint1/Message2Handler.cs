@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
+
 public class Message2Handler(ILogger<Message2Handler> logger) :
     IHandleMessages<Message2>
 {

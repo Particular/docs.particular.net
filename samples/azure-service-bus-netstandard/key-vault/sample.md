@@ -25,6 +25,9 @@ snippet: config
 
 ### Running the sample
 
+> [NOTE!]
+> As a general practice security credentials should not be stored in environment variables, .env files, or hardcode in the source code. One option to achieve this is to rely on the `DefaultAzureCredential` which will try to access security information based on the runtime environment e.g. via Azure CLI locally, or via environment variables when running on Azure.
+
 If running this sample on a machine in Azure (e.g., Virtual Machine, Azure Function, etc.) and authenticating with a Service Principal:
 
 - [Assign KeyVault permissions to the Service Principal (SPN)](https://learn.microsoft.com/en-us/azure/key-vault/general/rbac-guide?tabs=azure-cli) of the host.
@@ -42,6 +45,3 @@ Otherwise, configure your environment accordingly, or provide a properly configu
 
 - See the supported mechanisms in [the documentation](https://learn.microsoft.com/en-us/dotnet/api/azure.identity.defaultazurecredential?view=azure-dotnet).
 
-Notice that you do not have to store any credentials in environment variables, .env files, or hardcoded in the source code
-Typically, you want the Azure CLI to handle authentication and security
-When running the application in Azure (i.e., after deployment), you don't need to change the code because the `DefaultAzureCredential` will figure out that it's running in the cloud as the necessary environment variables will be set by the host.
