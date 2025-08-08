@@ -4,6 +4,8 @@ using Neuroglia.AsyncApi.Generation;
 
 var builder = Host.CreateApplicationBuilder(args);
 
+Console.Title = "AsyncAPI Generic Host";
+
 builder.Services.AddAsyncApi();
 builder.Services.AddTransient<IAsyncApiDocumentGenerator, ApiDocumentGenerator>();
 

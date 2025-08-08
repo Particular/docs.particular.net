@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Subscriber", "Subscriber\Su
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncAPI.Web", "AsyncAPI.Web\AsyncAPI.Web.csproj", "{B6F7464C-3563-176C-576F-8CC987F4B61B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericHost", "AsyncAPI.GenericHost\GenericHost.csproj", "{51A2CC12-08A8-D18B-F798-7B44875794A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsyncAPI.GenericHost", "AsyncAPI.GenericHost\AsyncAPI.GenericHost.csproj", "{51A2CC12-08A8-D18B-F798-7B44875794A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

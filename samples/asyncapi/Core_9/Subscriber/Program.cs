@@ -1,6 +1,8 @@
 ﻿using Infrastructure;
 using Microsoft.Extensions.Hosting;
 
+Console.Title = "AsyncAPI Subscriber";
+
 await Host.CreateDefaultBuilder(args)
     .UseNServiceBus(builder =>
     {
