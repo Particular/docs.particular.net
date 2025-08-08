@@ -1,18 +1,11 @@
 #nullable enable
-using System.Reflection;
-using System.Threading.Channels;
 using Json.Schema;
 using Json.Schema.Generation;
-using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.Extensions.DependencyInjection;
-using Neuroglia;
 using Neuroglia.AsyncApi;
-using Neuroglia.AsyncApi.Bindings;
 using Neuroglia.AsyncApi.FluentBuilders.v3;
 using Neuroglia.AsyncApi.Generation;
-using Neuroglia.AsyncApi.v2;
 using Neuroglia.AsyncApi.v3;
-using NServiceBus.Unicast.Subscriptions.MessageDrivenSubscriptions;
 
 namespace Infrastructure;
 

@@ -12,7 +12,6 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddHttpClient();
 
-builder.Services.AddTransient<IAsyncApiDocumentGenerator, ApiDocumentGenerator>();
 builder.Services.AddAsyncApiGeneration(builder =>
     builder
         .UseDefaultV3DocumentConfiguration(asyncApi =>
