@@ -25,7 +25,7 @@ snippet: config
 
 ### Running the sample
 
-> [NOTE!]
+> [!NOTE]
 > As a general practice security credentials should not be stored in environment variables, .env files, or hardcode in the source code. One option to achieve this is to rely on the `DefaultAzureCredential` which will try to access security information based on the runtime environment e.g. via Azure CLI locally, or via environment variables when running on Azure.
 
 If running this sample on a machine in Azure (e.g., Virtual Machine, Azure Function, etc.) and authenticating with a Service Principal:
