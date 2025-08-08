@@ -1,7 +1,7 @@
 ---
 title: Using NServiceBus and Kafka in Azure Functions (isolated)
 summary: Using NServiceBus with Kafka triggers and Azure Functions isolated worker hosting model.
-component: ASBFunctionsWorker
+component: ASBS
 related:
  - nservicebus/hosting/azure-functions-service-bus
 redirects:
