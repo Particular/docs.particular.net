@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Bson;
 using NServiceBus;
 using NServiceBus.MessageMutator;
-using Sample;
 
 Console.Title = "ExternalBson";
+
 var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<InputLoopService>();
 
 #region config
 
@@ -33,10 +31,39 @@ endpointConfiguration.RegisterMessageMutator(messageBodyWriter);
 #endregion
 
 endpointConfiguration.UseTransport(new LearningTransport());
-
-Console.WriteLine("Press any key, the application is starting");
-Console.ReadKey();
-Console.WriteLine("Starting...");
-
 builder.UseNServiceBus(endpointConfiguration);
-await builder.Build().RunAsync();
+
+var host = builder.Build();
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+#region message
+
+var message = new CreateOrder
+{
+    OrderId = 9,
+    Date = DateTime.Now,
+    CustomerId = 12,
+    OrderItems =
+    [
+        new OrderItem
+        {
+            ItemId = 6,
+            Quantity = 2
+        },
+        new OrderItem
+        {
+            ItemId = 5,
+            Quantity = 4
+        }
+
+    ]
+};
+
+#endregion
+
+await messageSession.SendLocal(message);
+Console.WriteLine("Order Sent");
+
+await host.StopAsync();
