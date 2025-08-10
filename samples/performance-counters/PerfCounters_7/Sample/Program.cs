@@ -1,11 +1,9 @@
-
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Sample;
 
 Console.Title = "PerfCounters";
 var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<InputLoopService>();
+//builder.Services.AddHostedService<InputLoopService>();
 var endpointConfiguration = new EndpointConfiguration("Samples.PerfCounters");
 endpointConfiguration.EnableInstallers();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
@@ -23,4 +21,29 @@ Console.ReadKey();
 Console.WriteLine("Starting...");
 
 builder.UseNServiceBus(endpointConfiguration);
-await builder.Build().RunAsync();
+var host = builder.Build();
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+while (true)
+{
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    if (key.Key != ConsoleKey.Enter)
+    {
+        break;
+    }
+
+    for (var i = 0; i < 10; i++)
+    {
+        var myMessage = new MyMessage();
+        await messageSession.SendLocal(myMessage);
+    }
+
+    Console.WriteLine("10 messages sent.");
+}
+
+await host.StopAsync();
+
