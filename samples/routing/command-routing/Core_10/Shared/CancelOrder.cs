@@ -1,7 +1,7 @@
 using NServiceBus;
 
-public class CancelOrder :
+public record CancelOrder :
     ICommand
 {
-    public string OrderId { get; set; }
+    public string OrderId { get; init; }
 }

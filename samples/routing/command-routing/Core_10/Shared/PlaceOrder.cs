@@ -1,7 +1,7 @@
 using NServiceBus;
-public class PlaceOrder :
+public record PlaceOrder :
     ICommand
 {
-    public string OrderId { get; set; }
-    public decimal Value { get; set; }
+    public string OrderId { get; init; }
+    public decimal Value { get; init; }
 }
