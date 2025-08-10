@@ -1,4 +1,4 @@
-﻿public class MyMessage :
+﻿public record MyMessage :
     IMessage
 {
 }
