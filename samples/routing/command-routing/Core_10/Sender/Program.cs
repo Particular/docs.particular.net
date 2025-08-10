@@ -57,6 +57,7 @@ await host.StopAsync();
 
 static async Task PlaceOrder(IMessageSession messageSession, string orderId, decimal value)
 {
+    #region send-command-with-configured-route
     var command = new PlaceOrder
     {
         OrderId = orderId,
@@ -65,10 +66,12 @@ static async Task PlaceOrder(IMessageSession messageSession, string orderId, dec
 
     await messageSession.Send(command);
     Console.WriteLine($"Order placed: {orderId}");
+    #endregion
 }
 
 static async Task CancelOrder(IMessageSession messageSession, string orderId)
 {
+    #region send-command-without-configured-route
     var command = new CancelOrder
     {
         OrderId = orderId
@@ -76,5 +79,6 @@ static async Task CancelOrder(IMessageSession messageSession, string orderId)
 
     await messageSession.Send("Samples.CommandRouting.Receiver", command);
     Console.WriteLine($"Order canceled: {orderId}");
+    #endregion
 }
 
