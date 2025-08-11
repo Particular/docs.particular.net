@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using NServiceBus.Pipeline;
 
-#region write-body-behavior
+#region log-message-body-behavior
 
-public class MessageBodyWriter(ILogger<MessageBodyWriter> logger) : Behavior<IIncomingPhysicalMessageContext>
+public class MessageBodyLogger(ILogger<MessageBodyLogger> logger) : Behavior<IIncomingPhysicalMessageContext>
 {
     public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
     {

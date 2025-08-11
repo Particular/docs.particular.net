@@ -19,9 +19,9 @@ endpointConfiguration.UseSerialization<AvroSerializer>();
 
 endpointConfiguration.UseTransport(new LearningTransport());
 
-#region register-body-writer
+#region register-body-logger
 
-endpointConfiguration.Pipeline.Register(typeof(MessageBodyWriter), "Logs the message body received");
+endpointConfiguration.Pipeline.Register(typeof(MessageBodyLogger), "Logs the message body received");
 
 #endregion
 
