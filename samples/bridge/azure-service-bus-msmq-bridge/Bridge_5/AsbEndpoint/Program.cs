@@ -52,14 +52,12 @@ while (!ct.IsCancellationRequested)
     }
 
     var key = Console.ReadKey().Key;
-    if (key != ConsoleKey.Enter)
+    if (key == ConsoleKey.Enter)
     {
-        break;
+        var prop = new string(Enumerable.Range(0, 3).Select(i => letters[random.Next(letters.Length)]).ToArray());
+        await messageSession.Send(new MyCommand { Property = prop }, sendOptions);
+        logger.LogInformation("Command with value '{Prop}' sent", prop);
     }
-
-    var prop = new string(Enumerable.Range(0, 3).Select(i => letters[random.Next(letters.Length)]).ToArray());
-    await messageSession.Send(new MyCommand { Property = prop }, sendOptions);
-    logger.LogInformation("Command with value '{Prop}' sent", prop);
 }
 
 await host.StopAsync(); 
