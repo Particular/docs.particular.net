@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <LangVersion>preview</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.Metrics.PerformanceCounters" Version="7.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.1" />
+  </ItemGroup>
+</Project>
