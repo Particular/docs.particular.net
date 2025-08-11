@@ -22,7 +22,7 @@ class TypeProxyGenerator
         );
 
         typeBuilder.DefineDefaultConstructor(MethodAttributes.Public);
-        //TODO do we also handle IMessage and ICommand?
+        //NOTE this is only designed for "translating" events, hence if commands and messages are also to be supported, then the interface implementations should be added conditionally to support ICommand and IMessage as well
         typeBuilder.AddInterfaceImplementation(typeof(IEvent));
 
         return typeBuilder.CreateTypeInfo()!.AsType();

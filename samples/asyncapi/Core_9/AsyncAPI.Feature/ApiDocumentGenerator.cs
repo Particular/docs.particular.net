@@ -44,7 +44,6 @@ public class ApiDocumentGenerator : IAsyncApiDocumentGenerator
         var typeCache = serviceProvider.GetRequiredService<TypeCache>();
 
         //get all published events
-        //TODO should all published events be coming from the one channel, ie this endpoint name?
         foreach (var (actualType, publishedType) in typeCache.PublishedEventCache.Select(kvp => (kvp.Key, kvp.Value)))
         {
             var channelName = $"{publishedType.FullName!}";
@@ -58,20 +57,7 @@ public class ApiDocumentGenerator : IAsyncApiDocumentGenerator
             await GenerateV3OperationForAsync(document, channelName, channelBuilder, actualType, publishedType, options, cancellationToken);
         }
 
-        ////get all subscribed events??
-        //foreach (var (actualType, subscribedType) in typeCache.SubscribedEventCache.Select(kvp => (kvp.Value.ActualType, kvp.Value.SubscribedType)))
-        //{
-        //    var channelName = $"{subscribedType.FullName}";
-        //    document.WithChannel(channelName, channel =>
-        //    {
-        //        channelBuilder = channel;
-        //        channel
-        //            //.WithAddress() //Can this somehow be the endpointname address thats publishing the message
-        //            .WithDescription(actualType.FullName);
-        //    });
-        //    await GenerateV3OperationForAsync(document, channelName, channelBuilder, actualType, subscribedType, options, cancellationToken);
-        //}
-
+        //NOTE this is where more channels and operations can be defined, for example subscribed to events, sent/received commands and messages
     }
 
     protected Task GenerateV3OperationForAsync(IV3AsyncApiDocumentBuilder document, string channelName, IV3ChannelDefinitionBuilder channel, Type actualType, Type producedType, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)

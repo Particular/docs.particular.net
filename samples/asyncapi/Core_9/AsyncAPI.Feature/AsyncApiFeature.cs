@@ -23,6 +23,7 @@ public sealed class AsyncApiFeature : Feature
 
         foreach (var messageMetadata in messageMetadataRegistry.GetAllMessages())
         {
+            //NOTE only events decorated with the "PublishedEvent" or "SubscribedEvent" are being stored so that they can be "translated" at publish and subscribe time from their concrete types
             if (conventions.IsEventType(messageMetadata.MessageType))
             {
                 var publishedEvent = messageMetadata.MessageType.GetCustomAttribute<PublishedEvent>();
@@ -40,14 +41,6 @@ public sealed class AsyncApiFeature : Feature
                     subscribedEventCache.Add(subscribedType.FullName!,
                         (SubscribedType: subscribedType, ActualType: messageMetadata.MessageType));
                 }
-            }
-            else if (conventions.IsCommandType(messageMetadata.MessageType))
-            {
-                // TODO
-            }
-            else if (conventions.IsMessageType(messageMetadata.MessageType))
-            {
-                // TODO
             }
         }
 

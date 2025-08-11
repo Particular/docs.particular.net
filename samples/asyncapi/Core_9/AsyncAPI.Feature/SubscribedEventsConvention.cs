@@ -20,5 +20,5 @@ public class SubscribedEventsConvention : IMessageConvention
         return type.GetCustomAttribute<SubscribedEvent>() != null;
     }
 
-    public string Name { get; } = "TODO";
+    public string Name { get; } = "AsyncAPI Sample Event Message Convention";
 }
