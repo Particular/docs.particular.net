@@ -10,7 +10,9 @@ endpointConfiguration.UseTransport<LearningTransport>();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.EnableInstallers();
 
+#region SubscriberEnableAsyncAPIOnNSB 
 endpointConfiguration.EnableAsyncApiSupport();
+#endregion
 
 builder.UseNServiceBus(endpointConfiguration);
 

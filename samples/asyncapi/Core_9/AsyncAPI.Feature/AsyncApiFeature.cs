@@ -68,7 +68,9 @@ public sealed class AsyncApiFeature : NServiceBus.Features.Feature
         context.Services.AddSingleton(new TypeCache
             { EndpointName = context.Settings.EndpointName(), PublishedEventCache = publishedEventCache, SubscribedEventCache = subscribedEventCache });
 
+        #region CustomDocumentGenerator
         context.Services.AddTransient<IAsyncApiDocumentGenerator>(provider => new ApiDocumentGenerator(provider));
+        #endregion
     }
 
     class ManualSubscribe : FeatureStartupTask

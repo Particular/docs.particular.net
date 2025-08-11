@@ -13,12 +13,13 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddHttpClient();
 
+#region WebAppAddNeurogliaAsyncApi
 // Adds and configures code-first AsyncAPI document generation
 builder.Services.AddAsyncApiGeneration(builder =>
     builder
         .UseDefaultV3DocumentConfiguration(asyncApi =>
         {
-            //Setup V3 documents, by configuring servers, for example
+            //Setup V3 documents, by configuring servers, for example:
             asyncApi.WithTitle("Web Service");
             asyncApi.WithVersion("1.0.0");            
             asyncApi.WithLicense("Apache 2.0", new Uri("https://www.apache.org/licenses/LICENSE-2.0"));           
@@ -37,12 +38,16 @@ builder.Services.AddAsyncApiGeneration(builder =>
 
 // Adds and configures the services used by the AsyncAPI UI
 builder.Services.AddAsyncApiUI();
+#endregion
 
 var endpointConfiguration = new EndpointConfiguration("AsyncAPI.Web");
 endpointConfiguration.UseTransport<LearningTransport>();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.SendOnly();
+
+#region WebAppEnableAsyncAPIOnNSB
 endpointConfiguration.EnableAsyncApiSupport();
+#endregion
 
 builder.UseNServiceBus(endpointConfiguration);
 

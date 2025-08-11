@@ -12,7 +12,7 @@ class AsyncAPISchemaWriter(ILogger<AsyncAPISchemaWriter> logger, IAsyncApiDocume
             {
                 V3BuilderSetup = asyncApi =>
                 {
-                    //Setup V3 documents, by configuring servers, for example
+                    //Setup V3 documents, by configuring servers, for example:
                     asyncApi.WithTitle("Generic Host Service");
                     asyncApi.WithVersion("1.0.0");
                     asyncApi.WithLicense("Apache 2.0", new Uri("https://www.apache.org/licenses/LICENSE-2.0"));
@@ -29,6 +29,7 @@ class AsyncAPISchemaWriter(ILogger<AsyncAPISchemaWriter> logger, IAsyncApiDocume
                     });
                 }
             };
+            #region GenericHostCustomGenerationAndWritingToDisk
             var documents = await apiDocumentGenerator.GenerateAsync(null, options, cancellationToken);
             if (documents is not null && !documents.Any())
             {
@@ -45,6 +46,7 @@ class AsyncAPISchemaWriter(ILogger<AsyncAPISchemaWriter> logger, IAsyncApiDocume
                     File.WriteAllBytes(schemaFile, stream.ToArray());
                 }
             }
+            #endregion
         }
         catch (OperationCanceledException)
         {

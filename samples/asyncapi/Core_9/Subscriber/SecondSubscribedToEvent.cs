@@ -1,8 +1,9 @@
 using AsyncAPI.Feature;
 
+#region SubscriberSecondEvent
 [SubscribedEvent(EventName = "SomeNamespace.SecondEvent", Version = 1)]
-public class SecondEvent
+public class SecondSubscribedToEvent
 {
     public string SomeValue { get; init; }
-    public string SomeOtherValue { get; init; }
 }
+#endregion

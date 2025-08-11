@@ -25,29 +25,93 @@ This sample contains four projects:
 
 TODO
 
-### Subscriber project
-
-TODO
+snippet: CustomDocumentGenerator
 
 ### WebAPI project
 
-TODO
+#### Setup AsyncAPI
+
+The project enables the AsyncAPI schema generation using two setup calls:
+
+First, by adding the Neuroglia AsyncAPI
+
+snippet: WebAppAddNeurogliaAsyncApi
+
+Second, by adding the AsyncAPI feature to the NServiceBus endpoint configuration
+
+snippet: WebAppEnableAsyncAPIOnNSB
+
+#### Define published events
+
+The published events are defined by using the `PublishedEvent` attribute to tell NServiceBus which event they represent.
+
+The `FirstEventThatIsBeingPublished` class is marked as representing the `SomeNamespace.FirstEvent` event.
+
+snippet: WebAppPublisherFirstEvent
+
+The `SecondEventThatIsBeingPublished` class is marked as representing the `SomeNamespace.SecondEvent` event.
+
+snippet: WebAppPublisherSecondEvent
+
+#### Access AsyncAPI schema document
+
+The resulting AsyncAPI schema document can be accessed under [/asyncapi](https://localhost:7198/asyncapi). From here it can be downloaded and inspected using the [AsyncAPI Studio](https://studio.asyncapi.com/) (by pasting in the contents), as well as included in internal system documentation.
 
 ### Generic host project
 
+#### Setup AsyncAPI
+
 The project enables the AsyncAPI schema generation using three setup calls.
 
-First by adding the Neuroglia AsyncAPI
+First, by adding the Neuroglia AsyncAPI
 
 snippet: GenericHostAddNeurogliaAsyncApi
 
-Second by adding the AsyncAPI feature to the NServiceBus endpoint configuration
+Second, by adding the AsyncAPI feature to the NServiceBus endpoint configuration
 
 snippet: GenericHostEnableAsyncAPIOnNSB
 
-Lastly by adding a background service to generate and write the AsyncAPI document schema to disk
+Lastly, by adding a background service to generate and write the AsyncAPI document schema to disk
 
 snippet: GenericHostAddSchemaWriter
+
+#### Define published events
+
+The published events are defined by using the `PublishedEvent` attribute to tell NServiceBus which event they represent.
+
+The `FirstEventThatIsBeingPublished` class is marked as representing the `SomeNamespace.FirstEvent` event.
+
+snippet: GenericHostPublisherFirstEvent
+
+The `SecondEventThatIsBeingPublished` class is marked as representing the `SomeNamespace.SecondEvent` event.
+
+snippet: GenericHostPublisherSecondEvent
+
+#### Access AsyncAPI schema document
+
+The `AsyncAPISchemaWriter` uses the custom document generator injected as part of the `AsyncApiFeature` to generate the document schema and write it to disk.
+
+snippet: GenericHostCustomGenerationAndWritingToDisk
+
+The file is saved into the default `Downloads` folder - it can be viewed using the [AsyncAPI Studio](https://studio.asyncapi.com/) (by pasting in the contents), as well as included in internal system documentation.
+
+### Subscriber project
+
+The project uses the `EnableAsyncApiSupport` extension method to allow it to subscribe to published events from the [WebAPI](#code-walk-through-webapi-project) and [Generic host](#code-walk-through-generic-host-project) projects using its own implementation of the event classes.
+
+snippet: SubscriberEnableAsyncAPIOnNSB
+
+It defines its own concrete event classes and uses the `SubscribedEvent` attribute to tell NServiceBus which event they represent.
+
+The `FirstSubscribedToEvent` class is marked as representing the `SomeNamespace.FirstEvent` event.
+
+snippet: SubscriberFirstEvent
+
+The `SecondSubscribedToEvent` class is marked as representing the `SomeNamespace.SecondEvent` event.
+
+snippet: SubscriberSecondEvent
+
+Note that the defined events do not need to match all the properties defined in the published events, but contain only those that they are interested in.
 
 ## Running the sample
 
