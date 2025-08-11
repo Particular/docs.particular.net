@@ -1,9 +1,12 @@
 ﻿using System;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 using NServiceBus;
 
 Console.Title = "TransitionPhase1";
 
+var builder = Host.CreateApplicationBuilder(args);
 var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.TransitionPhase1");
 endpointConfiguration.SharedConfig();
 
@@ -20,16 +23,19 @@ serializationV1.ContentTypeKey("jsonv1");
 
 #endregion
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
+builder.UseNServiceBus(endpointConfiguration);
+var host = builder.Build();
+await host.StartAsync();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
 
 var message = MessageCreator.NewOrder();
 
-await endpointInstance.SendLocal(message);
+await messageSession.SendLocal(message);
 
-await endpointInstance.Send("Samples.Serialization.TransitionPhase2", message);
-
+await messageSession.Send("Samples.Serialization.TransitionPhase2", message);
 Console.WriteLine("Order Sent");
+
 Console.WriteLine("Press any key to exit");
 Console.ReadKey();
 
-await endpointInstance.Stop();
+await host.StopAsync();
