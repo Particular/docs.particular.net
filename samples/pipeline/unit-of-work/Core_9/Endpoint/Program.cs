@@ -1,13 +1,10 @@
 using System;
-using System.Threading.Tasks;
-using Endpoint;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 var builder = Host.CreateApplicationBuilder(args);
 
 Console.Title = "UnitOfWorkEndpoint";
-builder.Services.AddHostedService<InputLoopService>();
 
 var endpointConfiguration = new EndpointConfiguration("Samples.Pipeline.UnitOfWork.Endpoint");
 endpointConfiguration.UsePersistence<LearningPersistence>();
@@ -29,4 +26,25 @@ pipeline.Register(new MyUowBehavior(sessionProvider), "Manages the session");
 
 
 builder.UseNServiceBus(endpointConfiguration);
-await builder.Build().RunAsync();
+var host = builder.Build();
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+Console.WriteLine("Press any key to send messages, 'q' to exit");
+while (true)
+{
+    var key = Console.ReadKey();
+
+    if (key.Key == ConsoleKey.Q)
+    {
+        break;
+    }
+
+    var options = new SendOptions();
+    options.RouteToThisEndpoint();
+    await messageSession.Send(new MyMessage(), options);
+
+    Console.WriteLine("MyMessage sent. Press any key to send another message, 'q' to exit.");
+}
+
+await host.StopAsync();
