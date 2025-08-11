@@ -3,17 +3,16 @@ using Microsoft.Extensions.Hosting;
 
 Console.Title = "AsyncAPI Subscriber";
 
-await Host.CreateDefaultBuilder(args)
-    .UseNServiceBus(builder =>
-    {
-        var endpointConfiguration = new EndpointConfiguration("Subscriber");
-        endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+var builder = Host.CreateApplicationBuilder(args);
 
-        endpointConfiguration.EnableAsyncApiSupport();
+var endpointConfiguration = new EndpointConfiguration("Subscriber");
+endpointConfiguration.UseTransport<LearningTransport>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.EnableInstallers();
 
-        endpointConfiguration.EnableInstallers();
-        return endpointConfiguration;
-    })
-    .Build()
-    .RunAsync();
+endpointConfiguration.EnableAsyncApiSupport();
+
+builder.UseNServiceBus(endpointConfiguration);
+
+var app = builder.Build();
+await app.RunAsync();
