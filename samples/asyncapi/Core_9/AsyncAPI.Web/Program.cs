@@ -7,10 +7,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddOpenApi();
+
+// Required by the AsyncAPI UI (built using Razer Pages)
 builder.Services.AddRazorPages();
 
 builder.Services.AddHttpClient();
 
+// Adds and configures code-first AsyncAPI document generation
 builder.Services.AddAsyncApiGeneration(builder =>
     builder
         .UseDefaultV3DocumentConfiguration(asyncApi =>
@@ -32,7 +35,8 @@ builder.Services.AddAsyncApiGeneration(builder =>
             });
         }));
 
-builder.Services.AddAsyncApiUI(); // See - /asyncapi
+// Adds and configures the services used by the AsyncAPI UI
+builder.Services.AddAsyncApiUI();
 
 var endpointConfiguration = new EndpointConfiguration("AsyncAPI.Web");
 endpointConfiguration.UseTransport<LearningTransport>();
@@ -47,8 +51,10 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi(); // See - /openapi/v1.json
-    app.MapScalarApiReference(); // See - /scalar
+    app.MapOpenApi();
+    app.MapScalarApiReference();
+
+    // Configure the AsyncAPI middleware to serve the generated AsyncAPI documents
     app.MapAsyncApiDocuments();
 }
 
