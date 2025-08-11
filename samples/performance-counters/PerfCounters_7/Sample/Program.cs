@@ -3,7 +3,6 @@ using Microsoft.Extensions.Hosting;
 
 Console.Title = "PerfCounters";
 var builder = Host.CreateApplicationBuilder(args);
-//builder.Services.AddHostedService<InputLoopService>();
 var endpointConfiguration = new EndpointConfiguration("Samples.PerfCounters");
 endpointConfiguration.EnableInstallers();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
