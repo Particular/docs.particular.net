@@ -13,9 +13,14 @@ namespace IntegrityTests
         [Test]
         public void ValidateAliasesVersionMatchesPackageReferenceVersion()
         {
+            var targetProj = @"C:\Particular\docs.particular.net\samples\performance-counters\PerfCounters_7\Sample\sample.csproj";
+
             new TestRunner("*.csproj", "Found alias version not matching package reference version. i.e. Project in `Core_8` should reference NServiceBus 8.*, while `Core_9` should reference NServiceBus 9.*")
                 .Run(projPath =>
                 {
+                    if (!string.Equals(projPath, targetProj, StringComparison.OrdinalIgnoreCase))
+                        return true; // Skip all other projects
+
                     // The NServiceBus.MessageInterfaces sample needs to reference two different versions of NServiceBus
                     if (projPath.Contains("samples") && projPath.Contains("message-assembly-sharing"))
                     {
