@@ -1,4 +1,4 @@
-class Worker(IMessageSession messageSession) : BackgroundService
+class Worker(IMessageSession messageSession, IHostApplicationLifetime appLifetime) : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken cancellationToken)
     {
@@ -36,8 +36,9 @@ class Worker(IMessageSession messageSession) : BackgroundService
                         Console.WriteLine($"Sent message with {number}.");
                         break;
                     default:
+                        appLifetime.StopApplication();
                         return;
-                }                
+                }
             }
         }
         catch (OperationCanceledException)
