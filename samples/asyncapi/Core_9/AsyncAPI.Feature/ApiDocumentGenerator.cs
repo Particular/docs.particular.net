@@ -72,15 +72,6 @@ public class ApiDocumentGenerator : IAsyncApiDocumentGenerator
         var requestMessagePayloadSchema = new JsonSchemaBuilder().FromType(actualType, JsonSchemaGeneratorConfiguration.Default).Build();
         var messageName = producedType.FullName!;
 
-        //NOTE not sure how a component message can be used since the operation message requires a reference to a channel message
-        //var messageComponentReference = $"#/components/messages/{publishedType.FullName!}";
-        //document.WithMessageComponent(messageName, message =>
-        //    message
-        //        .WithName(messageName)
-        //        .WithPayloadSchema(schema => schema
-        //            .WithFormat("application/vnd.aai.asyncapi+json;version=3.0.0")
-        //            .WithSchema(requestMessagePayloadSchema)));
-
         var messageChannelReference = $"#/channels/{channelName}/messages/{producedType.FullName!}";
         channel.WithMessage(messageName, message =>
         {
