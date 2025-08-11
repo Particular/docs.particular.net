@@ -97,9 +97,13 @@ The file is saved into the default `Downloads` folder - it can be viewed using t
 
 ### Subscriber project
 
+#### Setup AsyncAPI
+
 The project uses the `EnableAsyncApiSupport` extension method to allow it to subscribe to published events from the [WebAPI](#code-walk-through-webapi-project) and [Generic host](#code-walk-through-generic-host-project) projects using its own implementation of the event classes.
 
 snippet: SubscriberEnableAsyncAPIOnNSB
+
+#### Define subscribed to events
 
 It defines its own concrete event classes and uses the `SubscribedEvent` attribute to tell NServiceBus which event they represent.
 
