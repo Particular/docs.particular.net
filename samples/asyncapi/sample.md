@@ -16,10 +16,10 @@ It also shows how a message can be published by one endpoint and subscribed to b
 
 This sample contains four projects:
 
-- AsyncAPI.Feature - a class library containing shared code required to enable the custom `AsyncApiFeature`
-- AsyncAPI.GenericHost - a console application that publishes two events, sends a message and generates an AsyncAPI document schema for its structure and saves it to disk
-- AsyncAPI.Web - a ASP.NET Core WebAPI application that publishes two events and generates an AsyncAPI document schema for its structure that is viewable via a url
-- Subscriber - a console application that subscribes to the events published by AsyncAPI.GenericHost and AsyncAPI.Web
+- [AsyncAPI.Feature](#code-walk-through-feature-project) - a class library containing shared code required to enable the custom `AsyncApiFeature`
+- [AsyncAPI.Web](#code-walk-through-webapi-project) - a ASP.NET Core WebAPI application that publishes two events and generates an AsyncAPI document schema for its structure that is viewable via a url
+- [AsyncAPI.GenericHost](#code-walk-through-generic-host-project) - a console application that publishes two events, sends a message and generates an AsyncAPI document schema for its structure and saves it to disk
+- [Subscriber](#code-walk-through-subscriber-project) - a console application that subscribes to the events published by AsyncAPI.GenericHost and AsyncAPI.Web
 
 ### Feature project
 
