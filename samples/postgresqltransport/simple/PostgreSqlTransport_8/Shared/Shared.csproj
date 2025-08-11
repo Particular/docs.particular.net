@@ -5,6 +5,5 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Transport.PostgreSql" Version="8.*" />
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
   </ItemGroup>
 </Project>
