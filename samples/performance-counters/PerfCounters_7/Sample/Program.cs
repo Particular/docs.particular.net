@@ -14,10 +14,8 @@ var performanceCounters = endpointConfiguration.EnableWindowsPerformanceCounters
 performanceCounters.EnableSLAPerformanceCounters(TimeSpan.FromSeconds(100));
 #endregion
 
-Console.WriteLine("Press enter to send 10 messages with random sleep");
-Console.WriteLine("Press any key, the application is starting");
+Console.WriteLine("Press any key to send 10 messages with random sleep");
 Console.ReadKey();
-Console.WriteLine("Starting...");
 
 builder.UseNServiceBus(endpointConfiguration);
 var host = builder.Build();
