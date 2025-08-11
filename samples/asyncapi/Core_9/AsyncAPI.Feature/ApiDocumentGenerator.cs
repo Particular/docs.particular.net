@@ -47,12 +47,12 @@ public class ApiDocumentGenerator : IAsyncApiDocumentGenerator
         //TODO should all published events be coming from the one channel, ie this endpoint name?
         foreach (var (actualType, publishedType) in typeCache.PublishedEventCache.Select(kvp => (kvp.Key, kvp.Value)))
         {
-            var channelName =$"{publishedType.FullName!}";
+            var channelName = $"{publishedType.FullName!}";
             document.WithChannel(channelName, channel =>
             {
                 channelBuilder = channel;
                 channel
-                    //.WithAddress() //Can this somehow be the endpointname address thats publishing the message
+                    .WithAddress(typeCache.EndpointName)
                     .WithDescription(actualType.FullName);
             });
             await GenerateV3OperationForAsync(document, channelName, channelBuilder, actualType, publishedType, options, cancellationToken);

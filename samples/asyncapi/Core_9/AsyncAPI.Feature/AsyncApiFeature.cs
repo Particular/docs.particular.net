@@ -72,10 +72,10 @@ public sealed class AsyncApiFeature : Feature
                     new ReplaceIncomingEnclosedMessageTypeHeaderBehavior(provider.GetRequiredService<TypeCache>()
                         .SubscribedEventCache), "Replaces the incoming published event type name with the actual local event type name");
         }
-
+        
         // with v8 registration will follow the regular MS DI stuff
         context.Services.AddSingleton(new TypeCache
-            { PublishedEventCache = publishedEventCache, SubscribedEventCache = subscribedEventCache });
+            { EndpointName = context.Settings.EndpointName(), PublishedEventCache = publishedEventCache, SubscribedEventCache = subscribedEventCache });
 
         context.Services.AddTransient<IAsyncApiDocumentGenerator>(provider => new ApiDocumentGenerator(provider));
     }
