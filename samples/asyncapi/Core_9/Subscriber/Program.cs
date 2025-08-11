@@ -1,4 +1,4 @@
-﻿using Infrastructure;
+﻿using AsyncAPI.Feature;
 using Microsoft.Extensions.Hosting;
 
 Console.Title = "AsyncAPI Subscriber";

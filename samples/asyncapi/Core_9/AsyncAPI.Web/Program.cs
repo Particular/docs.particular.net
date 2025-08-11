@@ -1,4 +1,4 @@
-﻿using Infrastructure;
+﻿using AsyncAPI.Feature;
 using Microsoft.AspNetCore.Mvc;
 using Neuroglia.AsyncApi;
 using Scalar.AspNetCore;

@@ -1,7 +1,7 @@
 using NServiceBus.Pipeline;
 using NServiceBus.Routing;
 
-namespace Infrastructure;
+namespace AsyncAPI.Feature;
 
 class ReplaceMulticastRoutingBehavior : IBehavior<IRoutingContext, IRoutingContext>
 {

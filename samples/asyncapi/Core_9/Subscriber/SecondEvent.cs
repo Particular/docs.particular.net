@@ -1,4 +1,4 @@
-using Infrastructure;
+using AsyncAPI.Feature;
 
 [SubscribedEvent(EventName = "SomeNamespace.SecondEvent", Version = 1)]
 public class SecondEvent

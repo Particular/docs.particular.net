@@ -1,7 +1,6 @@
 using System.Reflection;
-using NServiceBus;
 
-namespace Infrastructure;
+namespace AsyncAPI.Feature;
 
 public class SubscribedEventsConvention : IMessageConvention
 {

@@ -1,8 +1,7 @@
 using System.Reflection;
 using System.Reflection.Emit;
-using NServiceBus;
 
-namespace Infrastructure;
+namespace AsyncAPI.Feature;
 
 class TypeProxyGenerator
 {

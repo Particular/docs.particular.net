@@ -1,4 +1,4 @@
-using Infrastructure;
+using AsyncAPI.Feature;
 
 [PublishedEvent(EventName = "SomeNamespace.FirstEvent", Version = 1)]
 public class FirstEventThatIsBeingPublished

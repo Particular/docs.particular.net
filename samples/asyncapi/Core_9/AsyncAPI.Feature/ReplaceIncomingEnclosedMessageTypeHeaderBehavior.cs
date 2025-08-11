@@ -1,7 +1,6 @@
-using NServiceBus;
 using NServiceBus.Pipeline;
 
-namespace Infrastructure;
+namespace AsyncAPI.Feature;
 
 class ReplaceIncomingEnclosedMessageTypeHeaderBehavior : IBehavior<ITransportReceiveContext, ITransportReceiveContext>
 {

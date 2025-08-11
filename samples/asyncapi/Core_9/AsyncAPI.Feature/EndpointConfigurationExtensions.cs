@@ -1,7 +1,6 @@
-using NServiceBus;
 using NServiceBus.Features;
 
-namespace Infrastructure;
+namespace AsyncAPI.Feature;
 
 public static class EndpointConfigurationExtensions
 {

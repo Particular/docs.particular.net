@@ -1,7 +1,7 @@
 using System.Reflection;
 using NServiceBus.Unicast.Messages;
 
-namespace Infrastructure;
+namespace AsyncAPI.Feature;
 
 static class MessageMetadataRegistryExtensions
 {

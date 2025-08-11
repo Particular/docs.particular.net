@@ -1,4 +1,4 @@
-namespace Infrastructure;
+namespace AsyncAPI.Feature;
 
 public record TypeCache
 {

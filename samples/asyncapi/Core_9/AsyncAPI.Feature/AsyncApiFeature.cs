@@ -1,14 +1,12 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Neuroglia.AsyncApi.Generation;
-using NServiceBus;
 using NServiceBus.Features;
-using NServiceBus.Unicast;
 using NServiceBus.Unicast.Messages;
 
-namespace Infrastructure;
+namespace AsyncAPI.Feature;
 
-public sealed class AsyncApiFeature : Feature
+public sealed class AsyncApiFeature : NServiceBus.Features.Feature
 {
     protected override void Setup(FeatureConfigurationContext context)
     {

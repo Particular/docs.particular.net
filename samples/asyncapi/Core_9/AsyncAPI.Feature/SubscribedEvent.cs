@@ -1,4 +1,4 @@
-namespace Infrastructure;
+namespace AsyncAPI.Feature;
 
 [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = false)]
 public sealed class SubscribedEvent : Attribute

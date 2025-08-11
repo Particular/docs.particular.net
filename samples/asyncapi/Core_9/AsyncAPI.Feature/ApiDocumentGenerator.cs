@@ -7,7 +7,7 @@ using Neuroglia.AsyncApi.FluentBuilders.v3;
 using Neuroglia.AsyncApi.Generation;
 using Neuroglia.AsyncApi.v3;
 
-namespace Infrastructure;
+namespace AsyncAPI.Feature;
 
 public class ApiDocumentGenerator : IAsyncApiDocumentGenerator
 {
