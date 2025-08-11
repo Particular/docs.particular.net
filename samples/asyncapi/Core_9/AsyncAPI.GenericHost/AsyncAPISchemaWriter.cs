@@ -37,13 +37,13 @@ class AsyncAPISchemaWriter(ILogger<AsyncAPISchemaWriter> logger, IAsyncApiDocume
             else
             {
                 logger.LogInformation("Found #{Count} generated document(s).", documents.Count());
-                documents.ToList().ForEach(async document =>
+                foreach (var document in documents)
                 {
                     using MemoryStream stream = new();
                     await asyncApiDocumentWriter.WriteAsync(document, stream, AsyncApiDocumentFormat.Json, cancellationToken);
                     var schemaFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "downloads", $"{document.Title}.json");
                     File.WriteAllBytes(schemaFile, stream.ToArray());
-                });
+                }
             }
         }
         catch (OperationCanceledException)
