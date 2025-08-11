@@ -1,5 +1,6 @@
 ﻿using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
+using Neuroglia.AsyncApi.Generation;
 using NServiceBus;
 using NServiceBus.Features;
 using NServiceBus.Unicast;
@@ -44,6 +45,10 @@ public sealed class AsyncApiFeature : Feature
             {
                 // TODO
             }
+            else if (conventions.IsMessageType(messageMetadata.MessageType))
+            {
+                // TODO
+            }
         }
 
         if (context.Settings.GetOrDefault<bool>("Installers.Enable"))
@@ -51,14 +56,14 @@ public sealed class AsyncApiFeature : Feature
             context.RegisterStartupTask(static provider => new ManualSubscribe(provider.GetRequiredService<TypeCache>()
                 .SubscribedEventCache.Values.Select(x => x.SubscribedType).ToArray()));
         }
-
+       
         context.Pipeline.Register(
             static provider =>
                 new ReplaceOutgoingEnclosedMessageTypeHeaderBehavior(provider.GetRequiredService<TypeCache>().PublishedEventCache),
             "Replaces the outgoing enclosed message type header with the published event type fullname");
         context.Pipeline.Register(
             static provider => new ReplaceMulticastRoutingBehavior(provider.GetRequiredService<TypeCache>().PublishedEventCache),
-            "Replaces the multicast routing strategies that match the actual published event type with the published event type name");
+            "Replaces the multicast routing strategies that match the actual published event type with the published event type name");        
 
         if (!context.Settings.GetOrDefault<bool>("Endpoint.SendOnly"))
         {
@@ -67,10 +72,12 @@ public sealed class AsyncApiFeature : Feature
                     new ReplaceIncomingEnclosedMessageTypeHeaderBehavior(provider.GetRequiredService<TypeCache>()
                         .SubscribedEventCache), "Replaces the incoming published event type name with the actual local event type name");
         }
-
+        
         // with v8 registration will follow the regular MS DI stuff
         context.Services.AddSingleton(new TypeCache
-            { PublishedEventCache = publishedEventCache, SubscribedEventCache = subscribedEventCache });
+            { EndpointName = context.Settings.EndpointName(), PublishedEventCache = publishedEventCache, SubscribedEventCache = subscribedEventCache });
+
+        context.Services.AddTransient<IAsyncApiDocumentGenerator>(provider => new ApiDocumentGenerator(provider));
     }
 
     class ManualSubscribe : FeatureStartupTask
