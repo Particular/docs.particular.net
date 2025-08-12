@@ -6,7 +6,9 @@ using NServiceBus;
 Console.Title = "Sender";
 var builder = Host.CreateApplicationBuilder();
 
+#region register-session-key-provider
 builder.Services.AddSingleton<ISessionKeyProvider, RotatingSessionKeyProvider>();
+#endregion
 
 var endpointConfiguration = new EndpointConfiguration("Sender");
 endpointConfiguration.UsePersistence<LearningPersistence>();
