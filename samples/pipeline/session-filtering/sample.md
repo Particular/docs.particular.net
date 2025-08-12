@@ -24,11 +24,11 @@ In the sample, there is a simple implementation that provides a limited set of s
 
 snippet: rotating-session-key-provider
 
-Each endpoint creates an instance of this session key provider and adds it to the endpoint configuration:
+Each endpoint registers the session key provider:
 
-snippet: add-filter-behavior
+snippet: register-session-key-provider
 
-The `ApplySessionFilter` extension method adds two behaviors to the endpoint pipeline:
+This is used by the pipeline behaviors that are added by the `ApplySessionFilter` extension method:
 
 snippet: config-extension
 
