@@ -23,7 +23,7 @@ jobs:
            curl --connect-timeout 5 --max-time 15 --silent --show-error https://f.feedz.io/particular-software/packages/nuget/v3/packages/particular.docstool/index.json >> docstool-versions.json
       - name: Cache docstool
         id: cache-docstool
-        uses: actions/cache@v4.2.0
+        uses: actions/cache@v4.2.4
         with:
           path: |
              ~/.dotnet/tools/docstool
