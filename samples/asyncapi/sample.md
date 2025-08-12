@@ -109,6 +109,8 @@ The `SecondEventThatIsBeingPublished` class is marked as representing the `SomeN
 
 snippet: GenericHostPublisherSecondEvent
 
+There is also one message being sent (`MessageBeingSent`) and received locally to demonstrate that standard NServiceBus message processing can be used along side the custom pub/sub translations.
+
 #### Access AsyncAPI schema document
 
 The `AsyncAPISchemaWriter` uses the custom document generator injected as part of the `AsyncApiFeature` to generate the document schema and write it to disk.
