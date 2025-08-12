@@ -8,13 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddOpenApi();
 
-// Required by the AsyncAPI UI (built using Razer Pages)
+// Required by the AsyncAPI UI
 builder.Services.AddRazorPages();
 
 builder.Services.AddHttpClient();
 
 #region WebAppAddNeurogliaAsyncApi
-// Adds and configures code-first AsyncAPI document generation
+// Configures code-first AsyncAPI document generation.
 builder.Services.AddAsyncApiGeneration(builder =>
     builder
         .UseDefaultV3DocumentConfiguration(asyncApi =>
@@ -36,7 +36,7 @@ builder.Services.AddAsyncApiGeneration(builder =>
             });
         }));
 
-// Adds and configures the services used by the AsyncAPI UI
+// Adds AsyncAPI UI services. Available at /asyncapi.
 builder.Services.AddAsyncApiUI();
 #endregion
 
@@ -59,7 +59,7 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
     app.MapScalarApiReference();
 
-    // Configure the AsyncAPI middleware to serve the generated AsyncAPI documents
+    // Configures AsyncAPI middleware to serve generated documents.
     app.MapAsyncApiDocuments();
 }
 
