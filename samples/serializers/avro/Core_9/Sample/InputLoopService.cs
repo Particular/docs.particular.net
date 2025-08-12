@@ -37,10 +37,10 @@ public class InputLoopService(IMessageSession messageSession) : BackgroundServic
             };
 
             await messageSession.SendLocal(message, cancellationToken: stoppingToken);
-            Console.WriteLine("Message Sent");
 
             #endregion
-        }
 
+            Console.WriteLine("Message Sent");
+        }
     }
 }
