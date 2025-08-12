@@ -18,7 +18,7 @@ class Program
             "Samples.SessionFilter.Receiver"
         );
 
-        #region add-filter-behavior
+        #region register-session-key-provider
 
         var sessionKeyProvider = new RotatingSessionKeyProvider();
 
