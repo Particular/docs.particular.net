@@ -78,6 +78,9 @@ When a message fails to be processed, even after a number of retry strategies ha
 
 Additionally, each endpoint can send [heartbeat](/monitoring/heartbeats/), [health check](/monitoring/custom-checks/), and [performance metrics](/monitoring/metrics/) through the platform for visualization in ServicePulse, making it easy to see which endpoints are offline, which are ready to scale out, and which require manual intervention. Message  visualizations available in [ServicePulse](/servicepulse/message-details.md#messages-with-audited-conversation-data) and [ServiceInsight](/serviceinsight/) make it easy to understand message flows and timing of a running NServiceBus system.
 
+<!-- https://miro.com/app/board/uXjVJUnQO_I=/?share_link_id=701931147419 -->
+<a href="/platform/particular-service-platform.jpg" target="_blank">![Particular Service Platform](/platform/particular-service-platform.jpg)</a>
+
 The [real-time monitoring demo](https://particular.net/real-time-monitoring) provides the ability to experience the Service Platform in action. The [Platform Sample package](/platform/platform-sample-package.md) provides the ability to demonstrate the Service Platform from within any Visual Studio solution, without the need to install anything.
 
 ## See it in action
