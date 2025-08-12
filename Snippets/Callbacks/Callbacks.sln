@@ -8,6 +8,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Callbacks_4", "Callbacks_4\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Callbacks_5", "Callbacks_5\Callbacks_5.csproj", "{E246155A-0E68-4D25-B340-9E844EECC9D1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Callbacks_6", "Callbacks_6\Callbacks_6.csproj", "{AF7161F9-E5FD-A4F8-EC16-98A41E323B7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{E246155A-0E68-4D25-B340-9E844EECC9D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E246155A-0E68-4D25-B340-9E844EECC9D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E246155A-0E68-4D25-B340-9E844EECC9D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF7161F9-E5FD-A4F8-EC16-98A41E323B7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF7161F9-E5FD-A4F8-EC16-98A41E323B7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF7161F9-E5FD-A4F8-EC16-98A41E323B7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF7161F9-E5FD-A4F8-EC16-98A41E323B7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
