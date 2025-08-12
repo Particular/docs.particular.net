@@ -10,13 +10,13 @@ builder.Services.AddAsyncApi();
 #endregion
 
 var endpointConfiguration = new EndpointConfiguration("AsyncAPI.GenericHost");
-var routing = endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.EnableInstallers();
 
 #region GenericHostEnableAsyncAPIOnNSB
 endpointConfiguration.EnableAsyncApiSupport();
-#endregion 
+#endregion
 
 builder.UseNServiceBus(endpointConfiguration);
 
@@ -27,4 +27,4 @@ builder.Services.AddHostedService<AsyncAPISchemaWriter>();
 builder.Services.AddHostedService<Worker>();
 
 var app = builder.Build();
-app.Run();
+await app.RunAsync();

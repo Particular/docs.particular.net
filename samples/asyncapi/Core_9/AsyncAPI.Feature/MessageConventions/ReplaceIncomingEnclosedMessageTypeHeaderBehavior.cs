@@ -2,15 +2,9 @@ using NServiceBus.Pipeline;
 
 namespace AsyncAPI.Feature;
 
-class ReplaceIncomingEnclosedMessageTypeHeaderBehavior : IBehavior<ITransportReceiveContext, ITransportReceiveContext>
+class ReplaceIncomingEnclosedMessageTypeHeaderBehavior(Dictionary<string, (Type SubscribedType, Type ActualType)> subscribedEventCache)
+    : IBehavior<ITransportReceiveContext, ITransportReceiveContext>
 {
-    private Dictionary<string, (Type SubscribedType, Type ActualType)> subscribedEventCache;
-
-    public ReplaceIncomingEnclosedMessageTypeHeaderBehavior(Dictionary<string, (Type SubscribedType, Type ActualType)> subscribedEventCache)
-    {
-        this.subscribedEventCache = subscribedEventCache;
-    }
-
     public Task Invoke(ITransportReceiveContext context, Func<ITransportReceiveContext, Task> next)
     {
         if (context.Message.Headers.TryGetValue(Headers.EnclosedMessageTypes, out var enclosedMessageTypes) && subscribedEventCache.TryGetValue(enclosedMessageTypes, out var subscribedEventType))

@@ -16,16 +16,16 @@ builder.Services.AddHttpClient();
 
 #region WebAppAddNeurogliaAsyncApi
 // Configures code-first AsyncAPI document generation.
-builder.Services.AddAsyncApiGeneration(builder =>
-    builder
+builder.Services.AddAsyncApiGeneration(asyncApiBuilder =>
+    asyncApiBuilder
         .UseDefaultV3DocumentConfiguration(asyncApi =>
         {
             //Setup V3 documents, by configuring servers, for example:
             asyncApi.WithTitle("Web Service");
-            asyncApi.WithVersion("1.0.0");            
+            asyncApi.WithVersion("1.0.0");
             asyncApi.WithLicense(
                 "Apache 2.0",
-                new Uri("https://www.apache.org/licenses/LICENSE-2.0"));           
+                new Uri("https://www.apache.org/licenses/LICENSE-2.0"));
 
             asyncApi.WithServer("amqp", setup =>
             {
@@ -89,4 +89,4 @@ app.MapGet("/publishsecond", async ([FromServices] ILogger logger, [FromServices
     return Results.Ok($"Published second event at {now}");
 });
 
-app.Run();
+await app.RunAsync();

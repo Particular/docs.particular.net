@@ -3,15 +3,8 @@ using NServiceBus.Routing;
 
 namespace AsyncAPI.Feature;
 
-class ReplaceMulticastRoutingBehavior : IBehavior<IRoutingContext, IRoutingContext>
+class ReplaceMulticastRoutingBehavior(Dictionary<Type, Type> publishedEventCache) : IBehavior<IRoutingContext, IRoutingContext>
 {
-    private Dictionary<Type, Type> publishedEventCache;
-
-    public ReplaceMulticastRoutingBehavior(Dictionary<Type, Type> publishedEventCache)
-    {
-        this.publishedEventCache = publishedEventCache;
-    }
-
     public Task Invoke(IRoutingContext context, Func<IRoutingContext, Task> next)
     {
         var logicalMessage = context.Extensions.Get<OutgoingLogicalMessage>();

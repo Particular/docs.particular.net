@@ -80,18 +80,11 @@ public sealed class AsyncApiFeature : NServiceBus.Features.Feature
         #endregion
     }
 
-    class ManualSubscribe : FeatureStartupTask
+    class ManualSubscribe(Type[] subscribedEvents) : FeatureStartupTask
     {
-        private Type[] subscribedEvents;
-
-        public ManualSubscribe(Type[] subscribedEvents)
-        {
-            this.subscribedEvents = subscribedEvents;
-        }
-
         protected override Task OnStart(IMessageSession session, CancellationToken cancellationToken = default)
         {
-            return Task.WhenAll(subscribedEvents.Select(subscribedEvent => session.Subscribe(subscribedEvent)));
+            return Task.WhenAll(subscribedEvents.Select(subscribedEvent => session.Subscribe(subscribedEvent, cancellationToken: cancellationToken)));
         }
 
         protected override Task OnStop(IMessageSession session, CancellationToken cancellationToken = default)

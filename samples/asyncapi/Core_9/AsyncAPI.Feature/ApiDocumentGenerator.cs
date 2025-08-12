@@ -9,15 +9,8 @@ using Neuroglia.AsyncApi.v3;
 
 namespace AsyncAPI.Feature;
 
-public class ApiDocumentGenerator : IAsyncApiDocumentGenerator
+public class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiDocumentGenerator
 {
-    private IServiceProvider serviceProvider;
-
-    public ApiDocumentGenerator(IServiceProvider serviceProvider)
-    {
-        this.serviceProvider = serviceProvider;
-    }
-
     public async Task<IEnumerable<IAsyncApiDocument>> GenerateAsync(IEnumerable<Type> markupTypes, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(options);
@@ -35,12 +28,12 @@ public class ApiDocumentGenerator : IAsyncApiDocumentGenerator
         return documents;
     }
 
-    protected async Task GenerateChannels(IV3AsyncApiDocumentBuilder document, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
+    async Task GenerateChannels(IV3AsyncApiDocumentBuilder document, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentNullException.ThrowIfNull(options);
         IV3ChannelDefinitionBuilder channelBuilder = null!;
-        
+
         var typeCache = serviceProvider.GetRequiredService<TypeCache>();
 
         //get all published events
@@ -60,7 +53,7 @@ public class ApiDocumentGenerator : IAsyncApiDocumentGenerator
         //NOTE this is where more channels and operations can be defined, for example subscribed to events, sent/received commands and messages
     }
 
-    protected Task GenerateV3OperationForAsync(IV3AsyncApiDocumentBuilder document, string channelName, IV3ChannelDefinitionBuilder channel, Type actualType, Type producedType, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
+    Task GenerateV3OperationForAsync(IV3AsyncApiDocumentBuilder document, string channelName, IV3ChannelDefinitionBuilder channel, Type actualType, Type producedType, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentException.ThrowIfNullOrWhiteSpace(channelName);

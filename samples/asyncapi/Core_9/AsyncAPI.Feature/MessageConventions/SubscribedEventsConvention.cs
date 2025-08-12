@@ -19,5 +19,5 @@ public class SubscribedEventsConvention : IMessageConvention
         return type.GetCustomAttribute<SubscribedEvent>() != null;
     }
 
-    public string Name { get; } = "AsyncAPI Sample Event Message Convention";
+    public string Name => "AsyncAPI Sample Event Message Convention";
 }
