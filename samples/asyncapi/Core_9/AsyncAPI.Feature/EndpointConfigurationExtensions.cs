@@ -4,6 +4,7 @@ namespace AsyncAPI.Feature;
 
 public static class EndpointConfigurationExtensions
 {
+    #region EnableAsyncApiSupport
     public static void EnableAsyncApiSupport(this EndpointConfiguration endpointConfiguration)
     {
         endpointConfiguration.DisableFeature<AutoSubscribe>();
@@ -13,4 +14,5 @@ public static class EndpointConfigurationExtensions
         conventions.Add(new PublishedEventsConvention());
         conventions.Add(new SubscribedEventsConvention());
     }
+    #endregion
 }

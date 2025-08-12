@@ -10,7 +10,7 @@ This sample demonstrates how to generate an [AsyncAPI](https://www.asyncapi.com/
 - ASP.NET Core WebAPI
 - using the Generic Host
 
-It also shows how a message can be published by one endpoint and subscribed to by another without using the same namespace, therefore decoupling the systems from each other.
+It also shows how an event can be published by one endpoint and subscribed to by another without using the same concrete class to define the event, therefore decoupling the systems from each other.
 
 ## Code walk-through
 
@@ -23,9 +23,31 @@ This sample contains four projects:
 
 ### Feature project
 
-TODO
+The project contains all necessary code to support decoupling event types from the publisher and subscriber (contained in the `MessageConventions` folder), as well as registering a custom AsyncAPI document schema generator.
 
-snippet: CustomDocumentGenerator
+The `EndpointConfigurationExtensions` contains the glue that registers the `AsyncApiFeature` and the endpoint configuration message conventions.
+
+snippet: EnableAsyncApiSupport
+
+#### AsyncApi feature
+
+The feature creates mappings for physical to logical event types based on the `PublishedEvent` and `SubscribedEvent` attributes that decorate the events that are being published and subscribed to. These mappings are registered in the container so that they are available to be used by the following [pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) defined in the feature:
+
+- ReplaceOutgoingEnclosedMessageTypeHeaderBehavior
+- ReplaceIncomingEnclosedMessageTypeHeaderBehavior
+- ReplaceMulticastRoutingBehavior
+
+snippet: RegisterEventMappings
+
+Finally, the code registers a custom implementation of the Neuroglia `IAsyncApiDocumentGenerator` which will be used instead of the default implementation to generate the NServiceBus specific schema document.
+
+snippet: RegisterCustomDocumentGenerator
+
+##### AsyncAPI document generator
+
+This custom implementation of the Neuroglia `IAsyncApiDocumentGenerator` creates one AsyncAPI schema document for the NServiceBus endpoint hosted in the application. It demonstrates how channel information with the endpoint's address (queue name) can be generated, containing the publish operation and the payload of the event being published.
+
+This code can be extended to include subscribed to operations, as well as sent/received messages.
 
 ### WebAPI project
 

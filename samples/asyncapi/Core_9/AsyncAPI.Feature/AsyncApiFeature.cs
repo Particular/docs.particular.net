@@ -47,7 +47,8 @@ public sealed class AsyncApiFeature : NServiceBus.Features.Feature
             context.RegisterStartupTask(static provider => new ManualSubscribe(provider.GetRequiredService<TypeCache>()
                 .SubscribedEventCache.Values.Select(x => x.SubscribedType).ToArray()));
         }
-       
+
+        //Registering the behaviors required to replace the outgoing and incoming message types based on the defined conventions        
         context.Pipeline.Register(
             static provider =>
                 new ReplaceOutgoingEnclosedMessageTypeHeaderBehavior(provider.GetRequiredService<TypeCache>().PublishedEventCache),
@@ -63,12 +64,13 @@ public sealed class AsyncApiFeature : NServiceBus.Features.Feature
                     new ReplaceIncomingEnclosedMessageTypeHeaderBehavior(provider.GetRequiredService<TypeCache>()
                         .SubscribedEventCache), "Replaces the incoming published event type name with the actual local event type name");
         }
-        
-        // with v8 registration will follow the regular MS DI stuff
+
+        #region RegisterEventMappings
         context.Services.AddSingleton(new TypeCache
             { EndpointName = context.Settings.EndpointName(), PublishedEventCache = publishedEventCache, SubscribedEventCache = subscribedEventCache });
+        #endregion
 
-        #region CustomDocumentGenerator
+        #region RegisterCustomDocumentGenerator
         context.Services.AddTransient<IAsyncApiDocumentGenerator>(provider => new ApiDocumentGenerator(provider));
         #endregion
     }
