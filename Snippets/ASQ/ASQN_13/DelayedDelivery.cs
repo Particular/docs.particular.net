@@ -13,12 +13,6 @@ class DelayedDelivery
 
         #endregion
     }
-    public void DelayedDeliveryDisableTimeoutManager(EndpointConfiguration endpointConfiguration)
-    {
-        #region delayed-delivery-disable-timeoutmanager
-
-        #endregion
-    }
 
     public void DisableDelayedDelivery(EndpointConfiguration endpointConfiguration)
     {
