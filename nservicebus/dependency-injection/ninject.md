@@ -24,11 +24,11 @@ snippet: Ninject_Existing
 
 ### Unit of work
 
-It is possible to bind to use an _Unit of Work_ scope, which corresponds to the `DependencyLifecycle.InstancePerUnitOfWork` lifecycle, when registering components with `configuration.RegisterComponents(...)`.
+When registering components with `configuration.RegisterComponents(...)`, it is possible to bind a service using a _Unit of Work_ scope, which corresponds to the `DependencyLifecycle.InstancePerUnitOfWork` lifecycle.
 
 In essence, bindings using _Unit of Work_ scope
 
-- will be instantiated only once per transport Message
+- will be instantiated only once per transport message
 - will be disposed when message processing finishes
 
 Bind the services in _Unit of Work_ scope using:
