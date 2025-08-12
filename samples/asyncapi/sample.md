@@ -143,7 +143,7 @@ Note that the defined events do not need to match all the properties defined in 
 
 ## Running the sample
 
-When you run the solution with **Visual Studio**, three applications will start automatically.
+When you run the solution with Visual Studio, three applications will start automatically.
 
 > [!NOTE]
 > If you are using a different IDE or the .NET CLI, start each project individually to run all three applications.
