@@ -1,45 +1,52 @@
 using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using NServiceBus;
-using Receiver;
 
-class Program
+Console.Title = "Receiver";
+var builder = Host.CreateApplicationBuilder();
+
+builder.Services.AddSingleton<ISessionKeyProvider, RotatingSessionKeyProvider>();
+
+var endpointConfiguration = new EndpointConfiguration("Receiver");
+endpointConfiguration.UsePersistence<LearningPersistence>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.ApplySessionFilter();
+
+endpointConfiguration.UseTransport(new LearningTransport());
+
+
+builder.UseNServiceBus(endpointConfiguration);
+
+var host = builder.Build();
+
+await host.StartAsync();
+
+var sessionKeyProvider = host.Services.GetRequiredService<ISessionKeyProvider>();
+PrintMenu(sessionKeyProvider);
+
+while (true)
 {
-    public static async Task Main(string[] args)
+    var key = Console.ReadKey(true).Key;
+
+    if (key == ConsoleKey.Q)
     {
-        await CreateHostBuilder(args).Build().RunAsync();
+        break;
     }
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-     Host.CreateDefaultBuilder(args)
-     .UseNServiceBus(x =>
-         {
-
-             var endpointConfiguration = new EndpointConfiguration("Samples.SessionFilter.Receiver");
-
-             endpointConfiguration.UsePersistence<LearningPersistence>();
-             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-             endpointConfiguration.UseTransport(new LearningTransport());
-
-             var sessionKeyProvider = new RotatingSessionKeyProvider();
-             //Register FilterIncomingMessages if it's a service
-             var logger = new LoggerFactory().CreateLogger<FilterIncomingMessages>();
-             endpointConfiguration.ApplySessionFilter(sessionKeyProvider, logger);
-
-
-             return endpointConfiguration;
-         }).ConfigureServices((hostContext, services) =>
-         {
-             Console.Title = "Receiver";
-             services.AddSingleton<RotatingSessionKeyProvider>(); // Register the service
-             services.AddHostedService<ReceivingLoopService>();
-         });
-
-
-
-
+    if (key == ConsoleKey.C)
+    {
+        sessionKeyProvider.NextKey();
+        PrintMenu(sessionKeyProvider);
+    }
 }
 
+await host.StopAsync();
+
+static void PrintMenu(ISessionKeyProvider sessionKeyProvider)
+{
+    Console.Clear();
+    Console.WriteLine($"Session Key: {sessionKeyProvider.SessionKey}");
+    Console.WriteLine("C) Change Session Key");
+    Console.WriteLine("Q) Close");
+}
