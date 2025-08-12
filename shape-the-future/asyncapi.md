@@ -12,6 +12,6 @@ reviewed: 2025-08-11
 - Message brokers
 - Topics, channels, and event payloads
 
-It makes it easier to document, visualize, and generate code for systems built on event-driven architecture.
+It makes it easier to document, understand, visualize, and generate code for message-based systems.
 
 Have a look at the [AsyncAPI sample](/samples/asyncapi/) to see how it can be used with NServiceBus.
