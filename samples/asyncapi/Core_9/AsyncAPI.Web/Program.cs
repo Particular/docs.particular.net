@@ -1,6 +1,7 @@
 ﻿using AsyncAPI.Feature;
 using Microsoft.AspNetCore.Mvc;
 using Neuroglia.AsyncApi;
+using Neuroglia.AsyncApi.Bindings.Amqp;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -22,14 +23,16 @@ builder.Services.AddAsyncApiGeneration(builder =>
             //Setup V3 documents, by configuring servers, for example:
             asyncApi.WithTitle("Web Service");
             asyncApi.WithVersion("1.0.0");            
-            asyncApi.WithLicense("Apache 2.0", new Uri("https://www.apache.org/licenses/LICENSE-2.0"));           
+            asyncApi.WithLicense(
+                "Apache 2.0",
+                new Uri("https://www.apache.org/licenses/LICENSE-2.0"));           
 
             asyncApi.WithServer("amqp", setup =>
             {
                 setup
                     .WithProtocol(AsyncApiProtocol.Amqp)
                     .WithHost("sb://example.servicebus.windows.net/")
-                    .WithBinding(new Neuroglia.AsyncApi.Bindings.Amqp.AmqpServerBindingDefinition
+                    .WithBinding(new AmqpServerBindingDefinition
                     {
                         BindingVersion = "0.1.0",
                     });

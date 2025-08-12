@@ -7,8 +7,8 @@ component: Core
 
 This sample demonstrates how to generate an [AsyncAPI](https://www.asyncapi.com/en) schema document from NServiceBus endpoints using [Neuroglia.AsyncApi](https://github.com/asyncapi/net-sdk) in two different hosting environments:
 
-- ASP.NET Core WebAPI
-- using the Generic Host
+- [.NET Generic Host](https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host)
+- [ASP.NET Core Web Host](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/web-host)
 
 It also shows how an event can be published by one endpoint and subscribed to by another without using the same concrete class to define the event, therefore decoupling the systems from each other.
 
@@ -17,7 +17,7 @@ It also shows how an event can be published by one endpoint and subscribed to by
 This sample contains four projects:
 
 - [AsyncAPI.Feature](#code-walk-through-feature-project) - a class library containing shared code required to enable the custom `AsyncApiFeature`
-- [AsyncAPI.Web](#code-walk-through-webapi-project) - a ASP.NET Core WebAPI application that publishes two events and generates an AsyncAPI document schema for its structure that is viewable via a url
+- [AsyncAPI.Web](#code-walk-through-webapi-project) - a ASP.NET Core WebAPI application that publishes two events and generates an AsyncAPI document schema for its structure, accessible via a URL
 - [AsyncAPI.GenericHost](#code-walk-through-generic-host-project) - a console application that publishes two events, sends a message and generates an AsyncAPI document schema for its structure and saves it to disk
 - [Subscriber](#code-walk-through-subscriber-project) - a console application that subscribes to the events published by AsyncAPI.GenericHost and AsyncAPI.Web
 
@@ -29,7 +29,7 @@ The `EndpointConfigurationExtensions` contains the glue that registers the `Asyn
 
 snippet: EnableAsyncApiSupport
 
-#### AsyncApi feature
+#### AsyncAPI feature
 
 The feature creates mappings for physical to logical event types based on the `PublishedEvent` and `SubscribedEvent` attributes that decorate the events that are being published and subscribed to. These mappings are registered in the container so that they are available to be used by the following [pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) defined in the feature:
 
@@ -53,7 +53,7 @@ This code can be extended to include subscribed to operations, as well as sent/r
 
 #### Setup AsyncAPI
 
-The project enables the AsyncAPI schema generation using two setup calls:
+The project enables the AsyncAPI schema generation using two setup calls.
 
 First, by adding the Neuroglia AsyncAPI
 
@@ -77,7 +77,7 @@ snippet: WebAppPublisherSecondEvent
 
 #### Access AsyncAPI schema document
 
-The resulting AsyncAPI schema document can be accessed under [/asyncapi](https://localhost:7198/asyncapi). From here it can be downloaded and inspected using the [AsyncAPI Studio](https://studio.asyncapi.com/) (by pasting in the contents), as well as included in internal system documentation.
+The resulting AsyncAPI schema document can be accessed under [/asyncapi](https://localhost:7198/asyncapi). From here it can be downloaded and inspected using the [AsyncAPI Studio](https://studio.asyncapi.com/) (by pasting in the contents) and incorporated into internal system documentation.
 
 ### Generic host project
 
@@ -109,7 +109,7 @@ The `SecondEventThatIsBeingPublished` class is marked as representing the `SomeN
 
 snippet: GenericHostPublisherSecondEvent
 
-There is also one message being sent (`MessageBeingSent`) and received locally to demonstrate that standard NServiceBus message processing can be used along side the custom pub/sub translations.
+One message (`MessageBeingSent`) is also sent and received locally, demonstrating that standard NServiceBus message processing can run alongside custom pub/sub translations.
 
 #### Access AsyncAPI schema document
 
@@ -117,7 +117,7 @@ The `AsyncAPISchemaWriter` uses the custom document generator injected as part o
 
 snippet: GenericHostCustomGenerationAndWritingToDisk
 
-The file is saved into the default `Downloads` folder - it can be viewed using the [AsyncAPI Studio](https://studio.asyncapi.com/) (by pasting in the contents), as well as included in internal system documentation.
+The file is saved into the default `Downloads` folder - it can be viewed using the [AsyncAPI Studio](https://studio.asyncapi.com/) (by pasting in the contents) and incorporated into internal system documentation.
 
 ### Subscriber project
 
@@ -143,11 +143,22 @@ Note that the defined events do not need to match all the properties defined in 
 
 ## Running the sample
 
-- Run the solution. Two console applications and one web application start
-- On the `AsyncAPI.GenericHost` console application:
-  - press `s` to send a message to itself
-  - press `1` to publish `FirstEventThatIsBeingPublished` - see it received in the `AsyncAPI Subscriber` console application
-  - press `2` to publish `SecondEventThatIsBeingPublished` - see it received in the `AsyncAPI Subscriber` console application
-- On the `AsyncAPI.Web` application
-  - use `https://localhost:7198/scalar` to publish the two different events - see them received in the `AsyncAPI Subscriber` console application
-  - use `https://localhost:7198/asyncapi` to view the AsyncAPI document schema for the application. This can be exported to a json or yaml file.
+When you run the solution with **Visual Studio**, three applications will start automatically.
+
+> [!NOTE]
+> If you are using a different IDE or the .NET CLI, start each project individually to run all three applications.
+
+### AsyncAPI.GenericHost (console)
+
+- Press `s` to send a message to itself.
+- Press `1` to publish `FirstEventThatIsBeingPublished` - received by `AsyncAPI.Subscriber`.
+- Press `2` to publish `SecondEventThatIsBeingPublished` - received by `AsyncAPI.Subscriber`.
+
+### AsyncAPI.Web (web)
+
+- Open [/scalar](https://localhost:7198/scalar) to publish both events - received by `AsyncAPI.Subscriber`.
+- Open [/asyncapi](https://localhost:7198/asyncapi) to view the AsyncAPI schema for the application. You can export this as JSON or YAML.
+
+### AsyncAPI.Subscriber (console)
+
+Displays all messages and events published from `AsyncAPI.GenericHost` and `AsyncAPI.Web`.

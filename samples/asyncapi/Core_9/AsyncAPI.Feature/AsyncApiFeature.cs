@@ -48,14 +48,14 @@ public sealed class AsyncApiFeature : NServiceBus.Features.Feature
                 .SubscribedEventCache.Values.Select(x => x.SubscribedType).ToArray()));
         }
 
-        //Registering the behaviors required to replace the outgoing and incoming message types based on the defined conventions        
+        //Registering the behaviors required to replace the outgoing and incoming message types based on the defined conventions
         context.Pipeline.Register(
             static provider =>
                 new ReplaceOutgoingEnclosedMessageTypeHeaderBehavior(provider.GetRequiredService<TypeCache>().PublishedEventCache),
             "Replaces the outgoing enclosed message type header with the published event type fullname");
         context.Pipeline.Register(
             static provider => new ReplaceMulticastRoutingBehavior(provider.GetRequiredService<TypeCache>().PublishedEventCache),
-            "Replaces the multicast routing strategies that match the actual published event type with the published event type name");        
+            "Replaces the multicast routing strategies that match the actual published event type with the published event type name");
 
         if (!context.Settings.GetOrDefault<bool>("Endpoint.SendOnly"))
         {
@@ -67,11 +67,16 @@ public sealed class AsyncApiFeature : NServiceBus.Features.Feature
 
         #region RegisterEventMappings
         context.Services.AddSingleton(new TypeCache
-            { EndpointName = context.Settings.EndpointName(), PublishedEventCache = publishedEventCache, SubscribedEventCache = subscribedEventCache });
+        {
+            EndpointName = context.Settings.EndpointName(),
+            PublishedEventCache = publishedEventCache,
+            SubscribedEventCache = subscribedEventCache
+        });
         #endregion
 
         #region RegisterCustomDocumentGenerator
-        context.Services.AddTransient<IAsyncApiDocumentGenerator>(provider => new ApiDocumentGenerator(provider));
+        context.Services.AddTransient<IAsyncApiDocumentGenerator>(
+            provider => new ApiDocumentGenerator(provider));
         #endregion
     }
 

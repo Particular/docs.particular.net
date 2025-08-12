@@ -30,7 +30,9 @@ class AsyncAPISchemaWriter(ILogger<AsyncAPISchemaWriter> logger, IAsyncApiDocume
                 }
             };
             #region GenericHostCustomGenerationAndWritingToDisk
-            var documents = await apiDocumentGenerator.GenerateAsync(null, options, cancellationToken);
+            var documents = await apiDocumentGenerator.GenerateAsync(
+                markupTypes: null, options, cancellationToken);
+
             if (documents is not null && !documents.Any())
             {
                 logger.LogInformation("No documents generated.");
@@ -41,8 +43,15 @@ class AsyncAPISchemaWriter(ILogger<AsyncAPISchemaWriter> logger, IAsyncApiDocume
                 foreach (var document in documents)
                 {
                     using MemoryStream stream = new();
-                    await asyncApiDocumentWriter.WriteAsync(document, stream, AsyncApiDocumentFormat.Json, cancellationToken);
-                    var schemaFile = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "downloads", $"{document.Title}.json");
+
+                    await asyncApiDocumentWriter.WriteAsync(
+                        document, stream, AsyncApiDocumentFormat.Json, cancellationToken);
+
+                    var schemaFile = Path.Combine(
+                        Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+                        "downloads",
+                        $"{document.Title}.json");
+
                     File.WriteAllBytes(schemaFile, stream.ToArray());
                 }
             }

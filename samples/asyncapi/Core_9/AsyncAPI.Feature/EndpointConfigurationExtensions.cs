@@ -5,7 +5,8 @@ namespace AsyncAPI.Feature;
 public static class EndpointConfigurationExtensions
 {
     #region EnableAsyncApiSupport
-    public static void EnableAsyncApiSupport(this EndpointConfiguration endpointConfiguration)
+    public static void EnableAsyncApiSupport(
+        this EndpointConfiguration endpointConfiguration)
     {
         endpointConfiguration.DisableFeature<AutoSubscribe>();
         endpointConfiguration.EnableFeature<AsyncApiFeature>();
