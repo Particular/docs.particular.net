@@ -4,8 +4,6 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using NServiceBus.Pipeline;
 
-#region log-message-body-behavior
-
 public class MessageBodyLogger(ILogger<MessageBodyLogger> logger) : Behavior<IIncomingPhysicalMessageContext>
 {
     public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
@@ -19,5 +17,3 @@ public class MessageBodyLogger(ILogger<MessageBodyLogger> logger) : Behavior<IIn
         return next();
     }
 }
-
-#endregion
