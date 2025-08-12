@@ -89,6 +89,14 @@ An endpoint that is expected to no longer be used within the next 30 days. These
 
 Not an NServiceBus endpoint. These are broker queues or other messaging infrastructure that should not be included in NServiceBus licensing calculations.
 
+#### Gateway or Bridging Endpoint
+
+This is an infrastructure endpoint used by the Particular Platform<
+
+#### Service Control Endpoint
+
+This is an infrastructure endpoint used by the Particular Platform<
+
 ### Bulk endpoint updates
 
 The filter option can be used for bulk updating of endpoints or queues matching a certain naming pattern.
