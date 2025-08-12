@@ -5,14 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Azure.Identity" Version="1.*" />
     <PackageReference Include="Microsoft.Extensions.Azure" Version="1.*" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.*" />
     <PackageReference Include="NServiceBus.DataBus.AzureBlobStorage" Version="6.0.*" />
-  </ItemGroup>
-
-  <ItemGroup Label="Resolves vulnerabilities">
-    <PackageReference Include="System.Formats.Asn1" Version="8.*" />
   </ItemGroup>
 
 </Project>
