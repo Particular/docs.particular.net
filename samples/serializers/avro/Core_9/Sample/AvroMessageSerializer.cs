@@ -7,6 +7,7 @@ using Avro.Specific;
 using NServiceBus;
 using NServiceBus.Serialization;
 
+#region serializer-implementation
 public class AvroMessageSerializer(SchemaRegistry schemaRegistry, ClassCache classCache) : IMessageSerializer
 {
     public string ContentType => "avro/json";
@@ -44,3 +45,4 @@ public class AvroMessageSerializer(SchemaRegistry schemaRegistry, ClassCache cla
         return messages.ToArray();
     }
 }
+#endregion

@@ -9,6 +9,7 @@ using NServiceBus.Serialization;
 using NServiceBus.Settings;
 using NServiceBus.Unicast.Messages;
 
+#region serializer-definition
 public class AvroSerializer : SerializationDefinition
 {
     public override Func<IMessageMapper, IMessageSerializer> Configure(IReadOnlySettings settings)
@@ -40,3 +41,4 @@ public class AvroSerializer : SerializationDefinition
         return _ => new AvroMessageSerializer(schemaCache, new ClassCache());
     }
 }
+#endregion

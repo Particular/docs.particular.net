@@ -32,6 +32,16 @@ The sample store the message schema as an embedded resource for ease of use, in 
 
 > [!NOTE] When a schema is not found in the registry an exception will be thrown which will cause the message to eventually [be moved to the configured error queue](/nservicebus/recoverability/#fault-handling)
 
+## Code
+
+The serializer is implemented as a [custom serializer](https://docs.particular.net/nservicebus/serialization/custom-serializer), by creating a `SerializerDefinition`
+
+snippet: serializer-definition
+
+and also implementing the message serializer interface:
+
+snippet: serializer-implementation
+
 ## Sending the message
 
 snippet: message
