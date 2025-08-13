@@ -46,19 +46,6 @@ subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
 #endregion
 
-//var endpointInstance = await Endpoint.Start(endpointConfiguration);
-//var startOrder = new StartOrder
-//{
-//    OrderId = "123"
-//};
-//await endpointInstance.SendLocal(startOrder);
-
-//Console.WriteLine("Press any key to exit");
-//Console.ReadKey();
-//await endpointInstance.Stop();
-//builder.UseNServiceBus(endpointConfiguration);
-
-//await builder.Build().RunAsync();
 builder.UseNServiceBus(endpointConfiguration);
 
 
