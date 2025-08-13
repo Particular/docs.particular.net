@@ -87,10 +87,10 @@ The project does not have any references to AsyncAPI. It contains handlers for e
 
 ## Running the sample
 
-When you run the solution with Visual Studio, two applications will start automatically.
+When running the solution with Visual Studio, two applications will start automatically.
 
 > [!NOTE]
-> If you are using a different IDE or the .NET CLI, start each project individually to run both applications.
+> If using a different IDE or the .NET CLI, start each project individually to run both applications.
 
 ### AsyncAPI.GenericHost (console)
 

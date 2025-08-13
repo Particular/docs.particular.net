@@ -148,10 +148,10 @@ Note that the defined events do not need to match all the properties defined in 
 
 ## Running the sample
 
-When you run the solution with Visual Studio, three applications will start automatically.
+When running the solution with Visual Studio, three applications will start automatically.
 
 > [!NOTE]
-> If you are using a different IDE or the .NET CLI, start each project individually to run all three applications.
+> If using a different IDE or the .NET CLI, start each project individually to run all three applications.
 
 ### AsyncAPI.GenericHost (console)
 
@@ -162,8 +162,8 @@ When you run the solution with Visual Studio, three applications will start auto
 ### AsyncAPI.Web (web)
 
 - Open [/scalar](https://localhost:7198/scalar) to publish both events - received by `AsyncAPI.Subscriber`.
-- Open [/asyncapi](https://localhost:7198/asyncapi) to view the AsyncAPI schema for the application. You can export this as JSON or YAML.
+- Open [/asyncapi](https://localhost:7198/asyncapi) to view the AsyncAPI schema for the application. This can be exported as JSON or YAML.
 
 ### AsyncAPI.Subscriber (console)
 
-Displays all messages and events published from `AsyncAPI.GenericHost` and `AsyncAPI.Web`.
+Displays all events published from `AsyncAPI.GenericHost` and `AsyncAPI.Web`.
