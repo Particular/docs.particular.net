@@ -35,7 +35,7 @@ The report file must be provided to Particular upon request, it is **not** autom
 
 ## Viewing usage summary
 
-At any time the system usage can be viewed on the Usage page.
+At any time, the system usage can be viewed on the Usage page.
 This page has two tabs:
 
 - [Detected endpoints](#viewing-usage-summary-detected-endpoints)
@@ -88,6 +88,14 @@ An endpoint that is expected to no longer be used within the next 30 days. These
 #### Not an NServiceBus Endpoint
 
 Not an NServiceBus endpoint. These are broker queues or other messaging infrastructure that should not be included in NServiceBus licensing calculations.
+
+#### Gateway or Bridging Endpoint
+
+This is either part of the [Gateway](/nservicebus/gateway/) infrastructure or part of the [Messaging Bridge](/nservicebus/bridge/) infrastructure.
+
+#### Particular Platform Endpoint
+
+This is a Particular Platform infrastructure endpoint.
 
 ### Bulk endpoint updates
 
