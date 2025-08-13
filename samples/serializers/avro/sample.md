@@ -24,7 +24,7 @@ snippet: config
 
 ## Schema registry
 
-The sample stores expects the message schema to be present as an embedded resource in the same folder where the message type resides. This choice was made for easy use of this sample. In production, it's recommended to use a central registry like:
+The sample expects the message schema to be present as an embedded resource in the same folder where the message type resides. This choice was made to simplify the use of this sample. In production, it's recommended to use a central registry like:
 
 - <https://docs.confluent.io/platform/current/schema-registry/serdes-develop/index.html>
 - <https://www.redpanda.com/blog/schema-registry-kafka-streaming#:~:text=In%20the%20context%20of%20Kafka,popular%20choice%20for%20data%20serialization>.
@@ -34,7 +34,7 @@ The sample stores expects the message schema to be present as an embedded resour
 
 ## Code
 
-The serializer is implemented as a [custom serializer](https://docs.particular.net/nservicebus/serialization/custom-serializer), by creating a `SerializerDefinition`
+The serializer is implemented as a [custom serializer](https://docs.particular.net/nservicebus/serialization/custom-serializer), by creating a `SerializerDefinition`:
 
 snippet: serializer-definition
 
