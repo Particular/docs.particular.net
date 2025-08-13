@@ -18,3 +18,6 @@ Have a look at the two AsyncAPI samples to see how it can be used with NServiceB
 
 - [Simple AsyncAPI sample](/samples/asyncapi/simple/)
 - [AsyncAPI with custom message conventions sample](/samples/asyncapi/custom-message-types/)
+
+AsyncAPI isn't currently a supported feature in the platform, but we're looking to gain more information about your usage scenarios.
+Please tell us more about [your AsyncAPI use cases](https://github.com/Particular/NServiceBus/issues/7398).
