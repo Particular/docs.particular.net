@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using Avro.IO;
 using Avro.Reflect;
-using Avro.Specific;
 using NServiceBus;
 using NServiceBus.Serialization;
 
@@ -35,11 +34,18 @@ public class AvroMessageSerializer(SchemaRegistry schemaRegistry, ClassCache cla
         var messages = new List<object>();
         foreach (var messageType in messageTypes)
         {
-            var schema = schemaRegistry.GetSchema(messageType);
-            var reader = new ReflectDefaultReader(messageType, schema, schema, classCache);
-            using var stream = new ReadOnlyStream(body);
-            var message = reader.Read(null, schema, schema, new JsonDecoder(schema, stream));
-            messages.Add(message);
+            try
+            {
+                var schema = schemaRegistry.GetSchema(messageType);
+                var reader = new ReflectDefaultReader(messageType, schema, schema, classCache);
+                using var stream = new ReadOnlyStream(body);
+                var message = reader.Read(null, schema, schema, new JsonDecoder(schema, stream));
+                messages.Add(message);
+            }
+            catch (KeyNotFoundException)
+            {
+                throw new MessageDeserializationException($"No schema found for message type {messageType.FullName}");
+            }
         }
 
         return messages.ToArray();
