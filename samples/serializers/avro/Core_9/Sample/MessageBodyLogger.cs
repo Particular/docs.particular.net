@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using NServiceBus.Pipeline;
 
+// The behavior is only needed to print the serialized avro message content to the console
 public class MessageBodyLogger(ILogger<MessageBodyLogger> logger) : Behavior<IIncomingPhysicalMessageContext>
 {
     public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
