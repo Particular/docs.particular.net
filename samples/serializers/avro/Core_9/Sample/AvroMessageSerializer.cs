@@ -27,8 +27,7 @@ public class AvroMessageSerializer(SchemaRegistry schemaRegistry, ClassCache cla
     {
         if (messageTypes == null)
         {
-            // Avro is not able to infer message types from the body content
-            return [];
+            throw new InvalidOperationException("Avro is not able to infer message types from the body content only, the NServiceBus.EnclosedMessageTypes header must be present");
         }
 
         var messages = new List<object>();

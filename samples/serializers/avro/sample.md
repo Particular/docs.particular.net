@@ -10,6 +10,10 @@ related:
 
 This sample uses the [Apache.Avro serializer](https://www.nuget.org/packages/apache.avro) to serialize and deserialize the messages.
 
+## Limitations
+
+- The serializer is not able to infer the message type from the payload like some other serializers, so the [`NServiceBus.EnclosedMessageTypes` header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes) must be present on all messages.
+
 ## Configuration
 
 snippet: config
