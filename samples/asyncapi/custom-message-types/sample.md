@@ -1,8 +1,10 @@
 ---
-title: AsyncAPI
-summary: How to generate an AsyncAPI schema document from NServiceBus
-reviewed: 2025-08-08
+title: AsyncAPI with custom message conventions
+summary: How to generate an AsyncAPI schema document from NServiceBus with custom message conventions
+reviewed: 2025-08-13
 component: Core
+related:
+- samples/asyncapi/simple
 ---
 
 This sample demonstrates how to generate an [AsyncAPI](https://www.asyncapi.com/en) schema document from NServiceBus endpoints using [Neuroglia.AsyncApi](https://github.com/asyncapi/net-sdk) in two different hosting environments:
@@ -10,7 +12,10 @@ This sample demonstrates how to generate an [AsyncAPI](https://www.asyncapi.com/
 - [.NET Generic Host](https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host)
 - [ASP.NET Core Web Host](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/web-host)
 
-It also shows how an event can be published by one endpoint and subscribed to by another without using the same concrete class to define the event, therefore decoupling the systems from each other.
+It extends the [simple AsyncAPI sample](/samples/asyncapi/simple) by differentiating between event types (i.e. published vs subscribed) and showing how an event can be published by one endpoint and subscribed to by another without using the same concrete class to define the event, therefore decoupling the systems from each other.
+
+> [!NOTE]
+> This is a sample only and should not be used in production as is.
 
 ## Code walk-through
 
@@ -55,11 +60,11 @@ This code can be extended to include subscribed to operations, as well as sent/r
 
 The project enables the AsyncAPI schema generation using two setup calls.
 
-First, by adding the Neuroglia AsyncAPI
+First, by adding the Neuroglia AsyncAPI.
 
 snippet: WebAppAddNeurogliaAsyncApi
 
-Second, by adding the AsyncAPI feature to the NServiceBus endpoint configuration
+Second, by adding the AsyncAPI feature to the NServiceBus endpoint.
 
 snippet: WebAppEnableAsyncAPIOnNSB
 
@@ -85,15 +90,15 @@ The resulting AsyncAPI schema document can be accessed under [/asyncapi](https:/
 
 The project enables the AsyncAPI schema generation using three setup calls.
 
-First, by adding the Neuroglia AsyncAPI
+First, by adding the Neuroglia AsyncAPI.
 
 snippet: GenericHostAddNeurogliaAsyncApi
 
-Second, by adding the AsyncAPI feature to the NServiceBus endpoint configuration
+Second, by adding the AsyncAPI feature to the NServiceBus endpoint.
 
 snippet: GenericHostEnableAsyncAPIOnNSB
 
-Lastly, by adding a background service to generate and write the AsyncAPI document schema to disk
+Lastly, by adding a background service to generate and write the AsyncAPI document schema to disk.
 
 snippet: GenericHostAddSchemaWriter
 
