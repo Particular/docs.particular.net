@@ -1,12 +1,9 @@
-﻿using System.Reflection;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Neuroglia.AsyncApi.Generation;
 using NServiceBus.Features;
 using NServiceBus.Unicast.Messages;
 
-namespace AsyncAPI.Feature;
-
-public sealed class AsyncApiFeature : NServiceBus.Features.Feature
+sealed class AsyncApiFeature : Feature
 {
     protected override void Setup(FeatureConfigurationContext context)
     {
@@ -14,7 +11,7 @@ public sealed class AsyncApiFeature : NServiceBus.Features.Feature
 
         var messageMetadataRegistry = context.Settings.Get<MessageMetadataRegistry>();
 
-        List<Type> events = new();
+        List<Type> events = [];
 
         //get a list of all events
         #region RegisterEvents
@@ -25,7 +22,7 @@ public sealed class AsyncApiFeature : NServiceBus.Features.Feature
                 events.Add(messageMetadata.MessageType);
             }
         }
-        
+
         context.Services.AddSingleton(new TypeCache
         {
             EndpointName = context.Settings.EndpointName(),

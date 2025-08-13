@@ -29,32 +29,38 @@ class AsyncAPISchemaWriter(ILogger<AsyncAPISchemaWriter> logger, IAsyncApiDocume
                     });
                 }
             };
-            #region GenericHostCustomGenerationAndWritingToDisk
-            var documents = await apiDocumentGenerator.GenerateAsync(
-                markupTypes: null, options, cancellationToken);
 
-            if (documents is not null && !documents.Any())
+            #region GenericHostCustomGenerationAndWritingToDisk
+
+            var documents = await apiDocumentGenerator.GenerateAsync(
+                markupTypes: null!, options, cancellationToken);
+
+            var asyncApiDocuments = documents as IAsyncApiDocument[] ?? documents.ToArray();
+            if (!asyncApiDocuments.Any())
             {
                 logger.LogInformation("No documents generated.");
+                return;
             }
-            else
+
+            logger.LogInformation("Found #{Count} generated document(s).", asyncApiDocuments.Length);
+
+            foreach (var document in asyncApiDocuments)
             {
-                logger.LogInformation("Found #{Count} generated document(s).", documents.Count());
-                foreach (var document in documents)
-                {
-                    using MemoryStream stream = new();
+                using MemoryStream stream = new();
 
-                    await asyncApiDocumentWriter.WriteAsync(
-                        document, stream, AsyncApiDocumentFormat.Json, cancellationToken);
+                await asyncApiDocumentWriter.WriteAsync(
+                    document, stream, AsyncApiDocumentFormat.Json, cancellationToken);
 
-                    var schemaFile = Path.Combine(
-                        Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-                        "downloads",
-                        $"{document.Title}.json");
+                var schemaFile = Path.Combine(
+                    Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
+                    "downloads",
+                    $"{document.Title}.json");
 
-                    File.WriteAllBytes(schemaFile, stream.ToArray());
-                }
+                await File.WriteAllBytesAsync(schemaFile, stream.ToArray(), cancellationToken);
+
+                logger.LogInformation($"Document {document.Title} written to {schemaFile}");
             }
+
             #endregion
         }
         catch (OperationCanceledException)

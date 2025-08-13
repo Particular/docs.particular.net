@@ -7,9 +7,7 @@ using Neuroglia.AsyncApi.FluentBuilders.v3;
 using Neuroglia.AsyncApi.Generation;
 using Neuroglia.AsyncApi.v3;
 
-namespace AsyncAPI.Feature;
-
-public class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiDocumentGenerator
+class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiDocumentGenerator
 {
     public async Task<IEnumerable<IAsyncApiDocument>> GenerateAsync(IEnumerable<Type> markupTypes, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
     {
