@@ -7,7 +7,8 @@ related:
  - nservicebus/serialization
 ---
 
-> [!NOTE] This sample showcases how serialization using Avro can work, but it is not a supported serializer and some use cases may not work. See our [serializer documentation for a full list of supported serializers](/nservicebus/serialization/#supported-serializers).
+> [!NOTE]
+> This sample showcases how serialization using Avro can work, but it is not a supported serializer and some use cases may not work. See our [serializer documentation for a full list of supported serializers](/nservicebus/serialization/#supported-serializers).
 
 This sample uses [Apache.Avro data serialization system](https://www.nuget.org/packages/apache.avro) to serialize and deserialize the messages.
 
@@ -33,7 +34,8 @@ This choice was made to simplify the use of this sample. In production, it's rec
 - [Apicurio Registry](https://www.apicur.io/registry/)
 - [Redpanda Schema Registry](https://docs.redpanda.com/current/manage/schema-reg)
 
-> [!NOTE] When a schema is not found, a `MessageDeserializationException` will be thrown, which will cause the message to [be moved to the configured error queue](/nservicebus/recoverability/#fault-handling) without retries.
+> [!NOTE]
+> When a schema is not found, a `MessageDeserializationException` will be thrown, which will cause the message to [be moved to the configured error queue](/nservicebus/recoverability/#fault-handling) without retries.
 
 ## Code
 
