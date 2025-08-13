@@ -1,24 +1,23 @@
-﻿namespace Core9.MessageIdentity
+﻿namespace Core9.MessageIdentity;
+
+using System.Threading.Tasks;
+using NServiceBus;
+
+class MessageIdSendOptions
 {
-    using System.Threading.Tasks;
-    using NServiceBus;
-
-    class MessageIdSendOptions
+    async Task SetMessageId(string messageId, IMessageHandlerContext handlerContext)
     {
-        async Task SetMessageId(string messageId, IMessageHandlerContext handlerContext)
-        {
-            #region MessageId-SendOptions
+        #region MessageId-SendOptions
 
-            var options = new SendOptions();
-            options.SetMessageId(messageId);
+        var options = new SendOptions();
+        options.SetMessageId(messageId);
 
-            await handlerContext.Send(new SomeMessage(), options);
+        await handlerContext.Send(new SomeMessage(), options);
 
-            #endregion
-        }
+        #endregion
     }
+}
 
-    class SomeMessage
-    {
-    }
+class SomeMessage
+{
 }

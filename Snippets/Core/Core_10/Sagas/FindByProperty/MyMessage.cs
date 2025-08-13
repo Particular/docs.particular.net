@@ -1,7 +1,6 @@
-namespace Core9.Sagas.FindByProperty
+namespace Core9.Sagas.FindByProperty;
+
+public class MyMessage
 {
-    public class MyMessage
-    {
-        public string SomeId { get; set; }
-    }
+    public string SomeId { get; set; }
 }

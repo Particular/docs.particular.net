@@ -1,143 +1,142 @@
-﻿namespace Core9.Features
+﻿namespace Core9.Features;
+
+using NServiceBus;
+using NServiceBus.Configuration.AdvancedExtensibility;
+using NServiceBus.Features;
+
+#region MinimalFeature
+public class MinimalFeature :
+    Feature
 {
-    using NServiceBus;
-    using NServiceBus.Configuration.AdvancedExtensibility;
-    using NServiceBus.Features;
-
-    #region MinimalFeature
-    public class MinimalFeature :
-        Feature
+    protected override void Setup(FeatureConfigurationContext context)
     {
-        protected override void Setup(FeatureConfigurationContext context)
-        {
-        }
+    }
+}
+#endregion
+
+public class ComponentBFeature :
+    Feature
+{
+    protected override void Setup(FeatureConfigurationContext context)
+    {
+    }
+}
+
+#region DependentFeature
+public class ComponentAFeature :
+    Feature
+{
+    public ComponentAFeature()
+    {
+        DependsOn<ComponentBFeature>();
+        // Assuming type names are
+        // Namespace.ComponentCFeature
+        // Namespace.ComponentDFeature
+        // Namespace.ComponentEFeature
+        DependsOn("Namespace.ComponentCFeature");
+        DependsOnAtLeastOne("Namespace.ComponentDFeature", "Namespace.ComponentEFeature");
     }
     #endregion
 
-    public class ComponentBFeature :
-        Feature
+    protected override void Setup(FeatureConfigurationContext context)
     {
-        protected override void Setup(FeatureConfigurationContext context)
-        {
-        }
+    }
+}
+
+#region FeatureEnabledByDefault
+public class FeatureEnabledByDefault :
+    Feature
+{
+    public FeatureEnabledByDefault()
+    {
+        EnableByDefault();
     }
 
-    #region DependentFeature
-    public class ComponentAFeature :
-        Feature
+    protected override void Setup(FeatureConfigurationContext context)
     {
-        public ComponentAFeature()
-        {
-            DependsOn<ComponentBFeature>();
-            // Assuming type names are
-            // Namespace.ComponentCFeature
-            // Namespace.ComponentDFeature
-            // Namespace.ComponentEFeature
-            DependsOn("Namespace.ComponentCFeature");
-            DependsOnAtLeastOne("Namespace.ComponentDFeature", "Namespace.ComponentEFeature");
-        }
-        #endregion
+    }
+}
+#endregion
 
-        protected override void Setup(FeatureConfigurationContext context)
+#region FeatureWithDefaults
+public class FeatureWithDefaults :
+    Feature
+{
+    public FeatureWithDefaults()
+    {
+        Defaults(settings =>
         {
-        }
+            settings.Set("Key", "Value");
+            settings.SetDefault("OtherKey", 42);
+        });
     }
 
-    #region FeatureEnabledByDefault
-    public class FeatureEnabledByDefault :
-        Feature
+    protected override void Setup(FeatureConfigurationContext context)
     {
-        public FeatureEnabledByDefault()
-        {
-            EnableByDefault();
-        }
-
-        protected override void Setup(FeatureConfigurationContext context)
-        {
-        }
     }
-    #endregion
+}
+#endregion
 
-    #region FeatureWithDefaults
-    public class FeatureWithDefaults :
-        Feature
+public class WriteSettings
+{
+    public void ConfigureEndpoint(EndpointConfiguration endpointConfiguration)
     {
-        public FeatureWithDefaults()
-        {
-            Defaults(settings =>
-            {
-                settings.Set("Key", "Value");
-                settings.SetDefault("OtherKey", 42);
-            });
-        }
+        #region WriteSettingsFromEndpointConfiguration
 
-        protected override void Setup(FeatureConfigurationContext context)
-        {
-        }
-    }
-    #endregion
-
-    public class WriteSettings
-    {
-        public void ConfigureEndpoint(EndpointConfiguration endpointConfiguration)
-        {
-            #region WriteSettingsFromEndpointConfiguration
-
-            var settings = endpointConfiguration.GetSettings();
-            settings.Set("AnotherKey", new CustomSettingsDto());
-
-            #endregion
-        }
-
-        public class CustomSettingsDto
-        {
-        }
-    }
-
-    public class EnablingOtherFeatures :
-        Feature
-    {
-        public EnablingOtherFeatures()
-        {
-            #region EnablingOtherFeatures
-            Defaults(s => s.EnableFeatureByDefault<OtherFeature>());
-            #endregion
-        }
-
-        protected override void Setup(FeatureConfigurationContext context)
-        {
-        }
-
-        class OtherFeature :
-            Feature
-        {
-            protected override void Setup(FeatureConfigurationContext context)
-            {
-                throw new System.NotImplementedException();
-            }
-        }
-    }
-
-    public class FeatureWithPrerequisites :
-        Feature
-    {
-        #region FeatureWithPrerequisites
-
-        public FeatureWithPrerequisites()
-        {
-            Prerequisite(
-                condition: c =>
-                {
-                    var settings = c.Settings;
-                    return settings.HasExplicitValue("SomeKey");
-                },
-                description: "The key SomeKey was not present.");
-        }
+        var settings = endpointConfiguration.GetSettings();
+        settings.Set("AnotherKey", new CustomSettingsDto());
 
         #endregion
+    }
 
+    public class CustomSettingsDto
+    {
+    }
+}
+
+public class EnablingOtherFeatures :
+    Feature
+{
+    public EnablingOtherFeatures()
+    {
+        #region EnablingOtherFeatures
+        Defaults(s => s.EnableFeatureByDefault<OtherFeature>());
+        #endregion
+    }
+
+    protected override void Setup(FeatureConfigurationContext context)
+    {
+    }
+
+    class OtherFeature :
+        Feature
+    {
         protected override void Setup(FeatureConfigurationContext context)
         {
+            throw new System.NotImplementedException();
         }
+    }
+}
+
+public class FeatureWithPrerequisites :
+    Feature
+{
+    #region FeatureWithPrerequisites
+
+    public FeatureWithPrerequisites()
+    {
+        Prerequisite(
+            condition: c =>
+            {
+                var settings = c.Settings;
+                return settings.HasExplicitValue("SomeKey");
+            },
+            description: "The key SomeKey was not present.");
+    }
+
+    #endregion
+
+    protected override void Setup(FeatureConfigurationContext context)
+    {
     }
 }

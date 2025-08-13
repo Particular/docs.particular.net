@@ -1,55 +1,54 @@
-﻿namespace Core9.Audit
+﻿namespace Core9.Audit;
+
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using NServiceBus.Audit;
+using NServiceBus.Pipeline;
+
+#region custom-audit-action
+
+public class EnableExternalBodyStorageBehavior : Behavior<IAuditContext>
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Threading.Tasks;
-    using NServiceBus.Audit;
-    using NServiceBus.Pipeline;
+    private readonly IExternalBodyStorage storage;
 
-    #region custom-audit-action
-
-    public class EnableExternalBodyStorageBehavior : Behavior<IAuditContext>
+    public EnableExternalBodyStorageBehavior(IExternalBodyStorage storage)
     {
-        private readonly IExternalBodyStorage storage;
+        this.storage = storage;
+    }
 
-        public EnableExternalBodyStorageBehavior(IExternalBodyStorage storage)
+    public async override Task Invoke(IAuditContext context, Func<Task> next)
+    {
+        var message = context.Message;
+        var bodyUrl = await storage.StoreBody(message.MessageId, message.Body);
+
+        context.AuditMetadata["body-url"] = bodyUrl;
+
+        context.AuditAction = new SkipAuditMessageBody();
+
+        await next();
+    }
+
+    class SkipAuditMessageBody : RouteToAudit
+    {
+        public override IReadOnlyCollection<IRoutingContext> GetRoutingContexts(IAuditActionContext context)
         {
-            this.storage = storage;
-        }
+            var routingContexts = base.GetRoutingContexts(context);
 
-        public async override Task Invoke(IAuditContext context, Func<Task> next)
-        {
-            var message = context.Message;
-            var bodyUrl = await storage.StoreBody(message.MessageId, message.Body);
-
-            context.AuditMetadata["body-url"] = bodyUrl;
-
-            context.AuditAction = new SkipAuditMessageBody();
-
-            await next();
-        }
-
-        class SkipAuditMessageBody : RouteToAudit
-        {
-            public override IReadOnlyCollection<IRoutingContext> GetRoutingContexts(IAuditActionContext context)
+            foreach (var routingContext in routingContexts)
             {
-                var routingContexts = base.GetRoutingContexts(context);
-
-                foreach (var routingContext in routingContexts)
-                {
-                    // clear out the message body
-                    routingContext.Message.UpdateBody(ReadOnlyMemory<byte>.Empty);
-                }
-
-                return routingContexts;
+                // clear out the message body
+                routingContext.Message.UpdateBody(ReadOnlyMemory<byte>.Empty);
             }
+
+            return routingContexts;
         }
     }
+}
 
-    #endregion
+#endregion
 
-    public interface IExternalBodyStorage
-    {
-        Task<string> StoreBody(string messageId, ReadOnlyMemory<byte> body);
-    }
+public interface IExternalBodyStorage
+{
+    Task<string> StoreBody(string messageId, ReadOnlyMemory<byte> body);
 }

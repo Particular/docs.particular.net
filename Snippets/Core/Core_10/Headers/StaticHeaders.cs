@@ -1,14 +1,13 @@
-﻿namespace Core9.Headers
-{
-    using NServiceBus;
+﻿namespace Core9.Headers;
 
-    class StaticHeaders
+using NServiceBus;
+
+class StaticHeaders
+{
+    public StaticHeaders(EndpointConfiguration endpointConfiguration)
     {
-        public StaticHeaders(EndpointConfiguration endpointConfiguration)
-        {
-            #region header-static-endpoint
-            endpointConfiguration.AddHeaderToAllOutgoingMessages("MyGlobalHeader", "some static value");
-            #endregion
-        }
+        #region header-static-endpoint
+        endpointConfiguration.AddHeaderToAllOutgoingMessages("MyGlobalHeader", "some static value");
+        #endregion
     }
 }

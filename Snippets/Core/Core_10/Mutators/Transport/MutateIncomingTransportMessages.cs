@@ -1,33 +1,32 @@
-﻿namespace Core9.Mutators.Transport
+﻿namespace Core9.Mutators.Transport;
+
+using System.Threading.Tasks;
+using NServiceBus.MessageMutator;
+
+#region IMutateIncomingTransportMessages
+public class MutateIncomingTransportMessages :
+    IMutateIncomingTransportMessages
 {
-    using System.Threading.Tasks;
-    using NServiceBus.MessageMutator;
-
-    #region IMutateIncomingTransportMessages
-    public class MutateIncomingTransportMessages :
-        IMutateIncomingTransportMessages
+    public Task MutateIncoming(MutateIncomingTransportMessageContext context)
     {
-        public Task MutateIncoming(MutateIncomingTransportMessageContext context)
-        {
-            // the bytes of the incoming messages.
-            var bytes = context.Body;
+        // the bytes of the incoming messages.
+        var bytes = context.Body;
 
-            // optionally replace the Body
-            context.Body = ServiceThatChangesBody.Mutate(context.Body);
+        // optionally replace the Body
+        context.Body = ServiceThatChangesBody.Mutate(context.Body);
 
-            // the incoming headers
-            var headers = context.Headers;
+        // the incoming headers
+        var headers = context.Headers;
 
-            // optional manipulate headers
+        // optional manipulate headers
 
-            // add a header
-            headers.Add("MyHeaderKey1", "MyHeaderValue");
+        // add a header
+        headers.Add("MyHeaderKey1", "MyHeaderValue");
 
-            // remove a header
-            headers.Remove("MyHeaderKey2");
+        // remove a header
+        headers.Remove("MyHeaderKey2");
 
-            return Task.CompletedTask;
-        }
+        return Task.CompletedTask;
     }
-    #endregion
 }
+#endregion

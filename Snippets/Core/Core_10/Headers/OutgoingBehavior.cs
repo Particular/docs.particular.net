@@ -1,19 +1,18 @@
-﻿namespace Core9.Headers
-{
-    using System;
-    using System.Threading.Tasks;
-    using NServiceBus.Pipeline;
+﻿namespace Core9.Headers;
 
-    #region header-outgoing-behavior
-    public class OutgoingBehavior :
-        Behavior<IOutgoingPhysicalMessageContext>
+using System;
+using System.Threading.Tasks;
+using NServiceBus.Pipeline;
+
+#region header-outgoing-behavior
+public class OutgoingBehavior :
+    Behavior<IOutgoingPhysicalMessageContext>
+{
+    public override Task Invoke(IOutgoingPhysicalMessageContext context, Func<Task> next)
     {
-        public override Task Invoke(IOutgoingPhysicalMessageContext context, Func<Task> next)
-        {
-            var headers = context.Headers;
-            headers["MyCustomHeader"] = "My custom value";
-            return next();
-        }
+        var headers = context.Headers;
+        headers["MyCustomHeader"] = "My custom value";
+        return next();
     }
-    #endregion
 }
+#endregion

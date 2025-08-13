@@ -1,17 +1,16 @@
-﻿namespace Core9
+﻿namespace Core9;
+
+using NServiceBus;
+
+class PurgingMessagesAtStartup
 {
-    using NServiceBus;
-
-    class PurgingMessagesAtStartup
+    PurgingMessagesAtStartup(EndpointConfiguration endpointConfiguration)
     {
-        PurgingMessagesAtStartup(EndpointConfiguration endpointConfiguration)
-        {
-            #region PurgeMessagesAtStartup
+        #region PurgeMessagesAtStartup
 
-            endpointConfiguration.PurgeOnStartup(true);
+        endpointConfiguration.PurgeOnStartup(true);
 
-            #endregion
-        }
-
+        #endregion
     }
+
 }

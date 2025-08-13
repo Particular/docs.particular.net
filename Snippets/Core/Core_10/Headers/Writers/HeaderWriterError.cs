@@ -1,105 +1,104 @@
-﻿namespace Core9.Headers.Writers
+﻿namespace Core9.Headers.Writers;
+
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Common;
+using NServiceBus;
+using NServiceBus.Pipeline;
+using NUnit.Framework;
+
+[TestFixture]
+public class HeaderWriterError
 {
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Common;
-    using NServiceBus;
-    using NServiceBus.Pipeline;
-    using NUnit.Framework;
+    static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
+    string endpointName = "HeaderWriterErrorV8";
 
-    [TestFixture]
-    public class HeaderWriterError
+    [OneTimeTearDown]
+    public void TearDown()
     {
-        static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
-        string endpointName = "HeaderWriterErrorV8";
+        ManualResetEvent.Dispose();
+    }
 
-        [OneTimeTearDown]
-        public void TearDown()
+    [Test]
+    public async Task Write()
+    {
+        var errorIngestion = new EndpointConfiguration("error");
+        errorIngestion.SetTypesToScan(TypeScanner.NestedTypes<ErrorMutator>());
+        errorIngestion.EnableInstallers();
+        errorIngestion.UseTransport(new LearningTransport());
+        errorIngestion.Pipeline.Register(typeof(ErrorMutator), "Capture headers on failed messages");
+        await Endpoint.Start(errorIngestion);
+
+        var endpointConfiguration = new EndpointConfiguration(endpointName);
+        endpointConfiguration.SendFailedMessagesTo("error");
+        var typesToScan = TypeScanner.NestedTypes<HeaderWriterError>();
+        endpointConfiguration.SetTypesToScan(typesToScan);
+        endpointConfiguration.EnableInstallers();
+        endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.Pipeline.Register(typeof(Mutator), "Capture headers on sent messages");
+
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Immediate(settings => settings.NumberOfRetries(1));
+        recoverability.Delayed(settings =>
         {
-            ManualResetEvent.Dispose();
+            settings.NumberOfRetries(0);
+        });
+
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+
+        await endpointInstance.SendLocal(new MessageToSend());
+        ManualResetEvent.WaitOne();
+    }
+
+    class MessageToSend :
+        IMessage
+    {
+    }
+
+    class ErrorMutator : Behavior<IIncomingPhysicalMessageContext>
+    {
+        public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
+        {
+            var headers = context.MessageHeaders;
+            var headerText = HeaderWriter.ToFriendlyString<HeaderWriterError>(headers);
+            headerText = BehaviorCleaner.CleanStackTrace(headerText);
+            headerText = StackTraceCleaner.CleanStackTrace(headerText);
+            SnippetLogger.Write(
+                text: headerText,
+                suffix: "Error");
+            ManualResetEvent.Set();
+            return Task.CompletedTask;
         }
+    }
 
-        [Test]
-        public async Task Write()
+
+    class MessageHandler :
+        IHandleMessages<MessageToSend>
+    {
+
+        public Task Handle(MessageToSend message, IMessageHandlerContext context)
         {
-            var errorIngestion = new EndpointConfiguration("error");
-            errorIngestion.SetTypesToScan(TypeScanner.NestedTypes<ErrorMutator>());
-            errorIngestion.EnableInstallers();
-            errorIngestion.UseTransport(new LearningTransport());
-            errorIngestion.Pipeline.Register(typeof(ErrorMutator), "Capture headers on failed messages");
-            await Endpoint.Start(errorIngestion);
+            throw new Exception("The exception message from the handler.");
+        }
+    }
 
-            var endpointConfiguration = new EndpointConfiguration(endpointName);
-            endpointConfiguration.SendFailedMessagesTo("error");
-            var typesToScan = TypeScanner.NestedTypes<HeaderWriterError>();
-            endpointConfiguration.SetTypesToScan(typesToScan);
-            endpointConfiguration.EnableInstallers();
-            endpointConfiguration.UseTransport(new LearningTransport());
-            endpointConfiguration.Pipeline.Register(typeof(Mutator), "Capture headers on sent messages");
+    class Mutator : Behavior<IIncomingLogicalMessageContext>
+    {
+        static bool hasCapturedMessage;
 
-            var recoverability = endpointConfiguration.Recoverability();
-            recoverability.Immediate(settings => settings.NumberOfRetries(1));
-            recoverability.Delayed(settings =>
+        public override Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
+        {
+            if (!hasCapturedMessage && context.Message.Instance is MessageToSend)
             {
-                settings.NumberOfRetries(0);
-            });
-
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-            await endpointInstance.SendLocal(new MessageToSend());
-            ManualResetEvent.WaitOne();
-        }
-
-        class MessageToSend :
-            IMessage
-        {
-        }
-
-        class ErrorMutator : Behavior<IIncomingPhysicalMessageContext>
-        {
-            public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
-            {
-                var headers = context.MessageHeaders;
-                var headerText = HeaderWriter.ToFriendlyString<HeaderWriterError>(headers);
-                headerText = BehaviorCleaner.CleanStackTrace(headerText);
-                headerText = StackTraceCleaner.CleanStackTrace(headerText);
+                hasCapturedMessage = true;
+                var headers = context.Headers;
+                var sendingText = HeaderWriter.ToFriendlyString<HeaderWriterError>(headers);
                 SnippetLogger.Write(
-                    text: headerText,
-                    suffix: "Error");
-                ManualResetEvent.Set();
-                return Task.CompletedTask;
+                    text: sendingText,
+                    suffix: "Sending");
             }
-        }
-
-
-        class MessageHandler :
-            IHandleMessages<MessageToSend>
-        {
-
-            public Task Handle(MessageToSend message, IMessageHandlerContext context)
-            {
-                throw new Exception("The exception message from the handler.");
-            }
-        }
-
-        class Mutator : Behavior<IIncomingLogicalMessageContext>
-        {
-            static bool hasCapturedMessage;
-
-            public override Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
-            {
-                if (!hasCapturedMessage && context.Message.Instance is MessageToSend)
-                {
-                    hasCapturedMessage = true;
-                    var headers = context.Headers;
-                    var sendingText = HeaderWriter.ToFriendlyString<HeaderWriterError>(headers);
-                    SnippetLogger.Write(
-                        text: sendingText,
-                        suffix: "Sending");
-                }
-                return next();
-            }
+            return next();
         }
     }
 }

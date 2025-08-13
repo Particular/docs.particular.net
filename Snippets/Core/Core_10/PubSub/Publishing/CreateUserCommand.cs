@@ -1,10 +1,9 @@
-namespace Core9.PubSub.Publishing
-{
-    using NServiceBus;
+namespace Core9.PubSub.Publishing;
 
-    public class CreateUserCommand :
-        ICommand
-    {
-        public string Name { get; set; }
-    }
+using NServiceBus;
+
+public class CreateUserCommand :
+    ICommand
+{
+    public string Name { get; set; }
 }

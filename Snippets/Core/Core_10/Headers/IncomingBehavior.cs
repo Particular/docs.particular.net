@@ -1,21 +1,20 @@
-﻿namespace Core9.Headers
-{
-    using System;
-    using System.Threading.Tasks;
-    using NServiceBus;
-    using NServiceBus.Pipeline;
+﻿namespace Core9.Headers;
 
-    #region header-incoming-behavior
-    public class IncomingBehavior :
-        Behavior<IIncomingPhysicalMessageContext>
+using System;
+using System.Threading.Tasks;
+using NServiceBus;
+using NServiceBus.Pipeline;
+
+#region header-incoming-behavior
+public class IncomingBehavior :
+    Behavior<IIncomingPhysicalMessageContext>
+{
+    public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
     {
-        public override Task Invoke(IIncomingPhysicalMessageContext context, Func<Task> next)
-        {
-            var headers = context.Message.Headers;
-            var nsbVersion = headers[Headers.NServiceBusVersion];
-            var customHeader = headers["MyCustomHeader"];
-            return next();
-        }
+        var headers = context.Message.Headers;
+        var nsbVersion = headers[Headers.NServiceBusVersion];
+        var customHeader = headers["MyCustomHeader"];
+        return next();
     }
-    #endregion
 }
+#endregion

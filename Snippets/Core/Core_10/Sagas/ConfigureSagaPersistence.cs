@@ -1,23 +1,22 @@
-﻿namespace Core9.Sagas
+﻿namespace Core9.Sagas;
+
+using NServiceBus;
+using NServiceBus.Persistence;
+
+class ConfigureSagaPersistence
 {
-    using NServiceBus;
-    using NServiceBus.Persistence;
 
-    class ConfigureSagaPersistence
+    void Simple(EndpointConfiguration endpointConfiguration)
     {
+        #region saga-configure
 
-        void Simple(EndpointConfiguration endpointConfiguration)
-        {
-            #region saga-configure
+        endpointConfiguration.UsePersistence<PersistenceToUseGoesHere>();
 
-            endpointConfiguration.UsePersistence<PersistenceToUseGoesHere>();
+        #endregion
+    }
 
-            #endregion
-        }
-
-        public class PersistenceToUseGoesHere :
-            PersistenceDefinition
-        {
-        }
+    public class PersistenceToUseGoesHere :
+        PersistenceDefinition
+    {
     }
 }

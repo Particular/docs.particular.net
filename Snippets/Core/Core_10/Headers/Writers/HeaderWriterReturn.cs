@@ -1,79 +1,78 @@
-﻿namespace Core9.Headers.Writers
+﻿namespace Core9.Headers.Writers;
+
+using System.Threading;
+using System.Threading.Tasks;
+using Common;
+using NServiceBus;
+using NServiceBus.MessageMutator;
+using NUnit.Framework;
+
+[TestFixture]
+public class HeaderWriterReturn
 {
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Common;
-    using NServiceBus;
-    using NServiceBus.MessageMutator;
-    using NUnit.Framework;
+    static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
+    string endpointName = "HeaderWriterReturnV8";
 
-    [TestFixture]
-    public class HeaderWriterReturn
+    [OneTimeTearDown]
+    public void TearDown()
     {
-        static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
-        string endpointName = "HeaderWriterReturnV8";
+        ManualResetEvent.Dispose();
+    }
 
-        [OneTimeTearDown]
-        public void TearDown()
+    [Test]
+    public async Task Write()
+    {
+        var endpointConfiguration = new EndpointConfiguration(endpointName);
+        var callbackTypes = typeof(RequestResponseExtensions).Assembly.GetTypes();
+        var typesToScan = TypeScanner.NestedTypes<HeaderWriterReturn>(callbackTypes);
+        endpointConfiguration.SetTypesToScan(typesToScan);
+        endpointConfiguration.EnableCallbacks();
+        endpointConfiguration.MakeInstanceUniquelyAddressable("A");
+        endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.RegisterMessageMutator(new Mutator());
+
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        await endpointInstance.SendLocal(new MessageToSend());
+        ManualResetEvent.WaitOne();
+    }
+
+    class MessageToSend :
+        IMessage
+    {
+    }
+
+    class MessageHandler :
+        IHandleMessages<MessageToSend>
+    {
+        public Task Handle(MessageToSend message, IMessageHandlerContext context)
         {
-            ManualResetEvent.Dispose();
+            return context.Reply(100);
         }
+    }
 
-        [Test]
-        public async Task Write()
+    class Mutator :
+        IMutateIncomingTransportMessages
+    {
+
+        public Task MutateIncoming(MutateIncomingTransportMessageContext context)
         {
-            var endpointConfiguration = new EndpointConfiguration(endpointName);
-            var callbackTypes = typeof(RequestResponseExtensions).Assembly.GetTypes();
-            var typesToScan = TypeScanner.NestedTypes<HeaderWriterReturn>(callbackTypes);
-            endpointConfiguration.SetTypesToScan(typesToScan);
-            endpointConfiguration.EnableCallbacks();
-            endpointConfiguration.MakeInstanceUniquelyAddressable("A");
-            endpointConfiguration.UseTransport(new LearningTransport());
-            endpointConfiguration.RegisterMessageMutator(new Mutator());
-
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
-            await endpointInstance.SendLocal(new MessageToSend());
-            ManualResetEvent.WaitOne();
-        }
-
-        class MessageToSend :
-            IMessage
-        {
-        }
-
-        class MessageHandler :
-            IHandleMessages<MessageToSend>
-        {
-            public Task Handle(MessageToSend message, IMessageHandlerContext context)
+            var headers = context.Headers;
+            if (context.IsMessageOfTye<MessageToSend>())
             {
-                return context.Reply(100);
+                var sendingText = HeaderWriter.ToFriendlyString<HeaderWriterReturn>(headers);
+                SnippetLogger.Write(
+                    text: sendingText,
+                    suffix: "Sending");
             }
-        }
-
-        class Mutator :
-            IMutateIncomingTransportMessages
-        {
-
-            public Task MutateIncoming(MutateIncomingTransportMessageContext context)
+            else
             {
-                var headers = context.Headers;
-                if (context.IsMessageOfTye<MessageToSend>())
-                {
-                    var sendingText = HeaderWriter.ToFriendlyString<HeaderWriterReturn>(headers);
-                    SnippetLogger.Write(
-                        text: sendingText,
-                        suffix: "Sending");
-                }
-                else
-                {
-                    var returnText = HeaderWriter.ToFriendlyString<HeaderWriterReturn>(headers);
-                    SnippetLogger.Write(
-                        text: returnText,
-                        suffix: "Returning");
-                    ManualResetEvent.Set();
-                }
-                return Task.CompletedTask;
+                var returnText = HeaderWriter.ToFriendlyString<HeaderWriterReturn>(headers);
+                SnippetLogger.Write(
+                    text: returnText,
+                    suffix: "Returning");
+                ManualResetEvent.Set();
             }
+            return Task.CompletedTask;
         }
     }
 }

@@ -1,86 +1,85 @@
-﻿namespace Core9.Container
+﻿namespace Core9.Container;
+
+using Microsoft.Extensions.DependencyInjection;
+using NServiceBus;
+
+class Usage
 {
-    using Microsoft.Extensions.DependencyInjection;
-    using NServiceBus;
-
-    class Usage
+    void InstancePerCall(EndpointConfiguration endpointConfiguration)
     {
-        void InstancePerCall(EndpointConfiguration endpointConfiguration)
-        {
-            #region InstancePerCall
+        #region InstancePerCall
 
-            endpointConfiguration.RegisterComponents(
-                registration: configureComponents =>
-                {
-                    configureComponents.AddTransient<MyService>();
-                });
+        endpointConfiguration.RegisterComponents(
+            registration: configureComponents =>
+            {
+                configureComponents.AddTransient<MyService>();
+            });
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void DelegateInstancePerCall(EndpointConfiguration endpointConfiguration)
-        {
-            #region DelegateInstancePerCall
+    void DelegateInstancePerCall(EndpointConfiguration endpointConfiguration)
+    {
+        #region DelegateInstancePerCall
 
-            endpointConfiguration.RegisterComponents(
-                registration: configureComponents =>
-                {
-                    configureComponents.AddTransient(serviceProvider => new MyService());
-                });
+        endpointConfiguration.RegisterComponents(
+            registration: configureComponents =>
+            {
+                configureComponents.AddTransient(serviceProvider => new MyService());
+            });
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void InstancePerUnitOfWork(EndpointConfiguration endpointConfiguration)
-        {
-            #region InstancePerUnitOfWork
+    void InstancePerUnitOfWork(EndpointConfiguration endpointConfiguration)
+    {
+        #region InstancePerUnitOfWork
 
-            endpointConfiguration.RegisterComponents(
-                registration: configureComponents =>
-                {
-                    configureComponents.AddScoped<MyService>();
-                });
+        endpointConfiguration.RegisterComponents(
+            registration: configureComponents =>
+            {
+                configureComponents.AddScoped<MyService>();
+            });
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void DelegateInstancePerUnitOfWork(EndpointConfiguration endpointConfiguration)
-        {
-            #region DelegateInstancePerUnitOfWork
+    void DelegateInstancePerUnitOfWork(EndpointConfiguration endpointConfiguration)
+    {
+        #region DelegateInstancePerUnitOfWork
 
-            endpointConfiguration.RegisterComponents(
-                registration: configureComponents =>
-                {
-                    configureComponents.AddScoped(serviceProvider => new MyService());
-                });
+        endpointConfiguration.RegisterComponents(
+            registration: configureComponents =>
+            {
+                configureComponents.AddScoped(serviceProvider => new MyService());
+            });
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void SingleInstance(EndpointConfiguration endpointConfiguration)
-        {
-            #region SingleInstance
+    void SingleInstance(EndpointConfiguration endpointConfiguration)
+    {
+        #region SingleInstance
 
-            endpointConfiguration.RegisterComponents(
-                registration: configureComponents =>
-                {
-                    configureComponents.AddSingleton<MyService>();
-                });
+        endpointConfiguration.RegisterComponents(
+            registration: configureComponents =>
+            {
+                configureComponents.AddSingleton<MyService>();
+            });
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void DelegateSingleInstance(EndpointConfiguration endpointConfiguration)
-        {
-            #region DelegateSingleInstance
+    void DelegateSingleInstance(EndpointConfiguration endpointConfiguration)
+    {
+        #region DelegateSingleInstance
 
-            endpointConfiguration.RegisterComponents(
-                registration: configureComponents =>
-                {
-                    configureComponents.AddSingleton(serviceProvider => new MyService());
-                });
+        endpointConfiguration.RegisterComponents(
+            registration: configureComponents =>
+            {
+                configureComponents.AddSingleton(serviceProvider => new MyService());
+            });
 
-            #endregion
-        }
+        #endregion
     }
 }

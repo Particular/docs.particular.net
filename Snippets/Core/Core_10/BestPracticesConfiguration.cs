@@ -1,35 +1,34 @@
-﻿namespace Core9
+﻿namespace Core9;
+
+using System.Threading.Tasks;
+using NServiceBus;
+
+class BestPracticesConfiguration
 {
-    using System.Threading.Tasks;
-    using NServiceBus;
-
-    class BestPracticesConfiguration
+    void DisableFeature(EndpointConfiguration endpointConfiguration)
     {
-        void DisableFeature(EndpointConfiguration endpointConfiguration)
-        {
-            #region DisableBestPracticeEnforcementPerEndpoint
+        #region DisableBestPracticeEnforcementPerEndpoint
 
-            var routing = endpointConfiguration.UseTransport(new TransportDefinition());
-            routing.DoNotEnforceBestPractices();
+        var routing = endpointConfiguration.UseTransport(new TransportDefinition());
+        routing.DoNotEnforceBestPractices();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        async Task DisablePerMessage(IPipelineContext context)
-        {
-            #region DisableBestPracticeEnforcementPerMessage
+    async Task DisablePerMessage(IPipelineContext context)
+    {
+        #region DisableBestPracticeEnforcementPerMessage
 
-            var options = new SendOptions();
+        var options = new SendOptions();
 
-            options.DoNotEnforceBestPractices();
+        options.DoNotEnforceBestPractices();
 
-            await context.Send(new MyEvent(), options);
+        await context.Send(new MyEvent(), options);
 
-            #endregion
-        }
+        #endregion
+    }
 
-        class MyEvent
-        {
-        }
+    class MyEvent
+    {
     }
 }

@@ -1,161 +1,160 @@
-﻿namespace Core9
+﻿namespace Core9;
+
+using System.Threading.Tasks;
+using NServiceBus;
+
+class BasicUsageOfIBus
 {
-    using System.Threading.Tasks;
-    using NServiceBus;
-
-    class BasicUsageOfIBus
+    async Task Send(EndpointConfiguration endpointConfiguration)
     {
-        async Task Send(EndpointConfiguration endpointConfiguration)
-        {
-            #region BasicSend
+        #region BasicSend
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
-            var message = new MyMessage();
-            await endpointInstance.Send(message);
-
-            #endregion
-        }
-
-        #region SendFromHandler
-
-        public class MyMessageHandler :
-            IHandleMessages<MyMessage>
-        {
-            public Task Handle(MyMessage message, IMessageHandlerContext context)
-            {
-                var otherMessage = new OtherMessage();
-                return context.Send(otherMessage);
-            }
-        }
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        var message = new MyMessage();
+        await endpointInstance.Send(message);
 
         #endregion
+    }
 
-        async Task SetDestination(IEndpointInstance endpoint)
+    #region SendFromHandler
+
+    public class MyMessageHandler :
+        IHandleMessages<MyMessage>
+    {
+        public Task Handle(MyMessage message, IMessageHandlerContext context)
         {
-            #region BasicSendSetDestination
-
-            var options = new SendOptions();
-            options.SetDestination("MyDestination");
-            await endpoint.Send(new MyMessage(), options);
-
-            #endregion
+            var otherMessage = new OtherMessage();
+            return context.Send(otherMessage);
         }
+    }
 
-        async Task SpecificInstance(IEndpointInstance endpoint)
-        {
-            #region BasicSendSpecificInstance
+    #endregion
 
-            var options = new SendOptions();
-            options.RouteToSpecificInstance("MyInstance");
-            var message = new MyMessage();
-            await endpoint.Send(message, options);
+    async Task SetDestination(IEndpointInstance endpoint)
+    {
+        #region BasicSendSetDestination
 
-            #endregion
-        }
+        var options = new SendOptions();
+        options.SetDestination("MyDestination");
+        await endpoint.Send(new MyMessage(), options);
 
-        async Task ThisEndpoint(IEndpointInstance endpoint)
-        {
-            #region BasicSendToAnyInstance
+        #endregion
+    }
 
-            var options = new SendOptions();
-            options.RouteToThisEndpoint();
-            await endpoint.Send(new MyMessage(), options);
-            // or
-            await endpoint.SendLocal(new MyMessage());
+    async Task SpecificInstance(IEndpointInstance endpoint)
+    {
+        #region BasicSendSpecificInstance
 
-            #endregion
-        }
+        var options = new SendOptions();
+        options.RouteToSpecificInstance("MyInstance");
+        var message = new MyMessage();
+        await endpoint.Send(message, options);
 
-        async Task ThisInstance(IEndpointInstance endpoint)
-        {
-            #region BasicSendToThisInstance
+        #endregion
+    }
 
-            var options = new SendOptions();
-            options.RouteToThisInstance();
-            var message = new MyMessage();
-            await endpoint.Send(message, options);
+    async Task ThisEndpoint(IEndpointInstance endpoint)
+    {
+        #region BasicSendToAnyInstance
 
-            #endregion
-        }
+        var options = new SendOptions();
+        options.RouteToThisEndpoint();
+        await endpoint.Send(new MyMessage(), options);
+        // or
+        await endpoint.SendLocal(new MyMessage());
 
-        async Task SendReplyToThisInstance(IEndpointInstance endpoint)
-        {
-            #region BasicSendReplyToThisInstance
+        #endregion
+    }
 
-            var options = new SendOptions();
-            options.RouteReplyToThisInstance();
-            var message = new MyMessage();
-            await endpoint.Send(message, options);
+    async Task ThisInstance(IEndpointInstance endpoint)
+    {
+        #region BasicSendToThisInstance
 
-            #endregion
-        }
+        var options = new SendOptions();
+        options.RouteToThisInstance();
+        var message = new MyMessage();
+        await endpoint.Send(message, options);
 
-        async Task SendReplyToAnyInstance(IEndpointInstance endpoint)
-        {
-            #region BasicSendReplyToAnyInstance
+        #endregion
+    }
 
-            var options = new SendOptions();
-            options.RouteReplyToAnyInstance();
-            var message = new MyMessage();
-            await endpoint.Send(message, options);
+    async Task SendReplyToThisInstance(IEndpointInstance endpoint)
+    {
+        #region BasicSendReplyToThisInstance
 
-            #endregion
-        }
+        var options = new SendOptions();
+        options.RouteReplyToThisInstance();
+        var message = new MyMessage();
+        await endpoint.Send(message, options);
 
-        async Task SendReplyTo(IEndpointInstance endpoint)
-        {
-            #region BasicSendReplyToDestination
+        #endregion
+    }
 
-            var options = new SendOptions();
-            options.RouteReplyTo("MyDestination");
-            var message = new MyMessage();
-            await endpoint.Send(message, options);
+    async Task SendReplyToAnyInstance(IEndpointInstance endpoint)
+    {
+        #region BasicSendReplyToAnyInstance
 
-            #endregion
-        }
+        var options = new SendOptions();
+        options.RouteReplyToAnyInstance();
+        var message = new MyMessage();
+        await endpoint.Send(message, options);
 
-        async Task ReplySendReplyToThisInstance(IMessageHandlerContext context)
-        {
-            #region BasicReplyReplyToThisInstance
+        #endregion
+    }
 
-            var options = new ReplyOptions();
-            options.RouteReplyToThisInstance();
-            var myMessage = new MyMessage();
-            await context.Reply(myMessage, options);
+    async Task SendReplyTo(IEndpointInstance endpoint)
+    {
+        #region BasicSendReplyToDestination
 
-            #endregion
-        }
+        var options = new SendOptions();
+        options.RouteReplyTo("MyDestination");
+        var message = new MyMessage();
+        await endpoint.Send(message, options);
 
-        async Task ReplySendReplyToAnyInstance(IMessageHandlerContext context)
-        {
-            #region BasicReplyReplyToAnyInstance
+        #endregion
+    }
 
-            var options = new ReplyOptions();
-            options.RouteReplyToAnyInstance();
-            var myMessage = new MyMessage();
-            await context.Reply(myMessage, options);
+    async Task ReplySendReplyToThisInstance(IMessageHandlerContext context)
+    {
+        #region BasicReplyReplyToThisInstance
 
-            #endregion
-        }
+        var options = new ReplyOptions();
+        options.RouteReplyToThisInstance();
+        var myMessage = new MyMessage();
+        await context.Reply(myMessage, options);
 
-        async Task ReplySendReplyTo(IMessageHandlerContext context)
-        {
-            #region BasicReplyReplyToDestination
+        #endregion
+    }
 
-            var options = new ReplyOptions();
-            options.RouteReplyTo("MyDestination");
-            var myMessage = new MyMessage();
-            await context.Reply(myMessage, options);
+    async Task ReplySendReplyToAnyInstance(IMessageHandlerContext context)
+    {
+        #region BasicReplyReplyToAnyInstance
 
-            #endregion
-        }
+        var options = new ReplyOptions();
+        options.RouteReplyToAnyInstance();
+        var myMessage = new MyMessage();
+        await context.Reply(myMessage, options);
 
-        public class MyMessage
-        {
-        }
+        #endregion
+    }
 
-        public class OtherMessage
-        {
-        }
+    async Task ReplySendReplyTo(IMessageHandlerContext context)
+    {
+        #region BasicReplyReplyToDestination
+
+        var options = new ReplyOptions();
+        options.RouteReplyTo("MyDestination");
+        var myMessage = new MyMessage();
+        await context.Reply(myMessage, options);
+
+        #endregion
+    }
+
+    public class MyMessage
+    {
+    }
+
+    public class OtherMessage
+    {
     }
 }

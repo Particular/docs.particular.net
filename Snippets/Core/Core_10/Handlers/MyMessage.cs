@@ -1,7 +1,6 @@
-﻿namespace Core9.Handlers
+﻿namespace Core9.Handlers;
+
+public class MyMessage
 {
-    public class MyMessage
-    {
-        public string Data { get; set; }
-    }
+    public string Data { get; set; }
 }

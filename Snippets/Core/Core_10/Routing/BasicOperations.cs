@@ -1,100 +1,99 @@
-﻿namespace Core9.Routing
+﻿namespace Core9.Routing;
+
+using System.Threading.Tasks;
+using NServiceBus;
+
+class BasicOperations
 {
-    using System.Threading.Tasks;
-    using NServiceBus;
-
-    class BasicOperations
+    async Task InterfaceSend(IEndpointInstance endpoint)
     {
-        async Task InterfaceSend(IEndpointInstance endpoint)
-        {
-            #region InterfaceSend
+        #region InterfaceSend
 
-            await endpoint.Send<IMyMessage>(message =>
+        await endpoint.Send<IMyMessage>(message =>
+        {
+            message.SomeProperty = "Hello world";
+        });
+
+        #endregion
+    }
+
+    Task InterfaceReply(IMessageHandlerContext context)
+    {
+        #region InterfaceReply
+
+        return context.Reply<IMyReply>(message =>
+        {
+            message.SomeProperty = "Hello world";
+        });
+
+        #endregion
+    }
+
+    Task InterfacePublish(IMessageHandlerContext context)
+    {
+        #region InterfacePublish
+
+        return context.Publish<IMyEvent>(message =>
+        {
+            message.SomeProperty = "Hello world";
+        });
+
+        #endregion
+    }
+
+    class InterfaceMessageCreatedUpFront
+    {
+        IMessageHandlerContext context = null;
+        IMessageSession messageSession = null;
+
+        #region IMessageCreatorUsage
+
+        //IMessageCreator is available via dependency injection
+        async Task PublishEvent(IMessageCreator messageCreator)
+        {
+            var eventMessage = messageCreator.CreateInstance<IMyEvent>(message =>
             {
                 message.SomeProperty = "Hello world";
             });
 
-            #endregion
+
+            await messageSession.Publish(eventMessage);
+
+            //or if on a message handler
+
+            await context.Publish(eventMessage);
         }
 
-        Task InterfaceReply(IMessageHandlerContext context)
-        {
-            #region InterfaceReply
+        #endregion
+    }
 
-            return context.Reply<IMyReply>(message =>
-            {
-                message.SomeProperty = "Hello world";
-            });
+    async Task Subscribe(IEndpointInstance endpoint)
+    {
+        #region ExplicitSubscribe
 
-            #endregion
-        }
+        await endpoint.Subscribe<MyEvent>();
 
-        Task InterfacePublish(IMessageHandlerContext context)
-        {
-            #region InterfacePublish
+        await endpoint.Unsubscribe<MyEvent>();
 
-            return context.Publish<IMyEvent>(message =>
-            {
-                message.SomeProperty = "Hello world";
-            });
+        #endregion
+    }
 
-            #endregion
-        }
+    class MyEvent
+    {
+    }
 
-        class InterfaceMessageCreatedUpFront
-        {
-            IMessageHandlerContext context = null;
-            IMessageSession messageSession = null;
+    interface IMyMessage
+    {
+        string SomeProperty { get; set; }
+    }
 
-            #region IMessageCreatorUsage
+    interface IMyReply
+    {
+        string SomeProperty { get; set; }
+    }
 
-            //IMessageCreator is available via dependency injection
-            async Task PublishEvent(IMessageCreator messageCreator)
-            {
-                var eventMessage = messageCreator.CreateInstance<IMyEvent>(message =>
-                {
-                    message.SomeProperty = "Hello world";
-                });
-
-
-                await messageSession.Publish(eventMessage);
-
-                //or if on a message handler
-
-                await context.Publish(eventMessage);
-            }
-
-            #endregion
-        }
-
-        async Task Subscribe(IEndpointInstance endpoint)
-        {
-            #region ExplicitSubscribe
-
-            await endpoint.Subscribe<MyEvent>();
-
-            await endpoint.Unsubscribe<MyEvent>();
-
-            #endregion
-        }
-
-        class MyEvent
-        {
-        }
-
-        interface IMyMessage
-        {
-            string SomeProperty { get; set; }
-        }
-
-        interface IMyReply
-        {
-            string SomeProperty { get; set; }
-        }
-
-        interface IMyEvent
-        {
-            string SomeProperty { get; set; }
-        }
+    interface IMyEvent
+    {
+        string SomeProperty { get; set; }
     }
 }

@@ -1,10 +1,9 @@
-namespace Core9.PubSub.Publishing
-{
-    using NServiceBus;
+namespace Core9.PubSub.Publishing;
 
-    public class UserCreatedEvent :
-        IEvent
-    {
-        public string Name { get; set; }
-    }
+using NServiceBus;
+
+public class UserCreatedEvent :
+    IEvent
+{
+    public string Name { get; set; }
 }

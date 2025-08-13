@@ -1,7 +1,6 @@
-namespace Core9.Sagas.SimpleSaga
+namespace Core9.Sagas.SimpleSaga;
+
+public class StartOrder
 {
-    public class StartOrder
-    {
-        public string OrderId { get; set; }
-    }
+    public string OrderId { get; set; }
 }

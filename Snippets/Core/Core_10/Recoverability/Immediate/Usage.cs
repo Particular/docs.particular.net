@@ -1,35 +1,34 @@
-﻿namespace Core9.Recoverability.Immediate
+﻿namespace Core9.Recoverability.Immediate;
+
+using NServiceBus;
+
+public class Usage
 {
-    using NServiceBus;
-
-    public class Usage
+    void Configure(EndpointConfiguration endpointConfiguration)
     {
-        void Configure(EndpointConfiguration endpointConfiguration)
-        {
-            #region ImmediateRetriesConfiguration
+        #region ImmediateRetriesConfiguration
 
-            var recoverability = endpointConfiguration.Recoverability();
-            recoverability.Immediate(
-                immediate =>
-                {
-                    immediate.NumberOfRetries(3);
-                });
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Immediate(
+            immediate =>
+            {
+                immediate.NumberOfRetries(3);
+            });
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void Disabling(EndpointConfiguration endpointConfiguration)
-        {
-            #region DisablingImmediateRetriesConfiguration
+    void Disabling(EndpointConfiguration endpointConfiguration)
+    {
+        #region DisablingImmediateRetriesConfiguration
 
-            var recoverability = endpointConfiguration.Recoverability();
-            recoverability.Immediate(
-                immediate =>
-                {
-                    immediate.NumberOfRetries(0);
-                });
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.Immediate(
+            immediate =>
+            {
+                immediate.NumberOfRetries(0);
+            });
 
-            #endregion
-        }
+        #endregion
     }
 }

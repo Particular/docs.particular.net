@@ -1,47 +1,46 @@
-﻿namespace Core9
+﻿namespace Core9;
+
+using NServiceBus;
+
+class HandlerOrdering
 {
-    using NServiceBus;
-
-    class HandlerOrdering
+    void Simple(EndpointConfiguration endpointConfiguration)
     {
-        void Simple(EndpointConfiguration endpointConfiguration)
-        {
-        }
+    }
 
-        void SpecifyingFirst(EndpointConfiguration endpointConfiguration)
-        {
-            #region HandlerOrderingWithFirst
+    void SpecifyingFirst(EndpointConfiguration endpointConfiguration)
+    {
+        #region HandlerOrderingWithFirst
 
-            endpointConfiguration.ExecuteTheseHandlersFirst(typeof(HandlerB));
+        endpointConfiguration.ExecuteTheseHandlersFirst(typeof(HandlerB));
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void SpecifyingOrder(EndpointConfiguration endpointConfiguration)
-        {
-            #region HandlerOrderingWithMultiple
+    void SpecifyingOrder(EndpointConfiguration endpointConfiguration)
+    {
+        #region HandlerOrderingWithMultiple
 
-            endpointConfiguration.ExecuteTheseHandlersFirst(
-                typeof(HandlerB),
-                typeof(HandlerA),
-                typeof(HandlerC));
+        endpointConfiguration.ExecuteTheseHandlersFirst(
+            typeof(HandlerB),
+            typeof(HandlerA),
+            typeof(HandlerC));
 
-            #endregion
-        }
+        #endregion
+    }
 
-        public class HandlerA
-        {
+    public class HandlerA
+    {
 
-        }
+    }
 
-        public class HandlerB
-        {
+    public class HandlerB
+    {
 
-        }
+    }
 
-        public class HandlerC
-        {
+    public class HandlerC
+    {
 
-        }
     }
 }

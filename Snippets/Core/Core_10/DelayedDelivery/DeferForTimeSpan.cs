@@ -1,34 +1,33 @@
-﻿namespace Core9.DelayedDelivery
+﻿namespace Core9.DelayedDelivery;
+
+using System;
+using System.Threading.Tasks;
+using NServiceBus;
+
+class DeferForTimeSpan
 {
-    using System;
-    using System.Threading.Tasks;
-    using NServiceBus;
-
-    class DeferForTimeSpan
+    async Task SendDelayedMessage(EndpointConfiguration endpointConfiguration, IEndpointInstance endpoint, IMessageHandlerContext handlerContext)
     {
-        async Task SendDelayedMessage(EndpointConfiguration endpointConfiguration, IEndpointInstance endpoint, IMessageHandlerContext handlerContext)
-        {
-            #region configure-persistence-timeout
+        #region configure-persistence-timeout
 
-            //No configuration needed as of Version 8
+        //No configuration needed as of Version 8
 
-            #endregion
+        #endregion
 
-            #region delayed-delivery-timespan
+        #region delayed-delivery-timespan
 
-            var sendOptions = new SendOptions();
+        var sendOptions = new SendOptions();
 
-            sendOptions.DelayDeliveryWith(TimeSpan.FromMinutes(30));
+        sendOptions.DelayDeliveryWith(TimeSpan.FromMinutes(30));
 
-            await handlerContext.Send(new MessageToBeSentLater(), sendOptions);
-            // OR
-            await endpoint.Send(new MessageToBeSentLater(), sendOptions, handlerContext.CancellationToken);
+        await handlerContext.Send(new MessageToBeSentLater(), sendOptions);
+        // OR
+        await endpoint.Send(new MessageToBeSentLater(), sendOptions, handlerContext.CancellationToken);
 
-            #endregion
-        }
+        #endregion
+    }
 
-        class MessageToBeSentLater
-        {
-        }
+    class MessageToBeSentLater
+    {
     }
 }

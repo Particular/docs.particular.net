@@ -1,28 +1,27 @@
-﻿namespace Core9.EndpointName
+﻿namespace Core9.EndpointName;
+
+using NServiceBus;
+
+class Usage
 {
-    using NServiceBus;
-
-    class Usage
+    void EndpointNameCode()
     {
-        void EndpointNameCode()
-        {
-            #region EndpointNameCode
+        #region EndpointNameCode
 
-            var endpointConfiguration = new EndpointConfiguration("MyEndpoint");
+        var endpointConfiguration = new EndpointConfiguration("MyEndpoint");
 
-            #endregion
-        }
-        void InputQueueName(EndpointConfiguration endpointConfiguration)
-        {
-            #region InputQueueName
+        #endregion
+    }
+    void InputQueueName(EndpointConfiguration endpointConfiguration)
+    {
+        #region InputQueueName
 
-            endpointConfiguration.OverrideLocalAddress("MyEndpoint.Messages");
+        endpointConfiguration.OverrideLocalAddress("MyEndpoint.Messages");
 
-            #endregion
-        }
+        #endregion
+    }
 
-        class MyMessage
-        {
-        }
+    class MyMessage
+    {
     }
 }

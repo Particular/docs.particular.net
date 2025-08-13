@@ -1,88 +1,87 @@
-﻿namespace Core9.Headers.Writers
+﻿namespace Core9.Headers.Writers;
+
+using System;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using Common;
+using NServiceBus;
+using NServiceBus.Encryption.MessageProperty;
+using NServiceBus.MessageMutator;
+using NUnit.Framework;
+
+[TestFixture]
+public class HeaderWriterEncryption
 {
-    using System;
-    using System.Text;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Common;
-    using NServiceBus;
-    using NServiceBus.Encryption.MessageProperty;
-    using NServiceBus.MessageMutator;
-    using NUnit.Framework;
+    static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-    [TestFixture]
-    public class HeaderWriterEncryption
+    string endpointName = "HeaderWriterEncryptionV8";
+
+    [OneTimeTearDown]
+    public void TearDown()
     {
-        static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
+        ManualResetEvent.Dispose();
+    }
 
-        string endpointName = "HeaderWriterEncryptionV8";
+    [Test]
+    public async Task Write()
+    {
+        var endpointConfiguration = new EndpointConfiguration(endpointName);
+        var encryptionService = new AesEncryptionService(
+            encryptionKeyIdentifier: "2015-10",
+            key: Convert.FromBase64String("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
 
-        [OneTimeTearDown]
-        public void TearDown()
-        {
-            ManualResetEvent.Dispose();
-        }
-
-        [Test]
-        public async Task Write()
-        {
-            var endpointConfiguration = new EndpointConfiguration(endpointName);
-            var encryptionService = new AesEncryptionService(
-                encryptionKeyIdentifier: "2015-10",
-                key: Convert.FromBase64String("gdDbqRpqdRbTs3mhdZh9qCaDaxJXl+e6"));
-
-            endpointConfiguration.EnableMessagePropertyEncryption(
-                encryptionService: encryptionService,
-                encryptedPropertyConvention: propertyInfo =>
-                {
-                    return propertyInfo.Name.EndsWith("EncryptedProperty");
-                }
-            );
-
-            var conventions = endpointConfiguration.Conventions();
-            var typesToScan = TypeScanner.NestedTypes<HeaderWriterEncryption>();
-            endpointConfiguration.SetTypesToScan(typesToScan);
-            endpointConfiguration.UseTransport(new LearningTransport());
-            endpointConfiguration.RegisterMessageMutator(new Mutator());
-
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
-            var messageToSend = new MessageToSend
+        endpointConfiguration.EnableMessagePropertyEncryption(
+            encryptionService: encryptionService,
+            encryptedPropertyConvention: propertyInfo =>
             {
-                EncryptedProperty1 = "String 1",
-                EncryptedProperty2 = "String 2"
-            };
-            await endpointInstance.SendLocal(messageToSend);
-            ManualResetEvent.WaitOne();
-        }
-
-        class MessageToSend :
-            IMessage
-        {
-            public string EncryptedProperty1 { get; set; }
-            public string EncryptedProperty2 { get; set; }
-        }
-
-        class MessageHandler :
-            IHandleMessages<MessageToSend>
-        {
-            public Task Handle(MessageToSend message, IMessageHandlerContext context)
-            {
-                return Task.CompletedTask;
+                return propertyInfo.Name.EndsWith("EncryptedProperty");
             }
-        }
+        );
 
-        class Mutator :
-            IMutateIncomingTransportMessages
+        var conventions = endpointConfiguration.Conventions();
+        var typesToScan = TypeScanner.NestedTypes<HeaderWriterEncryption>();
+        endpointConfiguration.SetTypesToScan(typesToScan);
+        endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.RegisterMessageMutator(new Mutator());
+
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        var messageToSend = new MessageToSend
         {
-            public Task MutateIncoming(MutateIncomingTransportMessageContext context)
-            {
-                var headerText = HeaderWriter.ToFriendlyString<HeaderWriterEncryption>(context.Headers);
-                SnippetLogger.Write(headerText);
-                SnippetLogger.Write(Encoding.Default.GetString(context.Body.ToArray()),
-                    suffix: "Body");
-                ManualResetEvent.Set();
-                return Task.CompletedTask;
-            }
+            EncryptedProperty1 = "String 1",
+            EncryptedProperty2 = "String 2"
+        };
+        await endpointInstance.SendLocal(messageToSend);
+        ManualResetEvent.WaitOne();
+    }
+
+    class MessageToSend :
+        IMessage
+    {
+        public string EncryptedProperty1 { get; set; }
+        public string EncryptedProperty2 { get; set; }
+    }
+
+    class MessageHandler :
+        IHandleMessages<MessageToSend>
+    {
+        public Task Handle(MessageToSend message, IMessageHandlerContext context)
+        {
+            return Task.CompletedTask;
+        }
+    }
+
+    class Mutator :
+        IMutateIncomingTransportMessages
+    {
+        public Task MutateIncoming(MutateIncomingTransportMessageContext context)
+        {
+            var headerText = HeaderWriter.ToFriendlyString<HeaderWriterEncryption>(context.Headers);
+            SnippetLogger.Write(headerText);
+            SnippetLogger.Write(Encoding.Default.GetString(context.Body.ToArray()),
+                suffix: "Body");
+            ManualResetEvent.Set();
+            return Task.CompletedTask;
         }
     }
 }

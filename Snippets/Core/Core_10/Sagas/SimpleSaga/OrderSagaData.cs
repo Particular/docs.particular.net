@@ -1,25 +1,24 @@
-﻿namespace Core9.Sagas.SimpleSaga
+﻿namespace Core9.Sagas.SimpleSaga;
+
+using NServiceBus;
+
+#region simple-saga-data
+public class OrderSagaData :
+    ContainSagaData
 {
-    using NServiceBus;
+    public string OrderId { get; set; }
+}
+#endregion
 
-    #region simple-saga-data
-    public class OrderSagaData :
-        ContainSagaData
+
+public class SagaValidation
+{
+    void Simple(EndpointConfiguration endpointConfiguration)
     {
-        public string OrderId { get; set; }
-    }
-    #endregion
+        #region disable-shared-state-validation
 
+        endpointConfiguration.Sagas().DisableBestPracticeValidation();
 
-    public class SagaValidation
-    {
-        void Simple(EndpointConfiguration endpointConfiguration)
-        {
-            #region disable-shared-state-validation
-
-            endpointConfiguration.Sagas().DisableBestPracticeValidation();
-
-            #endregion
-        }
+        #endregion
     }
 }

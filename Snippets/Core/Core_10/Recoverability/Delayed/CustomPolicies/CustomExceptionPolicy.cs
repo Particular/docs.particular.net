@@ -1,17 +1,16 @@
-namespace Core9.Recoverability.Delayed.CustomPolicies
+namespace Core9.Recoverability.Delayed.CustomPolicies;
+
+using NServiceBus;
+
+class CustomExceptionPolicy
 {
-    using NServiceBus;
-
-    class CustomExceptionPolicy
+    CustomExceptionPolicy(EndpointConfiguration endpointConfiguration)
     {
-        CustomExceptionPolicy(EndpointConfiguration endpointConfiguration)
-        {
-            #region CustomExceptionPolicyHandler
+        #region CustomExceptionPolicyHandler
 
-            var recoverability = endpointConfiguration.Recoverability();
-            recoverability.AddUnrecoverableException<MyBusinessException>();
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.AddUnrecoverableException<MyBusinessException>();
 
-            #endregion
-        }
+        #endregion
     }
 }

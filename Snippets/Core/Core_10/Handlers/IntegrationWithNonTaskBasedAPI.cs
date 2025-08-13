@@ -1,50 +1,49 @@
-﻿namespace Core9.Handlers
+﻿namespace Core9.Handlers;
+
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using NServiceBus;
+
+#region HandlerWhichIntegratesWithEvent
+
+public class HandlerWhichIntegratesWithEvent :
+    IHandleMessages<MyMessage>
 {
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using NServiceBus;
-
-    #region HandlerWhichIntegratesWithEvent
-
-    public class HandlerWhichIntegratesWithEvent :
-        IHandleMessages<MyMessage>
+    public async Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        public async Task Handle(MyMessage message, IMessageHandlerContext context)
+        var cancellationToken = new CancellationTokenSource();
+        cancellationToken.CancelAfter(TimeSpan.FromSeconds(10));
+
+        var taskCompletionSource = new TaskCompletionSource<object>();
+
+        using (cancellationToken.Token.Register(
+                   callback: state =>
+                   {
+                       var completionSource = (TaskCompletionSource<object>)state;
+                       completionSource.TrySetCanceled();
+                   },
+                   state: taskCompletionSource))
         {
-            var cancellationToken = new CancellationTokenSource();
-            cancellationToken.CancelAfter(TimeSpan.FromSeconds(10));
-
-            var taskCompletionSource = new TaskCompletionSource<object>();
-
-            using (cancellationToken.Token.Register(
-                callback: state =>
-                {
-                    var completionSource = (TaskCompletionSource<object>)state;
-                    completionSource.TrySetCanceled();
-                },
-                state: taskCompletionSource))
+            var dependency = new DependencyWhichRaisedEvent();
+            dependency.MyEvent += (sender, args) =>
             {
-                var dependency = new DependencyWhichRaisedEvent();
-                dependency.MyEvent += (sender, args) =>
-                {
-                    taskCompletionSource.TrySetResult(null);
-                };
+                taskCompletionSource.TrySetResult(null);
+            };
 
-                await taskCompletionSource.Task;
-            }
+            await taskCompletionSource.Task;
         }
     }
+}
 
-    #endregion
+#endregion
 
-    public class DependencyWhichRaisedEvent
+public class DependencyWhichRaisedEvent
+{
+    public event EventHandler MyEvent;
+
+    protected virtual void OnMyEvent()
     {
-        public event EventHandler MyEvent;
-
-        protected virtual void OnMyEvent()
-        {
-            MyEvent?.Invoke(this, EventArgs.Empty);
-        }
+        MyEvent?.Invoke(this, EventArgs.Empty);
     }
 }

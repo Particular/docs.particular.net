@@ -1,65 +1,64 @@
-﻿namespace Core9
+﻿namespace Core9;
+
+using NServiceBus;
+
+class TransportTransactions
 {
-    using NServiceBus;
-
-    class TransportTransactions
+    void Unreliable(EndpointConfiguration endpointConfiguration)
     {
-        void Unreliable(EndpointConfiguration endpointConfiguration)
+        #region TransactionsDisable
+
+        var transport = endpointConfiguration.UseTransport(new TransportDefinition
         {
-            #region TransactionsDisable
+            TransportTransactionMode = TransportTransactionMode.None
+        });
 
-            var transport = endpointConfiguration.UseTransport(new TransportDefinition
-            {
-                TransportTransactionMode = TransportTransactionMode.None
-            });
+        #endregion
+    }
 
-            #endregion
-        }
+    void TransportTransactionReceiveOnly(EndpointConfiguration endpointConfiguration)
+    {
+        #region TransportTransactionReceiveOnly
 
-        void TransportTransactionReceiveOnly(EndpointConfiguration endpointConfiguration)
+        var transport = endpointConfiguration.UseTransport(new TransportDefinition
         {
-            #region TransportTransactionReceiveOnly
+            TransportTransactionMode = TransportTransactionMode.ReceiveOnly
+        });
 
-            var transport = endpointConfiguration.UseTransport(new TransportDefinition
-            {
-                TransportTransactionMode = TransportTransactionMode.ReceiveOnly
-            });
+        #endregion
+    }
 
-            #endregion
-        }
+    void TransportTransactionAtomicSendsWithReceive(EndpointConfiguration endpointConfiguration)
+    {
+        #region TransportTransactionAtomicSendsWithReceive
 
-        void TransportTransactionAtomicSendsWithReceive(EndpointConfiguration endpointConfiguration)
+        var transport = endpointConfiguration.UseTransport(new TransportDefinition
         {
-            #region TransportTransactionAtomicSendsWithReceive
+            TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
+        });
 
-            var transport = endpointConfiguration.UseTransport(new TransportDefinition
-            {
-                TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive
-            });
+        #endregion
+    }
 
-            #endregion
-        }
+    void TransportTransactionScope(EndpointConfiguration endpointConfiguration)
+    {
+        #region TransportTransactionScope
 
-        void TransportTransactionScope(EndpointConfiguration endpointConfiguration)
+        var transport = endpointConfiguration.UseTransport(new TransportDefinition
         {
-            #region TransportTransactionScope
+            TransportTransactionMode = TransportTransactionMode.TransactionScope
+        });
 
-            var transport = endpointConfiguration.UseTransport(new TransportDefinition
-            {
-                TransportTransactionMode = TransportTransactionMode.TransactionScope
-            });
+        #endregion
+    }
 
-            #endregion
-        }
+    void TransportTransactionsWithScope(EndpointConfiguration endpointConfiguration)
+    {
+        #region TransactionsWrapHandlersExecutionInATransactionScope
 
-        void TransportTransactionsWithScope(EndpointConfiguration endpointConfiguration)
-        {
-            #region TransactionsWrapHandlersExecutionInATransactionScope
+        var unitOfWorkSettings = endpointConfiguration.UnitOfWork();
+        unitOfWorkSettings.WrapHandlersInATransactionScope();
 
-            var unitOfWorkSettings = endpointConfiguration.UnitOfWork();
-            unitOfWorkSettings.WrapHandlersInATransactionScope();
-
-            #endregion
-        }
+        #endregion
     }
 }

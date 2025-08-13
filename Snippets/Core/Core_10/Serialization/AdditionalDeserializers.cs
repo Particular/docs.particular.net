@@ -1,18 +1,17 @@
-﻿namespace Core9.Serialization
-{
-    using NServiceBus;
+﻿namespace Core9.Serialization;
 
-    class AdditionalDeserializers
+using NServiceBus;
+
+class AdditionalDeserializers
+{
+    AdditionalDeserializers(EndpointConfiguration endpointConfiguration)
     {
-        AdditionalDeserializers(EndpointConfiguration endpointConfiguration)
-        {
-            #region AdditionalDeserializers
-            // Configures new default serialization
-            var mySerializer = endpointConfiguration.UseSerialization<MyCustomSerializerDefinition>();
-            mySerializer.Settings("serializerSetting");
-            // Configures additional deserializer, like the previous (default) serializer to be compatible with in-flight messages.
-            endpointConfiguration.AddDeserializer<XmlSerializer>();
-            #endregion
-        }
+        #region AdditionalDeserializers
+        // Configures new default serialization
+        var mySerializer = endpointConfiguration.UseSerialization<MyCustomSerializerDefinition>();
+        mySerializer.Settings("serializerSetting");
+        // Configures additional deserializer, like the previous (default) serializer to be compatible with in-flight messages.
+        endpointConfiguration.AddDeserializer<XmlSerializer>();
+        #endregion
     }
 }

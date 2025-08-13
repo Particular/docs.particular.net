@@ -1,33 +1,32 @@
-﻿namespace Core9.Recoverability
+﻿namespace Core9.Recoverability;
+
+using System;
+using NServiceBus;
+using NServiceBus.Settings;
+
+public class UnrecoverableExceptions
 {
-    using System;
-    using NServiceBus;
-    using NServiceBus.Settings;
-
-    public class UnrecoverableExceptions
+    void Configure(EndpointConfiguration endpointConfiguration)
     {
-        void Configure(EndpointConfiguration endpointConfiguration)
-        {
-            #region UnrecoverableExceptions
+        #region UnrecoverableExceptions
 
-            var recoverability = endpointConfiguration.Recoverability();
-            recoverability.AddUnrecoverableException<ValidationException>();
-            recoverability.AddUnrecoverableException(typeof(ArgumentException));
+        var recoverability = endpointConfiguration.Recoverability();
+        recoverability.AddUnrecoverableException<ValidationException>();
+        recoverability.AddUnrecoverableException(typeof(ArgumentException));
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void Configure(SettingsHolder settings)
-        {
-            #region UnrecoverableExceptionsSettings
+    void Configure(SettingsHolder settings)
+    {
+        #region UnrecoverableExceptionsSettings
 
-            settings.AddUnrecoverableException(typeof(ValidationException));
+        settings.AddUnrecoverableException(typeof(ValidationException));
 
-            #endregion
-        }
+        #endregion
+    }
 
-        class ValidationException : Exception
-        {
-        }
+    class ValidationException : Exception
+    {
     }
 }

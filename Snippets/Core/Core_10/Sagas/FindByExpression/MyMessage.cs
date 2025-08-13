@@ -1,8 +1,7 @@
-namespace Core9.Sagas.FindByExpression
+namespace Core9.Sagas.FindByExpression;
+
+public class MyMessage
 {
-    public class MyMessage
-    {
-        public string Part1 { get; set; }
-        public string Part2 { get; set; }
-    }
+    public string Part1 { get; set; }
+    public string Part2 { get; set; }
 }

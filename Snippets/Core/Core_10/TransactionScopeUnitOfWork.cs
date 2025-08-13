@@ -1,41 +1,40 @@
-﻿namespace Core9
+﻿namespace Core9;
+
+using System;
+using System.Transactions;
+using NServiceBus;
+
+class TransactionScopeUnitOfWork
 {
-    using System;
-    using System.Transactions;
-    using NServiceBus;
-
-    class TransactionScopeUnitOfWork
+    void UnitOfWorkWrapHandlersInATransactionScope(EndpointConfiguration endpointConfiguration)
     {
-        void UnitOfWorkWrapHandlersInATransactionScope(EndpointConfiguration endpointConfiguration)
-        {
-            #region UnitOfWorkWrapHandlersInATransactionScope
+        #region UnitOfWorkWrapHandlersInATransactionScope
 
-            var unitOfWork = endpointConfiguration.UnitOfWork();
-            unitOfWork.WrapHandlersInATransactionScope();
+        var unitOfWork = endpointConfiguration.UnitOfWork();
+        unitOfWork.WrapHandlersInATransactionScope();
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void UnitOfWorkCustomTransactionIsolationLevel(EndpointConfiguration endpointConfiguration)
-        {
-            #region UnitOfWorkCustomTransactionIsolationLevel
+    void UnitOfWorkCustomTransactionIsolationLevel(EndpointConfiguration endpointConfiguration)
+    {
+        #region UnitOfWorkCustomTransactionIsolationLevel
 
-            var unitOfWork = endpointConfiguration.UnitOfWork();
-            unitOfWork.WrapHandlersInATransactionScope(
-                isolationLevel: IsolationLevel.RepeatableRead);
+        var unitOfWork = endpointConfiguration.UnitOfWork();
+        unitOfWork.WrapHandlersInATransactionScope(
+            isolationLevel: IsolationLevel.RepeatableRead);
 
-            #endregion
-        }
+        #endregion
+    }
 
-        void UnitOfWorkCustomTransactionTimeout(EndpointConfiguration endpointConfiguration)
-        {
-            #region UnitOfWorkCustomTransactionTimeout
+    void UnitOfWorkCustomTransactionTimeout(EndpointConfiguration endpointConfiguration)
+    {
+        #region UnitOfWorkCustomTransactionTimeout
 
-            var unitOfWork = endpointConfiguration.UnitOfWork();
-            unitOfWork.WrapHandlersInATransactionScope(
-                timeout: TimeSpan.FromSeconds(30));
+        var unitOfWork = endpointConfiguration.UnitOfWork();
+        unitOfWork.WrapHandlersInATransactionScope(
+            timeout: TimeSpan.FromSeconds(30));
 
-            #endregion
-        }
+        #endregion
     }
 }

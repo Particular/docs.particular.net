@@ -1,38 +1,37 @@
-namespace Core9.Handlers.DataAccess
+namespace Core9.Handlers.DataAccess;
+
+using System;
+using System.Threading.Tasks;
+using NServiceBus;
+
+public class ManualIdempotence : IHandleMessages<MyMessage>
 {
-    using System;
-    using System.Threading.Tasks;
-    using NServiceBus;
+    #region BusinessData-ManualIdempotence
 
-    public class ManualIdempotence : IHandleMessages<MyMessage>
+    public async Task Handle(MyMessage message,
+        IMessageHandlerContext context)
     {
-        #region BusinessData-ManualIdempotence
-
-        public async Task Handle(MyMessage message,
-            IMessageHandlerContext context)
+        if (IsDuplicate(message))
         {
-            if (IsDuplicate(message))
-            {
-                return;
-            }
-            await context.Send(new MyOutgoingMessage());
-            await ModifyState();
+            return;
         }
+        await context.Send(new MyOutgoingMessage());
+        await ModifyState();
+    }
 
-        #endregion
+    #endregion
 
-        Task ModifyState()
-        {
-            throw new NotImplementedException();
-        }
+    Task ModifyState()
+    {
+        throw new NotImplementedException();
+    }
 
-        bool IsDuplicate(MyMessage message)
-        {
-            throw new NotImplementedException();
-        }
+    bool IsDuplicate(MyMessage message)
+    {
+        throw new NotImplementedException();
+    }
 
-        public class MyOutgoingMessage : IMessage
-        {
-        }
+    public class MyOutgoingMessage : IMessage
+    {
     }
 }

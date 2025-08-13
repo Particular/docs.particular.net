@@ -1,20 +1,19 @@
-﻿namespace Core9.Headers
-{
-    using System.Threading.Tasks;
-    using NServiceBus;
-    using NServiceBus.MessageMutator;
+﻿namespace Core9.Headers;
 
-    #region header-incoming-mutator
-    public class MutateIncomingTransportMessages :
-        IMutateIncomingTransportMessages
+using System.Threading.Tasks;
+using NServiceBus;
+using NServiceBus.MessageMutator;
+
+#region header-incoming-mutator
+public class MutateIncomingTransportMessages :
+    IMutateIncomingTransportMessages
+{
+    public Task MutateIncoming(MutateIncomingTransportMessageContext context)
     {
-        public Task MutateIncoming(MutateIncomingTransportMessageContext context)
-        {
-            var headers = context.Headers;
-            var nsbVersion = headers[Headers.NServiceBusVersion];
-            var customHeader = headers["MyCustomHeader"];
-            return Task.CompletedTask;
-        }
+        var headers = context.Headers;
+        var nsbVersion = headers[Headers.NServiceBusVersion];
+        var customHeader = headers["MyCustomHeader"];
+        return Task.CompletedTask;
     }
-    #endregion
 }
+#endregion

@@ -1,10 +1,9 @@
-namespace Core9.Sagas.FindByExpression
-{
-    using NServiceBus;
+namespace Core9.Sagas.FindByExpression;
 
-    public class MySagaData :
-        ContainSagaData
-    {
-        public string SomeId { get; set; }
-    }
+using NServiceBus;
+
+public class MySagaData :
+    ContainSagaData
+{
+    public string SomeId { get; set; }
 }

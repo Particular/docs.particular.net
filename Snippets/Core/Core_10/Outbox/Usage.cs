@@ -1,17 +1,16 @@
-﻿namespace Core9.Outbox
+﻿namespace Core9.Outbox;
+
+using NServiceBus;
+
+class Usage
 {
-    using NServiceBus;
-
-    class Usage
+    Usage(EndpointConfiguration endpointConfiguration)
     {
-        Usage(EndpointConfiguration endpointConfiguration)
-        {
-            #region OutboxEnablineInCode
+        #region OutboxEnablineInCode
 
-            endpointConfiguration.EnableOutbox();
+        endpointConfiguration.EnableOutbox();
 
-            #endregion
-        }
-
+        #endregion
     }
+
 }

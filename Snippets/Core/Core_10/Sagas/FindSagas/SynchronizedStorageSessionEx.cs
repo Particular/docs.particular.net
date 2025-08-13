@@ -1,22 +1,21 @@
-﻿namespace Core9.Sagas.FindSagas
+﻿namespace Core9.Sagas.FindSagas;
+
+using System;
+using System.Threading.Tasks;
+using NServiceBus.Persistence;
+
+public static class SynchronizedStorageSessionEx
 {
-    using System;
-    using System.Threading.Tasks;
-    using NServiceBus.Persistence;
-
-    public static class SynchronizedStorageSessionEx
+    public static DbSession GetDbSession(this ISynchronizedStorageSession session)
     {
-        public static DbSession GetDbSession(this ISynchronizedStorageSession session)
-        {
-            throw new NotImplementedException();
-        }
+        throw new NotImplementedException();
     }
+}
 
-    public class DbSession
+public class DbSession
+{
+    public Task<MySagaData> GetSagaFromDB(string messageSomeId, string messageSomeData)
     {
-        public Task<MySagaData> GetSagaFromDB(string messageSomeId, string messageSomeData)
-        {
-            throw new NotImplementedException();
-        }
+        throw new NotImplementedException();
     }
 }

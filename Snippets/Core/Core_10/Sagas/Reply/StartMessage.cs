@@ -1,7 +1,6 @@
-namespace Core9.Sagas.Reply
+namespace Core9.Sagas.Reply;
+
+public class StartMessage
 {
-    public class StartMessage
-    {
-        public string SomeId { get; set; }
-    }
+    public string SomeId { get; set; }
 }

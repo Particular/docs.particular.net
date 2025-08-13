@@ -1,63 +1,62 @@
-﻿namespace Core9.Headers.Writers
+﻿namespace Core9.Headers.Writers;
+
+using System.Threading;
+using System.Threading.Tasks;
+using Common;
+using NServiceBus;
+using NServiceBus.MessageMutator;
+using NUnit.Framework;
+
+[TestFixture]
+public class HeaderWriterSend
 {
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Common;
-    using NServiceBus;
-    using NServiceBus.MessageMutator;
-    using NUnit.Framework;
+    static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-    [TestFixture]
-    public class HeaderWriterSend
+    string endpointName = "HeaderWriterSendV8";
+
+    [OneTimeTearDown]
+    public void TearDown()
     {
-        static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
+        ManualResetEvent.Dispose();
+    }
 
-        string endpointName = "HeaderWriterSendV8";
+    [Test]
+    public async Task Write()
+    {
+        var endpointConfiguration = new EndpointConfiguration(endpointName);
+        var typesToScan = TypeScanner.NestedTypes<HeaderWriterSend>();
+        endpointConfiguration.SetTypesToScan(typesToScan);
+        endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.RegisterMessageMutator(new Mutator());
 
-        [OneTimeTearDown]
-        public void TearDown()
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        await endpointInstance.SendLocal(new MessageToSend());
+        ManualResetEvent.WaitOne();
+    }
+
+    class MessageToSend :
+        IMessage
+    {
+    }
+
+    class MessageHandler :
+        IHandleMessages<MessageToSend>
+    {
+        public Task Handle(MessageToSend message, IMessageHandlerContext context)
         {
-            ManualResetEvent.Dispose();
+            return Task.CompletedTask;
         }
+    }
 
-        [Test]
-        public async Task Write()
+    class Mutator :
+        IMutateIncomingTransportMessages
+    {
+        public Task MutateIncoming(MutateIncomingTransportMessageContext context)
         {
-            var endpointConfiguration = new EndpointConfiguration(endpointName);
-            var typesToScan = TypeScanner.NestedTypes<HeaderWriterSend>();
-            endpointConfiguration.SetTypesToScan(typesToScan);
-            endpointConfiguration.UseTransport(new LearningTransport());
-            endpointConfiguration.RegisterMessageMutator(new Mutator());
-
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
-            await endpointInstance.SendLocal(new MessageToSend());
-            ManualResetEvent.WaitOne();
-        }
-
-        class MessageToSend :
-            IMessage
-        {
-        }
-
-        class MessageHandler :
-            IHandleMessages<MessageToSend>
-        {
-            public Task Handle(MessageToSend message, IMessageHandlerContext context)
-            {
-                return Task.CompletedTask;
-            }
-        }
-
-        class Mutator :
-            IMutateIncomingTransportMessages
-        {
-            public Task MutateIncoming(MutateIncomingTransportMessageContext context)
-            {
-                var headerText = HeaderWriter.ToFriendlyString<HeaderWriterSend>(context.Headers);
-                SnippetLogger.Write(headerText);
-                ManualResetEvent.Set();
-                return Task.CompletedTask;
-            }
+            var headerText = HeaderWriter.ToFriendlyString<HeaderWriterSend>(context.Headers);
+            SnippetLogger.Write(headerText);
+            ManualResetEvent.Set();
+            return Task.CompletedTask;
         }
     }
 }

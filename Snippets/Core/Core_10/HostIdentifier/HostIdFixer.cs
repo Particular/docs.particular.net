@@ -1,29 +1,28 @@
-﻿namespace Core9.HostIdentifier
+﻿namespace Core9.HostIdentifier;
+
+using System;
+using NServiceBus;
+
+class HostIdFixer
 {
-    using System;
-    using NServiceBus;
-
-    class HostIdFixer
+    HostIdFixer(EndpointConfiguration endpointConfiguration)
     {
-        HostIdFixer(EndpointConfiguration endpointConfiguration)
-        {
-            #region HostIdFixer
+        #region HostIdFixer
 
-            endpointConfiguration.UniquelyIdentifyRunningInstance()
-                .UsingNames(
-                    instanceName: "endpointName",
-                    hostName: Environment.MachineName);
-            // or
-            var hostId = CreateMyUniqueIdThatIsTheSameAcrossRestarts();
-            endpointConfiguration.UniquelyIdentifyRunningInstance()
-                .UsingCustomIdentifier(hostId);
+        endpointConfiguration.UniquelyIdentifyRunningInstance()
+            .UsingNames(
+                instanceName: "endpointName",
+                hostName: Environment.MachineName);
+        // or
+        var hostId = CreateMyUniqueIdThatIsTheSameAcrossRestarts();
+        endpointConfiguration.UniquelyIdentifyRunningInstance()
+            .UsingCustomIdentifier(hostId);
 
-            #endregion
-        }
+        #endregion
+    }
 
-        Guid CreateMyUniqueIdThatIsTheSameAcrossRestarts()
-        {
-            throw new NotImplementedException();
-        }
+    Guid CreateMyUniqueIdThatIsTheSameAcrossRestarts()
+    {
+        throw new NotImplementedException();
     }
 }

@@ -1,26 +1,24 @@
-﻿namespace Core9.Sagas.FindByProperty
+﻿namespace Core9.Sagas.FindByProperty;
+
+using System.Threading.Tasks;
+using NServiceBus;
+
+public class MySaga :
+    Saga<MySagaData>,
+    IAmStartedByMessages<MyMessage>
 {
-    using System.Threading.Tasks;
-    using NServiceBus;
+    #region saga-find-by-property
 
-    public class MySaga :
-        Saga<MySagaData>,
-        IAmStartedByMessages<MyMessage>
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
     {
-        #region saga-find-by-property
-
-        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
-        {
-            mapper.MapSaga(sagaData => sagaData.SomeId)
-                .ToMessage<MyMessage>(message => message.SomeId);
-        }
-
-        #endregion
-
-        public Task Handle(MyMessage message, IMessageHandlerContext context)
-        {
-            return Task.CompletedTask;
-        }
+        mapper.MapSaga(sagaData => sagaData.SomeId)
+            .ToMessage<MyMessage>(message => message.SomeId);
     }
 
+    #endregion
+
+    public Task Handle(MyMessage message, IMessageHandlerContext context)
+    {
+        return Task.CompletedTask;
+    }
 }

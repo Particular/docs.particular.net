@@ -1,6 +1,5 @@
-namespace Core9.Pipeline.Abort
+namespace Core9.Pipeline.Abort;
+
+class MyMessage
 {
-    class MyMessage
-    {
-    }
 }

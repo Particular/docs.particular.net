@@ -1,14 +1,13 @@
-﻿namespace Core9.Transports.Throughput
-{
-    using NServiceBus;
+﻿namespace Core9.Transports.Throughput;
 
-    class ConcurrencyConfiguration
+using NServiceBus;
+
+class ConcurrencyConfiguration
+{
+    ConcurrencyConfiguration(EndpointConfiguration endpointConfiguration)
     {
-        ConcurrencyConfiguration(EndpointConfiguration endpointConfiguration)
-        {
-            #region TuningFromCode
-            endpointConfiguration.LimitMessageProcessingConcurrencyTo(5);
-            #endregion
-        }
+        #region TuningFromCode
+        endpointConfiguration.LimitMessageProcessingConcurrencyTo(5);
+        #endregion
     }
 }

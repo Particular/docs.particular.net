@@ -1,24 +1,22 @@
-﻿namespace Core9
+﻿namespace Core9;
+
+using Microsoft.Extensions.DependencyInjection;
+using NServiceBus;
+
+class InstancePerUnitOfWorkRegistration
 {
-    using Microsoft.Extensions.DependencyInjection;
-    using NServiceBus;
-
-    class InstancePerUnitOfWorkRegistration
+    InstancePerUnitOfWorkRegistration(EndpointConfiguration endpointConfiguration)
     {
-        InstancePerUnitOfWorkRegistration(EndpointConfiguration endpointConfiguration)
-        {
-            #region InstancePerUnitOfWorkRegistration
+        #region InstancePerUnitOfWorkRegistration
 
-            endpointConfiguration.RegisterComponents(
-                registration: components =>
-                {
-                    components.AddScoped<InstancePerUnitOfWork>();
-                });
+        endpointConfiguration.RegisterComponents(
+            registration: components =>
+            {
+                components.AddScoped<InstancePerUnitOfWork>();
+            });
 
-            #endregion
-        }
-
-        class InstancePerUnitOfWork { }
+        #endregion
     }
 
+    class InstancePerUnitOfWork { }
 }

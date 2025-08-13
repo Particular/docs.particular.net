@@ -1,33 +1,32 @@
-namespace Core9.Handlers.DataAccess
+namespace Core9.Handlers.DataAccess;
+
+using System;
+using System.Threading.Tasks;
+using NServiceBus;
+using NServiceBus.Persistence;
+
+public class API : IHandleMessages<MyMessage>
 {
-    using System;
-    using System.Threading.Tasks;
-    using NServiceBus;
-    using NServiceBus.Persistence;
+    #region BusinessData-SynchronizedStorageSession
 
-    public class API : IHandleMessages<MyMessage>
+    public Task Handle(MyMessage message,
+        IMessageHandlerContext context)
     {
-        #region BusinessData-SynchronizedStorageSession
+        var session = context.SynchronizedStorageSession
+            .MyPersistenceSession();
 
-        public Task Handle(MyMessage message,
-            IMessageHandlerContext context)
-        {
-            var session = context.SynchronizedStorageSession
-                .MyPersistenceSession();
+        //Business logic
 
-            //Business logic
-
-            return Task.CompletedTask;
-        }
-
-        #endregion
+        return Task.CompletedTask;
     }
 
-    public static class MyOrmExtensions
+    #endregion
+}
+
+public static class MyOrmExtensions
+{
+    public static object MyPersistenceSession(this ISynchronizedStorageSession s)
     {
-        public static object MyPersistenceSession(this ISynchronizedStorageSession s)
-        {
-            throw new NotImplementedException();
-        }
+        throw new NotImplementedException();
     }
 }

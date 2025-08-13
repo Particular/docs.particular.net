@@ -1,20 +1,19 @@
-﻿namespace Core9.Lifecycle
+﻿namespace Core9.Lifecycle;
+
+using NServiceBus;
+
+#region lifecycle-ineedinitialization
+
+class NeedsInitialization :
+    INeedInitialization
 {
-    using NServiceBus;
-
-    #region lifecycle-ineedinitialization
-
-    class NeedsInitialization :
-        INeedInitialization
+    public void Customize(EndpointConfiguration endpointConfiguration)
     {
-        public void Customize(EndpointConfiguration endpointConfiguration)
-        {
-            // Perform initialization
-            // This is after Type Scanning.
-            // Do NOT call the following here:
-            // endpointConfiguration.AssemblyScanner();
-        }
+        // Perform initialization
+        // This is after Type Scanning.
+        // Do NOT call the following here:
+        // endpointConfiguration.AssemblyScanner();
     }
-
-    #endregion
 }
+
+#endregion

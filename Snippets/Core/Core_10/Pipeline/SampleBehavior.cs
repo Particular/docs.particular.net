@@ -1,23 +1,22 @@
-﻿namespace Core9.Pipeline
+﻿namespace Core9.Pipeline;
+
+using System;
+using System.Threading.Tasks;
+using NServiceBus.Pipeline;
+
+#region SamplePipelineBehavior
+
+public class SampleBehavior :
+    Behavior<IIncomingLogicalMessageContext>
 {
-    using System;
-    using System.Threading.Tasks;
-    using NServiceBus.Pipeline;
-
-    #region SamplePipelineBehavior
-
-    public class SampleBehavior :
-        Behavior<IIncomingLogicalMessageContext>
+    public override async Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
     {
-        public override async Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
-        {
-            // custom logic before calling the next step in the pipeline.
+        // custom logic before calling the next step in the pipeline.
 
-            await next();
+        await next();
 
-            // custom logic after all inner steps in the pipeline completed.
-        }
+        // custom logic after all inner steps in the pipeline completed.
     }
-
-    #endregion
 }
+
+#endregion

@@ -1,21 +1,20 @@
-﻿namespace Core9
+﻿namespace Core9;
+
+using System.Threading;
+using System.Threading.Tasks;
+using NServiceBus.Installation;
+
+#region InstallSomething
+
+public class MyInstaller :
+    INeedToInstallSomething
 {
-    using System.Threading;
-    using System.Threading.Tasks;
-    using NServiceBus.Installation;
-
-    #region InstallSomething
-
-    public class MyInstaller :
-        INeedToInstallSomething
+    public Task Install(string identity, CancellationToken cancellationToken)
     {
-        public Task Install(string identity, CancellationToken cancellationToken)
-        {
-            // Code to install something
+        // Code to install something
 
-            return Task.CompletedTask;
-        }
+        return Task.CompletedTask;
     }
-
-    #endregion
 }
+
+#endregion

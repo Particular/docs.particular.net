@@ -1,19 +1,18 @@
-﻿namespace Core9.Transports.QueueCreation
+﻿namespace Core9.Transports.QueueCreation;
+
+using NServiceBus.Features;
+using NServiceBus.Transport;
+
+#region queuebindings
+
+public class FeatureThatRequiresAQueue :
+    Feature
 {
-    using NServiceBus.Features;
-    using NServiceBus.Transport;
-
-    #region queuebindings
-
-    public class FeatureThatRequiresAQueue :
-        Feature
+    protected override void Setup(FeatureConfigurationContext context)
     {
-        protected override void Setup(FeatureConfigurationContext context)
-        {
-            var queueBindings = context.Settings.Get<QueueBindings>();
-            queueBindings.BindSending("someQueue");
-        }
+        var queueBindings = context.Settings.Get<QueueBindings>();
+        queueBindings.BindSending("someQueue");
     }
-
-    #endregion
 }
+
+#endregion

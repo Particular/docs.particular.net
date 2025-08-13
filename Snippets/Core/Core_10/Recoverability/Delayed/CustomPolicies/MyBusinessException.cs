@@ -1,9 +1,8 @@
-﻿namespace Core9.Recoverability.Delayed.CustomPolicies
-{
-    using System;
+﻿namespace Core9.Recoverability.Delayed.CustomPolicies;
 
-    class MyBusinessException :
-        Exception
-    {
-    }
+using System;
+
+class MyBusinessException :
+    Exception
+{
 }

@@ -1,30 +1,28 @@
 ﻿#pragma warning disable NSB0006 // Message that starts the saga does not have a message mapping
-namespace Core9.Sagas.Reply
+namespace Core9.Sagas.Reply;
+
+using System.Threading.Tasks;
+using NServiceBus;
+
+#region saga-with-reply
+
+public class MySaga :
+    Saga<MySagaData>,
+    IAmStartedByMessages<StartMessage>
 {
-    using System.Threading.Tasks;
-    using NServiceBus;
-
-    #region saga-with-reply
-
-    public class MySaga :
-        Saga<MySagaData>,
-        IAmStartedByMessages<StartMessage>
+    public Task Handle(StartMessage message, IMessageHandlerContext context)
     {
-        public Task Handle(StartMessage message, IMessageHandlerContext context)
+        var almostDoneMessage = new AlmostDoneMessage
         {
-            var almostDoneMessage = new AlmostDoneMessage
-            {
-                SomeId = Data.SomeId
-            };
-            return ReplyToOriginator(context, almostDoneMessage);
-        }
+            SomeId = Data.SomeId
+        };
+        return ReplyToOriginator(context, almostDoneMessage);
+    }
 
-        #endregion
+    #endregion
 
-        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
-        {
-        }
-
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
+    {
     }
 
 }

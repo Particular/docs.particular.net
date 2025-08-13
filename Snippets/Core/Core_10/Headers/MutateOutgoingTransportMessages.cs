@@ -1,19 +1,18 @@
-﻿namespace Core9.Headers
+﻿namespace Core9.Headers;
+
+using System.Threading.Tasks;
+using NServiceBus.MessageMutator;
+
+#region header-outgoing-mutator
+
+public class MutateOutgoingTransportMessages :
+    IMutateOutgoingTransportMessages
 {
-    using System.Threading.Tasks;
-    using NServiceBus.MessageMutator;
-
-    #region header-outgoing-mutator
-
-    public class MutateOutgoingTransportMessages :
-        IMutateOutgoingTransportMessages
+    public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
     {
-        public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
-        {
-            context.OutgoingHeaders["MyCustomHeader"] = "My custom value";
-            return Task.CompletedTask;
-        }
+        context.OutgoingHeaders["MyCustomHeader"] = "My custom value";
+        return Task.CompletedTask;
     }
-
-    #endregion
 }
+
+#endregion

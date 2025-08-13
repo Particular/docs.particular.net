@@ -1,22 +1,21 @@
-﻿namespace Core9.Logging
+﻿namespace Core9.Logging;
+
+using System;
+using NServiceBus;
+
+#region MessageWithToStringLogged
+
+public class MessageToLog :
+    IMessage
 {
-    using System;
-    using NServiceBus;
+    public Guid EventId { get; set; }
+    public DateTime? Time { get; set; }
+    public TimeSpan Duration { get; set; }
 
-    #region MessageWithToStringLogged
-
-    public class MessageToLog :
-        IMessage
+    public override string ToString()
     {
-        public Guid EventId { get; set; }
-        public DateTime? Time { get; set; }
-        public TimeSpan Duration { get; set; }
-
-        public override string ToString()
-        {
-            return $"MyMessage: EventId={EventId}, Time={Time}, Duration={Duration}";
-        }
+        return $"MyMessage: EventId={EventId}, Time={Time}, Duration={Duration}";
     }
-
-    #endregion
 }
+
+#endregion

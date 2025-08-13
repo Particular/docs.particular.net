@@ -1,20 +1,19 @@
-﻿namespace Core9.DataBus.Conventions
+﻿namespace Core9.DataBus.Conventions;
+
+using NServiceBus;
+
+class Usage
 {
-    using NServiceBus;
-
-    class Usage
+    Usage(EndpointConfiguration endpointConfiguration)
     {
-        Usage(EndpointConfiguration endpointConfiguration)
-        {
 #pragma warning disable CS0618 // Type or member is obsolete
-            #region DefineMessageWithLargePayloadUsingConvention
+        #region DefineMessageWithLargePayloadUsingConvention
 
-            var conventions = endpointConfiguration.Conventions();
-            conventions.DefiningDataBusPropertiesAs(
-                property => property.Name.EndsWith("DataBus"));
+        var conventions = endpointConfiguration.Conventions();
+        conventions.DefiningDataBusPropertiesAs(
+            property => property.Name.EndsWith("DataBus"));
 
-            #endregion
+        #endregion
 #pragma warning restore CS0618 // Type or member is obsolete
-        }
     }
 }

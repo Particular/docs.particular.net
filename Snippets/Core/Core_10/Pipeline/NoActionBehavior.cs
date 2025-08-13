@@ -1,18 +1,17 @@
-﻿namespace Core9.Pipeline
-{
-    using System;
-    using System.Threading.Tasks;
-    using NServiceBus.Pipeline;
+﻿namespace Core9.Pipeline;
 
-    #region NoActionPipelineBehavior
-    public class NoActionBehavior :
-        Behavior<IIncomingLogicalMessageContext>
+using System;
+using System.Threading.Tasks;
+using NServiceBus.Pipeline;
+
+#region NoActionPipelineBehavior
+public class NoActionBehavior :
+    Behavior<IIncomingLogicalMessageContext>
+{
+    public override async Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
     {
-        public override async Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
-        {
-            //no action taken. empty behavior
-            await next();
-        }
+        //no action taken. empty behavior
+        await next();
     }
-    #endregion
 }
+#endregion

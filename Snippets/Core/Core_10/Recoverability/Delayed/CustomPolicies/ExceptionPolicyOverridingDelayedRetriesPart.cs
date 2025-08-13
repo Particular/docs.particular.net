@@ -1,30 +1,29 @@
-﻿namespace Core9.Recoverability.Delayed.CustomPolicies
+﻿namespace Core9.Recoverability.Delayed.CustomPolicies;
+
+using System;
+using NServiceBus;
+using NServiceBus.Transport;
+
+class ExceptionPolicyOverridingDelayedRetriesPart
 {
-    using System;
-    using NServiceBus;
-    using NServiceBus.Transport;
+    #region DelayedRetriesCustomExceptionPolicyHandler
 
-    class ExceptionPolicyOverridingDelayedRetriesPart
+    RecoverabilityAction MyCustomRetryPolicy(RecoverabilityConfig config, ErrorContext context)
     {
-        #region DelayedRetriesCustomExceptionPolicyHandler
+        var action = DefaultRecoverabilityPolicy.Invoke(config, context);
 
-        RecoverabilityAction MyCustomRetryPolicy(RecoverabilityConfig config, ErrorContext context)
+        if (!(action is DelayedRetry delayedRetryAction))
         {
-            var action = DefaultRecoverabilityPolicy.Invoke(config, context);
-
-            if (!(action is DelayedRetry delayedRetryAction))
-            {
-                return action;
-            }
-            if (context.Exception is MyBusinessException)
-            {
-                return RecoverabilityAction.MoveToError(config.Failed.ErrorQueue);
-            }
-            // Override default delivery delay.
-            return RecoverabilityAction.DelayedRetry(TimeSpan.FromSeconds(5));
+            return action;
         }
-
-        #endregion
-
+        if (context.Exception is MyBusinessException)
+        {
+            return RecoverabilityAction.MoveToError(config.Failed.ErrorQueue);
+        }
+        // Override default delivery delay.
+        return RecoverabilityAction.DelayedRetry(TimeSpan.FromSeconds(5));
     }
+
+    #endregion
+
 }

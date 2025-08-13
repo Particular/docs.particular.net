@@ -1,23 +1,22 @@
-﻿namespace Core9.Sagas.FindByHeader
+﻿namespace Core9.Sagas.FindByHeader;
+
+using System.Threading.Tasks;
+using NServiceBus;
+
+public class MySaga : Saga<MySagaData>, IAmStartedByMessages<MyMessage>
 {
-    using System.Threading.Tasks;
-    using NServiceBus;
+    #region saga-find-by-message-header
 
-    public class MySaga : Saga<MySagaData>, IAmStartedByMessages<MyMessage>
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
     {
-        #region saga-find-by-message-header
+        mapper.MapSaga(saga => saga.SomeId)
+            .ToMessageHeader<MyMessage>("HeaderName");
+    }
 
-        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
-        {
-            mapper.MapSaga(saga => saga.SomeId)
-                .ToMessageHeader<MyMessage>("HeaderName");
-        }
+    #endregion
 
-        #endregion
-
-        public Task Handle(MyMessage message, IMessageHandlerContext context)
-        {
-            return Task.CompletedTask;
-        }
+    public Task Handle(MyMessage message, IMessageHandlerContext context)
+    {
+        return Task.CompletedTask;
     }
 }

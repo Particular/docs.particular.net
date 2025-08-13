@@ -1,35 +1,34 @@
-﻿namespace Core9.Headers.Writers
+﻿namespace Core9.Headers.Writers;
+
+using System.IO;
+using System.Text;
+
+public static class BehaviorCleaner
 {
-    using System.IO;
-    using System.Text;
 
-    public static class BehaviorCleaner
+    public static string CleanStackTrace(string stackTrace)
     {
-
-        public static string CleanStackTrace(string stackTrace)
+        if (stackTrace == null)
         {
-            if (stackTrace == null)
+            return string.Empty;
+        }
+        using (var stringReader = new StringReader(stackTrace))
+        {
+            var stringBuilder = new StringBuilder();
+            while (true)
             {
-                return string.Empty;
-            }
-            using (var stringReader = new StringReader(stackTrace))
-            {
-                var stringBuilder = new StringBuilder();
-                while (true)
+                var line = stringReader.ReadLine();
+                if (line == null)
                 {
-                    var line = stringReader.ReadLine();
-                    if (line == null)
-                    {
-                        break;
-                    }
-                    if (line.Contains("InvokeNext"))
-                    {
-                        continue;
-                    }
-                    stringBuilder.AppendLine(line);
+                    break;
                 }
-                return stringBuilder.ToString().Trim();
+                if (line.Contains("InvokeNext"))
+                {
+                    continue;
+                }
+                stringBuilder.AppendLine(line);
             }
+            return stringBuilder.ToString().Trim();
         }
     }
 }

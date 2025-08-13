@@ -1,6 +1,5 @@
-﻿namespace Core9.Headers
+﻿namespace Core9.Headers;
+
+class SomeOtherMessage
 {
-    class SomeOtherMessage
-    {
-    }
 }

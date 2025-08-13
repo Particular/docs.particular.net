@@ -1,21 +1,20 @@
-﻿namespace Core9.Recoverability
+﻿namespace Core9.Recoverability;
+
+using System;
+using NServiceBus;
+
+public class ConfigureConsecutiveFailures
 {
-    using System;
-    using NServiceBus;
-
-    public class ConfigureConsecutiveFailures
+    public static void Configure(EndpointConfiguration endpointConfiguration)
     {
-        public static void Configure(EndpointConfiguration endpointConfiguration)
-        {
-            #region configure-consecutive-failures
+        #region configure-consecutive-failures
 
-            endpointConfiguration.Recoverability().OnConsecutiveFailures(10,
-                new RateLimitSettings(
-                    timeToWaitBetweenThrottledAttempts: TimeSpan.FromSeconds(5),
-                    onRateLimitStarted: ct => Console.Out.WriteLineAsync("Rate limiting started"),
-                    onRateLimitEnded: cts => Console.Out.WriteLineAsync("Rate limiting stopped")));
+        endpointConfiguration.Recoverability().OnConsecutiveFailures(10,
+            new RateLimitSettings(
+                timeToWaitBetweenThrottledAttempts: TimeSpan.FromSeconds(5),
+                onRateLimitStarted: ct => Console.Out.WriteLineAsync("Rate limiting started"),
+                onRateLimitEnded: cts => Console.Out.WriteLineAsync("Rate limiting stopped")));
 
-            #endregion
-        }
+        #endregion
     }
 }

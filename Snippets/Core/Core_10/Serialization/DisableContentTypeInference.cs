@@ -1,17 +1,16 @@
-﻿namespace Core9.Serialization
+﻿namespace Core9.Serialization;
+
+using NServiceBus;
+
+public class DisableContentTypeInference
 {
-    using NServiceBus;
-
-    public class DisableContentTypeInference
+    public void DisableInference(EndpointConfiguration endpointConfiguration)
     {
-        public void DisableInference(EndpointConfiguration endpointConfiguration)
-        {
-            #region disable-message-type-inference
+        #region disable-message-type-inference
 
-            var serializerSettings = endpointConfiguration.UseSerialization<XmlSerializer>();
-            serializerSettings.DisableMessageTypeInference();
+        var serializerSettings = endpointConfiguration.UseSerialization<XmlSerializer>();
+        serializerSettings.DisableMessageTypeInference();
 
-            #endregion
-        }
+        #endregion
     }
 }

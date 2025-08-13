@@ -1,13 +1,12 @@
-﻿namespace Core9.Sagas.Timeouts
+﻿namespace Core9.Sagas.Timeouts;
+
+using System;
+using NServiceBus;
+
+public class MySagaData :
+    ContainSagaData
 {
-    using System;
-    using NServiceBus;
+    public string SomeId { get; set; }
 
-    public class MySagaData :
-        ContainSagaData
-    {
-        public string SomeId { get; set; }
-
-        public bool Message2Arrived { get; set; }
-    }
+    public bool Message2Arrived { get; set; }
 }

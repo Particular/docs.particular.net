@@ -1,30 +1,29 @@
 ﻿
-namespace Core9.Container.Custom
+namespace Core9.Container.Custom;
+
+using System;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using NServiceBus;
+
+public class ExternallyManaged
 {
-    using System;
-    using System.Threading.Tasks;
-    using Microsoft.Extensions.DependencyInjection;
-    using NServiceBus;
-
-    public class ExternallyManaged
+    async Task Usage(EndpointConfiguration endpointConfiguration)
     {
-        async Task Usage(EndpointConfiguration endpointConfiguration)
-        {
-            #region ExternalPrepare
+        #region ExternalPrepare
 
-            IServiceCollection serviceCollection = new ServiceCollection();
+        IServiceCollection serviceCollection = new ServiceCollection();
 
-            var startableEndpoint = EndpointWithExternallyManagedContainer.Create(endpointConfiguration, serviceCollection);
+        var startableEndpoint = EndpointWithExternallyManagedContainer.Create(endpointConfiguration, serviceCollection);
 
-            #endregion
+        #endregion
 
-            #region ExternalStart
+        #region ExternalStart
 
-            IServiceProvider builder = serviceCollection.BuildServiceProvider();
+        IServiceProvider builder = serviceCollection.BuildServiceProvider();
 
-            var startedEndpoint = await startableEndpoint.Start(builder);
+        var startedEndpoint = await startableEndpoint.Start(builder);
 
-            #endregion
-        }
+        #endregion
     }
 }

@@ -1,39 +1,38 @@
-﻿namespace Core9.Routing.AutomaticSubscriptions
+﻿namespace Core9.Routing.AutomaticSubscriptions;
+
+using NServiceBus;
+using NServiceBus.Features;
+
+class AutoSubscribeSettings
 {
-    using NServiceBus;
-    using NServiceBus.Features;
-
-    class AutoSubscribeSettings
+    void DisableAutoSubscribe(EndpointConfiguration endpointConfiguration)
     {
-        void DisableAutoSubscribe(EndpointConfiguration endpointConfiguration)
-        {
-            #region DisableAutoSubscribe
+        #region DisableAutoSubscribe
 
-            endpointConfiguration.DisableFeature<AutoSubscribe>();
+        endpointConfiguration.DisableFeature<AutoSubscribe>();
 
-            #endregion
-        }
-
-        void DoNotAutoSubscribeSagas(EndpointConfiguration endpointConfiguration)
-        {
-            #region DoNotAutoSubscribeSagas
-
-            var autoSubscribe = endpointConfiguration.AutoSubscribe();
-            autoSubscribe.DoNotAutoSubscribeSagas();
-
-            #endregion
-        }
-
-        void DisableSubscribeFor(EndpointConfiguration endpointConfiguration)
-        {
-            #region ExcludeFromAutoSubscribe
-
-            var autoSubscribe = endpointConfiguration.AutoSubscribe();
-            autoSubscribe.DisableFor<EventType>();
-
-            #endregion
-        }
-
-        class EventType { }
+        #endregion
     }
+
+    void DoNotAutoSubscribeSagas(EndpointConfiguration endpointConfiguration)
+    {
+        #region DoNotAutoSubscribeSagas
+
+        var autoSubscribe = endpointConfiguration.AutoSubscribe();
+        autoSubscribe.DoNotAutoSubscribeSagas();
+
+        #endregion
+    }
+
+    void DisableSubscribeFor(EndpointConfiguration endpointConfiguration)
+    {
+        #region ExcludeFromAutoSubscribe
+
+        var autoSubscribe = endpointConfiguration.AutoSubscribe();
+        autoSubscribe.DisableFor<EventType>();
+
+        #endregion
+    }
+
+    class EventType { }
 }

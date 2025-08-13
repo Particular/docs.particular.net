@@ -1,11 +1,10 @@
-namespace Core9.Sagas.FindSagas
-{
-    using NServiceBus;
+namespace Core9.Sagas.FindSagas;
 
-    public class MySagaData :
-        ContainSagaData
-    {
-        public string SomeId { get; set; }
-        public string SomeData { get; set; }
-    }
+using NServiceBus;
+
+public class MySagaData :
+    ContainSagaData
+{
+    public string SomeId { get; set; }
+    public string SomeData { get; set; }
 }

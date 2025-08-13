@@ -1,16 +1,15 @@
-namespace Core9.Mutators.Transport
+namespace Core9.Mutators.Transport;
+
+public static class ServiceThatChangesBody
 {
-    public static class ServiceThatChangesBody
+    public static byte[] Mutate(byte[] body)
     {
-        public static byte[] Mutate(byte[] body)
-        {
-            return null;
-        }
-
-        public static byte[] Mutate(object message)
-        {
-            return null;
-        }
-
+        return null;
     }
+
+    public static byte[] Mutate(object message)
+    {
+        return null;
+    }
+
 }

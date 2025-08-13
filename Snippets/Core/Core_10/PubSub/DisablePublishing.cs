@@ -1,15 +1,14 @@
-﻿namespace Core9.PublishSubscribe
-{
-    using NServiceBus;
+﻿namespace Core9.PublishSubscribe;
 
-    class DisablePublishing
+using NServiceBus;
+
+class DisablePublishing
+{
+    void DisablePublishingConfiguration(EndpointConfiguration endpointConfiguration)
     {
-        void DisablePublishingConfiguration(EndpointConfiguration endpointConfiguration)
-        {
-            #region DisablePublishing
-            var transportConfiguration = endpointConfiguration.UseTransport(new TransportDefinition());
-            transportConfiguration.DisablePublishing();
-            #endregion
-        }
+        #region DisablePublishing
+        var transportConfiguration = endpointConfiguration.UseTransport(new TransportDefinition());
+        transportConfiguration.DisablePublishing();
+        #endregion
     }
 }

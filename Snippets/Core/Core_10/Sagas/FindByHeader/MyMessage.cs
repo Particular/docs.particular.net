@@ -1,6 +1,5 @@
-﻿namespace Core9.Sagas.FindByHeader
-{
-    using NServiceBus;
+﻿namespace Core9.Sagas.FindByHeader;
 
-    public class MyMessage : IMessage { }
-}
+using NServiceBus;
+
+public class MyMessage : IMessage { }

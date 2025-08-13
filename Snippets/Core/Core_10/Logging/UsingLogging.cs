@@ -1,24 +1,23 @@
-﻿namespace Core9.Logging
+﻿namespace Core9.Logging;
+
+using NServiceBus.Logging;
+
+#region UsingLogging
+
+public class ClassUsingLogging
 {
-    using NServiceBus.Logging;
+    static ILog log = LogManager.GetLogger<ClassUsingLogging>();
+    readonly int times = 2;
 
-    #region UsingLogging
-
-    public class ClassUsingLogging
+    public void SomeMethod()
     {
-        static ILog log = LogManager.GetLogger<ClassUsingLogging>();
-        readonly int times = 2;
-
-        public void SomeMethod()
+        log.Warn("Something unexpected happened.");
+        if (log.IsDebugEnabled)
         {
-            log.Warn("Something unexpected happened.");
-            if (log.IsDebugEnabled)
-            {
-                log.Debug("Something expected happened.");
-                log.DebugFormat("Also, this other thing happened {0} times.", times);
-            }
+            log.Debug("Something expected happened.");
+            log.DebugFormat("Also, this other thing happened {0} times.", times);
         }
     }
-
-    #endregion
 }
+
+#endregion

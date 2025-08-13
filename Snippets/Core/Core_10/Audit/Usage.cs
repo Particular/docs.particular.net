@@ -1,18 +1,17 @@
-﻿namespace Core9.Audit
+﻿namespace Core9.Audit;
+
+using NServiceBus;
+
+class Usage
 {
-    using NServiceBus;
-
-    class Usage
+    Usage(EndpointConfiguration endpointConfiguration)
     {
-        Usage(EndpointConfiguration endpointConfiguration)
-        {
-            #region AuditWithCode
+        #region AuditWithCode
 
-            endpointConfiguration.AuditProcessedMessagesTo("targetAuditQueue");
+        endpointConfiguration.AuditProcessedMessagesTo("targetAuditQueue");
 
-            #endregion
-        }
-
-
+        #endregion
     }
+
+
 }

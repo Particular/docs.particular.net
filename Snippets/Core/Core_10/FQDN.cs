@@ -1,19 +1,18 @@
-﻿namespace Core9
+﻿namespace Core9;
+
+using System;
+using System.Net;
+using NServiceBus;
+
+public class FQDNTest
 {
-    using System;
-    using System.Net;
-    using NServiceBus;
-
-    public class FQDNTest
+    void FQDN(EndpointConfiguration endpointConfiguration)
     {
-        void FQDN(EndpointConfiguration endpointConfiguration)
-        {
-            #region MachineNameActionOverride
+        #region MachineNameActionOverride
 
-            endpointConfiguration.UniquelyIdentifyRunningInstance()
-                .UsingHostName(Dns.GetHostEntry(Environment.MachineName).HostName);
+        endpointConfiguration.UniquelyIdentifyRunningInstance()
+            .UsingHostName(Dns.GetHostEntry(Environment.MachineName).HostName);
 
-            #endregion
-        }
+        #endregion
     }
 }

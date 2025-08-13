@@ -1,7 +1,6 @@
-namespace Core9.Sagas.Reply
+namespace Core9.Sagas.Reply;
+
+public class AlmostDoneMessage
 {
-    public class AlmostDoneMessage
-    {
-        public string SomeId { get; set; }
-    }
+    public string SomeId { get; set; }
 }

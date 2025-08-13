@@ -1,104 +1,103 @@
 ﻿#pragma warning disable 618
-namespace Core9.Scanning
+namespace Core9.Scanning;
+
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
+using NServiceBus;
+
+class ScanningPublicApi
 {
-    using System;
-    using System.Collections.Generic;
-    using System.IO;
-    using System.Linq;
-    using System.Text.RegularExpressions;
-    using NServiceBus;
-
-    class ScanningPublicApi
+    void ScanningNestedAssembliesEnabled(EndpointConfiguration endpointConfiguration)
     {
-        void ScanningNestedAssembliesEnabled(EndpointConfiguration endpointConfiguration)
+        #region ScanningNestedAssebliesEnabled
+
+        var scanner = endpointConfiguration.AssemblyScanner();
+        scanner.ScanAssembliesInNestedDirectories = true;
+
+        #endregion
+    }
+
+    void ScanningExcludeByName(EndpointConfiguration endpointConfiguration)
+    {
+        #region ScanningExcludeByName
+
+        var scanner = endpointConfiguration.AssemblyScanner();
+        scanner.ExcludeAssemblies("MyAssembly1.dll", "MyAssembly2.dll");
+
+        #endregion
+    }
+
+    void ScanningExcludeByWildcard(EndpointConfiguration endpointConfiguration)
+    {
+        #region ScanningAssembliesWildcard
+
+        var scanner = endpointConfiguration.AssemblyScanner();
+
+        var excludeRegexs = new List<string>
         {
-            #region ScanningNestedAssebliesEnabled
+            @"App_Web_.*\.dll",
+            @".*\.resources\.dll"
+        };
 
-            var scanner = endpointConfiguration.AssemblyScanner();
-            scanner.ScanAssembliesInNestedDirectories = true;
-
-            #endregion
-        }
-
-        void ScanningExcludeByName(EndpointConfiguration endpointConfiguration)
+        var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        foreach (var fileName in Directory.EnumerateFiles(baseDirectory, "*.dll")
+                     .Select(Path.GetFileName))
         {
-            #region ScanningExcludeByName
-
-            var scanner = endpointConfiguration.AssemblyScanner();
-            scanner.ExcludeAssemblies("MyAssembly1.dll", "MyAssembly2.dll");
-
-            #endregion
-        }
-
-        void ScanningExcludeByWildcard(EndpointConfiguration endpointConfiguration)
-        {
-            #region ScanningAssembliesWildcard
-
-            var scanner = endpointConfiguration.AssemblyScanner();
-
-            var excludeRegexs = new List<string>
+            foreach (var pattern in excludeRegexs)
             {
-                @"App_Web_.*\.dll",
-                @".*\.resources\.dll"
-            };
-
-            var baseDirectory = AppDomain.CurrentDomain.BaseDirectory;
-            foreach (var fileName in Directory.EnumerateFiles(baseDirectory, "*.dll")
-                .Select(Path.GetFileName))
-            {
-                foreach (var pattern in excludeRegexs)
+                if (Regex.IsMatch(fileName, pattern, RegexOptions.IgnoreCase))
                 {
-                    if (Regex.IsMatch(fileName, pattern, RegexOptions.IgnoreCase))
-                    {
-                        scanner.ExcludeAssemblies(fileName);
-                        break;
-                    }
+                    scanner.ExcludeAssemblies(fileName);
+                    break;
                 }
             }
-
-            #endregion
         }
 
-        void ScanningExcludeTypes(EndpointConfiguration endpointConfiguration, Type type1, Type type2)
-        {
-            #region ScanningExcludeTypes
+        #endregion
+    }
 
-            var scanner = endpointConfiguration.AssemblyScanner();
-            scanner.ExcludeTypes(type1, type2);
+    void ScanningExcludeTypes(EndpointConfiguration endpointConfiguration, Type type1, Type type2)
+    {
+        #region ScanningExcludeTypes
 
-            #endregion
-        }
+        var scanner = endpointConfiguration.AssemblyScanner();
+        scanner.ExcludeTypes(type1, type2);
 
-        void ScanningApDomainAssemblies(EndpointConfiguration endpointConfiguration)
-        {
-            #region ScanningApDomainAssemblies
+        #endregion
+    }
 
-            var scanner = endpointConfiguration.AssemblyScanner();
-            scanner.ScanAppDomainAssemblies = false;
+    void ScanningApDomainAssemblies(EndpointConfiguration endpointConfiguration)
+    {
+        #region ScanningApDomainAssemblies
 
-            #endregion
-        }
+        var scanner = endpointConfiguration.AssemblyScanner();
+        scanner.ScanAppDomainAssemblies = false;
 
-        void SwallowScanningExceptions(EndpointConfiguration endpointConfiguration)
-        {
-            #region SwallowScanningExceptions
+        #endregion
+    }
 
-            var scanner = endpointConfiguration.AssemblyScanner();
-            scanner.ThrowExceptions = false;
+    void SwallowScanningExceptions(EndpointConfiguration endpointConfiguration)
+    {
+        #region SwallowScanningExceptions
 
-            #endregion
-        }
+        var scanner = endpointConfiguration.AssemblyScanner();
+        scanner.ThrowExceptions = false;
 
-        void AdditionalAssemblyScanningPath(EndpointConfiguration endpointConfiguration)
-        {
-            var additionalPathToScanAssemblies = "";
+        #endregion
+    }
 
-            #region AdditionalAssemblyScanningPath
+    void AdditionalAssemblyScanningPath(EndpointConfiguration endpointConfiguration)
+    {
+        var additionalPathToScanAssemblies = "";
 
-            var scanner = endpointConfiguration.AssemblyScanner();
-            scanner.AdditionalAssemblyScanningPath = additionalPathToScanAssemblies;
+        #region AdditionalAssemblyScanningPath
 
-            #endregion
-        }
+        var scanner = endpointConfiguration.AssemblyScanner();
+        scanner.AdditionalAssemblyScanningPath = additionalPathToScanAssemblies;
+
+        #endregion
     }
 }

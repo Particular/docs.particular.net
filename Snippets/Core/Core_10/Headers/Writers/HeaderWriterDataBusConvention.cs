@@ -1,85 +1,84 @@
-﻿namespace Core9.Headers.Writers
+﻿namespace Core9.Headers.Writers;
+
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using Common;
+using NServiceBus;
+using NServiceBus.MessageMutator;
+using NUnit.Framework;
+
+[TestFixture]
+public class HeaderWriterDataBusConvention
 {
-    using System.Text;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using Common;
-    using NServiceBus;
-    using NServiceBus.MessageMutator;
-    using NUnit.Framework;
+    static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-    [TestFixture]
-    public class HeaderWriterDataBusConvention
+    string endpointName = "HeaderWriterDataBusConventionV8";
+
+    [OneTimeTearDown]
+    public void TearDown()
     {
-        static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
+        ManualResetEvent.Dispose();
+    }
 
-        string endpointName = "HeaderWriterDataBusConventionV8";
-
-        [OneTimeTearDown]
-        public void TearDown()
-        {
-            ManualResetEvent.Dispose();
-        }
-
-        [Test]
-        public async Task Write()
-        {
-            var endpointConfiguration = new EndpointConfiguration(endpointName);
+    [Test]
+    public async Task Write()
+    {
+        var endpointConfiguration = new EndpointConfiguration(endpointName);
 #pragma warning disable CS0618 // Type or member is obsolete
-            var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
-            dataBus.BasePath(@"..\..\..\storage");
-            var typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusConvention>();
-            endpointConfiguration.SetTypesToScan(typesToScan);
-            endpointConfiguration.UseTransport(new LearningTransport());
-            var conventions = endpointConfiguration.Conventions();
-            conventions.DefiningDataBusPropertiesAs(property =>
-            {
-                return property.Name.StartsWith("LargeProperty");
-            });
+        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
+        dataBus.BasePath(@"..\..\..\storage");
+        var typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusConvention>();
+        endpointConfiguration.SetTypesToScan(typesToScan);
+        endpointConfiguration.UseTransport(new LearningTransport());
+        var conventions = endpointConfiguration.Conventions();
+        conventions.DefiningDataBusPropertiesAs(property =>
+        {
+            return property.Name.StartsWith("LargeProperty");
+        });
 #pragma warning restore CS0618 // Type or member is obsolete
-            endpointConfiguration.RegisterMessageMutator(new Mutator());
+        endpointConfiguration.RegisterMessageMutator(new Mutator());
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
-            var messageToSend = new MessageToSend
-            {
-                LargeProperty1 = new byte[10],
-                LargeProperty2 = new byte[10]
-            };
-            await endpointInstance.SendLocal(messageToSend);
-            ManualResetEvent.WaitOne();
-            await endpointInstance.Stop();
-        }
-
-        class MessageToSend :
-            IMessage
+        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        var messageToSend = new MessageToSend
         {
-            public byte[] LargeProperty1 { get; set; }
-            public byte[] LargeProperty2 { get; set; }
-        }
+            LargeProperty1 = new byte[10],
+            LargeProperty2 = new byte[10]
+        };
+        await endpointInstance.SendLocal(messageToSend);
+        ManualResetEvent.WaitOne();
+        await endpointInstance.Stop();
+    }
 
-        class MessageHandler :
-            IHandleMessages<MessageToSend>
+    class MessageToSend :
+        IMessage
+    {
+        public byte[] LargeProperty1 { get; set; }
+        public byte[] LargeProperty2 { get; set; }
+    }
+
+    class MessageHandler :
+        IHandleMessages<MessageToSend>
+    {
+        public Task Handle(MessageToSend message, IMessageHandlerContext context)
         {
-            public Task Handle(MessageToSend message, IMessageHandlerContext context)
-            {
-                return Task.CompletedTask;
-            }
+            return Task.CompletedTask;
         }
+    }
 
-        class Mutator :
-            IMutateIncomingTransportMessages
+    class Mutator :
+        IMutateIncomingTransportMessages
+    {
+
+        public Task MutateIncoming(MutateIncomingTransportMessageContext context)
         {
-
-            public Task MutateIncoming(MutateIncomingTransportMessageContext context)
-            {
-                var headerText = HeaderWriter.ToFriendlyString<HeaderWriterDataBusConvention>(context.Headers)
-                    .Replace(typeof(MessageToSend).FullName, "MessageToSend");
-                SnippetLogger.Write(headerText);
-                SnippetLogger.Write(Encoding.Default.GetString(context.Body.ToArray()),
-                    suffix: "Body");
-                ManualResetEvent.Set();
-                return Task.CompletedTask;
-            }
+            var headerText = HeaderWriter.ToFriendlyString<HeaderWriterDataBusConvention>(context.Headers)
+                .Replace(typeof(MessageToSend).FullName, "MessageToSend");
+            SnippetLogger.Write(headerText);
+            SnippetLogger.Write(Encoding.Default.GetString(context.Body.ToArray()),
+                suffix: "Body");
+            ManualResetEvent.Set();
+            return Task.CompletedTask;
         }
     }
 }

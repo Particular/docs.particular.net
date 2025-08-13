@@ -1,16 +1,15 @@
-namespace Core9.Headers.Writers
-{
-    using NServiceBus.MessageMutator;
+namespace Core9.Headers.Writers;
 
-    public static class TransportMessageExtension
+using NServiceBus.MessageMutator;
+
+public static class TransportMessageExtension
+{
+    public static bool IsMessageOfTye<T>(this MutateIncomingTransportMessageContext context)
     {
-        public static bool IsMessageOfTye<T>(this MutateIncomingTransportMessageContext context)
+        if (context.Headers.TryGetValue("NServiceBus.EnclosedMessageTypes", out var value))
         {
-            if (context.Headers.TryGetValue("NServiceBus.EnclosedMessageTypes", out var value))
-            {
-                return value == typeof(T).AssemblyQualifiedName;
-            }
-            return false;
+            return value == typeof(T).AssemblyQualifiedName;
         }
+        return false;
     }
 }

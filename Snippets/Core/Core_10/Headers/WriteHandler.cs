@@ -1,30 +1,27 @@
-﻿namespace Core9.Headers
+﻿namespace Core9.Headers;
+
+using System.Threading.Tasks;
+using NServiceBus;
+
+#region header-outgoing-handler
+
+public class WriteHandler :
+    IHandleMessages<MyMessage>
 {
-    using System.Threading.Tasks;
-    using NServiceBus;
-
-    #region header-outgoing-handler
-
-    public class WriteHandler :
-        IHandleMessages<MyMessage>
+    public async Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        public async Task Handle(MyMessage message, IMessageHandlerContext context)
-        {
-            var sendOptions = new SendOptions();
-            sendOptions.SetHeader("MyCustomHeader", "My custom value");
-            await context.Send(new SomeOtherMessage(), sendOptions);
+        var sendOptions = new SendOptions();
+        sendOptions.SetHeader("MyCustomHeader", "My custom value");
+        await context.Send(new SomeOtherMessage(), sendOptions);
 
-            var replyOptions = new ReplyOptions();
-            replyOptions.SetHeader("MyCustomHeader", "My custom value");
-            await context.Reply(new SomeOtherMessage(), replyOptions);
+        var replyOptions = new ReplyOptions();
+        replyOptions.SetHeader("MyCustomHeader", "My custom value");
+        await context.Reply(new SomeOtherMessage(), replyOptions);
 
-            var publishOptions = new PublishOptions();
-            publishOptions.SetHeader("MyCustomHeader", "My custom value");
-            await context.Publish(new SomeOtherMessage(), publishOptions);
-        }
+        var publishOptions = new PublishOptions();
+        publishOptions.SetHeader("MyCustomHeader", "My custom value");
+        await context.Publish(new SomeOtherMessage(), publishOptions);
     }
-
-    #endregion
-
-
 }
+
+#endregion

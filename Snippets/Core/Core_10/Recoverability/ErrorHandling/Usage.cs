@@ -1,16 +1,15 @@
-﻿namespace Core9.Recoverability.ErrorHandling
+﻿namespace Core9.Recoverability.ErrorHandling;
+
+using NServiceBus;
+
+class Usage
 {
-    using NServiceBus;
-
-    class Usage
+    Usage(EndpointConfiguration endpointConfiguration)
     {
-        Usage(EndpointConfiguration endpointConfiguration)
-        {
-            #region ErrorWithCode
+        #region ErrorWithCode
 
-            endpointConfiguration.SendFailedMessagesTo("targetErrorQueue");
+        endpointConfiguration.SendFailedMessagesTo("targetErrorQueue");
 
-            #endregion
-        }
+        #endregion
     }
 }

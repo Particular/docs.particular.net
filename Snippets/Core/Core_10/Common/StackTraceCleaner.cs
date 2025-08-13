@@ -3,40 +3,39 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Common
+namespace Common;
+
+public static class StackTraceCleaner
 {
-    public static class StackTraceCleaner
+
+    public static string CleanStackTrace(string stackTrace)
     {
-
-        public static string CleanStackTrace(string stackTrace)
+        if (stackTrace == null)
         {
-            if (stackTrace == null)
+            return string.Empty;
+        }
+        using (var stringReader = new StringReader(stackTrace))
+        {
+            var stringBuilder = new StringBuilder();
+            while (true)
             {
-                return string.Empty;
-            }
-            using (var stringReader = new StringReader(stackTrace))
-            {
-                var stringBuilder = new StringBuilder();
-                while (true)
+                var line = stringReader.ReadLine();
+                if (line == null)
                 {
-                    var line = stringReader.ReadLine();
-                    if (line == null)
-                    {
-                        break;
-                    }
-
-                    if (line.Contains("System.Runtime") || line.Contains("---"))
-                    {
-                        continue;
-                    }
-
-                    stringBuilder.AppendLine(line.Split(new[]
-                    {
-                        " in "
-                    }, StringSplitOptions.RemoveEmptyEntries).First());
+                    break;
                 }
-                return stringBuilder.ToString().Trim();
+
+                if (line.Contains("System.Runtime") || line.Contains("---"))
+                {
+                    continue;
+                }
+
+                stringBuilder.AppendLine(line.Split(new[]
+                {
+                    " in "
+                }, StringSplitOptions.RemoveEmptyEntries).First());
             }
+            return stringBuilder.ToString().Trim();
         }
     }
 }

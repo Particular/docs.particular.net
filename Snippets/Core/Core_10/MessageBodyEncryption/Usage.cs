@@ -1,16 +1,14 @@
-﻿namespace Core9.MessageBodyEncryption
-{
-    using NServiceBus;
-    using NServiceBus.MessageMutator;
+﻿namespace Core9.MessageBodyEncryption;
 
-    class Usage
+using NServiceBus;
+using NServiceBus.MessageMutator;
+
+class Usage
+{
+    Usage(EndpointConfiguration endpointConfiguration)
     {
-        Usage(EndpointConfiguration endpointConfiguration)
-        {
-            #region UsingMessageBodyEncryptor
-            endpointConfiguration.RegisterMessageMutator(new MessageEncryptor());
-            #endregion
-        }
+        #region UsingMessageBodyEncryptor
+        endpointConfiguration.RegisterMessageMutator(new MessageEncryptor());
+        #endregion
     }
 }
-

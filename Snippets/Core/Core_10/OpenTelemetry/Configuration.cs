@@ -1,16 +1,15 @@
-﻿namespace Core9
+﻿namespace Core9;
+
+using NServiceBus;
+
+class Configuration
 {
-    using NServiceBus;
-
-    class Configuration
+    void EnableOpenTelemetry(EndpointConfiguration endpointConfiguration)
     {
-        void EnableOpenTelemetry(EndpointConfiguration endpointConfiguration)
-        {
-            #region opentelemetry-enableinstrumentation
+        #region opentelemetry-enableinstrumentation
 
-            endpointConfiguration.EnableOpenTelemetry();
+        endpointConfiguration.EnableOpenTelemetry();
 
-            #endregion
-        }
+        #endregion
     }
 }

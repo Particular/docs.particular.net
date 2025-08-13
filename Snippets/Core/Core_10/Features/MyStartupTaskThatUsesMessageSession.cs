@@ -1,40 +1,39 @@
-﻿namespace Core9.Features
+﻿namespace Core9.Features;
+
+using System;
+using System.Threading;
+using System.Threading.Tasks;
+using NServiceBus;
+using NServiceBus.Features;
+
+#region MyStartupTaskThatUsesMessageSession
+
+class MyStartupTaskThatUsesMessageSession :
+    FeatureStartupTask,
+    IDisposable
 {
-    using System;
-    using System.Threading;
-    using System.Threading.Tasks;
-    using NServiceBus;
-    using NServiceBus.Features;
+    ManualResetEventSlim resetEvent = new ManualResetEventSlim();
 
-    #region MyStartupTaskThatUsesMessageSession
-
-    class MyStartupTaskThatUsesMessageSession :
-        FeatureStartupTask,
-        IDisposable
+    protected override async Task OnStart(IMessageSession session, CancellationToken cancellationToken = default)
     {
-        ManualResetEventSlim resetEvent = new ManualResetEventSlim();
-
-        protected override async Task OnStart(IMessageSession session, CancellationToken cancellationToken = default)
-        {
-            await session.Publish(new MyEvent(), cancellationToken);
-            resetEvent.Set();
-        }
-
-        protected override async Task OnStop(IMessageSession session, CancellationToken cancellationToken = default)
-        {
-            await session.Publish(new MyEvent(), cancellationToken);
-            resetEvent.Reset();
-        }
-
-        public void Dispose()
-        {
-            resetEvent.Dispose();
-        }
+        await session.Publish(new MyEvent(), cancellationToken);
+        resetEvent.Set();
     }
 
-    #endregion
-
-    class MyEvent
+    protected override async Task OnStop(IMessageSession session, CancellationToken cancellationToken = default)
     {
+        await session.Publish(new MyEvent(), cancellationToken);
+        resetEvent.Reset();
     }
+
+    public void Dispose()
+    {
+        resetEvent.Dispose();
+    }
+}
+
+#endregion
+
+class MyEvent
+{
 }

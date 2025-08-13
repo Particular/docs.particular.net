@@ -1,21 +1,19 @@
-﻿namespace Core9.Forwarding
+﻿namespace Core9.Forwarding;
+
+using System.Threading.Tasks;
+using NServiceBus;
+
+class Usage
 {
-    using System.Threading.Tasks;
-    using NServiceBus;
-
-    class Usage
+    Usage(EndpointConfiguration endpointConfiguration, IMessageHandlerContext context)
     {
-        Usage(EndpointConfiguration endpointConfiguration, IMessageHandlerContext context)
+        Task.Run(async () =>
         {
-            Task.Run(async () =>
-            {
-                #region ForwardingMessageFromHandler
+            #region ForwardingMessageFromHandler
 
-                await context.ForwardCurrentMessageTo("destinationQueue@machine");
+            await context.ForwardCurrentMessageTo("destinationQueue@machine");
 
-                #endregion
-            });
-        }
+            #endregion
+        });
     }
 }
-

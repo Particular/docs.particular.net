@@ -1,14 +1,13 @@
-﻿namespace Core9.AssemblyScanning
-{
-    using NServiceBus;
+﻿namespace Core9.AssemblyScanning;
 
-    public class DisableAssemblyFileScanning
+using NServiceBus;
+
+public class DisableAssemblyFileScanning
+{
+    public void DisableFileScanning(EndpointConfiguration endpointConfiguration)
     {
-        public void DisableFileScanning(EndpointConfiguration endpointConfiguration)
-        {
-            #region disable-file-scanning
-            endpointConfiguration.AssemblyScanner().ScanFileSystemAssemblies = false;
-            #endregion
-        }
+        #region disable-file-scanning
+        endpointConfiguration.AssemblyScanner().ScanFileSystemAssemblies = false;
+        #endregion
     }
 }

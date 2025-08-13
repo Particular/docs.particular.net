@@ -1,9 +1,8 @@
-﻿namespace Core9.Sagas.FindByHeader
-{
-    using NServiceBus;
+﻿namespace Core9.Sagas.FindByHeader;
 
-    public class MySagaData : ContainSagaData
-    {
-        public string SomeId { get; set; }
-    }
+using NServiceBus;
+
+public class MySagaData : ContainSagaData
+{
+    public string SomeId { get; set; }
 }
