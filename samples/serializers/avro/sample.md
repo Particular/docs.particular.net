@@ -15,7 +15,7 @@ This sample uses [Apache.Avro data serialization system](https://www.nuget.org/p
 
 This sample has the following limitations:
 
-- It does not support [message types defined using C# interfaces](/master/nservicebus/messaging/messages-as-interfaces.md)
+- It does not support [message types defined using C# interfaces](/nservicebus/messaging/messages-as-interfaces.md)
 - It is not able to infer the message type from the payload like some other serializers; therefore, the [`NServiceBus.EnclosedMessageTypes` header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes) must be present on all messages.
 
 ## Configuration
@@ -37,7 +37,7 @@ This choice was made to simplify the use of this sample. In production, it's rec
 
 ## Code
 
-The serializer is implemented as a [custom serializer](https://docs.particular.net/nservicebus/serialization/custom-serializer), by creating a `SerializerDefinition`:
+The serializer is implemented as a [custom serializer](/nservicebus/serialization/custom-serializer.md) by creating a `SerializerDefinition`:
 
 snippet: serializer-definition
 
