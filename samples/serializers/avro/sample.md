@@ -30,7 +30,7 @@ The sample stores expects the message schema to be present as an embedded resour
 - <https://www.redpanda.com/blog/schema-registry-kafka-streaming#:~:text=In%20the%20context%20of%20Kafka,popular%20choice%20for%20data%20serialization>.
 - <https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html>
 
-> [!NOTE] When a schema is not found, an exception will be thrown, which will cause the message to eventually [be moved to the configured error queue](/nservicebus/recoverability/#fault-handling).
+> [!NOTE] When a schema is not found, a `MessageDeserializationException` will be thrown, which will cause the message to [be moved to the configured error queue](/nservicebus/recoverability/#fault-handling) without retries.
 
 ## Code
 
