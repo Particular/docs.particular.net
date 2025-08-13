@@ -1,6 +1,6 @@
 ---
-title: NServiceBus and Avro
-summary: Using NServiceBus with Apache Avro
+title: NServiceBus and Apache Avro
+summary: Using NServiceBus and Apache Avro
 reviewed: 2025-08-12
 ---
 
