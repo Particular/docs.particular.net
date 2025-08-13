@@ -12,7 +12,10 @@ This sample uses the [Apache.Avro serializer](https://www.nuget.org/packages/apa
 
 ## Limitations
 
-- The serializer is not able to infer the message type from the payload like some other serializers, so the [`NServiceBus.EnclosedMessageTypes` header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes) must be present on all messages.
+The serializer has the following limitations:
+
+- Does not support [message types defined using C# interfaces](/master/nservicebus/messaging/messages-as-interfaces.md)
+- Not able to infer the message type from the payload like some other serializers, so the [`NServiceBus.EnclosedMessageTypes` header](/nservicebus/messaging/headers.md#serialization-headers-nservicebus-enclosedmessagetypes) must be present on all messages.
 
 ## Configuration
 
