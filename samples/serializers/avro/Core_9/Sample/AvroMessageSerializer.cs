@@ -4,6 +4,7 @@ using System.IO;
 using Avro.IO;
 using Avro.Reflect;
 using Avro.Specific;
+using NServiceBus;
 using NServiceBus.Serialization;
 
 public class AvroMessageSerializer(SchemaRegistry schemaRegistry, ClassCache classCache) : IMessageSerializer
@@ -27,7 +28,7 @@ public class AvroMessageSerializer(SchemaRegistry schemaRegistry, ClassCache cla
     {
         if (messageTypes == null)
         {
-            throw new InvalidOperationException("Avro is not able to infer message types from the body content only, the NServiceBus.EnclosedMessageTypes header must be present");
+            throw new MessageDeserializationException("Avro is not able to infer message types from the body content only, the NServiceBus.EnclosedMessageTypes header must be present");
         }
 
         var messages = new List<object>();
