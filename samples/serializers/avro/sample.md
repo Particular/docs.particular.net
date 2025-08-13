@@ -7,7 +7,7 @@ related:
  - nservicebus/serialization
 ---
 
-> [!NOTE] This sample is provided as is and not suitable for production use
+> [!NOTE] This sample showcases how serialization using Avro can work, but it is not a supported serializer and some use cases may not work. See our [serializer documentation for a full list of supported serializers](/nservicebus/serialization/#supported-serializers).
 
 This sample uses the [Apache.Avro serializer](https://www.nuget.org/packages/apache.avro) to serialize and deserialize the messages.
 
