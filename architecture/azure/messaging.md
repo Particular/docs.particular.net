@@ -81,7 +81,7 @@ SQL transport is an NServiceBus feature that can use existing SQL Server databas
 
 ### When to use SQL transport
 
-Consider using SQL transport if an existing application already uses a SQL Server-compatible data store and the system requires high transactional consistency between message and business data operations and very high message throughput or performance is less important. SQL transport can be a good stepping-stone when introducing messaging into an existing system without the introduction of new infrastructure.
+Consider using SQL transport if an existing application already uses a SQL Server-compatible data store and requires high transactional consistency between message and business data operations, but very high message throughput or performance is not a priority. SQL transport can be a good stepping-stone when introducing messaging into an existing system without the introduction of new infrastructure.
 
 ## Other services
 
