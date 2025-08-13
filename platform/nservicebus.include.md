@@ -78,6 +78,8 @@ When a message fails to be processed, even after a number of retry strategies ha
 
 Additionally, each endpoint can send [heartbeat](/monitoring/heartbeats/), [health check](/monitoring/custom-checks/), and [performance metrics](/monitoring/metrics/) through the platform for visualization in ServicePulse, making it easy to see which endpoints are offline, which are ready to scale out, and which require manual intervention. Message  visualizations available in [ServicePulse](/servicepulse/message-details.md#messages-with-audited-conversation-data) and [ServiceInsight](/serviceinsight/) make it easy to understand message flows and timing of a running NServiceBus system.
 
+The following diagram assumes all default config for the [Error](/servicecontrol/servicecontrol-instances/configuration.md), [Audit](/servicecontrol/audit-instances/configuration.md), and [Monitoring](/servicecontrol/monitoring-instances/configuration.md) instances.
+
 <!-- https://miro.com/app/board/uXjVJUnQO_I=/?share_link_id=701931147419 -->
 <a href="/platform/particular-service-platform.jpg" target="_blank">![Particular Service Platform](/platform/particular-service-platform.jpg)</a>
 
