@@ -24,11 +24,13 @@ snippet: config
 
 ## Schema registry
 
-The sample store the message schema as an embedded resource for ease of use, in production its recommended to use a central registry like:
+The sample store the message schema as an embedded resource for ease of use, in production it's recommended to use a central registry like:
 
 - <https://docs.confluent.io/platform/current/schema-registry/serdes-develop/index.html>
 - <https://www.redpanda.com/blog/schema-registry-kafka-streaming#:~:text=In%20the%20context%20of%20Kafka,popular%20choice%20for%20data%20serialization>.
 - <https://docs.confluent.io/platform/current/schema-registry/fundamentals/serdes-develop/index.html>
+
+> [!NOTE] When a schema is not found in the registry an exception will be thrown which will cause the message to eventually [be moved to the configured error queue](/nservicebus/recoverability/#fault-handling)
 
 ## Sending the message
 
