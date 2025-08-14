@@ -1,4 +1,4 @@
-﻿namespace Core9;
+﻿namespace Core.Hosting;
 
 using System;
 using System.Threading.Tasks;

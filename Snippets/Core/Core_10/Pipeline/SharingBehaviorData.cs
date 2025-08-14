@@ -1,4 +1,4 @@
-﻿namespace Core9.Pipeline;
+﻿namespace Core.Pipeline;
 
 using System;
 using System.Threading.Tasks;

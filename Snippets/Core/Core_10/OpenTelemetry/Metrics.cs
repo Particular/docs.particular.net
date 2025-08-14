@@ -1,7 +1,7 @@
-﻿namespace Core9;
+﻿namespace Core.OpenTelemetry;
 
-using OpenTelemetry;
-using OpenTelemetry.Metrics;
+using global::OpenTelemetry;
+using global::OpenTelemetry.Metrics;
 
 public class Metrics
 {

@@ -1,4 +1,4 @@
-namespace Core9.Sagas.Reply;
+namespace Core.Sagas.Reply;
 
 using NServiceBus;
 

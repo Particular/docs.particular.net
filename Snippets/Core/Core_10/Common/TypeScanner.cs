@@ -1,8 +1,8 @@
+namespace Common;
+
 using System;
 using System.Collections.Generic;
 using System.Reflection;
-
-namespace Common;
 
 public static class TypeScanner
 {

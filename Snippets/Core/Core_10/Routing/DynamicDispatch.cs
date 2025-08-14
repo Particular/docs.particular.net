@@ -1,4 +1,4 @@
-﻿namespace Core8.DynamicDispatch;
+﻿namespace Core.Routing;
 
 using System;
 using System.Threading.Tasks;

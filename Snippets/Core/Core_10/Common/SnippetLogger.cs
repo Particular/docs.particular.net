@@ -1,8 +1,8 @@
-﻿using System;
+﻿namespace Common;
+
+using System;
 using System.IO;
 using System.Runtime.CompilerServices;
-
-namespace Common;
 
 public class SnippetLogger :
     IDisposable

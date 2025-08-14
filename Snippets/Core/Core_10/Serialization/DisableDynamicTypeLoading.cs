@@ -1,5 +1,7 @@
 ﻿using NServiceBus;
 
+namespace Core.Serialization;
+
 public class DisableDynamicTypeLoading
 {
     public void Snippet(EndpointConfiguration endpointConfiguration)

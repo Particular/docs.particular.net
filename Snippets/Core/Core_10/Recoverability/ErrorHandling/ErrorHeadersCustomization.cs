@@ -1,4 +1,4 @@
-﻿namespace Core9.Recoverability.ErrorHandling;
+﻿namespace Core.Recoverability.ErrorHandling;
 
 using NServiceBus;
 

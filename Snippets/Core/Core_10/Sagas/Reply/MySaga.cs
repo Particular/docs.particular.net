@@ -1,5 +1,5 @@
 ﻿#pragma warning disable NSB0006 // Message that starts the saga does not have a message mapping
-namespace Core9.Sagas.Reply;
+namespace Core.Sagas.Reply;
 
 using System.Threading.Tasks;
 using NServiceBus;

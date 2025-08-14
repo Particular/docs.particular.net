@@ -1,4 +1,4 @@
-﻿namespace Core9.Handlers;
+﻿namespace Core.Handlers;
 
 public class MyMessage
 {

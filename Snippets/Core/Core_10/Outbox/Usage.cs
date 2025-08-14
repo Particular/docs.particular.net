@@ -1,4 +1,4 @@
-﻿namespace Core9.Outbox;
+﻿namespace Core.Outbox;
 
 using NServiceBus;
 

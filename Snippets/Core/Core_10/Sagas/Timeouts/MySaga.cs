@@ -1,4 +1,4 @@
-﻿namespace Core9.Sagas.Timeouts;
+﻿namespace Core.Sagas.Timeouts;
 
 using System;
 using System.Threading.Tasks;

@@ -1,4 +1,4 @@
-﻿namespace Core9.Audit;
+﻿namespace Core.Audit;
 
 using NServiceBus;
 

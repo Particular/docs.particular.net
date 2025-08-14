@@ -1,5 +1,5 @@
 ﻿
-namespace Core9.Pipeline.Abort;
+namespace Core.Pipeline.Abort;
 
 using System.Threading.Tasks;
 using NServiceBus;

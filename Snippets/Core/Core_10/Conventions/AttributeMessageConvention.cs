@@ -1,4 +1,4 @@
-﻿namespace Core9.Conventions;
+﻿namespace Core.Conventions;
 
 using System;
 using NServiceBus;

@@ -1,4 +1,4 @@
-﻿namespace Core9.Routing;
+﻿namespace Core.Routing;
 
 using System.Threading.Tasks;
 using NServiceBus;

@@ -1,4 +1,4 @@
-﻿namespace Core9;
+﻿namespace Core;
 
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;

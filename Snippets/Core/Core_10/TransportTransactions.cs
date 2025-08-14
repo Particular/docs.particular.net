@@ -1,6 +1,7 @@
-﻿namespace Core9;
+﻿namespace Core;
 
 using NServiceBus;
+using Transports;
 
 class TransportTransactions
 {

@@ -1,4 +1,4 @@
-﻿namespace Core9.Sagas;
+﻿namespace Core.Sagas;
 
 using NServiceBus;
 using NServiceBus.Persistence;

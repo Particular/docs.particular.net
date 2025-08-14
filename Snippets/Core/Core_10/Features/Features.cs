@@ -1,4 +1,4 @@
-﻿namespace Core9.Features;
+﻿namespace Core.Features;
 
 using NServiceBus;
 using NServiceBus.Configuration.AdvancedExtensibility;

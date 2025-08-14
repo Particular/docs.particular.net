@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿namespace Core.Hosting;
+
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Settings;
 

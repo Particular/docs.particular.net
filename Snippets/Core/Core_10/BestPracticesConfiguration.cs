@@ -1,7 +1,8 @@
-﻿namespace Core9;
+﻿namespace Core;
 
 using System.Threading.Tasks;
 using NServiceBus;
+using Transports;
 
 class BestPracticesConfiguration
 {

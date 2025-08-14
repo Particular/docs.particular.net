@@ -1,10 +1,10 @@
-﻿namespace Core9.Recoverability;
+﻿namespace Core.Recoverability;
 
-using NServiceBus;
-using NServiceBus.Pipeline;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using NServiceBus;
+using NServiceBus.Pipeline;
 
 #region custom-recoverability-action
 

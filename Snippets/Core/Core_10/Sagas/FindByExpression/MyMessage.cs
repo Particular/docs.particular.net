@@ -1,4 +1,4 @@
-namespace Core9.Sagas.FindByExpression;
+namespace Core.Sagas.FindByExpression;
 
 public class MyMessage
 {

@@ -1,4 +1,4 @@
-namespace Core9.Handlers.DataAccess;
+namespace Core.Handlers.DataAccess;
 
 using System;
 using System.Threading.Tasks;

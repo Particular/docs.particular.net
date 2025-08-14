@@ -1,4 +1,4 @@
-﻿namespace Core9.Routing.AutomaticSubscriptions;
+﻿namespace Core.Routing.AutomaticSubscriptions;
 
 using NServiceBus;
 using NServiceBus.Features;

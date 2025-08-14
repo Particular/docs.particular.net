@@ -1,4 +1,4 @@
-﻿namespace Core9.Container;
+﻿namespace Core.Container;
 
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;

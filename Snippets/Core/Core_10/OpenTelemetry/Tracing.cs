@@ -1,7 +1,7 @@
-﻿namespace Core9;
+﻿namespace Core.OpenTelemetry;
 
-using OpenTelemetry;
-using OpenTelemetry.Trace;
+using global::OpenTelemetry;
+using global::OpenTelemetry.Trace;
 
 public static class Tracing
 {

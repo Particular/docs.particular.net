@@ -1,4 +1,4 @@
-﻿namespace Core9.Persistence;
+﻿namespace Core.Persistence;
 
 using NServiceBus;
 using NServiceBus.Persistence;

@@ -1,6 +1,6 @@
 ﻿
 
-namespace Core9.Notifications;
+namespace Core.Notifications;
 
 using System.Threading.Tasks;
 using NServiceBus;

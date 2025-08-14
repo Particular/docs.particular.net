@@ -1,4 +1,4 @@
-﻿namespace Core9.Container;
+﻿namespace Core.Container;
 
 public class MyService
 {

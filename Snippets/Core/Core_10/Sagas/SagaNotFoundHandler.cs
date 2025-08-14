@@ -1,4 +1,4 @@
-﻿namespace Core9.Sagas;
+﻿namespace Core.Sagas;
 
 using System;
 using System.Threading.Tasks;

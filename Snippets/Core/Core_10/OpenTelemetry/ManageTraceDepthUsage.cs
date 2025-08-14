@@ -1,7 +1,7 @@
+namespace Core.OpenTelemetry;
+
 using System.Threading.Tasks;
 using NServiceBus;
-
-namespace Core9;
 
 public static class ManageTraceDepthUsage
 {

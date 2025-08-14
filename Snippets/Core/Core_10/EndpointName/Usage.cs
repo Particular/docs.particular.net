@@ -1,4 +1,4 @@
-﻿namespace Core9.EndpointName;
+﻿namespace Core.EndpointName;
 
 using NServiceBus;
 

@@ -1,5 +1,5 @@
 ﻿#pragma warning disable 1998
-namespace Core9.Handlers;
+namespace Core.Handlers;
 
 using System.Threading.Tasks;
 using NServiceBus;

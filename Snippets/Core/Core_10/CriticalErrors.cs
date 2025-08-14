@@ -1,6 +1,4 @@
-﻿#pragma warning disable 649
-
-namespace Core9;
+﻿namespace Core;
 
 using System;
 using System.Threading;

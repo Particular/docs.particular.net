@@ -1,4 +1,4 @@
-namespace Core9.DelayedDelivery;
+namespace Core.DelayedDelivery;
 
 using System;
 using System.Threading.Tasks;

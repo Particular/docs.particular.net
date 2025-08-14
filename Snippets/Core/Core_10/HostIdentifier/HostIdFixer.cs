@@ -1,4 +1,4 @@
-﻿namespace Core9.HostIdentifier;
+﻿namespace Core.HostIdentifier;
 
 using System;
 using NServiceBus;

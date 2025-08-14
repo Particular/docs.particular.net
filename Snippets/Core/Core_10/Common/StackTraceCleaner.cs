@@ -1,9 +1,9 @@
-﻿using System;
+﻿namespace Common;
+
+using System;
 using System.IO;
 using System.Linq;
 using System.Text;
-
-namespace Common;
 
 public static class StackTraceCleaner
 {

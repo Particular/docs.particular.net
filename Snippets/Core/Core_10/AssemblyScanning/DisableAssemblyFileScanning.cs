@@ -1,4 +1,4 @@
-﻿namespace Core9.AssemblyScanning;
+﻿namespace Core.AssemblyScanning;
 
 using NServiceBus;
 

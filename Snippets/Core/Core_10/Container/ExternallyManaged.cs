@@ -1,5 +1,5 @@
 ﻿
-namespace Core9.Container.Custom;
+namespace Core.Container;
 
 using System;
 using System.Threading.Tasks;

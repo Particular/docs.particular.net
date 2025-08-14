@@ -1,4 +1,4 @@
-namespace Core9.Sagas.FindByProperty;
+namespace Core.Sagas.FindByProperty;
 
 public class MyMessage
 {

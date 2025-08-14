@@ -1,4 +1,4 @@
-﻿namespace Core9.Transports.QueueCreation;
+﻿namespace Core.Transports.QueueCreation;
 
 using NServiceBus.Features;
 using NServiceBus.Transport;

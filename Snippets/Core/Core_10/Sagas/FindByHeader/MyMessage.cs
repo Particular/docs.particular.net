@@ -1,4 +1,4 @@
-﻿namespace Core9.Sagas.FindByHeader;
+﻿namespace Core.Sagas.FindByHeader;
 
 using NServiceBus;
 

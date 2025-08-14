@@ -1,4 +1,4 @@
-﻿namespace Core9.Handlers;
+﻿namespace Core.Handlers;
 
 using System;
 using System.Threading;

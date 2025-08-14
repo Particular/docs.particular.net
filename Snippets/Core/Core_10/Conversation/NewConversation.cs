@@ -1,4 +1,4 @@
-﻿namespace Core9.Conversation;
+﻿namespace Core.Conversation;
 
 using System.Threading.Tasks;
 using NServiceBus;

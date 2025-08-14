@@ -1,4 +1,4 @@
-﻿namespace Core9.Lifecycle;
+﻿namespace Core.Lifecycle;
 
 using NServiceBus;
 

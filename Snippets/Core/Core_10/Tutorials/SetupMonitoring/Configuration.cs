@@ -1,7 +1,7 @@
-﻿namespace Core9.Tutorials.SetupMonitoring;
+﻿namespace Core.Tutorials.SetupMonitoring;
 
-using NServiceBus;
 using System;
+using NServiceBus;
 
 static class Configuration
 {

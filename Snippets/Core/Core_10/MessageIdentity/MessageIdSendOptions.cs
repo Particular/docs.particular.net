@@ -1,4 +1,4 @@
-﻿namespace Core9.MessageIdentity;
+﻿namespace Core.MessageIdentity;
 
 using System.Threading.Tasks;
 using NServiceBus;

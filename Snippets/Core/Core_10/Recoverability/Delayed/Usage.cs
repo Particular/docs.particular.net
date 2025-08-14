@@ -1,4 +1,4 @@
-﻿namespace Core9.Recoverability.Delayed;
+﻿namespace Core.Recoverability.Delayed;
 
 using System;
 using NServiceBus;

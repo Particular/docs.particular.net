@@ -1,4 +1,4 @@
-﻿namespace Core9.Sagas.Timeouts;
+﻿namespace Core.Sagas.Timeouts;
 
 public class MyCustomTimeout
 {

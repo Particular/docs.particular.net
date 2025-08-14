@@ -1,4 +1,4 @@
-﻿namespace Core9.Logging;
+﻿namespace Core.Logging;
 
 using NServiceBus.Logging;
 

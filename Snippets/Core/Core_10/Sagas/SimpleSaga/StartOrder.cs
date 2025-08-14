@@ -1,4 +1,4 @@
-namespace Core9.Sagas.SimpleSaga;
+namespace Core.Sagas.SimpleSaga;
 
 public class StartOrder
 {

@@ -1,4 +1,4 @@
-﻿namespace Core9.ImmediateDispatch;
+﻿namespace Core.ImmediateDispatch;
 
 using System.Threading.Tasks;
 using NServiceBus;

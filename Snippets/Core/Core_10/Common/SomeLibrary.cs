@@ -1,6 +1,6 @@
-using System.Threading.Tasks;
-
 namespace Common;
+
+using System.Threading.Tasks;
 
 public static class SomeLibrary
 {

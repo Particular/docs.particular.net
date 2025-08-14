@@ -1,5 +1,6 @@
-﻿using System.Threading.Tasks;
-using Core9.Handlers;
+﻿namespace Core.Headers;
+
+using System.Threading.Tasks;
 using NServiceBus;
 
 public class ConversationIdHeaderOverride

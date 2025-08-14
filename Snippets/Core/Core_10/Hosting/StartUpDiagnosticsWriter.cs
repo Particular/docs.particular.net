@@ -1,7 +1,9 @@
-﻿using System.Linq;
+﻿namespace Core.Hosting;
+
+using System.Linq;
 using System.Threading.Tasks;
 using Common;
-using Core9.Headers.Writers;
+using Headers.Writers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NServiceBus;

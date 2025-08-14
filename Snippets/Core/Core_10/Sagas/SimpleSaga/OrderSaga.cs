@@ -1,4 +1,4 @@
-﻿namespace Core9.Sagas.SimpleSaga;
+﻿namespace Core.Sagas.SimpleSaga;
 
 using System.Threading.Tasks;
 using NServiceBus;

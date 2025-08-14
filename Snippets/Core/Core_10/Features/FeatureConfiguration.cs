@@ -1,5 +1,5 @@
 ﻿
-namespace Core9.Features;
+namespace Core.Features;
 
 using System;
 using System.Threading.Tasks;

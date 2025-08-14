@@ -1,6 +1,7 @@
-﻿namespace Core9.PublishSubscribe;
+﻿namespace Core.PubSub;
 
 using NServiceBus;
+using Transports;
 
 class DisablePublishing
 {

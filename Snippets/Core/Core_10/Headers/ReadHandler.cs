@@ -1,4 +1,4 @@
-﻿namespace Core9.Headers;
+﻿namespace Core.Headers;
 
 using System.Threading.Tasks;
 using NServiceBus;

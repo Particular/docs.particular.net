@@ -1,5 +1,4 @@
-﻿#pragma warning disable IDE0059 // Unnecessary assignment of a value
-namespace Core9.Pipeline;
+﻿namespace Core.Pipeline;
 
 using System;
 using System.Threading.Tasks;
@@ -35,4 +34,3 @@ public class GetContextBehavior :
 }
 
 #endregion
-#pragma warning restore IDE0059 // Unnecessary assignment of a value

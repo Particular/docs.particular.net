@@ -1,4 +1,4 @@
-﻿namespace Core9;
+﻿namespace Core;
 
 using System;
 using System.Transactions;

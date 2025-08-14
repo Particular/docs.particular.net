@@ -1,6 +1,5 @@
-﻿namespace Core9.Sagas.Timeouts;
+﻿namespace Core.Sagas.Timeouts;
 
-using System;
 using NServiceBus;
 
 public class MySagaData :

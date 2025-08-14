@@ -1,5 +1,4 @@
-﻿
-namespace Core9.Pipeline.Abort;
+﻿namespace Core.Pipeline.Abort;
 
 using System;
 using System.Threading.Tasks;

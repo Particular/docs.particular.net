@@ -1,4 +1,4 @@
-﻿namespace Core9;
+﻿namespace Core.OpenTelemetry;
 
 using NServiceBus;
 

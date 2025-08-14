@@ -1,4 +1,4 @@
-﻿namespace Core9.Sagas.FindSagas;
+﻿namespace Core.Sagas.FindSagas;
 
 using System;
 using System.Threading.Tasks;

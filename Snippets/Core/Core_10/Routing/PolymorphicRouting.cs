@@ -1,4 +1,4 @@
-﻿namespace Core8.PolymorphicRouting;
+﻿namespace Core.PolymorphicRouting;
 
 using System;
 using System.Threading.Tasks;

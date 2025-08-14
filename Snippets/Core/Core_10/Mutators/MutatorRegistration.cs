@@ -1,4 +1,4 @@
-﻿namespace Core9.Mutators;
+﻿namespace Core.Mutators;
 
 using System.Threading.Tasks;
 using NServiceBus;

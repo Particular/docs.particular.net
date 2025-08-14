@@ -1,8 +1,8 @@
-﻿using NServiceBus;
+﻿namespace Core.Sagas.Timeouts;
+
 using System;
 using System.Threading.Tasks;
-
-namespace Core9.Sagas.Timeouts;
+using NServiceBus;
 
 public abstract class MultipleTimeoutsMySaga :
     Saga<MySagaData>,

@@ -1,4 +1,4 @@
-﻿namespace Core9.OperationProperties;
+﻿namespace Core.OperationProperties;
 
 using System;
 using System.Threading.Tasks;

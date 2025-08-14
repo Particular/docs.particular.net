@@ -1,8 +1,8 @@
-﻿namespace Core9.Handlers;
+﻿namespace Core.Handlers;
 
 using System.Threading;
 using System.Threading.Tasks;
-using Common;
+using global::Common;
 using NServiceBus;
 
 #region ShortComputeBoundMessageHandler

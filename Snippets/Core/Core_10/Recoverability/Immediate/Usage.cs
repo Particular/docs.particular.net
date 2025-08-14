@@ -1,4 +1,4 @@
-﻿namespace Core9.Recoverability.Immediate;
+﻿namespace Core.Recoverability.Immediate;
 
 using NServiceBus;
 

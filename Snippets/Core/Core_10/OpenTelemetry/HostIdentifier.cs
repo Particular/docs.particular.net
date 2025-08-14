@@ -1,10 +1,10 @@
-﻿using System;
+﻿namespace Core.OpenTelemetry;
+
+using System;
 using System.Net;
+using global::OpenTelemetry.Resources;
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
-using OpenTelemetry.Resources;
-
-namespace Core_9;
 
 class HostIdentifier
 {

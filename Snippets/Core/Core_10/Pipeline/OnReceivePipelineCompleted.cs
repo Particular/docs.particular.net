@@ -1,4 +1,4 @@
-namespace Core9.Pipeline;
+namespace Core.Pipeline;
 
 using System.Threading.Tasks;
 using NServiceBus;
