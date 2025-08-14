@@ -13,7 +13,7 @@ public class HeaderWriterDataBusProperty
 {
     static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-    string endpointName = "HeaderWriterDataBusPropertyV8";
+    string endpointName = "HeaderWriterDataBusProperty";
 
     [OneTimeTearDown]
     public void TearDown()

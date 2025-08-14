@@ -12,7 +12,7 @@ using NUnit.Framework;
 public class HeaderWriterError
 {
     static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
-    string endpointName = "HeaderWriterErrorV8";
+    string endpointName = "HeaderWriterError";
 
     [OneTimeTearDown]
     public void TearDown()

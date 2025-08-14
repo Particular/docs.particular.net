@@ -13,7 +13,7 @@ public class HeaderWriterDefer
 {
     static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
     public static bool Received;
-    static string EndpointName = "HeaderWriterDeferV8";
+    static string EndpointName = "HeaderWriterDefer";
 
     [OneTimeTearDown]
     public void TearDown()

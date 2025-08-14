@@ -14,7 +14,7 @@ public class HeaderWriterDataBusConvention
 {
     static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-    string endpointName = "HeaderWriterDataBusConventionV8";
+    string endpointName = "HeaderWriterDataBusConvention";
 
     [OneTimeTearDown]
     public void TearDown()

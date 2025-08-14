@@ -12,7 +12,7 @@ using NUnit.Framework;
 public class HeaderWriterSaga
 {
     static CountdownEvent CountdownEvent = new CountdownEvent(4);
-    string endpointName = "HeaderWriterSagaV8";
+    string endpointName = "HeaderWriterSaga";
 
     [OneTimeTearDown]
     public void TearDown()

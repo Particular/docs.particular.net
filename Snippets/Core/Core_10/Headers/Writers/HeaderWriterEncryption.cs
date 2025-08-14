@@ -15,7 +15,7 @@ public class HeaderWriterEncryption
 {
     static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-    string endpointName = "HeaderWriterEncryptionV8";
+    string endpointName = "HeaderWriterEncryption";
 
     [OneTimeTearDown]
     public void TearDown()

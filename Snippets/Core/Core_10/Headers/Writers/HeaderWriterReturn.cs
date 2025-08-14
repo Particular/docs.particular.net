@@ -11,7 +11,7 @@ using NUnit.Framework;
 public class HeaderWriterReturn
 {
     static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
-    string endpointName = "HeaderWriterReturnV8";
+    string endpointName = "HeaderWriterReturn";
 
     [OneTimeTearDown]
     public void TearDown()
