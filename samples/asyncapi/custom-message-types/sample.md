@@ -36,7 +36,7 @@ snippet: EnableAsyncApiSupport
 
 #### AsyncAPI feature
 
-The feature creates mappings for physical to logical event types based on the `PublishedEvent` and `SubscribedEvent` attributes that decorate the events that are being published and subscribed to. These mappings are registered in the container so that they are available to be used by the following [pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) defined in the feature:
+The feature creates mappings for physical to logical event types based on the `PublishedEvent` and `SubscribedEvent` attributes that decorate the events that are published and subscribed to. These mappings are registered in the container so that they are available for the following [pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) defined in the feature:
 
 - ReplaceOutgoingEnclosedMessageTypeHeaderBehavior
 - ReplaceIncomingEnclosedMessageTypeHeaderBehavior
@@ -44,27 +44,27 @@ The feature creates mappings for physical to logical event types based on the `P
 
 snippet: RegisterEventMappings
 
-Finally, the code registers a custom implementation of the Neuroglia `IAsyncApiDocumentGenerator` which will be used instead of the default implementation to generate the NServiceBus specific schema document.
+Finally, the code registers a custom implementation of the Neuroglia `IAsyncApiDocumentGenerator` which will be used instead of the default implementation to generate the NServiceBus-specific schema document.
 
 snippet: RegisterCustomDocumentGenerator
 
 ##### AsyncAPI document generator
 
-This custom implementation of the Neuroglia `IAsyncApiDocumentGenerator` creates one AsyncAPI schema document for the NServiceBus endpoint hosted in the application. It demonstrates how channel information with the endpoint's address (queue name) can be generated, containing the publish operation and the payload of the event being published.
+This custom implementation of the Neuroglia `IAsyncApiDocumentGenerator` creates one AsyncAPI schema document for the NServiceBus endpoint hosted in the application. It demonstrates how channel information with the endpoint's address (queue name) can be generated, containing the publish operation and the event payload.
 
-This code can be extended to include subscribed to operations, as well as sent/received messages.
+This code can be extended to include subscriptions as well as sent/received messages.
 
 ### WebAPI project
 
 #### Setup AsyncAPI
 
-The project enables the AsyncAPI schema generation using two setup calls.
+The project enables AsyncAPI schema generation using two setup calls.
 
 First, by adding the Neuroglia AsyncAPI.
 
 snippet: WebAppAddNeurogliaAsyncApi
 
-Second, by adding the AsyncAPI feature to the NServiceBus endpoint.
+Second, by registering the AsyncAPI feature with the NServiceBus endpoint.
 
 snippet: WebAppEnableAsyncAPIOnNSB
 
@@ -82,19 +82,19 @@ snippet: WebAppPublisherSecondEvent
 
 #### Access AsyncAPI schema document
 
-The resulting AsyncAPI schema document can be accessed under [/asyncapi](https://localhost:7198/asyncapi). From here it can be downloaded and inspected using the [AsyncAPI Studio](https://studio.asyncapi.com/) (by pasting in the contents) and incorporated into internal system documentation.
+The resulting AsyncAPI schema document can be accessed under [/asyncapi](https://localhost:7198/asyncapi). From here it can be downloaded and inspected using [AsyncAPI Studio](https://studio.asyncapi.com/) (by pasting in the contents) and incorporated into internal system documentation.
 
 ### Generic host project
 
 #### Setup AsyncAPI
 
-The project enables the AsyncAPI schema generation using three setup calls.
+The project enables AsyncAPI schema generation using three setup calls.
 
 First, by adding the Neuroglia AsyncAPI.
 
 snippet: GenericHostAddNeurogliaAsyncApi
 
-Second, by adding the AsyncAPI feature to the NServiceBus endpoint.
+Second, by registering the AsyncAPI feature with the NServiceBus endpoint.
 
 snippet: GenericHostEnableAsyncAPIOnNSB
 
@@ -114,7 +114,7 @@ The `SecondEventThatIsBeingPublished` class is marked as representing the `SomeN
 
 snippet: GenericHostPublisherSecondEvent
 
-One message (`MessageBeingSent`) is also sent and received locally, demonstrating that standard NServiceBus message processing can run alongside custom pub/sub translations.
+One message (`MessageBeingSent`) is also sent and received locally, demonstrating that standard NServiceBus message processing can run alongside custom Publish/Subscribe translations.
 
 #### Access AsyncAPI schema document
 
@@ -122,7 +122,7 @@ The `AsyncAPISchemaWriter` uses the custom document generator injected as part o
 
 snippet: GenericHostCustomGenerationAndWritingToDisk
 
-The file is saved into the default `Downloads` folder - it can be viewed using the [AsyncAPI Studio](https://studio.asyncapi.com/) (by pasting in the contents) and incorporated into internal system documentation.
+The file is saved into the default `Downloads` folder - it can be viewed using [AsyncAPI Studio](https://studio.asyncapi.com/) (by pasting in the contents) and incorporated into internal system documentation.
 
 ### Subscriber project
 

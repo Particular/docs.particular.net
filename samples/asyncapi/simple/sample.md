@@ -23,7 +23,7 @@ This sample contains four projects:
 
 ### Feature project
 
-The project contains all necessary code for registering a custom AsyncAPI document schema generator.
+The project contains all the necessary code for registering a custom AsyncAPI document schema generator.
 
 The `EndpointConfigurationExtensions` enables the `AsyncApiFeature`.
 
@@ -35,7 +35,7 @@ The feature creates a list of events and registers them in the container so that
 
 snippet: RegisterEvents
 
-Finally, the code registers a custom implementation of the Neuroglia `IAsyncApiDocumentGenerator` which will be used instead of the default implementation to generate the NServiceBus specific schema document.
+Finally, the code registers a custom implementation of the Neuroglia `IAsyncApiDocumentGenerator` which will be used instead of the default implementation to generate the NServiceBus-specific schema document.
 
 snippet: RegisterCustomDocumentGenerator
 
@@ -49,11 +49,11 @@ snippet: GenerateChannelsForEvents
 > This will get all events in the project - some may not be published by this endpoint, others may only be subscribed to. If that's the case, an extra filter would need to be added to differentiate the events.
 > Look at the [AsyncAPI with custom message conventions sample](/samples/asyncapi/custom-message-types) to see how this can be addressed.
 
-This code can be extended to include subscribed to operations, as well as sent/received messages.
+This code can be extended to include subscriptions, as well as sent/received messages.
 
 ### Shared project
 
-The project does not have any references to AsyncAPI. It contains two events that are being published by the `AsyncAPI.GenericHost` application and subscribed to by the `Subscriber` application.
+The project does not have any references to AsyncAPI. It contains two events that are published by the `AsyncAPI.GenericHost` application and subscribed to by the `Subscriber` endpoint.
 
 ### Generic host project
 
