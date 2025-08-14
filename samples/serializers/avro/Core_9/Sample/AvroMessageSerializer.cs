@@ -1,9 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
 using Avro.IO;
 using Avro.Reflect;
-using NServiceBus;
 using NServiceBus.Serialization;
 
 #region serializer-implementation

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using NServiceBus;
-
-public record CreateOrder : IMessage
+﻿public record CreateOrder : IMessage
 {
     public int OrderId { get; set; }
     public DateTime Date { get; set; }

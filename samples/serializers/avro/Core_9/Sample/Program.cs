@@ -1,8 +1,5 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NServiceBus;
-using NServiceBus.MessageMutator;
 
 Console.Title = "Avro";
 

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Hosting;
-using NServiceBus;
+﻿using Microsoft.Extensions.Hosting;
 
 public class InputLoopService(IMessageSession messageSession) : BackgroundService
 {
