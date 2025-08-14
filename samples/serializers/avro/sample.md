@@ -21,6 +21,8 @@ This sample has the following limitations:
 
 ## Configuration
 
+Configure the endpoint to use the Avro serializer as follows:
+
 snippet: config
 
 ## Schema registry
@@ -49,9 +51,13 @@ snippet: serializer-implementation
 
 ## Sending the message
 
+Prepare and send an order message with sample data:
+
 snippet: message
 
 ## Output
+
+The serialized message output appears as follows:
 
 ```json
 {
