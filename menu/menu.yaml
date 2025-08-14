@@ -1721,6 +1721,8 @@
     Url: shape-the-future
   - Title: NServiceBus and CloudEvents
     Url: shape-the-future/cloudevents
+  - Title: NServiceBus and Apache Avro
+    Url: shape-the-future/avro
   - Title: NServiceBus and .NET Aspire
     Url: shape-the-future/aspire
   - Title: NServiceBus and Redis
