@@ -8,6 +8,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomChecks_3", "CustomChe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomChecks_5", "CustomChecks_5\CustomChecks_5.csproj", "{4CEAF7A4-4ACB-4C2A-8BF2-2F80961DFDEF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomChecks_6", "CustomChecks_6\CustomChecks_6.csproj", "{11759382-FC04-9916-4F72-2FA0D7C20AB3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{4CEAF7A4-4ACB-4C2A-8BF2-2F80961DFDEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CEAF7A4-4ACB-4C2A-8BF2-2F80961DFDEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CEAF7A4-4ACB-4C2A-8BF2-2F80961DFDEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11759382-FC04-9916-4F72-2FA0D7C20AB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11759382-FC04-9916-4F72-2FA0D7C20AB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11759382-FC04-9916-4F72-2FA0D7C20AB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11759382-FC04-9916-4F72-2FA0D7C20AB3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

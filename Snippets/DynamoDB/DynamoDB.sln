@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamoDB_2.1", "DynamoDB_2.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamoDB_3", "DynamoDB_3\DynamoDB_3.csproj", "{CEAE5139-70EF-463A-A649-6E5D1D87715B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynamoDB_4", "DynamoDB_4\DynamoDB_4.csproj", "{95548118-1E0D-D2AA-8536-DCEFB560D857}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{CEAE5139-70EF-463A-A649-6E5D1D87715B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEAE5139-70EF-463A-A649-6E5D1D87715B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEAE5139-70EF-463A-A649-6E5D1D87715B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95548118-1E0D-D2AA-8536-DCEFB560D857}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95548118-1E0D-D2AA-8536-DCEFB560D857}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95548118-1E0D-D2AA-8536-DCEFB560D857}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95548118-1E0D-D2AA-8536-DCEFB560D857}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

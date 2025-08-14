@@ -1,0 +1,8 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.Persistence.CosmosDB" Version="4.0.0-alpha.2" />
+  </ItemGroup>
+</Project>
