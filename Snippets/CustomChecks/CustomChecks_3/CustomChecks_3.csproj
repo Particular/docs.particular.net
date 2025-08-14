@@ -8,9 +8,4 @@
     <PackageReference Include="NServiceBus.CustomChecks" Version="3.*" />
   </ItemGroup>
 
-  <ItemGroup Label="Resolves vulnerabilities">
-    <PackageReference Include="System.Drawing.Common" Version="4.*" />
-    <PackageReference Include="System.Security.Cryptography.Xml" Version="4.*" />
-  </ItemGroup>
-
 </Project>
