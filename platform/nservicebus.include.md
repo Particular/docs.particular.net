@@ -81,7 +81,7 @@ Additionally, each endpoint can send [heartbeat](/monitoring/heartbeats/), [heal
 The following diagram assumes all default config for the [Error](/servicecontrol/servicecontrol-instances/configuration.md), [Audit](/servicecontrol/audit-instances/configuration.md), and [Monitoring](/servicecontrol/monitoring-instances/configuration.md) instances.
 
 <!-- https://miro.com/app/board/uXjVJUnQO_I=/?share_link_id=701931147419 -->
-<a href="/platform/particular-service-platform.jpg" target="_blank">![Particular Service Platform](/platform/particular-service-platform.jpg)</a>
+![Particular Service Platform](/platform/particular-service-platform.jpg "width=800")
 
 The [real-time monitoring demo](https://particular.net/real-time-monitoring) provides the ability to experience the Service Platform in action. The [Platform Sample package](/platform/platform-sample-package.md) provides the ability to demonstrate the Service Platform from within any Visual Studio solution, without the need to install anything.
 
