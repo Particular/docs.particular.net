@@ -5,6 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Common;
 using NServiceBus;
+using NServiceBus.ClaimCheck;
 using NServiceBus.MessageMutator;
 using NUnit.Framework;
 
@@ -26,13 +27,13 @@ public class HeaderWriterDataBusConvention
     {
         var endpointConfiguration = new EndpointConfiguration(endpointName);
 #pragma warning disable CS0618 // Type or member is obsolete
-        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
+        var dataBus = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, SystemJsonClaimCheckSerializer>();
         dataBus.BasePath(@"..\..\..\storage");
         var typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusConvention>();
         endpointConfiguration.SetTypesToScan(typesToScan);
         endpointConfiguration.UseTransport(new LearningTransport());
         var conventions = endpointConfiguration.Conventions();
-        conventions.DefiningDataBusPropertiesAs(property =>
+        conventions.DefiningClaimCheckPropertiesAs(property =>
         {
             return property.Name.StartsWith("LargeProperty");
         });

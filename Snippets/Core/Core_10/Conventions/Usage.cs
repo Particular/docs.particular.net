@@ -3,10 +3,10 @@ namespace Core9.Conventions;
 using System;
 using System.Reflection;
 using NServiceBus;
+using NServiceBus.ClaimCheck;
 
 class Usage
 {
-#pragma warning disable CS0618 // Type or member is obsolete
     void MessageConventions(EndpointConfiguration endpointConfiguration)
     {
         #region MessageConventions
@@ -15,7 +15,7 @@ class Usage
         conventions.DefiningCommandsAs(type => type.Namespace == "MyNamespace.Messages.Commands");
         conventions.DefiningEventsAs(type => type.Namespace == "MyNamespace.Messages.Events");
         conventions.DefiningMessagesAs(type => type.Namespace == "MyNamespace.Messages");
-        conventions.DefiningDataBusPropertiesAs(property => property.Name.EndsWith("DataBus"));
+        conventions.DefiningClaimCheckPropertiesAs(property => property.Name.EndsWith("DataBus"));
         conventions.DefiningTimeToBeReceivedAs(type => type.Name.EndsWith("Expires") ? TimeSpan.FromSeconds(30) : TimeSpan.MaxValue);
 
         #endregion
@@ -38,9 +38,9 @@ class Usage
             type.Namespace == "MyNamespace.Messages"
             || typeof(IMessage).IsAssignableFrom(type)
         );
-        conventions.DefiningDataBusPropertiesAs(property =>
+        conventions.DefiningClaimCheckPropertiesAs(property =>
             property.Name.EndsWith("DataBus")
-            || typeof(IDataBusProperty).IsAssignableFrom(property.PropertyType) && typeof(IDataBusProperty) != property.PropertyType
+            || typeof(IClaimCheckProperty).IsAssignableFrom(property.PropertyType) && typeof(IClaimCheckProperty) != property.PropertyType
         );
         conventions.DefiningTimeToBeReceivedAs(type =>
             type.Name.EndsWith("Expires")
@@ -50,5 +50,4 @@ class Usage
 
         #endregion
     }
-#pragma warning restore CS0618 // Type or member is obsolete
 }

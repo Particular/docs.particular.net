@@ -8,8 +8,6 @@ using NServiceBus;
 using NServiceBus.MessageMutator;
 using NUnit.Framework;
 
-#pragma warning disable CS0618 // Type or member is obsolete
-
 [TestFixture]
 public class HeaderWriterDataBusProperty
 {
@@ -27,7 +25,7 @@ public class HeaderWriterDataBusProperty
     public async Task Write()
     {
         var endpointConfiguration = new EndpointConfiguration(endpointName);
-        var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
+        var dataBus = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, SystemJsonClaimCheckSerializer>();
         dataBus.BasePath(@"..\..\..\storage");
         var typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusProperty>();
         endpointConfiguration.SetTypesToScan(typesToScan);
@@ -38,8 +36,8 @@ public class HeaderWriterDataBusProperty
 
         var messageToSend = new MessageToSend
         {
-            LargeProperty1 = new DataBusProperty<byte[]>(new byte[10]),
-            LargeProperty2 = new DataBusProperty<byte[]>(new byte[10])
+            LargeProperty1 = new ClaimCheckProperty<byte[]>(new byte[10]),
+            LargeProperty2 = new ClaimCheckProperty<byte[]>(new byte[10])
         };
         await endpointInstance.SendLocal(messageToSend);
         ManualResetEvent.WaitOne();
@@ -49,8 +47,8 @@ public class HeaderWriterDataBusProperty
     class MessageToSend :
         IMessage
     {
-        public DataBusProperty<byte[]> LargeProperty1 { get; set; }
-        public DataBusProperty<byte[]> LargeProperty2 { get; set; }
+        public ClaimCheckProperty<byte[]> LargeProperty1 { get; set; }
+        public ClaimCheckProperty<byte[]> LargeProperty2 { get; set; }
     }
 
     class MessageHandler :
@@ -76,4 +74,3 @@ public class HeaderWriterDataBusProperty
         }
     }
 }
-#pragma warning restore CS0618 // Type or member is obsolete
