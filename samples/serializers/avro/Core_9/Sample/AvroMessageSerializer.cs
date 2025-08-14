@@ -24,7 +24,9 @@ public class AvroMessageSerializer(SchemaRegistry schemaRegistry, ClassCache cla
     {
         if (messageTypes == null)
         {
-            throw new MessageDeserializationException("Avro is not able to infer message types from the body content only, the NServiceBus.EnclosedMessageTypes header must be present");
+            throw new MessageDeserializationException(
+                "Avro is not able to infer message types from the body content only," +
+                "the NServiceBus.EnclosedMessageTypes header must be present");
         }
 
         var messages = new List<object>();
@@ -40,7 +42,8 @@ public class AvroMessageSerializer(SchemaRegistry schemaRegistry, ClassCache cla
             }
             catch (KeyNotFoundException)
             {
-                throw new MessageDeserializationException($"No schema found for message type {messageType.FullName}");
+                throw new MessageDeserializationException(
+                    $"No schema found for message type {messageType.FullName}");
             }
         }
 

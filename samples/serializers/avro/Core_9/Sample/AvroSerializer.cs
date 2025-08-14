@@ -24,7 +24,8 @@ public class AvroSerializer : SerializationDefinition
 
             if (stream == null)
             {
-                throw new InvalidOperationException($"Resource '{schemaResourceName}' not found in assembly '{assembly.FullName}'.");
+                throw new InvalidOperationException(
+                    $"Resource '{schemaResourceName}' not found in assembly '{assembly.FullName}'.");
             }
 
             // Load the schema from the embedded resource
