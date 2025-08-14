@@ -21,8 +21,4 @@
     <PackageReference Include="OpenTelemetry" Version="1.3.0" />
   </ItemGroup>
 
-  <ItemGroup Label="Resolves vulnerabilities">
-    <PackageReference Include="System.Text.RegularExpressions" Version="4.*" />
-  </ItemGroup>
-
 </Project>
