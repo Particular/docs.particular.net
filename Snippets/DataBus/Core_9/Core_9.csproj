@@ -11,18 +11,6 @@
 
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="9.1.*" />
-    <PackageReference Include="NServiceBus.Callbacks" Version="5.*" />
-    <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="5.*" />
-    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="5.*" />
-    <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
-    <PackageReference Include="NUnit" Version="3.*" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
-    <PackageReference Include="OpenTelemetry" Version="1.*" />
-  </ItemGroup>
-
-  <ItemGroup Label="Resolves vulnerabilities">
-    <PackageReference Include="System.Text.RegularExpressions" Version="4.*" />
   </ItemGroup>
 
 </Project>
