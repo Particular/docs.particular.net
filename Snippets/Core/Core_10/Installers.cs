@@ -62,22 +62,22 @@ class SwitchInstallersByMachineNameConvention
 
 public class InstallerSetup
 {
-    #region installer-setup
-    public static async Task Main()
+    public static async Task MainProgram()
     {
+        #region installer-setup
         var endpointConfiguration = new EndpointConfiguration("my-endpoint");
         // configure endpoint
 
         await Installer.Setup(endpointConfiguration);
+        #endregion
     }
-    #endregion
 }
 
 public class InstallerSetupExternallyManagedContainer
 {
-    #region installer-setup-externally-managed-container
-    public static async Task Main()
+    public static async Task MainProgram()
     {
+        #region installer-setup-externally-managed-container
         var endpointConfiguration = new EndpointConfiguration("my-endpoint");
         // configure endpoint
 
@@ -89,6 +89,6 @@ public class InstallerSetupExternallyManagedContainer
         var serviceProvider = serviceCollection.BuildServiceProvider();
 
         await installer.Setup(serviceProvider);
+        #endregion
     }
-    #endregion
 }
