@@ -11,7 +11,7 @@
     public class HeaderWriterReply
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
-        string endpointName = "HeaderWriterReplyV8";
+        string endpointName = "HeaderWriterReply";
 
         [OneTimeTearDown]
         public void TearDown()
