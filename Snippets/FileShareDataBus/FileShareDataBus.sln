@@ -10,6 +10,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_9", "Core_9\Core_9.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataBus_1", "DataBus_1\DataBus_1.csproj", "{FFBF2AFD-CFBD-4FC2-B52E-42020F0005AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataBus_2", "DataBus_2\DataBus_2.csproj", "{45EB9920-D17C-8AF8-3C8D-A2DEFE715FE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{FFBF2AFD-CFBD-4FC2-B52E-42020F0005AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFBF2AFD-CFBD-4FC2-B52E-42020F0005AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFBF2AFD-CFBD-4FC2-B52E-42020F0005AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45EB9920-D17C-8AF8-3C8D-A2DEFE715FE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45EB9920-D17C-8AF8-3C8D-A2DEFE715FE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45EB9920-D17C-8AF8-3C8D-A2DEFE715FE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45EB9920-D17C-8AF8-3C8D-A2DEFE715FE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
