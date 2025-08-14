@@ -10,7 +10,7 @@ related:
 
  1. Start [Azurite Emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio).
  1. Run the solution. Two console applications start.
- 1. Find the `Sender` application by looking for the one with `Sender` in its path and press Enter in the window to send a message. A message has been sent that is larger than the allowed 4MB by MSMQ. NServiceBus sends it as an attachment via Azure storage, allowing it to reach the `Receiver` application.
+ 1. Find the `Sender` application by looking for the one with `Sender` in its path and press Enter in the window to send a message. A message has been sent that is larger than the allowed 4MB by the transport. NServiceBus sends it as an attachment via Azure storage, allowing it to reach the `Receiver` application.
 
 ## Code walk-through
 
