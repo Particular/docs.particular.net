@@ -13,7 +13,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        string endpointName = "HeaderWriterDataBusConventionV7";
+        string endpointName = "HeaderWriterDataBusConvention";
 
         [OneTimeTearDown]
         public void TearDown()

@@ -12,7 +12,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        string endpointName = "HeaderWriterSendV7";
+        string endpointName = "HeaderWriterSend";
 
         [OneTimeTearDown]
         public void TearDown()

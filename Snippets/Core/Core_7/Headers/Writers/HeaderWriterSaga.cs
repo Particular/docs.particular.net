@@ -12,7 +12,7 @@
     public class HeaderWriterSaga
     {
         static CountdownEvent CountdownEvent = new CountdownEvent(4);
-        string endpointName = "HeaderWriterSagaV7";
+        string endpointName = "HeaderWriterSaga";
 
         [OneTimeTearDown]
         public void TearDown()

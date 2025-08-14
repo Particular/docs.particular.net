@@ -11,7 +11,7 @@
     public class HeaderWriterReturn
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
-        string endpointName = "HeaderWriterReturnV7";
+        string endpointName = "HeaderWriterReturn";
 
         [OneTimeTearDown]
         public void TearDown()

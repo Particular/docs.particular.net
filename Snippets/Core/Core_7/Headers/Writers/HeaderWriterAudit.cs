@@ -12,7 +12,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        const string endpointName = "HeaderWriterAuditV7";
+        const string endpointName = "HeaderWriterAudit";
 
         [OneTimeTearDown]
         public void TearDown()
