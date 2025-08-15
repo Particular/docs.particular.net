@@ -23,6 +23,7 @@ public class StartUpDiagnosticsWriter
             diagnostics = x;
             return Task.CompletedTask;
         });
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
         var jsonFormatted = JToken.Parse(diagnostics).ToString(Formatting.Indented);

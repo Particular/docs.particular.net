@@ -38,6 +38,7 @@
             });
 #pragma warning restore CS0618 // Type or member is obsolete
             endpointConfiguration.RegisterMessageMutator(new Mutator());
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);
             var messageToSend = new MessageToSend

@@ -32,6 +32,7 @@
             endpointConfiguration.RegisterMessageMutator(new Mutator());
             var routing = endpointConfiguration.UseTransport(new LearningTransport());
             routing.RouteToEndpoint(GetType().Assembly, EndpointName);
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);
 

@@ -30,6 +30,7 @@
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.RegisterMessageMutator(new Mutator());
             var routing = endpointConfiguration.UseTransport(new LearningTransport());
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
