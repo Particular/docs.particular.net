@@ -7,7 +7,7 @@ reviewed: 2024-05-03
 
 ## About deleting messages
 
-Archiving can be useful for failed messages that no longer have business value. Once a message is deleted it can be automatically cleaned up according to the configuration of the [retention policy](/servicecontrol/servicecontrol-instances/configuration.md#data-retention-servicecontrolerrorretentionperiod).
+Archiving can be useful for failed messages that no longer have business value. Once a message is deleted, it can be automatically cleaned up according to the configuration of the [retention policy](/servicecontrol/servicecontrol-instances/configuration.md#data-retention-servicecontrolerrorretentionperiod).
 
 Archiving in ServicePulse means that the failed messages are marked as `Deleted`. Data from a deleted message is still available, but it is no longer displayed in the Failed Messages list in ServicePulse, is not counted by the Failed Messages indicator in the ServicePulse dashboard, nor will it appear in any failed message groups.
 
@@ -25,7 +25,7 @@ Deleted messages can be found in ServicePulse in a tab on the Failed Messages pa
 
 ## Managing deleted messages
 
-The Deleted Messages tab will open showing messages deleted and not yet cleaned up according to the [retention policy](/servicecontrol/servicecontrol-instances/configuration.md#data-retention-servicecontrolerrorretentionperiod).
+The Deleted Messages tab will open, showing messages deleted and not yet cleaned up according to the [retention policy](/servicecontrol/servicecontrol-instances/configuration.md#data-retention-servicecontrolerrorretentionperiod).
 
 ![Deleted Messages Tab](images/archive.png 'width=500')
 
@@ -37,7 +37,7 @@ Each message on screen contains information about when it's scheduled for deleti
 
 ![Retention Countdown](images/archive-schedule.png 'width=500')
 
-See [Service Control Error Retention Period](/servicecontrol/servicecontrol-instances/configuration.md<!-- //TODO #servicecontrolerrorretentionperiod -->) to learn more about scheduling automatic disposal of deleted messages.
+See [Service Control Error Retention Period](/servicecontrol/servicecontrol-instances/configuration.md#data-retention-servicecontrolerrorretentionperiod) to learn more about scheduling automatic disposal of deleted messages.
 
 ### Deleted Message Groups
 
