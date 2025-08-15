@@ -16,7 +16,7 @@ Archiving in ServicePulse means that the failed messages are marked as `Deleted`
 
 ## Deleting messages
 
-Deleted messages can be found in ServicePulse in a tab on the Failed Messages page. From the Failed Messages page, messages can also be deleted from:
+Messages can also be deleted from:
 
 * the Failed Groups tab
 * any failed group's contents view
@@ -47,10 +47,10 @@ The Deleted Message Groups tab shows the deleted messages grouped by the followi
  * **Message Type** - groups messages by message type.
  * **Endpoint Address** - groups messages by endpoint address where the failure occurred.
  * **Endpoint Instance** - groups messages by endpoint instance identifier where the failure occurred.
- * **Endpoint Name** - groups messages by name of the endpoint where the failure occurred.
+ * **Endpoint Name** - groups messages by the name of the endpoint where the failure occurred.
 
 > [!NOTE]
-> the number of listed groups may differ depending on the selected classifications type view.
+> The number of listed groups may differ depending on the selected classification type view.
 
 Clicking on a group of messages will navigate to the Deleted Messages page containing all the messages from that group.
 
