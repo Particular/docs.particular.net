@@ -26,7 +26,6 @@ public class HeaderWriterDataBusConvention
     public async Task Write()
     {
         var endpointConfiguration = new EndpointConfiguration(endpointName);
-#pragma warning disable CS0618 // Type or member is obsolete
         var dataBus = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, SystemJsonClaimCheckSerializer>();
         dataBus.BasePath(@"..\..\..\storage");
         var typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusConvention>();
@@ -39,7 +38,6 @@ public class HeaderWriterDataBusConvention
         {
             return property.Name.StartsWith("LargeProperty");
         });
-#pragma warning restore CS0618 // Type or member is obsolete
         endpointConfiguration.RegisterMessageMutator(new Mutator());
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
