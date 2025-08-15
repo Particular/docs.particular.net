@@ -32,6 +32,8 @@ public class HeaderWriterDataBusConvention
         var typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusConvention>();
         endpointConfiguration.SetTypesToScan(typesToScan);
         endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
         var conventions = endpointConfiguration.Conventions();
         conventions.DefiningClaimCheckPropertiesAs(property =>
         {

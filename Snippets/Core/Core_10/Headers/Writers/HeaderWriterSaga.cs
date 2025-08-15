@@ -29,6 +29,7 @@ public class HeaderWriterSaga
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.RegisterMessageMutator(new Mutator());
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
         await endpointInstance.SendLocal(new StartSaga1Message { Guid = Guid.NewGuid() });
