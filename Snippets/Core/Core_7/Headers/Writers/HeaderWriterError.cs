@@ -1,5 +1,5 @@
 ﻿#pragma warning disable 618
-namespace Core7.Headers.Writers
+namespace Core.Headers.Writers
 {
     using System;
     using System.Threading;
