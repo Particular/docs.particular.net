@@ -1,4 +1,4 @@
-﻿namespace Core7.Headers.Writers
+﻿namespace Core.Headers.Writers
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -12,7 +12,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        static string EndpointName = "HeaderWriterPublishV7";
+        static string EndpointName = "HeaderWriterPublish";
 
         [OneTimeTearDown]
         public void TearDown()

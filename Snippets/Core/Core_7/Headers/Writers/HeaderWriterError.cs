@@ -1,5 +1,5 @@
 ﻿#pragma warning disable 618
-namespace Core7.Headers.Writers
+namespace Core.Headers.Writers
 {
     using System;
     using System.Threading;
@@ -13,7 +13,7 @@ namespace Core7.Headers.Writers
     public class HeaderWriterError
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
-        string endpointName = "HeaderWriterErrorV7";
+        string endpointName = "HeaderWriterError";
 
         [OneTimeTearDown]
         public void TearDown()

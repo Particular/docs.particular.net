@@ -12,7 +12,7 @@ public class HeaderWriterSend
 {
     static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-    string endpointName = "HeaderWriterSendV8";
+    string endpointName = "HeaderWriterSend";
 
     [OneTimeTearDown]
     public void TearDown()
@@ -28,6 +28,7 @@ public class HeaderWriterSend
         endpointConfiguration.SetTypesToScan(typesToScan);
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.RegisterMessageMutator(new Mutator());
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
         await endpointInstance.SendLocal(new MessageToSend());

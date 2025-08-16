@@ -1,4 +1,4 @@
-﻿namespace Core9.Headers.Writers
+﻿namespace Core.Headers.Writers
 {
     using System;
     using System.Threading;
@@ -13,7 +13,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
         public static bool Received;
-        static string EndpointName = "HeaderWriterDeferV8";
+        static string EndpointName = "HeaderWriterDefer";
 
         [OneTimeTearDown]
         public void TearDown()
@@ -32,6 +32,7 @@
             endpointConfiguration.RegisterMessageMutator(new Mutator());
             var routing = endpointConfiguration.UseTransport(new LearningTransport());
             routing.RouteToEndpoint(GetType().Assembly, EndpointName);
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);
 

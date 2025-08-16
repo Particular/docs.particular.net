@@ -15,7 +15,7 @@ public class HeaderWriterEncryption
 {
     static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-    string endpointName = "HeaderWriterEncryptionV8";
+    string endpointName = "HeaderWriterEncryption";
 
     [OneTimeTearDown]
     public void TearDown()
@@ -44,6 +44,7 @@ public class HeaderWriterEncryption
         endpointConfiguration.SetTypesToScan(typesToScan);
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.RegisterMessageMutator(new Mutator());
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
         var messageToSend = new MessageToSend

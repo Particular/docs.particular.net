@@ -1,4 +1,4 @@
-﻿namespace Core8.Headers.Writers
+﻿namespace Core.Headers.Writers
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -12,7 +12,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        string endpointName = "HeaderWriterSendV8";
+        string endpointName = "HeaderWriterSend";
 
         [OneTimeTearDown]
         public void TearDown()

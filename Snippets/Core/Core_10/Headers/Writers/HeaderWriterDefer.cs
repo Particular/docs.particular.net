@@ -13,7 +13,7 @@ public class HeaderWriterDefer
 {
     static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
     public static bool Received;
-    static string EndpointName = "HeaderWriterDeferV8";
+    static string EndpointName = "HeaderWriterDefer";
 
     [OneTimeTearDown]
     public void TearDown()
@@ -32,6 +32,7 @@ public class HeaderWriterDefer
         endpointConfiguration.RegisterMessageMutator(new Mutator());
         var routing = endpointConfiguration.UseTransport(new LearningTransport());
         routing.RouteToEndpoint(GetType().Assembly, EndpointName);
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
 

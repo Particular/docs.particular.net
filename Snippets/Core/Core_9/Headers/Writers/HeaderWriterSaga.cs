@@ -1,4 +1,4 @@
-﻿namespace Core9.Headers.Writers
+﻿namespace Core.Headers.Writers
 {
     using Common;
     using NServiceBus;
@@ -12,7 +12,7 @@
     public class HeaderWriterSaga
     {
         static CountdownEvent CountdownEvent = new CountdownEvent(4);
-        string endpointName = "HeaderWriterSagaV8";
+        string endpointName = "HeaderWriterSaga";
 
         [OneTimeTearDown]
         public void TearDown()
@@ -29,6 +29,7 @@
             endpointConfiguration.UsePersistence<LearningPersistence>();
             endpointConfiguration.UseTransport(new LearningTransport());
             endpointConfiguration.RegisterMessageMutator(new Mutator());
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);
             await endpointInstance.SendLocal(new StartSaga1Message { Guid = Guid.NewGuid() });

@@ -1,4 +1,4 @@
-﻿namespace Core9.Headers.Writers
+﻿namespace Core.Headers.Writers
 {
     using System.Text;
     using System.Threading;
@@ -15,7 +15,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        string endpointName = "HeaderWriterDataBusPropertyV8";
+        string endpointName = "HeaderWriterDataBusProperty";
 
         [OneTimeTearDown]
         public void TearDown()
@@ -33,6 +33,7 @@
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.UseTransport(new LearningTransport());
             endpointConfiguration.RegisterMessageMutator(new Mutator());
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);
 

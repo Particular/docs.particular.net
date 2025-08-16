@@ -1,4 +1,4 @@
-﻿namespace Core9.Headers.Writers
+﻿namespace Core.Headers.Writers
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -11,7 +11,7 @@
     public class HeaderWriterReturn
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
-        string endpointName = "HeaderWriterReturnV8";
+        string endpointName = "HeaderWriterReturn";
 
         [OneTimeTearDown]
         public void TearDown()
@@ -30,6 +30,7 @@
             endpointConfiguration.MakeInstanceUniquelyAddressable("A");
             endpointConfiguration.UseTransport(new LearningTransport());
             endpointConfiguration.RegisterMessageMutator(new Mutator());
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);
             await endpointInstance.SendLocal(new MessageToSend());

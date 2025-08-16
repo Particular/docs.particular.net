@@ -1,4 +1,4 @@
-﻿namespace Core9.Headers.Writers
+﻿namespace Core.Headers.Writers
 {
     using System;
     using System.Text;
@@ -15,7 +15,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        string endpointName = "HeaderWriterEncryptionV8";
+        string endpointName = "HeaderWriterEncryption";
 
         [OneTimeTearDown]
         public void TearDown()
@@ -44,6 +44,7 @@
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.UseTransport(new LearningTransport());
             endpointConfiguration.RegisterMessageMutator(new Mutator());
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);
             var messageToSend = new MessageToSend

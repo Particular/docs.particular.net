@@ -1,4 +1,4 @@
-﻿namespace Core9.Headers.Writers
+﻿namespace Core.Headers.Writers
 {
     using System.Text;
     using System.Threading;
@@ -13,7 +13,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        string endpointName = "HeaderWriterDataBusConventionV8";
+        string endpointName = "HeaderWriterDataBusConvention";
 
         [OneTimeTearDown]
         public void TearDown()
@@ -38,6 +38,7 @@
             });
 #pragma warning restore CS0618 // Type or member is obsolete
             endpointConfiguration.RegisterMessageMutator(new Mutator());
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);
             var messageToSend = new MessageToSend
