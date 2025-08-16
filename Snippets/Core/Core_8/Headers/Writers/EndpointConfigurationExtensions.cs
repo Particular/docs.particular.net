@@ -1,4 +1,4 @@
-namespace Core8.Headers.Writers
+namespace Core.Headers.Writers
 {
     using System;
     using System.Collections.Generic;
