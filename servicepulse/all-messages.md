@@ -51,7 +51,14 @@ The results can be filtered by one or more of the following criteria:
 
 - **Date Range:** Specify the date range along with the time within that range.
 - **Endpoint:** Select a specific endpoint.
-- **Custom Filter:** Perform a free-text search across message data. This also supports wildcards.
+- **Custom Filter:** Perform a free-text search across message data.
+
+The filter works in the following way:
+
+- The filter is case insensitive (i.e., `term` and `TERM` will return the same results).
+- A message will be returned if it matches at least one of the terms (i.e., the logical operator between the terms is `OR`).
+- A `*` wildcard can be used to replace a prefix or a postfix of a searched term (i.e., `word` will be found by both `*rd` and `wo*`).
+- Other logical operators (e.g., conjunction, negation) are not supported.
 
 By default, the view displays 100 messages but can be customized to display up to a maximum of 500 messages. To display specific messages, modify the filters to narrow down the displayed results.
 
