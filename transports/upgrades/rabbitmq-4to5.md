@@ -20,7 +20,7 @@ See [routing topology](/transports/rabbitmq/routing-topology.md) for further det
 
 ## Direct routing topology changes
 
-The convention for overriding the name of the exchange used when publishing events has changed. The address and the event type are no longer passed to the `exchangeNameConvention` parameter of the [UseDirectRoutingTopology](/transports/rabbitmq/routing-topology.md#direct-routing-topology-enabling-the-direct-routing-topology) method.
+The convention for overriding the name of the exchange used when publishing events has changed. The address and the event type are no longer passed to the `exchangeNameConvention` parameter of the [UseDirectRoutingTopology](/transports/rabbitmq/routing-topology.md#direct-routing-topology-enabling) method.
 
 ```csharp
 // For RabbitMQ Transport version 5.x
