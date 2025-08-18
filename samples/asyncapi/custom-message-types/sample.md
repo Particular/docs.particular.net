@@ -15,7 +15,7 @@ This sample demonstrates how to generate an [AsyncAPI](https://www.asyncapi.com/
 It extends the [simple AsyncAPI sample](/samples/asyncapi/simple) by differentiating between event types (i.e. published vs subscribed) and showing how an event can be published by one endpoint and subscribed to by another without using the same concrete class to define the event, therefore decoupling the systems from each other.
 
 > [!NOTE]
-> This is a sample only and should not be used in production as is.
+> AsyncAPI integration is not an officially supported feature of NServiceBus, and this example is for demonstration purposes only.
 
 ## Code walk-through
 
