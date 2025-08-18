@@ -3,7 +3,7 @@ title: Roslyn analyzers for Azure Functions
 summary: Details of the Roslyn analyzers that promote code quality in Azure Functions.
 component: ASBFunctions
 versions: '[4.3,)'
-reviewed: 2023-09-19
+reviewed: 2025-08-18
 ---
 
 Starting in version 4.3, [Roslyn analyzers](https://docs.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview) are packaged with the Azure Functions host package that analyze the NServiceBus code to prevent the use of API calls that are not applicable in a serverless environment.
