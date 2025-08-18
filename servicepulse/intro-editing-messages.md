@@ -11,7 +11,7 @@ If a message cannot be successfully retried it is possible to fix the malformed 
 
 ## Enabling the feature
 
-> [!CAUTION]
+> [!WARNING]
 > Editing malformed messages is a potentially destructive operation, which if used improperly can have consequences that affect the correctness of the system. If a malformed message is edited improperly, it could still be processed successfully, without any way to undo the effects. The possible effects of editing a malformed message are system-specific and ServicePulse is unable to determine if a potential edit operation is safe for the system. Currently there is no way to limit failed message editing only to certain security groups or to specific message types.
 >
 > System designers may prefer to disallow message editing in order to guarantee the correctness of the system. As a result, the message editing feature is currently considered experimental and is **disabled by default**.
