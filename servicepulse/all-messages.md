@@ -64,7 +64,6 @@ The search filter works in the following way:
 - A `*` wildcard can be used to replace a prefix and/or a postfix of a searched term (i.e., `word` will be found by `*rd`, `wo*`, and `*or*`).
 - Other logical operators (e.g., conjunction, negation) are not supported.
 
-By default, the view displays 100 messages but can be customized to display up to a maximum of 500 messages. To display specific messages, modify the filters to narrow down the displayed results.
 
 > [!NOTE]
 > A message's body is searchable only if the body size is under 85kB, within the [`ServiceControl.Audit/MaxBodySizeToStore` size limit](/servicecontrol/audit-instances/configuration.md#performance-tuning-servicecontrol-auditmaxbodysizetostore), and is a non-binary content type.
