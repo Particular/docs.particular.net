@@ -89,9 +89,6 @@ The project does not have any references to AsyncAPI. It contains handlers for e
 
 When running the solution with Visual Studio, two applications will start automatically.
 
-> [!NOTE]
-> If using a different IDE or the .NET CLI, start each project individually to run both applications.
-
 ### AsyncAPI.GenericHost (console)
 
 - Press `1` to publish `SampleEventOne` - received by `Subscriber`.
