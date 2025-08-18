@@ -1,20 +1,19 @@
-namespace NHibernate_9.Session
+using System.Threading.Tasks;
+using NServiceBus;
+
+namespace NHibernate.Session;
+
+public class OrderHandlerViaContext :
+    IHandleMessages<OrderMessage>
 {
-    using System.Threading.Tasks;
-    using NServiceBus;
+    #region NHibernateAccessingDataViaContextHandler
 
-    public class OrderHandlerViaContext :
-        IHandleMessages<OrderMessage>
+    public Task Handle(OrderMessage message, IMessageHandlerContext context)
     {
-        #region NHibernateAccessingDataViaContextHandler
-
-        public Task Handle(OrderMessage message, IMessageHandlerContext context)
-        {
-            var nhibernateSession = context.SynchronizedStorageSession.Session();
-            nhibernateSession.Save(new Order());
-            return Task.CompletedTask;
-        }
-
-        #endregion
+        var nhibernateSession = context.SynchronizedStorageSession.Session();
+        nhibernateSession.Save(new Order());
+        return Task.CompletedTask;
     }
+
+    #endregion
 }

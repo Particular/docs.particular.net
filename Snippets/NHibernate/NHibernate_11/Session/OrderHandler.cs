@@ -1,57 +1,54 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 
-namespace NHibernate_9.Session
+namespace NHibernate.Session;
+
+#region NHibernateAccessingDataViaDI
+
+public class OrderHandler :
+    IHandleMessages<OrderMessage>
 {
-    using Microsoft.Extensions.DependencyInjection;
-    using NHibernate;
+    INHibernateStorageSession synchronizedStorageSession;
 
-    #region NHibernateAccessingDataViaDI
-
-    public class OrderHandler :
-        IHandleMessages<OrderMessage>
+    public OrderHandler(INHibernateStorageSession synchronizedStorageSession)
     {
-        INHibernateStorageSession synchronizedStorageSession;
-
-        public OrderHandler(INHibernateStorageSession synchronizedStorageSession)
-        {
-            this.synchronizedStorageSession = synchronizedStorageSession;
-        }
-
-        public Task Handle(OrderMessage message, IMessageHandlerContext context)
-        {
-            synchronizedStorageSession.Session.Save(new Order());
-            return Task.CompletedTask;
-        }
+        this.synchronizedStorageSession = synchronizedStorageSession;
     }
 
-    #endregion
-
-    public class EndpointWithSessionRegistered
+    public Task Handle(OrderMessage message, IMessageHandlerContext context)
     {
-        public void Configure(EndpointConfiguration config)
-        {
-            #region AccessingDataConfigureISessionDI
+        synchronizedStorageSession.Session.Save(new Order());
+        return Task.CompletedTask;
+    }
+}
 
-            config.RegisterComponents(c =>
+#endregion
+
+public class EndpointWithSessionRegistered
+{
+    public void Configure(EndpointConfiguration config)
+    {
+        #region AccessingDataConfigureISessionDI
+
+        config.RegisterComponents(c =>
+        {
+            c.AddScoped<MyRepository, MyRepository>(svc =>
             {
-                c.AddScoped<MyRepository, MyRepository>(svc =>
-                {
-                    var session = svc.GetService<INHibernateStorageSession>();
-                    var repository = new MyRepository(session.Session);
-                    return repository;
-                });
+                var session = svc.GetService<INHibernateStorageSession>();
+                var repository = new MyRepository(session.Session);
+                return repository;
             });
+        });
 
-            #endregion
-        }
+        #endregion
+    }
 
-        public class MyRepository
+    public class MyRepository
+    {
+        public MyRepository(ISession session)
         {
-            public MyRepository(ISession session)
-            {
-                throw new System.NotImplementedException();
-            }
+            throw new System.NotImplementedException();
         }
     }
 }

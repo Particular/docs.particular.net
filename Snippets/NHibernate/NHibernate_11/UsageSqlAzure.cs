@@ -1,6 +1,8 @@
-﻿using global::NHibernate.Cfg;
+﻿using NHibernate.Cfg;
 using NServiceBus;
 using NServiceBus.Persistence;
+
+namespace NHibernate;
 
 class UsageSqlAzure
 {

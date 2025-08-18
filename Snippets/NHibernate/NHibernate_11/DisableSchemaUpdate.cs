@@ -2,6 +2,8 @@
 using NServiceBus.Persistence;
 using NServiceBus.Persistence.NHibernate;
 
+namespace NHibernate;
+
 class DisableSchemaUpdates
 {
     void DisableSchemaUpdate(EndpointConfiguration endpointConfiguration)

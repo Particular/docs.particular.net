@@ -1,8 +1,10 @@
 ﻿using System;
-using global::NHibernate.Cfg;
+using NHibernate.Cfg;
 using NServiceBus;
 using NServiceBus.Persistence;
 using NServiceBus.Persistence.NHibernate;
+
+namespace NHibernate;
 
 class Usage
 {

@@ -1,6 +1,5 @@
-namespace NHibernate_9.Session
+namespace NHibernate.Session;
+
+public class Order
 {
-    public class Order
-    {
-    }
 }

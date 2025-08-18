@@ -1,9 +1,12 @@
-﻿using NServiceBus;
+﻿using System;
+using NServiceBus;
 using NServiceBus.SagaPersisters.NHibernate;
-using System;
+
+namespace NHibernate.Concurrency;
 
 #region NHibernateConcurrencyRowVersion
 #pragma warning disable NSB0012 // Saga data classes should inherit ContainSagaData - [RowVersion] requires non-derived class
+
 public class SagaDataWithRowVersion :
     IContainSagaData
 {
