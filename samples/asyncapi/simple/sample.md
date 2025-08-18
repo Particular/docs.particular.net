@@ -10,7 +10,7 @@ related:
 This sample demonstrates how to generate an [AsyncAPI](https://www.asyncapi.com/en) schema document from NServiceBus endpoints using [Neuroglia.AsyncApi](https://github.com/asyncapi/net-sdk).
 
 > [!NOTE]
-> This is a sample only and should not be used in production as is.
+> AsyncAPI integration is not an officially supported feature of NServiceBus, and this example is for demonstration purposes only.
 
 ## Code walk-through
 
