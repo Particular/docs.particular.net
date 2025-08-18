@@ -1729,3 +1729,5 @@
     Url: shape-the-future/redis
   - Title: NServiceBus and Infrastructure as Code (IaC)
     Url: shape-the-future/iac-provisioning
+  - Title: NServiceBus and AsyncAPI
+    Url: shape-the-future/asyncapi
