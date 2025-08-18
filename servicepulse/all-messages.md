@@ -57,7 +57,7 @@ The filter works in the following way:
 
 - The filter is case insensitive (i.e., `term` and `TERM` will return the same results).
 - A message will be returned if it matches at least one of the terms (i.e., the logical operator between the terms is `OR`).
-- A `*` wildcard can be used to replace a prefix or a postfix of a searched term (i.e., `word` will be found by both `*rd` and `wo*`).
+- A `*` wildcard can be used to replace a prefix and/or a postfix of a searched term (i.e., `word` will be found by `*rd`, `wo*`, and `*or*`).
 - Other logical operators (e.g., conjunction, negation) are not supported.
 
 By default, the view displays 100 messages but can be customized to display up to a maximum of 500 messages. To display specific messages, modify the filters to narrow down the displayed results.
