@@ -26,7 +26,7 @@ snippet: Recoverability-pseudo-code
 
 The reality is more complex, depending on the transport's capabilities, the transaction mode of the endpoint, and user customizations. For example, on a transactional endpoint, it will roll back the receive transaction when an exception bubbles through to the NServiceBus infrastructure. The message is then returned to the input queue, and any messages that the user code tried to send or publish will not be sent out. At a minimum, recoverability ensures that messages which fail multiple times are moved to the configured error queue. The part of recoverability responsible for moving failed messages to the error queue is called fault handling.
 
-To prevent sending all incoming messages to the error queue during a major system outage (e.g., when a database or a third-party service is down), the recoverability mechanism allows enabling [automatic rate-limiting](#automatic-rate-limiting). When enabled, NServiceBus detects the outage after a configured number of consecutive failures and automatically switches to rate-limiting mode. In this mode, only one message is attempted to probe if the problem persists. Once a message can be processed correctly, the system automatically switches back to regular mode.
+To prevent sending all incoming messages to the error queue during a major system outage (e.g. when a database or a third-party service is down), the recoverability mechanism allows enabling [automatic rate-limiting](#automatic-rate-limiting). When enabled, NServiceBus detects the outage after a configured number of consecutive failures and automatically switches to rate-limiting mode. In this mode, only one message is attempted to probe if the problem persists. Once a message can be processed correctly, the system automatically switches back to regular mode.
 
 When a message cannot be deserialized, all retry mechanisms will be bypassed and the message will be moved directly to the error queue.
 
@@ -42,9 +42,9 @@ The immediate retry mechanism is implemented by making the message available for
 
 ## Delayed retries
 
-Delayed retries introduce another level of retry mechanism for messages that fail processing. Delayed retries schedule message delivery to the endpoint's input queue with increasing delay, by default, first with a 10 second delay, then 20 seconds, and lastly 30 seconds. In each cycle, a full round of immediate retries will occur based on the configuration of the immediate retry policy. See [Total number of possible retries](#total-number-of-possible-retries) later in this document for more information on how immediate and delayed retries work together.
+Delayed retries introduce another level of retry mechanism for messages that fail processing. Delayed retries schedule message delivery to the endpoint's input queue with increasing delay. By default, these delays start with at 10 seconds, then 20 seconds, and lastly 30 seconds. In each cycle, a full round of immediate retries will occur based on the configuration of the immediate retry policy. See [Total number of possible retries](#total-number-of-possible-retries) later in this document for more information on how immediate and delayed retries work together.
 
-Delayed retries are useful when dealing with unreliable third-party resources. For example, if there is a call to a web service in the handler, but the service goes down for a few seconds occasionally. Without delayed retries, the message is retried instantly and sent to the error queue. With delayed retries, the message is instantly retried, deferred for 10 seconds, and then retried again. This way, when the web service is available, the message is processed successfully.
+Delayed retries are useful when dealing with unreliable third-party resources, e.g. if there is a call to a web service in the handler but the service goes down for a few seconds occasionally. Without delayed retries, the message is retried instantly and sent to the error queue. With delayed retries, the message is instantly retried, deferred for 10 seconds, and then retried again. This way, when the web service is available, the message is processed successfully.
 
 For more information about how to configure delayed retries, refer to [configure delayed retries](configure-delayed-retries.md).
 
@@ -59,7 +59,7 @@ The delayed retries mechanism is implemented by rolling back the [transport tran
 
 ## Automatic rate limiting
 
-Automatic rate limiting in response to consecutive message processing failures is designed to act as an [automatic circuit breaker](https://en.wikipedia.org/wiki/Circuit_breaker), preventing a large number of messages from being redirected to the `error` queue in the case of an outage of a resource required for processing all messages (e.g., a database or a third-party service).
+Automatic rate limiting in response to consecutive message processing failures is designed to act as an [automatic circuit breaker](https://en.wikipedia.org/wiki/Circuit_breaker), preventing a large number of messages from being redirected to the `error` queue in the case of an outage of a resource required for processing all messages (e.g. a database or a third-party service).
 
 The following code enables the detection of consecutive failures.
 
