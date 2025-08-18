@@ -53,7 +53,9 @@ The results can be filtered by one or more of the following criteria:
 - **Endpoint:** Select a specific endpoint.
 - **Custom Filter:** Perform a free-text search across message data.
 
-The filter works in the following way:
+## Filtering Options
+
+The search filter works in the following way:
 
 - The filter is case insensitive (i.e., `term` and `TERM` will return the same results).
 - A message will be returned if it matches at least one of the terms (i.e., the logical operator between the terms is `OR`).
