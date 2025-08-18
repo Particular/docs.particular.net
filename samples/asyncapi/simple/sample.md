@@ -46,7 +46,7 @@ This custom implementation of the Neuroglia `IAsyncApiDocumentGenerator` creates
 snippet: GenerateChannelsForEvents
 
 > [!NOTE]
-> This will get all events in the project - some may not be published by this endpoint, others may only be subscribed to. If that's the case, an extra filter would need to be added to differentiate the events.
+> This will get all events in the project - some may not be published by this endpoint, others may only be subscribed to. If that's the case, an extra filter would need to be added to differentiate the events, possibly based on namespace or custom attributes.
 > Look at the [AsyncAPI with custom message conventions sample](/samples/asyncapi/custom-message-types) to see how this can be addressed.
 
 This code can be extended to include subscriptions, as well as sent/received messages.
