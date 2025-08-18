@@ -150,9 +150,6 @@ Note that the defined events do not need to match all the properties defined in 
 
 When running the solution with Visual Studio, three applications will start automatically.
 
-> [!NOTE]
-> If using a different IDE or the .NET CLI, start each project individually to run all three applications.
-
 ### AsyncAPI.GenericHost (console)
 
 - Press `s` to send a message to itself.
