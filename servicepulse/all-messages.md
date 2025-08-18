@@ -53,6 +53,8 @@ The results can be filtered by one or more of the following criteria:
 - **Endpoint:** Select a specific endpoint.
 - **Custom Filter:** Perform a free-text search across message data.
 
+By default, the view displays 100 messages but can be customized to display up to a maximum of 500 messages. To display specific messages, modify the filters to narrow down the displayed results.
+
 ## Filtering Options
 
 The search filter works in the following way:
