@@ -1,6 +1,6 @@
 ---
 title: "Monitoring NServiceBus Demo - Message backlogs"
-reviewed: 2023-11-07
+reviewed: 2025-08-18
 summary: Using the Particular Service Platform to measure inter-endpoint performance and look for congestion with the queue length and critical time metrics
 suppressRelated: true
 ---
@@ -36,24 +36,24 @@ The following walkthrough shows how to identify changes in an endpoint's backlog
 
 **Run the sample solution. Open ServicePulse to the Monitoring tab.**
 
-![Service Pulse monitoring tab showing sample endpoints](servicepulse-monitoring-tab-sample-low-throughput.png "width=500")
+![ServicePulse monitoring tab showing sample endpoints](servicepulse-monitoring-tab-sample-low-throughput.png "width=500")
 
 Look at the queue length and critical times for each endpoint. By default, the ClientUI endpoint is sending one order per second into the system, and the system can keep up. Queue lengths are hovering around zero as messages are not waiting around in input queues. Critical times remain very similar to processing times since most of a message's critical time is the amount of time it takes to process.
 
-Let's see what happens when we apply more pressure to the system.
+Next, observe what happens when more pressure is applied to the system.
 
 **Find the ClientUI endpoint window and toggle High-Throughput mode. Now go back to the ServicePulse Monitoring tab.**
 
-![Service Pulse monitoring tab showing sample endpoints in high throughput mode](servicepulse-monitoring-tab-sample-high-throughput.png "width=500")
+![ServicePulse monitoring tab showing sample endpoints in high throughput mode](servicepulse-monitoring-tab-sample-high-throughput.png "width=500")
 
 Now, look at the queue length and critical time for each endpoint. Notice that there isn't that much change for the Billing and Shipping endpoints. The Sales endpoint is quickly running into difficulties though. Once it hits its throughput limit, the Sales queue length starts to ramp up. As it does, the critical time also starts to climb. The Sales endpoint is becoming less responsive as its backlog of work increases.
 
 > [!NOTE]
-> The sample endpoint included in the demo has been artificially limited so that it can handle only four messages concurrently.
+> The sample endpoint in the demo is artificially limited to handle only four messages concurrently.
 
 **Once there are 1,000 messages in the backlog, turn off High-Throughput mode.**
 
-Now that the spike in traffic is over, there is still a large backlog of messages to get through. At a throughput of 4 messages per second, it's going to take 250 seconds (just over 4 minutes) to get through the backlog. That doesn't account for the new messages still being added to the Sales input queue by the ClientUI endpoint.
+Now that the spike in traffic is over, there is still a large backlog of messages to get through. At a throughput of 4 messages per second, clearing the backlog will take about 250 seconds (just over 4 minutes). That doesn't account for the new messages still being added to the Sales input queue by the ClientUI endpoint.
 
 To handle this load of traffic, we are going to scale out the Sales endpoint.
 
@@ -82,7 +82,7 @@ When an endpoint instance stops sending data, it will be displayed with an error
 
 ![ServicePulse Monitoring tab showing the instance of Sales endpoint has stopped sending data](servicepulse-monitoring-tab-instance-stopped.png "width=500")
 
-### Critical time is going up, but so is processing time
+### Critical time is increasing, but so is processing time
 
 Critical time covers the entire lifetime of a message, from when it is first sent to when it has been completely processed. This includes the length of time it takes for the endpoint to process the message, which is already measured by processing time.
 
