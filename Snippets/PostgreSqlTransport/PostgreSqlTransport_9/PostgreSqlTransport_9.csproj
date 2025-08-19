@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Azure.Identity" Version="1.12.0" />
+    <PackageReference Include="NServiceBus.Transport.PostgreSql" Version="9.0.0-alpha.2" />
+    <PackageReference Include="NServiceBus.Heartbeat" Version="6.0.0-alpha.2" />
+  </ItemGroup>
+</Project>
