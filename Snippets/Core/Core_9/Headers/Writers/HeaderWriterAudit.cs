@@ -27,7 +27,7 @@
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterAudit>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.AuditProcessedMessagesTo(endpointName);
-            endpointConfiguration.UseTransport(new LearningTransport());
+            endpointConfiguration.UseTransport(new LearningTransport {StorageDirectory = TestContext.CurrentContext.TestDirectory});
             endpointConfiguration.RegisterMessageMutator(new Mutator());
             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 

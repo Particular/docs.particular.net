@@ -31,7 +31,7 @@
             dataBus.BasePath(@"..\..\..\storage");
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusProperty>();
             endpointConfiguration.SetTypesToScan(typesToScan);
-            endpointConfiguration.UseTransport(new LearningTransport());
+            endpointConfiguration.UseTransport(new LearningTransport {StorageDirectory = TestContext.CurrentContext.TestDirectory});
             endpointConfiguration.RegisterMessageMutator(new Mutator());
             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
