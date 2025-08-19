@@ -26,7 +26,7 @@ public class HeaderWriterError
         var errorIngestion = new EndpointConfiguration("error");
         errorIngestion.SetTypesToScan(TypeScanner.NestedTypes<ErrorMutator>());
         errorIngestion.EnableInstallers();
-        errorIngestion.UseTransport(new LearningTransport());
+        errorIngestion.UseTransport(new LearningTransport {StorageDirectory = TestContext.CurrentContext.TestDirectory});
         errorIngestion.Pipeline.Register(typeof(ErrorMutator), "Capture headers on failed messages");
         errorIngestion.UseSerialization<SystemJsonSerializer>();
 
@@ -37,7 +37,7 @@ public class HeaderWriterError
         var typesToScan = TypeScanner.NestedTypes<HeaderWriterError>();
         endpointConfiguration.SetTypesToScan(typesToScan);
         endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.UseTransport(new LearningTransport {StorageDirectory = TestContext.CurrentContext.TestDirectory});
         endpointConfiguration.Pipeline.Register(typeof(Mutator), "Capture headers on sent messages");
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 

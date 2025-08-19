@@ -26,7 +26,7 @@ public class HeaderWriterSend
         var endpointConfiguration = new EndpointConfiguration(endpointName);
         var typesToScan = TypeScanner.NestedTypes<HeaderWriterSend>();
         endpointConfiguration.SetTypesToScan(typesToScan);
-        endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.UseTransport(new LearningTransport {StorageDirectory = TestContext.CurrentContext.TestDirectory});
         endpointConfiguration.RegisterMessageMutator(new Mutator());
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 

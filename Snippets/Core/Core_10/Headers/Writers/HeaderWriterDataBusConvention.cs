@@ -30,7 +30,7 @@ public class HeaderWriterDataBusConvention
         dataBus.BasePath(@"..\..\..\storage");
         var typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusConvention>();
         endpointConfiguration.SetTypesToScan(typesToScan);
-        endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.UseTransport(new LearningTransport {StorageDirectory = TestContext.CurrentContext.TestDirectory});
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var conventions = endpointConfiguration.Conventions();

@@ -28,7 +28,7 @@ public class HeaderWriterReturn
         endpointConfiguration.SetTypesToScan(typesToScan);
         endpointConfiguration.EnableCallbacks();
         endpointConfiguration.MakeInstanceUniquelyAddressable("A");
-        endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.UseTransport(new LearningTransport {StorageDirectory = TestContext.CurrentContext.TestDirectory});
         endpointConfiguration.RegisterMessageMutator(new Mutator());
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
