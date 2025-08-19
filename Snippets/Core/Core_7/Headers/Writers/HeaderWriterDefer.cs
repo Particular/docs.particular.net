@@ -31,7 +31,9 @@
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.RegisterMessageMutator(new Mutator());
-            var routing = endpointConfiguration.UseTransport<LearningTransport>().Routing();
+            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            transport.StorageDirectory(TestContext.CurrentContext.TestDirectory);
+            var routing = transport.Routing();
             routing.RouteToEndpoint(GetType().Assembly, EndpointName);
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);

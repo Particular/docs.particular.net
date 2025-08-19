@@ -36,7 +36,8 @@ namespace Core.Headers.Writers
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterError>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.EnableInstallers();
-            endpointConfiguration.UseTransport<LearningTransport>();
+            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            transport.StorageDirectory(TestContext.CurrentContext.TestDirectory);
             endpointConfiguration.Pipeline.Register(typeof(Mutator), "Capture headers on sent messages");
 
             var recoverability = endpointConfiguration.Recoverability();
