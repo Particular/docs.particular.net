@@ -34,7 +34,7 @@ When hosted in the Generic Host, NServiceBus uses the application's `IServiceCol
 
 `UseNServiceBus` also registers an `IMessageSession` that can be resolved from the container or injected where needed at runtime.
 
-### Using a custom DI container
+### Configure custom containers
 
 To use a third-party container, configure it with `HostBuilder.UseServiceProviderFactory(...)`. NServiceBus will automatically use the host’s container. Refer to your container’s documentation for details.
 
