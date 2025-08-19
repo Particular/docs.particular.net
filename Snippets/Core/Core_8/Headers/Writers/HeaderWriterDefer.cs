@@ -30,7 +30,7 @@
             endpointConfiguration.SendFailedMessagesTo("error");
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.RegisterMessageMutator(new Mutator());
-            var routing = endpointConfiguration.UseTransport(new LearningTransport());
+            var routing = endpointConfiguration.UseTransport(new LearningTransport {StorageDirectory = TestContext.CurrentContext.TestDirectory});
             routing.RouteToEndpoint(GetType().Assembly, EndpointName);
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);

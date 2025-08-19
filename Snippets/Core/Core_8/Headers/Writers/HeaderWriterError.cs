@@ -26,7 +26,7 @@
             var errorIngestion = new EndpointConfiguration("error");
             errorIngestion.SetTypesToScan(TypeScanner.NestedTypes<ErrorMutator>());
             errorIngestion.EnableInstallers();
-            errorIngestion.UseTransport(new LearningTransport());
+            errorIngestion.UseTransport(new LearningTransport {StorageDirectory = TestContext.CurrentContext.TestDirectory});
             errorIngestion.Pipeline.Register(typeof(ErrorMutator), "Capture headers on failed messages");
             await Endpoint.Start(errorIngestion);
 

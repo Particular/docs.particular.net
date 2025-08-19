@@ -27,7 +27,7 @@
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterReply>(callbackTypes);
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.MakeInstanceUniquelyAddressable("A");
-            endpointConfiguration.UseTransport(new LearningTransport());
+            endpointConfiguration.UseTransport(new LearningTransport {StorageDirectory = TestContext.CurrentContext.TestDirectory});
             endpointConfiguration.RegisterMessageMutator(new Mutator());
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);
