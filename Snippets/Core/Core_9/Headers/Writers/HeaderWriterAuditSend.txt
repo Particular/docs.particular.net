@@ -4,19 +4,19 @@ $.diagnostics.hostdisplayname = MACHINENAME
 $.diagnostics.hostid = 7f787fc8e0611a3fab8a93c8767f6639
 $.diagnostics.originating.hostid = 7f787fc8e0611a3fab8a93c8767f6639
 NServiceBus.ContentType = application/json
-NServiceBus.ConversationId = 3d53135f-7e91-4515-82cd-b33a016277e1
-NServiceBus.CorrelationId = 39632542-5956-470d-b9cd-b33a016277e0
+NServiceBus.ConversationId = 2bdb067f-3f84-43b3-8714-b33e015fd41c
+NServiceBus.CorrelationId = f0c10692-9e03-43d1-bd43-b33e015fd41c
 NServiceBus.EnclosedMessageTypes = Core.Headers.Writers.MyNamespace.MessageToSend, MyAssembly, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-NServiceBus.MessageId = 39632542-5956-470d-b9cd-b33a016277e0
+NServiceBus.MessageId = f0c10692-9e03-43d1-bd43-b33e015fd41c
 NServiceBus.MessageIntent = Send
 NServiceBus.OriginatingEndpoint = HeaderWriterAudit
 NServiceBus.OriginatingMachine = MACHINENAME
-NServiceBus.ProcessingEnded = 2025-08-15 23:31:06:277386 Z
+NServiceBus.ProcessingEnded = 2025-08-19 23:21:59:478145 Z
 NServiceBus.ProcessingEndpoint = HeaderWriterAudit
 NServiceBus.ProcessingMachine = MACHINENAME
-NServiceBus.ProcessingStarted = 2025-08-15 23:31:06:268789 Z
+NServiceBus.ProcessingStarted = 2025-08-19 23:21:59:477486 Z
 NServiceBus.ReplyToAddress = HeaderWriterAudit
-NServiceBus.TimeSent = 2025-08-15 21:30:34:773827 Z
+NServiceBus.TimeSent = 2025-08-19 21:20:58:118997 Z
 NServiceBus.Version = 9.2.7
 
 endcode

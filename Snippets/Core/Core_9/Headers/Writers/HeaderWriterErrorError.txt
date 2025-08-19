@@ -4,17 +4,17 @@ $.diagnostics.hostdisplayname = MACHINENAME
 $.diagnostics.hostid = 7f787fc8e0611a3fab8a93c8767f6639
 $.diagnostics.originating.hostid = 7f787fc8e0611a3fab8a93c8767f6639
 NServiceBus.ContentType = application/json
-NServiceBus.ConversationId = d9c06829-79ac-47a5-9e3e-b33a01858520
-NServiceBus.CorrelationId = 390a2ccd-1083-4816-8776-b33a0185851f
+NServiceBus.ConversationId = 2fc7ccd9-415f-43dc-ab5c-b33e0182dd3c
+NServiceBus.CorrelationId = 0817844c-2f74-4aa4-85d0-b33e0182dd3c
 NServiceBus.EnclosedMessageTypes = Core.Headers.Writers.MyNamespace.MessageToSend, MyAssembly, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 NServiceBus.ExceptionInfo.Data.Handler canceled = False
-NServiceBus.ExceptionInfo.Data.Handler failure time = 2025-08-15 23:38:11:997382 Z
-NServiceBus.ExceptionInfo.Data.Handler start time = 2025-08-15 23:38:11:997323 Z
+NServiceBus.ExceptionInfo.Data.Handler failure time = 2025-08-19 23:28:31:799078 Z
+NServiceBus.ExceptionInfo.Data.Handler start time = 2025-08-19 23:28:31:798988 Z
 NServiceBus.ExceptionInfo.Data.Handler type = Core.Headers.Writers.MyNamespace.MessageHandler
-NServiceBus.ExceptionInfo.Data.Message ID = 390a2ccd-1083-4816-8776-b33a0185851f
+NServiceBus.ExceptionInfo.Data.Message ID = 0817844c-2f74-4aa4-85d0-b33e0182dd3c
 NServiceBus.ExceptionInfo.Data.Message type = Core.Headers.Writers.MyNamespace.MessageToSend
 NServiceBus.ExceptionInfo.Data.Pipeline canceled = False
-NServiceBus.ExceptionInfo.Data.Transport message ID = ae3ed1ab-c10e-43f3-abde-e3ad7245c7f0
+NServiceBus.ExceptionInfo.Data.Transport message ID = 4f340bea-c068-4275-9d85-f613a14ebd33
 NServiceBus.ExceptionInfo.ExceptionType = System.Exception
 NServiceBus.ExceptionInfo.HelpLink = 
 NServiceBus.ExceptionInfo.Message = The exception message from the handler.
@@ -32,14 +32,14 @@ NServiceBus.ExceptionInfo.StackTrace = System.Exception: The exception message f
       at NServiceBus.MainPipelineExecutor.Invoke(MessageContext messageContext, CancellationToken cancellationToken)
       at NServiceBus.LearningTransportMessagePump.ProcessFile(ILearningTransportTransaction transaction, String messageId, CancellationToken messageProcessingCancellationToken)
 NServiceBus.FailedQ = HeaderWriterError
-NServiceBus.MessageId = 390a2ccd-1083-4816-8776-b33a0185851f
+NServiceBus.MessageId = 0817844c-2f74-4aa4-85d0-b33e0182dd3c
 NServiceBus.MessageIntent = Send
 NServiceBus.OriginatingEndpoint = HeaderWriterError
 NServiceBus.OriginatingMachine = MACHINENAME
 NServiceBus.ProcessingEndpoint = HeaderWriterError
 NServiceBus.ProcessingMachine = MACHINENAME
 NServiceBus.ReplyToAddress = HeaderWriterError
-NServiceBus.TimeOfFailure = 2025-08-15 23:38:11:998239 Z
-NServiceBus.TimeSent = 2025-08-15 23:38:11:942859 Z
+NServiceBus.TimeOfFailure = 2025-08-19 23:28:31:799804 Z
+NServiceBus.TimeSent = 2025-08-19 23:28:31:766746 Z
 NServiceBus.Version = 9.2.7
 endcode
