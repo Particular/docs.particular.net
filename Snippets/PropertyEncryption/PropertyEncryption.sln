@@ -12,6 +12,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyEncryption_4", "Pro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PropertyEncryption_5", "PropertyEncryption_5\PropertyEncryption_5.csproj", "{9477D07A-A5D3-4EA3-8135-F55ABEB59581}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PropertyEncryption_6", "PropertyEncryption_6\PropertyEncryption_6.csproj", "{4E189CD5-499F-363F-7544-DDBFF461B217}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{9477D07A-A5D3-4EA3-8135-F55ABEB59581}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9477D07A-A5D3-4EA3-8135-F55ABEB59581}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9477D07A-A5D3-4EA3-8135-F55ABEB59581}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E189CD5-499F-363F-7544-DDBFF461B217}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E189CD5-499F-363F-7544-DDBFF461B217}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E189CD5-499F-363F-7544-DDBFF461B217}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E189CD5-499F-363F-7544-DDBFF461B217}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

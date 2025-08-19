@@ -8,6 +8,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SagaAudit_3", "SagaAudit_3\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SagaAudit_5", "SagaAudit_5\SagaAudit_5.csproj", "{32C50396-F1C8-4F4E-8A56-A8AAA786DFCF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SagaAudit_6", "SagaAudit_6\SagaAudit_6.csproj", "{F5E39034-5E27-8336-A0C4-84612AF599FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{32C50396-F1C8-4F4E-8A56-A8AAA786DFCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32C50396-F1C8-4F4E-8A56-A8AAA786DFCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32C50396-F1C8-4F4E-8A56-A8AAA786DFCF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5E39034-5E27-8336-A0C4-84612AF599FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5E39034-5E27-8336-A0C4-84612AF599FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5E39034-5E27-8336-A0C4-84612AF599FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5E39034-5E27-8336-A0C4-84612AF599FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

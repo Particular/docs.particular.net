@@ -8,6 +8,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricsServiceControl_4", "
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MetricsServiceControl_5", "MetricsServiceControl_5\MetricsServiceControl_5.csproj", "{D41A1E73-08C9-4D11-A3E2-9E27C63E3397}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MetricsServiceControl_6", "MetricsServiceControl_6\MetricsServiceControl_6.csproj", "{36C29F54-CD55-4B18-C82E-0BB351E9C162}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{D41A1E73-08C9-4D11-A3E2-9E27C63E3397}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D41A1E73-08C9-4D11-A3E2-9E27C63E3397}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D41A1E73-08C9-4D11-A3E2-9E27C63E3397}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36C29F54-CD55-4B18-C82E-0BB351E9C162}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36C29F54-CD55-4B18-C82E-0BB351E9C162}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36C29F54-CD55-4B18-C82E-0BB351E9C162}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36C29F54-CD55-4B18-C82E-0BB351E9C162}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

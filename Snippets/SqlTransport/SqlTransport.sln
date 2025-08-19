@@ -10,6 +10,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_7", "SqlTransp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlTransport_8", "SqlTransport_8\SqlTransport_8.csproj", "{28475FD9-E115-415E-8C77-A873E3B0E536}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlTransport_9", "SqlTransport_9\SqlTransport_9.csproj", "{16F68758-B0BE-D773-64C3-88C85AE32EDB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{28475FD9-E115-415E-8C77-A873E3B0E536}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28475FD9-E115-415E-8C77-A873E3B0E536}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28475FD9-E115-415E-8C77-A873E3B0E536}.Release|Any CPU.Build.0 = Release|Any CPU
+		{16F68758-B0BE-D773-64C3-88C85AE32EDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{16F68758-B0BE-D773-64C3-88C85AE32EDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{16F68758-B0BE-D773-64C3-88C85AE32EDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{16F68758-B0BE-D773-64C3-88C85AE32EDB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
