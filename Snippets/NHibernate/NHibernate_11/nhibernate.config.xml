@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- startcode NHibernateAppConfig -->
+<configuration>
+  <connectionStrings>
+    <add name="NServiceBus/Persistence"
+         connectionString="Data Source=.\SqlExpress;Initial Catalog=nservicebus"/>
+    <!--Following connection string will be used only for accessing Saga data-->
+    <add name="NServiceBus/Persistence/NHibernate/Saga"
+         connectionString="Data Source=.\SqlExpress;Initial Catalog=nservicebus_saga"/>
+  </connectionStrings>
+
+  <!-- specify the other needed NHibernate settings like below in appSettings:-->
+  <appSettings>
+    <!-- dialect is defaulted to MsSql2008Dialect, if needed change accordingly -->
+    <add key="NServiceBus/Persistence/NHibernate/dialect"
+         value="NHibernate.Dialect.MsSql2008Dialect" />
+    <!-- other optional settings examples -->
+    <add key="NServiceBus/Persistence/NHibernate/connection.provider"
+         value="NHibernate.Connection.DriverConnectionProvider" />
+    <add key="NServiceBus/Persistence/NHibernate/connection.driver_class"
+         value="NHibernate.Driver.Sql2008ClientDriver" />
+  </appSettings>
+</configuration>
+<!--endcode -->
