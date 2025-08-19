@@ -1,4 +1,4 @@
-Running the solution starts two console applications. `Endpoint1` encrypts a message and sends it and `Endpoint2` receives the encrypted message and decrypts it.
+Running the solution starts two console applications. `Endpoint1` encrypts a message and sends it, while `Endpoint2` receives the encrypted message and decrypts it.
 
 
 ### Endpoint1 output
@@ -30,11 +30,11 @@ snippet: Message
 
 ### Encryption configuration
 
-Encryption is enabled by calling an extension method in `Program.cs` in both `Endpoint1` and `Endpoint2`:
+Encryption is enabled by calling an extension method in `Program.cs` for both `Endpoint1` and `Endpoint2`:
 
 snippet: enableEncryption
 
-The extension method is in `Shared/EncryptionExtensions.cs`:
+The extension method is implemented in `Shared/EncryptionExtensions.cs`:
 
 snippet: ConfigureEncryption
 
