@@ -1,0 +1,26 @@
+// startcode PlatformConnector-json
+{
+  "ErrorQueue": "myErrorQueue",
+  "Heartbeats": {
+    "Enabled": true,
+    "HeartbeatsQueue": "heartbeatsQueue"
+  },
+  "CustomChecks": {
+    "Enabled": true,
+    "CustomChecksQueue": "customChecksQueue"
+  },
+  "MessageAudit": {
+    "Enabled": true,
+    "AuditQueue": "myAuditQueue"
+  },
+  "SagaAudit": {
+    "Enabled": true,
+    "SagaAuditQueue": "sagaAuditQueue"
+  },
+  "Metrics": {
+    "Enabled": true,
+    "MetricsQueue": "metricsQueue",
+    "Interval": "00:00:10"
+  }
+}
+// endcode
