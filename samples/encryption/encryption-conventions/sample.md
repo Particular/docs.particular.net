@@ -1,7 +1,7 @@
 ---
 title: Unobtrusive property encryption
 summary: Encrypting specific parts of a message using conventions.
-reviewed: 2023-11-24
+reviewed: 2025-08-19
 component: PropertyEncryption
 related:
 - serviceinsight/custom-message-viewers
