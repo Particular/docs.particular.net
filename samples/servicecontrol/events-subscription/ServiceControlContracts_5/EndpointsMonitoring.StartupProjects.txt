@@ -1,0 +1,3 @@
+EndpointsMonitor\EndpointsMonitor.csproj
+NServiceBusEndpoint\NServiceBusEndpoint.csproj
+PlatformLauncher\PlatformLauncher.csproj

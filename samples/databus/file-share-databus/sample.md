@@ -1,12 +1,12 @@
 ---
 title: File Share Data Bus Usage
 summary: The file share data bus allows large properties to be transferred via a Windows file share.
-reviewed: 2023-08-05
+reviewed: 2025-07-27
 component: FileShareDataBus
 redirects:
  - nservicebus/attachments-databus-sample
 related:
- - nservicebus/messaging/databus
+ - nservicebus/messaging/claimcheck
 ---
 
  1. Run the solution. Two console applications start.
@@ -15,7 +15,7 @@ related:
  1. Click <kbd>N</kbd> in the Sender window. A message larger than the allowed limit is sent, but this time without utilizing the NServiceBus attachments mechanism. An exception is thrown in the "Sender" application.
 
 > [!WARNING]
-> The FileShareDataBus **does not** remove physical attachments once the message has been processed. Apply a custom [cleanup-strategy](/nservicebus/messaging/databus/file-share.md#cleanup-strategy).
+> The FileShareDataBus **does not** remove physical attachments once the message has been processed. Apply a custom [cleanup-strategy](/nservicebus/messaging/claimcheck/file-share.md#cleanup-strategy).
 
 ## Code walk-through
 

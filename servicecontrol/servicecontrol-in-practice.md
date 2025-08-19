@@ -1,11 +1,11 @@
 ---
 title: Optimizing ServiceControl for use in different environments
-summary: Tips for running ServiceControl efficiently
-reviewed: 2023-01-03
+summary: Optimize ServiceControl installation and deployment for better performance; hardware, message throughput, plugin and performance considerations
+reviewed: 2025-04-03
 isLearningPath: true
 ---
 
-ServiceControl provides many capabilities such as endpoint monitoring, advanced debugging, and failed message management. These capabilities can be extended by adding optional [plugins](/servicecontrol/plugins/) into the endpoints being monitored. Each capability and plugin provides valuable information, but they have certain resource and performance costs.
+ServiceControl provides many capabilities such as endpoint monitoring, advanced debugging, and failed message management. These capabilities can be extended by adding optional plugins into the endpoints being monitored. Each capability and plugin provides valuable information, but they have certain resource and performance costs.
 
 Hardware, peak and average message throughput, and number of endpoints in the system all have an impact on the performance of ServiceControl. These factors can vary greatly between environments. Capabilities and plugins that provide value in one environment may have a negative impact if included in another environment. For example, the [Saga Audit](/nservicebus/sagas/saga-audit.md) plugin provides additional information to support a development environment where message load is low. In a production environment, where there are many more saga instances to audit, the increased overhead is magnified and can have a significant performance impact.
 
@@ -25,20 +25,20 @@ In addition:
 
 ## Message throughput considerations
 
-Depending on the number of endpoints and message volume, audit messages can have a significant impact on performance. Turn off [message auditing](/nservicebus/operations/auditing.md) if it is not needed. The primary reason for the audit ingestion capability of ServiceControl is to support system analysis with ServiceInsight. If ServiceInsight is not in use, turn off messaging auditing for each endpoint. Message auditing may be important for some endpoints but not others.
+Depending on the number of endpoints and message volume, audit messages can have a significant impact on performance. Turn off [message auditing](/nservicebus/operations/auditing.md) if it is not needed. The primary reason for the audit ingestion capability of ServiceControl is to support system analysis with ServiceInsight or ServicePulse. If ServiceInsight or ServicePulse message visualizations are not in use, turn off messaging auditing for each endpoint. Message auditing may be important for some endpoints but not others.
 
 > [!NOTE]
-> If message auditing is required without the use of ServiceInsight, configure endpoints and ServiceControl to use different audit queues. Audit messages going to an audit queue that is not managed by ServiceControl must be cleaned up manually.
+> If message auditing is required without the use of ServiceInsight or ServicePulse, configure endpoints and ServiceControl to use different audit queues. Audit messages going to an audit queue that is not managed by ServiceControl must be cleaned up manually.
 
 Turn off [audit forwarding](/servicecontrol/errorlog-auditlog-behavior.md) if it is not needed. ServiceControl sends a copy of each audited message to a configured audit forwarding queue. If these messages are not being used, turn this feature off.
 
 ## Plugin considerations
 
-[Plugins](/servicecontrol/plugins/) are installed in an endpoint and send data to ServiceControl. This communication uses messaging over the configured transport of the endpoint. Each instance of a plugin adds more messages to the ServiceControl queue which can delay the processing of each message and make ServiceControl less responsive.
+Plugins are installed in an endpoint and send data to ServiceControl. This communication uses messaging over the configured transport of the endpoint. Each instance of a plugin adds more messages to the ServiceControl queue which can delay the processing of each message and make ServiceControl less responsive.
 
 ### Heartbeats
 
-Not all endpoints are mission critical and need to be monitored with [heartbeats](/monitoring/heartbeats/) using the same SLA. For endpoints that are less critical, [adjust the heartbeat interval](/monitoring/heartbeats/install-plugin.md). Increasing the interval ensures that ServiceControl is able to process heartbeats in a timely manner. Increasing the heartbeat interval for endpoints requires a corresponding increase in the [heartbeat grace period](/servicecontrol/creating-config-file.md#plugin-specific-servicecontrolheartbeatgraceperiod) in ServiceControl.
+Not all endpoints are mission critical and need to be monitored with [heartbeats](/monitoring/heartbeats/) using the same SLA. For endpoints that are less critical, [adjust the heartbeat interval](/monitoring/heartbeats/install-plugin.md). Increasing the interval ensures that ServiceControl is able to process heartbeats in a timely manner. Increasing the heartbeat interval for endpoints requires a corresponding increase in the [heartbeat grace period](/servicecontrol/servicecontrol-instances/configuration.md#plugin-specific-servicecontrolheartbeatgraceperiod) in ServiceControl.
 
 Heartbeat messages tend to be frequent, and a large backlog can occur if ServiceControl is offline for an extended period. When this happens, it can take ServiceControl some time to process old heartbeats when it restarts.
 

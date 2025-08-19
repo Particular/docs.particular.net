@@ -1,8 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
   </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="NServiceBus.RavenDB" Version="6.1.0" />
+    <PackageReference Include="NServiceBus.RavenDB" Version="6.1.*" />
   </ItemGroup>
+
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
+  </ItemGroup>
+
 </Project>

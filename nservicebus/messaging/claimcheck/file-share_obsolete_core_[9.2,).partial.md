@@ -1,0 +1,3 @@
+> [!WARNING]
+> As of NServiceBus 9.2, the `DataBus` feature is available as a [dedicated NuGet package](https://www.nuget.org/packages/NServiceBus.ClaimCheck/). The API documented on this page will continue to work for NServiceBus Version 9 but it will hint about its upcoming obsoletion with the following warning: *The DataBus feature is released as a dedicated 'NServiceBus.ClaimCheck' package.*.
+> The new documentation is [here](/nservicebus/messaging/claimcheck/).

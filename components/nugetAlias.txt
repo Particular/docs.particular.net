@@ -19,6 +19,7 @@ CustomChecks4: ServiceControl.Plugin.Nsb4.CustomChecks
 CustomChecks5: ServiceControl.Plugin.Nsb5.CustomChecks
 CustomChecks6: ServiceControl.Plugin.Nsb6.CustomChecks
 CustomChecks: NServiceBus.CustomChecks
+DataBus: NServiceBus.ClaimCheck
 Distributor: NServiceBus.Distributor.MSMQ
 Gateway: NServiceBus.Gateway
 GatewayRavenDB: NServiceBus.Gateway.RavenDB
@@ -30,6 +31,7 @@ Heartbeats6: ServiceControl.Plugin.Nsb6.Heartbeat
 Heartbeats: NServiceBus.Heartbeat
 Host: NServiceBus.Host
 Log4Net: NServiceBus.Log4Net
+MessageInterfaces: NServiceBus.MessageInterfaces
 Metrics: NServiceBus.Metrics
 MetricsServiceControl: NServiceBus.Metrics.ServiceControl
 MetricsServiceControlMsmq: NServiceBus.Metrics.ServiceControl.Msmq
@@ -62,6 +64,7 @@ ServicePulse: ServicePulse
 ServiceInsight: ServiceInsight
 SqlPersistence: NServiceBus.Persistence.Sql
 SqlTransport: NServiceBus.Transport.SqlServer
+PostgreSqlTransport: NServiceBus.Transport.PostgreSql
 SqlTransportLegacySystemClient: NServiceBus.SqlServer
 SignalR: SignalR.NServiceBus
 Spring: NServiceBus.Spring

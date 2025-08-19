@@ -3,22 +3,21 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
 using OpenTelemetry.Logs;
-using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
-string EndpointName = "Samples.Hosting.GenericHost";
+var endpointName = "Samples.OpenTelemetry.MyEndpoint";
 
 var builder = Host.CreateApplicationBuilder(args);
 
 #region otel-config
 
 builder.Services.AddOpenTelemetry()
-    .ConfigureResource(resourceBuilder => resourceBuilder.AddService(EndpointName))
-    .WithTracing(builder =>
+    .ConfigureResource(resourceBuilder => resourceBuilder.AddService(endpointName))
+    .WithTracing(traceBuilder =>
     {
-        builder.AddSource("NServiceBus.*");
-        builder.AddConsoleExporter();
+        traceBuilder.AddSource("NServiceBus.*");
+        traceBuilder.AddConsoleExporter();
     });
 
 #endregion
@@ -37,7 +36,8 @@ builder.Logging.AddOpenTelemetry(loggingOptions =>
 
 #region otel-nsb-config
 
-var endpointConfiguration = new EndpointConfiguration(EndpointName);
+var endpointConfiguration = new EndpointConfiguration(endpointName);
+
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
 
@@ -48,7 +48,6 @@ builder.UseNServiceBus(endpointConfiguration);
 #endregion
 
 builder.Services.AddHostedService<MessageGenerator>();
-
 
 var host = builder.Build();
 

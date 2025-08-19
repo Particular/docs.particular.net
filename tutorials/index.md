@@ -1,7 +1,7 @@
 ---
 title: Tutorials
 suppressRelated: true
-reviewed: 2022-01-21
+reviewed: 2024-10-16
 summary: Step-by-step tutorials to help you learn how to use NServiceBus, with detailed instructions and downloadable solutions with the completed examples.
 redirects:
 - tutorials/monitoring
@@ -19,13 +19,7 @@ Learn the basics of NServiceBus, from sending messages between message endpoints
 
 ### [NServiceBus Sagas](nservicebus-sagas/)
 
-Learn to master NServiceBus sagas to model complex, long-running business processes. Learn how to model saga data, correlate messages to sagas, use timeouts to model time in your business processes, and how to integrate with third-party systems. 
-
-### [Message replay](message-replay/)
-
-One of the most powerful features of NServiceBus is its ability to replay a message that has failed. Often, message failures are introduced by bugs that aren't found until the code is deployed. When this happens, failed messages can flood into the error queue all at once.
-
-In this tutorial, we'll see how to use ServiceControl to monitor an NServiceBus system, and use ServicePulse to replay a failed message.
+Learn to master NServiceBus sagas to model complex, long-running business processes. Learn how to model saga data, correlate messages to sagas, use timeouts to model time in your business processes, and how to integrate with third-party systems.
 
 ### [Monitoring NServiceBus demo walkthrough](monitoring-demo/)
 

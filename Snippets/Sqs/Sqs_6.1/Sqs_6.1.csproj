@@ -1,9 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <Configurations>Debug</Configurations>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="NServiceBus.AmazonSQS" Version="6.1.*" />
   </ItemGroup>
+
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="System.Text.Json" Version="8.*" />
+  </ItemGroup>
+
 </Project>

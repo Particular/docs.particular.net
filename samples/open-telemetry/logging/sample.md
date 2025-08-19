@@ -1,7 +1,7 @@
 ---
 title: Connecting OpenTelemetry traces and logs
 summary: How to connect OpenTelemetry traces to logs in an NServiceBus endpoint
-reviewed: 2022-07-15
+reviewed: 2024-07-26
 component: Core
 related:
  - nservicebus/operations/opentelemetry
@@ -38,21 +38,21 @@ snippet: log-statement
 will lead to the following output:
 
 ```
-info: MyMessageHandler[0]
-Received message #54
-LogRecord.Timestamp:               2022-06-28T09:02:34.5342602Z
-LogRecord.TraceId:                 964b320925ab08cd2134c02d0abe920d
-LogRecord.SpanId:                  066fce94c5438add
-LogRecord.TraceFlags:              Recorded
-LogRecord.CategoryName:            MyMessageHandler
-LogRecord.LogLevel:                Information
-LogRecord.FormattedMessage:        Received message #54
-LogRecord.StateValues (Key:Value):
-{OriginalFormat}: Received message #54
-LogRecord.ScopeValues (Key:Value):
-[Scope.0]:SpanId: 066fce94c5438add
-[Scope.0]:TraceId: 964b320925ab08cd2134c02d0abe920d
-[Scope.0]:ParentId: e595cc6a4d9b0768
+ info: MyMessageHandler[0]
+ Received message #54
+ LogRecord.Timestamp:               2022-06-28T09:02:34.5342602Z
+ LogRecord.TraceId:                 964b320925ab08cd2134c02d0abe920d
+ LogRecord.SpanId:                  066fce94c5438add
+ LogRecord.TraceFlags:              Recorded
+ LogRecord.CategoryName:            MyMessageHandler
+ LogRecord.LogLevel:                Information
+ LogRecord.FormattedMessage:        Received message #54
+ LogRecord.StateValues (Key:Value):
+ {OriginalFormat}: Received message #54
+ LogRecord.ScopeValues (Key:Value):
+ [Scope.0]:SpanId: 066fce94c5438add
+ [Scope.0]:TraceId: 964b320925ab08cd2134c02d0abe920d
+ [Scope.0]:ParentId: e595cc6a4d9b0768
 ```
 
 The console will also show information for the captured traces:

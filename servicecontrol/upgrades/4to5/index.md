@@ -13,18 +13,18 @@ Upgrading ServiceControl from version 4 to version 5 is a major upgrade and requ
 * ServiceControl now uses a [new data format](#new-data-format) for data storage which is not compatible with previous versions.
 * The Error Instance will no longer process [saga audit data](/nservicebus/sagas/saga-audit.md). If some endpoints are still configured to send saga audit data to the error instance instead of the audit instance, the error instance will attempt to forward the messages to the audit instance and display a [custom check warning](/monitoring/custom-checks/in-servicepulse.md) until the misconfigured endpoints are corrected.
 * ServiceControl Management is no longer distributed as an installable package. Starting with version `5.0.0`, ServiceControl Management is now distributed as a portable application that is used to create, update, and delete ServiceControl instances. This allows using different versions of ServiceControl Management side-by-side, without the need to uninstall or reinstall different versions.
-* The [ServiceControl PowerShell module](/servicecontrol/powershell.md) is no longer installed with ServiceControl. Instead, the PowerShell module can be [installed from the PowerShell Gallery](/servicecontrol/powershell.md#installing-and-using-the-powershell-module).
-* The [ServiceControl PowerShell module](/servicecontrol/powershell.md) requires PowerShell 7.2 or greater to run.
+* The ServiceControl PowerShell module is no longer installed with ServiceControl. Instead, the PowerShell module can be [installed from the PowerShell Gallery](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management/).
+* The [ServiceControl PowerShell module](https://www.powershellgallery.com/packages/Particular.ServiceControl.Management/) requires PowerShell 7.2 or greater to run.
 * PowerShell: The `Transport` parameter no longer accepts the DisplayName descriptions but only the Name code. See [PowerShell Transport argument](#powershell-transport-argument)
-
-* ServiceControl instances using **Azure Service Bus - Endpoint-oriented topology (Legacy)** as the message transport cannot be upgraded to ServiceControl version 5. Systems using this deprecated configuration must first use the upgrade steps documented in [Azure Service Bus Transport (Legacy) Upgrade Version 9 to 9.1](/transports/upgrades/asb-9to9.1.md). After this process is complete, a ServiceControl 4.x instance can be switched to the supported **Azure Service Bus** transport, and then an upgrade to ServiceControl 5 can occur.
-* `!disable` is no longer supported as an error and/or audit queue names. Instead, dedicated settings i.e. [`ServiceControl/IngestErrorMessages`](/servicecontrol/creating-config-file.md#transport-servicecontrolingesterrormessages) and [`ServiceControl/IngestAuditMessages`](/servicecontrol/audit-instances/creating-config-file.md#transport-servicecontrolingestauditmessages) should be used to control the message ingestion process. These settings are useful for upgrade scenarios, such as the one that will be described later in this article.
+* ServiceControl instances using **Azure Service Bus - Endpoint-oriented topology (Legacy)** as the message transport cannot be directly upgraded to ServiceControl version 5.
+  * See [Migrating Azure Service Bus](#migrating-azure-service-bus)
+* `!disable` is no longer supported as an error and/or audit queue names. Instead, dedicated settings i.e. [`ServiceControl/IngestErrorMessages`](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicecontrolingesterrormessages) and [`ServiceControl/IngestAuditMessages`](/servicecontrol/audit-instances/configuration.md#transport-servicecontrolingestauditmessages) should be used to control the message ingestion process. These settings are useful for upgrade scenarios, such as the one that will be described later in this article.
 * The setting `IndexStoragePath` is no longer supported.  Use [symbolic links (soft links) to map any storage subfolder](https://ravendb.net/docs/article-page/5.4/csharp/server/storage/customizing-raven-data-files-locations) to other physical drives.
-* The [`ServiceControl.Audit/RavenDBLogLevel`](/servicecontrol/audit-instances/creating-config-file.md#host-settings-servicecontrol-auditravendbloglevel) and [`ServiceControl/RavenDBLogLevel`](/servicecontrol/creating-config-file.md#host-settings-servicecontrolravendbloglevel) settings use new values. The previous values are mapped to new values native to RavenDB5.
+* The [`ServiceControl.Audit/RavenDBLogLevel`](/servicecontrol/audit-instances/configuration.md#host-settings-servicecontrol-auditravendbloglevel) and [`ServiceControl/RavenDBLogLevel`](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolravendbloglevel) settings use new values. The previous values are mapped to new values native to RavenDB5.
 
 ## New data format
 
-Version 4.26 of ServiceControl introduced a [new persistence format](../new-persistence.md) for audit instances. Version 5 of ServiceControl uses the new persistence format for _all_ instance types.
+Version 4.26 of ServiceControl introduced a [new persistence format](/servicecontrol/migrations/new-persistence.md) for audit instances. Version 5 of ServiceControl uses the new persistence format for _all_ instance types.
 
 As a result, not all ServiceControl instances can be automatically upgraded from Version 4 to Version 5, including the data. An automatic upgrade process is available for:
 
@@ -73,7 +73,7 @@ Follow this procedure to upgrade all necessary ServiceControl 4 instances to ver
 These steps should be followed whether updating using ServiceControl Management or via PowerShell:
 
 1. Upgrade all ServiceControl instances to 4.33.0 or later. *This is required to support the upgrade path that keeps all failed messages safe.*
-2. To preserve audit data, install a new Audit instance that uses RavenDB 5 persistence as described in [zero-downtime upgrades](../zero-downtime.md), if this has not already been done.
+2. To preserve audit data, install a new Audit instance that uses RavenDB 5 persistence as described in [Replacing Audit instances](/servicecontrol/migrations/replacing-audit-instances/), if this has not already been done.
 3. In ServicePulse, clean up all [failed messages](/servicepulse/intro-failed-messages.md). It's acceptable if a few failed messages still come in, but ideally, all failed messages should either be retried or archived.
 4. Disable error message ingestion:
    * Stop the ServiceControl instance.
@@ -94,7 +94,7 @@ Follow this procedure to upgrade using the ServiceControl Management Utility:
 
 1. Ensure the [getting ready](#upgrading-to-version-5-getting-ready) steps above have been completed.
 2. Using ServiceControl Management version 5, perform a forced upgrade on the Error instance:
-    * Click the wrench <kbd> :wrench: </kbd> icon to access to the Error instance's [Advanced Options](/servicecontrol/maintenance-mode.md) screen.
+    * Click the wrench <kbd> :wrench: </kbd> icon to access to the Error instance's Advanced Options screen.
     * Under **Force Upgrade to Version 5**, click the **Upgrade Instance** button and follow the prompts.
     * _**Note:** This is a destructive operation. A database backup is made but will require application re-installation of the instance to recover._
 3. Re-enable error message ingestion by removing the `IngestErrorMessages` setting from the `ServiceControl.exe.config` file.
@@ -154,7 +154,7 @@ After completing the , follow this procedure to upgrade using PowerShell 7.2 or 
 
 ## Force upgrading
 
-In ServiceControl 5, it is also possible to perform a forced upgrade on instances that still uses RavenDB 3.5 persistence, which will discard all the data in the current database and start with a fresh RavenDB 5 database. This is sometimes preferable on non-production and developer systems where the audit data has little value, or in situations where the [audit retention period](/servicecontrol/audit-instances/creating-config-file.md#data-retention-servicecontrol-auditauditretentionperiod) is low and a decision is made that the value of the temporally-limited audit data is not worth the complexity of following the [zero-downtime upgrades](../zero-downtime.md) procedure.
+In ServiceControl 5, it is also possible to perform a forced upgrade on instances that still uses RavenDB 3.5 persistence, which will discard all the data in the current database and start with a fresh RavenDB 5 database. This is sometimes preferable on non-production and developer systems where the audit data has little value, or in situations where the [audit retention period](/servicecontrol/audit-instances/configuration.md#data-retention-servicecontrol-auditauditretentionperiod) is low and a decision is made that the value of the temporally-limited audit data is not worth the complexity of following the [Replacing Audit instances](/servicecontrol/migrations/replacing-audit-instances/) procedure.
 
 Force upgrading instance requires upgrading version 4 instances to 4.26.0 or later.
 
@@ -189,3 +189,36 @@ Invoke-ServiceControlInstanceUpgrade -Name <InstanceName> -Force
 ## Support for version 4
 
 Version 4 is supported for one year after version 5 is released as defined by the [ServiceControl support policy](/servicecontrol/upgrades/support-policy.md). The ServiceControl support end-date is available at [ServiceControl supported versions](/servicecontrol/upgrades/supported-versions.md).
+
+
+## Migrating Azure Service Bus
+
+ServiceControl instances using **Azure Service Bus – Endpoint-oriented topology (Legacy)** cannot be directly upgraded to version 5.
+
+To upgrade, follow these steps:
+
+### 1. Upgrade the Transport
+
+> [!NOTE]
+> This step is only required if there are subscribers for [ServiceControl integration events](/servicecontrol/contracts.md).
+
+Migrate those subscribers to the supported **Azure Service Bus (Forwarding Topology)** transport using the following guide:
+
+- [Azure Service Bus Transport (Legacy) Upgrade Version 9 to 9.1](/transports/upgrades/asb-9to9.1.md)
+
+### 2. Reconfigure ServiceControl 4.x
+
+After completing the transport upgrade:
+
+1. Upgrade **ServiceControl** to **v4.33.5** (Do NOT use v5.x or newer. Validate the version of the ServiceControl Management Utility that you have open).
+2. Note the **instance name** and **database folder path**.
+3. Remove the instance via 🔧 (Advanced options), but **leave “Remove DB subdirectory and data” unchecked** in the Remove instance dialog.
+4. Re-create a **new v4.33.5 instance**:
+    - Reuse the **same instance name**.
+    - Point it to the **same database path**.
+    - Select **Azure Service Bus (Forwarding Topology)** as the transport.
+
+### 3. Upgrade to ServiceControl v5
+
+Once the instance is reconfigured and running with the supported transport, you can safely upgrade to **ServiceControl v5**.
+With the instance now using the supported transport, you can [upgrade your error instance to **ServiceControl v5**](#upgrading-to-version-5)

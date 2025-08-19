@@ -1,7 +1,7 @@
 ---
 title: Persistence
 summary: Features of NServiceBus requiring persistence include timeouts, sagas, and subscription storage.
-reviewed: 2023-05-09
+reviewed: 2025-05-09
 redirects:
 - nservicebus/persistence-in-nservicebus
 - nservicebus/persistence
@@ -28,6 +28,11 @@ It can be a challenge to decide whether or not a persister is needed and which o
 ## Supported persisters
 
 - [SQL](/persistence/sql/)
+  - [Microsoft SQL Server](/persistence/sql/dialect-mssql.md)
+  - [MySQL](/persistence/sql/dialect-mysql.md)
+  - [PostgreSQL](/persistence/sql/dialect-postgresql.md)
+  - [Oracle](/persistence/sql/dialect-oracle.md)
+  - Amazon Aurora (with MySQL or PostgreSQL) and Amazon RDS
 - [Cosmos DB](/persistence/cosmosdb/)
 - [DynamoDB](/persistence/dynamodb/)
 - [MongoDB](/persistence/mongodb/)
@@ -44,7 +49,7 @@ It can be a challenge to decide whether or not a persister is needed and which o
 The main page for each persistence library includes a **Persistence at a glance** section that calls out some of the important differences between each option. This section describes what each item means and why it is important.
 
 * **Supported storage types**: The [features](#features-that-require-persistence) that are supported by the library.
-  * May include Sagas, Outbox, Subscriptions, and Timeouts.
+  * May include Sagas, Outbox, and Subscriptions.
   * Support for timeouts includes delayed retries and message deferral as well.
   * Gateway deduplication is not covered, as the [gateway component](/nservicebus/gateway/) is a separate package from NServiceBus and has its own persistence packages.
 * **Transactions**: Describes how changes to saga and/or outbox data are kept consistent with each other and with changes to business data made in message handlers. Persistence that has this type of transactional capability will expose access to the transaction/session through the `SynchronizedStorageSession` property of `IMessageHandlerContext`.

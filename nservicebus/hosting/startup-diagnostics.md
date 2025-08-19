@@ -3,11 +3,11 @@ title: Startup diagnostics
 summary: Describes the mechanism for gathering diagnostic information when endpoints start
 component: Core
 versions: '[7,)'
-reviewed: 2023-01-03
+reviewed: 2025-03-31
 ---
 
 > [!NOTE]
-> This document does not apply to Azure Function hosts. For Azure Function hosts, see [Azure Function In-process diagnostics](/nservicebus/hosting/azure-functions-service-bus/in-process/#configuration-custom-diagnostics) or [Azure Function Isolated Worker diagnostics](/nservicebus/hosting/azure-functions-service-bus/#custom-triggers-custom-diagnostics).
+> This document does not apply to Azure Function hosts. For Azure Function hosts, see [Azure Function In-process diagnostics](/nservicebus/hosting/azure-functions-service-bus/in-process/#configuration-custom-diagnostics) or [Azure Function Isolated Worker diagnostics](/nservicebus/hosting/azure-functions-service-bus/#configuration-custom-diagnostics).
 
 To make troubleshooting easier, diagnostic information is collected during endpoint startup and written to a `.diagnostics` sub-folder in the host output directory.
 

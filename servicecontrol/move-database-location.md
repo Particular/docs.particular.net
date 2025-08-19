@@ -1,7 +1,7 @@
 ---
 title: ServiceControl Move Database to Another Location
 summary: Move Database to Another Location
-reviewed: 2023-07-03
+reviewed: 2025-06-29
 ---
 
 

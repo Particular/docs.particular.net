@@ -15,6 +15,12 @@
         public static bool Received;
         static string EndpointName = "HeaderWriterDeferV8";
 
+        [OneTimeTearDown]
+        public void TearDown()
+        {
+            ManualResetEvent.Dispose();
+        }
+
         [Test]
         public async Task Write()
         {

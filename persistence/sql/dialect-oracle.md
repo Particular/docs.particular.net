@@ -2,7 +2,7 @@
 title: Oracle dialect
 component: SqlPersistence
 related:
-reviewed: 2022-02-18
+reviewed: 2024-10-31
 versions: "[2,)"
 redirects:
  - nservicebus/sql-persistence/oracle-caveats
@@ -10,13 +10,11 @@ redirects:
 ---
 
 > [!WARNING]
-> SQL Persistence will run on [Oracle XE](https://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html). However it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place. See [Oracle Support](https://www.oracle.com/support/index.html) for details.
-
+> SQL Persistence will run on [Oracle XE](https://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html). However it is strongly recommended to use commercial versions for production systems. It is also recommended to ensure that [Oracle support agreements](https://www.oracle.com/support/index.html) are in place.
 
 ## Supported database versions
 
 SQL persistence supports [Oracle 11g Release 2](https://docs.oracle.com/cd/E11882_01/readmes.112/e41331/chapter11204.htm) and above.
-
 
 ## Usage
 
@@ -24,17 +22,8 @@ Using the [Oracle.ManagedDataAccess NuGet Package](https://www.nuget.org/package
 
 snippet: SqlPersistenceUsageOracle
 
-In Versions 2.2.0 and above it's possible to specify custom schema using the following code:
-
-```
-var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-persistence.SqlVariant(SqlVariant.Oracle);
-persistence.Schema("custom_schema");
-```
-
 > [!NOTE]
 > The ODP.NET managed driver requires the `Enlist=false` or `Enlist=dynamic` setting in the [Oracle connection string](https://docs.oracle.com/database/121/ODPNT/featConnecting.htm) to allow the persister to enlist in a [Distributed Transaction](https://msdn.microsoft.com/en-us/library/windows/desktop/ms681205.aspx) at the correct moment.
-
 
 ## Unicode support
 
@@ -52,10 +41,9 @@ snippet: OracleSchema
 
 include: name-lengths
 
-The SQL Persistence provides autonomy between endpoints by using separate tables for every endpoint based on the endpoint name. However, due to Oracle's 30-character limit on table names and index names in [Oracle 12.1 and below](https://docs.oracle.com/database/121/SQLRF/sql_elements008.htm#SQLRF00223), the SQL Persistence must make some compromises.
+The SQL Persistence provides autonomy between endpoints by using separate tables for each endpoint based on the endpoint name. However, due to Oracle's 30-character limit on table names and index names in [Oracle 12.1 and below](https://docs.oracle.com/database/121/SQLRF/sql_elements008.htm#SQLRF00223), the SQL Persistence must make some compromises.
 
 include: name-length-validation-on
-
 
 ### Table Names
 
@@ -76,12 +64,11 @@ If an endpoint name is longer than 24 characters, an exception will be thrown, a
 
 snippet: TablePrefix
 
-
 ### Sagas
 
 Tables generated for sagas reserve 27 characters for the saga name, leaving 3 characters for the `_PK` suffix for the table's primary key.
 
-In order to accommodate as many characters for the saga name as possible, the [table prefix](/persistence/sql/install.md#table-prefix) is omitted from the saga table name.
+To accommodate as many characters for the saga name as possible, the [table prefix](/persistence/sql/install.md#table-prefix) is omitted from the saga table name.
 
 | Saga Class Name |   Table Name  |    Primary Key   |
 |-----------------|:-------------:|:----------------:|
@@ -98,10 +85,9 @@ where INDEX_NAME = 'SAGAIDX_525D1D4DC0C3DCD96947E1';
 ```
 
 > [!NOTE]
-> If saga name or correlation property name change, the name of the index will also change.
+> If either the saga name or correlation property name change, the name of the index will also change.
 
 If a saga name is longer than 27 characters, an exception will be thrown, and a [substitute table name must be specified](saga.md#table-structure-table-name).
-
 
 ### Custom Finders
 

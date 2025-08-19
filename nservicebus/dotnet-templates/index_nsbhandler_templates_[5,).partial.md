@@ -1,9 +1,10 @@
 ## NServiceBus Handler
 
-The `nsbhandler` item template will create a C# class for a message handler.
+The `nsbhandler` item template creates a C# class for a message handler.
 
-> [!NOTE]
-> Currently, Visual Studio does not support using item templates from the New Item dialog.
+Message handlers can be created using the Visual Studio New Item dialogue or the command line.
+
+![Create a message handler in Visual Studio using the item template](handler-from-item-template.png)
 
 To create a message handler class that implements `IHandleMessages<MyMessage>`:
 

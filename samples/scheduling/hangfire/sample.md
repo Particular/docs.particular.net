@@ -1,10 +1,9 @@
 ---
 title: Hangfire Usage
 summary: Using Hangfire to send messages from within an NServiceBus endpoint.
-reviewed: 2021-07-28
+reviewed: 2025-07-14
 component: Core
 related:
-- nservicebus/messaging/timeout-manager
 - nservicebus/scheduling
 ---
 
@@ -38,7 +37,7 @@ Hangfire also supports Dependency Injection (DI) via the [JobActivator API](http
 
 The endpoint is started, and the `IEndpointInstance` is stored in the static endpoint helper.
 
-This sample uses in-memory storage for the jobs. Production scenarios should use more robust alternatives: SqlServer, MSMQ or Redis.
+This sample uses in-memory storage for the jobs. Production scenarios should use more robust alternatives: e.g. SQL Server or Redis.
 
 Hangfire calls their scheduler a [BackgroundJobServer](https://docs.hangfire.io/en/latest/background-processing/processing-background-jobs.html). It is started automatically when an instance of the `BackgroundJobServer` class is instantiated.
 
@@ -56,7 +55,7 @@ Note that the `EndpointHelper` is used by the job to get access to the `IEndpoin
 
 ### Schedule a job
 
-Hangfire will accept any lambda expression as a job definition.
+Hangfire accepts any lambda expression as a job definition.
 
 The expression is serialized, stored, and scheduled for execution by the `BackgroundJobServer` in Hangfire.
 
@@ -76,7 +75,7 @@ The Hangfire scheduler implements the `IDisposable` interface. For cleanup purpo
 
 ## Scale Out
 
-Note that in this sample, an instance of the Hangfire scheduler is configured to run in every endpoint's instance. If an endpoint is [scaled out](/nservicebus/scaling.md), then the configured jobs will be executed by each of the running instances. A persistent [job storage](https://docs.hangfire.io/en/latest/configuration/index.html) can help to manage the Hangfire scheduler shared state, including jobs, triggers, calendars, etc.
+Note that in this sample, an instance of the Hangfire scheduler is configured to run in every endpoint instance. If an endpoint is [scaled out](/nservicebus/scaling.md), then the configured jobs will be executed by each of the running instances. A persistent [job storage](https://docs.hangfire.io/en/latest/configuration/index.html) can help to manage the Hangfire scheduler shared state, including jobs, triggers, calendars, etc.
 
 
 ## Further information on Hangfire

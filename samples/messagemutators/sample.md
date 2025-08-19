@@ -1,7 +1,7 @@
 ---
 title: Message Mutators
 summary: Change messages by plugging custom logic in to a couple of interfaces, encrypting as required.
-reviewed: 2021-12-07
+reviewed: 2024-10-09
 component: Core
 redirects:
 - nservicebus/nservicebus-message-mutators-sample

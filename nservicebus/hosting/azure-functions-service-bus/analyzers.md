@@ -3,7 +3,7 @@ title: Roslyn analyzers for Azure Functions
 summary: Details of the Roslyn analyzers that promote code quality in Azure Functions.
 component: ASBFunctionsWorker
 versions: '[4.2,)'
-reviewed: 2023-09-19
+reviewed: 2025-08-05
 ---
 
 Starting in version 4.2, the Azure Functions host package comes with [Roslyn analyzers](https://docs.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview) that analyze the NServiceBus code to prevent the use of API calls that are not applicable in a serverless environment.
@@ -90,7 +90,7 @@ Starting in version 4.2, the Azure Functions host package comes with [Roslyn ana
 
 * **Rule ID**: NSBWFUNC016
 * **Severity**:Error
-* **Example message**: Message prefetching is controlled by the Azure Service Bus trigger and cannot be configured via the NServiceBus transport configuration API when using Azure Functions
+* **Example message**: Message prefetching is controlled by the Azure Service Bus trigger and cannot be configured via the NServiceBus transport configuration API when using Azure Functions.
 
 ### TimeToWaitBeforeTriggeringCircuitBreaker is not supported
 

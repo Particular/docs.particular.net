@@ -1,0 +1,22 @@
+# startcode migration-options
+{
+  "$type": "migration-topology-options",
+  "TopicToPublishTo": "TopicToPublishTo",
+  "TopicToSubscribeOn": "TopicToSubscribeOn",
+  "EventsToMigrateMap": [
+    "MyNamespace.NotYetMigratedEvent"
+  ],
+  "SubscribedEventToRuleNameMap": {
+    "MyNamespace.NotYetMigratedEvent": "EventRuleName"
+  },
+  "PublishedEventToTopicsMap": {
+    "MyNamespace.MigratedEvent": "MigratedEvent"
+  },
+  "SubscribedEventToTopicsMap": {
+    "MyNamespace.MigratedEvent": "MigratedEvent"
+  },
+  "QueueNameToSubscriptionNameMap": {
+    "Publisher": "PublisherSubscriptionName"
+  }
+}
+# endcode migration-options

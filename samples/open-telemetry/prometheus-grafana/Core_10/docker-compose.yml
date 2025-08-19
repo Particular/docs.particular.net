@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  prometheus:
+    image: prom/prometheus:v2.21.0
+    ports:
+      - 9000:9090
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./prometheus:/etc/prometheus
+      - ./data-prometheus:/prometheus
+    command: --web.enable-lifecycle --config.file=/etc/prometheus/prometheus.yml
+
+  grafana:
+      image: grafana/grafana-oss:latest
+      ports:
+        - 3000:3000
+      restart: unless-stopped
+      volumes:
+        - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+        - ./data-grafana:/var/lib/grafana
+
+volumes:
+  prometheus-data:
+  grafana-data:

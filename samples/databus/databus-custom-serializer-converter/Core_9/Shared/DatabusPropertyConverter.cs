@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Shared
 {
+#pragma warning disable CS0618 // Type or member is obsolete
     #region DatabusPropertyConverter
     public class DatabusPropertyConverter<T> : JsonConverter<DataBusProperty<T>> where T : class
     {
@@ -44,4 +45,5 @@ namespace Shared
 
     }
     #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
 }

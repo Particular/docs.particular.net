@@ -6,8 +6,6 @@ using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 using System.Collections.Generic;
 using System.Threading;
-using Microsoft.ApplicationInsights;
-using Microsoft.ApplicationInsights.Extensibility;
 using OpenTelemetry.Metrics;
 
 var endpointName = "Samples.OpenTelemetry.AppInsights";
@@ -36,11 +34,6 @@ var traceProvider = Sdk.CreateTracerProviderBuilder()
 #endregion
 
 #region enable-meters
-
-var telemetryConfiguration = TelemetryConfiguration.CreateDefault();
-telemetryConfiguration.ConnectionString = appInsightsConnectionString;
-var telemetryClient = new TelemetryClient(telemetryConfiguration);
-telemetryClient.Context.GlobalProperties["Endpoint"] = endpointName;
 
 var meterProvider = Sdk.CreateMeterProviderBuilder()
     .SetResourceBuilder(resourceBuilder)

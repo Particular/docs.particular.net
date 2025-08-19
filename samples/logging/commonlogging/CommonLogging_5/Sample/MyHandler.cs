@@ -1,8 +1,8 @@
 ﻿using System.Threading.Tasks;
+using Common.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
-public class MyHandler :
+public class MyHandler:
     IHandleMessages<MyMessage>
 {
     static ILog log = LogManager.GetLogger<MyHandler>();

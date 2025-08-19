@@ -6,6 +6,9 @@ snippet: delayed-delivery
 
 The SQL Server delayed message store (`SqlServerDelayedMessageStore`) is the only delayed message store that ships with the MSMQ transport.
 
+> [!WARNING]
+> When enabling native delayed delivery, the timeout manager should be disabled so that the two features do not compete for delayed messages. See the [MSMQ Transport version 1 to 2 upgrade guide](/transports/upgrades/msmq-1to2.md) for guidance on migrating away from the timeout manager.
+
 ### How it works
 
 A delayed message store implements the `IDelayedMessageStore` interface. Delayed message delivery has two parts:
@@ -31,25 +34,25 @@ Defaults to `0`.
 
 ### TimeToTriggerStoreCircuitBreaker
 
-Time to wait before triggering the circuit breaker that monitors the storing of delayed messages in the database. 
+Time to wait before triggering the circuit breaker that monitors the storing of delayed messages in the database.
 
 Defaults to `30` seconds.
-       
+
 ### TimeToTriggerFetchCircuitBreaker
 
-Time to wait before triggering the circuit breaker that monitors the fetching of due delayed messages from the database. 
+Time to wait before triggering the circuit breaker that monitors the fetching of due delayed messages from the database.
 
 Defaults to `30` seconds.
-    
+
 ### TimeToTriggerDispatchCircuitBreaker
 
-Time to wait before triggering the circuit breaker that monitors the dispatching of due delayed messages to the destination. 
+Time to wait before triggering the circuit breaker that monitors the dispatching of due delayed messages to the destination.
 
 Defaults to `30` seconds.
 
 ### MaximumRecoveryFailuresPerSecond
 
-Maximum number of failed attempts per second to increment the per-message failure counter that triggers the recovery circuit breaker. 
+Maximum number of failed attempts per second to increment the per-message failure counter that triggers the recovery circuit breaker.
 
 Defaults to `1` per sec.
 

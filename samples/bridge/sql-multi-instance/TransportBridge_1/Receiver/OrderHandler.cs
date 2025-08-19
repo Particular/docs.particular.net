@@ -1,18 +1,16 @@
 ﻿using System.Threading.Tasks;
 using Messages;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
-public class OrderHandler :
+public class OrderHandler (ILogger<OrderHandler> logger):
     IHandleMessages<ClientOrder>
 {
-    static ILog log = LogManager.GetLogger<OrderHandler>();
-
     #region Reply
 
     public Task Handle(ClientOrder message, IMessageHandlerContext context)
     {
-        log.Info($"Handling ClientOrder with ID {message.OrderId}");
+        logger.LogInformation("Handling ClientOrder with ID {OrderId}", message.OrderId);
         var clientOrderAccepted = new ClientOrderResponse
         {
             OrderId = message.OrderId

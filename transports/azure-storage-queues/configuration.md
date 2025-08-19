@@ -75,7 +75,7 @@ partial: aliases
 
 ## Token-credentials
 
-Enables usage of Azure Active Directory (AAD) authentication such as [managed identities for Azure resources](https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-access-azure-active-directory) instead of the shared secret in the connection string.
+Enables usage of Microsoft Entra ID authentication such as [managed identities for Azure resources](https://learn.microsoft.com/en-us/azure/storage/blobs/authorize-access-azure-active-directory) instead of the shared secret in the connection string.
 
 Use the corresponding [`QueueServiceClient`](https://learn.microsoft.com/en-us/dotnet/api/azure.storage.queues.queueserviceclient.-ctor?view=azure-dotnet), [`BlobServiceClient`](https://learn.microsoft.com/en-us/dotnet/api/azure.storage.blobs.blobserviceclient.-ctor?view=azure-dotnet) or [`TableServiceClient`](https://learn.microsoft.com/en-us/dotnet/api/azure.data.tables.tableserviceclient.-ctor?view=azure-dotnet) constructor overload when creating the clients passed to the transport.
 

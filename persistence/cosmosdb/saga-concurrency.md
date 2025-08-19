@@ -2,7 +2,7 @@
 title: CosmosDB Persistence Saga Concurrency
 summary: Explains how concurrency works with sagas in the CosmosDB persister
 component: CosmosDB
-reviewed: 2022-01-11
+reviewed: 2024-10-15
 related:
  - nservicebus/sagas/concurrency
 ---

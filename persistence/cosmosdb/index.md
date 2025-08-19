@@ -31,6 +31,12 @@ Add a NuGet package reference to `NServiceBus.Persistence.CosmosDB`. Configure t
 
 snippet: CosmosDBUsage
 
+### Token-credentials
+
+Enables usage of Microsoft Entra ID authentication such as [managed identities for Azure resources](https://learn.microsoft.com/en-us/azure/cosmos-db/role-based-access-control) instead of the shared secret in the connection string.
+
+Use the corresponding [`CosmosClient`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.cosmosclient.-ctor?view=azure-dotnet#microsoft-azure-cosmos-cosmosclient-ctor(system-string-azure-core-tokencredential-microsoft-azure-cosmos-cosmosclientoptions)) constructor overload when creating the client passed to the persistence.
+
 ### Customizing the database used
 
 By default, the persister will store records in a database named `NServiceBus` and use a container per endpoint using the endpoint name as to name the container.

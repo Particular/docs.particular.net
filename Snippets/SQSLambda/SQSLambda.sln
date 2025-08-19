@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SQSLambda_1", "SQSLambda_1\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SQSLambda_2", "SQSLambda_2\SQSLambda_2.csproj", "{46B65C7D-35FF-44F8-A6FD-F75296235461}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQSLambda_2.1", "SQSLambda_2.1\SQSLambda_2.1.csproj", "{1ED9511E-7F18-4F8D-A0BB-84490455FAE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SQSLambda_3", "SQSLambda_3\SQSLambda_3.csproj", "{D97E4EF1-C875-43CB-8865-A90AB221B292}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{46B65C7D-35FF-44F8-A6FD-F75296235461}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46B65C7D-35FF-44F8-A6FD-F75296235461}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46B65C7D-35FF-44F8-A6FD-F75296235461}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ED9511E-7F18-4F8D-A0BB-84490455FAE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ED9511E-7F18-4F8D-A0BB-84490455FAE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ED9511E-7F18-4F8D-A0BB-84490455FAE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ED9511E-7F18-4F8D-A0BB-84490455FAE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D97E4EF1-C875-43CB-8865-A90AB221B292}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D97E4EF1-C875-43CB-8865-A90AB221B292}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D97E4EF1-C875-43CB-8865-A90AB221B292}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D97E4EF1-C875-43CB-8865-A90AB221B292}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

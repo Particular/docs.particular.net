@@ -1,7 +1,7 @@
 ---
 title: Samples
 summary: Samples using NServiceBus and the Particular Service Platform
-reviewed: 2022-10-03
+reviewed: 2025-02-03
 redirects:
   - samples/netcore
 ---
@@ -18,7 +18,7 @@ Samples are not meant to be production-ready code or to be used as-is with Parti
 
 ## Samples are not "endpoint drop in" projects
 
-Since the endpoint in samples have to choose specific technologies (transport, serializer, persistence, etc.), before using this code in production ensure the code conforms with any specific [technology choices](./endpoint-configuration/).
+Since the endpoint in samples have to choose specific technologies (transport, serializer, persistence, etc.), before using this code in production ensure the code conforms with any specific [technology choices](./hosting/generic-host/).
 
 ## Samples are downloadable and runnable
 
@@ -30,7 +30,7 @@ The samples are located in GitHub at [Particular/docs.particular.net/samples](ht
 
 ## Samples targeting non-supported versions of the platform
 
-Samples that target non-supported versions of NServiceBus have been archived, according to the [support policy](/nservicebus/upgrades/support-policy.md). Customers with an extended support agreement can request archived samples by [contacting support](mailto:support@particular.net).
+Samples that target non-supported versions of NServiceBus have been archived, according to the [support policy](/nservicebus/upgrades/support-policy.md). Customers with an extended support agreement can request archived samples by [contacting support](https://customers.particular.net).
 
 ## Technology choices
 
@@ -72,7 +72,7 @@ In many samples, messages are defined in a shared project along with reusable he
 
 ### [Message destinations](/nservicebus/messaging/routing.md)
 
-Many samples make use of `SendLocal` and send to an endpoint directly by specify the destination using a string in code. This is done to simplify the amount of configuration in samples. In a production solution, most message destinations should be defined via [routing configuration](/nservicebus/messaging/routing.md).
+Many samples make use of `SendLocal` or send to an endpoint directly by specifying the destination using a string in code. This is done to simplify the amount of configuration in samples. In a production solution, most message destinations should be defined via [routing configuration](/nservicebus/messaging/routing.md).
 
 ### [Dependency injection](/nservicebus/dependency-injection/)
 

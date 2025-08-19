@@ -3,7 +3,7 @@ title: Azure Service Bus transport native integration sample
 summary: How to consume messages published by non-NServiceBus endpoints.
 component: ASBS
 isLearningPath: true
-reviewed: 2023-04-14
+reviewed: 2025-02-14
 related:
  - transports/azure-service-bus
 ---
@@ -19,9 +19,8 @@ include: asb-connectionstring-xplat
 
 The sample contains two executable projects:
 
- * `NativeSender` - sends native messages to the `Receiver`'s queue.
- * `Receiver` - NServiceBus endpoint that processes messages sent by `NativeSender`.
-
+* `NativeSender` - sends native messages to the `Receiver`'s queue.
+* `Receiver` - NServiceBus endpoint that processes messages sent by `NativeSender`.
 
 ## Sending messages with the Azure Service Bus API
 
@@ -30,7 +29,6 @@ Configuring the native sender to send messages to the queue used by the receivin
 snippet: EndpointName
 
 The native sender is using `QueueClient` to send a single `Message`.
-
 
 ## Message serialization
 
@@ -54,15 +52,13 @@ The message itself is defined using [conventions](/nservicebus/messaging/convent
 
 snippet: NativeMessage
 
-
 ## Handling messages from a native sender in an NServiceBus endpoint
 
 Once the message is received by the NServiceBus endpoint, its content will be presented.
 
 snippet: NativeMessageHandler
 
-
 ## Things to note
 
- * The use of the `AzureServiceBus_ConnectionString` environment variable mentioned above.
- * Execute `Receiver` first to create the destination queue that `NativeSender` will need to send native messages.
+* The use of the `AzureServiceBus_ConnectionString` environment variable mentioned above.
+* Execute `Receiver` first to create the destination queue that `NativeSender` will need to send native messages.

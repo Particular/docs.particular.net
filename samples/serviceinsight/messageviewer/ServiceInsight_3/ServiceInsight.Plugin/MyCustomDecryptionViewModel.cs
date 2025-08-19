@@ -1,17 +1,17 @@
 namespace ServiceInsight.CustomViewer.Plugin
 {
     using System.Text;
-    using Shared;
     using Caliburn.Micro;
     using ServiceInsight.MessageViewers;
     using ServiceInsight.Models;
     using ServiceInsight.ServiceControl;
+    using Shared;
 
     public class MyCustomDecryptionViewModel : Screen, ICustomMessageBodyViewer
     {
         readonly IMessageEncoder messageEncoder;
         MyCustomDecryptionView view;
-        
+
         public MyCustomDecryptionViewModel(IMessageEncoder messageEncoder)
         {
             this.messageEncoder = messageEncoder;
@@ -32,7 +32,7 @@ namespace ServiceInsight.CustomViewer.Plugin
                 var bytes = Encoding.Default.GetBytes(selectedMessage.Body.Text);
                 var decryptedBytes = messageEncoder.Decrypt(bytes);
                 var clearText = Encoding.Default.GetString(decryptedBytes);
-                
+
                 view?.Show(clearText);
             }
         }
@@ -42,7 +42,7 @@ namespace ServiceInsight.CustomViewer.Plugin
         {
             view?.Clear();
         }
-        
+
         public bool IsVisible(StoredMessage selectedMessage, PresentationHint presentationHint)
         {
             return selectedMessage != null;

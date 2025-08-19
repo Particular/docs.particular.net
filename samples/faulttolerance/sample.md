@@ -1,7 +1,7 @@
 ---
 title: Fault Tolerance
 summary: Messaging approaches to help with failure scenarios.
-reviewed: 2023-07-01
+reviewed: 2025-06-06
 component: Core
 redirects:
 - nservicebus/nservicebus-step-by-step-guide-fault-tolerance-code-first

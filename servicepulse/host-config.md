@@ -1,7 +1,7 @@
 ---
 title: Configuring Hosting
 summary: Describes how to configure the ServicePulse host and connections
-reviewed: 2023-06-30
+reviewed: 2025-06-24
 component: ServicePulse
 redirects:
  - servicepulse/servicepulse-host-config
@@ -16,24 +16,30 @@ To change it:
  1. Edit the value of `ImagePath`. The value contains the full path to the ServicePulse.exe and a command line of the URL to use:
 
 The default value for ImagePath is:
-```dos
+```shell
 "C:\Program Files (x86)\Particular Software\ServicePulse\ServicePulse.Host.exe" --url="http://localhost:9090"
 ```
 
 Change the value after `--url=` and restart the service.
 
 It may be necessary to reserve the new URL for the account being used to run ServicePulse. For example, to reserve port 9090 for all users:
-```dos
+```shell
 netsh http add urlacl url=http://+:9090/ user=Everyone
 ```
 
 ServicePulse runs as a Windows Service.
 
+ServicePulse uses connection URLs in the following order:
+
+1. The query string of the ServicePulse URL.
+2. Local storage.
+3. Default values.
+
 ## Default connections to ServiceControl and ServiceControl Monitoring
 
 ServicePulse will, by default, attempt to connect to ServiceControl and ServiceControl Monitoring using the URLs `http://localhost:33333/api/` and `http://localhost:33633/`, respectively.
 
-This configuration is stored in a Javascript file located in the ServicePulse isntallation folder. By default, this is `%ProgramFiles(x86)%\Particular Software\ServicePulse\app\js\app.constants.js`.
+This configuration is stored in a Javascript file located in the ServicePulse installation folder. By default, this is `%ProgramFiles(x86)%\Particular Software\ServicePulse\app\js\app.constants.js`.
 
 ## Configuring connections via the ServicePulse UI
 
@@ -45,11 +51,7 @@ The ServiceControl Monitoring connection URL is optional and can be disabled by 
 
 Full URLs must be specified, including scheme and port number. The URLs are persisted in local storage and are also embedded in the query string of ServicePulse URL in the browser address bar, for bookmarking and sharing.
 
-ServicePulse uses connection URLs in the following order:
-
-1. The query string of the ServicePulse URL.
-2. Local storage.
-3. Default values.
+## Configuring connections via ServicePulse URL query string parameters
 
 In order to use the query string to specify a ServiceControl instance that ServicePulse should connect to, the browser URL should be of the format:
 

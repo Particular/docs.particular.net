@@ -424,17 +424,6 @@ class Usage
         #endregion
     }
 
-    void MessageVisibilityTimeout(EndpointConfiguration endpointConfiguration)
-    {
-        var routing = endpointConfiguration.UseTransport(new SqsTransport());
-        #region MessageVisibilityTimeout
-
-        var migrationSettings = routing.EnableMessageDrivenPubSubCompatibilityMode();
-        migrationSettings.MessageVisibilityTimeout(timeoutInSeconds: 10);
-
-        #endregion
-    }
-
     void DoNotWrapOutgoingMessages(EndpointConfiguration endpointConfiguration)
     {
         #region DoNotWrapOutgoingMessages
@@ -446,6 +435,19 @@ class Usage
         endpointConfiguration.UseTransport(transport);
         #endregion
     }
+
+#pragma warning disable CS0618 // Type or member is obsolete
+    void MessageVisibilityTimeout(EndpointConfiguration endpointConfiguration)
+    {
+        var routing = endpointConfiguration.UseTransport(new SqsTransport());
+        #region MessageVisibilityTimeout
+
+        var migrationSettings = routing.EnableMessageDrivenPubSubCompatibilityMode();
+        migrationSettings.MessageVisibilityTimeout(timeoutInSeconds: 10);
+
+        #endregion
+    }
+#pragma warning restore CS0618 // Type or member is obsolete
 
     class SubscribedEvent { }
 

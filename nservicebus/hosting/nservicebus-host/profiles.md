@@ -6,7 +6,7 @@ redirects:
  - nservicebus/more-on-profiles
  - nservicebus/nservicebus/hosting/nservicebus-host/more-on-profiles
 component: Host
-reviewed: 2023-05-14
+reviewed: 2025-05-06
 ---
 
 include: host-deprecated-warning
@@ -23,8 +23,8 @@ There are two categories of profile:
 
 ## Default profiles
 
-By default, NServiceBus comes with a set of predefined environments and feature profiles. It's also possible to create custom profiles or customize the default profiles; to learn more about those options, refer to the [NServiceBus host profiles customization](/nservicebus/hosting/nservicebus-host/profiles-customization.md) article.
-
+By default, NServiceBus comes with a set of predefined environments and feature profiles.
+It's also possible to create custom profiles or customize the default profiles; to learn more about those options, refer to the [NServiceBus host profiles customization options](/nservicebus/hosting/nservicebus-host/profiles-customization.md).
 
 ## Environment profiles
 
@@ -59,19 +59,19 @@ The default if no explicit profile is defined. This profile configures the endpo
 
 ## Specifying which profiles to run
 
-If the host is run without specifying a profile, NServiceBus defaults to the `Production` profile.
+If the host runs without specifying a profile, NServiceBus defaults to the `Production` profile.
 
 To activate a specific profile, pass the full name of the profile in the command line when starting the host. Type names are case-insensitive. Profiles can be combined by separating them with white space.
 
 For example, to run the endpoint with the `Integration` and `PerformanceCounters` profiles:
 
-```dos
+```shell
 .\NServiceBus.Host.exe nservicebus.integration nservicebus.performancecounters
 ```
 
 When installing the host as a Windows Service, the profiles used during installation are saved, and they are used every time the host starts. In order to install the host with the `Production` and `PerformanceCounters` profiles:
 
-```dos
+```shell
 .\NServiceBus.Host.exe /install nservicebus.production nservicebus.performancecounters
 ```
 
@@ -91,9 +91,6 @@ Refer to the [logging configuration](/nservicebus/hosting/nservicebus-host/loggi
 
 
 ## Persistence
-
-> [!NOTE]
-> In NServiceBus version 5 and above, persistence must be explicitly configured.
 
 The built-in profiles use the following default persistence settings:
 

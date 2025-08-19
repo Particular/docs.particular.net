@@ -1,19 +1,20 @@
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
+#pragma warning disable CS0618 // Type or member is obsolete
 #region MessageWithLargePayloadHandler
 
-public class MessageWithLargePayloadHandler :
+public class MessageWithLargePayloadHandler(ILogger<MessageWithLargePayloadHandler> logger) :
     IHandleMessages<MessageWithLargePayload>
 {
-    static ILog log = LogManager.GetLogger<MessageWithLargePayloadHandler>();
 
     public Task Handle(MessageWithLargePayload message, IMessageHandlerContext context)
     {
-        log.Info($"Message received, size of blob property: {message.LargeBlob.Value.Length} Bytes");
+        logger.LogInformation("Message received, size of blob property: {BlobSize} Bytes", message.LargeBlob.Value.Length);
         return Task.CompletedTask;
     }
 }
 
 #endregion
+#pragma warning restore CS0618 // Type or member is obsolete

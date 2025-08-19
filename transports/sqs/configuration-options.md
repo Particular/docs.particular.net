@@ -2,7 +2,7 @@
 title: Configuration Options
 summary: Configuration options for the SQS transport.
 component: SQS
-reviewed: 2022-02-09
+reviewed: 2024-10-24
 redirects:
 - nservicebus/sqs/configuration-options
 ---
@@ -31,7 +31,7 @@ The maximum value is 14 days.
 snippet: MaxTTL
 
 > [!NOTE]
-> [Large message payloads stored in S3](topology.md#s3) are never deleted by the receiving endpoint, regardless of whether they were successfully handled. The S3 aging policy controls the deletion of the payload and will respect the configured TTL. Since message payloads stored in S3 are important for audited and failed messages stored in ServiceControl, it is crucial that the [ServiceControl message retention period](/servicecontrol/how-purge-expired-data.md) is aligned with the configured SQS and S3 TTL.
+> [Large message payloads stored in S3](topology.md#s3) are never deleted by the receiving endpoint, regardless of whether they were successfully handled. The S3 ageing policy controls the deletion of the payload and will respect the configured TTL. Since message payloads stored in S3 are important for audited and failed messages stored in ServiceControl, it is crucial that the [ServiceControl message retention period](/servicecontrol/how-purge-expired-data.md) is aligned with the configured SQS and S3 TTL.
 
 ## Queue name prefix
 
@@ -82,7 +82,7 @@ This is the path within the specified S3 bucket to store large messages.
 
 **Default**: `new AmazonS3Client()`
 
-By default the transport uses a parameterless constructor to build the S3 client. This overrides the default S3 client with a custom one.
+By default, the transport uses a parameterless constructor to build the S3 client. This overrides the default S3 client with a custom one.
 
 **Example**: To use a custom client, specify:
 
@@ -99,13 +99,17 @@ snippet: S3ClientFactory
 
 **Default**: Disabled
 
-Specifies how the large messages stored in S3 are to be encrypted. Default option is no encryption. The alternative is to either use a managed encyption key:
+Specifies how the large messages stored in S3 are to be encrypted. The default option is no encryption. The alternative is to use a managed encryption key:
 
 snippet: S3ServerSideEncryption
 
 or to provide a custom key:
 
 snippet: S3ServerSideCustomerEncryption
+
+partial: payload-signing
+
+partial: visibility-timeout
 
 partial: v1compatibilitymode
 
@@ -116,3 +120,5 @@ partial: topics
 partial: policy
 
 partial: message-driven-pubsub-compatibility-mode
+
+partial: message-size-calculation-reserved-bytes

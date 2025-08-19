@@ -1,32 +1,22 @@
 using System;
-using System.Threading.Tasks;
-
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Sales";
+Console.Title = "Sales";
+var builder = Host.CreateApplicationBuilder(args);
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Propagation.Sales");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
+var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Propagation.Sales");
+endpointConfiguration.UsePersistence<LearningPersistence>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        #region configuration
+#region configuration
 
-        var pipeline = endpointConfiguration.Pipeline;
-        pipeline.Register(new StoreTenantIdBehavior(), "Stores tenant ID in the session");
-        pipeline.Register(new PropagateTenantIdBehavior(), "Propagates tenant ID to outgoing messages");
+var pipeline = endpointConfiguration.Pipeline;
+pipeline.Register(new StoreTenantIdBehavior(), "Stores tenant ID in the session");
+pipeline.Register(new PropagateTenantIdBehavior(), "Propagates tenant ID to outgoing messages");
 
-        #endregion
+#endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-        Console.WriteLine("Press <enter> to exit.");
-        Console.ReadLine();
-
-        await endpointInstance.Stop();
-    }
-}
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

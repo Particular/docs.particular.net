@@ -8,9 +8,9 @@ using NServiceBus.Pipeline;
 class DispatchNotificationBehavior :
     Behavior<IDispatchContext>
 {
-    List<IWatchDispatches> watches;
+    List<IDispatchNotifier> watches;
 
-    public DispatchNotificationBehavior(List<IWatchDispatches> watches)
+    public DispatchNotificationBehavior(List<IDispatchNotifier> watches)
     {
         this.watches = watches;
     }
@@ -18,8 +18,8 @@ class DispatchNotificationBehavior :
     public override async Task Invoke(IDispatchContext context, Func<Task> next)
     {
         await next();
-        var tasks = watches.Select(watch => watch.Notify(context.Operations));
-        await Task.WhenAll(tasks);
+
+        await Task.WhenAll(watches.Select(watch => watch.Notify(context.Operations)));
     }
 }
 #endregion

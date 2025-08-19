@@ -1,100 +1,91 @@
 ﻿using System;
-using Microsoft.Data.SqlClient;
 using System.IO;
-using System.Threading.Tasks;
+using System.Threading;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Persistence.Sql;
-using System.Threading;
 
-class Program
+const string tablePrefix = "";
+
+Console.Title = "Receiver";
+var builder = Host.CreateApplicationBuilder(args);
+
+var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Receiver");
+endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
+var transport = new LearningTransport
 {
-    static async Task Main()
+    TransportTransactionMode = TransportTransactionMode.ReceiveOnly
+};
+endpointConfiguration.UseTransport(transport);
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
+#region DisablingOutboxCleanup
+
+var outboxSettings = endpointConfiguration.EnableOutbox();
+outboxSettings.DisableCleanup();
+
+#endregion
+
+var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+persistence.SqlDialect<SqlDialect.MsSqlServer>();
+
+#region ConnectionFactory
+
+persistence.MultiTenantConnectionBuilder(tenantIdHeaderName: "tenant_id",
+    buildConnectionFromTenantData: tenantId =>
     {
-        const string tablePrefix = "";
+        var connectionString = Connections.GetForTenant(tenantId);
+        return new SqlConnection(connectionString);
+    });
 
-        Console.Title = "Receiver";
+#endregion
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Receiver");
-        endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
-        var transport = new LearningTransport
-        {
-            TransportTransactionMode = TransportTransactionMode.ReceiveOnly
-        };
-        endpointConfiguration.UseTransport(transport);
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+persistence.SubscriptionSettings().DisableCache();
+persistence.TablePrefix(tablePrefix);
 
-        #region DisablingOutboxCleanup
+var pipeline = endpointConfiguration.Pipeline;
 
-        var outboxSettings = endpointConfiguration.EnableOutbox();
-        outboxSettings.DisableCleanup();
+pipeline.Register(new StoreTenantIdBehavior(), "Stores tenant ID in the session");
+pipeline.Register(new PropagateTenantIdBehavior(), "Propagates tenant ID to outgoing messages");
 
-        #endregion
+await SqlHelper.EnsureDatabaseExists(Connections.TenantA);
+await SqlHelper.EnsureDatabaseExists(Connections.TenantB);
 
-        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-        persistence.SqlDialect<SqlDialect.MsSqlServer>();
-
-        #region ConnectionFactory
-
-        persistence.MultiTenantConnectionBuilder(tenantIdHeaderName: "tenant_id",
-            buildConnectionFromTenantData: tenantId =>
-            {
-                var connectionString = Connections.GetForTenant(tenantId);
-                return new SqlConnection(connectionString);
-            });
-
-        #endregion
-
-        persistence.SubscriptionSettings().DisableCache();
-        persistence.TablePrefix(tablePrefix);
-
-        var pipeline = endpointConfiguration.Pipeline;
-
-        pipeline.Register(new StoreTenantIdBehavior(), "Stores tenant ID in the session");
-        pipeline.Register(new PropagateTenantIdBehavior(), "Propagates tenant ID to outgoing messages");
-
-        var startableEndpoint = await Endpoint.Create(endpointConfiguration);
-
-        await SqlHelper.EnsureDatabaseExists(Connections.TenantA);
-        await SqlHelper.EnsureDatabaseExists(Connections.TenantB);
-
-        using (var connection = new SqlConnection(Connections.TenantA))
-        using (var receiverDataContext = new ReceiverDataContext(connection))
-        {
-            await receiverDataContext.Database.EnsureCreatedAsync();
-        }
-
-        using (var connection = new SqlConnection(Connections.TenantB))
-        using (var receiverDataContext = new ReceiverDataContext(connection))
-        {
-            await receiverDataContext.Database.EnsureCreatedAsync();
-        }
-
-        var dialect = new SqlDialect.MsSqlServer();
-        var scriptDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "NServiceBus.Persistence.Sql", "MsSqlServer");
-
-        #region CreateSchema
-
-        await ScriptRunner.Install(dialect, tablePrefix, () => new SqlConnection(Connections.TenantA), scriptDirectory,
-            shouldInstallOutbox: true,
-            shouldInstallSagas: true,
-            shouldInstallSubscriptions: false,
-            cancellationToken: CancellationToken.None);
-
-        await ScriptRunner.Install(dialect, tablePrefix, () => new SqlConnection(Connections.TenantB), scriptDirectory,
-            shouldInstallOutbox: true,
-            shouldInstallSagas: true,
-            shouldInstallSubscriptions: false,
-            cancellationToken: CancellationToken.None);
-
-        #endregion
-
-        var endpointInstance = await startableEndpoint.Start();
-
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        if (endpointInstance != null)
-        {
-            await endpointInstance.Stop();
-        }
-    }
+using (var connection = new SqlConnection(Connections.TenantA))
+using (var receiverDataContext = new ReceiverDataContext(connection))
+{
+    await receiverDataContext.Database.EnsureCreatedAsync();
 }
+
+using (var connection = new SqlConnection(Connections.TenantB))
+using (var receiverDataContext = new ReceiverDataContext(connection))
+{
+    await receiverDataContext.Database.EnsureCreatedAsync();
+}
+
+var dialect = new SqlDialect.MsSqlServer();
+var scriptDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "NServiceBus.Persistence.Sql", "MsSqlServer");
+
+#region CreateSchema
+
+await ScriptRunner.Install(dialect, tablePrefix, () => new SqlConnection(Connections.TenantA), scriptDirectory,
+    shouldInstallOutbox: true,
+    shouldInstallSagas: true,
+    shouldInstallSubscriptions: false,
+    cancellationToken: CancellationToken.None);
+
+await ScriptRunner.Install(dialect, tablePrefix, () => new SqlConnection(Connections.TenantB), scriptDirectory,
+    shouldInstallOutbox: true,
+    shouldInstallSagas: true,
+    shouldInstallSubscriptions: false,
+    cancellationToken: CancellationToken.None);
+
+#endregion
+
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
+
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

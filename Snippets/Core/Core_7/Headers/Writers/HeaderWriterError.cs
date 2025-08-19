@@ -15,6 +15,12 @@ namespace Core7.Headers.Writers
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
         string endpointName = "HeaderWriterErrorV7";
 
+        [OneTimeTearDown]
+        public void TearDown()
+        {
+            ManualResetEvent.Dispose();
+        }
+
         [Test]
         public async Task Write()
         {

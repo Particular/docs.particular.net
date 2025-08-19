@@ -2,7 +2,7 @@
 title: Non-durable persistence
 summary: Non-durable persistence (previously known as In-Memory persistence) stores data in a non-durable manner
 component: NonDurablePersistence
-reviewed: 2022-07-11
+reviewed: 2024-12-26
 redirects:
 - nservicebus/persistence/in-memory
 ---
@@ -30,9 +30,7 @@ snippet: ConfiguringNonDurable
 > [!CAUTION]
 > All information stored is discarded when the process ends.
 
-> [!NOTE]
-> The [delayed retries](/nservicebus/recoverability/#delayed-retries) mechanism uses the [timeout manager](/nservicebus/messaging/timeout-manager.md) when a transport does not natively support delayed delivery.
-As delayed retries are enabled by default, using this persistence with a transport that uses the timeout manager has the risk of losing messages that have failed processing and are waiting for another retry attempt. Use this persistence only in scenarios where it is acceptable to lose messages.
+partial: timeoutmanager
 
 partial: gatewaydedupe
 

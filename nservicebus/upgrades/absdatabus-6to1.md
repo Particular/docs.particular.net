@@ -21,9 +21,9 @@ Instead of `.EnableFeature<AzureDataBusPersistence>()` use `.UseDataBus<AzureDat
 
 ### Custom configuration section no longer provided
 
-Configuration options are now available only via the code API. See [Azure Blob Storage Data Bus](/nservicebus/messaging/databus/azure-blob-storage.md) and the [Azure Data Bus sample](/samples/databus/blob-storage-databus) for more details.
+Configuration options are now available only via the code API. See [Azure Blob Storage Data Bus](/nservicebus/messaging/claimcheck/azure-blob-storage.md) and the [Azure Data Bus sample](/samples/databus/blob-storage-databus) for more details.
 
 
 ### AzureDataBusDefaults no longer provided
 
-Refer to the [Azure Blob Storage Data Bus](/nservicebus/messaging/databus/azure-blob-storage.md) for details on defaults used.
+Refer to the [Azure Blob Storage Data Bus](/nservicebus/messaging/claimcheck/azure-blob-storage.md) for details on defaults used.

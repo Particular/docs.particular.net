@@ -6,15 +6,15 @@ public class Runner
 {
     public static async Task Run(IEndpointInstance endpointInstance)
     {
-        Console.WriteLine("Press 's' to send a Success message");
-        Console.WriteLine("Press 't' to send a Throw message");
-        Console.WriteLine("Press any key to exit");
+        await Console.Out.WriteAsync("Press 's' to send a Success message");
+        await Console.Out.WriteAsync("Press 't' to send a Throw message");
+        await Console.Out.WriteAsync("Press any key to exit");
 
         while (true)
         {
             var key = Console.ReadKey();
-            Console.WriteLine();
-            Console.WriteLine();
+            await Console.Out.WriteLineAsync();
+            await Console.Out.WriteLineAsync();
             switch (key.Key)
             {
                 case ConsoleKey.S:
@@ -30,11 +30,8 @@ public class Runner
 
                     break;
                 default:
-                {
                     return;
-                }
             }
         }
     }
-
 }

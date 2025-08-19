@@ -1,7 +1,7 @@
 ---
 title: Messaging Bridge
 summary: Connect endpoints in a system that use different transports with the messaging bridge
-reviewed: 2023-07-04
+reviewed: 2025-06-13
 component: Bridge
 related:
  - samples/bridge/simple
@@ -11,7 +11,10 @@ related:
 
 The NServiceBus Messaging Bridge allows NServiceBus endpoints to connect to other endpoints that are not using the same transport using the [Messaging Bridge Pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingBridge.html).
 
-The bridge is transparent to sending and receiving endpoints. That is, endpoints are not aware of the bridge or that it is transferring messages to a different transport. Endpoints send and receive messages to and from logical endpoints as they normally would if there were no bridge involved.
+The bridge is transparent to both sending and receiving endpoints. Endpoints are unaware that messages are being transferred across different transports. They send and receive messages to and from logical endpoints as if no bridge were involved.
+
+> [!NOTE]
+> The bridge package version is not tied to any specific version of NServiceBus. Therefore, the latest version of the Messaging Bridge package should be used, independent of the NServiceBus version used in any endpoints.
 
 ## Why use the bridge
 
@@ -23,11 +26,33 @@ The messaging bridge enables several scenarios:
 
 More details on these scenarios are provided in the [messaging bridge scenarios](scenarios.md) article.
 
+## Hosting
+
+While it's technically possible to co-host the bridge within the same process as a regular NServiceBus endpoint, it's generally recommended to run the bridge in a dedicated hosting process. The bridge's purpose is purely infrastructural—it connects logical endpoints. 
+
+To fulfill this role as efficiently as possible, it may be necessary to scale the bridge either [vertically](performance.md#performance-tuning) or [horizontally](performance.md#scaling-out). Because of its infrastructural nature, the bridge also exhibits significantly different CPU, memory, and monitoring characteristics compared to a typical NServiceBus endpoint that handles business logic.
+
 ## Bridge configuration
 
 partial: configuration
 
-The following snippet shows a simple MSMQ-to-AzureServiceBus configuration.
+The diagram below shows a simple MSMQ-to-AzureServiceBus configuration involving two endpoints. The two transports are used for demonstration purposes. The bridge supports [all transports](/transports/).
+
+```mermaid
+flowchart LR
+
+Br(Bridge)
+Sales[Endpoint Sales] <---> Br
+Br <---> Billing[Endpoint Billing]
+subgraph MSMQ
+  Sales
+end
+subgraph AzureServiceBus
+  Billing
+end
+```
+
+The following code enables the Sales endpoint hosted on the MSMQ transport to communicate with the Billing endpoint hosted on the AzureServiceBus transport.
 
 snippet: bridgeconfiguration
 

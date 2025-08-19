@@ -1,14 +1,12 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
-public class MyEventHandler : IHandleMessages<MyEvent>
+public class MyEventHandler(ILogger<MyEventHandler> logger) : IHandleMessages<MyEvent>
 {
-    static readonly ILog log = LogManager.GetLogger<MyEventHandler>();
-
     public Task Handle(MyEvent eventMessage, IMessageHandlerContext context)
     {
-        log.Info($"Received {nameof(MyEvent)} with a payload of {eventMessage.Data?.Length ?? 0} bytes.");
+        logger.LogInformation("Received {MessageType} with a payload of {PayloadLength} bytes.", nameof(MyEvent), eventMessage.Data?.Length ?? 0);
         return Task.CompletedTask;
     }
 }

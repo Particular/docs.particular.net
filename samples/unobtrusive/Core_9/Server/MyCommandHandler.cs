@@ -1,13 +1,11 @@
 ﻿using Commands;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
-public class MyCommandHandler : IHandleMessages<MyCommand>
+public class MyCommandHandler(ILogger<MyCommandHandler> logger) : IHandleMessages<MyCommand>
 {
-    static readonly ILog log = LogManager.GetLogger<MyCommandHandler>();
-
     public Task Handle(MyCommand message, IMessageHandlerContext context)
     {
-        log.Info($"Command received, id:{message.CommandId}");
+        logger.LogInformation("Command received, id:{CommandId}", message.CommandId);
         return Task.CompletedTask;
     }
 }

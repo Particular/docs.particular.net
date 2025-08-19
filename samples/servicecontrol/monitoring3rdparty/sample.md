@@ -4,7 +4,6 @@ summary: Monitoring third-party systems which are exposed as HTTP endpoints with
 component: CustomChecks
 reviewed: 2024-02-02
 related:
- - servicecontrol/plugins
  - monitoring/custom-checks/in-servicepulse
 redirects:
  - samples/custom-checks/monitoring3rdparty

@@ -1,17 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
-
 #region theshipordersaga
 
-public class ShipOrderSaga :
+public class ShipOrderSaga(ILogger<ShipOrderSaga> logger) :
     Saga<ShipOrderSagaData>,
     IAmStartedByMessages<ShipOrder>,
     IHandleTimeouts<CompleteOrder>
 {
-    static ILog log = LogManager.GetLogger<ShipOrderSaga>();
-
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShipOrderSagaData> mapper)
     {
         mapper.MapSaga(saga => saga.OrderId).ToMessage<ShipOrder>(msg => msg.OrderId);
@@ -19,17 +16,17 @@ public class ShipOrderSaga :
 
     public Task Handle(ShipOrder message, IMessageHandlerContext context)
     {
-        log.Info($"Order Shipped. OrderId {message.OrderId}");
+        logger.LogInformation($"Order Shipped. OrderId {message.OrderId}");
         Data.OrderId = message.OrderId;
 
-        log.Info("Order will complete in 5 seconds");
+        logger.LogInformation("Order will complete in 5 seconds");
         var timeoutData = new CompleteOrder();
         return RequestTimeout(context, TimeSpan.FromSeconds(5), timeoutData);
     }
 
     public Task Timeout(CompleteOrder state, IMessageHandlerContext context)
     {
-        log.Info($"Saga with OrderId {Data.OrderId} about to complete");
+        logger.LogInformation($"Saga with OrderId {Data.OrderId} about to complete");
         MarkAsComplete();
 
         state.OrderId = Data.OrderId;

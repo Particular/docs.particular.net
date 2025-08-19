@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
 
-public class OrderResponseHandler : IHandleMessages<OrderResponse>
+public class OrderResponseHandler(ILogger<OrderResponseHandler> logger) : IHandleMessages<OrderResponse>
 {
     public Task Handle(OrderResponse message, IMessageHandlerContext context)
     {
-        Console.WriteLine($"OrderResponse Reply received with Id {message.OrderId}");
-
+        logger.LogInformation("OrderResponse Reply received with Id {OrderId}", message.OrderId);
         return Task.CompletedTask;
     }
 }

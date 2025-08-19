@@ -29,8 +29,8 @@ class Program
 
         Console.WriteLine("Message sent");
 
-        Console.WriteLine("Launching platform...");
-        await Particular.PlatformLauncher.Launch();
+        Console.WriteLine("Press any key to exit");
+        Console.ReadKey();
 
         await endpointInstance.Stop();
     }

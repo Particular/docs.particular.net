@@ -1,7 +1,7 @@
 ---
 title: N-tier architecture style on Azure
 summary: Gives a description of n-tier architecture including the components, challenges, and technology options for Azure
-reviewed: 2023-07-18
+reviewed: 2025-07-15
 callsToAction: ['solution-architect', 'ADSD']
 ---
 
@@ -30,7 +30,7 @@ Typical components within an n-tier application are:
 N-tier architectures come with many benefits, but there are also trade-offs involved in adopting it:
 
 - Physically separating the tiers introduces higher exposure to network related issues that might affect availability. The use of message queues helps to mitigate some of this by decoupling the tiers and increasing resilience across the layers.
-- The tiers in a n-tier architecture style often communicate synchronously to execute business processes. Long-running or heavy workloads can negatively impact the user experience and overall system performance. Asynchronous communication using messaging decouples the tiers interacting with the user from the tiers processing the workload.
+- The tiers of an n-tier architecture style often communicate synchronously to execute business processes. Long-running or heavy workloads can negatively impact the user experience and overall system performance. Asynchronous communication using messaging decouples the tiers interacting with the user from the tiers processing the workload.
 - Front end tiers often need to reflect changes made by other users or processes. Communication is generally initiated from front end layers to back end layers, but not the other way around. The use of messaging may be used to provide event-based notifications from the back end to the front end without introducing exceptions to this communication flow.
 
 ### Technology choices

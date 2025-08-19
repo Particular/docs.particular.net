@@ -1,7 +1,7 @@
 ---
 title: Satellites
 summary: Extension point for raw processing of messages.
-reviewed: 2023-01-10
+reviewed: 2025-04-02
 component: Core
 versions: '[5,]'
 related:
@@ -21,7 +21,7 @@ The satellite infrastructure allows the handling of messages as they become avai
 
 snippet: SimpleSatelliteFeature
 
-The call to `AddSatelliteReceiver` registers the action to take when a message is received. In the above example, the satellite will watch a queue named `targetQueue`. 
+The call to `AddSatelliteReceiver` registers the action to take when a message is received. In the above example, the satellite will watch a queue named `targetQueue`.
 
 The `MessageContext` parameter provides details about the incoming message such as the body and headers. When migrating from a satellite extension from NServiceBus version 5 and below, the implementation steps that are in the `Handle` method go into the func provided to the `AddSatelliteReceiver` method.
 

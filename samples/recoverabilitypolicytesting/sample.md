@@ -1,7 +1,7 @@
 ---
 title: Unit Testing a custom recoverability policy
 summary: Writing unit tests for custom recoverability policies
-reviewed: 2022-12-18
+reviewed: 2025-03-28
 component: Core
 related:
 - nservicebus/recoverability

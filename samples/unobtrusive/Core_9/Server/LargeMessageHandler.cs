@@ -1,19 +1,17 @@
 using Messages;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
-public class LargeMessageHandler : IHandleMessages<LargeMessage>
+public class LargeMessageHandler(ILogger<LargeMessageHandler> logger) : IHandleMessages<LargeMessage>
 {
-    static readonly ILog log = LogManager.GetLogger<LargeMessageHandler>();
-
     public Task Handle(LargeMessage message, IMessageHandlerContext context)
     {
         if (message.LargeDataBus == null)
         {
-            log.Info($"Message [{message.GetType()}] received, id:{message.RequestId}");
+            logger.LogInformation("Message [{MessageType}] received, id:{RequestId}", message.GetType(), message.RequestId);
         }
         else
         {
-            log.Info($"Message [{message.GetType()}] received, id:{message.RequestId} and payload {message.LargeDataBus.Length} bytes");
+            logger.LogInformation("Message [{MessageType}] received, id:{RequestId} and payload {PayloadLength} bytes", message.GetType(), message.RequestId, message.LargeDataBus.Length);
         }
         return Task.CompletedTask;
     }

@@ -1,7 +1,7 @@
 ---
 title: AzureTable Persistence Usage with non-default table
 summary: Using Azure Table Persistence to store sagas providing a non-default table dynamically
-reviewed: 2022-11-17
+reviewed: 2025-02-25
 component: ASP
 related:
  - nservicebus/sagas
@@ -17,14 +17,14 @@ Ensure that an instance of the latest [Azure Storage Emulator](https://docs.micr
 
 ### SharedMessages
 
-The shared message contracts used by all endpoints.
+* The shared message contracts used by all endpoints.
 
 ### Client
 
 * Sends the `StartOrder` message to `Server`.
 * Receives and handles the `OrderCompleted` event.
 
-### Server projects
+### Server
 
 * Receive the `StartOrder` message and initiate an `OrderSaga`.
 * `OrderSaga` sends a `ShipOrder` command to `ShipOrderSaga`
@@ -32,17 +32,17 @@ The shared message contracts used by all endpoints.
 * `ShipOrderSaga` replies with `CompleteOrder` when the `CompleteOrder` timeout fires.
 * `OrderSaga` publishes an `OrderCompleted` event when the `CompleteOrder` message arrives.
 
-### Persistence config
+## Persistence config
 
 Configure the endpoint to use Azure Table Persistence.
 
 snippet: AzureTableConfig
 
-In the non-transactional mode the saga id is used as a partition.
+In the non-transactional mode the saga id is used as a partition key.
 
 ## Behaviors
 
-For all messages destined to go to the `ShipOrderSaga` the table is overridden at runtime to use `ShipOrderSagaData` table.
+For all messages destined to go to the `ShipOrderSaga` the table is overridden at runtime to use the `ShipOrderSagaData` table.
 
 snippet: BehaviorAddingTableInfo
 

@@ -1,15 +1,13 @@
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
-public class PlaceOrderHandler :
+public class PlaceOrderHandler(ILogger<LegacyOrderDetectedHandler> logger) :
     IHandleMessages<PlaceOrder>
 {
-    static ILog log = LogManager.GetLogger<PlaceOrderHandler>();
-
     public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
-        log.Info($"Order {message.OrderId} placed");
+        logger.LogInformation("Order {OrderId} placed", message.OrderId);
         return Task.CompletedTask;
     }
 }

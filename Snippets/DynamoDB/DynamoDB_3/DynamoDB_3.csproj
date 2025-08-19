@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.Persistence.DynamoDB" Version="3.*" />
+    <PackageReference Include="NServiceBus.Testing" Version="9.*" />
+  </ItemGroup>
+
+</Project>

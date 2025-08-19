@@ -1,12 +1,11 @@
 ---
 title: SQL Transport Native Integration
-summary: Sample code and scripts to facilitate native integration scenario's with SQL Server Transport.
-reviewed: 2021-09-07
+summary: Sample code and scripts to facilitate native integration scenarios with SQL Server Transport.
+reviewed: 2024-08-06
 component: SqlTransport
 related:
 - samples/sqltransport/native-integration
 ---
-
 
 This document describes how to consume messages from and send messages to non-NServiceBus endpoints via SQL Server in integration scenarios.
 

@@ -20,7 +20,8 @@ internal static class MsmqUtils
                 message.UseDeadLetterQueue = true;
                 message.TimeToBeReceived = TimeSpan.FromMilliseconds(50);
                 var bytes = Encoding.UTF8.GetBytes(messageBody);
-                message.BodyStream = new MemoryStream(bytes);
+                using var data = new MemoryStream(bytes);
+                message.BodyStream = data;
                 queue.Send(message, MessageQueueTransactionType.Automatic);
             }
             scope.Complete();
@@ -39,10 +40,8 @@ internal static class MsmqUtils
         var path = QueuePath(queueName);
         if (!MessageQueue.Exists(path))
         {
-            using (var messageQueue = MessageQueue.Create(path, true))
-            {
-                SetDefaultPermissionsForQueue(messageQueue, account);
-            }
+            using var messageQueue = MessageQueue.Create(path, true);
+            SetDefaultPermissionsForQueue(messageQueue, account);
         }
     }
 

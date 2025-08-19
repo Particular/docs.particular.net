@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
+    <LangVersion>12.0</LangVersion>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="5.*"/>
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.*"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj"/>
+  </ItemGroup>
+
+  <ItemGroup Label="Transitive dependencies">
+    <PackageReference Include="NServiceBus" Version="9.*"/>
+    <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.*"/>
+  </ItemGroup>
+
+</Project>

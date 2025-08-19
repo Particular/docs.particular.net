@@ -1,7 +1,7 @@
 ---
 title: Compliance
 summary: Compliance Table of Contents
-reviewed: 2022-12-02
+reviewed: 2025-03-06
 ---
 
-Systems built using NServiceBus often run in environments requiring high levels of government and/or regulatory compliance.
+Systems built using NServiceBus often run in environments with strict government and/or regulatory compliance requirements. See the related articles for details on how NServiceBus supports compliance.

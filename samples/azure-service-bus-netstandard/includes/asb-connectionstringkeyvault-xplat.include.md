@@ -1,0 +1,3 @@
+- A KeyVault in Azure with a Secret named "AzureServiceBusConnectionString" with the Azure Service Bus connection string.
+- An environment variable named `KeyVaultUri` with the URI of the KeyVault.
+- [Access permissions setup](https://learn.microsoft.com/en-us/dotnet/azure/sdk/authentication/credential-chains?tabs=dac#defaultazurecredential-overview) for the endpoints to be able to read the secret. 

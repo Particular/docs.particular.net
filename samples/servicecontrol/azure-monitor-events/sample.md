@@ -6,8 +6,9 @@ reviewed: 2024-04-26
 related:
  - servicecontrol
  - servicecontrol/contracts
- - servicecontrol/plugins
  - samples/servicecontrol/monitoring3rdparty
+redirects:
+ - servicecontrol/app-insights-integration
 ---
 
 This sample shows how to monitor a running NServiceBus system with ServiceControl and ServicePulse as well as how to integrate with existing monitoring solutions. The sample uses the [learning transport](/transports/learning/) and a portable version of the Particular Service Platform tools. Installing ServiceControl is **not** required.

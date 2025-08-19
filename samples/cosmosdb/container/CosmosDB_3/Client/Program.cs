@@ -1,21 +1,30 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 class Program
 {
-    static async Task Main()
+    public static async Task Main(string[] args)
     {
         Console.Title = "Client";
+
+        var builder = Host.CreateApplicationBuilder(args);
+
         var endpointConfiguration = new EndpointConfiguration("Samples.CosmosDB.Container.Client");
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        builder.UseNServiceBus(endpointConfiguration);
+
+        var host = builder.Build();
+        await host.StartAsync();
+
+        var messageSession = host.Services.GetRequiredService<IMessageSession>();
 
         Console.WriteLine("Press 'S' to send a StartOrder message to the server endpoint");
-
         Console.WriteLine("Press any other key to exit");
 
         while (true)
@@ -30,13 +39,13 @@ class Program
             };
             if (key.Key == ConsoleKey.S)
             {
-                await endpointInstance.Send("Samples.CosmosDB.Container.Server", startOrder);
+                await messageSession.Send("Samples.CosmosDB.Container.Server", startOrder);
                 Console.WriteLine($"StartOrder Message sent to Server with OrderId {orderId}");
                 continue;
             }
             break;
         }
 
-        await endpointInstance.Stop();
+        await host.StopAsync();
     }
 }

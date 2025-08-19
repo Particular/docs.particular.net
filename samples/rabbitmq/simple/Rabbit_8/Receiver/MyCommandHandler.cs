@@ -1,14 +1,17 @@
-﻿using System.Threading.Tasks;
+﻿namespace Receiver;
+
 using NServiceBus;
 using NServiceBus.Logging;
+using Shared;
 
 public class MyCommandHandler : IHandleMessages<MyCommand>
 {
-    static ILog log = LogManager.GetLogger<MyCommandHandler>();
+    static readonly ILog log = LogManager.GetLogger<MyCommandHandler>();
 
     public Task Handle(MyCommand commandMessage, IMessageHandlerContext context)
     {
         log.Info($"Hello from {nameof(MyCommandHandler)}");
+
         return Task.CompletedTask;
     }
 }

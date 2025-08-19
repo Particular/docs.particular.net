@@ -1,13 +1,10 @@
 ﻿using Messages;
-using NServiceBus.Logging;
-
-public class RequestMessageHandler : IHandleMessages<Request>
+using Microsoft.Extensions.Logging;
+public class RequestMessageHandler(ILogger<RequestMessageHandler> logger) : IHandleMessages<Request>
 {
-    static readonly ILog log = LogManager.GetLogger<RequestMessageHandler>();
-
     public Task Handle(Request message, IMessageHandlerContext context)
     {
-        log.Info($"Request received with id:{message.RequestId}");
+        logger.LogInformation("Request received with id:{RequestId}", message.RequestId);
 
         var response = new Response
         {

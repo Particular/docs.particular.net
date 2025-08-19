@@ -1,27 +1,19 @@
 ﻿using System;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-namespace Sales
-{
-    class Program
-    {
-        static async Task Main()
-        {
-            Console.Title = "Sales";
+Console.Title = "Sales";
 
-            var endpointConfiguration = new EndpointConfiguration("Sales");
-            // Choose JSON to serialize and deserialize messages
-            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+var builder = Host.CreateApplicationBuilder(args);
 
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+var endpointConfiguration = new EndpointConfiguration("Sales");
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-            Console.WriteLine("Press Enter to exit.");
-            Console.ReadLine();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-            await endpointInstance.Stop();
-        }
-    }
-}
+builder.UseNServiceBus(endpointConfiguration);
+
+var app = builder.Build();
+
+await app.RunAsync();

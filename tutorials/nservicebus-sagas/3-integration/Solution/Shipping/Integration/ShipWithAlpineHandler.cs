@@ -1,31 +1,28 @@
 ﻿using NServiceBus;
-using NServiceBus.Logging;
-using Messages;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
+using Messages;
+using Microsoft.Extensions.Logging;
 
-namespace Shipping.Integration
+namespace Shipping.Integration;
+
+#region ShipWithAlpineHandler
+
+class ShipWithAlpineHandler(ILogger<ShipWithAlpineHandler> logger) : IHandleMessages<ShipWithAlpine>
 {
-    #region ShipWithAlpineHandler
+    const int MaximumTimeAlpineMightRespond = 30;
 
-    class ShipWithAlpineHandler : IHandleMessages<ShipWithAlpine>
+    public async Task Handle(ShipWithAlpine message, IMessageHandlerContext context)
     {
-        static ILog log = LogManager.GetLogger<ShipWithAlpineHandler>();
+        var waitingTime = Random.Shared.Next(MaximumTimeAlpineMightRespond);
 
-        const int MaximumTimeAlpineMightRespond = 30;
-        static Random random = new Random();
+        logger.LogInformation("ShipWithAlpineHandler: Delaying Order [{OrderId}] {WaitingTime} seconds.", message.OrderId, waitingTime);
 
-        public async Task Handle(ShipWithAlpine message, IMessageHandlerContext context)
-        {
-            var waitingTime = random.Next(MaximumTimeAlpineMightRespond);
+        await Task.Delay(waitingTime * 1000, CancellationToken.None);
 
-            log.Info($"ShipWithAlpineHandler: Delaying Order [{message.OrderId}] {waitingTime} seconds.");
-
-            await Task.Delay(waitingTime * 1000);
-
-            await context.Reply(new ShipmentAcceptedByAlpine());
-        }
+        await context.Reply(new ShipmentAcceptedByAlpine());
     }
-
-    #endregion
 }
+
+#endregion

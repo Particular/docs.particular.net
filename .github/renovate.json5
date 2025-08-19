@@ -1,0 +1,4 @@
+{
+    // Don't want NuGet updates on samples for older versions
+    enabledManagers: [ "github-actions" ]
+}

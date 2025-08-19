@@ -1,12 +1,14 @@
 ---
 title: Entity Framework integration with SQL Persistence
 summary: Integrating Entity Framework with SQL Persistence.
-reviewed: 2023-08-11
+reviewed: 2025-07-22
 component: SqlPersistence
 related:
 - persistence/sql
 ---
 
+> [!WARNING]
+> `NServiceBus 8.*` is the last major version to support `.NET Framework 4.*` and `Entity Framework 6.*`. If you are targeting `NServiceBus 9.*` or newer, please see the [Entity Framework Core](/samples/entity-framework-core/) sample.
 
 ## Prerequisites
 
@@ -17,7 +19,7 @@ The database created by this sample is `NsbSamplesEfUowSql`.
 
 ## Running the project
 
- 1. Start the solution
+ 1. Start the solution: This will open two console windows
  2. The text `Press <enter> to send a message` will appear in both console windows
  3. Press <kbd>enter</kbd> in both console windows
 
@@ -26,6 +28,8 @@ The database created by this sample is `NsbSamplesEfUowSql`.
 
 
 ## Verifying that the sample works
+
+You will see the following messages in the console, indicating the process is working correctly:
 
  1. `CreateOrderHandler` displays information that an order was submitted.
  2. `OrderLifecycleSaga` displays information that the order process has been started.

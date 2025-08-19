@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35201.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sender", "Sender\Sender.csproj", "{A2C85229-1A52-4D3B-90FF-EF9D93EE6216}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Receiver", "Receiver\Receiver.csproj", "{D295B34A-6424-4204-B007-971EE333D991}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{3282C6A4-9A1E-401D-BC87-71ECE1241A8E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DCDF2CA8-92D1-46E2-AFE2-4A39D6605557}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2C85229-1A52-4D3B-90FF-EF9D93EE6216}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2C85229-1A52-4D3B-90FF-EF9D93EE6216}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D295B34A-6424-4204-B007-971EE333D991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D295B34A-6424-4204-B007-971EE333D991}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3282C6A4-9A1E-401D-BC87-71ECE1241A8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3282C6A4-9A1E-401D-BC87-71ECE1241A8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7B1C3D38-9A43-477C-8298-A9EAA9FB17CE}
+	EndGlobalSection
+EndGlobal

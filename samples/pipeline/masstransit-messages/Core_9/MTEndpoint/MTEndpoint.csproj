@@ -1,15 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk.Worker">
+
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
     <UserSecretsId>dotnet-MTEndpoint-0796FBA1-1278-479A-94F8-C8918B42B338</UserSecretsId>
     <LangVersion>12.0</LangVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Messages\Messages.csproj" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="MassTransit.AspNetCore" Version="7.*" />
     <PackageReference Include="MassTransit.RabbitMQ" Version="7.*" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.*" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Messages\Messages.csproj" />
+
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
   </ItemGroup>
 </Project>

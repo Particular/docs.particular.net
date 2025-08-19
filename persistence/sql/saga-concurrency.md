@@ -1,7 +1,7 @@
 ---
 title: SQL Persistence saga concurrency
 component: SqlPersistence
-reviewed: 2022-11-24
+reviewed: 2025-03-18
 related:
  - nservicebus/sagas/concurrency
 redirects:
@@ -10,7 +10,7 @@ redirects:
 
 ## Default behavior
 
-When simultaneously handling messages, conflicts may occur. See below for examples. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
+When simultaneously handling messages, conflicts may occur. See below for examples. [Saga concurrency](/nservicebus/sagas/concurrency.md) explains how these conflicts are handled and contains guidance for high-load scenarios.
 
 ### Starting a saga
 
@@ -43,4 +43,14 @@ values
 
 ### Updating or deleting saga data
 
-partial: updating-deleting
+Starting in version 4.1.1, conflicts cannot occur because the persistence uses pessimistic locking. Pessimistic locking is achieved by performing a `SELECT ... FOR UPDATE` or its dialect-specific equivalent.
+
+Up to and including version 4.1.0, SQL persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data.
+
+Example exception:
+
+```
+System.Exception: Optimistic concurrency violation when trying to complete saga OrderSaga 699d0b1a-e2bf-49fd-8f26-aadf01009eaf. Expected version 4.
+```
+
+include: saga-concurrency

@@ -117,6 +117,13 @@ public class Configuration
         };
 
         #endregion
+
+        #region auto-create-queues-proxies
+
+        msmq.HasEndpoint("Sales");
+        azureServiceBus.HasEndpoint("Billing");
+
+        #endregion
     }
 
     public void CustomConcurrency()
@@ -231,6 +238,17 @@ public class Configuration
         bridgeTransport.ReportCustomChecksTo(
             serviceControlQueue: "ServiceControl_Queue",
             timeToLive: TimeSpan.FromSeconds(30));
+
+        #endregion
+    }
+
+    public void TranslateReplyToAddressForFailedMessages()
+    {
+        var bridgeConfiguration = new BridgeConfiguration();
+
+        #region translate-reply-to-address-for-failed-messages
+
+        bridgeConfiguration.TranslateReplyToAddressForFailedMessages();
 
         #endregion
     }

@@ -1,16 +1,24 @@
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
-public class OrderSubmittedHandler :
+sealed class OrderSubmittedHandler :
     IHandleMessages<OrderSubmitted>
 {
-    static ILog log = LogManager.GetLogger<OrderSubmittedHandler>();
+    private readonly ILogger<OrderSubmittedHandler> logger;
+
+    public OrderSubmittedHandler(ILogger<OrderSubmittedHandler> logger)
+    {
+        this.logger = logger;
+    }
 
     public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
-        log.Info($"Order {message.OrderId} worth {message.Value} submitted");
+        logger.LogInformation("Order {OrderId} worth {OrderValue} submitted",
+            message.OrderId,
+            message.Value
+        );
 
         #region StoreUserData
 
@@ -19,10 +27,11 @@ public class OrderSubmittedHandler :
         var sql = @"insert into receiver.SubmittedOrder
                                     (Id, Value)
                         values      (@Id, @Value)";
-        using (var command = new SqlCommand(
-            cmdText: sql,
-            connection: (SqlConnection)session.Connection,
-            transaction: (SqlTransaction)session.Transaction))
+
+        await using (var command = new SqlCommand(
+                         cmdText: sql,
+                         connection: (SqlConnection)session.Connection,
+                         transaction: (SqlTransaction)session.Transaction))
         {
             var parameters = command.Parameters;
             parameters.AddWithValue("Id", message.OrderId);
@@ -34,13 +43,9 @@ public class OrderSubmittedHandler :
 
         #region Reply
 
-        var orderAccepted = new OrderAccepted
-        {
-            OrderId = message.OrderId,
-        };
+        var orderAccepted = new OrderAccepted(OrderId: message.OrderId);
         await context.Reply(orderAccepted);
 
         #endregion
     }
-
 }

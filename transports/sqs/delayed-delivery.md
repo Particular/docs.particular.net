@@ -2,7 +2,7 @@
 title: Amazon SQS Delayed Delivery
 summary: Describes the native delayed delivery implementation in the SQS transport
 component: Sqs
-reviewed: 2022-08-23
+reviewed: 2025-01-17
 versions: '[4,]'
 ---
 
@@ -12,7 +12,7 @@ The SQS transport supports [delayed delivery](/nservicebus/messaging/delayed-del
 
 partial: enable
 
-Unrestricted delayed delivery must be enabled on the sender and receiver to be able to delay messages longer than 900 seconds.
+Unrestricted delayed delivery must be enabled on the sender and receiver to delay messages longer than 900 seconds.
 
 | Scenario                    | Sender   | Receiver | Supported     |
 |-----------------------------|----------|----------|:-------------:|
@@ -28,7 +28,7 @@ Unrestricted delayed delivery must be enabled on the sender and receiver to be a
 > [!WARNING]
 > As the chart indicates, sending messages with a delay duration longer than 900 seconds to endpoints using versions 3 and below is not supported.
 
-Unrestricted delayed delivery requires a FIFO queue for each endpoint that receives delayed messages. The transport handles creation of the FIFO queue automatically when [installers](/nservicebus/operations/installers.md) are enabled.
+Unrestricted delayed delivery requires a FIFO queue for each endpoint that receives delayed messages. The transport handles the creation of the FIFO queue automatically when [installers](/nservicebus/operations/installers.md) are enabled.
 
 ### Manual FIFO queue creation
 
@@ -36,7 +36,7 @@ If installers are not used, then the FIFO queue will need to be manually created
 
 The FIFO queue has the following requirements:
 
-- The name must match the endpoint's input queue suffixed with `-delay.fifo`.
+- The name must match the endpoint's input queue, which is suffixed with `-delay.fifo`.
 - The Delivery Delay setting (DelaySeconds) should be set to 900 seconds.
 - The Message Retention Period should be set to at least 4 days.
 - A Redrive Policy must not be configured.
@@ -72,7 +72,7 @@ sequenceDiagram
 > FIFO queues are used to implement this feature because of their native support for de-duplication.
 
 > [!WARNING]
-> The transport uses timestamps from the broker to avoid clock skew, but a discrepancy between broker and endpoint clocks still has potential to cause inaccurate delay calculation.
+> The transport uses timestamps from the broker to avoid clock skew, but a discrepancy between broker and endpoint clocks still has the potential to cause inaccurate delay calculation.
 
 ### Potential duplicate messages
 

@@ -19,7 +19,7 @@ The following adapter packages will no longer be provided:
 * [Ninject](/nservicebus/dependency-injection/ninject.md)
 * [Unity](/nservicebus/dependency-injection/unity.md)
 
-Instead of the container adapter packages, use the [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) package. To use a third party dependency injection container refer to the [externally managed container mode](/nservicebus/dependency-injection/#externally-managed-mode). See the [migrating to the Generic Host](#microsoft-generic-host) or [migrating to externally managed mode](#externally-managed-container-mode) sections for further information.
+Instead of the container adapter packages, use the [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) package. To use a third party dependency injection container refer to the [externally managed container mode](/nservicebus/dependency-injection/#modes-of-operation-externally-managed-mode). See the [migrating to the Generic Host](#microsoft-generic-host) or [migrating to externally managed mode](#externally-managed-container-mode) sections for further information.
 
 ## Behavioral changes
 
@@ -34,7 +34,7 @@ Property injection is not covered by `Microsoft.Extensions.DependencyInjection`.
 
 ## UseContainer is deprecated
 
-The `UseContainer` API to integrate third party containers with NServiceBus has been removed as it does not align with the `Microsoft.Extensions.DependencyInjection` model. To use a custom dependency injection container with NServiceBus, use the [externally managed container mode](/nservicebus/dependency-injection/#externally-managed-mode).
+The `UseContainer` API to integrate third party containers with NServiceBus has been removed as it does not align with the `Microsoft.Extensions.DependencyInjection` model. To use a custom dependency injection container with NServiceBus, use the [externally managed container mode](/nservicebus/dependency-injection/#modes-of-operation-externally-managed-mode).
 
 ## RegisterComponents changes
 

@@ -1,10 +1,10 @@
 ---
 title: Platform Releases
 summary: Links to current and previous releases as well as release notes for the Particular Service Platform applications
-reviewed: 2023-05-23
+reviewed: 2025-05-13
 ---
 
-### Applications and tools
+## Applications and tools
 
 The Particular Service Platform source code, current and previous releases, and release notes are available as public repositories on [GitHub](https://github.com/particular).
 
@@ -17,7 +17,7 @@ The Particular Service Platform source code, current and previous releases, and 
 | **ServiceControl** | [Releases](https://github.com/Particular/ServiceControl/tags)|[Release Notes](https://github.com/Particular/ServiceControl/releases)|
 
 
-### NServiceBus transports
+## NServiceBus transports
 
 | | | |
 |:--- |:--- |:--- |
@@ -29,7 +29,7 @@ The Particular Service Platform source code, current and previous releases, and 
 |**MSMQ**|[Releases](https://github.com/Particular/NServiceBus.Transport.Msmq/tags)| [Release Notes](https://github.com/Particular/NServiceBus.Transport.Msmq/releases)
 |**Amazon SQS**| [Releases](https://github.com/Particular/NServiceBus.AmazonSQS/tags)| [Release Notes](https://github.com/Particular/NServiceBus.AmazonSQS/releases)
 
-### NServiceBus persisters
+## NServiceBus persisters
 
 
 | | | |
@@ -39,8 +39,3 @@ The Particular Service Platform source code, current and previous releases, and 
 |**NHibernate** | [Releases](https://github.com/Particular/NServiceBus.NHibernate/tags)| [Release Notes](https://github.com/Particular/NServiceBus.NHibernate/releases)
 |**Azure Storage** | [Releases](https://github.com/Particular/NServiceBus.Persistence.AzureStorage/tags)| [Release Notes](https://github.com/Particular/NServiceBus.Persistence.AzureStorage/releases)
 |**Service Fabric** | [Releases](https://github.com/Particular/NServiceBus.Persistence.ServiceFabric/tags)| [Release Notes](https://github.com/Particular/NServiceBus.Persistence.ServiceFabric/releases)
-
-
-### ServiceControl plugins
-
-* See [ServiceControl Endpoints Plugins](/servicecontrol/plugins/)

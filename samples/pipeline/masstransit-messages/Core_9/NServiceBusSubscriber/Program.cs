@@ -8,47 +8,41 @@ namespace NServiceBusSubscriber
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
-        }
-
-        public static IHostBuilder CreateHostBuilder(string[] args)
-        {
             Console.Title = "NServiceBusSubscriber";
 
-            return Host.CreateDefaultBuilder(args)
-                .ConfigureServices((hostContext, services) =>
-                {
-                    // Configure services here
-                })
-                .UseNServiceBus(context =>
-                {
-                    var endpointConfiguration = new EndpointConfiguration("NServiceBusSubscriber");
+            var builder = Host.CreateApplicationBuilder(args);
 
-                    #region Transport
-                    var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-                    transport.ConnectionString("host=localhost;username=guest;password=guest");
-                    transport.UseConventionalRoutingTopology(QueueType.Classic);
-                    #endregion
+            // Configure services here
+            // builder.Services.
 
-                    #region Serializer
-                    endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
-                    #endregion
+            var endpointConfiguration = new EndpointConfiguration("NServiceBusSubscriber");
 
-                    #region Conventions
-                    endpointConfiguration.Conventions()
-                        .DefiningCommandsAs(type => type.Namespace?.EndsWith(".Commands") ?? false)
-                        .DefiningEventsAs(type => type.Namespace?.EndsWith(".Events") ?? false)
-                        .DefiningMessagesAs(type => type.Namespace?.EndsWith(".Messages") ?? false);
-                    #endregion
+            #region Transport
+            var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+            transport.ConnectionString("host=localhost;username=guest;password=guest");
+            transport.UseConventionalRoutingTopology(QueueType.Quorum);
+            #endregion
 
-                    #region RegisterBehavior
-                    endpointConfiguration.Pipeline.Register(typeof(MassTransitIngestBehavior), "Ingests MassTransit messages.");
-                    #endregion
+            #region Serializer
+            endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
+            #endregion
 
-                    endpointConfiguration.EnableInstallers();
+            #region Conventions
+            endpointConfiguration.Conventions()
+                .DefiningCommandsAs(type => type.Namespace?.EndsWith(".Commands") ?? false)
+                .DefiningEventsAs(type => type.Namespace?.EndsWith(".Events") ?? false)
+                .DefiningMessagesAs(type => type.Namespace?.EndsWith(".Messages") ?? false);
+            #endregion
 
-                    return endpointConfiguration;
-                });
+            #region RegisterBehavior
+            endpointConfiguration.Pipeline.Register(typeof(MassTransitIngestBehavior), "Ingests MassTransit messages.");
+            #endregion
+
+            endpointConfiguration.EnableInstallers();
+
+            builder.UseNServiceBus(endpointConfiguration);
+
+            builder.Build().Run();
         }
     }
 }

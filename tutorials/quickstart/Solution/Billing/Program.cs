@@ -1,37 +1,26 @@
 using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-namespace Billing
-{    
-    class Program
-    {
-        static async Task Main(string[] args)
-        {
-            Console.Title = "Billing";
-            await CreateHostBuilder(args).RunConsoleAsync();
-        }
+Console.Title = "Billing";
 
-        public static IHostBuilder CreateHostBuilder(string[] args)
-        {
-            return Host.CreateDefaultBuilder(args)
-                       .UseNServiceBus(context =>
-                       {
-                           var endpointConfiguration = new EndpointConfiguration("Billing");
+var builder = Host.CreateApplicationBuilder(args);
 
-                           endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-                           endpointConfiguration.UseTransport<LearningTransport>();
+var endpointConfiguration = new EndpointConfiguration("Billing");
 
-                           endpointConfiguration.SendFailedMessagesTo("error");
-                           endpointConfiguration.AuditProcessedMessagesTo("audit");
-                           endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport<LearningTransport>();
 
-                           var metrics = endpointConfiguration.EnableMetrics();
-                           metrics.SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromMilliseconds(500));
+endpointConfiguration.SendFailedMessagesTo("error");
+endpointConfiguration.AuditProcessedMessagesTo("audit");
+endpointConfiguration.SendHeartbeatTo("Particular.ServiceControl");
 
-                           return endpointConfiguration;
-                       });
-        }
-    }
-}
+var metrics = endpointConfiguration.EnableMetrics();
+metrics.SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromMilliseconds(500));
+
+builder.UseNServiceBus(endpointConfiguration);
+
+var app = builder.Build();
+
+await app.RunAsync();
+

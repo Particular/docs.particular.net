@@ -32,11 +32,11 @@
 
             await QueueDeletionUtils.DeleteAllQueues(queueNamePrefix: "DEV");
 
-            Assert.IsTrue(await QueueExistenceUtils.Exists("deleteprefix-10"));
+            Assert.That(await QueueExistenceUtils.Exists("deleteprefix-10"), Is.True);
 
             for (var i = 0; i < 10; i++)
             {
-                Assert.IsFalse(await QueueExistenceUtils.Exists($"DEVdeleteprefix-{i}"));
+                Assert.That(await QueueExistenceUtils.Exists($"DEVdeleteprefix-{i}"), Is.False);
             }
         }
 
@@ -61,7 +61,7 @@
 
             for (var i = 0; i < 10; i++)
             {
-                Assert.IsFalse(await QueueExistenceUtils.Exists($"deleteall-{i}"));
+                Assert.That(await QueueExistenceUtils.Exists($"deleteall-{i}"), Is.False);
             }
         }
 
@@ -85,7 +85,7 @@
 
             for (var i = 0; i < 2000; i++)
             {
-                Assert.IsFalse(await QueueExistenceUtils.Exists($"deletemore2000-{i}"));
+                Assert.That(await QueueExistenceUtils.Exists($"deletemore2000-{i}"), Is.False);
             }
         }
 
@@ -322,32 +322,35 @@
 
         static async Task AssertQueuesDeleted(string endpointName, string errorQueueName, string auditQueueName, string queueNamePrefix = null, bool includeRetries = false, string delayedDeliveryMethod = "native")
         {
-            Assert.IsFalse(await QueueExistenceUtils.Exists(endpointName, queueNamePrefix), $"Queue {endpointName} still exists.");
+            Assert.That(await QueueExistenceUtils.Exists(endpointName, queueNamePrefix), Is.False, $"Queue {endpointName} still exists.");
 
             switch (delayedDeliveryMethod)
             {
                 case "TimeoutManager":
 
-                    Assert.IsFalse(await QueueExistenceUtils.Exists($"{endpointName}.Timeouts", queueNamePrefix), $"Queue {endpointName}.timeouts still exists.");
+                    Assert.That(await QueueExistenceUtils.Exists($"{endpointName}.Timeouts", queueNamePrefix), Is.False, $"Queue {endpointName}.timeouts still exists.");
 
-                    Assert.IsFalse(await QueueExistenceUtils.Exists($"{endpointName}.TimeoutsDispatcher", queueNamePrefix), $"Queue {endpointName}.timeoutsdispatcher still exists.");
+                    Assert.That(await QueueExistenceUtils.Exists($"{endpointName}.TimeoutsDispatcher", queueNamePrefix), Is.False, $"Queue {endpointName}.timeoutsdispatcher still exists.");
 
                     break;
                 case "UnrestrictedDelayedDelivery":
 
-                    Assert.IsFalse(await QueueExistenceUtils.Exists($"{endpointName}-delay.fifo", queueNamePrefix), $"Queue {endpointName}-delay.fifo still exists.");
+                    Assert.That(await QueueExistenceUtils.Exists($"{endpointName}-delay.fifo", queueNamePrefix), Is.False, $"Queue {endpointName}-delay.fifo still exists.");
 
                     break;
             }
 
             if (includeRetries)
             {
-                Assert.IsFalse(await QueueExistenceUtils.Exists($"{endpointName}.Retries", queueNamePrefix), $"Queue {endpointName}.retries still exists.");
+                Assert.That(await QueueExistenceUtils.Exists($"{endpointName}.Retries", queueNamePrefix), Is.False, $"Queue {endpointName}.retries still exists.");
             }
 
-            Assert.IsFalse(await QueueExistenceUtils.Exists(errorQueueName, queueNamePrefix), $"Queue {errorQueueName} still exists.");
+            Assert.Multiple(async () =>
+            {
+                Assert.That(await QueueExistenceUtils.Exists(errorQueueName, queueNamePrefix), Is.False, $"Queue {errorQueueName} still exists.");
 
-            Assert.IsFalse(await QueueExistenceUtils.Exists(auditQueueName, queueNamePrefix), $"Queue {auditQueueName} still exists.");
+                Assert.That(await QueueExistenceUtils.Exists(auditQueueName, queueNamePrefix), Is.False, $"Queue {auditQueueName} still exists.");
+            });
         }
     }
 

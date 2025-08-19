@@ -14,6 +14,12 @@
 
         const string endpointName = "HeaderWriterAuditV7";
 
+        [OneTimeTearDown]
+        public void TearDown()
+        {
+            ManualResetEvent.Dispose();
+        }
+
         [Test]
         public async Task Write()
         {

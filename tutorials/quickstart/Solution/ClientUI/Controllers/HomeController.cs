@@ -10,17 +10,9 @@ using NServiceBus;
 namespace ClientUI.Controllers
 {
     [Route("/")]
-    public class HomeController : Controller
+    public class HomeController(IMessageSession messageSession, ILogger<HomeController> logger): Controller
     {
         static int messagesSent;
-        private readonly ILogger<HomeController> _log;
-        private readonly IMessageSession _messageSession;
-
-        public HomeController(IMessageSession messageSession, ILogger<HomeController> logger)
-        {
-            _messageSession = messageSession;
-            _log = logger;
-        }
 
         [HttpGet]
         public IActionResult Index()
@@ -36,9 +28,9 @@ namespace ClientUI.Controllers
             var command = new PlaceOrder { OrderId = orderId };
 
             // Send the command
-            await _messageSession.Send(command);
+            await messageSession.Send(command);
 
-            _log.LogInformation($"Sending PlaceOrder, OrderId = {orderId}");
+            logger.LogInformation("Sending PlaceOrder, OrderId = {orderId}", orderId);
 
             dynamic model = new ExpandoObject();
             model.OrderId = orderId;

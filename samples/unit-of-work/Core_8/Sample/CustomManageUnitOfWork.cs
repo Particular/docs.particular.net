@@ -7,7 +7,7 @@ using NServiceBus.UnitOfWork;
 
 #region CustomManageUnitOfWork
 
-public class CustomManageUnitOfWork :
+sealed class CustomManageUnitOfWork :
     IManageUnitsOfWork
 {
     static ILog log = LogManager.GetLogger("CustomManageUnitOfWork");

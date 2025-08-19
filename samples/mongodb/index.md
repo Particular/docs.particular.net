@@ -1,6 +1,6 @@
 ---
 title: MongoDB Samples
-reviewed: 2021-06-02
+reviewed: 2024-06-21
 related: 
  - persistence/mongodb
 ---

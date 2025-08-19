@@ -2,7 +2,7 @@
 title: SQL Gateway Storage
 summary: SQL deduplication storage for the gateway component
 component: GatewaySql
-reviewed: 2022-10-12
+reviewed: 2024-06-19
 related:
  - samples/gateway
 ---
@@ -16,6 +16,13 @@ Both [System.Data.SqlClient](https://www.nuget.org/packages/System.Data.SqlClien
 By default, the component uses a default schema and table name of `[dbo].[GatewayDeduplication]`.
 
 snippet: DefaultUsage
+
+### Token-credentials
+
+Microsoft Entra ID authentication is supported via the [standard connection string options](https://learn.microsoft.com/en-us/sql/connect/ado-net/sql/azure-active-directory-authentication).
+
+> [!NOTE]
+> Microsoft Entra ID authentication is only supported when using [Microsoft.Data.SqlClient](https://learn.microsoft.com/en-us/sql/connect/ado-net/sql/azure-active-directory-authentication#overview)
 
 ### Customizing schema and table name
 

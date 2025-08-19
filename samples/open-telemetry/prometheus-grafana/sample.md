@@ -3,7 +3,7 @@ title: Monitoring NServiceBus endpoints with Prometheus and Grafana
 summary: How to configure NServiceBus to export OpenTelemetry metrics to Prometheus and Grafana
 component: Core
 isLearningPath: true
-reviewed: 2024-01-17
+reviewed: 2024-07-26
 previewImage: grafana.png
 related:
 - nservicebus/operations/opentelemetry
@@ -19,6 +19,7 @@ redirects:
 ## Prerequisites
 
 To run this sample, Prometheus and Grafana are required. This sample uses Docker and a `docker-compose.yml` file to run the stack.
+To run the Docker stack, run `docker-compose up -d` in the directory where the `docker-compose.yml` file is located.
 
 ## Code overview
 
@@ -38,22 +39,16 @@ snippet: enable-opentelemetry-metrics
 
 Each reported metric is tagged with the following additional information:
 
-* the queue name of the endpoint
-* the uniquely addressable address for the endpoint (if set)
-* the .NET fully qualified type information for the message being processed
-* the exception type name (if applicable)
-
-### Additional metrics
-
-Recoverability and processing-related metrics currently emitted [by the metrics package](/monitoring/metrics/definitions.md#metrics-captured) are not yet supported in OpenTelemetry's native format (using System.Diagnostics), so a shim is required to expose them as OpenTelemetry metrics.
-
-snippet: metrics-shim
+- the queue name of the endpoint
+- the uniquely addressable address for the endpoint (if set)
+- the .NET fully qualified type information for the message being processed
+- the exception type name (if applicable)
 
 ### Message processing counters
 
 The following metric keys are available to monitor the rate of messages from the queuing system use:
 
-- `nservicebus.messaging.fetches` 
+- `nservicebus.messaging.fetches`
 - `nservicebus.messaging.successes`
 - `nservicebus.messaging.failures`
 
@@ -61,17 +56,17 @@ The following metric keys are available to monitor the rate of messages from the
 
 To monitor [recoverability](/nservicebus/recoverability/) metrics, use:
 
-- `nservicebus.recoverability.immediate_retries`
-- `nservicebus.recoverability.delayed_retries`
-- `nservicebus.recoverability.retries`
-- `nservicebus.recoverability.sent_to_error`
+- `nservicebus.recoverability.immediate`
+- `nservicebus.recoverability.delayed`
+- `nservicebus.recoverability.error`
 
-### Critical time and processing time
+#### Handler time, critical time, and processing time
 
-To monitor [critical time and processing time](/monitoring/metrics/definitions.md#metrics-captured) (in milliseconds) for successfully processed messages, use:
+To monitor [handler time, processing time, and critical time](/monitoring/metrics/definitions.md#metrics-captured) (in seconds) for successfully processed messages use:
 
-- `nservicebus.messaging.processingtime`
-- `nservicebus.messaging.criticaltime`
+- `nservicebus.messaging.handler_time`
+- `nservicebus.messaging.processing_time`
+- `nservicebus.messaging.critical_time`
 
 ## Exporting metrics
 
@@ -115,9 +110,7 @@ graph TD
 
 ## Docker stack
 
-The Prometheus service must be configured to retrieve the metrics data from the endpoint. Grafana must also be configured to get the data from Prometheus and visualize it as graphs.
-
-To run the Docker stack, run `docker-compose up -d` in the directory where the `docker-compose.yml` file is located.
+In a production environment, the Prometheus service must be configured to retrieve the metrics data from the endpoint. Grafana must also be configured to get the data from Prometheus and visualize it as graphs. For this sample both services are setup as part of the [Docker stack](#prerequisites)
 
 ### Show a graph
 
@@ -133,18 +126,20 @@ avg(rate(nservicebus_messaging_successes_total[5m]))
 
 ## Grafana
 
-Grafana must be installed and configured to display the data scraped and stored in Prometheus. For more information on how to install Grafana, refer to the [Grafana installation guide](https://docs.grafana.org/installation). In this sample, the Grafana service runs as part of the Docker stack mentioned above.
+Open Grafana on `http://localhost:3000`, which is made available as part of the [Docker stack](#prerequisites)
+
+For a production environment, Grafana must be installed and configured to display the data scraped and stored in Prometheus. For more information on how to install Grafana, refer to the [Grafana installation guide](https://docs.grafana.org/installation).
 
 ### Dashboard
 
-To graph the metrics, the following steps must be performed:
+This sample includes an [export of the Grafana dashboard](grafana-endpoints-dashboard.json) which can be [imported](https://docs.grafana.org/reference/export_import/) as a reference.
 
-* Add a new dashboard
-* Add a graph
-* Click its title to edit
-* From the Data source dropdown, select Prometheus
-* For the query, open the Metrics dropdown and select one of the metrics. Built-in functions (e.g. rate) can also be applied.
+To create a custom dashboard using Prometheus data, the following steps must be performed:
+
+- Add a new dashboard
+- Add a graph
+- Click its title to edit
+- From the Data source dropdown, select Prometheus
+- For the query, open the Metrics dropdown and select one of the metrics. Built-in functions (e.g. rate) can also be applied.
 
 ![Grafana dashboard with NServiceBus OpenTelemetry metrics](example-grafana-dashboard.png)
-
-The sample includes an [export of the Grafana dashboard](grafana-endpoints-dashboard.json) which can be [imported](https://docs.grafana.org/reference/export_import/) as a reference.

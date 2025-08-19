@@ -1,25 +1,21 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-namespace Billing
-{
-    class Program
-    {
-        static async Task Main()
-        {
-            Console.Title = "Billing";
+Console.Title = "Billing";
 
-            var endpointConfiguration = new EndpointConfiguration("Billing");
+var builder = Host.CreateApplicationBuilder(args);
 
-            endpointConfiguration.UseTransport<LearningTransport>();
+var endpointConfiguration = new EndpointConfiguration("Billing");
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-            Console.WriteLine("Press Enter to exit.");
-            Console.ReadLine();
+endpointConfiguration.UseTransport<LearningTransport>();
 
-            await endpointInstance.Stop();
-        }
-    }
-}
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
+
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

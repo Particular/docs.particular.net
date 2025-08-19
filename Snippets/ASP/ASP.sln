@@ -10,6 +10,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASTP_5", "ASTP_5\ASTP_5.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASTP_6", "ASTP_6\ASTP_6.csproj", "{39AB00AF-25D8-4636-B852-60337E492D06}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ASTP_7", "ASTP_7\ASTP_7.csproj", "{C9F373D3-5CC5-4B09-8780-A0B85A715965}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{39AB00AF-25D8-4636-B852-60337E492D06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{39AB00AF-25D8-4636-B852-60337E492D06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{39AB00AF-25D8-4636-B852-60337E492D06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9F373D3-5CC5-4B09-8780-A0B85A715965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9F373D3-5CC5-4B09-8780-A0B85A715965}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9F373D3-5CC5-4B09-8780-A0B85A715965}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9F373D3-5CC5-4B09-8780-A0B85A715965}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

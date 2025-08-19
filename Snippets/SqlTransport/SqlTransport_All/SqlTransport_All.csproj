@@ -1,7 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
+
   <ItemGroup>
     <Reference Include="System.Transactions" />
     <PackageReference Include="EntityFramework" Version="6.*" />
@@ -9,12 +11,19 @@
     <PackageReference Include="Microsoft.PowerShell.SDK" Version="7.3.9" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
-    <PackageReference Include="NUnit" Version="3.*" />
+    <PackageReference Include="NUnit" Version="4.*" />
+    <PackageReference Include="NUnit.Analyzers" Version="4.3.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.*" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
     <PackageReference Include="System.Management.Automation" Version="7.3.9" />
   </ItemGroup>
+
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="System.Formats.Asn1" Version="8.*" />
+  </ItemGroup>
+
   <ItemGroup>
     <None Update="Operations\**\*.ps1" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
+
 </Project>

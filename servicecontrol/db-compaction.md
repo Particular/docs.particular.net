@@ -1,20 +1,28 @@
 ---
-title: Compacting RavenDB 3.5 instances
+title: Compacting RavenDB instances
 summary: How to compact the RavenDB database backing ServiceControl for RavenDB 3.5 instances
-reviewed: 2022-10-26
+reviewed: 2024-07-19
+redirects:
+  - servciecontrol/db-compaction-v5
 ---
 
-> [!NOTE]
-> Compact the database only if the retention period, message throughput, or average message size have been reduced. If none of these have changed, compacting may not provide a significant reduction in database size, or it may have only a small, temporary effect.
+If a ServiceControl instance's retention period, message throughput, or average message size have been reduced, it may be possible to compact the database. If none of these have changed, compacting may not provide a significant reduction in database size, or it may have only a small, temporary effect.
 
-> [!NOTE]
-> The following documentation applies to ServiceControl Error and Audit instances using RavenDB 3.5 as the storage option. New audit instances created with version 4.26 and onward use by default RavenDB 5 and should follow a [different process](db-compaction-v5.md).
+## RavenDB 5 databases
+
+The following applies to all databases used with ServiceControl version 5 and above, as well as audit instances that were originally created with ServiceControl 4.26.0 or later.
+
+ServiceControl's RavenDB 5 database can be compacted by [accessing the database](/servicecontrol/ravendb/accessing-database.md), then following the [RavenDB process for compacting a database](https://ravendb.net/docs/article-page/5.4/csharp/studio/database/stats/storage-report).
+
+## RavenDB 3.5 databases
+
+The following applies to ServiceControl Error and Audit instances using RavenDB 3.5 as the storage option.
 
 ServiceControl's embedded RavenDB 3.5 database can be compacted in one of two ways: with the  [Extensible Storage Engine Utility (esentutl)](https://technet.microsoft.com/en-us/library/hh875546.aspx), or by using the RavenDB management portal.
 
-## Using EsentUtl (Preferred approach)
+### Using EsentUtl (Preferred approach)
 
-### Step 1: Stop ServiceControl
+#### Step 1: Stop ServiceControl
 
 * Open ServiceControl Management
 * Stop the service from the action icons
@@ -23,11 +31,11 @@ ServiceControl's embedded RavenDB 3.5 database can be compacted in one of two wa
 > [!WARNING]
 > For the `esentutl` command line utility to work, the ServiceControl service must stop without any errors.
 
-### Step 2: Back up the ServiceControl instance
+#### Step 2: Back up the ServiceControl instance
 
 * Follow the [backup instructions](backup-sc-database.md) to back up the embedded RavenDB database.
 
-### Step 3: Administrator command prompt
+#### Step 3: Administrator command prompt
 
 * Open an elevated command prompt and navigate to the ServiceControl "DATA PATH" directory
 * Run **`esentutl /r RVN /l logs /s system`** and wait for it to finish. This will ensure that the database is in a consistent state and is ready for defragmentation.
@@ -65,11 +73,11 @@ Initiating DEFRAGMENTATION mode...
          ..................................................
 ```
 
-### Step 4: Restart ServiceControl
+#### Step 4: Restart ServiceControl
 
 * Start the ServiceControl Windows Service.
 
-## Using the RavenDB management portal
+### Using the RavenDB management portal
 
 Use the following approach if problems are encountered while running the `EsentUtl` utility.
 
@@ -77,11 +85,11 @@ ServiceControl version 1.4 introduced a database maintenance feature which allow
 
 Once ServiceControl is running in this mode, the following procedure can be used to compact the embedded RavenDB database.
 
-### Step 1: Start ServiceControl in maintenance mode
+#### Step 1: Start ServiceControl in maintenance mode
 
-* Start the ServiceControl instance in [maintenance mode](maintenance-mode.md).
+* Start the ServiceControl instance in [maintenance mode](/servicecontrol/ravendb/accessing-database.md#windows-deployment-maintenance-mode).
 
-### Step 2: Export the current database
+#### Step 2: Export the current database
 
 * Open a browser and navigate to `http://localhost:{selected RavenDB port}/studio/index.html#databases/documents?&database=%3Csystem%3E`.
   ![](export-database-step1.png 'width=500')
@@ -95,7 +103,7 @@ Once ServiceControl is running in this mode, the following procedure can be used
   ![](export-database-step4.png)
 * Once the export operation is complete, stop ServiceControl (from ServiceControl Management).
 
-### Step 3: Delete the existing database
+#### Step 3: Delete the existing database
 
 > [!NOTE]
 > At this point, it is advisable to take a backup copy of the existing database directory as re-importing can sometimes fail. To do this, ensure that ServiceControl is not running, then copy the contents of the database directory.
@@ -103,7 +111,7 @@ Once ServiceControl is running in this mode, the following procedure can be used
 * Delete the database directory contents.
 * Start ServiceControl, again in maintenance mode. This will populate the database directory with a blank database.
 
-### Step 4: Import the exported data
+#### Step 4: Import the exported data
 
 * Go to RavenDB studio `http://localhost:{selected RavenDB port}/studio/index.html#databases/documents?&database=%3Csystem%3E` and perform steps to import a database.
 * Click the "Tasks" link at the top of the page.
@@ -115,6 +123,6 @@ Once ServiceControl is running in this mode, the following procedure can be used
   ![](import-database-step2.png 'width=500')
 * Stop ServiceControl (from ServiceControl Management).
 
-### Step 5: Restart ServiceControl
+#### Step 5: Restart ServiceControl
 
 * Start the ServiceControl Windows Service.

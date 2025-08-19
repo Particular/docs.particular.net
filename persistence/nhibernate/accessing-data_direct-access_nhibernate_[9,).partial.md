@@ -1,5 +1,5 @@
 
-NServiceBus-managed `ISession` instance can be accessed using the handler context through `context.SynchronizedStorageSession.Session()` or by using the dependency injection (DI).
+The NServiceBus-managed `ISession` instance can be accessed using the handler context through `context.SynchronizedStorageSession.Session()` or by using [dependency injection](/nservicebus/dependency-injection).
 
 ### Using in a handler
 

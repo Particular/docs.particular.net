@@ -9,23 +9,18 @@ public static class Connections
         SqlHelper.EnsureDatabaseExists(TenantB);
     }
 
-    // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NHibernateMultiTenantReceiver;Integrated Security=True;Encrypt=false
-    public const string Shared = @"Server=localhost,1433;Initial Catalog=NHibernateMultiTenantReceiver;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
-    // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NHibernateMultiTenantA;Integrated Security=True;Encrypt=false
-    public const string TenantA = @"Server=localhost,1433;Initial Catalog=NHibernateMultiTenantA;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
-    // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NHibernateMultiTenantB;Integrated Security=True;Encrypt=false
-    public const string TenantB = @"Server=localhost,1433;Initial Catalog=NHibernateMultiTenantB;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
+    // For SQL Server Express use:         Data Source=.\SqlExpress;Integrated Security=True;Encrypt=false;Max Pool Size=100
+    // For SQL Server Express LocalDb use: Data Source=(localdb)\MSSQLLocalDB;Integrated Security=True;Encrypt=false;Max Pool Size=100
+    private const string Base = @"Data Source=.;User Id=SA;Password=yourStrong(!)Password;Encrypt=false;Max Pool Size=100";
 
-    public static string GetTenant(string id)
+    public static readonly string Shared = $"{Base};Initial Catalog=NHibernateMultiTenantReceiver";
+    public static readonly string TenantA = $"{Base};Initial Catalog=NHibernateMultiTenantA";
+    public static readonly string TenantB = $"{Base};Initial Catalog=NHibernateMultiTenantB";
+
+    public static string GetForTenant(string id) => id switch
     {
-        if (id == "A")
-        {
-            return TenantA;
-        }
-        if (id == "B")
-        {
-            return TenantB;
-        }
-        throw new Exception($"Invalid tenant '{id}'.");
-    }
+        "A" => TenantA,
+        "B" => TenantB,
+        _ => throw new ArgumentException($"Invalid tenant ID '{id}'.", nameof(id))
+    };
 }

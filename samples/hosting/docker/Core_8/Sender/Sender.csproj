@@ -1,14 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net7.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <LangVersion>10.0</LangVersion>
+    <LangVersion>12.0</LangVersion>
+    <EnableSdkContainerSupport>true</EnableSdkContainerSupport>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Net.Build.Containers" Version="8.*" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.*" />
     <PackageReference Include="NServiceBus.RabbitMQ" Version="8.*" />
     <PackageReference Include="RabbitMQ.Client" Version="6.*" />

@@ -1,10 +1,9 @@
 ---
 title: Quartz.NET Usage
 summary: Using Quartz.NET to send messages from within an NServiceBus endpoint.
-reviewed: 2021-07-28
+reviewed: 2025-07-15
 component: Core
 related:
-- nservicebus/messaging/timeout-manager
 - nservicebus/scheduling
 ---
 
@@ -65,7 +64,7 @@ snippet: shutdown
 
 ### Exception Handling
 
-Quartz recommendations for [Handling Exceptions](https://www.quartz-scheduler.net/documentation/best-practices.html#throwing-exceptions):
+Quartz recommendations for [Handling Exceptions](https://www.quartz-scheduler.net/documentation/best-practices.html#handle-exceptions):
 
 > Every listener method should contain a try-catch block that handles all possible exceptions. If a listener throws an exception, it may cause other listeners not to be notified and/or prevent the execution of the job, etc.
 

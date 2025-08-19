@@ -43,16 +43,14 @@ namespace Cinema.Headquarters
             if (featuredFilmAfterSale != string.Empty
                 && featuredFilmBeforeNewSale != featuredFilmAfterSale)
             {
-                log.LogInformation($"Featured film changed: {featuredFilmAfterSale}");
+                log.LogInformation("Featured film changed: {FeaturedFilm}", featuredFilmAfterSale);
                 await context.Publish(new FeaturedFilmChanged
                 {
                     FeaturedFilmName = featuredFilmAfterSale
                 });
             }
 
-            log.LogInformation(
-                $"Barbie Tickets: {Data.BarbieTicketCount}" +
-                $"\nOppenheimer Tickets: {Data.OppenheimerTicketCount}");
+            log.LogInformation("Barbie Tickets: {BarbieCount}\nOppenheimer Tickets: {OppenheimerCount}", Data.BarbieTicketCount, Data.OppenheimerTicketCount);
         }
         #endregion
 

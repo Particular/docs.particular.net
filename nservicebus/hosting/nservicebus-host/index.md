@@ -4,7 +4,6 @@ summary: Avoid writing repeat configuration code, host the endpoints in a Window
 redirects:
  - nservicebus/the-nservicebus-host
 related:
- - samples/hosting/nservicebus-host
  - nservicebus/operations/installers
  - nservicebus/lifecycle
 component: Host

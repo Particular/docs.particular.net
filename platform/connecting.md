@@ -1,7 +1,7 @@
 ---
 title: Connecting endpoints
 summary: Connecting NServiceBus endpoints to the Particular Service Platform
-reviewed: 2021-11-25
+reviewed: 2024-10-01
 component: PlatformConnector
 versions: 'PlatformConnector:*'
 related:

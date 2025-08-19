@@ -2,25 +2,40 @@ name: BuildSamplesAndSnippets
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 */4 * * 1-5' # Every 4 hours, Monday-Friday
+    - cron: '0 2/4 * * 1-5' # Every 4 hours, Monday-Friday
 env:
   DOTNET_NOLOGO: true
   DOTNET_ROLL_FORWARD: Major
 jobs:
   build-samples-and-snippets:
     name: Build samples and snippets
-    runs-on: windows-2022
+    runs-on: windows-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v4.0.0
+        uses: actions/setup-dotnet@v4.3.1
         with:
-          dotnet-version: 8.0.x
+          global-json-file: global.json
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
+      - name: Restore NuGet Cache
+        id: nuget-cache-restore
+        uses: actions/cache/restore@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
       - name: Build affected samples and snippets
         run: pwsh.exe -NoLogo -NonInteractive -File .\tools\build-samples-and-snippets.ps1
+      - name: Save NuGet Cache
+        id: nuget-cache-save
+        if: always() && steps.nuget-cache-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ steps.nuget-cache-restore.outputs.cache-primary-key }}
       - name: Notify Slack on failure
         if: ${{ failure() }}
         shell: pwsh

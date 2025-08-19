@@ -1,4 +1,5 @@
 startcode MySql_OutboxCreateSql
+SET @tablePrefix = IFNULL(@tablePrefix, '');
 set @tableNameQuoted = concat('`', @tablePrefix, 'OutboxData`');
 set @tableNameNonQuoted = concat(@tablePrefix, 'OutboxData');
 

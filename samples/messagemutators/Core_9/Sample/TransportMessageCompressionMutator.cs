@@ -1,20 +1,19 @@
 ﻿using System.IO;
 using System.IO.Compression;
 using System.Threading.Tasks;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 using NServiceBus.MessageMutator;
 
 #region TransportMessageCompressionMutator
 
-public class TransportMessageCompressionMutator :
+public class TransportMessageCompressionMutator(ILogger<TransportMessageCompressionMutator> logger) :
     IMutateIncomingTransportMessages,
     IMutateOutgoingTransportMessages
 {
-    static ILog log = LogManager.GetLogger("TransportMessageCompressionMutator");
 
     public Task MutateOutgoing(MutateOutgoingTransportMessageContext context)
     {
-        log.Info($"transportMessage.Body size before compression: {context.OutgoingBody.Length}");
+        logger.LogInformation("transportMessage.Body size before compression: {Length}", context.OutgoingBody.Length);
 
         var mStream = new MemoryStream(context.OutgoingBody.ToArray(), false);
         var outStream = new MemoryStream();
@@ -27,7 +26,7 @@ public class TransportMessageCompressionMutator :
         // otherwise, not all the compressed message will be copied.
         context.OutgoingBody = outStream.ToArray();
         context.OutgoingHeaders["IWasCompressed"] = "true";
-        log.Info($"transportMessage.Body size after compression: {context.OutgoingBody.Length}");
+        logger.LogInformation("transportMessage.Body size after compression: {Length}", context.OutgoingBody.Length);
         return Task.CompletedTask;
     }
 

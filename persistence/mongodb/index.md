@@ -7,7 +7,7 @@ related:
 redirects:
 - persistence/mongodb-tekmaven
 - nservicebus/messaging/databus/mongodb-tekmaven
-reviewed: 2021-08-19
+reviewed: 2025-06-05
 ---
 
 Uses the [MongoDB document database](https://www.mongodb.com/) for storage.
@@ -58,11 +58,11 @@ MongoDB [transactions](https://docs.mongodb.com/manual/core/transactions/) are e
 
 ### Disabling transactions
 
-The following configuration API is available for compatibility with MongoDB server configurations which don't support transactions:
+The following configuration API is available for compatibility with MongoDB server configurations that don't support transactions:
 
 snippet: MongoDBDisableTransactions
 
-Note that this disables the ability to use pessimistic locking for sagas which might result in higher contention in the database.
+Note that this disables the ability to use pessimistic locking for sagas, which might result in higher contention in the database.
 
 ### Shared transactions
 
@@ -89,22 +89,30 @@ snippet: MongoDBSharedTransactionDI
 
 The `TestableMongoSynchronizedStorageSession` class in the `NServiceBus.Testing` namespace has been provided to facilitate [testing a handler](/nservicebus/testing/) that utilizes the shared transaction feature.
 
-## Outbox cleanup
+## Outbox 
+
+## Storage format
+
+Outbox record documents are stored in a collection called `outboxrecord`.
+
+> [!WARNING]
+> Outbox documents are not separated by endpoint name which means that it's not supported for multiple logical endpoints to share the same database since [message identities are not unique across endpoints from a processing perspective](/nservicebus/outbox/#message-identity).
+
+### Outbox cleanup
 
 When the outbox is enabled, the deduplication data is kept for seven days by default. To customize this time frame, use the following API:
 
 snippet: MongoDBOutboxCleanup
 
-
 ## Saga concurrency
 
-When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
+When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled and contains guidance for high-load scenarios.
 
 ### Starting a saga
 
 Example exception:
 
-```
+```text
 MongoDB.Driver.MongoCommandException: Command insert failed: WriteConflict.
 ```
 
@@ -114,15 +122,15 @@ Starting from version 2.2, MongoDB persistence uses [exclusive locks](https://do
 
 Example exception:
 
-```
+```text
 System.TimeoutException: Unable to acquire exclusive write lock for saga on collection 'collectionName'
 ```
 
-In versions prior to version 2.2, MongoDB persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data.
+In versions before version 2.2, MongoDB persistence uses [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) when updating or deleting saga data.
 
 Example exception:
 
-```
+```text
 MongoDB.Driver.MongoCommandException: Command update failed: WriteConflict.
 ```
 

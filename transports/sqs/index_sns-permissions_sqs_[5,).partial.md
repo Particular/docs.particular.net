@@ -2,9 +2,14 @@
 
  * CreateTopic
  * ListTopics
- * Unsubscribe
+ * GetTopicAttributes
+ * SetTopicAttributes
  * SetEndpointAttributes
+ * Publish
+ * Subscribe
+ * Unsubscribe
  * ListSubscriptions
+ * ListSubscriptionsByTopic
  * GetSubscriptionAttributes
  * SetSubscriptionAttributes
 

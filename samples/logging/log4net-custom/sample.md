@@ -1,7 +1,7 @@
 ---
 title: Custom Log4Net appender
 summary: Customizing Log4Net by passing in a custom Appender.
-reviewed: 2021-09-27
+reviewed: 2024-08-22
 component: Log4Net
 related:
 - nservicebus/logging

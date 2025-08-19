@@ -1,7 +1,7 @@
 ---
 title: Custom Recoverability
 summary: Custom Recoverability Messaging Policy approaches to help with failure scenarios.
-reviewed: 2023-07-01
+reviewed: 2025-06-20
 component: Core
 redirects:
 - nservicebus/nservicebus-step-by-step-guide-custom-recoverability

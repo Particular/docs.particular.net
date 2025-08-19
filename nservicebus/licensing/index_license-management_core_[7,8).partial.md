@@ -10,7 +10,7 @@ A license can be configured via code-first configuration API:
 snippet: License
 
 > [!NOTE]
-> Licenses configured via code-first API take precendence over every other license source.
+> Licenses configured via code-first API take precedence over every other license source.
 
 ### Application-specific license location
 
@@ -24,6 +24,8 @@ To install a license for all endpoints and Particular Service Platform applicati
 * Linux/macOS: `${XDG_DATA_HOME:-$HOME/.local/share}/ParticularSoftware/license.xml`
 * macOS (.NET 8): `$HOME/Library/Application Support/ParticularSoftware/license.xml`
 
+> [!NOTE]
+> Ensure that the account under which the endpoint is running has permissions to access the user folder.
 
 ### Machine-wide license location
 
@@ -60,7 +62,6 @@ license id=&quot;1222e1d1-2222-4a46-b1c6-943c442ca710&quot; expiration=&quot;201
 &lt;/license&gt;" />
 </appSettings>
 ```
-
 
 ### Windows Registry
 

@@ -2,7 +2,7 @@
 title: Endpoint connection settings
 summary: How to retrieve settings when connecting an endpoint to the Particular Service Platform
 component: ServicePulse
-reviewed: 2021-11-29
+reviewed: 2024-09-26
 related:
 ---
 

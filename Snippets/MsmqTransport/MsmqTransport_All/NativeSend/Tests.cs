@@ -72,7 +72,7 @@
 
             public void Handle(MessageToSend message)
             {
-                Assert.AreEqual("Value", message.Property);
+                Assert.That(message.Property, Is.EqualTo("Value"));
                 state.ResetEvent.Set();
             }
         }

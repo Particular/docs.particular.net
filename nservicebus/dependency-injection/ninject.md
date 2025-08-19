@@ -1,7 +1,7 @@
 ---
 title: Ninject
 summary: Configure NServiceBus to use Ninject for dependency injection.
-reviewed: 2023-09-15
+reviewed: 2025-07-31
 component: Ninject
 related:
  - samples/dependency-injection/ninject
@@ -14,31 +14,28 @@ include: container-deprecation-notice
 
 NServiceBus can be configured to use [Ninject](http://www.ninject.org/) for dependency injection.
 
-
 ### Default usage
 
 snippet: Ninject
-
 
 ### Using an existing kernel
 
 snippet: Ninject_Existing
 
-
 ### Unit of work
 
-Its is possible to bind to use an _Unit of Work_ scope, which corresponds to the `DependencyLifecycle.InstancePerUnitOfWork` lifecycle, when registering components with `configuration.RegisterComponents(...)`.
+When registering components with `configuration.RegisterComponents(...)`, it is possible to bind a service using a _Unit of Work_ scope, which corresponds to the `DependencyLifecycle.InstancePerUnitOfWork` lifecycle.
 
 In essence, bindings using _Unit of Work_ scope
 
- * will be instantiated only once per transport Message
- * will be disposed when message processing finishes
+- will be instantiated only once per transport message
+- will be disposed when message processing finishes
 
 Bind the services in _Unit of Work_ scope using:
 
 snippet: NinjectUnitOfWork
 
-Services using `InUnitOfWorkScope()` can only be injected into code which is processing messages. To inject the service somewhere else (e.g. because of an user interaction) define conditional bindings:
+Services using `InUnitOfWorkScope()` can only be injected into code which is processing messages. To inject the service somewhere else (e.g. because of a user interaction) define conditional bindings:
 
 snippet: NinjectConditionalBindings
 
@@ -48,8 +45,7 @@ snippet: NinjectContextPreservationFuncBinding
 
 ### Multi hosting
 
-Multiple endpoints in a single process cannot share a single Ninject kernel. Each requires its own container instance or each requires its own child container. Ninject supports this with the [Ninject.Extensions.ChildKernel](https://github.com/ninject/Ninject.Extensions.ChildKernel) extension. Execute `new ChildKernel(parentKernel)` and pass this new kernel instance to NServiceBus.
-
+Multiple endpoints in a single process cannot share a single Ninject kernel. Each one requires its own container instance or its own child container. Ninject supports this with the [Ninject.Extensions.ChildKernel](https://github.com/ninject/Ninject.Extensions.ChildKernel) extension. Execute `new ChildKernel(parentKernel)` and pass this new kernel instance to NServiceBus.
 
 ### DependencyLifecycle Mapping
 
@@ -57,9 +53,8 @@ Multiple endpoints in a single process cannot share a single Ninject kernel. Eac
 
 | `DependencyLifecycle`                                                                                             | Ninject object scope                                                                                                        |
 |-----------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------|
-| [InstancePerCall](/nservicebus/dependency-injection/) | [Transient](https://github.com/ninject/ninject/wiki/Object-Scopes)         |
-| [InstancePerUnitOfWork](/nservicebus/dependency-injection/)                    | [Singleton](https://github.com/ninject/ninject/wiki/Object-Scopes) within a [Named Scope](https://github.com/ninject/ninject.extensions.namedscope/wiki) per Unit of Work |
-| [SingleInstance](/nservicebus/dependency-injection/)                                  | [Singleton](https://github.com/ninject/ninject/wiki/Object-Scopes)                          |
-
+| [InstancePerCall](/nservicebus/dependency-injection/#service-registrations-instance-per-call) | [Transient](https://github.com/ninject/ninject/wiki/Object-Scopes)         |
+| [InstancePerUnitOfWork](/nservicebus/dependency-injection/#service-registrations-instance-per-unit-of-work)                    | [Singleton](https://github.com/ninject/ninject/wiki/Object-Scopes) within a [Named Scope](https://github.com/ninject/ninject.extensions.namedscope/wiki) per Unit of Work |
+| [SingleInstance](/nservicebus/dependency-injection/#service-registrations-single-instance)                                  | [Singleton](https://github.com/ninject/ninject/wiki/Object-Scopes)                          |
 
 include: property-injection

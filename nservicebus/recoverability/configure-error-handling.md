@@ -2,7 +2,7 @@
 title: Configure error handling
 summary: Configure handling of failed messages
 component: Core
-reviewed: 2023-03-30
+reviewed: 2025-04-28
 redirects:
 - nservicebus/configure-error-queue
 related:
@@ -30,7 +30,10 @@ include: configurationWarning
 
 ## Error message header customizations
 
-Before a message is moved to the error queue it is possible to inspect and modify its headers including [error forwarding headers](/nservicebus/messaging/headers.md#error-forwarding-headers).
+Before a message is moved to the error queue, it is possible to inspect and modify the [error forwarding headers](/nservicebus/messaging/headers.md#error-forwarding-headers).
+
+> [!WARNING]
+> Before Version 8, modifying existing headers on the failed message was possible. Starting in Version 8, use a [recoverability pipeline behavior](/nservicebus/recoverability/pipeline.md) to get full access to all headers. See the [upgrade guide](/nservicebus/upgrades/7to8/#header-manipulation-for-failed-messages) for more information.
 
 The following snippet shows how to configure header customizations and perform header value modification.
 
@@ -39,11 +42,11 @@ snippet: ErrorHeadersCustomizations
 
 ## Error queue monitoring
 
-Administrators should monitor the error queue in order to detect when problems occur. The message in the error queue contains relevant information such as the endpoint that originally processed the message and exception details. With this information, an administrator can investigate the problem and solve it, for example, bringing up a database that went down.
+Administrators should monitor the error queue in order to detect when problems occur. The message in the error queue contains relevant information such as the endpoint that initially processed the message and exception details. This allows an administrator to investigate the problem.
 
-Monitoring and handling of failed messages with [ServicePulse](/servicepulse/) provides access to full exception details including the stack-trace. [ServiceInsight](/serviceinsight/) offers advanced debugging capability providing additional information like exception details as well as visualizing the flow of messages. Both ServiceInsight and ServicePulse provide `retry` functionality that sends a failed message from the error queue back to the originating endpoint for re-processing. For more details on how to retry a message using ServicePulse, see [Introduction to Failed Messages Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md). To retry a message using ServiceInsight, see [Managing Errors and Retries in ServiceInsight](/serviceinsight/managing-errors-and-retries.md).
+Monitoring and handling of failed messages with [ServicePulse](/servicepulse/) provides access to full exception details, including the stack-trace. [ServiceInsight](/serviceinsight/) and ServicePulse offer advanced debugging capabilities, providing additional information like exception details as well as visualizing the flow of messages. They also provide `retry` functionality, which sends a failed message from the error queue back to the originating endpoint for re-processing. For more details on how to retry a message using ServicePulse, see [Introduction to Failed Messages Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md). To retry a message using ServiceInsight, see [Managing Errors and Retries in ServiceInsight](/serviceinsight/managing-errors-and-retries.md).
 
-If either ServicePulse or ServiceInsight are not available in the environment, the `retry` operation can be performed using the native management tools appropriate for the selected transport:
+If ServicePulse and ServiceInsight are not available in the environment, the message retry functionality can be performed using the native management tools appropriate for the selected transport:
 
  * [MSMQ Scripting](/transports/msmq/operations-scripting.md)
  * [RabbitMQ Scripting](/transports/rabbitmq/operations-scripting.md)

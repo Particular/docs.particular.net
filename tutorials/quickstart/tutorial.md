@@ -1,31 +1,29 @@
 ---
-title: "NServiceBus Quickstart: Sending your first messages"
-reviewed: 2024-04-16
-summary: "Part 1: See why software systems built on asynchronous messaging using NServiceBus are superior to traditional synchronous HTTP-based web services."
+title: "Quickstart: Sending and processing your first messages"
+reviewed: 2025-06-15
+summary: "Part 1: See why software systems built on asynchronous messaging are superior to traditional synchronous HTTP-based web services."
 extensions:
 - !!tutorial
   nextText: "Next: Recovering from failure"
   nextUrl: tutorials/quickstart/tutorial-reliability
 ---
 
-Want to quickly learn what NServiceBus is all about? You're in the right place. In less than one hour, learn how to:
+In just 10 minutes, see how to:
 
-* Connect different parts of a system using messages
-* Build a failure-resistant system using messages
-* Create a system that can be easily extended as new requirements are added
-
-If you've already experienced the benefits of messaging, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
+* Send and process command messages
+* Publish and subscribe to event messages
+* All fully abstracted from the underlying queuing system
 
 > [!NOTE]
-> * If you're new here, check out the [overview of NServiceBus](https://particular.net/nservicebus).
+> * If you're new here, check out the [overview](https://particular.net/nservicebus).
 > * The [Glossary of messaging terms](/nservicebus/concepts/glossary.md) may help as you go along this tutorial.
-> * If you're already familiar with the basic benefits of messaging, check out our [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/) for a deeper dive instead.
+> * If you're already familiar with the basic benefits of messaging, check out our [step-by-step tutorial](/tutorials/nservicebus-step-by-step/) for a deeper dive instead.
 
-## About the **RetailDemo** solution
+## About the solution
 
 The solution mimics a real-life retail system where a [command](/nservicebus/messaging/messages-events-commands.md) to place an order is sent as a result of customer interaction. An [event](/nservicebus/messaging/messages-events-commands.md) is published to kick off processes in the background. Using the [publish-subscribe pattern](/nservicebus/messaging/publish-subscribe/) allows us to isolate the component that performs billing from the one that places orders. This reduces coupling and makes the system easier to maintain in the long run. Later in this tutorial, you will learn how to add a second subscriber to that event in a new **Shipping** endpoint which will begin the process of shipping orders.
 
-## Download the **RetailDemo** solution
+## Download the solution
 
 The solution has no prerequisites — no message queue or database to install, just a compatible IDE. To get started, download the solution, extract the files, and then open the **RetailDemo.sln** file.
 
@@ -36,13 +34,13 @@ downloadbutton
   img.center { border-style: none !important; }
 </style>
 
-## **RetailDemo** Project structure
+## Project structure
 
-The solution contains five projects: **Billing**, **ClientUI**, **Messages**, **Platform**, and **Sales**.
+The solution contains five projects: **Billing**, **ClientUI**, **Messages**, **PlatformLauncher**, and **Sales**.
 
 The **Billing**, **ClientUI**, and **Sales** projects are [endpoints](/nservicebus/endpoints/). They communicate with each other using NServiceBus messages. The **ClientUI** endpoint is implemented as a web application and is the entry point to our system. The **Sales** and **Billing** endpoints, are console applications, that contain business logic related to processing and fulfilling orders.
 
-Each endpoint project references the **Messages** assembly, which contains the shared definitions of messages as class files. The **Platform** project will provide a demonstration of the Particular Service Platform, but initially, its code is commented out.
+Each endpoint project references the **Messages** assembly, which contains the shared definitions of messages as class files. The **PlatformLauncher** project will provide a demonstration of the Particular Service Platform, but initially, its code is commented out.
 
 ![Solution Explorer view](solution-explorer-2.png "width=300")
 

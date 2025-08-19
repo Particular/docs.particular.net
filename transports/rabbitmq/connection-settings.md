@@ -1,14 +1,14 @@
 ---
 title: Connection settings
 summary: The various ways to customize the RabbitMQ transport.
-reviewed: 2023-02-01
+reviewed: 2025-04-08
 component: Rabbit
 redirects:
  - nservicebus/rabbitmq/connection-strings
  - nservicebus/rabbitmq/connection-settings
 ---
 
-The RabbitMQ transport requires a connection string to connect to the RabbitMQ broker, and there are two different styles to choose from. It can accept the standard [AMQP URI](https://www.rabbitmq.com/uri-spec.html) connection strings, or a custom format documented below.
+The RabbitMQ transport requires a connection string to connect to the RabbitMQ broker, and there are two different styles to choose from. It can accept the standard [amqp URI](https://www.rabbitmq.com/uri-spec.html) connection strings, or a custom format documented below.
 
 
 ### Specifying the connection string via code
@@ -68,8 +68,12 @@ Secure connections to the broker using [Transport Layer Security (TLS)](https://
 
 snippet: rabbitmq-connection-tls
 
+#if-version [, 8)
+
 > [!WARNING]
 > TLS 1.2 must be enabled on the broker to establish a secure connection.
+
+#end-if
 
 ### Client authentication
 
@@ -97,6 +101,10 @@ snippet: rabbitmq-external-auth-mechanism
 
 partial: add-cluster-node
 
+partial: management-api-configuration
+
+partial: delivery-limit-validation
+
 ## Controlling the prefetch count
 
 When consuming messages from the broker, throughput can be improved by having the consumer [prefetch](https://www.rabbitmq.com/consumer-prefetch.html) additional messages.
@@ -113,7 +121,7 @@ snippet: rabbitmq-config-prefetch-count
 
 ## Controlling behavior when the broker connection is lost
 
-The RabbitMQ transport monitors the connection to the broker and will trigger the critical error action if the connection fails and stays disconnected for the configured amount of time.
+The RabbitMQ transport monitors the connection to the broker and will trigger [the critical error action](/nservicebus/hosting/critical-errors.md) if the connection fails and stays disconnected for the configured amount of time.
 
 ### Heartbeat interval
 

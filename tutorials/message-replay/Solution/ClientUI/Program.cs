@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Messages;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
 namespace ClientUI
 {
@@ -13,6 +13,8 @@ namespace ClientUI
             Console.Title = "ClientUI";
 
             var endpointConfiguration = new EndpointConfiguration("ClientUI");
+
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
             var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
@@ -26,13 +28,17 @@ namespace ClientUI
             await endpointInstance.Stop();
         }
 
-        static ILog log = LogManager.GetLogger<Program>();
+        private static readonly ILogger<Program> logger =
+        LoggerFactory.Create(builder =>
+        {
+            builder.AddConsole();
+        }).CreateLogger<Program>();
 
         static async Task RunLoop(IEndpointInstance endpointInstance)
         {
             while (true)
             {
-                log.Info("Press 'P' to place an order, or 'Q' to quit.");
+                logger.LogInformation("Press 'P' to place an order, or 'Q' to quit.");
                 var key = Console.ReadKey();
                 Console.WriteLine();
 
@@ -46,7 +52,7 @@ namespace ClientUI
                         };
 
                         // Send the command
-                        log.Info($"Sending PlaceOrder command, OrderId = {command.OrderId}");
+                        logger.LogInformation("Sending PlaceOrder command, OrderId = {OrderId}", command.OrderId);
                         await endpointInstance.Send(command);
 
                         break;
@@ -55,7 +61,7 @@ namespace ClientUI
                         return;
 
                     default:
-                        log.Info("Unknown input. Please try again.");
+                        logger.LogInformation("Unknown input. Please try again.");
                         break;
                 }
             }

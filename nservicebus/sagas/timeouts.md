@@ -36,14 +36,11 @@ Multiple timeouts can be requested when processing a message. The individual tim
 
 snippet: saga-multiple-timeouts
 
-> [!NOTE]
-> Sending a timeout with the same data multiple times will result in that timeout being processed multiple times by the saga.
+## Changing or revoking timeouts
 
-## Revoking timeouts
+After a timeout has been requested, it cannot be changed (i.e. rescheduled) or revoked (i.e. deleted or cancelled). Requesting a timeout with the same state again, but with a different duration or timestamp, will not revoke or ignore the original timeout. The original timeout and the subsequent timeout will both be processed by the saga.
 
-A timeout that has been scheduled cannot be revoked. This means that when the timeout timestamp has elapsed then this timeout message will be queued and then processed.
-
-A timeout is a regular message and once requested, a timeout message can already be in transit or queued. Once that has happened there is no way to revoke (delete) a timeout. It is common to perform a state check in a timeout handler to see if the timeout is still applicable for processing.
+When a saga handles a timeout, it may choose to ignore it, depending on how the saga state has changed since the timeout was requested.
 
 ## Completed Sagas
 

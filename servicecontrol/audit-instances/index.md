@@ -1,14 +1,15 @@
 ---
 title: ServiceControl Audit instances
 summary: Information about ServiceControl Audit instances
-reviewed: 2021-08-06
+reviewed: 2024-07-19
 component: ServiceControl
+redirects:
+ - servicecontrol/audit-instances/persistence
 ---
 
-In ServiceControl versions 4 and above, a ServiceControl Audit instance manages the audit queue. Data about audit messages is exposed via an HTTP API on a ServiceControl Error instance. This API is used by [ServiceInsight](/serviceinsight/) for visualizing message flows.
+Each endpoint in the system can be [configured to send audit copies of every message that is processed into a central audit queue](/nservicebus/operations/auditing.md). ServiceControl Audit instances consume and store the messages sent to the audit queue and make them available for visualizing message flows in [ServiceInsight](/serviceinsight/) or [ServicePulse](/servicepulse/).
 
-> [!NOTE]
-> The ServiceControl HTTP API is designed for use by ServiceInsight only and may change at any time. Use of this HTTP API for other purposes is discouraged.
+ServiceControl Audit can optionally forward these messages into an [audit log queue](configuration.md#transport-servicecontrol-auditforwardauditmessages) for further processing if required.
 
 ```mermaid
 graph LR
@@ -19,23 +20,34 @@ graph LR
   AuditQ --> SCA
 
   ServiceInsight -.-> SC
+  ServicePulse -.-> SC
   SCA --> AuditLog[Audit.Log<br>Queue]
 
   SC -. HTTP Queries .-> SCA
   SCA -- Notifications --> SC
 ```
 
-Each endpoint in the system should be [configured to send audit copies of every message that is processed into a central audit queue](/nservicebus/operations/auditing.md). A ServiceControl Audit instance reads the messages in the audit queue and makes them available for visualization in ServiceInsight. ServiceControl Audit can optionally forward these messages into an Audit Log queue for further processing if required. In some cases, it might be useful to exclude certain message types from being forwarded to the audit queue. This can be accomplished with a [custom behavior in the pipeline](/samples/pipeline/audit-filtering).
+Data about audit messages is exposed via an HTTP API from a ServiceControl Error instance, which aggregates the data stored in [all connected ServiceControl Audit instances](/servicecontrol/servicecontrol-instances/remotes.md#overview-sharding-audit-messages-with-competing-consumers).
 
-Each ServiceControl Audit instance stores data in an embedded database. Audit data is retained for 30 days. [This retention period can be customized](/servicecontrol/audit-instances/creating-config-file.md#data-retention).
+> [!IMPORTANT]
+> Connecting ServiceInsight or ServicePulse directly to a ServiceControl Audit instance is not supported.
 
-## Connected to a ServiceControl instance
+> [!NOTE]
+> The ServiceControl HTTP API is designed for use by ServiceInsight or ServicePulse only and may change at any time. Use of this HTTP API for other purposes is discouraged.
 
-When using ServiceControl Management to create a new ServiceControl instance, a connected ServiceControl Audit instance is automatically created. Using PowerShell, create the ServiceControl instance first, then the ServiceControl Audit instance.
+## Persistence
 
-When [auditing](/nservicebus/operations/auditing.md) NServiceBus messages there must be at least one ServiceControl audit instance. ServiceInsight connects directly to the ServiceControl Error instance, which will aggregate the data stored in [all connected ServiceControl Audit instances](/servicecontrol/servicecontrol-instances/remotes.md#overview-sharding-audit-messages-with-competing-consumers).
+Each ServiceControl Audit instance stores message data in a RavenDB database. For instances deployed using the ServiceControl Management utility or PowerShell this database is embedded with the ServiceControl Audit instance. For ServiceControl Audit instances deployed using containers the database resides in a [separate container](/servicecontrol/ravendb/containers.md).
 
-Connecting ServiceInsight directly to a ServiceControl Audit instance is not supported.
+By default, audit data is retained for 7 days. [This retention period can be customized](/servicecontrol/audit-instances/configuration.md#data-retention).
+
+include: ravendb-exclusive-use-warning
+
+### RavenDB versions used
+
+In ServiceControl.Audit version 4.26 and above new instances use RavenDB version 5. Instances created by version 4.25 and below use RavenDB version 3.5.
+
+Upgrading ServiceControl.Audit instances to version 4.26 or higher does not change the database version. Instances using RavenDB version 3.5, when upgraded to the newest version, will still use RavenDB version 3.5. For more details see [upgrade guide to new persistence format](/servicecontrol/migrations/new-persistence.md)
 
 ## Notifications
 
@@ -45,10 +57,4 @@ Each ServiceControl Audit instance sends notification messages to a ServiceContr
 
 When a ServiceControl Audit instance detects a new endpoint, it sends a notification to the ServiceControl Error instance. The Error instance keeps track of all of the endpoints in the system and can monitor them with heartbeats and custom checks.
 
-### Successful retry detection
-
-When a ServiceControl Audit instance detects that an audited message is the result of a retry, it sends a notification to the ServiceControl Error instance.
-
-### Health monitoring
-
-include: self-monitoring
+include: servicecontrol-self-monitoring

@@ -1,30 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
 
-	<PropertyGroup>
-		<TargetFramework>net48</TargetFramework>
-		<UseWpf>true</UseWpf>
-		<IsPackable>false</IsPackable>
-		<GenerateDocumentationFile>false</GenerateDocumentationFile>
-		<RootNamespace>ServiceInsight.CustomViewer.Plugin</RootNamespace>
-		<LangVersion>12.0</LangVersion>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <UseWpf>true</UseWpf>
+    <RootNamespace>ServiceInsight.CustomViewer.Plugin</RootNamespace>
+    <LangVersion>12.0</LangVersion>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="Caliburn.Micro" Version="3.*" />
-		<PackageReference Include="Autofac" Version="6.*" />
-		<PackageReference Include="Autofac.Configuration" Version="6.*" />
-		<PackageReference Include="AvalonEdit" Version="6.*" />
-	</ItemGroup>
+  <ItemGroup>
+    <Reference Include="ServiceInsight.Sdk, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" HintPath="..\sdk\ServiceInsight.Sdk.dll" />
+  </ItemGroup>
 
-	<ItemGroup>
-	  <ProjectReference Include="..\Shared\Shared.csproj" />
-	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
 
-	<ItemGroup>
-	  <Reference Include="ServiceInsight.Sdk, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-		<HintPath>..\sdk\ServiceInsight.Sdk.dll</HintPath>
-	  </Reference>
-	</ItemGroup>
-
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="6.*" />
+    <PackageReference Include="Autofac.Configuration" Version="6.*" />
+    <PackageReference Include="AvalonEdit" Version="6.*" />
+    <PackageReference Include="Caliburn.Micro" Version="3.*" />
+  </ItemGroup>
 
 </Project>

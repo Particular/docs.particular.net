@@ -1,17 +1,18 @@
 ﻿using System;
 using System.IO;
-using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Transport.SqlServer;
 
-class Program
-{
-    static async Task Main()
+var host = Host.CreateDefaultBuilder(args)
+    .ConfigureServices((hostContext, services) => { Console.Title = "Server"; })
+    .UseNServiceBus(x =>
     {
         Console.Title = "Receiver";
 
-        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlOutbox;Integrated Security=True;Max Pool Size=100;Encrypt=false
+        //for local instance or SqlExpress
+        //string connectionString = @"Data Source=(localdb)\mssqllocaldb;Database=NsbSamplesSqlOutbox;Trusted_Connection=True;MultipleActiveResultSets=true";
         var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlOutbox;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
 
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlOutbox.Receiver");
@@ -33,10 +34,8 @@ class Program
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.ConnectionBuilder(
-            connectionBuilder: () =>
-            {
-                return new SqlConnection(connectionString);
-            });
+            connectionBuilder: () => new SqlConnection(connectionString)
+        );
         var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
         dialect.Schema("receiver");
         persistence.TablePrefix("");
@@ -44,21 +43,21 @@ class Program
         transport.Subscriptions.DisableCaching = true;
         transport.Subscriptions.SubscriptionTableName = new SubscriptionTableName(
             table: "Subscriptions",
-            schema: "dbo");
+            schema: "dbo"
+        );
 
         endpointConfiguration.EnableOutbox();
 
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         #endregion
+
         SqlHelper.CreateSchema(connectionString, "receiver");
 
         SqlHelper.ExecuteSql(connectionString, File.ReadAllText("Startup.sql"));
+        return endpointConfiguration;
+    })
+    .Build();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop();
-    }
-}
+await host.RunAsync();

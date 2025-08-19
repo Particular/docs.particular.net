@@ -4,7 +4,7 @@ using NServiceBus.Logging;
 
 #region SuccessHandler
 
-public class SuccessHandler :
+sealed class SuccessHandler :
     IHandleMessages<MessageThatWillSucceed>
 {
     static ILog log = LogManager.GetLogger<SuccessHandler>();

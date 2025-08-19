@@ -2,7 +2,7 @@
 title: AWS DynamoDB persistence
 summary: How to use NServiceBus with AWS DynamoDB
 component: DynamoDB
-reviewed: 2023-03-16
+reviewed: 2025-04-10
 related:
 - samples/aws/dynamodb-simple
 - samples/aws/dynamodb-transactions
@@ -21,7 +21,8 @@ For a description of each feature, see the [persistence at a glance legend](/per
 |Transactions               |Using `TransactWriteItems`
 |Concurrency control        |Optimistic concurrency, optional pessimistic concurrency
 |Scripted deployment        |Not supported
-|Installers                 |Table is created by installers.
+|Installers                 |Table is created by installers
+|Local development          |[Supported via LocalStack](/nservicebus/aws/local-development.md)
 
 ## Usage
 
@@ -41,7 +42,7 @@ Outbox and saga data can be stored in separate tables; see the [saga](/persisten
 
 #### Table creation
 
-When [installers](/nservicebus/operations/installers.md) are enabled, NServiceBus will try to create the configured tables if they do not exist. Table creation can explicitly be disabled even with installers remaining enabled using the `DisableTablesCreation` setting:
+When [installers](/nservicebus/operations/installers.md) are enabled, NServiceBus will try to create the configured tables if they do not already exist. Table creation can explicitly be disabled, even with installers remaining enabled, using the `DisableTablesCreation` setting:
 
 snippet: DynamoDBDisableTableCreation
 
@@ -57,7 +58,9 @@ snippet: DynamoDBCustomClientProviderRegistration
 
 ## Permissions
 
-Below is the list of minimum required [IAM policies for operating the DynamoDB persistence](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/security_iam_service-with-iam.html) with [installers](/nservicebus/operations/installers.md) enabled:
+Below is the list of minimum required [IAM policies for operating the DynamoDB persistence](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/security_iam_service-with-iam.html) 
+
+### [Installers](/nservicebus/operations/installers.md) enabled:
 
   - `dynamodb:CreateTable`,
   - `dynamodb:DescribeTable`,
@@ -69,20 +72,27 @@ Below is the list of minimum required [IAM policies for operating the DynamoDB p
   - `dynamodb:PutItem`,
   - `dynamodb:DeleteItem`
 
-If installers are disabled, or if `DisableTableCreation` is called, the `dynamodb:CreateTable`, `dynamodb:DescribeTable` and `dynamodb:UpdateTimeToLive` policies are not required.
+### Installers disabled (or when using `DisableTableCreation()`)
+
+  - `dynamodb:DescribeTimeToLive`,
+  - `dynamodb:Query`,
+  - `dynamodb:GetItem`,
+  - `dynamodb:BatchWriteItem`,
+  - `dynamodb:PutItem`,
+  - `dynamodb:DeleteItem`
 
 ## Provisioned throughput rate-limiting
 
 When using [provisioned throughput](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughput.html) it is possible for the DynamoDB service to rate-limit usage, resulting in "provisioned throughput exceeded" exceptions indicated by the 429 status code.
 
 > [!WARNING]
-> When using the Dynamo DB persistence with the outbox enabled, "provisioned throughput exceeded" errors may result in handler re-execution and/or duplicate message dispatches depending on which operation is throttled.
+> When using Dynamo DB persistence with the outbox enabled, "provisioned throughput exceeded" errors may result in handler re-execution and/or duplicate message dispatches depending on which operation is throttled.
 
 > [!NOTE]
 > AWS provides [guidance](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ProvisionedThroughput.html#ProvisionedThroughput.Troubleshooting) on how to diagnose and troubleshoot provisioned throughput exceeded exceptions.
 
-The Dynamo DB SDK provides a mechanism to automatically retry operations when rate-limiting occurs. Besides changing the provisioned capacity or switching to autoscaling or the on-demand capacity mode, those settings can be adjusted to help prevent messages from failing during spikes in message volume.
+The Dynamo DB SDK provides a mechanism to automatically retry operations when rate-limiting occurs. These settings can be adjusted to help prevent messages from failing during spikes in message volume, rather than changing the provisioned capacity or switching to autoscaling or the on-demand capacity mode. 
 
-These settings may be set when initializing the `AmazonDynamoDBClient` via the [`AmazonDynamoDBConfig`](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/retries-timeouts.html) properties:
+The retry-operations settings can be set when initializing the `AmazonDynamoDBClient` via the [`AmazonDynamoDBConfig`](https://docs.aws.amazon.com/sdk-for-net/v3/developer-guide/retries-timeouts.html) properties:
 
 snippet: DynamoDBConfigureThrottlingWithClientConfig

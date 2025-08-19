@@ -2,7 +2,7 @@
 title: Amazon SQS Transport
 summary: A transport for Amazon Web Services Simple Queue Service.
 component: SQS
-reviewed: 2023-02-10
+reviewed: 2024-07-11
 related:
  - samples/aws/sqs-simple
 redirects:
@@ -30,7 +30,7 @@ partial: transport-at-a-glance
 
 An [AWS IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) account with a pair of [Access Keys](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-getting-started.html) is required.
 
-The IAM account requires the following permissions:
+The IAM account requires the following permissions to provision infrastructure and run the transport:
 
 #### [SQS permissions](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-api-permissions-reference.html)
 

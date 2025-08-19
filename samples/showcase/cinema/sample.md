@@ -1,7 +1,7 @@
 ---
 title: Cinema Showcase
 summary: A sample for a fictional cinema demonstrating a saga that aggregates ticket sales.
-reviewed: 2023-10-11
+reviewed: 2025-07-15
 component: Core
 ---
 

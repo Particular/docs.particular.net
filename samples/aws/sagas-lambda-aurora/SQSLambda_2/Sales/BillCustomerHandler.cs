@@ -1,12 +1,11 @@
-﻿using NServiceBus.Logging;
+﻿using Microsoft.Extensions.Logging;
 
-public class BillCustomerHandler : IHandleMessages<OrderReceived>
+public class BillCustomerHandler(ILogger<BillCustomerHandler> logger) : IHandleMessages<OrderReceived>
 {
-    readonly ILog log = LogManager.GetLogger<BillCustomerHandler>();
-
-    public async Task Handle(OrderReceived message, IMessageHandlerContext context)
+  public async Task Handle(OrderReceived message, IMessageHandlerContext context)
     {
-        log.Info($"Billing customer for order {message.OrderId}.");
+
+        logger.LogInformation("Billing customer for order {OrderId}.", message.OrderId);
 
         await Task.Delay(TimeSpan.FromSeconds(Random.Shared.Next(2, 5)), context.CancellationToken);
 

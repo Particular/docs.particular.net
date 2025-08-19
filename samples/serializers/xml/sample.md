@@ -1,7 +1,7 @@
 ---
 title: XML Serializer sample
 summary: NServiceBus sample that shows how to use the default NServiceBus XML serializer
-reviewed: 2023-01-31
+reviewed: 2025-03-31
 component: Xml
 related:
 - nservicebus/serialization

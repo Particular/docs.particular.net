@@ -2,7 +2,7 @@
 title: ASQ Transport Scripting
 summary: Example scripts to facilitate operational actions against the Azure Storage Queue Transport.
 component: ASQ
-reviewed: 2023-05-28
+reviewed: 2025-05-14
 related:
  - nservicebus/operations
 redirects:

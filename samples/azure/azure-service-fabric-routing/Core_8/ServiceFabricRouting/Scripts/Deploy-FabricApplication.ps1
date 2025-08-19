@@ -1,5 +1,5 @@
 ﻿<#
-.SYNOPSIS 
+.SYNOPSIS
 Deploys a Service Fabric application type to a cluster.
 
 .DESCRIPTION
@@ -35,14 +35,14 @@ Indicates that the script should make use of an existing cluster connection that
 .PARAMETER OverwriteBehavior
 Overwrite Behavior if an application exists in the cluster with the same name. Available Options are Never, Always, SameAppTypeAndVersion. This setting is not applicable when upgrading an application.
 'Never' will not remove the existing application. This is the default behavior.
-'Always' will remove the existing application even if its Application type and Version is different from the application being created. 
+'Always' will remove the existing application even if its Application type and Version is different from the application being created.
 'SameAppTypeAndVersion' will remove the existing application only if its Application type and Version is same as the application being created.
 
 .PARAMETER SkipPackageValidation
 Switch signaling whether the package should be validated or not before deployment.
 
 .PARAMETER SecurityToken
-A security token for authentication to cluster management endpoints. Used for silent authentication to clusters that are protected by Azure Active Directory.
+A security token for authentication to cluster management endpoints. Used for silent authentication to clusters that are protected by Microsoft Entra ID.
 
 .PARAMETER CopyPackageTimeoutSec
 Timeout in seconds for copying application package to image store.
@@ -111,7 +111,7 @@ function Read-XmlElementAsHashtable
     $hashtable = @{}
     if ($Element.Attributes)
     {
-        $Element.Attributes | 
+        $Element.Attributes |
             ForEach-Object {
                 $boolVal = $null
                 if ([bool]::TryParse($_.Value, [ref]$boolVal)) {
@@ -227,7 +227,7 @@ if ($IsUpgrade)
     {
         $Action = "Register"
     }
-    
+
     $UpgradeParameters = $publishProfile.UpgradeDeployment.Parameters
 
     if ($OverrideUpgradeBehavior -eq 'ForceUpgrade')
@@ -253,6 +253,6 @@ else
     $PublishParameters['Action'] = $Action
     $PublishParameters['OverwriteBehavior'] = $OverwriteBehavior
     $PublishParameters['SkipPackageValidation'] = $SkipPackageValidation
-    
+
     Publish-NewServiceFabricApplication @PublishParameters
 }

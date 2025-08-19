@@ -1,6 +1,6 @@
 ---
 title: AmazonSQS transport native integration sample
-reviewed: 2024-02-06
+reviewed: 2025-07-25
 component: Sqs
 related:
 - transports/sqs
@@ -10,7 +10,33 @@ redirects:
 
 This sample demonstrates how to enable an NServiceBus endpoint to receive messages sent by a native (i.e. non-NServiceBus-based) implementation.
 
-In this sample, an external system sends a message to an SQS queue using the Amazon SQS SDK.
+downloadbutton
+
+## AWS setup
+
+### Security and access configuration
+
+Add the [AWS Access Key ID and AWS Secret Access Key](https://docs.aws.amazon.com/general/latest/gr/aws-sec-cred-types.html#access-keys-and-secret-access-keys) to the following environment variables:
+
+* Access Key ID in `AWS_ACCESS_KEY_ID`
+* Secret Access Key in `AWS_SECRET_ACCESS_KEY`
+* Default Region in `AWS_REGION`
+
+See also [AWS Account Identifiers](https://docs.aws.amazon.com/general/latest/gr/acct-identifiers.html), [Managing Access Keys for an AWS Account](https://docs.aws.amazon.com/general/latest/gr/managing-aws-access-keys.html), and [IAM Security Credentials](https://console.aws.amazon.com/iam/home#/security_credential).
+
+See also [AWS Regions](https://docs.aws.amazon.com/general/latest/gr/rande.html) for a list of available regions.
+
+### SQS
+
+Several [Amazon SQS](https://aws.amazon.com/sqs/) queues are required to run this sample. These will be created at start-up via the [installer mechanism](/nservicebus/operations/installers.md) of NServiceBus. The queues can be seen in the [SQS management UI](https://console.aws.amazon.com/sqs/home).
+
+* `Samples-Sqs-SimpleReceiver`: The main message processing queue.
+* `Samples-Sqs-SimpleReceiver-delay.fifo`: Queue used for [delayed retries](/nservicebus/recoverability/#delayed-retries).
+* `error`: Queue used for [error handling](/nservicebus/recoverability/configure-error-handling.md).
+
+### Code walk-through
+
+In this sample, an external system sends a message to an SQS queue using the Amazon SQS .NET SDK.
 
 snippet: NativeMessage
 

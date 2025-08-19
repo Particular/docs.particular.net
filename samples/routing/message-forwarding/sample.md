@@ -2,7 +2,7 @@
 title: Message forwarding
 summary: Forwarding a copy of every message to another destination after it is processed
 component: Core
-reviewed: 2023-08-16
+reviewed: 2025-07-30
 redirects:
   - samples/routing/forwarding-address
 ---

@@ -1,7 +1,7 @@
 ---
 title: Publish-Subscribe
 summary: Subscribers tell the publisher they are interested. Publishers store addresses for sending messages.
-reviewed: 2022-08-23
+reviewed: 2024-01-17
 component: Core
 redirects:
  - nservicebus/how-pub-sub-works
@@ -17,38 +17,35 @@ related:
  - transports/msmq/subscription-authorisation
 ---
 
-NServiceBus has a built in implementation of the [Publish-subscribe pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern).
+NServiceBus has a built-in implementation of the [Publish-subscribe pattern](https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern).
 
-> publish–subscribe is a messaging pattern where senders of messages, called publishers, do not program the messages to be sent directly to specific receivers, called subscribers. Instead, published messages are characterized into classes, without knowledge of what, if any, subscribers there may be. Similarly, subscribers express interest in one or more classes, and only receive messages that are of interest, without knowledge of what, if any, publishers there are.
+> Publish-subscribe is a messaging pattern where senders of messages, called publishers, do not program the messages to be sent directly to specific receivers, called subscribers. Instead, published messages are characterized into classes, without knowledge of what, if any, subscribers there may be. Similarly, subscribers express interest in one or more classes, and only receive messages that are of interest, without knowledge of what, if any, publishers there are.
 
-Or in simpler terms
+Or, in simpler terms
 
-> Subscribers let the publisher know they're interested, and the publisher stores their addresses so that it knows where to send which message.
-
+> Subscribers let the publisher know they're interested, and the publisher stores their addresses to know where to send which message.
 
 ## Mechanics
 
-Depending on the features provided by a given transport there are two possible implementations of Publish-Subscribe mechanics: message-driven (persistence-based) and native.
+Depending on the features provided by a given transport, there are two possible implementations of Publish-Subscribe mechanics: message-driven (persistence-based) and native.
 
 > [!NOTE]
-> For simplicity these explanations refer to specific endpoints as "Subscribers" and "Publishers". However in reality any endpoint can be both a publisher and/or and a subscriber.
+> For simplicity, these explanations refer to specific endpoints as "Subscribers" and "Publishers." However, in reality, any endpoint can be both a publisher and/or a subscriber.
 
-### All subscribers gets their own copy of the event
+### All subscribers get their copy of the event
 
-To ensure that each subscriber can process, and potentially retry, the event independent of other subscribers, NServiceBus makes sure that each subscriber gets a copy of the published event delivered to their input queue.
-
+To ensure that each subscriber can process and potentially retry the event independently of other subscribers, NServiceBus ensures that each subscriber receives a copy of the published event delivered to their input queue.
 
 ### Message-driven (persistence-based)
 
-Message-driven publish-subscribe is controlled by *subscribe* and *unsubscribe* system messages sent by the subscriber to the publisher. The message-driven publish-subscribe implementation is used by the [unicast transports](/transports/types.md#unicast-only-transports). These transports are limited to unicast (point-to-point) communication and have to simulate multicast delivery via a series of point-to-point communications.
-
+Message-driven publish-subscribe is controlled by *subscribe* and *unsubscribe* system messages the subscriber sends to the publisher. The message-driven publish-subscribe implementation is used by the [unicast transports](/transports/types.md#unicast-only-transports). These transports are limited to unicast (point-to-point) communication and have to simulate multicast delivery via a series of point-to-point communications.
 
 #### Subscribe
 
-The subscribe workflow for unicast transports is as follows
+The subscribe workflow for unicast transports is as follows:
 
- 1. Subscribers request to a publisher the intent to subscribe to certain message types.
- 1. Publisher stores both the subscriber names and the message types in the persistence.
+ 1. Subscribers request to a publisher the intent to subscribe to specific message types.
+ 1. Publisher stores the subscriber names and the message types in the persistence.
 
 ```mermaid
 sequenceDiagram
@@ -61,13 +58,11 @@ Subscriber2 ->> Publisher: Subscribe to Message1
 Publisher ->> Persistence: Store "Subscriber2 wants Message1"
 ```
 
-
 The publisher's address is provided via [routing configuration](/nservicebus/messaging/routing.md).
-
 
 #### Publish
 
-Message-driven publish-subscribe relies on the publisher having access to a persistent store for maintaining the mapping between message types and their subscribers.
+Message-driven publish-subscribe relies on the publisher's access to a persistent store to maintain the mapping between message types and their subscribers.
 
 Available subscription persisters include
 
@@ -80,9 +75,9 @@ Available subscription persisters include
 
 The publish workflow for [unicast transports](/transports/types.md#unicast-only-transports) is as follows:
 
- 1. Some code (e.g. a saga or a handler) requests that a message be published.
- 1. Publisher queries the storage for a list of subscribers.
- 1. Publisher loops through the list and sends a **copy of that message** to each subscriber.
+ 1. Some code (e.g., a saga or a handler) requests that a message be published.
+ 1. The publisher queries the storage for a list of subscribers.
+ 1. The publisher loops through the list and sends each subscriber a **copy of that message**.
 
 ```mermaid
 sequenceDiagram
@@ -98,20 +93,18 @@ Publisher ->> Subscriber2: Send Message1
 
 partial: disable-publishing
 
-
 ### Native
 
 For multicast transports that [support publish–subscribe natively](/transports/types.md#multicast-enabled-transports) neither persistence nor control message exchange is required to complete the publish-subscribe workflow.
 
-
 #### Subscribe
 
-The subscribe workflow for multicast transports is as follows
+The subscribe workflow for multicast transports is as follows:
 
- 1. Subscribers send request to the broker with the intent to subscribe to certain message types.
- 1. Broker stores the subscription information.
+ 1. Subscribers send a request to the broker with the intent to subscribe to specific message types.
+ 1. The broker stores the subscription information.
 
-Note that in this case the publisher does not interact in the subscribe workflow.
+Note that the publisher does not interact with the subscribe workflow in this case.
 
 ```mermaid
 sequenceDiagram
@@ -124,14 +117,13 @@ Subscriber1 ->> Broker: Subscribe to Message1
 Subscriber2 ->> Broker: Subscribe to Message1
 ```
 
-
 #### Publish
 
-The publish workflow for multicast transports is as follows
+The publish workflow for multicast transports is as follows:
 
- 1. Some code (e.g. a saga or a handler) request that a message be published.
- 1. Publisher sends the message to the Broker.
- 1. Broker sends a **copy of that message** to each subscriber.
+ 1. Some code (e.g., a saga or a handler) requests that a message be published.
+ 1. The publisher sends the message to the Broker.
+ 1. The broker sends a **copy of that message** to each subscriber.
 
 ```mermaid
 sequenceDiagram

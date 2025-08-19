@@ -3,7 +3,7 @@ title: NHibernate Persistence Saga Concurrency
 summary: How to control concurrency in sagas with the NHibernate persistence
 component: NHibernate
 versions: '[6,]'
-reviewed: 2023-01-31
+reviewed: 2025-04-03
 related:
  - nservicebus/sagas/concurrency
 redirects:
@@ -15,7 +15,7 @@ One of the most critical things about persistence of sagas is proper concurrency
 
 ## Default behavior
 
-When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
+When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. [Saga concurrency](/nservicebus/sagas/concurrency.md) explains how these conflicts are handled, and contains guidance for high-load scenarios.
 
 ### Starting a saga
 
@@ -29,7 +29,7 @@ NHibernate.Exceptions.GenericADOException: could not execute batch command.[SQL:
 
 No exceptions will be thrown. Conflicts cannot occur because the persistence uses pessimistic locking. Pessimistic locking is achieved by performing a **SELECT ... FOR UPDATE**, see [NHibernate Chapter 12. Transactions And Concurrency](https://nhibernate.info/doc/nhibernate-reference/transactions.html).
 
-## Custom behavior
+## Customizing concurrency behavior
 
 ### Explicit version
 

@@ -6,10 +6,15 @@ related:
  - samples/sql-persistence/simple
  - samples/sql-persistence/transitioning-correlation-ids
  - samples/saga/sql-sagafinder
+ - persistence/upgrades/sql-6to7
+ - persistence/upgrades/sql-5to6
+ - persistence/upgrades/sql-4to5
+ - persistence/upgrades/sql-4.2to4.3
+ - persistence/upgrades/sql-4.0to4.1.1
  - persistence/upgrades/sql-2to3
  - persistence/upgrades/sql-1to2
  - persistence/upgrades/sql-1.0.0-1.0.1
-reviewed: 2023-08-14
+reviewed: 2025-07-25
 ---
 
 
@@ -21,7 +26,7 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 |Feature                    |   |
 |:---                       |---
-|Storage Types              |Sagas, Outbox, Subscriptions, Timeouts
+|Storage Types              |Sagas, Outbox, Subscriptions
 |Transactions               |Local database transactions or distributed transactions when available
 |Concurrency control        |Pessimistic concurrency
 |Scripted deployment        |SQL scripts generated at compile time, can be [promoted outside build directory](controlling-script-generation.md#promotion).
@@ -48,12 +53,25 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 ## Supported SQL implementations
 
-partial: supportedimpls
+* [SQL Server](/persistence/sql/dialect-mssql.md)
+* [MySQL](/persistence/sql/dialect-mysql.md) (including AWS Aurora MySQL)
+* [Oracle](/persistence/sql/dialect-oracle.md)
+* [PostgreSQL](/persistence/sql/dialect-postgresql.md) (including AWS Aurora PostgreSQL)
 
 
 ## NuGet Packages
 
-partial: nugets
+The SQL Persister requires the [**NServiceBus.Persistence.Sql**](https://www.nuget.org/packages/NServiceBus.Persistence.Sql) package, which contains:
+
+ * APIs for manipulating `EndpointConfiguration`.
+ * Runtime implementations of saga, subscriptions, and outbox persisters.
+ * Attributes used to define compile-time configuration settings.
+ * An MSBuild target that generates the required SQL installation scripts at compile time.
+ * Optionally runs SQL installation scripts at endpoint startup for development purposes. See [Installer Workflow](installer-workflow.md).
+
+### Other packages
+
+* [NServiceBus.Persistence.Sql.ScriptBuilder](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.ScriptBuilder) - This package contains the APIs that enable the generation of SQL installation scripts using code outside of a compile context. It is not intended for general usage, and in future releases, the API may evolve in ways that do not follow [semantic versioning](/nservicebus/upgrades/release-policy.md#semantic-versioning).
 
 
 ## Script creation

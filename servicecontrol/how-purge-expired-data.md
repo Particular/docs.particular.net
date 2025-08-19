@@ -4,17 +4,21 @@ summary: Configuring ServiceControl's data retention policy
 related:
  - nservicebus/recoverability
  - nservicebus/operations/auditing
- - servicecontrol/audit-instances/persistence
-reviewed: 2022-10-18
+ - servicecontrol/audit-instances
+reviewed: 2025-02-04
 ---
 
-ServiceControl stores audit and error data. Any audit and error data that is older than the specified thresholds is deleted from the embedded RavenDB. The expiration thresholds for both faulted and audited messages must be set during installation. These values can be modified later by launching ServiceControl Management and editing the configuration settings for the instance.
+ServiceControl stores audit and error data. Any audit and error data that is older than the specified thresholds is deleted from RavenDB. The expiration thresholds for both faulted and audited messages must be set during installation. These values can be modified later by either
+
+- Launching ServiceControl Management and editing the configuration settings for the instance
+- Directly changing settings in configuration files
+- Configuring environment variables when hosted in containers
 
 > [!NOTE]
-> The expiration process curates only the data in the embedded RavenDB. Audit and error forwarding queues are not curated or managed by ServiceControl. To turn these settings off, launch ServiceControl Management and edit the configuration settings for the instance.
+> The expiration process curates only the data in RavenDB. Audit and error forwarding queues are not curated or managed by ServiceControl. To turn these settings off, edit the configuration settings for the instance.
 
 > [!WARNING]
-> The database will not automatically shrink in size after reducing the retention period. Ensure ServiceControl had time to purge all expired messages and then [compact the database](db-compaction-v5.md).
+> The database will not automatically shrink in size after reducing the retention period. Ensure ServiceControl had time to purge all expired messages and then [compact the database](db-compaction.md).
 
 ## Differences in message retention implementations
 

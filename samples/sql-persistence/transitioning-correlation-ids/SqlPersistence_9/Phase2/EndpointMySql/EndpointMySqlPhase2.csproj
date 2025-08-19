@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\SharedPhase2.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="9.*" />
+  </ItemGroup>
+
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="BouncyCastle.Cryptography" Version="2.*" />
+    <PackageReference Include="System.Drawing.Common" Version="10.0.0-preview.6.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\Phase1\EndpointMySql\Program.cs" />
+    <Compile Include="..\..\Phase1\EndpointMySql\SqlHelper.cs" />
+  </ItemGroup>
+
+</Project>

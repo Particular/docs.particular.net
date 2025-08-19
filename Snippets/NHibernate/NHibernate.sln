@@ -12,6 +12,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernate_9", "NHibernate_
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NHibernate_10", "NHibernate_10\NHibernate_10.csproj", "{90854E02-DEAD-4F66-9C6A-C6C25B794448}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernate_11", "NHibernate_11\NHibernate_11.csproj", "{E3B035A4-EE8B-44FB-B53B-D9E555E0BF3E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{90854E02-DEAD-4F66-9C6A-C6C25B794448}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90854E02-DEAD-4F66-9C6A-C6C25B794448}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{90854E02-DEAD-4F66-9C6A-C6C25B794448}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3B035A4-EE8B-44FB-B53B-D9E555E0BF3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3B035A4-EE8B-44FB-B53B-D9E555E0BF3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3B035A4-EE8B-44FB-B53B-D9E555E0BF3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3B035A4-EE8B-44FB-B53B-D9E555E0BF3E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

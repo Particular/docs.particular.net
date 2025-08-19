@@ -1,7 +1,7 @@
 ---
 title: Messaging
 summary: Messaging concepts for building distributed systems
-reviewed: 2023-07-18
+reviewed: 2025-07-03
 callsToAction: ['solution-architect']
 redirects:
 - nservicebus/architecture/principles

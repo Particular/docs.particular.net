@@ -12,7 +12,7 @@
 
     public class Extensibility
     {
-        void RouteTableViaConfig(EndpointConfiguration endpointConfiguration)
+        public void RouteTableViaConfig(EndpointConfiguration endpointConfiguration)
         {
             #region RoutingExtensibility-RouteTableConfig
 
@@ -45,14 +45,14 @@
             class Refresher :
                 FeatureStartupTask
             {
-                UnicastRoutingTable routeTable;
+                UnicastRoutingTable routingTable;
                 Timer timer;
 
                 #region RoutingExtensibility-StartupTask
 
-                public Refresher(UnicastRoutingTable routeTable)
+                public Refresher(UnicastRoutingTable routingTable)
                 {
-                    this.routeTable = routeTable;
+                    this.routingTable = routingTable;
                 }
 
                 protected override Task OnStart(IMessageSession session)
@@ -60,7 +60,7 @@
                     timer = new Timer(
                         callback: _ =>
                         {
-                            routeTable.AddOrReplaceRoutes("MySource", LoadRoutes());
+                            routingTable.AddOrReplaceRoutes("MySource", LoadRoutes());
                         },
                         state: null,
                         dueTime: TimeSpan.FromSeconds(30),
@@ -78,15 +78,15 @@
             class RobustRefresher :
                 FeatureStartupTask
             {
-                UnicastRoutingTable routeTable;
+                UnicastRoutingTable routingTable;
                 CriticalError criticalError;
                 Timer timer;
 
                 #region RoutingExtensibility-TriggerEndpointShutdown
 
-                public RobustRefresher(UnicastRoutingTable routeTable, CriticalError criticalError)
+                public RobustRefresher(UnicastRoutingTable routingTable, CriticalError criticalError)
                 {
-                    this.routeTable = routeTable;
+                    this.routingTable = routingTable;
                     this.criticalError = criticalError;
                 }
 
@@ -97,7 +97,7 @@
                         {
                             try
                             {
-                                routeTable.AddOrReplaceRoutes("MySource", LoadRoutes());
+                                routingTable.AddOrReplaceRoutes("MySource", LoadRoutes());
                             }
                             catch (Exception exception)
                             {

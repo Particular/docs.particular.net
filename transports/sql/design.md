@@ -1,7 +1,7 @@
 ---
 title: SQL Transport Design
 summary: The design and implementation details of SQL Server Transport
-reviewed: 2022-02-09
+reviewed: 2024-10-24
 component: SqlTransport
 redirects:
  - nservicebus/sqlserver/design
@@ -15,7 +15,7 @@ In SQL Server Transport each queue is represented as table inside a database. De
 
 ## Structure
 
-The queue table consists of the following columns
+The queue table consists of the following columns.
 
 ### ID
 
@@ -29,7 +29,7 @@ The `CorrelationId` column contains the value of `NServiceBus.CorrelationId` hea
 
 ### ReplyToAddress
 
-The `ReplyToAddress` column contains the value of `NServiceBus.ReplyToAddress` header. This value is kept in a separate column to he maintain wire-level compatibility with [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer) transport Version 1.
+The `ReplyToAddress` column contains the value of the `NServiceBus.ReplyToAddress` header. This value is kept in a separate column to maintain wire-level compatibility with [NServiceBus.SqlServer](https://www.nuget.org/packages/NServiceBus.SqlServer) transport Version 1.
 
 
 ### Recoverable
@@ -43,12 +43,12 @@ The `CorrelationId`, `ReplyToAddress` and `Recoverable` columns are required for
 
 When receiving messages sent by endpoints that use later versions, the values of correlation ID and reply-to address should be read from the headers (`NServiceBus.CorrelationId` and `NServiceBus.ReplyToAddress`) instead. The value `Recoverable` can be ignored as it is always `true`/`1`.
 
-When sending messages to endpoints that use later versions, the values of correlation ID and reply-to address columns could be set to `NULL` and the actual values are provided in the headers (`NServiceBus.CorrelationId` and `NServiceBus.ReplyToAddress`). The value `Recoverable` should always be `true`/`1`.
+When sending messages to endpoints that use later versions, the values of correlation ID and reply-to address columns could be set to `NULL` with the actual values provided in the headers (`NServiceBus.CorrelationId` and `NServiceBus.ReplyToAddress`). The value `Recoverable` should always be `true`/`1`.
 
 
 ### Expires
 
-The `Expires` column contains the optional date and time when the message is going to expire. An expired message is dropped by the transport. Depending on version, expired messages might be actively purged from the queue. For details see [discarding expired messages](/transports/sql/discard-expired-messages.md).
+The `Expires` column contains the optional date and time when the message will expire. An expired message is dropped by the transport. Depending on version, expired messages might be actively purged from the queue. For details see [discarding expired messages](/transports/sql/discard-expired-messages.md).
 
 partial: expired-index
 
@@ -69,7 +69,7 @@ partial: messageBodyString-column
 
 The `RowVersion` column is used to define the FIFO order of the queue. It is auto-incremented by SQL Server (`identity(1,1)`). The receive message T-SQL query returns a message with the lowest value of `RowVersion` that is not locked by any other concurrent receive operation.
 
-The clustered index of the queue table is based on the `RowVersion` column to ensure the new messages are always added at the end of the table.
+The clustered index of the queue table is based on the `RowVersion` column to ensure that new messages are always added at the end of the table.
 
 
 ## Behavior

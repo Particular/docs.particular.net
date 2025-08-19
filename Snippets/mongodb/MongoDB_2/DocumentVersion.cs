@@ -16,7 +16,7 @@
             //Define other update operations on the document
 
             var modifiedDocument = await collection.FindOneAndUpdateAsync<BsonDocument>(
-                filter: document => document["_id"] == documentId && document["_version"] == currentVersion,
+                filter: document => document["_id"].AsGuid == documentId && document["_version"] == currentVersion,
                 update: updateDefinition,
                 options: new FindOneAndUpdateOptions<BsonDocument, BsonDocument> { IsUpsert = false, ReturnDocument = ReturnDocument.After });
 

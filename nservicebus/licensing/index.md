@@ -1,6 +1,6 @@
 ---
 title: License file information
-summary: Outlines license usage, management, and restrictions
+summary: Learn how to configure NServiceBus license and troubleshoot any license scanning issues 
 component: core
 reviewed: 2024-05-07
 redirects:
@@ -21,7 +21,11 @@ See the [Licensing page](https://particular.net/licensing) for license specifics
 
 ## License validity
 
-The license is valid if the `ExpirationDate` or the `UpgradeProtectionExpiration` attribute in the license data is greater than or equal to the release date of the `{major}.{minor}.0` version of the NServiceBus assembly used by the endpoint. To view the release dates for the various versions, see [NServiceBus Packages Versions](/nservicebus/upgrades/all-versions.md).
+The license is valid if the current UTC date has not passed the `ExpirationDate` attribute date value.
+
+### Upgrade protection
+
+Some licenses have a date value in the `UpgradeProtectionExpiration` attribute. In this case the license is still valid if the `UpgradeProtectionExpiration` attribute date value is greater than or equal to the release date of the `{major}.{minor}.0` version of the NServiceBus assembly used by the endpoint. To view the release dates for the various versions, see [NServiceBus Packages Versions](/nservicebus/upgrades/all-versions.md).
 
 > [!NOTE]
 > Only the Major/Minor part is relevant. Eg. if using NServiceBus 6.1.1 it's the release date of 6.1.0 that counts.
@@ -37,6 +41,10 @@ There are several options available for installing the license file.
 partial: license-management
 
 Sometimes the license must be embedded in a single line of text, for example, in a command line when deploying an endpoint with Docker. For these scenarios, the license can be minified, removing all spaces and line-breaks, by adding `minify=true` to the query string of the URL used to download a license file from the Particular Software website.
+
+## Behavior
+
+The license is only read once at startup. When the license expires the endpoint logs will contain a message indicating the license is expired. To resolve this the endpoint must be restarted so that it can read the updated license at startup.
 
 ## Troubleshooting
 

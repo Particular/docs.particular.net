@@ -46,7 +46,7 @@ public class LoggingTests
 
         await handler.Handle(new MyRequest(), new TestableMessageHandlerContext());
 
-        StringAssert.Contains("Some log message", LoggingSetupFixture.LogStatements);
+        Assert.That(LoggingSetupFixture.LogStatements, Does.Contain("Some log message"));
     }
 
     #endregion

@@ -5,18 +5,14 @@
       "Versions": [
         {
           "Minor": "7.8",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "8.1",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "8.2",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "9.0",
+          "Minor": "9.2",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -26,14 +22,18 @@
       "Versions": [
         {
           "Minor": "5.7",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "6.2",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "7.0",
+          "Minor": "7.3",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "8.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -43,7 +43,7 @@
       "Versions": [
         {
           "Minor": "7.1",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "8.0",
@@ -55,11 +55,19 @@
       "PackageId": "NServiceBus.AwsLambda.Sqs",
       "Versions": [
         {
+          "Minor": "0.6",
+          "SupportLevel": "Extended"
+        },
+        {
           "Minor": "1.1",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "2.0",
+          "Minor": "2.1",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -77,10 +85,18 @@
       "Versions": [
         {
           "Minor": "3.0",
+          "SupportLevel": "Extended"
+        },
+        {
+          "Minor": "4.4",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "4.3",
+          "Minor": "5.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "6.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -90,14 +106,18 @@
       "Versions": [
         {
           "Minor": "3.1",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "4.2",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "5.0",
+          "Minor": "5.2",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "6.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -111,7 +131,7 @@
       "Versions": [
         {
           "Minor": "3.0",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "4.0",
@@ -128,7 +148,7 @@
       "Versions": [
         {
           "Minor": "3.0",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "4.0",
@@ -145,10 +165,19 @@
       "Versions": [
         {
           "Minor": "7.2",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "8.0",
+          "SupportLevel": "Mainstream"
+        }
+      ]
+    },
+    {
+      "PackageId": "NServiceBus.ClaimCheck",
+      "Versions": [
+        {
+          "Minor": "1.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -158,7 +187,7 @@
       "Versions": [
         {
           "Minor": "5.1",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "6.0",
@@ -171,7 +200,7 @@
       "Versions": [
         {
           "Minor": "3.0",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "4.0",
@@ -188,14 +217,14 @@
       "Versions": [
         {
           "Minor": "4.0",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "5.0",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "6.0",
+          "Minor": "6.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -218,7 +247,7 @@
       "Versions": [
         {
           "Minor": "2.0",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "4.0",
@@ -235,7 +264,7 @@
       "Versions": [
         {
           "Minor": "1.1",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "2.0",
@@ -248,7 +277,7 @@
       "Versions": [
         {
           "Minor": "1.1",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "2.0",
@@ -265,7 +294,7 @@
       "Versions": [
         {
           "Minor": "1.0",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "2.0",
@@ -282,14 +311,14 @@
       "Versions": [
         {
           "Minor": "3.3",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "4.0",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "5.0",
+          "Minor": "5.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -299,7 +328,7 @@
       "Versions": [
         {
           "Minor": "2.0",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "3.0",
@@ -316,7 +345,7 @@
       "Versions": [
         {
           "Minor": "1.0",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "2.0",
@@ -333,7 +362,7 @@
       "Versions": [
         {
           "Minor": "3.0",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "4.0",
@@ -350,7 +379,7 @@
       "Versions": [
         {
           "Minor": "8.0",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "9.0",
@@ -363,7 +392,7 @@
       "Versions": [
         {
           "Minor": "8.0",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "9.0",
@@ -376,6 +405,32 @@
       "Versions": [
         {
           "Minor": "3.1",
+          "SupportLevel": "Extended"
+        },
+        {
+          "Minor": "4.0",
+          "SupportLevel": "Mainstream"
+        }
+      ]
+    },
+    {
+      "PackageId": "NServiceBus.MessageInterfaces",
+      "Versions": [
+        {
+          "Minor": "1.0",
+          "SupportLevel": "Mainstream"
+        }
+      ]
+    },
+    {
+      "PackageId": "NServiceBus.MessagingBridge",
+      "Versions": [
+        {
+          "Minor": "2.3",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.1",
           "SupportLevel": "Mainstream"
         },
         {
@@ -385,24 +440,11 @@
       ]
     },
     {
-      "PackageId": "NServiceBus.MessagingBridge",
-      "Versions": [
-        {
-          "Minor": "2.2",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.0",
-          "SupportLevel": "Mainstream"
-        }
-      ]
-    },
-    {
       "PackageId": "NServiceBus.Metrics",
       "Versions": [
         {
           "Minor": "3.1",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "4.0",
@@ -419,7 +461,7 @@
       "Versions": [
         {
           "Minor": "4.0",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "5.0",
@@ -436,7 +478,7 @@
       "Versions": [
         {
           "Minor": "3.0",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "4.0",
@@ -453,7 +495,7 @@
       "Versions": [
         {
           "Minor": "3.0",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "4.0",
@@ -466,14 +508,14 @@
       "Versions": [
         {
           "Minor": "2.4",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "3.0",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "4.0",
+          "Minor": "4.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -483,7 +525,7 @@
       "Versions": [
         {
           "Minor": "8.6",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "9.0",
@@ -491,6 +533,10 @@
         },
         {
           "Minor": "10.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "10.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -500,7 +546,7 @@
       "Versions": [
         {
           "Minor": "8.6",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "9.0",
@@ -508,6 +554,10 @@
         },
         {
           "Minor": "10.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "10.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -517,7 +567,7 @@
       "Versions": [
         {
           "Minor": "7.1",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "8.0",
@@ -530,7 +580,7 @@
       "Versions": [
         {
           "Minor": "3.1",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "4.0",
@@ -547,7 +597,7 @@
       "Versions": [
         {
           "Minor": "3.2",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "5.0",
@@ -555,6 +605,10 @@
         },
         {
           "Minor": "6.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "6.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -564,7 +618,7 @@
       "Versions": [
         {
           "Minor": "3.2",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "5.0",
@@ -572,6 +626,10 @@
         },
         {
           "Minor": "6.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "6.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -581,7 +639,7 @@
       "Versions": [
         {
           "Minor": "1.2",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "2.0",
@@ -589,6 +647,10 @@
         },
         {
           "Minor": "3.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -598,7 +660,7 @@
       "Versions": [
         {
           "Minor": "1.2",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "2.0",
@@ -606,6 +668,10 @@
         },
         {
           "Minor": "3.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -618,7 +684,15 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "2.0",
+          "Minor": "2.1",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "2.2",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -631,7 +705,15 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "2.0",
+          "Minor": "2.1",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "2.2",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -654,7 +736,7 @@
       "Versions": [
         {
           "Minor": "2.7",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "3.0",
@@ -667,14 +749,18 @@
       "Versions": [
         {
           "Minor": "6.6",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "7.0",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "8.0",
+          "Minor": "8.1",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "8.2",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -684,14 +770,18 @@
       "Versions": [
         {
           "Minor": "6.6",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "7.0",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "8.0",
+          "Minor": "8.1",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "8.2",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -701,14 +791,18 @@
       "Versions": [
         {
           "Minor": "7.0",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "8.0",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "9.0",
+          "Minor": "9.2",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "10.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -718,7 +812,7 @@
       "Versions": [
         {
           "Minor": "7.2",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "8.2",
@@ -726,6 +820,10 @@
         },
         {
           "Minor": "9.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "9.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -735,7 +833,7 @@
       "Versions": [
         {
           "Minor": "7.2",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "8.2",
@@ -743,6 +841,10 @@
         },
         {
           "Minor": "9.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "9.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -752,7 +854,7 @@
       "Versions": [
         {
           "Minor": "3.0",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "4.0",
@@ -769,7 +871,7 @@
       "Versions": [
         {
           "Minor": "1.0",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "2.0",
@@ -786,7 +888,7 @@
       "Versions": [
         {
           "Minor": "8.1",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "9.0",
@@ -799,7 +901,7 @@
       "Versions": [
         {
           "Minor": "6.3",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "7.0",
@@ -812,14 +914,22 @@
       "Versions": [
         {
           "Minor": "2.3",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "3.0",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "4.0",
+          "Minor": "4.1",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "4.2",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "5.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -829,14 +939,22 @@
       "Versions": [
         {
           "Minor": "2.3",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "3.0",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "4.0",
+          "Minor": "4.1",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "4.2",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "5.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -846,7 +964,7 @@
       "Versions": [
         {
           "Minor": "7.1",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "8.0",
@@ -859,7 +977,7 @@
       "Versions": [
         {
           "Minor": "7.4",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "8.1",
@@ -876,21 +994,8 @@
       "Versions": [
         {
           "Minor": "1.0",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
-        {
-          "Minor": "2.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.0",
-          "SupportLevel": "Mainstream"
-        }
-      ]
-    },
-    {
-      "PackageId": "NServiceBus.Transport.AzureServiceBus",
-      "Versions": [
         {
           "Minor": "2.0",
           "SupportLevel": "Mainstream"
@@ -900,7 +1005,28 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "4.0",
+          "Minor": "3.3",
+          "SupportLevel": "Mainstream"
+        }
+      ]
+    },
+    {
+      "PackageId": "NServiceBus.Transport.AzureServiceBus",
+      "Versions": [
+        {
+          "Minor": "2.0",
+          "SupportLevel": "Extended"
+        },
+        {
+          "Minor": "3.2",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "4.2",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "5.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -910,7 +1036,7 @@
       "Versions": [
         {
           "Minor": "10.0",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "12.0",
@@ -924,19 +1050,14 @@
     },
     {
       "PackageId": "NServiceBus.Transport.Bridge",
-      "Versions": [
-        {
-          "Minor": "1.0",
-          "SupportLevel": "Mainstream"
-        }
-      ]
+      "Versions": []
     },
     {
       "PackageId": "NServiceBus.Transport.Msmq",
       "Versions": [
         {
           "Minor": "1.2",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "2.0",
@@ -949,10 +1070,19 @@
       "Versions": [
         {
           "Minor": "1.2",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "2.0",
+          "SupportLevel": "Mainstream"
+        }
+      ]
+    },
+    {
+      "PackageId": "NServiceBus.Transport.PostgreSql",
+      "Versions": [
+        {
+          "Minor": "8.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -962,14 +1092,14 @@
       "Versions": [
         {
           "Minor": "6.3",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "7.0",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "8.0",
+          "Minor": "8.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -979,7 +1109,7 @@
       "Versions": [
         {
           "Minor": "2.2",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "3.0",
@@ -996,7 +1126,7 @@
       "Versions": [
         {
           "Minor": "2.2",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "3.0",
@@ -1013,7 +1143,7 @@
       "Versions": [
         {
           "Minor": "10.2",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "11.0",
@@ -1026,7 +1156,7 @@
       "Versions": [
         {
           "Minor": "2.0",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         },
         {
           "Minor": "3.0",
@@ -1038,36 +1168,19 @@
       "PackageId": "Particular.PlatformSample",
       "Versions": [
         {
-          "Minor": "2.40",
+          "Minor": "3.49",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "3.0",
+          "Minor": "3.51",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "3.1",
+          "Minor": "3.54",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "3.2",
-          "SupportLevel": "Mainstream"
-        }
-      ]
-    },
-    {
-      "PackageId": "ParticularTemplates",
-      "Versions": [
-        {
-          "Minor": "4.1",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "5.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "6.0",
+          "Minor": "3.56",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -1077,6 +1190,10 @@
       "Versions": [
         {
           "Minor": "4.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "5.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -1130,7 +1247,7 @@
       "Versions": [
         {
           "Minor": "2.0",
-          "SupportLevel": "Mainstream"
+          "SupportLevel": "Extended"
         }
       ]
     },
@@ -1138,11 +1255,11 @@
       "PackageId": "Particular.PlatformSample.ServiceControl",
       "Versions": [
         {
-          "Minor": "4.33",
+          "Minor": "5.11",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "5.2",
+          "Minor": "6.7",
           "SupportLevel": "Mainstream"
         }
       ]

@@ -1,6 +1,6 @@
 ---
 title:  Messaging Bridge Upgrade Version 2 to 3
-reviewed: 2023-10-23
+reviewed: 2024-09-12
 component: Bridge
 isUpgradeGuide: true
 upgradeGuideCoreVersions:

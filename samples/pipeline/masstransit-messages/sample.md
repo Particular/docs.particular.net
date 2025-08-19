@@ -1,7 +1,7 @@
 ---
 title: Consuming MassTransit messages with NServiceBus
 summary: Use the NServiceBus pipeline to consume messages sent by MassTransit.
-reviewed: 2021-11-04
+reviewed: 2024-09-22
 component: Core
 related:
  - nservicebus/pipeline
@@ -15,6 +15,12 @@ downloadbutton
 ## Prerequisites
 
 This sample requires a local instance of RabbitMQ.
+
+The easiest way to do this is to run RabbitMQ in Docker by running the following command
+
+```shell
+docker run -d --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3-management
+```
 
 ## Message structure comparison
 
@@ -100,6 +106,9 @@ Additionally, the MassTransit endpoint contains a message consumer for the event
 snippet: MassTransitConsumer
 
 Because the event is published in RabbitMQ, NServiceBus can also subscribe to it.
+
+> [!NOTE]
+> This sample shows how to use an NServiceBus behavior to ingest messages from a MassTransit system. Alternatively, the [MassTransit.Interop.NServiceBus](https://nuget.org/packages/MassTransit.Interop.NServiceBus/) package may be used, as described in [the MassTransit docs](https://masstransit.io/documentation/configuration/integrations/nsb).
 
 ## NServiceBus subscriber
 

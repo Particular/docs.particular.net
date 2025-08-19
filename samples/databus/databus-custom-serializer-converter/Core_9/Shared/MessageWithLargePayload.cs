@@ -1,5 +1,6 @@
 ﻿using NServiceBus;
 
+#pragma warning disable CS0618 // Type or member is obsolete
 #region MessageWithLargePayload
 
 //the data bus is allowed to clean up transmitted properties older than the TTBR
@@ -12,3 +13,4 @@ public class MessageWithLargePayload :
 }
 
 #endregion
+#pragma warning restore CS0618 // Type or member is obsolete

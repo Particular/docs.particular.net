@@ -32,31 +32,33 @@ Defaults to `0`.
 
 ### TimeToTriggerStoreCircuitBreaker
 
-Time to wait before triggering the circuit breaker that monitors the storing of delayed messages in the database. 
+Time to wait before triggering the circuit breaker that monitors the storing of delayed messages in the database.
 
 Defaults to `30` seconds.
-       
+
 ### TimeToTriggerFetchCircuitBreaker
 
-Time to wait before triggering the circuit breaker that monitors the fetching of due delayed messages from the database. 
+Time to wait before triggering the circuit breaker that monitors the fetching of due delayed messages from the database.
 
 Defaults to `30` seconds.
-    
+
 ### TimeToTriggerDispatchCircuitBreaker
 
-Time to wait before triggering the circuit breaker that monitors the dispatching of due delayed messages to the destination. 
+Time to wait before triggering the circuit breaker that monitors the dispatching of due delayed messages to the destination.
 
 Defaults to `30` seconds.
 
 ### MaximumRecoveryFailuresPerSecond
 
-Maximum number of failed attempts per second to increment the per-message failure counter that triggers the recovery circuit breaker. 
+Maximum number of failed attempts per second to increment the per-message failure counter that triggers the recovery circuit breaker.
 
 Defaults to `1` per sec.
 
 ## Using a custom delayed message store
 
 Create a class which implements the `IDelayedMessageStore` interface and pass an instance to the `DelayedDeliverySettings` constructor.
+
+If the custom store needs to set up some infrastructure (create tables, etc.) then it must implement `IDelayedMessageStoreWithInfrastructure`. This interface extends `IDelayedMessageStore` with a `SetupInfrastructure()` method. `SetupInfrastructure()` is called before `Initialize()`.
 
 ### Consistency
 
@@ -65,3 +67,52 @@ In `TransactionScope` [transaction mode](/transports/transactions.md), the delay
 In lower transaction modes the dispatch behavior is **at least once**. `FetchNextDueTimeout` and `Remove` are executed in the same `TransactionScope` but sending messages to their destination queues is executed in a separate (inner) transport scope. If `Remove` fails, the message will be sent to the destination queue multiple times and the destination endpoint must handle the duplicates, using either the [outbox feature](/nservicebus/outbox/) or a custom de-duplication mechanism.
 
 The built-in SQL Server delayed message store takes a pessimistic lock on the delayed message row in the `FetchNextDueTimeout` operation to prevent other physical instances of the same logical endpoint from delivering the same delayed message. A custom delayed message store must also take some kind of lock to prevent this from happening. For example, a delayed message store using Azure Blog Storage may take a lease lock.
+
+### IDelayedMessageStore
+
+> [!NOTE]
+> The following samples are adapted from the `SqlServerDelayedMessageStore` class provided with the MSMQ transport, and are provided as a guide for adapting to whatever persistence technology is required.
+
+When creating a custom message store, the class can either implement `IDelayedMessageStore`:
+
+snippet: dms-without-infrastructure
+
+or `IDelayedMessageStoreWithInfrastructure`:
+
+snippet: dms-with-infrastructure
+
+The only difference between the two interfaces is the `SetupInfrastructure` method, which must be implemented for `IDelayedMessageStoreWithInfrastructure` to create the required storage tables if they don't yet exist. With `IDelayedMessageStore`, it is expected that the storage tables already exist:
+      
+snippet: dms-setup-infrastructure
+
+In the above example, `TimeoutTableCreator` is responsible for executing the script against the database. For SQL Server, the script is:
+
+snippet: dms-sql-create-table
+
+With both interfaces, the `Initialize` method is called with the name of the endpoint being initialized. The storage implementation should throw an exception if it doesn't support the specified transaction mode. For example, `TransactionScope` mode requires the storage to enlist in a distributed transaction managed by the DTC:
+
+snippet: dms-initialise
+
+snippet: dms-sql-crud
+
+The remaining methods implement the logic required for the message store.
+
+`Store` stores a delayed message:
+
+snippet: dms-store
+
+`Remove` removes a delayed message that has been dispatched to its destination. It must return `true` if the removal succeeded or `false` if there was nothing to remove because the delayed message was already removed:
+   
+snippet: dms-remove
+
+`IncrementFailureCount` increments the count of failures for a given delayed message. It must return `true` if the increment succeeded or `false` if the delayed message was already removed:
+   
+snippet: dms-increment-failure-count
+
+`Next` returns the date and time when the next delayed message is due or `null` if there are no delayed messages:
+   
+snippet: dms-next
+
+`FetchNextDueTimeout` returns the next delayed message that will be due at a specified date and time or `null` if there will be no delayed messages at that date and time:
+   
+snippet: dms-fetch-next-duetimeout

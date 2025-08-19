@@ -1,14 +1,14 @@
 ---
 title: Evolving message contracts
 summary: Guidelines for choosing a strategy for evolving message contracts
-reviewed: 2023-06-02
+reviewed: 2025-05-13
 component: Core
 isLearningPath: true
 ---
 
 In message-based systems, the messages are part of the contract, which defines how services communicate with each other.
 
-Evolving contracts over time is not an easy task and the appropriate strategy should be defined individually for each system. Generally the problem can't be resolved at the infrastructure level; therefore NServiceBus users must analyze their individual systems, consider how they are expected to evolve, and define the strategy which will make the most sense in their particular circumstances.
+Evolving contracts over time is not an easy task, and the appropriate strategy should be defined individually for each system. Generally, the problem can't be resolved at the infrastructure level; therefore, NServiceBus users must analyze their individual systems, consider how they are expected to evolve, and define the strategy which will make the most sense in their particular circumstances.
 
 This article presents basic guidelines for choosing contracts evolution strategy, avoiding common mistakes, and ensuring that contracts will be easy to evolve over time.
 
@@ -27,10 +27,10 @@ For complex systems, especially when there are significant changes in a message 
 
 Depending on the complexity of the change, the number of senders and receivers for the contract as well as how the change might propagate through the system, a different approach may be desirable. It's important to consider where the added data is required for a message to be successfully processed.
 
-Considering a scenario in which the data that is added to the contract is not required to successfully process a message:
+Considering a scenario in which the data added to the contract is not required to successfully process a message:
 
 * Update the contract and release a new version.
-  * Instead of relying on .NET to set the default value for int Age = 1, it's better to use nullable types and represent missing values as null. This allows for message handlers to reliably verify if the data is available using the ´HasValue´-property.
+  * Instead of relying on .NET to set the default value for a field (like `int Age = 1`), it's better to use nullable types and represent missing values as `null`. This allows for message handlers to reliably verify if the data is available using the ´HasValue´-property.
 * Update senders to use the new contract version.
 * Update receivers to handle the new contract version.
   * This can be done gradually, endpoint by endpoint. Endpoints that are not upgraded and reference the previous contracts assembly will be unaware of the newly added data as it will be ignored during deserialization.
@@ -40,27 +40,27 @@ For a more complex change in which receivers require the data in order to succes
 For the contracts assembly:
 
 * Create a new contract that either:
-  * is a copy of the original contract, adding the additional properties that are needed
-  * inherits the previous contract instead of adjusting the same type
-* Release a new version of the contract's assembly
+  * is a copy of the original contract, adding the additional properties that are needed, or
+  * inherits the previous contract instead of adjusting the same type.
+* Release a new version of the contract's assembly.
 
 For senders and publishers:
 
-* Update senders and publishers to target the new contract's assembly
-* Update senders and publishers to use the new message contract when sending/publishing messages
+* Update senders and publishers to target the new contract's assembly.
+* Update senders and publishers to use the new message contract when sending or publishing messages.
 
 This may be done gradually, deploying endpoint by endpoint as needed. Endpoints that are not upgraded and reference the previous contracts assembly will be unaware of the newly added data as it will be ignored during deserialization.
 
 For receivers:
 
-* Update receivers to target the new contracts assembly
-* Add an additional message handler that can handle new message contract
+* Update receivers to target the new contracts assembly.
+* Add an additional message handler that can handle the new message contract.
 * Adjust the handler that handled the previous contract version:
   * Adjust message processing by assigning a default value to the missing properties. It's necessary to carefully examine what the default values for the added properties will be. In particular, consider how clients might interpret the default value and provide appropriate guidelines for them.
-  * When the values for the new properties are required and the data is available in an accessible storage, it can be retrieved as part of the message processing
+  * When the values for the new properties are required and the data is available in an accessible storage, it can be retrieved as part of the message processing.
   * When the new properties are required to correctly process the message and are stored by another service:
-    * Convert the original message handler to initiate a saga
-    * When the message is received, and the handler identifies that a part of the data is missing, send a dedicated message to the relevant endpoint to retrieve the missing information. If needed, keep track of the data from the original message by storing all relevant information in the saga
+    * Convert the original message handler to initiate a saga.
+    * When the message is received, and the handler identifies that a part of the data is missing, send a dedicated message to the relevant endpoint to retrieve the missing information. If needed, keep track of the data from the original message by storing all relevant information in the saga.
     * When the data is retrieved, a new message containing all required information can be sent. This message will be handled by the same handler that processes the new message contract type, deferring the actual processing to a single handler.
 
 When all senders and receivers are updated and in-flight messages in the old format have been handled, the previous message contract can be marked as obsolete. By decorating the previous contract type with the `Obsolete` attribute, the changes become visible for receivers when they upgrade to the new version. In the next major version of the assembly, the obsolete types may be removed.
@@ -71,14 +71,14 @@ When the need rises to remove data from a contract, the easiest way to implement
 
 Adjust all receivers to not rely on the data that needs to be removed by:
 
-* Retrieving the data from somewhere else
-* Removing the data completely
+* Retrieving the data from somewhere else, or
+* Removing the data completely.
 
 In the first case, the same way of working can be applied as when adding data to a contract:
 
-* Convert the original message handler to initiate a saga
-* When the message is received, and the handler identifies that the required data is not part of the incoming message, send a dedicated message to the relevant endpoint to retrieve the missing information. If needed, keep track of the data from the original message by storing all relevant information in the saga
-* When the data is retrieved, the original message handler logic may be invoked to process the data
+* Convert the original message handler to initiate a saga.
+* When the message is received, and the handler identifies that the required data is not part of the incoming message, send a dedicated message to the relevant endpoint to retrieve the missing information. If needed, keep track of the data from the original message by storing all relevant information in the saga.
+* When the data is retrieved, the original message handler logic may be invoked to process the data.
 
 When all receivers have been updated to allow for processing with less data, the contracts can be adjusted.
 

@@ -1,0 +1,1 @@
+Custom trigger definitions for Azure Service Bus triggers using NServiceBus message handlers are currently not supported. Use the `ServiceBusTriggerAttribute` to configure the auto-generated Azure Service Bus trigger.

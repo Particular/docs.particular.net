@@ -14,6 +14,12 @@
 
         string endpointName = "HeaderWriterSendV7";
 
+        [OneTimeTearDown]
+        public void TearDown()
+        {
+            ManualResetEvent.Dispose();
+        }
+
         [Test]
         public async Task Write()
         {

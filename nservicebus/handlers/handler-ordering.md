@@ -1,7 +1,7 @@
 ---
 title: Handler Ordering
 summary: Controlling the order in which handlers are executed
-reviewed: 2022-11-08
+reviewed: 2025-02-17
 component: Core
 redirects:
 - nservicebus/how-do-i-specify-the-order-in-which-handlers-are-invoked
@@ -26,16 +26,11 @@ If it is not possible to migrate this kind of functionality out of message handl
 
 The remaining handlers (i.e. ones not specified in the ordering) are executed in a non-deterministic order.
 
-
 ### With the configuration API
-
-snippet: HandlerOrderingWithCode
-
 
 #### Specifying one handler to run first
 
 snippet: HandlerOrderingWithFirst
-
 
 #### Specifying multiple handlers to run in order
 

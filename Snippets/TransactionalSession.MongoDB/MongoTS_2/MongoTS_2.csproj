@@ -1,11 +1,17 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
+		<TargetFramework>net8.0</TargetFramework>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<PackageReference Include="NServiceBus.Storage.MongoDB.TransactionalSession" Version="2.*" />
 	</ItemGroup>
+
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="MongoDB.Driver" Version="2.*" />
+    <PackageReference Include="System.Drawing.Common" Version="4.*" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="4.*" />
+  </ItemGroup>
 
 </Project>

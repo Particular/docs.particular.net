@@ -1,7 +1,7 @@
 ---
 title: Business Continuity / Disaster Recovery
 summary: Solutions for business continuity / disaster recovery with ServiceControl
-reviewed: 2022-01-21
+reviewed: 2024-10-16
 related:
 - servicecontrol/backup-sc-database
 - servicecontrol/deploying-servicecontrol-in-a-cluster
@@ -34,7 +34,7 @@ SCAA --forwards to-->AB
 AB --ingested by-->SCAB
 ```
 
-This configuration works by combining multiple ServiceControl instances with [audit log forwarding](audit-instances/creating-config-file.md#transport-servicebusauditlogqueue) and [error log forwarding](creating-config-file.md#transport-servicebuserrorlogqueue). Failed and audited messages are forwarded by the primary instances to the backup instances through log forwarding queues.
+This configuration works by combining multiple ServiceControl instances with [audit log forwarding](audit-instances/configuration.md#transport-servicebusauditlogqueue) and [error log forwarding](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicebuserrorlogqueue). Failed and audited messages are forwarded by the primary instances to the backup instances through log forwarding queues.
 
 To install this configuration:
 

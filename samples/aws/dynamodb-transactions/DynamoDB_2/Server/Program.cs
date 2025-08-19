@@ -1,52 +1,48 @@
 ﻿using System;
-using System.Net;
-using System.Threading.Tasks;
 using Amazon.DynamoDBv2;
 using Amazon.Runtime;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
-using NServiceBus.Logging;
-using NServiceBus.Persistence.DynamoDB;
 
-class Program
-{
-    static async Task Main()
+
+Console.Title = "Server";
+
+var builder = Host.CreateApplicationBuilder(args);
+
+#region DynamoDBConfig
+
+var amazonDynamoDbClient = new AmazonDynamoDBClient(
+    new BasicAWSCredentials("localdb", "localdb"),
+    new AmazonDynamoDBConfig
     {
-        Console.Title = "Server";
+        ServiceURL = "http://localhost:8080"
+    });
 
-        #region DynamoDBConfig
+var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Transactions.Server");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        var amazonDynamoDbClient = new AmazonDynamoDBClient(
-            new BasicAWSCredentials("localdb", "localdb"),
-            new AmazonDynamoDBConfig
-            {
-                ServiceURL = "http://localhost:8080"
-            });
+var persistence = endpointConfiguration.UsePersistence<DynamoPersistence>();
+persistence.DynamoClient(amazonDynamoDbClient);
+persistence.UseSharedTable(new TableConfiguration
+{
+    TableName = "Samples.DynamoDB.Transactions"
+});
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.DynamoDB.Transactions.Server");
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.EnableOutbox();
 
-        var persistence = endpointConfiguration.UsePersistence<DynamoPersistence>();
-        persistence.DynamoClient(amazonDynamoDbClient);
-        persistence.UseSharedTable(new TableConfiguration
-        {
-            TableName = "Samples.DynamoDB.Transactions"
-        });
+#endregion
 
-        endpointConfiguration.EnableOutbox();
+endpointConfiguration.UseTransport(new LearningTransport
+{
+    TransportTransactionMode = TransportTransactionMode.ReceiveOnly
+});
+endpointConfiguration.EnableInstallers();
 
-        #endregion
 
-        endpointConfiguration.UseTransport(new LearningTransport
-        {
-            TransportTransactionMode = TransportTransactionMode.ReceiveOnly
-        });
-        endpointConfiguration.EnableInstallers();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
 
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-
-        await endpointInstance.Stop();
-    }
-}
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

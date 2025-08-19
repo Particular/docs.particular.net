@@ -1,8 +1,13 @@
 using System;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Transport.SqlServer;
+using Sender;
 
 Console.Title = "Sender";
+var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddHostedService<InputLoopService>();
 
 var endpointConfiguration = new EndpointConfiguration("Samples.Sql.Sender");
 endpointConfiguration.SendFailedMessagesTo("error");
@@ -32,29 +37,9 @@ endpointConfiguration.UseTransport(transport);
 #endregion
 
 await SqlHelper.CreateSchema(connectionString, "sender");
-
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
 Console.WriteLine("Press enter to send a message");
 Console.WriteLine("Press any key to exit");
 
-while (true)
-{
-    var key = Console.ReadKey();
-    Console.WriteLine();
+builder.UseNServiceBus(endpointConfiguration);
 
-    if (key.Key != ConsoleKey.Enter)
-    {
-        break;
-    }
-
-    var orderSubmitted = new OrderSubmitted
-    {
-        OrderId = Guid.NewGuid(),
-        Value = Random.Shared.Next(100)
-    };
-    await endpointInstance.Publish(orderSubmitted);
-    Console.WriteLine("Published OrderSubmitted message");
-}
-
-await endpointInstance.Stop();
+await builder.Build().RunAsync();

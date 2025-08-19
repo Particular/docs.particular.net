@@ -1,14 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Transactions" />
+  </ItemGroup>  
+
   <ItemGroup>
     <PackageReference Include="ApprovalTests" Version="3.*" />
     <PackageReference Include="Mono.Cecil" Version="0.*" />
     <PackageReference Include="NServiceBus" Version="5.*" />
-    <PackageReference Include="NUnit" Version="3.*" />
+    <PackageReference Include="NUnit" Version="4.*" />
+    <PackageReference Include="NUnit.Analyzers" Version="4.3.0" />
     <PackageReference Include="System.Management.Automation" Version="6.1.*" />
-    <Reference Include="System.Messaging" />
-    <Reference Include="System.Transactions" />
   </ItemGroup>
+
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="System.Data.SqlClient" Version="4.*" />
+    <PackageReference Include="System.Drawing.Common" Version="4.*" />    
+  </ItemGroup>
+  
 </Project>

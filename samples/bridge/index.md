@@ -1,6 +1,6 @@
 ---
 title: Bridge samples
-reviewed: 2023-07-04
+reviewed: 2025-06-20
 related:
  - nservicebus/bridge
 ---

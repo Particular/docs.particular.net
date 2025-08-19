@@ -21,7 +21,11 @@ docker run -d -p 27017:27017 --name TestMongoDB mongo:latest --replSet tr0
 ```
 
 ```shell
-docker exec -it TestMongoDB mongosh --eval 'rs.initiate()'
+docker exec -it TestMongoDB mongosh --eval '
+rs.initiate({
+  _id: "tr0",
+  members: [{ _id: 0, host: "localhost:27017" }]
+})'
 ```
 
 Alternatively, it is possible to [install MongoDB](https://www.mongodb.com/docs/manual/installation/) but the instance must be part of a [replica set](https://www.mongodb.com/docs/manual/replication/) to enable transactions. If this is not possible, the endpoint configuration must be altered to disable transactions (not recommended for production):
@@ -32,7 +36,7 @@ endpointConfiguration.UsePersistence<MongoPersistence>().UseTransactions(false)
 
 ### Data visualization
 
-To visualize data in MongoDB, it is useful to install a [MongoDB visualization tool](https://www.mongodb.com/docs/tools-and-connectors/). The screen shots in this sample are from [Robomongo](https://robomongo.org/).
+To visualize data in MongoDB, it is useful to install a [MongoDB visualization tool](https://www.mongodb.com/docs/tools-and-connectors/), like for example, [Compass](https://www.mongodb.com/try/download/compass). The screen shots in this sample are from [Robomongo](https://robomongo.org/).
 
 ## Code walk-through
 

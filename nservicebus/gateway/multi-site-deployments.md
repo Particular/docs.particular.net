@@ -1,6 +1,6 @@
 ---
 title: Multi-Site Deployments
-reviewed: 2023-09-15
+reviewed: 2025-08-01
 summary: How to handle multi-site communication.
 component: Gateway
 redirects:
@@ -84,9 +84,9 @@ NServiceBus automatically sets the required headers to enable sending messages b
 > [!NOTE]
 > The gateway is opinionated. It considers cross-site interactions through it to be inside the boundaries of a logical service.
 >
-> This internal communication between logically connected, but separately deployed components is restricted to use send semantics. The gateway exposes this through > the `SendToSites()` method.
+> This internal communication between logically connected, but separately deployed components is restricted to use send semantics. The gateway exposes this through the `SendToSites()` method.
 >
-> Since publish/subscribe semantics are intended for communication between different logical services; the gateway does not support it. Publish/subscribe is fine > between the endpoints on the same site, however.
+> Since publish/subscribe semantics are intended for communication between different logical services; the gateway does not support it. Publish/subscribe is fine between the endpoints on the same site, however.
 >
 > In a scenario with multiple logical services deployed cross-site, run separate gateways for each one.
 
@@ -99,10 +99,10 @@ Follow the steps for [configuring SSL](https://docs.microsoft.com/en-us/dotnet/f
 
 ## Automatic de-duplication
 
-Going through alternate channels like HTTP(S) means that the MSMQ safety guarantees of exactly-once message delivery are not available. This means that communication errors resulting in retries can lead to receiving messages more than once. To avoid being burdened with de-duplication, the NServiceBus gateway supports this out of the box. Message IDs are stored in the configured [Persistence](/persistence) so duplicates can be detected and discarded.
+Going through alternate channels like HTTP(S) means that the MSMQ safety guarantees of exactly-once message delivery are not available. This means that communication errors resulting in retries can lead to receiving messages more than once. To avoid being burdened with de-duplication, the NServiceBus gateway supports this out of the box. Message IDs are stored in the configured de-duplication persistence so duplicates can be detected and discarded.
 
-
-partial: dedup
+- [SQL deduplication persistence](/nservicebus/gateway/sql/)
+- [RavenDB deduplication persistence](/nservicebus/gateway/ravendb/)
 
 
 ## Incoming channels

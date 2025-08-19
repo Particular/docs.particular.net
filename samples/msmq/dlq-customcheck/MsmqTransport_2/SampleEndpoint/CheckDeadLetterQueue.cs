@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 #region check-dead-letter-queue
 
-class CheckDeadLetterQueue :
+sealed class CheckDeadLetterQueue :
     CustomCheck
 {
     PerformanceCounter dlqPerformanceCounter;
@@ -18,18 +18,17 @@ class CheckDeadLetterQueue :
             categoryName: "MSMQ Queue",
             counterName: "Messages in Queue",
             instanceName: "Computer Queues",
-            readOnly: true);
+            readOnly: true
+        );
     }
 
-    public override Task<CheckResult> PerformCheck(CancellationToken cancellationToken)
+    public override Task<CheckResult> PerformCheck(CancellationToken cancellationToken = default)
     {
         var currentValue = dlqPerformanceCounter.NextValue();
 
-        if (currentValue <= 0)
-        {
-            return CheckResult.Pass;
-        }
-        return CheckResult.Failed($"{currentValue} messages in the Dead Letter Queue on {Environment.MachineName}");
+        return currentValue <= 0
+            ? CheckResult.Pass
+            : CheckResult.Failed($"{currentValue} messages in the Dead Letter Queue on {Environment.MachineName}");
     }
 }
 

@@ -1,7 +1,7 @@
 ---
 title: Installers
 summary: Installers ensure endpoint-specific artifacts are installed and configured during endpoint startup.
-reviewed: 2023-05-01
+reviewed: 2025-05-09
 component: core
 related:
  - nservicebus/operations
@@ -15,9 +15,13 @@ Installers ensure that endpoint-specific artifacts (e.g. database tables, queues
 
 Installers require permissions to administer resources such as database tables, queues, or directories. Following the [principle of least privilege](https://en.wikipedia.org/wiki/Principle_of_least_privilege), it is recommended to run an endpoint with these elevated permissions only during initial deployment.
 
-The alternative to using installers is to create the required resources before the endpoint is run. The method of doing this varies for each transport or persistence package. For more information, see [operations](/nservicebus/operations).
+The alternative to using installers is to create the required resources before the endpoint is run. This may also result in slightly faster startup times. The method of doing this varies for each transport or persistence package. For more information, see [operations](/nservicebus/operations).
 
 partial: installer-api
+
+## Auto-subscribe is not part of installers
+
+NServiceBus detects all events an endpoint handles and [auto-subscribes to these events at startup](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#automatic-subscriptions). Automatic subscriptions can be turned off by [disabling the auto subscribe feature](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#disabling-auto-subscription).
 
 ## Running installers during endpoint startup
 

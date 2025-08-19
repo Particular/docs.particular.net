@@ -1,10 +1,10 @@
 ---
 title: Databus with SystemJsonSerializer message serializer
 summary: The file share data bus allows large properties to be transferred via a Windows file share using custom converter for SystemJsonSerializer
-reviewed: 2023-09-03
+reviewed: 2025-08-03
 component: FileShareDataBus
 related:
- - nservicebus/messaging/databus
+ - nservicebus/messaging/claimcheck
 ---
 
 Although System.Text.Json is one of the supported serializers from NServiceBus 8, System.Text.Json does not support ISerializable .
@@ -20,7 +20,7 @@ This sample shows how to send large attachments with NServiceBus via Windows fil
  1. Press <kbd>D</kbd> in the window to send a large message. A message has just been sent that is larger than the limit allowed by the learning transport. NServiceBus sends it as an attachment, allowing it to reach the Receiver application.
 
 > [!WARNING]
-> The FileShareDataBus **does not** remove physical attachments once the message has been processed. Apply a custom [cleanup-strategy](/nservicebus/messaging/databus/file-share.md#cleanup-strategy).
+> The FileShareDataBus **does not** remove physical attachments once the message has been processed. Apply a custom [cleanup-strategy](/nservicebus/messaging/claimcheck/file-share.md#cleanup-strategy).
 
 ## Code walk-through
 

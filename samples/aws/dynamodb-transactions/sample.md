@@ -1,7 +1,7 @@
 ---
 title: DynamoDB Persistence Usage with transactions
 summary: Using DynamoDB persistence to store sagas and outbox records atomically
-reviewed: 2023-10-24
+reviewed: 2025-06-04
 component: DynamoDB
 related:
  - nservicebus/sagas
@@ -21,7 +21,7 @@ Alternatively with Docker installed locally, execute the following command in th
 docker-compose up -d
 ```
 
-the data is only kept in memory and will be gone when the container is removed. It is possible to inspect the data written to DynamoDB by using the [NoSQL Workbench for DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html). The below screenshot shows the PK and SK created for the not yet completed Saga, the outbox entries and the transactionally inserted OrderShippingInformation.
+the data is only kept in memory and will be gone when the container is removed. It is possible to inspect the data written to DynamoDB by using the [NoSQL Workbench for DynamoDB](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/workbench.html). The below screenshot shows the PK and SK created for the not yet completed Saga, the outbox entries and the transactionally inserted `OrderShippingInformation`.
 
 ![](nosql-workbench.png)
 

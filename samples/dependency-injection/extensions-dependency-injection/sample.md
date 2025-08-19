@@ -2,7 +2,7 @@
 title: NServiceBus.Extensions.DependencyInjection Usage
 summary: A sample that uses Microsoft's built-in dependency injection container
 component: Extensions.DependencyInjection
-reviewed: 2022-10-31
+reviewed: 2025-02-18
 related:
  - nservicebus/dependency-injection
  - nservicebus/dependency-injection/extensions-dependencyinjection
@@ -10,7 +10,7 @@ related:
 
 ### Configuring an endpoint to use ServiceProvider
 
-The following code configures an endpoint with the [externally managed mode](/nservicebus/dependency-injection/#externally-managed-mode) using Microsoft's built-in dependency injection container:
+The following code configures an endpoint with the [externally managed mode](/nservicebus/dependency-injection/#modes-of-operation-externally-managed-mode) using Microsoft's built-in dependency injection container:
 
 snippet: ContainerConfiguration
 

@@ -1,64 +1,65 @@
 ---
 title: Saga scenario testing
 summary: Develop service layers and long-running processes using test-driven development.
-reviewed: 2023-06-19
+reviewed: 2025-05-30
 component: Testing
 versions: '[7.4,)'
 related:
 ---
 
-While [each handler in a saga can be tested using a unit test](/samples/unit-testing/#testing-a-saga), often it is helpful to test an entire scenario involving multiple messages.
+While [each handler in a saga can be tested using a unit test](/samples/unit-testing/#testing-a-saga), it's often helpful to test an entire scenario involving multiple messages.
 
-The `TestableSaga` class allows this type of scenario testing and supports the following features:
+The `TestableSaga` class enables this kind of scenario testing and supports the following:
 
-* Exercises the `ConfigureHowToFindSaga` method to ensure that mappings are valid.
-* Emulates how sagas are processed by NServiceBus, including automatically setting the correlation property in the saga data when the first message is received.
+* Exercises the `ConfigureHowToFindSaga` method to ensure mappings are valid.
+* Emulates saga processing behavior in NServiceBus, including automatic correlation property assignment in saga data upon receiving the first message.
 * Stores timeouts internally, which can be triggered by [advancing time](#advancing-time).
 
 ## Example
 
-Here's a simple sample of a scenario test of a `ShippingPolicy` saga, including timeouts:
+A simple scenario test of a `ShippingPolicy` saga, including timeouts:
 
 snippet: BasicScenarioTest
 
 ## Creating a testable saga
 
-In many cases a testable saga can be created using only the type parameters from the saga.
+Often, a testable saga can be created using just the type parameters:
 
 snippet: TestableSagaCtor
 
-This assumes that the saga has a parameter-less constructor. If the saga has a constructor that requires services to be injected, a factory can be specified to create an instance of the saga class for each handled message.
+This assumes a parameterless constructor. If the saga requires injected services, a factory can be provided to create an instance per handled message:
 
 snippet: TestableSagaCtorFactory
 
-By default, the `CurrentTime` for the saga is set to `DateTime.UtcNow`. The constructor can also be used to set the `CurrentTime` to a different initial value. For more details see [advancing time](#advancing-time).
+By default, `CurrentTime` is initialized to `DateTime.UtcNow`, but a specific value can be set via the constructor. See [advancing time](#advancing-time) for details:
 
 snippet: TestableSagaCtorTime
 
 ## Handling messages
 
-The testable saga is similar to the saga infrastructure in NServiceBus. Every time it is asked to handle a message, the testable saga instantiates a new instance of the saga class and use the mapping information in the `ConfigureHowToFindSaga` method to locate the correct saga data in the internal storage.
+The testable saga mimics NServiceBus saga infrastructure. Each time it handles a message, it:
 
-To have the saga infrastructure handle a message, use the `Handle` method:
+1. Instantiates a new saga instance.
+2. Uses `ConfigureHowToFindSaga` to locate the matching saga data in internal storage.
+
+To handle a message:
 
 snippet: TestableSagaSimpleHandle
 
-If necessary, optional parameters exist to allow the use of a custom `TestableMessageHandlerContext` or specify custom message headers:
+Optional parameters allow using a custom `TestableMessageHandlerContext` or providing custom headers:
 
 snippet: TestableSagaHandleParams
 
 ## Handler results
 
-The `HandleResult` returned when each message is handled contains information about the message that was handled and the result of that operation which can be used for assertions.
+Handling a message returns a `HandleResult`, which contains:
 
-The `HandleResult` class contains:
-
-* `SagaId`: Identifies the `Guid` of the saga that was either created or retrieved from storage.
-* `Completed`: Indicates whether the handler invoked the `MarkAsComplete()` method.
-* `HandledMessage`: Contains the message type, headers, and content of the message that was handled.
-* `Context`: A [`TestableMessageHandlerContext`](/nservicebus/testing/#testing-a-handler) which contains information about messages sent/published as well as any other operations that occurred on the `IMessageHandlerContext` while the message was being handled.
-* `SagaDataSnapshot`: Contains a copy of the saga data after the message handler completed.
-* Convenience methods for finding messages of a given type inside the `Context`:
+* `SagaId`: The `Guid` of the saga instance created or loaded.
+* `Completed`: Whether `MarkAsComplete()` was called.
+* `HandledMessage`: Type, headers, and body of the message handled.
+* `Context`: A [`TestableMessageHandlerContext`](/nservicebus/testing/#testing-a-handler) with sent/published messages and other operations during handling.
+* `SagaDataSnapshot`: Copy of saga data after handling.
+* Helpers for locating specific messages in the `Context`:
   * `FindSentMessage<TMessage>()`
   * `FindPublishedMessage<TMessage>()`
   * `FindTimeoutMessage<TMessage>()`
@@ -66,52 +67,50 @@ The `HandleResult` class contains:
 
 ## Advancing time
 
-The testable saga contains a `CurrentTime` property that represents a virtual clock for the saga scenario. The `CurrentTime` property defaults to the time when test execution starts, but can be optionally specified [in the `TestableSaga` constructor](#creating-a-testable-saga).
+`CurrentTime` represents a virtual clock. It defaults to the test start time but can be set in the [constructor](#creating-a-testable-saga).
 
-As each message handler runs, timeouts are collected in an internal timeout storage. By calling the `AdvanceTime` method, these timeouts will come due and the messages they contain will be handled. The `AdvanceTime` method returns an array of `HandleResult`, one for each timeout that is handled.
+Timeouts are stored during message handling. Calling `AdvanceTime` processes due timeouts and returns an array of `HandleResult`:
 
 snippet: TestableSagaAdvanceTime
 
-If a custom `TestableMessageHandlerContext` is needed to process each timeout, an optional parameter allows creating them:
+Need custom `TestableMessageHandlerContext` per timeout? Use the overload:
 
 snippet: TestableSagaAdvanceTimeParams
 
 ## Simulating external handlers
 
-Many sagas send commands to external handlers, which do some work, then send a reply message back to the saga so that the saga can move on to the next step of a multi-step process. These reply messages are [auto-correlated](/nservicebus/sagas/message-correlation.md#auto-correlation): the saga includes the saga ID as a message header in the outbound message, and the external handler returns that message when it does a reply.
+Sagas often send commands to external handlers, expecting replies. These reply messages are [auto-correlated](/nservicebus/sagas/message-correlation.md#auto-correlation) using a saga ID header.
 
-In a saga scenario test, the external handler's response can be simulated using the `SimulateReply` method:
+Simulate such replies with `SimulateReply`:
 
 snippet: TestableSagaSimulateReply
 
-When the saga being tested sends a `DoStep1` command, the reply is simulated using the provided `Func<TSagaMessage, TReplyMessage>` delegate. The resulting `Step1Response` message is added to the testable saga's [internal queue](#queued-messages), including the header containing the saga's ID so that a `ConfigureHowToFindSaga` mapping is not required.
-
-Alternatively, a reply message can be handled directly without using a simulator, but then the `SagaId` value must be provided:
+The reply is enqueued internally, with the correlation header set. If you want to manually handle a reply instead:
 
 snippet: TestableSagaHandleReply
 
-The `HandleReply` method also contains optional parameters for a custom `TestableMessageHandlerContext` or additional message headers:
+You can also supply custom headers or a custom context:
 
 snippet: TestableSagaHandleReplyParams
 
 ## Queued messages
 
-Any message generated of a type that is handled by the saga is added to the testable saga's internal queue. This includes:
+Any message sent/published that the saga handles is queued internally. This includes:
 
-* When a saga handler sends or publishes any message that the saga itself handles. This is commonly done within a saga to create a new transactional scope around a new message.
-* When using a [external handler simulator](#simulating-external-handlers), the resulting message is added to the queue.
+* Saga sends/publishes of messages it also handles.
+* Messages produced by [external handler simulations](#simulating-external-handlers).
 
-The testable saga has several methods available to evaluate what is in the queue, which can be used for test assertions
+You can inspect and assert against the message queue:
 
 snippet: TestableSagaQueueOperations
 
-The next message in the queue is handled by calling `HandleQueuedMessage()`:
+To process the next queued message:
 
 snippet: TestableSagaHandleQueuedMessage
 
 > [!NOTE]
-> Using `HandleQueuedMessage()` allows specific ordering of message processing in order to write tests related to specific ordering and race condition concerns. Whether or not a timeout or a reply message is handled first in a specific scenario is controlled by whether the test calls the `AdvanceTime()` or `HandleQueuedMessage()` method.
+> Use `HandleQueuedMessage()` to test specific message ordering or simulate race conditions. Control whether timeouts or replies are processed first by choosing `AdvanceTime()` or `HandleQueuedMessage()` accordingly.
 
 ## Additional examples
 
-For more examples of what is possible with saga scenario tests, see the [saga tests in the NServiceBus.Testing repository](https://github.com/Particular/NServiceBus.Testing/tree/master/src/NServiceBus.Testing.Tests/Sagas).
+For more usage patterns, see the [NServiceBus.Testing saga tests](https://github.com/Particular/NServiceBus.Testing/tree/master/src/NServiceBus.Testing.Tests/Sagas).

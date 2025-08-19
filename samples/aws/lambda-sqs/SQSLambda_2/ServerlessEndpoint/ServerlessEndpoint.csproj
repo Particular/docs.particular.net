@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -19,6 +19,7 @@
     <PackageReference Include="Amazon.Lambda.SQSEvents" Version="2.*" />
     <PackageReference Include="NServiceBus.AmazonSQS" Version="7.*" />
     <PackageReference Include="NServiceBus.AwsLambda.SQS" Version="2.*" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.1" />
   </ItemGroup>
 
 </Project>

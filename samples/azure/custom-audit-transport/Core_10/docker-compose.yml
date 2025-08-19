@@ -1,0 +1,57 @@
+name: customaudit
+services:
+  servicecontrol:
+    image: particular/servicecontrol:latest
+    env_file:
+      - env/service-platform-error.env
+    ports:
+      - "33333:33333"
+    environment:
+      RAVENDB_CONNECTIONSTRING: http://servicecontrol-db:8080
+      REMOTEINSTANCES: '[{"api_uri":"http://servicecontrol-audit:44444/api"}]'
+      ALLOWMESSAGEEDITING: true
+    command: --setup-and-run
+    restart: unless-stopped
+    depends_on:
+      servicecontrol-db:
+        condition: service_healthy
+      servicecontrol-audit:
+        condition: service_healthy
+  servicecontrol-db:
+    image: particular/servicecontrol-ravendb:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - servicecontrol-db:/var/lib/ravendb/data
+      - servicecontrol-db-config:/var/lib/ravendb/config
+  servicecontrol-audit:
+    image: particular/servicecontrol-audit:latest
+    env_file:
+      - env/service-platform-audit.env
+    ports:
+      - "44444:44444"
+    environment:
+      RAVENDB_CONNECTIONSTRING: http://servicecontrol-db:8080
+      SERVICEBUS_AUDITQUEUE: audit
+    command: --setup-and-run
+    restart: unless-stopped
+    depends_on:
+      servicecontrol-db:
+        condition: service_healthy
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+  servicepulse:
+    image: particular/servicepulse:latest
+    ports:
+      - "9090:9090"
+    environment:
+      SERVICECONTROL_URL: http://servicecontrol:33333
+      MONITORING_URL: "!"
+    restart: unless-stopped
+    depends_on:
+      servicecontrol:
+        condition: service_healthy
+
+volumes:
+  servicecontrol-db:
+  servicecontrol-db-config:

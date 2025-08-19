@@ -1,4 +1,5 @@
 using NServiceBus;
+using Shared;
 using System;
 using System.Threading.Tasks;
 
@@ -9,7 +10,8 @@ class Program
         Console.Title = "Receiver";
         var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver");
         var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
-        dataBus.BasePath(@"..\..\..\..\storage");
+        var storagePath = new SolutionDirectoryFinder().GetDirectory("storage");
+        dataBus.BasePath(storagePath);
         endpointConfiguration.UsePersistence<LearningPersistence>();
         endpointConfiguration.UseSerialization<XmlSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());

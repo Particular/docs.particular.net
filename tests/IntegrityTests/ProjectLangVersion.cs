@@ -43,6 +43,12 @@ namespace IntegrityTests
 
                     foreach (var projectFile in projectFiles)
                     {
+                        //Don't analyze generated project files
+                        if (projectFile.Contains("obj"))
+                        {
+                            continue;
+                        }
+
                         var doc = XDocument.Load(projectFile);
 
                         if (doc.Root.Attribute("Sdk") == null)
@@ -77,11 +83,18 @@ namespace IntegrityTests
 
                     solutionLangVersion ??= fallbackLangVersion;
 
-                    var solutionLangVersionString = solutionLangVersion.Value.ToString("N1");
+                    var solutionLangVersionString = solutionLangVersion > latestReleasedLangVersion ? "preview" : solutionLangVersion.Value.ToString("N1");
+
                     bool valid = true;
 
                     foreach (var projectFile in projectFiles)
                     {
+                        //Don't analyze generated project files
+                        if (projectFile.Contains("obj"))
+                        {
+                            continue;
+                        }
+
                         var doc = XDocument.Load(projectFile);
 
                         if (doc.Root.Attribute("Sdk") == null)
@@ -146,12 +159,15 @@ namespace IntegrityTests
             // null values here mean we don't want that tfm to be considered in the calculations
             {"net48", null },
             {"netstandard2.0", null },
-            { "net6.0", 10 },
-            { "net6.0-windows", 10 },
-            { "net7.0", 11 },
-            { "net7.0-windows", 11 },
             { "net8.0", 12 },
             { "net8.0-windows", 12 },
+            { "net9.0", 13 },
+            { "net9.0-windows", 13 },
+            { "net10.0", 14 },
+            { "net10.0-windows", 14 }
         };
+
+        // This needs to be kept up to date with the latest released version of C#
+        private const int latestReleasedLangVersion = 13;
     }
 }

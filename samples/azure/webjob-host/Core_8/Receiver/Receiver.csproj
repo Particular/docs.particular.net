@@ -1,34 +1,39 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-	<TargetFrameworks>net8.0;net7.0;net6.0;net48</TargetFrameworks>
+  <TargetFrameworks>net9.0;net8.0;net48</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <LangVersion>10.0</LangVersion>
+    <LangVersion>12.0</LangVersion>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.*" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Extensions" Version="3.*" />
+    <PackageReference Include="NServiceBus" Version="8.*" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="3.*" />
-  </ItemGroup>
-  <ItemGroup Label="To disable Dashboard logging (https://docs.microsoft.com/en-us/azure/app-service/webjobs-sdk-get-started#enable-console-logging)">
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="6.*" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.*" />
     <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="1.*" />
     <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="11.*" />
-    <PackageReference Include="NServiceBus" Version="8.*" />
   </ItemGroup>
+
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="System.Private.Uri" Version="4.*" />
+    <PackageReference Include="System.Text.RegularExpressions" Version="4.*" />
+  </ItemGroup>
+
+  <ItemGroup Label="To disable Dashboard logging (https://docs.microsoft.com/en-us/azure/app-service/webjobs-sdk-get-started#enable-console-logging)">
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.*" />
+  </ItemGroup>
+
   <ItemGroup>
-    <None Update="appsettings.development.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Settings.job">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="run.cmd">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Update="appsettings.development.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="appsettings.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="Settings.job" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="run.cmd" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
+
+  <ItemGroup>
+    <RuntimeHostConfigurationOption Include="System.Runtime.Loader.UseRidGraph" Value="true" />
+  </ItemGroup>
+
 </Project>

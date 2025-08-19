@@ -1,12 +1,12 @@
 ---
 title: Using NServiceBus and Kafka in Azure Functions (isolated)
 summary: Using NServiceBus with Kafka triggers and Azure Functions isolated worker hosting model.
-component: ASBFunctionsWorker
+component: ASBS
 related:
  - nservicebus/hosting/azure-functions-service-bus
 redirects:
  - samples/previews/azure-functions/kafka
-reviewed: 2023-09-13
+reviewed: 2025-08-12
 ---
 
 This sample shows how to process Kafka events using an Azure Functions trigger and how to follow up on those events using an NServiceBus SendOnly endpoint in an Azure Function.
@@ -26,7 +26,7 @@ downloadbutton
 
 ### Service bus connection string
 
-To use the sample, a valid Service Bus connection string must be provided in the `local.settings.json` file in the `AzureFunctions.KafkaTrigger.FunctionsHostBuilder` project and as an environment variable named `AzureServiceBus_ConnectionString`.
+To use the sample, provide a valid Azure Service Bus connection string from a namespace that supports topics and sessions (Standard or Premium tier). Add it to the `local.settings.json file` in the `AzureFunctions.KafkaTrigger.FunctionsHostBuilder` project and set it as an environment variable named `AzureServiceBus_ConnectionString`.
 
 ### Kafka broker
 

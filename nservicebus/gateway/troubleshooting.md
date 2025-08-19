@@ -1,7 +1,7 @@
 ---
 title: Gateway Troubleshooting
 summary: How to solve common issues that arise with the gateway
-reviewed: 2022-12-16
+reviewed: 2025-03-21
 redirects:
  - nservicebus/gateway-trouble-shooting
  - nservicebus/gateway-service-point-manager
@@ -28,33 +28,33 @@ Url reservation add failed, Error: 183
 Cannot create a file when that file already exists.
 ```
 
-This warning can usually be safely ignored. However when urlacls are corrupted the same behaviors occurs. This problem will manifest in that everything seems to be working correctly except that the gateway will not be listening on the port.
+This warning can usually be safely ignored. However, if the urlacls are corrupted the same behavior as above occurs. In this case, everything may appear to be functioning normally, except that the gateway will not be listening on the port.
 
-To verify this problem navigate to the url (in this case `http://localhost:25894/MyEndpoint/`) in a browser. If the gateway is listening the following will be received:
+To verify this issue, navigate to the url (in this case `http://localhost:25894/MyEndpoint/`) in a browser. If the gateway is listening, the following will be received:
 
 ```
 EndpointName:MyEndpoint - Status: Ok
 ```
 
-If the gateway is not listening no response will be received.
+If the gateway is not listening, no response will be received.
 
 To clean and recreate the url acl manually run the following commands from an admin console:
 
-```dos
+```shell
 netsh http delete urlacl YourUrl
 netsh http add urlacl url=YourUrl user="YourMachine\EndpointUsername"
 ```
 
 For example
 
-```dos
+```shell
 netsh http delete urlacl http://localhost:25894/MyEndpoint/
 netsh http add urlacl url=http://localhost:25894/MyEndpoint/ user="Machine\MyEndpointServiceAccount"
 ```
 
 To list all urlacls on a machine run
 
-```dos
+```shell
 netsh http show urlacl
 ```
 

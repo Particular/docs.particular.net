@@ -1,17 +1,23 @@
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 #region IntMessageHandler
 
 public class IntMessageHandler :
     IHandleMessages<IntMessage>
 {
-    static ILog log = LogManager.GetLogger<IntMessage>();
+
+    private readonly ILogger<IntMessageHandler> logger;
+
+    public IntMessageHandler(ILogger<IntMessageHandler> logger)
+    {
+        this.logger = logger;
+    }
 
     public Task Handle(IntMessage message, IMessageHandlerContext context)
     {
-        log.Info("Message received, Returning");
+        logger.LogInformation("Message received, Returning");
         return context.Reply(10);
     }
 }

@@ -29,6 +29,8 @@ The implementation details for each transport are discussed in the dedicated doc
 
 partial: matrix
 
+> [!WARNING]
+> When combining [SQL Server transport](/transports/sql/) and [SQL persistence with the Microsoft SQL Server dialect](/persistence/sql/dialect-mssql.md), be aware of the different [connection behaviors](/persistence/sql/sqlserver-combining-persistence-wth-transport.md).
 
 ### Transaction scope (Distributed transaction)
 
@@ -78,6 +80,7 @@ Some transports support enlisting outgoing operations in the current receive tra
 Use the following code to use this mode:
 
 snippet: TransportTransactionAtomicSendsWithReceive
+
 #### Consistency guarantees
 
 This mode has the same consistency guarantees as the *Receive Only* mode, but additionally, it prevents the occurrence of [ghost messages](/nservicebus/concepts/glossary.md#ghost-message) since all outgoing operations are atomic with the ongoing receive operation.

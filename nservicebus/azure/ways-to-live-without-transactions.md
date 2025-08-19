@@ -1,7 +1,7 @@
 ---
 title: Avoiding Transactions in Azure
 summary: Options for avoiding transactions in Azure
-reviewed: 2022-10-31
+reviewed: 2025-02-10
 isLearningPath: true
 ---
 
@@ -11,10 +11,10 @@ This article lists options available to avoid the need for transactions and disc
 
 Possible approaches:
 
- * Sharing local transaction.
- * Atomic operations and transport retries.
- * Sagas and compensation logic.
- * Routing slips and compensation logic.
+- Sharing local transaction.
+- Atomic operations and transport retries.
+- Sagas and compensation logic.
+- Routing slips and compensation logic.
 
 ## Sharing local transactions
 
@@ -22,12 +22,12 @@ If local transactions are available and all business and messaging operations oc
 
 ### Advantages
 
- * It is possible to prevent escalating a transaction to a distributed transaction. The only required change is to injecti the transport level transaction into other parts of the application.
+- It is possible to prevent escalating a transaction to a distributed transaction. The only required change is to injecti the transport level transaction into other parts of the application.
 
 ### Disadvantages
 
- * There can be only a single transactional resource in the entire system. The technique can only be applied if the application fits the limitations of this transactional resource. As some Azure services throttle quite aggressively, sometimes on behavior of other tenants, capacity planning might become an issue.
- * Injecting the transaction might be a challenge in some parts of the system, e.g. when using third-party libraries.
+- There can be only a single transactional resource in the entire system. The technique can only be applied if the application fits the limitations of this transactional resource. As some Azure services throttle quite aggressively, sometimes on behavior of other tenants, capacity planning might become an issue.
+- Injecting the transaction might be a challenge in some parts of the system, e.g. when using third-party libraries.
 
 ## Atomic operations and transport retries
 
@@ -39,14 +39,14 @@ Another important consideration is that regular transactions also have a *rollba
 
 ### Advantages
 
- * Consistency can be achieved without transactions.
- * Message processing can be retried automatically after transient exceptions.
+- Consistency can be achieved without transactions.
+- Message processing can be retried automatically after transient exceptions.
 
 ### Disadvantages
 
- * The application must ensure that operations related to business logic are atomic, i.e. have a single insert, update or delete statement per operation. That often requires changes in program structure.
- * Operations related to business logic must be idempotent. This guarantees that automatic retries don't cause unintended side-effects. [The need for idempotency](#the-need-for-idempotency) discusses techniques to achieve idempotency.
- * Retry behavior is usually combined with timeouts. Timeouts cause retries not only if the operation fails, but also when it is too slow. This can lead to situations where the same operation executes multiple times in parallel, even though it hasn't failed.
+- The application must ensure that operations related to business logic are atomic, i.e. have a single insert, update or delete statement per operation. That often requires changes in program structure.
+- Operations related to business logic must be idempotent. This guarantees that automatic retries don't cause unintended side-effects. [The need for idempotency](#the-need-for-idempotency) discusses techniques to achieve idempotency.
+- Retry behavior is usually combined with timeouts. Timeouts cause retries not only if the operation fails, but also when it is too slow. This can lead to situations where the same operation executes multiple times in parallel, even though it hasn't failed.
 
 ## Sagas and compensation logic
 
@@ -56,14 +56,14 @@ In essence, using sagas is implementing a Distributed Transaction Coordinator th
 
 ### Advantages
 
- * Consistency can be achieved without transactions.
- * This approach is extremely flexible and maps very well to the business domain.
+- Consistency can be achieved without transactions.
+- This approach is extremely flexible and maps very well to the business domain.
 
 ### Disadvantages
 
- * Considering and implementing all possible variations and error conditions in a transaction can be difficult.
- * Effective implementation requires a deep understanding of the business requirements. The implementation details are driven by business decisions rather than technical considerations, so it's recommended to collaborate closely with business experts when designing sagas.
- * Sagas are stateful, therefore the operation cannot be atomic. This should be considered when sagas are used in combination with atomic operations that cannot be batched. Operations against a store should never be executed directly inside the saga itself. Instead, they should be executed by another handler and queued in between to cater for idempotency at all levels.
+- Considering and implementing all possible variations and error conditions in a transaction can be difficult.
+- Effective implementation requires a deep understanding of the business requirements. The implementation details are driven by business decisions rather than technical considerations, so it's recommended to collaborate closely with business experts when designing sagas.
+- Sagas are stateful, therefore the operation cannot be atomic. This should be considered when sagas are used in combination with atomic operations that cannot be batched. Operations against a store should never be executed directly inside the saga itself. Instead, they should be executed by another handler and queued in between to cater for idempotency at all levels.
 
 ## Routing slips and compensation logic
 
@@ -75,15 +75,15 @@ If at any point in time a handler fails, it sends the message back in the chain 
 
 ### Advantages
 
- * Consistency can be achieved without transactions.
- * The conceptual model is more "linear" than sagas, so it might be easier to analyze and implement.
- * It doesn't require maintaining state in the data store. State information can be passed in the routing slip.
+- Consistency can be achieved without transactions.
+- The conceptual model is more "linear" than sagas, so it might be easier to analyze and implement.
+- It doesn't require maintaining state in the data store. State information can be passed in the routing slip.
 
 ### Disadvantages
 
- * Considering and implementing all possible variations and error conditions in a transaction can be difficult.
- * The handlers can't be executed in parallel; therefore the implementation is often slower than with sagas.
- * This approach is less flexible than sagas.
+- Considering and implementing all possible variations and error conditions in a transaction can be difficult.
+- The handlers can't be executed in parallel; therefore the implementation is often slower than with sagas.
+- This approach is less flexible than sagas.
 
 ## The need for idempotency
 
@@ -91,12 +91,12 @@ Every approach involving automatic retries will result in `at least once` delive
 
 There are multiple ways to achieve idempotency, some at the technical level, others built into the business logic:
 
- * Message deduplication
- * Natural idempotency
- * Entities and messages with version information
- * Side effect checks
- * Partner state machines
- * Accept uncertainty
+- Message deduplication
+- Natural idempotency
+- Entities and messages with version information
+- Side effect checks
+- Partner state machines
+- Accept uncertainty
 
 ### Message deduplication
 

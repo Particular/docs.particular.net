@@ -1,21 +1,18 @@
-using NServiceBus;
-using NServiceBus.Logging;
-using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
+using NServiceBus;
 
-public class LongRunningMessageHandler :
+public class LongRunningMessageHandler(ILogger<LongRunningMessageHandler> logger) :
     IHandleMessages<LongRunningMessage>
 {
-    static ILog log = LogManager.GetLogger<LongRunningMessageHandler>();
-
     #region LongRunningMessageHandler
     public async Task Handle(LongRunningMessage message, IMessageHandlerContext context)
     {
-        log.Info($"Received message {message.DataId}. Entering loop.");
+        logger.LogInformation("Received message {DataId}. Entering loop.", message.DataId);
 
         while (true)
         {
-            log.Info("Handler still running. Press any key to forcibly stop the endpoint.");
+            logger.LogInformation("Handler still running. Press any key to forcibly stop the endpoint.");
             await Task.Delay(2000, context.CancellationToken);
         }
     }

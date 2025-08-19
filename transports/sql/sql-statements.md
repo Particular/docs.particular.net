@@ -2,7 +2,7 @@
 title: SQL Server transport SQL statements
 summary: Overview of the SQL statements used to manage the SQL Server transport
 component: SqlTransport
-reviewed: 2022-11-24
+reviewed: 2025-03-21
 versions: '[3,)'
 redirects:
 - nservicebus/sqlserver/runtime-sql
@@ -21,21 +21,21 @@ partial: create-subscriptions-table
 
 ### Creating table structure in production
 
-There are some special considerations for creating the queue tables in production environments.
+When creating the queue tables in production environments, there are specific considerations to keep in mind.
 
 
 #### NServiceBus installers
 
-When using NServiceBus [installers](/nservicebus/operations/installers.md) the queue tables are created automatically before the endpoint is started.
+When using NServiceBus [installers](/nservicebus/operations/installers.md), the queue tables are created automatically before the endpoint is started.
 
-the user account under which the installation of the host is performed must have `CREATE TABLE` and `VIEW DEFINITION` permissions on the database where the queues are to be created. The account under which the service runs does not have to have these permissions. Standard read/write/delete permissions (e.g. `db_datawriter` and `db_datareader` roles) are enough.
+The user account under which the installation of the host is performed, must have `CREATE TABLE` and `VIEW DEFINITION` permissions on the database where the queues are to be created. The service account does not need to have these permissions. Standard read/write/delete permissions (e.g. `db_datawriter` and `db_datareader` roles) are sufficient.
 
 
 #### Scripted
 
-Using NServiceBus installers does not allow review of the actual T-SQL statements that are going be executed. For that reason, some prefer to store the actual scripts in a version control system.
+Using NServiceBus installers does not allow review of the actual T-SQL statements that are going be executed. Hence, some prefer to store the actual scripts in a version control system.
 
-The script above is parametrized at execution time with the queue name so it cannot be used as-is. Alternatively, the scripts could be generated from the development or staging environments, then directly executed on a production environment by DBAs to replicate that table structure.
+The script above is parametrized at execution time with the queue name so it cannot be used as-is. Alternatively, the scripts could be generated from the development or staging environments,and then executed on a production environment by DBAs to replicate that table structure.
 
 To capture the script for later execution use SQL Server Management Studio. Connect to the server (e.g. development or staging) and right-click the database with the queue tables. From "Tasks" menu choose "Generate Scripts..." and generate the scripts for relevant tables.
 

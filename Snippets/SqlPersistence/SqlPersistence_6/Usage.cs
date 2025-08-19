@@ -3,6 +3,8 @@ using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
+using Azure.Core;
+using Azure.Identity;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Npgsql;
@@ -99,14 +101,41 @@ class Usage
                 var npgsqlParameter = (NpgsqlParameter)parameter;
                 npgsqlParameter.NpgsqlDbType = NpgsqlDbType.Jsonb;
             });
+
+        var dataSource = NpgsqlDataSource.Create(connection);
+
         persistence.ConnectionBuilder(
             connectionBuilder: () =>
             {
-                return new NpgsqlConnection(connection);
+                return dataSource.CreateConnection();
             });
 
         #endregion
     }
+
+    void PostgreSqlEntraUsage(EndpointConfiguration endpointConfiguration)
+    {
+        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+        #region SqlPersistenceUsagePostgreSqlEntra
+
+        var connection = "Server=test.postgres.database.azure.com;Database=postgres;Port=5432;User Id=<entra user id>;Ssl Mode=Require;";
+        var dataSourceBuilder = new NpgsqlDataSourceBuilder(connection);
+        if (string.IsNullOrEmpty(dataSourceBuilder.ConnectionStringBuilder.Password))
+        {
+            dataSourceBuilder.UsePeriodicPasswordProvider(async (_, ct) =>
+            {
+                var credentials = new DefaultAzureCredential();
+                var token = await credentials.GetTokenAsync(new TokenRequestContext(new string[] { "https://ossrdbms-aad.database.windows.net/.default" }), ct);
+                return token.Token;
+            }, TimeSpan.FromHours(24), TimeSpan.FromSeconds(10));
+        }
+
+        var builder = dataSourceBuilder.Build();
+        persistence.ConnectionBuilder(connectionBuilder: () => builder.CreateConnection());
+
+        #endregion
+    }
+
     void JsonBParameterModifier(EndpointConfiguration endpointConfiguration)
     {
         #region JsonBParameterModifier

@@ -6,7 +6,6 @@ reviewed: 2023-11-30
 related:
  - servicecontrol
  - servicecontrol/contracts
- - servicecontrol/plugins
  - samples/servicecontrol/monitoring3rdparty
 ---
 
@@ -86,6 +85,10 @@ In order to get notifications when the exposed ServiceControl events occur, crea
 
 snippet: ServiceControlEventsHandlers
 
+> [!IMPORTANT]
+> In order to prevent infinite message loops (i.e. processing of an integration event fails -> the faulting message is moved to the ServiceControl error queue, which triggers yet another integration event) the monitoring endpoint must use a dedicated error queue, separate from the ServiceControl one. 
+
+snippet: ServiceControlEventsMonitorCustomErrorQueue
 
 ## Notes on other transports
 

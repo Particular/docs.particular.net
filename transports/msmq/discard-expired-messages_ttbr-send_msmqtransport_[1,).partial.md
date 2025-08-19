@@ -1,6 +1,10 @@
-The MSMQ native TTBR implementation can be disabled for messages sent as part of a transaction. These messages rely on the [non-native](#non-native) TTBR handling to ensure they are discarded when they are read by an endpoint, if the time to be received has expired. Messages sent outside of a transaction will still use the native TTBR capabilities built into the transport.
+The MSMQ native TTBR implementation can be **disabled** for messages sent as part of a transaction. In this case, messages rely on [non-native TTBR handling](#non-native) to ensure they are discarded **at receive time** if the Time-To-Be-Received has expired. 
+
+Messages sent **outside of a transaction** will still use MSMQ's built-in native TTBR functionality.
 
 snippet: disable-native-ttbr
 
 > [!WARNING]
-> Messages sent without the native MSMQ TTBR property set cannot automatically be cleaned up by MSMQ. They will remain in a queue until they are read. If they are read by an endpoint running on NServiceBus.Transport.Msmq version 1.0.x or below, messages can be processed even if the TTBR header has expired.
+> Messages sent **without** the native MSMQ `TimeToBeReceived` property cannot be automatically removed from the queue by MSMQ. They will remain in the queue until they are read by a receiving endpoint.
+>
+> If such a message is received by an endpoint running **NServiceBus.Transport.Msmq version 1.0.x or earlier**, the TTBR header will be ignored and the message may be processed even if it has already expired.

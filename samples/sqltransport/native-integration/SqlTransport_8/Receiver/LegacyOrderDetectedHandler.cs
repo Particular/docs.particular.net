@@ -1,15 +1,13 @@
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
-public class LegacyOrderDetectedHandler :
+public class LegacyOrderDetectedHandler(ILogger<LegacyOrderDetectedHandler> logger) :
     IHandleMessages<LegacyOrderDetected>
 {
-    static ILog log = LogManager.GetLogger<LegacyOrderDetectedHandler>();
-
-    public Task Handle(LegacyOrderDetected message, IMessageHandlerContext context)
+      public Task Handle(LegacyOrderDetected message, IMessageHandlerContext context)
     {
-        log.Info($"Legacy order with id {message.OrderId} detected");
+        logger.LogInformation("Legacy order with id {OrderId} detected", message.OrderId);
         // Get the order details from the database and publish an event
         return Task.CompletedTask;
     }

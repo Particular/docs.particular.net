@@ -2,7 +2,6 @@
 # When adding new frameworks, add in chronological order of release date.
 # Download options will be presented in newest-framework-first order.
 net45: .NET Framework 4.5
-net451: .NET Framework 4.5.1
 net452: .NET Framework 4.5.2
 net46: .NET Framework 4.6
 net461: .NET Framework 4.6.1
@@ -11,14 +10,13 @@ net47: .NET Framework 4.7
 net471: .NET Framework 4.7.1
 net472: .NET Framework 4.7.2
 net48: .NET Framework 4.8
-net481: .NET Framework 4.8.1
 netcoreapp2.1: .NET Core 2.1
-netcoreapp2.2: .NET Core 2.2
 netcoreapp3.1: .NET Core 3.1
-net5.0: .NET 5
 net6.0: .NET 6
-net6.0-windows: .NET 6
 net7.0: .NET 7
-net7.0-windows: .NET 7
 net8.0: .NET 8
 net8.0-windows: .NET 8
+net9.0: .NET 9
+net9.0-windows: .NET 9
+net10.0: .NET 10
+net10.0-windows: .NET 10

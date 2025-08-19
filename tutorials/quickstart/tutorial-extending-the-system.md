@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Quick Start: Extending the system"
-reviewed: 2024-04-16
+reviewed: 2025-02-18
 summary: "Part 3: Learn how easy it is to extend a distributed system by adding new functionality without affecting the other components of the system"
 extensions:
 - !!tutorial
@@ -66,13 +66,13 @@ To create the message handler:
 
 1. In the **Shipping** project, create a new class named `OrderPlacedHandler.cs`.
 1. Mark the handler class as public, and implement the `IHandleMessages<OrderPlaced>` interface.
-1. Add a logger instance, which will allow you to take advantage of the logging system used by NServiceBus. This has an important advantage over `Console.WriteLine()`: the entries written with the logger will appear in the log file in addition to the console. Use this code to add the logger instance to the handler class:
+1. Add a primary constructor accepting the logger instance as a parameter, which will allow you to take advantage of the logging system used by NServiceBus. This has an important advantage over `Console.WriteLine()`: the entries written with the logger will appear in the log file in addition to the console. Use this code to add the logger instance to the constructor as a parameter:
     ```cs
-    static ILog log = LogManager.GetLogger<OrderPlacedHandler>();
+    public class OrderPlacedHandler(ILogger<OrderPlacedHandler> logger) : IHandleMessages<OrderPlaced>
     ```
 1. Within the `Handle` method, use the logger to record when the `OrderPlaced` message is received, including the value of the `OrderId` message property:
     ```cs
-    log.Info($"Shipping has received OrderPlaced, OrderId = {message.OrderId}");
+    logger.LogInformation("Shipping has received OrderPlaced, OrderId = {OrderId}", message.OrderId);
     ```
 1. Since everything in this handler method is synchronous, you can return `Task.CompletedTask`.
 

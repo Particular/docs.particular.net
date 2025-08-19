@@ -192,4 +192,4 @@ EXEC sp_releaseapplock @Resource = '{0}_lock'
 
 ### ServiceControl Transport Adapter
 
-The [Transport Adapter](/servicecontrol/transport-adapter/) needs to be upgraded to version 2.0.1 to work with the SQL Server transport 5.x.
+The [Transport Adapter](/servicecontrol/transport-adapter.md) needs to be upgraded to version 2.0.1 to work with the SQL Server transport 5.x.

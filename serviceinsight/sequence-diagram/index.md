@@ -1,7 +1,7 @@
 ---
 title: Sequence Diagram
 summary: The ServiceInsight sequence diagram view
-reviewed: 2023-03-20
+reviewed: 2025-04-24
 component: ServiceInsight
 ---
 
@@ -40,7 +40,7 @@ Each endpoint involved in the conversation is represented by a gray box along th
 Each conversation starts with a single command or event. This message is often triggered by some action external to the system (for example, a user clicking a Submit Order button on a website). The metadata used to generate the diagram does not include the trigger in these cases, but it does include the endpoint that sent or published the message, represented by a Start of Conversation marker on the endpoint lifeline.
 
 > [!NOTE]
-> The Start of Conversation marker may not always be visible. This can happen if the conversation started a long time ago and the initiating message has expired. It can also happen if the number of messages in the conversation is very large. The diagram will show only the last 50 messages from the conversation, and this may not include the initiating message.
+> The Start of Conversation marker may not always be visible. This can happen if the conversation started a long time ago and the initiating message has expired. It can also happen if the number of messages in the conversation is very large. The diagram will show only the last 200 messages from the conversation (configurable in ServiceInsight's application configuration file), and this may not include the initiating message.
 
 
 ### Messages

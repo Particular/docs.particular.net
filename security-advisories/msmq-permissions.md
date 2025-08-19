@@ -1,12 +1,13 @@
 ---
 title: Security Advisory 2017-01-10
 summary: MSMQ permissions vulnerability
-reviewed: 2023-10-11
+reviewed: 2025-08-08
 ---
 
-This advisory discloses a security vulnerability that has been found in NServiceBus and fixed in a recently released hotfix.
+This advisory discloses a security vulnerability that has been found in NServiceBus and fixed in a hotfix.
 
- * All endpoints should be upgraded to the latest version of the NServiceBus package to fix this vulnerability if:
+ * All endpoints should be upgraded to fix this vulnerability if:
+   * using NServiceBus version 5 or version 6,
    * using the NServiceBus [MSMQ transport](/transports/msmq),
    * running the NServiceBus [installers](/nservicebus/operations/installers.md) to provision endpoints,
    * message queue access rights for Anonymous and Everyone accounts have been manually removed.

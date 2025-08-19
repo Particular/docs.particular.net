@@ -1,6 +1,6 @@
 ---
 title: Simple AmazonSQS Transport usage
-reviewed: 2024-01-06
+reviewed: 2025-07-25
 component: Sqs
 related:
 - transports/sqs
@@ -30,9 +30,10 @@ See also [AWS Regions](https://docs.aws.amazon.com/general/latest/gr/rande.html)
 
 Several [Amazon SQS](https://aws.amazon.com/sqs/) queues are required to run this sample. These will be created at start-up via the [installer mechanism](/nservicebus/operations/installers.md) of NServiceBus. The queues can be seen in the [SQS management UI](https://console.aws.amazon.com/sqs/home).
 
-* `Samples-Sqs-Simple`: The main message processing queue.
-* `Samples-Sqs-Simple-Retries`: Queue used for [delayed retries](/nservicebus/recoverability/#delayed-retries).
-* `error`: Queue used for [error handling](/nservicebus/recoverability/configure-error-handling.md).
+* `Samples-Sqs-SimpleReceiver`: Queue used by the Receiver endpoint to receive and process incoming messages.
+* `Samples-Sqs-SimpleReceiver-delay.fifo`: Queue used by the Receiver endpoint for [delayed retries](/nservicebus/recoverability/#delayed-retries).
+* `Samples-Sqs-SimpleSender`: Queue used by the sender endpoint to dispatch commands and publish events.
+* `Samples-Sqs-SimpleSender-delay.fifo`: Queue used by the Sender endpoint for [delayed retries](/nservicebus/recoverability/#delayed-retries).
 
 ### S3
 
@@ -59,4 +60,3 @@ The large message contents can be viewed in the [S3 management UI](https://conso
 ![](s3bucket.png "width=300")
 
 See also [Receiving and Deleting a Message from an Amazon SQS Queue](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/sqs-receive-delete-message.html).
-

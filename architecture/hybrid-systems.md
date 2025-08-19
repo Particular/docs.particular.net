@@ -1,7 +1,7 @@
 ---
 title: Hybrid systems
 summary: Systems deployed both in the cloud and on-premises
-reviewed: 2023-07-18
+reviewed: 2025-06-26
 callsToAction: ['solution-architect', 'poc-help']
 ---
 

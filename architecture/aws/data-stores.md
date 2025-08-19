@@ -60,4 +60,4 @@ Amazon Web Services (AWS) offers a number of [data storage services](https://aws
 - Potential latency between primary instance and read replicas
 - Can be more expensive than self-managed solutions for smaller applications
 
-[**See how to use NServiceBus sagas using a preferred relational database →**](/samples/sql-persistence/simple/)
+[**Try NServiceBus sagas with Aurora, SQS, and Lambda →**](/samples/aws/sagas-lambda-aurora/)

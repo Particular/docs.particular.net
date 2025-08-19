@@ -1,25 +1,20 @@
-﻿using NServiceBus;
+﻿using Microsoft.Extensions.Hosting;
+using NServiceBus;
 using System;
 using System.Threading.Tasks;
 
-namespace Shipping
-{
-    class Program
-    {
-        static async Task Main()
-        {
-            Console.Title = "Shipping";
+Console.Title = "Shipping";
 
-            var endpointConfiguration = new EndpointConfiguration("Shipping");
+var builder = Host.CreateApplicationBuilder(args);
 
-            endpointConfiguration.UseTransport<LearningTransport>();
+var endpointConfiguration = new EndpointConfiguration("Shipping");
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-            Console.WriteLine("Press Enter to exit.");
-            Console.ReadLine();
+endpointConfiguration.UseTransport<LearningTransport>();
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
 
-            await endpointInstance.Stop();
-        }
-    }
-}
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

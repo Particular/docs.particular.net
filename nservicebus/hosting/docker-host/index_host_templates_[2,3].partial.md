@@ -1,13 +1,13 @@
 ### Host.cs
 
-The endpoint's configuration must be added to the `Start()` method. 
+The endpoint’s configuration should be added to the `Start()` method:
 
 snippet: DockerStartEndpoint
 
-There is also a `Stop()` method that can hold any operations required to gracefully shutdown the endpoint.
+A corresponding `Stop()` method is available for implementing any operations required to gracefully shut down the endpoint:
 
 snippet: DockerStopEndpoint
 
-There are also methods that handle endpoint failures and exceptions, which can be modified to fit the needs of the endpoint.
+Additional methods are provided to handle endpoint failures and exceptions. These can be customized as needed to fit the specific requirements of the endpoint:
 
 snippet: DockerErrorHandling

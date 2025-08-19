@@ -4,10 +4,9 @@ summary: Extending the pipeline to stop certain messages from being audited
 reviewed: 2024-01-12
 component: Core
 related:
- - nservicebus/pipeline
- - nservicebus/operations/auditing
+  - nservicebus/pipeline
+  - nservicebus/operations/auditing
 ---
-
 
 This sample demonstrates how to extend the NServiceBus message-processing pipeline with custom behaviors to add filters which prevent certain message types from being forwarded to the audit queue.
 
@@ -41,6 +40,6 @@ snippet: addFilterBehaviors
 
 ## Running the code
 
-* Run the solution.
-* Wait until both messages are handled by their message handlers.
-* Verify the configured audit queue (Samples.AuditFilter.Audit) does not contain the `DoNotAuditThisMessage` message.
+- Run the solution.
+- Wait until both messages are handled by their message handlers.
+- Verify the configured audit queue (named `audit`) does not contain the `DoNotAuditThisMessage` message. For the default learning transport, this can be found in the `.learningtransport` folder.

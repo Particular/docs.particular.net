@@ -1,7 +1,7 @@
 ---
 title: ServicePlatform connection schema
 summary: The JSON schema used by the ServicePlatform Connector package
-reviewed: 2021-11-25
+reviewed: 2024-09-26
 component: PlatformConnector
 versions: 'PlatformConnector:*'
 related:

@@ -1,8 +1,8 @@
 ---
 title: Generating secure random strong encryption keys
-summary: Options for generating secure random strong encryption keys
+summary: Generate secure random strong encryption keys for NServiceBus message property encryption
 component: PropertyEncryption
-reviewed: 2023-07-08
+reviewed: 2025-06-29
 related:
  - nservicebus/security
  - nservicebus/security/property-encryption
@@ -48,7 +48,7 @@ snippet: Hex-CSharp
 
 Generates 32 random bytes (256bits) in a base64 encoded output:
 
-```dos
+```shell
 openssl rand -base64 32
 ```
 
@@ -57,7 +57,7 @@ openssl rand -base64 32
 
 Generates 32 random characters (256bits):
 
-```dos
+```shell
 openssl rand 32
 ```
 

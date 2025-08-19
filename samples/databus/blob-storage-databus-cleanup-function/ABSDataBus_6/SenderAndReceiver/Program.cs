@@ -1,60 +1,24 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using SenderAndReceiver;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "SenderAndReceiver";
-        var endpointConfiguration = new EndpointConfiguration("Samples.AzureDataBusCleanupWithFunctions.SenderAndReceiver");
+Console.Title = "SenderAndReceiver";
 
-        var dataBus = endpointConfiguration.UseDataBus<AzureDataBus, SystemJsonDataBusSerializer>();
-        dataBus.ConnectionString("UseDevelopmentStorage=true");
+var builder = Host.CreateApplicationBuilder(args);
+builder.Services.AddHostedService<InputLoopService>();
+var endpointConfiguration = new EndpointConfiguration("Samples.AzureDataBusCleanupWithFunctions.SenderAndReceiver");
 
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.EnableInstallers();
+#pragma warning disable CS0618 // Type or member is obsolete
+var dataBus = endpointConfiguration.UseDataBus<AzureDataBus, SystemJsonDataBusSerializer>();
+#pragma warning restore CS0618 // Type or member is obsolete
+dataBus.ConnectionString("UseDevelopmentStorage=true");
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport<LearningTransport>();
+endpointConfiguration.EnableInstallers();
+builder.UseNServiceBus(endpointConfiguration);
 
-        await Run(endpointInstance);
-
-        await endpointInstance.Stop();
-    }
-
-    static async Task Run(IMessageSession messageSession)
-    {
-        Console.WriteLine("Press 'Enter' to send a large message (>4MB)");
-        Console.WriteLine("Press any other key to exit");
-
-        while (true)
-        {
-            var key = Console.ReadKey();
-
-            if (key.Key == ConsoleKey.Enter)
-            {
-                await SendMessageLargePayload(messageSession);
-            }
-            else
-            {
-                return;
-            }
-        }
-    }
-
-    static async Task SendMessageLargePayload(IMessageSession messageSession)
-    {
-        Console.WriteLine("Sending message...");
-
-        var message = new MessageWithLargePayload
-        {
-            Description = "This message contains a large payload that will be sent on the Azure data bus",
-            LargePayload = new DataBusProperty<byte[]>(new byte[1024 * 1024 * 5]) // 5MB
-        };
-
-        await messageSession.SendLocal(message);
-
-        Console.WriteLine("Message sent.");
-    }
-}
+await builder.Build().RunAsync();

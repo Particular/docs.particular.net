@@ -1,0 +1,1 @@
+The unrestricted delayed delivery feature requires both senders and receivers to enable it. In NServiceBus.AmazonSQS versions 6 to 7.2, this feature is enabled by default. When communicating with endpoints running older versions of the transport, it should be enabled in the endpoint's configuration.

@@ -1,19 +1,20 @@
 ---
 title: Simple Bridge Usage
 summary: How to use the NServiceBus messaging bridge to connect endpoints on different transports
-reviewed: 2023-07-04
+reviewed: 2025-06-27
 component: Bridge
 related:
  - nservicebus/bridge
 ---
 
-This sample shows how to bridge two different transports.
+This sample demonstrates how to configure an NServiceBus bridge that forwards messages between two endpoints running on different transports.
 
 For this sample to work without installing any prerequisites, all endpoints use the [LearningTransport](/transports/learning/). To demonstrate that it can still bridge different transports, the LearningTransport on one side of the bridge is configured to store messages in a different location on disk.
+This sample uses [LearningTransport](/transports/learning/) with separate StorageDirectory paths to simulate endpoints running on two different transports. This approach allows you to test cross-transport messaging behavior locally, without setting up multiple transport infrastructures.
 
 ## Projects
 
-The sample starts by sending a message from one endpoint, LeftSender, to another, RightReceiver. RightReceiver then replies with an `OrderResponse` message. LeftSender handles this message and publishes an `OrderReceived` message which is handled by another endpoint, LeftReceiver, as well as RightReceiver.
+This sample shows how messages are sent from one endpoint to another via a bridge. It includes a response message and a published event, all routed through the bridge. The sample starts by sending a message from one endpoint, LeftSender, to another, RightReceiver. RightReceiver then replies with an `OrderResponse` message. LeftSender handles this message and publishes an `OrderReceived` message which is handled by another endpoint, LeftReceiver, as well as RightReceiver.
 
 Here is a diagram of the message flow:
 

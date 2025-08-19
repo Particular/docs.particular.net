@@ -1,6 +1,7 @@
 ---
 title: Logging
-reviewed: 2023-06-11
+summary: Understand about ServiceControl logs; change log location and customize logging 
+reviewed: 2024-11-20
 redirects:
 - servicecontrol/setting-custom-log-location
 ---
@@ -26,7 +27,7 @@ When Save is clicked the service will be restarted to apply the change.
 
 ## Windows Event Log
 
-As of version 4.19.0, all ServiceControl instances will log to the Windows Event Log as well as the ServiceControl log. The default level is `INFO` but this setting can be changed by [specifying an explicit log level](#logging-levels).
+All ServiceControl instances will log to the Windows Event Log as well as the ServiceControl log. The default level is `INFO` but this setting can be changed by [specifying an explicit log level](#logging-levels).
 
 ## Monitoring
 
@@ -61,32 +62,15 @@ Example:
 
 ## Log File Names and Retention
 
-### Versions 1.9 and below
-
-The current log file is named `logfile.txt`. The log is rolled based on date only. When the log is rolled the old log is named `log.<sequencenumber>.txt`. The sequence number starts at 0. Higher numbers indicate more recent log files.
-
-ServiceControl will retain 14 log files. Older logs are deleted automatically.
-
-### Versions 1.10 and above
-
 The current ServiceControl log file is named `logfile.<date>.txt`. The current RavenDB embedded log file is named `ravenlog.<date>.txt`. The date is written in the `yyyy-MM-dd` format.
 
 The logs are rolled based on date and size, any log exceeding 30MB will trigger the log to roll. If the log is rolled because of a date change the old log is named `<logname>.<date>.txt` where date is in the format `yyyyMMdd` and log name is either `ravenlog` or `logfile`. If the log is rolled based on size a sequence number is added e.g `<logname>.<date>.<sequence>.txt`. The sequence number starts at 0. Higher numbers indicate more recent log files. ServiceControl will retain 14 log files. Older logs are deleted automatically.
-
-> [!NOTE]
-> The change in log naming will result in logs produced prior to Version 1.10 being ignored by the log cleanup process. These old logs can safely be removed manually.
 
 ## Logging Levels
 
 Instances of the ServiceControl service write logging information and failed message import stack traces to the Windows Event log and the file system.
 
-To configure logging for ServiceControl Audit and Monitoring instances, refer to the [ServiceControl Audit configuration settings](/servicecontrol/audit-instances/creating-config-file.md#host-settings-servicecontrol-auditloglevel) or [ServiceControl Monitoring configuration settings](/servicecontrol/monitoring-instances/installation/creating-config-file.md#logging-monitoringloglevel) documentation pages.
-
-### Versions 1.8.3 and below
-
-The default logging level is `Info`.
-
-### Versions 1.9 and above
+To configure logging for ServiceControl Audit and Monitoring instances, refer to the [ServiceControl Audit configuration settings](/servicecontrol/audit-instances/configuration.md#logging-servicecontrol-auditloglevel) or [ServiceControl Monitoring configuration settings](/servicecontrol/monitoring-instances/configuration.md#logging-monitoringloglevel) documentation pages.
 
 The default logging level is `Warn`, this level is now configurable by adding the following to the `appSettings` section of the  configuration file:
 
@@ -98,13 +82,7 @@ Log Level Options: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 
 ## RavenDB Logging
 
-### Versions 1.9 and below
-
-RavenDB logging is included in the ServiceControl logs. This logging is hard-coded to `ERROR` and above and is not affected by the `ServiceControl/LogLevel` configuration setting.
-
-### Versions 1.10 and above
-
-ServiceControl stores data in an embedded RavenDB database which generates its own log messages. In Version 1.10 these log messages have been separated out into a different log file. This file is co-located with the ServiceControl logs. The default logging level for the RavenDB logs is `Warn`. The log level for the RavenDB logs can be set by adding the following to the `appSettings` section of the configuration file:
+ServiceControl stores data in an embedded RavenDB database which generates its own log messages into a different log file. This file is co-located with the ServiceControl logs. The default logging level for the RavenDB logs is `Warn`. The log level for the RavenDB logs can be set by adding the following to the `appSettings` section of the configuration file:
 
 Log Level Options: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 
@@ -114,4 +92,4 @@ Log Level Options: `Trace`, `Debug`, `Info`, `Warn`, `Error`, `Fatal`, `Off`.
 
 ## Critical Exception Logging
 
-If ServiceControl experiences a critical exception when running as a Windows Service, the exception information will be logged to the Windows EventLog. If ServiceControl is running interactively, the error is shown on the console and not logged. Typically ServiceControl is only run interactively to conduct database maintenance. See [Compacting the ServiceControl RavenDB database](db-compaction-v5.md).
+If ServiceControl experiences a critical exception when running as a Windows Service, the exception information will be logged to the Windows EventLog. If ServiceControl is running interactively, the error is shown on the console and not logged. Typically ServiceControl is only run interactively to conduct database maintenance. See [Compacting the ServiceControl RavenDB database](/servicecontrol/db-compaction.md).

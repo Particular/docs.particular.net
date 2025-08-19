@@ -2,23 +2,25 @@
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus.CustomChecks;
-using NServiceBus.Logging;
+
 
 #region thecustomcheck
 
 class ThirdPartyMonitor : CustomCheck
 {
     const string url = "http://localhost:57789";
-    static readonly ILog log = LogManager.GetLogger<ThirdPartyMonitor>();
     static readonly HttpClient client = new() { Timeout = TimeSpan.FromSeconds(3) };
+    private readonly ILogger<ThirdPartyMonitor> logger;
 
-    public ThirdPartyMonitor()
+    public ThirdPartyMonitor(ILogger<ThirdPartyMonitor> logger)
         : base(
             id: $"Monitor {url}",
             category: "Monitor 3rd Party ",
             repeatAfter: TimeSpan.FromSeconds(10))
     {
+        this.logger = logger;
     }
 
     public override async Task<CheckResult> PerformCheck(CancellationToken cancellationToken = default)
@@ -29,18 +31,18 @@ class ThirdPartyMonitor : CustomCheck
 
             if (response.IsSuccessStatusCode)
             {
-                log.Info($"Succeeded in contacting {url}");
+                logger.LogInformation("Succeeded in contacting {Url}", url);
                 return CheckResult.Pass;
             }
 
             var error = $"Failed to contact '{url}'. HttpStatusCode: {response.StatusCode}";
-            log.Info(error);
+            logger.LogInformation(error);
             return CheckResult.Failed(error);
         }
         catch (Exception exception)
         {
             var error = $"Failed to contact '{url}'. Error: {exception.Message}";
-            log.Info(error);
+            logger.LogInformation(error);
             return CheckResult.Failed(error);
         }
     }

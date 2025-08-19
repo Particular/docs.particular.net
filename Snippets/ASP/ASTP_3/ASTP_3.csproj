@@ -1,9 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <RootNamespace>ASP_3</RootNamespace>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="NServiceBus.Persistence.AzureTable" Version="3.*" />
   </ItemGroup>
+
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
+  </ItemGroup>
+
 </Project>

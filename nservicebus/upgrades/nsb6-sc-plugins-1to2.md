@@ -4,7 +4,6 @@ summary: Instructions on how to upgrade NServiceBus version 6 ServiceControl Plu
 reviewed: 2020-07-27
 component: ServiceControl
 related:
- - servicecontrol/plugins
  - monitoring/heartbeats
  - monitoring/custom-checks
  - nservicebus/sagas/saga-audit

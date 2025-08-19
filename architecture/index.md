@@ -1,7 +1,7 @@
 ---
 title: Architecture
 summary: Architectural guidance for building distributed systems with the Particular Service Platform both in the cloud and on-premises.
-reviewed: 2023-07-18
+reviewed: 2025-06-29
 suppressRelated: true
 callsToAction: ['architecture-review']
 redirects:
@@ -23,9 +23,15 @@ Architectural concepts are generally applicable, regardless of which specific te
 
 ## Azure
 
-[Microsoft Azure](https://azure.microsoft.com/) is a popular cloud platform for building and running distributed systems. The Azure architectural guidance included here focuses on the integration of the Particular Service Platform with Azure technologies and services, with reference to architectural styles and technology choices.
+[Microsoft Azure](https://azure.microsoft.com/) is a popular cloud platform for building and running distributed systems. The Azure architectural guidance included here focuses on the integration of the Particular Service Platform with Azure technologies and services, with reference to architecture styles and technology choices.
 
 [**Explore the Azure Architectural guidance →**](/architecture/azure/)
+
+## Amazon Web Services (AWS)
+
+[Amazon Web Services](https://aws.amazon.com/) provides cloud products and solutions for building and running distributed systems. The AWS architectural guidance provides information about integrating the Particular Service Platform with AWS technologies and architecture styles.
+
+[**Explore the AWS Architectural guidance →**](/architecture/aws/)
 
 ## The Particular Service Platform
 

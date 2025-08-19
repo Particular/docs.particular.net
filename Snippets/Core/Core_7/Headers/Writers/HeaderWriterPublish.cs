@@ -14,6 +14,12 @@
 
         static string EndpointName = "HeaderWriterPublishV7";
 
+        [OneTimeTearDown]
+        public void TearDown()
+        {
+            ManualResetEvent.Dispose();
+        }
+
         [Test]
         public async Task Write()
         {

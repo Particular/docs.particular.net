@@ -1,0 +1,5 @@
+[
+  "This shows the clear-text email addresses exposed on the website. This is bad unless you love spam. The goal is to reduce this list to zero. It should not be allowed to get bigger.",
+  "contact@particular.net",
+  "security@particular.net"
+]

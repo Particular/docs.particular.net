@@ -1,9 +1,9 @@
 ---
 title: Securing ServiceControl
 summary: How security is addressed in ServiceControl and how to limit access to ServiceControl data.
-reviewed: 2022-01-25
+reviewed: 2024-10-16
 related:
-- servicecontrol/creating-config-file
+- servicecontrol/servicecontrol-instances/configuration
 - servicecontrol/configure-ravendb-location
 - servicecontrol/backup-sc-database
 ---
@@ -24,7 +24,7 @@ This applies also to accessing ServiceControl from ServicePulse and ServiceInsig
 
 ### Extending access by changing host name
 
-ServiceControl can be accessed from other machines by [setting a custom host name and port number](setting-custom-hostname.md). The scope of the access extension allowed by this change depends on the specified custom host name and port number. It also depends on various network limitations (e.g. proxy, firewall, DNS settings) that may limit access to the specified ServiceControl host and port.
+ServiceControl can be accessed from other machines by [setting a custom host name and port number](/servicecontrol/setting-custom-hostname.md). The scope of the access extension allowed by this change depends on the specified custom host name and port number. It also depends on various network limitations (e.g. proxy, firewall, DNS settings) that may limit access to the specified ServiceControl host and port.
 
 Note that ServicePulse and ServiceInsight users must access the ServiceControl HTTP API using the specified custom host name and port number, so ensure that the network rules enable access when specifying these details (as well as when applying the various limiting network rules and policies).
 

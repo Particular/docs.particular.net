@@ -12,7 +12,7 @@ class Program
         var endpointConfiguration = new EndpointConfiguration("Samples.DispatchNotification");
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.NotifyDispatch(new SampleDispatchWatcher());
+        endpointConfiguration.NotifyDispatch(new SampleDispatchNotifier());
         #endregion
 
         var endpoint = await Endpoint.Start(endpointConfiguration);

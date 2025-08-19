@@ -3,7 +3,7 @@ title: Roslyn analyzers for AWS Lambda
 summary: Details of the Roslyn analyzers that promote code quality in AWS Lambda.
 component: SQSLambda
 versions: '[1.1,)'
-reviewed: 2023-09-19
+reviewed: 2025-08-08
 ---
 
 Starting in version 1.1, the AWS Lambda host package comes with [Roslyn analyzers](https://docs.microsoft.com/en-us/visualstudio/code-quality/roslyn-analyzers-overview) that analyze the NServiceBus code to prevent the use of API calls that are not applicable in a serverless environment.

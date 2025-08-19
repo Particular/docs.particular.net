@@ -9,6 +9,8 @@ upgradeGuideCoreVersions:
  - 8
 ---
 
+include: upgrade-major
+
 This document focuses on changes that are affecting general endpoint configuration and message handlers. For more upgrade guides, see the following additional guides:
 
 * [Changes for downstream implementations like custom/community transports, persistence, message serializers](implementations.md)
@@ -116,9 +118,11 @@ snippet: 7to8-DisablePublishing-UpgradeGuide
 
 ## Change to license file locations
 
- NServiceBus version 8 will no longer attempt to load the license file from the `appSettings` section of an app.config or web.config file, in order to create better alignment between .NET Framework 4.x and .NET Core.
+In order to create better alignment between .NET Framework 4.x and .NET Core, NServiceBus version 8 will no longer load license file information from the following locations:
 
-In NServiceBus version 7 and below, the license path can be loaded from the `NServiceBus/LicensePath` app setting, or the license text itself can be loaded from the `NServiceBus/License` app setting.
+- The `NServiceBus/LicensePath` setting in the `appSettings` section of an app.config or web.config file
+- The `NServiceBus/License` setting in the `appSettings` section of an app.config or web.config file
+- The Windows Registry
 
 Starting in NServiceBus version 8, one of the [other methods of providing a license](/nservicebus/licensing/?version=core_8) must be used instead.
 
@@ -203,6 +207,10 @@ endpointConfiguration.EnableOutbox();
 
 `ITransportReceiveContext.AbortReceiveOperation` has been deprecated in favor of throwing an [`OperationCanceledException`](https://docs.microsoft.com/en-us/dotnet/api/system.operationcanceledexception). This will preserve the NServiceBus version 7 behavior of immediately retrying the message without invoking [recoverability](/nservicebus/recoverability).
 
+## Header manipulation for failed messages
+
+In NServiceBus Version 8 the [header customization API](/nservicebus/recoverability/configure-error-handling.md#error-message-header-customizations) only allows manipulation of [error forwarding headers](/nservicebus/messaging/headers.md#error-forwarding-headers). Use the new [recoverability pipeline](/nservicebus/recoverability/pipeline.md) to get access to all headers on the failed message.
+
 ## Renamed extension method types
 
 The following static extension method types have been renamed:
@@ -267,3 +275,13 @@ See the [OpenTelemetry samples](/samples/open-telemetry/) for more guidance on i
 ## Raw messaging
 
 NServiceBus version 8 supports [raw messaging](/nservicebus/rawmessaging/?version=core_8). Raw messaging allows the transport infrastructure to be used directly without the need to spin up a full NServiceBus endpoint. Raw messaging is useful when integrating with third-party systems, building message gateways or bridges, or performing other low-level sending and receiving tasks.
+
+## Logging NServiceBus.RecoverabilityExecutor
+
+The logger name used to report immediate retries, delayed retries, and messages forwarded to the error queue has changes.
+
+Previously the logger name used was **NServiceBus.RecoverabilityExecutor** and is now replaced with multiple different logger names:
+
+* **NServiceBus.DelayedRetry** for delayed retries
+* **NServiceBus.ImmediateRetry** for immediate retries
+* **NServiceBus.MoveToError** for messages forwarded to the error queue

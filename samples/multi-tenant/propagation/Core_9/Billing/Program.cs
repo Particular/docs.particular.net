@@ -1,27 +1,19 @@
 using System;
-using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Billing";
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Propagation.Billing");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
+Console.Title = "Billing";
+var builder = Host.CreateApplicationBuilder(args);
 
-        var pipeline = endpointConfiguration.Pipeline;
-        pipeline.Register(new StoreTenantIdBehavior(), "Stores tenant ID in the session");
-        pipeline.Register(new PropagateTenantIdBehavior(), "Propagates tenant ID to outgoing messages");
+var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Propagation.Billing");
+endpointConfiguration.UsePersistence<LearningPersistence>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var pipeline = endpointConfiguration.Pipeline;
+pipeline.Register(new StoreTenantIdBehavior(), "Stores tenant ID in the session");
+pipeline.Register(new PropagateTenantIdBehavior(), "Propagates tenant ID to outgoing messages");
 
-        Console.WriteLine("Press <enter> to exit.");
-        Console.ReadLine();
-
-        await endpointInstance.Stop();
-    }
-}
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

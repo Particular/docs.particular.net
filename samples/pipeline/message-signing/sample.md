@@ -1,10 +1,9 @@
 ---
 title: Message signing using the pipeline
 summary: Shows how to implement message signing and verification using NServiceBus pipeline behaviors.
-reviewed: 2021-12-22
+reviewed: 2024-10-10
 component: Core
 related:
- - samples/pipeline/handler-timer
  - samples/pipeline/unit-of-work
 ---
 

@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
-public class SimpleMessageHandler :
+public class SimpleMessageHandler(ILogger<SimpleMessageHandler> logger) :
     IHandleMessages<SimpleMessage>
 {
-    static ILog log = LogManager.GetLogger<SimpleMessageHandler>();
-
     public Task Handle(SimpleMessage message, IMessageHandlerContext context)
     {
-        log.Info($"Received message with Id = {message.Id}.");
+        logger.LogInformation("Received message with Id = {Id}.", message.Id);
         throw new Exception("BOOM!");
     }
 }

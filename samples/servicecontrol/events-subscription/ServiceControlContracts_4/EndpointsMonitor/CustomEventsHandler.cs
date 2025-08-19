@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 using ServiceControl.Contracts;
 
 #region ServiceControlEventsHandlers
 
-public class CustomEventsHandler :
+public class CustomEventsHandler(ILogger<CustomEventsHandler> logger) :
     IHandleMessages<MessageFailed>,
     IHandleMessages<HeartbeatStopped>,
     IHandleMessages<HeartbeatRestored>,
@@ -16,47 +16,46 @@ public class CustomEventsHandler :
     IHandleMessages<MessageFailureResolvedByRetry>,
     IHandleMessages<MessageFailureResolvedManually>
 {
-    static ILog log = LogManager.GetLogger<CustomEventsHandler>();
 
     public Task Handle(MessageFailed message, IMessageHandlerContext context)
     {
-        log.Error($"Received ServiceControl 'MessageFailed' event for a {message.MessageType} with ID {message.FailedMessageId}.");
+        logger.LogError("Received ServiceControl 'MessageFailed' event for a {MessageType} with ID {FailedMessageId}.", message.MessageType, message.FailedMessageId);
         return Task.CompletedTask;
     }
 
     public Task Handle(HeartbeatStopped message, IMessageHandlerContext context)
     {
-        log.Warn($"Heartbeats from {message.EndpointName} have stopped.");
+        logger.LogWarning("Heartbeats from {EndpointName} have stopped.", message.EndpointName);
         return Task.CompletedTask;
     }
 
     public Task Handle(HeartbeatRestored message, IMessageHandlerContext context)
     {
-        log.Info($"Heartbeats from {message.EndpointName} have been restored.");
+        logger.LogInformation("Heartbeats from {EndpointName} have been restored.", message.EndpointName);
         return Task.CompletedTask;
     }
 
     public Task Handle(FailedMessagesArchived message, IMessageHandlerContext context)
     {
-        log.Error($"Received ServiceControl 'FailedMessageArchived' with ID {message.FailedMessagesIds.FirstOrDefault()}.");
+        logger.LogError("Received ServiceControl 'FailedMessageArchived' with ID {FailedMessageId}.", message.FailedMessagesIds.FirstOrDefault());
         return Task.CompletedTask;
     }
-    
+
     public Task Handle(FailedMessagesUnArchived message, IMessageHandlerContext context)
     {
-        log.Error($"Received ServiceControl 'FailedMessagesUnArchived' MessagesCount: {message.FailedMessagesIds.Length}.");
+        logger.LogError("Received ServiceControl 'FailedMessagesUnArchived' MessagesCount: {Count}.", message.FailedMessagesIds.Length);
         return Task.CompletedTask;
-    }   
-    
+    }
+
     public Task Handle(MessageFailureResolvedByRetry message, IMessageHandlerContext context)
     {
-        log.Error($"Received ServiceControl 'MessageFailureResolvedByRetry' with ID {message.FailedMessageId}.");
+        logger.LogError("Received ServiceControl 'MessageFailureResolvedByRetry' with ID {FailedMessageId}.", message.FailedMessageId);
         return Task.CompletedTask;
     }
 
     public Task Handle(MessageFailureResolvedManually message, IMessageHandlerContext context)
     {
-        log.Error($"Received ServiceControl 'MessageFailureResolvedManually'  with ID {message.FailedMessageId}.");
+        logger.LogError("Received ServiceControl 'MessageFailureResolvedManually'  with ID {FailedMessageId}.", message.FailedMessageId);
         return Task.CompletedTask;
     }
 }

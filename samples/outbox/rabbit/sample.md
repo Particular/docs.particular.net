@@ -1,7 +1,7 @@
 ---
 title: Using Outbox with RabbitMQ
 summary: Demonstrates how the Outbox handles duplicate messages using RabbitMQ and SQL Server hosted in Docker containers.
-reviewed: 2021-09-21
+reviewed: 2024-09-10
 component: Core
 related:
 - transports/rabbitmq
@@ -21,8 +21,8 @@ downloadbutton
 3. If running Docker on Windows, [set Docker to use Linux containers](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
 4. In the sample directory, execute the following to set up the RabbitMQ and SQL Server instances:
 
-```dos
-> docker-compose up --detach
+```shell
+> docker compose up --detach
 ```
 
 Once complete, the RabbitMQ administration can be reached via [http://localhost:15672/](http://localhost:15672/) with username `rabbitmq` and password `rabbitmq`.
@@ -168,6 +168,6 @@ The message handler:
 
 Once finished with the sample, the RabbitMQ and SQL Server instances can be cleaned up using:
 
-```dos
-> docker-compose down
+```shell
+> docker compose down
 ```

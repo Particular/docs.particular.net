@@ -1,7 +1,7 @@
 ---
 title: ServiceInsight support policy
 summary: Versions of ServiceInsight that are currently supported
-reviewed: 2022-08-05
+reviewed: 2025-01-05
 related:
  - nservicebus/licensing
  - nservicebus/upgrades/all-versions

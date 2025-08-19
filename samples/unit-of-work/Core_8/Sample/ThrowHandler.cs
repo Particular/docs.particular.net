@@ -5,7 +5,7 @@ using NServiceBus.Logging;
 
 #region ThrowHandler
 
-public class ThrowHandler :
+sealed class ThrowHandler :
     IHandleMessages<MessageThatWillThrow>
 {
     static ILog log = LogManager.GetLogger<ThrowHandler>();

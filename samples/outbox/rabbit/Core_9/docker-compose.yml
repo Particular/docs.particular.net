@@ -1,23 +1,19 @@
-version: '3'
+name: outbox
 services:
-  rabbit1:
-    image: "rabbitmq:3-management"
-    hostname: "rabbit1"
+  rabbit:
+    image: rabbitmq:3-management
     environment:
-      RABBITMQ_DEFAULT_USER: "rabbitmq"
-      RABBITMQ_DEFAULT_PASS: "rabbitmq"
-      RABBITMQ_DEFAULT_VHOST: "/"
+      RABBITMQ_DEFAULT_USER: rabbitmq
+      RABBITMQ_DEFAULT_PASS: rabbitmq
+      RABBITMQ_DEFAULT_VHOST: /
     ports:
       - "15672:15672"
       - "5672:5672"
-    labels:
-      NAME: "rabbitmq1"
-  sql1:
-    image: "mcr.microsoft.com/mssql/server"
-    hostname: "sql1"
+  sql:
+    image: mcr.microsoft.com/mssql/server
     environment:
-      ACCEPT_EULA: "Y"
-      MSSQL_PID: "Express"
-      SA_PASSWORD: "NServiceBus!"
+      ACCEPT_EULA: Y
+      MSSQL_PID: Express
+      SA_PASSWORD: NServiceBus!
     ports:
       - "11433:1433"

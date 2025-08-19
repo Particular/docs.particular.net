@@ -1,7 +1,7 @@
 ---
 title: Simple Azure Table Persistence Usage
 summary: Using Azure Table Persistence to store sagas
-reviewed: 2022-11-17
+reviewed: 2025-02-25
 component: ASP
 related:
  - nservicebus/sagas
@@ -17,20 +17,20 @@ Ensure that an instance of the latest [Azurite Emulator](https://learn.microsoft
 
 ### SharedMessages
 
-The shared message contracts used by all endpoints.
+* The shared message contracts used by all endpoints.
 
 ### Client
 
 * Sends the `StartOrder` message to `Server`.
 * Receives and handles the `OrderCompleted` event.
 
-### Server projects
+### Server
 
 * Receive the `StartOrder` message and initiate an `OrderSaga`.
 * `OrderSaga` requests a timeout with an instance of `CompleteOrder` with the saga data.
 * `OrderSaga` publishes an `OrderCompleted` event when the `CompleteOrder` timeout fires.
 
-### Persistence config
+## Persistence config
 
 Configure the endpoint to use Azure Table Persistence.
 

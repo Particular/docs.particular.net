@@ -1,19 +1,18 @@
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
 #region RequestDataMessageHandler
 
-public class RequestDataMessageHandler :
+public class RequestDataMessageHandler (ILogger<RequestDataMessageHandler> logger) :
     IHandleMessages<RequestDataMessage>
 #endregion
 {
-    static ILog log = LogManager.GetLogger<RequestDataMessageHandler>();
 
     public async Task Handle(RequestDataMessage message, IMessageHandlerContext context)
     {
-        log.Info($"Received request {message.DataId}.");
-        log.Info($"String received: {message.String}.");
+        logger.LogInformation("Received request {DataId}.", message.DataId);
+        logger.LogInformation("String received: {Description}.", message.String);
 
         #region DataResponseReply
 

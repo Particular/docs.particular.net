@@ -1,1 +1,0 @@
-There are no additional APIs in 4.2 but the partial under https://docs.particular.net/nservicebus/hosting/azure-functions-service-bus/#transport-configuration-constraints-and-limitations requires a snippet folder to exist.

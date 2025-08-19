@@ -26,17 +26,17 @@
                 endpointName: "myendpoint",
                 account: Environment.UserName);
 
-            Assert.IsTrue(MessageQueue.Exists(@".\private$\myendpoint"));
+            Assert.That(MessageQueue.Exists(@".\private$\myendpoint"), Is.True);
 
             QueueCreationUtils.CreateQueue(
                 queueName: "myerror",
                 account: Environment.UserName);
-            Assert.IsTrue(MessageQueue.Exists(@".\private$\myerror"));
+            Assert.That(MessageQueue.Exists(@".\private$\myerror"), Is.True);
 
             QueueCreationUtils.CreateQueue(
                 queueName: "myaudit",
                 account: Environment.UserName);
-            Assert.IsTrue(MessageQueue.Exists(@".\private$\myaudit"));
+            Assert.That(MessageQueue.Exists(@".\private$\myaudit"), Is.True);
         }
     }
 }

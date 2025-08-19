@@ -1,9 +1,12 @@
 using NServiceBus;
+using Shared;
 using System;
 using System.Threading.Tasks;
 
 class Program
 {
+    static string storagePath = new SolutionDirectoryFinder().GetDirectory("storage");
+    
     static async Task Main()
     {
         Console.Title = "Sender";
@@ -12,7 +15,7 @@ class Program
         #region ConfigureDataBus
 
         var dataBus = endpointConfiguration.UseDataBus<FileShareDataBus, SystemJsonDataBusSerializer>();
-        dataBus.BasePath(@"..\..\..\..\storage");
+        dataBus.BasePath(storagePath);
 
         #endregion
 
@@ -59,7 +62,7 @@ class Program
 
         #endregion
 
-        Console.WriteLine(@"Message sent, the payload is stored in: ..\..\..\storage");
+        Console.WriteLine($"Message sent, the payload is stored in: {storagePath}");
     }
 
     static async Task SendMessageTooLargePayload(IEndpointInstance endpointInstance)

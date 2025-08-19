@@ -3,7 +3,7 @@ title: Custom serializers
 summary: How to create and register custom serializer for NServiceBus.
 component: Core
 versions: '[5,)'
-reviewed: 2022-08-23
+reviewed: 2025-01-05
 redirects:
 - nservicebus/how-to-register-a-custom-serializer
 ---

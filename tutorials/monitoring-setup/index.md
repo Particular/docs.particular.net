@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus monitoring setup"
-reviewed: 2022-02-28
+reviewed: 2024-11-07
 summary: Setting up the Particular Service Platform to monitor an NServiceBus system.
 component: Core
 isLearningPath: true
@@ -59,7 +59,7 @@ scinstance --> pulse
 
 A running NServiceBus system can be configured to send data about its operations to three main queues:
 
-- `Monitoring`: Each endpoint will gather and send metric data to this queue. This data holds information about the health and performance of an endpoint.
+- `Monitoring`: Each endpoint will gather and send metric data to this queue. This data holds information about the health and performance of an endpoint. Metrics are collected only when an endpoint receives and processes messages and hence send-only endpoints will not emit processing-related metrics.
 - `Audit`: When an endpoint successfully processes a message, a copy of the message will be forwarded to this queue. The audited message will have additional headers which contain data about the processing of the message.
 - `Error`: When an endpoint fails to process a message (after exhausting automated retry attempts), a copy of the message is forwarded to this queue. The failed message will have additional headers which contain data about the failed attempt to process the message.
 
@@ -79,7 +79,12 @@ Both of these instance types can be set-up and managed with the `ServiceControl 
 
 ## Setting up the Particular Service Platform
 
-In order to configure an environment for monitoring with the Particular Service Platform you will need to install and configure the components in the order listed.
+In order to configure an environment for monitoring with the Particular Service Platform you will need to install and configure the components in the order listed. This tutorial shows the graphical installation approach using the `ServiceControl Management Utility`. It is also possible to run the platform with containers:
+
+- [Deploying ServiceControl Error instances using containers](/servicecontrol/servicecontrol-instances/deployment/containers.md)
+- [Deploying ServiceControl Audit instances using containers](/servicecontrol/audit-instances/deployment/containers.md)
+- [Deploying ServiceControl Monitoring instances using containers](/servicecontrol/monitoring-instances/deployment/containers.md)
+- [Running ServicePulse in containers](/servicepulse/containerization/)
 
 ### Install ServiceControl
 

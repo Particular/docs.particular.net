@@ -1,25 +1,25 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
-class MySession :
+class MySession(ILogger<MySession> logger) :
     IMySession,
     IDisposable
 {
     string tenant;
-    readonly ILog log = LogManager.GetLogger<MySession>();
+
     readonly List<object> entities = [];
 
     public void Initialize(string tenantName)
     {
         tenant = tenantName;
-        log.Info($"Initializing session for tenant {tenant}.");
+        logger.LogInformation("Initializing session for tenant {Tenant}.", tenant);
     }
 
     public void Dispose()
     {
-        log.Info($"Disposing session for tenant {tenant}.");
+        logger.LogInformation("Disposing session for tenant {Tenant}.", tenant);
     }
 
     public Task Store<T>(T entity)
@@ -31,7 +31,7 @@ class MySession :
     public Task Commit()
     {
         var entitiesStored = string.Join(",", entities);
-        log.Info($"{entitiesStored} stored in tenant database: {tenant}DB by session {GetHashCode()}");
+        logger.LogInformation("{EntitiesStored} stored in tenant database: {Tenant}DB by session {SessionHash}", entitiesStored, tenant, GetHashCode());
         return Task.CompletedTask;
     }
 

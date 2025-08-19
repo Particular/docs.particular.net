@@ -1,20 +1,18 @@
 using System.Threading.Tasks;
-
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 #region message-handler
 
-class PlaceOrderHandler :
+class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) :
     IHandleMessages<PlaceOrder>
 {
-    static readonly ILog log = LogManager.GetLogger<PlaceOrderHandler>();
 
     public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
         var tenant = context.MessageHeaders["tenant_id"];
 
-        log.Info($"Processing PlaceOrder message for tenant {tenant}");
+        logger.LogInformation("Processing PlaceOrder message for tenant {Tenant}", tenant);
 
         return context.Publish(new OrderAccepted());
     }

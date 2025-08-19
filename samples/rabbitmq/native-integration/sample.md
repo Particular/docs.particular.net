@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ transport native integration sample
 summary: Consuming messages published by non-NServiceBus endpoints
-reviewed: 2021-08-06
+reviewed: 2025-03-25
 component: Rabbit
 isLearningPath: true
 related:
@@ -11,8 +11,7 @@ related:
 
 ## Code walk-through
 
-The sample consists of two console applications, a simple receiver endpoint and a native sender. These endpoints demonstrate how to have senders on other platforms send messages to NServiceBus endpoints. While the .NET RabbitMQ client is used in this sample, the approach demonstrated can be used with any of the [official](https://www.rabbitmq.com/download.html) or [community](https://www.rabbitmq.com/devtools.html) native RabbitMQ client libraries.
-
+The sample consists of two console applications: a simple receiver endpoint and a native sender. These endpoints demonstrate how to have senders on other platforms send messages to NServiceBus endpoints. While the .NET RabbitMQ client is used in this sample, the approach demonstrated can be used with any of the [official](https://www.rabbitmq.com/download.html) or [community](https://www.rabbitmq.com/devtools.html) native RabbitMQ client libraries.
 
 ### Putting the message in the correct queue
 
@@ -23,7 +22,6 @@ snippet: ConfigureRabbitQueueName
 With this in place, the native sender can send a message to this endpoint using:
 
 snippet: SendMessage
-
 
 ### Message serialization
 
@@ -42,7 +40,7 @@ See [the message type detection documentation](/nservicebus/messaging/message-ty
 
 ### Uniquely identifying messages
 
-NServiceBus requires all messages to be uniquely identified in order to be able to perform retries in a safe way. Unfortunately, RabbitMQ doesn't provide a unique ID for messages automatically, so a unique ID has to be generated manually. By default, NServiceBus will look for this message ID in the optional [AMQP](https://www.rabbitmq.com/amqp-0-9-1-reference.html) `message-id` message header. This behavior can be modified by using a [custom message ID strategy](/transports/rabbitmq/native-integration.md#custom-message-id-strategy) to tell NServiceBus to look in a different location for the message ID. Using this custom strategy, the ID can be extracted from any message header, or even the message payload itself.
+NServiceBus requires all messages to be uniquely identified in order to be able to perform retries in a safe way. RabbitMQ doesn't provide a unique ID for messages automatically, so a unique ID has to be generated manually. By default, NServiceBus will look for this message ID in the optional [AMQP](https://www.rabbitmq.com/amqp-0-9-1-reference.html) `message-id` message header. This behavior can be modified by using a [custom message ID strategy](/transports/rabbitmq/native-integration.md#custom-message-id-strategy) to tell NServiceBus to look in a different location for the message ID. Using a custom strategy, the ID can be extracted from any message header, or even the message payload itself.
 
 In this sample, a unique ID is generated on the sender side and assigned to the `MessageId` property:
 

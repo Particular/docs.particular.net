@@ -1,12 +1,11 @@
 ---
 title: Entity Framework Core integration with SQL Persistence
 summary: Integrating Entity Framework Core with SQL Persistence.
-reviewed: 2023-08-11
+reviewed: 2025-07-31
 component: SqlPersistence
 related:
 - persistence/sql
 ---
-
 
 ## Prerequisites
 
@@ -14,16 +13,14 @@ include: sql-prereq
 
 The database created by this sample is `NsbSamplesEfCoreUowSql`.
 
-
 ## Running the project
 
  1. Start the solution
- 2. The text `Press <enter> to send a message` will appear in both console windows
- 3. Press <kbd>enter</kbd> in both console windows
+ 2. The text `Press <enter> to send a message` will appear in the console window
+ 3. Press <kbd>enter</kbd> to send an order
 
 > [!NOTE]
 > If exceptions occur when running the sample, delete the tables from the database used by the code. By default, Entity Framework will not update table schemas. If tables use an old schema, the code won't execute properly.
-
 
 ## Verifying that the sample works
 
@@ -32,35 +29,33 @@ The database created by this sample is `NsbSamplesEfCoreUowSql`.
  3. `CreateShipmentHandler` displays information that the shipment has been created.
  4. After a few seconds, `CompleteOrderHandler` displays information that the order is going to be completed.
 
-Open SQL Server Management Studio and go to the database. Verify that there is a row in the saga state table (`dbo.OrderLifecycleSagaData`), in the orders table (`dbo.Orders`), and in the shipments table (`dbo.Shipments`).
-
+Open SQL Server Management Studio and go to the database. Verify that there is a row in the saga state table (`dbo.Samples.EntityFrameworkUnitOfWork.SQL.OrderLifecycleSagaData`), in the orders table (`dbo.Orders`), and in the shipments table (`dbo.Shipments`).
 
 ## Code walk-through
 
 This sample contains the following projects:
 
- * **Messages**: A class library containing the message definitions.
- * **Endpoint.SqlPersistence**: A console application running the endpoint with SQL persistence.
+- **Messages**: A class library containing the message definitions.
+- **Endpoint.SqlPersistence**: A console application running the endpoint with SQL persistence.
 
-
-### Endpoint projects
+### Endpoint project
 
 The endpoint mimics a back-end system. It is configured to use the SQL Server transport. It uses Entity Framework to store business data (orders and shipments).
 
 When the message arrives at the receiver, a single transactional data access context is created to ensure consistency of the entire message-handling process:
 
- * the message is removed from the input queue by the SQL Server transport
- * a new saga instance is created and stored by the SQL persistence
- * a new `Order` entity is created
+- the message is removed from the input queue by the SQL Server transport
+- a new saga instance is created and stored by the SQL persistence
+- a new `Order` entity is created
 
 snippet: StoreOrder
 
- * a new `Shipment` entity is created
+- a new `Shipment` entity is created
 
 snippet: StoreShipment
 
- * a reply message is inserted to the queue
- * a timeout request is inserted to the queue
+- a reply message is inserted to the queue
+- a timeout request is inserted to the queue
 
 Notice how storing the shipment retrieves the `Order` from the session cache of Entity Framework. The `Order` is not yet persisted to the database.
 

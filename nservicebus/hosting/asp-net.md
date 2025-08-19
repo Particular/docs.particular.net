@@ -1,7 +1,7 @@
 ---
 title: NServiceBus in ASP.NET
 summary: Hosting NServiceBus in ASP.NET Core applications
-reviewed: 2022-09-12
+reviewed: 2025-01-13
 component: Extensions.Hosting
 related:
  - nservicebus/hosting/web-application
@@ -24,7 +24,7 @@ snippet: asp-net-generic-host-endpoint
 
 ## Dependency injection
 
-Messages can be sent with NServiceBus using the `IMessageSession` API which is available via the dependency injection container.
+Messages can be sent with NServiceBus using the `IMessageSession` API, which is available via the dependency injection container.
 
 ### Web API controllers
 

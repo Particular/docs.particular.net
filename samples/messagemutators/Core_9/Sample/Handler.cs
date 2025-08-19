@@ -1,17 +1,17 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
+
 
 #region Handler
 
-public class Handler :
+public class Handler(ILogger<Handler> logger) :
     IHandleMessages<CreateProductCommand>
 {
-    static ILog log = LogManager.GetLogger<Handler>();
 
     public Task Handle(CreateProductCommand message, IMessageHandlerContext context)
     {
-        log.Info($"Received a CreateProductCommand message: {message}");
+        logger.LogInformation("Received a CreateProductCommand message: {Message}", message);
         return Task.CompletedTask;
     }
 }

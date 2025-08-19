@@ -6,29 +6,17 @@ using NServiceBus;
 
 Console.Title = "EndpointPostgreSql";
 
-#region PostgreSqlConfig
-
 var endpointConfiguration = new EndpointConfiguration("EndpointPostgreSql");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-
+#region PostgreSqlConfig
 var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
-var password = Environment.GetEnvironmentVariable("PostgreSqlPassword");
-
-if (string.IsNullOrWhiteSpace(password))
-{
-    throw new Exception("Could not extract 'PostgreSqlPassword' from Environment variables.");
-}
-var username = Environment.GetEnvironmentVariable("PostgreSqlUserName");
-
-if (string.IsNullOrWhiteSpace(username))
-{
-    throw new Exception("Could not extract 'PostgreSqlUserName' from Environment variables.");
-}
-
-var connection = $"Host=localhost;Username={username};Password={password};Database=NsbSamplesSqlPersistence";
-
 var dialect = persistence.SqlDialect<SqlDialect.PostgreSql>();
+
+var connection = "Host=localhost;Username=postgres;Password=yourStrong(!)Password;Database=NsbSamplesSqlPersistence";
+
+persistence.ConnectionBuilder(() => new NpgsqlConnection(connection));
+#endregion
 
 dialect.JsonBParameterModifier(
     modifier: parameter =>
@@ -37,16 +25,8 @@ dialect.JsonBParameterModifier(
         npgsqlParameter.NpgsqlDbType = NpgsqlDbType.Jsonb;
     });
 
-persistence.ConnectionBuilder(
-    connectionBuilder: () =>
-    {
-        return new NpgsqlConnection(connection);
-    });
-
 var subscriptions = persistence.SubscriptionSettings();
 subscriptions.CacheFor(TimeSpan.FromMinutes(1));
-
-#endregion
 
 endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.EnableInstallers();

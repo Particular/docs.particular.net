@@ -1,47 +1,42 @@
-﻿using System;
-using System.Threading.Tasks;
-using NServiceBus;
+﻿using NServiceBus;
+using Shared;
 
-class Program
+Console.Title = "SimpleSender";
+
+#region ConfigureRabbit
+var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.SimpleSender");
+var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+transport.UseConventionalRoutingTopology(QueueType.Quorum);
+transport.ConnectionString("host=localhost");
+#endregion
+
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+transport.Routing().RouteToEndpoint(typeof(MyCommand), "Samples.RabbitMQ.SimpleReceiver");
+endpointConfiguration.EnableInstallers();
+
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
+await SendMessages(endpointInstance);
+await endpointInstance.Stop();
+
+static async Task SendMessages(IMessageSession messageSession)
 {
-    static async Task Main()
+    Console.WriteLine("Press [c] to send a command, or [e] to publish an event. Press [Esc] to exit.");
+
+    while (true)
     {
-        Console.Title = "SimpleSender";
+        var input = Console.ReadKey();
+        Console.WriteLine();
 
-        #region ConfigureRabbit
-        var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.SimpleSender");
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseConventionalRoutingTopology(QueueType.Quorum);
-        transport.ConnectionString("host=localhost");
-        #endregion
-
-        transport.Routing().RouteToEndpoint(typeof(MyCommand), "Samples.RabbitMQ.SimpleReceiver");
-        endpointConfiguration.EnableInstallers();
-
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        await SendMessages(endpointInstance);
-        await endpointInstance.Stop();
-    }
-
-    static async Task SendMessages(IMessageSession messageSession)
-    {
-        Console.WriteLine("Press [c] to send a command, or [e] to publish an event. Press [Esc] to exit.");
-        while (true)
+        switch (input.Key)
         {
-            var input = Console.ReadKey();
-            Console.WriteLine();
-
-            switch (input.Key)
-            {
-                case ConsoleKey.C:
-                    await messageSession.Send(new MyCommand());
-                    break;
-                case ConsoleKey.E:
-                    await messageSession.Publish(new MyEvent());
-                    break;
-                case ConsoleKey.Escape:
-                    return;
-            }
+            case ConsoleKey.C:
+                await messageSession.Send(new MyCommand());
+                break;
+            case ConsoleKey.E:
+                await messageSession.Publish(new MyEvent());
+                break;
+            case ConsoleKey.Escape:
+                return;
         }
     }
 }

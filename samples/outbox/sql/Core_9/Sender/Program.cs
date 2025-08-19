@@ -1,23 +1,23 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Transport.SqlServer;
 
-class Program
-{
-    static async Task Main()
+Console.Title = "Sender";
+var host = Host.CreateDefaultBuilder(args)
+    .UseNServiceBus(x =>
     {
-        Console.Title = "Sender";
-        var random = new Random();
-
         var endpointConfiguration = new EndpointConfiguration("Samples.SqlOutbox.Sender");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
         #region SenderConfiguration
 
-        // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlOutbox;Integrated Security=True;Max Pool Size=100;Encrypt=false
+        //for local instance or SqlExpress
+        // string connectionString = @"Data Source=(localdb)\mssqllocaldb;Database=NsbSamplesSqlOutbox;Trusted_Connection=True;MultipleActiveResultSets=true";
         var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlOutbox;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
 
         var transport = new SqlServerTransport(connectionString)
@@ -32,10 +32,8 @@ class Program
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.ConnectionBuilder(
-            connectionBuilder: () =>
-            {
-                return new SqlConnection(connectionString);
-            });
+            connectionBuilder: () => new SqlConnection(connectionString)
+        );
         var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
         dialect.Schema("sender");
         persistence.TablePrefix("");
@@ -43,7 +41,8 @@ class Program
         transport.Subscriptions.DisableCaching = true;
         transport.Subscriptions.SubscriptionTableName = new SubscriptionTableName(
             table: "Subscriptions",
-            schema: "dbo");
+            schema: "dbo"
+        );
 
         endpointConfiguration.EnableOutbox();
 
@@ -52,27 +51,37 @@ class Program
         #endregion
 
         SqlHelper.CreateSchema(connectionString, "sender");
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
         Console.WriteLine("Press enter to send a message");
-        Console.WriteLine("Press any key to exit");
+        return endpointConfiguration;
+    })
+    .Build();
 
-        while (true)
-        {
-            var key = Console.ReadKey();
-            Console.WriteLine();
+await host.StartAsync();
 
-            if (key.Key != ConsoleKey.Enter)
-            {
-                break;
-            }
-            var orderSubmitted = new OrderSubmitted
-            {
-                OrderId = Guid.NewGuid(),
-                Value = random.Next(100)
-            };
-            await endpointInstance.Publish(orderSubmitted);
-        }
-        await endpointInstance.Stop();
+var messageSession = host.Services.GetService<IMessageSession>();
+var random = new Random();
+
+while (true)
+{
+    if (!Console.KeyAvailable)
+    {
+        await Task.Delay(100);
+        continue;
     }
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    if (key.Key != ConsoleKey.Enter)
+    {
+        break;
+    }
+
+    var orderSubmitted = new OrderSubmitted(
+        OrderId: Guid.NewGuid(),
+        Value: random.Next(100)
+    );
+
+    await messageSession.Publish(orderSubmitted);
 }
+
+await host.StopAsync();

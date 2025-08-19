@@ -2,7 +2,7 @@
 title: Physical routing with MSMQ
 summary: Configuring physical routing with MSMQ transport
 component: MsmqTransport
-reviewed: 2023-05-02
+reviewed: 2025-05-08
 related:
  - nservicebus/messaging/routing
  - transports/msmq/routing-extensibility
@@ -14,7 +14,7 @@ The MSMQ transport in NServiceBus is a distributed transport in which the [MSMQ 
 
 ## Scaling out
 
-Because the MSMQ queues are not accessible from outside the machine they are hosted in, NServiceBus endpoints using the MSMQ transport are not able to use the competing consumers pattern to scale out with a single shared queue. 
+Because the MSMQ queues are not accessible from outside the machine they are hosted in, NServiceBus endpoints using the MSMQ transport are not able to use the competing consumers pattern to scale out with a single shared queue.
 
 partial: scale-out
 

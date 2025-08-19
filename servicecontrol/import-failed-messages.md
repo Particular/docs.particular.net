@@ -1,7 +1,7 @@
 ---
 title: Re-processing messages that failed to be imported
 summary: How to attempt to re-process messages that failed to be imported
-reviewed: 2022-01-26
+reviewed: 2024-12-02
 redirects:
 - servicecontrol/import-failed-audit-messages
 - servicecontrol/import-failed-audits
@@ -15,43 +15,65 @@ Messages can fail to be imported into the ServiceControl database for the follow
  * [Forwarding](/servicecontrol/errorlog-auditlog-behavior.md) is enabled, and the destination queue does not exist, or ServiceControl cannot send messages to it. This could happen when the message or size limit has been reached or storage resources are exhausted.
 
 > [!NOTE]
-> Messages that have corrupt (i.e. unreadable, not deserializable) header data will not be processed at all and will move to ServiceControl's 'error' queue.
+> Messages with corrupt (i.e. unreadable, not deserializable) header data will not be processed and will move to ServiceControl's 'error' queue.
 
 Messages that fail to be imported are stored in the ServiceControl database in the `FailedAuditImports` and `FailedErrorImports` collections.
 
-In addition, a log with the failure reason is written for the message in the [`%ServiceControl/LogPath%`](/servicecontrol/creating-config-file.md#host-settings-servicecontrollogpath)`\FailedImports\{Audit|Error}\%failureid%.txt`. These messages will not be visible in ServiceInsight.
+In addition, a log with the failure reason is written for the message in the `%ServiceControl/LogPath%` ([error instances](/servicecontrol/servicecontrol-instances/configuration.md#logging-servicecontrollogpath)/[audit instances](/servicecontrol/audit-instances/configuration.md#logging-servicecontrol-auditlogpath)) `\FailedImports\{Audit|Error}\%failureid%.txt`. These messages will not be visible in ServiceInsight or ServicePulse.
 
 ## Failed message custom check
 
-When a failed import is detected in the ServiceControl database, the [**Message Ingestion** custom check](/servicecontrol/servicecontrol-instances/#self-monitoring-via-custom-checks-failed-imports) is marked as failed to bring the failed import(s) to the administrator's attention.
+When a failed import is detected in the ServiceControl database, the [**Message Ingestion** custom check](/servicecontrol/servicecontrol-instances/) is marked as failed to bring the failed import(s) to the administrator's attention.
 
 ## How to reimport
 
 To reimport the failed messages, the instance must be shut down and started from a command line using one of the following commands:
 
+While in import mode, ServiceControl or ServiceControl Audit will not process its input queues. Once the message is re-processed successfully, it is available in ServicePulse and ServiceInsight.
+
+The custom check will no longer be displayed if all failed imports have been successfully reimported.
+
 > [!NOTE]
-> The value to use for `--serviceName` is the instance name. It is available in the Windows Service information as well as the ServiceControl Management Utility.
+> Older, unsupported versions of ServiceControl (prior to 5.5.0) require a `--serviceName` command line option. The value to use for `--serviceName` is the instance name. It is available in the Windows Service information and ServiceControl Management Utility. 
 
-**ServiceControl instance:**
+### ServiceControl deployed using a container
 
-
-```cmd
-ServiceControl.exe --serviceName=Particular.Servicecontrol --import-failed-errors
+1. Stop the container for the instance. Note the options and tag used.
+2. Run the container image as a short-term foreground process (`--rm`) using the following command line:
+```bash
+docker run --rm {OPTIONS} particular/servicecontrol:{TAG} --import-failed-errors
 ```
+3. Start the container for the instance.
 
-**ServiceControl audit instance:**
+### ServiceControl deployed using PowerShell or the ServiceControl Management Utility
 
-
+1. First stop the instance using the ServiceControl Management Utility or by stopping the Windows service directly.
+2. Run the following command line:
 ```cmd
-ServiceControl.Audit.exe --serviceName=Particular.Servicecontrol.Audit --import-failed-audits
+ServiceControl.exe --import-failed-errors
 ```
+3. After the import has completed, start the instance using the ServiceControl Management Utility or by starting the Windows service directly.
 
-While in import mode, ServiceControl or ServiceControl Audit will not process its input queues. Once the message is re-processed successfully, it is available in ServicePulse and ServiceInsight. ServiceControl or ServiceControl Audit instance can then be started again.
+### ServiceControl.Audit deployed using a container
 
-The custom check will no longer be displayed if all failed imports have been successfully reimported
+1. Stop the container for the instance. Note the options and tag used.
+2. Run the container image as a short-term foreground process (`--rm`) using the following command line:
+```bash
+docker run --rm {OPTIONS} particular/servicecontrol-audit:{TAG} --import-failed-audits
+```
+3. Start the container for the instance.
+
+### ServiceControl.Audit deployed using PowerShell or the ServiceControl Management Utility
+
+1. First stop the instance using the ServiceControl Management Utility or by stopping the Windows service directly.
+2. Run the following command line:
+```cmd
+ServiceControl.Audit.exe --import-failed-audits
+```
+3. After the import has completed, start the instance using the ServiceControl Management Utility or by starting the Windows service directly.
 
 ## Modify message data
 
-If the message still fails to import it usually means that the message is malformed, and ServiceControl won't be able to ingest it. It may be possible to correct the message data manually to allow ServiceControl to import the message. To review the malformed messages, start ServiceControl in [maintenance mode](/servicecontrol/maintenance-mode.md) and inspect the `FailedAuditImports` or `FailedErrorImports` collection. Review the import failure logs to determine why the import continues to fail. If modifying the audit message, data can resolve the issue, make the necessary changes to the message document to allow ServiceControl to import the message.
+If the message still fails to import, it usually means that the message is malformed, and ServiceControl won't be able to ingest it. It may be possible to correct the message data manually to allow ServiceControl to import the message. To review the malformed messages, [access the ServiceControl database](/servicecontrol/ravendb/accessing-database.md) and inspect the `FailedAuditImports` or `FailedErrorImports` collection. Review the import failure logs to determine why the import continues to fail. If modifying the audit message data can resolve the issue, make the necessary changes to the message document to allow ServiceControl to import the message.
 
-Once the data has been modified, the message can be reimported by running ServiceControl from the command line with the `--import-failed-errors` or ServiceControl Audit with the `--import-failed-audits` option again.
+Once the data has been modified, the message can be [reimported again](#how-to-reimport).

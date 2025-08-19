@@ -4,7 +4,7 @@ summary: Using NServiceBus with Azure Service Bus triggers and Azure Functions i
 component: ASBFunctionsWorker
 related:
  - nservicebus/hosting/azure-functions-service-bus
-reviewed: 2021-08-31
+reviewed: 2024-08-06
 ---
 
 This sample shows how to host NServiceBus within an Azure Function. In this case, a function is triggered by an incoming Azure Service Bus message. This enables hosting message handlers in Azure Functions, gaining the abstraction of message handlers implemented using `IHandleMessages<T>` and taking advantage of NServiceBus's extensible message-processing pipeline.
@@ -15,9 +15,9 @@ downloadbutton
 
 ## Prerequisites
 
-### Manually create queue
+### Create queue
 
-Unlike a traditional NServiceBus endpoint, an endpoint hosted in Azure Functions cannot create its own input queue; the queue must be created elsewhere, for example in the Azure portal or with the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli). In this sample, the queue name is `ASBWorkerEndpoint`.
+To use the sample, the endpoint queue must be created. It can be done manually in the Azure portal, or with the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli). In this sample, the queue name is `ASBWorkerEndpoint`.
 
 To create the queue with the Azure CLI, execute the following Azure CLI command:
 
@@ -25,11 +25,9 @@ To create the queue with the Azure CLI, execute the following Azure CLI command:
 az servicebus queue create --name ASBWorkerEndpoint --namespace-name <asb-namespace-to-use> --resource-group <resource-group-containing-namespace>
 ```
 
-### Manually create bundle topic
-
-```
-az servicebus topic create --name bundle-1 --namespace-name <asb-namespace-to-use> --resource-group <resource-group-containing-namespace>
-```
+#if-version [4.0,)
+The queue can also be automatically created by adding a call to the `configuration.AdvancedConfiguration.EnableInstallers()` method.
+#end-if
 
 ### Configure Connection string
 

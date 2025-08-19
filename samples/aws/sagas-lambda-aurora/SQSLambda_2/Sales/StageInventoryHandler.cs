@@ -1,12 +1,10 @@
-﻿using NServiceBus.Logging;
+﻿using Microsoft.Extensions.Logging;
 
-public class StageInventoryHandler : IHandleMessages<OrderReceived>
+public class StageInventoryHandler(ILogger<StageInventoryHandler> logger) : IHandleMessages<OrderReceived>
 {
-    readonly ILog log = LogManager.GetLogger<StageInventoryHandler>();
-
     public async Task Handle(OrderReceived message, IMessageHandlerContext context)
     {
-        log.Info($"Staging inventory for order {message.OrderId}.");
+        logger.LogInformation("Staging inventory for order {OrderId}.", message.OrderId);
 
         await Task.Delay(TimeSpan.FromSeconds(Random.Shared.Next(2, 5)), context.CancellationToken);
 

@@ -1,7 +1,7 @@
 ---
 title: Heartbeat notification events
-summary:
-reviewed: 2022-03-11
+summary: Learn about the integration events exposed by ServiceControl for the Heartbeats plugin
+reviewed: 2024-11-04
 component: Heartbeats
 versions: 'Heartbeats:*'
 ---
@@ -13,13 +13,13 @@ For information about how to subscribe to ServiceControl integration events, see
 
 ## `HeartbeatStopped`
 
-The `HeartbeatStopped` event is published if the ServiceControl instance does not receive a heartbeat from an active endpoint instance within a [configured grace period](/servicecontrol/creating-config-file.md#plugin-specific-servicecontrolheartbeatgraceperiod).
+The `HeartbeatStopped` event is published if the ServiceControl instance does not receive a heartbeat from an active endpoint instance within a [configured grace period](/servicecontrol/servicecontrol-instances/configuration.md#plugin-specific-servicecontrolheartbeatgraceperiod).
 
 ```csharp
 public class HeartbeatStopped
 {
     /// <summary>
-    /// The date and time last hearbeat has been received from the endpoint.
+    /// The date and time last heartbeat has been received from the endpoint.
     /// </summary>
     public DateTime LastReceivedAt { get; set; }
 
@@ -48,13 +48,13 @@ public class HeartbeatStopped
 
 ## `HeartbeatRestored`
 
-The `HeartbeatRestored` event is published is the ServiceControl instance starts receiving heartbeats from a previously inactive endpoint instance.
+The `HeartbeatRestored` event is published when the ServiceControl instance starts receiving heartbeats from a previously inactive endpoint instance.
 
 ```csharp
 public class HeartbeatRestored
 {
     /// <summary>
-    /// The date and time the heartbeat been again detected by ServiceControl.
+    /// The date and time the heartbeat has been again detected by ServiceControl.
     /// </summary>
     public DateTime RestoredAt { get; set; }
 

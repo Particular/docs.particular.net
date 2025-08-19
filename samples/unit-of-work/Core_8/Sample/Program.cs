@@ -3,38 +3,25 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "UnitOfWork";
-        var endpointConfiguration = new EndpointConfiguration("Samples.UnitOfWork");
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
-        var recoverability = endpointConfiguration.Recoverability();
-        recoverability.Immediate(
-            customizations: immediate =>
-            {
-                immediate.NumberOfRetries(0);
-            });
-        recoverability.Delayed(
-            customizations: delayed =>
-            {
-                delayed.NumberOfRetries(0);
-            });
+Console.Title = "UnitOfWork";
 
-        #region ComponentRegistration
+var endpointConfiguration = new EndpointConfiguration("Samples.UnitOfWork");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
-        endpointConfiguration.RegisterComponents(
-            registration: components =>
-            {
-                components.AddTransient<CustomManageUnitOfWork>();
-            });
+var recoverability = endpointConfiguration.Recoverability();
+recoverability.Immediate(
+    customizations: immediate => { immediate.NumberOfRetries(0); });
+recoverability.Delayed(
+    customizations: delayed => { delayed.NumberOfRetries(0); });
 
-        #endregion
+#region ComponentRegistration
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        await Runner.Run(endpointInstance);
-        await endpointInstance.Stop();
-    }
-}
+endpointConfiguration.RegisterComponents(
+    registration: components => { components.AddTransient<CustomManageUnitOfWork>(); });
+
+#endregion
+
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
+await Runner.Run(endpointInstance);
+await endpointInstance.Stop();

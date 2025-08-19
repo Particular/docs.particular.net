@@ -1,18 +1,23 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net8.0</TargetFramework>
     <AzureFunctionsVersion>v4</AzureFunctionsVersion>
-    <LangVersion>10.0</LangVersion>
+    <LangVersion>12.0</LangVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AzureFunctions.Messages\AzureFunctions.Messages.csproj" />
+  </ItemGroup>
+
   <ItemGroup>
     <PackageReference Include="NServiceBus.AzureFunctions.InProcess.ServiceBus" Version="4.*" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="4.*" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\AzureFunctions.Messages\AzureFunctions.Messages.csproj" />
-  </ItemGroup>
+
   <ItemGroup>
     <Content Include="..\local.settings.json" CopyToOutputDirectory="PreserveNewest" />
     <None Update="host.json" CopyToOutputDirectory="PreserveNewest" />
   </ItemGroup>
+
 </Project>

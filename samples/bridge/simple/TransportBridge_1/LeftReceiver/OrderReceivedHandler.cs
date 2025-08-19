@@ -1,15 +1,13 @@
 using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
-public class OrderReceivedHandler :
+public class OrderReceivedHandler(ILogger<OrderReceivedHandler> logger) :
     IHandleMessages<OrderReceived>
 {
-    static ILog log = LogManager.GetLogger<OrderReceivedHandler>();
-
     public Task Handle(OrderReceived message, IMessageHandlerContext context)
     {
-        log.Info($"Subscriber has received OrderReceived event with OrderId {message.OrderId}.");
+        logger.LogInformation("Subscriber has received OrderReceived event with OrderId {OrderId}.", message.OrderId);
         return Task.CompletedTask;
     }
 }

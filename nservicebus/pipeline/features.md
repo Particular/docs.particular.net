@@ -7,7 +7,6 @@ versions: '[5.0,)'
 related:
  - samples/feature
  - samples/header-manipulation
- - samples/pipeline/handler-timer
  - samples/startup-shutdown-sequence
 ---
 

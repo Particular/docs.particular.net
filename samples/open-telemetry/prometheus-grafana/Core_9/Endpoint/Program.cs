@@ -25,7 +25,7 @@ public class Program
         #region enable-opentelemetry-metrics
         var meterProviderBuilder = Sdk.CreateMeterProviderBuilder()
             .SetResourceBuilder(resourceBuilder)
-            .AddMeter("NServiceBus.Core");
+            .AddMeter("NServiceBus.Core*");
         #endregion
 
         #region enable-prometheus-http-listener

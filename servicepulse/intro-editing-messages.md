@@ -2,7 +2,7 @@
 title:  Fixing malformed messages
 summary: Describes the concept of fixing and retrying malformed messages in ServicePulse
 component: ServicePulse
-reviewed: 2021-08-05
+reviewed: 2024-07-26
 ---
 
 If a message cannot be successfully retried it is possible to fix the malformed message prior to retrying it. Both the headers and the body of a message can be edited. This capability can be accessed when looking at an individual message.
@@ -39,7 +39,7 @@ Headers on all failed messages can be edited using this feature. There are three
 
 * **Locked headers:** Headers that are critical to the operation of NServiceBus cannot be edited. These headers will have a lock image next to their name.
 
-* **Sensitive headers:** Headers that, when their values change, may result in unexpected or unwanted behavior are categorized as "Sensitive". When editing these headers the user will be warned of their sensitive nature.
+* **Sensitive headers:** Headers that, when their values change, may result in unexpected or unwanted behavior are categorized as "Sensitive". When these headers are modified, the :warning: icon indicates their sensitive nature to the user.
 
 * **Custom headers:** Any headers that have not been been categorized as Locked or Sensitive will be fully editable. This will include headers created as part of a system customization. It is also possible to delete (and retrieve) these headers during the editing process. Once a message has been edited and retried, any deleted headers will be lost forever.
 

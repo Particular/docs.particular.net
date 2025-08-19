@@ -1,7 +1,7 @@
 ---
 title: Using ServiceControl Events
 summary: Build custom notifications by subscribing to ServiceControl events
-reviewed: 2022-01-25
+reviewed: 2024-10-14
 component: ServiceControlContracts
 isLearningPath: true
 redirects:
@@ -10,6 +10,7 @@ redirects:
  - servicecontrol/external-integrations
 related:
  - samples/servicecontrol/events-subscription
+ - samples/servicecontrol/azure-monitor-events
  - monitoring/heartbeats/notification-events
  - monitoring/custom-checks/notification-events
 ---
@@ -51,7 +52,7 @@ snippet: ServiceControlEventsConfig
 snippet: MessageFailedHandler
 
 > [!WARNING]
-> Endpoints that subscribe to ServiceControl events should _not_ use the same `error` and `audit` queues as other endpoints. Using the same `error` queue could cause an infinite feedback loop if processing a `MessageFailed` message failed. Using the same `audit` queue will cause the processing of the `MessageFailed` messages to be included in the ServiceInsight search results. This could confuse users searching for a given failure since both the failure and the failure notification will be shown. See also: [Recoverability](/nservicebus/recoverability/) and [Audit Queue Settings](/nservicebus/operations/auditing.md).
+> Endpoints that subscribe to ServiceControl events should _not_ use the same `error` and `audit` queues as other endpoints. Using the same `error` queue could cause an infinite feedback loop if processing a `MessageFailed` message failed. Using the same `audit` queue will cause the processing of the `MessageFailed` messages to be included in the ServiceInsight and ServicePulse messages search results. This could confuse users searching for a given failure since both the failure and the failure notification will be shown. See also: [Recoverability](/nservicebus/recoverability/) and [Audit Queue Settings](/nservicebus/operations/auditing.md).
 
 
 #### Registering the publisher for message-driven publish/subscribe
@@ -103,3 +104,7 @@ An event will also be published and displayed in the ServicePulse dashboard with
 ```
 
 To avoid this situation it is important to properly decommission an endpoint that subscribes to ServiceControl events. To do this, [disable auto-subscription](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#disabling-auto-subscription) and then [unsubscribe from all events](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md#manually-subscribing-to-a-message).
+
+## Disabling integration 
+
+In systems that have significant load but not having subscribers for the integration events it can be beneficial to disable the intergration to prevent unneeded traffic to the broker for these events. The integration can be disabled by setting [`DisableExternalIntegrationsPublishing` to `True`](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontroldisableexternalintegrationspublishing).

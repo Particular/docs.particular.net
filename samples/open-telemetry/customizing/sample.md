@@ -1,7 +1,7 @@
 ---
 title: Customizing OpenTelemetry tracing
 summary: Demonstrates how to add data to existing OpenTelemetry traces
-reviewed: 2022-07-15
+reviewed: 2024-07-26
 component: Core
 related:
 - nservicebus/operations/opentelemetry
@@ -25,13 +25,9 @@ NServiceBus OpenTelemetry instrumentation is not enabled by default. It must be 
 
 snippet: enable-opentelemetry
 
-OpenTelemetry is configured to export all traces to the command line. It includes the `NServiceBus.Core` source which is built into NServiceBus and a custom activity source defined in the sample (see below).
+OpenTelemetry is configured to export all traces to the command line. It includes the `NServiceBus.*` sources built into NServiceBus and a custom activity source defined in the sample (see below).
 
 snippet: open-telemetry-config
-
-A custom processor is registered which adds the machine name as a tag to every activity created by this trace listener.
-
-snippet: custom-processor
 
 ### Custom activities
 
@@ -56,6 +52,9 @@ Send CreateOrder
 
 ### Adding tags
 
+> [!NOTE]
+> `Activity.Current` may be `null` if there are no configured trace listeners. Always check if the value is null before calling methods on an `Activity` instance, or use the null-conditional operator (`?.`).
+
 The handler for `ShipOrder` adds tags to the ambient behavior.
 
 snippet: add-tags-from-handler
@@ -72,5 +71,4 @@ A behavior in the outgoing pipeline adds the size of the message as a tag for al
 
 snippet: add-tags-from-outgoing-behavior
 
-> [!WARNING]
-> `Activity.Current` may be `null` if there are no configured trace listeners. Always check if the value is null before calling methods on an `Activity` instance, or use the null-conditional operator (`?.`).
+partial: handler-behavior

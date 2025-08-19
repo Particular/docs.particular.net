@@ -1,11 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net6.0</TargetFramework>
-	</PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <UseRidGraph>true</UseRidGraph>
+  </PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="NServiceBus.Persistence.AzureTable.TransactionalSession" Version="3.*" />
-	</ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.Persistence.AzureTable.TransactionalSession" Version="3.*" />
+  </ItemGroup>
+
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
+    <PackageReference Include="System.Drawing.Common" Version="4.*" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="4.*" />
+  </ItemGroup>
 
 </Project>

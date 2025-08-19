@@ -15,46 +15,48 @@ class Program
             throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
         }
 
-        await Host.CreateDefaultBuilder()
-            .UseNServiceBusBridge((ctx, bridgeConfiguration) =>
-            {
-                #region create-asb-endpoint-of-bridge
-                var asbBridgeEndpoint = new BridgeEndpoint("Samples.MessagingBridge.AsbEndpoint");
-                #endregion
+        var builder = Host.CreateApplicationBuilder();
+        var bridgeConfiguration = new BridgeConfiguration();
 
-                #region asb-subscribe-to-event-via-bridge
-                asbBridgeEndpoint.RegisterPublisher<MyEvent>("Samples.MessagingBridge.MsmqEndpoint");
-                #endregion
+        #region create-asb-endpoint-of-bridge
+        var asbBridgeEndpoint = new BridgeEndpoint("Samples.MessagingBridge.AsbEndpoint");
+        #endregion
 
-                #region asb-bridge-configuration
-                var asbBridgeTransport = new BridgeTransport(new AzureServiceBusTransport(connectionString))
-                {
-                    AutoCreateQueues = true
-                };
+        #region asb-subscribe-to-event-via-bridge
+        asbBridgeEndpoint.RegisterPublisher<MyEvent>("Samples.MessagingBridge.MsmqEndpoint");
+        #endregion
 
-                asbBridgeTransport.HasEndpoint(asbBridgeEndpoint);
-                bridgeConfiguration.AddTransport(asbBridgeTransport);
-                #endregion
+        #region asb-bridge-configuration
+        var asbBridgeTransport = new BridgeTransport(new AzureServiceBusTransport(connectionString))
+        {
+            AutoCreateQueues = true
+        };
 
-                #region create-msmq-endpoint-of-bridge
-                var msmqBridgeEndpoint = new BridgeEndpoint("Samples.MessagingBridge.MsmqEndpoint");
-                #endregion
+        asbBridgeTransport.HasEndpoint(asbBridgeEndpoint);
+        bridgeConfiguration.AddTransport(asbBridgeTransport);
+        #endregion
 
-                #region msmq-subscribe-to-event-via-bridge
-                msmqBridgeEndpoint.RegisterPublisher<OtherEvent>("Samples.MessagingBridge.AsbEndpoint");
-                #endregion
+        #region create-msmq-endpoint-of-bridge
+        var msmqBridgeEndpoint = new BridgeEndpoint("Samples.MessagingBridge.MsmqEndpoint");
+        #endregion
 
-                #region msmq-bridge-configuration
-                var msmqBridgeTransport = new BridgeTransport(new MsmqTransport())
-                {
-                    AutoCreateQueues = true
-                };
+        #region msmq-subscribe-to-event-via-bridge
+        msmqBridgeEndpoint.RegisterPublisher<OtherEvent>("Samples.MessagingBridge.AsbEndpoint");
+        #endregion
 
-                msmqBridgeTransport.HasEndpoint(msmqBridgeEndpoint);
-                bridgeConfiguration.AddTransport(msmqBridgeTransport);
-                #endregion
-            })
-            .Build()
-            .RunAsync();
+        #region msmq-bridge-configuration
+        var msmqBridgeTransport = new BridgeTransport(new MsmqTransport())
+        {
+            AutoCreateQueues = true
+        };
+
+        msmqBridgeTransport.HasEndpoint(msmqBridgeEndpoint);
+        bridgeConfiguration.AddTransport(msmqBridgeTransport);
+        #endregion
+
+        builder.UseNServiceBusBridge(bridgeConfiguration);
+
+        var host = builder.Build();
+        await host.RunAsync();
     }
 }

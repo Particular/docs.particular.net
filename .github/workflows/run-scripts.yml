@@ -9,33 +9,49 @@ env:
 jobs:
   run-scripts:
     name: Run scripts
-    runs-on: windows-2022
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-      - name: Install LINQPad
-        run: choco install linqpad
+        uses: actions/checkout@v5
+      - name: Checkout ServicePulse
+        uses: actions/checkout@v5
+        with:
+          repository: Particular/ServicePulse
+          path: checkout/ServicePulse
+      - name: Checkout ServiceControl
+        uses: actions/checkout@v5
+        with:
+          repository: Particular/ServiceControl
+          path: checkout/ServiceControl
       - name: Set environment vars
         run: |
-          echo "C:\Program Files\LinqPad8" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
           git config user.email "85681268+internalautomation[bot]@users.noreply.github.com"
           git config user.name "internalautomation[bot]"
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+          dotnet-version: 9.0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
       - name: Update Core Dependencies
-        run: lprun8 tools\coreDependencies.linq
-      - name: Update 3rd-Party Licenses
-        run: lprun8 tools\3rd-party-licenses.linq
-      - name: Commit changes
         run: |
-          git diff > ../changes.diff
-          $changes = Get-Item ../changes.diff
+          (cd tools/coreDependencies && dotnet run --project coreDependencies.csproj)
+      - name: Update 3rd-Party Licenses
+        run: |
+          (cd tools/3rd-party-licenses && dotnet run --project 3rd-party-licenses.csproj)
+      - name: Commit changes
+        shell: pwsh
+        run: |
+          git diff platform/third-party-license-data.include.md > changes.patch
+          $changes = Get-Item changes.patch
 
           Write-Output "Diff size is $($changes.Length) bytes"
-          Write-Output ../changes.diff
 
-          if ($changes.Length -gt 20480) {
-            throw "Changes diff is > 20KB - too much change to trust without verifying"
+          if ($changes.Length -gt 35840) {
+            throw "Changes diff is > 35KB - too much change to trust without verifying. changed.patch file have been created as an artifact. To merge this file run 'git apply changes.patch'"
             return 1
           }
           if ($changes.Length -eq 0) {
@@ -44,13 +60,20 @@ jobs:
           }
 
           Write-Output "Staging changes"
-          git add --all
+          git add platform/third-party-license-data.include.md
 
           Write-Output "Committing changes"
           git commit -m "Updates from running scripts in the 'tools' directory"
 
           Write-Output "Pushing changes to origin"
           git push origin master
+      - uses: actions/upload-artifact@v4
+        name: Attach patch as artifact
+        if: ${{ always() }}
+        with:
+          name: changes.patch
+          path: changes.patch
+          if-no-files-found: ignore
       - name: Notify Slack on failure
         if: ${{ failure() }}
         shell: pwsh

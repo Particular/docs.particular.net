@@ -1,7 +1,7 @@
 ---
 title: Workflows
 summary: Techniques for building stateful business workflows in distributed systems
-reviewed: 2023-07-18
+reviewed: 2025-06-30
 callsToAction: ['solution-architect']
 ---
 
@@ -20,7 +20,7 @@ _A choreographed event-driven workflow across multiple endpoints, visualized by 
 
 ### Implementing choreographed workflows
 
-NServiceBus provides a simple [publish/subscribe](/nservicebus/messaging/publish-subscribe/publish-handle-event.md) API for all supported messaging technologies. NServiceBus can automatically create and manage the necessary infrastructure like topics, subscriptions, and queues.
+NServiceBus provides a simple [publish/subscribe](/nservicebus/messaging/publish-subscribe/publish-handle-event.md) API for all supported messaging technologies. NServiceBus can automatically create and manage the necessary infrastructure, like topics, subscriptions, and queues.
 
 ![](nsb-pub-sub.png)
 
@@ -29,7 +29,7 @@ NServiceBus provides a simple [publish/subscribe](/nservicebus/messaging/publish
 ### Challenges
 
 * When implementing complex workflows, messages flowing through the system can quickly become difficult to understand and track. To have a full picture of the message flow, the implementation of every service needs to be known. The absence of a central processor requires more effort to detect failed or stuck business processes. [Particular Service Platform monitoring](/monitoring/) helps to understand and monitor complex choreographed workflows.
-* Putting too much data on events will quickly re-introduce coupling and impact overall system performance. Read more about properly sizing event messages in the blog post on [putting events on a diet](https://particular.net/blog/putting-your-events-on-a-diet).
+* Putting too much data on events will quickly reintroduce coupling and impact overall system performance. Read more about properly sizing event messages in the blog post on [putting events on a diet](https://particular.net/blog/putting-your-events-on-a-diet).
 * Complex workflows that require aggregation of multiple events require local state. Service-internal [orchestration using NServiceBus sagas](#orchestration) can be used to easily aggregate multiple events and process timeouts in a component of a choreographed workflow.
 * Maintaining a consistent state across all choreography participants in case of failures can become challenging as the coordination and flow of compensating events can quickly multiply the complexity of a choreographed workflow. Choreography is best used for processes that tolerate eventual consistency. [Orchestrated workflows](#orchestration) may be better for processes that require more consistency.
 
@@ -53,4 +53,4 @@ _An orchestrated workflow implemented as an NServiceBus Saga, visualized by [Ser
 ### Challenges
 
 * Orchestrators have much higher coupling due to the dependency on the components that are being orchestrated for the workflow. This makes it likely that orchestrators need to change when those components change. Additionally, the orchestrator may require data from those components, further increasing coupling. Orchestration can be a good choice for technical processes within a bounded context, whereas [choreography](#choreography) is often a better approach for processes involving more than one bounded context.
-* Orchestrators are more difficult to scale because all workflow communication has to go through the central orchestrator, introducing a potential bottleneck. NServiceBus sagas follow best practices for performance, to optimize integration with all supported data stores for state storage.
+* Orchestrators are more difficult to scale because all workflow communication has to go through the central orchestrator, introducing a potential bottleneck. NServiceBus sagas follow performance best practices to optimize integration with all supported data stores for state storage.

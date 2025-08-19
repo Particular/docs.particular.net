@@ -1,21 +1,31 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 class Program
 {
-    static async Task Main()
+    public static async Task Main(string[] args)
     {
-        Console.Title = "ContentManagement";
-        var endpointConfiguration = new EndpointConfiguration("Store.ContentManagement");
-        endpointConfiguration.ApplyCommonConfiguration(routing =>
-        {
-            routing.RouteToEndpoint(typeof(Store.Messages.RequestResponse.ProvisionDownloadRequest), "Store.Operations");
-        });
-
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop();
+        await CreateHostBuilder(args).Build().RunAsync();
     }
+
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+     Host.CreateDefaultBuilder(args)
+         .ConfigureServices((hostContext, services) =>
+         {
+         }).UseNServiceBus(x =>
+         {
+             Console.Title = "ContentManagement";
+             var endpointConfiguration = new EndpointConfiguration("Store.ContentManagement");
+             endpointConfiguration.ApplyCommonConfiguration(routing =>
+             {
+                 routing.RouteToEndpoint(typeof(Store.Messages.RequestResponse.ProvisionDownloadRequest), "Store.Operations");
+             });
+
+
+             Console.WriteLine("Press any key to exit");
+             Console.ReadKey();
+             return endpointConfiguration;
+         });
 }

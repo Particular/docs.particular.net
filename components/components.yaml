@@ -7,6 +7,25 @@
   NugetOrder:
     - NServiceBus
 
+- Key: MessageInterfaces
+  Name: NServiceBus.MessageInterfaces
+  DocsUrl: /nservicebus
+  Category: Core
+  GitHubOwner: Particular
+  ProjectUrl: https://github.com/Particular/NServiceBus.MessageInterfaces
+  NugetOrder:
+    - NServiceBus.MessageInterfaces    
+
+- Key: DataBus
+  Name: DataBus
+  DocsUrl: /nservicebus/messaging/claimcheck
+  GitHubOwner: Particular
+  Category: Databus
+  ProjectUrl: https://github.com/Particular/NServiceBus.ClaimCheck
+  NugetOrder:
+    - NServiceBus.ClaimCheck
+    - NServiceBus
+
 - Key: ABSDataBus
   Name: Azure Blob Storage Databus
   DocsUrl: /nservicebus/azure
@@ -18,7 +37,7 @@
 
 - Key: BinaryDataBusSerializer
   Name: DataBus Binary Serializer
-  DocsUrl: /nservicebus/messaging/databus/binary
+  DocsUrl: /nservicebus/messaging/claimcheck/binary
   GitHubOwner: Particular
   Category: Databus
   ProjectUrl: https://github.com/Particular/NServiceBus.DataBus.BinarySerializer
@@ -146,11 +165,12 @@
 
 - Key: FileShareDataBus
   Name: File Share Databus
-  DocsUrl: /nservicebus/messaging/databus/file-share
+  DocsUrl: /nservicebus/messaging/claimcheck/file-share
   GitHubOwner: Particular
   Category: Databus
   ProjectUrl: https://github.com/Particular/NServiceBus
   NugetOrder:
+    - NServiceBus.ClaimCheck
     - NServiceBus
 
 - Key: Gateway
@@ -487,6 +507,7 @@
   DocsUrl: /nservicebus/dotnet-templates
   GitHubOwner: Particular
   Category: Host
+  SupportLevel: Tool
   ProjectUrl: https://github.com/Particular/ParticularTemplates
   NugetOrder:
     - ParticularTemplates
@@ -529,6 +550,15 @@
   NugetOrder:
     - NServiceBus.Transport.SqlServer
     - NServiceBus.SqlServer
+
+- Key: PostgreSqlTransport
+  Name: PostgreSql Transport
+  DocsUrl: /transports/postgresql
+  GitHubOwner: Particular
+  Category: Transport
+  ProjectUrl: https://github.com/Particular/NServiceBus.SqlServer
+  NugetOrder:
+    - NServiceBus.Transport.PostgreSql
 
 - Key: StructureMap
   Name: StructureMap Dependency Injection
@@ -683,7 +713,7 @@
 
 - Key: Migrations
   Name: Particular.TimeoutMigration
-  DocsUrl: nservicebus/tools
+  DocsUrl: /nservicebus/tools/migrate-to-native-delivery
   GitHubOwner: Particular
   Category: Persistence
   SupportLevel: Tool
@@ -694,7 +724,7 @@
 
 - Key: CosmosDB
   Name: NServiceBus.Persistence.CosmosDB
-  DocsUrl: persistence/cosmosdb
+  DocsUrl: /persistence/cosmosdb
   GitHubOwner: Particular
   Category: Persistence
   LicenseUrl: https://github.com/Particular/NServiceBus.Persistence.CosmosDB/blob/master/LICENSE.md

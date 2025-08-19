@@ -3,7 +3,7 @@
     <TargetFramework>net48</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Azure.Identity" Version="1.11.0" />
+    <PackageReference Include="Azure.Identity" Version="1.12.0" />
     <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="3.2.*" />
   </ItemGroup>
 </Project>

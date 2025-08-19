@@ -2,7 +2,7 @@
 title: Installing ServicePulse
 summary: Describes how ServicePulse is installed - and its basic requirements
 component: ServicePulse
-reviewed: 2022-11-08
+reviewed: 2025-02-19
 related:
 - servicepulse/troubleshooting
 ---
@@ -13,8 +13,15 @@ related:
 ## Prerequisites
 
  * .NET Framework 4.5 or later
- * A currently-supported version of Microsoft Edge, Chrome, Firefox, or Safari
+ * A currently-supported version of:
+     - Microsoft Edge
+     - Chrome
+     - Firefox
+     - Safari
  * A running instance of [ServiceControl](/servicecontrol)
+
+> [!NOTE]
+> Internet Explorer (IE) is NOT supported
 
 ## Installation
 
@@ -50,9 +57,9 @@ Example
 ServicePulse connects to and relies on ServiceControl and optionally ServiceControl Monitoring as its data source.
 For details on ServiceControl, ServiceControl Monitoring and ServicePulse configuration options, see:
 
- * [Configuring ServiceControl](/servicecontrol/creating-config-file.md)
+ * [Configuring ServiceControl](/servicecontrol/servicecontrol-instances/configuration.md)
  * [ServiceControl Guidance](/servicecontrol)
- * [Configuring ServiceControl Monitoring](/servicecontrol/monitoring-instances/installation/creating-config-file.md)
+ * [Configuring ServiceControl Monitoring](/servicecontrol/monitoring-instances/configuration.md)
  * [ServiceControl Monitoring Guidance](/servicecontrol/monitoring-instances)
  * [Connection Configuration in ServicePulse](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui)
 

@@ -1,13 +1,12 @@
 using Messages;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
-public class MessageThatExpiresHandler : IHandleMessages<MessageThatExpires>
+public class MessageThatExpiresHandler(ILogger<MessageThatExpiresHandler> logger) : IHandleMessages<MessageThatExpires>
 {
-    static readonly ILog log = LogManager.GetLogger<MessageThatExpiresHandler>();
 
     public Task Handle(MessageThatExpires message, IMessageHandlerContext context)
     {
-        log.Info($"Message [{message.GetType()}] received, id: [{message.RequestId}]");
+        logger.LogInformation("Message [{MessageType}] received, id: [{RequestId}]", message.GetType(), message.RequestId);
         return Task.CompletedTask;
     }
 }

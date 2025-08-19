@@ -1,0 +1,14 @@
+# startcode topology-options
+{
+  "$type": "topology-options",
+  "PublishedEventToTopicsMap": {
+    "MyNamespace.SomeEvent": "some-event"
+  },
+  "SubscribedEventToTopicsMap": {
+    "MyNamespace.SomeEvent": "some-event"
+  },
+  "QueueNameToSubscriptionNameMap": {
+    "Publisher": "PublisherSubscriptionName"
+  }
+}
+# endcode topology-options

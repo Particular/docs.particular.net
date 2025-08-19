@@ -1,20 +1,25 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Messages;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
 namespace Sales
 {    
     public class PlaceOrderHandler :
         IHandleMessages<PlaceOrder>
     {
-        static readonly ILog log = LogManager.GetLogger<PlaceOrderHandler>();
         static readonly Random random = new Random();
+        private readonly ILogger<PlaceOrderHandler> logger;
 
-        public Task Handle(PlaceOrder message, IMessageHandlerContext context)
+        public PlaceOrderHandler(ILogger<PlaceOrderHandler> logger)
         {
-            log.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
+            this.logger = logger;
+        }        
+
+         public Task Handle(PlaceOrder message, IMessageHandlerContext context)
+        {
+            logger.LogInformation("Received PlaceOrder, OrderId = {orderId}",  message.OrderId);
 
             // This is normally where some business logic would occur
 
@@ -36,7 +41,7 @@ namespace Sales
                 OrderId = message.OrderId
             };
 
-            log.Info($"Publishing OrderPlaced, OrderId = {message.OrderId}");
+            logger.LogInformation("Publishing OrderPlaced, OrderId = {orderId}", message.OrderId);
 
             return context.Publish(orderPlaced);
         }

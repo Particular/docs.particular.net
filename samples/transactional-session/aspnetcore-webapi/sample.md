@@ -2,7 +2,7 @@
 title: Using TransactionalSession with Entity Framework and ASP.NET Core
 summary: Transactional Session sample that illustrates how to send messages and modify data with Entity Framework in an atomic manner using ASP.NET Core.
 component: TransactionalSession.SqlPersistence
-reviewed: 2024-01-26
+reviewed: 2025-06-04
 related:
 - nservicebus/transactional-session
 - nservicebus/transactional-session/persistences/sql-persistence
@@ -11,7 +11,10 @@ related:
 
 include: webhost-warning
 
-This sample shows how to send messages and modify data in a database atomically within the scope of a web request using the `NServiceBus.TransactionalSession` package with ASP.NET Core. The operations are triggered by an incoming HTTP request to ASP.NET Core which will manage the `ITransactionalSession` lifetime using a request middleware.
+This sample shows how to send messages and modify data in a database atomically within the scope of a web request using the `NServiceBus.TransactionalSession` package with ASP.NET Core. The ASP.NET Core application hosts a [send-only endpoint](/nservicebus/hosting/#self-hosting-send-only-hosting). The operations are triggered by an incoming HTTP request to ASP.NET Core that will manage the `ITransactionalSession` lifetime using a request middleware.
+
+> [!NOTE]
+> Starting in version 8.2.0, `NServiceBus.Persistence.Sql.TransactionalSession` is supported in send-only endpoints. Refer to the [documentation](/nservicebus/transactional-session/#remote-processor) for more details.
 
 ## Prerequisites
 
@@ -27,7 +30,7 @@ When the solution is run, a new browser window/tab opens, as well as a console a
 
 An async [WebAPI](https://dotnet.microsoft.com/apps/aspnet/apis) controller handles the request. It stores a new document using Entity Framework and sends an NServiceBus message to the endpoint hosted in the console application.
 
-The message will be processed by the NServiceBus message handler and result in `"Message received at endpoint"` printed to the console. In addition, the handler will update the previously created entity.
+The message is processed by the NServiceBus message handler in the `Sample.Receiver` project and results in `"Message received at endpoint"` printed to the console. In addition, the handler will update the previously created entity.
 
 To query all the stored entities, navigate to `http://localhost:58118/all`. To apply a complex object hierarchy using the transactional session on an endpoint, navigate to `http://localhost:58118/service`.
 
@@ -37,7 +40,11 @@ The endpoint is configured using the `UseNServiceBus` extension method:
 
 snippet: txsession-nsb-configuration
 
-The transactional session is enabled via the `endpointConfiguration.EnableTransactionalSession()` method call. Note that the transactional session feature requires [the outbox](/nservicebus/outbox/) to be configured to ensure that operations across the storage and the message broker are atomic.
+The transactional session is enabled via the `endpointConfiguration.EnableTransactionalSession()` method call. Note that the transactional session feature requires [the outbox](/nservicebus/outbox/) to be configured to ensure that operations across the storage and the message broker are atomic. See the documentation on [transaction consistency](/nservicebus/transactional-session/#transaction-consistency) for more details.
+
+partial: transactionalsessionoptions
+
+partial: processorconfiguration
 
 ASP.NET Core uses `ConfigureWebHostDefaults` for configuration and a custom result filter is registered for the `ITransactionalSession` lifetime management:
 
@@ -104,6 +111,6 @@ sequenceDiagram
 
 ## Handling the message
 
-The `MyHandler` handles the message sent by the ASP.NET controller and accesses the previously committed data stored by the controller:
+The `MyHandler` handles the message sent by the WebAPI and accesses the previously committed data stored by the controller:
 
 snippet: txsession-handler

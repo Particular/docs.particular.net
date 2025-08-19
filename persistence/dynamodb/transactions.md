@@ -2,9 +2,10 @@
 title: DynamoDB persistence transactions
 summary: How to use transactions with DynamoDB persistence
 component: DynamoDB
-reviewed: 2023-03-16
+reviewed: 2025-04-28
 related:
 - persistence/dynamodb
+- samples/aws/dynamodb-transactions
 ---
 
 The [DynamoDB TransactWriteItems](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/transactions.html) API is used to commit outbox and saga changes in a single transaction. Message handlers can add further operations to this transaction with the synchronized session:
@@ -58,9 +59,9 @@ Hierarchical objects are serialized into maps.
 
 It is possible to combine [`DynamoDBContext`](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DotNetDynamoDBContext.html) usage together with the synchronized storage but there are a number of things that must be taken into account.
 
-- Custom types that use renamed attribute names must have a corresponding `JsonPropertyName` attribute
+- Custom types that use renamed attribute names must have a corresponding `JsonPropertyName` attribute or the mapper serialization options need to be customized
 - In order to participate in the synchronized storage transaction `SaveChangesAsync` **must not be called**
-- The [AWSSDK.DynamoDBv2 3.7.103 SDK](https://www.nuget.org/packages/AWSSDK.DynamoDBv2/3.7.103) introduced transactional operations on the context. These are [currently not supported](https://github.com/Particular/NServiceBus.Persistence.DynamoDB/issues/328)
+- The [AWSSDK.DynamoDBv2 3.7.103 SDK](https://www.nuget.org/packages/AWSSDK.DynamoDBv2/3.7.103) introduced transactional operations on the context. These are [not supported](https://github.com/Particular/NServiceBus.Persistence.DynamoDB/issues/328)
 
 Following up on the previous example, when mapping the `Customer` type with the `DynamoDBContext`, the `CustomerId` and the `CustomerPreferred` properties need the `DynamoDBHashKey` or `DynamoDBProperty` attributes, and the `JsonPropertyName` attribute.
 
@@ -70,8 +71,10 @@ With mapping in place, loaded customers can be mapped into the storage session a
 
 snippet: DynamoDBMapperContextUsage
 
+partial: options
+
 ## Testing
 
-When [unit testing](/samples/unit-testing/) a message handler, the `TestableDynamoDBSynchronizedStorageSession` class can be used:
+When [unit testing](/samples/unit-testing/) a message handler, the `TestableDynamoSynchronizedStorageSession` class can be used:
 
 snippet: DynamoDBTestingSessionUsage

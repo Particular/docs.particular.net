@@ -2,20 +2,19 @@ using System;
 using System.Threading.Tasks;
 using Messages;
 using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
 #pragma warning disable 162
 
 namespace Sales
 {
-    public class PlaceOrderHandler :
+    public class PlaceOrderHandler (ILogger<PlaceOrderHandler> logger) :
         IHandleMessages<PlaceOrder>
     {
-        static ILog log = LogManager.GetLogger<PlaceOrderHandler>();
 
         public Task Handle(PlaceOrder message, IMessageHandlerContext context)
         {
-            log.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
+            logger.LogInformation("Received PlaceOrder, OrderId = {OrderId}", message.OrderId);
 
             // This is normally where some business logic would occur
 

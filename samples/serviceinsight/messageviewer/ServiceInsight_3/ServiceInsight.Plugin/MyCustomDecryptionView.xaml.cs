@@ -17,7 +17,7 @@ namespace ServiceInsight.CustomViewer.Plugin
             SetValue(TextOptions.TextFormattingModeProperty, TextFormattingMode.Display);
             document.TextArea.IndentationStrategy = new DefaultIndentationStrategy();
         }
-        
+
         public void Clear()
         {
             document.Document.Text = string.Empty;

@@ -1,14 +1,12 @@
 ---
-title: WCF to messaging bridge
-summary: Reliable WCF communication over messaging.
+title: Reliable WCF communication over messaging
 component: Wcf
-reviewed: 2021-07-28
+reviewed: 2024-07-03
 related:
  - nservicebus/wcf
 ---
 
-This sample shows how the [NServiceBus.Wcf package](/nservicebus/wcf) may be used to achieve reliable WCF services by bridging WCF calls over messaging.
-
+This sample shows how the [NServiceBus.Wcf package](/nservicebus/wcf) may be used to achieve reliable WCF services by forwarding WCF calls over messaging.
 
 ## Running the sample
 
@@ -16,12 +14,10 @@ This sample shows how the [NServiceBus.Wcf package](/nservicebus/wcf) may be use
 1. Press F5.
 1. Follow the instructions in the client's console window.
 
-
 ### Verifying that the sample works correctly
 
- * When a message is sent which _does not_ time out, `Response 'Hello from handler'` is displayed.
- * When a message is sent which _does_ time out, `Request failed due to: 'The request was cancelled after 00:00:05 because no response was received.'` is displayed.
-
+- When a message is sent which _does not_ time out, `Response 'Hello from handler'` is displayed.
+- When a message is sent which _does_ time out, `Request failed due to: 'The request was cancelled after 00:00:05 because no response was received.'` is displayed.
 
 ## Code walk-through
 

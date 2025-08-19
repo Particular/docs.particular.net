@@ -1,77 +1,29 @@
-﻿using System;
-using System.Threading.Tasks;
 using Messages;
-using NServiceBus;
-using NServiceBus.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
-namespace ClientUI
+namespace ClientUI;
+
+class Program
 {
-    class Program
+    static async Task Main(string[] args)
     {
-        static async Task Main()
-        {
-            Console.Title = "ClientUI";
+        var builder = Host.CreateApplicationBuilder(args);
 
-            var endpointConfiguration = new EndpointConfiguration("ClientUI");
+        var endpointConfiguration = new EndpointConfiguration("ClientUI");
 
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-            var routing = transport.Routing();
-            routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
-            routing.RouteToEndpoint(typeof(CancelOrder), "Sales");
+        var routing = endpointConfiguration.UseTransport(new LearningTransport());
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
+        routing.RouteToEndpoint(typeof(CancelOrder), "Sales");
 
-            await RunLoop(endpointInstance);
+        builder.UseNServiceBus(endpointConfiguration);
 
-            await endpointInstance.Stop();
-        }
+        builder.Services.AddHostedService<InputLoopService>();
 
-        static ILog log = LogManager.GetLogger<Program>();
+        await builder.Build().RunAsync();
 
-        static async Task RunLoop(IEndpointInstance endpointInstance)
-        {
-            var lastOrder = string.Empty;
-
-            while (true)
-            {
-                log.Info("Press 'P' to place an order, 'C' to cancel last order, or 'Q' to quit.");
-                var key = Console.ReadKey();
-                Console.WriteLine();
-
-                switch (key.Key)
-                {
-                    case ConsoleKey.P:
-                        // Instantiate the command
-                        var command = new PlaceOrder
-                        {
-                            OrderId = Guid.NewGuid().ToString()
-                        };
-
-                        // Send the command
-                        log.Info($"Sending PlaceOrder command, OrderId = {command.OrderId}");
-                        await endpointInstance.Send(command);
-
-                        lastOrder = command.OrderId; // Store order identifier to cancel if needed.
-                        break;
-
-                    case ConsoleKey.C:
-                        var cancelCommand = new CancelOrder
-                        {
-                            OrderId = lastOrder
-                        };
-                        await endpointInstance.Send(cancelCommand);
-                        log.Info($"Sent a correlated message to {cancelCommand.OrderId}");
-                        break;
-
-                    case ConsoleKey.Q:
-                        return;
-
-                    default:
-                        log.Info("Unknown input. Please try again.");
-                        break;
-                }
-            }
-        }
     }
 }

@@ -1,7 +1,7 @@
 ---
 title: ServiceControl capacity planning
 summary: Outlines the ServiceControl capacity, throughput, and storage considerations for planning and supporting production environments
-reviewed: 2023-06-02
+reviewed: 2024-12-02
 isLearningPath: true
 ---
 
@@ -13,8 +13,12 @@ The primary job of ServiceControl is to collect information on system behavior i
 
 ### Location
 
-Each ServiceControl instance stores its data in a [RavenDB embedded](https://ravendb.net/docs/article-page/5.3/csharp/server/embedded) instance. The location of the database has a significant impact on overall system performance and throughput. The embedded database files should be located on a high-performance storage device with a high-throughput connection to the machine hosting ServiceControl.
+Each ServiceControl instance stores its data in a [RavenDB](https://ravendb.net) instance. 
 
+- For ServiceControl instances deployed via PowerShell or the ServiceControl Management Utility the database is run via an [embedded RavenDB server](/servicecontrol/configure-ravendb-location.md).
+- For ServiceControl instances deployed via Containers the database is run via a [dedicated container](/servicecontrol/ravendb/containers.md).
+
+The location of the database has a significant impact on overall system performance and throughput. The database files should be located on a high-performance storage device with a high-throughput connection to the machine hosting ServiceControl.
 
 ### Size
 
@@ -30,9 +34,8 @@ See also: [Automatic Expiration of ServiceControl Data](how-purge-expired-data.m
 
 **NOTE**
 
- * The maximum supported size of the RavenDB embedded database is 16 TB.
+ * The maximum supported size of a RavenDB embedded database is 16 TB.
  * Failed messages *never* expire and are retained indefinitely in the ServiceControl database.
-
 
 ### Performance
 
@@ -42,16 +45,13 @@ For this reason, it is best to store ServiceControl data on a disk with low late
 
 For more details, see [Hardware Considerations](servicecontrol-instances/hardware.md).
 
-
 ## Accessing data and audited messages
-
 
 ### Forwarding queues
 
 ServiceControl may be configured to forward consumed messages to other queues for further consumption by third party systems.
 
 See also: [Forwarding Queues](errorlog-auditlog-behavior.md).
-
 
 ### HTTP API
 
@@ -60,13 +60,11 @@ The ServiceControl HTTP API provides a JSON stream of audited and error messages
 > [!NOTE]
 > The ServiceControl HTTP API is subject to changes and enhancements that may not be backward compatible. Use of the HTTP API by third parties is discouraged at this time.
 
-
 ## Throughput
 
 ServiceControl consumes audit, error, and control messages from all endpoints configured to forward those messages to it. This means the throughput (measured in received and processed messages per second) required by ServiceControl is the aggregate throughput of all endpoints forwarding messages to its queues.
 
 The throughput of ServiceControl depends on multiple factors. Message size and network bandwidth have a significant effect. Another factor is the transport type used by the system.
-
 
 ### Transport type
 

@@ -16,27 +16,22 @@ class CustomEnvelopeUnwrapper
         {
             MessageUnwrapper = queueMessage =>
             {
-                using (var stream = new MemoryStream(Convert.FromBase64String(queueMessage.MessageText)))
-                using (var streamReader = new StreamReader(stream))
-                using (var textReader = new JsonTextReader(streamReader))
+                //Determine whether the message is one expected by the standard program flow.
+                // All other messages should be forwarded to the framework by returning null.
+                //NOTE: More complex methods may be needed in some scenarios to determine
+                // whether the message is of an expected type, but this check
+                // should be kept as lightweight as possible. Deserialization of the message
+                // body happens later in the pipeline.
+                return queueMessage.MessageText.Contains("MyMessageIdFieldName") &&
+                       queueMessage.MessageText.Contains("MyMessageCustomPropertyFieldName")
+                //this was a native message just return the body as is with no headers
+                ? new MessageWrapper
                 {
-                    //try deserialize to a NServiceBus envelope first
-                    var wrapper = jsonSerializer.Deserialize<MessageWrapper>(textReader);
-
-                    if (wrapper.Id != null)
-                    {
-                        //this was a envelope message
-                        return wrapper;
-                    }
-
-                    //this was a native message just return the body as is with no headers
-                    return new MessageWrapper
-                    {
-                        Id = queueMessage.MessageId,
-                        Headers = new Dictionary<string, string>(),
-                        Body = Convert.FromBase64String(queueMessage.MessageText)
-                    };
+                    Id = queueMessage.MessageId,
+                    Headers = new Dictionary<string, string>(),
+                    Body = queueMessage.Body.ToArray()
                 }
+                : null;
             }
         };
 

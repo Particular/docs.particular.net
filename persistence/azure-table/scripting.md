@@ -2,7 +2,7 @@
 title: Azure Table Persistence Scripts
 summary: Collection of scripts for managing Azure Table Persistence
 component: ASP
-reviewed: 2022-12-16
+reviewed: 2025-03-18
 related:
  - nservicebus/operations
 redirects:

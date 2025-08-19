@@ -1,11 +1,11 @@
 ---
 title: Azure messaging
 summary: Describes the Azure messaging options available for the Particular Service Platform
-reviewed: 2023-07-18
+reviewed: 2025-07-18
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
-Azure offers [several messaging services](https://learn.microsoft.com/en-us/azure/service-bus-messaging/compare-messaging-services), each built for specific purposes. The Particular Service Platform supports [Azure Service Bus and Azure Storage Queues](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted).
+Azure offers [several messaging services](https://learn.microsoft.com/en-us/azure/service-bus-messaging/compare-messaging-services), each built for specific purposes. The Particular Service Platform supports [Azure Service Bus and Azure Storage Queues](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted). Additionally the Particular Platform supports using [Azure SQL Database](https://azure.microsoft.com/en-us/products/azure-sql/database) tables as message queues.
 
 ## Azure Service Bus
 
@@ -26,7 +26,7 @@ Azure Service Bus has two pricing tiers: [Standard and Premium](https://learn.mi
 - The maximum message size is 256 KB on the Standard tier
 - Cross-entity transactions are limited to 100 messages
 - No cross-namespace communication
-- No emulator for local development or testing available
+- Emulator for local development and testing [does not have required features](/transports/azure-service-bus/#transport-at-a-glance) to work with the Particular Service Platform.
 
 [**Try the Azure Service Bus Tutorial →**](https://learn.microsoft.com/en-us/azure/service-bus-messaging/build-message-driven-apps-nservicebus?tabs=Sender)
 
@@ -81,7 +81,7 @@ SQL transport is an NServiceBus feature that can use existing SQL Server databas
 
 ### When to use SQL transport
 
-Consider using SQL transport if an existing application already uses a SQL Server-compatible data store and only a limited amount of messaging is being introduced. SQL transport can be a good stepping-stone when introducing messaging into an existing system without the introduction of new infrastructure.
+Consider using SQL transport if an existing application already uses a SQL Server-compatible data store and requires high transactional consistency between message and business data operations, but very high message throughput or performance is not a priority. SQL transport can be a good stepping-stone when introducing messaging into an existing system without the introduction of new infrastructure.
 
 ## Other services
 

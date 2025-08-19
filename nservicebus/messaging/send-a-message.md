@@ -1,6 +1,6 @@
 ---
 title: Sending messages
-reviewed: 2023-06-02
+reviewed: 2025-05-13
 component: Core
 redirects:
  - nservicebus/how-do-i-send-a-message
@@ -11,6 +11,46 @@ related:
 ---
 
 NServiceBus supports sending different types of messages (see [Messages, Events, and Commands](messages-events-commands.md)) to any endpoint. Messages can be sent either directly from the endpoint or as part of handling an incoming message. When a message arrives at an endpoint, it goes through a [pipeline of processing steps](/nservicebus/pipeline/).
+
+## Message sending/publishing interface summary
+
+| Feature      | IMessageHandlerContext | IEndpointInstance | IMessageSession |
+|--------------|------------------------|-------------------|-----------------|
+| Can send/publish/reply to messages          | ✅  | ✅ | ✅ |
+| Use inside a handler          | ✅ |  |  |
+| Use outside of handler |  | ✅ | ✅ |
+| Takes part in message handler transaction   | ✅ |  |  |
+| Auto-injected into dependency injection container         |  |  | ✅ |
+| Access to endpoint lifecycle control          |  | ✅ |  |
+|||||
+
+### IMessageHandlerContext
+
+- Used from inside of the message handling pipeline
+- Take part in the same transaction as that of the message handler (when using a transaction mode that supports it)
+- Provides access to the incoming message being processed.
+
+### IEndpointInstance
+
+- The full endpoint instance, including lifecycle control
+- Typically used in Program.cs or service startup for initializing and shutting down NServiceBus
+- Should not be used inside a message handler
+
+### IMessageSession
+
+- Interface for sending, replying to and publishing messages
+- Automatically registered and injected into the dependency injection container by NServiceBus, but only after the endpoint has been started successfully
+- Typically used from within business logic that needs to send messages
+- Should not be used inside a message handler
+
+### IUniformSession
+
+[IUniformSession](./uniformsession.md) was introduced in NServiceBus v6 and is an opt-in for a uniform session approach that works seamlessly as a message session outside the pipeline and as a pipeline context inside the message handling pipeline.
+It represents either an `IMessageSession` or `IMessageHandlerContext` depending on where it's used.
+
+### ITransactionalSession
+
+[ITransactionalSession](./../transactional-session/) is a stand alone package that helps to achieve consistency when modifying business data and sending messages outside the context of an NServiceBus message handler, such as from an ASP.NET Core controller. When combined with the [outbox](./../outbox/) it guarantees atomic consistency across database and message operations.
 
 ## Outside a message handler
 

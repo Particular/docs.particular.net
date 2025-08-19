@@ -1,6 +1,6 @@
 ## Transport at a glance
 
-|Feature                    |   |  
+|Feature                    |   |
 |:---                       |---
 |Transactions |None, ReceiveOnly (Message visibility timeout)
 |Pub/Sub                    |Native (Requires SNS, supports hybrid-mode for migration purposes)
@@ -10,3 +10,5 @@
 |Scripted Deployment        |Built-in CLI, C#
 |Installers                 |Optional
 |Native integration         |[Supported](native-integration.md)
+|Case Sensitive             |Yes
+|Local development          |[Supported via LocalStack](/nservicebus/aws/local-development.md)

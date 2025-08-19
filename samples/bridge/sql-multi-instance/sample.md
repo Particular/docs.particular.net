@@ -1,7 +1,7 @@
 ---
 title: Multi-Instance Mode
 summary: SQL Server transport running in multi-instance mode using Bridge
-reviewed: 2023-07-04
+reviewed: 2025-07-14
 component: Bridge
 related:
 - nservicebus/bridge
@@ -9,7 +9,7 @@ related:
 - transports/sql/deployment-options
 ---
 
-This is sample shows how to use the [NServiceBus Messaging Bridge](/nservicebus/bridge/) instead of the deprecated [SQL Server transport multi-instance mode](/transports/upgrades/sqlserver-31to4.md#multi-instance-mode).
+This sample shows how to use the [NServiceBus Messaging Bridge](/nservicebus/bridge/) instead of the deprecated [SQL Server transport multi-instance mode](/transports/upgrades/sqlserver-31to4.md#multi-instance-mode).
 
 ## Prerequisites
 
@@ -57,7 +57,9 @@ The receiver mimics a back-end system. It is configured to use the SQL Server tr
 
 snippet: ReceiverConfiguration
 
-Note that the endpoint configuration contains no routing information, as the response message is a regular reply and NServiceBus, together with the bridge, will take care of all the routing with reply messages. The receiver replies with `ClientOrderResponse` back to the sender.
+> [!NOTE]
+
+> The endpoint configuration contains no routing information. The receiver responds to the sender with a `ClientOrderResponse` message using the [Reply method](/nservicebus/messaging/reply-to-a-message.md). Using this method, NServiceBus, together with the bridge, handles the routing of reply messages without any additional configuration.
 
 snippet: Reply
 
@@ -67,4 +69,4 @@ The bridge is configured with two transports. As both transports are of the same
 
 snippet: BridgeConfiguration
 
-Both transports have the endpoints defined on their side and as a result, the bridge will mimic those endpoints on the other side. This way it becomes transparent to actual endpoints on either side that those endpoints are actually bridged.
+Each transport configured in the bridge defines the endpoints it supports on its end. The bridge then creates corresponding shadow endpoints on the opposite side, effectively mirroring them. This setup allows messages to flow seamlessly across the transports without requiring the actual sender or receiver to be aware that bridging is occurring—their communication appears direct and uninterrupted.

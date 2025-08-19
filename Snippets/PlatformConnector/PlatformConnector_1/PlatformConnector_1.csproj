@@ -1,8 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
   </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="NServiceBus.ServicePlatform.Connector" Version="1.0.0" />
+    <PackageReference Include="NServiceBus.ServicePlatform.Connector" Version="1.*" />
   </ItemGroup>
+
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="System.Text.Encodings.Web" Version="5.*" />
+  </ItemGroup>
+
 </Project>

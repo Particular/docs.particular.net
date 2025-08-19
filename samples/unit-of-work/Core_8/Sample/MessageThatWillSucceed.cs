@@ -1,7 +1,3 @@
 ﻿using NServiceBus;
 
-public class MessageThatWillSucceed :
-    IMessage
-{
-
-}
+public record MessageThatWillSucceed : IMessage;

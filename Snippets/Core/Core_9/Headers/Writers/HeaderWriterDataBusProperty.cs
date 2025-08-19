@@ -8,12 +8,20 @@
     using NServiceBus.MessageMutator;
     using NUnit.Framework;
 
+#pragma warning disable CS0618 // Type or member is obsolete
+
     [TestFixture]
     public class HeaderWriterDataBusProperty
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
         string endpointName = "HeaderWriterDataBusPropertyV8";
+
+        [OneTimeTearDown]
+        public void TearDown()
+        {
+            ManualResetEvent.Dispose();
+        }
 
         [Test]
         public async Task Write()
@@ -68,4 +76,5 @@
             }
         }
     }
+#pragma warning restore CS0618 // Type or member is obsolete
 }

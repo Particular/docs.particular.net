@@ -1,6 +1,6 @@
 ## Transport at a glance
 
-|Feature                    |   |  
+|Feature                    |   |
 |:---                       |---
 |Transactions |None, ReceiveOnly (Message visibility timeout)
 |Pub/Sub                    |Message driven
@@ -10,3 +10,5 @@
 |Scripted Deployment        |PowerShell, CloudFormation, C#
 |Installers                 |Optional
 |Native integration         |Not supported
+|Case Sensitive             |Yes
+|Local development          |[Supported via LocalStack](/nservicebus/aws/local-development.md)

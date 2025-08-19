@@ -10,7 +10,7 @@ related:
  - persistence/sql/sqlsaga
 redirects:
  - nservicebus/sql-persistence/saga
-reviewed: 2023-02-01
+reviewed: 2025-04-09
 ---
 
 SQL persistence supports sagas using the core [NServiceBus.Saga](/nservicebus/sagas/) API or an [experimental API unique to SQL persistence](sqlsaga.md) that provides a simpler mapping API.
@@ -64,14 +64,14 @@ The version of the assembly where the saga exists.
 
 #### Correlation columns
 
-There are between 0 and 2 correlation ID columns named `Correlation_[PROPERTYNAME]`. The type will correspond to the .NET type of the mapped property on the saga data.
+Between 0 and 2 correlation ID columns named `Correlation_[PROPERTYNAME]`. The type will correspond to the .NET type of the mapped property on the saga data.
 
 For each correlation ID there will be a corresponding index named `Index_Correlation_[PROPERTYNAME]`.
 
 
 ## Correlation IDs
 
-[Saga message correlation](/nservicebus/sagas/message-correlation.md) is implemented by promoting the correlation property to the level of a column on the saga table. When a saga data is persisted the correlation property is copied from the instance and duplicated in a column named by convention (`Correlation_[PROPERTYNAME]`) on the table.
+[Saga message correlation](/nservicebus/sagas/message-correlation.md) is implemented by promoting the correlation property to the level of a column on the saga table. When saga data is persisted, the correlation property is copied from the instance and duplicated in a column named, by convention, (`Correlation_[PROPERTYNAME]`).
 
 partial: correlation-property
 
@@ -92,22 +92,24 @@ The following .NET types are interpreted as `CorrelationPropertyType.Int`:
  * [UInt64](https://msdn.microsoft.com/en-us/library/system.uint64.aspx)
 
 
-## Json.net settings
+## Json.NET settings
 
 SQL persistence uses the [Newtonsoft.Json](https://www.nuget.org/packages/Newtonsoft.Json/) package to serialize saga data and metadata.
 
-The saga data can be queried by the user by taking advantage of the [JSON querying capababilities of SQL Server](https://docs.microsoft.com/en-us/sql/relational-databases/json/json-data-sql-server). The persister itself does not use any JSON querying capababilities.
+The saga data can be queried manually by taking advantage of the [JSON querying capababilities of SQL Server](https://docs.microsoft.com/en-us/sql/relational-databases/json/json-data-sql-server). The persister itself does not use any JSON querying capababilities.
 
 ### Custom settings
 
-Customizes the instance of [JsonSerializerSettings](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) used for serialization. In this snippet, a custom DateTime converter is included and the `DefaultValueHandling` setting is changed to `Include` (by default, the `DefaultValueHandling` setting is set to `Ignore` to minimize the amount of data stored in the database).
+An instance of [JsonSerializerSettings](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) can be used to customize serialization. 
+
+In this snippet, a custom DateTime converter is included and the `DefaultValueHandling` setting is changed to `Include` (by default, the `DefaultValueHandling` setting is set to `Ignore` to minimize the amount of data stored in the database).
 
 snippet: SqlPersistenceCustomSettings
 
 
 #### Version-specific / type-specific deserialization settings
 
-The type and saga assembly version are persisted. It is possible to explicitly control the deserialization of sagas based on version and/or type. This allows the serialization approach to evolve while avoiding migrations.
+The type and saga assembly version are persisted as part of the saga data. It is possible to explicitly control the deserialization of sagas based on version and/or type. This allows the serialization approach to evolve while avoiding migrations.
 
 snippet: SqlPersistenceJsonSettingsForVersion
 

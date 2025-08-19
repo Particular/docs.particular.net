@@ -1,17 +1,17 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
-public class OrderAcceptedHandler :
+
+public class OrderAcceptedHandler(ILogger<OrderAcceptedHandler> logger) :
     IHandleMessages<OrderAccepted>
 {
-    static readonly ILog log = LogManager.GetLogger<OrderAcceptedHandler>();
 
     public Task Handle(OrderAccepted message, IMessageHandlerContext context)
     {
         context.MessageHeaders.TryGetValue("tenant_id", out var tenantId);
 
-        log.Info($"Tenant {tenantId} order {message.OrderId} was accepted.");
+        logger.LogInformation("Tenant {TenantId} order {OrderId} was accepted.", tenantId, message.OrderId);
         return Task.CompletedTask;
     }
 }

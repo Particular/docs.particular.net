@@ -1,7 +1,7 @@
 ---
 title: ServiceControl
 summary: An overview of ServiceControl and what it does
-reviewed: 2022-10-19
+reviewed: 2024-07-19
 component: ServiceControl
 isLearningPath: true
 ---
@@ -12,20 +12,14 @@ For more information on how ServiceControl, ServicePulse, and ServiceInsight wor
 
 ### ServiceControl instance types
 
-After [installation](/servicecontrol/installation.md), the ServiceControl Management Utility provides the ability to add, upgrade and delete ServiceControl instances. There are three types of instances that can be created:
+There are three types of instances that can be created:
 
 - [Error instances](/servicecontrol/servicecontrol-instances/)
   This is the most commonly used ServiceControl instance and indispensable to ensure the smooth operation of an NServiceBus system. Together with ServicePulse, it provides the ability to visualize and retry failed messages.
 - [Audit instances](/servicecontrol/audit-instances/)
-  Audit instances provide valuable information about the message flow through a system. Among other things, this is used by ServiceInsight to help visualize a distributed system.
+  Audit instances provide valuable information about the message flow through a system. Among other things, this is used by ServiceInsight and ServicePulse to help visualize a distributed system.
 - [Monitoring instances](/servicecontrol/monitoring-instances/)
   Monitoring instances performance monitoring and analyzing additional metrics and are useful for keeping track of the health of a distributed system.
-
-## Installation of ServiceControl instances
-
-After downloading ServiceControl, the ServiceControl Management utility is available in the Windows Start menu. The ServiceControl instances mentioned above must be installed and configured via the Management utility.
-
-Read more about how to [install and configure](/servicecontrol/installation.md) ServiceControl instances.
 
 ## Connect endpoints to ServiceControl
 
@@ -37,6 +31,6 @@ To enable [ServiceControl](/servicecontrol) to gather this information, configur
 
 - [Configure recoverability](/nservicebus/recoverability) to collect failed messages.
 - [Enable auditing](/nservicebus/operations/auditing.md) to collect all messages.
-- [Install plugins](/servicecontrol/plugins/) to monitor endpoint health, collect saga state changes, and use custom checks.
+- Install plugins to [monitor endpoint health](/monitoring/heartbeats/), collect [saga state changes](/nservicebus/sagas/saga-audit.md), and use [custom checks](/monitoring/custom-checks/).
 
 See [_Optimizing ServiceControl for use in different environments_](/servicecontrol/servicecontrol-in-practice.md) for more information about practical considerations.

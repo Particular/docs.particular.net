@@ -10,6 +10,10 @@ Import-Module Particular.ServiceControl.Management
 Get-Module Particular.ServiceControl.Management | Select-Object -ExpandProperty Version
 # endcode
 
+# startcode ps-update
+Update-Module -Name Particular.ServiceControl.Management
+# endcode
+
 # startcode ps-testport
 Test-IfPortIsAvailable -Port 33333
 # endcode
@@ -35,5 +39,5 @@ Import-ServiceControlLicense License.xml
 # endcode
 
 # startcode ps-get-help
-Get-Help Get-ServiceControlInstances
+Get-Help Get-ServiceControlManagementCommands
 # endcode

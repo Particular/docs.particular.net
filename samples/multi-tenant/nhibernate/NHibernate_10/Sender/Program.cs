@@ -1,62 +1,67 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using NServiceBus;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-using NServiceBus;
+Console.Title = "Sender";
 
-class Program
+var builder = Host.CreateApplicationBuilder(args);
+
+var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Sender");
+endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.EnableInstallers();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
+
+builder.UseNServiceBus(endpointConfiguration);
+
+var host = builder.Build();
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
+var random = new Random();
+
+Console.WriteLine("Press A or B to publish a message (A and B are tenant IDs)");
+Console.WriteLine("Press Escape to exit");
+var acceptableInput = new List<char> { 'A', 'B' };
+
+while (true)
 {
-    const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
+    var key = Console.ReadKey(true);
 
-    static async Task Main()
+    if (key.Key == ConsoleKey.Escape)
     {
-        Console.Title = "Sender";
+        break;
+    }
+    var uppercaseKey = char.ToUpperInvariant(key.KeyChar);
 
-        var random = new Random();
-
-        var endpointConfiguration = new EndpointConfiguration("Samples.MultiTenant.Sender");
-        endpointConfiguration.UseTransport(new LearningTransport());
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-        Console.WriteLine("Press A or B to publish a message (A and B are tenant IDs)");
-        Console.WriteLine("Press Escape to exit");
-        var acceptableInput = new List<char> { 'A', 'B' };
-
-        while (true)
+    if (acceptableInput.Contains(uppercaseKey))
+    {
+        var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
+        var message = new OrderSubmitted
         {
-            var key = Console.ReadKey(true);
+            OrderId = orderId,
+            Value = random.Next(100)
+        };
 
-            if (key.Key == ConsoleKey.Escape)
-            {
-                break;
-            }
-            var uppercaseKey = char.ToUpperInvariant(key.KeyChar);
+        var options = new PublishOptions();
+        options.SetHeader("tenant_id", uppercaseKey.ToString());
 
-            if (acceptableInput.Contains(uppercaseKey))
-            {
-                var orderId = new string(Enumerable.Range(0, 4).Select(x => letters[random.Next(letters.Length)]).ToArray());
-                var message = new OrderSubmitted
-                {
-                    OrderId = orderId,
-                    Value = random.Next(100)
-                };
+        await messageSession.Publish(message, options);
 
-                var options = new PublishOptions();
-                options.SetHeader("tenant_id", uppercaseKey.ToString());
-
-                await endpointInstance.Publish(message, options);
-
-                Console.WriteLine($"Submitted order {message.OrderId} for tenant {uppercaseKey}");
-            }
-            else
-            {
-                Console.WriteLine($"[{uppercaseKey}] is not a valid tenant identifier.");
-            }
-        }
-        await endpointInstance.Stop();
+        Console.WriteLine($"Submitted order {message.OrderId} for tenant {uppercaseKey}");
+    }
+    else
+    {
+        Console.WriteLine($"[{uppercaseKey}] is not a valid tenant identifier.");
     }
 }
+
+await host.StopAsync();

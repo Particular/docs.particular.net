@@ -1,30 +1,27 @@
 ﻿using System.Threading.Tasks;
 using Messages;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
 
-namespace Sales
+namespace Sales;
+
+public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) :
+    IHandleMessages<PlaceOrder>
 {
-    public class PlaceOrderHandler :
-        IHandleMessages<PlaceOrder>
+    #region UpdatedHandler
+
+    public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
-        static ILog log = LogManager.GetLogger<PlaceOrderHandler>();
+        logger.LogInformation("Received PlaceOrder, OrderId = {orderId}", message.OrderId);
 
-        #region UpdatedHandler
+        // This is normally where some business logic would occur
 
-        public Task Handle(PlaceOrder message, IMessageHandlerContext context)
+        var orderPlaced = new OrderPlaced
         {
-            log.Info($"Received PlaceOrder, OrderId = {message.OrderId}");
-
-            // This is normally where some business logic would occur
-
-            var orderPlaced = new OrderPlaced
-            {
-                OrderId = message.OrderId
-            };
-            return context.Publish(orderPlaced);
-        }
-
-        #endregion
+            OrderId = message.OrderId
+        };
+        return context.Publish(orderPlaced);
     }
+
+    #endregion
 }

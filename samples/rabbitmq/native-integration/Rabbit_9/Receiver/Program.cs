@@ -1,26 +1,17 @@
-using System;
-using System.Threading.Tasks;
-using NServiceBus;
+using Microsoft.Extensions.Hosting;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Receiver";
+Console.Title = "Receiver";
+var builder = Host.CreateApplicationBuilder(args);
 
-        #region ConfigureRabbitQueueName
-        var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.NativeIntegration");
-        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
-        transport.UseConventionalRoutingTopology(QueueType.Quorum);
-        transport.ConnectionString("host=localhost");
-        #endregion
+#region ConfigureRabbitQueueName
+var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.NativeIntegration");
+var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+transport.UseConventionalRoutingTopology(QueueType.Quorum);
+transport.ConnectionString("host=localhost");
+#endregion
 
-        endpointConfiguration.UseSerialization<XmlSerializer>();
-        endpointConfiguration.EnableInstallers();
+endpointConfiguration.UseSerialization<XmlSerializer>();
+endpointConfiguration.EnableInstallers();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop();
-    }
-}
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

@@ -16,21 +16,7 @@ partial class Program
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.EnableInstallers();
 
-        var password = Environment.GetEnvironmentVariable("PostgreSqlPassword");
-
-        if (string.IsNullOrWhiteSpace(password))
-        {
-            throw new Exception("Could not extract 'PostgreSqlPassword' from Environment variables.");
-        }
-
-        var username = Environment.GetEnvironmentVariable("PostgreSqlUserName");
-
-        if (string.IsNullOrWhiteSpace(username))
-        {
-            throw new Exception("Could not extract 'PostgreSqlUserName' from Environment variables.");
-        }
-
-        var connection = $"Host=localhost;Username={username};Password={password};Database=NsbSamplesSqlPersistenceTransition";
+        var connection = "Host=localhost;Username=postgres;Password=yourStrong(!)Password;Database=NsbSamplesSqlPersistenceTransition";
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
 
@@ -44,10 +30,7 @@ partial class Program
             });
 
         persistence.ConnectionBuilder(
-            connectionBuilder: () =>
-            {
-                return new NpgsqlConnection(connection);
-            });
+            () => new NpgsqlConnection(connection));
 
         var subscriptions = persistence.SubscriptionSettings();
         subscriptions.CacheFor(TimeSpan.FromMinutes(1));

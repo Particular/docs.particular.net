@@ -2,7 +2,7 @@
 title: RabbitMQ Delayed Delivery
 summary: Describes the native delayed delivery implementation in the RabbitMQ transport
 component: Rabbit
-reviewed: 2023-04-14
+reviewed: 2025-05-02
 versions: '[4,]'
 redirects:
  - nservicebus/rabbitmq/delayed-delivery
@@ -10,8 +10,7 @@ redirects:
 
 partial: v1-warning
 
-In versions 4.3 and above, the RabbitMQ transport no longer relies on the [timeout manager](/nservicebus/messaging/timeout-manager.md) to implement [delayed delivery](/nservicebus/messaging/delayed-delivery.md). Instead, the transport creates infrastructure inside the broker which can delay messages using native RabbitMQ features.
-
+In versions 4.3 and above, the RabbitMQ transport no longer relies on the [timeout manager](/nservicebus/messaging/timeout-manager.md) to implement [delayed delivery](/nservicebus/messaging/delayed-delivery.md). Instead, the transport creates infrastructure inside the broker, which can delay messages using native RabbitMQ features.
 
 ## How it works
 
@@ -29,10 +28,9 @@ As an example, a delay of 10 seconds (`1010` in binary) on a message bound for t
 0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.0.1.0.1.0.destination
 ```
 
-
 ### Delay levels
 
-Each exchange/queue pair that makes up a level represents one bit of the total delay value. By having 28 of these levels, corresponding to `2^27` through `2^0`, the delay infrastructure can delay a message for any value that can be represented by a 28-bit number.
+Each exchange/queue pair that makes up a level represents one bit of the total delay value. With 28 levels, corresponding to `2^27` through `2^0`, the delay infrastructure can delay a message for any value that can be represented by a 28-bit number.
 
 > [!NOTE]
 > With 28 total levels, the maximum delay value is 268,435,455 seconds, or about 8.5 years.
@@ -105,13 +103,11 @@ To avoid unnecessary traversal through the delay infrastructure, the message is 
 * If the value is a `1`, the exchange will route the message to the `nsb.v2.delay-level-03` queue, where it will wait until the TTL expires (2^3 seconds) before being forwarded to the `nsb.v2.delay-level-02` exchange.
 * If the value is a `0`, the exchange will route the message to the `nsb.v2.delay-level-02` exchange.
 
-
 ### Delivery
 
-At the end of this process, the message is routed to the `nsb.v2.delay-delivery` exchange. It is at this final step where the message destination is evaluated to determine where the message should be routed to.
+At the end of this process, the message is routed to the `nsb.v2.delay-delivery` exchange. At this final step, the message destination is evaluated to determine where the message should be routed to.
 
 Every endpoint that can receive delayed messages will create bindings like `#.EndpointName` to this exchange to control final routing. The exact process depends upon the [routing topology](routing-topology.md) in use. These bindings match any combination of delay values, but only the binding for the correct destination endpoint will match, resulting in the message being delivered only to the correct endpoint.
-
 
 ### Example
 
@@ -179,6 +175,14 @@ partial: timeout-manager
 
 #### Migrating timeouts to native delayed delivery
 
-In order to migrate timeouts to the native-delay delivery implementation, the [migration tool](/nservicebus/tools/migrate-to-native-delivery.md) can be used.
+To migrate timeouts to the native-delay delivery implementation, the [migration tool](/nservicebus/tools/migrate-to-native-delivery.md) can be used.
 
 partial: v1-to-v2
+
+partial: disabledelayeddelivery
+
+## RabbitMQ upgrade
+
+When upgrading the RabbitMQ cluster, it is recommended to use the [rolling (in-place)](https://www.rabbitmq.com/docs/upgrade#rolling-upgrade) method.
+
+Due to the way the native delayed delivery infrastructure is implemented, upgrading RabbitMQ by using [blue-green deployments](https://www.rabbitmq.com/docs/upgrade#blue-green-deployment) is more complicated and requires the specialized shovelling of delayed messages in order to avoid message loss.  Contact [Particular support](https://customers.particular.net/request-support) for further details on this scenario.

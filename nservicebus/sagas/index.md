@@ -2,7 +2,7 @@
 title: Sagas
 summary: Maintain statefulness in distributed systems with the saga pattern and NServiceBus' event-driven architecture with built-in fault-tolerance and scalability.
 component: Core
-reviewed: 2021-11-15
+reviewed: 2025-06-24
 redirects:
 - nservicebus/sagas-in-nservicebus
 related:
@@ -39,10 +39,11 @@ snippet: simple-saga-data
 
 ### Avoid sharing types between sagas
 
-Saga data types should not be shared across different sagas. Sharing types can result in persisters physically sharing the same storage structure which should be avoided.
+Saga data types should not be shared across different sagas. Sharing types can result in persisters physically sharing the same storage structure, which should be avoided.
 
-> [!WARNING]
-> Sharing property types should also be avoided. Depending on the persister implementation, sharing property types can result in storage structure being shared between endpoints.
+Sharing complex property types should also be avoided. Depending on the persister implementation, sharing property types can result in the storage structure being shared between endpoints.
+
+NServiceBus will perform a check at startup to ensure that saga data types are not shared across sagas. An exception will be thrown at startup if any shared root types are found. Complex types in properties that are shared between sagas are not included in this check.
 
 partial: disable-shared-state-check
 
@@ -55,31 +56,23 @@ The important part of a long-running process is its behavior. Just like regular 
 
 ## Starting a saga
 
-Since a saga manages the state of a long-running process, under which conditions should a new saga be created? Sagas are, in essence, a message driven state machine. The trigger to start this state machine is the arrival of one or more specified message types. In the previous example, a new saga is started every time a message of type `StartOrder` arrives. This is declared by adding `IAmStartedByMessages<StartOrder>` to the saga.
+Since a saga manages the state of a long-running process, under what conditions should a new saga be created? Sagas are, in essence, a message-driven state machine. The trigger to start this state machine is the arrival of one or more specified message types. In the previous example, a new saga is started every time a message of type `StartOrder` arrives. This is declared by adding `IAmStartedByMessages<StartOrder>` to the saga.
 
 > [!NOTE]
 > `IHandleMessages<StartOrder>` is redundant since `IAmStartedByMessages<StartOrder>` already implies that.
 
-This interface tells NServiceBus that the saga not only handles `StartOrder`, but that when that type of message arrives, a new instance of this saga should be created to handle it, if there isn't already an existing saga that correlates to the message. As a convenience, in NServiceBus version 6 and above, the message will set its mapped correlation property on the created saga data. In essence the semantics of `IAmStartedByMessages` is:
+This interface tells NServiceBus that the saga not only handles `StartOrder`, but also that when a message of that type arrives, a new instance of this saga should be created to handle it, if there isn't already an existing saga that correlates to the message. As a convenience, in NServiceBus version 6 and above, the message will set its mapped correlation property on the created saga data. In essence, the semantics of `IAmStartedByMessages` is:
 
-> Create a new instance if an existing one can't be found
+> Create a new instance of the saga if an existing instance cannot be found
 
+### Dealing with out-of-order delivery
 
-> [!NOTE]
-> NServiceBus requires each saga to have at least one message that is able to start it.
-
-
-### Dealing with out of order delivery
-
-> [!NOTE]
-> Always assume that messages can be delivered out of order, e.g. due to error recovery, network latency, or concurrent message processing.
-
-Sagas not designed to handle the arrival of messages out of order can result in some messages being discarded. In the previous example, this could happen if a `CompleteOrder` message is received before the `StartOrder` message has had a chance to create the saga.
+Messages can be delivered out of order, e.g. due to error recovery, network latency, or concurrent message processing, and sagas must be designed to handle the arrival of out-of-order messages. Sagas not designed to handle the arrival of messages out of order can result in some messages being discarded. In the previous example, this could happen if a `CompleteOrder` message is received before the `StartOrder` message has had a chance to create the saga.
 
 To ensure messages are not discarded when they arrive out of order:
 
-- Implement multiple `IAmStartedBy<T>` interfaces for any message type that assumes the saga instance should already exist
-- Override the saga not found behavior and throw an exception using `IHandleSagaNotFound` and rely on NServiceBus recoverability capability to retry messages and resolve out of order issues.
+- Implement multiple `IAmStartedByMessages<T>` interfaces for any message type that assumes the saga instance should already exist
+- Override the saga not found behavior and throw an exception using `IHandleSagaNotFound` and rely on NServiceBus recoverability capability to retry messages to resolve out-of-order issues.
 
 #### Multiple message types starting a saga
 
@@ -91,7 +84,7 @@ When messages arrive in reverse order, the handler for the `CompleteOrder` messa
 
 #### Relying on recoverability
 
-In most scenarios, an acceptable solution to deal with out of order message delivery is to throw an exception when the saga instance does not exist. The message will be automatically retried, which may resolve the issue, or it will end up in the error queue, where it can be manually retried.
+In most scenarios, an acceptable solution to deal with out-of-order message delivery is to throw an exception when the saga instance does not exist. The message will be automatically retried, which may resolve the issue; otherwise, it will be placed in the error queue, where it can be manually retried.
 
 To override the default saga not found behavior [implement `IHandleSagaNotFound` and throw an exception](saga-not-found.md).
 
@@ -104,24 +97,23 @@ Correlation is needed in order to find existing saga instances based on data on 
 
 ## Discarding messages when saga is not found
 
-If a saga handles a message, but no related saga instance is found, then that message is discarded by default. Typically that happens when the saga has been already completed when the messages arrives and discarding the message is correct. If a different behavior is expected for specific scenarios, the default behavior [can be modified](saga-not-found.md).
+If a saga handles a message but no related saga instance is found, the message is discarded by default. Typically, this happens when the saga has already been completed by the time a message arrives and discarding the message is correct. If a different behavior is expected for specific scenarios, the default behavior [can be modified](saga-not-found.md). 
 
 ## Ending a saga
 
-When a saga instance is no longer needed it can be completed using the `MarkAsComplete()` API. This tells the saga infrastructure that the instance is no longer needed and can be cleaned up.
+When a saga instance is no longer needed, it can be completed using the `MarkAsComplete()` API. This tells the saga infrastructure that the instance is no longer needed and can be cleaned up.
 
-> [!NOTE]
-> Instance cleanup is implemented differently by the various saga persisters and is not guaranteed to be immediate.
+Instance cleanup is implemented differently by the various saga persisters and is not guaranteed to be immediate.
 
 ### Outstanding timeouts
 
 Outstanding timeouts requested by the saga instance will be discarded when they expire without triggering the [`IHandleSagaNotFound` API](saga-not-found.md)
 
-### Messages arriving after saga has been completed
+### Messages arriving after a saga has been completed
 
 Messages that [are allowed to start a new saga instance](#starting-a-saga) will cause a new instance with the same correlation id to be created.
 
-Messages handled by the saga(`IHandleMessages<T>`), arriving after the saga has completed, will be passed to the [`IHandleSagaNotFound` API](saga-not-found.md).
+Messages handled by the saga (`IHandleMessages<T>`) that arrive after the saga has completed will be passed to the [`IHandleSagaNotFound` API](saga-not-found.md).
 
 ### Consistency considerations
 
@@ -147,11 +139,13 @@ snippet: saga-with-reply
 
 This is one of the methods on the saga base class that would be very difficult to implement without tying the saga code to low-level parts of the NServiceBus infrastructure.
 
-## Configuring saga persistence
+## Saga persistence
 
 Make sure to configure appropriate [saga persistence](/persistence/).
 
 snippet: saga-configure
+
+The choice of persistence can affect the design of saga data, such as the length of the saga class name, the use of virtual properties of the saga, etc. While the NServiceBus persister aims to abstract away these details, sometimes the limitations of the specific implementation can have an impact.
 
 ## Sagas and automatic subscriptions
 

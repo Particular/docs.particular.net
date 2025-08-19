@@ -1,30 +1,27 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-namespace Sales
-{
-    class Program
-    {
-        static async Task Main()
-        {
-            Console.Title = "Sales";
+Console.Title = "Sales";
 
-            var endpointConfiguration = new EndpointConfiguration("Sales");
+var builder = Host.CreateApplicationBuilder(args);
 
-            endpointConfiguration.UseTransport<LearningTransport>();
+var endpointConfiguration = new EndpointConfiguration("Sales");
 
-            #region NoDelayedRetries
-            var recoverability = endpointConfiguration.Recoverability();
-            recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
-            #endregion
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
+endpointConfiguration.UseTransport<LearningTransport>();
 
-            Console.WriteLine("Press Enter to exit.");
-            Console.ReadLine();
+#region NoDelayedRetries
+var recoverability = endpointConfiguration.Recoverability();
+recoverability.Delayed(delayed => delayed.NumberOfRetries(0));
+#endregion
 
-            await endpointInstance.Stop();
-        }
-    }
-}
+
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
+
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

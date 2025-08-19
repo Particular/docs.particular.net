@@ -19,7 +19,7 @@ This version of Azure Service Bus Transport uses the [Azure.Messaging.ServiceBus
 
 ## Support for Azure.Identity
 
-Passing a [Azure.Identity](https://www.nuget.org/packages/Azure.Identity/) `TokenCredential` to `CustomTokenCredential(TOKEN)` enables authentication against [Azure Active Directory](https://azure.microsoft.com/en-us/services/active-directory).
+Passing a [Azure.Identity](https://www.nuget.org/packages/Azure.Identity/) `TokenCredential` to `CustomTokenCredential(TOKEN)` enables authentication against [Microsoft Entra ID](https://azure.microsoft.com/en-us/services/active-directory).
 
 ## Accessing the native incoming message
 

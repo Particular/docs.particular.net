@@ -27,31 +27,28 @@ public class AzureHelper
     {
         var queueClient = new QueueClient("UseDevelopmentStorage=true", queueName);
         PeekedMessage[] message = await queueClient.PeekMessagesAsync(1);
-        if (message != null)
+        if (message?.Length >= 1)
         {
-            Debug.WriteLine("Message contents");
+            Console.WriteLine("Message contents");
             WriteOutMessage(message[0]);
             return;
         }
 
-        Console.WriteLine("No messages found in the 'samples-azure-storagequeues-endpoint2' queue. Execute 'Endpoint1' without running 'Endpoint2' and then try again.");
+        Console.WriteLine($"No messages found in the '{queueName}' queue. Execute 'Endpoint1' without running 'Endpoint2' and then try again");
     }
 
     static void WriteOutMessage(PeekedMessage message)
     {
         var bytes = Convert.FromBase64String(message.MessageText);
         var json = Encoding.UTF8.GetString(bytes);
-        var byteOrderMarkUtf8 = Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble());
-        if (json.StartsWith(json))
-        {
-            json = json.Remove(0, byteOrderMarkUtf8.Length);
-        }
+
         dynamic parsedJson = JsonConvert.DeserializeObject(json);
-        Debug.WriteLine("Message contents:");
-        Debug.WriteLine(JsonConvert.SerializeObject((object) parsedJson, Formatting.Indented));
+        Console.WriteLine("Message contents:");
+        Console.WriteLine(JsonConvert.SerializeObject((object) parsedJson, Formatting.Indented));
+
         var body = (string)parsedJson.Body;
-        Debug.WriteLine("Deserialized message body:");
-        Debug.WriteLine(body.Base64Decode());
+        Console.WriteLine("Deserialized message body:");
+        Console.WriteLine(body.Base64Decode());
     }
 
     #endregion

@@ -1,30 +1,30 @@
 ---
 title: Usage scenarios
 summary: Scenarios in which the NServiceBus Messaging Bridge can be used in a system
-reviewed: 2023-07-04
+reviewed: 2025-06-13
 component: Bridge
 ---
-Several scenarios can be achieved when using the NServiceBus Messaging Bridge, including:
+The NServiceBus Messaging Bridge supports several key scenarios, including:
 
 - Migrating a system from one transport to another transport
-- Using different transports in a microservices environment where each service uses the transport that provides the most benefit for it
-- Using multiple instances of the same transport, differentiated by some distinguishing factor (e.g. Azure Service Bus namespaces, or SQL Server database instances)
+- Using different transports in a microservices architecture, allowing each service to choose the most suitable transport
+- Connecting multiple instances of the same transport, such as different Azure Service Bus namespaces or separate SQL Server database instances
 
 ## Migrate to a different transport
 
 Migrating from one transport to another can be a complex task. In-flight messages (i.e. ones that have been sent but not yet processed) must be accounted for at all times. Some common examples of in-flight messages:
 
-- In a queue, waiting to be processed by an instance of the logical endpoint
-- In the error queue, waiting to be retried (or picked up by ServiceControl)
-- In ServiceControl, waiting to be retried
+- Messages in a queue, waiting to be processed by an instance of the logical endpoint
+- Messages in the error queue, waiting to be retried (or picked up by ServiceControl)
+- Messages in ServiceControl, waiting to be retried
 
-When a plan is created to move or sunset an endpoint, re-configuring the routing for any endpoint is straightforward and NServiceBus takes care of new messages sent after the endpoint is re-deployed on the new transport. However in-flight messages must be carefully considered and action must be taken to ensure these messages arrive at the correct destination, which is not always the place where these messages were originally sent to.
+When planning to move an endpoint, NServiceBus automatically handles new messages sent after the endpoint is redeployed on the new transport. However in-flight messages must be carefully considered to ensure these messages arrive at the correct destination, which is not always the place where these messages were originally sent.
 
-Take the scenario where a system migrates from the MSMQ transport to the SQL Server transport. Converting the endpoints to use SQL Server all at once would be difficult, as all in-flight messages would be stuck in MSMQ. Instead, the NServiceBus messaging bridge can provide a way to migrate these endpoints one-by-one.
+For example, consider a system migrating from the MSMQ transport to SQL Server. Migrating all endpoints at once is risky, as in-flight messages would remain stuck in MSMQ. Instead, the NServiceBus Messaging Bridge allows endpoints to be migrated incrementally, enabling safe and controlled transitions between transports.
 
 ### Initial situation
 
-Taking a sample migration scenario, assume there are four endpoints that can communicate with each other via messaging. Each endpoint can communicate with the others, but for simplicity the number of arrows between them are reduced.
+Consider a sample migration scenario system with four endpoints that communicate with each other via messaging.  Initially, all four endpoints use the MSMQ transport. Each endpoint can communicate with the others, but for simplicity the number of arrows between them are reduced.
 
 ```mermaid
 flowchart LR
@@ -35,7 +35,7 @@ B[Endpoint B] <---> D[Endpoint D]
 
 ### Initiating the migration
 
-To slowly migrate endpoints to the other transport and to prevent moving all endpoints at once, the migration will start with two endpoints and move them to the SQL Server transport.
+To slowly migrate endpoints to the other transport (in this case, SQL Server) and to prevent moving all endpoints at once, the migration will start with two endpoints and move them to the SQL Server transport.
 
 ```mermaid
 flowchart LR
@@ -54,22 +54,21 @@ subgraph sql
   D
 end
 ```
-
-In this scenario, a new endpoint is introduced which will act as the bridge. The bridge is configured with two instances of `BridgeTransport`, one for MSMQ and one for SQL Server. The MSMQ `BridgeTransport` is configured to have `EndpointA` and `EndpointB` and the SQL Server `BridgeTransport` is configured to have `EndpointC` and `EndpointD`. If any events are involved, the publishers for those [must be configured](/nservicebus/bridge/configuration.md#registering-publishers).
+In this scenario, a new endpoint is introduced which will act as the bridge. The bridge is configured with two instances of `BridgeTransport`, one for MSMQ and one for SQL Server. The MSMQ `BridgeTransport` is configured to have `EndpointA` and `EndpointB` and the SQL Server `BridgeTransport` is configured to have `EndpointC` and `EndpointD`. If any events are involved, the publishers for those [must be configured](/nservicebus/bridge/configuration.md#registering-publishers) to ensure proper message routing.
 
 ### Finishing the migration
 
-Eventually the last endpoints can be moved over. It is then possible to configure the bridge to have all endpoints on the SQL Server transport, so the in-flight messages that are retried and returned to their logical endpoint, end up at the bridge and are moved over to the SQL Server transport by the bridge.
+Once all endpoints are migrated, the bridge can be updated to include only SQL Server transports. This setup ensures that any in-flight messages retried by ServiceControl are routed through the bridge and delivered to their intended destination on the new SQL Server transport.
 
 ## Multiple transports
 
-Every transport has [pros and cons](/transports/selecting.md). Some transports have higher throughput, others have higher reliability and consistency. Sometimes some messages are better handled in the cloud where hosting is taken care off by the cloud provider, but other messages must be on-premise and not leave the network.
+Every transport has [pros and cons](/transports/selecting.md). Some offer higher throughput, while others prioritize reliability or consistency. In many cases, certain messages are better handled in the cloud, where hosting is managed by a provider. Other messages, however, may need to remain on-premises for security or compliance reasons.
 
-Each endpoint of a distributed system should be free to choose the transport that best suits its needs. In fact, this is encouraged in a microservices architecture. The NServiceBus Messaging Bridge can be used to set up endpoints on different transports, just like in the migration scenario above. Except in this scenario, there is no migration; the different transports might remain in place for the life of the system. This is a perfectly viable scenario and easily achieved using the bridge.
+In a distributed or microservices-based system, each endpoint should be free to choose the transport that best meets its specific requirements. This approach is not only valid—it is encouraged. The NServiceBus Messaging Bridge allows endpoints on different transports to communicate seamlessly. Unlike migration scenarios, these transports may remain in place permanently, making this a stable and supported pattern.
 
 ### Particular Platform
 
-In a multiple transport scenario, it is likely that error and audit messages need to be collected by a single ServiceControl instance, rather than separate instances for each transport. It is possible to bridge the information that is directed at ServiceControl via the bridge.
+In a multiple transport scenario, error and audit messages often need to be collected by a single ServiceControl instance, rather than separate instances per transport. The NServiceBus Messaging Bridge can be used to route these messages to a central ServiceControl instance across different transports.
 
 The [configuration documentation](/nservicebus/bridge/configuration.md) describes how this can be achieved.
 

@@ -1,7 +1,7 @@
 ---
 title: Recoverability
 summary: Recoverability techniques for building resilient distributed systems
-reviewed: 2023-07-18
+reviewed: 2025-07-03
 callsToAction: ['solution-architect']
 ---
 
@@ -22,8 +22,8 @@ Transient failures are temporary and are not caused by errors in business logic.
 > [!NOTE]
 > The Particular Platform simplifies the handling of transient errors:
 >
-> - NServiceBus has [built-in support for immediate and delayed retries](/nservicebus/recoverability/) for all supported messaging technologies. The automated > retries behavior is highly customizable.
-> - ServicePulse shows [real-time metrics monitoring retries](/servicepulse/#real-time-monitoring) occuring in the system.
+> - NServiceBus has [built-in support for immediate and delayed retries](/nservicebus/recoverability/) for all supported messaging technologies. The automated retries behavior is highly customizable.
+> - ServicePulse shows [real-time metrics monitoring retries](/servicepulse/#servicepulse-views-monitoring) occurring in the system.
 
 
 ## Persistent errors

@@ -1,10 +1,10 @@
 ---
 title: Custom Serializer for Data Bus
 summary: Send a message that includes a DataBus property serialized using a custom serializer.
-reviewed: 2023-07-25
+reviewed: 2025-07-18
 component: Core
 related:
- - nservicebus/messaging/databus
+ - nservicebus/messaging/claimcheck
 ---
 
 1. Run the solution. Two console applications start.
@@ -12,7 +12,7 @@ related:
 3. The sample uses the `FileShareDataBus`. Open the solution folder in Windows Explorer and navigate to the `\storage\` sub-folder. Each sub-folder within the `\storage` folder contains serialized data bus properties.
 
 > [!WARNING]
-> The FileShareDataBus **does not** remove physical attachments once the message has been processed. Apply a custom [cleanup-strategy](/nservicebus/messaging/databus/file-share.md#cleanup-strategy).
+> The FileShareDataBus **does not** remove physical attachments once the message has been processed. Apply a custom [cleanup-strategy](/nservicebus/messaging/claimcheck/file-share.md#cleanup-strategy).
 
 ## Code walk-through
 

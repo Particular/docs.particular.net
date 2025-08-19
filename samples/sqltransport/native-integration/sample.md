@@ -23,7 +23,7 @@ The database created by this sample is `NsbSamplesSqlNativeIntegration`.
 ## Running the sample
 
  1. Start the Receiver project.
- 2. In the Receiver's console notice `Press enter to send a message. Press any key to exit` when the app is ready.
+ 2. In the Receiver's console notice `Press [Enter] to send a message, or [CTRL+C] to exit.` when the app is ready.
  3. Hit the enter key.
  4. A message will be sent using ADO.NET and be received by the app.
  5. Open SQL Server Management Studio and go to the `NsbSamplesSqlNativeIntegration` database.

@@ -2,7 +2,7 @@
 title: Serialization
 summary: .NET messaging systems require serialization and deserialization of objects sent/received over transports. NServiceBus achieves this using serializers.
 component: Core
-reviewed: 2023-06-28
+reviewed: 2025-06-21
 isLearningPath: true
 related:
  - samples/serializers

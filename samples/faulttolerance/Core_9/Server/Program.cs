@@ -1,29 +1,27 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Server";
-        var endpointConfiguration = new EndpointConfiguration("Samples.FaultTolerance.Server");
-        endpointConfiguration.UsePersistence<LearningPersistence>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
 
-        #region disable
-        //var recoverability = endpointConfiguration.Recoverability();
-        //recoverability.Delayed(settings =>
-        //{
-        //    settings.NumberOfRetries(0);
-        //});
-        #endregion
+Console.Title = "Server";
+var builder = Host.CreateApplicationBuilder(args);
+var endpointConfiguration = new EndpointConfiguration("Samples.FaultTolerance.Server");
+endpointConfiguration.UsePersistence<LearningPersistence>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
+#region disable
+//var recoverability = endpointConfiguration.Recoverability();
+//recoverability.Delayed(settings =>
+//{
+//    settings.NumberOfRetries(0);
+//});
+#endregion
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop();
-    }
-}
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
+
+builder.UseNServiceBus(endpointConfiguration);
+await builder.Build().RunAsync();

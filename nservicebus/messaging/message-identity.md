@@ -1,14 +1,16 @@
 ---
 title: Message Identity
-reviewed: 2022-08-23
+reviewed: 2025-01-05
 component: Core
 ---
 
 
-Each message that is dispatched from an [Endpoint](/nservicebus/endpoints/) has a unique identity. NServiceBus generates and stores this value as a [header](/nservicebus/messaging/headers.md) on the message named `NServiceBus.MessageId`.
+Each message dispatched from an [Endpoint](/nservicebus/endpoints/) has a unique identity. NServiceBus generates and stores this value in the [`NServiceBus.MessageId` header](/nservicebus/messaging/headers.md#messaging-interaction-headers-nservicebus-messageid).
 
 Many features take advantage of message identity. For example, the [Outbox](/nservicebus/outbox) uses message identity to deduplicate messages and [recoverability](/nservicebus/recoverability/) uses message identity to keep track of how many times the endpoint has tried to process a message.
 
+> [!NOTE]
+> Message identities are not guaranteed to be unique across endpoints from a processing perspective. For example, the message identity of a published event will always be the same for all subscribers. In cases where a globally unique identity for processed messages is required, the name of the processing [logical endpoint](/nservicebus/endpoints/#logical-endpoints) should be combined with the message identity.
 
 ## Specifying message identity
 

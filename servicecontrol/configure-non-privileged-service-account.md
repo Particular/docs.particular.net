@@ -1,44 +1,59 @@
 ---
 title: Configuring a Non-Privileged Account
 summary: Using a low privilege account for ServiceControl
-reviewed: 2023-06-02
+reviewed: 2025-07-11
 ---
 
-To use a low-privileged account as the service account for ServiceControl, the following should be considered:
+To use a low-privileged accounts for ServiceControl instances, the following should be considered:
 
+## Access control on queues
 
-### Access control on queues
+The transport connection string used by ServiceControl must enable access to all of the ServiceControl queues as configured by the `InstanceName` setting:
 
-The transport connection string used by ServiceControl must enable access to the following ServicControl queues:
+ * [ServiceControl/InstanceName](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolinstancename)
+ * [ServiceControl.Audit/InstanceName](/servicecontrol/audit-instances/configuration.md#host-settings-servicecontrol-auditinstancename)
+ * [ServiceControl.Monitoring/InstanceName](/servicecontrol/monitoring-instances/configuration.md#host-settings-monitoringinstancename)
 
- * `particular.servicecontrol`
- * `particular.servicecontrol.errors`
- * `particular.servicecontrol.staging` (ServiceControl version 1.6 and above)
- * `particular.servicecontrol.timeouts`
- * `particular.servicecontrol.timeoutsdispatcher`
+The queues that ServiceControl needs to access will reflect the `InstanceName` used and the [instance type](/servicecontrol/#servicecontrol-instance-types):
 
-In addition, the connection string must enable access to the configured audit and error queues and the corresponding forwarding queues. These are typical:
+> [!WARNING]
+> If the connection string does not provide appropriate rights, the service may fail to start or may experience errors when certain operations are performed.
 
- * `audit`
- * `error`
- * `error.log` (optional)
- * `audit.log` (optional)
+### All instance types:
 
-If the connection string does not provide appropriate rights, the service will fail to start.
+Both read and send permissions are required for each of these queues:
+
+ * `{InstanceName}`: 
+ * `{InstanceName}.errors`
+ * `{InstanceName}.timeouts` (only when using [MSMQ](/servicecontrol/transports.md#msmq))
+ * `{InstanceName}.timeoutsdispatcher` (only when using [MSMQ](/servicecontrol/transports.md#msmq))
+
+### [Error instances](/servicecontrol/servicecontrol-instances/):
+
+ * `{InstanceName}.staging`: Both read and send permissions are required.
+ * `error` (see the [`ServiceBus/ErrorQueue`](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicebuserrorqueue) setting): Read permission is required.
+ * `error.log` (optional, see the [`ServiceBus/ErrorLogQueue`](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicebuserrorlogqueue) setting): Send permission is required.
+ * The Error instance will require send permission for every endpoint queue to allow for [failed message retries](/servicepulse/intro-failed-message-retries.md).
+ * If subscribing to [ServiceControl integration events](/servicecontrol/contracts.md), send/publish permission to the subscriber queues and/or any pub/sub mechanism for the transport will be required.
+
+### [Audit instances](/servicecontrol/audit-instances/):
+
+ * `audit` (see the [`ServiceBus/AuditQueue`](/servicecontrol/audit-instances/configuration.md#transport-servicebusauditqueue) setting): Read permission is required.
+ * `audit.log` (optional, see the [`ServiceBus/AuditLogQueue`](/servicecontrol/audit-instances/configuration.md#transport-servicebusauditlogqueue) setting): Send permission is required.
 
 > [!NOTE]
-> For MSMQ, the ACL default for a queue allows Administrators full access. Switching to a low-privileged account requires modification of rights to give full control to the custom account.
+> For [MSMQ](/servicecontrol/transports.md#msmq), the ACL default for a queue allows Administrators full access. Switching to a low-privileged account requires modification of rights to give full control to the custom account.
 
-### Url namespace reservations
+## Url namespace reservations
 
-The account under which the ServiceControl instance is running requires URL namespace reservations for the hostname and ports used by the instance. The reservations can be managed using the [ServiceControl Powershell commands](/servicecontrol/powershell.md#troubleshooting-via-powershell-checking-and-manipulating-urlacls) or from the command line using [netsh.exe](https://docs.microsoft.com/en-us/windows/desktop/http/add-urlacl). For example, to add url reservation for `http:\\localhost:33333\` to `LocalService` account the following command can be used `netsh http add urlacl url=http://localhost:33333/ user=LocalService listen=yes delegate=no`.
+When deploying using the ServiceControl Management Utility (SCMU) or PowerShell, the account under which the ServiceControl instance is running requires URL namespace reservations for the hostname and ports used by the instance. Even when deploying using SCMU The reservations can be managed using the [ServiceControl Powershell commands](/servicecontrol/) <!-- TODO: point to troubleshooting guide section instead --> or from the command line using [netsh.exe](https://docs.microsoft.com/en-us/windows/desktop/http/add-urlacl). For example, to add url reservation for `http:\\localhost:33333\` to `LocalService` account the following command can be used `netsh http add urlacl url=http://localhost:33333/ user=LocalService listen=yes delegate=no`.
 
-For instructions on how to review and change the urls used by ServiceControl instance, refer to [Changing the ServiceControl URI](setting-custom-hostname.md).
+For instructions on how to review and change the urls used by ServiceControl instance, refer to [Changing the ServiceControl URI](setting-custom-hostname.md). <!-- TODO: Is this necessary with the previous paragraph. Fix or raise an issue. -->
 
 > [!NOTE]
 > ServiceControl exposes endpoints on two different ports, each one requiring separate registration.
 
-### Filesystem paths
+## Filesystem paths
 
 The service account running ServiceControl instance requires following filesystem level access rights:
 
@@ -52,12 +67,12 @@ The service account running ServiceControl instance requires following filesyste
 > [!NOTE]
 > The database volume `Read attributes` access right is needed by ServiceControl to query for total and total free space on the volume.
 
-### Performance counters
+## Performance counters
 
-ServiceControl requires access to Windows performance counter infrastructure. As a result the service account needs to be a member of [Performance Monitor Users](https://docs.microsoft.com/en-us/windows/security/identity-protection/access-control/active-directory-security-groups#a-href-idbkmk-perfmonitorusersaperformance-monitor-users) group.
+ServiceControl requires access to Windows performance counter infrastructure. <!-- TODO: Is that still true? --> As a result the service account needs to be a member of [Performance Monitor Users](https://docs.microsoft.com/en-us/windows/security/identity-protection/access-control/active-directory-security-groups#a-href-idbkmk-perfmonitorusersaperformance-monitor-users) group.
 
 
-### Testing the configuration
+## Testing the configuration
 
 These methods confirm that the service account has sufficient rights:
 
@@ -69,16 +84,14 @@ These methods confirm that the service account has sufficient rights:
 
 ![](servicedetailsview.png 'width=500')
 
-
-#### Method 1: Running the service as a non-privileged user
+### Method 1: Running the service as a non-privileged user
 
  1. Open Computer Management.
  1. Change the service account to the custom user, provide the password and apply the change. The account will be given "logon as a service" privilege.
  1. Start the service and confirm that it started.
  1. Examine the log file to ensure that the service is operating as expected. If the service does not start and the log file does not indicate the issue, try Method 2.
 
-
-#### Method 2: Running the service interactively as a non-privileged user
+### Method 2: Running the service interactively as a non-privileged user
 
 To run the service this way, the custom service account must have rights to log on interactively on the computer.
 
@@ -88,7 +101,7 @@ To run the service this way, the custom service account must have rights to log 
 
 For example
 
-```dos
+```shell
 runas /user:MyDomain\MyTestUser cmd.exe
 ```
 
@@ -106,7 +119,7 @@ Once login rights are granted:
  1. Shut down the console session.
  1. Start the service.
 
-```dos
+```shell
 ServiceControl.exe --serviceName=Particular.ServiceControl
 ```
 

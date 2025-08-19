@@ -9,6 +9,8 @@ upgradeGuideCoreVersions:
  - 9
 ---
 
+include: upgrade-major
+
 ## Removed support for .NET Framework
 
 NServiceBus 9 no longer supports any version of the .NET Framework. Instead, it targets .NET 8 only (read more about the [supported frameworks and platforms](/nservicebus/upgrades/supported-platforms.md)). Any component in NServiceBus 8 that is .NET Framework only (for example, the MSMQ transport) will not have a version that is compatible with NServiceBus 9. NServiceBus 8 will continue to be supported for use on the .NET Framework.
@@ -37,7 +39,7 @@ snippet: core-8to9-machinename
 
 ## API to set additional audit metadata has changed
 
-The API to [set additional audit metadata](/nservicebus/operations/auditing.md#additional-audit-information) has been changed.
+The API to [add additional audit metadata](/nservicebus/operations/auditing.md#adding-additional-audit-information) has been changed.
 
 snippet: core-8to9-audit-metadata
 

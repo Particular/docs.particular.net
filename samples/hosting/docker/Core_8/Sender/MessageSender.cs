@@ -6,38 +6,29 @@ using Microsoft.Extensions.Logging;
 using NServiceBus;
 using Shared;
 
-namespace Sender
+namespace Sender;
+
+class MessageSender(ILogger<MessageSender> logger, IMessageSession messageSession)
+    : IHostedService
 {
-    class MessageSender : IHostedService
+    public async Task StartAsync(CancellationToken cancellationToken)
     {
-        public MessageSender(ILogger<MessageSender> logger, IMessageSession messageSession)
+        var guid = Guid.NewGuid();
+
+        var message = new RequestMessage
         {
-            this.logger = logger;
-            this.messageSession = messageSession;
-        }
+            Id = guid,
+            Data = "String property value"
+        };
 
-        public async Task StartAsync(CancellationToken cancellationToken)
-        {
-            var guid = Guid.NewGuid();
+        await messageSession.Send(message, cancellationToken);
 
-            var message = new RequestMessage
-            {
-                Id = guid,
-                Data = "String property value"
-            };
+        logger.LogInformation("Message sent, requesting to get data by id: {Guid}", guid.ToString("N"));
+        logger.LogInformation("Use 'docker-compose down' to stop containers.");
+    }
 
-            await messageSession.Send(message);
-
-            logger.LogInformation($"Message sent, requesting to get data by id: {guid:N}");
-            logger.LogInformation("Use 'docker-compose down' to stop containers.");
-        }
-
-        public Task StopAsync(CancellationToken cancellationToken)
-        {
-            return Task.CompletedTask;
-        }
-
-        readonly ILogger logger;
-        readonly IMessageSession messageSession;
+    public Task StopAsync(CancellationToken cancellationToken)
+    {
+        return Task.CompletedTask;
     }
 }

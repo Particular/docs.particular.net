@@ -1,122 +1,114 @@
 ---
 title: Routing Slips
-reviewed: 2023-09-15
+reviewed: 2025-08-14
 component: MessageRouting
 ---
 
 ## Introduction
 
-Uses the [Routing Slip pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/RoutingTable.html) feature of the [MessageRouting](https://github.com/jbogard/NServiceBus.MessageRouting) project.
+This sample demonstrates the use of the [Routing Slip pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/RoutingTable.html) with the [MessageRouting](https://github.com/jbogard/NServiceBus.MessageRouting) project.
 
+A **routing slip** allows a message to carry a list of destinations it should pass through. Each endpoint processes the message and then forwards it to the next stop on the slip. This enables dynamic workflows without hardcoding routes between endpoints.
 
-## Code walk-through
+## Solution Overview
 
-The solution consists of 6 Projects
+The solution consists of six projects:
 
- * Messages: The shared message definitions.
- * Sender: Initiates the message sends.
- * StepA, StepB, StepC: The handling endpoints to to show how the message flows between endpoints.
- * ResultHost: The final destination endpoint for messages that logs all the endpoints the message was routed through.
+- **Messages** – Shared message definitions.
+- **Sender** – Initiates the message send and defines the route.
+- **StepA, StepB, StepC** – Processing endpoints that demonstrate how a message flows between steps.
+- **ResultHost** – The final destination that logs all endpoints the message passed through.
 
+## Enabling Routing Slips
 
-### Enabling Routing Slips Feature
-
-All endpoints have routing slips enabled:
+All endpoints have the routing slip feature enabled:
 
 snippet: enableRoutingSlips
 
+## Multiple Message Interpretations
 
-## Multiple message interpretations 
+Each step in the route defines its own interpretation of the message.  
 
-Each step in the routing has its own definition of the message. For example StepA considers the message contract to be.
+For example, StepA treats the message contract as follows:
 
 snippet: single-message
 
-Both the Sender and the ResultHost have the full message context by referencing the Messages project.
+Both the Sender and ResultHost projects use the full message context by referencing the **Messages** project:
 
 snippet: multi-message
 
-On Send all share properties are set. 
+When sending, all shared properties are set:
 
 snippet: multi-message-send
 
-But in each step project they are only aware of the specific their specific message interpretations:
+However, in each step project, handlers only work with their own specific interpretation of the message:
 
 snippet: step-handler
 
+## Message Sending
 
-### Message sending 
-
-The Sender project alternates between two send actions:
+The **Sender** project alternates between two send actions:
 
 snippet: alternate
 
-
-#### Route to A, C and ResultHost
+### Route to A, C, and ResultHost
 
 snippet: SendAC
 
-
-#### Route to A, B, C and ResultHost
+### Route to A, B, C, and ResultHost
 
 snippet: SendABC
 
-
 ## Runtime Behavior
 
+### When routing to A, C, and ResultHost
 
-### When routing to A, C and ResultHost
-
- 1.  StepA receives message
- 1.  StepC receives message
- 1.  ResultHost receives message
+1. StepA receives the message  
+2. StepC receives the message  
+3. ResultHost receives the message  
 
 ```mermaid
 sequenceDiagram
-
 Participant Sender
 Participant StepA
 Participant StepB
 Participant StepC
 Participant ResultHost
 Sender ->> StepA: Route
-Note over StepA: Sets Attachment "Foo = Bar"
-StepA->> StepC: Route
-Note over StepC: Read Attachment "Foo"
-StepC->> ResultHost: Route
+Note over StepA: Sets attachment "Foo = Bar"
+StepA ->> StepC: Route
+Note over StepC: Reads attachment "Foo"
+StepC ->> ResultHost: Route
 ```
 
+### When routing to A, B, C, and ResultHost
 
-### When routing to A, B, C and ResultHost
-
- 1.  StepA receives message
- 1.  StepB receives message
- 1.  StepC receives message
- 1.  ResultHost receives message
+1. StepA receives the message  
+2. StepB receives the message  
+3. StepC receives the message  
+4. ResultHost receives the message  
 
 ```mermaid
 sequenceDiagram
-
 Participant Sender
 Participant StepA
 Participant StepB
 Participant StepC
 Participant ResultHost
 Sender ->> StepA: Route
-Note over StepA: Sets Attachment "Foo = Bar"
-StepA->> StepB: Route
-StepB->> StepC: Route
-Note over StepC: Read Attachment "Foo"
-StepC->> ResultHost: Route
+Note over StepA: Sets attachment "Foo = Bar"
+StepA ->> StepB: Route
+StepB ->> StepC: Route
+Note over StepC: Reads attachment "Foo"
+StepC ->> ResultHost: Route
 ```
-
 
 ## Attachments
 
-Note that StepA sets a routing slip attachment:
+StepA sets a routing slip attachment:
 
 snippet: set-attachments
 
-Which is then retrieved by StepC
+StepC then retrieves the attachment:
 
 snippet: read-attachment

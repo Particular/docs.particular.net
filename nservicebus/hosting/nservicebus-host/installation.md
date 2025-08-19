@@ -1,7 +1,7 @@
 ---
 title: Installation
 summary: How to install the NServiceBus.Host as a Windows service
-reviewed: 2023-03-27
+reviewed: 2025-05-02
 ---
 
 include: host-deprecated-warning
@@ -10,7 +10,7 @@ When running an endpoint within the context of the Visual Studio debugger, the r
 
 To retrieve the list of available options for the host, run the following at the command line:
 
-```dos
+```shell
 NServiceBus.Host.exe /?
 ```
 
@@ -22,7 +22,7 @@ NServiceBus.Host.exe /?
 
 To install the process as a Windows service, include `/install` as a command line argument to the host. Using `/install` also causes the host to invoke the [installers](/nservicebus/operations/installers.md).
 
-```dos
+```shell
 NServiceBus.Host.exe /install
 [/serviceName:<string>]
 [/displayName:<string>]
@@ -40,7 +40,7 @@ NServiceBus.Host.exe /install
 
 Here is an example of the `/install` command line:
 
-```dos
+```shell
 NServiceBus.Host.exe /install
 /serviceName:"MyPublisher"
 /displayName:"My Publisher Service"
@@ -86,7 +86,7 @@ Configures the name of the endpoint. By default, the endpoint name is the namesp
 
 Configures NServiceBus to scan only the specified assemblies. The `scannedAssemblies` parameter must be provided for each assembly to include. E.g.:
 
-```dos
+```shell
 NServiceBus.Host.exe /install
 /scannedAssemblies:"NServiceBus.Core"
 /scannedAssemblies:"NServiceBus.Host"
@@ -141,18 +141,18 @@ A [host profile](profiles.md) can be specified as the last parameter, e.g. `NSer
 
 To uninstall an endpoint service, call
 
-```dos
+```shell
 NServiceBus.Host.exe /uninstall
 ```
 
 If a service name is specified when installing a service, be sure to pass it to the uninstall command:
 
-```dos
+```shell
 NServiceBus.Host.exe /uninstall  [/serviceName]
 ```
 
 For example:
 
-```dos
+```shell
 NServiceBus.Host.exe /uninstall /serviceName:"MyPublisher"
 ```

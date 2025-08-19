@@ -1,7 +1,7 @@
 ---
 title: Scale out
 summary: Information on scaling out the NServiceBus Gateway
-reviewed: 2021-08-12
+reviewed: 2024-07-26
 related:
  - samples/gateway
 ---

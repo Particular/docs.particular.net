@@ -1,7 +1,7 @@
 ---
 title: Connection Settings
 summary: Information about the connection settings for the SQL Server transport, including custom database schemas and circuit breakers
-reviewed: 2021-08-13
+reviewed: 2024-08-02
 component: SqlTransport
 redirects:
 - nservicebus/sqlserver/connection-settings
@@ -21,6 +21,10 @@ partial: pool-size
 The connection string can be configured in several ways:
 
 partial: connection-string
+
+## Token-credentials
+
+Microsoft Entra ID authentication is supported via the [standard connection string options](https://learn.microsoft.com/en-us/sql/connect/ado-net/sql/azure-active-directory-authentication).
 
 ## Custom database schemas
 
@@ -51,4 +55,9 @@ snippet: sqlserver-custom-connection-factory
 
 A built-in circuit breaker is used to handle intermittent SQL Server connectivity problems. When a failure occurs while trying to connect, a circuit breaker enters an *armed* state. If the failure is not resolved before the configured *wait time* elapses, the circuit breaker triggers the [critical errors](/nservicebus/hosting/critical-errors.md) handling procedure.
 
-partial: circuit-breaker
+### Wait time
+
+The circuit breaker's default time to wait before triggering is 30 seconds. Use the `TimeToWaitBeforeTriggeringCircuitBreaker` method to change it.
+
+snippet: sqlserver-TimeToWaitBeforeTriggeringCircuitBreaker
+

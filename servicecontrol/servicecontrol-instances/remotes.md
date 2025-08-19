@@ -1,6 +1,7 @@
 ---
 title: ServiceControl remote instances
-reviewed: 2022-10-19
+summary: Aggregate data from other ServiceControl instances using the ServiceControl Remotes features
+reviewed: 2024-07-19
 component: ServiceControl
 redirects:
 - servicecontrol/servicecontrol-instances/distributed-instances
@@ -116,6 +117,56 @@ class ServiceControl ServiceControlPrimary
 class ServiceControlAudit1,ServiceControlAudit2 ServiceControlRemote
 ```
 
+### Multi-transport deployments
+
+When a system uses multiple transports, the [Messaging Bridge](/nservicebus/bridge/) can be used to allow management of the entire system by single instances of ServicePulse and ServiceInsight.
+
+```mermaid
+graph TD
+primaryA -. connected to .-> auditA
+primaryA -. connected to .-> auditB
+primaryA -. connected to .-> auditC
+
+subgraph Transport A
+ServicePulse[ServicePulse] -. connected to .-> primaryA
+ServiceInsight[ServiceInsight] -. connected to .-> primaryA
+endpointsA[endpoints] -- send errors to --> errorQueueA[error queue]
+endpointsA -- send audits to --> auditQueueA[audit queue]
+errorQueueA -- ingested by --> primaryA[ServiceControl<br/>primary]
+auditQueueA -- ingested by --> auditA[ServiceControl Audit<br/>remote]
+end
+
+subgraph Transport B
+endpointsB[endpoints] -- send errors to --> errorQueueB[error queue]
+endpointsB -- send audits to --> auditQueueB[audit queue]
+errorQueueB -- ingested by --> bridgeB[Bridge]
+auditQueueB -- ingested by --> auditB[ServiceControl Audit<br/>remote]
+bridgeB -- forwards --> errorQueueA
+end
+
+subgraph Transport C
+endpointsC[endpoints] -- send errors to --> errorQueueC[error queue]
+endpointsC -- send audits to --> auditQueueC[audit queue]
+errorQueueC -- ingested by --> bridgeC[Bridge]
+auditQueueC -- ingested by --> auditC[ServiceControl Audit<br/>remote]
+bridgeC -- forwards --> errorQueueA
+end
+
+classDef Endpoints fill:#00A3C4,stroke:#00729C,color:#FFFFFF
+classDef Bridge fill:#a8a032,stroke:#00729C,color:#FFFFFF
+classDef ServiceInsight fill:#878CAA,stroke:#585D80,color:#FFFFFF
+classDef ServicePulse fill:#409393,stroke:#205B5D,color:#FFFFFF
+classDef ServiceControlPrimary fill:#A84198,stroke:#92117E,color:#FFFFFF,stroke-width:4px
+classDef ServiceControlRemote fill:#A84198,stroke:#92117E,color:#FFFFFF
+
+class endpointsA,endpointsB,endpointsC Endpoints
+class bridgeB,bridgeC Bridge
+class ServiceInsight ServiceInsight
+class ServicePulse ServicePulse
+class primaryA,primaryB ServiceControlPrimary
+class auditA,auditB,auditC ServiceControlRemote
+```
+
 ### Multi-region deployments
 
 It is possible to create a multi-region deployment using remotes.
@@ -160,15 +211,15 @@ class auditA,auditB ServiceControlRemote
 
 In this deployment, each region has a full ServiceControl installation with a primary Error instance and an Audit instance. Each region can be managed and controlled via a dedicated ServicePulse.
 
-A new cross-region primary instance is added to allow ServiceInsight to show messages from both regions. This cross-region instance includes each region-specific primary instance as a remote allowing it to query messages from both. The cross-region instance must disable error message ingestion management by setting with the value [`ServiceControl/IngestErrorMessages`](/servicecontrol/creating-config-file.md#host-settings-servicecontrolingesterrormessages) option to `false`.
+A new cross-region primary instance is added to allow ServiceInsight to show messages from both regions. This cross-region instance includes each region-specific primary instance as a remote allowing it to query messages from both. The cross-region instance must disable error message ingestion management by setting with the value [`ServiceControl/IngestErrorMessages`](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontrolingesterrormessages) option to `false`.
 
 ### Zero downtime upgrades
 
-The remotes feature can be used to perform [zero downtime upgrades](/servicecontrol/upgrades/zero-downtime.md).
+The remotes feature can be used to perform [zero downtime upgrades](/servicecontrol/migrations/replacing-audit-instances/) of Audit instances.
 
 ## Configuration
 
-Remote instances are listed in the `ServiceControl/RemoteInstances` app setting in the primary instance [configuration file](/servicecontrol/creating-config-file.md). The value of this setting is a JSON array of remote instances. Each entry requires an `api_url` property specifying the API URL of the remote instance. For ServiceControl version 3 and earlier, each entry requires a `queue_address` property specifying the queue address of the remote instance.
+Remote instances are listed in the `ServiceControl/RemoteInstances` app setting in the primary instance [configuration file](/servicecontrol/servicecontrol-instances/configuration.md). The value of this setting is a JSON array of remote instances. Each entry requires an `api_url` property specifying the API URL of the remote instance. For ServiceControl version 3 and earlier, each entry requires a `queue_address` property specifying the queue address of the remote instance.
 
 > [!NOTE]
 > Changes to the configuration file do not take effect until the primary instance is restarted.
@@ -178,7 +229,7 @@ Remote instances are listed in the `ServiceControl/RemoteInstances` app setting 
 ```xml
 <configuration>
   <appSettings>
-    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api'}]"/>
+    <add key="ServiceControl/RemoteInstances" value="[{&quot;api_uri&quot;:&quot;http://localhost:33334/api&quot;}]"/>
   </appSettings>/
 </configuration>
 ```
@@ -188,7 +239,7 @@ Remote instances are listed in the `ServiceControl/RemoteInstances` app setting 
 ```xml
 <configuration>
   <appSettings>
-    <add key="ServiceControl/RemoteInstances" value="[{'api_uri':'http://localhost:33334/api', 'queue_address':'Particular.ServiceControl.Remote'}]"/>
+    <add key="ServiceControl/RemoteInstances" value="[{&quot;api_uri&quot;:&quot;http://localhost:33334/api&quot;, &quot;queue_address&quot;:&quot;Particular.ServiceControl.Remote&quot;}]"/>
   </appSettings>/
 </configuration>
 ```
@@ -204,31 +255,25 @@ The following cmdlets are available in ServiceControl version 4 and above, for t
 | sc-remotes             | Get-ServiceControlRemotes                     |
 
 > [!NOTE]
-> The names and addresses of instances are controlled by the [cmdlets](/servicecontrol/powershell-cmdlets.md) for managing ServiceControl and and ServiceControl Audit instances.
+> The names and addresses of instances are controlled by the cmdlets for managing ServiceControl [Error](/servicecontrol/servicecontrol-instances/deployment/powershell.md) and [Audit](/servicecontrol/audit-instances/deployment/powershell.md) instances.
 
 ### Add a remote instance
 
 `Add-ServiceControlRemote` adds a remote instance to a primary instance.
 
-```ps
-Add-ServiceControlRemote -Name Particular.ServiceControl -RemoteInstanceAddress "http://localhost:44444/api"
-```
+snippet: ps-add-audit-remote
 
 ### Remove a remote instance
 
 `Remove-ServiceControlRemote` removes a remote instance from a primary instance.
 
-```ps
-Remove-ServiceControlRemote -Name Particular.ServiceControl -RemoteInstanceAddress "http://localhost:44444/api"
-```
+snippet: ps-remove-audit-remote
 
 ### List remote instances
 
 `Get-ServiceControlRemotes` gets a list of remote instances from a primary instance.
 
-```ps
-Get-ServiceControlRemotes -Name Particular.ServiceControl
-```
+snippet: ps-list-audit-remotes
 
 ### Changing the address of a remote instance
 

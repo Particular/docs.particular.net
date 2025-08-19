@@ -3,7 +3,7 @@ title: SQL Azure
 summary: How to configure the NHibernate-based persistence for NServiceBus when running on SQL Azure
 component: NHibernate
 versions: '[6,]'
-reviewed: 2022-12-22
+reviewed: 2025-03-24
 related:
  - persistence/nhibernate/accessing-data
 redirects:

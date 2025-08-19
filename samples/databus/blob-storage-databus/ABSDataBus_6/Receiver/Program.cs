@@ -1,27 +1,27 @@
 using Azure.Storage.Blobs;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using System;
-using System.Threading.Tasks;
 
-class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "Receiver";
-        var endpointConfiguration = new EndpointConfiguration("Samples.AzureBlobStorageDataBus.Receiver");
 
-        var blobServiceClient = new BlobServiceClient("UseDevelopmentStorage=true");
-        var dataBus = endpointConfiguration.UseDataBus<AzureDataBus, SystemJsonDataBusSerializer>()
-            .Container("testcontainer")
-            .UseBlobServiceClient(blobServiceClient);
+Console.Title = "Receiver";
+var builder = Host.CreateApplicationBuilder(args);
 
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
-        endpointConfiguration.EnableInstallers();
+var endpointConfiguration = new EndpointConfiguration("Samples.AzureBlobStorageDataBus.Receiver");
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-        await endpointInstance.Stop();
-    }
-}
+var blobServiceClient = new BlobServiceClient("UseDevelopmentStorage=true");
+
+var claimCheck = endpointConfiguration.UseClaimCheck<AzureClaimCheck, SystemJsonClaimCheckSerializer>()
+    .Container("testcontainer")
+    .UseBlobServiceClient(blobServiceClient);
+
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.EnableInstallers();
+
+Console.WriteLine("Press any key, the application is starting");
+Console.ReadKey();
+Console.WriteLine("Starting...");
+builder.UseNServiceBus(endpointConfiguration);
+
+await builder.Build().RunAsync();

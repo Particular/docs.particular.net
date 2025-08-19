@@ -18,7 +18,7 @@ public static class SharedConfiguration
         var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlPersistenceRenameSaga;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 
         persistence.ConnectionBuilder(
-            connectionBuilder: () => new SqlConnection(connectionString));
+            () => new SqlConnection(connectionString));
 
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();

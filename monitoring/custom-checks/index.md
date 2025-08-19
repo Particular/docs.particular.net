@@ -1,7 +1,7 @@
 ---
 title: Custom Checks
-summary: Define a custom set of conditions that are checked on the endpoint.
-reviewed: 2022-02-09
+summary: Enable endpoint health monitoring by running custom code using the Custom Checks plugin and ServiceControl
+reviewed: 2025-07-06
 isLearningPath: true
 redirects:
   - nservicebus/operations/custom-checks
@@ -14,12 +14,12 @@ The Custom Checks plugin enables endpoint health monitoring by running custom co
 graph LR
 
 subgraph Endpoint
-CustomChecks[Custom Checks]
+CustomChecks[Custom Checks Plugin]
 end
 
 CustomChecks -- Custom Check<br>Data --> SCQ[ServiceControl<br>Input Queue]
 
-SCQ --> SC[ServiceControl<br>instance]
+SCQ --> SC[ServiceControl Error<br>instance]
 
 SC -. Integration<br/>Events .-> Integration[Integration<br/>Event Handler]
 

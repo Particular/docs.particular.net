@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="8.*" />
+    <PackageReference Include="NServiceBus.Transport.Msmq" Version="2.*" />
+    <PackageReference Include="ServiceControl.Contracts" Version="5.*" />
+  </ItemGroup>
+</Project>

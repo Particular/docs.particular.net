@@ -7,6 +7,7 @@ namespace Shared
     using NServiceBus.DataBus;
     using System;
     using System.IO;
+#pragma warning disable CS0618 // Type or member is obsolete
 
     #region CustomDataBusSerializer
 
@@ -48,4 +49,5 @@ namespace Shared
     }
 
     #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
 }

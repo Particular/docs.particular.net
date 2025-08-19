@@ -1,7 +1,7 @@
 ---
 title: Community extensions and integrations
 summary: curated list of community-developed extensions and integrations for the NServiceBus ecosystem.
-reviewed: 2022-12-18
+reviewed: 2025-03-28
 redirects:
  - nservicebus/mailer
  - samples/mailer
@@ -169,4 +169,4 @@ These serializer packages are part of the [NServiceBusExtensions](https://github
 * [ProtoBuf-Net](https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufNet)
   * Fork: [ramonsmits/NServiceBus.ProtoBufNet](https://github.com/ramonsmits/NServiceBus.ProtoBufNet)
 * [Utf8Json](https://github.com/NServiceBusExtensions/NServiceBus.Utf8Json)
-* [ZeroFormatter](https://github.com/NServiceBusExtensions/NServiceBus.ZeroFormatter)
+* [ZeroFormatter](https://www.nuget.org/packages/NServiceBus.ZeroFormatter)

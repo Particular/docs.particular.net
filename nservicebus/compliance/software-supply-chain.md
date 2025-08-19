@@ -1,7 +1,7 @@
 ---
 title: Software supply chain
 summary: How the integrity of software produced by Particular Software is maintained during the software development life cycle
-reviewed: 2021-10-08
+reviewed: 2024-09-12
 ---
 
 This document describes how the integrity of software produced by Particular Software is maintained during the software development life cycle.

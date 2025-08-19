@@ -2,7 +2,7 @@
 title: NHibernate Persistence
 summary: NHibernate-based persistence for NServiceBus
 component: NHibernate
-reviewed: 2022-01-26
+reviewed: 2024-10-22
 redirects:
  - nservicebus/relational-persistence-using-nhibernate
  - nservicebus/nhibernate/configuration
@@ -21,7 +21,7 @@ For a description of each feature, see the [persistence at a glance legend](/per
 
 |Feature                    |   |
 |:---                       |---
-|Supported storage types    |Sagas, Outbox, Subscriptions, Timeouts
+|Supported storage types    |Sagas, Outbox, Subscriptions
 |Transactions               |Local database transactions or distributed transactions when available
 |Concurrency control        |Optimistic concurrency for correctness + pessimistic concurrency for performance
 |Scripted deployment        |Not supported
@@ -37,11 +37,10 @@ For a description of each feature, see the [persistence at a glance legend](/per
 > SQL Server Always Encrypted feature is currently not supported by the persister when using Microsoft SQL Server
 
 > [!NOTE]
-> When connecting to an Oracle Database, only the ODP.NET managed driver is supported. The driver is available via the [Oracle.ManagedDataAccess NuGet Package](https://www.nuget.org/packages/Oracle.ManagedDataAccess).
+> When connecting to an Oracle Database, only the ODP.NET-managed driver is supported. The driver is available via the [Oracle.ManagedDataAccess NuGet Package](https://www.nuget.org/packages/Oracle.ManagedDataAccess).
 
 > [!WARNING]
 > Although this persistence will run on the free version of the above engines, i.e. [SQL Server Express](https://www.microsoft.com/en-au/sql-server/sql-server-editions-express) and [Oracle XE](https://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html), it is strongly recommended to use commercial versions for any production system. It is also recommended to ensure that support agreements are in place from either [Microsoft Premier Support](https://www.microsoft.com/en-us/microsoftservices/support.aspx), [Oracle Support](https://www.oracle.com/support/index.html), or another third party support provider.
-
 
 ## Usage
 
@@ -49,11 +48,9 @@ The next stage is to tell NServiceBus how to use NHibernate for persistence
 
 snippet: ConfiguringNHibernate
 
-
 ## Connection strings
 
-It is possible to pass a connection string in the `app.config` file, as described in the [using configuration convention](/persistence/nhibernate/#customizing-the-configuration-using-configuration-convention) section.
-
+Passing a connection string in the `app.config` file, as described in the [using configuration convention](/persistence/nhibernate/#customizing-the-configuration-using-configuration-convention) section is possible.
 
 ### With code
 
@@ -63,11 +60,9 @@ The connection string might be passed using code configuration:
 
 snippet: ConnectionStringAPI
 
-
 ## Customizing the configuration
 
 To customize the NHibernate `Configuration` object used to bootstrap the persistence mechanism, either provide a ready-made object via code or use convention-based XML configuration. The code-based approach overrides the configuration-based one when both are used.
-
 
 ### Passing configuration in code
 
@@ -82,12 +77,10 @@ To use a given NHibernate `Configuration` object for all the persistence concern
 
 snippet: CommonNHibernateConfiguration
 
-
 > [!WARNING]
 > When using the per-concern API to enable the NHibernate persistence, the `UseConfiguration` method still applies to the common configuration, not the specific concern being enabled. The following code will set up NHibernate persistence only for `Subscriptions` concern but will override the default configuration **for all the concerns**.
 
 snippet: CustomCommonNhibernateConfigurationWarning
-
 
 ### Using configuration convention
 
@@ -98,32 +91,26 @@ NServiceBus picks up the connection setting from the `app.config` from `connecti
 
 snippet: NHibernateAppConfig
 
-
 ## Change database schema
 
 The database schema can be changed by defining the `default_schema` NHibernate property. See the previous *Customizing the configuration* section.
-
 
 ## Subscription caching
 
 The subscriptions can be cached when using NHibernate. This can improve the performance of publishing events as it is not required to request matching subscriptions from storage.
 
 > [!NOTE]
-> Publishing is performed on stale data. This is only advised in high volume environments where latency can be an issue.
+> Publishing is performed on stale data. This is only advised in high-volume environments where latency can be an issue.
 
 snippet: NHibernateSubscriptionCaching
 
-
-
 ## Controlling schema
 
-In some cases it may be necessary to take full control over creating the SQL structure used by the NHibernate persister. In these cases the automatic creation of SQL structures on install can be disabled as follows:
-
+In some cases, it may be necessary to take full control over creating the SQL structure used by the NHibernate persister. In these cases, the automatic creation of SQL structures on installation can be disabled as follows:
 
 **For all persistence schema updates:**
 
 snippet: DisableSchemaUpdate
-
 
 **For subscription schema update:**
 

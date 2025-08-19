@@ -1,14 +1,11 @@
 ﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
-using NServiceBus.Logging;
-
-public class MyCommandHandler : IHandleMessages<MyCommand>
+public class MyCommandHandler(ILogger<MyCommandHandler> logger) : IHandleMessages<MyCommand>
 {
-    static readonly ILog log = LogManager.GetLogger<MyCommandHandler>();
-
     public Task Handle(MyCommand commandMessage, IMessageHandlerContext context)
     {
-        log.Info($"Received {nameof(MyCommand)} with a payload of {commandMessage.Data?.Length ?? 0} bytes.");
+        logger.LogInformation("Received {MessageType} with a payload of {PayloadLength} bytes.", nameof(MyCommand), commandMessage.Data?.Length ?? 0);
         return Task.CompletedTask;
     }
 }

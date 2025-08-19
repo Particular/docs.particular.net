@@ -1,15 +1,13 @@
 ---
 title: Multiple Deserializers
 summary: Using the AddDeserializer API to enable deserializing multiple formats.
-reviewed: 2022-08-23
+reviewed: 2025-01-16
 component: Core
 related:
  - nservicebus/serialization
 ---
 
-
-This sample uses the AddDeserializer API to illustrate a receiving endpoint deserializing multiple serialization formats.
-
+This sample uses the `AddDeserializer` API to illustrate a receiving endpoint deserializing multiple serialization formats.
 
 ## Sending endpoints
 
@@ -40,7 +38,6 @@ partial: jsonserializer
 Contains message definitions and a [message mutator](/nservicebus/pipeline/message-mutators.md) that logs the outgoing data. The project is shared by all endpoints and configured by `endpointConfiguration.RegisterOutgoingMessageLogger();` in the above snippets.
 
 snippet: outgoingmutator
-
 
 ## ReceivingEndpoint
 

@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales", "Sales\Sales.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Billing", "Billing\Billing.csproj", "{C4B27138-851D-4DEE-921E-89034D81F82F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Platform", "Platform\Platform.csproj", "{ED86F6CD-596C-4EDF-9398-1DFA2C4C2A52}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Platform", "PlatformLauncher\PlatformLauncher.csproj", "{ED86F6CD-596C-4EDF-9398-1DFA2C4C2A52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

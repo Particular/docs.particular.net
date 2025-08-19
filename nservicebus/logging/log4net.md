@@ -1,18 +1,14 @@
 ---
 title: Log4Net
 summary: Logging to Log4Net
-reviewed: 2021-09-08
+reviewed: 2024-08-20
 component: Log4Net
 related:
 - samples/logging/log4net-custom
 ---
 
-> [!NOTE]
-> It is recommended to directly use the [`Microsoft.Extensions.Logging`](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/) to log entries as it also supports semantic logging. Please see [Logging in .NET Core and ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/) for further details.
-
-
-Support for writing all NServiceBus log entries to [Log4Net](https://logging.apache.org/log4net/).
-
+> [!WARNING]
+> NServiceBus.Log4Net is obsolete. NServiceBus is now providing support for logging libraries through the Microsoft.Extensions.Logging. Please see [Logging in .NET Core and ASP.NET Core](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/logging/) for further details.
 
 ## Usage
 

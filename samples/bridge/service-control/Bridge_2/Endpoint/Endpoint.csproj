@@ -1,15 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
-	<PropertyGroup>
-		<TargetFrameworks>net8.0;net7.0;net6.0;net48</TargetFrameworks>
-		<OutputType>Exe</OutputType>
-		<LangVersion>10.0</LangVersion>
-	</PropertyGroup>
-	<ItemGroup>
-		<PackageReference Include="NServiceBus" Version="8.*" />
-		<PackageReference Include="NServiceBus.Heartbeat" Version="4.*" />
-		<PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="4.*" />
-	</ItemGroup>
-	<ItemGroup>
-	  <ProjectReference Include="..\Shared\Shared.csproj" />
-	</ItemGroup>
+
+  <PropertyGroup>
+    <TargetFrameworks>net9.0;net8.0;net48</TargetFrameworks>
+    <OutputType>Exe</OutputType>
+    <LangVersion>12.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="8.*" />
+    <PackageReference Include="NServiceBus.Heartbeat" Version="4.*" />
+    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="4.*" />
+  </ItemGroup>
+
 </Project>

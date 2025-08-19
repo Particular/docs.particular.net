@@ -1,7 +1,7 @@
 ---
 title: Consumer-driven Contracts sample
 summary: NServiceBus sample that shows a consumer-driven contract (CDC) approach to messaging.
-reviewed: 2022-02-25
+reviewed: 2024-10-30
 component: Core
 versions: '[6,)'
 ---

@@ -1,6 +1,6 @@
 using NServiceBus;
 
-public class Message2 :
+public class MyResponse :
     IMessage
 {
     public string Property { get; set; }

@@ -2,7 +2,7 @@
 title: SQL Persistence - SQL Server dialect
 component: SqlPersistence
 related:
-reviewed: 2021-12-10
+reviewed: 2024-10-09
 ---
 
 > [!WARNING]
@@ -22,6 +22,12 @@ snippet: SqlPersistenceUsageSqlServer
 
 include: mssql-dtc-warning
 
+## Token-credentials
+
+Microsoft Entra ID authentication is supported via the [standard connection string options](https://learn.microsoft.com/en-us/sql/connect/ado-net/sql/azure-active-directory-authentication).
+
+> [!NOTE]
+> Microsoft Entra ID authentication is only supported when using [Microsoft.Data.SqlClient](https://learn.microsoft.com/en-us/sql/connect/ado-net/sql/azure-active-directory-authentication#overview)
 
 ## Unicode support
 
@@ -44,13 +50,6 @@ include: name-length-validation-off
 The SQL Server dialect supports multiple schemas. By default, when a schema is not specified, it uses the `dbo` schema when referring to database objects.
 
 snippet: MsSqlSchema
-
-## Connection sharing
-
-When an endpoint uses SQL Persistence combined with the SQL Server Transport without the [Outbox](/nservicebus/outbox/), the persistence uses the connection and transaction context established by the transport when accessing saga data. This behavior ensures *exactly-once* message processing behavior as the state change of the saga is committed atomically while consuming of the message that triggered it.
-
-partial: Connection
-
 
 ## SQL Always Encrypted
 

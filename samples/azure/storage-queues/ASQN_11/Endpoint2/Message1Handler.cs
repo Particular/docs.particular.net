@@ -2,18 +2,18 @@
 using NServiceBus;
 using NServiceBus.Logging;
 
-public class Message1Handler :
-    IHandleMessages<Message1>
+public class MyRequestHandler :
+    IHandleMessages<MyRequest>
 {
-    static ILog log = LogManager.GetLogger<Message1Handler>();
+    static ILog log = LogManager.GetLogger<MyRequestHandler>();
 
-    public Task Handle(Message1 message, IMessageHandlerContext context)
+    public Task Handle(MyRequest message, IMessageHandlerContext context)
     {
         log.Info($"Received Message1: {message.Property}");
-        var message2 = new Message2
+        var MyResponse = new MyResponse
         {
             Property = "Hello from Endpoint2"
         };
-        return context.Reply(message2);
+        return context.Reply(MyResponse);
     }
 }

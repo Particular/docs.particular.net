@@ -1,13 +1,11 @@
 using Messages;
-using NServiceBus.Logging;
+using Microsoft.Extensions.Logging;
 
-public class ResponseHandler : IHandleMessages<Response>
+public class ResponseHandler(ILogger<ResponseHandler> logger) : IHandleMessages<Response>
 {
-    static readonly ILog log = LogManager.GetLogger<ResponseHandler>();
-
     public Task Handle(Response message, IMessageHandlerContext context)
     {
-        log.Info($"Response received from server for request with id:{message.ResponseId}");
+        logger.LogInformation("Response received from server for request with id:{ResponseId}", message.ResponseId);
         return Task.CompletedTask;
     }
 }

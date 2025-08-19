@@ -2,7 +2,7 @@
 title: Configure delayed retries
 summary: How to configure delayed retries as a second stage of recoverability.
 component: Core
-reviewed: 2023-02-01
+reviewed: 2025-04-28
 redirects:
  - nservicebus/second-level-retries
 related:
@@ -10,15 +10,12 @@ related:
  - samples/custom-recoverability
 ---
 
-> [!NOTE]
-> Starting from NServiceBus version 6, the delayed retries policy (formerly known as second level retries policy) has been deprecated in favor of the new custom recoverability policy which allows more control over the recoverability behavior. This documentation shows how the previous delayed retries policies can be implemented with the new [recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md).
-
 > [!WARNING]
-> Delayed retries cannot be used when transport transactions are disabled or delayed delivery is not available. For more information about transport transactions, refer to [transport transactions](/transports/transactions.md). For more details on the caveats, see the [delayed delivery](/nservicebus/messaging/delayed-delivery.md#caveats) article.
+> Delayed retries cannot be used when transport transactions are disabled or delayed delivery is not available. For more information about transport transactions, refer to [transport transactions](/transports/transactions.md). For more details on delayed delivery, see the [delayed delivery](/nservicebus/messaging/delayed-delivery.md) article.
 
 ## Configuring delayed retries
 
- * `TimeIncrease`: Specified as a TimeSpan, defaults to 10 seconds. Specifies the delay interval for each retry attempt. This delay increases by the same timespan with each delayed delivery. For example, if the specified value is the default 10 seconds, i.e. 00:00:10, then the first delayed retry will be at ten seconds, the subsequent delayed retry will be 20 seconds, and so on.
+ * `TimeIncrease`: Specifies the delay interval for each retry attempt. This delay increases by the same timespan with each delayed delivery. The default value is 10 seconds. For example, with the default value of 10 seconds, i.e., 00:00:10, the first delayed retry will occur at 10 seconds, the subsequent delayed retry will occur at 20 seconds, and so on.
  * `NumberOfRetries`: Number of times delayed retries are performed. Default is 3.
 
 snippet: DelayedRetriesConfiguration
@@ -34,6 +31,8 @@ snippet: DisableDelayedRetries
 Custom retry logic can be configured via code.
 
 snippet: DelayedRetriesCustomPolicy
+
+More details can be found in the [recoverability policy documentation](/nservicebus/recoverability/custom-recoverability-policy.md).
 
 
 ### Simple policy

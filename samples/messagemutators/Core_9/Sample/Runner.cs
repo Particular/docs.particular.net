@@ -1,10 +1,12 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-public class Runner
+public class Runner(IMessageSession messageSession) : BackgroundService
 {
-    public static async Task Run(IEndpointInstance endpointInstance)
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         Console.WriteLine("Press 's' to send a valid message");
         Console.WriteLine("Press 'e' to send a failed message");
@@ -28,7 +30,7 @@ public class Runner
                         ListPrice = 4,
                         Image = new byte[1024 * 1024 * 7]
                     };
-                    await endpointInstance.SendLocal(smallMessage);
+                    await messageSession.SendLocal(smallMessage);
 
                     #endregion
 
@@ -45,7 +47,7 @@ public class Runner
                             ListPrice = 15,
                             Image = new byte[1024 * 1024 * 7]
                         };
-                        await endpointInstance.SendLocal(largeMessage);
+                        await messageSession.SendLocal(largeMessage);
 
                         #endregion
                     }
@@ -55,11 +57,15 @@ public class Runner
                     }
                     break;
                 default:
-                {
-                    return;
-                }
+                    {
+                        return;
+                    }
+
             }
+
         }
+
+
     }
 
 }

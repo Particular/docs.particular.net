@@ -2,7 +2,7 @@
 title: Enforcement of best practices
 summary: How to enable/disable the enforcement of messaging best practices based on events and commands
 component: Core
-reviewed: 2023-05-14
+reviewed: 2025-05-13
 versions: '[6.0,)'
 ---
 
