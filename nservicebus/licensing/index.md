@@ -32,7 +32,7 @@ Some licenses have a date value in the `UpgradeProtectionExpiration` attribute. 
 
 ## Throughput limitations
 
-No technical limitations are enforced at runtime when either no license is found or a license has expired.
+No technical limitations are enforced at runtime when either no license is found, invalid or corrupt license data is provided, or a license has expired.
 
 ## License management
 
