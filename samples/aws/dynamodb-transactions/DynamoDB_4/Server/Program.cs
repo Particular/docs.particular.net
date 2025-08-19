@@ -1,8 +1,6 @@
-﻿using System;
-using Amazon.DynamoDBv2;
+﻿using Amazon.DynamoDBv2;
 using Amazon.Runtime;
 using Microsoft.Extensions.Hosting;
-using NServiceBus;
 
 Console.Title = "Server";
 
@@ -37,10 +35,6 @@ endpointConfiguration.UseTransport(new LearningTransport
     TransportTransactionMode = TransportTransactionMode.ReceiveOnly
 });
 endpointConfiguration.EnableInstallers();
-
-Console.WriteLine("Press any key, the application is starting");
-Console.ReadKey();
-Console.WriteLine("Starting...");
 
 builder.UseNServiceBus(endpointConfiguration);
 await builder.Build().RunAsync();
