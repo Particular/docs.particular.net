@@ -1,5 +1,5 @@
 ﻿#pragma warning disable 618
-namespace Core7.Headers.Writers
+namespace Core.Headers.Writers
 {
     using System;
     using System.Threading;
@@ -13,7 +13,7 @@ namespace Core7.Headers.Writers
     public class HeaderWriterError
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
-        string endpointName = "HeaderWriterErrorV7";
+        string endpointName = "HeaderWriterError";
 
         [OneTimeTearDown]
         public void TearDown()
@@ -36,7 +36,8 @@ namespace Core7.Headers.Writers
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterError>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.EnableInstallers();
-            endpointConfiguration.UseTransport<LearningTransport>();
+            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            transport.StorageDirectory(TestContext.CurrentContext.TestDirectory);
             endpointConfiguration.Pipeline.Register(typeof(Mutator), "Capture headers on sent messages");
 
             var recoverability = endpointConfiguration.Recoverability();

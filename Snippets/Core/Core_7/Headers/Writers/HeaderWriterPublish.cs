@@ -1,4 +1,4 @@
-﻿namespace Core7.Headers.Writers
+﻿namespace Core.Headers.Writers
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -12,7 +12,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        static string EndpointName = "HeaderWriterPublishV7";
+        static string EndpointName = "HeaderWriterPublish";
 
         [OneTimeTearDown]
         public void TearDown()
@@ -30,7 +30,8 @@
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.RegisterMessageMutator(new Mutator());
-            var routing = endpointConfiguration.UseTransport<LearningTransport>().Routing();
+            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            transport.StorageDirectory(TestContext.CurrentContext.TestDirectory);
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);
 

@@ -12,7 +12,7 @@ public class HeaderWriterPublish
 {
     static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-    static string EndpointName = "HeaderWriterPublishV8";
+    static string EndpointName = "HeaderWriterPublish";
 
     [OneTimeTearDown]
     public void TearDown()
@@ -29,7 +29,8 @@ public class HeaderWriterPublish
         endpointConfiguration.SendFailedMessagesTo("error");
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.RegisterMessageMutator(new Mutator());
-        var routing = endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.UseTransport(new LearningTransport {StorageDirectory = TestContext.CurrentContext.TestDirectory});
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
 

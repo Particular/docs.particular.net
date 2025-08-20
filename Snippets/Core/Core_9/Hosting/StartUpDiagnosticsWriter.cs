@@ -1,7 +1,8 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Common;
-using Core9.Headers.Writers;
+using Core.Headers.Writers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NServiceBus;
@@ -23,10 +24,12 @@ public class StartUpDiagnosticsWriter
             diagnostics = x;
             return Task.CompletedTask;
         });
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
         var jsonFormatted = JToken.Parse(diagnostics).ToString(Formatting.Indented);
-        var substring = string.Join("\r", jsonFormatted.Split('\r').Take(20)) + "\r\n...";
+        var abbreviated = jsonFormatted.Split(["\r\n", "\n", "\r"], StringSplitOptions.None).Take(20);
+        var substring = string.Join("\r", abbreviated) + "\r\n...";
         SnippetLogger.Write(substring);
         await endpointInstance.Stop();
     }

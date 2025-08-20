@@ -1,4 +1,4 @@
-﻿namespace Core7.Headers.Writers
+﻿namespace Core.Headers.Writers
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -12,7 +12,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        string endpointName = "HeaderWriterSendV7";
+        string endpointName = "HeaderWriterSend";
 
         [OneTimeTearDown]
         public void TearDown()
@@ -26,7 +26,8 @@
             var endpointConfiguration = new EndpointConfiguration(endpointName);
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterSend>();
             endpointConfiguration.SetTypesToScan(typesToScan);
-            endpointConfiguration.UseTransport<LearningTransport>();
+            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            transport.StorageDirectory(TestContext.CurrentContext.TestDirectory);
             endpointConfiguration.RegisterMessageMutator(new Mutator());
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);

@@ -1,7 +1,7 @@
+namespace Core;
+
 using System.Threading.Tasks;
 using NServiceBus;
-
-namespace Core9_1;
 
 public static class ManageTraceDepthUsage
 {

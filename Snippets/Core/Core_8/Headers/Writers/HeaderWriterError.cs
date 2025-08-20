@@ -1,4 +1,4 @@
-﻿namespace Core8.Headers.Writers
+﻿namespace Core.Headers.Writers
 {
     using System;
     using System.Threading;
@@ -12,7 +12,7 @@
     public class HeaderWriterError
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
-        string endpointName = "HeaderWriterErrorV8";
+        string endpointName = "HeaderWriterError";
 
         [OneTimeTearDown]
         public void TearDown()
@@ -26,7 +26,7 @@
             var errorIngestion = new EndpointConfiguration("error");
             errorIngestion.SetTypesToScan(TypeScanner.NestedTypes<ErrorMutator>());
             errorIngestion.EnableInstallers();
-            errorIngestion.UseTransport(new LearningTransport());
+            errorIngestion.UseTransport(new LearningTransport {StorageDirectory = TestContext.CurrentContext.TestDirectory});
             errorIngestion.Pipeline.Register(typeof(ErrorMutator), "Capture headers on failed messages");
             await Endpoint.Start(errorIngestion);
 

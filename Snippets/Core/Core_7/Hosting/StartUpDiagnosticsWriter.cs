@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Common;
-using Core7.Headers.Writers;
+using Core.Headers.Writers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NServiceBus;

@@ -1,4 +1,4 @@
-﻿namespace Core7.Headers.Writers
+﻿namespace Core.Headers.Writers
 {
     using System;
     using System.Threading;
@@ -13,7 +13,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
         public static bool Received;
-        static string EndpointName = "HeaderWriterDeferV7";
+        static string EndpointName = "HeaderWriterDefer";
 
         [OneTimeTearDown]
         public void TearDown()
@@ -31,7 +31,9 @@
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.UsePersistence<InMemoryPersistence>();
             endpointConfiguration.RegisterMessageMutator(new Mutator());
-            var routing = endpointConfiguration.UseTransport<LearningTransport>().Routing();
+            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            transport.StorageDirectory(TestContext.CurrentContext.TestDirectory);
+            var routing = transport.Routing();
             routing.RouteToEndpoint(GetType().Assembly, EndpointName);
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);

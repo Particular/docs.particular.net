@@ -1,4 +1,4 @@
-﻿namespace Core7.Headers.Writers
+﻿namespace Core.Headers.Writers
 {
     using System.Threading;
     using System.Threading.Tasks;
@@ -12,7 +12,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        const string endpointName = "HeaderWriterAuditV7";
+        const string endpointName = "HeaderWriterAudit";
 
         [OneTimeTearDown]
         public void TearDown()
@@ -27,7 +27,8 @@
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterAudit>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.AuditProcessedMessagesTo(endpointName);
-            endpointConfiguration.UseTransport<LearningTransport>();
+            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            transport.StorageDirectory(TestContext.CurrentContext.TestDirectory);
             endpointConfiguration.RegisterMessageMutator(new Mutator());
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);

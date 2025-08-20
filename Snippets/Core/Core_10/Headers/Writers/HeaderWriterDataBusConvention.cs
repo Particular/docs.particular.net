@@ -14,7 +14,7 @@ public class HeaderWriterDataBusConvention
 {
     static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-    string endpointName = "HeaderWriterDataBusConventionV8";
+    string endpointName = "HeaderWriterDataBusConvention";
 
     [OneTimeTearDown]
     public void TearDown()
@@ -26,18 +26,18 @@ public class HeaderWriterDataBusConvention
     public async Task Write()
     {
         var endpointConfiguration = new EndpointConfiguration(endpointName);
-#pragma warning disable CS0618 // Type or member is obsolete
         var dataBus = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, SystemJsonClaimCheckSerializer>();
         dataBus.BasePath(@"..\..\..\storage");
         var typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusConvention>();
         endpointConfiguration.SetTypesToScan(typesToScan);
-        endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.UseTransport(new LearningTransport {StorageDirectory = TestContext.CurrentContext.TestDirectory});
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
         var conventions = endpointConfiguration.Conventions();
         conventions.DefiningClaimCheckPropertiesAs(property =>
         {
             return property.Name.StartsWith("LargeProperty");
         });
-#pragma warning restore CS0618 // Type or member is obsolete
         endpointConfiguration.RegisterMessageMutator(new Mutator());
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);

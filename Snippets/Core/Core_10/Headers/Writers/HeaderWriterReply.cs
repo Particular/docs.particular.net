@@ -11,7 +11,7 @@ using NUnit.Framework;
 public class HeaderWriterReply
 {
     static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
-    string endpointName = "HeaderWriterReplyV8";
+    string endpointName = "HeaderWriterReply";
 
     [OneTimeTearDown]
     public void TearDown()
@@ -27,8 +27,9 @@ public class HeaderWriterReply
         var typesToScan = TypeScanner.NestedTypes<HeaderWriterReply>(callbackTypes);
         endpointConfiguration.SetTypesToScan(typesToScan);
         endpointConfiguration.MakeInstanceUniquelyAddressable("A");
-        endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.UseTransport(new LearningTransport {StorageDirectory = TestContext.CurrentContext.TestDirectory});
         endpointConfiguration.RegisterMessageMutator(new Mutator());
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
         await endpointInstance.SendLocal(new MessageToSend());

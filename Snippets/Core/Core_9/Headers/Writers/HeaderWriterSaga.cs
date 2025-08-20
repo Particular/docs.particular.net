@@ -1,4 +1,4 @@
-﻿namespace Core9.Headers.Writers
+﻿namespace Core.Headers.Writers
 {
     using Common;
     using NServiceBus;
@@ -12,7 +12,7 @@
     public class HeaderWriterSaga
     {
         static CountdownEvent CountdownEvent = new CountdownEvent(4);
-        string endpointName = "HeaderWriterSagaV8";
+        string endpointName = "HeaderWriterSaga";
 
         [OneTimeTearDown]
         public void TearDown()
@@ -27,8 +27,9 @@
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterSaga>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.UsePersistence<LearningPersistence>();
-            endpointConfiguration.UseTransport(new LearningTransport());
+            endpointConfiguration.UseTransport(new LearningTransport {StorageDirectory = TestContext.CurrentContext.TestDirectory});
             endpointConfiguration.RegisterMessageMutator(new Mutator());
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);
             await endpointInstance.SendLocal(new StartSaga1Message { Guid = Guid.NewGuid() });

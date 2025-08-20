@@ -2,23 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <RootNamespace>Core9</RootNamespace>
+    <RootNamespace>Core</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <FrameworkReference Include="Microsoft.AspNetCore.App" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="NServiceBus" Version="9.1.*" />
-    <PackageReference Include="NServiceBus.Callbacks" Version="5.*" />
-    <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="5.*" />
-    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="5.*" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.*" />
-    <PackageReference Include="NUnit" Version="4.*" />
-    <PackageReference Include="NUnit.Analyzers" Version="4.3.0" />
-    <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
-    <PackageReference Include="OpenTelemetry" Version="1.3.0" />
+    <PackageReference Include="OpenTelemetry" Version="1.*" />
   </ItemGroup>
 
 </Project>

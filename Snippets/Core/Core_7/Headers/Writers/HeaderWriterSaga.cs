@@ -1,4 +1,4 @@
-﻿namespace Core7.Headers.Writers
+﻿namespace Core.Headers.Writers
 {
     using Common;
     using NServiceBus;
@@ -12,7 +12,7 @@
     public class HeaderWriterSaga
     {
         static CountdownEvent CountdownEvent = new CountdownEvent(4);
-        string endpointName = "HeaderWriterSagaV7";
+        string endpointName = "HeaderWriterSaga";
 
         [OneTimeTearDown]
         public void TearDown()
@@ -27,7 +27,8 @@
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterSaga>();
             endpointConfiguration.SetTypesToScan(typesToScan);
             endpointConfiguration.UsePersistence<LearningPersistence>();
-            endpointConfiguration.UseTransport<LearningTransport>();
+            var transport = endpointConfiguration.UseTransport<LearningTransport>();
+            transport.StorageDirectory(TestContext.CurrentContext.TestDirectory);
             endpointConfiguration.RegisterMessageMutator(new Mutator());
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);

@@ -1,4 +1,4 @@
-﻿namespace Core8.Headers.Writers
+﻿namespace Core.Headers.Writers
 {
     using System;
     using System.Text;
@@ -15,7 +15,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        string endpointName = "HeaderWriterEncryptionV8";
+        string endpointName = "HeaderWriterEncryption";
 
         [OneTimeTearDown]
         public void TearDown()
@@ -42,7 +42,7 @@
             var conventions = endpointConfiguration.Conventions();
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterEncryption>();
             endpointConfiguration.SetTypesToScan(typesToScan);
-            endpointConfiguration.UseTransport(new LearningTransport());
+            endpointConfiguration.UseTransport(new LearningTransport {StorageDirectory = TestContext.CurrentContext.TestDirectory});
             endpointConfiguration.RegisterMessageMutator(new Mutator());
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);

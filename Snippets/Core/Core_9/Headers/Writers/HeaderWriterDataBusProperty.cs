@@ -1,4 +1,4 @@
-﻿namespace Core9.Headers.Writers
+﻿namespace Core.Headers.Writers
 {
     using System.Text;
     using System.Threading;
@@ -15,7 +15,7 @@
     {
         static ManualResetEvent ManualResetEvent = new ManualResetEvent(false);
 
-        string endpointName = "HeaderWriterDataBusPropertyV8";
+        string endpointName = "HeaderWriterDataBusProperty";
 
         [OneTimeTearDown]
         public void TearDown()
@@ -31,8 +31,9 @@
             dataBus.BasePath(@"..\..\..\storage");
             var typesToScan = TypeScanner.NestedTypes<HeaderWriterDataBusProperty>();
             endpointConfiguration.SetTypesToScan(typesToScan);
-            endpointConfiguration.UseTransport(new LearningTransport());
+            endpointConfiguration.UseTransport(new LearningTransport {StorageDirectory = TestContext.CurrentContext.TestDirectory});
             endpointConfiguration.RegisterMessageMutator(new Mutator());
+            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
             var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
