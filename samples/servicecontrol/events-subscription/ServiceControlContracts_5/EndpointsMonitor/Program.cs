@@ -1,32 +1,30 @@
 ﻿using Microsoft.Extensions.Hosting;
-using NServiceBus;
-using System;
 
-await Host.CreateDefaultBuilder(args)
- .ConfigureServices((hostContext, services) =>
- {
- }).UseNServiceBus(x =>
- {
-     Console.Title = "EndpointsMonitor";
-     var endpointConfiguration = new EndpointConfiguration("EndpointsMonitor");
-     endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
-     endpointConfiguration.EnableInstallers();
-     endpointConfiguration.UsePersistence<NonDurablePersistence>();
+Console.Title = "EndpointsMonitor";
 
-     #region ServiceControlEventsMonitorCustomErrorQueue
-     endpointConfiguration.SendFailedMessagesTo("error-monitoring");
-     #endregion
+var endpointConfiguration = new EndpointConfiguration("EndpointsMonitor");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.EnableInstallers();
 
-     var transport = endpointConfiguration.UseTransport<LearningTransport>();
+#region ServiceControlEventsMonitorCustomErrorQueue
+endpointConfiguration.SendFailedMessagesTo("error-monitoring");
+#endregion
 
-     var conventions = endpointConfiguration.Conventions();
-     conventions.DefiningEventsAs(
-         type =>
-         {
-             return typeof(IEvent).IsAssignableFrom(type) ||
-                    // include ServiceControl events
-                    type.Namespace != null &&
-                    type.Namespace.StartsWith("ServiceControl.Contracts");
-         });
-     return endpointConfiguration;
- }).Build().RunAsync();
+var transport = endpointConfiguration.UseTransport<LearningTransport>();
+
+var conventions = endpointConfiguration.Conventions();
+conventions.DefiningEventsAs(
+    type =>
+    {
+        return typeof(IEvent).IsAssignableFrom(type) ||
+               // include ServiceControl events
+               type.Namespace != null &&
+               type.Namespace.StartsWith("ServiceControl.Contracts");
+    });
+
+var builder = Host.CreateApplicationBuilder(args);
+builder.UseNServiceBus(endpointConfiguration);
+
+var host = builder.Build();
+
+await host.RunAsync();

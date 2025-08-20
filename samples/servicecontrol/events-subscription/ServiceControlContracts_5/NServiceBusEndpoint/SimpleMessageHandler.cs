@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using NServiceBus;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 public class SimpleMessageHandler(ILogger<SimpleMessageHandler> logger) :
     IHandleMessages<SimpleMessage>
