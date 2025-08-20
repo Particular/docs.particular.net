@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Common;
 using Core.Headers.Writers;
@@ -27,7 +28,8 @@ public class StartUpDiagnosticsWriter
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
         var jsonFormatted = JToken.Parse(diagnostics).ToString(Formatting.Indented);
-        var substring = string.Join("\r", jsonFormatted.Split('\r').Take(20)) + "\r\n...";
+        var abbreviated = jsonFormatted.Split(["\r\n", "\n", "\r"], StringSplitOptions.None).Take(20);
+        var substring = string.Join("\r", abbreviated) + "\r\n...";
         SnippetLogger.Write(substring);
         await endpointInstance.Stop();
     }
