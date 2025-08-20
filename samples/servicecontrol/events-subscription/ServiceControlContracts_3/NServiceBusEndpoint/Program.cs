@@ -13,6 +13,11 @@ class Program
         endpointConfiguration.EnableInstallers();
         endpointConfiguration.SendFailedMessagesTo("error");
 
+        endpointConfiguration.SendHeartbeatTo(
+            serviceControlQueue: "Particular.ServiceControl",
+            frequency: TimeSpan.FromSeconds(10),
+            timeToLive: TimeSpan.FromSeconds(30));
+
         #region DisableRetries
 
         var recoverability = endpointConfiguration.Recoverability();
@@ -31,9 +36,11 @@ class Program
         #endregion
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        Console.WriteLine("Press 'Enter' to send a new message. Press any other key to finish.");
+
         while (true)
         {
+            Console.WriteLine("Press 'Enter' to send a new message. Press any other key to finish.");
+
             var key = Console.ReadKey();
 
             if (key.Key != ConsoleKey.Enter)
@@ -47,10 +54,10 @@ class Program
             {
                 Id = guid
             };
-            await endpointInstance.Send("NServiceBusEndpoint", simpleMessage);
-            Console.WriteLine($"Sent a new message with Id = {guid}.");
 
-            Console.WriteLine("Press 'Enter' to send a new message. Press any other key to finish.");
+            await endpointInstance.Send("NServiceBusEndpoint", simpleMessage);
+
+            Console.WriteLine($"Sent a new message with Id = {guid}.");
         }
         await endpointInstance.Stop();
     }

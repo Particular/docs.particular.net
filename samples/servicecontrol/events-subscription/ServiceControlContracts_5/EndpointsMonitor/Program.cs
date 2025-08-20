@@ -1,44 +1,30 @@
 ﻿using Microsoft.Extensions.Hosting;
-using NServiceBus;
-using System;
-using System.Threading.Tasks;
 
-class Program
-{
-    public static async Task Main(string[] args)
+Console.Title = "EndpointsMonitor";
+
+var endpointConfiguration = new EndpointConfiguration("EndpointsMonitor");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.EnableInstallers();
+
+#region ServiceControlEventsMonitorCustomErrorQueue
+endpointConfiguration.SendFailedMessagesTo("error-monitoring");
+#endregion
+
+var transport = endpointConfiguration.UseTransport<LearningTransport>();
+
+var conventions = endpointConfiguration.Conventions();
+conventions.DefiningEventsAs(
+    type =>
     {
-        await CreateHostBuilder(args).Build().RunAsync();
-    }
+        return typeof(IEvent).IsAssignableFrom(type) ||
+               // include ServiceControl events
+               type.Namespace != null &&
+               type.Namespace.StartsWith("ServiceControl.Contracts");
+    });
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-     Host.CreateDefaultBuilder(args)
-         .ConfigureServices((hostContext, services) =>
-         {
-         }).UseNServiceBus(x =>
-         {
-             Console.Title = "EndpointsMonitor";
-             var endpointConfiguration = new EndpointConfiguration("EndpointsMonitor");
-             endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
-             endpointConfiguration.EnableInstallers();
-             endpointConfiguration.UsePersistence<NonDurablePersistence>();
+var builder = Host.CreateApplicationBuilder(args);
+builder.UseNServiceBus(endpointConfiguration);
 
-             #region ServiceControlEventsMonitorCustomErrorQueue
-             endpointConfiguration.SendFailedMessagesTo("error-monitoring");
-             #endregion
+var host = builder.Build();
 
-             var transport = endpointConfiguration.UseTransport<LearningTransport>();
-
-             var conventions = endpointConfiguration.Conventions();
-             conventions.DefiningEventsAs(
-                 type =>
-                 {
-                     return typeof(IEvent).IsAssignableFrom(type) ||
-                            // include ServiceControl events
-                            type.Namespace != null &&
-                            type.Namespace.StartsWith("ServiceControl.Contracts");
-                 });
-             Console.ReadKey();
-             return endpointConfiguration;
-         });
-
-}
+await host.RunAsync();

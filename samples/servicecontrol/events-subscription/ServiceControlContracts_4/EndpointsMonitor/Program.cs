@@ -1,45 +1,34 @@
 ﻿using Microsoft.Extensions.Hosting;
-using NServiceBus;
-using System;
-using System.Threading.Tasks;
 
-class Program
+Console.Title = "EndpointsMonitor";
+
+var builder = Host.CreateDefaultBuilder(args);
+
+builder.UseNServiceBus(x =>
 {
-    public static async Task Main(string[] args)
-    {
-        await CreateHostBuilder(args).Build().RunAsync();
-    }
+    var endpointConfiguration = new EndpointConfiguration("EndpointsMonitor");
+    endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+    endpointConfiguration.EnableInstallers();
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-     Host.CreateDefaultBuilder(args)
-         .ConfigureServices((hostContext, services) =>
-         {
-             Console.Title = "EndpointsMonitor";
+    #region ServiceControlEventsMonitorCustomErrorQueue
+    endpointConfiguration.SendFailedMessagesTo("error-monitoring");
+    #endregion
 
-         }).UseNServiceBus(x =>
-         {
-             var endpointConfiguration = new EndpointConfiguration("EndpointsMonitor");
-             endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
-             endpointConfiguration.EnableInstallers();
-             endpointConfiguration.UsePersistence<NonDurablePersistence>();
+    var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
-             #region ServiceControlEventsMonitorCustomErrorQueue
-             endpointConfiguration.SendFailedMessagesTo("error-monitoring");
-             #endregion
+    var conventions = endpointConfiguration.Conventions();
+    conventions.DefiningEventsAs(
+        type =>
+        {
+            return typeof(IEvent).IsAssignableFrom(type) ||
+                   // include ServiceControl events
+                   type.Namespace != null &&
+                   type.Namespace.StartsWith("ServiceControl.Contracts");
+        });
 
-             var transport = endpointConfiguration.UseTransport<LearningTransport>();
+    return endpointConfiguration;
+});
 
-             var conventions = endpointConfiguration.Conventions();
-             conventions.DefiningEventsAs(
-                 type =>
-                 {
-                     return typeof(IEvent).IsAssignableFrom(type) ||
-                            // include ServiceControl events
-                            type.Namespace != null &&
-                            type.Namespace.StartsWith("ServiceControl.Contracts");
-                 });
+var host = builder.Build();
 
-             return endpointConfiguration;
-         });
-
-}
+await host.RunAsync();
