@@ -1,0 +1,9 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json.Bson" Version="1.*" />
+    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="5.0.0-alpha.2" />
+  </ItemGroup>
+</Project>
