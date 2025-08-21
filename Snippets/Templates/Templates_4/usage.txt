@@ -2,7 +2,7 @@
 // install latest version
 dotnet new install ParticularTemplates
 
-// or when needing an older version
+// install a specific version
 dotnet new install ParticularTemplates::4.1.0
 # endcode
 
