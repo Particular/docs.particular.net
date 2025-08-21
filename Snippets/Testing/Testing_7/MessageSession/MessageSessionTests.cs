@@ -8,7 +8,7 @@ public class MessageSessionTests
 {
     #region TestMessageSessionSend
     [Test]
-    public async Task ShouldLogCorrectly()
+    public async Task ShouldSendMessage()
     {
         var testableSession = new TestableMessageSession();
 
@@ -17,7 +17,7 @@ public class MessageSessionTests
         await somethingThatUsesTheMessageSession.DoSomething();
 
         Assert.That(testableSession.SentMessages, Has.Length.EqualTo(1));
-        Assert.That(testableSession.SentMessages[0].Message, Is.InstanceOf<MyResponse>());
+        Assert.That(testableSession.SentMessages[0].Message, Is.InstanceOf<MyMessage>());
     }
     #endregion
 
