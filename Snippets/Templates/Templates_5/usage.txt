@@ -1,8 +1,6 @@
 ﻿# startcode install
 // install latest version
 dotnet new install ParticularTemplates
-// or when needing an older version
-dotnet new install ParticularTemplates::5.0.1
 # endcode
 
 # startcode endpointdefault

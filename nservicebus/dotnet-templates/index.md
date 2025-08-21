@@ -21,6 +21,8 @@ Install using the following command:
 
 snippet: install
 
+If a specific version is needed, follow the guidance in the [dotnet new install documentation](https://learn.microsoft.com/en-us/dotnet/core/tools/dotnet-new-install#examples).
+
 partial: nsbendpoint
 partial: nsbhandler
 partial: nsbsaga

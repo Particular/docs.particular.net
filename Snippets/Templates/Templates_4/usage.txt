@@ -1,11 +1,7 @@
 ﻿# startcode install
 // install latest version
 dotnet new install ParticularTemplates
-
-// or when needing an older version
-dotnet new install ParticularTemplates::4.1.0
 # endcode
-
 
 # startcode scadapterservice-usage
 dotnet new scadapterwinservice --name MyAdapter
