@@ -4,7 +4,7 @@ reviewed: 2025-05-21
 summary: Advanced alternative ServiceControl v4 upgrade option for environments that cannot retry all messages immediately
 ---
 
-The [standard guide to upgrade ServiceControl from 4 to 5](/servicecontrol/upgrades/4to5/) assumes that all failed messages can be retried without side-effects. In cases where this cannot be confirmed, the approach below can be used to upgrade ServiceControl v4.
+The [standard guide to upgrade ServiceControl from 4 to 5](/servicecontrol/upgrades/4to5/) assumes that all failed messages can be retried without side effects. In cases where this cannot be confirmed, the approach below can be used to upgrade ServiceControl v4.
 
 > [!NOTE]  
 > This setup results in **two** separate error instances.  
@@ -29,14 +29,14 @@ To stop ingesting audit messages:
 1. Stop and **disable** the old audit instance in *Windows Services*.
 2. Add the following setting to `servicecontrol.audit.exe.config`:
    ```xml
-   <add key="ServiceControl.Audit/IngestAuditMessages" value="False" />
+   <add key="ServiceBus/AuditQueue" value="!disable" />
    ```
 3. Start and **enable** the instance again.
 4. Confirm it's no longer ingesting by checking that the audit queue is building up.
 
 ## Error Instances
 
-The error instance needs to be prevented from ingesting, renamed, and replaced.
+The error instance needs to be prevented from being ingested, renamed, and replaced.
 
 Steps:
 
@@ -61,7 +61,7 @@ Steps:
 2. Open `servicecontrol.exe.config` in an elevated text editor
 3. Add:
    ```xml
-   <add key="ServiceControl/IngestErrorMessages" value="False" />
+   <add key="ServiceBus/ErrorQueue" value="!disable" />
    ```
 4. Save the file
 
