@@ -45,7 +45,7 @@ jobs:
       - name: Commit changes
         shell: pwsh
         run: |
-          git diff platform/third-party-license-data.include.md > changes.patch
+          git diff > changes.patch
           $changes = Get-Item changes.patch
 
           Write-Output "Diff size is $($changes.Length) bytes"
@@ -60,7 +60,8 @@ jobs:
           }
 
           Write-Output "Staging changes"
-          git add platform/third-party-license-data.include.md
+          git add --all
+          git restore --staged changes.patch
 
           Write-Output "Committing changes"
           git commit -m "Updates from running scripts in the 'tools' directory"
