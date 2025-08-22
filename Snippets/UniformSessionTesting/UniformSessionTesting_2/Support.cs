@@ -37,7 +37,7 @@ class SomeSaga : Saga<SomeSaga.SagaData>
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
     {
-        
+
     }
 
     internal class SagaData : ContainSagaData

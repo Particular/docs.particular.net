@@ -4,7 +4,7 @@ using NServiceBus.UniformSession.Testing;
 
 class TestHandler
 {
-    async Task TheTest()
+    public async Task TheTest()
     {
         #region UniformSessionHandlerTesting
         var handlerContext = new TestableMessageHandlerContext();

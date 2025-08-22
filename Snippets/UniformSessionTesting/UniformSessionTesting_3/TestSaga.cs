@@ -3,7 +3,7 @@ using NServiceBus.UniformSession.Testing;
 
 class TestSaga
 {
-    void TheTest()
+    public void TheTest()
     {
         #region UniformSessionSagaTesting
         var handlerContext = new TestableMessageHandlerContext();

@@ -3,7 +3,7 @@ using NServiceBus.UniformSession.Testing;
 
 public class MessageSessionTesting
 {
-    void TheTest()
+    public void TheTest()
     {
         #region UniformSessionMessageSessionTesting
 

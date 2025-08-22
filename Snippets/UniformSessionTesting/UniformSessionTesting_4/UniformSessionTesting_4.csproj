@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="NServiceBus.UniformSession.Testing" Version="4.*" />
   </ItemGroup>
