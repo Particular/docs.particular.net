@@ -2,7 +2,7 @@
 
 class XmlSerializerUsage
 {
-    XmlSerializerUsage(EndpointConfiguration endpointConfiguration)
+    public XmlSerializerUsage(EndpointConfiguration endpointConfiguration)
     {
         #region XmlSerialization
 
