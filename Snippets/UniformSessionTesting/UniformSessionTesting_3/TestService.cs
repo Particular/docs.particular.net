@@ -2,7 +2,7 @@
 
 class TestService
 {
-    void TheTest()
+    public void TheTest()
     {
         #region UniformSessionServiceTesting
         var session = new TestableUniformSession();

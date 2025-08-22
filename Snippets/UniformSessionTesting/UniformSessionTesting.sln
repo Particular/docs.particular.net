@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniformSessionTesting_3", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniformSessionTesting_4", "UniformSessionTesting_4\UniformSessionTesting_4.csproj", "{1F9DBD79-177B-4F48-8A33-8B40C2425F24}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniformSessionTesting_5", "UniformSessionTesting_5\UniformSessionTesting_5.csproj", "{0CE65313-D35F-79F1-DA07-8D8B2063B473}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1F9DBD79-177B-4F48-8A33-8B40C2425F24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F9DBD79-177B-4F48-8A33-8B40C2425F24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F9DBD79-177B-4F48-8A33-8B40C2425F24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CE65313-D35F-79F1-DA07-8D8B2063B473}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CE65313-D35F-79F1-DA07-8D8B2063B473}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CE65313-D35F-79F1-DA07-8D8B2063B473}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CE65313-D35F-79F1-DA07-8D8B2063B473}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

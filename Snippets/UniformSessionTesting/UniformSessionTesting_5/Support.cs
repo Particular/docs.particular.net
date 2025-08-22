@@ -1,5 +1,4 @@
-﻿
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.UniformSession;
 
@@ -26,23 +25,23 @@ class SomeMessageHandler : IHandleMessages<SomeEvent>
     }
 }
 
-class SomeSaga : Saga<SomeSaga.SagaData>
+class SomeSaga : Saga<SomeSaga.SagaData>, IHandleMessages<SomeMessage>
 {
-    private IUniformSession session;
-
     public SomeSaga(IUniformSession session)
     {
-        this.session = session;
     }
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
     {
-
     }
 
     internal class SagaData : ContainSagaData
     {
+    }
 
+    public Task Handle(SomeMessage message, IMessageHandlerContext context)
+    {
+        throw new System.NotImplementedException();
     }
 }
 
@@ -53,6 +52,18 @@ class SomeService
     }
 
     public void DoTheThing() { }
+}
+
+class MyService
+{
+    public MyService(SharedComponent sharedComponent)
+    {
+    }
+
+    public Task Start(IMessageSession session)
+    {
+        throw new System.NotImplementedException();
+    }
 }
 
 static class Assert

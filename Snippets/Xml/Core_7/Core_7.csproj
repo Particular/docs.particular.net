@@ -1,9 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
-    <RootNamespace>Core7</RootNamespace>
+    <RootNamespace>Core</RootNamespace>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.*" />
   </ItemGroup>
+
 </Project>

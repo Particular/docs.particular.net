@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="NServiceBus.UniformSession.Testing" Version="2.*" />
   </ItemGroup>

@@ -3,8 +3,7 @@ using NServiceBus;
 
 class XmlSerializationIntegration
 {
-
-    void RawXml(EndpointConfiguration endpointConfiguration)
+    public void RawXml(EndpointConfiguration endpointConfiguration)
     {
         #region ConfigureRawXmlSerialization
 
@@ -13,23 +12,20 @@ class XmlSerializationIntegration
         #endregion
     }
 
-
     #region MessageWithXDocument
 
-    public class MessageWithXDocument :
-        IMessage
+    public class MessageWithXDocument : IMessage
     {
-        // name and casing must match the rootnode
+        // name and casing must match the root node
         public XDocument nutrition { get; set; }
     }
     #endregion
 
     #region MessageWithXElement
 
-    public class MessageWithXElement :
-        IMessage
+    public class MessageWithXElement : IMessage
     {
-        // name and casing must match the rootnode
+        // name and casing must match the root node
         public XElement nutrition { get; set; }
     }
     #endregion

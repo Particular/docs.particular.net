@@ -22,8 +22,7 @@ class ReusedComponent
 }
 
 [Route("api/[controller]")]
-class MyController :
-    Controller
+class MyController : Controller
 {
     ReusedComponent component;
 
@@ -41,8 +40,7 @@ class MyController :
     }
 }
 
-class MyHandler :
-    IHandleMessages<MyCommand>
+class MyHandler : IHandleMessages<MyCommand>
 {
     ReusedComponent component;
 

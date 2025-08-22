@@ -1,12 +1,15 @@
-﻿Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29728.190
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36414.22
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniformSession_2", "UniformSession_2\UniformSession_2.csproj", "{98127351-37B6-4B87-89CC-4BEC0765B554}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniformSession_3", "UniformSession_3\UniformSession_3.csproj", "{11C10D7B-BB4E-4C5C-9438-FA781ABF2AC1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniformSession_4", "UniformSession_4\UniformSession_4.csproj", "{54F9B688-4D10-4BF9-A94B-A7FB25E60296}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniformSession_5", "UniformSession_5\UniformSession_5.csproj", "{6B255A99-458D-FA86-B0AE-C091FA5041C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,6 +22,8 @@ Global
 		{11C10D7B-BB4E-4C5C-9438-FA781ABF2AC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{54F9B688-4D10-4BF9-A94B-A7FB25E60296}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{54F9B688-4D10-4BF9-A94B-A7FB25E60296}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B255A99-458D-FA86-B0AE-C091FA5041C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B255A99-458D-FA86-B0AE-C091FA5041C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,8 @@
+<!--startcode RawXmlContent -->
+<nutrition>
+    <daily-values>
+        <total-fat units='g'>65</total-fat>
+        <saturated-fat units='g'>20</saturated-fat>
+    </daily-values>
+</nutrition>
+<!--endcode-->
