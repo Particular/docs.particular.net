@@ -2,7 +2,7 @@
 
 public class EnableUniformSession
 {
-    void Configure(EndpointConfiguration endpointConfiguration)
+    public void Configure(EndpointConfiguration endpointConfiguration)
     {
         #region enable-uniformsession
 
