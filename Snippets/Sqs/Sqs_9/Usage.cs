@@ -451,7 +451,7 @@ class Usage
 
     void MessageVisibilityTimeout(EndpointConfiguration endpointConfiguration)
     {
-        #region MessageVisibilityTimeout [7.3,)
+        #region MessageVisibilityTimeout
         var transport = new SqsTransport
         {
             MessageVisibilityTimeout = TimeSpan.FromMinutes(5)
