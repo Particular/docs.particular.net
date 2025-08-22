@@ -8,8 +8,4 @@
     <PackageReference Include="NServiceBus.TransactionalSession" Version="3.1.*" />
   </ItemGroup>
 
-  <ItemGroup Label="Resolves vulnerabilities">
-    <PackageReference Include="System.Formats.Asn1" Version="8.*" />
-  </ItemGroup>
-
 </Project>

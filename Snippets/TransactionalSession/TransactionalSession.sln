@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionalSession_3.1", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionalSession_3.3", "TransactionalSession_3.3\TransactionalSession_3.3.csproj", "{1D6EA06A-D31A-476E-833C-981C5A8DC946}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionalSession_4", "TransactionalSession_4\TransactionalSession_4.csproj", "{0A21FA5B-ACE0-D188-EFA5-3CD41F888577}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,18 @@ Global
 		{1D6EA06A-D31A-476E-833C-981C5A8DC946}.Release|x64.Build.0 = Release|Any CPU
 		{1D6EA06A-D31A-476E-833C-981C5A8DC946}.Release|x86.ActiveCfg = Release|Any CPU
 		{1D6EA06A-D31A-476E-833C-981C5A8DC946}.Release|x86.Build.0 = Release|Any CPU
+		{0A21FA5B-ACE0-D188-EFA5-3CD41F888577}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A21FA5B-ACE0-D188-EFA5-3CD41F888577}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A21FA5B-ACE0-D188-EFA5-3CD41F888577}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0A21FA5B-ACE0-D188-EFA5-3CD41F888577}.Debug|x64.Build.0 = Debug|Any CPU
+		{0A21FA5B-ACE0-D188-EFA5-3CD41F888577}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0A21FA5B-ACE0-D188-EFA5-3CD41F888577}.Debug|x86.Build.0 = Debug|Any CPU
+		{0A21FA5B-ACE0-D188-EFA5-3CD41F888577}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A21FA5B-ACE0-D188-EFA5-3CD41F888577}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A21FA5B-ACE0-D188-EFA5-3CD41F888577}.Release|x64.ActiveCfg = Release|Any CPU
+		{0A21FA5B-ACE0-D188-EFA5-3CD41F888577}.Release|x64.Build.0 = Release|Any CPU
+		{0A21FA5B-ACE0-D188-EFA5-3CD41F888577}.Release|x86.ActiveCfg = Release|Any CPU
+		{0A21FA5B-ACE0-D188-EFA5-3CD41F888577}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
