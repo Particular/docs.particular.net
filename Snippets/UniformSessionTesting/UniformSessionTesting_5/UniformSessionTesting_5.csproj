@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.UniformSession.Testing" Version="5.0.0-alpha.2" />
+  </ItemGroup>
+
+</Project>
