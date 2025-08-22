@@ -45,6 +45,7 @@ jobs:
       - name: Commit changes
         shell: pwsh
         run: |
+          rm -rf checkout
           git diff > changes.patch
           $changes = Get-Item changes.patch
 
