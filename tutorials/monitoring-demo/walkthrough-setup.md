@@ -29,4 +29,4 @@ After downloading the zip file, extract its contents into a folder. Open the fol
 
 ## Explore the demo
 
-Once you have the demo up and running, [begin exploring the demo](/tutorials/monitoring-demo/#demo-walk-through).
+Once you have the demo up and running, [begin exploring the demo](/tutorials/monitoring-demo/#demo-overview).

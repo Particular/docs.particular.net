@@ -1,50 +1,60 @@
 ---
 title: "NServiceBus monitoring demo"
-reviewed: 2023-11-05
-summary: A self-contained demo solution that you can run to explore the monitoring features of the Particular Service Platform.
+reviewed: 2025-08-22
+summary: A self-contained demo solution to explore the monitoring features of the Particular Service Platform.
 suppressRelated: true
 redirects:
 - tutorials/monitoring/demo
 ---
 
-See how to use the monitoring features in the Particular Service Platform by trying them out in ServicePulse with a real system. This downloadable sample contains all of the necessary parts of the platform, already configured and ready to run, including four sample endpoints that communicate with each other by exchanging messages.
+Experience the monitoring features of the Particular Service Platform by running a real-world demo in ServicePulse. This downloadable sample includes all required platform components, pre-configured and ready to use, with four sample endpoints that communicate by exchanging messages.
 
-<div class="text-center inline-download hidden-xs"><a id='download-demo' href='https://s3.amazonaws.com/particular.downloads/MonitoringDemo/Particular.MonitoringDemo.zip' class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download demo</a>
+<div class="text-center inline-download hidden-xs">
+  <a id='download-demo' href='https://s3.amazonaws.com/particular.downloads/MonitoringDemo/Particular.MonitoringDemo.zip' class="btn btn-primary btn-lg">
+    <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> Download demo
+  </a>
 </div>
 
 ## Prerequisites
 
-To run the downloaded sample, you will need the following prerequisites:
- 
-- .NET 8 runtime must be installed.
-- Windows operating system, the Particular Service Platform requires the Windows operating system
-  - Desktop: Windows 8 or higher
-  - Server: Windows Server 2016 or higher
+To run the sample, ensure you have:
 
-## Running the sample
+- [.NET 8 runtime](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) installed
+- Windows operating system:
+  - Desktop: Windows 8 or later
+  - Server: Windows Server 2016 or later
 
-Once you have downloaded and extracted the zip package, open the extracted folder and double-click on `MonitoringDemo`.
+> **Note:** The Particular Service Platform requires Windows.
 
-The details on how the demo is set up can be found in the demo [setup walkthrough](walkthrough-setup.md).
+## How to run the sample
 
-## Demo walk-through
+1. Download and extract the zip package.
+2. Open the extracted folder.
+3. Double-click `MonitoringDemo` to start the demo.
 
-Once everything is running, you will have 4 endpoints which are configured like this:
+For more details on the demo setup, see the [setup walkthrough](walkthrough-setup.md).
 
-![Solution Diagram](diagram.svg "width=680")
+## Demo overview
 
-By default, the ClientUI endpoint sends a steady stream of 1 `PlaceOrder` message every second.
+When running, the demo starts four endpoints configured as shown below:
 
-The endpoints are also configured to send monitoring data to the Particular Software Platform, which you can see in ServicePulse.
+![Solution Diagram showing four endpoints](diagram.svg "width=680")
 
-![Service Pulse monitoring tab showing sample endpoints](servicepulse-monitoring-tab-sample-low-throughput.png "width=500")
+By default, the ClientUI endpoint sends one `PlaceOrder` message per second.
+
+All endpoints are configured to send monitoring data to the Particular Service Platform, which you can view in ServicePulse.
+
+![ServicePulse monitoring tab showing sample endpoints](servicepulse-monitoring-tab-sample-low-throughput.png "width=500")
 
 ## Explore the demo further
 
-See how monitoring tools in ServicePulse help answer the following questions:
+Use the monitoring tools in ServicePulse to investigate:
 
-- **[Which message types take the longest to process?](walkthrough-1.md)** Take a look at individual endpoint performance and decide where to optimize.
-- **[Which endpoints have the most work to do?](walkthrough-2.md)** Look for peaks of traffic and decide when to scale out. 
-- **[Are any of the endpoints struggling?](walkthrough-3.md)** Find hidden problems and fix them before messages start to fail.
+- **[Which message types take the longest to process?](walkthrough-1.md)**
+  Analyze individual endpoint performance to identify optimization opportunities.
+- **[Which endpoints have the most work to do?](walkthrough-2.md)**
+  Detect traffic peaks to make informed scaling decisions.
+- **[Are any of the endpoints struggling?](walkthrough-3.md)**
+  Uncover and resolve hidden issues before they cause message processing failures.
 
 include: monitoring-demo-next-steps
