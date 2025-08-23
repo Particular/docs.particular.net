@@ -1,3 +1,4 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34227.203
@@ -23,6 +24,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Raven_9", "Raven_9\Raven_9.csproj", "{F8C1C085-4E5B-4A85-BF13-42B29073CC6F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_10", "Raven_10\Raven_10.csproj", "{302AAD2D-33C2-417A-D31E-A573126550C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Raven_11", "Raven_11\Raven_11.csproj", "{F829DD4A-426D-4C18-899D-E59D96428D8A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -74,6 +77,10 @@ Global
 		{302AAD2D-33C2-417A-D31E-A573126550C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{302AAD2D-33C2-417A-D31E-A573126550C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{302AAD2D-33C2-417A-D31E-A573126550C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F829DD4A-426D-4C18-899D-E59D96428D8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F829DD4A-426D-4C18-899D-E59D96428D8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F829DD4A-426D-4C18-899D-E59D96428D8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F829DD4A-426D-4C18-899D-E59D96428D8A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
