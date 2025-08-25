@@ -1,6 +1,4 @@
-﻿using NServiceBus;
-
-public class OrderSubmitted :
+﻿public class OrderSubmitted :
     IEvent
 {
     public string OrderId { get; set; }
