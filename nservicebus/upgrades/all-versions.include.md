@@ -431,7 +431,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [9.1.x](https://www.nuget.org/packages/NServiceBus.RavenDB/9.1.0) | 2025-06-03     | -                 | -                                 |
+| [10.0.x](https://www.nuget.org/packages/NServiceBus.RavenDB/10.0.0) | 2025-08-22     | -                 | -                                 |
+| [9.1.x](https://www.nuget.org/packages/NServiceBus.RavenDB/9.1.0) | 2025-06-03     | 2026-08-22        | Superseded by 10.0.x              |
 | [9.0.x](https://www.nuget.org/packages/NServiceBus.RavenDB/9.0.1) | 2024-04-16     | 2025-09-03        | Superseded by 9.1.x               |
 | [8.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB/8.2.1) | 2023-04-05     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [~~8.1.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/8.1.0) | ~~2023-01-17~~ | ~~2023-07-05~~    | ~~Superseded by 8.2.x~~           |
@@ -460,7 +461,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [9.1.x](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/9.1.0) | 2025-06-03     | -                 | -                                 |
+| [10.0.x](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/10.0.0) | 2025-08-22     | -                 | -                                 |
+| [9.1.x](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/9.1.0) | 2025-06-03     | 2026-08-22        | Superseded by 10.0.x              |
 | [9.0.x](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/9.0.1) | 2024-04-16     | 2025-09-03        | Superseded by 9.1.x               |
 | [8.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/8.2.1) | 2023-04-05     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [~~8.1.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/8.1.0) | ~~2023-01-17~~ | ~~2023-07-05~~    | ~~Superseded by 8.2.x~~           |
@@ -909,7 +911,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/4.0.1) | 2024-04-16     | -                 | -                                 |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/5.0.0) | 2025-08-22     | -                 | -                                 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/4.0.1) | 2024-04-16     | 2026-08-22        | Superseded by 5.0.x               |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/3.0.1) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/2.0.0) | 2021-12-09     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 | [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/1.1.1) | ~~2021-11-30~~ | ~~2022-12-09~~    | ~~Superseded by 2.0.x~~           |

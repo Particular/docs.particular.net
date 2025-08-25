@@ -337,6 +337,10 @@
         {
           "Minor": "4.0",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "5.0",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -825,6 +829,10 @@
         {
           "Minor": "9.1",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "10.0",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -845,6 +853,10 @@
         },
         {
           "Minor": "9.1",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "10.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -1167,10 +1179,6 @@
     {
       "PackageId": "Particular.PlatformSample",
       "Versions": [
-        {
-          "Minor": "3.49",
-          "SupportLevel": "Mainstream"
-        },
         {
           "Minor": "3.51",
           "SupportLevel": "Mainstream"
