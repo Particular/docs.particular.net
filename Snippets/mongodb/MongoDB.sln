@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDB_4", "MongoDB_4\Mong
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDB_5", "MongoDB_5\MongoDB_5.csproj", "{D114D094-6ABB-4922-832B-ECBF8A213228}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoDB_6", "MongoDB_6\MongoDB_6.csproj", "{58940814-447D-457B-B541-1BFB51820F7F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,8 @@ Global
 		{04FAF203-75C0-497B-8086-F381BF280326}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D114D094-6ABB-4922-832B-ECBF8A213228}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D114D094-6ABB-4922-832B-ECBF8A213228}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58940814-447D-457B-B541-1BFB51820F7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58940814-447D-457B-B541-1BFB51820F7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
