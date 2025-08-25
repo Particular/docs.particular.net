@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.1" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.*" />
     <PackageReference Include="NServiceBus.RavenDB" Version="9.*" />
     <PackageReference Include="RavenDB.Client" Version="5.*" />
   </ItemGroup>
