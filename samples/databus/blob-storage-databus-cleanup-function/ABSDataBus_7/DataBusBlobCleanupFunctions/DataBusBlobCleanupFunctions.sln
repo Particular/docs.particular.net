@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataBusBlobCleanupFunctions", "DataBusBlobCleanupFunctions.csproj", "{C34EAECB-5CF4-42F5-9428-3C0C3CCEDFD4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C34EAECB-5CF4-42F5-9428-3C0C3CCEDFD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C34EAECB-5CF4-42F5-9428-3C0C3CCEDFD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C34EAECB-5CF4-42F5-9428-3C0C3CCEDFD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C34EAECB-5CF4-42F5-9428-3C0C3CCEDFD4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {65FDA38E-030A-45D0-99D6-3606931E9935}
+	EndGlobalSection
+EndGlobal
