@@ -9,33 +9,42 @@ redirects:
  - nservicebus/how-do-i-discard-old-messages
 ---
 
-A message sent through the Particular Service Platform may have Time-To-Be-Received (TTBR) set, according to the users’ decision. TTBR indicates to the platform that a delayed message can be discarded, if not handled within a specified period. A discarded message might no longer have any business value, and discarding it frees up system resources.
+Messages sent through the Particular Service Platform can be configured with a Time-To-Be-Received (TTBR) value. TTBR instructs the platform to automatically discard a message if it is not processed within a specified period, freeing up system resources and preventing outdated messages from being handled.
 
-Setting TimeToBeReceived might be beneficial in environments with high volumes of messages where there is little business value in processing a delayed message since it will already be replaced by a newer, more relevant version.
+**Benefits of using TTBR:**
+- Reduces processing of stale or irrelevant messages.
+- Frees up resources in high-volume environments.
+- Ensures only timely, valuable messages are processed.
 
-TTBR applies only to messages that have not been handled. A failed message moved to the error queue or a successfully processed message is considered handled, as well as audit message when generated. Removing TTBR from handled messages ensures no messages are lost. The TTBR value from the original message can be inspected by looking at the `NServiceBus.TimeToBeReceived` [header](/nservicebus/messaging/headers.md).
+TTBR applies only to messages that have not been handled. A message is considered handled if it has been successfully processed, moved to the error queue, or audited. The TTBR value is removed from handled messages to prevent message loss. You can inspect the original TTBR value in the `NServiceBus.TimeToBeReceived` [header](/nservicebus/messaging/headers.md).
 
-If there is no value in a message being received by the target process after a given time period it may be desirable to indicate that it can be discarded by specifying TimeToBeReceived.
+If a message has no value after a certain period, specify a TTBR to allow it to be discarded.
 
-A TTBR interval for a message can be specified:
+## How to Set Time-To-Be-Received
 
-## Using an Attribute
+You can specify a TTBR interval for a message in the following ways:
+
+### Using an Attribute
+
+Apply an attribute to the message class to set TTBR:
 
 snippet: DiscardingOldMessagesWithAnAttribute
 
+### Using a Custom Convention
 
-## Using a custom convention
+Define a custom convention in code to set TTBR for specific messages:
 
 snippet: DiscardingOldMessagesWithCode
 
+## Clock synchronization considerations
 
-## Clock synchronization issues
+When using TTBR, be aware of potential clock synchronization issues between sender and receiver. If the receiver's clock is ahead of the sender's, messages may be discarded immediately as stale.
 
-When sending a message with a TimeToBeReceived value, it could happen that the receiver drops all messages due to clocks of the sender and the receiver being too much out of sync. For example, if TimeToBeReceived is 1 minute and the receiver's clock is 1 minute ahead compared to the sender’s the message becomes immediately stale - thus never processed.
+- This issue is most relevant for small TTBR values.
+- In most environments, clocks are only a few minutes out of sync.
 
-In most deployments clocks are at most a few minutes out of sync. As a result, this issue applies mostly to small TimeToBeReceived values.
-
-It is advised to add the maximum amount of allowed clock offset, called clock drift, to the TTBR value. For example, when using a TimeToBeReceived value of 90 seconds, one should allow for 300 seconds of maximum clock drift, so the TTBR value becomes 90 + 300 = 390 seconds.
+**Recommendation:**
+Add the maximum expected clock drift to the TTBR value. For example, if TTBR is 90 seconds and the maximum clock drift is 300 seconds, set TTBR to 390 seconds.
 
 
 ## Discarding messages at startup

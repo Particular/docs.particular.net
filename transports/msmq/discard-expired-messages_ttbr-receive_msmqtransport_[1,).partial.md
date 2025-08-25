@@ -11,7 +11,7 @@ Starting with version 1.1, the transport will discard a message **without proces
 >
 > Avoid setting TTBR values in seconds or very short durations. If the allowed clock drift is up to 15 seconds and the TTBR is 30 seconds, the TTBR should instead be set to at least 45 seconds to prevent unintended expiration.
 >
-> Learn more about [clock synchronization issues](/nservicebus/messaging/discard-old-messages.md#clock-synchronization-issues).
+> Learn more about [clock synchronization issues](/nservicebus/messaging/discard-old-messages.md#clock-synchronization-considerations).
 
 If necessary, the transport can be configured to **ignore** the `NServiceBus.TimeToBeReceived` header on incoming messages:
 

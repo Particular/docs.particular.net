@@ -6,7 +6,7 @@ related:
  - samples/scheduling
 redirects:
 - nservicebus/scheduling-with-nservicebus
-reviewed: 2023-11-24
+reviewed: 2025-08-25
 ---
 
 partial: content
