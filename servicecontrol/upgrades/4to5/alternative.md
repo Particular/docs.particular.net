@@ -61,7 +61,7 @@ Steps:
 2. Open `servicecontrol.exe.config` in an elevated text editor
 3. Add:
    ```xml
-   <add key="ServiceBus/ErrorQueue" value="!disable" />
+   <add key="ServiceControl/IngestErrorMessages" value="False" />
    ```
 4. Save the file
 
