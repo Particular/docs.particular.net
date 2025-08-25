@@ -11,7 +11,7 @@
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/4.0.6.8/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.SQS" target="_blank">AWSSDK.SQS</a> | <a href="https://www.nuget.org/packages/AWSSDK.SQS/4.0.0.22/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.SQS" target="_blank">AWSSDK.SQS</a> | <a href="https://www.nuget.org/packages/AWSSDK.SQS/4.0.1/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/4.0.2/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/4.0.0.21/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.5.4/license" target="_blank">View License</a> | <i>None provided</i> |
@@ -121,7 +121,7 @@
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Iesi.Collections" target="_blank">Iesi.Collections</a> | <i title="The NuGet package contains no license information. Try checking the project site instead.">None provided</i> | <a href="https://github.com/nhibernate/iesi.collections" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/NHibernate" target="_blank">NHibernate</a> | <a href="https://www.nuget.org/packages/NHibernate/5.5.2/license" target="_blank">LGPL-2.1-only</a> | <a href="https://nhibernate.info/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/NHibernate" target="_blank">NHibernate</a> | <a href="https://www.nuget.org/packages/NHibernate/5.5.3/license" target="_blank">LGPL-2.1-only</a> | <a href="https://nhibernate.info/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.Net.Http" target="_blank">System.Net.Http</a> | <a href="http://go.microsoft.com/fwlink/?LinkId=329770" target="_blank">View License</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
 ### NServiceBus.Ninject
