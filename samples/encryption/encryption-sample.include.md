@@ -1,4 +1,7 @@
-Running the solution starts two console applications. `Endpoint1` encrypts a message and sends it, while `Endpoint2` receives the encrypted message and decrypts it.
+Running the solution starts two console applications:
+
+1. `Endpoint1` encrypts a message and sends it
+1. `Endpoint2` receives the encrypted message and decrypts it.
 
 
 ### Endpoint1 output
