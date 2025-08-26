@@ -1174,6 +1174,12 @@
         Title: Version 4 to 5
       - Url: persistence/upgrades/ravendb-3to4
         Title: Version 3 to 4
+    - Title: RavenDB Gateway Storage
+      Articles:
+      - Url: persistence/upgrades/ravendb-gateway-4to5
+        Title: Version 4 to 5
+      - Url: persistence/upgrades/ravendb-gateway-1to2
+        Title: Version 1 to 2        
     - Title: SQL
       Articles:
       - Url: persistence/upgrades/sql-client4
