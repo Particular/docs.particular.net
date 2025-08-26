@@ -1160,6 +1160,10 @@
         Title: Version 4 to 5
     - Title: RavenDB
       Articles:
+      - Url: persistence/upgrades/ravendb-9to10
+        Title: Version 9 to 10
+      - Url: persistence/upgrades/ravendb-7to8
+        Title: Version 7 to 8
       - Url: persistence/upgrades/ravendb-6to7
         Title: Version 6 to 7
       - Url: persistence/upgrades/ravendb-6.2to6.3
