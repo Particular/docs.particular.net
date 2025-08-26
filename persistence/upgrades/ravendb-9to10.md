@@ -12,8 +12,10 @@ upgradeGuideCoreVersions:
 
 ## RavenDB Client Upgrade
 
-NServiceBus.RavenDB version 10 introduces support for RavenDB.Client version 6 and higher requiring a minimum RavenDB.Client version of 6.2.9.
+NServiceBus.RavenDB version 10 introduces support for [RavenDB.Client 6.2.9 or higher](https://www.nuget.org/packages/RavenDB.Client).
 
-Starting with RavenDB.Client version 4.2, RavenDB clients are [forward-compatible with any server of the same version or higher](https://docs.ravendb.net/6.0/client-api/faq/backward-compatibility/#clientserver-compatibility). This means you can safely upgrade your client library without requiring immediate server changes.
+RavenDB clients are forward-compatible starting with version 4.2, meaning a newer client can connect to a server of the same or higher version. However, if your servers are running a version prior to 6, upgrading the client requires extra care.
 
-For a comprehensive list of breaking changes and migration steps, refer to the [official RavenDB client migration guide](https://docs.ravendb.net/6.0/migration/client-api/client-breaking-changes/) and the [server breaking changes](https://docs.ravendb.net/6.0/migration/server/server-breaking-changes).
+In this case, you must carefully review both the [RavenDB client breaking changes](https://docs.ravendb.net/6.0/migration/client-api/client-breaking-changes/) and the [RavenDB server breaking changes](https://docs.ravendb.net/6.0/migration/server/server-breaking-changes/) to ensure compatibility before upgrading.
+
+If your servers are already on RavenDB 6 or higher, you can safely upgrade the client library after consulting the [RavenDB client breaking changes](https://docs.ravendb.net/6.0/migration/client-api/client-breaking-changes/) without requiring immediate server changes.
