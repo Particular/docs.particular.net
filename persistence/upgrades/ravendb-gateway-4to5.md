@@ -1,6 +1,6 @@
 ---
-title: RavenDB Gateway Storage Upgrade Version 4 to 5
-summary: How to upgrade the RavenDB Gateway Storage from version 4 to 5.
+title: NServiceBus Gateway RavenDB Persistence Upgrade from 4 to 5
+summary: Instructions on how to upgrade NServiceBus.Gateway.RavenDB from version 4 to version 5
 component: GatewayRavenDB
 related:
 - nservicebus/gateway
