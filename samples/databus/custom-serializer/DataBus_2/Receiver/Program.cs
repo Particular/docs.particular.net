@@ -20,7 +20,12 @@ endpointConfiguration.Conventions().DefiningClaimCheckPropertiesAs(prop => prop.
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
 
-Console.ReadKey();
 builder.UseNServiceBus(endpointConfiguration);
 
-await builder.Build().RunAsync();
+var host = builder.Build();
+await host.StartAsync();
+
+Console.WriteLine("Press any key to exit");
+Console.ReadKey();
+
+await host.StopAsync();
