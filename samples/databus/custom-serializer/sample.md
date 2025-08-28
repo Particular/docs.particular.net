@@ -2,7 +2,7 @@
 title: Custom Serializer for Data Bus
 summary: Send a message that includes a DataBus property serialized using a custom serializer.
 reviewed: 2025-07-18
-component: Core
+component: FileShareDataBus
 related:
  - nservicebus/messaging/claimcheck
 ---
