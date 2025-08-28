@@ -2,23 +2,73 @@ using NServiceBus;
 using Shared;
 using System;
 using Microsoft.Extensions.Hosting;
-using Sender;
 using Microsoft.Extensions.DependencyInjection;
-
+using System.Threading.Tasks;
+using System.Collections.Generic;
+using System.Linq;
+using NServiceBus.ClaimCheck;
 
 Console.Title = "Sender";
 var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<InputLoopService>();
 var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Sender");
 
 #region ConfigureSenderCustomDataBusSerializer
 
 var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, BsonClaimCheckSerializer>();
-claimCheck.BasePath(@"..\..\..\..\storage");
+claimCheck.BasePath(SolutionDirectoryFinder.Find("storage"));
 
 #endregion
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
 builder.UseNServiceBus(endpointConfiguration);
 
-await builder.Build().RunAsync();
+var app = builder.Build();
+
+await app.StartAsync();
+
+var messageSession = app.Services.GetRequiredService<IMessageSession>();
+
+Console.WriteLine("Press Enter to send a large message with claim check");
+Console.WriteLine("Press any other key to exit");
+
+while (true)
+{
+    var key = Console.ReadKey(true);
+    Console.WriteLine();
+
+    if (key.Key == ConsoleKey.Enter)
+    {
+        await SendMessageLargePayload(messageSession);
+        continue;
+    }
+    break;
+}
+
+await app.StopAsync();
+
+static Task SendMessageLargePayload(IMessageSession messageSession)
+{
+    var measurements = GetMeasurements().ToArray();
+
+    var message = new MessageWithLargePayload
+    {
+        SomeProperty = "This message contains a large collection that will be sent on the claim check",
+        LargeData = new ClaimCheckProperty<Measurement[]>(measurements)
+    };
+    Console.WriteLine($"Message sent, the payload is stored in: {SolutionDirectoryFinder.Find("storage")}");
+    return messageSession.Send("Samples.DataBus.Receiver", message);
+}
+
+static IEnumerable<Measurement> GetMeasurements()
+{
+    for (var i = 0; i < 10000; i++)
+    {
+        yield return new Measurement
+        {
+            Timestamp = DateTimeOffset.UtcNow,
+            MeasurementName = $"Instrument {i}",
+            MeasurementValue = i * 10m
+        };
+    }
+}
