@@ -11,7 +11,7 @@ var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Receiver"
 #region ConfigureReceiverCustomDataBusSerializer
 
 var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, BsonClaimCheckSerializer>();
-claimCheck.BasePath(@"..\..\..\..\storage");
+claimCheck.BasePath(SolutionDirectoryFinder.Find("storage"));
 
 #endregion
 

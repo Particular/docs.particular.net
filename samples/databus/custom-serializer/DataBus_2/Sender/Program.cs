@@ -15,7 +15,7 @@ var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Sender");
 #region ConfigureSenderCustomDataBusSerializer
 
 var claimCheck = endpointConfiguration.UseClaimCheck<FileShareClaimCheck, BsonClaimCheckSerializer>();
-claimCheck.BasePath(@"..\..\..\..\storage");
+claimCheck.BasePath(SolutionDirectoryFinder.Find("storage"));
 
 #endregion
 
@@ -58,7 +58,7 @@ static Task SendMessageLargePayload(IMessageSession messageSession)
         SomeProperty = "This message contains a large collection that will be sent on the claim check",
         LargeData = measurements
     };
-    Console.WriteLine(@"Message sent, the payload is stored in: ..\..\..\storage");
+    Console.WriteLine($"Message sent, the payload is stored in: {SolutionDirectoryFinder.Find("storage")}");
     return messageSession.Send("Samples.DataBus.Receiver", message);
 }
 
