@@ -10,10 +10,10 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/4.0.6.9/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/4.0.6.10/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SQS" target="_blank">AWSSDK.SQS</a> | <a href="https://www.nuget.org/packages/AWSSDK.SQS/4.0.1.1/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/4.0.2/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/4.0.0.21/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/4.0.1/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.5.4/license" target="_blank">View License</a> | <i>None provided</i> |
 
 ### NServiceBus.Autofac
