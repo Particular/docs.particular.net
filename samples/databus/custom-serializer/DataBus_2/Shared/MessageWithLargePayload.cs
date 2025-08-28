@@ -1,12 +1,13 @@
 ﻿using System;
 using NServiceBus;
+using NServiceBus.ClaimCheck;
 
 [TimeToBeReceived("00:01:00")]
 public class MessageWithLargePayload :
     ICommand
 {
     public string SomeProperty { get; set; }
-    public Measurement[] LargeData { get; set; }
+    public ClaimCheckProperty<Measurement[]> LargeData { get; set; }
 }
 
 [Serializable]

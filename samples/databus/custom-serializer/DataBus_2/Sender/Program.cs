@@ -19,8 +19,6 @@ claimCheck.BasePath(SolutionDirectoryFinder.Find("storage"));
 
 #endregion
 
-endpointConfiguration.Conventions().DefiningClaimCheckPropertiesAs(prop => prop.Name.StartsWith("Large"));
-
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
 builder.UseNServiceBus(endpointConfiguration);
@@ -56,7 +54,7 @@ static Task SendMessageLargePayload(IMessageSession messageSession)
     var message = new MessageWithLargePayload
     {
         SomeProperty = "This message contains a large collection that will be sent on the claim check",
-        LargeData = measurements
+        LargeData = new ClaimCheckProperty<Measurement[]>(measurements)
     };
     Console.WriteLine($"Message sent, the payload is stored in: {SolutionDirectoryFinder.Find("storage")}");
     return messageSession.Send("Samples.DataBus.Receiver", message);

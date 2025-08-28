@@ -15,8 +15,6 @@ claimCheck.BasePath(SolutionDirectoryFinder.Find("storage"));
 
 #endregion
 
-endpointConfiguration.Conventions().DefiningClaimCheckPropertiesAs(prop => prop.Name.StartsWith("Large"));
-
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
 

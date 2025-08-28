@@ -9,7 +9,7 @@ public class MessageWithLargePayloadHandler(ILogger<MessageWithLargePayloadHandl
 
     public Task Handle(MessageWithLargePayload message, IMessageHandlerContext context)
     {
-        logger.LogInformation("Message received containing {MeasurementCount} measurements", message.LargeData.Length);
+        logger.LogInformation("Message received containing {MeasurementCount} measurements", message.LargeData.Value.Length);
         return Task.CompletedTask;
     }
 }
