@@ -1,12 +1,12 @@
-using NServiceBus;
-using Shared;
 using System;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using NServiceBus;
 using NServiceBus.ClaimCheck;
+using Shared;
 
 Console.Title = "Sender";
 var builder = Host.CreateApplicationBuilder(args);

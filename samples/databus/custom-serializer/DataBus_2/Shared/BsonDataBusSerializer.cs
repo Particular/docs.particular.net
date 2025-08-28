@@ -4,15 +4,14 @@ namespace Shared
 {
     using Newtonsoft.Json;
     using Newtonsoft.Json.Bson;
-    using NServiceBus.DataBus;
+    using NServiceBus.ClaimCheck;
     using System;
     using System.IO;
-#pragma warning disable CS0618 // Type or member is obsolete
 
     #region CustomDataBusSerializer
 
-    public class BsonDataBusSerializer :
-        IDataBusSerializer
+    public class BsonClaimCheckSerializer :
+        IClaimCheckSerializer
     {
         public void Serialize(object databusProperty, Stream stream)
         {
@@ -31,23 +30,18 @@ namespace Shared
             }
         }
 
-        BinaryWriter CreateNonClosingBinaryWriter(Stream stream) =>
-            new BinaryWriter(
-                stream,
-                Encoding.UTF8,
-                leaveOpen: true);
+        static BinaryWriter CreateNonClosingBinaryWriter(Stream stream)
+        {
+            return new BinaryWriter(stream, Encoding.UTF8, leaveOpen: true);
+        }
 
-
-        JsonSerializer serializer = JsonSerializer.Create(
-            new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All
-            }
-        );
+        static JsonSerializer serializer = new JsonSerializer
+        {
+            TypeNameHandling = TypeNameHandling.All
+        };
 
         public string ContentType => "application/bson";
     }
 
     #endregion
-#pragma warning restore CS0618 // Type or member is obsolete
 }
