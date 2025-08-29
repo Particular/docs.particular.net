@@ -5,13 +5,13 @@ public class LargeMessageHandler(ILogger<LargeMessageHandler> logger) : IHandleM
 {
     public Task Handle(LargeMessage message, IMessageHandlerContext context)
     {
-        if (message.LargeDataBus == null)
+        if (message.LargeClaimCheck == null)
         {
             logger.LogInformation("Message [{MessageType}] received, id:{RequestId}", message.GetType(), message.RequestId);
         }
         else
         {
-            logger.LogInformation("Message [{MessageType}] received, id:{RequestId} and payload {PayloadLength} bytes", message.GetType(), message.RequestId, message.LargeDataBus.Length);
+            logger.LogInformation("Message [{MessageType}] received, id:{RequestId} and payload {PayloadLength} bytes", message.GetType(), message.RequestId, message.LargeClaimCheck.Length);
         }
         return Task.CompletedTask;
     }

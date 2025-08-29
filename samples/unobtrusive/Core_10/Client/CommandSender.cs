@@ -54,7 +54,7 @@ public class CommandSender
         var largeMessage = new LargeMessage
         {
             RequestId = requestId,
-            LargeDataBus = new byte[1024 * 1024 * 5]
+            LargeClaimCheck = new byte[1024 * 1024 * 5]
         };
         Console.WriteLine($"Request sent id: {requestId}");
         return messageSession.Send("Samples.Unobtrusive.Server", largeMessage);
