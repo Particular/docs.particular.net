@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
     <LangVersion>12.0</LangVersion>
   </PropertyGroup>
 
@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="9.*" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.1" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.*" />
   </ItemGroup>
 
   <ItemGroup>
