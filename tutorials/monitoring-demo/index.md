@@ -24,7 +24,7 @@ To run the sample, ensure you have:
   - Desktop: Windows 8 or later
   - Server: Windows Server 2016 or later
 
-> **Note:** The Particular Service Platform requires Windows.
+> [!NOTE] While this specific sample requires Windows, the Particular Service Platform does not
 
 ## How to run the sample
 
