@@ -130,6 +130,15 @@ class Usage
         };
         transport.RetryPolicyOptions = azureAsbRetryOptions;
         #endregion
+
+        #region azure-service-bus-entitymaximumsize
+        transport.EntityMaximumSize = 5;
+        #endregion
+
+        #region azure-service-bus-enablepartitioning
+        transport.EnablePartitioning = true;
+        #endregion
+
     }
 
     class MyEvent;
