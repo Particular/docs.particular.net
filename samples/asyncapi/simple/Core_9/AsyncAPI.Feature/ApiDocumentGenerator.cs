@@ -38,7 +38,7 @@ class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiDocument
         #region GenerateChannelsForEvents
         foreach (var publishedEvent in typeCache.Events)
         {
-            var channelName = $"{publishedEvent.FullName!}";
+            var channelName = publishedEvent.FullName!;
             document.WithChannel(channelName, channel =>
             {
                 channelBuilder = channel;
@@ -80,7 +80,7 @@ class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiDocument
                     .WithSchema(requestMessagePayloadSchema));
         });
 
-        var operationName = $"{eventType.FullName!}";
+        var operationName = eventType.FullName!;
         document.WithOperation(operationName, operation =>
         {
             operation
