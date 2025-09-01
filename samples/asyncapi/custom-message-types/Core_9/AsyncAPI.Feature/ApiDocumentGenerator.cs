@@ -37,7 +37,7 @@ public class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiD
         var typeCache = serviceProvider.GetRequiredService<TypeCache>();
 
         //get all published events
-        foreach (var (actualType, publishedType) in typeCache.PublishedEventCache.Select(kvp => (kvp.Key, kvp.Value)))
+        foreach (var (actualType, publishedType) in typeCache.PublishedEventCache)
         {
             var channelName = $"{publishedType.FullName!}";
             document.WithChannel(channelName, channel =>
