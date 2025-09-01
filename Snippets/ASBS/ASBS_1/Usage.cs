@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.Azure.ServiceBus;
 using NServiceBus;
 
 class Usage
@@ -44,6 +45,19 @@ class Usage
         transport.SubscriptionNameShortener(n => n.Length > MaxEntityName ? HashName(n) : n);
         transport.RuleNameShortener(n => n.Length > MaxEntityName ? HashName(n) : n);
 
+        #endregion
+
+        #region azure-service-bus-usewebsockets
+        transport.UseWebSockets();
+        #endregion
+
+        #region azure-service-bus-TimeToWaitBeforeTriggeringCircuitBreaker
+        transport.TimeToWaitBeforeTriggeringCircuitBreaker(TimeSpan.FromMinutes(2));
+        #endregion
+
+        #region azure-service-bus-RetryPolicyOptions
+        var azureAsbRetryOptions = new Microsoft.Azure.ServiceBus.RetryExponential(new TimeSpan(0, 0, 1), TimeSpan.FromMinutes(5), 10);
+        transport.CustomRetryPolicy(azureAsbRetryOptions);
         #endregion
     }
 }

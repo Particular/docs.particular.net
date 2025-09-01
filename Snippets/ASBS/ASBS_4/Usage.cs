@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Security.Cryptography;
 using System.Text;
-
 using Azure.Identity;
-
 using NServiceBus;
+using Azure.Messaging.ServiceBus;
 
 class Usage
 {
@@ -76,6 +75,29 @@ class Usage
         transport.SubscriptionNamingConvention = n => n.Length > MaxEntityName ? HashName(n) : n;
         transport.SubscriptionRuleNamingConvention = n => n.FullName.Length > MaxEntityName ? HashName(n.FullName) : n.FullName;
 
+        #endregion
+
+        #region azure-service-bus-usewebsockets
+        transport.UseWebSockets = true;
+        #endregion
+
+        #region azure-service-bus-websockets-proxy
+        transport.WebProxy = new System.Net.WebProxy("http://myproxy:8080");
+        #endregion
+
+        #region azure-service-bus-TimeToWaitBeforeTriggeringCircuitBreaker
+        transport.TimeToWaitBeforeTriggeringCircuitBreaker = TimeSpan.FromMinutes(2);
+        #endregion
+
+        #region azure-service-bus-RetryPolicyOptions
+        var azureAsbRetryOptions = new Azure.Messaging.ServiceBus.ServiceBusRetryOptions
+        {
+            Mode = Azure.Messaging.ServiceBus.ServiceBusRetryMode.Exponential,
+            MaxRetries = 5,
+            Delay = TimeSpan.FromSeconds(0.8),
+            MaxDelay = TimeSpan.FromSeconds(15)
+        };
+        transport.RetryPolicyOptions = azureAsbRetryOptions;
         #endregion
     }
 }
