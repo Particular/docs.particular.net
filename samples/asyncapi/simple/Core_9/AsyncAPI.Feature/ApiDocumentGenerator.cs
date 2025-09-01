@@ -51,15 +51,14 @@ class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiDocument
                 channelName,
                 channelBuilder,
                 publishedEvent,
-                options,
-                cancellationToken);
+                options);
         }
         #endregion
 
         //NOTE this is where more channels and operations can be defined, for example subscribed to events, sent/received commands and messages
     }
 
-    static void GenerateV3OperationFor(IV3AsyncApiDocumentBuilder document, string channelName, IV3ChannelDefinitionBuilder channel, Type eventType, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
+    static void GenerateV3OperationFor(IV3AsyncApiDocumentBuilder document, string channelName, IV3ChannelDefinitionBuilder channel, Type eventType, AsyncApiDocumentGenerationOptions options)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentException.ThrowIfNullOrWhiteSpace(channelName);

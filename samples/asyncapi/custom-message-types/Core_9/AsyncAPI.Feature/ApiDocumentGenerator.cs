@@ -47,13 +47,13 @@ public class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiD
                     .WithAddress(typeCache.EndpointName)
                     .WithDescription(actualType.FullName);
             });
-            GenerateV3OperationFor(document, channelName, channelBuilder, actualType, publishedType, options, cancellationToken);
+            GenerateV3OperationFor(document, channelName, channelBuilder, actualType, publishedType, options);
         }
 
         //NOTE this is where more channels and operations can be defined, for example subscribed to events, sent/received commands and messages
     }
 
-    static void GenerateV3OperationFor(IV3AsyncApiDocumentBuilder document, string channelName, IV3ChannelDefinitionBuilder channel, Type actualType, Type producedType, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
+    static void GenerateV3OperationFor(IV3AsyncApiDocumentBuilder document, string channelName, IV3ChannelDefinitionBuilder channel, Type actualType, Type producedType, AsyncApiDocumentGenerationOptions options)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentException.ThrowIfNullOrWhiteSpace(channelName);
