@@ -46,7 +46,7 @@ class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiDocument
                     .WithAddress(typeCache.EndpointName)
                     .WithDescription(publishedEvent.FullName);
             });
-            await GenerateV3OperationForAsync(
+            GenerateV3OperationFor(
                 document,
                 channelName,
                 channelBuilder,
@@ -59,7 +59,7 @@ class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiDocument
         //NOTE this is where more channels and operations can be defined, for example subscribed to events, sent/received commands and messages
     }
 
-    Task GenerateV3OperationForAsync(IV3AsyncApiDocumentBuilder document, string channelName, IV3ChannelDefinitionBuilder channel, Type eventType, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
+    static void GenerateV3OperationFor(IV3AsyncApiDocumentBuilder document, string channelName, IV3ChannelDefinitionBuilder channel, Type eventType, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentException.ThrowIfNullOrWhiteSpace(channelName);
@@ -88,6 +88,5 @@ class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiDocument
                 .WithChannel($"#/channels/{channelName}")
                 .WithMessage(messageChannelReference);
         });
-        return Task.CompletedTask;
     }
 }
