@@ -11,7 +11,7 @@ namespace AsyncAPI.Feature;
 
 public class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiDocumentGenerator
 {
-    public async Task<IEnumerable<IAsyncApiDocument>> GenerateAsync(IEnumerable<Type> markupTypes, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
+    public Task<IEnumerable<IAsyncApiDocument>> GenerateAsync(IEnumerable<Type> markupTypes, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(options);
 
@@ -21,14 +21,14 @@ public class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiD
         var document = serviceProvider.GetRequiredService<IV3AsyncApiDocumentBuilder>();
         options.V3BuilderSetup?.Invoke(document);
 
-        await GenerateChannels(document, options, cancellationToken);
+        GenerateChannels(document, options);
 
         documents.Add(document.Build());
 
-        return documents;
+        return Task.FromResult<IEnumerable<IAsyncApiDocument>>(documents);
     }
 
-    async Task GenerateChannels(IV3AsyncApiDocumentBuilder document, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
+    void GenerateChannels(IV3AsyncApiDocumentBuilder document, AsyncApiDocumentGenerationOptions options)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentNullException.ThrowIfNull(options);
