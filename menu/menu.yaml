@@ -290,7 +290,7 @@
       - Url: nservicebus/upgrades/absdatabus-1to2
         Title: Version 1 to 2
       - Url: nservicebus/upgrades/absdatabus-6to1
-        Title: Migrating off NServiceBus.Azure 
+        Title: Migrating off NServiceBus.Azure
     - Title: Azure Cloud Services Host
       Articles:
       - Url: nservicebus/upgrades/acs-host-7to8
@@ -367,6 +367,10 @@
         Title: Version 1 to 2
       - Url: nservicebus/upgrades/externalize-perfcounters
         Title: Migrate To External Nuget
+    - Title: ServicePlatform Connector
+      Articles:
+      - Url: nservicebus/upgrades/service-platform-connector-3to4
+        Title: Version 3 to 4
     - Title: ServiceControl Plugins
       Articles:
       - Url: nservicebus/upgrades/nsb6-sc-plugins-1to2
@@ -1177,7 +1181,7 @@
       - Url: persistence/upgrades/ravendb-gateway-4to5
         Title: Version 4 to 5
       - Url: persistence/upgrades/ravendb-gateway-1to2
-        Title: Version 1 to 2        
+        Title: Version 1 to 2
     - Title: SQL
       Articles:
       - Url: persistence/upgrades/sql-client4
