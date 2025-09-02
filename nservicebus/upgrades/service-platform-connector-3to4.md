@@ -1,5 +1,6 @@
 ---
 title: ServicePlatform Connector Upgrade Version 3 to 4
+summary: Instructions on how to upgrade the ServicePlatform Connector from version 3 to 4
 reviewed: 2025-08-29
 component: PlatformConnector
 isUpgradeGuide: true
