@@ -2,6 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 using Azure.Identity;
+using Azure.Messaging.ServiceBus;
 using NServiceBus;
 
 class Usage
@@ -76,6 +77,71 @@ class Usage
         transport.SubscriptionNamingConvention = n => n.Length > MaxEntityName ? HashName(n) : n;
         transport.SubscriptionRuleNamingConvention = n => n.FullName.Length > MaxEntityName ? HashName(n.FullName) : n.FullName;
 
+        #endregion
+
+        #region azure-service-bus-usewebsockets
+        transport.UseWebSockets = true;
+        #endregion
+
+        #region azure-service-bus-websockets-proxy
+        transport.WebProxy = new System.Net.WebProxy("http://myproxy:8080");
+        #endregion
+
+        #region azure-service-bus-TimeToWaitBeforeTriggeringCircuitBreaker
+        transport.TimeToWaitBeforeTriggeringCircuitBreaker = TimeSpan.FromMinutes(2);
+        #endregion
+
+        #region azure-service-bus-RetryPolicyOptions
+        var azureAsbRetryOptions = new Azure.Messaging.ServiceBus.ServiceBusRetryOptions
+        {
+            Mode = Azure.Messaging.ServiceBus.ServiceBusRetryMode.Exponential,
+            MaxRetries = 5,
+            Delay = TimeSpan.FromSeconds(0.8),
+            MaxDelay = TimeSpan.FromSeconds(15)
+        };
+        transport.RetryPolicyOptions = azureAsbRetryOptions;
+        #endregion
+
+        #region azure-service-bus-entitymaximumsize
+        transport.EntityMaximumSize = 5;
+        #endregion
+
+        #region azure-service-bus-enablepartitioning
+        transport.EnablePartitioning = true;
+        #endregion
+
+        #region azure-service-bus-subscriptionnameconvention
+        string HashSubName(string input)
+        {
+            var inputBytes = Encoding.Default.GetBytes(input);
+            // use MD5 hash to get a 16-byte hash of the string
+            using (var provider = new MD5CryptoServiceProvider())
+            {
+                var hashBytes = provider.ComputeHash(inputBytes);
+                return new Guid(hashBytes).ToString();
+            }
+        }
+
+        const int MaxEntityNameLength = 50;
+
+        transport.SubscriptionNamingConvention = n => n.Length > MaxEntityNameLength ? HashSubName(n) : n;
+        #endregion
+
+        #region azure-service-bus-subscriptionrulenameconvention
+        string HashRuleSubName(string input)
+        {
+            var inputBytes = Encoding.Default.GetBytes(input);
+            // use MD5 hash to get a 16-byte hash of the string
+            using (var provider = new MD5CryptoServiceProvider())
+            {
+                var hashBytes = provider.ComputeHash(inputBytes);
+                return new Guid(hashBytes).ToString();
+            }
+        }
+
+        const int MaxSubRuleNameLength = 50;
+
+        transport.SubscriptionRuleNamingConvention = n => n.FullName.Length > MaxSubRuleNameLength ? HashRuleSubName(n.FullName) : n.FullName;
         #endregion
     }
 }
