@@ -39,7 +39,7 @@ public class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiD
         //get all published events
         foreach (var (actualType, publishedType) in typeCache.PublishedEventCache.Select(kvp => (kvp.Key, kvp.Value)))
         {
-            var channelName = $"{publishedType.FullName!}";
+            var channelName = publishedType.FullName!;
             document.WithChannel(channelName, channel =>
             {
                 channelBuilder = channel;
@@ -75,7 +75,7 @@ public class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiD
                     .WithSchema(requestMessagePayloadSchema));
         });
 
-        var operationName = $"{producedType.FullName!}";
+        var operationName = producedType.FullName!;
         document.WithOperation(operationName, operation =>
         {
             operation
