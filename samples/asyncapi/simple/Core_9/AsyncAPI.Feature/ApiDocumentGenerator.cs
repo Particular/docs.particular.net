@@ -9,7 +9,7 @@ using Neuroglia.AsyncApi.v3;
 
 class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiDocumentGenerator
 {
-    public async Task<IEnumerable<IAsyncApiDocument>> GenerateAsync(IEnumerable<Type> markupTypes, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
+    public Task<IEnumerable<IAsyncApiDocument>> GenerateAsync(IEnumerable<Type> markupTypes, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(options);
 
@@ -19,14 +19,14 @@ class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiDocument
         var document = serviceProvider.GetRequiredService<IV3AsyncApiDocumentBuilder>();
         options.V3BuilderSetup?.Invoke(document);
 
-        await GenerateChannels(document, options, cancellationToken);
+        GenerateChannels(document, options);
 
         documents.Add(document.Build());
 
-        return documents;
+        return Task.FromResult<IEnumerable<IAsyncApiDocument>>(documents);
     }
 
-    async Task GenerateChannels(IV3AsyncApiDocumentBuilder document, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
+    void GenerateChannels(IV3AsyncApiDocumentBuilder document, AsyncApiDocumentGenerationOptions options)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentNullException.ThrowIfNull(options);
@@ -46,20 +46,19 @@ class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiDocument
                     .WithAddress(typeCache.EndpointName)
                     .WithDescription(publishedEvent.FullName);
             });
-            await GenerateV3OperationForAsync(
+            GenerateV3OperationFor(
                 document,
                 channelName,
                 channelBuilder,
                 publishedEvent,
-                options,
-                cancellationToken);
+                options);
         }
         #endregion
 
         //NOTE this is where more channels and operations can be defined, for example subscribed to events, sent/received commands and messages
     }
 
-    Task GenerateV3OperationForAsync(IV3AsyncApiDocumentBuilder document, string channelName, IV3ChannelDefinitionBuilder channel, Type eventType, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
+    static void GenerateV3OperationFor(IV3AsyncApiDocumentBuilder document, string channelName, IV3ChannelDefinitionBuilder channel, Type eventType, AsyncApiDocumentGenerationOptions options)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentException.ThrowIfNullOrWhiteSpace(channelName);
@@ -88,6 +87,5 @@ class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiDocument
                 .WithChannel($"#/channels/{channelName}")
                 .WithMessage(messageChannelReference);
         });
-        return Task.CompletedTask;
     }
 }
