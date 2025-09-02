@@ -12,9 +12,6 @@ public class TimeToBeReceived
         {
             Metrics = new ServicePlatformMetricsConfiguration
             {
-                Enabled = true,
-                MetricsQueue = "metricsQueue",
-                Interval = TimeSpan.FromSeconds(60),
                 TimeToLive = TimeSpan.FromSeconds(60)
             }
         };

@@ -8,10 +8,8 @@ upgradeGuideCoreVersions:
   - 10
 ---
 
-## TimeToBeReceived has been deprecated
+## Metrics TimeToBeReceived renamed to TimeToLive
 
-Up until version 3, the setting to configure the maximum time to live for [Metrics messages](/platform/json-schema.md#metrics), was called `TimeToBeReceived`.
-
-In version 4, its name has been updated to `TimeToLive` to align with the naming convention of similar settings for other sections of the configuration.
+In version 4, the setting to configure the maximum time to live for [Metrics messages](/platform/json-schema.md#metrics) has been renamed from `TimeToBeReceived` to `TimeToLive`. This aligns it with the naming convention of similar settings for other sections of the configuration.
 
 snippet: PlatformConnector-3to4-TimeToBeReceived
