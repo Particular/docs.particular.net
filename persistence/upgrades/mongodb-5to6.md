@@ -12,6 +12,12 @@ isUpgradeGuide: true
 
 The minimum required MongoDB client version has been raised to [3.4.3](https://www.nuget.org/packages/MongoDB.Driver/3.4.3).
 
+## TimeToKeepOutboxDeduplicationData method moved
+
+The `TimeToKeepOutboxDeduplicationData` method has been moved to the outbox settings:
+
+snippet: MongoDBOutboxCleanup
+
 ## Installer support
 
 In previous versions, indexes were created automatically for all storage types, regardless of whether the installers were disabled. Starting with version 6, indexes are created only when the installers are enabled.
