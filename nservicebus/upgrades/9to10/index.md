@@ -11,6 +11,10 @@ upgradeGuideCoreVersions:
 
 include: upgrade-major
 
+## .NET target framework
+
+NServiceBus 10 targets .NET 10 only. Go to [supported frameworks and platforms](/nservicebus/upgrades/supported-platforms.md) to learn more about the support timeline.
+
 ## Nullability
 
 ### ContextBag
