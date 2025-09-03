@@ -5,7 +5,7 @@
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.2" />
+    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.4" />
     <PackageReference Include="NServiceBus.Storage.MongoDB" Version="7.0.0-alpha.1" />
     <PackageReference Include="NServiceBus.RabbitMQ" Version="11.0.0-alpha.2" />
   </ItemGroup>
