@@ -6,4 +6,4 @@ and then registered on the container
 
 snippet: MongoDBCustomClientProviderRegistration
 
-When hosting with the generic host the registrations can also be done directly on the service collection.
+When hosting with the generic host, the registrations can also be done directly on the service collection.
