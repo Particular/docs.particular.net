@@ -1,5 +1,6 @@
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using NUnit.Framework;
 
 namespace IntegrityTests;
@@ -26,7 +27,7 @@ public class Snippets
                 var incorrect = Directory.GetDirectories(directoryPath)
                     .Where(p => p.Contains("_"))
                     .Select(versionedPath => Path.GetFileName(versionedPath))
-                    .Where(name => name.Contains("."))
+                    .Where(name => Regex.IsMatch(name, @"\d+\.\d+$"))
                     .ToArray();
 
                 if (incorrect.Any())

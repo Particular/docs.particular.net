@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using NHibernate_8.Session;
 using NServiceBus;
 using NHibernate;
 
