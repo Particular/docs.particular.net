@@ -91,6 +91,10 @@
         Url: architecture/azure/messaging
       - Title: Observability
         Url: architecture/azure/observability
+    - Title: Security
+      Articles:
+      - Title: Attribute-Based Access Control (ABAC)
+        Url: architecture/azure/abac-auth
   - Title: AWS
     Articles:
     - Title: Introduction
