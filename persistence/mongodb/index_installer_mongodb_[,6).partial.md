@@ -1,0 +1,1 @@
+Installers are not supported. Indexes are created regardless of the installer settings.

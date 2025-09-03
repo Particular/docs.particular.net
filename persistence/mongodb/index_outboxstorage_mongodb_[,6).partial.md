@@ -1,0 +1,2 @@
+> [!WARNING]
+> Outbox documents are not separated by endpoint name which means that it's not supported for multiple logical endpoints to share the same database since [message identities are not unique across endpoints from a processing perspective](/nservicebus/outbox/#message-identity).

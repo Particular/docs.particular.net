@@ -46,6 +46,8 @@ Specify the database to use for NServiceBus documents using the following config
 
 snippet: MongoDBDatabaseName
 
+partial: provider
+
 ## Transactions
 
 MongoDB [transactions](https://docs.mongodb.com/manual/core/transactions/) are enabled and required by default. This allows the persister to use pessimistic locking and to update multiple saga instances and commit them atomically during message processing.
@@ -89,14 +91,13 @@ snippet: MongoDBSharedTransactionDI
 
 The `TestableMongoSynchronizedStorageSession` class in the `NServiceBus.Testing` namespace has been provided to facilitate [testing a handler](/nservicebus/testing/) that utilizes the shared transaction feature.
 
-## Outbox 
+## Outbox
 
 ## Storage format
 
 Outbox record documents are stored in a collection called `outboxrecord`.
 
-> [!WARNING]
-> Outbox documents are not separated by endpoint name which means that it's not supported for multiple logical endpoints to share the same database since [message identities are not unique across endpoints from a processing perspective](/nservicebus/outbox/#message-identity).
+partial: outboxstorage
 
 ### Outbox cleanup
 
@@ -135,3 +136,7 @@ MongoDB.Driver.MongoCommandException: Command update failed: WriteConflict.
 ```
 
 include: saga-concurrency
+
+## Installer
+
+partial: installer
