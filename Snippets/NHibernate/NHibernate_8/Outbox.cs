@@ -1,4 +1,6 @@
-﻿namespace NHibernate_7
+﻿using System.Data;
+
+namespace NHibernate_7
 {
     using System;
     using NHibernate;
@@ -90,12 +92,7 @@
             #endregion
         }
 
-
-
-
-
-
-        public void TransactionScopeMode(EndpointConfiguration endpointConfiguration)
+        public void TransactionScopeModeIsolation(EndpointConfiguration endpointConfiguration)
         {
             #region OutboxTransactionIsolation
 

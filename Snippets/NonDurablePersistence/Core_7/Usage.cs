@@ -16,7 +16,8 @@
             #endregion
         }
 
-        public Usage(EndpointConfiguration endpointConfiguration)
+        #pragma warning disable CS0618 // deprecated API
+        public void CacheSize(EndpointConfiguration endpointConfiguration)
         {
             #region GatewayDeduplicationCacheSize
 
@@ -25,5 +26,6 @@
 
             #endregion
         }
+        #pragma warning restore CS0618
     }
 }
