@@ -33,22 +33,30 @@ graph LR
     style PAP fill:#fce4ec
 ```
 
-- **PEP (Policy Enforcement Point)** - The PEP is the gatekeeper that intercepts an action and enforces the authorization decision.  
-  - **Azure Storage Service (BLOB or Queue)**: When using native ABAC, the Azure Storage platform itself acts as the PEP, blocking or allowing requests to blobs or queues based on conditions.  
-  - **NServiceBus Message Handler**: The handler code intercepts the command before executing business logic.  
-  - **NServiceBus Custom Pipeline Behavior**: A centralized PEP that can intercept all incoming messages to enforce cross-cutting rules.  
-- **PDP (Policy Decision Point)** - The PDP is the "brain" that evaluates attributes against policies to make a "Permit" or "Deny" decision.  
-  - **Azure Storage Service**: For native ABAC, the storage service acts as the PDP, evaluating the condition on a role assignment.  
-  - **A Custom C# Service**: A dedicated class (e.g., `AuthorizationService`) in your application that contains the business rule logic.  
-  - **An Azure Function**: A serverless function that hosts the decision logic, which can be called from your NServiceBus handler.  
-- **PIP (Policy Information Point)** - The PIP is any source that provides the attributes needed for the decision.  
-  - **Azure Entra ID**: The primary PIP for user and application identity attributes (e.g., group membership, custom security attributes), queried via the **Microsoft Graph API**.  
-  - **NServiceBus Message**: The message body and headers are a crucial PIP, providing context about the action and its parameters.  
-  - **Azure Blob Storage Index Tags**: A PIP that provides attributes about the resource itself.  
-- **PAP (Policy Administration Point)** - The PAP is the interface or system where policies and attributes are managed.  
-  - **The Azure Portal**: The primary PAP for managing Azure's native ABAC. This is where you assign roles with conditions and define custom security attributes.
+**PEP (Policy Enforcement Point)** - The PEP is the gatekeeper that intercepts an action and enforces the authorization decision.  
 
-It’s not recommended to add ABAC features as native, first-party features within the NServiceBus framework as NServiceBus is an unopinionated messaging framework. Authorization is considered a **business-specific, cross-cutting concern** and would be highly opinionated. It’s instead recommended to extend its functionality to allow building of specific ABAC systems to fit business needs.
+- **Azure Storage Service (BLOB or Queue)**: When using native ABAC, the Azure Storage platform itself acts as the PEP, blocking or allowing requests to blobs or queues based on conditions.  
+- **NServiceBus Message Handler**: The handler code intercepts the command before executing business logic.  
+- **NServiceBus Custom Pipeline Behavior**: A centralized PEP that can intercept all incoming messages to enforce cross-cutting rules.  
+
+**PDP (Policy Decision Point)** - The PDP is the "brain" that evaluates attributes against policies to make a "Permit" or "Deny" decision.  
+
+- **Azure Storage Service**: For native ABAC, the storage service acts as the PDP, evaluating the condition on a role assignment.  
+- **A Custom C# Service**: A dedicated class (e.g., `AuthorizationService`) in your application that contains the business rule logic.  
+- **An Azure Function**: A serverless function that hosts the decision logic, which can be called from your NServiceBus handler.  
+
+**PIP (Policy Information Point)** - The PIP is any source that provides the attributes needed for the decision.  
+
+- **Azure Entra ID**: The primary PIP for user and application identity attributes (e.g., group membership, custom security attributes), queried via the **Microsoft Graph API**.  
+- **NServiceBus Message**: The message body and headers are a crucial PIP, providing context about the action and its parameters.  
+- **Azure Blob Storage Index Tags**: A PIP that provides attributes about the resource itself.  
+
+**PAP (Policy Administration Point)** - The PAP is the interface or system where policies and attributes are managed.  
+
+- **The Azure Portal**: The primary PAP for managing Azure's native ABAC. This is where you assign roles with conditions and define custom security attributes.
+
+> [!NOTE]
+> NServiceBus is an unopinionated messaging framework. Authorization is considered a **business-specific, cross-cutting concern** and would be highly opinionated. It’s recommended to extend its functionality to allow building of specific ABAC systems to fit business needs.
 
 ## Examples
 
