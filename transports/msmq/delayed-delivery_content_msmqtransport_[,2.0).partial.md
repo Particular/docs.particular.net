@@ -2,6 +2,8 @@ The MSMQ transport can use the [timeout manager](/nservicebus/messaging/timeout-
 
 The MSMQ transport requires explicit configuration to enable delayed message delivery using an external store. For example:
 
+_Added in version 1.2.0_
+
 snippet: delayed-delivery
 
 The SQL Server delayed message store (`SqlServerDelayedMessageStore`) is the only delayed message store that ships with the MSMQ transport.
