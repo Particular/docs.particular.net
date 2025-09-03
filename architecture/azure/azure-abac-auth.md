@@ -1,36 +1,54 @@
 ---
 title: Attribute-Based Access Control (ABAC) in Message-Driven Architectures
-summary: 
+summary: Learn how to implement Attribute-Based Access Control in distributed, message-driven architectures using Azure and NServiceBus
 reviewed: 2025-09-03
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
-Attribute-Based Access Control (ABAC) is an authorization system that defines access based on attributes associated with identities, resources, and environment. These attributes can be changed during application runtime, dynamically altering access to resources.
+Attribute-Based Access Control ([ABAC](https://learn.microsoft.com/en-gb/azure/role-based-access-control/conditions-overview)) is an authorization system that defines access based on attributes associated with identities, resources, and environment. These attributes can be changed during application runtime, dynamically altering access to resources.
 
-Traditional Role-Based Access Control (RBAC) has a severe limitation when it comes to distributed, message-driven architectures in that the assigned roles (and therefore identities) to resources are static at runtime. This presents unique authorization challenges for distributed systems due to their inherent asynchronicity, complexity, and temporal decoupling. For example,
+Traditional Role-Based Access Control ([RBAC](https://learn.microsoft.com/en-gb/azure/role-based-access-control/overview)) has a severe limitation when it comes to distributed, message-driven architectures in that the assigned roles (and therefore identities) to resources are _static_ at runtime. This presents unique authorization challenges for distributed systems due to their asynchronous nature, complexity, and [temporal decoupling](/architecture/messaging.md#message-systems). For example,
 
-- Permissions can change between the time a message is sent and when it's ultimately executed in a message handler.
+- Permissions can change between the time a message is sent, and when it's ultimately executed in a message handler.
 - Over allocating permissions to resources to cater for the decoupling of services.
 - An unmanageable proliferation of fine-grained access roles due to complexity.
 
-In an NServiceBus and Azure architecture, the four functions of ABAC are handled by a combination of application code and various Azure services.
+## ABAC Components in Azure and NServiceBus
 
-- **PEP (Policy Enforcement Point)** \- The PEP is the gatekeeper that intercepts an action and enforces the authorization decision.  
+Understanding the four core components of ABAC is essential for implementing effective authorization in distributed systems. Each component plays a specific role in the authorization workflow, and in a message-driven architecture, these components are distributed across your application code and Azure services. By mapping these ABAC functions to specific Azure and NServiceBus features, you can build a dynamic authorization system that adapts to changing business requirements without the complexity of traditional RBAC.
+
+```mermaid
+graph LR
+    User[User/Service] --> PEP[Policy Enforcement Point<br/>PEP]
+    PEP --> PDP[Policy Decision Point<br/>PDP]
+    PDP --> PIP[Policy Information Point<br/>PIP]
+    PAP[Policy Administration Point<br/>PAP] -.->|Manages| PIP
+    PAP -.->|Configures| PDP
+    PDP -->|Permit/Deny| PEP
+    
+    style User fill:#e1f5fe
+    style PEP fill:#fff3e0
+    style PDP fill:#f3e5f5
+    style PIP fill:#e8f5e9
+    style PAP fill:#fce4ec
+```
+
+- **PEP (Policy Enforcement Point)** - The PEP is the gatekeeper that intercepts an action and enforces the authorization decision.  
   - **Azure Storage Service (BLOB or Queue)**: When using native ABAC, the Azure Storage platform itself acts as the PEP, blocking or allowing requests to blobs or queues based on conditions.  
   - **NServiceBus Message Handler**: The handler code intercepts the command before executing business logic.  
   - **NServiceBus Custom Pipeline Behavior**: A centralized PEP that can intercept all incoming messages to enforce cross-cutting rules.  
-- **PDP (Policy Decision Point)** \- The PDP is the "brain" that evaluates attributes against policies to make a "Permit" or "Deny" decision.  
+- **PDP (Policy Decision Point)** - The PDP is the "brain" that evaluates attributes against policies to make a "Permit" or "Deny" decision.  
   - **Azure Storage Service**: For native ABAC, the storage service acts as the PDP, evaluating the condition on a role assignment.  
-  - **A Custom C\# Service**: A dedicated class (e.g., `AuthorizationService`) in your application that contains the business rule logic.  
+  - **A Custom C# Service**: A dedicated class (e.g., `AuthorizationService`) in your application that contains the business rule logic.  
   - **An Azure Function**: A serverless function that hosts the decision logic, which can be called from your NServiceBus handler.  
-- **PIP (Policy Information Point)** \- The PIP is any source that provides the attributes needed for the decision.  
+- **PIP (Policy Information Point)** - The PIP is any source that provides the attributes needed for the decision.  
   - **Azure Entra ID**: The primary PIP for user and application identity attributes (e.g., group membership, custom security attributes), queried via the **Microsoft Graph API**.  
   - **NServiceBus Message**: The message body and headers are a crucial PIP, providing context about the action and its parameters.  
   - **Azure Blob Storage Index Tags**: A PIP that provides attributes about the resource itself.  
-- **PAP (Policy Administration Point)** \- The PAP is the interface or system where policies and attributes are managed.  
+- **PAP (Policy Administration Point)** - The PAP is the interface or system where policies and attributes are managed.  
   - **The Azure Portal**: The primary PAP for managing Azure's native ABAC. This is where you assign roles with conditions and define custom security attributes.
 
-It’s not recommended to add ABAC features as native, first-party features within the  NServiceBus framework as NServiceBus is an unopinionated messaging framework. Authorization is considered a **business-specific, cross-cutting concern** and would be highly opinionated. It’s instead recommended to extend its functionality to allow building of specific ABAC systems to fit business needs.
+It’s not recommended to add ABAC features as native, first-party features within the NServiceBus framework as NServiceBus is an unopinionated messaging framework. Authorization is considered a **business-specific, cross-cutting concern** and would be highly opinionated. It’s instead recommended to extend its functionality to allow building of specific ABAC systems to fit business needs.
 
 ## Examples
 
@@ -55,12 +73,12 @@ This scenario ensures that data subject to residency laws is only processed by s
 - ✅ Azure ABAC with Custom Security Attributes
 - ✅ NServiceBus Endpoints and Messages
 
-**The Problem ⚠️**: A global company uses a single system to process customer orders. An order from France must be processed by a service running in a European data center. A new queue is created for each region processor. The company will end up managing **N** individual permissions for **N** processors. This could potentially scale up in other scenarios to hundreds, leading to an *unmanageable proliferation of fine-grained access roles to accommodate complex distributed systems*.
+**The Problem ⚠️**: A global company uses a single system to process customer orders. An order from France must be processed by a service running in a European data center. A new queue is created for each region processor. The company will end up managing **N** individual permissions for **N** processors. This could potentially scale up in other scenarios to hundreds, leading to an *unmanageable proliferation of fine-grained access roles to accommodate complex distributed systems.
 
 **The Solution** ✅: The solution is to route messages to region-specific Azure Storage Queues and use native Azure ABAC to strictly enforce that only regional processor endpoints can access their corresponding queue. This is achieved by giving all processors permissions to all queues and conditionally allowing these processes access to queues based on their region attribute. This allows for a single permission to be applied for N processors and queues. e.g.
 
 1. **Attribute-Based Routing**: A central "Router" endpoint receives all orders. It inspects a `region` attribute in the message (`region = 'eu'`) and forwards the message to a dedicated Azure Storage Queue, such as **`orders-eu`**.  
-2. **Application Attributes (PAP)**: Each regional processor endpoint runs with its own **Azure Principle Account or Managed Identity**. In Azure Entra ID, these identities are assigned a custom security attribute defining their location, such as `region = 'eu'`.  
+2. **Application Attributes (PAP)**: Each regional processor endpoint runs with its own **Azure Service Principal or Managed Identity**. In Azure Entra ID, these identities are assigned a custom security attribute defining their location, such as `region = 'eu'`.  
 3. A security group `Regional Processors` is created that contains all Regional Processor Identities.  
 4. **The ABAC Condition (PEP/PDP)**: The Azure Storage Account itself enforces the security. An administrator assigns the `Storage Queue Data Message Processor` role to the security group, but with a critical ABAC condition that ties the identity to a specific queue.  e.g. `"Allow access to the queue only if the processor's 'region' attribute matches a part of the queue name."`
 
@@ -76,7 +94,7 @@ This scenario involves a manager whose spending authority is reduced after they 
 
 **Solves**:
 
-- ⚠️Permissions can change between the time a message is sent and when its ultimately executed in a message handler.
+- ⚠️Permissions can change between the time a message is sent and when it's ultimately executed in a message handler.
 
 **By using:**
 

@@ -94,7 +94,7 @@
     - Title: Security
       Articles:
       - Title: Attribute-Based Access Control (ABAC)
-        Url: architecture/azure/abac-auth
+        Url: architecture/azure/azure-abac-auth
   - Title: AWS
     Articles:
     - Title: Introduction
