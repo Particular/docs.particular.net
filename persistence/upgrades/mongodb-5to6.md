@@ -24,7 +24,11 @@ In previous versions, indexes were created automatically for all storage types, 
 
 This enables the possibility to take full control over the index creation by leveraging for example the [Ops Manager](https://www.mongodb.com/docs/ops-manager/current/data-explorer/indexes/) or any other preferred deployment mechanism.
 
-When installers are disabled, or when installers are enabled but index creation is disabled, the persistence assumes that all required infrastructure (including indexes) is already in place. If the necessary indexes are missing, system performance and reliability may be affected.
+When installers are disabled, or when installers are enabled but the persistence installers are disabled with:
+
+snippet: MongoDBDisableInstaller
+
+the persistence assumes that all required infrastructure (including indexes) is already in place. If the necessary indexes are missing, system performance and reliability may be affected.
 
 ## Outbox record storage layout changes
 
