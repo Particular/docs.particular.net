@@ -25,7 +25,7 @@
           "AWSLambdaBasicExecutionRole"
         ],
         "PackageType": "Zip",
-        "Handler": "SQSLambda_2.1::SQSLambdaSnippets.Usage_FunctionHandler_Generated::FunctionHandler",
+        "Handler": "SQSLambda_2::SQSLambdaSnippets.Usage_FunctionHandler_Generated::FunctionHandler",
         "Events": {
           "endpointname": {
             "Type": "SQS",

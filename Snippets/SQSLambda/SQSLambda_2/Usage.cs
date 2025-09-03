@@ -1,34 +1,52 @@
 ﻿using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Amazon.Lambda.Annotations;
+using Amazon.Lambda.Annotations.SQS;
 using Amazon.Lambda.Core;
+using Amazon.Lambda.Serialization.SystemTextJson;
 using Amazon.Lambda.SQSEvents;
+using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 
-class Usage
+[assembly:LambdaSerializer(typeof(DefaultLambdaJsonSerializer))]
+
+// The namespace is required because the Lambda source generators expect it
+namespace SQSLambdaSnippets;
+
+class Usage(IAwsLambdaSQSEndpoint serverlessEndpoint)
 {
     #region aws-endpoint-creation
 
-    static readonly AwsLambdaSQSEndpoint endpoint = new AwsLambdaSQSEndpoint(context =>
+    [LambdaStartup]
+    public class Startup
     {
-        var endpointConfiguration = new AwsLambdaSQSEndpointConfiguration("AwsLambdaSQSTrigger");
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddAwsLambdaSQSEndpoint("endpoint-name", (endpointConfiguration, _) =>
+            {
+                endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        //customize configuration here
-
-        return endpointConfiguration;
-    });
+                //additional endpoint configuration
+            });
+        }
+    }
 
     #endregion
 
     #region aws-function-definition
 
+    [LambdaFunction]
+    [SQSEvent("arn:aws:sqs:region:account:endpoint-name")]
     public async Task FunctionHandler(SQSEvent evnt, ILambdaContext context)
     {
-        var cancellationDelay = context.RemainingTime.Subtract(TimeSpan.FromSeconds(10));
-        using var cancellationTokenSource = new CancellationTokenSource(cancellationDelay);
+        using var cancellationTokenSource =
+            new CancellationTokenSource(context.RemainingTime.Subtract(DefaultRemainingTimeGracePeriod));
 
-        await endpoint.Process(evnt, context, cancellationTokenSource.Token);
+        await serverlessEndpoint.Process(evnt, context, cancellationTokenSource.Token);
     }
+
+    static readonly TimeSpan DefaultRemainingTimeGracePeriod = TimeSpan.FromSeconds(10);
 
     #endregion
 
@@ -89,5 +107,5 @@ class Usage
         #endregion
     }
 
-    class ACommand { }
+    class ACommand;
 }
