@@ -5,8 +5,6 @@ VisualStudioVersion = 17.8.34219.65
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_7", "Core_7\Core_7.csproj", "{B3FD8163-201D-4C85-B70F-C96A59CC682A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core_7.2", "Core_7.2\Core_7.2.csproj", "{2327BA4F-D06D-44FE-B61F-3DF9259F5BEC}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NonDurablePersistence_1", "NonDurablePersistence_1\NonDurablePersistence_1.csproj", "{624795B0-62BE-49F7-B01E-30C0471F4C8E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NonDurablePersistence_2", "NonDurablePersistence_2\NonDurablePersistence_2.csproj", "{FFDA5F8B-FE3F-4656-BAB5-8B7CE7CAB44B}"
@@ -23,10 +21,6 @@ Global
 		{B3FD8163-201D-4C85-B70F-C96A59CC682A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B3FD8163-201D-4C85-B70F-C96A59CC682A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B3FD8163-201D-4C85-B70F-C96A59CC682A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2327BA4F-D06D-44FE-B61F-3DF9259F5BEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2327BA4F-D06D-44FE-B61F-3DF9259F5BEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2327BA4F-D06D-44FE-B61F-3DF9259F5BEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2327BA4F-D06D-44FE-B61F-3DF9259F5BEC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{624795B0-62BE-49F7-B01E-30C0471F4C8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{624795B0-62BE-49F7-B01E-30C0471F4C8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{624795B0-62BE-49F7-B01E-30C0471F4C8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
