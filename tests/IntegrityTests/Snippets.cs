@@ -30,9 +30,7 @@ public class Snippets
                     .Where(name => Regex.IsMatch(name, @"\d+\.\d+$"))
                     .ToArray();
 
-                var functionsException = Path.GetFileName(path) is "ASBFunctionsWorker.sln" or "ASBFunctions.sln";
-
-                if (incorrect.Any() && !functionsException)
+                if (incorrect.Any())
                 {
                     string incorrectVersions = string.Join(", ", incorrect);
                     return (false, $"Invalid snippet directories based on minor versions {incorrectVersions} which must be moved to the snippet directory for the corresponding major version(s).");
