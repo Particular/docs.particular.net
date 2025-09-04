@@ -7,7 +7,7 @@ reviewed: 2025-04-08
 
 The topology used by the transport is composed of several AWS components.
 
-partial: pub-sub-diagram
+![Topology with native pub/sub](topology-native-pub-sub.png)
 
 ## SQS
 

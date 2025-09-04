@@ -16,7 +16,7 @@ class XmlUsage
                 new XmlJsonConverter()
             }
         };
-        var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         serialization.Settings(settings);
 
         #endregion

@@ -557,9 +557,6 @@
         Title: Roslyn analyzers
     - Url: nservicebus/hosting/service-fabric-hosting
       Title: Service Fabric
-      Articles:
-      - Url: nservicebus/hosting/service-fabric-hosting/hosting-gateway
-        Title: Hosting Gateway
     - Url: nservicebus/hosting/publishing-from-web-applications
       Title: Publishing from Web Applications
     - Url: nservicebus/wcf
@@ -1316,8 +1313,6 @@
       Title: Outbox
     - Url: persistence/ravendb/reroute-existing-timeouts
       Title: Reroute existing timeouts
-    - Url: persistence/ravendb/subscription-versioning
-      Title: Subscription versioning
     - Url: persistence/ravendb/dtc
       Title: DTC not supported
     - Url: persistence/ravendb/cluster-configuration

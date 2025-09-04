@@ -15,5 +15,17 @@
 
             #endregion
         }
+
+        #pragma warning disable CS0618 // deprecated API
+        public void CacheSize(EndpointConfiguration endpointConfiguration)
+        {
+            #region GatewayDeduplicationCacheSize
+
+            var persistence = endpointConfiguration.UsePersistence<InMemoryPersistence, StorageType.GatewayDeduplication>();
+            persistence.GatewayDeduplicationCacheSize(50000);
+
+            #endregion
+        }
+        #pragma warning restore CS0618
     }
 }

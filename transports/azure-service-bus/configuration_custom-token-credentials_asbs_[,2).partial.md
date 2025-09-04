@@ -1,3 +1,0 @@
- ### Token-credentials
- 
- * `CustomTokenProvider(ITokenProvider)`: Allows replacement of the default token provider, which uses the shared secret in the connection string for authentication. This opens up additional authentication mechanisms such as [shared access signatures](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-sas), [SAML, Oauth, SWT, windows authentication](https://docs.microsoft.com/en-us/dotnet/api/microsoft.servicebus.tokenprovider?view=azure-dotnet), [managed identities for Azure resources](https://docs.microsoft.com/en-us/azure/service-bus-messaging/service-bus-managed-service-identity), or even custom implementations.

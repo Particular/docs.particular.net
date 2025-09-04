@@ -64,8 +64,6 @@ The following methods are deprecated and will throw a `NotImplementedException` 
 
 Subscription versioning now does not include the message assembly version _by default_. Systems using the `DisableSubscriptionVersioning()` method (the new default) can safely remove this call as it is no longer needed.
 
-See the [subscription versioning for NServiceBus.RavenDB version 5](/persistence/ravendb/subscription-versioning.md?version=raven_4) for more details.
-
 
 ## Legacy document conventions cannot be used
 
@@ -108,7 +106,24 @@ In this case, `TimeoutDatas` and `OrderSagaDatas` match the pluralization rule a
 
 The following snippet will create a document id convention that will allow the older documents to be loaded by RavenDB Persistence:
 
-snippet: 5to6-LegacyDocumentIdConventions
+```csharp
+Func<Type, string> defaultConvention = documentStore.Conventions.FindCollectionName;
+
+documentStore.Conventions.FindCollectionName = type =>
+{
+    if (type == typeof(ShippingSagaData))
+    {
+        return "";
+    }
+
+    if (type == typeof(ShippingPolicy))
+    {
+        return "";
+    }
+
+    return defaultConvention(type);
+};
+```
 
 Since conversion to RavenDB 4.x requires downtime for data migration anyway, it's always preferable to perform several test runs to ensure that older documents can be loaded correctly.
 

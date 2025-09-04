@@ -1,1 +1,0 @@
-snippet: asb-function-hostbuilder

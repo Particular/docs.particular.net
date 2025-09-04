@@ -2,16 +2,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31919.166
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASBFunctions_1.0", "ASBFunctions_1.0\ASBFunctions_1.0.csproj", "{A491A83E-174A-4639-B55E-72ED39DD955C}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASBFunctions_1.1", "ASBFunctions_1.1\ASBFunctions_1.1.csproj", "{1BFAABE2-404D-4260-BD7D-B024E2F2D065}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASBFunctions_1.2", "ASBFunctions_1.2\ASBFunctions_1.2.csproj", "{E20E85F3-B166-43C5-B34F-3ABA9C529412}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASBFunctions_1.3", "ASBFunctions_1.3\ASBFunctions_1.3.csproj", "{73C5B4E5-0181-49C6-B182-9D19EFF5DE0A}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASBFunctions_2", "ASBFunctions_2\ASBFunctions_2.csproj", "{097FFDBE-CEFE-45F6-B804-55E9F470CFA8}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASBFunctions_3", "ASBFunctions_3\ASBFunctions_3.csproj", "{4551DD1E-9CD3-41E4-9E16-28470102CDC7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASBFunctions_4", "ASBFunctions_4\ASBFunctions_4.csproj", "{1C0F66B6-2590-4C72-8467-3066779294D5}"
@@ -28,26 +18,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A491A83E-174A-4639-B55E-72ED39DD955C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A491A83E-174A-4639-B55E-72ED39DD955C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A491A83E-174A-4639-B55E-72ED39DD955C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A491A83E-174A-4639-B55E-72ED39DD955C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1BFAABE2-404D-4260-BD7D-B024E2F2D065}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1BFAABE2-404D-4260-BD7D-B024E2F2D065}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1BFAABE2-404D-4260-BD7D-B024E2F2D065}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1BFAABE2-404D-4260-BD7D-B024E2F2D065}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E20E85F3-B166-43C5-B34F-3ABA9C529412}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E20E85F3-B166-43C5-B34F-3ABA9C529412}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E20E85F3-B166-43C5-B34F-3ABA9C529412}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E20E85F3-B166-43C5-B34F-3ABA9C529412}.Release|Any CPU.Build.0 = Release|Any CPU
-		{73C5B4E5-0181-49C6-B182-9D19EFF5DE0A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{73C5B4E5-0181-49C6-B182-9D19EFF5DE0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{73C5B4E5-0181-49C6-B182-9D19EFF5DE0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{73C5B4E5-0181-49C6-B182-9D19EFF5DE0A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{097FFDBE-CEFE-45F6-B804-55E9F470CFA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{097FFDBE-CEFE-45F6-B804-55E9F470CFA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{097FFDBE-CEFE-45F6-B804-55E9F470CFA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{097FFDBE-CEFE-45F6-B804-55E9F470CFA8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4551DD1E-9CD3-41E4-9E16-28470102CDC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4551DD1E-9CD3-41E4-9E16-28470102CDC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4551DD1E-9CD3-41E4-9E16-28470102CDC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
