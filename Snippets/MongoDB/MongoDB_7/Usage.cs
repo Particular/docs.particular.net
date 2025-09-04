@@ -53,6 +53,16 @@ public class Usage
         #endregion
     }
 
+    void DisableReadFallback(EndpointConfiguration endpointConfiguration)
+    {
+        #region MongoDBDisableReadFallback
+
+        var outbox = endpointConfiguration.EnableOutbox();
+        outbox.DisableReadFallback();
+
+        #endregion
+    }
+
     void DisableInstaller(EndpointConfiguration endpointConfiguration)
     {
         #region MongoDBDisableInstaller

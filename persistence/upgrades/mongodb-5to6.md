@@ -40,9 +40,9 @@ Starting with this version, outbox records include a partition key (defaulting t
 - Old records will continue to expire according to the configured time to keep deduplication data.
 - If desired, the fallback reads can be disabled once no legacy records remain.
 
-This change prepares outbox collections for future scaling scenarios, including sharding.
-
 For the new endpoints, it is recommended to disable the fallback reads.
+
+snippet: MongoDBDisableReadFallback
 
 For the existing endpoints, fallback reads should be enabled until at least the configured time to keep deduplication data has passed. Note that:
 

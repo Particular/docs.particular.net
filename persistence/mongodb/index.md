@@ -105,6 +105,8 @@ When the outbox is enabled, the deduplication data is kept for seven days by def
 
 snippet: MongoDBOutboxCleanup
 
+partial: outboxfallback
+
 ## Saga concurrency
 
 When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled and contains guidance for high-load scenarios.
