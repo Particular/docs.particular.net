@@ -51,9 +51,6 @@
                 {
                     await endpoint.Stop();
                 }
-
-                await DeleteEndpointQueues.DeleteQueuesForEndpoint(endpointName, includeRetries: true);
-                await QueueDeletionUtils.DeleteQueue(errorQueueName);
             }
         }
 
