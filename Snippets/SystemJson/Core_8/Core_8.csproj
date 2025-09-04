@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
+    <RootNamespace>Core_8.1</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
