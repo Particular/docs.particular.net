@@ -41,13 +41,41 @@ public record YourKeyValue(string? someValueThatMightBeNull = null);
 
 This is section is relevant for projects that have nullability enabled.
 
-The APIs below have been modified to accomodate to receive nullable parameters.
+#### Inputs
 
-| API |
+The APIs below have been modified to accomodate to be able to receive nullable parameters.
+
+| API | 
 |---|
 |`sendOptions.StartNewConversation`|
-|``|
+|`CriticalError`|
+|`endpointConfiguration.EnableInstallers`|
+|`logger.Debug`|
+|`logger.DebugFormat`|
+|`logger.Error`|
+|`logger.ErrorFormat`|
+|`logger.Fatal`|
+|`logger.FatalFormat`|
+|`logger.Info`|
+|`logger.InfoFormat`|
+|`logger.Warn`|
+|`logger.WarnFormat`|
 
+#### Outputs
+
+The APIs below have been modified to return nullable values.
+
+| API | 
+|---|
+|`routingOptions.GetDestination(this NServiceBus.ReplyOptions options)`|
+|`routingOptions.GetDestination(this NServiceBus.SendOptions options)`|
+|`routingOptions.GetReplyToRoute(this NServiceBus.ReplyOptions options)`|
+|`routingOptions.GetReplyToRoute(this NServiceBus.SendOptions options)`|
+|`routingOptions.GetRouteToSpecificInstance(this NServiceBus.SendOptions options)`|
+
+## StartupDiagnosticEntry has required properties
+
+The properties `Data` and `Name` of `StartupDiagnosticEntry` have been marked as required.
 
 ## NServiceBus.DataBus is now a separated package called NServiceBus.ClaimCheck
 
@@ -77,3 +105,20 @@ Changing from using `DataBusProperty<T>` to specifying conventions for the claim
 If message contracts are in a versioned library that has been migrated to `ClamCheckProperty<T>`, then NServiceBus.DataBus endpoints can remain on an older version of the contracts library until they can be upgraded to NServiceBus.ClaimCheck.
 
 If message contracts are not in a versioned library, a local copy of the messages can be made to facilitate the transition. In this case it is imperative that all class names, namespaces, and property names are exactly the same to make sure the message can be properly deserialized when it is received.
+
+## NServiceBus.Persistence changes
+
+### ICompletableSynchronizedStorageSession also implements IAsyncDisposable
+
+ICompletableSynchronizedStorageSession also implements IAsyncDisposable
+
+## NServiceBus.Pipeline changes
+
+### Nullable Inputs
+
+The APIs below have been modified to accomodate to be able to receive nullable parameters.
+
+| API | 
+|---|
+|`context.TryGetIncomingPhysicalMessage`|
+
