@@ -1316,8 +1316,6 @@
       Title: Outbox
     - Url: persistence/ravendb/reroute-existing-timeouts
       Title: Reroute existing timeouts
-    - Url: persistence/ravendb/subscription-versioning
-      Title: Subscription versioning
     - Url: persistence/ravendb/dtc
       Title: DTC not supported
     - Url: persistence/ravendb/cluster-configuration
