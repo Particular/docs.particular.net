@@ -1,7 +1,7 @@
 using System;
 using NServiceBus;
 
-public class Usage
+public class UsageFrom73
 {
     void DisablePayloadSigning(EndpointConfiguration endpointConfiguration, string bucketName, string keyPrefix)
     {
