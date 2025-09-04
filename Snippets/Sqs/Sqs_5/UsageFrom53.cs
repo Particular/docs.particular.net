@@ -4,7 +4,7 @@ using Amazon.SQS.Model;
 using NServiceBus;
 using NServiceBus.Pipeline;
 
-class Usage
+class UsageFrom53
 {
     void AssumePermissionsOnPolicy(TransportExtensions<SqsTransport> transport)
     {
@@ -47,18 +47,3 @@ class Usage
         #endregion
     }
 }
-
-#region sqs-access-to-native-message
-class AccessToAmazonSqsNativeMessage : Behavior<IIncomingContext>
-{
-    public override Task Invoke(IIncomingContext context, Func<Task> next)
-    {
-        // get the native Amazon SQS message
-        var message = context.Extensions.Get<Message>();
-
-        //do something useful
-
-        return next();
-    }
-}
-#endregion
