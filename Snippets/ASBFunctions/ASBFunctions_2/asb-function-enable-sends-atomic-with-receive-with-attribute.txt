@@ -1,3 +1,0 @@
-﻿startcode asb-function-enable-sends-atomic-with-receive-with-attribute
-[assembly: NServiceBusTriggerFunction("MyEndpoint", SendsAtomicWithReceive = true)]
-endcode
