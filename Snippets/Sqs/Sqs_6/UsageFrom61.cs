@@ -13,8 +13,8 @@ using NServiceBus.Pipeline;
 using NServiceBus.Transport.SQS;
 
 
-class Usage
-{    
+class UsageFrom61
+{
     void DoNotWrapOutgoingMessages(EndpointConfiguration endpointConfiguration)
     {
         #region DoNotWrapOutgoingMessages [6.1,)
@@ -25,5 +25,5 @@ class Usage
 
         endpointConfiguration.UseTransport(transport);
         #endregion
-    }  
+    }
 }
