@@ -7,6 +7,8 @@ reviewed: 2024-11-05
 component: Core
 versions: '[6,9)'
 isLearningPath: true
+redirects:
+ - nservicebus/hosting/service-fabric-hosting/hosting-gateway
 ---
 
 NServiceBus endpoints can be hosted in Service Fabric using any of these three options:
