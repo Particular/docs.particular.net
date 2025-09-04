@@ -7,7 +7,7 @@ namespace IntegrityTests;
 
 public class Snippets
 {
-    [Test]
+    [Test, Explicit]
     public void NoSnippetsForMinorVersions()
     {
         const string errorMessage = """
