@@ -17,7 +17,11 @@ NServiceBus 10 targets .NET 10 only. Go to [supported frameworks and platforms](
 
 ## Nullability
 
-### ContextBag
+Progress has been made to enable nullability accross the API surface.
+
+### Behavioral changes
+
+#### ContextBag
 
 The ContextBag no longer allows storing `null` as a value. In order to store `null` it is required to decorate the value with wrapper class. So instead of
 
@@ -32,6 +36,18 @@ context.Set<string>("YourKey", new YourKeyValue());
 
 public record YourKeyValue(string? someValueThatMightBeNull = null);
 ```
+
+### API changes
+
+This is section is relevant for projects that have nullability enabled.
+
+The APIs below have been modified to accomodate to receive nullable parameters.
+
+| API |
+|---|
+|`sendOptions.StartNewConversation`|
+|``|
+
 
 ## NServiceBus.DataBus is now a separated package called NServiceBus.ClaimCheck
 
