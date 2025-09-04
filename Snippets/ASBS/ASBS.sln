@@ -3,11 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 15.0.26730.12
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASBS_1", "ASBS_1\ASBS_1.csproj", "{D0338149-AD24-4041-AC6B-13FE982A663B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASBS_3", "ASBS_3\ASBS_3.csproj", "{409983F8-1060-47D3-BEB6-AA50659DC78E}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASBS_1.9", "ASBS_1.9\ASBS_1.9.csproj", "{75FAA532-B9F2-4D2B-BD04-03F9249866A1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ASBS_2", "ASBS_2\ASBS_2.csproj", "{CAB20B4A-0876-4002-87E3-D017426504C0}"
 EndProject
@@ -25,18 +21,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D0338149-AD24-4041-AC6B-13FE982A663B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D0338149-AD24-4041-AC6B-13FE982A663B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D0338149-AD24-4041-AC6B-13FE982A663B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D0338149-AD24-4041-AC6B-13FE982A663B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{409983F8-1060-47D3-BEB6-AA50659DC78E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{409983F8-1060-47D3-BEB6-AA50659DC78E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{409983F8-1060-47D3-BEB6-AA50659DC78E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{409983F8-1060-47D3-BEB6-AA50659DC78E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{75FAA532-B9F2-4D2B-BD04-03F9249866A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{75FAA532-B9F2-4D2B-BD04-03F9249866A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{75FAA532-B9F2-4D2B-BD04-03F9249866A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{75FAA532-B9F2-4D2B-BD04-03F9249866A1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CAB20B4A-0876-4002-87E3-D017426504C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CAB20B4A-0876-4002-87E3-D017426504C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CAB20B4A-0876-4002-87E3-D017426504C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
