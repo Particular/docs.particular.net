@@ -216,4 +216,19 @@ class Usage
 
         #endregion
     }
+
+    void DisableDelayedDelivery(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-disable-delayed-delivery
+
+        var rabbitMqTransport = new RabbitMQTransport(
+            routingTopology: RoutingTopology.Conventional(QueueType.Classic),
+            connectionString: "host=localhost;username=rabbitmq;password=rabbitmq",
+            enableDelayedDelivery: false
+        );
+
+        endpointConfiguration.UseTransport(rabbitMqTransport);
+
+        #endregion
+    }
 }
