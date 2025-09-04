@@ -14,6 +14,5 @@
 | [~~5.10.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/5.10.0) | ~~2024-09-27~~ | ~~2024-10-04~~    | ~~Superseded by 5.11.x~~          |
 | [~~5.9.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/5.9.2) | ~~2024-09-11~~ | ~~2024-09-27~~    | ~~Superseded by 5.10.x~~          |
 | [~~5.8.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/5.8.0) | ~~2024-09-04~~ | ~~2024-09-11~~    | ~~Superseded by 5.9.x~~           |
-| [~~5.7.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/5.7.1) | ~~2024-08-26~~ | ~~2024-09-04~~    | ~~Superseded by 5.8.x~~           |
 | [~~4.33.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/4.33.5) | ~~2023-11-20~~ | ~~2024-12-01~~    | ~~Superseded by 5.0.x~~           |
 

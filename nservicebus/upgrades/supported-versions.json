@@ -1141,10 +1141,6 @@
       "PackageId": "ServiceControl.Contracts",
       "Versions": [
         {
-          "Minor": "4.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "5.0",
           "SupportLevel": "Mainstream"
         }
