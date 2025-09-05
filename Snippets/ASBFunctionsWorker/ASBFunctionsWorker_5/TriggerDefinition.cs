@@ -5,6 +5,8 @@ using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
+namespace CustomTriggerDefinition;
+
 #region custom-trigger-definition
 
 class CustomTriggerDefinition
