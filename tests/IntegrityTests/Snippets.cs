@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -37,6 +38,23 @@ public class Snippets
                 }
 
                 return (true, null);
+            });
+    }
+
+    [Test]
+    public void NoMinorVersionsInPartialBoundaries()
+    {
+        const string errorMessage = "Do not use minor versions in partial version boundaries, only majors as integers, i.e. [6,7) [5,) [,9) etc.";
+
+        new TestRunner("*.partial.md", errorMessage)
+            .Run(path =>
+            {
+                var filename = Path.GetFileNameWithoutExtension(Path.GetFileNameWithoutExtension(path));
+                var partialNameSplit = filename.Split('_');
+                var versionPart = partialNameSplit[3];
+                Console.WriteLine(versionPart);
+
+                return !versionPart.Contains(".");
             });
     }
 }
