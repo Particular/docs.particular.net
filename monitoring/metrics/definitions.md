@@ -82,5 +82,14 @@ This metric measures the number of [messages moved to the error queue](/nservice
 
 This metric tracks the number of messages in the main input queue of the endpoint.
 
+### Transactional Session metrics
+
+There are metrics that measure various spects of the [transactioanl session operations](https://docs.particular.net/nservicebus/transactional-session/#how-it-works):
+
+- Commit duration - how long it took to commit the transaction and (optionally) dispatch the control message
+- Dispatch druation - how long it took to dispatch the control message
+- Attempts - how many times the mechanism attempted to process the control message for a given transaction
+- Transit time - how long it took between dispatching the control message and starting to process it again
+
 > [!NOTE]
 > The queue length metric is measured centrally by the [ServiceControl Monitoring instance](/servicecontrol/monitoring-instances) for all transports except MSMQ, which uses a [custom plugin installed at the endpoint](/monitoring/metrics/msmq-queue-length.md). As a result, the NServiceBus.Metrics package does not contain a probe for this metric.
