@@ -6,7 +6,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="9.*" />
-    <PackageReference Include="NServiceBus.Storage.MongoDB" Version="6.0.0-beta.1" />
+    <PackageReference Include="NServiceBus.Storage.MongoDB" Version="6.*" />
     <PackageReference Include="NServiceBus.RabbitMQ" Version="10.*" />
   </ItemGroup>
 </Project>

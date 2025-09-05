@@ -3,6 +3,6 @@
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Storage.MongoDB" Version="6.0.0-beta.1" />
+    <PackageReference Include="NServiceBus.Storage.MongoDB" Version="6.*" />
   </ItemGroup>
 </Project>
