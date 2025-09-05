@@ -6,6 +6,8 @@ component: mongodb
 related:
 - persistence/mongodb
 isUpgradeGuide: true
+upgradeGuideCoreVersions:
+ - 9
 ---
 
 ## Minimum required client version
@@ -16,7 +18,10 @@ The minimum required MongoDB client version has been raised to [3.4.3](https://w
 
 The `TimeToKeepOutboxDeduplicationData` method has been moved to the outbox settings:
 
-snippet: MongoDBOutboxCleanup
+```csharp
+var outbox = endpointConfiguration.EnableOutbox();
+outbox.TimeToKeepOutboxDeduplicationData(TimeSpan.FromDays(30));
+```
 
 ## Installer support
 
@@ -26,7 +31,10 @@ This enables the possibility to take full control over the index creation by lev
 
 When installers are disabled, or when installers are enabled but the persistence installers are disabled with:
 
-snippet: MongoDBDisableInstaller
+```csharp
+var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
+persistence.DisableInstaller();
+```
 
 the persistence assumes that all required infrastructure (including indexes) is already in place. If the necessary indexes are missing, system performance and reliability may be affected.
 
