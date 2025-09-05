@@ -1,7 +1,7 @@
 ---
 title: Collecting usage data using legacy Endpoint Throughput Counter tool
 summary: Use the Particular endpoint throughput counter tool to measure the usage of an NServiceBus system.
-reviewed: 2024-05-22
+reviewed: 2025-09-04
 related:
   - servicepulse/usage
 redirects:
@@ -14,13 +14,6 @@ redirects:
   - nservicebus/throughput-tool/determine-transport
   - nservicebus/throughput-tool/faq
 ---
-
-> [!WARNING]
-> Starting 1 January 2026, it will become mandatory for all projects in active development to use [ServicePulse](./../../servicepulse/usage.md) for usage data collection. Once configured, ServicePulse provides the ability to report throughput instantly at any time, without needing to run an external tool or wait for data collection.
->
-> The legacy endpoint throughput counter tool is offered as an alternate option for customers that aren't able to use ServicePulse. If you have any issues installing ServicePulse in your environment, please reach out so we can help find a path forward.
->
-> If necessary, [open a support case](https://customers.particular.net/request-support/licensing) to get help with installing or configuring ServicePulse for usage data collection.
 
 The Particular endpoint throughput counter tool can typically be installed on a [user's workstation](#frequently-asked-questions-does-the-tool-need-to-run-on-my-production-server) and run against a production system to measure the throughput of each endpoint over a period of time.
 
