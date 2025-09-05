@@ -4,6 +4,7 @@ component: mongodb
 versions: '[2,)'
 related:
 - samples/mongodb
+- samples/outbox/mongodb
 redirects:
 - persistence/mongodb-tekmaven
 - nservicebus/messaging/databus/mongodb-tekmaven
@@ -45,6 +46,8 @@ snippet: MongoDBClient
 Specify the database to use for NServiceBus documents using the following configuration API:
 
 snippet: MongoDBDatabaseName
+
+partial: provider
 
 ## Transactions
 
@@ -89,20 +92,21 @@ snippet: MongoDBSharedTransactionDI
 
 The `TestableMongoSynchronizedStorageSession` class in the `NServiceBus.Testing` namespace has been provided to facilitate [testing a handler](/nservicebus/testing/) that utilizes the shared transaction feature.
 
-## Outbox 
+## Outbox
 
 ## Storage format
 
 Outbox record documents are stored in a collection called `outboxrecord`.
 
-> [!WARNING]
-> Outbox documents are not separated by endpoint name which means that it's not supported for multiple logical endpoints to share the same database since [message identities are not unique across endpoints from a processing perspective](/nservicebus/outbox/#message-identity).
+partial: outboxstorage
 
 ### Outbox cleanup
 
 When the outbox is enabled, the deduplication data is kept for seven days by default. To customize this time frame, use the following API:
 
 snippet: MongoDBOutboxCleanup
+
+partial: outboxfallback
 
 ## Saga concurrency
 
@@ -135,3 +139,7 @@ MongoDB.Driver.MongoCommandException: Command update failed: WriteConflict.
 ```
 
 include: saga-concurrency
+
+## Installer
+
+partial: installer

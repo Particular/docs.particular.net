@@ -1,0 +1,38 @@
+name: outbox
+services:
+  rabbit:
+    image: rabbitmq:3-management
+    environment:
+      RABBITMQ_DEFAULT_USER: rabbitmq
+      RABBITMQ_DEFAULT_PASS: rabbitmq
+      RABBITMQ_DEFAULT_VHOST: /
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    command: ["--replSet", "tr0", "--bind_ip_all"]
+    ports:
+      - "27017:27017"
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+
+  mongodb-init:
+    image: mongo:6.0
+    container_name: mongodb-init
+    depends_on:
+      mongodb:
+        condition: service_healthy
+    # One-shot container to initialize the single-node replica set
+    entrypoint:
+      [
+        "bash",
+        "-lc",
+        "mongosh --host mongodb:27017 --eval \"rs.initiate({_id:'tr0', members:[{_id:0, host:'127.0.0.1:27017'}]})\" || echo 'Replica set already initialized.'"
+      ]
+    restart: "no"

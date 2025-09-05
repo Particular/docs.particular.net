@@ -1157,6 +1157,8 @@
       Articles:
       - Url: persistence/upgrades/mongodb-4to5
         Title: Version 4 to 5
+      - Url: persistence/upgrades/mongodb-5to6
+        Title: Version 5 to 6        
     - Title: RavenDB
       Articles:
       - Url: persistence/upgrades/ravendb-9to10
