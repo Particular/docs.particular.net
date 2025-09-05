@@ -62,6 +62,8 @@ flowchart LR
 
 - **Azure Storage Service**: When using native ABAC for Azure, the Azure Storage platform itself acts as the PEP, blocking or allowing requests to blobs or queues based on conditions.  
 
+![Azure Storage Service ABAC](azure-abac-conditions.png "width=800")
+
 - **NServiceBus Message Handler**: The handler code intercepts the command before executing business logic. For example:
 
 snippet: abac-pep-as-nservicebus-handleer
@@ -74,6 +76,8 @@ snippet: abac-pep-as-nservicebus-behavior
 
 - **Azure Storage Service**: For native ABAC in Azure, the storage service acts as the PDP, evaluating the condition on a role assignment.
 
+The below condition will give the Service Principle (Subject) access to the Azure Storage Queue (Resource) if the Service Principle contains an attribute of `Regional_region`, and the Azure Storage Queue's name contains the value of the Service Principle's attribute.
+
 ![Azure Storage Queue ABAC](azure-abac-queue-rules.png "width=800")
 
 - **A Custom C# Service**: A dedicated class (e.g., `AuthorizationService`) in your application that contains the business rule logic.  
@@ -81,7 +85,10 @@ snippet: abac-pep-as-nservicebus-behavior
 
 **PIP (Policy Information Point)** - The PIP is any source that provides the attributes needed for the decision.  
 
-- **Azure Entra ID**: The primary PIP for user and application identity attributes (e.g., group membership, custom security attributes), queried via the **Microsoft Graph API**.  
+- **Azure Entra ID**: The primary PIP for user and application identity attributes (e.g., group membership, custom security attributes), queried via the **Microsoft Graph API**.
+
+![Azure Entra ID Attributes](attribute-values-examples.png "width=800")
+
 - **NServiceBus Message**: The message body and headers are a crucial PIP, providing context about the action and its parameters. For example:
 
 snippet: abac-pip-as-nservicebus-behavior
@@ -94,14 +101,13 @@ snippet: abac-pip-as-nservicebus-behavior
 
 - **The Azure Portal**: The primary PAP for managing Azure's native ABAC. This is where you assign roles with conditions and define custom security attributes.
 
-> [!NOTE]
-> NServiceBus is an unopinionated messaging framework. Authorization is considered a **business-specific, cross-cutting concern** and would be highly opinionated. It’s recommended to extend its functionality to allow building of specific ABAC systems to fit business needs.
+![Azure Portal Add Attributes](project-attribute-add.png "width=800")
 
-## Applications
+## Application
 
-Below are example scenarios where Azure ABAC could be used to solve the challenges with RBAC in distributed systems, using NServiceBus, native ABAC support for Azure Storage Queues and Azure Blob Storage, and Azure Entra ID with security attributes.
+Below are example scenarios where Azure ABAC could be used to solve the challenges with RBAC in distributed systems using NServiceBus, native ABAC support for Azure Storage Queues and Azure Blob Storage, and Azure Entra ID with security attributes.
 
-- Enforcing Data Residency with Region-Specific Queues  
+- [Enforcing Data Residency with Region-Specific Queues](/architecture/azure/azure-abac-auth.md#application-scenario-enforcing-data-residency-with-region-specific-queues)
 - Attribute-Scoped Log Processing  
 - Just-in-Time Check for Purchase Approval Authority
 
@@ -120,9 +126,9 @@ This scenario ensures that data subject to residency laws is only processed by s
 - ✅ Azure ABAC with Custom Security Attributes
 - ✅ NServiceBus Endpoints and Messages
 
-**The Problem ⚠️**: A global company uses a single system to process customer orders. An order from France must be processed by a service running in a European data center. A new queue is created for each region processor. The company will end up managing **N** individual permissions for **N** processors. This could potentially scale up in other scenarios to hundreds, leading to an *unmanageable proliferation of fine-grained access roles to accommodate complex distributed systems.
+**The Problem ⚠️**: A global company uses a single system to process customer orders. An order from France must be processed by a service running in a European data center. A new queue is created for each region processor. The company will end up managing **N** individual permissions for **N** processors. This could potentially scale up in other scenarios to hundreds, leading to an _unmanageable proliferation of fine-grained access roles_ to accommodate complex distributed systems.
 
-**The Solution** ✅: The solution is to route messages to region-specific Azure Storage Queues and use native Azure ABAC to strictly enforce that only regional processor endpoints can access their corresponding queue. This is achieved by giving all processors permissions to all queues and conditionally allowing these processes access to queues based on their region attribute. This allows for a single permission to be applied for N processors and queues. e.g.
+**The Solution** ✅: The solution is to route messages to region-specific Azure Storage Queues and use native Azure ABAC to strictly enforce that only regional processor endpoints can access their corresponding queue. This is achieved by giving all processors permissions to all queues and conditionally allowing these processes access to queues based on their region attribute. This allows for a single permission to be applied for **N** processors and queues. For example:
 
 1. **Attribute-Based Routing**: A central "Router" endpoint receives all orders. It inspects a `region` attribute in the message (`region = 'eu'`) and forwards the message to a dedicated Azure Storage Queue, such as **`orders-eu`**.  
 2. **Application Attributes (PAP)**: Each regional processor endpoint runs with its own **Azure Service Principal or Managed Identity**. In Azure Entra ID, these identities are assigned a custom security attribute defining their location, such as `region = 'eu'`.  
