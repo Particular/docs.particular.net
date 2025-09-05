@@ -50,7 +50,10 @@ Starting with this version, outbox records include a partition key (defaulting t
 
 For the new endpoints, it is recommended to disable the fallback reads.
 
-snippet: MongoDBDisableReadFallback
+```csharp
+var outbox = endpointConfiguration.EnableOutbox();
+outbox.DisableReadFallback();
+```
 
 For the existing endpoints, fallback reads should be enabled until at least the configured time to keep deduplication data has passed. Note that:
 
