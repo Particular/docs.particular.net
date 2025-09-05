@@ -4,6 +4,7 @@ component: mongodb
 versions: '[2,)'
 related:
 - samples/mongodb
+- samples/outbox/mongodb
 redirects:
 - persistence/mongodb-tekmaven
 - nservicebus/messaging/databus/mongodb-tekmaven
