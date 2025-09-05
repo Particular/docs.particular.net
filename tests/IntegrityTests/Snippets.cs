@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -30,15 +31,30 @@ public class Snippets
                     .Where(name => Regex.IsMatch(name, @"\d+\.\d+$"))
                     .ToArray();
 
-                var functionsException = Path.GetFileName(path) is "ASBFunctionsWorker.sln" or "ASBFunctions.sln";
-
-                if (incorrect.Any() && !functionsException)
+                if (incorrect.Any())
                 {
                     string incorrectVersions = string.Join(", ", incorrect);
                     return (false, $"Invalid snippet directories based on minor versions {incorrectVersions} which must be moved to the snippet directory for the corresponding major version(s).");
                 }
 
                 return (true, null);
+            });
+    }
+
+    [Test]
+    public void NoMinorVersionsInPartialBoundaries()
+    {
+        const string errorMessage = "Do not use minor versions in partial version boundaries, only majors as integers, i.e. [6,7) [5,) [,9) etc.";
+
+        new TestRunner("*.partial.md", errorMessage)
+            .Run(path =>
+            {
+                var filename = Path.GetFileNameWithoutExtension(Path.GetFileNameWithoutExtension(path));
+                var partialNameSplit = filename.Split('_');
+                var versionPart = partialNameSplit[3];
+                Console.WriteLine(versionPart);
+
+                return !versionPart.Contains(".");
             });
     }
 }
