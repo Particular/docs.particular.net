@@ -1,0 +1,3 @@
+startcode asb-function-isolated-identity-connection
+[assembly: NServiceBusTriggerFunction("WorkerDemoEndpoint", Connection = "MyConnectionName")]
+endcode
