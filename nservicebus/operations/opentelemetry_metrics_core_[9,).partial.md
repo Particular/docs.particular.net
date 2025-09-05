@@ -18,5 +18,9 @@ snippet: opentelemetry-enablemeters
 - [`nservicebus.recoverability.immediate`](/monitoring/metrics/definitions.md#metrics-captured-immediate-retries) - Total number of immediate retries requested
 - [`nservicebus.recoverability.delayed`](/monitoring/metrics/definitions.md#metrics-captured-delayed-retries) - Total number of delayed retries requested
 - [`nservicebus.recoverability.error`](/monitoring/metrics/definitions.md#metrics-captured-moved-to-error-queue) - Total number of messages sent to the error queue
+- [`nservicebus.transactional_session.commit.duration`](/monitoring/metrics/definitions.md#transactional-session-metrics) - The time the endpoint takes to commit the session in the Transactional Session
+- [`nservicebus.transactional_session.dispatch.duration`](/monitoring/metrics/definitions.md#transactional-session-metrics) - The time the endpoint takes to dispatch the control message in the Transactional Session
+- [`nservicebus.transactional_session.control_message.attempts`](/monitoring/metrics/definitions.md#transactional-session-metrics) - Total number of attempts to process the control message in the Transactional Session
+- [`nservicebus.transactional_session.control_message.transit_time`](/monitoring/metrics/definitions.md#transactional-session-metrics) - The time between dispatching the control message and starting to process it in the Transactional Session
 
 See the [OpenTelemetry samples](/samples/open-telemetry/) for instructions on how to send metric information to different tools.
