@@ -108,8 +108,8 @@ snippet: abac-pip-as-nservicebus-behavior
 Below are example scenarios where Azure ABAC could be used to solve the challenges with RBAC in distributed systems using NServiceBus, native ABAC support for Azure Storage Queues and Azure Blob Storage, and Azure Entra ID with security attributes.
 
 - [Enforcing Data Residency with Region-Specific Queues](/architecture/azure/azure-abac-auth.md#application-scenario-enforcing-data-residency-with-region-specific-queues)
-- Attribute-Scoped Log Processing  
-- Just-in-Time Check for Purchase Approval Authority
+- [Just-in-Time Check for Purchase Approval Authority](/architecture/azure/azure-abac-auth.md#application-scenario-just-in-time-check-for-purchase-approval-authority)
+- [Attribute-Scoped Log Processing](/architecture/azure/azure-abac-auth.md#application-scenario-attribute-scoped-log-processing-with-nservicebus)
 
 ### Scenario: Enforcing Data Residency with Region-Specific Queues
 
@@ -129,6 +129,61 @@ This scenario ensures that data subject to residency laws is only processed by s
 **The Problem ⚠️**: A global company uses a single system to process customer orders. An order from France must be processed by a service running in a European data center. A new queue is created for each region processor. The company will end up managing **N** individual permissions for **N** processors. This could potentially scale up in other scenarios to hundreds, leading to an _unmanageable proliferation of fine-grained access roles_ to accommodate complex distributed systems.
 
 **The Solution** ✅: The solution is to route messages to region-specific Azure Storage Queues and use native Azure ABAC to strictly enforce that only regional processor endpoints can access their corresponding queue. This is achieved by giving all processors permissions to all queues and conditionally allowing these processes access to queues based on their region attribute. This allows for a single permission to be applied for **N** processors and queues. For example:
+
+```mermaid
+flowchart TB
+    subgraph "Order Sources"
+        EU[EU Customer Order]
+        NA[NA Customer Order]
+        APAC[APAC Customer Order]
+    end
+
+    subgraph "Central Router"
+        Router[Router Endpoint<br/>Inspects region attribute]
+    end
+
+    subgraph "Azure Storage Queues"
+        QEU[orders-eu Queue]
+        QNA[orders-na Queue]
+        QAPAC[orders-apac Queue]
+    end
+
+    subgraph "Regional Processors"
+        PEU[EU Processor<br/>Service Principal<br/>region='eu']
+        PNA[NA Processor<br/>Service Principal<br/>region='na']
+        PAPAC[APAC Processor<br/>Service Principal<br/>region='apac']
+    end
+
+    subgraph "Azure ABAC"
+        ABAC[["ABAC Policy<br/>Allow access if:<br/>processor.region == queue.name"]]
+    end
+
+    EU --> Router
+    NA --> Router
+    APAC --> Router
+
+    Router -->|"region='eu'"| QEU
+    Router -->|"region='na'"| QNA
+    Router -->|"region='apac'"| QAPAC
+
+    QEU -.->|Check Access| ABAC
+    QNA -.->|Check Access| ABAC
+    QAPAC -.->|Check Access| ABAC
+
+    ABAC ==>|"✅ Allowed"| PEU
+    ABAC ==>|"✅ Allowed"| PNA
+    ABAC ==>|"✅ Allowed"| PAPAC
+
+    PEU -->|Process| QEU
+    PNA -->|Process| QNA
+    PAPAC -->|Process| QAPAC
+
+    style ABAC fill:#e1f5fe
+    style Router fill:#fff3e0
+    style QEU fill:#f3e5f5
+    style QNA fill:#f3e5f5
+    style QAPAC fill:#f3e5f5
+```
 
 1. **Attribute-Based Routing**: A central "Router" endpoint receives all orders. It inspects a `region` attribute in the message (`region = 'eu'`) and forwards the message to a dedicated Azure Storage Queue, such as **`orders-eu`**.  
 2. **Application Attributes (PAP)**: Each regional processor endpoint runs with its own **Azure Service Principal or Managed Identity**. In Azure Entra ID, these identities are assigned a custom security attribute defining their location, such as `region = 'eu'`.  
@@ -158,7 +213,53 @@ This scenario involves a manager whose spending authority is reduced after they 
 
 **The Problem ⚠️**: A manager is in the `Manager-Tier-2` role, which allows approvals up to $5,000. At 2:00 PM, they approve a purchase of $4,500, and a command is sent to a queue. At 9:00 AM the next day, due to budget cuts, the manager is moved to the `Manager-Tier-1` role (approvals up to $1,000). When the message is processed later that morning, a system that only validated the user's role at the time of submission would incorrectly approve the $4,500 purchase, violating the new business rule.
 
-**The Solution** ✅: The solution is to decouple the request from the approval by checking the user's *current* attributes at the exact moment of processing. e.g.
+**The Solution** ✅: The solution is to decouple the request from the approval by checking the user's _current_ attributes at the exact moment of processing. For example:
+
+```mermaid
+flowchart TB
+    subgraph "Tuesday 2:00 PM"
+        Manager1["Manager<br/>SpendingLimit=$5,000"]
+        Submit1["Submit Purchase<br/>Amount=$4,500"]
+        Manager1 --> Submit1
+    end
+    subgraph "Message Queue"
+        Queue["ProcessPurchase Command<br/>Amount=$4,500<br/>ApproverUserId=Manager123"]
+        Submit1 --> Queue
+    end
+    subgraph "Wednesday 9:00 AM"
+        Admin[Administrator]
+        Update["Update Manager Attribute<br/>SpendingLimit=$1,000"]
+        Admin --> Update
+    end
+    subgraph "Azure Entra ID - PAP/PIP"
+        Attributes["Manager Attributes<br/>SpendingLimit=$1,000<br/>❌ Was $5,000"]
+        Update --> Attributes
+    end
+    subgraph "Wednesday 10:00 AM - Message Processing"
+        Handler["Message Handler<br/>PEP"]
+        Queue -.->|Pick up message| Handler
+
+        Check{"Just-in-Time Check<br/>PDP"}
+        Handler -->|1. Extract Amount=$4,500<br/>2. Extract ApproverUserId| Check
+
+        Attributes -.->|3. Query current<br/>SpendingLimit| Check
+
+        Decision{"Amount ≤ SpendingLimit?<br/>$4,500 ≤ $1,000?"}
+        Check --> Decision
+
+        Approved["✅ Process Purchase"]
+        Denied["❌ Reject Purchase<br/>Send to Error Queue"]
+
+        Decision -->|NO| Denied
+        Decision -.->|YES| Approved
+    end
+
+    style Attributes fill:#ffe0b2
+    style Denied fill:#ffcdd2
+    style Check fill:#e1f5fe
+    style Handler fill:#fff3e0
+    style Queue fill:#f3e5f5
+```
 
 1. **The Attributes**: The user in Azure Entra ID has a custom security attribute, `SpendingLimit`. The `ProcessPurchase` command sent via NServiceBus contains the `Amount` and the `ApproverUserId`.  
 2. **The Timeline**:  
@@ -191,9 +292,70 @@ This scenario describes a central log processing service that is triggered by NS
 - ✅ Azure ABAC with Custom Security Attributes
 - ✅ NServiceBus Endpoints and Messages
 
-**The Problem ⚠️**: A company has a single NServiceBus endpoint responsible for processing and archiving logs from multiple projects (`Project-Alpha`, `Project-Beta`). Logs are uploaded to a central "ingestion" blob container, and a message is sent to a queue to trigger the processor. With standard RBAC, the log processing service would be granted the `Storage Blob Data Reader` role on the entire container. This *over-allocates permissions*, creating a significant risk. A bug or a misrouted message could cause the service to access and process logs from a project it shouldn't touch, leading to data corruption or a compliance breach.
+**The Problem ⚠️**: A company has a single NServiceBus endpoint responsible for processing and archiving logs from multiple projects (`Project-Alpha`, `Project-Beta`). Logs are uploaded to a central "ingestion" blob container, and a message is sent to a queue to trigger the processor. With standard RBAC, the log processing service would be granted the `Storage Blob Data Reader` role on the entire container. This _over-allocates permissions_, creating a significant risk. A bug or a misrouted message could cause the service to access and process logs from a project it shouldn't touch, leading to data corruption or a compliance breach.
 
-**The Solution** ✅: The solution is to allow NServiceBus to handle the workflow, while Azure's infrastructure handles the security enforcement in real-time. e.g.
+**The Solution** ✅: The solution is to allow NServiceBus to handle the workflow, while Azure's infrastructure handles the security enforcement in real-time. For example:
+
+```mermaid
+flowchart TB
+    subgraph "Log Sources"
+        AppAlpha[Project Alpha<br/>Application]
+        AppBeta[Project Beta<br/>Application]
+    end
+
+    subgraph "Azure Storage - Ingestion Container"
+        BlobAlpha[log-01.txt<br/>Tag: Project='Alpha']
+        BlobBeta[log-02.txt<br/>Tag: Project='Beta']
+    end
+
+    subgraph "NServiceBus Queue"
+        MsgAlpha[ProcessLogCommand<br/>BlobName='log-01.txt']
+        MsgBeta[ProcessLogCommand<br/>BlobName='log-02.txt']
+    end
+
+    subgraph "Log Processor Endpoint"
+        Processor[LogProcessor<br/>Managed Identity<br/>ProjectAssignment='Alpha']
+    end
+
+    subgraph "Azure ABAC - PDP"
+        Policy[["ABAC Condition:<br/>Allow blob access if<br/>blob.Project == identity.ProjectAssignment"]]
+    end
+
+    subgraph "Azure Storage - PEP"
+        Access{Access Check}
+    end
+
+    subgraph "Results"
+        Success["✅ Process log-01.txt<br/>Project Alpha logs"]
+        Denied["❌ Access Denied<br/>to log-02.txt<br/>Project Beta logs"]
+    end
+
+    AppAlpha -->|1. Upload log| BlobAlpha
+    AppAlpha -->|2. Send message| MsgAlpha
+
+    AppBeta -->|1. Upload log| BlobBeta
+    AppBeta -->|2. Send message| MsgBeta
+
+    MsgAlpha -->|3. Pick up message| Processor
+    MsgBeta -.->|Attempt to process| Processor
+
+    Processor -->|4. Request access<br/>to log-01.txt| Access
+    Processor -.->|Request access<br/>to log-02.txt| Access
+
+    Access -->|5. Check attributes| Policy
+    BlobAlpha -.->|Project='Alpha'| Policy
+    BlobBeta -.->|Project='Beta'| Policy
+
+    Policy -->|"6. Alpha == Alpha ✅"| Success
+    Policy -->|"Beta != Alpha ❌"| Denied
+
+    style Policy fill:#e1f5fe
+    style Success fill:#c8e6c9
+    style Denied fill:#ffcdd2
+    style Processor fill:#fff3e0
+    style BlobAlpha fill:#f3e5f5
+    style BlobBeta fill:#f3e5f5
+```
 
 1. **The Workflow**: An application uploads its log file to a central "ingestion" container. After the upload, it sends an NServiceBus command, `ProcessLogCommand { BlobName = 'log-01.txt' }`, to a queue.  
 2. **Resource Attributes**: The uploaded log file is tagged with a **blob index tag** indicating its origin, for example, `Project = 'Alpha'`.  
