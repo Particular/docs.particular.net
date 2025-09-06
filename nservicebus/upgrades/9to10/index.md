@@ -108,9 +108,9 @@ If message contracts are not in a versioned library, a local copy of the message
 
 ## NServiceBus.Persistence changes
 
-### ICompletableSynchronizedStorageSession also implements IAsyncDisposable
+### ICompletableSynchronizedStorageSession and IOutboxTransaction implement IAsyncDisposable
 
-ICompletableSynchronizedStorageSession also implements IAsyncDisposable
+`ICompletableSynchronizedStorageSession` and `IOutboxTransaction` implement `IAsyncDisposable` to better support asynchronous operations during the disposal of both types. For more information about IAsyncDisposable visit consult the [Implement a DisposeAsync guidelines](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-disposeasync).
 
 ## NServiceBus.Pipeline changes
 
