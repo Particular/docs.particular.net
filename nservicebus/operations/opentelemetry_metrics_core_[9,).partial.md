@@ -1,6 +1,6 @@
 ## Meters
 
-NServiceBus endpoints can be configured to expose metrics related to message processing. To capture meter information, add the `NServiceBus.Core.Pipeline.Incoming` meter source to the OpenTelemetry configuration:
+NServiceBus endpoints can be configured to expose metrics related to message processing. To capture meter information, add the appropriate meter source (e.g., `NServiceBus.Core.Pipeline.Incoming`) to the OpenTelemetry configuration:
 
 > [!NOTE]
 > The metric definitions published by NServiceBus are not yet finalized and could change in a minor release.
@@ -8,6 +8,8 @@ NServiceBus endpoints can be configured to expose metrics related to message pro
 snippet: opentelemetry-enablemeters
 
 ### Emitted meters
+
+Meter source `NServiceBus.Core.Pipeline.Incoming`:
 
 - [`nservicebus.messaging.successes`](/monitoring/metrics/definitions.md#metrics-captured-number-of-messages-successfully-processed) - Total number of messages processed successfully by the endpoint
 - [`nservicebus.messaging.fetches`](/monitoring/metrics/definitions.md#metrics-captured-number-of-messages-pulled-from-queue) - Total number of messages fetched from the queue by the endpoint
@@ -18,6 +20,9 @@ snippet: opentelemetry-enablemeters
 - [`nservicebus.recoverability.immediate`](/monitoring/metrics/definitions.md#metrics-captured-immediate-retries) - Total number of immediate retries requested
 - [`nservicebus.recoverability.delayed`](/monitoring/metrics/definitions.md#metrics-captured-delayed-retries) - Total number of delayed retries requested
 - [`nservicebus.recoverability.error`](/monitoring/metrics/definitions.md#metrics-captured-moved-to-error-queue) - Total number of messages sent to the error queue
+
+Meter source `NServiceBus.TransactionalSession`:
+
 - [`nservicebus.transactional_session.commit.duration`](/monitoring/metrics/definitions.md#metrics-captured-transactional-session-metrics) - The time the endpoint takes to commit the session in the Transactional Session
 - [`nservicebus.transactional_session.dispatch.duration`](/monitoring/metrics/definitions.md#metrics-captured-transactional-session-metrics) - The time the endpoint takes to dispatch the control message in the Transactional Session
 - [`nservicebus.transactional_session.control_message.attempts`](/monitoring/metrics/definitions.md#metrics-captured-transactional-session-metrics) - Total number of attempts to process the control message in the Transactional Session
