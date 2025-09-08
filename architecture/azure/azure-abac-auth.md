@@ -60,7 +60,7 @@ flowchart LR
 
 **PEP (Policy Enforcement Point)** - The PEP is the gatekeeper that intercepts an action and enforces the authorization decision.  
 
-- **Azure Storage Service**: When using native ABAC for Azure, the Azure Storage platform itself acts as the PEP, blocking or allowing requests to blobs or queues based on conditions.  
+- **Azure Storage Service**: When using native ABAC for Azure, the [Azure Storage platform](https://learn.microsoft.com/en-us/azure/role-based-access-control/conditions-role-assignments-portal) itself acts as the PEP, blocking or allowing requests to blobs or queues based on conditions.  
 
 ![Azure Storage Service ABAC](azure-abac-conditions.png "width=800")
 
@@ -74,9 +74,7 @@ snippet: abac-pep-as-nservicebus-behavior
 
 **PDP (Policy Decision Point)** - The PDP is the "brain" that evaluates attributes against policies to make a "Permit" or "Deny" decision.  
 
-- **Azure Storage Service**: For native ABAC in Azure, the storage service acts as the PDP, evaluating the condition on a role assignment.
-
-The below condition will give the Service Principle (Subject) access to the Azure Storage Queue (Resource) if the Service Principle contains an attribute of `Regional_region`, and the Azure Storage Queue's name contains the value of the Service Principle's attribute.
+- **Azure Storage Service**: For native ABAC in Azure, the storage service acts as the PDP, [evaluating the condition](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-auth-abac-examples?tabs=portal-visual-editor) on a role assignment. For example, the below condition will give the Service Principal (Subject) access to the Azure Storage Queue (Resource) if the Service Principal contains an attribute of `Regional_region`, and the Azure Storage Queue's name contains the value of the Service Principal's attribute.
 
 ![Azure Storage Queue ABAC](azure-abac-queue-rules.png "width=800")
 
@@ -85,7 +83,7 @@ The below condition will give the Service Principle (Subject) access to the Azur
 
 **PIP (Policy Information Point)** - The PIP is any source that provides the attributes needed for the decision.  
 
-- **Azure Entra ID**: The primary PIP for user and application identity attributes (e.g., group membership, custom security attributes), queried via the **Microsoft Graph API**.
+- **Azure Entra ID**: The primary PIP for [user and application identity attributes](https://learn.microsoft.com/en-us/entra/identity/users/users-custom-security-attributes?tabs=ms-powershell) (e.g., group membership, custom security attributes), queried via the **Microsoft Graph API**.
 
 ![Azure Entra ID Attributes](attribute-values-examples.png "width=800")
 
@@ -93,13 +91,13 @@ The below condition will give the Service Principle (Subject) access to the Azur
 
 snippet: abac-pip-as-nservicebus-behavior
 
-- **Azure Blob Storage Index Tags**: A PIP that provides attributes about the resource itself.
+- **Azure Blob Storage Index Tags**: A PIP that provides [attributes about the resource](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blob-index-how-to?tabs=azure-portal) itself.
 
 ![Azure Storage BLOB Index](azure-abac-storage-blob-index.png "width=800")
 
 **PAP (Policy Administration Point)** - The PAP is the interface or system where policies and attributes are managed.  
 
-- **The Azure Portal**: The primary PAP for managing Azure's native ABAC. This is where you assign roles with conditions and define custom security attributes.
+- **The Azure Portal**: The primary PAP for [managing Azure's native ABAC](https://learn.microsoft.com/en-us/entra/fundamentals/custom-security-attributes-add?tabs=ms-powershell). This is where you assign roles with conditions and define custom security attributes.
 
 ![Azure Portal Add Attributes](project-attribute-add.png "width=800")
 
