@@ -1,12 +1,11 @@
-﻿#pragma warning disable 1998
-namespace Core.Handlers
+﻿namespace Core.Handlers
 {
     using System;
     using System.Collections.Generic;
     using System.Threading.Tasks;
     using NServiceBus;
 
-    #region abac-pep-as-nservicebus-handleer
+    #region abac-pep-as-nservicebus-handler
 
     public class ProcessOrderHandler : IHandleMessages<ProcessOrder>
     {

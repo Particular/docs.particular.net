@@ -6,7 +6,7 @@ namespace Core.Handlers
     using System.Threading.Tasks;
     using NServiceBus;
 
-    #region abac-pep-as-nservicebus-handleer
+    #region abac-pep-as-nservicebus-handler
 
     public class ProcessOrderHandler : IHandleMessages<ProcessOrder>
     {

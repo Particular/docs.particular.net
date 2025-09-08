@@ -8,20 +8,20 @@ callsToAction: ['solution-architect', 'poc-help']
 
 Attribute-Based Access Control ([ABAC](https://learn.microsoft.com/en-gb/azure/role-based-access-control/conditions-overview)) is an authorization system that defines access based on attributes associated with identities, resources, and environment. These attributes can be changed during application runtime, dynamically altering access to resources.
 
-Traditional Role-Based Access Control ([RBAC](https://learn.microsoft.com/en-gb/azure/role-based-access-control/overview)) has a severe limitation for distributed, message-driven architectures in that authorization decisions are based on pre-assigned roles rather than dynamic attributes evaluated at the time of access. This presents unique authorization challenges for distributed systems due to their asynchronous nature, service autonomy, and  [temporal decoupling](/architecture/messaging.md#message-systems). For example,
+Traditional Role-Based Access Control ([RBAC](https://learn.microsoft.com/en-gb/azure/role-based-access-control/overview)) has a severe limitation for distributed, message-driven architectures in that authorization decisions are based on pre-assigned roles rather than dynamic attributes evaluated at the time of access. This presents unique authorization challenges for distributed systems due to their asynchronous nature, service autonomy, and [temporal decoupling](/architecture/messaging.md#message-systems). For example:
 
-- **Temporal permission drift**: Permissions can change between the time a message is sent and when it's ultimately executed in a message handler
-- **Over-provisioned access**: Over allocating permissions to resources to cater for the decoupling of services
-- **Role explosion**: An unmanageable proliferation of fine-grained access roles due to complexity
-- **Content-based routing limitations**: Inability to dynamically route messages based on payload attributes without creating static roles for each route
-- **Queue subscription filtering**: All-or-nothing access to queues, preventing selective message consumption based on attributes like region or customer tier
-- **Saga state authorization**: Cannot enforce different permissions based on long-running saga or workflow states
-- **Message replay control**: No distinction between processing live messages versus replayed ones during error recovery or testing
-- **TTL-based permissions**: Unable to enforce time-sensitive rules like requiring additional approval for aged messages
+- **Temporal permission drift**: Permissions can change between the time a message is sent and when it's ultimately executed in a message handler.
+- **Over-provisioned access**: Over allocating permissions to resources to cater for the decoupling of services.
+- **Role Principle**: An unmanageable proliferation of fine-grained access roles due to complexity.
+- **Content-based routing limitations**: Inability to dynamically route messages based on payload attributes without creating static roles for each route.
+- **Queue subscription filtering**: All-or-nothing access to queues, preventing selective message consumption based on attributes like region or customer tier.
+- **Saga state authorization**: Cannot enforce different permissions based on long-running saga or workflow states.
+- **Message replay control**: No distinction between processing live messages versus replayed ones during error recovery or testing.
+- **TTL-based permissions**: Unable to enforce time-sensitive rules like requiring additional approval for aged messages.
 
 ## ABAC Components using Azure and NServiceBus
 
-Understanding the four core components of ABAC is essential for implementing effective authorization in distributed systems. Each component plays a specific role in the authorization workflow, and in a message-driven architecture, these components are distributed across your application code and Azure services. By mapping these ABAC functions to native Azure and NServiceBus features, you can build a dynamic authorization system that adapts to changing business requirements without the complexity of traditional RBAC.
+Understanding the four core components of ABAC is essential for implementing effective authorization in distributed systems. Each component plays a specific role in the authorization workflow and, in a message-driven architecture, these components are distributed across your application code and Azure services. By mapping these ABAC functions to native Azure and NServiceBus features, a dynamic authorization system can be built that adapts to changing business requirements without the complexity of traditional RBAC.
 
 ```mermaid
 flowchart LR
@@ -66,7 +66,7 @@ flowchart LR
 
 - **NServiceBus Message Handler**: The handler code intercepts the command before executing business logic. For example:
 
-snippet: abac-pep-as-nservicebus-handleer
+snippet: abac-pep-as-nservicebus-handler
 
 - **NServiceBus Custom Pipeline Behavior**: A centralized PEP that can intercept all incoming messages to enforce cross-cutting rules. For example:
 
@@ -78,12 +78,12 @@ snippet: abac-pep-as-nservicebus-behavior
 
 ![Azure Storage Queue ABAC](azure-abac-queue-rules.png "width=800")
 
-- **A Custom C# Service**: A dedicated class (e.g., `AuthorizationService`) in your application that contains the business rule logic.  
+- **A Custom .NET Service**: A dedicated class (e.g. `AuthorizationService`) in your application that contains the business rule logic.  
 - **An Azure Function**: A serverless function that hosts the decision logic, which can be called from your NServiceBus handler.  
 
 **PIP (Policy Information Point)** - The PIP is any source that provides the attributes needed for the decision.  
 
-- **Azure Entra ID**: The primary PIP for [user and application identity attributes](https://learn.microsoft.com/en-us/entra/identity/users/users-custom-security-attributes?tabs=ms-powershell) (e.g., group membership, custom security attributes), queried via the **Microsoft Graph API**.
+- **Azure Entra ID**: The primary PIP for [user and application identity attributes](https://learn.microsoft.com/en-us/entra/identity/users/users-custom-security-attributes?tabs=ms-powershell) (e.g. group membership, custom security attributes), queried via the **Microsoft Graph API**.
 
 ![Azure Entra ID Attributes](attribute-values-examples.png "width=800")
 
@@ -113,20 +113,9 @@ Below are example scenarios where Azure ABAC could be used to solve the challeng
 
 This scenario ensures that data subject to residency laws is only processed by systems located in the correct geographical region.
 
-**Solves**:
+**The Problem**: A global company uses a single system to process customer orders. An order from France must be processed by a service running in a European data center. A new queue is created for each region processor. The company will end up managing **N** individual permissions for **N** processors. This could potentially scale up in other scenarios to hundreds, leading to an _unmanageable proliferation of fine-grained access roles_ to accommodate complex distributed systems.
 
-- ⚠️ An unmanageable proliferation of fine-grained access roles
-
-**By using:**
-
-- ✅ Azure Entra ID
-- ✅ Azure Storage Queues
-- ✅ Azure ABAC with Custom Security Attributes
-- ✅ NServiceBus Endpoints and Messages
-
-**The Problem ⚠️**: A global company uses a single system to process customer orders. An order from France must be processed by a service running in a European data center. A new queue is created for each region processor. The company will end up managing **N** individual permissions for **N** processors. This could potentially scale up in other scenarios to hundreds, leading to an _unmanageable proliferation of fine-grained access roles_ to accommodate complex distributed systems.
-
-**The Solution** ✅: The solution is to route messages to region-specific Azure Storage Queues and use native Azure ABAC to strictly enforce that only regional processor endpoints can access their corresponding queue. This is achieved by giving all processors permissions to all queues and conditionally allowing these processes access to queues based on their region attribute. This allows for a single permission to be applied for **N** processors and queues. For example:
+**The Solution**: The solution is to route messages to region-specific Azure Storage Queues and use native Azure ABAC to strictly enforce that only regional processor endpoints can access their corresponding queue. This is achieved by giving all processors permissions to all queues and conditionally allowing these processes access to queues based on their region attribute. This allows for a single permission to be applied for **N** processors and queues. For example:
 
 ```mermaid
 flowchart TB
@@ -191,27 +180,16 @@ flowchart TB
 **Outcome**:
 
 - The `EU-Processor` endpoint (with `region = 'eu'`) is granted access to the **`orders-eu`** queue.  
-- If this same processor were misconfigured and tried to connect to the **`orders-us`** queue, the ABAC condition on its role assignment would fail. Azure Storage would return a **`403 Forbidden`** error, preventing a compliance breach.  
+- If this same processor were misconfigured and tried to connect to the **`orders-na`** queue, the ABAC condition on its role assignment would fail. Azure Storage would return a **`403 Forbidden`** error, preventing a compliance breach.  
 - Managing permissions after scaling out the number of processors for different regions would only mean assigning the correct `region` attribute to that processor's identity, and adding it to the security group. No additional permissions and roles would need to be assigned to any resource
 
 ### Scenario: Just-in-Time Check for Purchase Approval Authority
 
 This scenario involves a manager whose spending authority is reduced after they have already submitted a purchase request.
 
-**Solves**:
+**The Problem**: A manager is in the `Manager-Tier-2` role, which allows approvals up to $5,000. At 2:00 PM, they approve a purchase of $4,500, and a command is sent to a queue. At 9:00 AM the next day, due to budget cuts, the manager is moved to the `Manager-Tier-1` role (approvals up to $1,000). When the message is processed later that morning, a system that only validated the user's role at the time of submission would incorrectly approve the $4,500 purchase, violating the new business rule. This happens because _permissions can change between the time a message is sent and when it's ultimately executed in a message handler_.
 
-- ⚠️Permissions can change between the time a message is sent and when it's ultimately executed in a message handler.
-
-**By using:**
-
-- ✅ Azure Entra ID
-- ✅ Azure Storage Queues
-- ✅ Azure ABAC with Custom Security Attributes
-- ✅ NServiceBus Endpoints and Messages
-
-**The Problem ⚠️**: A manager is in the `Manager-Tier-2` role, which allows approvals up to $5,000. At 2:00 PM, they approve a purchase of $4,500, and a command is sent to a queue. At 9:00 AM the next day, due to budget cuts, the manager is moved to the `Manager-Tier-1` role (approvals up to $1,000). When the message is processed later that morning, a system that only validated the user's role at the time of submission would incorrectly approve the $4,500 purchase, violating the new business rule.
-
-**The Solution** ✅: The solution is to decouple the request from the approval by checking the user's _current_ attributes at the exact moment of processing. For example:
+**The Solution**: The solution is to decouple the request from the approval by checking the user's _current_ attributes at the exact moment of processing. For example:
 
 ```mermaid
 flowchart TB
@@ -278,21 +256,9 @@ flowchart TB
 
 This scenario describes a central log processing service that is triggered by NServiceBus messages. It uses Azure's native ABAC to ensure the service can only access and process log files for the specific project it is assigned to.
 
-**Solves**:
+**The Problem**: A company has a single NServiceBus endpoint responsible for processing and archiving logs from multiple projects (`Project-Alpha`, `Project-Beta`). Logs are uploaded to a central "ingestion" blob container, and a message is sent to a queue to trigger the processor. With standard RBAC, the log processing service would be granted the `Storage Blob Data Reader` role on the entire container. This _over-allocates permissions_, creating a significant risk. A bug or a misrouted message could cause the service to access and process logs from a project it shouldn't touch, leading to data corruption or a compliance breach.
 
-- ⚠️Over allocating permissions to resources
-
-**By using**:
-
-- ✅ Azure Entra ID
-- ✅ Azure Storage BLOB
-- ✅ Azure Storage Queues
-- ✅ Azure ABAC with Custom Security Attributes
-- ✅ NServiceBus Endpoints and Messages
-
-**The Problem ⚠️**: A company has a single NServiceBus endpoint responsible for processing and archiving logs from multiple projects (`Project-Alpha`, `Project-Beta`). Logs are uploaded to a central "ingestion" blob container, and a message is sent to a queue to trigger the processor. With standard RBAC, the log processing service would be granted the `Storage Blob Data Reader` role on the entire container. This _over-allocates permissions_, creating a significant risk. A bug or a misrouted message could cause the service to access and process logs from a project it shouldn't touch, leading to data corruption or a compliance breach.
-
-**The Solution** ✅: The solution is to allow NServiceBus to handle the workflow, while Azure's infrastructure handles the security enforcement in real-time. For example:
+**The Solution**: The solution is to allow NServiceBus to handle the workflow, while Azure's infrastructure handles the security enforcement in real-time. For example:
 
 ```mermaid
 flowchart TB
