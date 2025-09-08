@@ -198,8 +198,8 @@
       Title: AwsLambda SQS 2 to 3
     - Url: nservicebus/upgrades/sqs-lambda-1to2
       Title: AwsLambda SQS 1 to 2
-    - Url: nservicebus/upgrades/9.1to9.2
-      Title: NServiceBus 9.1 to 9.2
+    - Url: nservicebus/upgrades/9to10
+      Title: NServiceBus 9 to 10
     - Url: nservicebus/upgrades/9to9.1
       Title: NServiceBus 9 to 9.1
     - Url: nservicebus/upgrades/8to9
@@ -1158,7 +1158,7 @@
       - Url: persistence/upgrades/mongodb-4to5
         Title: Version 4 to 5
       - Url: persistence/upgrades/mongodb-5to6
-        Title: Version 5 to 6        
+        Title: Version 5 to 6
     - Title: RavenDB
       Articles:
       - Url: persistence/upgrades/ravendb-9to10
