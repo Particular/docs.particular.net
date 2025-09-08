@@ -33,7 +33,7 @@ var host = Host.CreateDefaultBuilder(args)
             .SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromSeconds(1));
 
         var routing = endpointConfiguration.UseTransport(new LearningTransport());
-        routing.RouteToEndpoint(typeof(MyMessage), "Endpoint");
+        routing.RouteToEndpoint(typeof(MyMessage), "Samples.Bridge.Endpoint");
 
         return endpointConfiguration;
     })
