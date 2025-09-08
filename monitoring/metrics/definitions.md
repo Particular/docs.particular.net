@@ -87,7 +87,7 @@ This metric tracks the number of messages in the main input queue of the endpoin
 
 ### Transactional Session metrics
 
-There are metrics that measure various spects of the [transactioanl session operations](/nservicebus/transactional-session/#how-it-works):
+There are metrics that measure various spects of the [transactional session operations](/nservicebus/transactional-session/#how-it-works):
 
 - Commit duration - how long it took to commit the transaction and (optionally) dispatch the control message
 - Dispatch druation - how long it took to dispatch the control message
