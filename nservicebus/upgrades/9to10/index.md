@@ -45,7 +45,7 @@ This is section is relevant for projects that have nullability enabled.
 
 The APIs below have been modified to accomodate to be able to receive nullable parameters.
 
-| API | 
+| API |
 |---|
 |`sendOptions.StartNewConversation`|
 |`CriticalError`|
@@ -65,7 +65,7 @@ The APIs below have been modified to accomodate to be able to receive nullable p
 
 The APIs below have been modified to return nullable values.
 
-| API | 
+| API |
 |---|
 |`routingOptions.GetDestination(this NServiceBus.ReplyOptions options)`|
 |`routingOptions.GetDestination(this NServiceBus.SendOptions options)`|
@@ -77,32 +77,30 @@ The APIs below have been modified to return nullable values.
 
 The properties `Data` and `Name` of `StartupDiagnosticEntry` have been marked as required.
 
-## NServiceBus.DataBus is now a separated package called NServiceBus.ClaimCheck
+## DataBus feature moved to separate NServiceBus.ClaimCheck package
 
-The DataBus feature has been removed from `NServiceBus.Core` and released as it's own package, called [NServiceBus.ClaimCheck](https://www.nuget.org/packages/NServiceBus.ClaimCheck/).
-The namespace package has been updated from `NServiceBus.DataBus` to `NServiceBus.ClaimCheck` to reflect the new name.
-The API has also been updated to use the term ClaimCheck instead of DataBus. 
+The DataBus feature has been removed from `NServiceBus.Core` and has released as a separate package, called [NServiceBus.ClaimCheck](https://www.nuget.org/packages/NServiceBus.ClaimCheck/).
 
-Update endpoint configuration to use the new package and namespace.
+The namespace for the DataBus feature has changed from `NServiceBus.DataBus` to `NServiceBus.ClaimCheck`. The API has also been updated to use the term ClaimCheck instead of DataBus.
 
 The table below shows the mapping from the DataBus configuration types to their ClaimCheck equivalents.
 
-| NServiceBus.DataBus  | NServiceBus.ClaimCheck |
+| DataBus feature | NServiceBus.ClaimCheck |
 | --- | --- |
-| `endpointConfiguration.UseDataBus` | `endpointConfiguration.UseClaimCheck` |
+| `EndpointConfiguration.UseDataBus` | `EndpointConfiguration.UseClaimCheck` |
 | `NServiceBus.FileShareDataBus` | `NServiceBus.FileShareClaimCheck` |
 | `NServiceBus.SystemJsonDataBusSerializer` | `NServiceBus.SystemJsonClaimCheckSerializer` |
 | `NServiceBus.DataBusProperty<T>` | `NServiceBus.ClaimCheckProperty<T>` |
 
 ### Migrating message contracts
 
-The NServiceBus.ClaimCheck library is line-level compatible with NServiceBus.DataBus, meaning, in-flight messages that are sent using NServiceBus.DataBus will be properly handled by endpoints that have been upgraded to use NServiceBus.ClaimCheck; this is also true in reverse.
+The NServiceBus.ClaimCheck library is line-level compatible with original DataBus feature, meaning, in-flight messages that are sent using DataBus will be properly handled by endpoints that have been upgraded to use NServiceBus.ClaimCheck; this is also true in reverse.
 
-Some care should be taken when migrating message contracts from `DataBusProperty<T>` to `ClaimCheckProperty<T>`.  While NServiceBus.DataBus and NServiceBus.ClaimCheck are line-level compatible, they are not runtime compatible.  An endpoint that is currently running NServiceBus.DataBus will not write properties that are `ClaimCheckProperty<T>` to the DataBus. The reverse is true of NServiceBus.ClaimCheck endpoints and `DataBusProperty<T>`.  To facilitate the migration, each endpoint will need a copy of the message contract that uses the supported property type.
+Some care should be taken when migrating message contracts from `DataBusProperty<T>` to `ClaimCheckProperty<T>`. While DataBus and NServiceBus.ClaimCheck are line-level compatible, they are not runtime compatible. An endpoint that is currently using the DataBus feature will not write properties that are `ClaimCheckProperty<T>` to the DataBus. The reverse is true of NServiceBus.ClaimCheck endpoints and `DataBusProperty<T>`.  To facilitate the migration, each endpoint will need a copy of the message contract that uses the supported property type.
 
 Changing from using `DataBusProperty<T>` to specifying conventions for the claim check properties will be the easiest way to migrate whilst maintaining runtime compatibility between the new and old versions. If this is not possible, the message contracts can be versioned separately too.
 
-If message contracts are in a versioned library that has been migrated to `ClamCheckProperty<T>`, then NServiceBus.DataBus endpoints can remain on an older version of the contracts library until they can be upgraded to NServiceBus.ClaimCheck.
+If message contracts are in a versioned library that has been migrated to `ClamCheckProperty<T>`, then DataBus endpoints can remain on an older version of the contracts library until they can be upgraded to NServiceBus.ClaimCheck.
 
 If message contracts are not in a versioned library, a local copy of the messages can be made to facilitate the transition. In this case it is imperative that all class names, namespaces, and property names are exactly the same to make sure the message can be properly deserialized when it is received.
 
@@ -118,7 +116,7 @@ If message contracts are not in a versioned library, a local copy of the message
 
 The APIs below have been modified to accomodate to be able to receive nullable parameters.
 
-| API | 
+| API |
 |---|
 |`context.TryGetIncomingPhysicalMessage`|
 
