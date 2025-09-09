@@ -21,7 +21,7 @@ downloadbutton
 1. Install [Docker](https://www.docker.com/products/docker-desktop).
 2. Install [Docker Compose](https://docs.docker.com/compose/install/).
 3. If running Docker on Windows, [set Docker to use Linux containers](https://docs.docker.com/docker-for-windows/#switch-between-windows-and-linux-containers).
-4. In the sample directory, execute the following to set up the RabbitMQ and CosmosDb emulator instances:
+4. In the sample directory, execute the following to set up the RabbitMQ and CosmosDB emulator instances:
 
 ```shell
 > docker compose up --detach
