@@ -36,13 +36,13 @@ var persistence = endpointConfiguration.UsePersistence<MongoPersistence>();
 persistence.DisableInstaller();
 ```
 
-the persistence assumes that all required infrastructure (including indexes) is already in place. If the necessary indexes are missing, system performance and reliability may be affected.
+The persistence assumes that all required infrastructure (including indexes) is already in place. If the necessary indexes are missing, system performance and reliability may be affected.
 
 ## Outbox record storage layout changes
 
 Outbox records no longer use the message ID alone as the `_id`. In previous versions, this caused message loss in publish/subscribe scenarios when multiple endpoints shared the same database, since all subscribers wrote to the same outbox record.
 
-Starting with this version, outbox records include a partition key (defaulting to the endpoint name) as part of a structured `_id { pk, mid }`. This prevents the message loss by applying the deuplication per endpoint.
+Starting with this version, outbox records include a partition key (defaulting to the endpoint name) as part of a structured `_id { pk, mid }`. This prevents the message loss by applying deduplication per endpoint.
 
 - The implementation is backwards compatible meaning that the existing outbox records remain readable. The persistence performs backward-compatible reads for older entries, but all the new entries use the new structured format.
 - Old records will continue to expire according to the configured time to keep deduplication data.
