@@ -13,11 +13,11 @@ include: upgrade-major
 
 ## .NET target framework
 
-NServiceBus 10 targets .NET 10.
+The minimum version of .NET that can be used with NServiceBus 10 is .NET 10.
 
 ## DataBus feature moved to separate NServiceBus.ClaimCheck package
 
-The DataBus feature has been removed from `NServiceBus.Core` and has released as a separate package, called [NServiceBus.ClaimCheck](https://www.nuget.org/packages/NServiceBus.ClaimCheck/).
+The DataBus feature has been removed from the main NServiceBus package and has been released as a separate package, called [NServiceBus.ClaimCheck](https://www.nuget.org/packages/NServiceBus.ClaimCheck/).
 
 The namespace for the DataBus feature has changed from `NServiceBus.DataBus` to `NServiceBus.ClaimCheck`. The API has also been updated to use the term ClaimCheck instead of DataBus.
 
@@ -42,27 +42,17 @@ If message contracts are in a versioned library that has been migrated to `ClamC
 
 If message contracts are not in a versioned library, a local copy of the messages can be made to facilitate the transition. In this case it is imperative that all class names, namespaces, and property names are exactly the same to make sure the message can be properly deserialized when it is received.
 
-## ContextBag
+## Extensibility
 
-The ContextBag no longer allows storing `null` as a value. In order to store `null` it is required to decorate the value with wrapper class. So instead of
+This section describes changes to advanced extensibility APIs.
 
-```csharp
-context.Set<string>("YourKey", null);
-```
+### ContextBag can no longer store null values
 
-use
-
-```csharp
-context.Set<string>("YourKey", new YourKeyValue());
-
-public record YourKeyValue(string? someValueThatMightBeNull = null);
-```
-
-## Other changes
+As part of adding nullability annotations, the `ContextBag` class no longer allows storing `null` as a value. This also applies to all types derived from `ContextBag`, including all behavior context classes and `TransportTransaction`.
 
 ### StartupDiagnosticEntry has required properties
 
-The properties `Data` and `Name` of `StartupDiagnosticEntry` have been marked as required.
+As part of adding nullability annotations, the `Data` and `Name` properties of the `StartupDiagnosticEntry` class have been marked as `required`.
 
 ### ICompletableSynchronizedStorageSession and IOutboxTransaction implement IAsyncDisposable
 
