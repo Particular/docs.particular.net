@@ -88,7 +88,14 @@ The Cosmos DB persister supports using the [Cosmos DB transactional batch API](h
 
 The [transactions](transactions.md) documentation provides additional details on how to configure NServiceBus to resolve the incoming message to a specific partition key to take advantage of this Cosmos DB feature.
 
-## Outbox cleanup
+## Outbox
+
+### Storage format
+
+> [!WARNING]
+> The default partition key, when not explicitly set, does not separate Outbox documents by endpoint name. Because of that, multiple logical endpoints cannot share the same database and container since [message identities are not unique across endpoints from a processing perspective](/nservicebus/outbox/#message-identity). Either separate different endpoints into different containers or [override the partition key](transactions.md).
+
+### Outbox cleanup
 
 When the outbox is enabled, the deduplication data is kept for seven days by default. To customize this time frame, use the following API:
 
