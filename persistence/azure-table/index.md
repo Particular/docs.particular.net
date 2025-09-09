@@ -52,3 +52,10 @@ Saga correlation property values are subject to the underlying Azure Storage tab
 
 * Up to 1KB in size
 * Cannot contain [invalid characters](https://docs.microsoft.com/en-us/rest/api/storageservices/Understanding-the-Table-Service-Data-Model#tables-entities-and-properties)
+
+## Outbox
+
+### Storage format
+
+> [!WARNING]
+> The default partition key, when not explicitely set, does not seperate Outbox rows by endpoint name. Because of that, multiple logical endpoints cannot share the same table since [message identities are not unique across endpoints from a processing perspective](/nservicebus/outbox/#message-identity). Either seperate different endpoints into different tables or [override the partition key](transactions.md).
