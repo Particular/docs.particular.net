@@ -1,17 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
     <SqlPersistenceGenerateScripts>false</SqlPersistenceGenerateScripts>
   </PropertyGroup>
+
   <ItemGroup>
-    <PackageReference Include="Azure.Identity" Version="1.12.0" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="Azure.Identity" Version="1.*" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.*" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
     <PackageReference Include="Npgsql" Version="8.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="7.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql.ScriptBuilder" Version="7.*" />
     <PackageReference Include="NUnit" Version="4.*" />
-    <PackageReference Include="NUnit.Analyzers" Version="4.3.0" />
+    <PackageReference Include="NUnit.Analyzers" Version="4.*" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.*" />
   </ItemGroup>
+
 </Project>

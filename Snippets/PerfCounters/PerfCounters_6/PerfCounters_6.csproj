@@ -8,4 +8,8 @@
     <PackageReference Include="NServiceBus.Metrics.PerformanceCounters" Version="6.*" />
   </ItemGroup>
 
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="9.*" />
+  </ItemGroup>
+
 </Project>

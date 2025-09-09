@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
-using System.Data.SqlClient;
 using System.Transactions;
+using Microsoft.Data.SqlClient;
 
 namespace SqlServer_All.Operations.ErrorQueue
 {
