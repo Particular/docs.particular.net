@@ -48,17 +48,17 @@ class EnableDiagnosticsBlob
         #region asb-function-iso-diagnostics-blob
         var host = new HostBuilder()
             .ConfigureFunctionsWorkerDefaults()
-            .UseNServiceBus(configuration =>
+            .UseNServiceBus(c =>
             {
-                configuration.AdvancedConfiguration.CustomDiagnosticsWriter(async diagnostics =>
+                c.AdvancedConfiguration.CustomDiagnosticsWriter(async diagnostics =>
                 {
-                    var connectionString = Environment.GetEnvironmentVariable("AzureWebJobsStorage");
-                    var blobServiceClient = new BlobServiceClient(connectionString);
+                    var cs = Environment.GetEnvironmentVariable("AzureWebJobsStorage");
+                    var bsc = new BlobServiceClient(cs);
 
-                    var containerClient = blobServiceClient.GetBlobContainerClient("diagnostics");
+                    var containerClient = bsc.GetBlobContainerClient("diagnostics");
                     await containerClient.CreateIfNotExistsAsync();
 
-                    var blobName = $"{DateTime.UtcNow:yyyy-MM-dd-HH-mm-ss-fff}-{endpointName}-configuration.txt";
+                    var blobName = $"{endpointName}-configuration.txt";
                     var blobClient = containerClient.GetBlobClient(blobName);
                     await blobClient.UploadAsync(BinaryData.FromString(diagnostics));
                 });
