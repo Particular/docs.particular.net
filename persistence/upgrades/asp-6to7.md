@@ -8,6 +8,7 @@ related:
 redirects:
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
+- 9
 - 10
 ---
 
