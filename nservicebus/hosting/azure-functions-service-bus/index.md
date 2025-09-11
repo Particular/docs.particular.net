@@ -44,7 +44,7 @@ Diagnostics data will be written with logger identification `StartupDiagnostics`
 
 #### Custom Diagnostics Writer
 
-For full control over diagnostic log output, `AdvancedConfiguration.CustomDiagnosticsWriter` can be used. This is useful when diagnostics need to be persisted beyond the function's execution lifetime or when centralized diagnostic storage is required for multiple function instances. For example, a diagnostics file can be written to [Azure BLOB Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-dotnet?tabs=visual-studio%2Cmanaged-identity%2Croles-azure-portal%2Csign-in-azure-cli%2Cidentity-visual-studio&pivots=blob-storage-quickstart-scratch):
+For full control over the diagnostic log output, the `AdvancedConfiguration.CustomDiagnosticsWriter` can be used. This is advantageous when diagnostics need to be persisted beyond the function's execution lifetime or when centralized diagnostic storage is preferred for multiple function instances. As an example, the diagnostics can be written to [Azure BLOB Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-dotnet?tabs=visual-studio%2Cmanaged-identity%2Croles-azure-portal%2Csign-in-azure-cli%2Cidentity-visual-studio&pivots=blob-storage-quickstart-scratch):
 
 snippet: asb-function-iso-diagnostics-blob
 
