@@ -52,6 +52,12 @@ Starting in version 4.2, the Azure Functions host package comes with [Roslyn ana
 * **Severity**:Error
 * **Example message**: The NServiceBus endpoint address in Azure Functions is determined by the ServiceBusTrigger attribute.
 
+### LogDiagnostics is not recommended in Azure Functions
+
+* **Rule ID**: NSBWFUNC018
+* **Severity**: Warning
+* **Example message**: 'Use 'AdvancedConfiguration.CustomDiagnosticsWriter' for more control over diagnostics output.
+
 ## Options API
 
 ### RouteReplyToThisInstance is not supported

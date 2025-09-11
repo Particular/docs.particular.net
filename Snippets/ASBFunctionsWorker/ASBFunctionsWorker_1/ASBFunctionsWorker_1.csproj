@@ -7,6 +7,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.0.13" />
     <PackageReference Include="NServiceBus.AzureFunctions.Worker.ServiceBus" Version="1.*" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.*" />
   </ItemGroup>
 
   <ItemGroup Label="Resolves vulnerabilities">
