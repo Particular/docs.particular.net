@@ -62,6 +62,21 @@ class Usage
         #endregion
     }
 
+#pragma warning disable CS0618
+    void CustomizingAzurePersistenceSagasCompatibility(EndpointConfiguration endpointConfiguration)
+    {
+        #region AzurePersistenceSagasCompatibility
+
+        var persistence = endpointConfiguration.UsePersistence<AzureTablePersistence, StorageType.Sagas>();
+
+        var compatibility = persistence.Compatibility();
+        // e.g. Enable secondary index
+        compatibility.EnableSecondaryKeyLookupForSagasCorrelatedByProperties();
+
+        #endregion
+    }
+#pragma warning restore CS0618
+
     public void ConfigureCustomJsonSerializerSettings(EndpointConfiguration endpointConfiguration)
     {
         #region AzurePersistenceSagasJsonSerializerSettings
