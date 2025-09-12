@@ -1,7 +1,4 @@
 #region app-host
-
-using AspireDemo.AppHost;
-
 var builder = DistributedApplication.CreateBuilder(args);
 
 var rabbitUser = builder.AddParameterFromConfiguration("rabbitUser", "RabbitMQ:UserName", true);
@@ -10,8 +7,6 @@ var rabbitPassword = builder.AddParameterFromConfiguration("rabbitPassword", "Ra
 var transport = builder.AddRabbitMQ("transport", rabbitUser, rabbitPassword)
     .WithManagementPlugin(15672)
     .WithUrlForEndpoint("management", url => url.DisplayText = "RabbitMQ Management");
-
-var rabbitMqConnectionString = await transport.GetRabbitMqConnectionString();
 
 var database = builder.AddPostgres("database");
 
@@ -29,7 +24,7 @@ var ravenDb = builder.AddContainer("ServiceControl-RavenDB", "particular/service
 
 var audit = builder.AddContainer("ServiceControl-Audit", "particular/servicecontrol-audit")
     .WithEnvironment("TRANSPORTTYPE", "RabbitMQ.QuorumConventionalRouting")
-    .WithEnvironment("CONNECTIONSTRING", rabbitMqConnectionString)
+    .WithEnvironment("CONNECTIONSTRING", transport)
     .WithEnvironment("RAVENDB_CONNECTIONSTRING", ravenDb.GetEndpoint("http"))
     .WithArgs("--setup-and-run")
     .WithHttpEndpoint(44444, 44444)
@@ -40,7 +35,7 @@ var audit = builder.AddContainer("ServiceControl-Audit", "particular/servicecont
 
 var serviceControl = builder.AddContainer("ServiceControl", "particular/servicecontrol")
     .WithEnvironment("TRANSPORTTYPE", "RabbitMQ.QuorumConventionalRouting")
-    .WithEnvironment("CONNECTIONSTRING", rabbitMqConnectionString)
+    .WithEnvironment("CONNECTIONSTRING", transport)
     .WithEnvironment("RAVENDB_CONNECTIONSTRING", ravenDb.GetEndpoint("http"))
     .WithEnvironment("REMOTEINSTANCES", $"[{{\"api_uri\":\"{audit.GetEndpoint("http")}\"}}]")
     .WithArgs("--setup-and-run")
@@ -52,7 +47,7 @@ var serviceControl = builder.AddContainer("ServiceControl", "particular/servicec
 
 var monitoring = builder.AddContainer("ServiceControl-Monitoring", "particular/servicecontrol-monitoring")
     .WithEnvironment("TRANSPORTTYPE", "RabbitMQ.QuorumConventionalRouting")
-    .WithEnvironment("CONNECTIONSTRING", rabbitMqConnectionString)
+    .WithEnvironment("CONNECTIONSTRING", transport)
     .WithArgs("--setup-and-run")
     .WithHttpEndpoint(33633, 33633)
     .WithUrlForEndpoint("http", url => url.DisplayLocation = UrlDisplayLocation.DetailsOnly)
