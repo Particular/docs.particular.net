@@ -16,34 +16,34 @@ database.WithPgAdmin(resource =>
     resource.WithUrlForEndpoint("http", url => url.DisplayText = "pgAdmin");
 });
 
-var shippingDb = database.AddDatabase("shipping-db");
+var shippingDB = database.AddDatabase("shipping-db");
 
-var ravenDb = builder.AddContainer("ServiceControl-RavenDB", "particular/servicecontrol-ravendb")
+var ravenDB = builder.AddContainer("ServiceControl-RavenDB", "particular/servicecontrol-ravendb")
     .WithHttpEndpoint(8080, 8080)
     .WithUrlForEndpoint("http", url => url.DisplayText = "Management Studio");
 
 var audit = builder.AddContainer("ServiceControl-Audit", "particular/servicecontrol-audit")
     .WithEnvironment("TRANSPORTTYPE", "RabbitMQ.QuorumConventionalRouting")
     .WithEnvironment("CONNECTIONSTRING", transport)
-    .WithEnvironment("RAVENDB_CONNECTIONSTRING", ravenDb.GetEndpoint("http"))
+    .WithEnvironment("RAVENDB_CONNECTIONSTRING", ravenDB.GetEndpoint("http"))
     .WithArgs("--setup-and-run")
     .WithHttpEndpoint(44444, 44444)
     .WithUrlForEndpoint("http", url => url.DisplayLocation = UrlDisplayLocation.DetailsOnly)
     .WithHttpHealthCheck("api/configuration")
     .WaitFor(transport)
-    .WaitFor(ravenDb);
+    .WaitFor(ravenDB);
 
 var serviceControl = builder.AddContainer("ServiceControl", "particular/servicecontrol")
     .WithEnvironment("TRANSPORTTYPE", "RabbitMQ.QuorumConventionalRouting")
     .WithEnvironment("CONNECTIONSTRING", transport)
-    .WithEnvironment("RAVENDB_CONNECTIONSTRING", ravenDb.GetEndpoint("http"))
+    .WithEnvironment("RAVENDB_CONNECTIONSTRING", ravenDB.GetEndpoint("http"))
     .WithEnvironment("REMOTEINSTANCES", $"[{{\"api_uri\":\"{audit.GetEndpoint("http")}\"}}]")
     .WithArgs("--setup-and-run")
     .WithHttpEndpoint(33333, 33333)
     .WithUrlForEndpoint("http", url => url.DisplayLocation = UrlDisplayLocation.DetailsOnly)
     .WithHttpHealthCheck("api/configuration")
     .WaitFor(transport)
-    .WaitFor(ravenDb);
+    .WaitFor(ravenDB);
 
 var monitoring = builder.AddContainer("ServiceControl-Monitoring", "particular/servicecontrol-monitoring")
     .WithEnvironment("TRANSPORTTYPE", "RabbitMQ.QuorumConventionalRouting")
@@ -77,8 +77,8 @@ builder.AddProject<Projects.ClientUI>("ClientUI")
 
 builder.AddProject<Projects.Shipping>("Shipping")
     .WithReference(transport)
-    .WithReference(shippingDb)
-    .WaitFor(shippingDb)
+    .WithReference(shippingDB)
+    .WaitFor(shippingDB)
     .WaitFor(servicePulse);
 
 builder.Build().Run();
