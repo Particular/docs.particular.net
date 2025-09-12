@@ -52,11 +52,11 @@ Starting in version 4.2, the Azure Functions host package comes with [Roslyn ana
 * **Severity**:Error
 * **Example message**: The NServiceBus endpoint address in Azure Functions is determined by the ServiceBusTrigger attribute.
 
-### LogDiagnostics in Azure Functions only outputs to the console and will not create a diagnostics file
+### Default logging with LogDiagnostics will log to the built-in Azure Functions logs
 
 * **Rule ID**: NSBWFUNC018
 * **Severity**: Information
-* **Example message**: 'Use 'AdvancedConfiguration.CustomDiagnosticsWriter' for more control over diagnostics output.
+* **Example message**: In Azure Functions, console output to the built-in logs is not persisted and may result in the loss of the diagnostic information. Consider using 'AdvancedConfiguration.CustomDiagnosticsWriter' for more control over diagnostics output.
 
 ## Options API
 
