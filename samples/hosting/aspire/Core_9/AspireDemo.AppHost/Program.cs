@@ -1,12 +1,15 @@
 #region app-host
 var builder = DistributedApplication.CreateBuilder(args);
 
-var rabbitUser = builder.AddParameterFromConfiguration("rabbitUser", "RabbitMQ:UserName", true);
-var rabbitPassword = builder.AddParameterFromConfiguration("rabbitPassword", "RabbitMQ:Password", true);
+var transportUserName = builder.AddParameter("transportUserName", "guest", secret: true);
+var transportPassword = builder.AddParameter("transportPassword", "guest", secret: true);
 
-var transport = builder.AddRabbitMQ("transport", rabbitUser, rabbitPassword)
+var transport = builder.AddRabbitMQ("transport", transportUserName, transportPassword)
     .WithManagementPlugin(15672)
     .WithUrlForEndpoint("management", url => url.DisplayText = "RabbitMQ Management");
+
+transportUserName.WithParentRelationship(transport);
+transportPassword.WithParentRelationship(transport);
 
 var database = builder.AddPostgres("database");
 
