@@ -58,7 +58,7 @@ class EnableDiagnosticsBlob
                     var containerClient = blobServiceClient.GetBlobContainerClient("diagnostics");
                     await containerClient.CreateIfNotExistsAsync();
 
-                    var blobName = $"{DateTime.UtcNow:yyyy-MM-dd-HH-mm-ss-fff}-{endpointName}-configuration.txt";
+                    var blobName = $"{endpointName}-configuration.txt";
                     var blobClient = containerClient.GetBlobClient(blobName);
                     await blobClient.UploadAsync(BinaryData.FromString(diagnostics));
                 });

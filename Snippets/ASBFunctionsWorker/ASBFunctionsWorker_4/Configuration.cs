@@ -50,7 +50,8 @@ class EnableDiagnosticsBlob
             .ConfigureFunctionsWorkerDefaults()
             .UseNServiceBus(configuration =>
             {
-                configuration.AdvancedConfiguration.CustomDiagnosticsWriter(async (diagnostics, cancellationToken) =>
+                configuration.AdvancedConfiguration.CustomDiagnosticsWriter(
+                    async (diagnostics, cancellationToken) =>
                 {
                     var connectionString = Environment.GetEnvironmentVariable("AzureWebJobsStorage");
                     var blobServiceClient = new BlobServiceClient(connectionString);
@@ -58,7 +59,7 @@ class EnableDiagnosticsBlob
                     var containerClient = blobServiceClient.GetBlobContainerClient("diagnostics");
                     await containerClient.CreateIfNotExistsAsync(cancellationToken: cancellationToken);
 
-                    var blobName = $"{DateTime.UtcNow:yyyy-MM-dd-HH-mm-ss-fff}-{endpointName}-configuration.txt";
+                    var blobName = $"{endpointName}-configuration.txt";
                     var blobClient = containerClient.GetBlobClient(blobName);
                     await blobClient.UploadAsync(BinaryData.FromString(diagnostics), cancellationToken);
                 });
