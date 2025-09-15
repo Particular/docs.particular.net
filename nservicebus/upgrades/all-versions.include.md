@@ -970,7 +970,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/4.0.3) | 2024-09-15     | -                 | -                                 |
-| [3.1.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/3.1.2) | 2024-09-05     | 2025-09-15        | Superseded by 4.0.x               |
+| [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.MessagingBridge/3.1.2) | ~~2024-09-05~~ | ~~2025-09-15~~    | ~~Superseded by 4.0.x~~           |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.MessagingBridge/3.0.3) | ~~2024-04-18~~ | ~~2024-12-05~~    | ~~Superseded by 3.1.x~~           |
 | [2.3.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.3.2) | 2024-09-05     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [~~2.2.x~~](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.2.3) | ~~2024-02-26~~ | ~~2024-12-05~~    | ~~Superseded by 2.3.x~~           |
