@@ -906,8 +906,6 @@
       Articles:
       - Url: transports/upgrades/amazonsqs-7to8
         Title: Version 7 to 8
-      - Url: transports/upgrades/amazonsqs-7.2to7.3
-        Title: Version 7.2 to 7.3
       - Url: transports/upgrades/amazonsqs-6to7
         Title: Version 6 to 7
       - Url: transports/upgrades/amazonsqs-5to6
