@@ -13,4 +13,3 @@ public class Upgrades7to8
     }
 #pragma warning restore CS0618
 }
-
