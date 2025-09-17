@@ -10,10 +10,10 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/4.0.7.1/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.SQS" target="_blank">AWSSDK.SQS</a> | <a href="https://www.nuget.org/packages/AWSSDK.SQS/4.0.1.2/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/4.0.2.1/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/4.0.1.1/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/4.0.7.2/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.SQS" target="_blank">AWSSDK.SQS</a> | <a href="https://www.nuget.org/packages/AWSSDK.SQS/4.0.1.3/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/4.0.2.2/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/4.0.1.2/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.5.4/license" target="_blank">View License</a> | <i>None provided</i> |
 
 ### NServiceBus.Autofac
@@ -114,7 +114,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Newtonsoft.Json" target="_blank">Newtonsoft.Json</a> | <a href="https://www.nuget.org/packages/Newtonsoft.Json/13.0.3/license" target="_blank">MIT</a> | <a href="https://www.newtonsoft.com/json" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Newtonsoft.Json" target="_blank">Newtonsoft.Json</a> | <a href="https://www.nuget.org/packages/Newtonsoft.Json/13.0.4/license" target="_blank">MIT</a> | <a href="https://www.newtonsoft.com/json" target="_blank">Project Site</a> |
 
 ### NServiceBus.NHibernate
 
@@ -148,7 +148,7 @@
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Azure.Data.Tables" target="_blank">Azure.Data.Tables</a> | <a href="https://www.nuget.org/packages/Azure.Data.Tables/12.11.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Data.Tables_12.11.0/sdk/tables/Azure.Data.Tables/README.md" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/Newtonsoft.Json" target="_blank">Newtonsoft.Json</a> | <a href="https://www.nuget.org/packages/Newtonsoft.Json/13.0.3/license" target="_blank">MIT</a> | <a href="https://www.newtonsoft.com/json" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Newtonsoft.Json" target="_blank">Newtonsoft.Json</a> | <a href="https://www.nuget.org/packages/Newtonsoft.Json/13.0.4/license" target="_blank">MIT</a> | <a href="https://www.newtonsoft.com/json" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.Linq.Async" target="_blank">System.Linq.Async</a> | <a href="https://www.nuget.org/packages/System.Linq.Async/6.0.3/license" target="_blank">MIT</a> | <a href="https://github.com/dotnet/reactive" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/System.Text.Json" target="_blank">System.Text.Json</a> | <a href="https://www.nuget.org/packages/System.Text.Json/9.0.9/license" target="_blank">MIT</a> | <a href="https://dot.net/" target="_blank">Project Site</a> |
 
@@ -157,26 +157,26 @@
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos" target="_blank">Microsoft.Azure.Cosmos</a> | <a href="https://www.nuget.org/packages/Microsoft.Azure.Cosmos/3.53.1/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-cosmos-dotnet-v3" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/Newtonsoft.Json" target="_blank">Newtonsoft.Json</a> | <a href="https://www.nuget.org/packages/Newtonsoft.Json/13.0.3/license" target="_blank">MIT</a> | <a href="https://www.newtonsoft.com/json" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Newtonsoft.Json" target="_blank">Newtonsoft.Json</a> | <a href="https://www.nuget.org/packages/Newtonsoft.Json/13.0.4/license" target="_blank">MIT</a> | <a href="https://www.newtonsoft.com/json" target="_blank">Project Site</a> |
 
 ### NServiceBus.Persistence.DynamoDB
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2" target="_blank">AWSSDK.DynamoDBv2</a> | <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2/4.0.6.1/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2" target="_blank">AWSSDK.DynamoDBv2</a> | <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2/4.0.6.2/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 
 ### NServiceBus.Persistence.ServiceFabric
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Microsoft.ServiceFabric.Data" target="_blank">Microsoft.ServiceFabric.Data</a> | <a href="http://www.microsoft.com/web/webpi/eula/net_library_eula_ENU.htm" target="_blank">View License</a> | <a href="http://aka.ms/servicefabric" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/Newtonsoft.Json" target="_blank">Newtonsoft.Json</a> | <a href="https://www.nuget.org/packages/Newtonsoft.Json/13.0.3/license" target="_blank">MIT</a> | <a href="https://www.newtonsoft.com/json" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Newtonsoft.Json" target="_blank">Newtonsoft.Json</a> | <a href="https://www.nuget.org/packages/Newtonsoft.Json/13.0.4/license" target="_blank">MIT</a> | <a href="https://www.newtonsoft.com/json" target="_blank">Project Site</a> |
 
 ### NServiceBus.Persistence.Sql
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Newtonsoft.Json" target="_blank">Newtonsoft.Json</a> | <a href="https://www.nuget.org/packages/Newtonsoft.Json/13.0.3/license" target="_blank">MIT</a> | <a href="https://www.newtonsoft.com/json" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Newtonsoft.Json" target="_blank">Newtonsoft.Json</a> | <a href="https://www.nuget.org/packages/Newtonsoft.Json/13.0.4/license" target="_blank">MIT</a> | <a href="https://www.newtonsoft.com/json" target="_blank">Project Site</a> |
 
 ### NServiceBus.RabbitMQ
 
@@ -257,8 +257,8 @@
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Autofac" target="_blank">Autofac</a> | <a href="https://www.nuget.org/packages/Autofac/8.4.0/license" target="_blank">MIT</a> | <a href="https://autofac.org/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch" target="_blank">AWSSDK.CloudWatch</a> | <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch/4.0.3/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/4.0.2.1/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch" target="_blank">AWSSDK.CloudWatch</a> | <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch/4.0.3.1/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/4.0.2.2/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.Identity" target="_blank">Azure.Identity</a> | <a href="https://www.nuget.org/packages/Azure.Identity/1.16.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Identity_1.16.0/sdk/identity/Azure.Identity/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.Monitor.Query" target="_blank">Azure.Monitor.Query</a> | <a href="https://www.nuget.org/packages/Azure.Monitor.Query/1.7.1/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Monitor.Query_1.7.1/sdk/monitor/Azure.Monitor.Query/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.ResourceManager.ServiceBus" target="_blank">Azure.ResourceManager.ServiceBus</a> | <a href="https://www.nuget.org/packages/Azure.ResourceManager.ServiceBus/1.1.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.ResourceManager.ServiceBus_1.1.0/sdk/servicebus/Azure.ResourceManager.ServiceBus/README.md" target="_blank">Project Site</a> |
