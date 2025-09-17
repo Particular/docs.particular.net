@@ -1,7 +1,7 @@
 ---
 title: Messaging concepts
 summary: Overview of messaging concepts
-reviewed: 2023-12-26
+reviewed: 2025-09-17
 redirects:
 - nservicebus/concept-overview
 ---
