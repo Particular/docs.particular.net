@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <OutputType>Exe</OutputType>
-    <LangVersion>preview</LangVersion>
+    <LangVersion>14.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,5 +18,5 @@
   <ItemGroup Label="Resolves vulnerabilities">
     <PackageReference Include="BouncyCastle.Cryptography" Version="2.*" />
   </ItemGroup>
-  
+
 </Project>
