@@ -8,6 +8,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Shared\SharedPhase3.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Npgsql" Version="9.*" />
   </ItemGroup>
 

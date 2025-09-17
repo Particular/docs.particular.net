@@ -14,11 +14,6 @@
     <PackageReference Include="MySql.Data" Version="9.*" />
   </ItemGroup>
 
-  <ItemGroup Label="Resolves vulnerabilities">
-    <PackageReference Include="BouncyCastle.Cryptography" Version="2.*" />
-    <PackageReference Include="System.Drawing.Common" Version="10.0.0-rc.1.25451.107" />
-  </ItemGroup>
-
   <ItemGroup>
     <Compile Include="..\..\Phase1\EndpointMySql\Program.cs" />
     <Compile Include="..\..\Phase1\EndpointMySql\SqlHelper.cs" />
