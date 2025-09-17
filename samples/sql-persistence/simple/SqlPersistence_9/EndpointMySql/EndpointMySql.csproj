@@ -16,7 +16,7 @@
 
   <ItemGroup Label="Resolves vulnerabilities">
     <PackageReference Include="BouncyCastle.Cryptography" Version="2.*" />
-    <PackageReference Include="System.Drawing.Common" Version="10.0.0-preview.*" />
+    <PackageReference Include="System.Drawing.Common" Version="10.0.0-rc.1.25451.107" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.1" />
   </ItemGroup>
 
