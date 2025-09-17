@@ -2,10 +2,10 @@
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <OutputType>Exe</OutputType>
-    <LangVersion>preview</LangVersion>
+    <LangVersion>14.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\StockEvents\StockEvents.csproj" />
-    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="10.0.0-preview.6.25358.103" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Client" Version="10.0.0-rc.1.25451.107" />
   </ItemGroup>
 </Project>

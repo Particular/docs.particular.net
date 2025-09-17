@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <OutputType>Exe</OutputType>
-    <LangVersion>preview</LangVersion>
+    <LangVersion>14.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,11 +12,6 @@
 
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="9.*" />
-  </ItemGroup>
-
-  <ItemGroup Label="Resolves vulnerabilities">
-    <PackageReference Include="BouncyCastle.Cryptography" Version="2.*" />
-    <PackageReference Include="System.Drawing.Common" Version="10.0.0-preview.6.*" />
   </ItemGroup>
 
   <ItemGroup>

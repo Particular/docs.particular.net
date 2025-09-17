@@ -8,7 +8,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <UserSecretsId>677518ab-a60d-4fee-873e-8080d347c548</UserSecretsId>
-    <LangVersion>preview</LangVersion>
+    <LangVersion>14.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>

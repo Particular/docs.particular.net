@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Azure" Version="1.*" />
-    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.0-preview.6.*" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.0-rc.1.25451.107" />
     <PackageReference Include="NServiceBus.DataBus.AzureBlobStorage" Version="7.0.0-alpha.1" />
   </ItemGroup>
 
