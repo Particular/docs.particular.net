@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using AzureFunctions.Messages.NServiceBusMessages;
+﻿using AzureFunctions.Messages.NServiceBusMessages;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
@@ -7,24 +6,14 @@ using NServiceBus;
 
 namespace AzureFunctions.KafkaTrigger.FunctionsHostBuilder;
 
-public class KafkaTrigger
+public class KafkaTrigger(IMessageSession messageSession, ILogger<KafkaTrigger> logger)
 {
-    readonly IMessageSession messageSession;
-    readonly ILogger<KafkaTrigger> logger;
-
-    public KafkaTrigger(IMessageSession messageSession, ILogger<KafkaTrigger> logger)
-    {
-        this.messageSession = messageSession;
-        this.logger = logger;
-    }
-
     #region KafkaTrigger
 
     [Function(nameof(ElectricityUsage))]
     public async Task ElectricityUsage([KafkaTrigger("LocalKafkaBroker", "topic", ConsumerGroup = "$Default")] string eventData,
             FunctionContext context)
     {
-
         var eventValue = JObject.Parse(eventData)["Value"]?.ToString();
         var electricityUsage = Messages.KafkaMessages.ElectricityUsage.Deserialize(eventValue);
 
