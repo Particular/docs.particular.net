@@ -1,23 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.*" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.*" />
     <PackageReference Include="NServiceBus.AzureFunctions.Worker.ServiceBus" Version="2.*" />
-    <PackageReference Include="Azure.Storage.Blobs" Version="12.*" />
   </ItemGroup>
 
   <ItemGroup Label="Resolves vulnerabilities">
-    <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="5.*" />
-    <PackageReference Include="System.Drawing.Common" Version="4.*" />
-    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.*" />
-    <PackageReference Include="System.Net.Http" Version="4.*" />
-    <PackageReference Include="System.Security.Cryptography.X509Certificates" Version="4.*" />
-    <PackageReference Include="System.Security.Cryptography.Xml" Version="4.*" />
-    <PackageReference Include="System.Text.RegularExpressions" Version="4.*" />
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="9.*" />
   </ItemGroup>
 
 </Project>
