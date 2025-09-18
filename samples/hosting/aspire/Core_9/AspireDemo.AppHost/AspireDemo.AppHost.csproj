@@ -24,4 +24,8 @@
     <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="9.*" />
   </ItemGroup>
 
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="KubernetesClient" Version="17.0.14" />
+  </ItemGroup>
+
 </Project>
