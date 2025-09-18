@@ -1,20 +1,10 @@
 ﻿using System.Net;
-using System.Threading.Tasks;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Azure.Functions.Worker.Http;
 using Microsoft.Extensions.Logging;
-using NServiceBus;
 
-
-class HttpSender
+class HttpSender(IFunctionEndpoint functionEndpoint)
 {
-    readonly IFunctionEndpoint functionEndpoint;
-
-    public HttpSender(IFunctionEndpoint functionEndpoint)
-    {
-        this.functionEndpoint = functionEndpoint;
-    }
-
     [Function("HttpSender")]
     public async Task<HttpResponseData> Run(
         [HttpTrigger(AuthorizationLevel.Function, "get", "post", Route = null)] HttpRequestData req,

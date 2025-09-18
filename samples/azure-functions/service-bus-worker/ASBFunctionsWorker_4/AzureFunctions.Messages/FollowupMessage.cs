@@ -1,5 +1,1 @@
-﻿using NServiceBus;
-
-public class FollowupMessage : IMessage
-{
-}
+﻿public class FollowupMessage : IMessage;
