@@ -1,24 +1,18 @@
-﻿using Microsoft.Azure.Functions.Worker;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Nodes;
 using AzureFunctions.Messages.NServiceBusMessages;
-using System.Text.Json.Nodes;
+using Microsoft.Azure.Functions.Worker;
+using Microsoft.Extensions.Logging;
 
 namespace AzureFunctions.KafkaTrigger.FunctionsHostBuilder;
 
 public class KafkaTrigger(IMessageSession messageSession, ILogger<KafkaTrigger> logger)
 {
-    readonly IMessageSession messageSession = messageSession;
-    readonly ILogger<KafkaTrigger> logger = logger;
-
     #region KafkaTrigger
 
     [Function(nameof(ElectricityUsage))]
     public async Task ElectricityUsage([KafkaTrigger("LocalKafkaBroker", "topic", ConsumerGroup = "$Default")] string eventData,
             FunctionContext context)
     {
-
         var eventValue = JsonNode.Parse(eventData)["Value"]?.ToString();
         var electricityUsage = Messages.KafkaMessages.ElectricityUsage.Deserialize(eventValue);
 

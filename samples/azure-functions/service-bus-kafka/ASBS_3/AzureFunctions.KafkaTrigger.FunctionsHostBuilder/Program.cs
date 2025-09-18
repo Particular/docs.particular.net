@@ -1,41 +1,31 @@
-﻿using System;
-using System.Threading.Tasks;
-using AzureFunctions.Messages.NServiceBusMessages;
+﻿using AzureFunctions.Messages.NServiceBusMessages;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-namespace AzureFunctions.KafkaTrigger.FunctionsHostBuilder;
+#region SetupNServiceBusSendOnly
 
-public class Program
-{
-    public static async Task Main()
+var host = new HostBuilder()
+    .ConfigureServices(async services =>
     {
-        #region SetupNServiceBusSendOnly
+        var cfg = new EndpointConfiguration("SendOnly");
+        cfg.SendOnly();
+        cfg.UseSerialization<SystemJsonSerializer>();
 
-        var host = new HostBuilder()
-            .ConfigureServices(async services =>
-            {
-                var cfg = new EndpointConfiguration("SendOnly");
-                cfg.SendOnly();
-                cfg.UseSerialization<SystemJsonSerializer>();
+        var connectionString = Environment.GetEnvironmentVariable("AzureWebJobsServiceBus");
+        var transport = new AzureServiceBusTransport(connectionString);
+        var routing = cfg.UseTransport(transport);
 
-                var connectionString = Environment.GetEnvironmentVariable("AzureWebJobsServiceBus");
-                var transport = new AzureServiceBusTransport(connectionString);
-                var routing = cfg.UseTransport(transport);
+        routing.RouteToEndpoint(typeof(FollowUp), "Samples.KafkaTrigger.ConsoleEndpoint");
 
-                routing.RouteToEndpoint(typeof(FollowUp), "Samples.KafkaTrigger.ConsoleEndpoint");
+        var endpoint = await Endpoint.Start(cfg);
 
-                var endpoint = await Endpoint.Start(cfg);
+        // Inject the endpoint in the DI container
+        services.AddSingleton<IMessageSession>(endpoint);
+    })
+    .ConfigureFunctionsWorkerDefaults()
+    .Build();
 
-                // Inject the endpoint in the DI container
-                services.AddSingleton<IMessageSession>(endpoint);
-            })
-            .ConfigureFunctionsWorkerDefaults()
-            .Build();
+#endregion
 
-        #endregion
-
-        await host.RunAsync();
-    }
-}
+await host.RunAsync();

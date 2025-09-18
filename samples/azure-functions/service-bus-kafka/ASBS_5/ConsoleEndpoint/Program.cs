@@ -1,72 +1,65 @@
 ﻿using AzureFunctions.Messages.KafkaMessages;
 using Confluent.Kafka;
-using NServiceBus;
 
-class Program
+const string endpointName = "Samples.KafkaTrigger.ConsoleEndpoint";
+Console.Title = endpointName;
+
+var endpointConfiguration = new EndpointConfiguration(endpointName);
+endpointConfiguration.EnableInstallers();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
+var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
+if (string.IsNullOrWhiteSpace(connectionString))
 {
-    static async Task Main()
+    throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
+}
+
+var transport = new AzureServiceBusTransport(connectionString, TopicTopology.Default);
+endpointConfiguration.UseTransport(transport);
+
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
+
+var config = new ProducerConfig
+{
+    BootstrapServers = "localhost:9094",
+    ClientId = "producer-1",
+    BatchSize = 50
+};
+
+Console.WriteLine("Press '[enter]' to send a 100 events using Kafka and wait for a possible response...");
+Console.WriteLine("Press any other key to exit");
+
+using (var producer = new ProducerBuilder<string, string>(config)
+           .Build())
+{
+    while (true)
     {
-        const string endpointName = "Samples.KafkaTrigger.ConsoleEndpoint";
-        Console.Title = endpointName;
+        var key = Console.ReadKey();
+        Console.WriteLine();
 
-        var endpointConfiguration = new EndpointConfiguration(endpointName);
-        endpointConfiguration.EnableInstallers();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-
-        var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
-        if (string.IsNullOrWhiteSpace(connectionString))
+        if (key.Key != ConsoleKey.Enter)
         {
-            throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
+            break;
         }
 
-        var transport = new AzureServiceBusTransport(connectionString, TopicTopology.Default);
-        endpointConfiguration.UseTransport(transport);
-
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-        var config = new ProducerConfig
+        for (int i = 0; i < 100; i++)
         {
-            BootstrapServers = "localhost:9094",
-            ClientId = "producer-1",
-            BatchSize = 50
-        };
+            #region ProduceEvent
 
-        Console.WriteLine("Press '[enter]' to send a 100 events using Kafka and wait for a possible response...");
-        Console.WriteLine("Press any other key to exit");
+            var electricityUsage = new ElectricityUsage() { CustomerId = 42, CurrentUsage = i, UnitId = 1337 };
 
-        using (var producer = new ProducerBuilder<string, string>(config)
-                   .Build())
-        {
-            while (true)
+            var message = new Message<string, string>
             {
-                var key = Console.ReadKey();
-                Console.WriteLine();
+                Value = ElectricityUsage.Serialize(electricityUsage)
+            };
 
-                if (key.Key != ConsoleKey.Enter)
-                {
-                    break;
-                }
+            var deliveryResult = await producer.ProduceAsync("myKafkaTopic", message);
 
-                for (int i = 0; i < 100; i++)
-                {
-                    #region ProduceEvent
-
-                    var electricityUsage = new ElectricityUsage() { CustomerId = 42, CurrentUsage = i, UnitId = 1337 };
-
-                    var message = new Message<string, string>
-                    {
-                        Value = ElectricityUsage.Serialize(electricityUsage)
-                    };
-
-                    var deliveryResult = await producer.ProduceAsync("myKafkaTopic", message);
-
-                    #endregion
-                }
-
-                Console.WriteLine("100 messages sent");
-            }
+            #endregion
         }
 
-        await endpointInstance.Stop();
+        Console.WriteLine("100 messages sent");
     }
 }
+
+await endpointInstance.Stop();
