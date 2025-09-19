@@ -26,7 +26,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Amazon.Lambda.Core" target="_blank">Amazon.Lambda.Core</a> | <a href="https://www.nuget.org/packages/Amazon.Lambda.Core/2.7.0/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-lambda-dotnet" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Amazon.Lambda.Core" target="_blank">Amazon.Lambda.Core</a> | <a href="https://www.nuget.org/packages/Amazon.Lambda.Core/2.7.1/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-lambda-dotnet" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Amazon.Lambda.SQSEvents" target="_blank">Amazon.Lambda.SQSEvents</a> | <a href="http://aws.amazon.com/apache2.0/" target="_blank">View License</a> | <a href="https://github.com/aws/aws-lambda-dotnet" target="_blank">Project Site</a> |
 
 ### NServiceBus.Azure.Transports.WindowsAzureServiceBus
@@ -52,7 +52,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker" target="_blank">Microsoft.Azure.Functions.Worker</a> | <a href="https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker/2.0.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-functions-dotnet-worker" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker" target="_blank">Microsoft.Azure.Functions.Worker</a> | <a href="https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker/2.1.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-functions-dotnet-worker" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Extensions.ServiceBus" target="_blank">Microsoft.Azure.Functions.Worker.Extensions.ServiceBus</a> | <a href="https://www.nuget.org/packages/Microsoft.Azure.Functions.Worker.Extensions.ServiceBus/5.23.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-functions-dotnet-worker" target="_blank">Project Site</a> |
 
 ### NServiceBus.CommonLogging
