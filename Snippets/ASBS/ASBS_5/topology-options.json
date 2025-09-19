@@ -9,6 +9,7 @@
   },
   "QueueNameToSubscriptionNameMap": {
     "Publisher": "PublisherSubscriptionName"
-  }
+  },
+  "ThrowIfUnmappedEventTypes": false
 }
 # endcode topology-options
