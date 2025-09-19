@@ -1727,6 +1727,8 @@
         Url: modernization/migrate-to-the-cloud/on-premises-to-aws
       - Title: On-premises to Azure
         Url: modernization/migrate-to-the-cloud/on-premises-to-azure
+  - Title: NServiceBus and Strangler Fig
+    Url: modernization/stranglerfig
 
 - Name: Shape the future
   Topics:
