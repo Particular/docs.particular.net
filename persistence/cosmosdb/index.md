@@ -93,7 +93,7 @@ The [transactions](transactions.md) documentation provides additional details on
 ### Storage format
 
 > [!WARNING]
-> The default partition key, when not explicitly set, does not separate Outbox documents by endpoint name. Because of that, multiple logical endpoints cannot share the same database and container since [message identities are not unique across endpoints from a processing perspective](/nservicebus/outbox/#message-identity). Either separate different endpoints into different containers or [override the partition key](transactions.md).
+> When the default partition key is not explicitly set, Outbox rows are not separated by endpoint name. As a result, multiple logical endpoints cannot share the same database and container since [message identities are not unique across endpoints from a processing perspective](/nservicebus/outbox/#message-identity). To avoid conflicts, either separate different endpoints into different containers or [override the partition key](transactions.md)
 
 ### Outbox cleanup
 
