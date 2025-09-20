@@ -58,4 +58,4 @@ Saga correlation property values are subject to the underlying Azure Storage tab
 ### Storage format
 
 > [!WARNING]
-> The default partition key, when not explicitly set, does not separate Outbox rows by endpoint name. Because of that, multiple logical endpoints cannot share the same table since [message identities are not unique across endpoints from a processing perspective](/nservicebus/outbox/#message-identity). Either separate different endpoints into different tables or [override the partition key](transactions.md).
+> When the default partition key is not explicitly set, Outbox rows are not separated by endpoint name. As a result, multiple logical endpoints cannot share the same table since [message identities are not unique across endpoints from a processing perspective](/nservicebus/outbox/#message-identity). To avoid conflicts, either assign each endpoint to a separate table or [override the partition key](transactions.md).
