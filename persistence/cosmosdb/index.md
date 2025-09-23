@@ -20,7 +20,13 @@ Uses the [Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/
 
 For a description of each feature, see the [persistence at a glance legend](/persistence/#persistence-at-a-glance).
 
-partial: glance
+|Feature                    |   |
+|:---                       |---
+|Supported storage types    |Sagas, Outbox
+|Transactions               |Using TransactionalBatch, [with caveats](transactions.md)
+|Concurrency control        |Optimistic concurrency, optional pessimistic concurrency
+|Scripted deployment        |Not supported
+|Installers                 |Container is created by installers.
 
 > [!NOTE]
 > The Outbox feature requires partition planning.
