@@ -1,23 +1,17 @@
-namespace ASBFunctionsWorker_6;
+namespace ASBFunctionsWorker;
 
 using System.Threading;
 using System.Threading.Tasks;
 using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Functions.Worker;
+using Microsoft.Azure.Functions.Worker.Builder;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 #region custom-trigger-definition
 
-class CustomTriggerDefinition
+class CustomTriggerDefinition(IFunctionEndpoint functionEndpoint)
 {
-    IFunctionEndpoint functionEndpoint;
-
-    public CustomTriggerDefinition(IFunctionEndpoint functionEndpoint)
-    {
-        this.functionEndpoint = functionEndpoint;
-    }
-
     [Function("MyCustomTrigger")]
     public async Task Run(
         [ServiceBusTrigger("MyFunctionsEndpoint")]
@@ -30,12 +24,13 @@ class CustomTriggerDefinition
 
 public class Program
 {
-    public async Task Main()
+    public static async Task Main(string[] args)
     {
-        var host = new HostBuilder()
-            .ConfigureFunctionsWorkerDefaults()
-            .UseNServiceBus("MyFunctionsEndpoint")
-            .Build();
+        var builder = FunctionsApplication.CreateBuilder(args);
+
+        builder.AddNServiceBus("MyFunctionsEndpoint");
+
+        var host = builder.Build();
 
         await host.RunAsync();
     }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Azure.Storage.Blobs;
+using Microsoft.Azure.Functions.Worker.Builder;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
@@ -9,14 +10,15 @@ using NServiceBus;
 
 public class Program
 {
-    public static Task Main()
+    public static async Task Main(string[] args)
     {
-        var host = new HostBuilder()
-            .ConfigureFunctionsWorkerDefaults()
-            .UseNServiceBus()
-            .Build();
+        var builder = FunctionsApplication.CreateBuilder(args);
 
-        return host.RunAsync();
+        builder.AddNServiceBus();
+
+        var host = builder.Build();
+
+        await host.RunAsync();
     }
 }
 #endregion asb-function-isolated-configuration
@@ -24,71 +26,73 @@ public class Program
 class EnableDiagnostics
 {
     #region asb-function-isolated-enable-diagnostics
-    public static Task Main()
+    public static async Task Main(string[] args)
     {
-        var host = new HostBuilder()
-            .ConfigureFunctionsWorkerDefaults()
-            .UseNServiceBus(configuration =>
-            {
-                configuration.LogDiagnostics();
-            })
-            .Build();
+        var builder = FunctionsApplication.CreateBuilder(args);
 
-        return host.RunAsync();
+        builder.AddNServiceBus(configuration =>
+        {
+            configuration.LogDiagnostics();
+        });
+
+        var host = builder.Build();
+
+        await host.RunAsync();
     }
     #endregion
 }
 
 class EnableDiagnosticsBlob
 {
-    public static Task Main()
+    public static async Task Main(string[] args)
     {
         var endpointName = "ASBWorkerEndpoint";
 
         #region asb-function-iso-diagnostics-blob
-        var host = new HostBuilder()
-            .ConfigureFunctionsWorkerDefaults()
-            .UseNServiceBus(configuration =>
-            {
-                configuration.AdvancedConfiguration.CustomDiagnosticsWriter(
-                    async (diagnostics, cancellationToken) =>
-                    {
-                        var connectionString = Environment.GetEnvironmentVariable("AzureWebJobsStorage");
-                        var blobServiceClient = new BlobServiceClient(connectionString);
+        var builder = FunctionsApplication.CreateBuilder(args);
 
-                        var containerClient = blobServiceClient.GetBlobContainerClient("diagnostics");
-                        await containerClient.CreateIfNotExistsAsync(cancellationToken: cancellationToken);
+        builder.AddNServiceBus(configuration =>
+        {
+            configuration.AdvancedConfiguration.CustomDiagnosticsWriter(
+                async (diagnostics, cancellationToken) =>
+                {
+                    var connectionString = Environment.GetEnvironmentVariable("AzureWebJobsStorage");
+                    var blobServiceClient = new BlobServiceClient(connectionString);
 
-                        var blobName = $"{endpointName}-configuration.txt";
-                        var blobClient = containerClient.GetBlobClient(blobName);
-                        await blobClient.UploadAsync(BinaryData.FromString(diagnostics), cancellationToken);
-                    });
-            })
-            .Build();
+                    var containerClient = blobServiceClient.GetBlobContainerClient("diagnostics");
+                    await containerClient.CreateIfNotExistsAsync(cancellationToken: cancellationToken);
+
+                    var blobName = $"{endpointName}-configuration.txt";
+                    var blobClient = containerClient.GetBlobClient(blobName);
+                    await blobClient.UploadAsync(BinaryData.FromString(diagnostics), cancellationToken);
+                });
+        });
+
+        var host = builder.Build();
         #endregion
-        return host.RunAsync();
+        await host.RunAsync();
     }
-    
 }
 
 class ConfigureErrorQueue
 {
     #region asb-function-isolated-configure-error-queue
-    public static Task Main()
+    public static async Task Main(string[] args)
     {
-        var host = new HostBuilder()
-            .ConfigureFunctionsWorkerDefaults()
-            .UseNServiceBus(configuration =>
-            {
-                // Change the error queue name:
-                configuration.AdvancedConfiguration.SendFailedMessagesTo("my-custom-error-queue");
+        var builder = FunctionsApplication.CreateBuilder(args);
 
-                // Or disable the error queue to let ASB native dead-lettering handle repeated failures:
-                configuration.DoNotSendMessagesToErrorQueue();
-            })
-            .Build();
+        builder.AddNServiceBus(configuration =>
+        {
+            // Change the error queue name:
+            configuration.AdvancedConfiguration.SendFailedMessagesTo("my-custom-error-queue");
 
-        return host.RunAsync();
+            // Or disable the error queue to let ASB native dead-lettering handle repeated failures:
+            configuration.DoNotSendMessagesToErrorQueue();
+        });
+
+        var host = builder.Build();
+
+        await host.RunAsync();
     }
     #endregion
 }
