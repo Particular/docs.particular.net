@@ -1,20 +1,20 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
+﻿namespace ASBFunctionsWorker;
+
+using Microsoft.Azure.Functions.Worker.Builder;
+using Microsoft.Extensions.Configuration;
 using NServiceBus;
 
-namespace ASBFunctionsWorker_6
+class TopologyOptions
 {
-    class TopologyOptions
+    public void SetTopologyOptions(string[] args)
     {
-        public void SetTopologyOptions()
-        {
-            #region ASBFunctionsWorker-topology-options
-            var host = new HostBuilder()
-                .ConfigureFunctionsWorkerDefaults()
-                .ConfigureAppConfiguration(builder => builder.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true))
-                .UseNServiceBus()
-                .Build();
-            #endregion
-        }
+        #region ASBFunctionsWorker-topology-options
+        var builder = FunctionsApplication.CreateBuilder(args);
+
+        builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+        builder.AddNServiceBus();
+
+        var host = builder.Build();
+        #endregion
     }
 }
