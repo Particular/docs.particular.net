@@ -32,7 +32,7 @@ ServiceControl is deployed as [instances of different types](/servicecontrol/#se
 
 #### ServiceControl Management utility (Windows only)
 
-ServiceControl Management utility is a Windows application which can be found under the ServiceControl section on our [downloads page](https://particular.net/downloads).
+ServiceControl Management utility is a Windows application which can be found under the ServiceControl section on the [downloads page](https://particular.net/downloads).
 
 This application is used to deploy and manage one or more instances of any of the ServiceControl instance types as Windows services.
 
