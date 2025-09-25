@@ -70,8 +70,6 @@ Additional overloads are available for extracting `PartitionKey`.
 
 ## Specifying the `Container` to use for the transaction
 
-The Container to use can be specified by defining a default container:
-
 include: defaultcontainer
 
 Optionally, the `Container` to use can specified during message processing by providing the `Container` name and partition key path using the `ContainerInformation` object.
