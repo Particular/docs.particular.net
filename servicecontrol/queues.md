@@ -158,10 +158,10 @@ The Throughput Data queue is used to collect and share performance metrics betwe
 
 - Default name: **_ServiceControl.ThroughputData_**
 
-| Component                          | Access<br/>requirements | Configuration                                                                                                                                                                                                                                                        |
-|------------------------------------|:-----------------------:|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ServiceControl Error instance      |       Create/Read       | Configured via the [`LicensingComponent/ServiceControlThroughputDataQueue` setting](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-servicecontrol-licensingcomponentservicecontrolthroughputdataqueue) |
-| ServiceControl Monitoring instance |          Write          | Queue configured via [`Monitoring/ServiceControlThroughputDataQueue`]/servicecontrol/monitoring-instances/configuration.md#usage-reporting-monitoringservicecontrolthroughputdataqueue)                                                     |
+| Component                          | Access<br/>requirements | Configuration                                                                                                                                                                                                                            |
+|------------------------------------|:-----------------------:|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ServiceControl Error instance      |       Create/Read       | Configured via [`LicensingComponent/ServiceControlThroughputDataQueue` setting](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-servicecontrol-licensingcomponentservicecontrolthroughputdataqueue) |
+| ServiceControl Monitoring instance |          Write          | Configured via [`Monitoring/ServiceControlThroughputDataQueue setting`](/servicecontrol/monitoring-instances/configuration.md#usage-reporting-monitoringservicecontrolthroughputdataqueue)                                               |
 
 ## Audit instance
 
