@@ -5,6 +5,6 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus.MessagingBridge" Version="5.0.0-alpha.1" />
     <PackageReference Include="NServiceBus.MessagingBridge.Msmq" Version="5.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="6.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="6.0.0-alpha.2" />
   </ItemGroup>
 </Project>
