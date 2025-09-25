@@ -65,7 +65,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Azure.Storage.Blobs" target="_blank">Azure.Storage.Blobs</a> | <a href="https://www.nuget.org/packages/Azure.Storage.Blobs/12.25.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Blobs_12.25.0/sdk/storage/Azure.Storage.Blobs/README.md" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Azure.Storage.Blobs" target="_blank">Azure.Storage.Blobs</a> | <a href="https://www.nuget.org/packages/Azure.Storage.Blobs/12.25.1/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Blobs_12.25.1/sdk/storage/Azure.Storage.Blobs/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.IO.RecyclableMemoryStream" target="_blank">Microsoft.IO.RecyclableMemoryStream</a> | <a href="https://www.nuget.org/packages/Microsoft.IO.RecyclableMemoryStream/3.0.1/license" target="_blank">MIT</a> | <a href="https://github.com/Microsoft/Microsoft.IO.RecyclableMemoryStream" target="_blank">Project Site</a> |
 
 ### NServiceBus.Extensions.Hosting
@@ -217,7 +217,7 @@
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Azure.Data.Tables" target="_blank">Azure.Data.Tables</a> | <a href="https://www.nuget.org/packages/Azure.Data.Tables/12.11.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Data.Tables_12.11.0/sdk/tables/Azure.Data.Tables/README.md" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/Azure.Storage.Blobs" target="_blank">Azure.Storage.Blobs</a> | <a href="https://www.nuget.org/packages/Azure.Storage.Blobs/12.25.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Blobs_12.25.0/sdk/storage/Azure.Storage.Blobs/README.md" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Azure.Storage.Blobs" target="_blank">Azure.Storage.Blobs</a> | <a href="https://www.nuget.org/packages/Azure.Storage.Blobs/12.25.1/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Blobs_12.25.1/sdk/storage/Azure.Storage.Blobs/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.Storage.Queues" target="_blank">Azure.Storage.Queues</a> | <a href="https://www.nuget.org/packages/Azure.Storage.Queues/12.23.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Queues_12.23.0/sdk/storage/Azure.Storage.Queues/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.5.4/license" target="_blank">View License</a> | <i>None provided</i> |
 | <a href="https://www.nuget.org/packages/System.Linq.Async" target="_blank">System.Linq.Async</a> | <a href="https://www.nuget.org/packages/System.Linq.Async/6.0.3/license" target="_blank">MIT</a> | <a href="https://github.com/dotnet/reactive" target="_blank">Project Site</a> |
@@ -257,7 +257,7 @@
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Autofac" target="_blank">Autofac</a> | <a href="https://www.nuget.org/packages/Autofac/8.4.0/license" target="_blank">MIT</a> | <a href="https://autofac.org/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch" target="_blank">AWSSDK.CloudWatch</a> | <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch/4.0.3.2/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch" target="_blank">AWSSDK.CloudWatch</a> | <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch/4.0.4/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/4.0.2.3/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.Identity" target="_blank">Azure.Identity</a> | <a href="https://www.nuget.org/packages/Azure.Identity/1.16.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Identity_1.16.0/sdk/identity/Azure.Identity/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.Monitor.Query" target="_blank">Azure.Monitor.Query</a> | <a href="https://www.nuget.org/packages/Azure.Monitor.Query/1.7.1/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Monitor.Query_1.7.1/sdk/monitor/Azure.Monitor.Query/README.md" target="_blank">Project Site</a> |
