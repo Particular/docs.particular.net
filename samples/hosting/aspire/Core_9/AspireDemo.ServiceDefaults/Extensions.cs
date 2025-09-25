@@ -50,6 +50,7 @@ public static class Extensions
             logging.IncludeFormattedMessage = true;
             logging.IncludeScopes = true;
         });
+
         #region add-nsb-otel
         builder.Services.AddOpenTelemetry()
             .WithMetrics(metrics =>
@@ -73,6 +74,7 @@ public static class Extensions
                     .AddHttpClientInstrumentation();
             });
         #endregion
+
         builder.AddOpenTelemetryExporters();
 
         return builder;
