@@ -1,7 +1,7 @@
 ---
 title: Discarding Old Messages
 summary: Automatically discard messages if they have not been processed within a given period of time.
-reviewed: 2023-11-30
+reviewed: 2025-09-25
 component: Core
 related:
  - nservicebus/operations/auditing
@@ -46,12 +46,11 @@ When using TTBR, be aware of potential clock synchronization issues between send
 **Recommendation:**
 Add the maximum expected clock drift to the TTBR value. For example, if TTBR is 90 seconds and the maximum clock drift is 300 seconds, set TTBR to 390 seconds.
 
-
 ## Discarding messages at startup
 
 In certain situations, it may be required that messages in the incoming queue should not be processed after restarting the endpoint. This usually applies to development and test environments, but may also be appropriate for messages containing information that gets outdated or otherwise unneeded, e.g. change notifications, readings from sensors in IoT apps, etc.
 
-> [!NOTE]
+> [!WARNING]
 > It's not recommended to discard messages at startup in a production environment because it may lead to subtle message loss situations that can be hard to diagnose.
 
 To discard all existing messages in the incoming queue at startup:
@@ -60,34 +59,18 @@ snippet: PurgeMessagesAtStartup
 
 ## Caveats
 
-TimeToBeReceived relies on the transport infrastructure to discard expired messages. As a result runtime behavior is highly affected by the implementation in the different transports.
+Time-To-Be-Received relies on the transport infrastructure to discard expired messages. As a result, runtime behavior is highly affected by the implementation in the different transports.
 
-
-### MSMQ transport
-
-MSMQ continuously checks the TimeToBeReceived of all queued messages. As soon as the message has expired, it is removed from the queue, and disk space gets reclaimed.
-
-> [!NOTE]
-> MSMQ enforces a single TimeToBeReceived value for all messages in a transaction. To prevent message loss, `TimeToBeReceived` is not supported for endpoints with [transaction mode](/transports/transactions.md) `SendsAtomicWithReceive` or `TransactionScope` by default.
-
-> [!WARNING]
-> Due to a bug in Version 6 `TransportTransactionMode.ReceiveOnly` wrongly enlisted all outgoing messages in the same transaction causing the issues described above.
-
-For more details about how the MSMQ transport handles TimeToBeReceived, see [discarding expired messages in MSMQ](/transports/msmq/discard-expired-messages.md).
-
+partial: msmq
 
 ### RabbitMQ transport
 
-RabbitMQ continuously checks the TimeToBeReceived, but only for the first message in each queue. Expired messages are not removed from the queue, and their disk space is not reclaimed until they reach the front of the queue. Using TimeToBeReceived as a disk-saving measure on RabbitMQ is recommended only when all messages in the queue use the same TimeToBeReceived value. Otherwise, messages in front of the queue may prevent other, stale messages from being cleaned.
-
+RabbitMQ checks the TTBR value, but only for message at the front of the queue. Expired messages are not removed from the queue, and their disk space is not reclaimed until they reach the front of the queue. Using TTBR as a disk-saving measure on RabbitMQ is recommended only when all messages in the queue use the same TTBR value. Otherwise, messages in front of the queue may prevent other stale messages from being cleaned.
 
 ### Azure transports
 
-The Azure transports evaluate the TimeToBeReceived for a message only when the message is requested by the client. Expired messages are not removed from the queue and their disk space will not be reclaimed until they reach the front of the queue and a consumer tries to read them. Using TimeToBeReceived as a storage saving measure on the Azure transports is not a good choice for queues with long-lived messages like audit and forward.
-
+The Azure transports evaluate the TTBR for a message only when the message is requested by the client. Expired messages are not removed from the queue and their disk space will not be reclaimed until they reach the front of the queue and a consumer tries to read them. Using TTBR as a storage saving measure on the Azure transports is not a good choice for queues with long-lived messages like audit and forward.
 
 ### SQL transport
 
 The SQL Server transport runs a periodic task that removes expired messages from the queue. The task is first executed when the endpoint starts and is subsequently scheduled to execute 5 minutes after the previous run when the task has been completed. Expired messages are not received from the queue and their disk space will be reclaimed when the periodic task executes.
-
-

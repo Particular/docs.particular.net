@@ -2,7 +2,7 @@
 title: Azure Cosmos DB Persistence
 summary: How to use NServiceBus with Azure Cosmos DB
 component: CosmosDB
-reviewed: 2023-11-30
+reviewed: 2025-09-25
 related:
 - samples/cosmosdb/transactions
 - samples/cosmosdb/container
@@ -11,7 +11,7 @@ redirects:
 - previews/cosmosdb
 ---
 
-Uses the [Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/) NoSQL database service for storage.
+The Azure Cosmos DB persister uses the [Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/) NoSQL database service for storage.
 
 > [!WARNING]
 > It is important to [read and understand](https://docs.microsoft.com/en-us/azure/cosmos-db/partitioning-overview) partitioning in Azure Cosmos DB before using `NServiceBus.Persistence.CosmosDB`.
@@ -20,28 +20,34 @@ Uses the [Azure Cosmos DB](https://azure.microsoft.com/en-us/services/cosmos-db/
 
 For a description of each feature, see the [persistence at a glance legend](/persistence/#persistence-at-a-glance).
 
-partial: glance
+|Feature                    |   |
+|:---                       |---
+|Supported storage types    |Sagas, Outbox
+|Transactions               |Using TransactionalBatch, [with caveats](transactions.md)
+|Concurrency control        |Optimistic concurrency, optional pessimistic concurrency
+|Scripted deployment        |Not supported
+|Installers                 |Container is created by installers.
 
 > [!NOTE]
 > The Outbox feature requires partition planning.
 
 ## Usage
 
-Add a NuGet package reference to `NServiceBus.Persistence.CosmosDB`. Configure the endpoint to use the persistence through the following configuration API:
+Add a NuGet package reference to `NServiceBus.Persistence.CosmosDB`. Configure the endpoint to use the persister through the following configuration API:
 
 snippet: CosmosDBUsage
 
-### Token-credentials
+### Token credentials
 
-Enables usage of Microsoft Entra ID authentication such as [managed identities for Azure resources](https://learn.microsoft.com/en-us/azure/cosmos-db/role-based-access-control) instead of the shared secret in the connection string.
+Using a `TokenCredential` enables the usage of Microsoft Entra ID authentication such as [managed identities for Azure resources](https://learn.microsoft.com/en-us/azure/cosmos-db/role-based-access-control) instead of the requiring a shared secret in the connection string.
 
-Use the corresponding [`CosmosClient`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.cosmosclient.-ctor?view=azure-dotnet#microsoft-azure-cosmos-cosmosclient-ctor(system-string-azure-core-tokencredential-microsoft-azure-cosmos-cosmosclientoptions)) constructor overload when creating the client passed to the persistence.
+A `TokenCredential` can be provided by using the corresponding [`CosmosClient`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.cosmosclient.-ctor?view=azure-dotnet#microsoft-azure-cosmos-cosmosclient-ctor(system-string-azure-core-tokencredential-microsoft-azure-cosmos-cosmosclientoptions)) constructor overload when creating the client passed to the persister.
 
 ### Customizing the database used
 
-By default, the persister will store records in a database named `NServiceBus` and use a container per endpoint using the endpoint name as to name the container.
+By default, the persister will store records in a database named `NServiceBus` and use a container per endpoint, using the endpoint name as the name of the container.
 
-Customize the database name using the following configuration API:
+The database name can be customized using the following configuration API:
 
 snippet: CosmosDBDatabaseName
 
@@ -52,22 +58,22 @@ include: defaultcontainer
 > [!NOTE]
 > The [transactions](transactions.md) documentation details additional options on how to configure NServiceBus to specify the container using the incoming message headers or contents.
 
-### Customizing the CosmosClient provider
+### Customizing the `CosmosClient` provider
 
-In cases when the CosmosClient is configured and used via dependency injection a custom provider can be implemented
+When the `CosmosClient` is configured and used via dependency injection, a custom provider can be implemented:
 
 snippet: CosmosDBCustomClientProvider
 
-and registered on the container
+and registered on the container:
 
 snippet: CosmosDBCustomClientProviderRegistration
 
 ## Provisioned throughput rate-limiting
 
-When using provisioned throughput it is possible for the CosmosDB service to rate-limit usage, resulting in "request rate too large" exceptions indicated by the 429 status code.
+When using provisioned throughput, it is possible for the CosmosDB service to rate-limit usage, resulting in "request rate too large" exceptions indicated by a 429 status code.
 
 > [!WARNING]
-> When using the Cosmos DB persistence with the outbox enabled, "request rate too large" errors may result in handler re-execution and/or duplicate message dispatches depending on which operation is throttled.
+> When using the Cosmos DB persister with the outbox enabled, "request rate too large" errors may result in handler re-execution and/or duplicate message dispatches depending on which operation is throttled.
 
 > [!NOTE]
 > Microsoft provides [guidance](https://docs.microsoft.com/en-us/azure/cosmos-db/sql/troubleshoot-request-rate-too-large) on how to diagnose and troubleshoot request rate too large exceptions.
@@ -93,7 +99,7 @@ The [transactions](transactions.md) documentation provides additional details on
 ### Storage format
 
 > [!WARNING]
-> When the default partition key is not explicitly set, Outbox rows are not separated by endpoint name. As a result, multiple logical endpoints cannot share the same database and container since [message identities are not unique across endpoints from a processing perspective](/nservicebus/outbox/#message-identity). To avoid conflicts, either separate different endpoints into different containers or [override the partition key](transactions.md)
+> When the default partition key is not explicitly set, outbox rows are not separated by endpoint name. As a result, multiple logical endpoints cannot share the same database and container since [message identities are not unique across endpoints from a processing perspective](/nservicebus/outbox/#message-identity). To avoid conflicts, either separate different endpoints into different containers or [override the partition key](transactions.md).
 
 ### Outbox cleanup
 
