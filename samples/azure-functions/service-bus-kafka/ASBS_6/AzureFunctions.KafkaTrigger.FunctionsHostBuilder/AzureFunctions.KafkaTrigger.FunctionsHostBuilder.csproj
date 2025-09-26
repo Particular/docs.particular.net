@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <AzureFunctionsVersion>v4</AzureFunctionsVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>14.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AzureFunctions.Messages\AzureFunctions.Messages.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Azure.Functions.Worker" Version="2.50.0-preview1" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.*" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Kafka" Version="4.*" />
+    <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="2.*" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="6.0.0-alpha.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\local.settings.json" CopyToOutputDirectory="PreserveNewest" />
+    <None Update="host.json" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+</Project>

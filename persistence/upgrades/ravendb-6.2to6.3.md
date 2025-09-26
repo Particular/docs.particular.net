@@ -18,7 +18,11 @@ Starting with NServiceBus.RavenDB version 6.3.0, outbox-related extension method
 
 To migrate outbox settings, use:
 
-snippet: OutboxSettingsUpgrade
+```csharp
+var outbox = endpointConfiguration.EnableOutbox();
+outbox.SetTimeToKeepDeduplicationData(TimeSpan.FromDays(7));
+outbox.SetFrequencyToRunDeduplicationDataCleanup(TimeSpan.FromMinutes(1));
+```
 
 > [!NOTE]
-> Starting with NServiceBus.RavenDB version 6.3, it is recommended to disable cleanup and rely on [document expiration](https://ravendb.net/docs/article-page/latest/csharp/server/extensions/expiration) instead. For more information, refer to the [outbox cleanup guidance](/persistence/ravendb/outbox.md?version=raven_6.3#deduplication-record-lifespan).
+> Starting with NServiceBus.RavenDB version 6.3, it is recommended to disable cleanup and rely on [document expiration](https://ravendb.net/docs/article-page/latest/csharp/server/extensions/expiration) instead. For more information, refer to the [outbox cleanup guidance](/persistence/ravendb/outbox.md#deduplication-record-lifespan).

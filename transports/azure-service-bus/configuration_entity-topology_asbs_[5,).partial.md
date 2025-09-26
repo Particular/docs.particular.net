@@ -22,6 +22,8 @@ The topology json document for the topic-per-event topology looks like:
 
 snippet: topology-options
 
+If it is desired to enforce that each event type published has an explicit topic name mapping in `PublishedEventToTopicsMap` then `ThrowIfUnmappedEventTypes` can be set to `true`. This property defaults to `false`.
+
 In order to support polymorphic event types, one event (base type) can be mapped to multiple topics (where the derived events are published):
 
 snippet: topology-options-inheritance

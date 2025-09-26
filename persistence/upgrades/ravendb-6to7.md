@@ -27,7 +27,7 @@ Starting with NServiceBus.RavenDB version 6.3, it is recommended to rely on [doc
 
 snippet: OutboxRavendBDisableCleanup6to7
 
-For more information, refer to the [outbox cleanup guidance](/persistence/ravendb/outbox.md?version=raven_6.3#deduplication-record-lifespan).
+For more information, refer to the [outbox cleanup guidance](/persistence/ravendb/outbox.md#deduplication-record-lifespan).
 
 ## Cluster-wide transactions
 

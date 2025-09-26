@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.2.32602.215
+# Visual Studio Version 18
+VisualStudioVersion = 18.0.11018.127 d18.0
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MongoTS_2", "MongoTS_2\MongoTS_2.csproj", "{34E49F9B-04E5-45AF-9009-2A5B88B9203B}"
 EndProject
@@ -11,6 +11,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoTS_5", "MongoTS_5\MongoTS_5.csproj", "{B278DCC1-DAC0-4536-AAB4-CB21CAD7E120}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoTS_6", "MongoTS_6\MongoTS_6.csproj", "{1C1812F8-F58A-48A0-9A48-0EC7902741F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MongoTS_7", "MongoTS_7\MongoTS_7.csproj", "{01E7FD88-AF42-FA16-18A9-7ABF80AEC1AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -82,6 +84,18 @@ Global
 		{1C1812F8-F58A-48A0-9A48-0EC7902741F1}.Release|x64.Build.0 = Release|Any CPU
 		{1C1812F8-F58A-48A0-9A48-0EC7902741F1}.Release|x86.ActiveCfg = Release|Any CPU
 		{1C1812F8-F58A-48A0-9A48-0EC7902741F1}.Release|x86.Build.0 = Release|Any CPU
+		{01E7FD88-AF42-FA16-18A9-7ABF80AEC1AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01E7FD88-AF42-FA16-18A9-7ABF80AEC1AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01E7FD88-AF42-FA16-18A9-7ABF80AEC1AF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{01E7FD88-AF42-FA16-18A9-7ABF80AEC1AF}.Debug|x64.Build.0 = Debug|Any CPU
+		{01E7FD88-AF42-FA16-18A9-7ABF80AEC1AF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{01E7FD88-AF42-FA16-18A9-7ABF80AEC1AF}.Debug|x86.Build.0 = Debug|Any CPU
+		{01E7FD88-AF42-FA16-18A9-7ABF80AEC1AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01E7FD88-AF42-FA16-18A9-7ABF80AEC1AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01E7FD88-AF42-FA16-18A9-7ABF80AEC1AF}.Release|x64.ActiveCfg = Release|Any CPU
+		{01E7FD88-AF42-FA16-18A9-7ABF80AEC1AF}.Release|x64.Build.0 = Release|Any CPU
+		{01E7FD88-AF42-FA16-18A9-7ABF80AEC1AF}.Release|x86.ActiveCfg = Release|Any CPU
+		{01E7FD88-AF42-FA16-18A9-7ABF80AEC1AF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

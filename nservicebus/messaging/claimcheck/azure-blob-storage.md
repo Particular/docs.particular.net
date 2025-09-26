@@ -20,8 +20,6 @@ Discarding old Azure Data Bus attachments can be done in one of the following wa
 
 partial: cleanup-options
 
-partial: cleanup-setup
-
 include: azure-blob-storage-management-policy
 
 ## Configuration

@@ -1,4 +1,5 @@
-﻿using Azure.Storage.Blobs;
+﻿#pragma warning disable CS0618 // Type or member is obsolete
+using Azure.Storage.Blobs;
 using Microsoft.Extensions.DependencyInjection;
 using NServiceBus;
 using NServiceBus.DataBus.AzureBlobStorage;
@@ -103,3 +104,4 @@ class Usage
         #endregion
     }
 }
+#pragma warning restore CS0618 // Type or member is obsolete

@@ -1,4 +1,4 @@
-﻿namespace Core9
+﻿namespace Core
 {
     using OpenTelemetry;
     using OpenTelemetry.Metrics;
@@ -10,7 +10,7 @@
             #region opentelemetry-enablemeters
 
             var meterProviderProvider = Sdk.CreateMeterProviderBuilder()
-                .AddMeter("NServiceBus.Core")
+                .AddMeter("NServiceBus.Core.Pipeline.Incoming")
                 // ... Add other meters
                 // ... Add exporters
                 .Build();

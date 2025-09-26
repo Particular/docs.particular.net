@@ -23,5 +23,5 @@ Since the header may contain a physical address of any endpoint in the system, t
 
 Users who still want to prevent the need to register all endpoints with the bridge can use a dedicated API option:
 
-snippet: do-not-translate-reply-to-address-for-failed-messages
+snippet: bridge-3to4-do-not-translate-reply-to-address
 

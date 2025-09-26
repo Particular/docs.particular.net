@@ -6,8 +6,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsmqTransport_All", "MsmqTr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsmqTransport_1", "MsmqTransport_1\MsmqTransport_1.csproj", "{48F2E6B5-DBB3-4B2F-A260-C206FC664C6D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsmqTransport_1.2", "MsmqTransport_1.2\MsmqTransport_1.2.csproj", "{307DC178-881D-4B78-AC9F-0E693C8CD211}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MsmqTransport_2", "MsmqTransport_2\MsmqTransport_2.csproj", "{BAA87EFA-6F1E-436E-84F8-9B261A9472B6}"
 EndProject
 Global
@@ -24,10 +22,6 @@ Global
 		{48F2E6B5-DBB3-4B2F-A260-C206FC664C6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48F2E6B5-DBB3-4B2F-A260-C206FC664C6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48F2E6B5-DBB3-4B2F-A260-C206FC664C6D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{307DC178-881D-4B78-AC9F-0E693C8CD211}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{307DC178-881D-4B78-AC9F-0E693C8CD211}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{307DC178-881D-4B78-AC9F-0E693C8CD211}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{307DC178-881D-4B78-AC9F-0E693C8CD211}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BAA87EFA-6F1E-436E-84F8-9B261A9472B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BAA87EFA-6F1E-436E-84F8-9B261A9472B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BAA87EFA-6F1E-436E-84F8-9B261A9472B6}.Release|Any CPU.ActiveCfg = Release|Any CPU

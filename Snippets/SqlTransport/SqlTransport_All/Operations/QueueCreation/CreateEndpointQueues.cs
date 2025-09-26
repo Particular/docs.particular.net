@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace SqlServer_All.Operations.QueueCreation
 {
@@ -47,7 +47,7 @@ namespace SqlServer_All.Operations.QueueCreation
 
             // retries queue
             // TODO: Only required in Versions 2 and below
-            QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.Retries");            
+            QueueCreationUtils.CreateQueue(connection, schema, $"{endpointName}.Retries");
         }
 
         #endregion

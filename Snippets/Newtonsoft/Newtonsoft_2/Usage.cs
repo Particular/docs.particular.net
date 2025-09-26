@@ -15,7 +15,7 @@ class Usage
     {
         #region NewtonsoftSerialization
 
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 
         #endregion
     }
@@ -35,7 +35,7 @@ class Usage
                 }
             }
         };
-        var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         serialization.Settings(settings);
 
         #endregion
@@ -45,7 +45,7 @@ class Usage
     {
         #region NewtonsoftCustomReader
 
-        var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         serialization.ReaderCreator(stream =>
         {
             var streamReader = new StreamReader(stream, Encoding.UTF8);
@@ -61,7 +61,7 @@ class Usage
 
         var noBomEncoding = new UTF8Encoding(encoderShouldEmitUTF8Identifier: false, throwOnInvalidBytes: false);
 
-        var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         serialization.WriterCreator(stream =>
         {
             var streamWriter = new StreamWriter(stream, noBomEncoding);
@@ -78,7 +78,7 @@ class Usage
     {
         #region NewtonsoftContentTypeKey
 
-        var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         serialization.ContentTypeKey("custom-key");
 
         #endregion
@@ -88,7 +88,7 @@ class Usage
     {
         #region NewtonsoftBson
 
-        var serialization = endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
+        var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
         serialization.ReaderCreator(stream => new BsonDataReader(stream));
         serialization.WriterCreator(stream => new BsonDataWriter(stream));
 
@@ -123,7 +123,7 @@ class Usage
     void KnownTypesBinderConfig(EndpointConfiguration endpointConfiguration)
     {
         #region KnownTypesBinderConfig
-        endpointConfiguration.UseSerialization<NewtonsoftSerializer>()
+        endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>()
             .Settings(new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Auto,

@@ -1,4 +1,6 @@
-﻿namespace NHibernate_7
+﻿using System.Data;
+
+namespace NHibernate_7
 {
     using System;
     using NHibernate;
@@ -58,5 +60,47 @@
 
         #endregion
 
+        public void CustomTableName(EndpointConfiguration endpointConfiguration)
+        {
+            #region OutboxNHibernateCustomTableNameConfig
+
+            var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
+            persistence.CustomizeOutboxTableName(
+                outboxTableName: "MyEndpointOutbox",
+                outboxSchemaName: "MySchema");
+
+            #endregion
+        }
+
+        public void PessimisticMode(EndpointConfiguration endpointConfiguration)
+        {
+            #region OutboxPessimisticMode
+
+            var outboxSettings = endpointConfiguration.EnableOutbox();
+            outboxSettings.UsePessimisticConcurrencyControl();
+
+            #endregion
+        }
+
+        public void TransactionScopeMode(EndpointConfiguration endpointConfiguration)
+        {
+            #region OutboxTransactionScopeMode
+
+            var outboxSettings = endpointConfiguration.EnableOutbox();
+            outboxSettings.UseTransactionScope();
+
+            #endregion
+        }
+
+        public void TransactionScopeModeIsolation(EndpointConfiguration endpointConfiguration)
+        {
+            #region OutboxTransactionIsolation
+
+            var outboxSettings = endpointConfiguration.EnableOutbox();
+            outboxSettings.UseTransactionScope();
+            outboxSettings.TransactionIsolationLevel(IsolationLevel.ReadCommitted);
+
+            #endregion
+        }
     }
 }

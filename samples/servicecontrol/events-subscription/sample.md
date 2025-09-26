@@ -2,7 +2,7 @@
 title: Monitor with ServiceControl events
 summary: A sample showing how to monitor events in ServiceControl
 component: ServiceControlContracts
-reviewed: 2023-11-30
+reviewed: 2025-08-28
 related:
  - servicecontrol
  - servicecontrol/contracts
@@ -76,7 +76,7 @@ The `MessageFailed` event is published whenever ServiceControl detects a new mes
 In order to receive `HeartbeatStopped` and `HeartbeatRestored` events, the endpoint must use the [heartbeats plugin](/monitoring/heartbeats).
 
 > [!NOTE]
-> Heartbeat control messages are sent [every 30 seconds by default](/monitoring/heartbeats/install-plugin.md#heartbeat-interval) so there will be up to a 30 second delay before ServiceControl realizes that it lost or restored connection with the endpoint.
+> Heartbeat control messages are sent [every 10 seconds by default](/monitoring/heartbeats/install-plugin.md#heartbeat-interval) so there will be up to a 30 second delay before ServiceControl realizes that it lost or restored connection with the endpoint.
 
 
 ### EndpointsMonitor

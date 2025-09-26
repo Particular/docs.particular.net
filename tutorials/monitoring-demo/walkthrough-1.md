@@ -1,6 +1,6 @@
 ---
 title: "Monitoring NServiceBus Demo - Slow handlers"
-reviewed: 2023-11-07
+reviewed: 2025-08-28
 summary: Using the Particular Service Platform to measure individual endpoint performance with the throughput and processing time metrics
 suppressRelated: true
 ---

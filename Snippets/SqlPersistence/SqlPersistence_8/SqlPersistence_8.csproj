@@ -1,8 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <SqlPersistenceGenerateScripts>false</SqlPersistenceGenerateScripts>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
@@ -10,7 +12,8 @@
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="8.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql.ScriptBuilder" Version="8.*" />
     <PackageReference Include="NUnit" Version="4.*" />
-    <PackageReference Include="NUnit.Analyzers" Version="4.3.0" />
+    <PackageReference Include="NUnit.Analyzers" Version="4.*" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.*" />
   </ItemGroup>
+
 </Project>

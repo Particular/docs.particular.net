@@ -2,7 +2,7 @@
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <UserSecretsId>dotnet-NServiceBusSubscriber-573F9BD8-FB1A-4A4C-BC88-E4A997A00BE2</UserSecretsId>
-    <LangVersion>preview</LangVersion>
+    <LangVersion>14.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="10.0.0-alpha.1" />

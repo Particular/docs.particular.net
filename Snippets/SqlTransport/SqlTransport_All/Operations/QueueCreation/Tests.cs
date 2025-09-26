@@ -1,4 +1,4 @@
-﻿using System.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using NUnit.Framework;
 using System.IO;
 using System.Management.Automation;

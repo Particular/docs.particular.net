@@ -11,7 +11,7 @@ namespace AsyncAPI.Feature;
 
 public class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiDocumentGenerator
 {
-    public async Task<IEnumerable<IAsyncApiDocument>> GenerateAsync(IEnumerable<Type> markupTypes, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
+    public Task<IEnumerable<IAsyncApiDocument>> GenerateAsync(IEnumerable<Type> markupTypes, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
     {
         ArgumentNullException.ThrowIfNull(options);
 
@@ -21,14 +21,14 @@ public class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiD
         var document = serviceProvider.GetRequiredService<IV3AsyncApiDocumentBuilder>();
         options.V3BuilderSetup?.Invoke(document);
 
-        await GenerateChannels(document, options, cancellationToken);
+        GenerateChannels(document, options);
 
         documents.Add(document.Build());
 
-        return documents;
+        return Task.FromResult<IEnumerable<IAsyncApiDocument>>(documents);
     }
 
-    async Task GenerateChannels(IV3AsyncApiDocumentBuilder document, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
+    void GenerateChannels(IV3AsyncApiDocumentBuilder document, AsyncApiDocumentGenerationOptions options)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentNullException.ThrowIfNull(options);
@@ -37,9 +37,9 @@ public class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiD
         var typeCache = serviceProvider.GetRequiredService<TypeCache>();
 
         //get all published events
-        foreach (var (actualType, publishedType) in typeCache.PublishedEventCache.Select(kvp => (kvp.Key, kvp.Value)))
+        foreach (var (actualType, publishedType) in typeCache.PublishedEventCache)
         {
-            var channelName = $"{publishedType.FullName!}";
+            var channelName = publishedType.FullName!;
             document.WithChannel(channelName, channel =>
             {
                 channelBuilder = channel;
@@ -47,13 +47,13 @@ public class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiD
                     .WithAddress(typeCache.EndpointName)
                     .WithDescription(actualType.FullName);
             });
-            await GenerateV3OperationForAsync(document, channelName, channelBuilder, actualType, publishedType, options, cancellationToken);
+            GenerateV3OperationFor(document, channelName, channelBuilder, actualType, publishedType, options);
         }
 
         //NOTE this is where more channels and operations can be defined, for example subscribed to events, sent/received commands and messages
     }
 
-    Task GenerateV3OperationForAsync(IV3AsyncApiDocumentBuilder document, string channelName, IV3ChannelDefinitionBuilder channel, Type actualType, Type producedType, AsyncApiDocumentGenerationOptions options, CancellationToken cancellationToken = default)
+    static void GenerateV3OperationFor(IV3AsyncApiDocumentBuilder document, string channelName, IV3ChannelDefinitionBuilder channel, Type actualType, Type producedType, AsyncApiDocumentGenerationOptions options)
     {
         ArgumentNullException.ThrowIfNull(document);
         ArgumentException.ThrowIfNullOrWhiteSpace(channelName);
@@ -75,7 +75,7 @@ public class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiD
                     .WithSchema(requestMessagePayloadSchema));
         });
 
-        var operationName = $"{producedType.FullName!}";
+        var operationName = producedType.FullName!;
         document.WithOperation(operationName, operation =>
         {
             operation
@@ -83,6 +83,5 @@ public class ApiDocumentGenerator(IServiceProvider serviceProvider) : IAsyncApiD
                 .WithChannel($"#/channels/{channelName}")
                 .WithMessage(messageChannelReference);
         });
-        return Task.CompletedTask;
     }
 }

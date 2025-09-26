@@ -8,4 +8,8 @@
     <PackageReference Include="NServiceBus.SagaAudit" Version="3.*" />
   </ItemGroup>
 
+  <ItemGroup Label="Resolves vulnerabilities">
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="9.*" />
+  </ItemGroup>
+
 </Project>

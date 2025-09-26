@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <LangVersion>preview</LangVersion>
+    <LangVersion>14.0</LangVersion>
     <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
 
@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup Label="To disable Dashboard logging (https://docs.microsoft.com/en-us/azure/app-service/webjobs-sdk-get-started#enable-console-logging)">
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.0-preview.6.25358.103" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.0-rc.1.25451.107" />
   </ItemGroup>
 
   <ItemGroup>

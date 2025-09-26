@@ -9,7 +9,7 @@ The [MassTransit Connector for ServiceControl](https://hub.docker.com/r/particul
 
 ## How the MassTransit Connector works
 
-The MassTransit Connector for ServiceControl container monitors for the existence of the error queues specified in the `queues.txt ` file. Respecting the convention, these queues usually have a `_error` suffix. These error queues contain messages that have faulted and have been moved out of the consumer's input queue. The container then takes that message, ensures the correct format of all the headers, and moves the faulted message to the input queue of ServiceControl.
+The MassTransit Connector for ServiceControl container monitors for the existence of the error queues specified in the `queues.txt ` file. These error queues contain messages that have faulted and have been moved out of the consumer's input queue. The container then takes that message, ensures the correct format of all the headers, and moves the faulted message to the input queue of ServiceControl.
 
 ServiceControl reads the faulted message, extracting information and metadata about the fault. It also indexes the metadata, allowing operations and support teams to see the faulted message within the ServicePulse dashboard.
 
@@ -17,7 +17,7 @@ ServiceControl reads the faulted message, extracting information and metadata ab
 
 The ServiceControl MassTransit Connector creates a queue for transferring messages from ServiceControl back to a consumer's input queue. By default, the queue name is `Particular.ServiceControl.Connector.MassTransit_return`, which can be changed by overwriting the default value using the `RETURN_QUEUE` environment variable.
 
-It also creates a "poison" queue that it starts with the same name as the `RETURN_QUEUE` and appends `.poison` to it. By default, the queue name is `Particular.ServiceControl.Connector.MassTransit_return.poison`. This queue is  only used if there are any messages that the connector fails to process. Should any messages fail to this queue, a warning is raised in the `Custom Checks` section of ServicePulse
+It also creates a "poison" queue that starts with the same name as the `RETURN_QUEUE` and appends `.poison` to it. By default, the queue name is `Particular.ServiceControl.Connector.MassTransit_return.poison`. This queue is  only used if there are any messages that the connector fails to process. Should any messages fail to this queue, a warning is raised in the `Custom Checks` section of ServicePulse
 
 In addition, ServiceControl creates queues necessary to facilitate the process of retrying failed messages. These are:
 

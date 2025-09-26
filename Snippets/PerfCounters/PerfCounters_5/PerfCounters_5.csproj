@@ -1,8 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
   </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="NServiceBus.Metrics.PerformanceCounters" Version="5.*" />
   </ItemGroup>
+
 </Project>

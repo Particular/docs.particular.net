@@ -79,7 +79,7 @@ Azure provides multiple messaging technologies. One of the most advanced and rel
 
 ### When to select this transport
 
-- When the application is running on Windows Azure
+- When the application is running on Microsoft Azure
 - For enterprise messaging features such as additional reliability
 - When messages are too large for Azure Storage Queues
 - When elastic scaling is required
@@ -105,7 +105,7 @@ Azure Storage Queues has fewer features than Azure Service Bus but can be more c
 
 ### When to select this transport
 
-- When the application is running on Windows Azure and the additional features of Azure Service Bus are not worth the cost
+- When the application is running on Microsoft Azure and the additional features of Azure Service Bus are not worth the cost
 - When high throughput is not required
 - When scale-out is not required. Scaling out requires Azure Service Bus
 

@@ -6,8 +6,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Newtonsoft_2", "Newtonsoft_
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Newtonsoft_3", "Newtonsoft_3\Newtonsoft_3.csproj", "{BA42E9F9-2D42-4857-99E5-36A7ED000569}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Newtonsoft_2.4", "Newtonsoft_2.4\Newtonsoft_2.4.csproj", "{B00C77E8-0812-47CB-8DFA-5C393BD60519}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Newtonsoft_4", "Newtonsoft_4\Newtonsoft_4.csproj", "{2DD7A612-EC8F-4EE7-9802-765E79496141}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newtonsoft_5", "Newtonsoft_5\Newtonsoft_5.csproj", "{B2BF1A81-0332-4FC1-B6F5-522A7B6E43E9}"
@@ -26,10 +24,6 @@ Global
 		{BA42E9F9-2D42-4857-99E5-36A7ED000569}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA42E9F9-2D42-4857-99E5-36A7ED000569}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA42E9F9-2D42-4857-99E5-36A7ED000569}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B00C77E8-0812-47CB-8DFA-5C393BD60519}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B00C77E8-0812-47CB-8DFA-5C393BD60519}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B00C77E8-0812-47CB-8DFA-5C393BD60519}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B00C77E8-0812-47CB-8DFA-5C393BD60519}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2DD7A612-EC8F-4EE7-9802-765E79496141}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2DD7A612-EC8F-4EE7-9802-765E79496141}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DD7A612-EC8F-4EE7-9802-765E79496141}.Release|Any CPU.ActiveCfg = Release|Any CPU

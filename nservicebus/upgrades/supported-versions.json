@@ -341,6 +341,10 @@
         {
           "Minor": "5.0",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "5.1",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -431,10 +435,6 @@
       "Versions": [
         {
           "Minor": "2.3",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.1",
           "SupportLevel": "Mainstream"
         },
         {
@@ -536,10 +536,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "10.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "10.1",
           "SupportLevel": "Mainstream"
         }
@@ -554,10 +550,6 @@
         },
         {
           "Minor": "9.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "10.0",
           "SupportLevel": "Mainstream"
         },
         {
@@ -608,10 +600,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "6.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "6.1",
           "SupportLevel": "Mainstream"
         }
@@ -626,10 +614,6 @@
         },
         {
           "Minor": "5.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "6.0",
           "SupportLevel": "Mainstream"
         },
         {
@@ -650,10 +634,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "3.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "3.1",
           "SupportLevel": "Mainstream"
         }
@@ -671,10 +651,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "3.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "3.1",
           "SupportLevel": "Mainstream"
         }
@@ -685,10 +661,6 @@
       "Versions": [
         {
           "Minor": "1.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "2.1",
           "SupportLevel": "Mainstream"
         },
         {
@@ -706,10 +678,6 @@
       "Versions": [
         {
           "Minor": "1.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "2.1",
           "SupportLevel": "Mainstream"
         },
         {
@@ -760,10 +728,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "8.1",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "8.2",
           "SupportLevel": "Mainstream"
         }
@@ -778,10 +742,6 @@
         },
         {
           "Minor": "7.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "8.1",
           "SupportLevel": "Mainstream"
         },
         {
@@ -823,15 +783,15 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "9.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "9.1",
           "SupportLevel": "Mainstream"
         },
         {
           "Minor": "10.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "10.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -848,15 +808,15 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "9.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "9.1",
           "SupportLevel": "Mainstream"
         },
         {
           "Minor": "10.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "10.1",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -933,15 +893,15 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "4.1",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "4.2",
           "SupportLevel": "Mainstream"
         },
         {
           "Minor": "5.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "6.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -958,15 +918,15 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "4.1",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "4.2",
           "SupportLevel": "Mainstream"
         },
         {
           "Minor": "5.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "6.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -1013,11 +973,11 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "3.2",
+          "Minor": "3.3",
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "3.3",
+          "Minor": "3.4",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -1194,16 +1154,20 @@
         {
           "Minor": "3.57",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.58",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.59",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
     {
       "PackageId": "ServiceControl.Contracts",
       "Versions": [
-        {
-          "Minor": "4.0",
-          "SupportLevel": "Mainstream"
-        },
         {
           "Minor": "5.0",
           "SupportLevel": "Mainstream"

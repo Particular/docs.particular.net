@@ -78,6 +78,35 @@ class Usage
         #endregion
     }
 
+    public void InMemoryDeduplicationConfigurationCacheSize(EndpointConfiguration endpointConfiguration)
+    {
+        #region NonDurableDeduplicationConfigurationCacheSize
+
+        var gatewayStorageConfiguration = new InMemoryDeduplicationConfiguration
+        {
+            CacheSize = 50000
+        };
+
+        endpointConfiguration.Gateway(gatewayStorageConfiguration);
+
+        #endregion
+    }
+
+    void ReplyUri(EndpointConfiguration endpointConfiguration)
+    {
+        #region SetReplyToUri
+
+        var gatewaySettings = endpointConfiguration.Gateway(new InMemoryDeduplicationConfiguration());
+
+        // Local HTTP binding address uses wilcard domain
+        gatewaySettings.AddReceiveChannel("http://+:12345/MyEndpoint/");
+
+        // Set the reply-to URI as the public address of a load balancer or proxy
+        gatewaySettings.SetReplyToUri("http://my-public-domain.com:54321/MyEndpoint/");
+
+        #endregion
+    }
+    
     class CustomChannelReceiver :
         IChannelReceiver
     {

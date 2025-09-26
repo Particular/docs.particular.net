@@ -1,7 +1,7 @@
 ---
 title: Message property encryption
 summary: Encrypting specific parts of a message using the message property encryption feature.
-reviewed: 2023-11-24
+reviewed: 2025-08-26
 component: PropertyEncryption
 related:
 - serviceinsight/custom-message-viewers

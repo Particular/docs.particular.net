@@ -1,9 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json.Bson" Version="1.*" />
-    <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.4.*" />
-  </ItemGroup>
-</Project>
