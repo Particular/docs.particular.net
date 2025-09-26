@@ -3,6 +3,8 @@ title: Configuration
 summary: Explains the configuration options
 component: ASBS
 reviewed: 2025-03-21
+related:
+ - samples/azure-service-bus-netstandard/options
 ---
 
 ## Configuring an endpoint
