@@ -154,7 +154,6 @@ You also implemented an additional event subscriber, showing how to decouple ind
         $('#tweet-completion').on('click', function (e) {
           e.preventDefault();
           gtag('event','quick_start_tweet_completion_click', { 'send_to': 'G-GMZ1FS541B' });
-          window.ga && window.ga('send', 'event', 'QuickStart', 'TweetCompletionClick');
           window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent('I just completed the #NServiceBus Quick Start tutorial at docs.particular.net/tutorials/quickstart'));
         });
       });
