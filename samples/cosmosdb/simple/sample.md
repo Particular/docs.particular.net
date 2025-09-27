@@ -1,7 +1,7 @@
 ---
 title: Simple Cosmos DB Persistence Usage
 summary: Using Cosmos DB Persistence to store sagas
-reviewed: 2023-12-05
+reviewed: 2025-09-26
 component: CosmosDB
 related:
  - nservicebus/sagas
@@ -15,7 +15,9 @@ This sample shows a client/server scenario using non-transactional saga persiste
 
 Ensure that an instance of the latest [Azure Cosmos DB Emulator](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator) is running.
 
-## Projects
+## Sample structure
+
+This sample contains three projects, `SharedMessages`, `Client` and `Server`.
 
 ### SharedMessages
 
@@ -26,15 +28,17 @@ The shared message contracts used by all endpoints.
 * Sends the `StartOrder` message to `Server`.
 * Receives and handles the `OrderCompleted` event.
 
-### Server projects
+### Server
 
 * Receive the `StartOrder` message and initiate an `OrderSaga`.
 * `OrderSaga` requests a timeout with an instance of `CompleteOrder` with the saga data.
 * `OrderSaga` publishes an `OrderCompleted` event when the `CompleteOrder` timeout fires.
 
+## Implementation highlights
+
 ### Persistence config
 
-Configure the endpoint to use Cosmos DB Persistence.
+In Program.cs of the Server project, the endpoint is configured to use Cosmos DB Persistence:
 
 snippet: CosmosDBConfig
 
@@ -42,8 +46,12 @@ In the non-transactional mode, the saga id is used as a partition key, and thus,
 
 ## Order saga data
 
+The data stored on the saga is defined on the `OrderSagaData.cs` file inside the `Server` project:
+
 snippet: sagadata
 
 ## Order saga
+
+The handler for this data is on the `OrderSaga.cs` file on the `Server` project:
 
 snippet: thesaga
