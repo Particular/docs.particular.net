@@ -31,7 +31,7 @@ An endpoint is a logical entity that communicates with other endpoints via messa
 Each endpoint has an identifying name and contains a collection of message handlers and sagas. 
 An endpoint can be deployed to a number of machines and environments. Each deployment of an endpoint is an instance.
 
-### [Instance](/nservicebus/endpoints/) or endpoint instance
+### [Endpoint Instance](/nservicebus/endpoints/) or instance
 
 An endpoint instance is a run-time object that allows interaction with the bus. Endpoint instances can send, receive, and publish messages. 
 They execute associated message handlers and sagas to process incoming messages. An endpoint instance can have a single input queue.
