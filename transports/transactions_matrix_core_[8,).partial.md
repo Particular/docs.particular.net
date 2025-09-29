@@ -7,4 +7,4 @@
 | [Amazon SQS](/transports/sqs/transaction-support.md) | &#10006; | &#10006; | &#10004; | &#10004; |
 | [Azure Storage Queues](/transports/azure-storage-queues/transaction-support.md)| &#10006; | &#10006; | &#10004; | &#10004; |
 | [Azure Service Bus](/transports/azure-service-bus/transaction-support.md) | &#10006; | &#10004; | &#10004; | &#10004; |
-| [PostgreSQL](/transports/azure-service-bus/transaction-support.md) | &#10006; | &#10004; | &#10004; | &#10004; |
+| [PostgreSQL](/transports/postgresql/transactions.md) | &#10006; | &#10004; | &#10004; | &#10004; |
