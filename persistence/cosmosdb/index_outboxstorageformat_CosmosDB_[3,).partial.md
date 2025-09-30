@@ -1,3 +1,5 @@
+#### Version 3.2.0 and over
+
 A default [synthetic partition key](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/synthetic-partition-keys) will be used for all incoming messages, in the format `{endpointName}-{messageId}`, if not explicitly [overwritten](/persistence/cosmosdb/transactions.md#specifying-the-partitionkey-to-use-for-the-transaction) at runtime.
 
 > [!NOTE]
@@ -13,3 +15,10 @@ endpointConfiguration
 
 > [!WARNING]
 > Since [message identities are not unique across endpoints from a processing perspective](/nservicebus/outbox/#message-identity), when overwriting the default synthetic key, either separate different endpoints into different containers or [override the default synthetic partition key](transactions.md) in a way that ensures message identities are unique to each processing endpoint.
+
+#### Version 3.1.0 and under
+
+> [!WARNING]
+> _The below limitation has been resolved in `NServiceBus.Persistence.CosmosDB 3.2.0`. Its recommended that customers [update to 3.2](/persistence/upgrades/cosmosdb-3.1to3.2.md) if affected._
+>
+> For control messages, a default partition key in the format `{messageId}` will be used, however these Outbox records are not separated by endpoint name. As a result, multiple logical endpoints cannot share the same database and container since [message identities are not unique across endpoints from a processing perspective](/nservicebus/outbox/#message-identity). To avoid conflicts, either separate different endpoints into different containers, [override the partition key](transactions.md), or [update to NServiceBus.Persistence.CosmosDB 3.2](/persistence/upgrades/cosmosdb-3.1to3.2.md).
