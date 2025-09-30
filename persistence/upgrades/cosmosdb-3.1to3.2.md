@@ -24,4 +24,4 @@ Affected customers should perform one of the below options prior to updating to 
 
 1. Customers can remove the configured message container extractor and only rely on the default container.
 2. Customers can update their message container extractor to use the same container specified as the default container.
-3. Customers can [migrate records](https://learn.microsoft.com/en-us/azure/cosmos-db/container-copy?tabs=online-copy&pivots=api-nosql) from the default container to the container specified in the message container extractor. This option may require [changing the container partition key](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/change-partition-key).
+3. Customers can [migrate relevant records](https://learn.microsoft.com/en-us/azure/cosmos-db/container-copy?tabs=online-copy&pivots=api-nosql) from the default container to the container specified in the message container extractor. This option may require [changing the container partition key](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/change-partition-key).
