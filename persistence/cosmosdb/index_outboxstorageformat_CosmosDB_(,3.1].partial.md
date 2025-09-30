@@ -1,0 +1,2 @@
+> [!WARNING]
+> For control messages, a default partition key in the format `{messageId}` will be used, however these Outbox records are not separated by endpoint name. As a result, multiple logical endpoints cannot share the same database and container since [message identities are not unique across endpoints from a processing perspective](/nservicebus/outbox/#message-identity). To avoid conflicts, either separate different endpoints into different containers or [override the partition key](transactions.md).

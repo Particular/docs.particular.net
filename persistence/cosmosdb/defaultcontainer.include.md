@@ -2,7 +2,7 @@ The container that is used by default for all incoming messages is specified via
 
 snippet: CosmosDBDefaultContainer
 
-#if-version [3, )
+#if-version [3.2, )
 If the container information is being extracted during runtime from a message instance (header or message body), the default container specified will be overwritten by the last extractor in the pipeline. For example, if a [Header Extractor](/persistence/cosmosdb/transactions.md#specifying-the-container-to-use-for-the-transaction-using-message-header-values) (physical stage) and a [Message Extractor](/persistence/cosmosdb/transactions.md#specifying-the-container-to-use-for-the-transaction-using-the-message-contents) (logical stage) are both configured, then the container information within the Message Extractor would be used.
 
 > [!NOTE]

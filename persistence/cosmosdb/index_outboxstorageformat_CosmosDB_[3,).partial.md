@@ -1,7 +1,0 @@
-A default [synthetic partition key](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/synthetic-partition-keys) will be used, in the format `{endpointName}-{messageId}`, if not explicitly [overwritten](/persistence/cosmosdb/transactions.md#specifying-the-partitionkey-to-use-for-the-transaction) at runtime.
-
-> [!NOTE]
-> To support backward compatibility of control messages during migration, the persistence includes a fallback mechanism. When enabled (default), and if a record is not found using the synthetic key format, the system falls back to the legacy `{messageId}` format. The fallback can be disabled using `DisableReadFallback()` once all legacy records have expired, which is recommended since the fallback mechanism involves an additional read operation on the Outbox container.
-
-> [!WARNING]
-> When the default synthetic partition key is not used, but rather overwritten at runtime, Outbox rows are not automatically separated by endpoint name. As a result, multiple logical endpoints cannot share the same database and container since [message identities are not unique across endpoints from a processing perspective](/nservicebus/outbox/#message-identity). To avoid conflicts, either separate different endpoints into different containers, use the default synthetic partition key, or [override the default synthetic partition key](transactions.md).
