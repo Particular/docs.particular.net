@@ -45,9 +45,7 @@ A `TokenCredential` can be provided by using the corresponding [`CosmosClient`](
 
 ### Customizing the database used
 
-By default, the persister will store records in a database named `NServiceBus` and use a container per endpoint, using the endpoint name as the name of the container.
-
-The database name can be customized using the following configuration API:
+By default, the persister will store records in a database named `NServiceBus`. This can be overwritten by using the following configuration API:
 
 snippet: CosmosDBDatabaseName
 
@@ -90,7 +88,7 @@ snippet: CosmosDBConfigureThrottlingWithBuilder
 
 ## Transactions
 
-The Cosmos DB persister supports using the [Cosmos DB transactional batch API](https://devblogs.microsoft.com/cosmosdb/introducing-transactionalbatch-in-the-net-sdk/). However, Cosmos DB only allows operations to be batched if all operations are performed within the same logical partition key. This is due to the distributed nature of the Cosmos DB service, which does not support distributed transactions.
+The Cosmos DB persister supports using the [Cosmos DB transactional batch API](https://devblogs.microsoft.com/cosmosdb/introducing-transactionalbatch-in-the-net-sdk/). However, Cosmos DB only allows operations to be batched if all operations are performed within the [same logical partition key](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/transactional-batch?tabs=dotnet). This is due to the distributed nature of the Cosmos DB service, which does not support distributed transactions.
 
 The [transactions](transactions.md) documentation provides additional details on how to configure NServiceBus to resolve the incoming message to a specific partition key to take advantage of this Cosmos DB feature.
 
@@ -98,8 +96,7 @@ The [transactions](transactions.md) documentation provides additional details on
 
 ### Storage format
 
-> [!WARNING]
-> When the default partition key is not explicitly set, outbox rows are not separated by endpoint name. As a result, multiple logical endpoints cannot share the same database and container since [message identities are not unique across endpoints from a processing perspective](/nservicebus/outbox/#message-identity). To avoid conflicts, either separate different endpoints into different containers or [override the partition key](transactions.md).
+partial: outboxstorageformat
 
 ### Outbox cleanup
 
