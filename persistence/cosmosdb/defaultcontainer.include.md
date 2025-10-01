@@ -13,4 +13,4 @@ When installers are enabled, this (default) container will be created if it does
 
 snippet: CosmosDBDisableContainerCreation
 
-Any other containers that are resolved by extracing partition information from incoming messages need to be [manually created in Azure](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/how-to-create-container).
+Any other containers that are resolved by extracting partition information from incoming messages need to be [manually created in Azure](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/how-to-create-container).
