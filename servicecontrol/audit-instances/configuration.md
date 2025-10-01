@@ -509,7 +509,7 @@ The audit queue name to use for forwarding audit messages. This setting is ignor
 
 ### ServiceControl.Audit/ServiceControlQueueAddress
 
-The ServiceControl queue name to use for plugin messages (e.g. Heartbeats, Custom Checks, Saga Audit, etc ).
+The ServiceControl primary instance queue name to use to send plugin messages (e.g. Heartbeats, Custom Checks, Saga Audit, etc ).
 
 | Context | Name |
 | --- | --- |
@@ -519,7 +519,7 @@ The ServiceControl queue name to use for plugin messages (e.g. Heartbeats, Custo
 
 | Type | Default value |
 | --- | --- |
-| string | _Empty_ |
+| string | `Particular.ServiceControl` |
 
 ## Troubleshooting
 
