@@ -4,7 +4,6 @@ summary: Integration with Microsoft.Extensions.DependencyInjection
 reviewed: 2025-05-13
 component: Extensions.DependencyInjection
 related:
- - samples/dependency-injection/extensions-dependency-injection
  - samples/hosting/generic-host
 redirects:
  - nservicebus/dependency-injection/property-injection

@@ -50,7 +50,7 @@ snippet: ExternalStart
 > [!NOTE]
 > Refer to the container's documentation on how to use the container with the `Microsoft.Extensions.DependencyInjection` API.
 
-The externally managed mode is intended to be used in scenarios where the NServiceBus endpoint integrates into an existing application or host already using either MS.DI or using a third party container that supports integration with MS.DI. 
+The externally managed mode is intended to be used in scenarios where the NServiceBus endpoint integrates into an existing application or host already using either MS.DI or using a third party container that supports integration with MS.DI.
 
 ## Property injection
 
@@ -113,8 +113,6 @@ snippet: DelegateSingleInstance
 
 > [!NOTE]
 > The session is only valid for use after the endpoint have been started, so it is provided as `Lazy<IMessageSession>`.
-
-The [NServiceBus.Extensions.DependencyInjection Usage sample](/samples/dependency-injection/extensions-dependency-injection/) demonstrates how to register the message session.
 
 ## Resolving dependencies
 

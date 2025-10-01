@@ -37,5 +37,3 @@ snippet: ExternalStart
 
 > [!NOTE]
 > The session is only valid for use after the endpoint have been started, so it is provided as `Lazy<IMessageSession>`.
-
-The [NServiceBus.Extensions.DependencyInjection Usage sample](/samples/dependency-injection/extensions-dependency-injection/) demonstrates how to register the message session.

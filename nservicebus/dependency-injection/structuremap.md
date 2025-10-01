@@ -5,8 +5,6 @@ component: StructureMap
 reviewed: 2025-02-25
 redirects:
  - nservicebus/containers/structuremap
-related:
- - samples/dependency-injection/structuremap
 ---
 
 include: container-deprecation-notice
