@@ -1,11 +1,4 @@
-﻿//Google Universal Analytics initialization
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-20451773-2');
-ga('set', 'allowAdFeatures', false);
-
+﻿
 //Google GA4 initialization
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -77,18 +70,11 @@ _kms('//scripts.kissmetrics.io/' + _kmk + '.2.js');
 
     $(function () {
 
-        var gaEvt = function (category, action, label) {
-            console.log('GA', category, action, label);
-            window.ga('send', 'event', category, action, label);
-        };
-
         GA4.quickStartRunning();
-        gaEvt('QuickStart', 'Running', SOLUTION_VERSION);
         _kmq.push(['record', 'QuickStart-Running-Control']);
 
         window.sentMessage = function () {
             GA4.quickStartMessageSent();
-            gaEvt('QuickStart', 'SentMessage', SOLUTION_VERSION);
             _kmq.push(['record', 'QuickStart-SentMessage-Control']);
         };
 
@@ -99,11 +85,9 @@ _kms('//scripts.kissmetrics.io/' + _kmk + '.2.js');
         }
 
         GA4.quickStartDisplayedLicenseButton();
-        gaEvt('QuickStart', 'DisplayedLicenseButton', SOLUTION_VERSION);
 
         licenseBtn.attr('href', 'https://particular.net/license/nservicebus?v=' + window.NSB_VERSION + '&t=0').click(function (e) {
             GA4.quickStartClickedLicenseButton();
-            gaEvt('QuickStart', 'ClickedLicenseButton', SOLUTION_VERSION);
         });
 
     });
