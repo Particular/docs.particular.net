@@ -9,7 +9,6 @@ redirects:
  - nservicebus/dependency-injection/msdependencyinjection
 related:
  - samples/dependency-injection
- - samples/dependency-injection/extensions-dependency-injection
  - samples/dependency-injection/externally-managed-mode
 ---
 

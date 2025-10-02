@@ -9,7 +9,7 @@ related:
 
 ## Prerequisites
 
-Ensure an instance of the [Azurite Emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio) is running. 
+Ensure an instance of the [Azurite Emulator](https://learn.microsoft.com/en-us/azure/storage/common/storage-use-azurite?tabs=visual-studio) is running.
 
 
 ## Azure Storage Queues Transport
@@ -33,14 +33,25 @@ The `Server` endpoint is configured to use the Azure Table persistence in two lo
 #### The endpoint configuration
 
 snippet: Config
-partial: sanitization
+
+#### Sanitization
+
+One of the endpoints is using a long name which needs to be sanitized.
+
+snippet: endpointname
+
+To remain backwards compatible with the older versions of the transport, `MD5` based sanitization is registered. The sample also includes `SHA1` based sanitization. This sanitizer is suitable for endpoints with the transport version 7.x used to shorten queue names with `SHA1` hashing algorithm.
+
+snippet: sanitization
+
+The full contents of the sanitization code is shown at the [end of this document](#sanitizer-source-code).
 
 
 ## The data in Azure Storage
 
 The queues for the two endpoints can be seen in the [Server Explorer](https://msdn.microsoft.com/en-us/library/x603htbk.aspx) of Visual Studio.
 
-partial: queues
+![](images/sanitized-queues.png)
 
 
 ### Reading the data using code
@@ -104,4 +115,6 @@ Note that above there is a encoded `Body` property. Decoding this message will p
 
 ```
 
-partial: sanitization-source
+## Sanitizer source code
+
+snippet: BackwardsCompatibleQueueNameSanitizer

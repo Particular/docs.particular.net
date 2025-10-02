@@ -3,8 +3,6 @@ title: Common.Logging
 summary: Using the Common.Logging abstraction with NServiceBus
 component: CommonLogging
 reviewed: 2025-03-06
-related:
-- samples/logging/commonlogging
 ---
 
 > [!NOTE]

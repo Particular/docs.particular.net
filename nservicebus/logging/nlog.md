@@ -3,8 +3,6 @@ title: NLog
 summary: Logging to NLog
 reviewed: 2024-08-20
 component: NLog
-related:
-- samples/logging/nlog-custom
 ---
 
 partial: obsolete-warning

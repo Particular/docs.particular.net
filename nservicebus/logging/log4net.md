@@ -3,8 +3,6 @@ title: Log4Net
 summary: Logging to Log4Net
 reviewed: 2024-08-20
 component: Log4Net
-related:
-- samples/logging/log4net-custom
 ---
 
 > [!WARNING]
