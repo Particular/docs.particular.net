@@ -1,15 +1,15 @@
 ---
 title: Externally Managed Mode
-summary: A sample that uses NServiceBus's externally managed mode feature to configure a DI container.
+summary: A sample that uses the externally managed mode feature to configure a dependency injection container.
 component: Core
-reviewed: 2023-12-18
+reviewed: 2025-10-03
 related:
  - nservicebus/dependency-injection
 ---
 
 ### Configuring the endpoint
 
-The sample configures an endpoint to use [externally managed mode](/nservicebus/dependency-injection/#modes-of-operation-externally-managed-mode) with [Microsoft's dependency injection container](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection) and registers some dependencies.
+This sample configures an endpoint to use [externally managed mode](/nservicebus/dependency-injection/#modes-of-operation-externally-managed-mode) with [Microsoft's dependency injection container](https://www.nuget.org/packages/Microsoft.Extensions.DependencyInjection) and registers some dependencies.
 
 snippet: ContainerConfiguration
 

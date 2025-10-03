@@ -1,7 +1,7 @@
 ---
 title: Best practices
 summary: An assortment of best practices presented as DO, DO NOT, and CONSIDER.
-reviewed: 2024-01-05
+reviewed: 2025-10-03
 isLearningPath: true
 ---
 
@@ -13,9 +13,9 @@ This article presents recommendations to keep in mind when designing a system us
 
 Multiple message handlers can be combined inside a single logical endpoint. However, these handlers all share a single message queue for different types of messages.
 
-The endpoint is the fundamental unit of scale for an NServiceBus system. If one message handler has much higher throughput requirements, it can only be independently scaled if it exists in an endpoint by itself. In separate endpoints, only the message handler that has the unique scalability requirements has to be scaled out.
+The endpoint is the fundamental unit of scale for an NServiceBus system. If one message handler has much higher throughput requirements, it can only be independently scaled if it exists in an endpoint by itself. With separate endpoints, only the message handler that has the unique scalability requirements has to be scaled out.
 
-The endpoint is also the fundamental unit of deployment for an NServcieBus system. That means that the entire endpoint must be redeployed if a fix is required for one message handler. The fewer message handlers in each endpoint, the less likely any individual deployment is to cause a problem in the system since the whole system does not have to be redeployed on every change.
+The endpoint is also the fundamental unit of deployment for an NServiceBus system. That means that the entire endpoint must be redeployed if a fix is required for one message handler. The fewer message handlers in each endpoint, the less likely any individual deployment is to cause a problem in the system since the whole system does not have to be redeployed on every change.
 
 ### :heavy_check_mark: **CONSIDER grouping message handlers by SLA**
 
@@ -43,11 +43,11 @@ Meanwhile, a custom abstraction makes the NServiceBus documentation less effecti
 
 It is best to embrace the asynchronous nature of NServiceBus messages and not use an asynchronous message (or a pair of messages in a request/reply scenario) for synchronous communication, especially when the scenario expects an answer to be available _right now_. This is especially important with queries: [messaging should not be used for queries](https://web.archive.org/web/20211205190919/http://andreasohlund.net/2010/04/22/messaging-shouldnt-be-used-for-queries/).
 
-When a previously-defined user interface demands an immediate response, such as inserting a new item into a grid and then immediately refreshing the grid to include the new item, the [client-side callbacks package](/nservicebus/messaging/callbacks.md) can be used, but this should be considered a crutch until a more [task- or command-focused UI](https://cqrs.wordpress.com/documents/task-based-ui/) can replace it.
+When a previously defined user interface demands an immediate response, such as inserting a new item into a grid and then immediately refreshing the grid to include the new item, the [client-side callbacks package](/nservicebus/messaging/callbacks.md) can be used, but this should be considered a temporary workaround until a more [task- or command-focused UI](https://cqrs.wordpress.com/documents/task-based-ui/) can replace it.
 
 ### :x: **DO NOT create a messaging endpoint for every single web request**
 
-NServiceBus does a lot of work when it first starts up, scanning through assemblies to find the types of messages and message handlers, establishing communication with the messaging infrastructure, and ensuring that everything is optimized to run quickly for the duration of the endpoint's life. Do not repeat all this work on every web request just to send a single message and then shut down.
+NServiceBus does a lot of work when it first starts up, including scanning through assemblies to find the types of messages and message handlers, establishing communication with the messaging infrastructure, and ensuring that everything is optimized to run quickly for the duration of the endpoint's life. Do not repeat all this work on every web request just to send a single message and then shut down.
 
 An NServiceBus endpoint is designed to be a long-lived object that persists throughout the application process. Once the `IMessageSession` is created, use dependency injection to inject it into controllers or wherever else it is needed. If necessary, assign the `IMessageSession` to a global variable.
 
@@ -63,7 +63,7 @@ Asynchronous messaging (e.g., NServiceBus) is **not** a good solution for data d
 
 Message handlers should be simple and focused on only the business code needed to handle the message. Infrastructure code for logging, exception management, timing, auditing, authorization, unit of work, message signing/encryption, etc, should not be included in a message handler.
 
-Instead, implement this functionality separately in a [message pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md), which enables inserting additional functionality into the NServiceBus message processing pipeline, similar to an ASP.NET ActionFilter.
+Instead, implement this functionality separately in a [message pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md), which enables inserting additional functionality into the NServiceBus message processing pipeline.
 
 For a high-level overview of infrastructure concerns and behaviors, see the blog post [Infrastructure soup](https://particular.net/blog/infrastructure-soup).
 
@@ -98,21 +98,17 @@ Message queues are long-lasting and durable. Occasionally connected clients, suc
 
 For occasionally connected clients, consider another communication medium, such as in the [Near real-time transient clients sample](/samples/near-realtime-clients/), which communicates with clients using [SignalR](https://dotnet.microsoft.com/apps/aspnet/signalr).
 
-### :heavy_check_mark: **CONSIDER [identifying message types using conventions](/nservicebus/messaging/unobtrusive-mode.md) to make upgrading to new versions of NServiceBus easier**
+### :heavy_check_mark: **Consider using shared message assemblies that reference [NServiceBus.MessageInterfaces](https://www.nuget.org/packages/NServiceBus.MessageInterfaces) to make upgrading to new versions of NServiceBus easier**
 
-By default, NServiceBus will identify classes implementing `ICommand` as commands, `IEvent` as events, and `IMessage` as other types of messages, such as replies. This is quick and easy but also causes message projects to depend on the NServiceBus NuGet package.
+In a complex system, it's useful to be able to upgrade one endpoint at a time. Message assemblies are shared between multiple endpoints. If these assemblies reference the NServiceBus NuGet package directly, they can cause challenges during upgrades when one endpoint using a message assembly has upgraded to the next major version but the other has not.
 
-In a complex system, it's useful to be able to upgrade one endpoint at a time. Message assemblies are shared between multiple endpoints, which can cause challenges during upgrades when one endpoint using a message assembly has upgraded to the next major version but the other has not.
-
-These versioning problems can be addressed using [unobtrusive-mode messages](/nservicebus/messaging/unobtrusive-mode.md) by defining [message conventions](/nservicebus/messaging/conventions.md) independent of the `ICommand`/`IEvent`/`IMessage` interfaces.
-
-These conventions can even be [encapsulated in a class](/nservicebus/messaging/conventions.md#encapsulated-conventions), and many can be used within one endpoint so that messages from multiple teams who have made different choices on message conventions can be used together.
+To solve this, message assemblies should instead reference the [`NServiceBus.MessageInterfaces` package](/samples/message-assembly-sharing/) which has no dependency on the NServiceBus package.
 
 ## System monitoring
 
-### :heavy_check_mark: **DO install the [Heartbeats plugin](/monitoring/heartbeats/) in all endpoints to monitor for endpoint health**
+### :heavy_check_mark: **DO install the [Heartbeat plugin](/monitoring/heartbeats/) in all endpoints to monitor for endpoint health**
 
-The Heartbeats plugin sends a message to [ServiceControl](/servicecontrol/) at regular intervals to demonstrate that the process is not only executing (which would be provided by any suite of system monitoring tools) but is also capable of interacting with the message transport.
+The Heartbeat plugin sends a message to [ServiceControl](/servicecontrol/) at regular intervals to demonstrate that the process is not only executing (which would be provided by any suite of system monitoring tools) but is also capable of interacting with the message transport.
 
 If ServiceControl stops receiving heartbeat messages from an endpoint, that endpoint will be shown as [inactive in ServicePulse](/monitoring/heartbeats/in-servicepulse.md). In addition, ServiceControl will publish a [`HeartbeatStopped` event](/monitoring/heartbeats/notification-events.md) so that operations staff can be notified and respond.
 

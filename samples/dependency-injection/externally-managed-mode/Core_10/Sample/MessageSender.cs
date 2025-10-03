@@ -1,7 +1,4 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
-
-#region InjectingMessageSession
+﻿#region InjectingMessageSession
 public class MessageSender(IMessageSession messageSession)
 {
     public Task SendMessage()

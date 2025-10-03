@@ -1,3 +1,1 @@
-﻿using NServiceBus;
-
-public record MyMessage : IMessage;
+﻿public record MyMessage : IMessage;
