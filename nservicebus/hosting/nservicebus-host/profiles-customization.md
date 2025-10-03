@@ -2,7 +2,7 @@
 title: NServiceBus Host Profiles Customization
 summary: Create custom NServiceBus host profiles and customize default NServiceBus host profiles.
 component: Host
-reviewed: 2024-01-12
+reviewed: 2025-10-03
 ---
 
 include: host-deprecated-warning
