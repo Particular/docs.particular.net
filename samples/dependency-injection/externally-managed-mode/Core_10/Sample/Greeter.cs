@@ -2,7 +2,7 @@
 
 public class Greeter
 {
-    private static readonly ILog log = LogManager.GetLogger<Greeter>();
+    static readonly ILog log = LogManager.GetLogger<Greeter>();
 
     public void SayHello()
     {

@@ -1,7 +1,7 @@
 ---
 title: Business continuity and disaster recovery procedures
 summary: Particular Software business continuity and disaster recovery procedures
-reviewed: 2024-01-10
+reviewed: 2025-10-03
 ---
 
 This document describes Particular Software business continuity and disaster recovery procedures.
