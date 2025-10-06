@@ -1,12 +1,10 @@
-using Headquarters;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus.Gateway;
 using Shared;
 
 Console.Title = "Headquarters";
-var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<InputLoopService>();
+
 var endpointConfiguration = new EndpointConfiguration("Samples.Gateway.Headquarters");
 endpointConfiguration.EnableInstallers();
 endpointConfiguration.UseSerialization<XmlSerializer>();
@@ -17,11 +15,39 @@ var gatewayConfig = endpointConfiguration.Gateway(new NonDurableDeduplicationCon
 gatewayConfig.AddReceiveChannel("http://localhost:25899/Headquarters/");
 gatewayConfig.AddSite("RemoteSite", "http://localhost:25899/RemoteSite/");
 #endregion
-Console.WriteLine("Press any key, application loading");
-Console.ReadKey();
-Console.WriteLine("Starting...");
 
-Console.WriteLine("Press 'Enter' to send a message to RemoteSite which will reply.");
+var builder = Host.CreateApplicationBuilder(args);
 builder.UseNServiceBus(endpointConfiguration);
 
-await builder.Build().RunAsync();
+var host = builder.Build();
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+Console.WriteLine("Starting...");
+Console.WriteLine("Press 'Enter' to send a message to RemoteSite which will reply.");
+
+while (true)
+{
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    if (key.Key != ConsoleKey.Enter)
+    {
+        break;
+    }
+
+    string[] siteKeys = ["RemoteSite"];
+
+    var priceUpdated = new PriceUpdated
+    {
+        ProductId = 2,
+        NewPrice = 100.0,
+        ValidFrom = DateTime.Today,
+    };
+    await messageSession.SendToSites(siteKeys, priceUpdated);
+
+    Console.WriteLine("Message sent, check the output in RemoteSite");
+}
+
+await host.StopAsync();
