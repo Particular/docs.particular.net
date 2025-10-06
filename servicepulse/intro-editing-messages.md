@@ -9,6 +9,12 @@ If a message cannot be successfully retried it is possible to fix the malformed 
 
 ![Edit Malformed Messages](images/edit-message-details.png 'width=500')
 
+> [!NOTE]
+> This feature works in the following way:
+> 1. A copy of the failed message with new `MessageId` is created.
+> 2. You can edit the headers and body of the newly created copy.
+> 3. The copied message is dispatched, and the original failed message is marked as resolved.
+
 ## Enabling the feature
 
 > [!WARNING]
@@ -56,6 +62,7 @@ When retrying an edited message it is possible that the original failed message 
 
 As soon as a message has been dispatched for retrying the originally failing message will be marked as resolved. If the retry message subsequently fails it will appear as a new failed message in the user interface. That new failed message will be marked as having been edited and also have a link to the original message.
 
+The copy of the failed message receives a new `MessageId`. The copied message is related to the original failed message through `ConversationId` and `CorrelationId`.
 
 ## Limitations and restrictions
 
