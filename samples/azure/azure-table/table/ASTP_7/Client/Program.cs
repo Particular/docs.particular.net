@@ -30,6 +30,8 @@ await host.StartAsync();
 var messageSession = host.Services.GetRequiredService<IMessageSession>();
 
 Console.WriteLine("Press 'S' to send a StartOrder message to the server endpoint");
+Console.WriteLine("Press any other key to exit");
+
 while (true)
 {
     var key = Console.ReadKey();
