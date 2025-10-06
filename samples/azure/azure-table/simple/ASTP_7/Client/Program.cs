@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-
 Console.Title = "Client";
 
 var builder = Host.CreateApplicationBuilder(args);
@@ -33,6 +32,8 @@ await host.StartAsync();
 var messageSession = host.Services.GetRequiredService<IMessageSession>();
 
 Console.WriteLine("Press 'S' to send a message");
+Console.WriteLine("Press any other key to exit");
+
 while (true)
 {
     var key = Console.ReadKey();
