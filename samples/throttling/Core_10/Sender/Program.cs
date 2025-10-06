@@ -1,34 +1,50 @@
 using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
-using Sender;
 
-class Program
+Console.Title = "Sender";
+
+var endpointConfiguration = new EndpointConfiguration("Samples.Throttling.Sender");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
+
+var builder = Host.CreateApplicationBuilder(args);
+builder.UseNServiceBus(endpointConfiguration);
+
+var host = builder.Build();
+
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+Console.WriteLine("Press 'Enter' to send messages");
+Console.WriteLine("Press any other key to exit");
+
+while (true)
 {
-    public static async Task Main(string[] args)
+    var key = Console.ReadKey();
+
+    if (key.Key != ConsoleKey.Enter)
     {
-        await CreateHostBuilder(args).Build().RunAsync();
+        break;
     }
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-     Host.CreateDefaultBuilder(args)
-         .ConfigureServices((hostContext, services) =>
-         {
-             services.AddHostedService<InputLoopService>();
-         }).UseNServiceBus(x =>
-         {
-             Console.Title = "Sender";
+    #region Sending
+    Console.WriteLine("Sending messages...");
+    for (var i = 0; i < 100; i++)
+    {
+        var searchGitHub = new SearchGitHub
+        {
+            Repository = "NServiceBus",
+            Owner = "Particular",
+            Branch = "master"
+        };
+        await messageSession.Send("Samples.Throttling.Limited", searchGitHub);
+    }
+    #endregion
 
-             var endpointConfiguration = new EndpointConfiguration("Samples.Throttling.Sender");
-             endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-             endpointConfiguration.UseTransport(new LearningTransport());
-
-             Console.WriteLine("Press any key");
-             Console.ReadKey();
-
-             return endpointConfiguration;
-         });
-
+    Console.WriteLine("Messages sent.");
 }
+
+await host.StopAsync();
