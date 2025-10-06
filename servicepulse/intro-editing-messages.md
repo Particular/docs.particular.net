@@ -71,3 +71,5 @@ A failed message must not have been resolved by a user, successfully retried, or
 The bodies of messages with encrypted properties cannot be edited.
 
 The edited message will be assigned a new message ID before dispatching. The new message ID is automatically generated and is a GUID stored as a string in the edited message's headers.
+
+Resolving a failed message doesn't publish any [ServiceControl events](/servicecontrol/contracts#other-events).
