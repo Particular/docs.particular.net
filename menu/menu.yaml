@@ -1141,8 +1141,6 @@
       Articles:
       - Url: persistence/upgrades/cosmosdb-1to2
         Title: Version 1 to 2
-      - Url: persistence/upgrades/cosmosdb-3.1to3.2
-        Title: Version 3.1 to 3.2
     - Title: DynamoDB
       Articles:
       - Url: persistence/upgrades/dynamodb-2to3
