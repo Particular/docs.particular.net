@@ -58,7 +58,7 @@ Message bodies can be edited before they are retried. This is only possible for 
 > [!WARNING]
 > Retrying messages after editing the message headers can cause message processing failures and/or visualization issues in the ServicePulse and ServiceInsight.
 
-When retrying an edited message it is possible that the original failed message will have been resolved by another user, retried successfully by another user, or [expired as part of the automated processes](/servicecontrol/how-purge-expired-data.md). In those scenarios, the retry of the edited message will fail.
+When retrying an edited message it is possible that the original failed message will have been resolved by another user, retried successfully by another user, or [expired as part of the automated processes](/servicecontrol/how-purge-expired-data.md). In those scenarios, the new message will not be dispatched and the retry of the edited message will fail.
 
 As soon as a message has been dispatched for retrying the originally failing message will be marked as resolved. If the retry message subsequently fails it will appear as a new failed message in the user interface. That new failed message will be marked as having been edited and also have a link to the original message.
 
