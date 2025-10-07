@@ -72,4 +72,4 @@ The bodies of messages with encrypted properties cannot be edited.
 
 The edited message will be assigned a new message ID before dispatching. The new message ID is automatically generated and is a GUID stored as a string in the edited message's headers.
 
-Resolving a failed message doesn't publish any [ServiceControl events](/servicecontrol/contracts#other-events).
+Resolving a failed message doesn't publish any [ServiceControl events](/servicecontrol/contracts.md#other-events).
