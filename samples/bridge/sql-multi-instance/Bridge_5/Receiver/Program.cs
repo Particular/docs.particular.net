@@ -1,35 +1,33 @@
 using System;
-using System.Threading.Tasks;
-
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-class Program
-{
-    //for local instance or SqlExpress
-    // const string ConnectionString = @"Data Source=(localdb)\mssqllocaldb;Database=nservicebus;Trusted_Connection=True;MultipleActiveResultSets=true";
-    const string ConnectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlMultiInstanceReceiver;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
+//for local instance or SqlExpress
+// const string ConnectionString = @"Data Source=(localdb)\mssqllocaldb;Database=nservicebus;Trusted_Connection=True;MultipleActiveResultSets=true";
+const string connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlMultiInstanceReceiver;User Id=SA;Password=yourStrong(!)Password;Max Pool Size=100;Encrypt=false";
 
-    static async Task Main()
-    {
-        Console.Title = "MultiInstanceReceiver";
+Console.Title = "MultiInstanceReceiver";
 
-        #region ReceiverConfiguration
+#region ReceiverConfiguration
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceReceiver");
-        endpointConfiguration.UseTransport(new SqlServerTransport(ConnectionString));
+var endpointConfiguration = new EndpointConfiguration("Samples.SqlServer.MultiInstanceReceiver");
+endpointConfiguration.UseTransport(new SqlServerTransport(connectionString));
 
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.EnableInstallers();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.EnableInstallers();
 
-        #endregion
+#endregion
 
-        SqlHelper.EnsureDatabaseExists(ConnectionString);
+SqlHelper.EnsureDatabaseExists(connectionString);
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder();
+builder.UseNServiceBus(endpointConfiguration);
 
-        Console.WriteLine("Press any key to exit");
-        Console.WriteLine("Waiting for Order messages from the Sender");
-        Console.ReadKey();
-        await endpointInstance.Stop();
-    }
-}
+var host = builder.Build();
+await host.StartAsync();
+
+Console.WriteLine("Press any key to exit");
+Console.WriteLine("Waiting for Order messages from the Sender");
+Console.ReadKey();
+
+await host.StopAsync();
