@@ -12,7 +12,7 @@ If a message cannot be successfully retried it is possible to fix the malformed 
 > [!NOTE]
 > This feature works in the following way:
 > 1. A copy of the failed message with new `MessageId` is created.
-> 2. You can edit the headers and body of the newly created copy.
+> 2. The headers and body of the newly created copy can be edited.
 > 3. The copied message is dispatched, and the original failed message is marked as resolved.
 
 ## Enabling the feature
