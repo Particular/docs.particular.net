@@ -92,7 +92,7 @@ Completing these steps stores credentials that can be used by the tool.
 
 To run the tool, the resource ID for the Azure Service Bus namespace is needed.
 
-In the Azure Portal, go to the Azure Service Bus namespace, click **Properties** in the side navigtation (as shown in the screenshot below) and then copy the `Id` value, which will be needed to run the tool. The `Id` value should have a format similar to `/subscriptions/{Guid}/resourceGroups/{rsrcGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}`.
+In the Azure Portal, go to the Azure Service Bus namespace, click **Properties** in the side navigation (as shown in the screenshot below) and then copy the `Id` value, which will be needed to run the tool. The `Id` value should have a format similar to `/subscriptions/{Guid}/resourceGroups/{rsrcGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}`.
 
 This screenshot shows how to copy the Service Bus Namespace's `Id` value:
 
