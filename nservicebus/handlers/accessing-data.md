@@ -3,7 +3,7 @@ title: Accessing and modifying data from a message handler
 summary: How to access business data from a message handler and sync with message consumption and modifications to NServiceBus-controlled data.
 component: Core
 versions: '[6,)'
-reviewed: 2024-01-05
+reviewed: 2025-10-08
 related:
  - persistence/nhibernate/accessing-data
  - persistence/sql/accessing-data
