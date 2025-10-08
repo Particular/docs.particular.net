@@ -113,7 +113,7 @@ snippet: BusinessData-ManualIdempotence
 
 and think about the behavior of the message processing:
 
-- NServiceBus, by default defers sending messages until the message handler has finished, so the behavior of the code above is as if the call to `Send` **was after** the call to `ModifyState`.
+- NServiceBus, by default, defers sending messages until the message handler has finished, so the behavior of the code above is as if the call to `Send` **was after** the call to `ModifyState`.
 - If outgoing messages are sent before the state change is committed (e.g., if the code above used [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately)), there is a risk of creating ghost messages or messages that carry the state change that has never been made durable.
 - If outgoing messages are sent after the state change is committed, there is a risk of message loss if the send operation fails. To prevent this, the outgoing messages must be re-sent **even if it appears to be a duplicate**.
 - If re-sending messages is implemented, multiple copies of the same message may be sent to the downstream endpoints.
