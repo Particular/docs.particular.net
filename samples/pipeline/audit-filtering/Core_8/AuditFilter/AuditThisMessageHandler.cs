@@ -1,11 +1,8 @@
-using System.Threading.Tasks;
-using NServiceBus;
 using NServiceBus.Logging;
 
-public class AuditThisMessageHandler :
-    IHandleMessages<AuditThisMessage>
+public class AuditThisMessageHandler : IHandleMessages<AuditThisMessage>
 {
-    static ILog log = LogManager.GetLogger<AuditThisMessageHandler>();
+    static readonly ILog log = LogManager.GetLogger<AuditThisMessageHandler>();
 
     public Task Handle(AuditThisMessage message, IMessageHandlerContext context)
     {

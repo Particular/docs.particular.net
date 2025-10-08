@@ -5,23 +5,21 @@ namespace Core7.PubSub.Publishing
 
     #region publishFromSaga
 
-    public class CreateUserSaga :
-        Saga<CreateUserSaga.SagaData>,
-        IHandleMessages<CreateUserCommand>
+    public class CreateUserSaga : Saga<CreateUserSaga.SagaData>, IHandleMessages<CreateUserCommand>
     {
-        public Task Handle(CreateUserCommand message, IMessageHandlerContext context)
+        public async Task Handle(CreateUserCommand message, IMessageHandlerContext context)
         {
             var userCreatedEvent = new UserCreatedEvent
             {
                 Name = message.Name
             };
-            return context.Publish(userCreatedEvent);
+
+            await context.Publish(userCreatedEvent);
         }
 
         #endregion
 
-        public class SagaData :
-            ContainSagaData
+        public class SagaData : ContainSagaData
         {
         }
 

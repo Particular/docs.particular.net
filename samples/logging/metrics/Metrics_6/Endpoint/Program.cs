@@ -1,55 +1,52 @@
-using System;
 using System.Diagnostics;
-using NServiceBus;
-using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 Console.Title = "TracingEndpoint";
 
-var host = Host.CreateDefaultBuilder(args)
-    .UseConsoleLifetime()
-    .UseNServiceBus(_ =>
+var builder = Host.CreateApplicationBuilder(args);
+
+var endpointConfiguration = new EndpointConfiguration("Samples.Metrics.Tracing.Endpoint");
+
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport<LearningTransport>();
+
+#region EnableMetricTracing
+
+var metrics = endpointConfiguration.EnableMetrics();
+
+metrics.RegisterObservers(
+    register: context =>
     {
-        var endpointConfiguration = new EndpointConfiguration("Samples.Metrics.Tracing.Endpoint");
-
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport<LearningTransport>();
-
-        #region EnableMetricTracing
-
-        var metrics = endpointConfiguration.EnableMetrics();
-        metrics.RegisterObservers(
-            register: context =>
-            {
-                foreach (var duration in context.Durations)
+        foreach (var duration in context.Durations)
+        {
+            duration.Register(
+                observer: (ref DurationEvent @event) =>
                 {
-                    duration.Register(
-                        observer: (ref DurationEvent @event) =>
-                        {
-                            Trace.WriteLine(
-                                $"Duration: '{duration.Name}'. Value: '{@event.Duration}' ({@event.MessageType})");
-                        });
-                }
+                    Trace.WriteLine(
+                        $"Duration: '{duration.Name}'. Value: '{@event.Duration}' ({@event.MessageType})");
+                });
+        }
 
-                foreach (var signal in context.Signals)
+        foreach (var signal in context.Signals)
+        {
+            signal.Register(
+                observer: (ref SignalEvent @event) =>
                 {
-                    signal.Register(
-                        observer: (ref SignalEvent @event) =>
-                        {
-                            Trace.WriteLine($"Signal: '{signal.Name}' ({@event.MessageType})");
-                        });
-                }
-            });
+                    Trace.WriteLine($"Signal: '{signal.Name}' ({@event.MessageType})");
+                });
+        }
+    });
 
-        #endregion
+#endregion
 
-        return endpointConfiguration;
-    })
-    .Build();
+builder.UseNServiceBus(endpointConfiguration);
+
+var host = builder.Build();
 
 await host.StartAsync();
 
-var endpointInstance = host.Services.GetRequiredService<IMessageSession>();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
 
 try
 {
@@ -64,7 +61,7 @@ try
             break;
         }
 
-        await endpointInstance.SendLocal(new SomeCommand());
+        await messageSession.SendLocal(new SomeCommand());
     }
 }
 finally
