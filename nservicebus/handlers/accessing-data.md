@@ -48,7 +48,7 @@ The synchronized storage session feature is supported by most NServiceBus persis
 - [CosmosDB](/persistence/cosmosdb/transactions.md#sharing-the-transaction)
 - [Azure Table](/persistence/azure-table/transactions.md#sharing-the-transaction)
 
-Synchronized storage session by itself only guarantees that there will be no **partial failures**, i.e., cases where one of the handlers has modified its state while another has not. This guarantee extends to [sagas](/nservicebus/sagas/) as they are persisted using the synchronized storage session.
+Synchronized storage session by itself only guarantees that there will be no partial failures, i.e., cases where one of the handlers has modified its state while another has not. This guarantee extends to [sagas](/nservicebus/sagas/) as they are persisted using the synchronized storage session.
 
 However, the synchronized storage session **does not guarantee that each state change is persisted exactly once**. To ensure exactly-once message processing, the synchronized storage session must support a deduplication strategy.
 
