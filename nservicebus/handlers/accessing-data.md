@@ -93,7 +93,7 @@ To use this mode, the transport must be configured to use the `TransactionScope`
 
 ### Outbox
 
-[The outbox](/nservicebus/outbox) is a feature that provides an *exactly-once message* processing experience even when dealing with transports and databases that don't support distributed transactions, such as RabbitMQ and MongoDB. This is done by storing the incoming message ID and the outgoing messages in the same transaction as the business state change.
+[The outbox](/nservicebus/outbox) is a feature that provides an exactly-once message processing experience even when dealing with transports and databases that don't support distributed transactions, such as RabbitMQ and MongoDB. This is done by storing the incoming message ID and the outgoing messages in the same transaction as the business state change.
 
 Outbox can be used with any transport and with any persistence component that [supports synchronized storage sessions](#synchronized-storage-session).
 
