@@ -33,7 +33,7 @@ If multiple handlers processing a single message is a requirement, then it is re
 
 ### Synchronized storage session
 
-A synchronized storage session is an NServiceBus implementation of the [unit of work pattern](https://en.wikipedia.org/wiki/Unit_of_work). It provides a data context that is shared by all handlers that process a given message. The state change is committed after the execution of message handlers, provided that there are no exceptions during processing. The synchronized storage session is accessible via the `IMessageHandlerContext`:
+A synchronized storage session is an NServiceBus implementation of the [unit of work pattern](https://en.wikipedia.org/wiki/Unit_of_work). It provides a data access context that is shared by all handlers that process a given message. The state change is committed after the execution of message handlers, provided that there are no exceptions during processing. The synchronized storage session is accessible via the `IMessageHandlerContext`:
 
 snippet: BusinessData-SynchronizedStorageSession
 
