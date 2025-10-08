@@ -66,7 +66,13 @@ The [SQL Server](/transports/sql) and [PostgreSQL](/transports/postgresql) trans
 
 This guarantees that no duplicate messages are sent.
 
-The [SQL Server transport](/transports/sql) shares transaction context with [SQL persistence](/persistence/sql/accessing-data.md) in the `ReceiveOnly`, `SendsAtomicWithReceive`, and `TransactionScope` [transaction modes](/transports/transactions.md) and with [NHibernate persistence](/persistence/nhibernate) in the `TransactionScope` [transaction mode](/transports/transactions.md).
+[SQL Server transport](/transports/sql) will share transactions with [SQL persistence](/persistence/sql/accessing-data.md) when using the following [transaction modes](/transports/transactions.md): 
+- `ReceiveOnly`
+- `SendsAtomicWithReceive`
+- `TransactionScope`
+
+[SQL Server transport](/transports/sql) will share transactions with [NHibernate persistence](/persistence/nhibernate) when using the following [transaction mode](/transports/transactions.md): 
+- `TransactionScope`
 
 In the other hand, the [PostgreSQL transport](/transports/postgresql) shares transaction context with [SQL persistence](/persistence/sql/accessing-data.md) in the `ReceiveOnly` and `SendsAtomicWithReceive` [transaction modes](/transports/transactions.md).
 
