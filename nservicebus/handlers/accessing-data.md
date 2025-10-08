@@ -58,7 +58,7 @@ NServiceBus supports multiple message deduplication strategies that suit a wide 
 
 ### Local transactions
 
-The [SQL Server](/transports/sql) and [PostgreSQL](/transports/postgresql) transports allow using a single database transaction to modify the application state and send/receive messages. The [persistence](/persistence) detects if the message processing context contains an open transaction and the synchronized storage session joins that transaction. When the transaction is committed, then the following instructions are all committed atomically:
+The [SQL Server](/transports/sql) and [PostgreSQL](/transports/postgresql) transports allow using a single database transaction to modify application state and send/receive messages. The [persistence](/persistence) detects if the message processing context contains an open transaction and the synchronized storage session joins that transaction. When the transaction is committed, then the following instructions are all committed atomically:
 
 - State changes made by handlers
 - Receipt of incoming messages
