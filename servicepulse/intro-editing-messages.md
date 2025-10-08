@@ -11,7 +11,7 @@ If a message cannot be successfully retried it is possible to fix the malformed 
 
 > [!NOTE]
 > This feature works in the following way:
-> 1. A copy of the failed message with new `MessageId` is created.
+> 1. A copy of the failed message with new [message ID](https://docs.particular.net/nservicebus/messaging/message-identity) is created.
 > 2. The headers and body of the newly created copy can be edited.
 > 3. The copied message is dispatched, and the original failed message is marked as resolved.
 
@@ -62,7 +62,7 @@ When retrying an edited message it is possible that the original failed message 
 
 As soon as a message has been dispatched for retrying the originally failing message will be marked as resolved. If the retry message subsequently fails it will appear as a new failed message in the user interface. That new failed message will be marked as having been edited and also have a link to the original message.
 
-The copy of the failed message receives a new `MessageId`. The copied message is related to the original failed message through `ConversationId` and `CorrelationId`.
+The copy of the failed message receives a new [message ID](https://docs.particular.net/nservicebus/messaging/message-identity). The copied message is related to the original failed message through [`NServiceBus.CorrelationId`](https://docs.particular.net/nservicebus/messaging/headers#messaging-interaction-headers-nservicebus-correlationid) header that is set to the ID of the original message. The copy carries also the same [`NServiceBus.ConversationId`](https://docs.particular.net/nservicebus/messaging/headers#messaging-interaction-headers-nservicebus-conversationid) as the original.
 
 ## Limitations and restrictions
 
