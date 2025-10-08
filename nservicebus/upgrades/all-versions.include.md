@@ -326,9 +326,9 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.1.2) | 2025-06-03     | -                 | -                                 |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.1.3) | 2025-06-03     | -                 | -                                 |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.0.2) | ~~2024-04-16~~ | ~~2025-09-03~~    | ~~Superseded by 3.1.x~~           |
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/2.0.3) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/2.0.4) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.2.2) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 | [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.1.1) | ~~2022-01-20~~ | ~~2022-12-19~~    | ~~Superseded by 1.2.x~~           |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.0.0) | ~~2021-08-09~~ | ~~2022-04-20~~    | ~~Superseded by 1.1.x~~           |
@@ -339,10 +339,9 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/3.2.0) | 2025-10-01     | -                 | -                                 |
-| [3.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/3.1.2) | 2025-06-03     | 2026-01-01        | Superseded by 3.2.x               |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/3.1.3) | 2025-06-03     | -                 | -                                 |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/3.0.2) | ~~2024-04-16~~ | ~~2025-09-03~~    | ~~Superseded by 3.1.x~~           |
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/2.0.3) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/2.0.4) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/1.2.2) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
 #### [NServiceBus.Persistence.DynamoDB](/nuget/NServiceBus.Persistence.DynamoDB)
