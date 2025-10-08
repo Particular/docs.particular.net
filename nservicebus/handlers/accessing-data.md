@@ -89,7 +89,7 @@ Distributed transactions are supported by the following transport and persistenc
 - [SQL Server transport](/transports/sql)
 - [MSMQ transport](/transports/msmq/)
 
-To use this mode, the transport must be configured to use the `TransactionScope` [transport transaction mode](/transports/transactions.md). For example, when using the SQL Server transport, the `TransactionScope` mode allows the use of separate SQL Server instances for message stores (queues) and for business data.
+To use this mode, the transport must be configured to use the `TransactionScope` [transport transaction mode](/transports/transactions.md).
 
 ### Outbox
 
