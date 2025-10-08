@@ -19,7 +19,7 @@ In most cases, [handlers](/nservicebus/handlers/) are used to modify the interna
 
 Accessing the application state can be achieved in a number of ways and is not enforced or restricted by using NServiceBus. 
 
-The scenarios below provide guidance on several ways of accessing the application state by using the same data context as NServiceBus uses internally.
+The section below provides guidance on several ways of accessing the application state by using the same data context as NServiceBus uses internally.
 
 partial: transactionscope
 
