@@ -15,7 +15,7 @@ related:
  - persistence/azure-table
 ---
 
-In most cases, [handlers](/nservicebus/handlers/) are used to modify the internal state of an application based on the content of a received message. For some systems, it is critical to ensure the state change is persisted exactly once. In a messaging system, this can be challenging as exactly-once delivery is not guaranteed by many queuing technologies. NServiceBus provides several strategies to mitigate the risk of a handler leaving the application on an inconsistent state.
+In most cases, [handlers](/nservicebus/handlers/) are used to modify the internal state of an application based on the content of a received message. In any system, it is critical to ensure the state change happens exactly once. In a messaging system, this can be challenging as exactly-once delivery is not guaranteed by many queuing technologies. NServiceBus provides several strategies to mitigate the risk of a handler leaving the application on an inconsistent state.
 
 Accessing the application state can be achieved in a number of ways and is not enforced or restricted by using NServiceBus. 
 
