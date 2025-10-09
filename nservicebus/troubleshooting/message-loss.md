@@ -1,7 +1,7 @@
 ---
 title: Troubleshooting message loss
 summary: Troubleshooting message loss causes when coding against the NServiceBus API
-reviewed: 2024-01-12
+reviewed: 2025-10-09
 component: core
 ---
 In most cases, the cause of message loss is one of the following scenarios:
