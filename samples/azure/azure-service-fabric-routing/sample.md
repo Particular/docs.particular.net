@@ -1,27 +1,27 @@
 ---
 title: Service Fabric Partition-Aware Routing
 summary: Implementing partition-aware routing for services hosted inside a Service Fabric cluster.
-reviewed: 2024-01-12
+reviewed: 2025-10-09
 component: Core
 related:
 - transports/azure-service-bus
 ---
 
-This sample demonstrates how the NServiceBus API can be used to implement partition-aware routing for services hosted inside a Service Fabric cluster. It takes advantage of [routing system extensibility points](/nservicebus/messaging/routing-extensibility.md) and [custom pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) to support various types of NServiceBus communication patterns. It is assumed that the NServiceBus users are able to define mapping between message type and service partition for each message. It is also assumed that `send local`, `timeout` and `reply` messages are partition-affine i.e. they should be processed in the context of the originating partition. The sample consists of services hosted inside and outside of Service Fabric and enables proper communication between the two.
+This sample demonstrates how the NServiceBus API can be used to implement partition-aware routing for services hosted inside a Service Fabric cluster. It takes advantage of [routing system extensibility points](/nservicebus/messaging/routing-extensibility.md) and [custom pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) to support various types of NServiceBus communication patterns. It is assumed that NServiceBus users are able to define a mapping between message type and service partition for each message. It is also assumed that `send local`, `timeout` and `reply` messages are partition-affine i.e. they should be processed in the context of the originating partition. The sample consists of services hosted inside and outside of Service Fabric and enables proper communication between the two.
 
 ## Prerequisites
 
  1. Strong understanding of Service Fabric [Reliable Services](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-quick-start).
- 1. Service Fabric [development environment](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-get-started) with dev cluster configured to **run on 5 nodes**. The sample does not run with 1 node.
- 1. *Service Fabric Tools* component added to load the `.sfproj` project via the *Visual Studio Installer*.
+ 1. Service Fabric [development environment](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-get-started) with dev cluster configured to run on 5 nodes. The sample will not run with just 1 node.
+ 1. Visual Studio with Service Fabric Tools component added to load the `.sfproj` project via the *Visual Studio Installer*.
  1. An Azure Service Bus namespace that can be used for communication between the instances.
- 1. A **system environment variable** named "AzureServiceBus.ConnectionString" set to the connection string of the Azure Service Bus namespace. The connection string must provide Manage rights.
+ 1. A system environment variable named "AzureServiceBus.ConnectionString" set to the connection string of the Azure Service Bus namespace. The connection string must provide Manage rights.
 
 > [!NOTE]
-> A Service Fabric cluster runs under the Network Service account and only reads **system environment variables**. Make sure the environment variable "AzureServiceBus.ConnectionString" is defined as a system environment variable and is not user-scoped.
+> A Service Fabric cluster runs under the Network Service account and only reads system environment variables. Make sure the environment variable `AzureServiceBus.ConnectionString` is defined as a system environment variable and is not user-scoped.
 
 > [!NOTE]
-> This sample makes use of Service Fabric's recommended instrumentation technology, [Event Tracing for Windows](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally) (ETW), to provide sample output from the services running within the Service Fabric cluster. If diagnostic messages from the sample do not output in the Visual Studio Diagnostic Events window, it may be necessary to add `MyCompany-ServiceFabricRouting-ZipCodeVoteCount` and `MyCompany-ServiceFabricRouting-CandidateVoteCount` to the list of known [ETW providers](https://stackoverflow.com/a/35347603/2672802).
+> This sample makes use of Service Fabric's recommended instrumentation technology, [Event Tracing for Windows](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-diagnostics-how-to-monitor-and-diagnose-services-locally) (ETW), to provide the output from the services running within the Service Fabric cluster. If diagnostic messages from the sample do not appear in the Visual Studio Diagnostic Events window, it may be necessary to add `MyCompany-ServiceFabricRouting-ZipCodeVoteCount` and `MyCompany-ServiceFabricRouting-CandidateVoteCount` to the list of known [ETW providers](https://stackoverflow.com/a/35347603/2672802).
 
 ## Scenario
 
@@ -108,7 +108,7 @@ The remainder of this document will focus on the different techniques that can b
 
 Endpoint instances hosted with stateful service replicas must be uniquely addressable by the partition key associated with each replica. Possible keys are defined by the `NamedPartition` and `Int64RangePartition` info obtained from Service Fabric. The unique partition keys are used to route messages to the correct partitions.
 
-Endpoints are configured as _partitioned endpoints_ by calling an extension method on `EndpointConfiguration`:
+Endpoints are configured as partitioned endpoints by calling an extension method on `EndpointConfiguration`:
 
 snippet: ApplyPartitionConfigurationToEndpoint-ZipCodeVoteCount
 
@@ -130,13 +130,13 @@ A partitioned endpoint can be configured to check that an incoming message shoul
 
 Every incoming message has its `partition-key` header value inspected by the `DistributeMessagesBasedOnHeader` behavior. If the value specified in the header is matching the receiver's partition key, then the message is processed. Otherwise, the message is forwarded to the appropriate partition specified by the header value. If the partition key value indicates an unknown partition, the message is forwarded to the error queue.
 
-If the `partition-key` header does not exist, the pipeline execution continues to the *Message body inspection* step.
+If the `partition-key` header does not exist, the pipeline execution continues to the Message body inspection step.
 
 ### Message body inspection
 
 If a message's `partition-key` header has not been set, then the message body is used to determine the partition key value. The `DistributeMessagesBasedOnPayload` behavior determines the partition value using the mapping function provided via the configuration API. The mapping function inspects the message data and returns the appropriate partition key value for the message. The inspection logic can raise a `PartitionMappingFailedException` exception if the partition key for the endpoint cannot be determined. For a partition key that is not local, the message is forwarded to the appropriate partition.
 
-Once the partition key value has been determined, the forwarding/processing decision is made in the same way as in the *Header inspection* step.
+Once the partition key value has been determined, the forwarding/processing decision is made in the same way as in the Header inspection step.
 
 > [!NOTE]
 > `PartitionMappingFailedException` is considered an [unrecoverable exception](/nservicebus/recoverability/custom-recoverability-policy.md) and the message will be moved to the error queue immediately.
