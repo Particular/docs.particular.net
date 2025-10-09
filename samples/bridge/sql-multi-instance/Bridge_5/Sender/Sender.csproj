@@ -11,8 +11,4 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="NServiceBus.Transport.SqlServer" Version="9.0.0-alpha.1" />
-  </ItemGroup>
-
 </Project>
