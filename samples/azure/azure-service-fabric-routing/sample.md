@@ -71,6 +71,8 @@ The scenario has been set up to show the different types of communication patter
 
 The downside of the focus on communication patterns is that the saga design is not ideal for a real voting system. The saga is likely to experience contention, which may result in concurrency exceptions and retries which will impact system performance.
 
+For logging purposes, a simple static logger exposes specific log statements for the routing part. It is recommended to use a dedicated package to emit ETW logging information.
+
 ## Solution structure
 
 The solution contains the following projects:
