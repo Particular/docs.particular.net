@@ -53,12 +53,7 @@ Some transports have access controls built into them. Ensure the instance has su
  1. The service account has access read rights to the directory the service is installed
  1. The service account has access read/write rights to the database and logs directories specified in the configuration.
  1. The service account has the logon as a service privilege.
- 1. Ensure that a URLACL exists for the service (see next point for further info on listing URLACLs
- 1. Ensure the group or account specified in the URLACL covers the service account.
  1. Confirm that the service account has sufficient writes to manage the configured queues. See [Configuring a Non-Privileged Service Account](configure-non-privileged-service-account.md) for a breakdown of the queues to check.
-
-> [!NOTE]
-> To examine the configured URLACLs use either the PowerShell prompt and issue `Get-UrlAcls` or to examine the ACLS from a command prompt using the command line `netsh http show urlacl`.
 
 ## Service fails to start: EsentInstanceUnavailableException
 
