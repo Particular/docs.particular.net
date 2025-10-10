@@ -48,15 +48,6 @@ Use VPN requirements or firewall restrictions to require authorization when acce
 This requires administration and logistical support, but allows full control of the authentication and authorization mechanisms using existing corporate policies and tools.
 
 
-#### Restricting exposure to the message body
-
-To deny access to the message body's ServiceControl HTTP API, use URLACL. This can serve in extreme cases to hide the message body completely.
-
-To prevent access to the ServiceControl HTTP API `http://{customhostname}:{portname}/api/messages`, add an additional URLACL setting. Any calls to get a message body will fail with an HTTP 503 error ("Service Unavailable").
-
-For more information, see also [ServiceControl: Configure the URI](/servicecontrol/setting-custom-hostname.md).
-
-
 #### Encrypting sensitive properties in the message body
 
 For a more fine-grained limitation on message body visibility of specific properties, encrypt message properties that are sensitive (e.g. credit card numbers).
