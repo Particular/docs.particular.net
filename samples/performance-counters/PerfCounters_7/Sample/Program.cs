@@ -14,14 +14,15 @@ var performanceCounters = endpointConfiguration.EnableWindowsPerformanceCounters
 performanceCounters.EnableSLAPerformanceCounters(TimeSpan.FromSeconds(100));
 #endregion
 
-Console.WriteLine("Press any key to send 10 messages with random sleep");
-Console.ReadKey();
-
 builder.UseNServiceBus(endpointConfiguration);
+
 var host = builder.Build();
 await host.StartAsync();
 
 var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+Console.WriteLine("Press [Enter] to send 10 messages with random sleep");
+Console.WriteLine("Press any other key to exit");
 
 while (true)
 {

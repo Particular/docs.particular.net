@@ -8,7 +8,7 @@ using static Program;
 
 namespace Sample
 {
-    public class InputLoopService(IMessageSession messageSession, ILogger<InputLoopService> logger) : BackgroundService
+    public class TimerService(IMessageSession messageSession, ILogger<TimerService> logger) : BackgroundService
     {
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {

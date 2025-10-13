@@ -77,3 +77,5 @@ while (true)
 
     Console.WriteLine("Published OrderSubmitted message");
 }
+
+await host.StopAsync();
