@@ -1,15 +1,11 @@
 using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.MessageMutator;
-using Sample;
-
 
 Console.Title = "Headers";
-var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<InputLoopService>();
+
 var endpointConfiguration = new EndpointConfiguration("Samples.Headers");
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
@@ -33,10 +29,23 @@ endpointConfiguration.AddHeaderToAllOutgoingMessages("AllOutgoing", "ValueAllOut
 
 #endregion
 
-
-Console.WriteLine("Press any key, the application is starting");
-Console.ReadKey();
 Console.WriteLine("Starting...");
 
+var builder = Host.CreateApplicationBuilder(args);
+
 builder.UseNServiceBus(endpointConfiguration);
-await builder.Build().RunAsync();
+
+var host = builder.Build();
+
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+#region sending
+
+var myMessage = new MyMessage();
+await messageSession.SendLocal(myMessage);
+
+#endregion
+
+await host.StopAsync();
