@@ -3,10 +3,25 @@ The container that is used by default for all incoming messages is specified via
 snippet: CosmosDBDefaultContainer
 
 #if-version [3, )
-**Added in version 3.2.0:** If the container information is being extracted during runtime from a message instance (header or message body), the default container specified will be overwritten by the last extractor in the pipeline. For example, if a [Header Extractor](/persistence/cosmosdb/transactions.md#specifying-the-container-to-use-for-the-transaction-using-message-header-values) (physical stage) and a [Message Extractor](/persistence/cosmosdb/transactions.md#specifying-the-container-to-use-for-the-transaction-using-the-message-contents) (logical stage) are both configured, then the container information within the Message Extractor would be used.
+
+---
+
+**Added in version 3.2.1:** By default, message container extractors cannot override the configured default container. To allow extractors to override the default container, enable the `EnableContainerFromMessageExtractor` flag:
+
+```csharp
+config.UsePersistence<CosmosPersistence>()
+    .EnableContainerFromMessageExtractor();
+```
+
+When this flag is enabled and multiple extractors are configured, the last extractor in the pipeline determines the final container. For example, if both a [Header Extractor](/persistence/cosmosdb/transactions.md#specifying-the-container-to-use-for-the-transaction-using-message-header-values) (physical stage) and a [Message Extractor](/persistence/cosmosdb/transactions.md#specifying-the-container-to-use-for-the-transaction-using-the-message-contents) (logical stage) are configured, the Message Extractor takes precedence.
 
 > [!NOTE]
-> **Added in version 3.2.0:** The exception to the above is if the extractor fails to pull container information from the message (logical), then the container information in the header (physical) will be used. If this also fails, the configured default container will be used as a fallback. If there is no default container configured, an exception will be thrown.
+> If an extractor fails to retrieve container information, the system falls back to the next available source in this order: Message Extractor → Header Extractor → configured default container. If no default container is configured and all extractors fail, an exception is thrown.
+
+> [!WARNING]
+> **For users upgrading from version 3.1 or older:** Enabling this flag may require you to migrate data from the default container to the container configured in the message extractor. This action prevents message duplication.
+---
+
 #end-if
 
 When installers are enabled, this (default) container will be created if it doesn't exist. To opt-out of creating the default container, either disable the installers or use `DisableContainerCreation()`:

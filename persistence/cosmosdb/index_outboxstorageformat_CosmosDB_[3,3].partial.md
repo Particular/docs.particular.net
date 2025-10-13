@@ -1,4 +1,4 @@
-#### Version 3.2 and up
+#### Version 3.2.1 and up
 
 A default [synthetic partition key](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/synthetic-partition-keys) will be used for all incoming messages, in the format `{endpointName}-{messageId}`, if not explicitly [overwritten](/persistence/cosmosdb/transactions.md#specifying-the-partitionkey-to-use-for-the-transaction) at runtime.
 
