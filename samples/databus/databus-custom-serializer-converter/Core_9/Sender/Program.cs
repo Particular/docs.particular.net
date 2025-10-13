@@ -1,16 +1,13 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
-using Sender;
 using Shared;
 using System;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-
 Console.Title = "Sender";
-var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<InputLoopService>();
+
 var endpointConfiguration = new EndpointConfiguration("Samples.DataBus.Sender");
 
 #pragma warning disable CS0618 // Type or member is obsolete
@@ -30,6 +27,47 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>().Options(jsonSeria
 
 endpointConfiguration.UseTransport(new LearningTransport());
 
+var builder = Host.CreateApplicationBuilder(args);
 builder.UseNServiceBus(endpointConfiguration);
 
-await builder.Build().RunAsync();
+var host = builder.Build();
+
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+Console.WriteLine("Press 'D' to send a databus large message");
+
+while (true)
+{
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    if (key.Key == ConsoleKey.D)
+    {
+        await SendMessageLargePayload(messageSession);
+        continue;
+    }
+    break;
+}
+
+await host.StopAsync();
+return;
+
+static async Task SendMessageLargePayload(IMessageSession messageSession)
+{
+#pragma warning disable CS0618 // Type or member is obsolete
+    #region SendMessageLargePayload
+
+    var message = new MessageWithLargePayload
+    {
+        SomeProperty = "This message contains a large blob that will be sent on the data bus",
+        LargeBlob = new DataBusProperty<byte[]>(new byte[1024 * 1024 * 5]) //5MB
+    };
+    await messageSession.Send("Samples.DataBus.Receiver", message);
+
+    #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
+
+    Console.WriteLine(@"Message sent, the payload is stored in: ..\..\..\storage");
+}
