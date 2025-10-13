@@ -27,6 +27,8 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>().Options(jsonSeria
 
 endpointConfiguration.UseTransport(new LearningTransport());
 
+Console.WriteLine("Starting...");
+
 var builder = Host.CreateApplicationBuilder(args);
 builder.UseNServiceBus(endpointConfiguration);
 
