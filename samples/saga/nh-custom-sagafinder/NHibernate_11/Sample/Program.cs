@@ -5,8 +5,6 @@ using NHibernate.Dialect;
 using NHibernate.Driver;
 using NServiceBus.Persistence;
 
-
-
 var endpointName = "Samples.NHibernateCustomSagaFinder";
 Console.Title = endpointName;
 
