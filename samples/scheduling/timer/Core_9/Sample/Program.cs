@@ -4,11 +4,10 @@ using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using Sample;
 
-
 Console.Title = "SchedulingTimer";
 
 var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<InputLoopService>();
+builder.Services.AddHostedService<TimerService>();
 
 var endpointConfiguration = new EndpointConfiguration("Samples.Scheduling.Timer");
 endpointConfiguration.UsePersistence<LearningPersistence>();
