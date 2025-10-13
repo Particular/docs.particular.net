@@ -45,15 +45,17 @@ class Program
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.EnableInstallers();
-
+#pragma warning disable NSBC001 // EnableContainerFromMessageExtractor should be called when using both default container and message extractors
         #region ContainerInformationFromLogicalMessage
         var transactionInformation = persistence.TransactionInformation();
+
         transactionInformation.ExtractContainerInformationFromMessage<ShipOrder>(m =>
         {
             logger.LogInformation($"Message '{m.GetType().AssemblyQualifiedName}' destined to be handled by '{nameof(ShipOrderSaga)}' will use 'ShipOrderSagaData' container.");
             return new ContainerInformation("ShipOrderSagaData", new PartitionKeyPath("/id"));
         });
         #endregion
+#pragma warning restore NSBC001 // EnableContainerFromMessageExtractor should be called when using both default container and message extractors
         #region ContainerInformationFromHeaders
         transactionInformation.ExtractContainerInformationFromHeaders(headers =>
         {
