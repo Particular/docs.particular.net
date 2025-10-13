@@ -19,7 +19,7 @@ When this flag is enabled and multiple extractors are configured, the last extra
 > If an extractor fails to retrieve container information, the system falls back to the next available source in this order: Message Extractor → Header Extractor → configured default container. If no default container is configured and all extractors fail, an exception is thrown.
 
 > [!WARNING]
-> **For users upgrading from version 3.1 or older:** Enabling this flag may require you to migrate data from the Default Container to the container configured in the message extractor. This action prevents message duplication.
+> **For users upgrading from version 3.1 or older:** Enabling this flag may require you to migrate data from the default container to the container configured in the message extractor. This action prevents message duplication.
 ---
 
 #end-if
