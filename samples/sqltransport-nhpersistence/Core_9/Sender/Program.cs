@@ -7,9 +7,7 @@ using NHibernate.Driver;
 using NServiceBus;
 using NServiceBus.Persistence;
 using NServiceBus.Transport.SqlServer;
-using Sender;
-var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<InputLoopService>();
+
 Console.Title = "Sender";
 
 // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbSamplesSqlNHibernate;Integrated Security=True;Max Pool Size=100;Encrypt=false
@@ -51,6 +49,36 @@ await SqlHelper.CreateSchema(connectionString, "sender");
 
 Console.WriteLine("Press enter to send a message");
 Console.WriteLine("Press any key to exit");
+
+var builder = Host.CreateApplicationBuilder(args);
+
 builder.UseNServiceBus(endpointConfiguration);
 
-await builder.Build().RunAsync();
+var host = builder.Build();
+
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+while (true)
+{
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    if (key.Key != ConsoleKey.Enter)
+    {
+        break;
+    }
+
+    var orderSubmitted = new OrderSubmitted
+    {
+        OrderId = Guid.NewGuid(),
+        Value = Random.Shared.Next(100)
+    };
+
+    await messageSession.Publish(orderSubmitted);
+
+    Console.WriteLine("Published OrderSubmitted message");
+}
+
+await host.StopAsync();
