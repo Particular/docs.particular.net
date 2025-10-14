@@ -23,4 +23,4 @@ When using managed entities queue-scoped permissions for endpoint connections to
 - `Azure Service Bus Data Sender` to the metrics queue when ServiceControl [metrics](/monitoring/metrics/install-plugin.md#configuration) are enabled.
 - `Azure Service Bus Data Sender` to the ServiceControl queue when [heartbeats](/monitoring/heartbeats/install-plugin.md) or [custom checks](/monitoring/custom-checks/install-plugin.md) are being used.
 - `Azure Service Bus Data Sender` to any queue the endpoint [forwards to](/nservicebus/messaging/forwarding.md).
-- `Azure Service Bus Data Receiver` is required for every [satellite queue](/nservicebus/satellites.md) created.
+- `Azure Service Bus Data Receiver` is required for every [satellite queue](/nservicebus/satellites/) created.
