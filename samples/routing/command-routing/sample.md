@@ -2,7 +2,7 @@
 title: Command routing
 summary: Basic NServiceBus message routing
 component: Core
-reviewed: 2024-01-24
+reviewed: 2025-10-13
 ---
 
 The sample demonstrates basic command routing between endpoints.
@@ -16,14 +16,21 @@ The sample demonstrates basic command routing between endpoints.
 
 ## Code walk-through
 
-Whenever the Sender sends a `CancelOrder` command it must specify the destination endpoint.
+### Endpoint configuration command routing
 
-snippet: send-command-without-configured-route
+Command routing can be specified in the endpoint configuration, as the sample does for the `PlaceOrder` command.
 
-Whenever the Sender sends a `PlaceOrder` command it does not need to specify a destination.
+snippet: configure-command-route
+
+Whenever the Sender sends a `PlaceOrder` command it does not need to specify a destination. This is the preferred method for routing commands.
 
 snippet: send-command-with-configured-route
 
-This is enabled by configuring a message route for the `PlaceOrder` command in the endpoint configuration.
+### Per-message command routing
 
-snippet: configure-command-route
+In special circumstances, a command can be routed when it is sent.
+
+Whenever the Sender sends a `CancelOrder` command it specifies the destination endpoint.
+
+snippet: send-command-without-configured-route
+

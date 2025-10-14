@@ -5,6 +5,7 @@ summary: A self-contained demo solution to explore the monitoring features of th
 suppressRelated: true
 redirects:
 - tutorials/monitoring/demo
+- tutorials/monitoring-demo/walkthrough-setup
 ---
 
 Experience the monitoring features of the Particular Service Platform by running a real-world demo in ServicePulse. This downloadable sample includes all required platform components, pre-configured and ready to use, with four sample endpoints that communicate by exchanging messages.
@@ -33,7 +34,9 @@ To run the sample, ensure you have:
 2. Open the extracted folder.
 3. Double-click `MonitoringDemo` to start the demo.
 
-For more details on the demo setup, see the [setup walkthrough](walkthrough-setup.md).
+The `MonitoringDemo` executable runs the sample endpoints, platform components, and opens your default browser to the ServicePulse monitoring tab.
+
+The platform components include a ServiceControl, Monitoring, and ServicePulse instances. Each binds to a free port in the 49200 range.
 
 ## Demo overview
 
@@ -46,6 +49,10 @@ By default, the ClientUI endpoint sends one `PlaceOrder` message per second.
 All endpoints are configured to send monitoring data to the Particular Service Platform, which you can view in ServicePulse.
 
 ![ServicePulse monitoring tab showing sample endpoints](servicepulse-monitoring-tab-sample-low-throughput.png "width=500")
+
+The sales endpoint can be to scaled out or scaled in by pressing the <kbd>&uarr;</kbd> or <kbd>&darr;</kbd> keys.
+
+Pressing the <kbd>enter</kbd> key will quit all processes and cleanup temporary files and folders.
 
 ## Explore the demo further
 
