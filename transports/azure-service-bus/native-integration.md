@@ -18,19 +18,8 @@ The following points must be taken into account when integrating
 1. By default, the transport creates its own entities when they don't exist in the namespace. However, non-NServiceBus endpoints may require manual creation of entities. Refer to the [Azure Service Bus documentation](https://docs.microsoft.com/en-us/azure/service-bus-messaging/) for more information on available ASB SDKs and tools to perform these tasks.
 1. The native message must allow NServiceBus to [detect the message type either via the headers or the message payload](/nservicebus/messaging/message-type-detection.md).
 
-#if-version [5.1.1, )
-
 > [!NOTE]
-> If the incoming Service Bus message specifies a value for the `ContentType` property, the value is used to populate the `NServiceBus.ContentType` header. 
-
-#end-if
-
-#if-version [4.2.5, 5)
-
-> [!NOTE]
-> If the incoming Service Bus message specifies a value for the `ContentType` property, the value is used to populate the `NServiceBus.ContentType` header. 
-
-#end-if
+> Starting with versions 5.1.1, 5.0.3, 4.2.5, and 3.2.7, if the incoming Service Bus message specifies a value for the [`ContentType` property](https://learn.microsoft.com/en-us/rest/api/servicebus/message-headers-and-properties), the value is used to populate the `NServiceBus.ContentType` header.
 
 ### See it in action
 
