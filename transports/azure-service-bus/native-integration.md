@@ -4,7 +4,7 @@ summary: How to integrate NServiceBus endpoints with non-NServiceBus endpoints o
 component: ASBS
 related:
  - samples/azure-service-bus-netstandard/native-integration
-reviewed: 2024-05-17
+reviewed: 2025-10-14
 ---
 
 This document guides integrating NServiceBus endpoints with non-NServiceBus endpoints by sharing an Azure Service Bus (ASB) namespace as a mutual communication channel.
