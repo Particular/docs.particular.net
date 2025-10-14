@@ -13,7 +13,7 @@ When using managed entities queue-scoped permissions for endpoint connections to
   - [Saga Timeouts](/nservicebus/sagas/timeouts.md)
   - [Transactional Session](/nservicebus/transactional-session/)
   - [`.SendLocal()`](/nservicebus/messaging/send-a-message.md#sending-to-self)
-- `Azure Service Bus Data Sender` to every [queue the endpoint sends a command to](/nservicebus/messaging/routing#command-routing).
+- `Azure Service Bus Data Sender` to every [queue the endpoint sends a command to](/nservicebus/messaging/routing.md#command-routing).
 - `Azure Service Bus Data Sender` to every [queue the endpoint replies to](/nservicebus/messaging/reply-to-a-message.md).
 - `Azure Service Bus Data Sender` to every [topic the endpoint publishes an event to](/transports/azure-service-bus/topology.md).
 - `Microsoft.ServiceBus/namespaces/topics/subscriptions/write` is required for [every topic](/transports/azure-service-bus/topology.md) the endpoint [handles events](/nservicebus/messaging/publish-subscribe/publish-handle-event.md#handling-an-event) from when using [automatic subscriptions (default)](/nservicebus/messaging/publish-subscribe/controlling-what-is-subscribed.md).
