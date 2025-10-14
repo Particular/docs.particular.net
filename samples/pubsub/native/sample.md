@@ -1,7 +1,7 @@
 ---
 title: Native Publish/Subscribe
 summary: Publish/Subscribe with multicast-enabled transports.
-reviewed: 2024-01-17
+reviewed: 2025-10-14
 component: Core
 redirects:
  - nservicebus/publish-subscribe-sample
