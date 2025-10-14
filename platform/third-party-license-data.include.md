@@ -65,7 +65,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/Azure.Storage.Blobs" target="_blank">Azure.Storage.Blobs</a> | <a href="https://www.nuget.org/packages/Azure.Storage.Blobs/12.25.1/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Blobs_12.25.1/sdk/storage/Azure.Storage.Blobs/README.md" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Azure.Storage.Blobs" target="_blank">Azure.Storage.Blobs</a> | <a href="https://www.nuget.org/packages/Azure.Storage.Blobs/12.26.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Blobs_12.26.0/sdk/storage/Azure.Storage.Blobs/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.IO.RecyclableMemoryStream" target="_blank">Microsoft.IO.RecyclableMemoryStream</a> | <a href="https://www.nuget.org/packages/Microsoft.IO.RecyclableMemoryStream/3.0.1/license" target="_blank">MIT</a> | <a href="https://github.com/Microsoft/Microsoft.IO.RecyclableMemoryStream" target="_blank">Project Site</a> |
 
 ### NServiceBus.Extensions.Hosting
@@ -217,8 +217,8 @@
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Azure.Data.Tables" target="_blank">Azure.Data.Tables</a> | <a href="https://www.nuget.org/packages/Azure.Data.Tables/12.11.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Data.Tables_12.11.0/sdk/tables/Azure.Data.Tables/README.md" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/Azure.Storage.Blobs" target="_blank">Azure.Storage.Blobs</a> | <a href="https://www.nuget.org/packages/Azure.Storage.Blobs/12.25.1/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Blobs_12.25.1/sdk/storage/Azure.Storage.Blobs/README.md" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/Azure.Storage.Queues" target="_blank">Azure.Storage.Queues</a> | <a href="https://www.nuget.org/packages/Azure.Storage.Queues/12.23.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Queues_12.23.0/sdk/storage/Azure.Storage.Queues/README.md" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Azure.Storage.Blobs" target="_blank">Azure.Storage.Blobs</a> | <a href="https://www.nuget.org/packages/Azure.Storage.Blobs/12.26.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Blobs_12.26.0/sdk/storage/Azure.Storage.Blobs/README.md" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/Azure.Storage.Queues" target="_blank">Azure.Storage.Queues</a> | <a href="https://www.nuget.org/packages/Azure.Storage.Queues/12.24.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Storage.Queues_12.24.0/sdk/storage/Azure.Storage.Queues/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.5.4/license" target="_blank">View License</a> | <i>None provided</i> |
 | <a href="https://www.nuget.org/packages/System.Linq.Async" target="_blank">System.Linq.Async</a> | <a href="https://www.nuget.org/packages/System.Linq.Async/6.0.3/license" target="_blank">MIT</a> | <a href="https://github.com/dotnet/reactive" target="_blank">Project Site</a> |
 
