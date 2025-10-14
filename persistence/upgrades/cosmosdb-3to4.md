@@ -14,11 +14,11 @@ Customers that have both a [default container](/persistence/cosmosdb/#usage-cust
 
 **In version 3.2.1**, an opt-in configuration API was introduced to allow for the expected behavior of the container information being sourced from the message extractor, rather than the default container. This was made opt-in as it could potentially result in a breaking change in some solutions.
 
-**In version 4**, the opt-in configuration API functionality will be enabled by default, and the opt-in API, if used, will throw a build error.
+**In version 4**, the opt-in configuration API functionality will be enabled by default, and the opt-in API, if used, will throw a compilation error.
 
 ### Solution
 
-Affected customers should perform one of the below options prior to updating to version 4:
+Customers using a default container with a setup container message extractor who are **not** using the `EnableContainerFromMessageExtractor()` configuration API should perform one of the below options prior to updating to version 4:
 
 1. Customers can remove the configured message container extractor and only rely on the default container.
 2. Customers can update their message container extractor to use the same container specified as the default container.
