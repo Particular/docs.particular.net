@@ -7,7 +7,7 @@ reviewed: 2025-10-14
 
 When using managed entities queue-scoped permissions for endpoint connections to Azure Service Bus the following minimum permissions are required:
 
-- `Azure Service Bus Data Receiver` to the endpoint's queue is required to send messages.
+- `Azure Service Bus Data Receiver` to the endpoint's queue is required to process messages.
 - `Azure Service Bus Data Sender` to the endpoint's queue is required for:
   - [Delayed retries](/nservicebus/recoverability/#delayed-retries)
   - [Saga Timeouts](/nservicebus/sagas/timeouts.md)
