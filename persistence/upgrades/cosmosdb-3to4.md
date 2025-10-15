@@ -37,13 +37,13 @@ var persistence = endpointConfiguration.UsePersistence<CosmosPersistence>()
         containerName: "ContainerName",
         partitionKeyPath: "/partition/key/path");
 
-// Opt-in config API allows correct overwrite behavior
-persistence.EnableContainerFromMessageExtractor();
-
 var transactionInformation = persistence.TransactionInformation();
-//This container WILL be used
+// This container WILL be used
 transactionInformation.ExtractContainerInformationFromMessage<MyMessage>(
     new ContainerInformation("ContainerName", new PartitionKeyPath("/partitionKey")));
+
+// Opt-in config API allows correct overwrite behavior
+persistence.EnableContainerFromMessageExtractor();
 ```
 
 **In version 4**, the opt-in configuration API functionality will be enabled by default, and the opt-in API, if used, will throw a compilation error.
