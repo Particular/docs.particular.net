@@ -23,7 +23,8 @@ var persistence = endpointConfiguration.UsePersistence<CosmosPersistence>()
         partitionKeyPath: "/partition/key/path");
 
 var transactionInformation = persistence.TransactionInformation();
-transactionInformation.ExtractContainerInformationFromMessage<MyMessage>(new ContainerInformation("ContainerName", new PartitionKeyPath("/partitionKey")));
+transactionInformation.ExtractContainerInformationFromMessage<MyMessage>(
+    new ContainerInformation("ContainerName", new PartitionKeyPath("/partitionKey")));
 ```
 
 **In version 3.2.1**, an opt-in configuration API was introduced to allow for the expected behavior of the container information being sourced from the message extractor, rather than the default container. This was made opt-in as it could potentially result in a breaking change in some solutions.
@@ -39,7 +40,8 @@ var persistence = endpointConfiguration.UsePersistence<CosmosPersistence>()
 persistence.EnableContainerFromMessageExtractor();
 
 var transactionInformation = persistence.TransactionInformation();
-transactionInformation.ExtractContainerInformationFromMessage<MyMessage>(new ContainerInformation("ContainerName", new PartitionKeyPath("/partitionKey"))); // <-- This container WILL be used
+transactionInformation.ExtractContainerInformationFromMessage<MyMessage>(
+    new ContainerInformation("ContainerName", new PartitionKeyPath("/partitionKey"))); // <-- This container WILL be used
 ```
 
 **In version 4**, the opt-in configuration API functionality will be enabled by default, and the opt-in API, if used, will throw a compilation error.
@@ -52,13 +54,14 @@ var persistence = endpointConfiguration.UsePersistence<CosmosPersistence>()
         partitionKeyPath: "/partition/key/path");
 
 var transactionInformation = persistence.TransactionInformation();
-transactionInformation.ExtractContainerInformationFromMessage<MyMessage>(new ContainerInformation("ContainerName", new PartitionKeyPath("/partitionKey"))); // <-- This container WILL be used
+transactionInformation.ExtractContainerInformationFromMessage<MyMessage>(
+    new ContainerInformation("ContainerName", new PartitionKeyPath("/partitionKey"))); // <-- This container WILL be used
 ```
 
 ### Solution
 
 Customers using a default container with a container message extractor who are **not** using the `EnableContainerFromMessageExtractor()` configuration API should perform one of the below options prior to updating to version 4:
 
-1. Customers can remove the configured message container extractor and only rely on the default container.
+1. Customers can remove the configured message container extractor (since it was never used) and only rely on the default container.
 2. Customers can update their message container extractor to use the same container specified as the default container.
 3. Customers can [migrate relevant records](https://learn.microsoft.com/en-us/azure/cosmos-db/container-copy?tabs=online-copy&pivots=api-nosql) from the default container to the container specified in the message container extractor. This option may require [changing the container partition key](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/change-partition-key).
