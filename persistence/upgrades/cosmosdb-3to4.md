@@ -19,10 +19,11 @@ Customers that have both a [default container](/persistence/cosmosdb/#usage-cust
 var persistence = endpointConfiguration.UsePersistence<CosmosPersistence>()
     .CosmosClient(new CosmosClient("ConnectionString"))
     .DefaultContainer(
-        containerName: "ContainerName", // <-- This container WILL be used
+        containerName: "ContainerName",
         partitionKeyPath: "/partition/key/path");
 
 var transactionInformation = persistence.TransactionInformation();
+// This container will NOT be used
 transactionInformation.ExtractContainerInformationFromMessage<MyMessage>(
     new ContainerInformation("ContainerName", new PartitionKeyPath("/partitionKey")));
 ```
@@ -40,8 +41,9 @@ var persistence = endpointConfiguration.UsePersistence<CosmosPersistence>()
 persistence.EnableContainerFromMessageExtractor();
 
 var transactionInformation = persistence.TransactionInformation();
+//This container WILL be used
 transactionInformation.ExtractContainerInformationFromMessage<MyMessage>(
-    new ContainerInformation("ContainerName", new PartitionKeyPath("/partitionKey"))); // <-- This container WILL be used
+    new ContainerInformation("ContainerName", new PartitionKeyPath("/partitionKey")));
 ```
 
 **In version 4**, the opt-in configuration API functionality will be enabled by default, and the opt-in API, if used, will throw a compilation error.
@@ -54,8 +56,9 @@ var persistence = endpointConfiguration.UsePersistence<CosmosPersistence>()
         partitionKeyPath: "/partition/key/path");
 
 var transactionInformation = persistence.TransactionInformation();
+// This container WILL be used
 transactionInformation.ExtractContainerInformationFromMessage<MyMessage>(
-    new ContainerInformation("ContainerName", new PartitionKeyPath("/partitionKey"))); // <-- This container WILL be used
+    new ContainerInformation("ContainerName", new PartitionKeyPath("/partitionKey")));
 ```
 
 ### Solution
