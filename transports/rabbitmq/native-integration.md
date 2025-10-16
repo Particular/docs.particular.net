@@ -38,4 +38,4 @@ snippet: rabbitmq-config-custom-id-strategy
 The native message must allow NServiceBus to [detect message type either via headers or message payload](/nservicebus/messaging/message-type-detection.md).
 
 > [!NOTE]
-> Starting with versions 10.1.4, 9.2.2, and 8.0.9, if the incoming AMQP message specifies a value for the [`Content type` property]([https://learn.microsoft.com/en-us/rest/api/servicebus/message-headers-and-properties](https://www.rabbitmq.com/docs/publishers#message-properties)), the value is used to populate the `NServiceBus.ContentType` header.
+> Starting with versions 10.1.4, 9.2.2, and 8.0.9, if the incoming AMQP message specifies a value for the [`Content type` property](https://www.rabbitmq.com/docs/publishers#message-properties), the value is used to populate the `NServiceBus.ContentType` header.
