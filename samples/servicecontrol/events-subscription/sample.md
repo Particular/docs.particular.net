@@ -11,8 +11,6 @@ related:
 
 This sample shows how to monitor heartbeat and failed message events in ServiceControl, as well as observing the same activity in ServicePulse. The sample uses the [Learning Transport](/transports/learning/) and a portable version of the Particular Service Platform tools. Installing ServiceControl is **not** required.
 
-include: platformlauncher-windows-required
-
 downloadbutton
 
 

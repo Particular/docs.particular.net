@@ -11,8 +11,6 @@ redirects:
 
 External, third-party systems becoming unavailable might cause message-processing failures. The Particular Platform supports monitoring of third-party systems exposed as HTTP endpoints. This sample shows how to set up such monitoring using custom checks.
 
-include: platformlauncher-windows-required
-
 downloadbutton
 
 ## Running the sample
