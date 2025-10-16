@@ -1,6 +1,6 @@
 ---
 title: Notifications
-reviewed: 2024-01-17
+reviewed: 2025-10-16
 component: Core
 related:
 - nservicebus/recoverability
@@ -20,21 +20,23 @@ This sample uses several non-standard settings.
 
 ### Logging
 
-All errors below Critical are suppressed to reduce the noise related to raising multiple exceptions
+All errors below `Fatal` are suppressed to reduce the noise related to raising multiple exceptions
 
 snippet: logging
 
 ### Delayed Retry Time increase
 
-The time to increase changed to 1 second so the wait for all retries to occur is reduced.
+The `TimeIncrease` has been changed to 1 second so the wait for all retries to occur is reduced.
 
 snippet: customDelayedRetries
 
-## Plugging into the API
+## Wiring up the the notifications
 
-The notifications API is exposed as follows.
+The notification subscriptions are created using the sample's `SubscribeToNotifications.Subscribe` method:
 
 snippet: endpointConfig
+
+The sample uses notification events to log the message body:
 
 snippet: subscriptions
 
