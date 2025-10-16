@@ -7,8 +7,6 @@ reviewed: 2025-09-29
 
 This sample shows how to repair a malformed message by implementing a pipeline behavior. The sample uses the [Learning Transport](/transports/learning/) and a portable version of the Particular Service Platform tools. Installing ServiceControl is **not** required.
 
-include: platformlauncher-windows-required
-
 downloadbutton
 
 ## Running the project
