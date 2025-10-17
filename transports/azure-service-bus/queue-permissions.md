@@ -7,7 +7,7 @@ reviewed: 2025-10-14
 
 It is common practice to limit [Azure Service Bus connection permissions at the queue level when using Managed Entities](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-managed-service-identity#resource-scope). 
 
-The following list maps endpoint features to fine-grained permissions and when they are needed for an endpoint when using queue-scoped permissions:
+The following shows the minimum permissions needed for various endpoint features using queue-scoped permissions:
 
 - `Azure Service Bus Data Receiver` to the endpoint's queue is required to process messages.
 - `Azure Service Bus Data Sender` to the endpoint's queue is required for:
