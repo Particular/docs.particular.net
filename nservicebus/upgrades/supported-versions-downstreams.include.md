@@ -367,18 +367,18 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/6.0.0) | 2025-03-17     | -                 | -                                 |
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/5.0.0) | 2025-02-21     | 2026-03-17        | Superseded by 6.0.x               |
-| [4.4.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.4.1) | 2024-06-12     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [6.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/6.0.1) | 2025-03-17     | -                 | -                                 |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/5.0.1) | 2025-02-21     | 2026-03-17        | Superseded by 6.0.x               |
+| [4.4.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/4.4.2) | 2024-06-12     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.InProcess.ServiceBus/3.0.0) | 2022-01-12     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
 #### [NServiceBus.AzureFunctions.Worker.ServiceBus](/nuget/NServiceBus.AzureFunctions.Worker.ServiceBus)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/6.0.0) | 2025-03-17     | -                 | -                                 |
-| [5.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.2.2) | 2024-06-26     | 2026-03-17        | Superseded by 6.0.x               |
-| [4.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.2.5) | 2023-09-21     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [6.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/6.0.1) | 2025-03-17     | -                 | -                                 |
+| [5.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.2.3) | 2024-06-26     | 2026-03-17        | Superseded by 6.0.x               |
+| [4.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.2.6) | 2023-09-21     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [3.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/3.1.2) | 2022-08-31     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
 #### [NServiceBus.Extensions.Hosting](/nuget/NServiceBus.Extensions.Hosting)
