@@ -1,5 +1,5 @@
 ---
-title: Azure Blob Storage Databus Upgrade Version 1 to 2
+title: Azure Blob Storage Data Bus Upgrade Version 1 to 2
 reviewed: 2021-08-20
 component: ABSDataBus
 related:

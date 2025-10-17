@@ -1,6 +1,6 @@
 ---
-title: Azure Blob Storage Databus Upgrade Version 6 to 7
-summary: Instructions on how to upgrade Azure Blob Storage Databus from version 6 to 7.
+title: Azure Blob Storage Data Bus Upgrade Version 6 to 7
+summary: Instructions on how to upgrade Azure Blob Storage Data Bus from version 6 to 7.
 reviewed: 2025-09-15
 component: ABSDataBus
 isUpgradeGuide: true
@@ -9,19 +9,16 @@ upgradeGuideCoreVersions:
  - 10
 ---
 
-## Changes due to ClaimCheck been released as a separate package
+## Types renamed because of new NServiceBus.ClaimCheck package
 
-In order to incorporate the changes related to the creation of the new NServiceBus.ClaimCheck package, the classes and interface that mention `DataBus` have been obsoleted in favor of their new `ClaimCheck` counterparts.
+In order to incorporate the changes related to the creation of the new [NServiceBus.ClaimCheck](https://www.nuget.org/packages/NServiceBus.ClaimCheck/) package, the types that mention `DataBus` have been renamed to use term `ClaimCheck` instead.
 
-Their usage and APIs remains the same.
+The table below shows the mapping from the DataBus types to their ClaimCheck equivalents.
 
-
-|Obsolete|Replace with|
+|DataBus|ClaimCheck|
 |---|---|
-|class AzureDataBus| class AzureClaimCheck|
-|class class ConfigureAzureDataBus| class ConfigureAzureClaimCheck|
-|interface NServiceBus.DataBus.AzureBlobStorage.IProvideBlobServiceClient| interface NServiceBus.ClaimCheck.AzureBlobStorage.IProvideBlobServiceClient|
-
+|`NServiceBus.AzureDataBus`|`NServiceBus.AzureClaimCheck`|
+|`NServiceBus.ConfigureAzureDataBus`| `NServiceBus.ConfigureAzureClaimCheck`|
+|`NServiceBus.DataBus.AzureBlobStorage.IProvideBlobServiceClient`| `NServiceBus.ClaimCheck.AzureBlobStorage.IProvideBlobServiceClient`|
 
 For more details about the migration to the new package, visit the [ClaimCheck section of the NServiceBus upgrade guide from 9 to 10](/nservicebus/upgrades/9to10/#databus-feature-moved-to-separate-nservicebus-claimcheck-package).
-
