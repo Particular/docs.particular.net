@@ -1,5 +1,5 @@
 ---
-title: Endpoint Managed Entity Queue-Scoped Permissions
+title: Managed Entity Queue-Scoped Permissions for Endpoints
 summary: Explains queue-scoped permissions needed by an endpoint running in Azure Service Bus
 component: ASBS
 reviewed: 2025-10-14
