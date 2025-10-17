@@ -287,6 +287,8 @@
       Url: nservicebus/upgrades/azure-deprecation
     - Title: Azure BlobStorage Data Bus
       Articles:
+      - Url: nservicebus/upgrades/absdatabus-6to7
+        Title: Version 6 to 7
       - Url: nservicebus/upgrades/absdatabus-3to4
         Title: Version 3 to 4
       - Url: nservicebus/upgrades/absdatabus-2to3
