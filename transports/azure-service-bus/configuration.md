@@ -30,7 +30,7 @@ These settings control how the transport creates entities in the Azure Service B
 > [!WARNING]
 > Entity creation settings are applied only at the time the corresponding entities are created; they are not updated on subsequent startups.
 
-partial: access-rights
+include: managed-access-rights
 
 partial: entity-topology
 
