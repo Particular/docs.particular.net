@@ -2,7 +2,7 @@
 title: Managed Entity Queue-Scoped Permissions for Endpoints
 summary: Explains queue-scoped permissions needed by an endpoint running in Azure Service Bus
 component: ASBS
-reviewed: 2025-10-14
+reviewed: 2025-10-17
 ---
 
 It is common practice to limit [Azure Service Bus connection permissions at the queue scope when using Managed Entities](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-managed-service-identity#resource-scope). 
