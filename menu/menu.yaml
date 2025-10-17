@@ -949,8 +949,8 @@
       Articles:
         - Url: nservicebus/azure/ways-to-live-without-transactions
           Title: Avoiding Transactions
-    - Url: transports/azure-service-bus/queue-permissions
-      Title: Queue scoped permissions
+    - Url: transports/azure-service-bus/queue-scoped-permissions
+      Title: Queue-scoped permissions
     - Url: transports/azure-service-bus/operational-scripting
       Title: Operational scripting
   - Title: Azure Storage Queues
