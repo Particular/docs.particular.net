@@ -1,6 +1,6 @@
 ---
 title: Azure Service Bus Transport Upgrade Version 1 to 2
-summary: Migration instructions on how to upgrade the Azure Service Bus transport from version 1 to 2.
+summary: Instructions on how to upgrade Azure Service Bus transport from version 1 to 2.
 reviewed: 2022-03-25
 component: ASBS
 related:
