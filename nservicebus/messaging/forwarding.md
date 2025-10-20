@@ -7,7 +7,7 @@ related:
  - nservicebus/operations/auditing
 ---
 
-Use this feature to forward successfully processed messages from an endpoint to a specific destination endpoint for additional processing. Forwarding messages is particularly useful in complex upgrade scenarios when the old version and new version of a particular endpoint are running side-by-side.
+Use this feature to forward successfully processed messages from an endpoint to a specific destination endpoint for additional processing. Forwarding messages can be particularly useful in [complex upgrade scenarios](/nservicebus/messaging/moving-handlers.md#how-to-move-handlers-between-endpoints-how-to-ensure-that-the-messages-get-to-the-destinationendpoint).
 
 ## Forwarding a message from the handler
 
