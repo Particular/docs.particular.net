@@ -60,9 +60,9 @@ As part of adding nullability annotations, the `Data` and `Name` properties of t
 
 ### PersistenceDefinition
 
-### Definition factory
+#### Definition factory
 
-Any persistence definition must explicitely implement `IPersistenceDefinitionFactory<TDefinition>` to enable NServiceBus to create the persistence implementation without using reflection.
+Any persistence definition must explicitly implement `IPersistenceDefinitionFactory<TDefinition>` to enable NServiceBus to create the persistence implementation without using reflection.
 
 ```csharp
 public class CustomPersistence : PersistenceDefinition
@@ -82,9 +82,9 @@ public class CustomPersistence : PersistenceDefinition, IPersistenceDefinitionFa
 }
 ```
 
-### Supports
+#### Supports
 
-`Supports` accepting an action that gets access to the `SettingsHolder` has been deprecated and need to be rewritten to use the `Supports` call with a feature. So code like
+The `Supports<TStorageType>(…)` no longer accepts an action that gets access to the `SettingsHolder` in order to more directly identify the feature to activate. Calls to  `Supports<TStorageType>(…)` like this:
 
 ```csharp
 public class CustomPersistence : PersistenceDefinition
@@ -98,7 +98,7 @@ public class CustomPersistence : PersistenceDefinition
 }
 ````
 
-must be changed to
+must be changed to `Supports<TStorageType, TFeatureType>()` like this:
 
 ```csharp
 public class CustomPersistence : PersistenceDefinition
