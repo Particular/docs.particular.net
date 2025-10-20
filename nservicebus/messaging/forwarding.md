@@ -2,7 +2,7 @@
 title: Message forwarding
 summary: Describes how to set up message forwarding
 component: Core
-reviewed: 2025-10-16
+reviewed: 2025-10-20
 related:
  - nservicebus/operations/auditing
 ---
@@ -16,7 +16,7 @@ Individual messages can be forwarded directly from the handler:
 snippet: ForwardingMessageFromHandler
 
 > [!WARNING]
-> Forwarding should not be used to abort message processing. Messages cannot be forwarded to the `error` queue as the required metadata for failed messages would not be present in the forwarded message's metadata. Attempting to use forwarding as a mechanism to abort processing can result in partial updates.
+> Forwarding should not be used to abort message processing in the handler. Messages cannot be forwarded to the `error` queue as the required metadata for failed messages would not be present in the forwarded message's metadata. Attempting to use forwarding as a mechanism to abort processing can result in partial updates.
 > 
 > Instead, throw an exception in the message handler. This ensures that no [ghost messages](/nservicebus/concepts/glossary.md#ghost-message) are transmitted and any transactional state changes are rolled back.
 > 
