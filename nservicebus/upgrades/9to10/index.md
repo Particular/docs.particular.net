@@ -57,3 +57,56 @@ As part of adding nullability annotations, the `Data` and `Name` properties of t
 ### ICompletableSynchronizedStorageSession and IOutboxTransaction implement IAsyncDisposable
 
 `ICompletableSynchronizedStorageSession` and `IOutboxTransaction` implement `IAsyncDisposable` to better support asynchronous operations during the disposal of both types. For more information about IAsyncDisposable visit consult the [Implement a DisposeAsync guidelines](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-disposeasync).
+
+### PersistenceDefinition
+
+### Definition factory
+
+Any persistence definition must explicitely implement `IPersistenceDefinitionFactory<TDefinition>` to enable NServiceBus to create the persistence implementation without using reflection.
+
+```csharp
+public class CustomPersistence : PersistenceDefinition
+{
+    internal CustomPersistence() { }
+}
+````
+
+must be changed to
+
+```csharp
+public class CustomPersistence : PersistenceDefinition, IPersistenceDefinitionFactory<CustomPersistence>
+{
+    internal CustomPersistence() { }
+
+    static CustomPersistence IPersistenceDefinitionFactory<CustomPersistence>.Create() => new();
+}
+```
+
+### Supports
+
+`Supports` accepting an action that gets access to the `SettingsHolder` has been deprecated and need to be rewritten to use the `Supports` call with a feature. So code like
+
+```csharp
+public class CustomPersistence : PersistenceDefinition
+{
+    internal CustomPersistence()
+    { 
+        Supports<StorageType.Sagas>(s => s.EnableFeatureByDefault<SagaStorage>());
+        Supports<StorageType.Subscriptions>(s => s.EnableFeatureByDefault<SubscrptionStorage>());
+        Supports<StorageType.Outbox>(s => s.EnableFeatureByDefault<OutboxStorage>());
+    }
+}
+````
+
+must be changed to
+
+```csharp
+public class CustomPersistence : PersistenceDefinition
+{
+    internal CustomPersistence()
+    { 
+        Supports<StorageType.Sagas, SagaStorage>();
+        Supports<StorageType.Subscriptions, SubscrptionStorage>();
+        Supports<StorageType.Outbox, OutboxStorage>();
+    }
+}
