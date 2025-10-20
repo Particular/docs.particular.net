@@ -13,8 +13,6 @@ redirects:
 
 This sample shows how to monitor a running NServiceBus system with ServiceControl and ServicePulse as well as how to integrate with existing monitoring solutions. The sample uses the [learning transport](/transports/learning/) and a portable version of the Particular Service Platform tools. Installing ServiceControl is **not** required.
 
-include: platformlauncher-windows-required
-
 downloadbutton
 
 ## Connect to Application Insights Azure Monitor
