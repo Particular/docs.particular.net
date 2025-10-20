@@ -39,10 +39,12 @@ class PersistenceOrder
     }
 }
 
-class RavenDBPersistence : PersistenceDefinition
+class RavenDBPersistence : PersistenceDefinition, IPersistenceDefinitionFactory<RavenDBPersistence>
 {
+    static RavenDBPersistence IPersistenceDefinitionFactory<RavenDBPersistence>.Create() => new();
 }
 
-class NHibernatePersistence : PersistenceDefinition
+class NHibernatePersistence : PersistenceDefinition, IPersistenceDefinitionFactory<NHibernatePersistence>
 {
+    static NHibernatePersistence IPersistenceDefinitionFactory<NHibernatePersistence>.Create() => new();
 }

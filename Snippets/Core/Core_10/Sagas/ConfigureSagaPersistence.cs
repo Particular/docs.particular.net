@@ -16,7 +16,8 @@ class ConfigureSagaPersistence
     }
 
     public class PersistenceToUseGoesHere :
-        PersistenceDefinition
+        PersistenceDefinition, IPersistenceDefinitionFactory<PersistenceToUseGoesHere>
     {
+        static PersistenceToUseGoesHere IPersistenceDefinitionFactory<PersistenceToUseGoesHere>.Create() => new();
     }
 }
