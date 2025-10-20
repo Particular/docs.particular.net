@@ -26,7 +26,7 @@ snippet: ForwardingMessageFromHandler
 
 [Auditing](/nservicebus/operations/auditing.md) and Forwarding are very similar. Both send a copy of the processed message to another queue. The main difference is the intended usage scenarios.
 
-Auditing is an implicit per-message operation configured at the endpoint level. An audit message is automatically enriched with additional [information regarding its processing](/nservicebus/operations/auditing.md#message-headers) for ingestion by [ServiceControl Audits](/servicecontrol/audit-instances.md).
+Auditing is an implicit per-message operation configured at the endpoint level. An audit message is automatically enriched with additional [information regarding its processing](/nservicebus/operations/auditing.md#message-headers) for ingestion by [ServiceControl Audits](/servicecontrol/audit-instances/).
 
 Message forwarding is an explicit per-message operation from your handler, enabling additional custom processing for your system needs.
 
