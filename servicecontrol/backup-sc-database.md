@@ -43,9 +43,9 @@ For ServiceControl instances using RavenDB 3.5, the following steps outline how 
 
 ## Important notes and restrictions
 
-### Do not migrate to a different Windows Server version
+### Do not migrate to an older Windows Server version
 
-Care should be taken when planning to move ServiceControl from one server to another. Moving databases between servers can be problematic. RavenDB does not support moving from a new versions of Windows back to older versions of Windows. See [Getting error while restoring backup file in raven DB](https://stackoverflow.com/questions/25625910/getting-error-while-restoring-backup-file-in-raven-db) for more details.
+Care should be taken when planning to move ServiceControl from one server to another. Moving databases between servers can be problematic. RavenDB does not support moving from new versions of Windows back to older versions of Windows. See [Getting error while restoring backup file in raven DB](https://stackoverflow.com/questions/25625910/getting-error-while-restoring-backup-file-in-raven-db) for more details.
 
 ### Restore to the same ServiceControl version
 
