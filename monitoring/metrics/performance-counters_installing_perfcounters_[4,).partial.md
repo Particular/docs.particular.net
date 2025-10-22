@@ -2,9 +2,6 @@
 
 The `NServiceBus.Metrics.PerformanceCounter` package installs itself into the MSBuild pipeline and generates all performance counter installation scripts at compile time. It does this by interrogating types (in the target assembly) to infer what scripts to create. It is required for any project where performance counter installation scripts are needed.
 
-> [!NOTE]
-> Performance Counters **versions 1.1 and above:** depend on `NServiceBus.Metrics` to calculate counter values.
-
 ### Script creation
 
 Scripts are created in the directory format of `[CurrentProjectDebugDir]\[.NET Version]\NServiceBus.Metrics.PerformanceCounters`.
@@ -15,7 +12,6 @@ For example, a project named `ClassLibrary` built in Debug mode will have the fo
 
 Scripts are also included in the list of project output files. The files that are produced will be copied to the output directory of any project that references it. If a script needs to be copied to a directory for inclusion in source control repository, use a [post-build event](https://docs.microsoft.com/en-us/cpp/build/how-to-use-build-events-in-msbuild-projects) to copy the output outside the build directory.
 
-
 ### Force category recreation
 
 The descriptions of some of the performance counters have been changed in the PowerShell script from previous versions for more clarity when viewing counters in the Performance Monitor UI.
@@ -25,7 +21,6 @@ By default, the PowerShell script will not recreate counters just to change the 
 ```ps
 PS> .\CreateNSBPerfCounters.ps1 -ForceRecreate
 ```
-
 
 ### Script usage
 
