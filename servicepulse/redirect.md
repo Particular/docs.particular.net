@@ -1,13 +1,13 @@
 ---
 title: Redirects
-summary: Describes what message redirects are and how to use them.
+summary: Describes what message redirects are and how to use them with failed messages in ServicePulse
 related:
 - servicepulse/troubleshooting
 - samples/pipeline/fix-messages-using-behavior
-reviewed: 2024-01-26
+reviewed: 2025-10-22
 ---
 
-When a failed message needs to be retried, but the destination endpoint no longer exists, and the message needs to be routed to a different endpoint than what is specified in the failed message headers, ServicePulse offers a redirect feature. This feature is available in ServicePulse version 1.6.6 and above.
+ServicePulse version 1.6.6 and above offers a redirect feature to route messages to a different endpoint than what is specified in the failed message headers. This is useful in cases when a failed message needs to be retried, but the destination endpoint no longer exists.
 
 > [!WARNING]
 > Message redirects are a feature of ServicePulse/ServiceControl only; they do not alter the routing for NServiceBus endpoints.
@@ -15,7 +15,6 @@ When a failed message needs to be retried, but the destination endpoint no longe
 Redirects can be managed from the Configuration page by selecting the `Retry Redirects` tab.
 
 ![Redirects Tab](images/redirects.png 'width=500')
-
 
 ## Managing redirects
 
