@@ -36,4 +36,4 @@ The uniform session must not be cached as the injected session's lifetime matche
 
 ## Multi-endpoint hosting
 
-For multiple endpoints hosted in the same process, a container per endpoint is required. If a single container is reused the bindings of the uniform session might be overwritten, and this could lead to unpredictable behavior.
+For multiple endpoints hosted in the same process, a container per endpoint is required. If a single container is reused, the bindings of the uniform session might be overwritten, and this could lead to unpredictable behavior.
