@@ -27,15 +27,15 @@ NLog in this example is configured in code:
 snippet: NLogConfiguration
 
 > [!NOTE]
-> There is no preference on how NLog is configured. Based on the NLog documentation the most used method is with an [NLog configuration file](https://github.com/nlog/nlog/wiki/Configuration-file#configuration).
+> There is no preference on how NLog is configured. Based on the NLog documentation, the most used method is with an [NLog configuration file](https://github.com/nlog/nlog/wiki/Configuration-file#configuration).
 
 > [!WARNING]
-> It is important that the NLog, Microsoft.Extensions.Logging, and NServiceBus.Logging abstractions are initialized before `Endpoint.Create` or `Endpoint.Start` are invoked. If logging chain is not fully initialized, it is not guaranteed that logging will work as expected.
+> It is important that the NLog, Microsoft.Extensions.Logging, and NServiceBus.Logging abstractions are initialized before `Endpoint.Create` or `Endpoint.Start` are invoked. If the logging chain is not fully initialized, logging might not work as expected.
 
 ### Configure logging abstractions
 
-The following snippet shows how to initialize logging. NLog has its own provider extensions for Microsoft.Extensions.Logging and needs an `NLogLoggerFactory` provider that implements `Microsoft.Extensions.Logging.ILoggerFactory` instance so that `Microsoft.Extensions.Logging` can use NLog.
+The following snippet shows how to initialize logging. NLog has its own provider extensions for Microsoft.Extensions.Logging and needs an `NLogLoggerFactory` provider that implements an `Microsoft.Extensions.Logging.ILoggerFactory` instance so that `Microsoft.Extensions.Logging` can use NLog.
 
 snippet: MicrosoftExtensionsLoggingNLog
 
-Only after the logging initialization has completed, endpoints can be created or started.
+Endpoints can be created or started only after the logging initialization has completed.
