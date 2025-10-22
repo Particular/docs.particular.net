@@ -43,5 +43,5 @@ To change the target of a redirect, click the `Modify Redirect` link. Only the t
 
 When adding and editing redirects, the following validation rules apply:
 
- * **Duplicate** There can be only one redirect for a given source queue. When attempting to add multiple redirects for the same source queue, an error message will be displayed: "Can not create redirect to queue *QueueName* as it already has a redirect. Provide a different queue or end the redirect."
- * **Dependent** Redirects cannot be chained i.e., a destination queue in one redirect can not be used as the source queue for another redirect. For example, if there is a configured redirect that redirects messages from QueueA -> QueueB, there cannot be a second rule configured to redirect from QueueB -> QueueC. An error message will be displayed when attempting to chain multiple redirects: "Failed to create a redirect, can not create a redirect to a queue that already has a redirect or is a target of a redirect."
+ * **Duplicate** There can be only one redirect for a given source queue. When attempting to add multiple redirects for the same source queue, an error will occur.
+ * **Dependent** Redirects cannot be chained i.e., a destination queue in one redirect can not be used as the source queue for another redirect. For example, if there is a configured redirect that redirects messages from QueueA -> QueueB, there cannot be a second rule configured to redirect from QueueB -> QueueC. Attempts to do so will result in an error.
