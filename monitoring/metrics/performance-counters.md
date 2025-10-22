@@ -23,8 +23,6 @@ The Windows Performance Counters package provides additional performance counter
 
 Since all performance counters in Windows are exposed via Windows Management Instrumentation (WMI), it is very straightforward to pull this information into the existing monitoring infrastructure.
 
-partial: note
-
 partial: counters
 
 partial: installing
