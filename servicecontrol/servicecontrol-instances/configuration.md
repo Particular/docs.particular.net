@@ -137,6 +137,7 @@ The maximum allowed time for the process to complete the shutdown.
 | **SCMU field** | N/A |
 
 | Environment/Installation type            | Type     | Default value |
+|---|---|---|
 | Containers | TimeSpan | `00:00:05` (5 seconds) |
 | Installation via PowerShell (on Windows) | TimeSpan | `00:02:00` (2 minutes) |
 | Installation via ServiceControl Management Utility (SCMU) (on Windows) | TimeSpan | `00:02:00` (2 minutes) |
@@ -528,6 +529,7 @@ In most instances these settings do not need to be modified.
 If running multiple setups of the Platform Tools (i.e. multiple versions of ServiceControl error and monitoring instances) then modify these settings so that the queue on each monitoring instance is matched to the queue of its error instance.
 
 If using [MSMQ transport](/transports/msmq) and the monitoring instance is installed on a different machine than the ServiceControl error instance, only the monitoring instance setting needs to be modified to include the machine name of the error instance in the queue address.
+If using [MSMQ transport](/transports/msmq) and [ServiceControl is deployed as a cluster](servicecontrol/deploying-servicecontrol-in-a-cluster.md), all the queue name settings need to be modified to include the cluster name address using this format: `queuename@mclustername`.
 
 | Context | Name |
 | --- | --- |
