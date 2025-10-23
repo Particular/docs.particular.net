@@ -1,11 +1,11 @@
 ---
-title: Mapping Endpoint Instances With a Shared File
-summary: Mapping logical endpoints to physical instances with a shared file
-reviewed: 2024-01-25
+title: Mapping Endpoint Instances Using a Shared File
+summary: Mapping logical endpoints to endpoint instances using a shared file
+reviewed: 2025-10-23
 component: Core
 ---
 
-The sample demonstrates how to use a file to describe the mapping between logical endpoints and their physical instances (i.e. deployments of a given logical endpoint to a concrete virtual machine).
+The sample demonstrates how to use a file to map between logical endpoints and their instances (i.e. deployments of a given [logical endpoint to an endpoint instance](https://docs.particular.net/nservicebus/endpoints/)).
 
 ## Prerequisites
 
@@ -13,7 +13,12 @@ Ensure MSMQ is installed and configured as described in the [MSMQ transport - MS
 
 ## Running the project
 
- 1. Start the solution
+ 1. Start each of the endpoints in the solution:
+    - Client
+    - Billing
+    - Shipping
+    - Sales
+    - Sales2
  1. The text `Press <enter> to send a message` should be displayed in the Client's console window.
  1. Press <kbd>enter</kbd> several times to send some messages.
 
