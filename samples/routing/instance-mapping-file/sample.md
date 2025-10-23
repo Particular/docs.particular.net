@@ -5,7 +5,7 @@ reviewed: 2025-10-23
 component: Core
 ---
 
-The sample demonstrates how to use a file to map between logical endpoints and their instances (i.e. deployments of a given [logical endpoint to an endpoint instance](https://docs.particular.net/nservicebus/endpoints/)).
+The sample demonstrates how to use a file to map between logical endpoints and their instances (i.e. deployments of a given [logical endpoint to an endpoint instance](/nservicebus/endpoints/)).
 
 ## Prerequisites
 
