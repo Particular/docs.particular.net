@@ -50,7 +50,7 @@ All endpoints are configured to send monitoring data to the Particular Service P
 
 ![ServicePulse monitoring tab showing sample endpoints](servicepulse-monitoring-tab-sample-low-throughput.png "width=500")
 
-The sales endpoint can be to scaled out or scaled in by pressing the <kbd>&uarr;</kbd> or <kbd>&darr;</kbd> keys.
+The sales endpoint can be scaled out or scaled in by pressing the <kbd>&uarr;</kbd> or <kbd>&darr;</kbd> keys.
 
 Pressing the <kbd>enter</kbd> key will quit all processes and cleanup temporary files and folders.
 
