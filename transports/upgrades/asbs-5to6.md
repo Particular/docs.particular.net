@@ -13,5 +13,5 @@ upgradeGuideCoreVersions:
 
 ## Transport Encoding Header
 
-The `NServiceBus.Transport.Encoding` header is longer used, but the transport could still send it for compatibility with the legacy Azure Service Bus transport. The ability to send this header has been removed and the `SendTransportEncodingHeader` APIs to opt in to sending it have been deprecated.
+The `NServiceBus.Transport.Encoding` header is no longer used, but the transport could still send it for compatibility with the legacy Azure Service Bus transport. The ability to send this header has been removed and the `SendTransportEncodingHeader` APIs to opt in to sending it have been deprecated.
 Remove all references to these APIs.
