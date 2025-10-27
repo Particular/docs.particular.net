@@ -46,31 +46,18 @@ ServiceControl configuration must be customized by changing the following settin
 
 * `DbPath` to define the path to the shared location of the database.
 * `Hostname` and `port` to reflect `cluster name` and `port`.
-*  `audit` and `error` queues to include the `cluster name`.
+*  Any queue name reference must include include the cluster name using the format `error@cluster name`.
 
-The following is a sample ServiceControl configuration file (ServiceControl.exe.config):
+The following is an example of what should be modified in the ServiceControl main instance configuration file (ServiceControl.exe.config).
 
 ```xml
-<configuration>
-  <appSettings>
-    <add key="ServiceControl/DbPath"
-         value="drive:\SomeDir\" />
-    <add key="ServiceControl/Hostname"
-         value="clusterName" />
-    <add key="ServiceControl/Port"
-         value="33333" />
-    <add key="ServiceBus/AuditQueue"
-         value="audit@clusterName" />
-    <add key="ServiceBus/ErrorQueue"
-         value="error@clusterName" />
-    <add key="ServiceBus/ErrorLogQueue"
-         value="error.log@clusterName" />
-    <add key="ServiceBus/AuditLogQueue"
-         value="audit.log@clusterName" />
-    <add key="LicensingComponent/ServiceControlThroughputDataQueue"
-         value="ServiceControl.ThroughputData@clusterName" />
-  </appSettings>
-</configuration>
+<add key="ServiceControl/DbPath" value="drive:\SomeDir\" />
+<add key="ServiceControl/Hostname" value="clusterName" />
+<add key="ServiceControl/Port" value="33333" />
+<add key="ServiceBus/ErrorQueue" value="error@clusterName" />
+<add key="ServiceControl/ForwardErrorMessages" value="true" />
+<add key="ServiceBus/ErrorLogQueue" value="error.log@clusterName" />
+<add key="LicensingComponent/ServiceControlThroughputDataQueue" value="ServiceControl.ThroughputData@clusterName" />
 ```
 
 See [Customizing ServiceControl Configuration](/servicecontrol/servicecontrol-instances/configuration.md) for more information on what each setting means.
