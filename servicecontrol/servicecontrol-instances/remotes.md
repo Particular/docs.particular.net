@@ -230,7 +230,7 @@ Remote instances are listed in the `ServiceControl/RemoteInstances` app setting 
 <configuration>
   <appSettings>
     <add key="ServiceControl/RemoteInstances" value="[{&quot;api_uri&quot;:&quot;http://localhost:33334/api&quot;}]"/>
-  </appSettings>/
+  </appSettings>
 </configuration>
 ```
 
@@ -240,7 +240,7 @@ Remote instances are listed in the `ServiceControl/RemoteInstances` app setting 
 <configuration>
   <appSettings>
     <add key="ServiceControl/RemoteInstances" value="[{&quot;api_uri&quot;:&quot;http://localhost:33334/api&quot;, &quot;queue_address&quot;:&quot;Particular.ServiceControl.Remote&quot;}]"/>
-  </appSettings>/
+  </appSettings>
 </configuration>
 ```
 
