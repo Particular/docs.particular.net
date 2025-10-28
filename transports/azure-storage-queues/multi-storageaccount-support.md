@@ -1,8 +1,8 @@
 ---
-title: Multiple storage accounts
+title: Multiple storage accounts with Azure Storage Queues
 summary: Use multiple Azure storage accounts for scale out
 component: ASQ
-reviewed: 2024-01-26
+reviewed: 2025-10-28
 redirects:
  - nservicebus/using-multiple-azure-storage-accounts-for-scaleout
  - nservicebus/azure/using-multiple-azure-storage-accounts-for-scaleout
@@ -12,22 +12,16 @@ related:
  - transports/azure-storage-queues/configuration
 ---
 
-Endpoints running on the Azure Storage Queues transport using a single storage account are subject to potential throttling once the maximum number of concurrent requests to the storage account is reached. Multiple storage accounts can be used to overcome this limitation. To better understand scale out options with storage accounts, it is advised to first read carefully the [Azure storage account scalability and performance targets](https://docs.microsoft.com/en-us/azure/storage/common/storage-scalability-targets) article.
+> [!IMPORTANT]
+> Using multiple storage accounts is currently NOT compatible with ServiceControl. It is necessary to use [ServiceControl transport adapter](/servicecontrol/transport-adapter.md) or multiple installations of ServiceControl for monitoring in such situation.
 
+It is common for systems running on Azure Storage Queues to depend on a single storage account. However, there is a potential for throttling issues once the maximum number of concurrent requests to the storage account is reached. Multiple storage accounts can be used to overcome this limitation. To determine whether your system may benefit from scaling out to multiple storage accounts, refer to the targets referenced in the Azure [Scalability and performance targets for Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/scalability-targets) article, which define when throttling starts to occur.
 
-## Azure Storage Scalability and Performance
-
-All messages in a queue are accessed via a single queue partition. A single queue is targeted to process up to 2,000 messages per second. Scalability targets for storage accounts can vary based on the region, reaching up to 20,000 messages per second (throughput achieved using an object size of 1KB). This is subject to change and should be periodically verified.
-
-When the number of messages per second exceeds this quota, the storage service responds with an [HTTP 503 Server Busy message](https://docs.microsoft.com/en-us/azure/media-services/media-services-encoding-error-codes). This message indicates that the platform is throttling the queue. If a single storage account is unable to handle an application's request rate, the application could leverage several different storage accounts using a storage account per endpoint. This ensures application scalability without saturating a single storage account. This also gives a discrete control over queue processing, based on the sensitivity and priority of the messages that are handled by different endpoints. For example, high priority endpoints could have more dedicated workers than low priority endpoints.
-
-> [!NOTE]
-> Using multiple storage accounts is currently NOT compatible with ServiceControl, it is necessary to use [ServiceControl transport adapter](/servicecontrol/transport-adapter.md) or multiple installations of ServiceControl for monitoring in such situation.
-
+For additional guidance on considerations when developing a system using Azure Storage Queues, see the article on [Performance and scalability checklist for Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/storage-performance-checklist).
 
 ## Scaling Out
 
-A typical implementation uses a single storage account to send and receive messages. All endpoints are configured to receive and send messages using the same storage account.
+All endpoints are configured to receive and send messages using the same storage account.
 
 ![Single storage account](azure01.png "width=500")
 
