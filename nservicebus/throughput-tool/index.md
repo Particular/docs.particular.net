@@ -16,9 +16,9 @@ redirects:
 ---
 
 > [!WARNING]
-> Starting 1 January 2026, it will become mandatory for all projects in active development to use [ServicePulse](./../../servicepulse/usage.md) for usage data collection. Once configured, ServicePulse provides the ability to report throughput instantly at any time, without needing to run an external tool or wait for data collection.
+> Starting 1 January 2027, it will become mandatory for all projects in active development to use [ServicePulse](./../../servicepulse/usage.md) for usage data collection. Once configured, ServicePulse provides the ability to report throughput instantly at any time, without needing to run an external tool or wait for data collection.
 >
-> The legacy endpoint throughput counter tool is offered as an alternate option for customers that aren't able to use ServicePulse. If you have any issues installing ServicePulse in your environment, please reach out so we can help find a path forward.
+> The legacy endpoint throughput counter tool is offered as an alternate option for customers who aren't able to use ServicePulse. If you encounter any issues installing ServicePulse in your environment, please reach out so we can assist in finding a solution.
 >
 > If necessary, [open a support case](https://customers.particular.net/request-support/licensing) to get help with installing or configuring ServicePulse for usage data collection.
 
@@ -161,7 +161,7 @@ include: throughput-tool-global-options
 
 The tool first queries the SQS API to [fetch all queue names](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ListQueues.html). Then, for each queue that is discovered, the tool queries the [CloudWatch API](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricStatistics.html) for the `NumberOfMessagesDeleted` metrics for the past 30 days.
 
-Unlike ServiceControl, using SQS and CloudWatch metrics allows the tool to capture the last 30 days worth of data at once, which means that the report will be generated without delay. Although the tool collects 30 days worth of data, only the highest daily throughput is included in the report.
+Unlike ServiceControl, using SQS and CloudWatch metrics allows the tool to capture the last 30 days' worth of data at once, which means that the report will be generated without delay. Although the tool collects 30 days worth of data, only the highest daily throughput is included in the report.
 
 ### RabbitMQ
 
@@ -169,7 +169,7 @@ Unlike ServiceControl, using SQS and CloudWatch metrics allows the tool to captu
 
 To collect data from RabbitMQ, the [management plugin](https://www.rabbitmq.com/management.html) must be enabled on the RabbitMQ broker. The tool will also require a login that can access the management UI.
 
-Execute the tool, providing the RabbitMQ management URL, as in this example where the RabbitMQ broker is running on localhost.
+Execute the tool, providing the RabbitMQ management URL, as in this example, where the RabbitMQ broker is running on localhost.
 
 If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
 
