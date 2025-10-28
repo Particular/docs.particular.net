@@ -1,17 +1,18 @@
 ---
-title: Azure Storage Queues Sanitization
+title: Azure Storage Queues Name Sanitization
 component: ASQ
 versions: '[8,)'
 related:
 - transports/azure-storage-queues/configuration
 - samples/azure/storage-queues
-reviewed: 2024-01-26
+reviewed: 2025-10-28
 ---
 
-Starting with NServiceBus.Azure.Transports.WindowsAzureStorageQueues version 8.0, the transport no longer sanitizes queues by default.
-
+Queue name sanitization is not done by default for NServiceBus.Azure.Transports.WindowsAzureStorageQueues version 8.0 or NServiceBus.Azure.Transports.AzureStorageQueues versions 9 and up.
 
 ## Azure Storage Queues naming rules
+
+Sanitization is necessary if queue names do not adhere to the following rules:
 
  1. A queue name must start with a letter or number, and can only contain letters, numbers, and the dash (`-`) character.
  1. The first and last letters in the queue name must be alphanumeric.
@@ -21,7 +22,7 @@ Starting with NServiceBus.Azure.Transports.WindowsAzureStorageQueues version 8.0
  1. A queue name must be between 3 and 63 characters long.
 
 
-## Custom sanitization
+## Queue name sanitization
 
 To sanitize queue names, a sanitization function containing the required logic can be registered.
 
@@ -30,9 +31,9 @@ snippet: azure-storage-queue-sanitization
 When an endpoint is started, the sanitizer function will be invoked for each queue the transport creates.
 
 
-## Backward compatibility with versions 7 and below
+## Compatibility with versions 7 and below
 
-To remain backward compatible with endpoints created in version 7 and below of the transport, endpoints created in version 8 and above should be configured to perform sanitization based on version 7 and below rules. The following custom code will ensure queues are sanitized in a backward-compatible manner.
+To remain compatible with queues created by versions 7 and below of the transport, queues created by versions 8 and above should be configured to perform sanitization based on the rules for versions 7 and below. The following custom code will ensure queues are sanitized in a backward-compatible manner.
 
 snippet: azure-storage-queue-backwards-compatible-sanitization-with-md5
 
