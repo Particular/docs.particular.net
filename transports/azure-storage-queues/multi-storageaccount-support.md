@@ -15,17 +15,13 @@ related:
 > [!IMPORTANT]
 > Using multiple storage accounts is currently NOT compatible with ServiceControl. It is necessary to use [ServiceControl transport adapter](/servicecontrol/transport-adapter.md) or multiple installations of ServiceControl for monitoring in such situation.
 
-It is common for systems running on Azure Storage Queues to depend on a single storage account. However, there is a potential for throttling issues once the maximum number of concurrent requests to the storage account is reached. Multiple storage accounts can be used to overcome this limitation. To determine whether your system may benefit from scaling out to multiple storage accounts, refer to the targets referenced in the Azure [Scalability and performance targets for Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/scalability-targets) article, which define when throttling starts to occur.
+It is common for systems running on Azure Storage Queues to depend on a single storage account. However, there is a potential for throttling issues once the maximum number of concurrent requests to the storage account is reached. This throttling occurs if either the per-queue limit or per-storage account limit is reached. Multiple storage accounts can be used to overcome this limitation. To determine whether your system may benefit from scaling out to multiple storage accounts, refer to the targets referenced in the Azure [Scalability and performance targets for Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/scalability-targets) article, which define when throttling starts to occur.
 
 For additional guidance on considerations when developing a system using Azure Storage Queues, see the article on [Performance and scalability checklist for Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/storage-performance-checklist).
 
 ## Scaling Out
 
-All endpoints are configured to receive and send messages using the same storage account.
-
-![Single storage account](azure01.png "width=500")
-
-When the number of instances of endpoints is increased, all endpoints continue reading and writing to the same storage account. Once the limit of 2,000 message/sec per queue or 20,000 message/sec per storage account is reached, Azure storage service throttles messages throughput.
+When a single storage account is used, all endpoint instances are configured to send and receive messages using the same storage account. 
 
 ![Single storage account with scaled out endpoints](azure02.png "width=500")
 
