@@ -31,7 +31,7 @@ snippet: azure-storage-queue-sanitization
 When an endpoint is started, the sanitizer function will be invoked for each queue the transport creates.
 
 
-## Compatibility with versions 7 and below
+## Backward compatibility with versions 7 and below
 
 To remain compatible with queues created by versions 7 and below of the transport, queues created by versions 8 and above should be configured to perform sanitization based on the rules for versions 7 and below. The following custom code will ensure queues are sanitized in a backward-compatible manner.
 
