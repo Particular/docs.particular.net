@@ -24,7 +24,39 @@ builder.UseNServiceBus(endpointConfiguration);
 builder.Services.AddHostedService<AsyncAPISchemaWriter>();
 #endregion
 
-builder.Services.AddHostedService<Worker>();
+var host = builder.Build();
 
-var app = builder.Build();
-await app.RunAsync();
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+Console.WriteLine("Press '1' to publish event one");
+Console.WriteLine("Press '2' to publish event two");
+Console.WriteLine("Press any other key to exit");
+
+while (true)
+{
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    if (key.Key != ConsoleKey.D1 && key.Key != ConsoleKey.D2)
+    {
+        break;
+    }
+
+    var now = DateTime.UtcNow.ToString();
+
+    if (key.Key == ConsoleKey.D1)
+    {
+        await messageSession.Publish(new SampleEventOne { SomeValue = now });
+
+        Console.WriteLine($"Published event 1 with {now}.");
+        continue;
+    }
+
+    await messageSession.Publish(new SampleEventTwo { SomeValue = now });
+
+    Console.WriteLine($"Published event 2 with {now}.");
+}
+
+await host.StopAsync();
