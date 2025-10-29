@@ -14,9 +14,8 @@ Queue name sanitization is not done by default for NServiceBus.Azure.Transports.
 
 Sanitization is necessary if queue names do not adhere to the following rules:
 
- 1. A queue name must start with a letter or number, and can only contain letters, numbers, and the dash (`-`) character.
+ 1. A queue name can only contain letters, numbers, and the dash (`-`) character.
  1. The first and last letters in the queue name must be alphanumeric.
- 1. The dash (`-`) character cannot be the first or last character.
  1. Consecutive dash characters are not permitted in the queue name.
  1. All letters in a queue name must be lowercase.
  1. A queue name must be between 3 and 63 characters long.
