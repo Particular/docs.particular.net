@@ -20,12 +20,13 @@ The following procedure is a high-level guide on how to deploy ServiceControl on
   * [Windows Server 2008](https://blogs.msdn.microsoft.com/clustering/2008/01/18/creating-a-cluster-in-windows-server-2008/)
   * [Windows Server 2012 R2, Windows Server 2012, Windows Server 2016](https://docs.microsoft.com/en-us/windows-server/failover-clustering/create-failover-cluster)
 * Install ServiceControl on each node, adding it as a "generic service" using the cluster manager. This means that ServiceControl will failover automatically with the cluster.
+* On the cluster create all the queues that were created locally on any of the instances when installing ServiceControl.
 * Set up an MSMQ cluster group. A cluster group is a group of resources that have a unique DNS name and can be addressed externally like a computer. The name of this resource is the `cluster name`.
 * Add the ServiceControl generic clustered service to the MSMQ cluster group:
   * Ensure it depends on MSMQ and the MSMQ network name
   * Check "use network name as computer name" in the service configuration
 
-Once set up, the ServiceControl queues will be available on the cluster. The server name will be the MSMQ network name, not to be confused with the cluster name.
+The server name will be the MSMQ network name, not to be confused with the cluster name.
 
 More information is available on [Message Queuing in Server Clusters](https://technet.microsoft.com/en-us/library/cc753575.aspx).
 
@@ -46,18 +47,12 @@ ServiceControl configuration must be customized by changing the following settin
 
 * `DbPath` to define the path to the shared location of the database.
 * `Hostname` and `port` to reflect `cluster name` and `port`.
-*  Any queue name reference must include include the cluster name using the format `error@cluster name`.
 
-The following is an example of what should be modified in the ServiceControl main instance configuration file (ServiceControl.exe.config).
+The following is an example of what should be modified on all the ServiceControl instances configuration files (ServiceControl.exe.config).
 
 ```xml
 <add key="ServiceControl/DbPath" value="drive:\SomeDir\" />
 <add key="ServiceControl/Hostname" value="clusterName" />
-<add key="ServiceControl/Port" value="33333" />
-<add key="ServiceBus/ErrorQueue" value="error@clusterName" />
-<add key="ServiceControl/ForwardErrorMessages" value="true" />
-<add key="ServiceBus/ErrorLogQueue" value="error.log@clusterName" />
-<add key="LicensingComponent/ServiceControlThroughputDataQueue" value="ServiceControl.ThroughputData@clusterName" />
 ```
 
 See [Customizing ServiceControl Configuration](/servicecontrol/servicecontrol-instances/configuration.md) for more information on what each setting means.
