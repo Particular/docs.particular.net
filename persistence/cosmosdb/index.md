@@ -66,6 +66,41 @@ and registered on the container:
 
 snippet: CosmosDBCustomClientProviderRegistration
 
+## Request unit capacity planning
+
+A [Request Unit](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext) (or RU, for short) is a performance currency abstracting the system resources such as CPU, IOPS, and memory required to perform database operations. RU capacity planning is the process of estimating the required RUs that an Azure Cosmos DB will need to handle its workload.
+
+> [!NOTE]
+> RU capacity planning is recommended regardless of [Cosmos DB account type](https://learn.microsoft.com/en-us/azure/cosmos-db/throughput-serverless?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext#detailed-comparison), however its especially important when [Provisioned Throughput](https://learn.microsoft.com/en-us/azure/cosmos-db/set-throughput?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext) is selected as reaching the assigned capacity will cause [throttling](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/troubleshoot-request-rate-too-large?tabs=resource-specific) which can result in duplication of messages. In a [Serverless](https://learn.microsoft.com/en-us/azure/cosmos-db/serverless) acount, you're charged only for the RUs that your database operations consume and for the storage that your data consumes. Planning for the estimated RU usage is still benefitial while using a serverless account from a cost planning perspective.
+
+Microsoft provide a [capacity calculator](https://cosmos.azure.com/capacitycalculator/) which can be used to model the throughput costs of your solution. It uses [several parameters](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext#request-unit-considerations) to calculate this, but only the following are directly affected by using the NServiceBus CosmosDB Persistence (assuming the outbox and sagas are used).
+
+- Item size
+- Point reads (using Id and Partition Key)
+- Creates
+- Updates
+- Queries
+
+The below table gives an indication of what cosmos DB operations occur for every message received, per NServiceBus endpoint using Cosmos DB persistence. This can be used, along with the Microsoft capacity planner, other factors that affect pricing (such as the selected Cosmos DB API selected, number of regions, etc), and the message throughput of each NServiceBus endpoint, to produce an accurate RU capacity requirement.
+
+| Feature Used | Scenario | Cosmos DB Operations (per message) | Key Takeaway |
+| :---- | :---- | :---- | :---- |
+| Outbox | Message processed successfully | 1x ReadItemAsync (duplicate check) 1x UpsertItemAsync (store MessageId) | A baseline of one read and one write. |
+| Outbox | Message dispatches messages | 1x ReadItemAsync (duplicate check) 1x UpsertItemAsync (store outgoing operations) 1x PatchItemAsync (mark as dispatched) | More expensive, as it includes a patch. |
+| Sagas (Simple) | New saga started | 1x CreateItemAsync (new saga doc) | Simple create. |
+| Sagas (Simple) | Existing saga updated | 1x ReadItemAsync (find saga) 1x ReplaceItemAsync (save updated saga) | The most common flow: one read, one replace. |
+| Sagas \+ Outbox | Existing saga updated | 1x ReadItemAsync (find saga) 1x ReplaceItemAsync (save saga \+ outbox ops) 1x PatchItemAsync (mark outbox ops as dispatched) | This is the "max-cost" scenario. |
+| Sagas \+ Outbox \+ PK Fallback | Existing saga updated | 1x ReadItemAsync (find saga) 1x ReplaceItemAsync (save saga \+ outbox ops) 1x PatchItemAsync (mark outbox ops as dispatched) | This is the "max-cost" scenario. |
+
+Another, more direct, approach to RU capacity planning would be to use a custom request handler that can be attached to a [customized `CosmosClient` provider](#customizing-the-cosmosclient-provider) in your NServiceBus endpoint. This request handler could log every request/response and its assosiated RU charge. In this way, you can measure exactly what operations are being performed on the Cosmos DB for each message for that endpoint, and what the RU costs for each operations was. This can then be multipled by the estimated throughput of that NServiceBus endpoint when in production.
+
+> [!WARNING]
+> Its not recommended to monitor the RU costs using the direct approach mentioned above in production as this could have performance immplications.
+
+```csharp
+// todo
+```
+
 ## Provisioned throughput rate-limiting
 
 When using provisioned throughput, it is possible for the CosmosDB service to rate-limit usage, resulting in "request rate too large" exceptions indicated by a 429 status code.
