@@ -12,7 +12,7 @@ redirects:
 - samples/netcore-reference
 ---
 
-This sample consists of an [ASP.NET MVC web application](https://dotnet.microsoft.com/en-us/apps/aspnet/mvc) hosting an NServiceBus endpoint and a console application hosting another NServiceBus endpoint. The web application sends a [command](/nservicebus/messaging/messages-events-commands.md#commands) to the console application, waits for a [reply](https://docs.particular.net/nservicebus/messaging/reply-to-a-message), and returns the result to the user. 
+This sample consists of an [ASP.NET MVC web application](https://dotnet.microsoft.com/en-us/apps/aspnet/mvc) hosting an NServiceBus endpoint and a console application hosting another NServiceBus endpoint. The web application sends a [command](/nservicebus/messaging/messages-events-commands.md#commands) to the console application, waits for a [reply](/nservicebus/messaging/reply-to-a-message.md), and returns the result to the user. 
 
 After running, the web application renders the following page:
 
