@@ -1,7 +1,7 @@
 ---
 title: Using NServiceBus with ASP.NET MVC
 summary: Integrating NServiceBus with ASP.NET MVC web applications to send messages from a website.
-reviewed: 2024-01-29
+reviewed: 2025-10-29
 component: Core
 redirects:
 - nservicebus/using-nservicebus-with-asp.net-mvc
@@ -12,19 +12,18 @@ redirects:
 - samples/netcore-reference
 ---
 
-This sample consists of a web application hosting MVC controllers and a console application hosting the NServiceBus endpoint. The web application sends a command to the endpoint, waits for a response, and returns the result to the user. The Web application shows two methods for sending commands:
-
- * `SendAndBlock`: a method in synchronous `Controller` class
- * `SendAsync`: a method in asynchronous `AsyncController` class
-
-> [!NOTE]
-> In `SendAndBlock`, the web page renders synchronously. From the user's perspective, the interaction is synchronous and blocking, even though behind the scenes NServiceBus is messaging asynchronously.
+This sample consists of an [ASP.NET MVC web application](https://dotnet.microsoft.com/en-us/apps/aspnet/mvc) hosting an NServiceBus endpoint and a console application hosting another NServiceBus endpoint. The web application sends a [command](/nservicebus/messaging/messages-events-commands.md#commands) to the console application, waits for a [reply](https://docs.particular.net/nservicebus/messaging/reply-to-a-message), and returns the result to the user. 
 
 After running, the web application renders the following page:
 
 ![AsyncPages Asp.Net Mvc sample running](async-pages-mvc-selecting-blocking-method.png "AsyncPages Asp.Net Mvc sample running")
 
-Choosing SendAsync results in the following page:
+This shows two methods for sending commands, which are [explained below](#sending-a-message):
+
+ * `SendAndBlock`: a method in synchronous `Controller` class
+ * `SendAsync`: a method in asynchronous `AsyncController` class
+
+Clicking one of the links will render a page that allows you to send commands:
 
 ![AsyncPages Asp.Net Mvc sample running](async-pages-mvc-running.png "AsyncPages Asp.Net Mvc sample running")
 
@@ -45,9 +44,13 @@ In `AsyncPagesMvc`, open `Program.cs` and see the code for the `UseNServiceBus` 
 
 snippet: ApplicationStart
 
+The call to `builder.UseNServiceBus(endpointConfiguration);` registers `IMessageSession` in the service collection, making it available for dependency injection into the controllers.
 
 ## Sending a message
 
+The controller actions send a message to the console application using the `Request` method from the injected `IMessageSession` and wait to receive the reply.
+
+The sample demonstrates the differences between sending a message with NServiceBus in an asynchronous versus synchronous controller action.
 
 ### Asynchronous controller
 
@@ -62,10 +65,11 @@ Open the `SendAndBlockController` class:
 
 snippet: SendAndBlockController
 
-The controller is sending a command using an instance of `IMessageSession` injected into the constructor. The `Request` method is called, passing in the newly created command instance.
 
 The `Request` method returns once a response from the handler is received.
 
+> [!NOTE]
+> In `SendAndBlock`, the web page renders synchronously. From the user's perspective, the interaction is synchronous and blocking, even though behind the scenes NServiceBus is messaging asynchronously.
 
 ## Handling the message
 

@@ -23,8 +23,6 @@ class Program
              endpointConfiguration.UseTransport(new LearningTransport());
              endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-             Console.WriteLine("Press any key to exit");
-             Console.ReadKey();
              return endpointConfiguration;
          });
 
