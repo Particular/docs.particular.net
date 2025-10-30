@@ -13,12 +13,35 @@ builder.Logging.AddConsole();
 
 var endpointConfiguration = new EndpointConfiguration("RetryFailedMessages.Sender");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+
 var routing = endpointConfiguration.UseTransport<LearningTransport>().Routing();
 routing.RouteToEndpoint(typeof(SimpleMessage), "RetryFailedMessages.Receiver");
 
 builder.UseNServiceBus(endpointConfiguration);
 
-builder.Services.AddHostedService<SenderWorker>();
-
 var host = builder.Build();
-await host.RunAsync();
+
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+Console.WriteLine("Press [Enter] to send a new message. Press any other key to finish.");
+
+while (true)
+{
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    if (key.Key != ConsoleKey.Enter)
+    {
+        break;
+    }
+
+    var simpleMessage = new SimpleMessage();
+
+    await messageSession.Send(simpleMessage);
+
+    Console.WriteLine("Press [Enter] to send a new message. Press any other key to finish.");
+}
+
+await host.StopAsync();

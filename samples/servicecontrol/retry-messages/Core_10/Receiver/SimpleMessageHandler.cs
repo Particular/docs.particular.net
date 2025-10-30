@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
 
-public class SimpleMessageHandler(ILogger<Toggle> logger) :
+public class SimpleMessageHandler(ILogger<SimpleMessageHandler> logger) :
     IHandleMessages<SimpleMessage>
 {
     public static bool FaultMode { get; set; } = true;
