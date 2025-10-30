@@ -1,6 +1,6 @@
 ---
 title: Code of conduct for the Particular community
-summary: Guidelines for participating in Particular Software’s public community spaces, including GitHub, Slack, Discuss, and other platforms.
+summary: Guidelines for participating in Particular Software's public community spaces, including GitHub, Slack, Discuss, and other platforms.
 reviewed: 2025-10-30
 ---
 
@@ -14,7 +14,7 @@ All participants are expected to engage respectfully and stay on topic.
 
 ## Purpose and scope
 
-These public community spaces are intended to:
+These community spaces are intended to:
 
 - Facilitate knowledge-sharing and technical questions related to Particular's platform
 - Support discussion of real-world usage and implementation
@@ -28,7 +28,7 @@ These are not social spaces for unrelated or casual conversation. Contributions 
 
 Participation is open to individuals of all backgrounds. Discrimination based on race, ethnicity, nationality, religion, color, gender, sexual orientation, gender identity or status, age, disability (physical or mental), parental or marital status, political affiliation, socioeconomic background, or physical appearance is not acceptable.
 
-Given the sensitivity of these topics, references to them—if made—must be approached with care and framed respectfully. Advocacy for or against any position or cause unrelated to the community's technical focus is discouraged.
+Given the sensitivity of these topics, references to them-if made-must be approached with care and framed respectfully. Advocacy for or against any position or cause unrelated to the community's technical focus is discouraged.
 
 
 ## Unacceptable behavior
@@ -47,7 +47,7 @@ Intent does not override impact. Communication should be thoughtful and respectf
 
 ## Navigating "Hot topics"
 
-Certain topics may attract heightened attention or strong opinions—for example, comparisons between frameworks, commentary on tooling, or broader industry debates. When participating in such discussions:
+Certain topics may attract heightened attention or strong opinions-for example, comparisons between frameworks, commentary on tooling, or broader industry debates. When participating in such discussions:
 
 - Focus on facts and technical clarity
 - Avoid speculation and inflammatory language
