@@ -15,24 +15,27 @@ related:
 > [!IMPORTANT]
 > Using multiple storage accounts is currently NOT compatible with ServiceControl. It is necessary to use [ServiceControl transport adapter](/servicecontrol/transport-adapter.md) or multiple installations of ServiceControl for monitoring in such situation.
 
-It is common for systems running on Azure Storage Queues to depend on a single storage account. However, there is a potential for throttling issues once the maximum number of concurrent requests to the storage account is reached. This throttling occurs if either the per-queue limit or per-storage account limit is reached. Multiple storage accounts can be used to overcome this limitation. To determine whether your system may benefit from scaling out to multiple storage accounts, refer to the targets referenced in the Azure [Scalability and performance targets for Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/scalability-targets) article, which define when throttling starts to occur.
+It is common for systems running on Azure Storage Queues to depend on a single storage account. However, there is a potential for throttling issues once the maximum number of concurrent requests to the storage account is reached. Multiple storage accounts can be used to overcome this. To determine whether your system may benefit from scaling out to multiple storage accounts, refer to the the Scale targets table in the Azure [Scalability and performance targets for Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/scalability-targets) article, which define when throttling starts to occur.
 
 For additional guidance on considerations when developing a system using Azure Storage Queues, see the article on [Performance and scalability checklist for Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/storage-performance-checklist).
 
 ## Scaling Out
 
-When a single storage account is used, all endpoint instances are configured to send and receive messages using the same storage account. 
+> [!NOTE]
+> The configuration of a physical instance is managed at the logical endpoint level. In other words, all instances of a given logical endpoint will have the same configuration and use the same storage.
+
+When a single storage account is used, all endpoints are configured to send and receive messages using the same storage account. 
 
 ![Single storage account with scaled out endpoints](azure02.png "width=500")
 
-While an endpoint can only read from a single Azure storage account, it can send messages to multiple storage accounts. This way one can set up a solution using multiple storage accounts where each endpoint uses its own Azure storage account, thereby increasing message throughput.
+While an endpoint can only read from a single Azure storage account, it can send messages to multiple storage accounts; therefore increasing storage accounts generally increases throughput.
 
 ![Scale out with multiple storage accounts](azure03.png "width=500")
 
 
 ## Scale Units
 
-Scaleout and splitting endpoints over multiple storage accounts work to a certain extent, but it cannot be applied infinitely while expecting throughput to increase linearly. Each resource and group of resources has certain throughput limitations.
+Scaling out and splitting endpoints over multiple storage accounts work to a certain extent, but it cannot be applied infinitely while expecting throughput to increase linearly. Each resource and group of resources has certain throughput limitations.
 
 A suitable technique to overcome this problem includes resource partitioning and usage of scale units. A scale unit is a set of resources with well determined throughput, where adding more resources to this unit does not result in increased throughput. When the scale unit is determined, to improve throughput more scale units can be created. Scale units do not share resources.
 
