@@ -43,8 +43,38 @@ builder.UseNServiceBus(endpointConfiguration);
 
 #endregion
 
-builder.Services.AddHostedService<MessageGenerator>();
-
 var host = builder.Build();
 
-await host.RunAsync();
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+Console.WriteLine("Sending messages on an increasing interval. Press [CTRL] + [C] to exit");
+
+using (var cts = new CancellationTokenSource())
+{
+    Console.CancelKeyPress += (s, e) =>
+    {
+        Console.WriteLine("Cancellation Requested...");
+        cts.Cancel();
+        e.Cancel = true;
+    };
+
+    try
+    {
+        var number = 0;
+
+        while (!cts.Token.IsCancellationRequested)
+        {
+            await messageSession.SendLocal(new MyMessage { Number = number++ }, cts.Token);
+
+            await Task.Delay(1000, cts.Token);
+        }
+    }
+    catch (OperationCanceledException) when (cts.Token.IsCancellationRequested)
+    {
+        // graceful shutdown
+    }
+}
+
+await host.StopAsync();
