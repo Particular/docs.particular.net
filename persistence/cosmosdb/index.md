@@ -75,27 +75,49 @@ A [Request Unit](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units
 
 Microsoft provide a [capacity calculator](https://cosmos.azure.com/capacitycalculator/) which can be used to model the throughput costs of your solution. It uses [several parameters](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext#request-unit-considerations) to calculate this, but only the following are directly affected by using the NServiceBus CosmosDB Persistence (assuming the outbox and sagas are used).
 
-- Item size
-- Point reads (using Id and Partition Key)
-- Creates
-- Updates
-- Queries
+| Capacity Calculator Parameter | NServiceBus Operations | Cosmos DB API |
+| :---- | :---- | :---- |
+| Point reads | Outbox deduplication, Saga load, Partition key fallback | `ReadItemStreamAsync` |
+| Creates | New outbox record, New saga record | `CreateItemStream` |
+| Updates | Saga update, Saga aquire lock, Saga release lock, Outbox dispatched | `ReplaceItemStream`, `UpsertItemStream`, `PatchItemStreamAsync`, `PatchItem` |
+| Deletes | Saga complete, Outbox TTL background cleanup | `DeleteItem` |
+| Queries | Saga migration mode | `GetItemQueryStreamIterator` |
 
-The below table gives an indication of what cosmos DB operations occur for every message received, per NServiceBus endpoint using Cosmos DB persistence. This can be used, along with the Microsoft capacity planner, other factors that affect pricing (such as the selected Cosmos DB API selected, number of regions, etc), and the message throughput of each NServiceBus endpoint, to produce an accurate RU capacity requirement.
+Each item size also affects RU planning. The below gives an esitmate of the size overhead that should be considered per message.
 
-| Feature Used | Scenario | Cosmos DB Operations (per message) | Key Takeaway |
-| :---- | :---- | :---- | :---- |
-| Outbox | Message processed successfully | 1x ReadItemAsync (duplicate check) 1x UpsertItemAsync (store MessageId) | A baseline of one read and one write. |
-| Outbox | Message dispatches messages | 1x ReadItemAsync (duplicate check) 1x UpsertItemAsync (store outgoing operations) 1x PatchItemAsync (mark as dispatched) | More expensive, as it includes a patch. |
-| Sagas (Simple) | New saga started | 1x CreateItemAsync (new saga doc) | Simple create. |
-| Sagas (Simple) | Existing saga updated | 1x ReadItemAsync (find saga) 1x ReplaceItemAsync (save updated saga) | The most common flow: one read, one replace. |
-| Sagas \+ Outbox | Existing saga updated | 1x ReadItemAsync (find saga) 1x ReplaceItemAsync (save saga \+ outbox ops) 1x PatchItemAsync (mark outbox ops as dispatched) | This is the "max-cost" scenario. |
-| Sagas \+ Outbox \+ PK Fallback | Existing saga updated | 1x ReadItemAsync (find saga) 1x ReplaceItemAsync (save saga \+ outbox ops) 1x PatchItemAsync (mark outbox ops as dispatched) | This is the "max-cost" scenario. |
+| Record Type | Typical Size |
+| :---- | :---- |
+| Outbox | 630 bytes + message body |
+| Saga | 300 bytes + saga data |
 
-Another, more direct, approach to RU capacity planning would be to use a custom request handler that can be attached to a [customized `CosmosClient` provider](#customizing-the-cosmosclient-provider) in your NServiceBus endpoint. This request handler could log every request/response and its assosiated RU charge. In this way, you can measure exactly what operations are being performed on the Cosmos DB for each message for that endpoint, and what the RU costs for each operations was. This can then be multipled by the estimated throughput of that NServiceBus endpoint when in production.
+The below table gives an indication of what Cosmos DB operations occur in different scenarios, for every processed message, per NServiceBus endpoint. This can be used with the Microsoft capacity planner, and other factors that affect pricing (such as the selected Cosmos DB API selected, number of regions, etc), and the message throughput of each NServiceBus endpoint, to produce a RU capacity requirement estimate.
+
+| Scenario | Point Reads | Creates | Updates | Deletes | Queries | Persister Overhead* |
+|----------|-------------|---------|---------|---------|---------|---------------------|
+| **Message WITH Outbox (No Saga)** | 1 | 1 | 1 | 1 (delayed) | 0 | 630 bytes (1 msg sent) |
+| **Message WITH Outbox + Saga (new)** | 2 | 2 | 1 | 1 (delayed) | 0 | 630 + 300 = 930 bytes |
+| **Message WITH Outbox + Saga (update)** | 2 | 1 | 2 | 1 (delayed) | 0 | 630 + 300 = 930 bytes |
+| **Message WITH Outbox + Saga (complete)** | 2 | 1 | 1 | 2 (delayed) | 0 | 630 + 300 = 930 bytes |
+| **Message WITH Outbox + Saga + Locking (no contention)** | 1 | 1-2 | 3-4 | 1-2 (delayed) | 0 | 630 + 360 = 990 bytes |
+| **Message WITH Outbox + Saga + Locking (3 retries)** | 1 | 1-2 | 9-10 | 1-2 (delayed) | 0 | 630 + 360 = 990 bytes |
+| **Message WITHOUT Outbox (No Saga)** | 0 | 0 | 0 | 0 | 0 | 0 bytes |
+| **Message WITHOUT Outbox + Saga (new)** | 1 | 1 | 0 | 0 | 0 | 300 bytes |
+| **Message WITHOUT Outbox + Saga (update)** | 1 | 0 | 1 | 0 | 0 | 300 bytes |
+| **Message WITHOUT Outbox + Saga (complete)** | 1 | 0 | 0 | 1 | 0 | 300 bytes |
+
+*Persister overhead excludes your message bodies and saga data. Assumes handler sends 1 outgoing message.
+
+**Additional operations** (conditional):
+
+- **Fallback Read**: +1 Point Read (if enabled and using synthetic partition key)
+- **Migration Mode**: +1 Query (if saga migration mode enabled and saga not found)
+- **Multiple Partition Keys**: Separate operations per partition key
+- **More outgoing messages**: +400 bytes overhead per additional message sent
+
+Another, more direct, approach to RU capacity planning would be to use a custom request handler attached to a [customized `CosmosClient` provider](#customizing-the-cosmosclient-provider) in your NServiceBus endpoint. This request handler could log every request/response and its assosiated RU charge. In this way, you can measure exactly what operations are being performed on the Cosmos DB for each message for that endpoint, and what the RU costs for each operations is. This can then be multipled by the estimated throughput of that NServiceBus endpoint when in production.
 
 > [!WARNING]
-> Its not recommended to monitor the RU costs using the direct approach mentioned above in production as this could have performance immplications.
+> Its not recommended to monitor the RU costs using the direct approach in production as this could have performance immplications.
 
 ```csharp
 // todo
