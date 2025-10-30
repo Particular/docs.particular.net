@@ -75,7 +75,7 @@ A [Request Unit](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units
 
 Microsoft provide a [capacity calculator](https://cosmos.azure.com/capacitycalculator/) which can be used to model the throughput costs of your solution. It uses [several parameters](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext#request-unit-considerations) to calculate this, but only the following are directly affected by using the NServiceBus CosmosDB Persistence.
 
-| Capacity Calculator Parameter | NServiceBus Operations | Cosmos DB API |
+| Capacity Calculator Parameter | NServiceBus Operations | Cosmos DB Operations |
 | :---- | :---- | :---- |
 | **Point reads** | Outbox deduplication, Saga load, Partition key fallback | `ReadItemStreamAsync` |
 | **Creates** | New outbox record, New saga record | `CreateItemStream` |
