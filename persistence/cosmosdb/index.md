@@ -71,26 +71,26 @@ snippet: CosmosDBCustomClientProviderRegistration
 A [Request Unit](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext) (or RU, for short) is a performance currency abstracting the system resources such as CPU, IOPS, and memory required to perform database operations. RU capacity planning is the process of estimating the required RUs that an Azure Cosmos DB will need to handle its workload.
 
 > [!NOTE]
-> RU capacity planning is recommended regardless of [Cosmos DB account type](https://learn.microsoft.com/en-us/azure/cosmos-db/throughput-serverless?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext#detailed-comparison), however its especially important when [Provisioned Throughput](https://learn.microsoft.com/en-us/azure/cosmos-db/set-throughput?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext) is selected as reaching the assigned capacity will cause [throttling](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/troubleshoot-request-rate-too-large?tabs=resource-specific) which can result in duplication of messages. In a [Serverless](https://learn.microsoft.com/en-us/azure/cosmos-db/serverless) acount, you're charged only for the RUs that your database operations consume and for the storage that your data consumes. Planning for the estimated RU usage is still benefitial while using a serverless account from a cost planning perspective.
+> RU capacity planning is recommended regardless of [Cosmos DB account type](https://learn.microsoft.com/en-us/azure/cosmos-db/throughput-serverless?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext#detailed-comparison), however it's especially important when [Provisioned Throughput](https://learn.microsoft.com/en-us/azure/cosmos-db/set-throughput?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext) is selected as reaching the assigned capacity will cause [throttling](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/troubleshoot-request-rate-too-large?tabs=resource-specific) which can result in duplication of messages. In a [Serverless](https://learn.microsoft.com/en-us/azure/cosmos-db/serverless) account, you're charged only for the RUs that your database operations consume and for the storage that your data consumes. Planning for RU usage is still beneficial while using a serverless account from a cost perspective.
 
-Microsoft provide a [capacity calculator](https://cosmos.azure.com/capacitycalculator/) which can be used to model the throughput costs of your solution. It uses [several parameters](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext#request-unit-considerations) to calculate this, but only the following are directly affected by using the NServiceBus CosmosDB Persistence (assuming the outbox and sagas are used).
+Microsoft provide a [capacity calculator](https://cosmos.azure.com/capacitycalculator/) which can be used to model the throughput costs of your solution. It uses [several parameters](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext#request-unit-considerations) to calculate this, but only the following are directly affected by using the NServiceBus CosmosDB Persistence.
 
 | Capacity Calculator Parameter | NServiceBus Operations | Cosmos DB API |
 | :---- | :---- | :---- |
-| Point reads | Outbox deduplication, Saga load, Partition key fallback | `ReadItemStreamAsync` |
-| Creates | New outbox record, New saga record | `CreateItemStream` |
-| Updates | Saga update, Saga aquire lock, Saga release lock, Outbox dispatched | `ReplaceItemStream`, `UpsertItemStream`, `PatchItemStreamAsync`, `PatchItem` |
-| Deletes | Saga complete, Outbox TTL background cleanup | `DeleteItem` |
-| Queries | Saga migration mode | `GetItemQueryStreamIterator` |
+| **Point reads** | Outbox deduplication, Saga load, Partition key fallback | `ReadItemStreamAsync` |
+| **Creates** | New outbox record, New saga record | `CreateItemStream` |
+| **Updates** | Saga update, Saga acquire lock, Saga release lock, Outbox dispatched | `ReplaceItemStream`, `UpsertItemStream`, `PatchItemStreamAsync`, `PatchItem` |
+| **Deletes** | Saga complete, Outbox TTL background cleanup | `DeleteItem` |
+| **Queries** | Saga migration mode | `GetItemQueryStreamIterator` |
 
-Each item size also affects RU planning. The below gives an esitmate of the size overhead that should be considered per message.
+[Document size](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units#request-unit-considerations) also affects RU usage. The below table gives an estimate of the persistence overhead that should be considered per message.
 
 | Record Type | Typical Size |
 | :---- | :---- |
-| Outbox | 630 bytes + message body |
-| Saga | 300 bytes + saga data |
+| **Outbox** | 630 bytes + message body |
+| **Saga** | 300 bytes + saga data |
 
-The below table gives an indication of what Cosmos DB operations occur in different scenarios, for every processed message, per NServiceBus endpoint. This can be used with the Microsoft capacity planner, and other factors that affect pricing (such as the selected Cosmos DB API selected, number of regions, etc), and the message throughput of each NServiceBus endpoint, to produce a RU capacity requirement estimate.
+The below table gives an indication of what Cosmos DB operations occur in different scenarios, for every processed message per NServiceBus endpoint. This can be used with the [Microsoft capacity planner](https://cosmos.azure.com/capacitycalculator/), and other factors that affect pricing (such as the selected Cosmos DB API selected, number of regions, etc), and the message throughput of each NServiceBus endpoint, to produce an estimated RU capacity requirement.
 
 | Scenario | Point Reads | Creates | Updates | Deletes | Queries | Persister Overhead* |
 |----------|-------------|---------|---------|---------|---------|---------------------|
@@ -109,19 +109,67 @@ The below table gives an indication of what Cosmos DB operations occur in differ
 
 **Additional operations** (conditional):
 
-- **Fallback Read**: +1 Point Read (if enabled and using synthetic partition key)
+- **Partition Key Fallback Read**: +1 Point Read (if enabled and using synthetic partition key)
 - **Migration Mode**: +1 Query (if saga migration mode enabled and saga not found)
 - **Multiple Partition Keys**: Separate operations per partition key
 - **More outgoing messages**: +400 bytes overhead per additional message sent
 
-Another, more direct, approach to RU capacity planning would be to use a custom request handler attached to a [customized `CosmosClient` provider](#customizing-the-cosmosclient-provider) in your NServiceBus endpoint. This request handler could log every request/response and its assosiated RU charge. In this way, you can measure exactly what operations are being performed on the Cosmos DB for each message for that endpoint, and what the RU costs for each operations is. This can then be multipled by the estimated throughput of that NServiceBus endpoint when in production.
+**Example**
+
+- Outbox: Enabled
+- Sagas: Order saga (average 3 KB)
+- Locking: Optimistic (default)
+- Message rate: 500 messages/second peak
+- Each handler sends average 2 outgoing messages (1 KB each)
+
+**Calculator Inputs:**
+
+| Operation Type | Calculation | Result |
+|----------------|-------------|--------|
+| Point Reads | 500 msg/sec × 2 reads = | **1,000/sec** |
+| Creates | 500 msg/sec × 1 create (outbox) = | **500/sec** |
+| Updates | 500 msg/sec × 2 updates (saga + outbox) = | **1,000/sec** |
+| Deletes | 500 msg/sec avg over 24h (steady state) = | **500/sec** |
+| Queries | 0 (optimistic locking) = | **0/sec** |
+| OutboxRecord size | 200 bytes + (2 × 1 KB) = | **2.2 KB** |
+| Saga size | 3 KB + 0.3 KB metadata = | **3.3 KB** |
+
+Another, more direct, approach to RU capacity planning would be to use a Cosmos DB [`RequestHandler`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.requesthandler?view=azure-dotnet) attached to a customized [`CosmosClient` provider](#customizing-the-cosmosclient-provider) in your NServiceBus endpoint in a development environment. This request handler gives you the flexibility to log every Cosmos DB request and response, and its associated RU charge. In this way, you can measure exactly what operations are being performed on the Cosmos DB database for each message for that endpoint, and what the RU costs for each operation are. This can then be multiplied by the estimated throughput of that NServiceBus endpoint when in production.
 
 > [!WARNING]
-> Its not recommended to monitor the RU costs using the direct approach in production as this could have performance immplications.
+> Its not recommended to monitor the RU costs using the direct `RequestHandler` approach in production as this could have performance implications.
 
 ```csharp
-// todo
+//...
+var endpointConfiguration = new EndpointConfiguration("Name");
+var builder = new CosmosClientBuilder(cosmosConnection);
+builder.AddCustomHandlers(new LoggingHandler());
+CosmosClient cosmosClient = builder.Build();
+//...
+
+class LoggingHandler : RequestHandler
+{
+    public override async Task<ResponseMessage> SendAsync(RequestMessage request, CancellationToken cancellationToken = default)
+    {
+        ResponseMessage response = await base.SendAsync(request, cancellationToken).ConfigureAwait(false);
+        CosmosDiagnostics diagnostics = response.Diagnostics;
+
+        // diagnostics JSON string contains the operation name. i.e. ReadItemStreamAsync
+        // use this to map the cosmos operation to the capacity planner using the table above
+
+        string requestChargeRU = response.Headers["x-ms-request-charge"];
+
+        if ((int)response.StatusCode == 429)
+        {
+            logger.LogWarning("Request throttled.");
+        }
+
+        return response;
+    }
+}
 ```
+
+Alternatively, the Azure Cosmos DB [Diagnostic Settings](https://learn.microsoft.com/en-us/azure/cosmos-db/monitor-resource-logs?tabs=azure-portal) can be configured to route the diagnostic logs to an Azure Log Analytics Workspace. Here they can be [queried](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/diagnostic-queries?tabs=resource-specific) for the same data used for RU capacity planning.
 
 ## Provisioned throughput rate-limiting
 
