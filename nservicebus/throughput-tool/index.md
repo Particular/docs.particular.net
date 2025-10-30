@@ -117,13 +117,14 @@ Particular.EndpointThroughputCounter.exe azureservicebus [options] --resourceId 
 | Option | Description |
 |-|-|
 | <nobr>`--resourceId`</nobr> | **Required** – The resource ID of the Azure Service Bus namespace, which can be found in the Azure Portal as described above. |
-| <nobr>`--region`</nobr> | **Required** – The Azure region where the Service Bus namespace is located, which can be found in the Azure Portal as described above. |
+| <nobr>`--region`</nobr> | **Required** – The Azure region where the Service Bus namespace is located, which can be found in the Azure Portal as described above. Note that the region value should be the [Programmatic name](https://learn.microsoft.com/en-us/azure/reliability/regions-list) for the region. |
 | <nobr>`--serviceBusDomain`</nobr> | The Service Bus domain. Defaults to `servicebus.windows.net`. Only necessary for Azure customers using a [non-public/government cloud](https://learn.microsoft.com/en-us/rest/api/servicebus/). |
+| <nobr>`--metricsDomain`</nobr> | The monitoring metrics domain. Defaults to `metrics.monitor.azure.com`. Only necessary for Azure customers using a [non-public/government cloud](https://learn.microsoft.com/en-us/dotnet/api/overview/azure/monitor.query-readme?view=azure-dotnet#configure-client-for-azure-sovereign-cloud). |
 include: throughput-tool-global-options
 
 #### What the tool does
 
-First, the tool uses a `ServiceBusAdministrationClient` to [query the queue names](https://learn.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.administration.servicebusadministrationclient.getqueuesasync?view=azure-dotnet) from the namespace. Next, a `MetricClient` is used to [query for `CompleteMessage` metrics](https://learn.microsoft.com/en-us/dotnet/api/azure.monitor.query.metricsclient.queryresourcesasync?view=azure-dotnet) for the past 30 days from each queue.
+First, the tool uses a `ServiceBusAdministrationClient` to [query the queue names](https://learn.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.administration.servicebusadministrationclient.getqueuesasync?view=azure-dotnet) from the namespace. Next, a `MetricsClient` is used to [query for `CompleteMessage` metrics](https://learn.microsoft.com/en-us/dotnet/api/azure.monitor.query.metricsclient.queryresourcesasync?view=azure-dotnet) for the past 30 days from each queue.
 
 Using Azure Service Bus metrics allows the tool to capture the last 30 days worth of data at once. Although the tool collects 30 days worth of data, only the highest daily throughput is included in the report.
 
