@@ -55,13 +55,6 @@ Certain topics may attract heightened attention or strong opinions—for example
 - Step back if the discussion becomes unproductive or adversarial
 
 
-## Reporting concerns
-
-To report any code of conduct violations, send an email to concerns@particular.net
-
-All reports are treated with confidentiality and reviewed seriously.
-
-
 ## Consequences
 
 Actions resulting from violations may include:
