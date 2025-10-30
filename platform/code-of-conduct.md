@@ -45,7 +45,7 @@ Harassment, discrimination, and unethical conduct are not tolerated. This includ
 Intent does not override impact. Communication should be thoughtful and respectful.
 
 
-## Navigating "Hot Topics"
+## Navigating "Hot topics"
 
 Certain topics may attract heightened attention or strong opinions—for example, comparisons between frameworks, commentary on tooling, or broader industry debates. When participating in such discussions:
 
@@ -57,8 +57,7 @@ Certain topics may attract heightened attention or strong opinions—for example
 
 ## Reporting concerns
 
-Violations of this Code of Conduct may be reported to:
-**concerns@particular.net**
+To report any code of conduct violations, send an email to concerns@particular.net
 
 All reports are treated with confidentiality and reviewed seriously.
 
