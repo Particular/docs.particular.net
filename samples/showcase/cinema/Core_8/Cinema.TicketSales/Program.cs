@@ -2,20 +2,60 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Cinema.Messages;
-using Cinema.TicketSales;
 
 namespace CinemaCounter
 {
     internal static class Program
     {
         static string endpointName = "Cinema.TicketSales";
+        private static string MonthId = DateTime.Now.ToString("yyyy-MM");
 
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             if(args.Count() > 0) endpointName = args[0];
 
             Console.Title = endpointName;
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+
+            await host.StartAsync();
+
+            var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+            #region sales-desk
+            Console.WriteLine("Press [Enter] to exit");
+            Console.WriteLine("Press [B] to sell ticket for Barbie");
+            Console.WriteLine("Press [O] to sell ticket for Oppenheimer");
+
+            while (true)
+            {
+                if (!Console.KeyAvailable) continue;
+
+                var userInput = Console.ReadKey();
+
+                if (userInput.Key == ConsoleKey.Enter)
+                {
+                    break;
+                }
+                if (userInput.Key == ConsoleKey.B)
+                {
+                    await messageSession.Send(new RecordTicketSale
+                    {
+                        MonthId = MonthId,
+                        FilmName = "Barbie"
+                    }, CancellationToken.None);
+                }
+                else if (userInput.Key == ConsoleKey.O)
+                {
+                    await messageSession.Send(new RecordTicketSale
+                    {
+                        MonthId = MonthId,
+                        FilmName = "Oppenheimer"
+                    }, CancellationToken.None);
+                }
+            }
+            #endregion
+
+            await host.StopAsync();
         }
 
         static IHostBuilder CreateHostBuilder(string[] args)
@@ -52,8 +92,7 @@ namespace CinemaCounter
                     endpointConfiguration.EnableInstallers();
 
                     return endpointConfiguration;
-                })
-                .ConfigureServices(services => { services.AddHostedService<ConsoleSalesDesk>(); }); ;
+                });
         }
 
         static async Task OnCriticalError(ICriticalErrorContext context, CancellationToken cancellationToken)

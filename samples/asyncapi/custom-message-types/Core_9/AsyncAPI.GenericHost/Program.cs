@@ -24,7 +24,47 @@ builder.UseNServiceBus(endpointConfiguration);
 builder.Services.AddHostedService<AsyncAPISchemaWriter>();
 #endregion
 
-builder.Services.AddHostedService<Worker>();
+var host = builder.Build();
 
-var app = builder.Build();
-await app.RunAsync();
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+Console.WriteLine("Press '1' to publish event 1");
+Console.WriteLine("Press '2' to publish event 2");
+Console.WriteLine("Press 's' to send local message");
+Console.WriteLine("Press any other key to exit");
+
+var number = 0;
+var continueInputLoop = true;
+
+while (continueInputLoop)
+{
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    var now = DateTime.UtcNow.ToString();
+    switch (key.Key)
+    {
+        case ConsoleKey.D1:
+            await messageSession.Publish(new FirstEventThatIsBeingPublished { SomeValue = now, SomeOtherValue = now });
+
+            Console.WriteLine($"Published event 1 with {now}.");
+            break;
+        case ConsoleKey.D2:
+            await messageSession.Publish(new SecondEventThatIsBeingPublished { SomeValue = now, SomeOtherValue = now });
+
+            Console.WriteLine($"Published event 2 with {now}.");
+            break;
+        case ConsoleKey.S:
+            await messageSession.SendLocal(new MessageBeingSent { Number = number++ });
+
+            Console.WriteLine($"Sent message with {number}.");
+            break;
+        default:
+            continueInputLoop = false;
+            break;
+    }
+}
+
+await host.StopAsync();

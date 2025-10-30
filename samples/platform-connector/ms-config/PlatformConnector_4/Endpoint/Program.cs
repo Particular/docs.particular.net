@@ -28,6 +28,36 @@ endpointConfiguration.ConnectToServicePlatform(platformConnection);
 
 hostBuilder.UseNServiceBus(endpointConfiguration);
 
-hostBuilder.Services.AddHostedService<BusinessMessageSimulator>();
+var host = hostBuilder.Build();
 
-await hostBuilder.Build().RunAsync();
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+Console.WriteLine("Sending messages on a one second interval. Press [CTRL] + [C] to exit");
+
+using (var cts = new CancellationTokenSource())
+{
+    Console.CancelKeyPress += (s, e) =>
+    {
+        Console.WriteLine("Cancellation Requested...");
+        cts.Cancel();
+        e.Cancel = true;
+    };
+
+    try
+    {
+        while (!cts.Token.IsCancellationRequested)
+        {
+            await messageSession.SendLocal(new BusinessMessage { BusinessId = Guid.NewGuid() });
+            await Task.Delay(TimeSpan.FromSeconds(1), cts.Token);
+            Console.WriteLine("Message sent");
+        }
+    }
+    catch (OperationCanceledException) when (cts.Token.IsCancellationRequested)
+    {
+        // graceful shutdown
+    }
+}
+
+await host.StopAsync();
