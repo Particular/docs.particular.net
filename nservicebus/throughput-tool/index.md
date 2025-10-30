@@ -90,26 +90,26 @@ Completing these steps stores credentials that can be used by the tool.
 
 #### Running the tool
 
-To run the tool, the resource ID for the Azure Service Bus namespace is needed.
+To run the tool, the resource ID and the region for the Azure Service Bus namespace is needed.
 
-In the Azure Portal, go to the Azure Service Bus namespace, click **Properties** in the side navigation (as shown in the screenshot below) and then copy the `Id` value, which will be needed to run the tool. The `Id` value should have a format similar to `/subscriptions/{Guid}/resourceGroups/{rsrcGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}`.
+In the Azure Portal, go to the Azure Service Bus namespace, click **Properties** in the side navigation (as shown in the screenshot below) and then copy the `Id` and `Location` values, which will be needed to run the tool. The `Id` value should have a format similar to `/subscriptions/{Guid}/resourceGroups/{rsrcGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}`.
 
-This screenshot shows how to copy the Service Bus Namespace's `Id` value:
+This screenshot shows how to copy the Service Bus Namespace's `Id` value - the `Location` value can be copied in the same way:
 
 ![How to collect the Service Bus Namespace Id](azure-service-bus.png)
 
-Execute the tool with the resource ID of the Azure Service Bus namespace.
+Execute the tool with the resource ID and region of the Azure Service Bus namespace.
 
 If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
 
 ```shell
-throughput-counter azureservicebus [options] --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace
+throughput-counter azureservicebus [options] --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace --region xxxxxxxxx
 ```
 
 Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
 
 ```shell
-Particular.EndpointThroughputCounter.exe azureservicebus [options] --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace
+Particular.EndpointThroughputCounter.exe azureservicebus [options] --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace  --region xxxxxxxxx
 ```
 
 #### Options
@@ -117,12 +117,13 @@ Particular.EndpointThroughputCounter.exe azureservicebus [options] --resourceId 
 | Option | Description |
 |-|-|
 | <nobr>`--resourceId`</nobr> | **Required** – The resource ID of the Azure Service Bus namespace, which can be found in the Azure Portal as described above. |
+| <nobr>`--region`</nobr> | **Required** – The Azure region where the Service Bus namespace is located, which can be found in the Azure Portal as described above. |
 | <nobr>`--serviceBusDomain`</nobr> | The Service Bus domain. Defaults to `servicebus.windows.net`. Only necessary for Azure customers using a [non-public/government cloud](https://learn.microsoft.com/en-us/rest/api/servicebus/). |
 include: throughput-tool-global-options
 
 #### What the tool does
 
-First, the tool uses a `ServiceBusAdministrationClient` to [query the queue names](https://learn.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.administration.servicebusadministrationclient.getqueuesasync?view=azure-dotnet) from the namespace. Next, a `MetricsQueryClient` is used to [query for `CompleteMessage` metrics](https://learn.microsoft.com/en-us/dotnet/api/azure.monitor.query.metricsqueryclient.queryresourceasync?view=azure-dotnet) for the past 30 days from each queue.
+First, the tool uses a `ServiceBusAdministrationClient` to [query the queue names](https://learn.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.administration.servicebusadministrationclient.getqueuesasync?view=azure-dotnet) from the namespace. Next, a `MetricClient` is used to [query for `CompleteMessage` metrics](https://learn.microsoft.com/en-us/dotnet/api/azure.monitor.query.metricsclient.queryresourcesasync?view=azure-dotnet) for the past 30 days from each queue.
 
 Using Azure Service Bus metrics allows the tool to capture the last 30 days worth of data at once. Although the tool collects 30 days worth of data, only the highest daily throughput is included in the report.
 
