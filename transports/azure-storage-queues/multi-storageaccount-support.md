@@ -26,6 +26,9 @@ For additional guidance on considerations when developing a system using Azure S
 > [!NOTE]
 > Use real Azure storage accounts. Do not use Azure storage emulator as it only supports a single fixed account named devstoreaccount1.".
 
+> [!NOTE]
+> There are limits to how much using multiple storage accounts increase throughput. Consider using [scale units as a comprehensive scaling strategy](https://learn.microsoft.com/en-us/azure/well-architected/performance-efficiency/scale-partition#choose-a-scaling-strategy) to address higher throughput and reliability needs.
+
 ## Cross namespace routing
 
 NServiceBus allows to specify destination addresses using an `"endpoint@physicallocation"` when messages are dispatched, in various places such as the [Send](/nservicebus/messaging/send-a-message.md) and [Routing](/nservicebus/messaging/routing.md) API or the `MessageEndpointMappings`. In this notation the `physicallocation` section represents the location where the endpoint's infrastructure is hosted, such as a storage account.
@@ -37,14 +40,3 @@ partial: routing-send-options-full-connectionstring
 partial: aliases
 
 partial: registered-endpoint
-
-## Scale Units
-
-Scaling out and splitting endpoints over multiple storage accounts work to a certain extent, but it cannot be applied infinitely while expecting throughput to increase linearly. Each resource and group of resources has certain throughput limitations.
-
-A suitable technique to overcome this problem includes resource partitioning and usage of scale units. A scale unit is a set of resources with well determined throughput, where adding more resources to this unit does not result in increased throughput. When the scale unit is determined, to improve throughput more scale units can be created. Scale units do not share resources.
-
-An example of a partitioned application with a different number of deployed scale units is an application deployed in various regions.
-
-![Scale units](azure04.png "width=500")
-
