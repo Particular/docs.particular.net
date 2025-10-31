@@ -23,19 +23,8 @@ To determine whether your system may benefit from scaling out to multiple storag
 
 For additional guidance on considerations when developing a system using Azure Storage Queues, see the article on [Performance and scalability checklist for Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/storage-performance-checklist).
 
-## Scale Units
-
-Scaling out and splitting endpoints over multiple storage accounts work to a certain extent, but it cannot be applied infinitely while expecting throughput to increase linearly. Each resource and group of resources has certain throughput limitations.
-
-A suitable technique to overcome this problem includes resource partitioning and usage of scale units. A scale unit is a set of resources with well determined throughput, where adding more resources to this unit does not result in increased throughput. When the scale unit is determined, to improve throughput more scale units can be created. Scale units do not share resources.
-
-An example of a partitioned application with a different number of deployed scale units is an application deployed in various regions.
-
-![Scale units](azure04.png "width=500")
-
 > [!NOTE]
 > Use real Azure storage accounts. Do not use Azure storage emulator as it only supports a single fixed account named devstoreaccount1.".
-
 
 ## Cross namespace routing
 
@@ -48,3 +37,14 @@ partial: routing-send-options-full-connectionstring
 partial: aliases
 
 partial: registered-endpoint
+
+## Scale Units
+
+Scaling out and splitting endpoints over multiple storage accounts work to a certain extent, but it cannot be applied infinitely while expecting throughput to increase linearly. Each resource and group of resources has certain throughput limitations.
+
+A suitable technique to overcome this problem includes resource partitioning and usage of scale units. A scale unit is a set of resources with well determined throughput, where adding more resources to this unit does not result in increased throughput. When the scale unit is determined, to improve throughput more scale units can be created. Scale units do not share resources.
+
+An example of a partitioned application with a different number of deployed scale units is an application deployed in various regions.
+
+![Scale units](azure04.png "width=500")
+
