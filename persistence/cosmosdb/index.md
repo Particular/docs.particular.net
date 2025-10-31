@@ -66,7 +66,7 @@ and registered on the container:
 
 snippet: CosmosDBCustomClientProviderRegistration
 
-## Request unit capacity planning
+## Request unit (RU) capacity planning
 
 A [Request Unit](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext) (or RU, for short) is a performance currency abstracting the system resources such as CPU, IOPS, and memory required to perform database operations. RU capacity planning is the process of estimating the required RUs that an Azure Cosmos DB will need to handle its workload.
 
@@ -79,11 +79,11 @@ Microsoft provide a [Cosmos DB capacity calculator](https://cosmos.azure.com/cap
 
 | Capacity Calculator Parameter | NServiceBus Operation | Cosmos DB Operation |
 | :---- | :---- | :---- |
-| [**Point reads**](https://learn.microsoft.com/en-us/azure/cosmos-db/optimize-cost-reads-writes#point-reads) | [Logical/physical outbox read](/persistence/cosmosdb/transactions), [Outbox partition key fallback read](#outbox), [Saga read](/persistence/cosmosdb/saga-concurrency) | `ReadItemStreamAsync` |
+| [**Point reads**](https://learn.microsoft.com/en-us/azure/cosmos-db/optimize-cost-reads-writes#point-reads) | [Logical/physical outbox read](transactions.md), [Outbox partition key fallback read](#outbox), [Saga read](saga-concurrency.md) | `ReadItemStreamAsync` |
 | [**Creates**](https://learn.microsoft.com/en-us/azure/cosmos-db/optimize-cost-reads-writes#write-data) | New outbox record, New saga record | `CreateItemStream` |
-| [**Updates**](https://learn.microsoft.com/en-us/azure/cosmos-db/optimize-cost-reads-writes#write-data) | [Saga update](/persistence/cosmosdb/saga-concurrency#default-behavior-updating-or-deleting-saga-data), [Saga acquire lease](/persistence/cosmosdb/saga-concurrency#sagas-concurrency-control-pessimistic-locking-internals), Saga release lock, Outbox dispatched, [Outbox delete (updates TTL)](#outbox-outbox-cleanup) | `ReplaceItemStream`, `UpsertItemStream`, `PatchItemStreamAsync`, `PatchItem` |
+| [**Updates**](https://learn.microsoft.com/en-us/azure/cosmos-db/optimize-cost-reads-writes#write-data) | [Saga update](saga-concurrency.md#default-behavior-updating-or-deleting-saga-data), [Saga acquire lease](saga-concurrency.md#sagas-concurrency-control-pessimistic-locking-internals), Saga release lock, Outbox dispatched, [Outbox delete (updates TTL)](#outbox-outbox-cleanup) | `ReplaceItemStream`, `UpsertItemStream`, `PatchItemStreamAsync`, `PatchItem` |
 | [**Deletes**](https://learn.microsoft.com/en-us/azure/cosmos-db/optimize-cost-reads-writes#write-data) | Saga complete, [Outbox TTL background cleanup](#outbox-outbox-cleanup) | `DeleteItem` |
-| [**Queries**](https://learn.microsoft.com/en-us/azure/cosmos-db/optimize-cost-reads-writes#queries) | [Saga migration mode](/persistence/cosmosdb/migration-from-azure-table) | `GetItemQueryStreamIterator` |
+| [**Queries**](https://learn.microsoft.com/en-us/azure/cosmos-db/optimize-cost-reads-writes#queries) | [Saga migration mode](migration-from-azure-table.md) | `GetItemQueryStreamIterator` |
 
 [Document size](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units#request-unit-considerations) also affects RU usage as the size of an item increases, the number of RUs consumed to read or write the item also increases. The below table gives an **estimate** of the persistence overhead that should be considered per message when modeling throughput costs.
 
@@ -116,7 +116,7 @@ The below table gives an indication of what Cosmos DB operations occur in differ
 - **Multiple Partition Keys**: Separate operations per partition key
 - **More outgoing messages**: +400 bytes overhead per additional message sent
 
-#### Example
+**Example**
 
 - Outbox: Enabled
 - Sagas: Order saga (average 3 KB)
