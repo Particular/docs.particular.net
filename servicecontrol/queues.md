@@ -38,8 +38,8 @@ The following is an overview of all queues based on the default instance names.
 | [particular.monitoring](#monitoring-instance-input-queue)          |       |       |     CR     |Receives heartbeats, checks |
 | [particular.servicecontrol](#error-instance-input-queue)           |  CR   |   W   |            |Input queue for error/heartbeat |
 | [particular.servicecontrol.audit](#audit-instance-input-queue)           |  CR   |   W   |            |Input queue for audit instance |
-| [particular.servicecontrol.error](#error-instance-error-queue)    |  CW   |       |            |Internal error queue |
-| [particular.servicecontrol.audit.error](#audit-instance-error-queue)    |  CW   |       |            |Internal error queue for audit |
+| [particular.servicecontrol.errors](#error-instance-error-queue)    |  CW   |       |            |Internal error queue |
+| [particular.servicecontrol.audit.errors](#audit-instance-error-queue)    |  CW   |       |            |Internal error queue for audit |
 | [particular.servicecontrol.staging](#error-instance-staging-queue) |  CRW  |       |            |Temporary queue for retries |
 | [servicecontrol.throughputdata](#error-instance-throughput-data)   |  CR   |       |     W      |Tracks metrics / throughput |
 

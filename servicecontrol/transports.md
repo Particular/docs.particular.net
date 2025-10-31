@@ -1,7 +1,7 @@
 ---
 title: Transport configuration
 summary: ServiceControl can be configured to use one of the supported message transports which are configured for each instance type
-reviewed: 2024-07-19
+reviewed: 2025-10-22
 component: ServiceControl
 ---
 
@@ -23,7 +23,6 @@ The value for the `TransportType` settings can be any of the following:
 | [PostgreSQL](#postgresql) | `PostgreSQL` |
 | [Microsoft Message Queuing (MSMQ)](#msmq) | `MSMQ` |
 
-Follow the link for each transport for additional information on configuration options for that transport lower on this page.
 
 ## Azure Service Bus
 
@@ -166,8 +165,8 @@ Region=<REGION>;QueueNamePrefix=<prefix>;TopicNamePrefix=<prefix>;AccessKeyId=<A
 
 To configure MSMQ as the transport, ensure the MSMQ service has been installed and configured as outlined in [MSMQ configuration](/transports/msmq/#msmq-configuration).
 
-> [!IMPORTANT]
-> When [ServiceControl instances are installed on a different machine than an endpoint](/transports/msmq/routing.md#when-servicecontrol-is-installed-on-a-different-server) `queuename@machinename` addresses must be used.
-
 > [!NOTE]
+> Any settings that specify a queue name for a queue that is not located on the same machine as the ServiceControl instance must use `queuename@machinename` addresses to refer to that queue.
+
+> [!WARNING]
 > MSMQ transport is not available when running ServiceControl on containers.
