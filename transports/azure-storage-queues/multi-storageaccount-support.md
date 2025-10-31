@@ -15,23 +15,13 @@ related:
 > [!IMPORTANT]
 > Using multiple storage accounts is currently NOT compatible with ServiceControl. It is necessary to use [ServiceControl transport adapter](/servicecontrol/transport-adapter.md) or multiple installations of ServiceControl for monitoring in such situation.
 
-It is common for systems running on Azure Storage Queues to depend on a single storage account. However, there is a potential for throttling issues once the maximum number of concurrent requests to the storage account is reached. Multiple storage accounts can be used to overcome this. To determine whether your system may benefit from scaling out to multiple storage accounts, refer to the the Scale targets table in the Azure [Scalability and performance targets for Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/scalability-targets) article, which define when throttling starts to occur.
-
-For additional guidance on considerations when developing a system using Azure Storage Queues, see the article on [Performance and scalability checklist for Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/storage-performance-checklist).
-
-## Scaling Out
-
-> [!NOTE]
-> The configuration of a physical instance is managed at the logical endpoint level. In other words, all instances of a given logical endpoint will have the same configuration and use the same storage.
-
-When a single storage account is used, all endpoints are configured to send and receive messages using the same storage account. 
-
-![Single storage account with scaled out endpoints](azure02.png "width=500")
-
-While an endpoint can only read from a single Azure storage account, it can send messages to multiple storage accounts; therefore increasing storage accounts generally increases throughput.
+It is common for systems running on Azure Storage Queues to depend on a single storage account. However, there is a potential for throttling issues once the maximum number of concurrent requests to the storage account is reached. Multiple storage accounts can be used to overcome this. 
 
 ![Scale out with multiple storage accounts](azure03.png "width=500")
 
+To determine whether your system may benefit from scaling out to multiple storage accounts, refer to the the Scale targets table in the Azure [Scalability and performance targets for Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/scalability-targets) article, which define when throttling starts to occur.
+
+For additional guidance on considerations when developing a system using Azure Storage Queues, see the article on [Performance and scalability checklist for Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/storage-performance-checklist).
 
 ## Scale Units
 
