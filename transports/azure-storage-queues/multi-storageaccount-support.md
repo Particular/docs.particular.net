@@ -29,14 +29,16 @@ For additional guidance on considerations when developing a system using Azure S
 > [!NOTE]
 > There are limits to how much using multiple storage accounts increase throughput. Consider using [scale units as a comprehensive scaling strategy](https://learn.microsoft.com/en-us/azure/well-architected/performance-efficiency/scale-partition#choose-a-scaling-strategy) to address higher throughput and reliability needs.
 
-## Cross namespace routing
+## NServiceBus routing with multiple storage accounts
 
-NServiceBus allows to specify destination addresses using an `"endpoint@physicallocation"` when messages are dispatched, in various places such as the [Send](/nservicebus/messaging/send-a-message.md) and [Routing](/nservicebus/messaging/routing.md) API or the `MessageEndpointMappings`. In this notation the `physicallocation` section represents the location where the endpoint's infrastructure is hosted, such as a storage account.
+The preferred way to route when using multiple accounts is to register endpoints with their associated storage accounts.
 
-Using this notation it is possible to route messages to any endpoint hosted in any storage account.
+partial: registered-endpoint
+
+NServiceBus allows specifying destination addresses using the `<endpoint>@<physicallocation>` notation when messages are dispatched. In this notation, the `physicallocation` element represents the location where the endpoint's infrastructure is hosted, such as a storage account.
+
+Using this notation, it is possible to route messages to any endpoint hosted in any storage account.
 
 partial: routing-send-options-full-connectionstring
 
 partial: aliases
-
-partial: registered-endpoint
