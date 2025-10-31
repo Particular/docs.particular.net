@@ -1,5 +1,21 @@
 name: secure-entra-id
 services:
+  sender:
+    build:
+      context: ./
+      dockerfile: ./Sender/Dockerfile
+    volumes:
+      - ./.learningtransport:/app/.learningtransport
+    networks:
+      - ls
+  receiver:
+    build:
+      context: ./
+      dockerfile: ./Receiver/Dockerfile
+    volumes:
+      - ./.learningtransport:/app/.learningtransport
+    networks:
+      - ls
   auth-gateway:
     build:
       context: ./
@@ -14,7 +30,7 @@ services:
   servicecontrol:
     image: docker.io/particular/servicecontrol:latest
     volumes:
-      - ./learning-transport:/app/learning-transport
+      - ./.learningtransport:/app/.learningtransport
     env_file:
       - env/service-platform.env
     environment:
@@ -42,7 +58,7 @@ services:
   servicecontrol-audit:
     image: docker.io/particular/servicecontrol-audit:latest
     volumes:
-      - ./learning-transport:/app/learning-transport
+      - ./.learningtransport:/app/.learningtransport
     env_file:
       - env/service-platform.env
     environment:
@@ -59,7 +75,7 @@ services:
   servicecontrol-monitoring:
     image: docker.io/particular/servicecontrol-monitoring:latest
     volumes:
-      - ./learning-transport:/app/learning-transport
+      - ./.learningtransport:/app/.learningtransport
     env_file:
       - env/service-platform.env
     restart: unless-stopped
