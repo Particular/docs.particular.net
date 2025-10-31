@@ -24,9 +24,10 @@ services:
       - "8888:8080"
     depends_on:
       - servicepulse
+    dns:
+      - 10.0.2.20
     networks:
-      ls:
-        ipv4_address: 10.0.2.20
+      - ls
   servicecontrol:
     image: docker.io/particular/servicecontrol:latest
     volumes:
@@ -47,7 +48,8 @@ services:
     dns:
       - 10.0.2.20
     networks:
-      - ls
+      ls:
+        ipv4_address: 10.0.2.20
   servicecontrol-db:
     image: docker.io/particular/servicecontrol-ravendb:latest
     volumes:
