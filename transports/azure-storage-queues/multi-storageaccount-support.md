@@ -35,7 +35,7 @@ The preferred way to route when using multiple accounts is to register endpoints
 
 partial: registered-endpoint
 
-NServiceBus allows specifying destination addresses using the `<endpoint>@<physicallocation>` notation when messages are dispatched. In this notation, the `physicallocation` element represents the location where the endpoint's infrastructure is hosted, such as a storage account.
+NServiceBus also allows specifying destination addresses using the `<endpoint>@<physicallocation>` notation when messages are dispatched. In this notation, the `physicallocation` element represents the location where the endpoint's infrastructure is hosted, such as a storage account.
 
 Using this notation, it is possible to route messages to any endpoint hosted in any storage account.
 
