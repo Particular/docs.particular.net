@@ -51,12 +51,11 @@ snippet: InstanceMappingFile-FilePath
 
 Specifies a URI path of the instance mapping file. Relative paths are assumed to be file paths.
 
-
 snippet: InstanceMappingFile-UriPath
 
-## When ServiceControl is installed on a different server
+## Queues that are not configured with the instance mapping file
 
-The [instance mapping file](#instance-mapping-file) will have no effect on the error, audit, metrics, and plugin queues, so if a ServiceControl instance is installed on a different machine than the endpoint the physical mapping must be specified during configuration using `queuename@machinename` addresses:
+The [instance mapping file](#instance-mapping-file) will have no effect on the error, audit, metrics, or plugin queues. If those queues are located on a different machine, then the physical mapping must be specified during configuration using `queuename@machinename` addresses:
 
 ### Configuring recoverability
 
@@ -80,6 +79,6 @@ snippet: ConfigureCustomChecksRemoteQueue
 
 ## Overriding physical routing
 
-When [overriding the default routing](/nservicebus/messaging/send-a-message.md#overriding-the-default-routing) to a queue on a different server the machine name must also be provided:
+When [overriding the default routing](/nservicebus/messaging/send-a-message.md#overriding-the-default-routing) to a queue on a different server, the machine name must also be provided:
 
 snippet: OverridingPhysicalRouting
