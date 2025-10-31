@@ -12,43 +12,36 @@ The following procedure is a high-level guide on how to deploy ServiceControl on
 > This guide assumes that MSMQ is the underlying transport. Other transports work as long as these are deployed on a different machine. In that case, skip the MSMQ-specific steps.
 
 > [!NOTE]
-> ServiceControl only supports active/passive clusters. Clustering might not be required as cloud hosting and enterprise virtualization layers provide high availability and data redundancy features and message queueing ensures no messages are lost.
+> ServiceControl only supports active/passive clusters.
 
 ## Infrastructure setup
 
-* Set up a failover (active/passive) Windows cluster:
-  * [Windows Server 2008](https://blogs.msdn.microsoft.com/clustering/2008/01/18/creating-a-cluster-in-windows-server-2008/)
-  * [Windows Server 2012 R2, Windows Server 2012, Windows Server 2016](https://docs.microsoft.com/en-us/windows-server/failover-clustering/create-failover-cluster)
-* Install ServiceControl on each node, adding it as a "generic service" using the cluster manager. This means that ServiceControl will failover automatically with the cluster.
-* On the cluster create all the queues that were created locally on any of the instances when installing ServiceControl.
-* Set up an MSMQ cluster group. A cluster group is a group of resources that have a unique DNS name and can be addressed externally like a computer. The name of this resource is the `cluster name`.
-* Add the ServiceControl generic clustered service to the MSMQ cluster group:
-  * Ensure it depends on MSMQ and the MSMQ network name
-  * Check "use network name as computer name" in the service configuration
-
-The server name will be the MSMQ network name, not to be confused with the cluster name.
-
-More information is available on [Message Queuing in Server Clusters](https://technet.microsoft.com/en-us/library/cc753575.aspx).
+- Set up a [Windows Failover Cluster](https://learn.microsoft.com/en-us/windows-server/failover-clustering/create-failover-cluster?pivots=failover-cluster-manager),
+  - Make sure to set up clustered storage for the cluster. 
+- Install ServiceControl on each node.
+- Add each instance as "Generic service" to the cluster using Failover Cluster Manager.
+  - Check "Use network name as computer name".
+- On the cluster, create all the queues that were created locally for all of the instances of ServiceControl.
+- Set up a [Message Queuing role on the cluster](https://learn.microsoft.com/en-us/windows-server/failover-clustering/create-failover-cluster?pivots=failover-cluster-manager#create-clustered-roles-in-failover-cluster-manager)
+  - Make sure it uses the clustered storage.
 
 ### Database high availability
 
-The RavenDB database must be located in shared storage that is highly available and fault tolerant. Shared storage does not mean a network share, but a shared cluster storage that allows low latency and exclusive access. 
-Access to the data should always be local, although physically that data could be stored on a SAN. When this disk is mounted, RavenDB must be configured to use that location. 
-See [Customize RavenDB Embedded Location](configure-ravendb-location.md) for more information on how to change the ServiceControl database location.
+The internal ServiceControl database (normally a RavenDB database) must be located in a shared storage that is highly available and fault tolerant. Shared storage does not mean a network share, but a cluster storage that allows low latency and exclusive access. 
+Access to the data should always be local, although physically that data could be stored on a SAN. When this disk is mounted, ServiceControl must be configured to use that location. 
 
 ## ServiceControl configuration
 
-Once the failover cluster is created and ServiceControl is installed, configure ServiceControl to run in a clustered environment.
-The following steps must be applied to all ServiceControl installations on every node in the cluster.
+The following steps must be applied to all ServiceControl instances on every node in the cluster.
 
 ### Configuration
 
-ServiceControl configuration must be customized by changing the following settings:
+ServiceControl configuration file (for example, ServiceControl.exe.config) must be modified by defining:
 
-* `DbPath` to define the path to the shared location of the database.
-* `Hostname` and `port` to reflect `cluster name` and `port`.
+- `DbPath` to define the path to the shared location of the database.
+- `Hostname` to reflect `cluster name`.
 
-The following is an example of what should be modified on all the ServiceControl instances configuration files (ServiceControl.exe.config).
+For example:
 
 ```xml
 <add key="ServiceControl/DbPath" value="drive:\SomeDir\" />
