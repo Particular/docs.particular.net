@@ -166,7 +166,7 @@ Region=<REGION>;QueueNamePrefix=<prefix>;TopicNamePrefix=<prefix>;AccessKeyId=<A
 To configure MSMQ as the transport, ensure the MSMQ service has been installed and configured as outlined in [MSMQ configuration](/transports/msmq/#msmq-configuration).
 
 When [ServiceControl instances are installed on a different machine than an endpoint](/transports/msmq/routing.md#when-servicecontrol-is-installed-on-a-different-server) `queuename@machinename` addresses must be used.
-Similarly, when [ServiceControl is installed on a cluster](/servicecontrol/deploying-servicecontrol-in-a-cluster.md), `queuename@clustername` addresses must be used.
+When [ServiceControl is installed on a cluster](/servicecontrol/deploying-servicecontrol-in-a-cluster.md), all queues must be created on all nodes of the cluster.
 
 > [!WARNING]
 > MSMQ transport is not available when running ServiceControl on containers.
