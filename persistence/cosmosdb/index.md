@@ -66,18 +66,15 @@ and registered on the container:
 
 snippet: CosmosDBCustomClientProviderRegistration
 
-## Request unit (RU) capacity planning
+## Capacity planning using request units (RU)
 
-A [Request Unit](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext) (or RU, for short) is a performance currency abstracting the system resources such as CPU, IOPS, and memory required to perform database operations. RU capacity planning is the process of estimating the required RUs that an Azure Cosmos DB will need to handle its workload.
-
-> [!NOTE]
-> RU capacity/usage planning is recommended regardless of [Cosmos DB account type](https://learn.microsoft.com/en-us/azure/cosmos-db/throughput-serverless?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext#detailed-comparison), however it's especially important when [Provisioned Throughput](https://learn.microsoft.com/en-us/azure/cosmos-db/set-throughput?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext) is selected as reaching the assigned capacity will cause [throttling](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/troubleshoot-request-rate-too-large?tabs=resource-specific), which could result in [duplication of messages](#provisioned-throughput-rate-limiting). In a [Serverless](https://learn.microsoft.com/en-us/azure/cosmos-db/serverless) account, you're charged only for the RUs that your database operations consume and for the storage that your data consumes. Planning and [monitoring](https://learn.microsoft.com/en-us/azure/cosmos-db/serverless?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext#monitor-your-consumption) RU usage is still beneficial when using a serverless account from a cost perspective as there is a lack of predictability.
+Understanding [Request Units (RUs)](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units) is essential for effective capacity planning in Azure Cosmos DB. RUs represent the cost of database operations in terms of system resources. Knowing how your workload consumes them helps you avoid throttling, control costs, and size your setup appropriately, especially when using [Provisioned Throughput](https://learn.microsoft.com/en-us/azure/cosmos-db/set-throughput) or [Serverless](https://learn.microsoft.com/en-us/azure/cosmos-db/serverless) accounts.
 
 ### Using the Microsoft Cosmos DB Capacity Planner
 
-Microsoft provide a [Cosmos DB capacity calculator](https://cosmos.azure.com/capacitycalculator/) which can be used to model the throughput costs of your solution. It uses [several parameters](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext#request-unit-considerations) to calculate this, but only the following are directly affected when using the NServiceBus CosmosDB Persistence.
+Microsoft provide a [Cosmos DB capacity calculator](https://cosmos.azure.com/capacitycalculator/) which can be used to model the throughput costs of your solution. It uses [several parameters](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext#request-unit-considerations) to calculate this, but only the following are directly affected when using the Azure Cosmos DB Persistence.
 
-| Capacity Calculator Parameter | NServiceBus Operation | Cosmos DB Operation |
+| Capacity Calculator Parameter | Persistence Operation | Cosmos DB Operation |
 | :---- | :---- | :---- |
 | [**Point reads**](https://learn.microsoft.com/en-us/azure/cosmos-db/optimize-cost-reads-writes#point-reads) | [Logical/physical outbox read](transactions.md), [Outbox partition key fallback read](#outbox), [Saga read](saga-concurrency.md) | `ReadItemStreamAsync` |
 | [**Creates**](https://learn.microsoft.com/en-us/azure/cosmos-db/optimize-cost-reads-writes#write-data) | New outbox record, New saga record | `CreateItemStream` |
@@ -85,38 +82,45 @@ Microsoft provide a [Cosmos DB capacity calculator](https://cosmos.azure.com/cap
 | [**Deletes**](https://learn.microsoft.com/en-us/azure/cosmos-db/optimize-cost-reads-writes#write-data) | Saga complete, [Outbox TTL background cleanup](#outbox-outbox-cleanup) | `DeleteItem` |
 | [**Queries**](https://learn.microsoft.com/en-us/azure/cosmos-db/optimize-cost-reads-writes#queries) | [Saga migration mode](migration-from-azure-table.md) | `GetItemQueryStreamIterator` |
 
-[Document size](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units#request-unit-considerations) also affects RU usage as the size of an item increases, the number of RUs consumed to read or write the item also increases. The below table gives an **estimate** of the persistence overhead that should be considered per message when modeling throughput costs.
+[Document size](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units#request-unit-considerations) also affects RU usage as the size of an item increases, the number of RUs consumed to read or write the item also increases. The table below provides an **estimate** of the persistence cost that should be considered per message when modeling throughput requirements.
 
 | Record Type | Estimated Size |
 | :---- | :---- |
 | **Outbox** | ~630 bytes + message body |
 | **Saga** | ~300 bytes + saga data |
 
-The below table gives an indication of what Cosmos DB operations occur in different NServiceBus endpoint configurations for every processed message. This can be used with the [Cosmos DB Capacity Planner](https://cosmos.azure.com/capacitycalculator/), along with [other factors](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext#request-unit-considerations) that affect pricing (such as the selected Cosmos DB API, number of regions, etc), and the total message throughput, to produce an estimated RU capacity requirement.
+The below tables gives an indication of what Cosmos DB operations occur in different NServiceBus endpoint configurations for every processed message. This can be used with the [Cosmos DB Capacity Planner](https://cosmos.azure.com/capacitycalculator/), along with [other factors](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext#request-unit-considerations) that affect pricing (such as the selected Cosmos DB API, number of regions, etc), and the total message throughput to produce an estimated RU capacity requirement.
 
-| Scenario | Point Reads | Creates | Updates | Deletes | Queries | Persister Overhead* |
-|----------|-------------|---------|---------|---------|---------|---------------------|
-| **Message WITH Outbox (No Saga)** | 1 | 1 | 1 | 1 (delayed) | 0 | 630 bytes (1 msg sent) |
-| **Message WITH Outbox + Saga (new)** | 2 | 2 | 1 | 1 (delayed) | 0 | 630 + 300 = 930 bytes |
-| **Message WITH Outbox + Saga (update)** | 2 | 1 | 2 | 1 (delayed) | 0 | 630 + 300 = 930 bytes |
-| **Message WITH Outbox + Saga (complete)** | 2 | 1 | 1 | 2 (delayed) | 0 | 630 + 300 = 930 bytes |
-| **Message WITH Outbox + Saga + Locking (no contention)** | 1 | 1-2 | 3-4 | 1-2 (delayed) | 0 | 630 + 360 = 990 bytes |
-| **Message WITH Outbox + Saga + Locking (3 retries)** | 1 | 1-2 | 9-10 | 1-2 (delayed) | 0 | 630 + 360 = 990 bytes |
-| **Message WITHOUT Outbox (No Saga)** | 0 | 0 | 0 | 0 | 0 | 0 bytes |
-| **Message WITHOUT Outbox + Saga (new)** | 1 | 1 | 0 | 0 | 0 | 300 bytes |
-| **Message WITHOUT Outbox + Saga (update)** | 1 | 0 | 1 | 0 | 0 | 300 bytes |
-| **Message WITHOUT Outbox + Saga (complete)** | 1 | 0 | 0 | 1 | 0 | 300 bytes |
+#### No Outbox
 
-*Persister overhead excludes message bodies and saga data. Assumes handler sends 1 outgoing message.
+| Incoming message Scenario | Point Reads | Creates | Updates | Deletes | Queries | Persistence Requirements* |
+|---------------------------|-------------|---------|---------|---------|---------|---------------------------|
+| **No Saga**               | 0           | 0       | 0       | 0       | 0       | 0 bytes             |  
+| **Saga (new)**            | 1           | 1       | 0       | 0       | 0       | 300 bytes           |
+| **Saga (new) + [Migration Mode](/persistence/cosmosdb/migration-from-azure-table.md)**            | 1           | 1       | 0       | 0       | 1       | 300 bytes           |
+| **Saga (update)**         | 1           | 0       | 1       | 0       | 0       | 300 bytes           |  
+| **Saga (complete)**       | 1           | 0       | 0       | 1       | 0       | 300 bytes           |
+
+#### With Outbox
+
+| Incoming message scenario          | Point Reads | Creates | Updates | Deletes       | Queries | Persister Requirements*    |  
+|------------------------------------|-------------|---------|---------|---------------|---------|------------------------|  
+| **No Saga**                        | 1           | 1       | 1       | 1 (delayed)   | 0       | 630 bytes (1 msg sent) |
+| **No Saga + [Partition Key Fallback Read](#outbox-storage-format)**                        | 2           | 1       | 1       | 1 (delayed)   | 0       | 630 bytes (1 msg sent) |  
+| **Saga (new)**                     | 2           | 2       | 1       | 1 (delayed)   | 0       | 630 + 300 = 930 bytes  |  
+| **Saga (update)**                  | 2           | 1       | 2       | 1 (delayed)   | 0       | 630 + 300 = 930 bytes  |  
+| **Saga (complete)**                | 2           | 1       | 1       | 2 (delayed)   | 0       | 630 + 300 = 930 bytes  |  
+| **Saga + [Pessimistic Locking](/persistence/cosmosdb/saga-concurrency.md#sagas-concurrency-control-pessimistic-locking-internals) (no contention)** | 1           | 1-2     | 3-4     | 1-2 (delayed) | 0       | 630 + 360 = 990 bytes  |  
+| **Saga + Pessimistic Locking (3 retries)**     | 1           | 1-2     | 9-10    | 1-2 (delayed) | 0       | 630 + 360 = 990 bytes  |
+
+*Persister requirements exclude message bodies and saga data and assume one handler sends one outgoing message.
 
 **Additional operations** (conditional):
 
-- **Partition Key Fallback Read**: +1 Point Read (if enabled and using synthetic partition key)
-- **Migration Mode**: +1 Query (if saga migration mode enabled and saga not found)
 - **Multiple Partition Keys**: Separate operations per partition key
 - **More outgoing messages**: +400 bytes overhead per additional message sent
 
-**Example**
+#### Example
 
 - Outbox: Enabled
 - Sagas: Order saga (average 3 KB)
@@ -124,7 +128,7 @@ The below table gives an indication of what Cosmos DB operations occur in differ
 - Message rate: 500 messages/second peak
 - Each handler sends average 2 outgoing messages (1 KB each)
 
-**Calculator Inputs:**
+##### Calculator Inputs
 
 | Operation Type | Calculation | Result |
 |----------------|-------------|--------|
@@ -133,8 +137,8 @@ The below table gives an indication of what Cosmos DB operations occur in differ
 | Updates | 500 msg/sec × 2 updates (saga + outbox) = | **1,000/sec** |
 | Deletes | 500 msg/sec avg over 24h (steady state) = | **500/sec** |
 | Queries | 0 | **0/sec** |
-| OutboxRecord size | 200 bytes + (2 × 1 KB) = | **2.2 KB** |
-| Saga size | 3 KB + 0.3 KB metadata = | **3.3 KB** |
+| OutboxRecord size | 200 bytes + (2 × 1000 bytes) = | **2.2 KB** |  
+| Saga size | 3000 bytes + 300 bytes metadata = | **3.3 KB** |
 
 ### Using Code
 
@@ -165,7 +169,7 @@ class LoggingHandler : RequestHandler
 
         if ((int)response.StatusCode == 429)
         {
-            logger.LogWarning("Request throttled.");
+            logger.LogWarning("Request throttled");
         }
 
         return response;
@@ -178,11 +182,6 @@ class LoggingHandler : RequestHandler
 Alternatively, the Azure Cosmos DB [Diagnostic Settings](https://learn.microsoft.com/en-us/azure/cosmos-db/monitor-resource-logs?tabs=azure-portal) can be configured to route the diagnostic logs to an Azure Log Analytics Workspace. Here they can be [queried](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/diagnostic-queries?tabs=resource-specific) for the same data used for RU capacity planning. This method is not recommended for live monitoring of RU usage as diagnostic logs typically are delayed by a few minutes, and cost and retention of Log Analytics would be a limiting factor.
 
 For [real time monitoring](https://learn.microsoft.com/en-us/azure/cosmos-db/serverless?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext#monitor-your-consumption), the metrics pane in the Cosmos DB account can be used.
-
-### General Recommendations
-
-- If message throughput is extremely variable, use [Autoscaling](https://learn.microsoft.com/en-us/azure/cosmos-db/provision-throughput-autoscale?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext)
-- If some endpoints require constantly higher (or lower) RU capacity than others, use [Provisioned throughput](https://learn.microsoft.com/en-us/azure/cosmos-db/set-throughput?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext) and [assign different containers](https://learn.microsoft.com/en-us/azure/cosmos-db/set-throughput?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext#set-throughput-on-a-container) to that endpoint with the required RU capacity.
 
 ## Provisioned throughput rate-limiting
 
