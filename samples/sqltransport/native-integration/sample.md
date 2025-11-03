@@ -1,7 +1,7 @@
 ---
 title: SQL Server transport native integration sample
 summary: Integrating natively with the SQL Server transport.
-reviewed: 2024-01-31
+reviewed: 2025-11-03
 component: SqlTransport
 isLearningPath: true
 related:
@@ -33,7 +33,8 @@ The database created by this sample is `NsbSamplesSqlNativeIntegration`.
  9. Create the `Orders` table using the `CreateLegacyTable` statement.
  10. Create the insert trigger using the `CreateTrigger` statement.
  11. Right-click the table just created and `Edit top X rows`.
- 12. Notice that a message is received by the app for each "order" created.
+ 12. Manually insert a record into the Orders table by adding a new OrderValue entry (this simulates an entry from a legacy system).
+ 13. Notice that a message is received by the app for each "order" created.
 
 ## Code walk-through
 
