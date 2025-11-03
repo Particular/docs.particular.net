@@ -9,7 +9,9 @@ redirects:
 ---
 
 > [!NOTE]
-> This plugin can be enabled and configured with the [ServicePlatform Connector plugin](/platform/connecting.md).
+> This plugin can be enabled and configured with the [ServicePlatform Connector plugin](/platform/connecting.md) or by enabling message auditing at the endpoint level
+> `endpointConfiguration.AuditProcessedMessagesTo("audit");
+`
 
 > [!WARNING]
 > This plugin will result in an increase in the load placed on ServiceControl and the endpoint it is installed in. Make sure the environment is prepared for the increased load. Consider [scaling out audit processing](/servicecontrol/servicecontrol-instances/remotes.md) if necessary.
@@ -68,7 +70,6 @@ The increase in load is proportional to the size of the saga data multiplied by 
 The SagaAudit plugin is enabled via:
 
 snippet: SagaAuditNew_Enable
-
 
 ## Custom serialization
 
