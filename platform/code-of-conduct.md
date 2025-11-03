@@ -28,7 +28,7 @@ These are not social spaces for unrelated or casual conversation. Contributions 
 
 Participation is open to individuals of all backgrounds. Discrimination based on race, ethnicity, nationality, religion, color, gender, sexual orientation, gender identity or status, age, disability (physical or mental), parental or marital status, political affiliation, socioeconomic background, or physical appearance is not acceptable.
 
-Given the sensitivity of these topics, references to them-if made-must be approached with care and framed respectfully. Advocacy for or against any position or cause unrelated to the community's technical focus is discouraged.
+Given the sensitivity of these topics, references to them-if made-must be approached with care and framed respectfully. Advocacy for or against any position or cause unrelated to the community's technical focus should be approached with caution and framed constructively.
 
 
 ## Unacceptable behavior
@@ -42,7 +42,7 @@ Harassment, discrimination, and unethical conduct are not tolerated. This includ
 - Dismissive or sarcastic replies to genuine contributions
 - Use of community platforms for unrelated political, social, or controversial causes
 
-Intent does not override impact. Communication should be thoughtful and respectful.
+Intent does not override impact. Even well-meaning input can cause harm if not communicated thoughtfully. This, communication should be thoughtful and respectful.
 
 
 ## Navigating "Hot topics"
@@ -67,6 +67,6 @@ Actions resulting from violations may include:
 Particular Software reserves the right to take appropriate measures to protect the integrity and safety of the community.
 
 
-## Final note
+## Participation & Accountability
 
 Participation in the Particular community signifies agreement to these standards. By engaging respectfully, focusing on technical collaboration, and maintaining professionalism, each contributor helps shape a community that reflects the values of integrity, inclusion, and excellence that guide Particular Software.
