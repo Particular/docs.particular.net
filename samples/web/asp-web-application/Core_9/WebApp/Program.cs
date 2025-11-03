@@ -15,8 +15,12 @@ builder.UseNServiceBus(endpointConfiguration);
 
 builder.Services.AddRazorPages();
 
+builder.Services.AddControllers();
+
 var app = builder.Build();
 
 app.MapRazorPages();
+app.MapControllers();
+app.MapControllerRoute("default", "{controller=Home}/{action=SendLinks}/{id?}");
 
 app.Run();
