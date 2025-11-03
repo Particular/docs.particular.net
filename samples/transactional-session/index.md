@@ -1,6 +1,6 @@
 ---
 title: Transactional Session Samples
-reviewed: 2024-01-29
+reviewed: 2025-11-03
 related:
  - nservicebus/transactional-session
 ---

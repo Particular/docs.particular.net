@@ -1,6 +1,4 @@
 using System;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -48,36 +46,31 @@ await host.StartAsync();
 var messageSession = host.Services.GetRequiredService<IMessageSession>();
 var logger = host.Services.GetRequiredService<ILogger<Program>>();
 
-// Get the application stopping cancellation token to handle graceful shutdown
-var ct = host.Services.GetRequiredService<IHostApplicationLifetime>().ApplicationStopping;
+Console.WriteLine("Press [c] to send a command, or [e] to publish an event. Press any other key to exit.");
 
-Console.WriteLine("Press [c] to send a command, or [e] to publish an event. Press CTRL+C to exit.");
-while (!ct.IsCancellationRequested)
+while (true)
 {
-    if (!Console.KeyAvailable)
-    {
-        // Wait a short time before checking again
-        await Task.Delay(100, CancellationToken.None);
-        continue;
-    }
-
-    var input = Console.ReadKey();
+    var key = Console.ReadKey();
     Console.WriteLine();
 
-    switch (input.Key)
+    if (key.Key != ConsoleKey.C && key.Key != ConsoleKey.E)
     {
-        case ConsoleKey.C:
-            // Send a command message to the configured receiver endpoint
-            logger.LogInformation("Sending command...");
-            await messageSession.Send(new MyCommand(), ct);
-            logger.LogInformation("Command sent successfully");
-            break;
-        case ConsoleKey.E:
-            // Publish an event message to all interested subscribers
-            logger.LogInformation("Publishing event...");
-            await messageSession.Publish(new MyEvent(), ct);
-            logger.LogInformation("Event published successfully");
-            break;
+        break;
+    }
+
+    if (key.Key == ConsoleKey.C)
+    {
+        // Send a command message to the configured receiver endpoint
+        logger.LogInformation("Sending command...");
+        await messageSession.Send(new MyCommand());
+        logger.LogInformation("Command sent successfully");
+    }
+    else if (key.Key == ConsoleKey.E)
+    {
+        // Publish an event message to all interested subscribers
+        logger.LogInformation("Publishing event...");
+        await messageSession.Publish(new MyEvent());
+        logger.LogInformation("Event published successfully");
     }
 }
 

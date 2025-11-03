@@ -1,5 +1,4 @@
 using System;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
@@ -34,7 +33,25 @@ recoverability.Immediate(
 
 builder.UseNServiceBus(endpointConfiguration);
 
-builder.Services.AddHostedService<Toggle>();
-
 var host = builder.Build();
-await host.RunAsync();
+
+await host.StartAsync();
+
+Console.WriteLine("Press [t] to toggle fault mode. Press any other key to exit.");
+
+while (true)
+{
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    if (key.Key != ConsoleKey.T)
+    {
+        break;
+    }
+
+    SimpleMessageHandler.FaultMode = !SimpleMessageHandler.FaultMode;
+    Console.WriteLine();
+    Console.WriteLine("Fault mode " + (SimpleMessageHandler.FaultMode ? "enabled" : "disabled"));
+}
+
+await host.StopAsync();

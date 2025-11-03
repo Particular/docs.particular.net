@@ -33,7 +33,7 @@ Select a source queue from the `From physical address` dropdown list. Type the q
 > [!IMPORTANT]
 > The `To Physical Address` field allows entering arbitrary values to select a queue that is not yet known to ServiceControl. When that happens, a message is shown warning about possible message loss.
 
-To immediately retry all unresolved failed messages from the source address, check the box with the label `Immediately retry any matching failed messages`. This does not apply to failed messages whose retry status is in the Pending state.
+To immediately retry all unresolved failed messages from the source address, check the box with the label `Immediately retry any matching failed messages`. This does not apply to failed messages that have a retry status of `Pending`.
 
 Any existing redirects can be deleted using the `End Redirect` link.
 
@@ -44,4 +44,4 @@ To change the target of a redirect, click the `Modify Redirect` link. Only the t
 When adding and editing redirects, the following validation rules apply:
 
  * **Duplicate** There can be only one redirect for a given source queue. When attempting to add multiple redirects for the same source queue, an error will occur.
- * **Dependent** Redirects cannot be chained i.e., a destination queue in one redirect can not be used as the source queue for another redirect. For example, if there is a configured redirect that redirects messages from QueueA -> QueueB, there cannot be a second rule configured to redirect from QueueB -> QueueC. Attempts to do so will result in an error.
+ * **Dependent** Redirects cannot be chained i.e. a destination queue in one redirect cannot be used as the source queue for another redirect. For example, if there is a configured redirect that redirects messages from QueueA -> QueueB, there cannot be a second rule configured to redirect from QueueB -> QueueC. Attempts to create the second redirect will result in an error.

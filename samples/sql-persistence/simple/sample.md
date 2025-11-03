@@ -50,8 +50,6 @@ These scripts will be copied to the output of each endpoint and executed at star
 
 The endpoints know which scripts to execute via the `persistence.SqlVariant();` API at configuration time.
 
-The scripts produced in this sample are promoted to `$(SolutionDir)PromotedSqlScripts`.
-
 snippet: SqlPersistenceSettings
 
 

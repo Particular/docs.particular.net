@@ -25,8 +25,6 @@ Both read and send permissions are required for each of these queues:
 
  * `{InstanceName}`:
  * `{InstanceName}.errors`
- * `{InstanceName}.timeouts` (only when using [MSMQ](/servicecontrol/transports.md#msmq))
- * `{InstanceName}.timeoutsdispatcher` (only when using [MSMQ](/servicecontrol/transports.md#msmq))
 
 ### [Error instances](/servicecontrol/servicecontrol-instances/):
 

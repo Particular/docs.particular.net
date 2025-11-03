@@ -96,7 +96,7 @@ public class CustomPersistence : PersistenceDefinition
         Supports<StorageType.Outbox>(s => s.EnableFeatureByDefault<OutboxStorage>());
     }
 }
-````
+```
 
 must be changed to `Supports<TStorageType, TFeatureType>()` like this:
 
@@ -110,3 +110,4 @@ public class CustomPersistence : PersistenceDefinition
         Supports<StorageType.Outbox, OutboxStorage>();
     }
 }
+```
