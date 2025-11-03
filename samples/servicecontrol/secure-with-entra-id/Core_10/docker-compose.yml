@@ -1,0 +1,111 @@
+name: secure-entra-id
+services:
+  sender:
+    build:
+      context: ./
+      dockerfile: ./Sender/Dockerfile
+    volumes:
+      - ./.learningtransport:/app/.learningtransport
+    networks:
+      - ls
+  receiver:
+    build:
+      context: ./
+      dockerfile: ./Receiver/Dockerfile
+    volumes:
+      - ./.learningtransport:/app/.learningtransport
+    networks:
+      - ls
+  auth-gateway:
+    build:
+      context: ./
+      dockerfile: ./AuthGateway/Dockerfile
+    ports:
+      - "8888:8080"
+    depends_on:
+      - servicepulse
+    dns:
+      - 10.0.2.20
+      - 8.8.8.8
+      - 1.1.1.1
+    networks:
+      - ls
+  servicecontrol:
+    image: docker.io/particular/servicecontrol:latest
+    volumes:
+      - ./.learningtransport:/app/.learningtransport
+    env_file:
+      - env/service-platform.env
+    environment:
+      RAVENDB_CONNECTIONSTRING: http://servicecontrol-db:8080
+      REMOTEINSTANCES: '[{"api_uri":"http://servicecontrol-audit:44444/api"}]'
+      SERVICECONTROL_ALLOWMESSAGEEDITING: 'true'
+    command: --setup-and-run
+    restart: unless-stopped
+    depends_on:
+      servicecontrol-db:
+        condition: service_healthy
+      servicecontrol-audit:
+        condition: service_healthy
+    dns:
+      - 10.0.2.20
+    networks:
+      ls:
+        ipv4_address: 10.0.2.20
+  servicecontrol-db:
+    image: docker.io/particular/servicecontrol-ravendb:latest
+    volumes:
+      - servicecontrol-db:/var/lib/ravendb/data
+      - servicecontrol-db-config:/var/lib/ravendb/config
+    networks:
+      - ls
+  servicecontrol-audit:
+    image: docker.io/particular/servicecontrol-audit:latest
+    volumes:
+      - ./.learningtransport:/app/.learningtransport
+    env_file:
+      - env/service-platform.env
+    environment:
+      RAVENDB_CONNECTIONSTRING: http://servicecontrol-db:8080
+    command: --setup-and-run
+    restart: unless-stopped
+    depends_on:
+      servicecontrol-db:
+        condition: service_healthy
+    dns:
+      - 10.0.2.20
+    networks:
+      - ls
+  servicecontrol-monitoring:
+    image: docker.io/particular/servicecontrol-monitoring:latest
+    volumes:
+      - ./.learningtransport:/app/.learningtransport
+    env_file:
+      - env/service-platform.env
+    restart: unless-stopped
+    command: --setup-and-run
+    dns:
+      - 10.0.2.20
+    networks:
+      - ls
+  servicepulse:
+    image: docker.io/particular/servicepulse:latest
+    environment:
+      SERVICECONTROL_URL: http://servicecontrol:33333
+      MONITORING_URL: http://servicecontrol-monitoring:33633
+    restart: unless-stopped
+    depends_on:
+      servicecontrol:
+        condition: service_healthy
+      servicecontrol-monitoring:
+        condition: service_healthy
+    networks:
+      - ls
+networks:
+  ls:
+    ipam:
+      config:
+        - subnet: 10.0.2.0/24
+volumes:
+  servicecontrol-db:
+  servicecontrol-db-config:
