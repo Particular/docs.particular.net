@@ -8,6 +8,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Server", "Server\Server.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shared", "Shared\Shared.csproj", "{8545C0AA-A889-4288-A34C-B2DD5C54B99E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorApp", "BlazorApp\BlazorApp.csproj", "{66BBA868-0108-4747-8CB5-29F7C6F7774C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,8 @@ Global
 		{962705EB-D1F5-4BA3-BE4F-B9FAC60DB7E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8545C0AA-A889-4288-A34C-B2DD5C54B99E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8545C0AA-A889-4288-A34C-B2DD5C54B99E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66BBA868-0108-4747-8CB5-29F7C6F7774C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66BBA868-0108-4747-8CB5-29F7C6F7774C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

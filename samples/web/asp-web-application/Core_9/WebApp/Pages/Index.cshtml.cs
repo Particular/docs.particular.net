@@ -27,10 +27,7 @@ namespace WebApp.Pages
                 Id = number
             };
 
-            var sendOptions = new SendOptions();
-            sendOptions.SetDestination("Samples.AsyncPages.Server");
-
-            var code = await messageSession.Request<ErrorCodes>(command, sendOptions);
+            var code = await messageSession.Request<ErrorCodes>(command);
             ResponseText = Enum.GetName(typeof(ErrorCodes), code);
 
             return Page();
