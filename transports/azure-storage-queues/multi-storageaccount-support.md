@@ -33,12 +33,49 @@ For additional guidance on considerations when developing a system using Azure S
 
 The preferred way to route when using multiple accounts is to register endpoints with their associated storage accounts.
 
-partial: registered-endpoint
+### Aliases instead of connection strings
 
-NServiceBus also allows specifying destination addresses using the `<endpoint>@<physicallocation>` notation when messages are dispatched. In this notation, the `physicallocation` element represents the location where the endpoint's infrastructure is hosted, such as a storage account.
+To avoid connection strings leaking, aliases are always used, using an empty string as the default.
+Therefore, when multiple accounts are used, an alias has to be registered for each storage account.
+
+To enable sending from `account_A` to `account_B`, the following configuration needs to be applied in the `account_A` endpoint:
+
+snippet: AzureStorageQueueUseMultipleAccountAliasesInsteadOfConnectionStrings1
+
+Aliases can be provided for both the endpoint's connection strings as well as other accounts' connection strings. This enables using the `@` notation for destination addresses like `queue_name@accountAlias`.
+
+snippet: storage_account_routing_send_options_alias
+
+> [!NOTE]
+> The examples above use different values for the default account aliases. Using the same name, such as `default`, to represent different storage accounts in different endpoints is highly discouraged as it introduces ambiguity in resolving addresses like `queue@default` and may cause issues when e.g. replying. In that case an address is interpreted as a reply address, the name `default` will point to a different connection string.
+
+> [!NOTE]
+> This feature is currently NOT compatible with ServiceControl. A [ServiceControl transport adapter](/servicecontrol/transport-adapter.md) is required in order to leverage both.
+
+### Using registered endpoints
+
+In order to route message to endpoints without having to specify the destination at all times, it is also possible to register the endpoint for a given command type, assembly or namespace
+
+snippet: storage_account_routing_registered_endpoint
+
+Once the endpoint is registered no send options need to be specified.
+
+snippet: storage_account_routing_send_registered_endpoint
+
+#### Publishers
+
+Similar to sending to an endpoint, the transport can also be configured to subscribe to events published by endpoints in another storage account, using:
+
+snippet: storage_account_routing_registered_publisher
+
+### Using send options
+
+NServiceBus also allows specifying destination addresses using the `<endpoint>@<physicallocation>` notation when messages are dispatched. In this notation, the `physicallocation` element represents the location where the endpoint's infrastructure is hosted, such as a storage account alias.
 
 Using this notation, it is possible to route messages to any endpoint hosted in any storage account.
 
-partial: routing-send-options-full-connectionstring
+The use of send options enables routing messages to any endpoint hosted in another storage account by specifying the storage account using the `@` notation.
+The `@` notation is used to point to a connection string represented by a specified alias.
 
-partial: aliases
+snippet: storage_account_routing_send_options_alias
+
