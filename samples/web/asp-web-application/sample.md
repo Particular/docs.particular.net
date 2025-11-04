@@ -4,34 +4,48 @@ component: Core
 reviewed: 2025-10-29
 redirects:
 - nservicebus/using-nservicebus-in-a-asp.net-web-application
+- samples/web/asp-mvc-application
+- samples/web/blazor-server-application
+- samples/web/send-from-aspnetcore-webapi
 related:
 - nservicebus/hosting
 - nservicebus/hosting/publishing-from-web-applications
 ---
 
-This sample shows how to send messages from an ASP.NET Core web application to an NServiceBus endpoint.
+This sample shows how to send messages from an ASP.NET Core web application to an NServiceBus endpoint through several technologies:
+- MVC
+- Web Api
+- Razor Pages
+- Blazor
 
 ## Run the sample
 
-When running the solution a new browser window/tab opens, as well as a console application.
+There are three projects in the solution:
+- `Server` - A console application which hosts the NServiceBus endpoint that handles messages sent from the `WebApp` project
+- `WebApp` - An ASP.NET web application that sends messages to the `Server` endpoint using the technologies listed above
+- `Shared` - A library which contains the message definition, shared by both the `Server` and `WebApp` projects
 
-Enter the number "1" into the text box in the browser and click "Go". Notice the result "None" appears, as shown:
+Both the `Server` and `WebApp` projects must be running.  When the `WebApp` is run, a browser window will open to display links for sending messages using different technologies.
 
-![AsyncPages sample running](async-pages-running.png "AsyncPages sample running")
+Excluding the Web Api link, which sends a message from a `GET` request, the other links will display a version of the following form for sending the message:
 
-Changing the number in the text box from even to odd numbers changes the result in the Server console.
+![Web sample send message form](send-message-form.png "Web sample send message form")
+
+Changing the number in the text box from even to odd numbers changes the response from the `Server` which can be observed in console output.
 
 The web page renders synchronously; from the user's perspective, the interaction is synchronous and blocking, even though behind the scenes NServiceBus is implementing an asynchronous send-reply pattern using the [callbacks package](/nservicebus/messaging/callbacks.md).
-
-## Configuration
-
-This sample has three projects: `Shared`, `Server`, and `WebApp`. `WebApp` is an ASP.NET Core web application that sends messages (found in the `Shared` project) to the `Server` project, which is hosted as a console application.
 
 ### Initializing NServiceBus
 
 In `WebApp`, open `Program.cs` and look at the code in the `UseNServiceBus` method:
 
 snippet: ApplicationStart
+
+The `builder.UseNServiceBus(endpointConfiguration)` call configures the web application to start an NServiceBus endpoint and registers an instance of `IMessageSession` which will be used to send messages outside of a message handler context (i. e. from MVC controllers, Razor Pages, and Blazor components).
+
+
+
+
 
 ### Sending a message
 
@@ -62,6 +76,6 @@ In the method body notice the response being returned to the originating endpoin
 
 When the response arrives back at `WebApp`, NServiceBus invokes the callback that was registered when the request was sent.
 
-The `messageSession.Request` method takes the callback code and tells NServiceBus to invoke it when the response is received. There are several overloads of this method; the code above accepts a generic `Enum` parameter, effectively casting the return code from the server to the given enumeration type.
+The `IMessageSession.Request` method takes the callback code and tells NServiceBus to invoke it when the response is received. There are several overloads of this method; the code above accepts a generic `Enum` parameter, effectively casting the return code from the server to the given enumeration type.
 
 Finally, the code updates the `Text` property of a label on the web page, setting it to the string that represents the enumeration value: sometimes `None`, sometimes `Fail`.
