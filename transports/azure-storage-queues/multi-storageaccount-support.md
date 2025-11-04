@@ -53,28 +53,25 @@ snippet: storage_account_routing_send_options_alias
 
 ### Using registered endpoints
 
-In order to route message to endpoints without having to specify the destination at all times, it is also possible to register the endpoint for a given command type, assembly or namespace
+In order to route a message to an endpoint without having to specify the destination each time, the endpoint can be registered for a given command type, assembly, or namespace.
 
 snippet: storage_account_routing_registered_endpoint
 
-Once the endpoint is registered no send options need to be specified.
+Once the endpoint is registered, no send options need to be specified.
 
 snippet: storage_account_routing_send_registered_endpoint
 
-#### Publishers
+### Using send options
+
+Although registering endpoints to route messages is preferred, NServiceBus allows specifying destination addresses using the `<endpoint>@<physicallocation>` notation when messages are dispatched. Using this notation, it is possible to route messages to any endpoint hosted in any storage account. The `physicallocation` element represents the location where the endpoint's infrastructure is hosted, such as a storage account alias.
+
+snippet: storage_account_routing_send_options_alias
+
+### Publishers
 
 Similar to sending to an endpoint, the transport can also be configured to subscribe to events published by endpoints in another storage account, using:
 
 snippet: storage_account_routing_registered_publisher
 
-### Using send options
 
-NServiceBus also allows specifying destination addresses using the `<endpoint>@<physicallocation>` notation when messages are dispatched. In this notation, the `physicallocation` element represents the location where the endpoint's infrastructure is hosted, such as a storage account alias.
-
-Using this notation, it is possible to route messages to any endpoint hosted in any storage account.
-
-The use of send options enables routing messages to any endpoint hosted in another storage account by specifying the storage account using the `@` notation.
-The `@` notation is used to point to a connection string represented by a specified alias.
-
-snippet: storage_account_routing_send_options_alias
 
