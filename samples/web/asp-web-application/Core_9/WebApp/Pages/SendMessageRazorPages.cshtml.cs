@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using NServiceBus;
 
 namespace WebApp.Pages
 {
     [IgnoreAntiforgeryToken]
+    #region MessageSessionInjectionRazorPages
     public class RazorPagesModel(IMessageSession messageSession) : PageModel
+    #endregion
     {
         public string? ResponseText { get; set; }
 
@@ -16,7 +17,7 @@ namespace WebApp.Pages
                 return Page();
             }
 
-            #region ActionHandling
+            #region RazorPagesSendMessage
 
             if (!int.TryParse(textField, out var number))
             {

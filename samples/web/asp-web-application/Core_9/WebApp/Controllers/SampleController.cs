@@ -1,61 +1,31 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-public class SampleController(IMessageSession messageSession) :
-    Controller
+namespace WebApp.Controllers;
+
+#region MessageSessionInjectionMvc
+public class SampleController(IMessageSession messageSession) : Controller
+#endregion
 {
-    public ActionResult Index()
+    public IActionResult Index()
     {
         return View();
     }
 
     [HttpGet]
-    public ActionResult SendAndBlock()
+    public IActionResult SendMessageMvc()
     {
-        ViewBag.Title = "SendAndBlock";
-        return View("SendMessage");
+        ViewBag.Title = "Send a message using Mvc";
+        return View();
     }
 
     [HttpPost]
-    public ActionResult SendAndBlock(string textField)
-    {
-        ViewBag.Title = "SendAndBlock";
-
-        if (!int.TryParse(textField, out var number))
-        {
-            return View("SendMessage");
-        }
-
-        #region SendAndBlockController
-
-        var command = new Command
-        {
-            Id = number
-        };
-
-        var status = messageSession.Request<ErrorCodes>(command).GetAwaiter().GetResult();
-
-        ViewBag.Title = "SendAndBlock";
-        ViewBag.ResponseText = Enum.GetName(typeof(ErrorCodes), status);
-        return View("SendMessage");
-
-        #endregion
-    }
-
-    [HttpGet]
-    public ActionResult SendAsync()
-    {
-        ViewBag.Title = "SendAsync";
-        return View("SendMessage");
-    }
-
-    [HttpPost]
-    public async Task<ActionResult> SendAsync(string textField)
+    public async Task<IActionResult> SendMessageMvc(string textField)
     {
         if (!int.TryParse(textField, out var number))
         {
-            return View("SendMessage");
+            return View();
         }
-        #region AsyncController
+        #region MVCSendMessage
         var command = new Command
         {
             Id = number
@@ -63,16 +33,17 @@ public class SampleController(IMessageSession messageSession) :
 
         var status = await messageSession.Request<ErrorCodes>(command);
 
-        ViewBag.Title = "SendAndBlock";
+        ViewBag.Title = "Send a message using Mvc";
         ViewBag.ResponseText = Enum.GetName(typeof(ErrorCodes), status);
-        return View("SendMessage");
+        return View();
 
         #endregion
     }
 
     [HttpGet]
-    public ActionResult Blazor()
+    public IActionResult SendMessageBlazor()
     {
+        ViewBag.Title = "Send a message using Blazor";
         return View();
     }
 }

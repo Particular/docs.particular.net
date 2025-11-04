@@ -1,7 +1,8 @@
 ﻿@using Microsoft.Extensions.Logging
-@inject ILogger<SendMessage> Logger;
+@inject ILogger<SendMessageBlazor> Logger;
+#region MessageSessionInjectionBlazor
 @inject IMessageSession MessageSession;
-
+#endregion
 <PageTitle>NServiceBus Blazor server</PageTitle>
 
 <div>
@@ -29,7 +30,7 @@
             await Task.CompletedTask;
         }
 
-        #region ActionHandling
+        #region BlazorSendMessage
 
         if (!int.TryParse(_userInput, out var number))
         {

@@ -11,19 +11,16 @@
 <body>
     <div>
         <li>
-            <a asp-controller="Sample" asp-action="SendAndBlock">SendAndBlock - a Controller uses NServiceBus</a>
+            <a asp-controller="Sample" asp-action="SendMessageMvc">Send a message using Mvc</a>
         </li>
         <li>
-            <a asp-controller="Sample" asp-action="Send">SendAsync - an AsyncController uses NServiceBus</a>
+            <a asp-controller="SampleApi" asp-action="SendMessageWebApi">Send a message using Web Api</a>
         </li>
         <li>
-            <a asp-controller="SendMessageApi" asp-action="Get">Send a message using a web api</a>
+            <a href="/SendMessageRazorPages">Send a message using Razor Pages</a>
         </li>
         <li>
-            <a href="/razor-pages">Send a message using Razor Pages</a>
-        </li>
-        <li>
-            <a asp-controller="Sample" asp-action="Blazor">Send a message using Blazor</a>
+            <a asp-controller="Sample" asp-action="SendMessageBlazor">Send a message using Blazor</a>
         </li>
     </div>
 </body>
