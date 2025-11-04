@@ -1,19 +1,20 @@
 ﻿@using Microsoft.Extensions.Logging
 @inject ILogger<SendMessageBlazor> Logger;
-#region MessageSessionInjectionBlazor
+@* #region MessageSessionInjectionBlazor *@
 @inject IMessageSession MessageSession;
-#endregion
+@* #endregion *@
 <PageTitle>NServiceBus Blazor server</PageTitle>
 
 <div>
-    Enter a number below and click "Go".<br />
+    <p><a href="/">Home</a> -> Send a message using Blazor</p>
+    Enter a number below and click "Go".<br/>
     If the number is even, the result will be "Fail", otherwise it will be "None".
-    <br /><br />
-    <input type="text" @bind="_userInput" />
-    <input type="submit" value="Go" @onclick="HandleValidSubmit" />
-    <br />
+    <br/><br/>
+    <input type="text" @bind="_userInput"/>
+    <input type="submit" value="Go" @onclick="HandleValidSubmit"/>
+    <br/>
     @_responseText
-    <br />
+    <br/>
 </div>
 
 @code {

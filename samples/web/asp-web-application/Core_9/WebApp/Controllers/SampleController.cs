@@ -14,7 +14,6 @@ public class SampleController(IMessageSession messageSession) : Controller
     [HttpGet]
     public IActionResult SendMessageMvc()
     {
-        ViewBag.Title = "Send a message using Mvc";
         return View();
     }
 
@@ -33,7 +32,6 @@ public class SampleController(IMessageSession messageSession) : Controller
 
         var status = await messageSession.Request<ErrorCodes>(command);
 
-        ViewBag.Title = "Send a message using Mvc";
         ViewBag.ResponseText = Enum.GetName(typeof(ErrorCodes), status);
         return View();
 
@@ -43,7 +41,6 @@ public class SampleController(IMessageSession messageSession) : Controller
     [HttpGet]
     public IActionResult SendMessageBlazor()
     {
-        ViewBag.Title = "Send a message using Blazor";
         return View();
     }
 }

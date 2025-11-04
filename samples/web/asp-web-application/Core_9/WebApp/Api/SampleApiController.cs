@@ -15,7 +15,7 @@ public class SampleApiController(IMessageSession messageSession) : ControllerBas
     {
         var message = new Command();
         await messageSession.Send(message);
-        return Ok("Message sent to endpoint - refresh to send another");
+        return Ok("Message sent to endpoint using Web Api - refresh to send another");
     }
     #endregion
 }
