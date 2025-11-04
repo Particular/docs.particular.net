@@ -35,7 +35,7 @@ The preferred way to route when using multiple accounts is to register endpoints
 
 ### Connection string aliases
 
-Using aliases for connection strings prevent exposing sensitive data that may be in connection strings. An empty string is the default alias which works when using a single account. When using multiple accounts, distinct aliases have to be registered for each storage account.
+Using aliases for connection strings prevents exposing sensitive data that may be in connection strings. An empty string is the default alias which works when using a single account. When using multiple accounts, distinct aliases have to be registered for each storage account.
 
 To enable sending from `account_A` to `account_B`, the following configuration needs to be applied in the `account_A` endpoint:
 
