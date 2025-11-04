@@ -21,6 +21,6 @@ var app = builder.Build();
 
 app.MapRazorPages();
 app.MapControllers();
-app.MapControllerRoute("default", "{controller=Home}/{action=SendLinks}/{id?}");
+app.MapControllerRoute("default", "{controller=Sample}/{action=Index}/{id?}");
 
 app.Run();

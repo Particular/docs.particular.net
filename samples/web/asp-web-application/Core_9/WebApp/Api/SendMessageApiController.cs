@@ -1,14 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NServiceBus;
+
+namespace WebApp.Api;
 
 [ApiController]
 [Route("api/[controller]")]
-public class SendMessageController : ControllerBase
+public class SendMessageApiController : ControllerBase
 {
     IMessageSession messageSession;
 
     #region MessageSessionInjection
-    public SendMessageController(IMessageSession messageSession)
+    public SendMessageApiController(IMessageSession messageSession)
     {
         this.messageSession = messageSession;
     }
@@ -21,7 +22,7 @@ public class SendMessageController : ControllerBase
     {
         var message = new Command();
         await messageSession.Send(message);
-        return "Message sent to endpoint";
+        return "Message sent to endpoint - refresh to send another";
     }
     #endregion
 }

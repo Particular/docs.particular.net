@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>SendLinks</title>
+</head>
+<body>
+    <div>
+        <li>
+            <a asp-controller="Sample" asp-action="SendAndBlock">SendAndBlock - a Controller uses NServiceBus</a>
+        </li>
+        <li>
+            <a asp-controller="Sample" asp-action="Send">SendAsync - an AsyncController uses NServiceBus</a>
+        </li>
+        <li>
+            <a asp-controller="SendMessageApi" asp-action="Get">Send a message using a web api</a>
+        </li>
+        <li>
+            <a href="/razor-pages">Send a message using Razor Pages</a>
+        </li>
+    </div>
+</body>
+</html>
