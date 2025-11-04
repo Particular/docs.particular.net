@@ -4,12 +4,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 namespace WebApp.Pages
 {
     [IgnoreAntiforgeryToken]
-    #region MessageSessionInjectionRazorPages
     public class RazorPagesModel(IMessageSession messageSession) : PageModel
-    #endregion
     {
         public string? ResponseText { get; set; }
 
+        #region RazorPagesSendMessage
         public async Task<IActionResult> OnPostAsync(string textField)
         {
             if (string.IsNullOrWhiteSpace(textField))
@@ -17,7 +16,6 @@ namespace WebApp.Pages
                 return Page();
             }
 
-            #region RazorPagesSendMessage
 
             if (!int.TryParse(textField, out var number))
             {
@@ -32,7 +30,7 @@ namespace WebApp.Pages
             ResponseText = Enum.GetName(typeof(ErrorCodes), code);
 
             return Page();
-            #endregion
         }
+        #endregion
     }
 }

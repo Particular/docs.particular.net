@@ -5,9 +5,7 @@ namespace WebApp.Api;
 [ApiController]
 [Route("api/[controller]")]
 
-#region MessageSessionInjectionWebApi
 public class SampleApiController(IMessageSession messageSession) : ControllerBase
-#endregion
 {
     #region WebApiSendMessage
     [HttpGet]

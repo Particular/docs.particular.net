@@ -1,8 +1,6 @@
 ﻿@using Microsoft.Extensions.Logging
 @inject ILogger<SendMessageBlazor> Logger;
-@* #region MessageSessionInjectionBlazor *@
 @inject IMessageSession MessageSession;
-@* #endregion *@
 <PageTitle>NServiceBus Blazor server</PageTitle>
 
 <div>
@@ -21,6 +19,7 @@
     private string? _userInput;
     private string? _responseText;
 
+    #region BlazorSendMessage
     protected async Task HandleValidSubmit()
     {
         Logger.LogInformation("HandleValidSubmit called");
@@ -30,8 +29,6 @@
         {
             await Task.CompletedTask;
         }
-
-        #region BlazorSendMessage
 
         if (!int.TryParse(_userInput, out var number))
         {
@@ -44,7 +41,6 @@
 
         var code = await MessageSession.Request<ErrorCodes>(command);
         _responseText = Enum.GetName(code);
-
-        #endregion
     }
+    #endregion
 }

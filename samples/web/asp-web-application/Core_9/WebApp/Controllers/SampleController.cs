@@ -2,7 +2,7 @@
 
 namespace WebApp.Controllers;
 
-#region MessageSessionInjectionMvc
+#region MessageSessionInjection
 public class SampleController(IMessageSession messageSession) : Controller
 #endregion
 {
@@ -17,6 +17,7 @@ public class SampleController(IMessageSession messageSession) : Controller
         return View();
     }
 
+    #region MVCSendMessage
     [HttpPost]
     public async Task<IActionResult> SendMessageMvc(string textField)
     {
@@ -24,7 +25,6 @@ public class SampleController(IMessageSession messageSession) : Controller
         {
             return View();
         }
-        #region MVCSendMessage
         var command = new Command
         {
             Id = number
@@ -34,9 +34,8 @@ public class SampleController(IMessageSession messageSession) : Controller
 
         ViewBag.ResponseText = Enum.GetName(typeof(ErrorCodes), status);
         return View();
-
-        #endregion
     }
+    #endregion
 
     [HttpGet]
     public IActionResult SendMessageBlazor()
