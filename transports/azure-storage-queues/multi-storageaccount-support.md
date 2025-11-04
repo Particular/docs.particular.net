@@ -31,12 +31,11 @@ For additional guidance on considerations when developing a system using Azure S
 
 ## NServiceBus routing with multiple storage accounts
 
-The preferred way to route when using multiple accounts is to register endpoints with their associated storage accounts.
+The preferred way to route when using multiple accounts is to register endpoints with their associated storage accounts. This should be done using connection string aliases   instead of raw connection strings.
 
 ### Connection string aliases
 
-To avoid connection strings leaking, aliases are always used, using an empty string as the default.
-Therefore, when multiple accounts are used, an alias has to be registered for each storage account.
+Using aliases for connection strings prevent exposing sensitive data that may be in connection strings. An empty string is the default alias which works when using a single account. When using multiple accounts, distinct aliases have to be registered for each storage account.
 
 To enable sending from `account_A` to `account_B`, the following configuration needs to be applied in the `account_A` endpoint:
 
