@@ -33,10 +33,7 @@ public class SendAsyncController :
             Id = number
         };
 
-        var sendOptions = new SendOptions();
-        sendOptions.SetDestination("Samples.Mvc.Server");
-
-        var status = await messageSession.Request<ErrorCodes>(command, sendOptions);
+        var status = await messageSession.Request<ErrorCodes>(command);
 
         return IndexCompleted(Enum.GetName(typeof(ErrorCodes), status));
 

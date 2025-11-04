@@ -1,4 +1,5 @@
-﻿@{
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
     Layout = null;
 }
 
@@ -12,6 +13,9 @@
     <div>
         <li>@Html.ActionLink("SendAndBlock - a Controller uses NServiceBus", "Index", "SendAndBlock")</li>
         <li>@Html.ActionLink("SendAsync - an AsyncController uses NServiceBus", "Index", "SendAsync")</li>
+        <li>
+            <a href="/razor-pages">Razor Pages - a Razor Page uses NServiceBus</a>
+        </li>
     </div>
 </body>
 </html>

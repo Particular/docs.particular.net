@@ -36,10 +36,7 @@ public class SendAndBlockController :
             Id = number
         };
 
-        var sendOptions = new SendOptions();
-        sendOptions.SetDestination("Samples.Mvc.Server");
-
-        var status = messageSession.Request<ErrorCodes>(command, sendOptions).GetAwaiter().GetResult();
+        var status = messageSession.Request<ErrorCodes>(command).GetAwaiter().GetResult();
 
         return IndexCompleted(Enum.GetName(typeof(ErrorCodes), status));
 

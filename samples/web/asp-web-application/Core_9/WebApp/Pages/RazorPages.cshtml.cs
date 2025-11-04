@@ -5,7 +5,7 @@ using NServiceBus;
 namespace WebApp.Pages
 {
     [IgnoreAntiforgeryToken]
-    public class IndexModel(IMessageSession messageSession) : PageModel
+    public class RazorPagesModel(IMessageSession messageSession) : PageModel
     {
         public string ResponseText { get; set; }
 
