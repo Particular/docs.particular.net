@@ -13,9 +13,9 @@ related:
 ---
 
 > [!IMPORTANT]
-> Using multiple storage accounts is currently NOT compatible with ServiceControl. It is necessary to use [ServiceControl transport adapter](/servicecontrol/transport-adapter.md) or multiple installations of ServiceControl for monitoring in such situation.
+> Using multiple storage accounts is currently NOT compatible with ServiceControl. Either multiple installations of ServiceControl for monitoring or the [ServiceControl transport adapter](/servicecontrol/transport-adapter.md) are required for these situations.
 
-It is common for systems running on Azure Storage Queues to depend on a single storage account. However, there is a potential for throttling issues once the maximum number of concurrent requests to the storage account is reached. Multiple storage accounts can be used to overcome this. 
+It is common for systems running on Azure Storage Queues to depend on a single storage account. However, there is a potential for throttling issues once the maximum number of concurrent requests to the storage account is reached, causing the storage service to respond with an [HTTP 503 Server Busy message](https://docs.microsoft.com/en-us/azure/media-services/media-services-encoding-error-codes). Multiple storage accounts can be used to overcome this. 
 
 ![Scale out with multiple storage accounts](azure03.png "width=500")
 
@@ -24,7 +24,7 @@ To determine whether your system may benefit from scaling out to multiple storag
 For additional guidance on considerations when developing a system using Azure Storage Queues, see the article on [Performance and scalability checklist for Queue Storage](https://learn.microsoft.com/en-us/azure/storage/queues/storage-performance-checklist).
 
 > [!NOTE]
-> Use real Azure storage accounts. Do not use Azure storage emulator as it only supports a single fixed account named devstoreaccount1.".
+> Use real Azure storage accounts. Do not use Azure storage emulator as it only supports a single fixed account named "devstoreaccount1".
 
 > [!NOTE]
 > There are limits to how much using multiple storage accounts increase throughput. Consider using [scale units as a comprehensive scaling strategy](https://learn.microsoft.com/en-us/azure/well-architected/performance-efficiency/scale-partition#choose-a-scaling-strategy) to address higher throughput and reliability needs.
@@ -33,7 +33,7 @@ For additional guidance on considerations when developing a system using Azure S
 
 The preferred way to route when using multiple accounts is to register endpoints with their associated storage accounts.
 
-### Aliases instead of connection strings
+### Connection string aliases
 
 To avoid connection strings leaking, aliases are always used, using an empty string as the default.
 Therefore, when multiple accounts are used, an alias has to be registered for each storage account.
