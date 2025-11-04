@@ -56,12 +56,14 @@ class Usage
     {
         #region storage_account_routing_registered_endpoint
 
-        var transport = new AzureStorageQueueTransport("connectionString");
+        var transport = new AzureStorageQueueTransport("account_A_connection_string");
+        var routing = transport.AccountRouting();
+        routing.DefaultAccountAlias = "account_A";
 
         var anotherAccount = transport.AccountRouting.AddAccount(
-            "AnotherAccountName",
-            new QueueServiceClient("anotherConnectionString"),
-            CloudStorageAccount.Parse("anotherConnectionString").CreateCloudTableClient());
+            "account_B",
+            new QueueServiceClient("account_B_connection_string"),
+            CloudStorageAccount.Parse("account_B_connection_string").CreateCloudTableClient());
 
         anotherAccount.AddEndpoint("Receiver");
 
