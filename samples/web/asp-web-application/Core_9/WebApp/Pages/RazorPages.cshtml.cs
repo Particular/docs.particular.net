@@ -7,7 +7,7 @@ namespace WebApp.Pages
     [IgnoreAntiforgeryToken]
     public class RazorPagesModel(IMessageSession messageSession) : PageModel
     {
-        public string ResponseText { get; set; }
+        public string? ResponseText { get; set; }
 
         public async Task<IActionResult> OnPostAsync(string textField)
         {

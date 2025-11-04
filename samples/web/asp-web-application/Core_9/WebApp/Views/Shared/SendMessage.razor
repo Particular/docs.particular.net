@@ -1,7 +1,6 @@
-﻿@page "/"
-@using Microsoft.Extensions.Logging
-@inject ILogger<Index> Logger;
-@inject IMessageSession messageSession;
+﻿@using Microsoft.Extensions.Logging
+@inject ILogger<SendMessage> Logger;
+@inject IMessageSession MessageSession;
 
 <PageTitle>NServiceBus Blazor server</PageTitle>
 
@@ -9,30 +8,30 @@
     Enter a number below and click "Go".<br />
     If the number is even, the result will be "Fail", otherwise it will be "None".
     <br /><br />
-    <input type="text" @bind="userInput" />
+    <input type="text" @bind="_userInput" />
     <input type="submit" value="Go" @onclick="HandleValidSubmit" />
     <br />
-    @ResponseText
+    @_responseText
     <br />
 </div>
 
 @code {
-    private string? userInput;
-    private string? ResponseText;
+    private string? _userInput;
+    private string? _responseText;
 
     protected async Task HandleValidSubmit()
     {
         Logger.LogInformation("HandleValidSubmit called");
 
         // Process the valid form
-        if (string.IsNullOrWhiteSpace(userInput))
+        if (string.IsNullOrWhiteSpace(_userInput))
         {
             await Task.CompletedTask;
         }
 
         #region ActionHandling
 
-        if (!int.TryParse(userInput, out var number))
+        if (!int.TryParse(_userInput, out var number))
         {
             return;
         }
@@ -41,8 +40,8 @@
             Id = number
         };
 
-        var code = await messageSession.Request<ErrorCodes>(command);
-        ResponseText = Enum.GetName<ErrorCodes>(code);
+        var code = await MessageSession.Request<ErrorCodes>(command);
+        _responseText = Enum.GetName(code);
 
         #endregion
     }

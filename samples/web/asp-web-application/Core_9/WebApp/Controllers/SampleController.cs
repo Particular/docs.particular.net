@@ -69,4 +69,10 @@ public class SampleController(IMessageSession messageSession) :
 
         #endregion
     }
+
+    [HttpGet]
+    public ActionResult Blazor()
+    {
+        return View();
+    }
 }

@@ -14,13 +14,14 @@ builder.UseNServiceBus(endpointConfiguration);
 #endregion
 
 builder.Services.AddRazorPages();
-
 builder.Services.AddControllers();
+builder.Services.AddServerSideBlazor();
 
 var app = builder.Build();
 
 app.MapRazorPages();
 app.MapControllers();
+app.MapBlazorHub();
 app.MapControllerRoute("default", "{controller=Sample}/{action=Index}/{id?}");
 
 app.Run();

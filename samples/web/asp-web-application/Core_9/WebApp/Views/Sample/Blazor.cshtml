@@ -1,0 +1,21 @@
+@using WebApp.Views.Shared
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+    <base href="~/" />
+    <component type="typeof(Microsoft.AspNetCore.Components.Web.HeadOutlet)"
+               render-mode="ServerPrerendered" />
+</head>
+<body>
+<div>
+<component type="typeof(SendMessage)" render-mode="ServerPrerendered"/>
+</div>
+<script src="_framework/blazor.server.js"></script>
+</body>
+</html>
