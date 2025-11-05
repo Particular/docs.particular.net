@@ -47,8 +47,7 @@ persistence.TablePrefix("");
 await SqlHelper.CreateSchema(connectionString, "receiver");
 var allText = File.ReadAllText("Startup.sql");
 await SqlHelper.ExecuteSql(connectionString, allText);
-Console.WriteLine("Press any key to exit");
-Console.ReadKey();
+
 builder.UseNServiceBus(endpointConfiguration);
 
 await builder.Build().RunAsync();

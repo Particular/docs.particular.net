@@ -1,7 +1,7 @@
 ---
 title: SQL Server Transport and SQL Persistence
 summary: Integrating the SQL Server transport with SQL persistence
-reviewed: 2024-01-30
+reviewed: 2025-11-04
 component: Core
 related:
 - persistence/sql
@@ -21,7 +21,7 @@ The database created by this sample is `NsbSamplesSql`.
 ## Procedure
 
  1. Start the Sender and Receiver projects.
- 1. In the Sender's console, press <kbd>enter</kbd>> to send a message when the app is ready.
+ 1. In the Sender's console, press <kbd>enter</kbd> to send a message when the app is ready.
  1. On the Receiver console, notice that the order was submitted.
  1. On the Sender console, notice that the order was accepted.
  1. Finally, after a couple of seconds, on the Receiver console, notice that the timeout message has been received.
