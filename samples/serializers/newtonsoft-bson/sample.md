@@ -1,7 +1,7 @@
 ---
 title: Newtonsoft BSON Serializer
 summary: Using the Newtonsoft BSON serializer in an endpoint
-reviewed: 2024-01-30
+reviewed: 2025-11-05
 component: NewtonSoft
 related:
  - nservicebus/serialization
@@ -12,17 +12,17 @@ redirects:
 
 This sample uses the Newtonsoft serializer [NServiceBus.Newtonsoft.Json](https://github.com/Particular/NServiceBus.Newtonsoft.Json) and configures it to use [BSON](http://bsonspec.org/).
 
-## Configuring to use NServiceBus.Newtonsoft.Json
+## Configuration
 
 snippet: config
 
 ## Diagnostic mutator
 
-A helper that will write out the contents of any incoming message.
+This helper will write out the contents of any incoming message so that the serialization can be observed.
 
 snippet: mutator
 
-Register the mutator.
+This registers the mutator:
 
 snippet: registermutator
 
