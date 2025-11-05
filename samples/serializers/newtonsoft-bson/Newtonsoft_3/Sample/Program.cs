@@ -51,8 +51,8 @@ await endpointInstance.SendLocal(message);
 
 #endregion
 
-Console.WriteLine("Order Sent, waiting 5s for receipt");
-await Task.Delay(5_000);
+Console.WriteLine("Order Sent");
+Console.WriteLine("Press any key to exit");
+Console.ReadKey();
 
-Console.WriteLine("Shutting down");
-await host.StopAsync();
+await endpointInstance.Stop();
