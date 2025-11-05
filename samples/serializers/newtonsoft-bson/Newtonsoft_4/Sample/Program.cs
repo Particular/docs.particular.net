@@ -8,10 +8,9 @@ using NServiceBus.MessageMutator;
 Console.Title = "ExternalBson";
 
 var builder = Host.CreateApplicationBuilder(args);
+var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.ExternalBson");
 
 #region config
-
-var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.ExternalBson");
 
 var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 serialization.ContentTypeKey("application/bson");
@@ -60,10 +59,11 @@ var message = new CreateOrder
 
     ]
 };
-
+await messageSession.SendLocal(message);
 #endregion
 
-await messageSession.SendLocal(message);
-Console.WriteLine("Order Sent");
+Console.WriteLine("Order Sent, waiting 5s for receipt");
+await Task.Delay(5_000);
 
+Console.WriteLine("Shutting down");
 await host.StopAsync();

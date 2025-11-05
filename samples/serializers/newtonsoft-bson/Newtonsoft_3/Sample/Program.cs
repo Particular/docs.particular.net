@@ -5,10 +5,9 @@ using NServiceBus;
 using NServiceBus.MessageMutator;
 
 Console.Title = "ExternalBson";
+var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.ExternalBson");
 
 #region config
-
-var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.ExternalBson");
 
 var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 serialization.ContentTypeKey("application/bson");
@@ -52,8 +51,8 @@ await endpointInstance.SendLocal(message);
 
 #endregion
 
-Console.WriteLine("Order Sent");
-Console.WriteLine("Press any key to exit");
-Console.ReadKey();
+Console.WriteLine("Order Sent, waiting 5s for receipt");
+await Task.Delay(5_000);
 
-await endpointInstance.Stop();
+Console.WriteLine("Shutting down");
+await host.StopAsync();
