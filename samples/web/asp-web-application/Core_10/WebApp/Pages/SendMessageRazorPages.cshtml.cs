@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using NServiceBus;
 
 namespace WebApp.Pages
 {
     [IgnoreAntiforgeryToken]
-    public class IndexModel(IMessageSession messageSession) : PageModel
+    public class RazorPagesModel(IMessageSession messageSession) : PageModel
     {
-        public string ResponseText { get; set; }
+        public string? ResponseText { get; set; }
 
+        #region RazorPagesSendMessage
         public async Task<IActionResult> OnPostAsync(string textField)
         {
             if (string.IsNullOrWhiteSpace(textField))
@@ -16,7 +16,6 @@ namespace WebApp.Pages
                 return Page();
             }
 
-            #region ActionHandling
 
             if (!int.TryParse(textField, out var number))
             {
@@ -27,14 +26,11 @@ namespace WebApp.Pages
                 Id = number
             };
 
-            var sendOptions = new SendOptions();
-            sendOptions.SetDestination("Samples.AsyncPages.Server");
-
-            var code = await messageSession.Request<ErrorCodes>(command, sendOptions);
+            var code = await messageSession.Request<ErrorCodes>(command);
             ResponseText = Enum.GetName(typeof(ErrorCodes), code);
 
             return Page();
-            #endregion
         }
+        #endregion
     }
 }

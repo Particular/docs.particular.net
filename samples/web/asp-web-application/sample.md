@@ -47,7 +47,7 @@ The `builder.UseNServiceBus(endpointConfiguration);` line configures the web app
 
 ### Sending a message
 
-Regardless of the framework used, a message is sent using an [injected](/nservicebus/hosting/asp-net#dependency-injection) instance of `IMessageSession`. This is an API used to send messages outside of the NServiceBus message handling pipeline (i. e. from MVC controllers, Razor Pages, and Blazor components).
+Regardless of the framework used, a message is sent using an [injected](/nservicebus/hosting/asp-net.md#dependency-injection) instance of `IMessageSession`. This is an API used to send messages outside of the NServiceBus message handling pipeline (i. e. from MVC controllers, Razor Pages, and Blazor components).
 
 Each framework example uses `IMessageSession.Request` to send the following message and asynchronously wait for the response from the `Server` handler using the [callbacks package](/nservicebus/messaging/callbacks.md):
 
@@ -95,7 +95,7 @@ snippet: Handler
 
 This class implements the NServiceBus interface `IHandleMessages<T>` where `T` is the specific message type being handled; in this case, the `Command` message. When a message arrives in the input queue, it is deserialized and then, based on its type, NServiceBus instantiates the relevant message handler classes and calls their `Handle` method, passing in the message object.
 
-In the method body notice the [reply](/nservicebus/messaging/reply-to-a-message) to the originating endpoint. This will result in a message being added to the input queue for the endpoint that sent the message, in this case, the `Samples.Web.WebApplication` endpoint.
+In the method body notice the [reply](/nservicebus/messaging/reply-to-a-message.md) to the originating endpoint. This will result in a message being added to the input queue for the endpoint that sent the message, in this case, the `Samples.Web.WebApplication` endpoint.
 
 ## Handling the response
 
