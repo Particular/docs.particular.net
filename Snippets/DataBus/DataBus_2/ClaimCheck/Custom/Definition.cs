@@ -1,12 +1,15 @@
-﻿namespace ClaimCheck_2.ClaimCheck.Custom;
+﻿using Microsoft.Extensions.DependencyInjection;
 
-using System;
+namespace ClaimCheck_2.ClaimCheck.Custom;
+
 using NServiceBus.ClaimCheck;
 
 #region CustomDataBusDefinition
 class CustomClaimCheckDefinition : ClaimCheckDefinition
 {
-    protected override Type ProvidedByFeature()
-        => typeof(CustomClaimCheckFeature);
+    protected override void ConfigureServices(IServiceCollection services)
+    {
+        services.AddSingleton<IClaimCheck, CustomClaimCheck>();
+    }
 }
 #endregion
