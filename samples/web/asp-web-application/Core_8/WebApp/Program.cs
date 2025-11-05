@@ -1,26 +1,30 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
+﻿#region ApplicationStart
+
 using NServiceBus;
 
-#region ApplicationStart
-
-var builder = WebApplication.CreateBuilder();
+var builder = WebApplication.CreateBuilder(args);
 
 builder.Host.UseNServiceBus(_ =>
 {
-    var endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.WebApplication");
+    var endpointConfiguration = new EndpointConfiguration("Samples.Web.WebApplication");
     endpointConfiguration.MakeInstanceUniquelyAddressable("1");
     endpointConfiguration.EnableCallbacks();
-    endpointConfiguration.UseTransport(new LearningTransport());
+    var transport = endpointConfiguration.UseTransport(new LearningTransport());
+    transport.RouteToEndpoint(typeof(Command), "Samples.Web.Server");
     return endpointConfiguration;
 });
 
 #endregion
 
 builder.Services.AddRazorPages();
+builder.Services.AddControllers();
+builder.Services.AddServerSideBlazor();
 
 var app = builder.Build();
 
 app.MapRazorPages();
+app.MapControllers();
+app.MapControllerRoute("default", "{controller=Sample}/{action=Index}/{id?}");
+app.MapBlazorHub();
 
-await app.RunAsync();
+app.Run();

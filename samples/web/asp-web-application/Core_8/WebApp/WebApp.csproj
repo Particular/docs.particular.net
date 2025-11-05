@@ -1,13 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-	<PropertyGroup>
+  <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>12.0</LangVersion>
-	</PropertyGroup>
-	<ItemGroup>
-		<ProjectReference Include="..\Shared\Shared.csproj" />
-	</ItemGroup>
-	<ItemGroup>
-		<PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.*" />
-		<PackageReference Include="NServiceBus.Callbacks" Version="4.*" />
-	</ItemGroup>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Shared\Shared.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="2.*" />
+    <PackageReference Include="NServiceBus.Callbacks" Version="4.*" />
+  </ItemGroup>
 </Project>
