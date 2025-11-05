@@ -35,11 +35,6 @@ public class CustomStageForkConnector :
 public class FeatureReplacingExistingStageForkConnector :
     Feature
 {
-    internal FeatureReplacingExistingStageForkConnector()
-    {
-        EnableByDefault();
-    }
-
     protected override void Setup(FeatureConfigurationContext context)
     {
         var pipeline = context.Pipeline;

@@ -43,15 +43,11 @@ public class ComponentAFeature :
     }
 }
 
+//TODO: Change feature docs to explain how to enable features in v10
 #region FeatureEnabledByDefault
 public class FeatureEnabledByDefault :
     Feature
 {
-    public FeatureEnabledByDefault()
-    {
-        EnableByDefault();
-    }
-
     protected override void Setup(FeatureConfigurationContext context)
     {
     }
@@ -100,7 +96,7 @@ public class EnablingOtherFeatures :
     public EnablingOtherFeatures()
     {
         #region EnablingOtherFeatures
-        Defaults(s => s.EnableFeatureByDefault<OtherFeature>());
+        EnableByDefault<OtherFeature>();
         #endregion
     }
 
