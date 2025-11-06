@@ -12,28 +12,20 @@ public class RedisClaimCheck(string configuration) : IClaimCheck
 {
     private IConnectionMultiplexer redis;
 
-    public async Task<Stream> Get(
-        string key,
-        CancellationToken cancellationToken = default)
+    public async Task<Stream> Get(string key, CancellationToken cancellationToken = default)
     {
         var db = redis.GetDatabase();
         byte[] redisValue = await db.StringGetAsync(key);
         return new MemoryStream(redisValue);
     }
 
-    public async Task<string> Put(
-        Stream stream,
-        TimeSpan timeToBeReceived,
-        CancellationToken cancellationToken = default)
+    public async Task<string> Put(Stream stream, TimeSpan timeToBeReceived, CancellationToken cancellationToken = default)
     {
         var db = redis.GetDatabase();
         var key = $"particular:sample:claimcheck:{Guid.NewGuid()}";
         var value = ((MemoryStream)stream).ToArray();
-        await db.StringSetAsync(
-            key,
-            value,
-            timeToBeReceived == TimeSpan.MaxValue ? null : timeToBeReceived
-        );
+
+        await db.StringSetAsync(key, value, timeToBeReceived == TimeSpan.MaxValue ? null : timeToBeReceived, false);
         return key;
     }
 
