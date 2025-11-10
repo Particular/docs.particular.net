@@ -41,10 +41,6 @@ To enable sending from an endpoint using `account_A` to an endpoint using `accou
 
 snippet: AzureStorageQueueUseMultipleAccountAliasesInsteadOfConnectionStrings1
 
-Aliases can be provided for both the endpoint's connection strings as well as other accounts' connection strings. This enables using the `@` notation for destination addresses like `queue_name@accountAlias`.
-
-snippet: storage_account_routing_send_options_alias
-
 > [!NOTE]
 > The examples above use different values for the default account aliases. Using the same name, such as `default`, to represent different storage accounts in different endpoints is highly discouraged as it introduces ambiguity in resolving addresses like `queue@default` and may cause issues when e.g. replying. In that case an address is interpreted as a reply address, the name `default` will point to a different connection string.
 
@@ -73,5 +69,6 @@ Similar to sending to an endpoint, the transport can also be configured to subsc
 
 snippet: storage_account_routing_registered_publisher
 
+Aliases can be provided for both the endpoint's connection strings as well as other accounts' connection strings. This enables using the `@` notation for destination addresses like `queue_name@accountAlias`.
 
-
+snippet: storage_account_routing_send_options_alias
