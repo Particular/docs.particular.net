@@ -27,17 +27,17 @@ For additional guidance on considerations when developing a system using Azure S
 > Use real Azure storage accounts. Do not use Azure storage emulator as it only supports a single fixed account named "devstoreaccount1".
 
 > [!NOTE]
-> There are limits to how much using multiple storage accounts increase throughput. Consider using [scale units as a comprehensive scaling strategy](https://learn.microsoft.com/en-us/azure/well-architected/performance-efficiency/scale-partition#choose-a-scaling-strategy) to address higher throughput and reliability needs.
+> There are limits to how much using multiple storage accounts increase throughput. Consider using [scale units as part of a comprehensive scaling strategy](https://learn.microsoft.com/en-us/azure/well-architected/performance-efficiency/scale-partition#choose-a-scaling-strategy) to address higher throughput and reliability needs.
 
 ## NServiceBus routing with multiple storage accounts
 
-The preferred way to route when using multiple accounts is to register endpoints with their associated storage accounts. This should be done using connection string aliases   instead of raw connection strings.
+The preferred way to route when using multiple accounts is to register endpoints with their associated storage accounts. This should be done using aliases in place of raw connection strings.
 
 ### Connection string aliases
 
-Using aliases for connection strings prevents exposing sensitive data that may be in connection strings. An empty string is the default alias which works when using a single account. When using multiple accounts, distinct aliases have to be registered for each storage account.
+Using distinct aliases for each storage account connection string prevents exposing sensitive data and is required when using multiple accounts.
 
-To enable sending from `account_A` to `account_B`, the following configuration needs to be applied in the `account_A` endpoint:
+To enable sending from an endpoint using `account_A` to an endpoint using `account_B`, the following configuration needs to be applied in the `account_A` endpoint:
 
 snippet: AzureStorageQueueUseMultipleAccountAliasesInsteadOfConnectionStrings1
 
