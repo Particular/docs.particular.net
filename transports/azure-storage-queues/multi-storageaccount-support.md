@@ -27,7 +27,7 @@ For additional guidance on considerations when developing a system using Azure S
 > Use real Azure storage accounts. Do not use Azure storage emulator as it only supports a single fixed account named "devstoreaccount1".
 
 > [!NOTE]
-> There are limits to how much using multiple storage accounts increase throughput. Consider using [scale units as part of a comprehensive scaling strategy](https://learn.microsoft.com/en-us/azure/well-architected/performance-efficiency/scale-partition#choose-a-scaling-strategy) to address higher throughput and reliability needs.
+> There are limits to how much increasing the number of storage accounts increases throughput. Consider using [scale units as part of a comprehensive scaling strategy](https://learn.microsoft.com/en-us/azure/well-architected/performance-efficiency/scale-partition#choose-a-scaling-strategy) to address higher throughput and reliability needs.
 
 ## NServiceBus routing with multiple storage accounts
 
