@@ -10,6 +10,8 @@ redirects:
 related:
 - nservicebus/hosting
 - nservicebus/hosting/publishing-from-web-applications
+- samples/near-realtime-clients
+- samples/callbacks
 ---
 
 This sample shows how to send messages from an ASP.NET Core web application to an NServiceBus endpoint using several ASP.NET frameworks:
@@ -40,8 +42,6 @@ The web page renders synchronously; from the user's perspective, the interaction
 In the `WebApp` project, open `Program.cs` and look at the endpoint configuration:
 
 snippet: ApplicationStart
-
-The `transport.RouteToEndpoint(typeof(Command), "Samples.Web.Server");` line informs the transport that all messages of type `Command` should be routed to the `Samples.Web.Server` endpoint. This enables sending of the message without having to specify the destination explicitly  when sending.
 
 The `builder.UseNServiceBus(endpointConfiguration);` line configures the web application to start an NServiceBus endpoint and registers an instance of `IMessageSession` for dependency injection. 
 
