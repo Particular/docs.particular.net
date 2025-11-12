@@ -27,8 +27,8 @@ namespace WebApp.Pages
                 Id = number
             };
 
-            var code = await messageSession.Request<ErrorCodes>(command);
-            ResponseText = Enum.GetName(typeof(ErrorCodes), code);
+            await messageSession.Send(command);
+            ResponseText = $"Sent message with Id {command.Id}";
 
             return Page();
         }

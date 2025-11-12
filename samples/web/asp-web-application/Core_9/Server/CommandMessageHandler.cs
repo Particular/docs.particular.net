@@ -9,9 +9,9 @@ public class CommandMessageHandler(ILogger<CommandMessageHandler> logger) :
 {
     public Task Handle(Command message, IMessageHandlerContext context)
     {
-        logger.LogInformation("Hello from CommandMessageHandler");
+        logger.LogInformation($"Hello from CommandMessageHandler! Received Command with Id: {message.Id}");
 
-        return context.Reply(message.Id%2 == 0 ? ErrorCodes.Fail : ErrorCodes.None);
+        return Task.CompletedTask;
     }
 }
 

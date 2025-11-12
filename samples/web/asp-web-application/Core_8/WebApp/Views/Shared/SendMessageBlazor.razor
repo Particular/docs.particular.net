@@ -7,7 +7,6 @@
 <div>
     <p><a href="/">Home</a> -> Send a message using Blazor</p>
     Enter a number below and click "Go".<br/>
-    If the number is even, the result will be "Fail", otherwise it will be "None".
     <br/><br/>
     <input type="text" @bind="_userInput"/>
     <input type="submit" value="Go" @onclick="HandleValidSubmit"/>
@@ -40,8 +39,9 @@
             Id = number
         };
 
-        var code = await MessageSession.Request<ErrorCodes>(command);
-        _responseText = Enum.GetName(code);
+
+        await MessageSession.Send(command);
+        _responseText = $"Sent message with Id {command.Id}";
     }
     #endregion
 }

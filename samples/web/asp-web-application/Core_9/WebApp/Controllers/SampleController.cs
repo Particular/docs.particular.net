@@ -28,9 +28,9 @@ public class SampleController(IMessageSession messageSession) : Controller
             Id = number
         };
 
-        var status = await messageSession.Request<ErrorCodes>(command);
+        await messageSession.Send(command);
+        ViewBag.ResponseText = $"Sent message with Id {command.Id}";
 
-        ViewBag.ResponseText = Enum.GetName(typeof(ErrorCodes), status);
         return View();
     }
     #endregion

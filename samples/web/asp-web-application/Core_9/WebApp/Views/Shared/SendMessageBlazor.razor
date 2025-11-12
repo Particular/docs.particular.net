@@ -39,8 +39,8 @@
             Id = number
         };
 
-        var code = await MessageSession.Request<ErrorCodes>(command);
-        _responseText = Enum.GetName(code);
+        await MessageSession.Send(command);
+        _responseText = $"Sent message with Id {command.Id}";
     }
     #endregion
 }
