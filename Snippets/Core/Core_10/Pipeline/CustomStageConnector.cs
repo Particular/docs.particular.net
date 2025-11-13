@@ -26,11 +26,6 @@ public class CustomStageConnector :
 public class FeatureReplacingExistingStage :
     Feature
 {
-    internal FeatureReplacingExistingStage()
-    {
-        EnableByDefault();
-    }
-
     protected override void Setup(FeatureConfigurationContext context)
     {
         var pipeline = context.Pipeline;

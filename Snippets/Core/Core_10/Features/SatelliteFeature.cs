@@ -11,20 +11,13 @@ using NServiceBus.Transport;
 public class MySatelliteFeature :
     Feature
 {
-    public MySatelliteFeature()
-    {
-        EnableByDefault();
-    }
     protected override void Setup(FeatureConfigurationContext context)
     {
         context.AddSatelliteReceiver(
             name: "MyCustomSatellite",
             transportAddress: new QueueAddress("targetQueue"),
             runtimeSettings: PushRuntimeSettings.Default,
-            recoverabilityPolicy: (config, errorContext) =>
-            {
-                return RecoverabilityAction.MoveToError(config.Failed.ErrorQueue);
-            },
+            recoverabilityPolicy: (config, _) => RecoverabilityAction.MoveToError(config.Failed.ErrorQueue),
             onMessage: OnMessage);
     }
 
