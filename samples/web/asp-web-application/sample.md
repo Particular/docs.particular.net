@@ -34,7 +34,7 @@ Excluding the Web API link, which sends a message from a `GET` request, the othe
 
 ![Web sample send message form](send-message-form.png "Web sample send message form")
 
-Changing the number in the text box changes the Id of the command sent to the `Server` which can be observed in console output, as well as on the web page.
+Changing the number in the text box changes the `Id` property of the command sent to the `Server` which can be observed in console output, as well as on the web page.
 
 ### Initializing NServiceBus
 
