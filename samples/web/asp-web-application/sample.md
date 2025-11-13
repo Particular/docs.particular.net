@@ -33,9 +33,7 @@ Excluding the Web API link, which sends a message from a `GET` request, the othe
 
 ![Web sample send message form](send-message-form.png "Web sample send message form")
 
-Changing the number in the text box from even to odd numbers changes the response from the `Server` which can be observed in console output, as well as on the web page.
-
-The web page renders synchronously; from the user's perspective, the interaction is synchronous and blocking, even though behind the scenes NServiceBus is implementing an asynchronous send-reply pattern using the [callbacks package](/nservicebus/messaging/callbacks.md).
+Changing the number in the text box changes the Id of the command sent to the `Server` which can be observed in console output, as well as on the web page.
 
 ### Initializing NServiceBus
 
@@ -49,7 +47,7 @@ The `builder.UseNServiceBus(endpointConfiguration);` line configures the web app
 
 Regardless of the framework used, a message is sent using an [injected](/nservicebus/hosting/asp-net.md#dependency-injection) instance of `IMessageSession`. This is an API used to send messages outside of the NServiceBus message handling pipeline (i. e. from MVC controllers, Razor Pages, and Blazor components).
 
-Each framework example uses `IMessageSession.Request` to send the following message and asynchronously wait for the response from the `Server` handler using the [callbacks package](/nservicebus/messaging/callbacks.md):
+Each framework example uses `IMessageSession.Send` to send the following message to the `Server` endpoint:
 
 snippet: Message
 
@@ -94,13 +92,3 @@ In the `Server` project, the `CommandMessageHandler` class handles the message t
 snippet: Handler
 
 This class implements the NServiceBus interface `IHandleMessages<T>` where `T` is the specific message type being handled; in this case, the `Command` message. When a message arrives in the input queue, it is deserialized and then, based on its type, NServiceBus instantiates the relevant message handler classes and calls their `Handle` method, passing in the message object.
-
-In the method body notice the [reply](/nservicebus/messaging/reply-to-a-message.md) to the originating endpoint. This will result in a message being added to the input queue for the endpoint that sent the message, in this case, the `Samples.Web.WebApplication` endpoint.
-
-## Handling the response
-
-When the reply message arrives at the `WebApp` endpoint, NServiceBus invokes the callback that was registered when the request was sent.
-
-The `IMessageSession.Request` method takes the callback code and tells NServiceBus to invoke it when the response is received. There are several overloads of this method; the code above accepts a generic `Enum` parameter, effectively casting the return code from the server to the given enumeration type.
-
-Finally, the code updates the `Text` property of a label on the web page, setting it to the string that represents the enumeration value: sometimes `None`, sometimes `Fail`.
