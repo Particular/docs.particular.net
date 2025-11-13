@@ -21,5 +21,6 @@ app.MapRazorPages();
 app.MapControllers();
 app.MapControllerRoute("default", "{controller=Sample}/{action=Index}/{id?}");
 app.MapBlazorHub();
+app.MapStaticAssets();
 
 app.Run();
