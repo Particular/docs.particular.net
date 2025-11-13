@@ -127,7 +127,7 @@ In Versions 5 and below, when a custom component was registered in the container
 > [!WARNING]
 > When upgrading such custom components to Version 6, it is **not safe** to replace all instances of `IBus` with `IMessageSession`. It depends on the usage of the `IBus` inside the custom component.
 
-Scenario 1: If the custom component was sending messages using the injected `IBus` from outside of message handlers, for example, in an MVC Controller class, then it is safe to register the `IMessageSession` when self-hosting. This interface can then be used to send messages. See [Using NServiceBus with ASP.NET MVC](/samples/web/asp-mvc-application/) for an example how to send from an ASP.NET MVC controller.
+Scenario 1: If the custom component was sending messages using the injected `IBus` from outside of message handlers, for example, in an MVC Controller class, then it is safe to register the `IMessageSession` when self-hosting. This interface can then be used to send messages. See [Using NServiceBus with ASP.NET MVC](/samples/web/asp-web-application/) for an example how to send from an ASP.NET MVC controller.
 
 Scenario 2: If the custom component is accessed from within message handlers then the `IMessageHandlerContext` parameter should be passed to the custom component instead of the `IMessageSession` interface to either send or publish messages.
 

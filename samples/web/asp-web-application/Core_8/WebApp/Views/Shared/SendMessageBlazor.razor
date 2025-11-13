@@ -1,0 +1,47 @@
+﻿@using Microsoft.Extensions.Logging
+@using NServiceBus
+@inject ILogger<SendMessageBlazor> Logger;
+@inject IMessageSession MessageSession;
+<PageTitle>NServiceBus Blazor server</PageTitle>
+
+<div>
+    <p><a href="/">Home</a> -> Send a message using Blazor</p>
+    Enter a number below and click "Go".<br/>
+    <br/><br/>
+    <input type="text" @bind="_userInput"/>
+    <input type="submit" value="Go" @onclick="HandleValidSubmit"/>
+    <br/>
+    @_responseText
+    <br/>
+</div>
+
+@code {
+    private string? _userInput;
+    private string? _responseText;
+
+    #region BlazorSendMessage
+    protected async Task HandleValidSubmit()
+    {
+        Logger.LogInformation("HandleValidSubmit called");
+
+        // Process the valid form
+        if (string.IsNullOrWhiteSpace(_userInput))
+        {
+            await Task.CompletedTask;
+        }
+
+        if (!int.TryParse(_userInput, out var number))
+        {
+            return;
+        }
+        var command = new Command
+        {
+            Id = number
+        };
+
+
+        await MessageSession.Send(command);
+        _responseText = $"Sent message with Id {command.Id}";
+    }
+    #endregion
+}
