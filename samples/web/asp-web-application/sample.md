@@ -27,7 +27,8 @@ There are three projects in the solution:
 - `WebApp` - An ASP.NET web application that sends messages to the `Server` endpoint using the frameworks listed above
 - `Shared` - A library which contains the message definition, shared by both the `Server` and `WebApp` projects
 
-Both the `Server` and `WebApp` projects must be running.  When the `WebApp` is run, a browser window will open to display links for sending messages using different technologies.
+Both the `Server` and `WebApp` projects must be running.  When the `WebApp` is run, a browser window will open to display links for sending messages using different 
+ASP.NET frameworks.
 
 Excluding the Web API link, which sends a message from a `GET` request, the other links will display a version of the following form for sending the message using the specified framework:
 
