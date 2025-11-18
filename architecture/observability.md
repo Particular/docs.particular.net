@@ -1,6 +1,6 @@
 ---
 title: Observability
-summary: Observability techniques for building observable distributed systems
+summary: Observability for distributed systems including techniques for root-cause analysis, health and performance monitoring, OpenTelemetry guidance, and Particular Service Platform tooling.
 reviewed: 2024-03-20
 callsToAction: ['solution-architect']
 ---
