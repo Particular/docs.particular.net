@@ -1,6 +1,6 @@
 ---
 title: Consistency
-summary: Achieving consistency in distributed, message-driven systems
+summary: Guidance for consistency in distributed message-driven systems through transactions, outbox, idempotency, deduplication, workflows, and practical trade-offs.
 reviewed: 2025-07-15
 callsToAction: ['solution-architect']
 redirects:
