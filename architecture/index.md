@@ -1,6 +1,6 @@
 ---
 title: Architecture
-summary: Architectural guidance for building distributed systems with the Particular Service Platform, including messaging, recoverability, consistency, workflows, Azure, AWS.
+summary: Architectural guidance for building distributed systems using Particular Service Platform with messaging, recoverability, consistency, workflows, Azure, AWS
 reviewed: 2025-06-29
 suppressRelated: true
 callsToAction: ['architecture-review']
