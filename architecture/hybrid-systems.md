@@ -1,6 +1,6 @@
 ---
 title: Hybrid systems
-summary: Architectural guidance for hybrid cloud and on-prem systems. Shared vs multiple message-broker approaches, Messaging Bridge pattern, and NServiceBus Bridge sample.
+summary: Guidance for hybrid cloud/on-prem: when to use shared vs separate brokers, and how a Messaging Bridge (e.g., NServiceBus Bridge) links the two.
 reviewed: 2025-06-26
 callsToAction: ['solution-architect', 'poc-help']
 ---
