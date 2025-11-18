@@ -1,6 +1,6 @@
 ---
 title: Hybrid systems
-summary: Systems deployed both in the cloud and on-premises
+summary: Architectural guidance for hybrid cloud and on-prem systems. Shared vs multiple message-broker approaches, Messaging Bridge pattern, and NServiceBus Bridge sample.
 reviewed: 2025-06-26
 callsToAction: ['solution-architect', 'poc-help']
 ---
