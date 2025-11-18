@@ -1,6 +1,6 @@
 ---
 title: Migrate from on-premises to Azure
-summary: Migration options from on-premise transports to Azure
+summary: Explore migration options for moving legacy NServiceBus systems to Azure enabling incremental cloud adoption and seamless hybrid cloud integration
 reviewed: 2025-06-19
 callsToAction: ['solution-architect','architecture-review']
 related:
