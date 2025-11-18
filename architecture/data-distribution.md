@@ -1,6 +1,6 @@
 ---
 title: Data distribution
-summary: Overview of broadcasting data to multiple nodes, why asynchronous messaging is unreliable for synchronized state, how this differs from pub/sub eventing, and why distributed caches or config stores (e.g., Redis, Consul, etcd) are typically preferred.
+summary: Broadcasting to many nodes is unreliable for synced state; unlike pub/sub, use distributed caches or config stores for consistent, dependable updates.
 reviewed: 2024-04-16
 redirects:
 - nservicebus/azure/data-distribution
