@@ -1,6 +1,6 @@
 ---
 title: Workflows
-summary: Techniques for building stateful business workflows in distributed systems
+summary: Techniques for building stateful business workflows in distributed systems. Implementation of choreographed and orchestrated workflows using NServiceBus sagas.
 reviewed: 2025-06-30
 callsToAction: ['solution-architect']
 ---
