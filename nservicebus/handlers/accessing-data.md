@@ -15,21 +15,24 @@ related:
  - persistence/azure-table
 ---
 
-In most cases, [handlers](/nservicebus/handlers/) are used to modify the internal state of an application based on the content of a received message. In any system, it is critical to ensure the state change happens exactly once. In a messaging system, this can be challenging as exactly-once delivery is not guaranteed by many queuing technologies. NServiceBus provides several strategies to mitigate the risk of a handler leaving the application on an inconsistent state.
+In most cases, [handlers](/nservicebus/handlers/) are used to modify the internal state of an application based on the content of a received message. In any system, it is critical to ensure the state change happens exactly once. In a messaging system, this can be challenging as exactly-once delivery is not guaranteed by many queuing technologies. NServiceBus provides several strategies to mitigate the risk of a handler leaving the application in an inconsistent state.
 
 Accessing the application state can be achieved in a number of ways and is not enforced or restricted by using NServiceBus. 
 
-The section below provides guidance on several ways of accessing the application state by using the same data context as NServiceBus uses internally.
+The section below outlines several ways to access the application state using the same data context NServiceBus use internally. 
 
 partial: transactionscope
 
 ### Object/relational mappers
 
-When using an object/relational mapper (ORM) like [Entity Framework](https://en.wikipedia.org/wiki/Entity_Framework) for data access, there is the ability to either inject the data context object via dependency injection or create a data context on the fly and reuse the connection.
+When using an object/relational mapper (ORM) like [Entity Framework](https://en.wikipedia.org/wiki/Entity_Framework) for data access, the two primary options are:
+
+1. Create a data context on the fly and reuse the connection
+2. Inject the data context object via dependency injection
 
 Creating a data context on the fly means that any other handler will work disconnected from that data context. This is a fairly simple approach, but it is not recommended when the same message is processed by multiple handlers.
 
-If multiple handlers processing a single message is a requirement, then it is recommended to inject the data context of an ORM via dependency injection. More information can be found in the SQL persistence documentation about [accessing data](/persistence/sql/accessing-data.md).
+If multiple handlers processing a single message is required, injecting the data context object via dependency injection is recommended. More information can be found in the SQL persistence documentation about [accessing data](/persistence/sql/accessing-data.md).
 
 ### Synchronized storage session
 
