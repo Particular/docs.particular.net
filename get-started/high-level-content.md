@@ -1,6 +1,6 @@
 ---
 title: High-level content
-summary: Introductory guide to the Particular Service Platform: overview, NServiceBus, ServiceControl, ServiceInsight, architecture, and hosting resources.
+summary: Introductory guide to the Particular Service Platform with an overview of NServiceBus, ServiceControl, ServiceInsight, architecture, and hosting resources.
 reviewed: 2024-11-06
 ---
 
