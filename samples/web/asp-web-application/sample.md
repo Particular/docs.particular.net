@@ -27,8 +27,7 @@ There are three projects in the solution:
 - `WebApp` - An ASP.NET web application that sends messages to the `Server` endpoint using the frameworks listed above
 - `Shared` - A library which contains the message definition, shared by both the `Server` and `WebApp` projects
 
-Both the `Server` and `WebApp` projects must be running.  When the `WebApp` is run, a browser window will open to display links for sending messages using different 
-ASP.NET frameworks.
+Both the `Server` and `WebApp` projects must be running. When the `WebApp` is run, a browser window will open to display links for sending messages using different ASP.NET frameworks.
 
 Excluding the Web API link, which sends a message from a `GET` request, the other links will display a version of the following form for sending the message using the specified framework:
 
@@ -46,7 +45,7 @@ The `builder.UseNServiceBus(endpointConfiguration);` line configures the web app
 
 ### Sending a message
 
-Regardless of the framework used, a message is sent using an [injected](/nservicebus/hosting/asp-net.md#dependency-injection) instance of `IMessageSession`. This is an API used to send messages outside of the NServiceBus message handling pipeline (i. e. from MVC controllers, Razor Pages, and Blazor components).
+Regardless of the framework used, a message is sent using an [injected](/nservicebus/hosting/asp-net.md#dependency-injection) instance of `IMessageSession`. This is an API used to send messages outside of the NServiceBus message handling pipeline (i.e. from MVC controllers, Razor Pages, and Blazor components).
 
 Each framework example uses `IMessageSession.Send` to send the following message to the `Server` endpoint:
 
