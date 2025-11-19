@@ -1,6 +1,6 @@
 ---
 title: High-level content
-summary: Recommended articles to gain an understanding of the key concepts and technologies used within the Particular Service Platform
+summary: Introductory guide to the Particular Service Platform: overview, NServiceBus, ServiceControl, ServiceInsight, architecture, and hosting resources.
 reviewed: 2024-11-06
 ---
 
