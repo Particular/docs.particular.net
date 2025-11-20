@@ -30,7 +30,7 @@ builder.UseNServiceBus(endpointConfiguration);
 
 var host = builder.Build();
 
-await host.RunAsync();
+await host.StartAsync();
 
 // Get the required services from the host
 var messageSession = host.Services.GetRequiredService<IMessageSession>();
