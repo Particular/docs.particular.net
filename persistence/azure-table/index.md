@@ -1,7 +1,7 @@
 ---
 title: Azure Table Persistence
 summary: Using Azure Tables as persistence
-reviewed: 2024-02-01
+reviewed: 2025-11-20
 component: ASP
 related:
  - persistence/upgrades/asp-saga-deduplication
