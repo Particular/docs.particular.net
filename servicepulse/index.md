@@ -11,6 +11,10 @@ related:
 
 include: servicepulse
 
+#### Overview
+
+ServicePulse 
+
 #### Pre-requisites
 
 ServicePulse uses information provided by ServiceControl. To use ServicePulse, first set up [ServiceControl](/servicecontrol/).
@@ -37,6 +41,10 @@ SCM[Monitoring]-- HTTP API ---SP[ServicePulse]
 ServicePulse provides a variety of views to help monitor and manage the health of an NServiceBus system. These views offer insights into system status, endpoint health, real-time metrics, and message processing. Each view is designed to give users actionable information to ensure smooth operation and quick resolution of issues. The following views are available in ServicePulse,
 
 ![ServicePulse](images/servicepulse-overview.png 'width=500')
+
+See the video below to get an overview of the views available in ServicePulse.
+
+youtube: https://youtu.be/-N-T1y6sDjg
 
 ### Dashboard
 
