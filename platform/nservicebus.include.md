@@ -22,7 +22,7 @@ await endpoint.Send(new ProcessOrder { OrderId = 15 });
 // Receiving endpoint
 public class ProcessOrderHandler : IHandleMessages<ProcessOrder>
 {
-    public async Task Handle(ProcessOrder messsage, IMessageHandlerContext context)
+    public async Task Handle(ProcessOrder message, IMessageHandlerContext context)
     {
         // Do something with ProcessOrder message
     }
