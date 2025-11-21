@@ -1,6 +1,6 @@
 ---
 title: Installing the Custom Checks Plugin
-summary: Enabling custom endpoint instance monitoring by installing the custom checks plugin
+summary: Enable Custom Checks in NServiceBus to track endpoint reliability, detect issues, and monitor endpoint health with ServiceControl and ServicePulse
 reviewed: 2025-04-30
 component: CustomChecks
 versions: 'CustomChecks:*'
