@@ -1,6 +1,6 @@
 ---
 title: Monitoring
-summary: Monitor the endpoint health and endpoint performance of an NServiceBus system
+summary: Monitor the endpoint health and endpoint performance of an NServiceBus system using ServiceControl monitoring and visualization tools
 reviewed: 2024-10-24
 isLearningPath: true
 ---
