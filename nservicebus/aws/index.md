@@ -1,6 +1,6 @@
 ---
 title: Particular Platform AWS support
-summary: AWS services supported by the Particular Platform
+summary: Learn which AWS services are integrated with the Particular Platform, such as SQS, SNS, DynamoDB, and SQL persistence options.
 reviewed: 2024-10-29
 ---
 
