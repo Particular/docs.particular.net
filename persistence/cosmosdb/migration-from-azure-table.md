@@ -3,7 +3,7 @@ title: Migration from Azure Table Persistence
 component: CosmosDB
 related:
 - persistence/azure-table
-reviewed: 2024-02-01
+reviewed: 2024-11-21
 redirects:
 - previews/cosmosdb/migration-from-azure-storage
 - previews/cosmosdb/migration-from-azure-table
