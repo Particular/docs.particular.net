@@ -1,0 +1,11 @@
+﻿@using (Html.BeginForm())
+{
+    <p><a href="/">Home</a> -> Send a message using MVC</p>
+    <p>Enter a number below and click "Go".</p>
+    <br/>
+    <input type="text" id="textField" name="textField" />
+    <input type="submit" value="Go" />
+    <br/><br/>
+    @ViewBag.ResponseText
+    <br/>
+}
