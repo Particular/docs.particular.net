@@ -1,6 +1,6 @@
 ---
 title: Avoiding Transactions in Azure
-summary: Options for avoiding transactions in Azure
+summary: Learn strategies for running NServiceBus on Azure without distributed transactions, including atomic operations, sagas, routing slips and idempotency patterns.
 reviewed: 2025-02-10
 isLearningPath: true
 ---
