@@ -1,7 +1,7 @@
 ---
 title: SQL Server Transport and NHibernate Persistence
 summary: Integrating SQL Server transport with NHibernate persistence.
-reviewed: 2024-01-30
+reviewed: 2025-11-21
 component: Core
 related:
 - persistence/nhibernate
