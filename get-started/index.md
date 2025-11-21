@@ -1,6 +1,6 @@
 ---
 title: Get started with NServiceBus and the Particular Service Platform 
-summary: Get started with NServiceBus and the Particular Service Platform with this list of introductory resources.
+summary: Get started with NServiceBus and the Particular Service Platform using these step-by-step tutorials, videos, and technical guides.
 reviewed: 2025-10-29
 suppressRelated: true
 ---
