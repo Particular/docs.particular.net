@@ -1,6 +1,6 @@
 ---
 title: Migrate from on-premises to AWS
-summary: Migration options from on-premise transports to AWS
+summary: Explore migration options for moving legacy NServiceBus systems to AWS with gradual endpoint transitions and seamless hybrid cloud integration.
 reviewed: 2025-06-19
 callsToAction: ['solution-architect','architecture-review']
 related:

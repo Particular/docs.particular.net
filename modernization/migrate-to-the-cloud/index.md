@@ -1,6 +1,6 @@
 ---
 title: Migrate to the Cloud
-summary: Migrating on-premises systems to the cloud using NServiceBus
+summary: Discover strategies for moving NServiceBus endpoints to AWS or Azure, enabling reliable hybrid cloud integration and gradual modernization.
 reviewed: 2025-06-19
 callsToAction: ['solution-architect','architecture-review']
 related:
