@@ -1,6 +1,6 @@
 ---
 title: Messaging
-summary: Messaging concepts for building distributed systems
+summary: Distributed messaging basics including benefits, key patterns (commands, events, request/reply, pub/sub), command–query separation, and transport options.
 reviewed: 2025-07-03
 callsToAction: ['solution-architect']
 redirects:

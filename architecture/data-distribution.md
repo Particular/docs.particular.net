@@ -1,6 +1,7 @@
 ---
 title: Data distribution
-summary: Data distribution concepts and how it differs from pub/sub
+summary: Broadcasting to many nodes is unreliable for synced state; prefer distributed caches or config stores over pub/sub for consistency
+
 reviewed: 2024-04-16
 redirects:
 - nservicebus/azure/data-distribution

@@ -1,6 +1,6 @@
 ---
 title: Hybrid systems
-summary: Systems deployed both in the cloud and on-premises
+summary: Guidance for hybrid cloud/on-prem, when to use shared vs separate brokers, and how a Messaging Bridge (e.g., NServiceBus Bridge) links the two.
 reviewed: 2025-06-26
 callsToAction: ['solution-architect', 'poc-help']
 ---
