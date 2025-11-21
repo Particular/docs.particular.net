@@ -69,9 +69,11 @@ class Usage
 
         var transportConfig = configuration.UseTransport<AzureStorageQueueTransport>();
         var routing = transportConfig
-                            .ConnectionString("connectionString")
+                            .ConnectionString("account_A_connection_string")
+                            .DefaultAccountAlias("account_A")
                             .AccountRouting();
-        var anotherAccount = routing.AddAccount("AnotherAccountName","anotherConnectionString");
+
+        var anotherAccount = routing.AddAccount("account_B","account_B_connection_string");
         anotherAccount.RegisteredEndpoints.Add("Receiver");
 
         transportConfig.Routing().RouteToEndpoint(typeof(MyMessage), "Receiver");
