@@ -1,7 +1,7 @@
 ---
 title: Using Transactional Session with CosmosDB
 summary: Transactional Session sample that illustrates how to send messages and modify data with CosmosDB in an atomic manner outside message handlers.
-reviewed: 2024-01-29
+reviewed: 2025-11-21
 component: TransactionalSession.CosmosDB
 related:
 - nservicebus/transactional-session
