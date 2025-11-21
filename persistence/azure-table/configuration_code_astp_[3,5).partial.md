@@ -10,6 +10,10 @@ The following settings are available for changing the behavior of saga persisten
 
  * `ConnectionString`: Sets the connection string for the storage account to be used for storing saga information.
  * `UseCloudTableClient`: Allows to set a fully pre-configured Cloud Table client instead of using a connection string.
+ * `DisableTableCreation`: Disables the table creation for the Saga storage.
+ * `JsonSettings`: Overrides the default settings used by the saga property serializer used for complex property types serialization that is not supported by default with tables.
+ * `ReaderCreator`: Overrides the reader creator to customize data deserialization.
+ * `WriterCreator`: Overrides the writer creator to customize data serialization.
 
 ### Subscription configuration
 
@@ -19,6 +23,9 @@ The following settings are available for changing the behavior of subscription p
 
  * `ConnectionString`: Sets the connection string for the storage account to be used for storing subscription information.
  * `UseCloudTableClient`: Allows to set a fully pre-configured Cloud Table client instead of using a connection string.
+ * `TableName`: Table name to create in Azure storage account to persist subscriptions
+ * `CacheFor`: Cache subscriptions for a given `TimeSpan`.
+ * `DisableTableCreation`: Disables the table creation for the subscription storage.
 
 ### Configuring a Cloud Table Client Provider
 
