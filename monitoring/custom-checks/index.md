@@ -1,6 +1,6 @@
 ---
 title: Custom Checks
-summary: Enable endpoint health monitoring by running custom code using the Custom Checks plugin and ServiceControl
+summary: Enable endpoint health monitoring with custom checks in NServiceBus using ServiceControl and ServicePulse
 reviewed: 2025-07-06
 isLearningPath: true
 redirects:
