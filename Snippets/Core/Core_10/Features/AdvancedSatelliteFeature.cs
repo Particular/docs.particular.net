@@ -11,11 +11,6 @@ using NServiceBus.Transport;
 public class MyAdvancedSatelliteFeature :
     Feature
 {
-    public MyAdvancedSatelliteFeature()
-    {
-        EnableByDefault();
-    }
-
     #region AdvancedSatelliteFeatureSetup
 
     protected override void Setup(FeatureConfigurationContext context)
@@ -24,10 +19,7 @@ public class MyAdvancedSatelliteFeature :
             name: "CustomSatellite",
             transportAddress: new QueueAddress("targetQueue"),
             runtimeSettings: PushRuntimeSettings.Default,
-            recoverabilityPolicy: (config, errorContext) =>
-            {
-                return RecoverabilityAction.MoveToError(config.Failed.ErrorQueue);
-            },
+            recoverabilityPolicy: (config, _) => RecoverabilityAction.MoveToError(config.Failed.ErrorQueue),
             onMessage: OnMessage);
     }
 

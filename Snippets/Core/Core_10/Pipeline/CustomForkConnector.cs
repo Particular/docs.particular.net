@@ -27,11 +27,6 @@ public class CustomForkConnector :
 public class FeatureReplacingExistingForkConnector :
     Feature
 {
-    internal FeatureReplacingExistingForkConnector()
-    {
-        EnableByDefault();
-    }
-
     protected override void Setup(FeatureConfigurationContext context)
     {
         var pipeline = context.Pipeline;
