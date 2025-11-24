@@ -40,7 +40,7 @@ ServicePulse provides a variety of views to help monitor and manage the health o
 
 See the video below to get an overview of the views available in ServicePulse.
 
-youtube: https://youtu.be/OVUqOoPZEW4
+youtube: https://www.youtube.com/watch?v=OVUqOoPZEW4
 
 ### Dashboard
 
