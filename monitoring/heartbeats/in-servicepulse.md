@@ -1,6 +1,6 @@
 ---
 title: Managing endpoint heartbeats in ServicePulse
-summary: Describes how ServicePulse monitors endpoints activity and availability using heartbeat messages
+summary: Heartbeat monitoring in ServicePulse displays endpoint activity, availability, and alerts for reliable systems
 reviewed: 2024-11-07
 redirects:
   - servicepulse/intro-endpoints-heartbeats

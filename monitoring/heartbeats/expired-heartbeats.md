@@ -1,6 +1,6 @@
 ---
 title: Expired heartbeat messages
-summary:
+summary: NServiceBus endpoints send heartbeat messages with TTBR; expired messages are discarded if unconsumed
 reviewed: 2024-10-28
 component: Heartbeats
 versions: 'Heartbeats:*'
