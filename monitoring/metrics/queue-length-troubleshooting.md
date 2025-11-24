@@ -1,6 +1,6 @@
 ---
 title: Queue Length Metric Troubleshooting
-summary: Validating queue length metrics monitoring setup.
+summary: Guide to resolving issues with NServiceBus queue length metrics in ServicePulse
 reviewed: 2025-02-04
 related:
   - monitoring/metrics/definitions
