@@ -4,14 +4,14 @@ component: ASP
 versions: 'ASTP:[3,]'
 related:
 - nservicebus/outbox
-reviewed: 2024-02-09
+reviewed: 2025-11-24
 ---
 
 partial: intro
 
 A custom [behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) must be introduced to identify and insert the `TableEntityPartitionKey` value into the pipeline context for use by storage operations that occur during the processing of a given message.
 
-> [!NOTE]
+> [!IMPORTANT]
 > Do not use a [message mutator](/nservicebus/pipeline/message-mutators.md) to identify the partition key. Message mutators do not offer the necessary control or timing to reliably interact with this persistence.
 
 The custom behavior can be introduced in one of the two stages:

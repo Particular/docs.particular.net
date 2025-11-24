@@ -1,10 +1,10 @@
 ## Sharing the transaction
 
-Once a behavior is introduced to identify the partition key for a given message, it is possible to share a batch, represented in Azure Table by `List<TableTransactionAction>` between both the Saga persistence and business data. This list can then be used to persist document updates for both concerns atomically.
+Once a behavior is introduced to identify the partition key for a given message, it is possible to share a batch, represented in Azure Table by `List<TableTransactionAction>` between both the Saga persistence and business data. This batch can then be used to persist document updates for both concerns atomically.
 
 ### Within a handler method using `IMessageHandlerContext`
 
-To use the shared `List<TableTransactionAction>` in a message handler:
+To use the shared `List<TableTransactionAction>` batch in a message handler:
 
 snippet: HandlerSharedTransaction
 
@@ -14,10 +14,10 @@ The `TestableAzureTableStorageSession` class in the `NServiceBus.Testing` namesp
 
 ### With dependency injection
 
-For custom types that require access to the shared `List<TableTransactionAction>`:
+For custom types that require access to the shared `List<TableTransactionAction>` batch:
 
 snippet: TransactionalBatchRegisteredWithDependencyInjectionResolvedInCustomType
 
-And alternatively to using the the extension method `IMessageHandlerContext.SynchronizedStorageSession.AzureTablePersistenceSession()`:
+And alternatively to using the extension method `IMessageHandlerContext.SynchronizedStorageSession.AzureTablePersistenceSession()`:
 
 snippet: TransactionalBatchRegisteredWithDependencyInjectionResolvedInHandler
