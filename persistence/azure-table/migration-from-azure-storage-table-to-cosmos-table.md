@@ -3,11 +3,11 @@ title: Migration from Azure Storage Table to Azure Cosmos DB Table API
 component: ASP
 related:
 - persistence/azure-table
-reviewed: 2025-01-24
+reviewed: 2025-11-24
 ---
 
 > [!WARNING]
-> The endpoint being migrated must be offline while migrating saga data. The saga data must be using secondary indexes (introduced in Azure Table Persistence 2.x) or be stored with Azure Table Persistence Version 3 or higher for this upgrade guide to succeed. The migration scenario described assumes only saga data of a one saga is stored per table.
+> The endpoint being migrated must be offline while migrating saga data. The migration scenario described assumes only saga data of one saga type is stored per table.
 
 ## Import data
 
@@ -44,18 +44,16 @@ Create a `migrationsettings.json` file in the tool's directory with the followin
 `<SagaTableName>`: The name of the saga data table (e.g `OrderSagaData`).<br/>
 
 > [!NOTE]
-> The migration tool automatically migrates all columns from the source table, including all saga properties and the standard NServiceBus columns (`Originator`, `OriginalMessageId`, `NServiceBus_2ndIndexKey`, `SagaId`). No explicit column projection is required.
+> The migration tool automatically migrates all columns from the source table, including all saga properties and the standard NServiceBus columns (`Originator`, `OriginalMessageId`, etc.). No explicit column projection is required.
 
 ### Example
 
 For example, to import a single saga data table called `OrderSagaData` with the saga data type:
 
 ```
-public class OrderSagaData : IContainSagaData
+public class OrderSagaData : ContainSagaData
 {
     public Guid Id { get; set; }
-    public string Originator { get; set; }
-    public string OriginalMessageId { get; set; }
     public Guid OrderId { get; set; }
     public string OrderDescription { get; set; }
     public OrderState OrderState { get; set; }
