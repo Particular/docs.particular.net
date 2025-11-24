@@ -2,21 +2,22 @@
 title: Aborting Pipeline execution
 summary: How to tell NServiceBus to abort processing any more handlers in the pipeline
 component: Core
-reviewed: 2024-02-09
+reviewed: 2025-11-24
 ---
 
+NServiceBus allows for aborting handlers execution. This can be done either from within a message handler or by using a custom pipeline behavior.
 
 ## From inside a Handler
 
-From the context of a Handler, further handler execution can be aborted by calling the `DoNotContinueDispatchingCurrentMessageToHandlers()` method. This method instructs the bus not to pass the current message on to subsequent handlers in the pipeline. This is often used by authentication and authorization handlers when those checks fail.
+If the endppoint hosts more than one handler for the same message type, from the context of an handler, further handler execution can be aborted by calling the `DoNotContinueDispatchingCurrentMessageToHandlers()` method. This method instructs the NServiceBus not to pass the current message on to subsequent handlers in the pipeline. This is often used by authentication and authorization handlers when those checks fail.
 
 snippet: AbortHandler
 
-Aborting the pipeline does not fail the message processing. The message that was processed will be marked as successfully completed.
+> [!IMPORTANT]
+> Aborting the pipeline does not fail the message processing. The message will be marked as successfully completed.
 
 > [!WARNING]
-> Handler execution order is non-deterministic by default. To configure the ordering see [Handler Ordering](/nservicebus/handlers/handler-ordering.md).
-
+> Handler execution order is non-deterministic by default. To configure ordering see [Handler Ordering](/nservicebus/handlers/handler-ordering.md).
 
 ## Via a pipeline Behavior
 
