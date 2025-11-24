@@ -9,6 +9,8 @@ reviewed: 2025-11-24
 > [!WARNING]
 > The endpoint being migrated must be offline while migrating saga data. The migration scenario described assumes only saga data of one saga type is stored per table.
 
+This guide describes how to migrate saga data from Azure Storage Table to Azure Cosmos DB Table API. Teams that start with Azure Storage Tables may later find they need to migrate to Cosmos DB Table API for requirements such as global distribution, improved performance, or other Cosmos DB features. The migration process uses Microsoft's Azure Cosmos DB Desktop Data Migration Tool to transfer saga data from the source Azure Storage Table to the destination Cosmos DB Table API account.
+
 ## Import data
 
 The saga data can be imported into Cosmos DB Table API using the [Azure Cosmos DB Desktop Data Migration Tool](https://github.com/azurecosmosdb/data-migration-desktop-tool) provided by Microsoft. This tool is built on .NET 6, is cross-platform, and replaces the legacy `dt.exe` tool.
