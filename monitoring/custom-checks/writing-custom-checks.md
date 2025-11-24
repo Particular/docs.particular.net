@@ -1,6 +1,6 @@
 ---
 title: Writing Custom Checks
-summary: Authoring one-off or periodic checks with the Custom Checks plugin
+summary: Create custom checks in NServiceBus for proactive monitoring, detecting issues, and reporting via ServiceControl
 reviewed: 2024-10-30
 component: CustomChecks
 versions: 'CustomChecks:*'
