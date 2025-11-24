@@ -1,6 +1,6 @@
 ---
 title: Upgrade from Estimated to Native Queue Length Metric
-summary: Instructions on how to upgrade an NServiceBus system from the estimated to the native queue length metric
+summary: Upgrade NServiceBus endpoints and ServiceControl from the estimated to the native queue length metric for improved monitoring accuracy
 isUpgradeGuide: true
 reviewed: 2022-10-31
 ---
