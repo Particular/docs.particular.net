@@ -72,7 +72,7 @@ Understanding [Request Units (RUs)](https://learn.microsoft.com/en-us/azure/cosm
 
 ### Using the Microsoft Cosmos DB Capacity Planner
 
-Microsoft provide a [Cosmos DB capacity calculator](https://cosmos.azure.com/capacitycalculator/) which can be used to model the throughput costs of your solution. It uses [several parameters](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext#request-unit-considerations) to calculate this, but only the following are directly affected when using the Azure Cosmos DB Persistence.
+Microsoft provides a [Cosmos DB capacity calculator](https://cosmos.azure.com/capacitycalculator/) that can be used to model the throughput costs of your solution. It uses [several parameters](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext#request-unit-considerations) to calculate this, but only the following are directly affected when using the Azure Cosmos DB Persistence.
 
 | Capacity Calculator Parameter | Persistence Operation | Cosmos DB Operation |
 | :---- | :---- | :---- |
@@ -82,14 +82,14 @@ Microsoft provide a [Cosmos DB capacity calculator](https://cosmos.azure.com/cap
 | [**Deletes**](https://learn.microsoft.com/en-us/azure/cosmos-db/optimize-cost-reads-writes#write-data) | Saga complete, [Outbox TTL background cleanup](#outbox-outbox-cleanup) | `DeleteItem` |
 | [**Queries**](https://learn.microsoft.com/en-us/azure/cosmos-db/optimize-cost-reads-writes#queries) | [Saga migration mode](migration-from-azure-table.md) | `GetItemQueryStreamIterator` |
 
-[Document size](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units#request-unit-considerations) also affects RU usage as the size of an item increases, the number of RUs consumed to read or write the item also increases. The table below provides an **estimate** of the persistence cost that should be considered per message when modeling throughput requirements.
+[Document size](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units#request-unit-considerations) also affects RU usage, where the number of RUs consumed to read or write an item increases with the size of the item. Thelefollowing tabe provides an **estimate** of the persistence cost per message that should be considered when modeling throughput requirements.
 
 | Record Type | Estimated Size |
 | :---- | :---- |
 | **Outbox** | ~630 bytes + message body |
 | **Saga** | ~300 bytes + saga data |
 
-The below tables gives an indication of what Cosmos DB operations occur in different NServiceBus endpoint configurations for every processed message. This can be used with the [Cosmos DB Capacity Planner](https://cosmos.azure.com/capacitycalculator/), along with [other factors](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext#request-unit-considerations) that affect pricing (such as the selected Cosmos DB API, number of regions, etc), and the total message throughput to produce an estimated RU capacity requirement.
+The tables below indicate what Cosmos DB operations occur for each processed message for different NServiceBus endpoint configurations. This information can be used with the [Cosmos DB Capacity Planner](https://cosmos.azure.com/capacitycalculator/), along with [other considerations that affect pricing](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext#request-unit-considerations) (such as the selected Cosmos DB API, number of regions, etc.), and the total message throughput to produce an estimated RU capacity requirement.
 
 #### No Outbox
 
@@ -142,7 +142,7 @@ The below tables gives an indication of what Cosmos DB operations occur in diffe
 
 ### Using Code
 
-Another, more direct, approach to RU capacity planning would be to use a Cosmos DB [`RequestHandler`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.requesthandler?view=azure-dotnet) attached to a customized [`CosmosClient` provider](#usage-customizing-the-cosmosclient-provider) in your NServiceBus endpoint in a development environment. This request handler gives you the flexibility to log every Cosmos DB request and response, and its associated RU charge. In this way, you can measure exactly what operations are being performed on the Cosmos DB database for each message for that endpoint, and what the RU costs for each operation are. This can then be multiplied by the estimated throughput of that NServiceBus endpoint when in production.
+Another, more direct, approach to RU capacity planning would be to use a [Cosmos DB `RequestHandler`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.requesthandler?view=azure-dotnet) attached to a customized [`CosmosClient` provider](#usage-customizing-the-cosmosclient-provider) in your NServiceBus endpoint in a development environment. This request handler gives you the flexibility to log every Cosmos DB request and response, and its associated RU charge. In this way, you can measure exactly what operations are being performed on the Cosmos DB database for each message for that endpoint, and what the RU costs for each operation are. This can then be multiplied by the estimated throughput of that NServiceBus endpoint when in production.
 
 > [!WARNING]
 > Its not recommended to monitor the RU costs using the direct `RequestHandler` approach in production as this could have performance implications.
@@ -179,7 +179,7 @@ class LoggingHandler : RequestHandler
 
 ### Using Azure
 
-Alternatively, the Azure Cosmos DB [Diagnostic Settings](https://learn.microsoft.com/en-us/azure/cosmos-db/monitor-resource-logs?tabs=azure-portal) can be configured to route the diagnostic logs to an Azure Log Analytics Workspace. Here they can be [queried](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/diagnostic-queries?tabs=resource-specific) for the same data used for RU capacity planning. This method is not recommended for live monitoring of RU usage as diagnostic logs typically are delayed by a few minutes, and cost and retention of Log Analytics would be a limiting factor.
+Alternatively, the [Azure Cosmos DB Diagnostic Settings](https://learn.microsoft.com/en-us/azure/cosmos-db/monitor-resource-logs?tabs=azure-portal) can be configured to route the diagnostic logs to an Azure Log Analytics Workspace, where they can be [queried](https://learn.microsoft.com/en-us/azure/cosmos-db/nosql/diagnostic-queries?tabs=resource-specific) for the same data used for RU capacity planning. This method is not recommended for live monitoring of RU usage as diagnostic logs are typically delayed by a few minutes, and the cost and retention of Log Analytics would be a limiting factor.
 
 For [real time monitoring](https://learn.microsoft.com/en-us/azure/cosmos-db/serverless?context=%2Fazure%2Fcosmos-db%2Fnosql%2Fcontext%2Fcontext#monitor-your-consumption), the metrics pane in the Cosmos DB account can be used.
 
