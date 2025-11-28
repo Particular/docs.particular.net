@@ -5,45 +5,41 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using NServiceBus.CustomChecks;
 
-
 #region thecustomcheck
 
-class ThirdPartyMonitor : CustomCheck
+sealed class ThirdPartyMonitor(ILogger<ThirdPartyMonitor> logger)
+    : CustomCheck(
+        id: $"Monitor {Url}",
+        category: "Monitor 3rd Party ",
+        repeatAfter: TimeSpan.FromSeconds(10)
+    )
 {
-    const string url = "http://localhost:57789";
-    static readonly HttpClient client = new() { Timeout = TimeSpan.FromSeconds(3) };
-    private readonly ILogger<ThirdPartyMonitor> logger;
+    const string Url = "http://localhost:57789";
 
-    public ThirdPartyMonitor(ILogger<ThirdPartyMonitor> logger)
-        : base(
-            id: $"Monitor {url}",
-            category: "Monitor 3rd Party ",
-            repeatAfter: TimeSpan.FromSeconds(10))
+    static readonly HttpClient Client = new() // Normally configured in host DI config
     {
-        this.logger = logger;
-    }
+        Timeout = TimeSpan.FromSeconds(3)
+    };
 
     public override async Task<CheckResult> PerformCheck(CancellationToken cancellationToken = default)
     {
         try
         {
-            using var response = await client.GetAsync(url, cancellationToken);
+            using var response = await Client.GetAsync(Url, cancellationToken);
 
             if (response.IsSuccessStatusCode)
             {
-                logger.LogInformation("Succeeded in contacting {Url}", url);
+                logger.LogInformation("Succeeded in contacting {Url}", Url);
                 return CheckResult.Pass;
             }
 
-            var error = $"Failed to contact '{url}'. HttpStatusCode: {response.StatusCode}";
-            logger.LogInformation(error);
-            return CheckResult.Failed(error);
+            logger.LogWarning("Failed to contact 3rd party. HttpStatusCode: {ResponseStatusCode}", response.StatusCode);
+            return CheckResult.Failed($"Failed to contact 3rd party. HttpStatusCode: {response.StatusCode}");
         }
         catch (Exception exception)
         {
-            var error = $"Failed to contact '{url}'. Error: {exception.Message}";
-            logger.LogInformation(error);
-            return CheckResult.Failed(error);
+            logger.LogWarning(exception, "Failed to contact 3rd party");
+            return CheckResult.Failed($"Failed to contact 3rd party. Error: {exception.Message}");
         }
     }
 }
