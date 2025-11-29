@@ -90,10 +90,7 @@ class Usage
         #endregion
 
         #region asb-versioning-publisher-mapping
-        topology.PublishTo<OrderAcceptedV2>("Shipping.OrderAccepted");
-        #endregion
-
-        #region asb-versioning-publisher-mapping
+        topology.PublishTo<OrderAccepted>("Shipping.OrderAccepted");
         topology.PublishTo<OrderAcceptedV2>("Shipping.OrderAccepted");
         #endregion
 
