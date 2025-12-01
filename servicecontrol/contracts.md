@@ -87,6 +87,7 @@ ServiceControl will also publish events related to archiving and retrying messag
 - `FailedMessagesUnArchived`: Event emitted for failed messages that were un-archived
 - `MessageFailureResolvedByRetry`: Event emitted by ServiceControl for each failed message that was resolved by retry
 - `MessageFailureResolvedManually`: Event emitted by ServiceControl for each failed message that was resolved manually
+- `MessageEditedAndRetried`: Event emitted by ServiceControl every time that a failed message was [edited and retried](/servicepulse/intro-editing-messages.md)
 
 
 ## Decommissioning subscribers to ServiceControl events

@@ -56,6 +56,8 @@ When retrying an edited message it is possible that the original failed message 
 
 As soon as a message has been dispatched for retrying the originally failing message will be marked as resolved. If the retry message subsequently fails it will appear as a new failed message in the user interface. That new failed message will be marked as having been edited and also have a link to the original message.
 
+Retrying a message dispatches also a [`MessageEditedAndRetried` event](/servicecontrol/contracts.md#other-events).
+
 
 ## Limitations and restrictions
 
