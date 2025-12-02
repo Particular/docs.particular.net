@@ -61,6 +61,11 @@ Next, restart the `NServiceBusEndpoint` application and wait up to 30 seconds. W
 
 > `Heartbeat from EndpointsMonitoring.NServiceBusEndpoint restored.`
 
+### MessageEditedAndRetried event
+
+The `MessageEditedAndRetried` event is emitted when the [Edit and Retry feature](/servicepulse/intro-editing-messages.md) is used on a message that failed. This can be done only from ServicePulse.
+
+The event is emitted each time a new edited message is successfully created and dispatched.
 
 ## Code walk-through
 
