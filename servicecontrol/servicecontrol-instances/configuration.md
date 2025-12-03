@@ -180,8 +180,8 @@ The path where the internal RavenDB is located.
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUDIT_DBPATH` |
-| **App config key** | `ServiceControl.Audit/DbPath` |
+| **Environment variable** | `SERVICECONTROL_DBPATH` |
+| **App config key** | `ServiceControl/DbPath` |
 | **SCMU field** | `Database Path` |
 
 | Type | Default value |
