@@ -1,7 +1,7 @@
 ---
-title: Get Started
-summary: Get started with NServiceBus and the Particular Service Platform with this list of introductory resources.
-reviewed: 2024-01-31
+title: Get started with NServiceBus and the Particular Service Platform 
+summary: Get started with NServiceBus and the Particular Service Platform using these step-by-step tutorials, videos, and technical guides.
+reviewed: 2025-10-29
 suppressRelated: true
 ---
 
@@ -9,8 +9,8 @@ NServiceBus makes it quick and easy to send, process, and publish messages acros
 
 ### Start the journey with NServiceBus using these handy resources:
 
+* **[Quickstart tutorial](/tutorials/quickstart/)** - A hands-on tutorial that takes you through an NServiceBus solution covering all the elements of one-way messaging, publish-subscribe, and automatic recovery from exceptions.
 * **[NServiceBus technical introduction](/nservicebus/)** - A more technical introduction to NServiceBus as well as the Service Platform.
-* **[Quickstart tutorial](/tutorials/quickstart/)** - Get a tour through an NServiceBus solution covering all the elements of one-way messaging, publish-subscribe, and automatic recovery from exceptions.
 * **[(Video) - Live coding your first NServiceBus system](https://particular.net/webinars/live-coding-your-first-nservicebus-system)** - For those who prefer to sit back and watch an experienced developer build a messaging system with NServiceBus.
 * **[NServiceBus overview](https://particular.net/nservicebus)** - The most important benefits of NServiceBus at a glance.
 * **[The Particular Service Platform](/platform/)** - The wider benefits of the platform and where NServiceBus fits in.

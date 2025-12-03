@@ -1,5 +1,4 @@
 ﻿using AzureFunctions.Messages.NServiceBusMessages;
-using NServiceBus;
 
 namespace ConsoleEndpoint.Handlers;
 

@@ -1,7 +1,5 @@
 using System;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
@@ -33,7 +31,7 @@ var host = Host.CreateDefaultBuilder(args)
             .SendMetricDataToServiceControl("Particular.Monitoring", TimeSpan.FromSeconds(1));
 
         var routing = endpointConfiguration.UseTransport(new LearningTransport());
-        routing.RouteToEndpoint(typeof(MyMessage), "Endpoint");
+        routing.RouteToEndpoint(typeof(MyMessage), "Samples.Bridge.Endpoint");
 
         return endpointConfiguration;
     })

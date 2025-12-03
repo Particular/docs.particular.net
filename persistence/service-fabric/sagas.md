@@ -1,20 +1,16 @@
 ---
 title: Service Fabric Persistence Sagas
-reviewed: 2024-02-09
+reviewed: 2025-11-24
 component: ServiceFabricPersistence
 ---
-
 
 ## Reliable collections
 
 Saga data is stored in reliable dictionaries.
 
-
 ## Saga data serialization
 
-Saga data is stored in JSON format using [Json.NET](https://www.newtonsoft.com/json).
-
-Saga data serialization can be configured by providing a custom [JsonSerializerSettings](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) instance.
+Saga data is stored in JSON format using [Json.NET](https://www.newtonsoft.com/json). Saga data serialization can be configured by providing a custom [JsonSerializerSettings](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) instance:
 
 snippet: ServiceFabricPersistenceSagaJsonSerializerSettings
 
@@ -25,7 +21,6 @@ snippet: ServiceFabricPersistenceSagaReaderCreator
 Or a custom [JsonWriter](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonWriter.htm) instance:
 
 snippet: ServiceFabricPersistenceSagaWriterCreator
-
 
 ## Saga data storage
 
@@ -39,7 +34,7 @@ snippet: ServiceFabricPersistenceSagaWithCustomSagaDataName
 
 ## Saga concurrency
 
-When simultaneously handling messages, conflicts may occur. Below is a list of examples of exception that may be thrown _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
+When simultaneously handling messages, conflicts may occur. Below is a list of examples of exception that may be thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
 
 ### Creating saga data
 

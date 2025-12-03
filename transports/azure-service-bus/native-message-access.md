@@ -3,7 +3,7 @@ title: Native message access
 summary: Access native message information with the Azure Service Bus transport
 component: ASBS
 versions: '[1.4.0,)'
-reviewed: 2024-02-09
+reviewed: 2025-11-28
 ---
 
 partial: supported-versions

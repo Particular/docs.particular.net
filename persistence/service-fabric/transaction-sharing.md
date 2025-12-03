@@ -1,6 +1,6 @@
 ---
 title: Service Fabric Persistence Transaction Sharing
-reviewed: 2024-01-23
+reviewed: 2025-10-23
 component: ServiceFabricPersistence
 ---
 

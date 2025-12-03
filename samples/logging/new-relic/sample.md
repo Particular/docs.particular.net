@@ -1,9 +1,9 @@
 ---
 title: Capture and visualize metrics using NewRelic
-summary: Illustrates how to capture, store, and visualize NServiceBus metrics in NewRelic.
+summary: Illustrates how to capture, store, and visualize NServiceBus metrics in NewRelic
 component: Metrics
 isLearningPath: true
-reviewed: 2024-01-15
+reviewed: 2025-10-15
 previewImage: newrelic-processingtime.png
 ---
 
@@ -22,24 +22,25 @@ This sample reports the following metrics to NewRelic:
 * Processing time seconds
 * Retries
 
-For a detailed explanation of these metrics refer to the [metrics captured section in the metrics documentation](/monitoring/metrics/definitions.md) section.
+For a detailed explanation of these metrics, refer to the [metrics captured section](/monitoring/metrics/definitions.md#metrics-captured) of the metrics definitions documentation.
 
 The [New Relic NServiceBus integration](https://newrelic.com/instant-observability/nservicebus/f3f28a00-8cea-41f1-a6fe-ebf5eae5791e) can be used to get started quickly.
 
 ## Prerequisites
 
 To run this sample, [create a NewRelic account](https://newrelic.com/signup?via=login), then download and run the NewRelic agent.
+
 See the [Introduction to New Relic Insights](https://docs.newrelic.com/docs/insights/use-insights-ui/getting-started/introduction-new-relic-insights) guide for information on how to get started with NewRelic monitoring.
 
 ## Code overview
 
-The sample simulates messages load with a random 10% failure rate using the `LoadSimulator` class:
+The sample uses the `LoadSimulator` class to simulate a workload where 10% of the messages fail:
 
 snippet: newrelic-load-simulator
 
 ## Capturing metric values
 
-Custom observers need to be registered for the metric probes provided via the `NServiceBus.Metrics` package:
+Custom [observers](/monitoring/metrics/raw.md#reporting-metrics-data-to-any-external-storage) need to be registered for the metric probes provided via the `NServiceBus.Metrics` package:
 
 snippet: newrelic-enable-nsb-metrics
 

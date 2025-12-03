@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 Console.Title = "Endpoint1";
-
-var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<InputLoopService>();
 
 #region config
 
@@ -26,8 +22,36 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
 #endregion
 
+Console.WriteLine("Starting...");
+
+var builder = Host.CreateApplicationBuilder(args);
 builder.UseNServiceBus(endpointConfiguration);
 
-var app = builder.Build();
+var host = builder.Build();
 
-await app.RunAsync();
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+Console.WriteLine("Press [Enter] to send a message");
+Console.WriteLine("Press any other key to exit");
+
+while (true)
+{
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    if (key.Key != ConsoleKey.Enter)
+    {
+        break;
+    }
+
+    var message = new Message1
+    {
+        Property = "Hello from Endpoint1"
+    };
+    await messageSession.Send("Samples.ASBS.SendReply.Endpoint2", message);
+    Console.WriteLine("Message1 sent");
+}
+
+await host.StopAsync();

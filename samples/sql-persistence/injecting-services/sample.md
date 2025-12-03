@@ -1,7 +1,7 @@
 ---
 title: Injecting repository pattern services
 summary: Inject services into an endpoint that share the same DbConnection used by NServiceBus.
-reviewed: 2024-01-31
+reviewed: 2025-11-03
 component: SqlPersistence
 related:
 - persistence/sql/accessing-data

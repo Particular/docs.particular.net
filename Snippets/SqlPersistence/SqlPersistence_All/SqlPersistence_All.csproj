@@ -6,11 +6,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
-    <PackageReference Include="MySql.Data" Version="8.*" />
+    <PackageReference Include="MySql.Data" Version="9.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql" Version="8.*" />
     <PackageReference Include="NServiceBus.Persistence.Sql.ScriptBuilder" Version="8.*" />
     <PackageReference Include="NUnit" Version="4.*" />
-    <PackageReference Include="NUnit.Analyzers" Version="4.3.0" />
+    <PackageReference Include="NUnit.Analyzers" Version="4.*" />
     <PackageReference Include="NUnit3TestAdapter" Version="4.*" />
     <PackageReference Include="Oracle.ManagedDataAccess.Core" Version="3.*" />
   </ItemGroup>

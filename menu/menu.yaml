@@ -91,6 +91,10 @@
         Url: architecture/azure/messaging
       - Title: Observability
         Url: architecture/azure/observability
+    - Title: Security
+      Articles:
+      - Title: Attribute-Based Access Control (ABAC)
+        Url: architecture/azure/azure-abac-auth
   - Title: AWS
     Articles:
     - Title: Introduction
@@ -198,8 +202,8 @@
       Title: AwsLambda SQS 2 to 3
     - Url: nservicebus/upgrades/sqs-lambda-1to2
       Title: AwsLambda SQS 1 to 2
-    - Url: nservicebus/upgrades/9.1to9.2
-      Title: NServiceBus 9.1 to 9.2
+    - Url: nservicebus/upgrades/9to10
+      Title: NServiceBus 9 to 10
     - Url: nservicebus/upgrades/9to9.1
       Title: NServiceBus 9 to 9.1
     - Url: nservicebus/upgrades/8to9
@@ -283,6 +287,8 @@
       Url: nservicebus/upgrades/azure-deprecation
     - Title: Azure BlobStorage Data Bus
       Articles:
+      - Url: nservicebus/upgrades/absdatabus-6to7
+        Title: Version 6 to 7
       - Url: nservicebus/upgrades/absdatabus-3to4
         Title: Version 3 to 4
       - Url: nservicebus/upgrades/absdatabus-2to3
@@ -828,6 +834,8 @@
         Title: Version 6 to 7
     - Title: Azure Service Bus
       Articles:
+      - Url: transports/upgrades/asbs-5to6
+        Title: Version 5 to 6
       - Url: transports/upgrades/asbs-4to5
         Title: Version 4 to 5
       - Url: transports/upgrades/asbs-3to4
@@ -854,6 +862,8 @@
         Title: Version 6 to 7
     - Title: RabbitMQ
       Articles:
+      - Url: transports/upgrades/rabbitmq-10to11
+        Title: Version 10 to 11
       - Url: transports/upgrades/rabbitmq-9to10
         Title: Version 9 to 10
       - Url: transports/upgrades/rabbitmq-7to8
@@ -900,8 +910,6 @@
       Articles:
       - Url: transports/upgrades/amazonsqs-7to8
         Title: Version 7 to 8
-      - Url: transports/upgrades/amazonsqs-7.2to7.3
-        Title: Version 7.2 to 7.3
       - Url: transports/upgrades/amazonsqs-6to7
         Title: Version 6 to 7
       - Url: transports/upgrades/amazonsqs-5to6
@@ -945,6 +953,8 @@
       Articles:
         - Url: nservicebus/azure/ways-to-live-without-transactions
           Title: Avoiding Transactions
+    - Url: transports/azure-service-bus/queue-scoped-permissions
+      Title: Queue-scoped permissions
     - Url: transports/azure-service-bus/operational-scripting
       Title: Operational scripting
   - Title: Azure Storage Queues
@@ -1119,8 +1129,8 @@
     Articles:
     - Title: Azure Table
       Articles:
-      - Url: persistence/upgrades/asp-5to6
-        Title: Version 5 to 6
+      - Url: persistence/upgrades/asp-6to7
+        Title: Version 6 to 7
       - Url: persistence/upgrades/asp-4to5
         Title: Version 4 to 5
       - Url: persistence/upgrades/asp-2to3
@@ -1137,6 +1147,8 @@
       Articles:
       - Url: persistence/upgrades/cosmosdb-1to2
         Title: Version 1 to 2
+      - Url: persistence/upgrades/cosmosdb-3to4
+        Title: Version 3 to 4
     - Title: DynamoDB
       Articles:
       - Url: persistence/upgrades/dynamodb-2to3
@@ -1158,7 +1170,7 @@
       - Url: persistence/upgrades/mongodb-4to5
         Title: Version 4 to 5
       - Url: persistence/upgrades/mongodb-5to6
-        Title: Version 5 to 6        
+        Title: Version 5 to 6
     - Title: RavenDB
       Articles:
       - Url: persistence/upgrades/ravendb-9to10

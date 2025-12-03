@@ -1,7 +1,7 @@
 ---
 title: Addressing
 summary: How SQL Server transport addresses are translated to queue names
-reviewed: 2024-01-24
+reviewed: 2025-10-21
 component: SqlTransport
 redirects:
  - nservicebus/sqlserver/addressing

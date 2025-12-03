@@ -3,7 +3,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-
 Console.Title = "Client";
 
 var builder = Host.CreateApplicationBuilder(args);
@@ -12,8 +11,6 @@ var endpointConfiguration = new EndpointConfiguration("Samples.AzureTable.Transa
 endpointConfiguration.UsePersistence<LearningPersistence>();
 endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-
-
 
 Console.WriteLine("Press any key, the application is starting");
 Console.TreatControlCAsInput = true;
@@ -32,6 +29,8 @@ await host.StartAsync();
 var messageSession = host.Services.GetRequiredService<IMessageSession>();
 
 Console.WriteLine("Press 'S' to send a message");
+Console.WriteLine("Press any other key to exit");
+
 while (true)
 {
     var key = Console.ReadKey();

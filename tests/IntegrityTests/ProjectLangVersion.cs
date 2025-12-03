@@ -168,6 +168,6 @@ namespace IntegrityTests
         };
 
         // This needs to be kept up to date with the latest released version of C#
-        private const int latestReleasedLangVersion = 13;
+        private const int latestReleasedLangVersion = 14;
     }
 }

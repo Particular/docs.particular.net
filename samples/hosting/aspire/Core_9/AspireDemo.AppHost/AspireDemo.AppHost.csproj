@@ -1,12 +1,11 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-  <Sdk Name="Aspire.AppHost.Sdk" Version="9.3.0" />
+﻿<Project Sdk="Aspire.AppHost.Sdk/13.0.0">
 
   <PropertyGroup>
     <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <UserSecretsId>677518ab-a60d-4fee-873e-8080d347c548</UserSecretsId>
     <LangVersion>12.0</LangVersion>
   </PropertyGroup>
 
@@ -18,9 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Aspire.Hosting.AppHost" Version="9.3.0" />
-    <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="9.*" />
-    <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="9.*" />
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" Version="13.*" />
+    <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="13.*" />
   </ItemGroup>
 
 </Project>

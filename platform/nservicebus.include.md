@@ -22,7 +22,7 @@ await endpoint.Send(new ProcessOrder { OrderId = 15 });
 // Receiving endpoint
 public class ProcessOrderHandler : IHandleMessages<ProcessOrder>
 {
-    public async Task Handle(ProcessOrder messsage, IMessageHandlerContext context)
+    public async Task Handle(ProcessOrder message, IMessageHandlerContext context)
     {
         // Do something with ProcessOrder message
     }
@@ -52,7 +52,7 @@ NServiceBus is designed to handle a large number of messages. Endpoints are conf
 
 In high-volume scenarios, where more messages are produced than a single physical endpoint can handle, the logical endpoint can be [scaled out across multiple physical instances](/nservicebus/scaling.md) running on different machines, sharing the load.
 
-Each endpoint tracks [key performance metrics](/monitoring/metrics/definitions.md) that can be exposed as [Windows Performance Counters](/monitoring/metrics/performance-counters.md) or [collected into a central dashboard](/monitoring/metrics/in-servicepulse.md). [The monitoring demo](/tutorials/monitoring-demo/) demonstrates how to find performance bottlenecks and identify endpoints that are ready to scale out.
+Each endpoint tracks [key performance metrics](/monitoring/metrics/definitions.md) that can be [exposed by OpenTelemetry](/nservicebus/operations/opentelemetry.md) and/or [collected into a central dashboard](/monitoring/metrics/in-servicepulse.md). [The monitoring demo](/tutorials/monitoring-demo/) demonstrates how to find performance bottlenecks and identify endpoints that are ready to scale out.
 
 ## Simple and testable
 
@@ -68,7 +68,7 @@ NServiceBus endpoints can be hosted anywhere code can be executed, such as in a 
 
 NServiceBus works with many different technology stacks, offering choices for [transport](/transports/) and [persistence](/persistence/). Out of the box, defaults are provided for [serialization](/nservicebus/serialization/), [dependency injection](/nservicebus/dependency-injection/), and [logging](/nservicebus/logging/). These defaults can be overridden if a specific technology is required.
 
-The NServiceBus message processing and dispatching pipeline is modular and extensible. [Message mutators](/nservicebus/pipeline/message-mutators.md) inject code into the pipeline to modify messages as they are being sent or received. More complex pipeline manipulation are possible with [behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md). NServiceBus extensions can be packaged up as [features](/nservicebus/pipeline/features.md), which can add behaviors to the pipeline and create tasks that get run when an endpoint starts and stops. Many of the existing capabilities of NServiceBus are implemented as behaviors and features.
+The NServiceBus message processing and dispatching pipeline is modular and extensible. The message processing pipeline can be manipulated with [behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md), which are similar to ASP.NET middleware. NServiceBus extensions can be packaged up as [features](/nservicebus/pipeline/features.md), which can add behaviors to the pipeline and create tasks that get run when an endpoint starts and stops. Many of the existing capabilities of NServiceBus are implemented as behaviors and features.
 
 ## Particular Service Platform
 
@@ -78,7 +78,7 @@ When a message fails to be processed, even after a number of retry strategies ha
 
 Additionally, each endpoint can send [heartbeat](/monitoring/heartbeats/), [health check](/monitoring/custom-checks/), and [performance metrics](/monitoring/metrics/) through the platform for visualization in ServicePulse, making it easy to see which endpoints are offline, which are ready to scale out, and which require manual intervention. Message  visualizations available in [ServicePulse](/servicepulse/message-details.md#messages-with-audited-conversation-data) and [ServiceInsight](/serviceinsight/) make it easy to understand message flows and timing of a running NServiceBus system.
 
-The [real-time monitoring demo](https://particular.net/real-time-monitoring) provides the ability to experience the Service Platform in action. The [Platform Sample package](/platform/platform-sample-package.md) provides the ability to demonstrate the Service Platform from within any Visual Studio solution, without the need to install anything.
+The [real-time monitoring demo](https://particular.net/real-time-monitoring) provides the ability to experience the Service Platform in action. The [Platform Sample package](/platform/platform-sample-package.md) provides the ability to demonstrate the Service Platform from within any .NET Project, without the need to install anything.
 
 ## See it in action
 

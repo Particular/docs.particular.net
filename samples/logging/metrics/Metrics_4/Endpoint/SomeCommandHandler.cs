@@ -1,11 +1,8 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.Logging;
+﻿using NServiceBus.Logging;
 
-class SomeCommandHandler :
-    IHandleMessages<SomeCommand>
+class SomeCommandHandler : IHandleMessages<SomeCommand>
 {
-    static ILog log = LogManager.GetLogger<SomeCommandHandler>();
+    static readonly ILog log = LogManager.GetLogger<SomeCommandHandler>();
 
     public Task Handle(SomeCommand message, IMessageHandlerContext context)
     {

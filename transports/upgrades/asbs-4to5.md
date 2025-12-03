@@ -1,12 +1,14 @@
 ---
 title: Azure Service Bus Transport Upgrade Version 4 to 5
-summary: Migration instructions on how to upgrade the Azure Service Bus transport from version 4 to 5
+summary: Instructions on how to upgrade Azure Service Bus transport from version 4 to 5
 reviewed: 2025-02-07
 component: ASBS
 related:
  - transports/azure-service-bus
  - samples/azure-service-bus-netstandard/topology-migration
 isUpgradeGuide: true
+upgradeGuideCoreVersions:
+ - 9
 ---
 
 Upgrading Azure Service Bus transport from version 4 to version 5 is a major upgrade and requires careful planning. Read the entire upgrade guide before beginning the upgrade process.
@@ -226,7 +228,7 @@ static string HashName(string input)
 
 ### Migrating rule name customizations
 
-Previously, rule names could be [assigned using function delegates](/transports/azure-service-bus/configuration.md?version=asbs_4#entity-creation-settings) 
+Previously, rule names could be [assigned using function delegates](/transports/azure-service-bus/configuration.md?version=asbs_4#entity-creation-settings)
 
 ```csharp
 transport.SubscriptionRuleNamingConvention(x => "MyPrefix-"+x);

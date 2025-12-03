@@ -9,13 +9,14 @@ class Program3rdParty
 
     static void Main()
     {
+        const string url = "http://localhost:57789/";
         Console.Title = "3rdPartySystem";
-        Console.WriteLine("Press enter to toggle the server and return an error or success");
+        Console.WriteLine($"Press enter to toggle the server at {url} and return an error or success");
         Console.WriteLine("Press any other key to exit");
 
         using (listener = new HttpListener())
         {
-            listener.Prefixes.Add("http://localhost:57789/");
+            listener.Prefixes.Add(url);
             listener.Start();
             listener.BeginGetContext(ListenerCallback, listener);
 
@@ -56,6 +57,8 @@ class Program3rdParty
             return;
         }
         var context = listener.EndGetContext(result);
+        listener.BeginGetContext(ListenerCallback, listener);
+
         var response = context.Response;
         if (isReturningOk)
         {
@@ -66,7 +69,6 @@ class Program3rdParty
             WriteResponse(response, HttpStatusCode.InternalServerError);
         }
         response.Close();
-        listener.BeginGetContext(ListenerCallback, listener);
     }
 
     static void WriteResponse(HttpListenerResponse response, HttpStatusCode statusCode)

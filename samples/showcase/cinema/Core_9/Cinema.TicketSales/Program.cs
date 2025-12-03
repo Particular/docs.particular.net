@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 var endpointName = "Cinema.TicketSales";
+var monthId = DateTime.Now.ToString("yyyy-MM");
 
 if (args.Length > 0)
 {
@@ -38,11 +39,48 @@ endpointConfiguration.EnableInstallers();
 
 builder.UseNServiceBus(endpointConfiguration);
 
-builder.Services.AddHostedService<ConsoleSalesDesk>();
+var host = builder.Build();
 
-var app = builder.Build();
+await host.StartAsync();
 
-app.Run();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+#region sales-desk
+Console.WriteLine("Press [Enter] to exit");
+Console.WriteLine("Press [B] to sell ticket for Barbie");
+Console.WriteLine("Press [O] to sell ticket for Oppenheimer");
+
+while (true)
+{
+    if (!Console.KeyAvailable) continue;
+
+    var userInput = Console.ReadKey();
+
+    if (userInput.Key == ConsoleKey.Enter)
+    {
+        break;
+    }
+    if (userInput.Key == ConsoleKey.B)
+    {
+        await messageSession.Send(new RecordTicketSale
+        {
+            MonthId = monthId,
+            FilmName = "Barbie"
+        }, CancellationToken.None);
+    }
+    else if (userInput.Key == ConsoleKey.O)
+    {
+        await messageSession.Send(new RecordTicketSale
+        {
+            MonthId = monthId,
+            FilmName = "Oppenheimer"
+        }, CancellationToken.None);
+    }
+}
+#endregion
+
+await host.StopAsync();
+return;
 
 static async Task OnCriticalError(ICriticalErrorContext context, CancellationToken cancellationToken)
 {

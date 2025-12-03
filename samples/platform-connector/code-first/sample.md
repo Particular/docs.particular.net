@@ -1,7 +1,7 @@
 ---
 title: Connect to ServicePlatform with code-first configuration
 summary: A sample that shows how to connect an NServiceBus endpoint to the Particular Service Platform using the code-first API
-reviewed: 2024-01-25
+reviewed: 2025-10-21
 component: PlatformConnector
 related:
  - platform/connecting

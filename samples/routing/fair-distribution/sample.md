@@ -2,7 +2,7 @@
 title: Fair Load Distribution
 summary: Implementing fair load distribution for heterogeneous scaled-out endpoints
 component: Core
-reviewed: 2024-01-25
+reviewed: 2025-10-21
 ---
 
 This sample demonstrates how to extend the NServiceBus routing model with a custom distribution strategy. The default built-in distribution strategy uses a simple round-robin approach. This sample shows a more sophisticated distribution strategy that keeps the queue length of all load-balanced instances equal, allowing for the effective use of non-heterogeneous worker clusters.

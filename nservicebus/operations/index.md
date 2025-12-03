@@ -1,7 +1,7 @@
 ---
 title: Operations
 summary: Operations Table of Contents
-reviewed: 2024-01-19
+reviewed: 2025-10-13
 ---
 
 Operational tasks include the following categories:

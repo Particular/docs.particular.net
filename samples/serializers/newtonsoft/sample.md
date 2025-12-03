@@ -1,7 +1,7 @@
 ---
 title: Newtonsoft JSON Serializer sample
 summary: NServiceBus sample that shows how to use the Newtonsoft JSON serializer in an endpoint
-reviewed: 2024-01-30
+reviewed: 2025-11-03
 component: Newtonsoft
 related:
  - nservicebus/serialization

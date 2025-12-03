@@ -1,11 +1,13 @@
 ---
 title: Cooperative cancellation
 summary: Stopping both the endpoint and a long running handler with a cancellation token
-reviewed: 2024-01-20
+reviewed: 2025-10-14
 component: Core
 ---
 
-Run the solution. A single console application starts up: `Server`.
+This sample demonstrates graceful shutdown of its host via [cooperative cancellation](/nservicebus/hosting/cooperative-cancellation.md) by signaling a [cancellation token](https://docs.microsoft.com/en-us/dotnet/api/system.threading.cancellationtoken) to abort a simulated long-running async operation inside a handler.
+
+To get started run the solution. A single console application starts up: `Server`.
 
 ## Code walk-through
 

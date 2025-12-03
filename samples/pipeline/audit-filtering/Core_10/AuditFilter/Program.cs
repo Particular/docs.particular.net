@@ -1,12 +1,10 @@
-using System;
-using AuditFilter;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NServiceBus;
 
 Console.Title = "AuditFilter";
+
 var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<InputService>();
+
 var endpointConfiguration = new EndpointConfiguration("Samples.AuditFilter");
 
 endpointConfiguration.UsePersistence<LearningPersistence>();
@@ -18,6 +16,7 @@ endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.AuditProcessedMessagesTo("audit");
 
 var pipeline = endpointConfiguration.Pipeline;
+
 pipeline.Register(
     stepId: "AuditFilter.Filter",
     behavior: typeof(AuditFilterBehavior),
@@ -31,10 +30,28 @@ pipeline.Register(
     behavior: typeof(AuditFilterContextBehavior),
     description: "adds a shared state for the rules and filter behaviors");
 
-
 #endregion
 
-Console.WriteLine("Starting...");
-
 builder.UseNServiceBus(endpointConfiguration);
-await builder.Build().RunAsync();
+
+var host = builder.Build();
+
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+var auditThisMessage = new AuditThisMessage
+{
+    Content = "See you in the audit queue!"
+};
+
+await messageSession.SendLocal(auditThisMessage);
+
+var doNotAuditThisMessage = new DoNotAuditThisMessage
+{
+    Content = "Don't look for me!"
+};
+
+await messageSession.SendLocal(doNotAuditThisMessage);
+
+await host.WaitForShutdownAsync();

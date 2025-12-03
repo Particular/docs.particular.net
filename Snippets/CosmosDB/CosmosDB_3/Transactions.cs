@@ -124,6 +124,9 @@ class Transactions
 
     void ExtractContainerInfoFromMessageInstance(PersistenceExtensions<CosmosPersistence> persistence)
     {
+#pragma warning disable CS0618 // Type or member is obsolete
+        persistence.EnableContainerFromMessageExtractor();
+#pragma warning restore CS0618 // Type or member is obsolete
         #region ExtractContainerInfoFromMessageInstance
 
         var transactionInformation = persistence.TransactionInformation();
@@ -134,6 +137,9 @@ class Transactions
 
     void ExtractContainerInfoFromMessageExtractor(PersistenceExtensions<CosmosPersistence> persistence)
     {
+#pragma warning disable CS0618 // Type or member is obsolete
+        persistence.EnableContainerFromMessageExtractor();
+#pragma warning restore CS0618 // Type or member is obsolete
         #region ExtractContainerInfoFromMessageExtractor
 
         var transactionInformation = persistence.TransactionInformation();
@@ -144,6 +150,9 @@ class Transactions
 
     void ExtractContainerInfoFromMessageCustom(PersistenceExtensions<CosmosPersistence> persistence)
     {
+#pragma warning disable CS0618 // Type or member is obsolete
+        persistence.EnableContainerFromMessageExtractor();
+#pragma warning restore CS0618 // Type or member is obsolete
         #region ExtractContainerInfoFromMessageCustom
 
         var transactionInformation = persistence.TransactionInformation();

@@ -3,8 +3,6 @@ title: Castle Windsor
 summary: Details on how to Configure NServiceBus to use Castle Windsor for dependency injection.
 component: Castle
 reviewed: 2025-02-14
-related:
- - samples/dependency-injection/castle
 redirects:
  - nservicebus/containers/castle
 ---

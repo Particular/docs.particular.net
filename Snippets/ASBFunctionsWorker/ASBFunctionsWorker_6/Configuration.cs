@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.Hosting;
-using NServiceBus;
+﻿using System;
 using System.Threading.Tasks;
+using Azure.Storage.Blobs;
+using Microsoft.Extensions.Hosting;
+using NServiceBus;
 
 #region asb-function-isolated-configuration
 [assembly: NServiceBusTriggerFunction("WorkerDemoEndpoint")]
@@ -35,6 +37,38 @@ class EnableDiagnostics
         return host.RunAsync();
     }
     #endregion
+}
+
+class EnableDiagnosticsBlob
+{
+    public static Task Main()
+    {
+        var endpointName = "ASBWorkerEndpoint";
+
+        #region asb-function-iso-diagnostics-blob
+        var host = new HostBuilder()
+            .ConfigureFunctionsWorkerDefaults()
+            .UseNServiceBus(configuration =>
+            {
+                configuration.AdvancedConfiguration.CustomDiagnosticsWriter(
+                    async (diagnostics, cancellationToken) =>
+                    {
+                        var connectionString = Environment.GetEnvironmentVariable("AzureWebJobsStorage");
+                        var blobServiceClient = new BlobServiceClient(connectionString);
+
+                        var containerClient = blobServiceClient.GetBlobContainerClient("diagnostics");
+                        await containerClient.CreateIfNotExistsAsync(cancellationToken: cancellationToken);
+
+                        var blobName = $"{endpointName}-configuration.txt";
+                        var blobClient = containerClient.GetBlobClient(blobName);
+                        await blobClient.UploadAsync(BinaryData.FromString(diagnostics), cancellationToken);
+                    });
+            })
+            .Build();
+        #endregion
+        return host.RunAsync();
+    }
+    
 }
 
 class ConfigureErrorQueue

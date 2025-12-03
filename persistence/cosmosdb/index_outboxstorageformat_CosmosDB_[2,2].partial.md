@@ -1,0 +1,5 @@
+> [!NOTE]
+> **Versions `v2.0.4` and up:** For control messages, a default partition key in the format `{endpointName}-{messageId}` will be used. As a result, multiple logical endpoints _can_ share the same database and container.
+
+> [!WARNING]
+> **Versions `v2.0.3` and under:** For control messages, a default partition key in the format `{messageId}` will be used; however, these Outbox records are not separated by endpoint name. As a result, multiple logical endpoints _cannot_ share the same database and container since [message identities are not unique across endpoints from a processing perspective](/nservicebus/outbox/#message-identity). To avoid conflicts, either separate different endpoints into different containers, [override the partition key](transactions.md), or update to `NServiceBus.Persistence.CosmosDB 2.0.4`.

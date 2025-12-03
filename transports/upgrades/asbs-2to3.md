@@ -1,6 +1,6 @@
 ---
 title: Azure Service Bus Transport Upgrade Version 2 to 3
-summary: Migration instructions on how to upgrade the Azure Service Bus transport from version 2 to 3
+summary: Instructions on how to upgrade Azure Service Bus transport from version 2 to 3
 reviewed: 2021-11-07
 component: ASBS
 related:

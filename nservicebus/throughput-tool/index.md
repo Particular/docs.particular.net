@@ -16,9 +16,9 @@ redirects:
 ---
 
 > [!WARNING]
-> Starting 1 January 2026, it will become mandatory for all projects in active development to use [ServicePulse](./../../servicepulse/usage.md) for usage data collection. Once configured, ServicePulse provides the ability to report throughput instantly at any time, without needing to run an external tool or wait for data collection.
+> Starting 1 January 2027, it will become mandatory for all projects in active development to use [ServicePulse](./../../servicepulse/usage.md) for usage data collection. Once configured, ServicePulse provides the ability to report throughput instantly at any time, without needing to run an external tool or wait for data collection.
 >
-> The legacy endpoint throughput counter tool is offered as an alternate option for customers that aren't able to use ServicePulse. If you have any issues installing ServicePulse in your environment, please reach out so we can help find a path forward.
+> The legacy endpoint throughput counter tool is offered as an alternate option for customers who aren't able to use ServicePulse. If you encounter any issues installing ServicePulse in your environment, please reach out so we can assist in finding a solution.
 >
 > If necessary, [open a support case](https://customers.particular.net/request-support/licensing) to get help with installing or configuring ServicePulse for usage data collection.
 
@@ -90,26 +90,26 @@ Completing these steps stores credentials that can be used by the tool.
 
 #### Running the tool
 
-To run the tool, the resource ID for the Azure Service Bus namespace is needed.
+To run the tool, the resource ID and the region for the Azure Service Bus namespace is needed.
 
-In the Azure Portal, go to the Azure Service Bus namespace, click **Properties** in the side navigtation (as shown in the screenshot below) and then copy the `Id` value, which will be needed to run the tool. The `Id` value should have a format similar to `/subscriptions/{Guid}/resourceGroups/{rsrcGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}`.
+In the Azure Portal, go to the Azure Service Bus namespace, click **Properties** in the side navigation (as shown in the screenshot below) and then copy the `Id` and `Location` values, which will be needed to run the tool. The `Id` value should have a format similar to `/subscriptions/{Guid}/resourceGroups/{rsrcGroupName}/providers/Microsoft.ServiceBus/namespaces/{namespaceName}`.
 
-This screenshot shows how to copy the Service Bus Namespace's `Id` value:
+This screenshot shows how to copy the Service Bus Namespace's `Id` value - the `Location` value can be copied in the same way:
 
 ![How to collect the Service Bus Namespace Id](azure-service-bus.png)
 
-Execute the tool with the resource ID of the Azure Service Bus namespace.
+Execute the tool with the resource ID and region of the Azure Service Bus namespace.
 
 If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
 
 ```shell
-throughput-counter azureservicebus [options] --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace
+throughput-counter azureservicebus [options] --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace --region xxxxxxxxx
 ```
 
 Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
 
 ```shell
-Particular.EndpointThroughputCounter.exe azureservicebus [options] --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace
+Particular.EndpointThroughputCounter.exe azureservicebus [options] --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace  --region xxxxxxxxx
 ```
 
 #### Options
@@ -117,12 +117,14 @@ Particular.EndpointThroughputCounter.exe azureservicebus [options] --resourceId 
 | Option | Description |
 |-|-|
 | <nobr>`--resourceId`</nobr> | **Required** – The resource ID of the Azure Service Bus namespace, which can be found in the Azure Portal as described above. |
+| <nobr>`--region`</nobr> | **Required** – The Azure region where the Service Bus namespace is located, which can be found in the Azure Portal as described above. Note that the region value should be the [Programmatic name](https://learn.microsoft.com/en-us/azure/reliability/regions-list) for the region. |
 | <nobr>`--serviceBusDomain`</nobr> | The Service Bus domain. Defaults to `servicebus.windows.net`. Only necessary for Azure customers using a [non-public/government cloud](https://learn.microsoft.com/en-us/rest/api/servicebus/). |
+| <nobr>`--metricsDomain`</nobr> | The monitoring metrics domain. Defaults to `metrics.monitor.azure.com`. Only necessary for Azure customers using a [non-public/government cloud](https://learn.microsoft.com/en-us/dotnet/api/overview/azure/monitor.query-readme?view=azure-dotnet#configure-client-for-azure-sovereign-cloud). |
 include: throughput-tool-global-options
 
 #### What the tool does
 
-First, the tool uses a `ServiceBusAdministrationClient` to [query the queue names](https://learn.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.administration.servicebusadministrationclient.getqueuesasync?view=azure-dotnet) from the namespace. Next, a `MetricsQueryClient` is used to [query for `CompleteMessage` metrics](https://learn.microsoft.com/en-us/dotnet/api/azure.monitor.query.metricsqueryclient.queryresourceasync?view=azure-dotnet) for the past 30 days from each queue.
+First, the tool uses a `ServiceBusAdministrationClient` to [query the queue names](https://learn.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.administration.servicebusadministrationclient.getqueuesasync?view=azure-dotnet) from the namespace. Next, a `MetricsClient` is used to [query for `CompleteMessage` metrics](https://learn.microsoft.com/en-us/dotnet/api/azure.monitor.query.metricsclient.queryresourcesasync?view=azure-dotnet) for the past 30 days from each queue.
 
 Using Azure Service Bus metrics allows the tool to capture the last 30 days worth of data at once. Although the tool collects 30 days worth of data, only the highest daily throughput is included in the report.
 
@@ -161,7 +163,7 @@ include: throughput-tool-global-options
 
 The tool first queries the SQS API to [fetch all queue names](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ListQueues.html). Then, for each queue that is discovered, the tool queries the [CloudWatch API](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricStatistics.html) for the `NumberOfMessagesDeleted` metrics for the past 30 days.
 
-Unlike ServiceControl, using SQS and CloudWatch metrics allows the tool to capture the last 30 days worth of data at once, which means that the report will be generated without delay. Although the tool collects 30 days worth of data, only the highest daily throughput is included in the report.
+Unlike ServiceControl, using SQS and CloudWatch metrics allows the tool to capture the last 30 days' worth of data at once, which means that the report will be generated without delay. Although the tool collects 30 days worth of data, only the highest daily throughput is included in the report.
 
 ### RabbitMQ
 
@@ -169,7 +171,7 @@ Unlike ServiceControl, using SQS and CloudWatch metrics allows the tool to captu
 
 To collect data from RabbitMQ, the [management plugin](https://www.rabbitmq.com/management.html) must be enabled on the RabbitMQ broker. The tool will also require a login that can access the management UI.
 
-Execute the tool, providing the RabbitMQ management URL, as in this example where the RabbitMQ broker is running on localhost.
+Execute the tool, providing the RabbitMQ management URL, as in this example, where the RabbitMQ broker is running on localhost.
 
 If the tool was [installed as a .NET tool](/nservicebus/throughput-tool/#installation-net-tool-recommended):
 

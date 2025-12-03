@@ -1,6 +1,6 @@
 ---
 title: Recoverability
-summary: Recoverability techniques for building resilient distributed systems
+summary: Techniques for message recoverability. Handle transient and persistent failures with immediate/delayed retries, error queues, and Particular Platform tools.
 reviewed: 2025-07-03
 callsToAction: ['solution-architect']
 ---

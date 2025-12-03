@@ -8,16 +8,6 @@ isUpgradeGuide: true
 
 ## Default topology has changed
 
-This version of the functions integration with Azure Service Bus uses NServiceBus.Transport.AzureServiceBus version 5 and higher. By default Azure Service Bus is configured to the [default topology](/transports/azure-service-bus/topology.md) (using topic-per-event approach). The defaults can be overridden by adding topology options to the Application configuration
+Version 6 of the functions integration now uses version 5 of the Azure Service Bus Transport, which introduced a new [default topology](/transports/azure-service-bus/topology.md). See the [Azure Service Bus Transport Upgrade Version 4 to 5](/transports/upgrades/asbs-4to5.md) for more details.
 
-The functions integration looks for either topology options placed into `AzureServiceBus:TopologyOptions` or `AzureServiceBus:MigrationTopologyOptions` for migration and backward compatibility scenarios.
-
-snippet: ASBFunctionsWorker-topology-options
-
-Using the default topology
-
-snippet: ASBFunctionsWorker-topology-options-json
-
-Using the migration topology
-
-snippet: ASBFunctionsWorker-topology-migration-options-json
+The default topology options can be overridden by adding settings to the [application configuration](/nservicebus/hosting/azure-functions-service-bus/#preparing-the-azure-service-bus-namespace-topology-configuration).

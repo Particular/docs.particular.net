@@ -1,9 +1,13 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
 using NServiceBus.Transport.AzureServiceBus;
+using Shared;
 
 var builder = Host.CreateApplicationBuilder(args);
 builder.Logging.AddConsole();
@@ -32,7 +36,48 @@ endpointConfiguration.EnableInstallers();
 
 builder.UseNServiceBus(endpointConfiguration);
 
-builder.Services.AddHostedService<Worker>();
+var host = builder.Build();
 
-var app = builder.Build();
-await app.RunAsync();
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+Console.WriteLine("Publishing messages... Press [Ctrl] + [C] to cancel");
+
+using (var cts = new CancellationTokenSource())
+{
+    Console.CancelKeyPress += (s, e) =>
+    {
+        Console.WriteLine("Cancellation Requested...");
+        cts.Cancel();
+        e.Cancel = true;
+    };
+
+    try
+    {
+        var number = 0;
+
+        while (true)
+        {
+            await messageSession.Publish(new EventOne
+            {
+                Content = $"EventOne {number++}",
+                PublishedOnUtc = DateTime.UtcNow
+            });
+
+            await Task.Delay(1000, cts.Token);
+
+            await messageSession.Publish(new EventTwo
+            {
+                Content = $"EventTwo {number}",
+                PublishedOnUtc = DateTime.UtcNow
+            }, cts.Token);
+        }
+    }
+    catch (OperationCanceledException) when (cts.Token.IsCancellationRequested)
+    {
+        // graceful shutdown
+    }
+}
+
+await host.StopAsync();

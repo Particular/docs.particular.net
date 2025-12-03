@@ -1,13 +1,13 @@
 ---
 title: Transitioning Saga Correlation IDs
 summary: An approach for transitioning between different correlation IDs with no downtime
-reviewed: 2024-02-05
+reviewed: 2025-11-26
 component: SqlPersistence
 related:
  - nservicebus/sagas
 ---
 
-This sample illustrates an approach for transitioning between different [correlation IDs](/persistence/sql/saga.md#correlation-ids) in a way that requires no endpoint downtime or migration of saga data stored in sql.
+This sample illustrates an approach for transitioning between different [correlation IDs](/persistence/sql/saga.md#correlation-ids) in a way that requires no endpoint downtime or migration of saga data stored in SQL.
 
 > [!NOTE]
 > The sample uses three "Phase" endpoint projects to illustrate the iterations of a single endpoint in one solution.
@@ -16,9 +16,9 @@ include: sqlpersistence-prereqs
 
 ## Scenario
 
-The sample uses a hypothetical "Order" scenario where the requirement is to transition from an an integer correlation ID `OrderNumber` to a GUID correlation ID `OrderId`.
+The sample uses a hypothetical "Order" scenario where the requirement is to transition from an integer correlation ID `OrderNumber` to a GUID correlation ID `OrderId`.
 
-To move between phases, after running each phase adjust the startup project list in solution properties. E.g. after phase 1, disable endpoints that contain "Phase1" in the name, and enable endpoints that contain "Phase2".
+To move between phases, after running each phase, adjust the startup project list in the solution properties. E.g., after phase 1, disable endpoints that contain "Phase1" in the name, and enable endpoints that contain "Phase2".
 
 ## Phases
 
@@ -40,7 +40,7 @@ snippet: sagadataPhase1
 
 ### Phase 2
 
-In the second phase a GUID `OrderId` is added. The saga still maps `StartOrder.OrderNumber` to `OrderSagaData.OrderNumber` in the `ConfigureHowToFindSaga` method. However it also introduces a correlation to `OrderSagaData.OrderId` via a `transitionalCorrelationProperty` in the `[SqlSaga]` attribute.
+In the second phase, a GUID `OrderId` is added. The saga still maps `StartOrder.OrderNumber` to `OrderSagaData.OrderNumber` in the `ConfigureHowToFindSaga` method. However, it also introduces a correlation to `OrderSagaData.OrderId` via a `transitionalCorrelationProperty` in the `[SqlSaga]` attribute.
 
 #### Message
 
@@ -55,11 +55,11 @@ snippet: sagaPhase2
 snippet: sagadataPhase2
 
 > [!WARNING]
-> Prior to moving to Phase 3 it is necessary to verify that all existing sagas have the `Correlation_OrderId` column populated. This can either be inferred by the business knowledge (i.e. certain saga may have a known and constrained lifetime) or by querying the database.
+> Prior to moving to Phase 3, it is necessary to verify that all existing sagas have the `Correlation_OrderId` column populated. This can either be inferred by the business knowledge (i.e., certain saga may have a known and constrained lifetime) or by querying the database.
 
 ### Phase 3
 
-In the third phase, the integer `OrderNumber` is removed leaving only the `OrderId`. The saga now maps `StartOrder.OrderId` to `OrderSagaData.OrderId` in the `ConfigureHowToFindSaga` method.
+In the third phase, the integer `OrderNumber` is removed, leaving only the `OrderId`. The saga now maps `StartOrder.OrderId` to `OrderSagaData.OrderId` in the `ConfigureHowToFindSaga` method.
 
 #### Message
 

@@ -23,24 +23,29 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
 builder.UseNServiceBus(endpointConfiguration);
 
-var host = builder.Build();
-
-Console.WriteLine("Press any key, the application is starting");
-Console.ReadKey();
 Console.WriteLine("Starting...");
 
+var host = builder.Build();
+
 await host.StartAsync();
+
 var messageSession = host.Services.GetRequiredService<IMessageSession>();
 
-Console.WriteLine("Press S to send an order");
-Console.WriteLine("Press C to cancel an order");
-Console.WriteLine("Press ESC to exit");
+Console.WriteLine("Press [S] to send an order");
+Console.WriteLine("Press [C] to cancel an order");
+Console.WriteLine("Press any other key to exit");
 
-ConsoleKey keyPressed = Console.ReadKey(true).Key;
-
-while (keyPressed != ConsoleKey.Escape)
+while (true)
 {
-    switch (keyPressed)
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    if (key.Key != ConsoleKey.C && key.Key != ConsoleKey.S)
+    {
+        break;
+    }
+
+    switch (key.Key)
     {
         case ConsoleKey.S:
             await PlaceOrder(messageSession, Guid.NewGuid().ToString(), 25m);
@@ -48,12 +53,13 @@ while (keyPressed != ConsoleKey.Escape)
         case ConsoleKey.C:
             await CancelOrder(messageSession, Guid.NewGuid().ToString());
             break;
+        default:
+            continue;
     }
-
-    keyPressed = Console.ReadKey(true).Key;
 }
 
 await host.StopAsync();
+return;
 
 static async Task PlaceOrder(IMessageSession messageSession, string orderId, decimal value)
 {

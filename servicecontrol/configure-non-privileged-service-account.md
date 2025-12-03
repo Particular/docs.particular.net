@@ -23,10 +23,8 @@ The queues that ServiceControl needs to access will reflect the `InstanceName` u
 
 Both read and send permissions are required for each of these queues:
 
- * `{InstanceName}`: 
+ * `{InstanceName}`:
  * `{InstanceName}.errors`
- * `{InstanceName}.timeouts` (only when using [MSMQ](/servicecontrol/transports.md#msmq))
- * `{InstanceName}.timeoutsdispatcher` (only when using [MSMQ](/servicecontrol/transports.md#msmq))
 
 ### [Error instances](/servicecontrol/servicecontrol-instances/):
 
@@ -43,15 +41,6 @@ Both read and send permissions are required for each of these queues:
 
 > [!NOTE]
 > For [MSMQ](/servicecontrol/transports.md#msmq), the ACL default for a queue allows Administrators full access. Switching to a low-privileged account requires modification of rights to give full control to the custom account.
-
-## Url namespace reservations
-
-When deploying using the ServiceControl Management Utility (SCMU) or PowerShell, the account under which the ServiceControl instance is running requires URL namespace reservations for the hostname and ports used by the instance. Even when deploying using SCMU The reservations can be managed using the [ServiceControl Powershell commands](/servicecontrol/) <!-- TODO: point to troubleshooting guide section instead --> or from the command line using [netsh.exe](https://docs.microsoft.com/en-us/windows/desktop/http/add-urlacl). For example, to add url reservation for `http:\\localhost:33333\` to `LocalService` account the following command can be used `netsh http add urlacl url=http://localhost:33333/ user=LocalService listen=yes delegate=no`.
-
-For instructions on how to review and change the urls used by ServiceControl instance, refer to [Changing the ServiceControl URI](setting-custom-hostname.md). <!-- TODO: Is this necessary with the previous paragraph. Fix or raise an issue. -->
-
-> [!NOTE]
-> ServiceControl exposes endpoints on two different ports, each one requiring separate registration.
 
 ## Filesystem paths
 

@@ -11,7 +11,7 @@ upgradeGuideCoreVersions:
 
 ## Replacing shorteners with naming conventions
 
-For existing shoteners, the logic has to be moved into appropriate naming conventions.
+For existing shorteners, the logic has to be moved into appropriate naming conventions.
 To retain the same behavior, a length check needs to be added to the naming conventions logic.
 
 ### RuleNameShortener

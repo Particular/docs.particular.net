@@ -1,7 +1,7 @@
 ---
 title: Message-driven Publish/Subscribe
 summary: Persistence-based Publish/Subscribe for unicast-only transports.
-reviewed: 2024-01-17
+reviewed: 2025-10-13
 component: Core
 related:
  - nservicebus/messaging/publish-subscribe

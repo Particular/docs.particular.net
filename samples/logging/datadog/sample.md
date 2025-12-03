@@ -2,7 +2,7 @@
 title: Capture and visualize metrics using Datadog
 summary: Illustrates how to capture, store, and visualize NServiceBus metrics in Datadog.
 component: Metrics
-reviewed: 2024-01-11
+reviewed: 2025-10-03
 ---
 
 ## Introduction

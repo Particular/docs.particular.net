@@ -80,6 +80,9 @@ while (true)
 }
 #endregion
 
+await host.StopAsync();
+return;
+
 static async Task OnCriticalError(ICriticalErrorContext context, CancellationToken cancellationToken)
 {
     // TODO: decide if stopping the endpoint and exiting the process is the best response to a critical error

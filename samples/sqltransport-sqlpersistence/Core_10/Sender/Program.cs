@@ -62,3 +62,5 @@ while (true)
     await messageSession.Publish(orderSubmitted);
     Console.WriteLine("Published OrderSubmitted message");
 }
+
+await host.StopAsync();

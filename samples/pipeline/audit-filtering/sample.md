@@ -1,24 +1,24 @@
 ---
 title: Audit Filter Pipeline Extension
 summary: Extending the pipeline to stop certain messages from being audited
-reviewed: 2024-01-12
+reviewed: 2025-10-08
 component: Core
 related:
   - nservicebus/pipeline
   - nservicebus/operations/auditing
 ---
 
-This sample demonstrates how to extend the NServiceBus message-processing pipeline with custom behaviors to add filters which prevent certain message types from being forwarded to the audit queue.
+This sample demonstrates how to extend the NServiceBus message processing pipeline with custom behaviors to add filters which prevent certain message types from being forwarded to the audit queue.
 
 ## Code walk-through
 
-The solution contains a single endpoint with auditing enabled. When it starts, the endpoint sends one `AuditThisMessage` message and one `DoNotAuditThisMessage` message to itself. Both messages are handled by message handlers. However only the `AuditThisMessage` message will be moved to the audit queue, and the `DoNotAuditThisMessage` message is filtered out.
+The solution contains a single endpoint with auditing enabled. When it starts, the endpoint sends one `AuditThisMessage` message and one `DoNotAuditThisMessage` message to itself. Both messages are handled by message handlers. However only the `AuditThisMessage` message will be sent to the audit queue. The `DoNotAuditThisMessage` message is filtered out and not sent.
 
 Three behaviors are added to the message processing pipeline to implement the desired filtering logic:
 
 ### AuditFilterContextBehavior
 
-This behavior adds a class to the pipeline contexts `Extensions` bag. This class can later be accessed by the other behaviors to share state across behaviors. The state must be added early in the pipeline because anything added to the `Extensions` after `IIncomingPhysicalMessageContext` is invisible to the `IAuditContext` instance.
+This behavior adds a class to the pipeline context's `Extensions` bag. This class can later be accessed by the other behaviors to share state across behaviors. The state must be added early in the pipeline because anything added to `Extensions` after `IIncomingPhysicalMessageContext` is invisible to the `IAuditContext` instance.
 
 snippet: auditFilterContextBehavior
 

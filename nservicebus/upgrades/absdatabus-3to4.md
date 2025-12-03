@@ -1,5 +1,5 @@
 ---
-title: Azure Blob Storage Databus Upgrade Version 3 to 4
+title: Azure Blob Storage Data Bus Upgrade Version 3 to 4
 summary: A summary of changes when migrating Azure Blob Storage Data Bus from version 3 to version 4
 reviewed: 2020-11-08
 component: ABSDataBus
@@ -24,10 +24,10 @@ The `.BlockSize()` property has been deprecated due to restrictions of the under
 
 ## Registering a BlobServiceClient
 
-The `.AuthenticateWithManagedIdentity()`-method has been deprecated. 
+The `.AuthenticateWithManagedIdentity()`-method has been deprecated.
 For scenario's in which advanced authentication modes are desirable, a preconfigured `BlobServiceClient` can be configured in the databus in two ways:
 - by supplying a preconfigured instance to `.UseBlobContainerClient()`
-- by registering a custom provider in the container that implements `IProvideBlobContainerClient` 
+- by registering a custom provider in the container that implements `IProvideBlobContainerClient`
 
 ## Expired blob cleanup
 

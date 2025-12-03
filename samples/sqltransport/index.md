@@ -1,5 +1,5 @@
 ---
 title: SQL Server Transport Samples
-reviewed: 2024-01-31
+reviewed: 2025-11-07
 component: SqlTransport
 ---

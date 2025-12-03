@@ -34,13 +34,19 @@ partial: configuration
 
 Unlike the [in-process hosting model](/nservicebus/hosting/azure-functions-service-bus/in-process/), the isolated worker model does not support using [`TransportTransactionMode.SendsAtomicWithReceive`](/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive). [`TransportTransactionMode.ReceiveOnly`](/transports/transactions.md#transactions-transport-transaction-receive-only) is the default option.
 
-### Custom diagnostics
+### Startup Diagnostics
 
-[NServiceBus startup diagnostics](/nservicebus/hosting/startup-diagnostics.md) are disabled by default when using Azure Functions. Diagnostics can be written to the logs via the `LogDiagnostics` option:
+[NServiceBus startup diagnostics](/nservicebus/hosting/startup-diagnostics.md), which help troubleshoot configuration and initialization issues, are disabled by default when using Azure Functions. Diagnostics can be written to the application log file via the `LogDiagnostics()` method and will show up in the [Azure Function log stream](https://learn.microsoft.com/en-us/azure/azure-functions/streaming-logs?tabs=built-in%2Cazure-portal).
 
 snippet: asb-function-isolated-enable-diagnostics
 
-Diagnostics data will be written with logger identification `StartupDiagnostics` with log level *Informational*.
+Diagnostics data will be written with logger identification `StartupDiagnostics` with log level *Informational* (`LogLevel.Info`).
+
+#### Custom Diagnostics Writer
+
+For full control over the diagnostic log output, the `AdvancedConfiguration.CustomDiagnosticsWriter` can be used. This is advantageous when diagnostics need to be persisted beyond the function's execution lifetime or when centralized diagnostic storage is preferred for multiple function instances. As an example, the diagnostics can be written to [Azure BLOB Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-dotnet?tabs=visual-studio%2Cmanaged-identity%2Croles-azure-portal%2Csign-in-azure-cli%2Cidentity-visual-studio&pivots=blob-storage-quickstart-scratch):
+
+snippet: asb-function-iso-diagnostics-blob
 
 ### Error queue
 

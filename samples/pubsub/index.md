@@ -1,7 +1,7 @@
 ---
 title: Publish/Subscribe
 summary: Sample code related to publish/subscribe
-reviewed: 2023-12-18
+reviewed: 2025-09-26
 related:
  - nservicebus/messaging/publish-subscribe
 ---

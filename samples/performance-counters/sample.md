@@ -1,7 +1,7 @@
 ---
 title: Performance Counter Usage
 summary: Using the built-in Performance Counters.
-reviewed: 2024-01-26
+reviewed: 2025-10-23
 component: PerfCounters
 related:
 - monitoring/metrics/performance-counters
@@ -9,9 +9,9 @@ related:
 ---
 
 
-## Install Counters
+## Prerequisites
 
-Refer to [Performance Counters](/monitoring/metrics/performance-counters.md) to see how the performance counters should be installed.
+Install the counters according to the [performance counters documentation](/monitoring/metrics/performance-counters.md).
 
 ## Enabling Counters For The Endpoint
 
@@ -38,8 +38,8 @@ Run the solution so that the Performance Counter instances are registered.
 ## Add Counters in Performance Monitor
 
  1. Start [Windows Performance Monitor](https://technet.microsoft.com/en-au/library/cc749249.aspx).
- 1. Clear the default counters.
- 1. Add the NServiceBus Counters
+ 1. Clear the default counters by clicking the red `x` button above the performance monitor graph.
+ 1. Add the NServiceBus Counters by clicking the green `+` button above the performance monitor graph.
 
 ![](./add-counters.png)
 
@@ -53,7 +53,7 @@ The sending code in `Program.cs` is set to send ten messages at a time.
 
 ### Critical Time
 
-Continually sending more messages will cause the load on the endpoint to increase. This will eventually result in a back-logged queue. Messages will spend longer in the queue resulting in a gradual increase in `Critical Time`. Stop sending messages, and eventually, the endpoint will catch up, causing the `Critical Time` dropping back to zero.
+Continually sending more messages will cause the load on the endpoint to increase. This will eventually result in a back-logged queue. Messages will spend longer in the queue resulting in a gradual increase in `Critical Time`. Stop sending messages, and eventually, the endpoint will catch up, causing the `Critical Time` to drop back to zero.
 
 ![](./critical-time.png)
 

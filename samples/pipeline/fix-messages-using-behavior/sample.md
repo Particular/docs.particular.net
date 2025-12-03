@@ -2,12 +2,10 @@
 title: Repair malformed messages using pipeline behavior
 summary: A sample showing how to repair malformed messages by implementing a pipeline behavior
 component: Core
-reviewed: 2024-01-03
+reviewed: 2025-09-29
 ---
 
 This sample shows how to repair a malformed message by implementing a pipeline behavior. The sample uses the [Learning Transport](/transports/learning/) and a portable version of the Particular Service Platform tools. Installing ServiceControl is **not** required.
-
-include: platformlauncher-windows-required
 
 downloadbutton
 
@@ -22,8 +20,8 @@ Running the project will result in 4 console windows. Wait until the ServicePuls
  5. Stop the Receiver project.
  6. Update the Receiver configuration code to register the `FixMessageIdBehavior` behavior in the pipeline by uncommenting the code in the `RegisterFixBehavior` region.
  7. Start the updated Receiver endpoint.
- 8. Go back to `Failed Messages` tab, select the failed message and press the retry button again.
- 9. Switch to the Receiver console window and observe the successful processing notification.
+ 8. Go back to the `Failed Messages` tab in ServicePulse, select the failed message and press the retry button again.
+ 9. Switch to the Receiver console window to observe the successful processing notification.
 
 ## Code walk-through
 
@@ -37,7 +35,7 @@ Retries are disabled in the sample for simplicity; messages are immediately move
 
 snippet: DisableRetries
 
-This endpoint processes messages of type `SimpleMessage` and expects the `Id` field not to contain any lowercase characters. Messages with lowercase characters are rejected (and sent to the error queue).
+This endpoint processes messages of type `SimpleMessage` and expects the `Id` field not to contain any lowercase characters. Messages with lowercase characters are rejected and sent to the error queue.
 
 snippet: ReceiverHandler
 

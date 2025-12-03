@@ -8,13 +8,14 @@ public class AccessToNativeMessage
 {
     #region access-native-incoming-message
 
-    class DoNotAttemptMessageProcessingIfMessageIsNotLocked : Behavior<ITransportReceiveContext>
+    class DoNotAttemptMessageProcessingIfMessageIsNotLocked
+      : Behavior<ITransportReceiveContext>
     {
         public override Task Invoke(ITransportReceiveContext context, Func<Task> next)
         {
-            var lockedUntilUtc = context.Extensions.Get<ServiceBusReceivedMessage>().LockedUntil;
-
-            if (lockedUntilUtc <= DateTime.UtcNow)
+            var nativeMessage = context.Extensions.Get<ServiceBusReceivedMessage>();
+            
+            if (nativeMessage.LockedUntil <= DateTime.UtcNow)
             {
                 return next();
             }

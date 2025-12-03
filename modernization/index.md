@@ -1,6 +1,6 @@
 ---
 title: Modernization
-summary: Simplifying legacy application modernization with the Particular Service Platform and NServiceBus
+summary: Learn how the Particular Service Platform and NServiceBus simplify legacy .NET modernization, integration, data integrity, and monitoring.
 reviewed: 2025-04-07
 callsToAction: ['solution-architect','architecture-review']
 ---

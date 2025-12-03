@@ -5,10 +5,9 @@ using NServiceBus;
 using NServiceBus.MessageMutator;
 
 Console.Title = "ExternalBson";
+var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.ExternalBson");
 
 #region config
-
-var endpointConfiguration = new EndpointConfiguration("Samples.Serialization.ExternalBson");
 
 var serialization = endpointConfiguration.UseSerialization<NewtonsoftJsonSerializer>();
 serialization.ContentTypeKey("application/bson");

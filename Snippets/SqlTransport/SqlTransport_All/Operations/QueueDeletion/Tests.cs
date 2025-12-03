@@ -1,4 +1,4 @@
-﻿using System.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using NUnit.Framework;
 
 namespace SqlServer_All.Operations.QueueDeletion

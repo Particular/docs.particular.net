@@ -2,7 +2,7 @@
 title: Error Instance Configuration Settings
 summary: Categorized list of ServiceControl Error instance configuration settings.
 component: ServiceControl
-reviewed: 2024-06-24
+reviewed: 2025-10-22
 redirects:
  - servicecontrol/creating-config-file
 ---
@@ -137,6 +137,7 @@ The maximum allowed time for the process to complete the shutdown.
 | **SCMU field** | N/A |
 
 | Environment/Installation type            | Type     | Default value |
+|---|---|---|
 | Containers | TimeSpan | `00:00:05` (5 seconds) |
 | Installation via PowerShell (on Windows) | TimeSpan | `00:02:00` (2 minutes) |
 | Installation via ServiceControl Management Utility (SCMU) (on Windows) | TimeSpan | `00:02:00` (2 minutes) |
@@ -525,7 +526,7 @@ The queue on which throughput data is received by the ServiceControl Error insta
 
 In most instances these settings do not need to be modified.
 
-If running multiple setups of the Platform Tools (i.e. multiple versions of ServiceControl error and monitoring instances) then modify these settings so that the queue on each monitoring instance is matched to the queue of its error instance.
+If running multiple setups of the Platform Tools (i.e. multiple versions of ServiceControl error and monitoring instances), then modify these settings so that the queue on each monitoring instance is matched to the queue of its error instance.
 
 If using [MSMQ transport](/transports/msmq) and the monitoring instance is installed on a different machine than the ServiceControl error instance, only the monitoring instance setting needs to be modified to include the machine name of the error instance in the queue address.
 

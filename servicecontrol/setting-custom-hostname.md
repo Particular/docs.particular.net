@@ -26,4 +26,4 @@ ServiceControl Management will then validate the settings changes and restart th
 
 ## Updating ServicePulse Configuration to ServiceControl Custom Hostname
 
-Refer to the [ServicePulse documention](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui) for guidance on how to configure ServicePulse to connect to ServiceControl.
+Refer to the [ServicePulse documentation](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui) for guidance on how to configure ServicePulse to connect to ServiceControl.

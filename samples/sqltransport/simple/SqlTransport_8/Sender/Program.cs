@@ -1,8 +1,7 @@
 using System;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using NServiceBus;
 
 Console.Title = "SimpleSender";
@@ -28,37 +27,44 @@ await SqlHelper.EnsureDatabaseExists(connectionString);
 
 var builder = Host.CreateApplicationBuilder(args);
 builder.UseNServiceBus(endpointConfiguration);
-builder.Services.AddHostedService<InputLoop>();
 
 var host = builder.Build();
 
-await host.RunAsync();
+await host.StartAsync();
 
-sealed class InputLoop(IMessageSession messageSession) : BackgroundService
+// Get the required services from the host
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+var logger = host.Services.GetRequiredService<ILogger<Program>>();
+
+Console.WriteLine("Press [c] to send a command, or [e] to publish an event. Press any other key to exit.");
+
+while (true)
 {
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    if (key.Key != ConsoleKey.C && key.Key != ConsoleKey.E)
     {
-        Console.WriteLine("Press [c] to send a command, or [e] to publish an event. Press CTRL+C to exit.");
-        while (true)
-        {
-            if (!Console.KeyAvailable)
-            {
-                await Task.Delay(100, stoppingToken);
-                continue;
-            }
+        break;
+    }
 
-            var input = Console.ReadKey();
-            Console.WriteLine();
-
-            switch (input.Key)
-            {
-                case ConsoleKey.C:
-                    await messageSession.Send(new MyCommand(), cancellationToken: stoppingToken);
-                    break;
-                case ConsoleKey.E:
-                    await messageSession.Publish(new MyEvent(), cancellationToken: stoppingToken);
-                    break;
-            }
-        }
+    if (key.Key == ConsoleKey.C)
+    {
+        // Send a command message to the configured receiver endpoint
+        logger.LogInformation("Sending command...");
+        await messageSession.Send(new MyCommand());
+        logger.LogInformation("Command sent successfully");
+    }
+    else if (key.Key == ConsoleKey.E)
+    {
+        // Publish an event message to all interested subscribers
+        logger.LogInformation("Publishing event...");
+        await messageSession.Publish(new MyEvent());
+        logger.LogInformation("Event published successfully");
     }
 }
+
+// Ensure the host is stopped gracefully
+logger.LogInformation("Stopping host...");
+await host.StopAsync();
+logger.LogInformation("Host stopped successfully");

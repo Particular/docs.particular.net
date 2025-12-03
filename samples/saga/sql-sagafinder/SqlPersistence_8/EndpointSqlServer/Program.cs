@@ -1,16 +1,10 @@
 ﻿using System;
 using Microsoft.Data.SqlClient;
-using System.Threading.Tasks;
 using NServiceBus;
-using NServiceBus.Persistence.Sql;
 using Microsoft.Extensions.Hosting;
-using EndpointSqlServer;
 using Microsoft.Extensions.DependencyInjection;
 
-
 Console.Title = "SqlServer";
-var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<InputLoopService>();
 
 var endpointConfiguration = new EndpointConfiguration("Samples.SqlSagaFinder.SqlServer");
 endpointConfiguration.UseTransport(new LearningTransport());
@@ -36,6 +30,34 @@ subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
 await SqlHelper.EnsureDatabaseExists(connectionString);
 
+var builder = Host.CreateApplicationBuilder(args);
+
 builder.UseNServiceBus(endpointConfiguration);
 
-await builder.Build().RunAsync();
+var host = builder.Build();
+
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+Console.WriteLine("Press 'enter' to send a message");
+while (true)
+{
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    if (key.Key != ConsoleKey.Enter)
+    {
+        break;
+    }
+
+    var startOrder = new StartOrder
+    {
+        OrderId = "123"
+    };
+    await messageSession.SendLocal(startOrder);
+
+    Console.WriteLine($"StartOrder sent: {startOrder.OrderId}");
+}
+
+await host.StopAsync();

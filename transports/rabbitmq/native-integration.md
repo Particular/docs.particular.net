@@ -1,7 +1,7 @@
 ---
 title: RabbitMQ native integration
 summary: Considerations when integrating NServiceBus endpoints with native RabbitMQ publishers and consumers.
-reviewed: 2024-03-26
+reviewed: 2025-10-16
 component: rabbit
 versions: '[2,]'
 related:
@@ -36,3 +36,6 @@ snippet: rabbitmq-config-custom-id-strategy
 ### Message type detection
 
 The native message must allow NServiceBus to [detect message type either via headers or message payload](/nservicebus/messaging/message-type-detection.md).
+
+> [!NOTE]
+> Starting with versions 10.1.4, 9.2.2, and 8.0.9, if the incoming AMQP message specifies a value for the [`Content type` property](https://www.rabbitmq.com/docs/publishers#message-properties), the value is used to populate the `NServiceBus.ContentType` header.
