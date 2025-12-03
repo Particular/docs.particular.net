@@ -1,6 +1,6 @@
 ---
 title: Performance Metrics in ServicePulse
-summary: Describes how to use ServicePulse to review endpoint performance metrics
+summary: Review NServiceBus endpoint performance metrics in ServicePulse, manage endpoints, and monitor failed messages and connectivity.   
 reviewed: 2024-11-27
 ---
 

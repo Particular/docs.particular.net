@@ -1,6 +1,6 @@
 ---
 title: Managing custom checks in ServicePulse
-summary: Describes how ServicePulse monitors custom check activity
+summary: ServicePulse displays custom check status, helping track endpoint issues and maintain NServiceBus health
 reviewed: 2024-11-06
 redirects:
   - servicepulse/intro-endpoints-custom-checks

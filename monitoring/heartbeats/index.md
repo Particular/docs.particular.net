@@ -1,6 +1,6 @@
 ---
 title: Heartbeats
-summary: Use the Heartbeat plugin to monitor the health of the endpoints
+summary: Use the NServiceBus Heartbeat plugin to track endpoint activity and view health status in ServicePulse.
 reviewed: 2025-07-06
 component: Heartbeats
 isLearningPath: true

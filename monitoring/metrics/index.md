@@ -1,6 +1,6 @@
 ---
 title: Metrics
-summary: Collect metric data about endpoint performance using the Metrics plugin
+summary: Monitor NServiceBus endpoint performance with the Metrics plugin and report data to ServiceControl and visualize in ServicePulse
 reviewed: 2025-07-06
 component: Metrics
 versions: 'Metrics:*'

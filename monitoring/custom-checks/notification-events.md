@@ -1,6 +1,6 @@
 ---
 title: Custom Checks notification events
-summary: Learn about the integration events exposed by ServiceControl for the Custom Checks plugin
+summary: ServiceControl integration events notify when NServiceBus custom checks fail or succeed, aiding proactive system monitoring
 reviewed: 2024-10-28
 component: CustomChecks
 versions: 'CustomChecks:*'

@@ -1,6 +1,6 @@
 ---
 title: Windows Performance Counters
-summary: Monitoring through the use of Windows performance counters.
+summary: Monitor NServiceBus endpoint performance on Windows using Performance Counters for message flow, and queue length
 reviewed: 2025-10-22
 component: PerfCounters
 redirects:

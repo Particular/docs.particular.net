@@ -1,6 +1,6 @@
 ---
 title: Heartbeat notification events
-summary: Learn about the integration events exposed by ServiceControl for the Heartbeats plugin
+summary: Learn how ServiceControl Heartbeats plugin exposes integration events to monitor endpoint health and status changes
 reviewed: 2024-11-04
 component: Heartbeats
 versions: 'Heartbeats:*'

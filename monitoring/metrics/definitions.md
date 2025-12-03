@@ -1,6 +1,6 @@
 ---
 title: Metric definitions
-summary: List of metrics captured by NServiceBus and their definitions
+summary: Detailed definitions of NServiceBus metrics for endpoint monitoring, including processing, failures, retries, and queue length
 reviewed: 2025-07-18
 redirects:
   - nservicebus/operations/metrics

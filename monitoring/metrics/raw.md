@@ -1,6 +1,6 @@
 ---
 title: Consume raw data from Metrics
-summary: Use the public API in the Metrics package to consume raw metrics data
+summary: Use the Metrics package API to access and report raw NServiceBus endpoint performance data to any monitoring solution
 reviewed: 2025-08-28
 component: Metrics
 related:

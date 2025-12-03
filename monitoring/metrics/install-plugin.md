@@ -1,6 +1,6 @@
 ---
 title: Send Metrics data to ServiceControl
-summary: Install the Metrics plugin to send monitoring data to ServiceControl
+summary: Install the Metrics plugin to send NServiceBus monitoring data to ServiceControl for centralized performance tracking
 reviewed: 2024-11-07
 component: MetricsServiceControl
 related:
