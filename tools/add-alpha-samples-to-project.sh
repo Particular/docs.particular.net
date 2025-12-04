@@ -96,7 +96,9 @@ echo ""
 # Get project ID and field IDs if custom fields are requested
 PROJECT_ID=""
 AREA_FIELD_ID=""
+AREA_OPTION_ID=""
 PRIO_FIELD_ID=""
+PRIO_OPTION_ID=""
 
 if [ -n "$AREA_VALUE" ] || [ -n "$PRIO_VALUE" ]; then
     echo "Retrieving project and field information..."
