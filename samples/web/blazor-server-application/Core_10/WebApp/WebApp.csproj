@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Callbacks" Version="6.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.Callbacks" Version="6.0.0-alpha.3" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.3" />
   </ItemGroup>
 
 </Project>

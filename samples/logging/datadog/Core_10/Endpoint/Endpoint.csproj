@@ -6,8 +6,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="DogStatsD-CSharp-Client" Version="8.*" />
-    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.Metrics" Version="6.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.20" />
+    <PackageReference Include="NServiceBus.Metrics" Version="6.0.0-alpha.4" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.3" />
   </ItemGroup>
 </Project>

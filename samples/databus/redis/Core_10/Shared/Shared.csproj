@@ -7,9 +7,9 @@
 
   <ItemGroup>
     <PackageReference Include="StackExchange.Redis" Version="2.*" />
-    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.ClaimCheck" Version="2.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.20" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.3" />
+    <PackageReference Include="NServiceBus.ClaimCheck" Version="2.0.0-alpha.5" />
   </ItemGroup>
 
 </Project>

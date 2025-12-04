@@ -11,8 +11,8 @@
   <ItemGroup>
 
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.0-rc.1.25451.107" />
-    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.MessagingBridge" Version="5.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.20" />
+    <PackageReference Include="NServiceBus.MessagingBridge" Version="5.0.0-alpha.2" />
   </ItemGroup>
 
 </Project>

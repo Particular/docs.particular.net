@@ -5,8 +5,8 @@
     <LangVersion>14.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.2" />
-    <PackageReference Include="NServiceBus.Persistence.CosmosDB" Version="4.0.0-alpha.2" />
-    <PackageReference Include="NServiceBus.RabbitMQ" Version="11.0.0-alpha.2" />
+    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.20" />
+    <PackageReference Include="NServiceBus.Persistence.CosmosDB" Version="4.0.0-alpha.4" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="11.0.0-alpha.3" />
   </ItemGroup>
 </Project>

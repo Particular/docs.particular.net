@@ -10,7 +10,7 @@
   <ItemGroup>
     <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.*" />
     <PackageReference Include="Azure.Monitor.OpenTelemetry.Exporter" Version="1.*" />
-    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.20" />
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.*" />
   </ItemGroup>
 

@@ -5,9 +5,9 @@
     <LangVersion>14.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.Extensions.Logging" Version="4.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.20" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.3" />
+    <PackageReference Include="NServiceBus.Extensions.Logging" Version="4.0.0-alpha.3" />
     <PackageReference Include="NLog.Extensions.Logging" Version="6.0.2" />
   </ItemGroup>
 </Project>
