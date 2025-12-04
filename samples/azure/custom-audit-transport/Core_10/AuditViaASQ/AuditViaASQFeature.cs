@@ -13,7 +13,7 @@ public class AuditViaASQFeature : Feature
 
     protected override void Setup(FeatureConfigurationContext context)
     {
-        context.RegisterStartupTask<AuditViaASQFeatureStartup>();
+        context.RegisterStartupTask(new AuditViaASQFeatureStartup());
 
         #region auditToDispatchConnectorReplacement
         context.Pipeline.Replace("AuditToDispatchConnector", new AuditDispatchTerminator());
