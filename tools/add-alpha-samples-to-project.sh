@@ -140,14 +140,16 @@ mutation {
 EOF
 )
     
-    ADD_OPTION_RESULT=$(gh api graphql -f query="$MUTATION" 2>&1)
+    ADD_OPTION_RESULT=$(gh api graphql -f query="$MUTATION" 2>/dev/null)
     if [ $? -eq 0 ]; then
         echo "  ✓ Added '$OPTION_VALUE' option to '$FIELD_NAME' field"
         # Extract and return the new option ID
         echo "$ADD_OPTION_RESULT" | jq -r '.data.addProjectV2SingleSelectFieldOption.option.id'
         return 0
     else
-        echo "  ✗ Failed to add option: $ADD_OPTION_RESULT"
+        echo "  ✗ Failed to add option"
+        # Show the error
+        gh api graphql -f query="$MUTATION"
         return 1
     fi
 }
@@ -162,10 +164,13 @@ if [ -n "$AREA_VALUE" ] || [ -n "$PRIO_VALUE" ]; then
     echo "Retrieving project and field information..."
     
     # Get project ID
-    PROJECT_DATA=$(gh project view "$PROJECT_NUMBER" --owner "$OWNER" --format json 2>&1)
-    if [ $? -ne 0 ]; then
+    # Note: Don't redirect stderr to stdout to avoid mixing debug output with JSON
+    PROJECT_DATA=$(gh project view "$PROJECT_NUMBER" --owner "$OWNER" --format json 2>/dev/null)
+    EXIT_CODE=$?
+    if [ $EXIT_CODE -ne 0 ]; then
         echo "Error: Failed to get project information"
-        echo "$PROJECT_DATA"
+        # Try again with stderr to show the error
+        gh project view "$PROJECT_NUMBER" --owner "$OWNER" --format json
         exit 1
     fi
     PROJECT_ID=$(echo "$PROJECT_DATA" | jq -r '.id')
@@ -176,10 +181,12 @@ if [ -n "$AREA_VALUE" ] || [ -n "$PRIO_VALUE" ]; then
     fi
     
     # Get field information
-    FIELDS_DATA=$(gh project field-list "$PROJECT_NUMBER" --owner "$OWNER" --format json --limit 100 2>&1)
-    if [ $? -ne 0 ]; then
+    FIELDS_DATA=$(gh project field-list "$PROJECT_NUMBER" --owner "$OWNER" --format json --limit 100 2>/dev/null)
+    EXIT_CODE=$?
+    if [ $EXIT_CODE -ne 0 ]; then
         echo "Error: Failed to get field information"
-        echo "$FIELDS_DATA"
+        # Try again with stderr to show the error
+        gh project field-list "$PROJECT_NUMBER" --owner "$OWNER" --format json --limit 100
         exit 1
     fi
     
@@ -190,15 +197,16 @@ if [ -n "$AREA_VALUE" ] || [ -n "$PRIO_VALUE" ]; then
         if [ -z "$AREA_FIELD_ID" ] || [ "$AREA_FIELD_ID" = "null" ]; then
             echo "  Creating 'Area' field in project..."
             # Create the Area field with the requested value as the first option
-            CREATE_RESULT=$(gh project field-create "$PROJECT_NUMBER" --owner "$OWNER" --name "Area" --data-type "SINGLE_SELECT" --single-select-options "$AREA_VALUE" --format json 2>&1)
+            CREATE_RESULT=$(gh project field-create "$PROJECT_NUMBER" --owner "$OWNER" --name "Area" --data-type "SINGLE_SELECT" --single-select-options "$AREA_VALUE" --format json 2>/dev/null)
             if [ $? -eq 0 ]; then
                 echo "  ✓ Created 'Area' field with option '$AREA_VALUE'"
                 # Refresh field data
-                FIELDS_DATA=$(gh project field-list "$PROJECT_NUMBER" --owner "$OWNER" --format json --limit 100 2>&1)
+                FIELDS_DATA=$(gh project field-list "$PROJECT_NUMBER" --owner "$OWNER" --format json --limit 100 2>/dev/null)
                 AREA_FIELD_ID=$(echo "$FIELDS_DATA" | jq -r '.fields[] | select(.name == "Area") | .id')
                 AREA_OPTION_ID=$(echo "$FIELDS_DATA" | jq -r ".fields[] | select(.name == \"Area\") | .options[]? | select(.name == \"$AREA_VALUE\") | .id")
             else
-                echo "  ✗ Failed to create 'Area' field: $CREATE_RESULT"
+                echo "  ✗ Failed to create 'Area' field"
+                gh project field-create "$PROJECT_NUMBER" --owner "$OWNER" --name "Area" --data-type "SINGLE_SELECT" --single-select-options "$AREA_VALUE" --format json
                 AREA_VALUE=""
             fi
         else
@@ -228,14 +236,15 @@ if [ -n "$AREA_VALUE" ] || [ -n "$PRIO_VALUE" ]; then
         if [ -z "$PRIO_FIELD_ID" ] || [ "$PRIO_FIELD_ID" = "null" ]; then
             echo "  Creating 'Prio' field in project as NUMBER type..."
             # Create the Prio field as a NUMBER field
-            CREATE_RESULT=$(gh project field-create "$PROJECT_NUMBER" --owner "$OWNER" --name "Prio" --data-type "NUMBER" --format json 2>&1)
+            CREATE_RESULT=$(gh project field-create "$PROJECT_NUMBER" --owner "$OWNER" --name "Prio" --data-type "NUMBER" --format json 2>/dev/null)
             if [ $? -eq 0 ]; then
                 echo "  ✓ Created 'Prio' field"
                 # Refresh field data
-                FIELDS_DATA=$(gh project field-list "$PROJECT_NUMBER" --owner "$OWNER" --format json --limit 100 2>&1)
+                FIELDS_DATA=$(gh project field-list "$PROJECT_NUMBER" --owner "$OWNER" --format json --limit 100 2>/dev/null)
                 PRIO_FIELD_ID=$(echo "$FIELDS_DATA" | jq -r '.fields[] | select(.name == "Prio") | .id')
             else
-                echo "  ✗ Failed to create 'Prio' field: $CREATE_RESULT"
+                echo "  ✗ Failed to create 'Prio' field"
+                gh project field-create "$PROJECT_NUMBER" --owner "$OWNER" --name "Prio" --data-type "NUMBER" --format json
                 PRIO_VALUE=""
             fi
         else
@@ -371,8 +380,8 @@ Samples in this group that reference NServiceBus v10.0.0-alpha.X:
     
     # Try to add item to project using gh CLI
     # Note: This uses the new Projects (beta) API
-    # Capture output to avoid duplicate calls
-    ADD_OUTPUT=$(gh project item-add "$PROJECT_NUMBER" --owner "$OWNER" --title "$TITLE" --body "$BODY" --format json 2>&1)
+    # Capture output but avoid mixing debug output with JSON
+    ADD_OUTPUT=$(gh project item-add "$PROJECT_NUMBER" --owner "$OWNER" --title "$TITLE" --body "$BODY" --format json 2>/dev/null)
     EXIT_CODE=$?
     
     if [ $EXIT_CODE -eq 0 ]; then
