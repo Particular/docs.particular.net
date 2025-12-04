@@ -45,7 +45,7 @@ The [timeout manager is removed from core](/nservicebus/upgrades/7to8/#timeout-m
 
 ## Account aliases
 
-Account aliases are enforced by default and `transport.UseAccountAliasesInsteadOfConnectionStrings()` is deprecated. See [Configuration API](/transports/azure-storage-queues/configuration.md#connection-strings-using-aliases-for-connection-strings-to-storage-accounts).
+Account aliases are enforced by default and `transport.UseAccountAliasesInsteadOfConnectionStrings()` is deprecated. See [Configuration API](/transports/azure-storage-queues/multi-storageaccount-support.md#configuring-multiple-storage-accounts).
 
 ## Using clients
 
