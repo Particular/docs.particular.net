@@ -1,0 +1,21 @@
+﻿@page "/SendMessageRazorPages"
+@model WebApp.Pages.RazorPagesModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<html>
+    <body>
+        <form method="POST">
+            <div>
+                <p><a href="/">Home</a> -> Send a message using Razor Pages</p>
+                Enter a number below and click "Go".
+                <br/><br/>
+                @Html.TextBox("textField")
+                <input type="submit" value="Go"/>
+                <br/>
+                @Model.ResponseText
+            </div>
+        </form>
+    </body>
+</html>

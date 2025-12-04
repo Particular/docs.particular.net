@@ -8,8 +8,7 @@ var builder = Host.CreateDefaultBuilder(args);
 
 builder.UseNServiceBus(_ =>
 {
-    var endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.Server");
-    endpointConfiguration.EnableCallbacks(makesRequests: false);
+    var endpointConfiguration = new EndpointConfiguration("Samples.Web.Server");
     endpointConfiguration.UseTransport(new LearningTransport());
 
     return endpointConfiguration;
