@@ -36,7 +36,7 @@ Each additional storage account must be registered with the endpoint using a dis
 Additionally, while it is not required, the account used when initializing the `AzureStorageQueueTransport` should also be given an alias.
 
 > [!NOTE]
-> the default alias is an empty string.
+> The default alias is an empty string.
 
 To enable sending from an endpoint using `account_A` to an endpoint using `account_B`, the endpoint on `account_B` needs to be registered on the account using the `AddEndpoint` method. Subscribing to publishing endpoints on other storage accounts uses an overload of the `AddEndpoint` method.
 
