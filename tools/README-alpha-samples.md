@@ -57,8 +57,7 @@ Adds all samples referencing NServiceBus v10.0.0-alpha.X as cards to a GitHub pr
 **Prerequisites:**
 - GitHub CLI (`gh`) must be installed and authenticated
 - User must have write access to the specified project
-- If using custom fields, the "Area" and "Prio" fields must exist in the project
-- Custom field values must match existing options in the project
+- Custom fields and their values will be created automatically if they don't exist
 
 **Features:**
 - Automatically finds all samples referencing NServiceBus v10.0.0-alpha.X
@@ -69,7 +68,7 @@ Adds all samples referencing NServiceBus v10.0.0-alpha.X as cards to a GitHub pr
 - Reports progress and summary of operations
 - Handles duplicate cards gracefully
 - Optionally sets custom project fields ("Area" and "Prio") on each card
-- Validates custom field values against available options before processing
+- Automatically creates fields and options if they don't exist in the project
 
 ## How It Works
 
@@ -104,15 +103,19 @@ The script supports setting custom project fields for each card added. This is u
 - **Area**: Categorize samples by area (e.g., "Core", "Transports", "Persistence")
 - **Prio**: Set priority for samples (e.g., "High", "Medium", "Low")
 
-### Field Requirements
+### Automatic Field and Option Creation
 
-1. Fields must already exist in your GitHub project
-2. Fields must be single-select type
-3. The values you specify must match existing options in the field
+The script will automatically create fields and options if they don't exist:
+
+1. **Field doesn't exist**: Creates the field with the specified value as the first option
+2. **Field exists but option doesn't**: Adds the new option to the existing field
+3. **Both exist**: Uses the existing field and option
+
+This means you can use any value you want, and the script will set up the project accordingly.
 
 ### Finding Available Field Values
 
-To see what values are available for your custom fields:
+To see what values are currently available for your custom fields:
 
 ```bash
 gh project field-list <PROJECT_NUMBER> --owner Particular --format json | jq '.fields[] | select(.name == "Area" or .name == "Prio") | {name, options: [.options[]?.name]}'

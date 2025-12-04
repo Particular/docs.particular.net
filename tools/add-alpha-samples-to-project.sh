@@ -129,16 +129,51 @@ if [ -n "$AREA_VALUE" ] || [ -n "$PRIO_VALUE" ]; then
     if [ -n "$AREA_VALUE" ]; then
         AREA_FIELD_ID=$(echo "$FIELDS_DATA" | jq -r '.fields[] | select(.name == "Area") | .id')
         if [ -z "$AREA_FIELD_ID" ] || [ "$AREA_FIELD_ID" = "null" ]; then
-            echo "Warning: 'Area' field not found in project. Skipping Area field updates."
-            AREA_VALUE=""
+            echo "Creating 'Area' field in project..."
+            # Create the Area field with the requested value as the first option
+            CREATE_RESULT=$(gh project field-create "$PROJECT_NUMBER" --owner "$OWNER" --name "Area" --data-type "SINGLE_SELECT" --single-select-options "$AREA_VALUE" --format json 2>&1)
+            if [ $? -eq 0 ]; then
+                echo "  ✓ Created 'Area' field with option '$AREA_VALUE'"
+                # Refresh field data
+                FIELDS_DATA=$(gh project field-list "$PROJECT_NUMBER" --owner "$OWNER" --format json --limit 100 2>&1)
+                AREA_FIELD_ID=$(echo "$FIELDS_DATA" | jq -r '.fields[] | select(.name == "Area") | .id')
+                AREA_OPTION_ID=$(echo "$FIELDS_DATA" | jq -r ".fields[] | select(.name == \"Area\") | .options[]? | select(.name == \"$AREA_VALUE\") | .id")
+            else
+                echo "  ✗ Failed to create 'Area' field: $CREATE_RESULT"
+                AREA_VALUE=""
+            fi
         else
             # For single-select fields, we need to get the option ID
             AREA_OPTION_ID=$(echo "$FIELDS_DATA" | jq -r ".fields[] | select(.name == \"Area\") | .options[]? | select(.name == \"$AREA_VALUE\") | .id")
             if [ -z "$AREA_OPTION_ID" ] || [ "$AREA_OPTION_ID" = "null" ]; then
-                echo "Warning: 'Area' value '$AREA_VALUE' not found in field options. Skipping Area field updates."
-                echo "Available options:"
-                echo "$FIELDS_DATA" | jq -r '.fields[] | select(.name == "Area") | .options[]? | .name' | sed 's/^/  - /'
-                AREA_VALUE=""
+                echo "Adding '$AREA_VALUE' option to 'Area' field..."
+                # Add the new option to the existing field using GraphQL
+                MUTATION=$(cat <<EOF
+mutation {
+  addProjectV2SingleSelectFieldOption(input: {
+    projectId: "$PROJECT_ID"
+    fieldId: "$AREA_FIELD_ID"
+    name: "$AREA_VALUE"
+  }) {
+    option {
+      id
+      name
+    }
+  }
+}
+EOF
+)
+                ADD_OPTION_RESULT=$(gh api graphql -f query="$MUTATION" 2>&1)
+                if [ $? -eq 0 ]; then
+                    echo "  ✓ Added '$AREA_VALUE' option to 'Area' field"
+                    # Extract the new option ID
+                    AREA_OPTION_ID=$(echo "$ADD_OPTION_RESULT" | jq -r '.data.addProjectV2SingleSelectFieldOption.option.id')
+                else
+                    echo "  ✗ Failed to add option: $ADD_OPTION_RESULT"
+                    echo "Available options:"
+                    echo "$FIELDS_DATA" | jq -r '.fields[] | select(.name == "Area") | .options[]? | .name' | sed 's/^/  - /'
+                    AREA_VALUE=""
+                fi
             fi
         fi
     fi
@@ -147,16 +182,51 @@ if [ -n "$AREA_VALUE" ] || [ -n "$PRIO_VALUE" ]; then
     if [ -n "$PRIO_VALUE" ]; then
         PRIO_FIELD_ID=$(echo "$FIELDS_DATA" | jq -r '.fields[] | select(.name == "Prio") | .id')
         if [ -z "$PRIO_FIELD_ID" ] || [ "$PRIO_FIELD_ID" = "null" ]; then
-            echo "Warning: 'Prio' field not found in project. Skipping Prio field updates."
-            PRIO_VALUE=""
+            echo "Creating 'Prio' field in project..."
+            # Create the Prio field with the requested value as the first option
+            CREATE_RESULT=$(gh project field-create "$PROJECT_NUMBER" --owner "$OWNER" --name "Prio" --data-type "SINGLE_SELECT" --single-select-options "$PRIO_VALUE" --format json 2>&1)
+            if [ $? -eq 0 ]; then
+                echo "  ✓ Created 'Prio' field with option '$PRIO_VALUE'"
+                # Refresh field data
+                FIELDS_DATA=$(gh project field-list "$PROJECT_NUMBER" --owner "$OWNER" --format json --limit 100 2>&1)
+                PRIO_FIELD_ID=$(echo "$FIELDS_DATA" | jq -r '.fields[] | select(.name == "Prio") | .id')
+                PRIO_OPTION_ID=$(echo "$FIELDS_DATA" | jq -r ".fields[] | select(.name == \"Prio\") | .options[]? | select(.name == \"$PRIO_VALUE\") | .id")
+            else
+                echo "  ✗ Failed to create 'Prio' field: $CREATE_RESULT"
+                PRIO_VALUE=""
+            fi
         else
             # For single-select fields, we need to get the option ID
             PRIO_OPTION_ID=$(echo "$FIELDS_DATA" | jq -r ".fields[] | select(.name == \"Prio\") | .options[]? | select(.name == \"$PRIO_VALUE\") | .id")
             if [ -z "$PRIO_OPTION_ID" ] || [ "$PRIO_OPTION_ID" = "null" ]; then
-                echo "Warning: 'Prio' value '$PRIO_VALUE' not found in field options. Skipping Prio field updates."
-                echo "Available options:"
-                echo "$FIELDS_DATA" | jq -r '.fields[] | select(.name == "Prio") | .options[]? | .name' | sed 's/^/  - /'
-                PRIO_VALUE=""
+                echo "Adding '$PRIO_VALUE' option to 'Prio' field..."
+                # Add the new option to the existing field using GraphQL
+                MUTATION=$(cat <<EOF
+mutation {
+  addProjectV2SingleSelectFieldOption(input: {
+    projectId: "$PROJECT_ID"
+    fieldId: "$PRIO_FIELD_ID"
+    name: "$PRIO_VALUE"
+  }) {
+    option {
+      id
+      name
+    }
+  }
+}
+EOF
+)
+                ADD_OPTION_RESULT=$(gh api graphql -f query="$MUTATION" 2>&1)
+                if [ $? -eq 0 ]; then
+                    echo "  ✓ Added '$PRIO_VALUE' option to 'Prio' field"
+                    # Extract the new option ID
+                    PRIO_OPTION_ID=$(echo "$ADD_OPTION_RESULT" | jq -r '.data.addProjectV2SingleSelectFieldOption.option.id')
+                else
+                    echo "  ✗ Failed to add option: $ADD_OPTION_RESULT"
+                    echo "Available options:"
+                    echo "$FIELDS_DATA" | jq -r '.fields[] | select(.name == "Prio") | .options[]? | .name' | sed 's/^/  - /'
+                    PRIO_VALUE=""
+                fi
             fi
         fi
     fi
