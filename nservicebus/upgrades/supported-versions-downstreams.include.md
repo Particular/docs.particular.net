@@ -22,7 +22,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [10.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.1.4) | 2025-04-14     | -                 | -                                 |
+| [10.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.1.5) | 2025-04-14     | -                 | -                                 |
 | [~~10.0.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.0.4) | ~~2025-03-11~~ | ~~2025-07-14~~    | ~~Superseded by 10.1.x~~          |
 | [9.2.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.2.2) | 2024-11-25     | 2026-03-11        | Superseded by 10.0.x              |
 | [8.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/8.0.9) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
@@ -598,7 +598,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [5.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/5.0.0) | 2024-09-04     | -                 | -                                 |
+| [5.1.x](https://www.nuget.org/packages/ServiceControl.Contracts/5.1.0) | 2025-12-03     | -                 | -                                 |
+| [5.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/5.0.0) | 2024-09-04     | 2026-03-03        | Superseded by 5.1.x               |
 | [~~4.0.x~~](https://www.nuget.org/packages/ServiceControl.Contracts/4.0.0) | ~~2022-02-01~~ | ~~2025-09-04~~    | ~~Superseded by 5.0.x~~           |
 
 #### [ServiceControl.TransportAdapter](/nuget/ServiceControl.TransportAdapter)

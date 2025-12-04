@@ -2,10 +2,10 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [9.2.x](https://www.nuget.org/packages/NServiceBus/9.2.7) | 2024-09-10     | -                 | -                                 |
+| [9.2.x](https://www.nuget.org/packages/NServiceBus/9.2.8) | 2024-09-10     | -                 | -                                 |
 | [~~9.1.x~~](https://www.nuget.org/packages/NServiceBus/9.1.4) | ~~2024-07-19~~ | ~~2025-03-10~~    | ~~Superseded by 9.2.x~~           |
 | [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus/9.0.5) | ~~2024-04-16~~ | ~~2025-01-19~~    | ~~Superseded by 9.1.x~~           |
-| [8.2.x](https://www.nuget.org/packages/NServiceBus/8.2.5) | 2024-04-11     | 2026-04-16        | Superseded by 9.0.x               |
+| [8.2.x](https://www.nuget.org/packages/NServiceBus/8.2.6) | 2024-04-11     | 2026-04-16        | Superseded by 9.0.x               |
 | [~~8.1.x~~](https://www.nuget.org/packages/NServiceBus/8.1.8) | ~~2023-06-19~~ | ~~2024-10-11~~    | ~~Superseded by 8.2.x~~           |
 | [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus/8.0.8) | ~~2022-11-17~~ | ~~2023-12-19~~    | ~~Superseded by 8.1.x~~           |
 | [7.8.x](https://www.nuget.org/packages/NServiceBus/7.8.6) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
@@ -132,7 +132,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [10.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.1.4) | 2025-04-14     | -                 | -                                 |
+| [10.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.1.5) | 2025-04-14     | -                 | -                                 |
 | [~~10.0.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.0.4) | ~~2025-03-11~~ | ~~2025-07-14~~    | ~~Superseded by 10.1.x~~          |
 | [9.2.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.2.2) | 2024-11-25     | 2026-03-11        | Superseded by 10.0.x              |
 | [~~9.1.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.1.1) | ~~2024-08-08~~ | ~~2025-02-25~~    | ~~Superseded by 9.2.x~~           |
@@ -1246,7 +1246,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [5.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/5.0.0) | 2024-09-04     | -                 | -                                 |
+| [5.1.x](https://www.nuget.org/packages/ServiceControl.Contracts/5.1.0) | 2025-12-03     | -                 | -                                 |
+| [5.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/5.0.0) | 2024-09-04     | 2026-03-03        | Superseded by 5.1.x               |
 | [~~4.0.x~~](https://www.nuget.org/packages/ServiceControl.Contracts/4.0.0) | ~~2022-02-01~~ | ~~2025-09-04~~    | ~~Superseded by 5.0.x~~           |
 | [~~3.0.x~~](https://www.nuget.org/packages/ServiceControl.Contracts/3.0.0) | ~~2021-04-16~~ | ~~2023-02-01~~    | ~~Superseded by 4.0.x~~           |
 | [~~2.0.x~~](https://www.nuget.org/packages/ServiceControl.Contracts/2.0.0) | ~~2021-03-23~~ | ~~2022-04-16~~    | ~~Superseded by 3.0.x~~           |
