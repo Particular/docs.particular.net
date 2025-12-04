@@ -1,7 +1,6 @@
 using Azure.Monitor.OpenTelemetry.Exporter;
 using OpenTelemetry;
 using OpenTelemetry.Resources;
-using OpenTelemetry.Trace;
 using OpenTelemetry.Metrics;
 
 var endpointName = "Samples.OpenTelemetry.MetricsShim";
@@ -36,6 +35,8 @@ endpointConfiguration.EnableOpenTelemetry();
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport<LearningTransport>();
+endpointConfiguration.EnableFeature<EmitNServiceBusMetrics>();
+
 var cancellation = new CancellationTokenSource();
 var endpointInstance = await Endpoint.Start(endpointConfiguration, cancellation.Token);
 
