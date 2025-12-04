@@ -8,17 +8,17 @@ public class OrderLifecycleSaga(ILogger<OrderLifecycleSaga> logger) :
     IAmStartedByMessages<OrderSubmitted>,
     IHandleTimeouts<OrderTimeout>
 {
-   
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderLifecycleSagaData> mapper)
     {
-        mapper.ConfigureMapping<OrderSubmitted>(msg => msg.OrderId).ToSaga(saga => saga.OrderId);
+        mapper.MapSaga(s => s.OrderId).ToMessage<OrderSubmitted>(m => m.OrderId);
     }
 
     public Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
-        Data.OrderId = message.OrderId;
         #region Timeout
+
         return RequestTimeout<OrderTimeout>(context, TimeSpan.FromSeconds(5));
+
         #endregion
     }
 
