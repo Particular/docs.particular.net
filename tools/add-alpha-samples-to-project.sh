@@ -71,7 +71,11 @@ SAMPLES=$(find samples -name "*.csproj" -exec grep -l "NServiceBus.*10\.0\.0-alp
     done | sort -u)
 
 # Count total samples
-TOTAL=$(echo "$SAMPLES" | wc -l)
+if [ -z "$SAMPLES" ] || [ "$SAMPLES" = "" ]; then
+    TOTAL=0
+else
+    TOTAL=$(echo "$SAMPLES" | grep -c '^')
+fi
 
 echo "Found $TOTAL unique samples referencing NServiceBus v10.0.0-alpha.X"
 echo ""
@@ -97,6 +101,9 @@ ALREADY_EXISTS_COUNT=0
 
 # Process each sample
 while IFS= read -r sample; do
+    # Skip empty lines
+    [ -z "$sample" ] && continue
+    
     # Extract the sample title from sample.md if it exists
     SAMPLE_TITLE=""
     if [ -f "$sample/sample.md" ]; then
@@ -125,19 +132,19 @@ This sample references NServiceBus v10.0.0-alpha.X and may need to be reviewed/u
     
     # Try to add item to project using gh CLI
     # Note: This uses the new Projects (beta) API
-    if gh project item-add "$PROJECT_NUMBER" --owner "$OWNER" --title "$TITLE" --body "$BODY" 2>/dev/null; then
+    # Capture output to avoid duplicate calls
+    ERROR_OUTPUT=$(gh project item-add "$PROJECT_NUMBER" --owner "$OWNER" --title "$TITLE" --body "$BODY" 2>&1)
+    EXIT_CODE=$?
+    
+    if [ $EXIT_CODE -eq 0 ]; then
         echo "  ✓ Successfully added"
         ((SUCCESS_COUNT++))
+    elif echo "$ERROR_OUTPUT" | grep -q "already exists"; then
+        echo "  ⚠ Already exists in project"
+        ((ALREADY_EXISTS_COUNT++))
     else
-        # Check if it failed because item already exists or for another reason
-        ERROR_OUTPUT=$(gh project item-add "$PROJECT_NUMBER" --owner "$OWNER" --title "$TITLE" --body "$BODY" 2>&1 || true)
-        if echo "$ERROR_OUTPUT" | grep -q "already exists"; then
-            echo "  ⚠ Already exists in project"
-            ((ALREADY_EXISTS_COUNT++))
-        else
-            echo "  ✗ Failed: $ERROR_OUTPUT"
-            ((FAILED_COUNT++))
-        fi
+        echo "  ✗ Failed: $ERROR_OUTPUT"
+        ((FAILED_COUNT++))
     fi
     echo ""
 done <<< "$SAMPLES"

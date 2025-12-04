@@ -86,5 +86,5 @@ gh project list --owner Particular
 ## Notes
 
 - The scripts search for `10.0.0-alpha` followed by any digit (e.g., alpha.1, alpha.2, alpha.3, etc.)
-- Currently, 141 unique samples reference NServiceBus v10.0.0-alpha.X versions
 - Samples are identified by their root directory containing `sample.md`, not by version folder
+- The number of samples may change as the repository evolves

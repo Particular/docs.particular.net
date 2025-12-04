@@ -35,7 +35,11 @@ SAMPLES=$(find samples -name "*.csproj" -exec grep -l "NServiceBus.*10\.0\.0-alp
     done | sort -u)
 
 # Count total samples
-TOTAL=$(echo "$SAMPLES" | wc -l)
+if [ -z "$SAMPLES" ] || [ "$SAMPLES" = "" ]; then
+    TOTAL=0
+else
+    TOTAL=$(echo "$SAMPLES" | grep -c '^')
+fi
 
 echo "Found $TOTAL unique samples referencing NServiceBus v10.0.0-alpha.X"
 echo ""
@@ -46,6 +50,7 @@ echo ""
 # Process each sample and show what would be added
 COUNT=0
 while IFS= read -r sample; do
+    # Skip empty lines
     [ -z "$sample" ] && continue
     COUNT=$((COUNT + 1))
     
