@@ -5,9 +5,8 @@
 public class HandlerTimerFeature :
     Feature
 {
-    internal HandlerTimerFeature()
+    public HandlerTimerFeature()
     {
-        EnableByDefault();
         DependsOn<DiagnosticsFeature>();
     }
 

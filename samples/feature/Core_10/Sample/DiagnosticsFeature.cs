@@ -6,11 +6,6 @@ using NServiceBus.Features;
 public class DiagnosticsFeature :
     Feature
 {
-    internal DiagnosticsFeature()
-    {
-        EnableByDefault();
-    }
-
     protected override void Setup(FeatureConfigurationContext context)
     {
         context.Services.AddSingleton<CustomLogger>();

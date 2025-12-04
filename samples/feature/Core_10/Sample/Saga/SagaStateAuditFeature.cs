@@ -5,9 +5,8 @@
 public class SagaStateAuditFeature :
     Feature
 {
-    internal SagaStateAuditFeature()
+    public SagaStateAuditFeature()
     {
-        EnableByDefault();
         DependsOn<Sagas>();
         DependsOn<DiagnosticsFeature>();
     }
