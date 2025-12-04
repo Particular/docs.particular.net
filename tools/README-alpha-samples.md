@@ -29,13 +29,15 @@ Adds all samples referencing NServiceBus v10.0.0-alpha.X as cards to a GitHub pr
 
 **Usage:**
 ```bash
-./tools/add-alpha-samples-to-project.sh <PROJECT_NUMBER> [OWNER] [REPO]
+./tools/add-alpha-samples-to-project.sh <PROJECT_NUMBER> [OWNER] [REPO] [--area AREA] [--prio PRIO]
 ```
 
 **Arguments:**
 - `PROJECT_NUMBER` (required): The GitHub project number
 - `OWNER` (optional): Repository owner (default: `Particular`)
 - `REPO` (optional): Repository name (default: `docs.particular.net`)
+- `--area AREA` (optional): Value to set for the "Area" custom project field
+- `--prio PRIO` (optional): Value to set for the "Prio" custom project field
 
 **Example:**
 ```bash
@@ -44,11 +46,19 @@ Adds all samples referencing NServiceBus v10.0.0-alpha.X as cards to a GitHub pr
 
 # Add samples to project #42 in a different repo
 ./tools/add-alpha-samples-to-project.sh 42 MyOrg MyRepo
+
+# Add samples with custom field values
+./tools/add-alpha-samples-to-project.sh 42 --area "Core" --prio "High"
+
+# Combine all options
+./tools/add-alpha-samples-to-project.sh 42 Particular docs.particular.net --area "Samples" --prio "Medium"
 ```
 
 **Prerequisites:**
 - GitHub CLI (`gh`) must be installed and authenticated
 - User must have write access to the specified project
+- If using custom fields, the "Area" and "Prio" fields must exist in the project
+- Custom field values must match existing options in the project
 
 **Features:**
 - Automatically finds all samples referencing NServiceBus v10.0.0-alpha.X
@@ -58,6 +68,8 @@ Adds all samples referencing NServiceBus v10.0.0-alpha.X as cards to a GitHub pr
 - Shows a confirmation prompt before adding cards
 - Reports progress and summary of operations
 - Handles duplicate cards gracefully
+- Optionally sets custom project fields ("Area" and "Prio") on each card
+- Validates custom field values against available options before processing
 
 ## How It Works
 
@@ -82,6 +94,31 @@ Alternatively, use the GitHub CLI:
 ```bash
 gh project list --owner Particular
 ```
+
+## Custom Project Fields
+
+The script supports setting custom project fields for each card added. This is useful for organizing and categorizing samples.
+
+### Supported Fields
+
+- **Area**: Categorize samples by area (e.g., "Core", "Transports", "Persistence")
+- **Prio**: Set priority for samples (e.g., "High", "Medium", "Low")
+
+### Field Requirements
+
+1. Fields must already exist in your GitHub project
+2. Fields must be single-select type
+3. The values you specify must match existing options in the field
+
+### Finding Available Field Values
+
+To see what values are available for your custom fields:
+
+```bash
+gh project field-list <PROJECT_NUMBER> --owner Particular --format json | jq '.fields[] | select(.name == "Area" or .name == "Prio") | {name, options: [.options[]?.name]}'
+```
+
+This will show you the available options for each field.
 
 ## Notes
 

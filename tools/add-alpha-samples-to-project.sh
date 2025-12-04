@@ -2,12 +2,14 @@
 # Script to add all samples referencing NServiceBus v10.0.0-alpha.X to a GitHub project board
 #
 # Usage:
-#   ./add-alpha-samples-to-project.sh <PROJECT_NUMBER> [OWNER] [REPO]
+#   ./add-alpha-samples-to-project.sh <PROJECT_NUMBER> [OWNER] [REPO] [--area AREA] [--prio PRIO]
 #
 # Arguments:
 #   PROJECT_NUMBER - The GitHub project number (required)
 #   OWNER          - Repository owner (default: Particular)
 #   REPO           - Repository name (default: docs.particular.net)
+#   --area AREA    - Value to set for the "Area" custom field (optional)
+#   --prio PRIO    - Value to set for the "Prio" custom field (optional)
 #
 # Prerequisites:
 #   - GitHub CLI (gh) must be installed and authenticated
@@ -16,6 +18,8 @@
 # Example:
 #   ./add-alpha-samples-to-project.sh 42
 #   ./add-alpha-samples-to-project.sh 42 Particular docs.particular.net
+#   ./add-alpha-samples-to-project.sh 42 --area "Core" --prio "High"
+#   ./add-alpha-samples-to-project.sh 42 Particular docs.particular.net --area "Core"
 
 set -e
 
@@ -26,25 +30,137 @@ if ! command -v gh &> /dev/null; then
     exit 1
 fi
 
+# Check if jq is available (needed for parsing JSON from gh CLI)
+if ! command -v jq &> /dev/null; then
+    echo "Error: jq is not installed or not in PATH"
+    echo "jq is required for parsing JSON responses from GitHub CLI"
+    echo "Please install from: https://jqlang.github.io/jq/"
+    exit 1
+fi
+
 # Check if required argument is provided
 if [ -z "$1" ]; then
     echo "Error: PROJECT_NUMBER is required"
     echo ""
-    echo "Usage: $0 <PROJECT_NUMBER> [OWNER] [REPO]"
+    echo "Usage: $0 <PROJECT_NUMBER> [OWNER] [REPO] [--area AREA] [--prio PRIO]"
     echo ""
     echo "Example: $0 42"
+    echo "Example: $0 42 --area \"Core\" --prio \"High\""
     exit 1
 fi
 
+# Parse arguments
 PROJECT_NUMBER=$1
-OWNER=${2:-Particular}
-REPO=${3:-docs.particular.net}
+shift
+
+OWNER="Particular"
+REPO="docs.particular.net"
+AREA_VALUE=""
+PRIO_VALUE=""
+
+# Parse remaining arguments
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        --area)
+            AREA_VALUE="$2"
+            shift 2
+            ;;
+        --prio)
+            PRIO_VALUE="$2"
+            shift 2
+            ;;
+        *)
+            # First non-flag argument is OWNER, second is REPO
+            if [ "$OWNER" = "Particular" ]; then
+                OWNER="$1"
+            elif [ "$REPO" = "docs.particular.net" ]; then
+                REPO="$1"
+            fi
+            shift
+            ;;
+    esac
+done
 
 echo "Configuration:"
 echo "  Project Number: $PROJECT_NUMBER"
 echo "  Owner: $OWNER"
 echo "  Repo: $REPO"
+if [ -n "$AREA_VALUE" ]; then
+    echo "  Area: $AREA_VALUE"
+fi
+if [ -n "$PRIO_VALUE" ]; then
+    echo "  Prio: $PRIO_VALUE"
+fi
 echo ""
+
+# Get project ID and field IDs if custom fields are requested
+PROJECT_ID=""
+AREA_FIELD_ID=""
+PRIO_FIELD_ID=""
+
+if [ -n "$AREA_VALUE" ] || [ -n "$PRIO_VALUE" ]; then
+    echo "Retrieving project and field information..."
+    
+    # Get project ID
+    PROJECT_DATA=$(gh project view "$PROJECT_NUMBER" --owner "$OWNER" --format json 2>&1)
+    if [ $? -ne 0 ]; then
+        echo "Error: Failed to get project information"
+        echo "$PROJECT_DATA"
+        exit 1
+    fi
+    PROJECT_ID=$(echo "$PROJECT_DATA" | jq -r '.id')
+    
+    if [ -z "$PROJECT_ID" ] || [ "$PROJECT_ID" = "null" ]; then
+        echo "Error: Could not retrieve project ID"
+        exit 1
+    fi
+    
+    # Get field information
+    FIELDS_DATA=$(gh project field-list "$PROJECT_NUMBER" --owner "$OWNER" --format json --limit 100 2>&1)
+    if [ $? -ne 0 ]; then
+        echo "Error: Failed to get field information"
+        echo "$FIELDS_DATA"
+        exit 1
+    fi
+    
+    # Find Area field ID
+    if [ -n "$AREA_VALUE" ]; then
+        AREA_FIELD_ID=$(echo "$FIELDS_DATA" | jq -r '.fields[] | select(.name == "Area") | .id')
+        if [ -z "$AREA_FIELD_ID" ] || [ "$AREA_FIELD_ID" = "null" ]; then
+            echo "Warning: 'Area' field not found in project. Skipping Area field updates."
+            AREA_VALUE=""
+        else
+            # For single-select fields, we need to get the option ID
+            AREA_OPTION_ID=$(echo "$FIELDS_DATA" | jq -r ".fields[] | select(.name == \"Area\") | .options[]? | select(.name == \"$AREA_VALUE\") | .id")
+            if [ -z "$AREA_OPTION_ID" ] || [ "$AREA_OPTION_ID" = "null" ]; then
+                echo "Warning: 'Area' value '$AREA_VALUE' not found in field options. Skipping Area field updates."
+                echo "Available options:"
+                echo "$FIELDS_DATA" | jq -r '.fields[] | select(.name == "Area") | .options[]? | .name' | sed 's/^/  - /'
+                AREA_VALUE=""
+            fi
+        fi
+    fi
+    
+    # Find Prio field ID
+    if [ -n "$PRIO_VALUE" ]; then
+        PRIO_FIELD_ID=$(echo "$FIELDS_DATA" | jq -r '.fields[] | select(.name == "Prio") | .id')
+        if [ -z "$PRIO_FIELD_ID" ] || [ "$PRIO_FIELD_ID" = "null" ]; then
+            echo "Warning: 'Prio' field not found in project. Skipping Prio field updates."
+            PRIO_VALUE=""
+        else
+            # For single-select fields, we need to get the option ID
+            PRIO_OPTION_ID=$(echo "$FIELDS_DATA" | jq -r ".fields[] | select(.name == \"Prio\") | .options[]? | select(.name == \"$PRIO_VALUE\") | .id")
+            if [ -z "$PRIO_OPTION_ID" ] || [ "$PRIO_OPTION_ID" = "null" ]; then
+                echo "Warning: 'Prio' value '$PRIO_VALUE' not found in field options. Skipping Prio field updates."
+                echo "Available options:"
+                echo "$FIELDS_DATA" | jq -r '.fields[] | select(.name == "Prio") | .options[]? | .name' | sed 's/^/  - /'
+                PRIO_VALUE=""
+            fi
+        fi
+    fi
+    
+    echo ""
+fi
 
 # Navigate to repository root
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -133,17 +249,43 @@ This sample references NServiceBus v10.0.0-alpha.X and may need to be reviewed/u
     # Try to add item to project using gh CLI
     # Note: This uses the new Projects (beta) API
     # Capture output to avoid duplicate calls
-    ERROR_OUTPUT=$(gh project item-add "$PROJECT_NUMBER" --owner "$OWNER" --title "$TITLE" --body "$BODY" 2>&1)
+    ADD_OUTPUT=$(gh project item-add "$PROJECT_NUMBER" --owner "$OWNER" --title "$TITLE" --body "$BODY" --format json 2>&1)
     EXIT_CODE=$?
     
     if [ $EXIT_CODE -eq 0 ]; then
         echo "  ✓ Successfully added"
         ((SUCCESS_COUNT++))
-    elif echo "$ERROR_OUTPUT" | grep -q "already exists"; then
+        
+        # Set custom fields if requested
+        if [ -n "$AREA_VALUE" ] || [ -n "$PRIO_VALUE" ]; then
+            # Extract item ID from the response
+            ITEM_ID=$(echo "$ADD_OUTPUT" | jq -r '.id')
+            
+            if [ -n "$ITEM_ID" ] && [ "$ITEM_ID" != "null" ]; then
+                # Set Area field
+                if [ -n "$AREA_VALUE" ] && [ -n "$AREA_FIELD_ID" ] && [ -n "$AREA_OPTION_ID" ]; then
+                    if gh project item-edit --id "$ITEM_ID" --field-id "$AREA_FIELD_ID" --project-id "$PROJECT_ID" --single-select-option-id "$AREA_OPTION_ID" > /dev/null 2>&1; then
+                        echo "    ✓ Set Area: $AREA_VALUE"
+                    else
+                        echo "    ⚠ Failed to set Area field"
+                    fi
+                fi
+                
+                # Set Prio field
+                if [ -n "$PRIO_VALUE" ] && [ -n "$PRIO_FIELD_ID" ] && [ -n "$PRIO_OPTION_ID" ]; then
+                    if gh project item-edit --id "$ITEM_ID" --field-id "$PRIO_FIELD_ID" --project-id "$PROJECT_ID" --single-select-option-id "$PRIO_OPTION_ID" > /dev/null 2>&1; then
+                        echo "    ✓ Set Prio: $PRIO_VALUE"
+                    else
+                        echo "    ⚠ Failed to set Prio field"
+                    fi
+                fi
+            fi
+        fi
+    elif echo "$ADD_OUTPUT" | grep -q "already exists"; then
         echo "  ⚠ Already exists in project"
         ((ALREADY_EXISTS_COUNT++))
     else
-        echo "  ✗ Failed: $ERROR_OUTPUT"
+        echo "  ✗ Failed: $ADD_OUTPUT"
         ((FAILED_COUNT++))
     fi
     echo ""
