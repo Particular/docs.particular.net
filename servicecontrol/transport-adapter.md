@@ -175,6 +175,5 @@ Multi-instance, where endpoints connect to different instances of SQL Server, is
 
 ### Azure Storage Queues transport
 
- * Using [aliases](/transports/azure-storage-queues/configuration.md#connection-strings-using-aliases-for-connection-strings-to-storage-accounts) instead of connection string is not supported as ServiceControl is not able to retry messages.
  * Leveraging [multiple storage accounts](/transports/azure-storage-queues/multi-storageaccount-support.md) requires setup of multiple ServiceControl instances.
  * Choosing a [non-default serializer for the message wrapper](/transports/azure-storage-queues/configuration.md#configuration-parameters-serializemessagewrapperwith) or using a [custom envelope wrapper](/transports/azure-storage-queues/native-integration.md) may lead to incompatible wire formats.
