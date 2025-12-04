@@ -341,7 +341,7 @@ for parent in "${!SAMPLE_GROUPS[@]}"; do
     CATEGORY=$(echo "$parent" | cut -d'/' -f2)
     
     # Create a meaningful title for the card
-    TITLE="[v10 alpha] $CATEGORY/$PARENT_NAME"
+    TITLE="Update $CATEGORY/$PARENT_NAME to latest alpha"
     echo "  Title: $TITLE"
     
     # Build the card body with checkboxes for each sample

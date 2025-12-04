@@ -69,7 +69,7 @@ while IFS= read -r sample; do
     fi
     
     # Show what would be the card title
-    CARD_TITLE="[v10 alpha] $SAMPLE_TITLE"
+    CARD_TITLE="Update $SAMPLE_TITLE to latest alpha"
     
     printf "%3d. %s\n" "$COUNT" "$CARD_TITLE"
     printf "     Path: %s\n" "$sample"
