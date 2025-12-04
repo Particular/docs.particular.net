@@ -1,4 +1,4 @@
 Defaults: none
 
 > [!NOTE]
-> Connection string is optional and is used when no client for queue, blob or table is provided.
+> It is recommended to register Queue, Blob and Table clients configured in the desired way instead of providing connection string(s).

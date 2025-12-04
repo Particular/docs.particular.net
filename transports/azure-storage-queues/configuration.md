@@ -18,6 +18,9 @@ The Azure Storage Queues Transport can be configured using the following paramet
 
 partial: connectionstring
 
+Note that multiple connection string formats apply when working with Azure storage services. When running against the emulated environment the format is `UseDevelopmentStorage=true`, but when running against a cloud hosted storage account the format is `DefaultEndpointsProtocol=https;AccountName=myAccount;AccountKey=myKey;`
+
+For more details refer to [Configuring Azure Connection Strings](https://docs.microsoft.com/en-us/azure/storage/storage-configure-connection-string) document.
 
 #### PeekInterval
 
@@ -63,15 +66,9 @@ partial: config
 
 partial: nativepubsub
 
-## Connection strings
+## Using multiple storage accounts
 
-partial: using-clients
-
-Note that multiple connection string formats apply when working with Azure storage services. When running against the emulated environment the format is `UseDevelopmentStorage=true`, but when running against a cloud hosted storage account the format is `DefaultEndpointsProtocol=https;AccountName=myAccount;AccountKey=myKey;`
-
-For more details refer to [Configuring Azure Connection Strings](https://docs.microsoft.com/en-us/azure/storage/storage-configure-connection-string) document.
-
-partial: aliases
+It is possible to configure the transport to use [multiple storage accounts](/transports/azure-storage-queues/multi-storageaccount-support.md#configuring-multiple-storage-accounts) when additional scaling is needed.
 
 ## Token-credentials
 

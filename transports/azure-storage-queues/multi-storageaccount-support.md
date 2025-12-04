@@ -31,9 +31,12 @@ For additional guidance on considerations when developing a system using Azure S
 
 ## Configuring multiple storage accounts
 
-Each additional storage account must be registered with the endpoint using a distinct name that acts as an alias for the accounts connection string(s).
+Each additional storage account must be registered with the endpoint using a distinct name that acts as an alias for the physical storage account represented by a `QueueServiceClient` or a connection string (for backward compatibility).
 
-Additionally, while it is not required, an the account used when initializing the `AzureStorageQueueTransport` should also be given an alias.
+Additionally, while it is not required, the account used when initializing the `AzureStorageQueueTransport` should also be given an alias.
+
+> [!NOTE]
+> the default alias is an empty string.
 
 To enable sending from an endpoint using `account_A` to an endpoint using `account_B`, the endpoint on `account_B` needs to be registered on the account using the `AddEndpoint` method. Subscribing to publishing endpoints on other storage accounts uses an overload of the `AddEndpoint` method.
 
