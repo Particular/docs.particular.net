@@ -25,7 +25,7 @@ This is useful for:
 
 ### add-alpha-samples-to-project.sh
 
-Adds all samples referencing NServiceBus v10.0.0-alpha.X as cards to a GitHub project board.
+Adds all samples referencing NServiceBus v10.0.0-alpha.X as cards to a GitHub project board. Samples are grouped by their parent folder, with each sample in the group appearing as a checkbox in the card body.
 
 **Usage:**
 ```bash
@@ -61,9 +61,10 @@ Adds all samples referencing NServiceBus v10.0.0-alpha.X as cards to a GitHub pr
 
 **Features:**
 - Automatically finds all samples referencing NServiceBus v10.0.0-alpha.X
+- **Groups samples by parent folder** - Creates one card per folder with multiple samples as checkboxes
 - Extracts sample titles from `sample.md` files
-- Creates project cards with meaningful titles in format: `[v10 alpha] <Sample Title>`
-- Includes sample path and repository link in card body
+- Creates project cards with meaningful titles in format: `[v10 alpha] <Category>/<Folder>`
+- Lists each sample in the group as a checkbox with title and link
 - Shows a confirmation prompt before adding cards
 - Reports progress and summary of operations
 - Handles duplicate cards gracefully
@@ -72,14 +73,24 @@ Adds all samples referencing NServiceBus v10.0.0-alpha.X as cards to a GitHub pr
 
 ## How It Works
 
-Both scripts use the following logic to identify samples:
+The scripts use the following logic to identify and group samples:
 
 1. Find all `.csproj` files that reference `NServiceBus` with version `10.0.0-alpha.*`
 2. For each matching project file, walk up the directory tree to find the `sample.md` file
 3. Extract unique sample directories (multiple projects in a sample count as one sample)
-4. Extract sample titles from the `sample.md` frontmatter
+4. **Group samples by their parent folder** (e.g., `samples/asyncapi/simple` and `samples/asyncapi/custom-message-types` are grouped under `samples/asyncapi`)
+5. Extract sample titles from the `sample.md` frontmatter
+6. Create one card per parent folder with all samples as checkboxes
 
-This approach correctly identifies sample boundaries and provides accurate counts.
+This approach correctly identifies sample boundaries and creates manageable groups.
+
+### Example Grouping
+
+Samples like:
+- `samples/asyncapi/simple`
+- `samples/asyncapi/custom-message-types`
+
+Are grouped into one card titled `[v10 alpha] asyncapi` with both samples as checkboxes.
 
 ## Finding Your Project Number
 

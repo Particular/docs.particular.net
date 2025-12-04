@@ -239,8 +239,8 @@ echo ""
 
 # Find all .csproj files that reference any 10.0.0-alpha version
 # For each file, walk up the directory tree to find the sample.md file
-# This correctly identifies the sample root directory
-SAMPLES=$(find samples -name "*.csproj" -exec grep -l "NServiceBus.*10\.0\.0-alpha" {} \; | \
+# Group samples by their parent folder
+SAMPLES_RAW=$(find samples -name "*.csproj" -exec grep -l "NServiceBus.*10\.0\.0-alpha" {} \; | \
     while read file; do
         dir=$(dirname "$file")
         # Walk up until we find sample.md or reach samples directory
@@ -249,24 +249,39 @@ SAMPLES=$(find samples -name "*.csproj" -exec grep -l "NServiceBus.*10\.0\.0-alp
         done
         # Only output if we found a sample.md
         if [ -f "$dir/sample.md" ]; then
-            echo "$dir"
+            parent=$(dirname "$dir")
+            echo "$parent|$dir"
         fi
     done | sort -u)
 
-# Count total samples
-if [ -z "$SAMPLES" ] || [ "$SAMPLES" = "" ]; then
-    TOTAL=0
-else
-    TOTAL=$(echo "$SAMPLES" | grep -c '^')
-fi
+# Group samples by parent folder
+declare -A SAMPLE_GROUPS
+while IFS='|' read -r parent sample; do
+    if [ -n "$parent" ] && [ -n "$sample" ]; then
+        if [ -z "${SAMPLE_GROUPS[$parent]}" ]; then
+            SAMPLE_GROUPS[$parent]="$sample"
+        else
+            SAMPLE_GROUPS[$parent]="${SAMPLE_GROUPS[$parent]}
+$sample"
+        fi
+    fi
+done <<< "$SAMPLES_RAW"
 
-echo "Found $TOTAL unique samples referencing NServiceBus v10.0.0-alpha.X"
+# Count total parent folders (cards to be created)
+TOTAL=${#SAMPLE_GROUPS[@]}
+
+echo "Found $TOTAL sample groups referencing NServiceBus v10.0.0-alpha.X"
 echo ""
-echo "Samples to be added:"
-echo "$SAMPLES"
+echo "Sample groups to be added:"
+for parent in $(printf '%s\n' "${!SAMPLE_GROUPS[@]}" | sort); do
+    echo "  $parent:"
+    while IFS= read -r sample; do
+        echo "    - $sample"
+    done <<< "${SAMPLE_GROUPS[$parent]}"
+done
 echo ""
 
-read -p "Do you want to proceed and add these $TOTAL samples to project $PROJECT_NUMBER? (y/N) " -n 1 -r
+read -p "Do you want to proceed and add these $TOTAL groups to project $PROJECT_NUMBER? (y/N) " -n 1 -r
 echo ""
 
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
@@ -282,36 +297,46 @@ SUCCESS_COUNT=0
 FAILED_COUNT=0
 ALREADY_EXISTS_COUNT=0
 
-# Process each sample
-while IFS= read -r sample; do
-    # Skip empty lines
-    [ -z "$sample" ] && continue
-    
-    # Extract the sample title from sample.md if it exists
-    SAMPLE_TITLE=""
-    if [ -f "$sample/sample.md" ]; then
-        # Try to extract title from the markdown frontmatter
-        SAMPLE_TITLE=$(grep "^title:" "$sample/sample.md" | head -1 | sed 's/^title: *//' | sed 's/^"//' | sed 's/"$//')
-    fi
-    
-    # Fallback to path-based name if no title found
-    if [ -z "$SAMPLE_TITLE" ]; then
-        CATEGORY=$(echo "$sample" | cut -d'/' -f2)
-        SAMPLE_NAME=$(echo "$sample" | cut -d'/' -f3-)
-        SAMPLE_TITLE="$CATEGORY/$SAMPLE_NAME"
-    fi
+# Process each parent folder (create one card per group)
+for parent in "${!SAMPLE_GROUPS[@]}"; do
+    # Extract parent folder name for the title
+    PARENT_NAME=$(basename "$parent")
+    CATEGORY=$(echo "$parent" | cut -d'/' -f2)
     
     # Create a meaningful title for the card
-    TITLE="[v10 alpha] $SAMPLE_TITLE"
+    TITLE="[v10 alpha] $CATEGORY/$PARENT_NAME"
     
-    # Create card body with link to sample
-    BODY="**Sample path:** \`$sample\`
+    # Build the card body with checkboxes for each sample
+    BODY="**Sample group:** \`$parent\`
 
-This sample references NServiceBus v10.0.0-alpha.X and may need to be reviewed/updated.
+Samples in this group that reference NServiceBus v10.0.0-alpha.X:
 
-**Repository link:** https://github.com/$OWNER/$REPO/tree/main/$sample"
+"
     
-    echo "Adding: $TITLE"
+    # Add each sample as a checkbox
+    while IFS= read -r sample; do
+        [ -z "$sample" ] && continue
+        
+        # Extract sample name
+        SAMPLE_NAME=$(basename "$sample")
+        
+        # Extract the sample title from sample.md if it exists
+        SAMPLE_TITLE=""
+        if [ -f "$sample/sample.md" ]; then
+            SAMPLE_TITLE=$(grep "^title:" "$sample/sample.md" | head -1 | sed 's/^title: *//' | sed 's/^"//' | sed 's/"$//')
+        fi
+        
+        # Use sample name if no title found
+        if [ -z "$SAMPLE_TITLE" ]; then
+            SAMPLE_TITLE="$SAMPLE_NAME"
+        fi
+        
+        # Add checkbox with link
+        BODY="${BODY}- [ ] [$SAMPLE_TITLE](https://github.com/$OWNER/$REPO/tree/main/$sample)
+"
+    done <<< "${SAMPLE_GROUPS[$parent]}"
+    
+    echo "Adding group: $TITLE"
     
     # Try to add item to project using gh CLI
     # Note: This uses the new Projects (beta) API
@@ -356,11 +381,11 @@ This sample references NServiceBus v10.0.0-alpha.X and may need to be reviewed/u
         ((FAILED_COUNT++))
     fi
     echo ""
-done <<< "$SAMPLES"
+done
 
 echo "============================================"
 echo "Summary:"
-echo "  Total samples found: $TOTAL"
+echo "  Total sample groups found: $TOTAL"
 echo "  Successfully added: $SUCCESS_COUNT"
 echo "  Already existed: $ALREADY_EXISTS_COUNT"
 echo "  Failed: $FAILED_COUNT"
