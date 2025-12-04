@@ -29,16 +29,6 @@ class Usage
         #endregion
     }
 
-    void AccountAliasesInsteadOfConnectionStrings(EndpointConfiguration endpointConfiguration)
-    {
-        #region AzureStorageQueueUseAccountAliasesInsteadOfConnectionStrings
-
-        var transport = endpointConfiguration.UseTransport<AzureStorageQueueTransport>();
-        transport.UseAccountAliasesInsteadOfConnectionStrings();
-
-        #endregion
-    }
-
     void RegisterMultipleStorageAccounts(EndpointConfiguration endpointConfiguration)
     {
         #region AzureStorageQueuesAddingAdditionalAccounts
