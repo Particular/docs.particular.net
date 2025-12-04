@@ -378,10 +378,10 @@ Samples in this group that reference NServiceBus v10.0.0-alpha.X:
     
     echo "  Adding card to project..."
     
-    # Try to add item to project using gh CLI
+    # Try to create draft item in project using gh CLI
     # Note: This uses the new Projects (beta) API
     # Capture output but avoid mixing debug output with JSON
-    ADD_OUTPUT=$(gh project item-add "$PROJECT_NUMBER" --owner "$OWNER" --title "$TITLE" --body "$BODY" --format json 2>/dev/null)
+    ADD_OUTPUT=$(gh project item-create "$PROJECT_NUMBER" --owner "$OWNER" --title "$TITLE" --body "$BODY" --format json 2>/dev/null)
     EXIT_CODE=$?
     
     if [ $EXIT_CODE -eq 0 ]; then
