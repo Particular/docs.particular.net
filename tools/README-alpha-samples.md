@@ -36,8 +36,8 @@ Adds all samples referencing NServiceBus v10.0.0-alpha.X as cards to a GitHub pr
 - `PROJECT_NUMBER` (required): The GitHub project number
 - `OWNER` (optional): Repository owner (default: `Particular`)
 - `REPO` (optional): Repository name (default: `docs.particular.net`)
-- `--area AREA` (optional): Value to set for the "Area" custom project field
-- `--prio PRIO` (optional): Value to set for the "Prio" custom project field
+- `--area AREA` (optional): Value to set for the "Area" custom project field (single-select type)
+- `--prio PRIO` (optional): Value to set for the "Prio" custom project field (number type, e.g., 1, 2, 3)
 
 **Example:**
 ```bash
@@ -47,17 +47,26 @@ Adds all samples referencing NServiceBus v10.0.0-alpha.X as cards to a GitHub pr
 # Add samples to project #42 in a different repo
 ./tools/add-alpha-samples-to-project.sh 42 MyOrg MyRepo
 
-# Add samples with custom field values
-./tools/add-alpha-samples-to-project.sh 42 --area "Core" --prio "High"
+# Add samples with custom field values (Area is text, Prio is number)
+./tools/add-alpha-samples-to-project.sh 42 --area "Core" --prio 1
 
 # Combine all options
-./tools/add-alpha-samples-to-project.sh 42 Particular docs.particular.net --area "Samples" --prio "Medium"
+./tools/add-alpha-samples-to-project.sh 42 Particular docs.particular.net --area "Samples" --prio 2
+```
+
+**Debugging:**
+Set the `DEBUG` environment variable to enable verbose output:
+```bash
+DEBUG=1 ./tools/add-alpha-samples-to-project.sh 42 --area "Core" --prio 1
 ```
 
 **Prerequisites:**
 - GitHub CLI (`gh`) must be installed and authenticated
 - User must have write access to the specified project
+- Bash version 4.0 or higher (for associative arrays)
 - Custom fields and their values will be created automatically if they don't exist
+- **Area field**: Created as SINGLE_SELECT type if it doesn't exist
+- **Prio field**: Created as NUMBER type if it doesn't exist
 
 **Features:**
 - Automatically finds all samples referencing NServiceBus v10.0.0-alpha.X

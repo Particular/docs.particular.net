@@ -8,20 +8,39 @@
 #   PROJECT_NUMBER - The GitHub project number (required)
 #   OWNER          - Repository owner (default: Particular)
 #   REPO           - Repository name (default: docs.particular.net)
-#   --area AREA    - Value to set for the "Area" custom field (optional)
-#   --prio PRIO    - Value to set for the "Prio" custom field (optional)
+#   --area AREA    - Value to set for the "Area" custom field (optional, single-select)
+#   --prio PRIO    - Value to set for the "Prio" custom field (optional, number)
 #
 # Prerequisites:
 #   - GitHub CLI (gh) must be installed and authenticated
 #   - User must have write access to the specified project
+#   - Bash version 4.0 or higher for associative arrays
 #
 # Example:
 #   ./add-alpha-samples-to-project.sh 42
 #   ./add-alpha-samples-to-project.sh 42 Particular docs.particular.net
-#   ./add-alpha-samples-to-project.sh 42 --area "Core" --prio "High"
+#   ./add-alpha-samples-to-project.sh 42 --area "Core" --prio 1
 #   ./add-alpha-samples-to-project.sh 42 Particular docs.particular.net --area "Core"
 
 set -e
+
+# Enable debug mode if DEBUG env var is set
+if [ -n "$DEBUG" ]; then
+    set -x
+fi
+
+# Check bash version (need 4.0+ for associative arrays)
+BASH_MAJOR_VERSION="${BASH_VERSINFO[0]}"
+if [ "$BASH_MAJOR_VERSION" -lt 4 ]; then
+    echo "Error: This script requires Bash version 4.0 or higher"
+    echo "Current version: $BASH_VERSION"
+    echo "Please run with: bash $0 $*"
+    exit 1
+fi
+
+echo "==> Checking prerequisites..."
+
+echo "==> Checking prerequisites..."
 
 # Check if gh CLI is available
 if ! command -v gh &> /dev/null; then
@@ -29,6 +48,7 @@ if ! command -v gh &> /dev/null; then
     echo "Please install from: https://cli.github.com/"
     exit 1
 fi
+echo "  ✓ GitHub CLI found"
 
 # Check if jq is available (needed for parsing JSON from gh CLI)
 if ! command -v jq &> /dev/null; then
@@ -37,6 +57,8 @@ if ! command -v jq &> /dev/null; then
     echo "Please install from: https://jqlang.github.io/jq/"
     exit 1
 fi
+echo "  ✓ jq found"
+echo ""
 
 # Check if required argument is provided
 if [ -z "$1" ]; then
@@ -135,7 +157,6 @@ PROJECT_ID=""
 AREA_FIELD_ID=""
 AREA_OPTION_ID=""
 PRIO_FIELD_ID=""
-PRIO_OPTION_ID=""
 
 if [ -n "$AREA_VALUE" ] || [ -n "$PRIO_VALUE" ]; then
     echo "Retrieving project and field information..."
@@ -164,9 +185,10 @@ if [ -n "$AREA_VALUE" ] || [ -n "$PRIO_VALUE" ]; then
     
     # Find Area field ID
     if [ -n "$AREA_VALUE" ]; then
+        echo "==> Processing Area field..."
         AREA_FIELD_ID=$(echo "$FIELDS_DATA" | jq -r '.fields[] | select(.name == "Area") | .id')
         if [ -z "$AREA_FIELD_ID" ] || [ "$AREA_FIELD_ID" = "null" ]; then
-            echo "Creating 'Area' field in project..."
+            echo "  Creating 'Area' field in project..."
             # Create the Area field with the requested value as the first option
             CREATE_RESULT=$(gh project field-create "$PROJECT_NUMBER" --owner "$OWNER" --name "Area" --data-type "SINGLE_SELECT" --single-select-options "$AREA_VALUE" --format json 2>&1)
             if [ $? -eq 0 ]; then
@@ -180,48 +202,48 @@ if [ -n "$AREA_VALUE" ] || [ -n "$PRIO_VALUE" ]; then
                 AREA_VALUE=""
             fi
         else
+            echo "  ✓ Found existing 'Area' field"
             # For single-select fields, we need to get the option ID
             AREA_OPTION_ID=$(echo "$FIELDS_DATA" | jq -r ".fields[] | select(.name == \"Area\") | .options[]? | select(.name == \"$AREA_VALUE\") | .id")
             if [ -z "$AREA_OPTION_ID" ] || [ "$AREA_OPTION_ID" = "null" ]; then
                 # Add the new option to the existing field using helper function
                 AREA_OPTION_ID=$(add_field_option "Area" "$AREA_FIELD_ID" "$AREA_VALUE" "$PROJECT_ID")
                 if [ $? -ne 0 ] || [ -z "$AREA_OPTION_ID" ] || [ "$AREA_OPTION_ID" = "null" ]; then
-                    echo "Available options:"
+                    echo "  Available options:"
                     echo "$FIELDS_DATA" | jq -r '.fields[] | select(.name == "Area") | .options[]? | .name' | sed 's/^/  - /'
                     AREA_VALUE=""
                 fi
+            else
+                echo "  ✓ Found option '$AREA_VALUE' in 'Area' field"
             fi
         fi
     fi
     
     # Find Prio field ID
     if [ -n "$PRIO_VALUE" ]; then
+        echo "==> Processing Prio field..."
         PRIO_FIELD_ID=$(echo "$FIELDS_DATA" | jq -r '.fields[] | select(.name == "Prio") | .id')
+        PRIO_FIELD_TYPE=$(echo "$FIELDS_DATA" | jq -r '.fields[] | select(.name == "Prio") | .type')
+        
         if [ -z "$PRIO_FIELD_ID" ] || [ "$PRIO_FIELD_ID" = "null" ]; then
-            echo "Creating 'Prio' field in project..."
-            # Create the Prio field with the requested value as the first option
-            CREATE_RESULT=$(gh project field-create "$PROJECT_NUMBER" --owner "$OWNER" --name "Prio" --data-type "SINGLE_SELECT" --single-select-options "$PRIO_VALUE" --format json 2>&1)
+            echo "  Creating 'Prio' field in project as NUMBER type..."
+            # Create the Prio field as a NUMBER field
+            CREATE_RESULT=$(gh project field-create "$PROJECT_NUMBER" --owner "$OWNER" --name "Prio" --data-type "NUMBER" --format json 2>&1)
             if [ $? -eq 0 ]; then
-                echo "  ✓ Created 'Prio' field with option '$PRIO_VALUE'"
+                echo "  ✓ Created 'Prio' field"
                 # Refresh field data
                 FIELDS_DATA=$(gh project field-list "$PROJECT_NUMBER" --owner "$OWNER" --format json --limit 100 2>&1)
                 PRIO_FIELD_ID=$(echo "$FIELDS_DATA" | jq -r '.fields[] | select(.name == "Prio") | .id')
-                PRIO_OPTION_ID=$(echo "$FIELDS_DATA" | jq -r ".fields[] | select(.name == \"Prio\") | .options[]? | select(.name == \"$PRIO_VALUE\") | .id")
             else
                 echo "  ✗ Failed to create 'Prio' field: $CREATE_RESULT"
                 PRIO_VALUE=""
             fi
         else
-            # For single-select fields, we need to get the option ID
-            PRIO_OPTION_ID=$(echo "$FIELDS_DATA" | jq -r ".fields[] | select(.name == \"Prio\") | .options[]? | select(.name == \"$PRIO_VALUE\") | .id")
-            if [ -z "$PRIO_OPTION_ID" ] || [ "$PRIO_OPTION_ID" = "null" ]; then
-                # Add the new option to the existing field using helper function
-                PRIO_OPTION_ID=$(add_field_option "Prio" "$PRIO_FIELD_ID" "$PRIO_VALUE" "$PROJECT_ID")
-                if [ $? -ne 0 ] || [ -z "$PRIO_OPTION_ID" ] || [ "$PRIO_OPTION_ID" = "null" ]; then
-                    echo "Available options:"
-                    echo "$FIELDS_DATA" | jq -r '.fields[] | select(.name == "Prio") | .options[]? | .name' | sed 's/^/  - /'
-                    PRIO_VALUE=""
-                fi
+            echo "  ✓ Found existing 'Prio' field (type: $PRIO_FIELD_TYPE)"
+            # Validate that the value is a number
+            if ! [[ "$PRIO_VALUE" =~ ^[0-9]+$ ]]; then
+                echo "  ✗ Warning: 'Prio' value '$PRIO_VALUE' is not a valid number. Skipping Prio field updates."
+                PRIO_VALUE=""
             fi
         fi
     fi
@@ -234,12 +256,13 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 cd "$REPO_ROOT"
 
-echo "Finding samples that reference NServiceBus v10.0.0-alpha.X..."
+echo "==> Finding samples that reference NServiceBus v10.0.0-alpha.X..."
 echo ""
 
 # Find all .csproj files that reference any 10.0.0-alpha version
 # For each file, walk up the directory tree to find the sample.md file
 # Group samples by their parent folder
+echo "  Scanning .csproj files..."
 SAMPLES_RAW=$(find samples -name "*.csproj" -exec grep -l "NServiceBus.*10\.0\.0-alpha" {} \; | \
     while read file; do
         dir=$(dirname "$file")
@@ -253,6 +276,10 @@ SAMPLES_RAW=$(find samples -name "*.csproj" -exec grep -l "NServiceBus.*10\.0\.0
             echo "$parent|$dir"
         fi
     done | sort -u)
+
+echo "  ✓ Found $(echo "$SAMPLES_RAW" | wc -l) sample entries"
+echo ""
+echo "==> Grouping samples by parent folder..."
 
 # Group samples by parent folder
 declare -A SAMPLE_GROUPS
@@ -290,7 +317,7 @@ if [[ ! $REPLY =~ ^[Yy]$ ]]; then
 fi
 
 echo ""
-echo "Adding samples to project..."
+echo "==> Adding sample groups to project..."
 echo ""
 
 SUCCESS_COUNT=0
@@ -299,12 +326,14 @@ ALREADY_EXISTS_COUNT=0
 
 # Process each parent folder (create one card per group)
 for parent in "${!SAMPLE_GROUPS[@]}"; do
+    echo "==> Processing group: $parent"
     # Extract parent folder name for the title
     PARENT_NAME=$(basename "$parent")
     CATEGORY=$(echo "$parent" | cut -d'/' -f2)
     
     # Create a meaningful title for the card
     TITLE="[v10 alpha] $CATEGORY/$PARENT_NAME"
+    echo "  Title: $TITLE"
     
     # Build the card body with checkboxes for each sample
     BODY="**Sample group:** \`$parent\`
@@ -313,6 +342,7 @@ Samples in this group that reference NServiceBus v10.0.0-alpha.X:
 
 "
     
+    echo "  Building card body with samples..."
     # Add each sample as a checkbox
     while IFS= read -r sample; do
         [ -z "$sample" ] && continue
@@ -334,9 +364,10 @@ Samples in this group that reference NServiceBus v10.0.0-alpha.X:
         # Add checkbox with link
         BODY="${BODY}- [ ] [$SAMPLE_TITLE](https://github.com/$OWNER/$REPO/tree/main/$sample)
 "
+        echo "    - $SAMPLE_TITLE"
     done <<< "${SAMPLE_GROUPS[$parent]}"
     
-    echo "Adding group: $TITLE"
+    echo "  Adding card to project..."
     
     # Try to add item to project using gh CLI
     # Note: This uses the new Projects (beta) API
@@ -363,9 +394,9 @@ Samples in this group that reference NServiceBus v10.0.0-alpha.X:
                     fi
                 fi
                 
-                # Set Prio field
-                if [ -n "$PRIO_VALUE" ] && [ -n "$PRIO_FIELD_ID" ] && [ -n "$PRIO_OPTION_ID" ]; then
-                    if gh project item-edit --id "$ITEM_ID" --field-id "$PRIO_FIELD_ID" --project-id "$PROJECT_ID" --single-select-option-id "$PRIO_OPTION_ID" > /dev/null 2>&1; then
+                # Set Prio field (NUMBER type)
+                if [ -n "$PRIO_VALUE" ] && [ -n "$PRIO_FIELD_ID" ]; then
+                    if gh project item-edit --id "$ITEM_ID" --field-id "$PRIO_FIELD_ID" --project-id "$PROJECT_ID" --number "$PRIO_VALUE" > /dev/null 2>&1; then
                         echo "    ✓ Set Prio: $PRIO_VALUE"
                     else
                         echo "    ⚠ Failed to set Prio field"
