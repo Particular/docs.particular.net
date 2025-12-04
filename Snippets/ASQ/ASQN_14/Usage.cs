@@ -40,79 +40,60 @@ class Usage
         #endregion
     }
 
-    async Task SendToMulitpleAccountUsingAlias(IEndpointInstance endpointInstance)
+    void RegisterMultipleStorageAccounts(EndpointConfiguration endpointConfiguration)
     {
-        #region storage_account_routing_send_options_alias
-
-        await endpointInstance.Send(
-            destination: "sales@accountAlias",
-            message: new MyMessage());
-
-        #endregion
-    }
-
-    void RegisterEndpoint(EndpointConfiguration configuration)
-    {
-        #region storage_account_routing_registered_endpoint
+        #region AzureStorageQueuesAddingAdditionalAccounts
 
         var transport = new AzureStorageQueueTransport("account_A_connection_string");
         transport.AccountRouting.DefaultAccountAlias = "account_A";
 
-        var anotherAccount = transport.AccountRouting.AddAccount(
+        var remoteAccount = transport.AccountRouting.AddAccount(
             "account_B",
             new QueueServiceClient("account_B_connection_string"),
             new TableServiceClient("account_B_connection_string"));
-        anotherAccount.AddEndpoint("Receiver");
 
-        var routingConfig = configuration.UseTransport(transport);
-        routingConfig.RouteToEndpoint(typeof(MyMessage), "Receiver");
+        // Add an endpoint that receives commands
+        remoteAccount.AddEndpoint("RemoteEndpoint");
 
-        #endregion
-    }
+        // Add endpoints that subscribe to events
+        remoteAccount.AddEndpoint("RemoteSubscriberEndpoint");
 
-    async Task SendToMulitpleAccountUsingRegisterdEndpoint(IEndpointInstance endpointInstance)
-    {
-        #region storage_account_routing_send_registered_endpoint
-
-        await endpointInstance.Send(message: new MyMessage());
+        // Add endpoints that this endpoint publishes messages this endpoint subscribes to
+        remoteAccount.AddEndpoint("RemotePublisher", new[] { typeof(MyEvent)  }, "optionalSubscriptionTableName");
 
         #endregion
     }
 
-    void RegisterPublisher(EndpointConfiguration configuration)
+    async Task SendOptionsReplyWithAccountAlias(IMessageHandlerContext context)
     {
-        #region storage_account_routing_registered_publisher
+        #region AzureStorageSendOptionsReply
 
-        var transport = new AzureStorageQueueTransport("connectionString");
+        var sendOptions = new SendOptions();
+        sendOptions.RouteReplyTo("sales@accountAlias");
 
-        transport.AccountRouting.DefaultAccountAlias = "subscriber";
-
-        var anotherAccount = transport.AccountRouting.AddAccount(
-            "publisher",
-            new QueueServiceClient("anotherConnectionString"),
-            new TableServiceClient("anotherConnectionString"));
-        anotherAccount.AddEndpoint("Publisher1", new[] { typeof(MyEvent)  }, "optionalSubscriptionTableName");
-
-        configuration.UseTransport(transport);
+        await context.Send(
+            message: new MyMessage(),
+            options: sendOptions);
 
         #endregion
     }
 
-    void RegisterSubscriber(EndpointConfiguration configuration)
+    async Task SendOptionsOverrideWithAccountAlias(IMessageHandlerContext context)
     {
-        #region storage_account_routing_registered_subscriber
+        #region AzureStorageSendOptionsOverride
 
-        var transport = new AzureStorageQueueTransport("anotherConnectionString");
+        var sendOptions = new SendOptions();
+        sendOptions.SetDestination("sales@accountAlias");
 
-        transport.AccountRouting.DefaultAccountAlias = "publisher";
+        await context.Send(
+            message: new MyMessage(),
+            options: sendOptions);
 
-        var anotherAccount = transport.AccountRouting.AddAccount(
-            "subscriber",
-            new QueueServiceClient("connectionString"),
-            new TableServiceClient("connectionString"));
-        anotherAccount.AddEndpoint("Subscriber1");
+        //Or with a helper extension method:
 
-        configuration.UseTransport(transport);
+        await context.Send(
+            destination: "sales@accountAlias",
+            message: new MyMessage());
 
         #endregion
     }
@@ -143,24 +124,6 @@ class Usage
 
         var transport = new AzureStorageQueueTransport("connectionString");
         transport.Subscriptions.CacheInvalidationPeriod = TimeSpan.FromSeconds(10);
-
-        #endregion
-    }
-
-    void MultipleAccountAliasesInsteadOfConnectionStrings1(EndpointConfiguration endpointConfiguration)
-    {
-        #region AzureStorageQueueUseMultipleAccountAliasesInsteadOfConnectionStrings1
-
-        var transport = new AzureStorageQueueTransport("account_A_connection_string");
-
-        var accountRouting = transport.AccountRouting;
-        accountRouting.DefaultAccountAlias = "account_A";
-        accountRouting.AddAccount(
-            "account_B",
-            new QueueServiceClient("account_B_connection_string"),
-            new TableServiceClient("account_B_connection_string"));
-
-        endpointConfiguration.UseTransport(transport);
 
         #endregion
     }

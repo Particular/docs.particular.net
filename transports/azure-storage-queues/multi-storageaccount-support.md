@@ -15,7 +15,7 @@ related:
 > [!IMPORTANT]
 > Using multiple storage accounts is currently NOT compatible with ServiceControl. Either multiple installations of ServiceControl for monitoring or the [ServiceControl transport adapter](/servicecontrol/transport-adapter.md) are required for these situations.
 
-It is common for systems running on Azure Storage Queues to depend on a single storage account. However, there is a potential for throttling issues once the maximum number of concurrent requests to the storage account is reached, causing the storage service to respond with an [HTTP 503 Server Busy message](https://docs.microsoft.com/en-us/azure/media-services/media-services-encoding-error-codes). Multiple storage accounts can be used to overcome this. 
+It is common for systems running on Azure Storage Queues to depend on a single storage account. However, there is a potential for throttling issues once the maximum number of concurrent requests to the storage account is reached, causing the storage service to respond with an [HTTP 503 Server Busy message](https://docs.microsoft.com/en-us/azure/media-services/media-services-encoding-error-codes). Multiple storage accounts can be used to overcome this.
 
 ![Scale out with multiple storage accounts](azure03.png "width=500")
 
@@ -29,46 +29,29 @@ For additional guidance on considerations when developing a system using Azure S
 > [!NOTE]
 > There are limits to how much increasing the number of storage accounts increases throughput. Consider using [scale units as part of a comprehensive scaling strategy](https://learn.microsoft.com/en-us/azure/well-architected/performance-efficiency/scale-partition#choose-a-scaling-strategy) to address higher throughput and reliability needs.
 
-## NServiceBus routing with multiple storage accounts
+## Configuring multiple storage accounts
 
-The preferred way to route when using multiple accounts is to register endpoints with their associated storage accounts. This should be done using aliases in place of raw connection strings.
+Each additional storage account must be registered with the endpoint using a distinct name that acts as an alias for the accounts connection string(s).
 
-### Connection string aliases
+Additionally, while it is not required, an the account used when initializing the `AzureStorageQueueTransport` should also be given an alias.
 
-Using distinct aliases for each storage account connection string prevents exposing sensitive data and is required when using multiple accounts.
+To enable sending from an endpoint using `account_A` to an endpoint using `account_B`, the endpoint on `account_B` needs to be registered on the account using the `AddEndpoint` method. Subscribing to publishing endpoints on other storage accounts uses an overload of the `AddEndpoint` method.
 
-To enable sending from an endpoint using `account_A` to an endpoint using `account_B`, the following configuration needs to be applied in the `account_A` endpoint:
+Putting it all together multiple account configuration looks like this:
 
-snippet: AzureStorageQueueUseMultipleAccountAliasesInsteadOfConnectionStrings1
+snippet: AzureStorageQueuesAddingAdditionalAccounts
 
 > [!NOTE]
 > The examples above use different values for the default account aliases. Using the same name, such as `default`, to represent different storage accounts in different endpoints is highly discouraged as it introduces ambiguity in resolving addresses like `queue@default` and may cause issues when e.g. replying. In that case an address is interpreted as a reply address, the name `default` will point to a different connection string.
 
-> [!NOTE]
-> This feature is currently NOT compatible with ServiceControl. A [ServiceControl transport adapter](/servicecontrol/transport-adapter.md) is required in order to leverage both.
+## Using send options
 
-### Using registered endpoints
+The `SendOptions` class provides ways to influence routing of a message. When using multiple storage accounts the `<endpoint>@<alias>` notation can be used with `SendOptions` methods that take an endpoint name to further specifiy the storage account.
 
-In order to route a message to an endpoint without having to specify the destination each time, the endpoint can be registered for a given command type, assembly, or namespace.
+When replying to a message, `SendOptions` can [specify an alternative endpoint](/nservicebus/messaging/send-a-message.md#influencing-the-reply-behavior) to send the reply to and endpoint on another storage account using the alias:
 
-snippet: storage_account_routing_registered_endpoint
+snippet: AzureStorageSendOptionsReply
 
-Once the endpoint is registered, no send options need to be specified.
+Although registering endpoints to route messages is preferred, NServiceBus allows [overriding the default routing](/nservicebus/messaging/send-a-message.md#overriding-the-default-routing) using `SendOptions`, which also works with storage account aliases:
 
-snippet: storage_account_routing_send_registered_endpoint
-
-### Using send options
-
-Although registering endpoints to route messages is preferred, NServiceBus allows specifying destination addresses using the `<endpoint>@<physicallocation>` notation when messages are dispatched. Using this notation, it is possible to route messages to any endpoint hosted in any storage account. The `physicallocation` element represents the location where the endpoint's infrastructure is hosted, such as a storage account alias.
-
-snippet: storage_account_routing_send_options_alias
-
-### Publishers
-
-Similar to sending to an endpoint, the transport can also be configured to subscribe to events published by endpoints in another storage account, using:
-
-snippet: storage_account_routing_registered_publisher
-
-Aliases can be provided for both the endpoint's connection strings as well as other accounts' connection strings. This enables using the `@` notation for destination addresses like `queue_name@accountAlias`.
-
-snippet: storage_account_routing_send_options_alias
+snippet: AzureStorageSendOptionsOverride
