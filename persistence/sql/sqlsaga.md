@@ -16,6 +16,4 @@ reviewed: 2025-12-05
 >
 > The generated [table name](/persistence/sql/saga.md#table-structure-table-name) can also be set using the `[SqlSaga]` attribute.
 
-partial: required-in-some-versions
-
 partial: main-content
