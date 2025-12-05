@@ -34,5 +34,3 @@ include: sagafinder-process
 snippet: finder
 
 include: sagafinder-ifindsagas
-
-include: sagafinder-configurehowtofindsaga

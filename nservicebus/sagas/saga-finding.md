@@ -16,8 +16,7 @@ Custom Saga Finders are created by implementing `IFindSagas`.
 
 snippet: saga-finder
 
-
-include: non-null-task
+partial: mapping
 
 Many finders may exist for a given saga or message type. If a saga can't be found and if the saga specifies that it is to be started for that message type, NServiceBus will know that a new saga instance is to be created.
 
