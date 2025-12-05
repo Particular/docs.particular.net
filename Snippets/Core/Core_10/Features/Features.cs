@@ -4,25 +4,8 @@ using NServiceBus;
 using NServiceBus.Configuration.AdvancedExtensibility;
 using NServiceBus.Features;
 
-public class FeatureEnable
-{
-    void Setup(EndpointConfiguration endpointConfiguration)
-    {
-        #region FeatureEnable
-        endpointConfiguration.EnableFeature<MyFeature>();
-        #endregion
-    }
-
-    class MyFeature: Feature
-    {
-        protected override void Setup(FeatureConfigurationContext context)
-        {
-            throw new System.NotImplementedException();
-        }
-    }
-}
-
 #region MinimalFeature
+
 public class MinimalFeature :
     Feature
 {
@@ -30,6 +13,7 @@ public class MinimalFeature :
     {
     }
 }
+
 #endregion
 
 public class ComponentBFeature :
@@ -41,6 +25,7 @@ public class ComponentBFeature :
 }
 
 #region DependentFeature
+
 public class ComponentAFeature :
     Feature
 {
@@ -54,6 +39,7 @@ public class ComponentAFeature :
         DependsOn("Namespace.ComponentCFeature");
         DependsOnAtLeastOne("Namespace.ComponentDFeature", "Namespace.ComponentEFeature");
     }
+
     #endregion
 
     protected override void Setup(FeatureConfigurationContext context)
@@ -61,7 +47,28 @@ public class ComponentAFeature :
     }
 }
 
+public class FeatureEnable
+{
+    void Setup(EndpointConfiguration endpointConfiguration)
+    {
+        #region FeatureEnabledByDefault
+
+        endpointConfiguration.EnableFeature<MyFeature>();
+
+        #endregion
+    }
+
+    class MyFeature : Feature
+    {
+        protected override void Setup(FeatureConfigurationContext context)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+}
+
 #region FeatureWithDefaults
+
 public class FeatureWithDefaults :
     Feature
 {
@@ -78,6 +85,7 @@ public class FeatureWithDefaults :
     {
     }
 }
+
 #endregion
 
 public class WriteSettings
@@ -103,7 +111,9 @@ public class EnablingOtherFeatures :
     public EnablingOtherFeatures()
     {
         #region EnablingOtherFeatures
+
         Enable<OtherFeature>();
+
         #endregion
     }
 
