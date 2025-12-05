@@ -1,3 +1,0 @@
-startcode Oracle_OutboxStoreSql
-
-endcode
