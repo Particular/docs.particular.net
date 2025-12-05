@@ -4,13 +4,6 @@ using System;
 using System.Threading.Tasks;
 using NServiceBus;
 
-#region SagaAnalyzerComplexMapping
-//todo: rework docs to not need this
-#endregion
-#region SagaAnalyzerSimplifiedMapping
-//todo: rework docs to not need this
-#endregion
-
 public class ToStringMapping : Saga<SagaData>, IAmStartedByMessages<MessageWithString>, IAmStartedByMessages<MessageWithGuid>
 {
     public Task Handle(MessageWithString message, IMessageHandlerContext context) => throw new NotImplementedException();
