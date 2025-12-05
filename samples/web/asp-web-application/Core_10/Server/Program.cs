@@ -6,8 +6,7 @@ Console.Title = "Server";
 
 var builder = Host.CreateApplicationBuilder(args);
 
-var endpointConfiguration = new EndpointConfiguration("Samples.AsyncPages.Server");
-endpointConfiguration.EnableCallbacks(makesRequests: false);
+var endpointConfiguration = new EndpointConfiguration("Samples.Web.Server");
 endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 

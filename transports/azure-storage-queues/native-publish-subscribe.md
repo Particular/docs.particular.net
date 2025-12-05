@@ -20,7 +20,7 @@ All multi-cast operations are transformed into unicast operations to ensure mult
 
 ### Multi storage account support
 
-When the transport used message-driven pub/sub in earlier versions, the multi-storage account support relied on the publisher information and that the subscription control messages were sent to the publisher queue ([see Message-driven pub/sub](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based)). With the native pub/sub implementation, this approach no longer works.
+When the transport used message-driven pub/sub in earlier versions, the [multi-storage account support](multi-storageaccount-support.md) relied on the publisher information and that the subscription control messages were sent to the publisher queue ([see Message-driven pub/sub](/nservicebus/messaging/publish-subscribe/#mechanics-message-driven-persistence-based)). With the native pub/sub implementation, this approach no longer works.
 
 Multi-storage account support relies on an agreement of connection string information between publisher and subscriber. To keep this connection information secure, the transport leverages the account alias metadata.
 
@@ -33,10 +33,6 @@ When the publisher dispatches the unicast operations, it queries for the interes
 ![image](native-pubsub-02.png)
 
 
-The following endpoint configuration is required to make sure that `Subscriber1` can subscribe to `OrderAccepted`, and that `Publisher1` can send the message. The publisher configuration:
+The endpoint configuration has additional options for registering subscribers and publishers:
 
-snippet: storage_account_routing_registered_subscriber
-
-The subscriber configuration:
-
-snippet: storage_account_routing_registered_publisher
+snippet: AzureStorageQueuesAddingAdditionalAccounts

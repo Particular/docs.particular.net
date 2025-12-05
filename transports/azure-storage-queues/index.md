@@ -34,7 +34,17 @@ include: azure-transports
 
 ## Configuring the endpoint
 
-partial: endpointconfig
+To use Azure Storage Queues as the underlying transport configure it as follows:
+
+snippet: AzureStorageQueueTransportWithAzure
+
+Then set up appropriate [connection strings](/transports/azure-storage-queues/configuration.md#configuration-parameters-connectionstring).
+
+#if-version ASQN [11, )
+
+include: v7-usetransport-shim-api
+
+#end-if
 
 > [!NOTE]
 > When using Azure Storage Queues transport, a serializer must be configured explicitly [by the `UseSerialization` API](/nservicebus/serialization/).

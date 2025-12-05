@@ -4,64 +4,91 @@ component: Core
 reviewed: 2025-10-29
 redirects:
 - nservicebus/using-nservicebus-in-a-asp.net-web-application
+- samples/web/asp-mvc-application
+- samples/web/blazor-server-application
+- samples/web/send-from-aspnetcore-webapi
 related:
 - nservicebus/hosting
 - nservicebus/hosting/publishing-from-web-applications
+- samples/near-realtime-clients
+- samples/callbacks
 ---
 
-This sample shows how to send messages from an ASP.NET Core web application to an NServiceBus endpoint.
+This sample shows how to send messages from an ASP.NET Core web application to an NServiceBus endpoint using several ASP.NET frameworks:
+- MVC
+- Web API
+- Razor Pages
+- Blazor
 
 ## Run the sample
 
-When running the solution a new browser window/tab opens, as well as a console application.
+There are three projects in the solution:
+- `Server` - A console application which hosts the NServiceBus endpoint that handles messages sent from the `WebApp` project
+- `WebApp` - An ASP.NET web application that sends messages to the `Server` endpoint using the frameworks listed above
+- `Shared` - A library which contains the message definition, shared by both the `Server` and `WebApp` projects
 
-Enter the number "1" into the text box in the browser and click "Go". Notice the result "None" appears, as shown:
+Both the `Server` and `WebApp` projects must be running. When the `WebApp` is run, a browser window will open to display links for sending messages using different ASP.NET frameworks.
 
-![AsyncPages sample running](async-pages-running.png "AsyncPages sample running")
+Excluding the Web API link, which sends a message from a `GET` request, the other links will display a version of the following form for sending the message using the specified framework:
 
-Changing the number in the text box from even to odd numbers changes the result in the Server console.
+![Web sample send message form](send-message-form.png "Web sample send message form")
 
-The web page renders synchronously; from the user's perspective, the interaction is synchronous and blocking, even though behind the scenes NServiceBus is implementing an asynchronous send-reply pattern using the [callbacks package](/nservicebus/messaging/callbacks.md).
-
-## Configuration
-
-This sample has three projects: `Shared`, `Server`, and `WebApp`. `WebApp` is an ASP.NET Core web application that sends messages (found in the `Shared` project) to the `Server` project, which is hosted as a console application.
+Changing the number in the text box changes the `Id` property of the command sent to the `Server` which can be observed in console output, as well as on the web page.
 
 ### Initializing NServiceBus
 
-In `WebApp`, open `Program.cs` and look at the code in the `UseNServiceBus` method:
+In the `WebApp` project, open `Program.cs` and look at the endpoint configuration:
 
 snippet: ApplicationStart
 
+The `builder.UseNServiceBus(endpointConfiguration);` line configures the web application to start an NServiceBus endpoint and registers an instance of `IMessageSession` for dependency injection. 
+
 ### Sending a message
 
-Open `Index.cshtml.cs` in `WebApp` to see the `OnPostAsync` method:
+Regardless of the framework used, a message is sent using an [injected](/nservicebus/hosting/asp-net.md#dependency-injection) instance of `IMessageSession`. This is an API used to send messages outside of the NServiceBus message handling pipeline (i.e. from MVC controllers, Razor Pages, and Blazor components).
 
-snippet: ActionHandling
-
-The first line of code parses the text passed in by the user. The second line creates a new NServiceBus message of the type `Command`, and initializes its `Id` property with the value from the text box.
-
-Open the class definition for the `Command` type in the `Shared` project:
+Each framework example uses `IMessageSession.Send` to send the following message to the `Server` endpoint:
 
 snippet: Message
 
-Return to `Index.cshtml.cs` and look at the code `messageSession.Request`. The message session offers methods to send messages via NServiceBus. Skip the rest of the code and see what happens to the message just sent.
+> [!NOTE]
+> The basic steps of sending a message using ASP.NET are the same:
+> 1. Inject `IMessageSession`
+> 2. Use `IMessageSession` to send a message
+> 
+> Reference the framework example most relevant to your needs.
+
+#### MVC
+
+The MVC implementation can be found at `WebApp/Controllers/SampleController.cs`:
+
+snippet: MVCSendMessage
+
+#### Web API
+
+The Web API implementation can be found at `WebApp/Api/SampleApiController.cs`:
+
+snippet: WebApiSendMessage
+
+#### Razor Pages
+
+The Razor Pages implementation can be found at `WebApp/Pages/SendMessageRazorPages.cshtml.cs`:
+
+snippet: RazorPagesSendMessage
+
+#### Blazor
+
+The Blazor implementation can be found at `WebApp/Pages/Shared/SendMessageBlazor.razor`:
+
+snippet: BlazorSendMessage
+
+> [!NOTE]
+> There is a `Blazor` action in the MVC controller that is used to render the Blazor component used in the example.
 
 ### Handling the message
 
-In the `Server` project, find this code in the `CommandMessageHandler` class:
+In the `Server` project, the `CommandMessageHandler` class handles the message that is sent from the `WebApp`:
 
 snippet: Handler
 
-This class implements the NServiceBus interface `IHandleMessages<T>` where `T` is the specific message type being handled; in this case, the `Command` message. NServiceBus manages classes that implement this interface. When a message arrives in the input queue, it is deserialized and then, based on its type, NServiceBus instantiates the relevant message handler classes and calls their `Handle` method, passing in the message object.
-
-In the method body notice the response being returned to the originating endpoint. This will result in a message being added to the input queue for `MyWebClient` endpoint.
-
-
-## Handling the response
-
-When the response arrives back at `WebApp`, NServiceBus invokes the callback that was registered when the request was sent.
-
-The `messageSession.Request` method takes the callback code and tells NServiceBus to invoke it when the response is received. There are several overloads of this method; the code above accepts a generic `Enum` parameter, effectively casting the return code from the server to the given enumeration type.
-
-Finally, the code updates the `Text` property of a label on the web page, setting it to the string that represents the enumeration value: sometimes `None`, sometimes `Fail`.
+This class implements the NServiceBus interface `IHandleMessages<T>` where `T` is the specific message type being handled; in this case, the `Command` message. When a message arrives in the input queue, it is deserialized and then, based on its type, NServiceBus instantiates the relevant message handler classes and calls their `Handle` method, passing in the message object.
