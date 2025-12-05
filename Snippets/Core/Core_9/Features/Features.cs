@@ -44,10 +44,10 @@
     }
 
     #region FeatureEnable
-    public class FeatureEnable :
+    public class FeatureEnabledByDefault :
         Feature
     {
-        public FeatureEnable()
+        public FeatureEnabledByDefault()
         {
             EnableByDefault();
         }
