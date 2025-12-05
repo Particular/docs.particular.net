@@ -1,4 +1,6 @@
-﻿namespace Core.Sagas.FindSagas;
+﻿using NServiceBus;
+
+namespace Core.Sagas.FindSagas;
 
 using System.Threading;
 using System.Threading.Tasks;
@@ -22,3 +24,15 @@ public class MySagaFinder :
 }
 
 #endregion
+
+class MyFinderSaga : Saga<MySagaData>
+{
+    #region saga-finder-mapping
+
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
+    {
+        mapper.ConfigureFinderMapping<MyMessage, MySagaFinder>();
+    }
+
+    #endregion
+}
