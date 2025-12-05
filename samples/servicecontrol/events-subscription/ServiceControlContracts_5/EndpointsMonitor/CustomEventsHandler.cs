@@ -10,7 +10,8 @@ public class CustomEventsHandler(ILogger<CustomEventsHandler> logger) :
     IHandleMessages<FailedMessagesArchived>,
     IHandleMessages<FailedMessagesUnArchived>,
     IHandleMessages<MessageFailureResolvedByRetry>,
-    IHandleMessages<MessageFailureResolvedManually>
+    IHandleMessages<MessageFailureResolvedManually>,
+    IHandleMessages<MessageEditedAndRetried>
 {
 
     public Task Handle(MessageFailed message, IMessageHandlerContext context)
@@ -52,6 +53,12 @@ public class CustomEventsHandler(ILogger<CustomEventsHandler> logger) :
     public Task Handle(MessageFailureResolvedManually message, IMessageHandlerContext context)
     {
         logger.LogError("Received ServiceControl 'MessageFailureResolvedManually' with ID {FailedMessageId}.", message.FailedMessageId);
+        return Task.CompletedTask;
+    }
+
+    public Task Handle(MessageEditedAndRetried message, IMessageHandlerContext context)
+    {
+        logger.LogError("Received ServiceControl 'MessageEditedAndRetried' with ID {FailedMessageId}.", message.FailedMessageId);
         return Task.CompletedTask;
     }
 }
