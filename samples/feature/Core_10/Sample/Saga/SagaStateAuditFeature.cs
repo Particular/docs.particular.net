@@ -7,6 +7,8 @@ public class SagaStateAuditFeature :
 {
     public SagaStateAuditFeature()
     {
+        Enable<DiagnosticsFeature>();
+
         DependsOn<Sagas>();
         DependsOn<DiagnosticsFeature>();
     }

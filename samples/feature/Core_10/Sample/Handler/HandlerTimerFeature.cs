@@ -7,6 +7,8 @@ public class HandlerTimerFeature :
 {
     public HandlerTimerFeature()
     {
+        Enable<DiagnosticsFeature>();
+
         DependsOn<DiagnosticsFeature>();
     }
 

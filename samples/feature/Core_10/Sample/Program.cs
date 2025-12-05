@@ -13,7 +13,6 @@ var endpointConfiguration = new EndpointConfiguration("Samples.Features");
 endpointConfiguration.UsePersistence<LearningPersistence>();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
-endpointConfiguration.EnableFeature<DiagnosticsFeature>();
 endpointConfiguration.EnableFeature<SagaStateAuditFeature>();
 endpointConfiguration.EnableFeature<HandlerTimerFeature>();
 
