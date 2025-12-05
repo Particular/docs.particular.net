@@ -43,10 +43,6 @@ public class ComponentAFeature :
     }
 }
 
-#region FeatureEnabledByDefault
-//todo: rework docs
-#endregion
-
 #region FeatureWithDefaults
 public class FeatureWithDefaults :
     Feature
