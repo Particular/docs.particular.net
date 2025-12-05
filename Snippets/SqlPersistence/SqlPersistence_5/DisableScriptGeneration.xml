@@ -1,5 +1,0 @@
-<!-- startcode DisableScriptGeneration -->
-<PropertyGroup>
-    <SqlPersistenceGenerateScripts>false</SqlPersistenceGenerateScripts>
-</PropertyGroup>
-<!-- endcode -->
