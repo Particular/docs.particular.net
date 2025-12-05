@@ -4,7 +4,7 @@ summary: An alternate SqlSaga base class for use with SQL persistence
 component: SqlPersistence
 related:
  - persistence/sql/saga
-reviewed: 2025-04-10
+reviewed: 2025-12-05
 ---
 
 > [!WARNING]
