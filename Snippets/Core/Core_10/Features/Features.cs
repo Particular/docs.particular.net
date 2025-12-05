@@ -4,6 +4,24 @@ using NServiceBus;
 using NServiceBus.Configuration.AdvancedExtensibility;
 using NServiceBus.Features;
 
+public class FeatureEnable
+{
+    void Setup(EndpointConfiguration endpointConfiguration)
+    {
+        #region FeatureEnable
+        endpointConfiguration.EnableFeature<MyFeature>();
+        #endregion
+    }
+
+    class MyFeature: Feature
+    {
+        protected override void Setup(FeatureConfigurationContext context)
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+}
+
 #region MinimalFeature
 public class MinimalFeature :
     Feature
