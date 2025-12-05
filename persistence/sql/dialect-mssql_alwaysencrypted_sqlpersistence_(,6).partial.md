@@ -1,1 +1,0 @@
-The [SQL Server Always Encrypted](https://docs.microsoft.com/en-us/sql/relational-databases/security/encryption/always-encrypted-database-engine) feature is not supported by this version of the persister when using the SQL Server dialect. The feature was added in SQL Persistence version 6.1.

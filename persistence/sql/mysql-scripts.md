@@ -85,7 +85,16 @@ snippet: MySql_OutboxSetAsDispatchedSql
 
 Used by `IOutboxStorage.Store`.
 
-partial: outbox
+##### Optimistic (default) mode
+
+snippet: MySql_OutboxOptimisticStoreSql
+
+##### Pessimistic mode
+
+snippet: MySql_OutboxPessimisticBeginSql
+
+snippet: MySql_OutboxPessimisticCompleteSql
+
 
 ### Saga
 
@@ -119,7 +128,10 @@ Used by `ISagaPersister.Update`.
 
 snippet: MySql_SagaUpdateSql
 
-partial: finder
+#### Select used by Saga Finder
+
+snippet: MySql_SagaSelectSql
+
 
 ### Subscription
 

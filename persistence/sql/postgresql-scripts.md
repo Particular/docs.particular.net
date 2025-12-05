@@ -85,7 +85,17 @@ snippet: PostgreSQL_OutboxSetAsDispatchedSql
 
 Used by `IOutboxStorage.Store`.
 
-partial: outbox
+<!-- markdownlint-disable MD041 -->
+##### Optimistic (default) mode
+
+snippet: PostgreSQL_OutboxOptimisticStoreSql
+
+##### Pessimistic mode
+
+snippet: PostgreSQL_OutboxPessimisticBeginSql
+
+snippet: PostgreSQL_OutboxPessimisticCompleteSql
+
 
 ### Saga
 

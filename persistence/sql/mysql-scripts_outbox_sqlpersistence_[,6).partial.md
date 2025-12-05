@@ -1,1 +1,0 @@
-snippet: MySql_OutboxStoreSql
