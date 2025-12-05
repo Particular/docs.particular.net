@@ -9,7 +9,7 @@ static class ConfigExtensions
     public static void NotifyDispatch(this EndpointConfiguration endpointConfiguration, IDispatchNotifier watch)
     {
         var settings = endpointConfiguration.GetSettings();
-        settings.EnableFeatureByDefault<DispatchNotificationFeature>();
+        settings.EnableFeature<DispatchNotificationFeature>();
         settings.GetOrCreate<List<IDispatchNotifier>>().Add(watch);
     }
 }

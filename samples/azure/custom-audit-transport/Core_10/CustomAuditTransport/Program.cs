@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using AuditViaASQ;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
@@ -21,6 +22,8 @@ endpointConfiguration.AuditProcessedMessagesTo("audit");
 endpointConfiguration.Recoverability().Immediate(i => i.NumberOfRetries(1));
 endpointConfiguration.Recoverability().Delayed(d => d.NumberOfRetries(1));
 endpointConfiguration.EnableInstallers();
+
+endpointConfiguration.EnableFeature<AuditViaASQFeature>();
 
 Console.WriteLine("Starting...");
 

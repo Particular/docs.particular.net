@@ -8,11 +8,6 @@ using NServiceBus.Settings;
 
 class EmitNServiceBusMetrics : Feature
 {
-    public EmitNServiceBusMetrics()
-    {
-        EnableByDefault();
-    }
-
     protected override void Setup(FeatureConfigurationContext context)
     {
         if (context.Settings.GetOrDefault<bool>("Endpoint.SendOnly"))
@@ -25,9 +20,9 @@ class EmitNServiceBusMetrics : Feature
         var discriminator = context.InstanceSpecificQueueAddress()?.Discriminator;
 
         var recoverabilitySettings = (RecoverabilitySettings)typeof(RecoverabilitySettings).GetConstructor(
-              BindingFlags.NonPublic | BindingFlags.Instance,
-              null, new Type[] { typeof(SettingsHolder) },
-              null).Invoke(new object[] { (SettingsHolder)context.Settings });
+            BindingFlags.NonPublic | BindingFlags.Instance,
+            null, new Type[] { typeof(SettingsHolder) },
+            null).Invoke(new object[] { (SettingsHolder)context.Settings });
 
         recoverabilitySettings.Immediate(i => i.OnMessageBeingRetried((m, _) => RecordRetry(m.Headers, queueName, discriminator, true)));
         recoverabilitySettings.Delayed(d => d.OnMessageBeingRetried((m, _) => RecordRetry(m.Headers, queueName, discriminator, false)));
@@ -64,6 +59,7 @@ class EmitNServiceBusMetrics : Feature
         {
             DelayedRetries.Add(1, tags);
         }
+
         Retries.Add(1, tags);
 
         return Task.CompletedTask;
@@ -122,4 +118,5 @@ class EmitNServiceBusMetrics : Feature
         public const string MessageType = "nservicebus.message_type";
     }
 }
+
 #endregion

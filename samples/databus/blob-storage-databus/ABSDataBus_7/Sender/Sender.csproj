@@ -5,9 +5,9 @@
     <LangVersion>14.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.DataBus.AzureBlobStorage" Version="7.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.DataBus.AzureBlobStorage" Version="7.0.0-alpha.2" />
+    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.20" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.3" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>

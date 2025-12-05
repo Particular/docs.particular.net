@@ -5,9 +5,9 @@
     <LangVersion>14.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.Persistence.AzureTable" Version="7.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.20" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.3" />
+    <PackageReference Include="NServiceBus.Persistence.AzureTable" Version="7.0.0-alpha.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SharedMessages\SharedMessages.csproj" />

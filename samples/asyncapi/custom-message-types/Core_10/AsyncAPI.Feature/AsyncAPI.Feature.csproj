@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.6" />
+    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.20" />
     <PackageReference Include="Neuroglia.AsyncApi.AspNetCore" Version="3.*" />
     <PackageReference Include="Neuroglia.AsyncApi.AspNetCore.UI" Version="3.*" />
     <PackageReference Include="Neuroglia.AsyncApi.Core" Version="3.*" />
