@@ -1,3 +1,0 @@
-startcode MySql_OutboxStoreSql
-
-endcode

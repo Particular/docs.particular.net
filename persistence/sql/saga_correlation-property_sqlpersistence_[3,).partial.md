@@ -1,10 +1,10 @@
-For NServiceBus sagas, an attempt will be made to infer the correlation property at compile time by inspecting the intermediate language (IL) for calls to `.ToSaga(sagaData => sagaData.CorrelationPropertyName)`. There are a few unsupported scenarios where this is impossible and an exception will be thrown:
+For NServiceBus sagas, an attempt will be made to determine the correlation property at compile time by analyzing the `ConfigureHowToFindSaga` method. There are a few unsupported scenarios where this is impossible and an exception will be thrown:
 
 * Use of an external method or delegate
 * Branching or looping logic inside the `ConfigureHowToFindSaga` method
 * Non-matching correlation properties for multiple message types
 
-In these cases, either redesign the saga to avoid these patterns, specify the correlation property with a [`[SqlSaga]` attribute](#correlation-ids-specifying-correlation-id-using-an-attribute), or use the [`SqlSaga<T>` base class](sqlsaga.md).
+In these cases, either redesign the saga to avoid these patterns or specify the correlation property with a [`[SqlSaga]` attribute](#correlation-ids-specifying-correlation-id-using-an-attribute).
 
 
 ### Specifying correlation ID using an attribute
@@ -23,5 +23,3 @@ If an incoming message cannot be mapped to a saga data instance using the correl
 To define a transitional correlation property on a saga, use the `[SqlSaga]` attribute:
 
 snippet: transitional-correlation-with-attribute
-
-A transitional correlation property can also be expressed as a class property when using the [SqlSaga<T> base class](sqlsaga.md).

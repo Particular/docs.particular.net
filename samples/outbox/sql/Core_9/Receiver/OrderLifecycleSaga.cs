@@ -5,16 +5,15 @@ using Microsoft.Extensions.Logging;
 using NServiceBus.Persistence.Sql;
 
 sealed class OrderLifecycleSaga(ILogger<OrderLifecycleSaga> logger) :
-    SqlSaga<OrderLifecycleSaga.SagaData>,
+    Saga<OrderLifecycleSaga.SagaData>,
     IAmStartedByMessages<OrderSubmitted>,
     IHandleTimeouts<OrderTimeout>
 {
-    protected override void ConfigureMapping(IMessagePropertyMapper mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
     {
-        mapper.ConfigureMapping<OrderSubmitted>(_ => _.OrderId);
+        mapper.MapSaga(saga => saga.OrderId)
+            .ToMessage<OrderSubmitted>(msg => msg.OrderId);
     }
-
-    protected override string CorrelationPropertyName => nameof(SagaData.OrderId);
 
     #region Timeout
 
@@ -37,5 +36,4 @@ sealed class OrderLifecycleSaga(ILogger<OrderLifecycleSaga> logger) :
     {
         public Guid OrderId { get; set; }
     }
-
 }

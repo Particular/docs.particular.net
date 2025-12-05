@@ -105,7 +105,16 @@ snippet: Oracle_OutboxSetAsDispatchedSql
 
 Used by `IOutboxStorage.Store`.
 
-partial: outbox
+##### Optimistic (default) mode
+
+snippet: Oracle_OutboxOptimisticStoreSql
+
+
+##### Pessimistic mode
+
+snippet: Oracle_OutboxPessimisticBeginSql
+
+snippet: Oracle_OutboxPessimisticCompleteSql
 
 
 ### Saga

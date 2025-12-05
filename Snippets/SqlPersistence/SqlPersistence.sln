@@ -4,10 +4,6 @@ VisualStudioVersion = 17.8.34227.203
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlPersistence_All", "SqlPersistence_All\SqlPersistence_All.csproj", "{904ADAD7-0E74-4183-95DE-FABF76F591D4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlPersistence_4", "SqlPersistence_4\SqlPersistence_4.csproj", "{578C95EA-137D-480F-AFB1-9E9BBE5B8D38}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlPersistence_5", "SqlPersistence_5\SqlPersistence_5.csproj", "{7F4BBEC8-FDD9-470D-AB3B-1E13C96297B8}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlPersistence_6", "SqlPersistence_6\SqlPersistence_6.csproj", "{43AE1BEF-A331-47FC-B3D3-DE66A05993FD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SqlPersistence_7", "SqlPersistence_7\SqlPersistence_7.csproj", "{4DDE682D-CDBF-40EC-B1E2-21387A0E0396}"
@@ -26,14 +22,6 @@ Global
 		{904ADAD7-0E74-4183-95DE-FABF76F591D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{904ADAD7-0E74-4183-95DE-FABF76F591D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{904ADAD7-0E74-4183-95DE-FABF76F591D4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{578C95EA-137D-480F-AFB1-9E9BBE5B8D38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{578C95EA-137D-480F-AFB1-9E9BBE5B8D38}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{578C95EA-137D-480F-AFB1-9E9BBE5B8D38}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{578C95EA-137D-480F-AFB1-9E9BBE5B8D38}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7F4BBEC8-FDD9-470D-AB3B-1E13C96297B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7F4BBEC8-FDD9-470D-AB3B-1E13C96297B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7F4BBEC8-FDD9-470D-AB3B-1E13C96297B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7F4BBEC8-FDD9-470D-AB3B-1E13C96297B8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{43AE1BEF-A331-47FC-B3D3-DE66A05993FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{43AE1BEF-A331-47FC-B3D3-DE66A05993FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43AE1BEF-A331-47FC-B3D3-DE66A05993FD}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,1 +1,0 @@
-snippet: MsSqlServer_OutboxStoreSql

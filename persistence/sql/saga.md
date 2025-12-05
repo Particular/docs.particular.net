@@ -10,13 +10,10 @@ related:
  - persistence/sql/sqlsaga
 redirects:
  - nservicebus/sql-persistence/saga
-reviewed: 2025-04-09
+reviewed: 2025-12-05
 ---
 
-SQL persistence supports sagas using the core [NServiceBus.Saga](/nservicebus/sagas/) API or an [experimental API unique to SQL persistence](sqlsaga.md) that provides a simpler mapping API.
-
-partial: sqlsaga-required-in-some-versions
-
+SQL persistence supports sagas using the core [NServiceBus.Saga](/nservicebus/sagas/) API.
 
 ## Table structure
 
@@ -100,7 +97,7 @@ The saga data can be queried manually by taking advantage of the [JSON querying 
 
 ### Custom settings
 
-An instance of [JsonSerializerSettings](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) can be used to customize serialization. 
+An instance of [JsonSerializerSettings](https://www.newtonsoft.com/json/help/html/T_Newtonsoft_Json_JsonSerializerSettings.htm) can be used to customize serialization.
 
 In this snippet, a custom DateTime converter is included and the `DefaultValueHandling` setting is changed to `Include` (by default, the `DefaultValueHandling` setting is set to `Ignore` to minimize the amount of data stored in the database).
 

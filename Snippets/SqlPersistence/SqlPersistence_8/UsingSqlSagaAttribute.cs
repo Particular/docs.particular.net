@@ -7,7 +7,7 @@
     [SqlSaga(
         correlationProperty: nameof(SagaData.OrderId)
     )]
-    public class SagaWithAmbiguousCorrelationProperty 
+    public class SagaWithAmbiguousCorrelationProperty
         : Saga<SagaWithAmbiguousCorrelationProperty.SagaData>
     // Rest of saga declaration omitted
     #endregion
@@ -44,9 +44,7 @@
     }
 
     #region table-suffix-with-attribute
-    [SqlSaga(
-        tableSuffix: "TheCustomTableName"
-    )]
+    [SqlSaga(tableSuffix: "TheCustomTableName")]
     public class MySaga
         : Saga<MySaga.SagaData>
         // Rest of saga declaration omitted
