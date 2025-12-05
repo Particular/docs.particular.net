@@ -7,7 +7,14 @@ related:
 reviewed: 2025-04-10
 ---
 
-`SqlSaga<T>` is an alternate saga base class for use with SQL persistence that offers a less verbose mapping API than `NServiceBus.Saga<T>`. It's generally advisable to use `NServiceBus.Saga<T>` by default for most new projects, and to switch to `SqlSaga<T>` when advantageous to cut down on the need for repetitive `.ToSaga(...)` expressions in sagas that handle several message types.
+> [!WARNING]
+> Starting in version 8.3.0, the `SqlSaga<T>` class is deprecated. With the [simplified message correlation syntax](/nservicebus/sagas/message-correlation.md) that does not repeat the `.ToSaga(…)` mapping, the alternate saga base class is no longer necessary.
+>
+> When using a standard `Saga<T>` base class, the correlation id is determined by analysis of the `ConfigureHowToFindSaga` method.
+>
+> A [transitional correlation id](/persistence/sql/saga.md#correlation-ids-transitional-correlation-id) (a feature exlusive to SQL Persistence) can still be applied using the `[SqlSaga]` attribute applied to a saga class.
+>
+> The generated [table name](/persistence/sql/saga.md#table-structure-table-name) can also be set using the `[SqlSaga]` attribute.
 
 partial: required-in-some-versions
 
