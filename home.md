@@ -121,19 +121,19 @@ span.blue {
   margin-top: 30px;
 }
 
-.products .col-xs-12.col-md-4 {
+.products .col-xs-12.col-md-6 {
   padding: 0;
 }
 
-.products .col-xs-12.col-md-4:nth-child(2) {
-  padding: 0 15px;
+.products .col-xs-12.col-md-6:nth-child(2) {
+  padding: 0 0 0 15px;
 }
 
-.products .col-xs-12.col-md-4 ul {
+.products .col-xs-12.col-md-6 ul {
   padding-left: 15px;
 }
 
-.products .col-xs-12.col-md-4 ul a {
+.products .col-xs-12.col-md-6 ul a {
   color: rgb(0, 114, 156);
   font-weight: bold;
 }
@@ -265,29 +265,7 @@ span.blue {
 
 <div class="row products">
 
-  <div class="col-xs-12 col-md-4">
-    <div class="block top">
-      <a href="/serviceinsight/"><img src="/content/images/menu/serviceinsight-icon.svg" width="47" height="47"><span class="productlink">ServiceInsight</span></a>
-      <div style="clear: both"></div>
-    </div>
-    <div class="productcolumn block">
-      <p></p>
-      <h4>Complete under-the-hood visualization of a system's behavior</h4>
-      <p></p>
-      <ul>
-        <li><a href="/serviceinsight/application-invocation.md">Application invocation</a></li>
-        <li><a href="/serviceinsight/logging.md">Logging</a></li>
-      </ul>
-      <a href="/serviceinsight/"><h3>All ServiceInsight articles</h3></a><br/>
-      <div style="clear: both"></div>
-    </div>
-    <div class="block black">
-      <span class="blue"><a href="https://github.com/Particular/ServiceInsight/releases"><span class="glyphicon glyphicon-calendar"></span> Release notes</a></span>
-    </div>
-  </div>
-
-
-  <div class="col-xs-12 col-md-4">
+  <div class="col-xs-12 col-md-6">
     <div class="block top">
       <a href="/servicecontrol/"><img src="/content/images/menu/servicecontrol-icon.svg" width="47" height="47"><span class="productlink">ServiceControl</span></a>
       <div style="clear: both"></div>
@@ -311,14 +289,14 @@ span.blue {
 
 
 
-  <div class="col-xs-12 col-md-4">
+  <div class="col-xs-12 col-md-6">
     <div class="block top">
       <a href="/servicepulse/"><img src="/content/images/menu/servicepulse-icon.svg" width="47" height="47"><span class="productlink">ServicePulse</span></a>
       <div style="clear: both"></div>
     </div>
     <div class="productcolumn last block">
       <p></p>
-      <h4>Real-time monitoring that is custom tailored to fit a distributed systems</h4>
+      <h4>Real-time monitoring with complete under-the-hood visualization of a distributed system's behavior</h4>
       <p></p>
       <ul>
         <li><a href="/monitoring/metrics/in-servicepulse.md">Monitoring Endpoints</a></li>
