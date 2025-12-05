@@ -44,18 +44,7 @@ public class ComponentAFeature :
 }
 
 #region FeatureEnabledByDefault
-public class FeatureEnabledByDefault :
-    Feature
-{
-    public FeatureEnabledByDefault()
-    {
-        EnableByDefault();
-    }
-
-    protected override void Setup(FeatureConfigurationContext context)
-    {
-    }
-}
+//todo: rework docs
 #endregion
 
 #region FeatureWithDefaults
@@ -100,7 +89,7 @@ public class EnablingOtherFeatures :
     public EnablingOtherFeatures()
     {
         #region EnablingOtherFeatures
-        Defaults(s => s.EnableFeatureByDefault<OtherFeature>());
+        Enable<OtherFeature>();
         #endregion
     }
 
