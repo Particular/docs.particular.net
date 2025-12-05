@@ -4,24 +4,19 @@
 
 using Microsoft.Extensions.Logging;
 
-public class OrderSaga :
+public class OrderSaga(ILogger<OrderSaga> logger) :
     Saga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>,
     IHandleMessages<CompletePaymentTransaction>,
     IHandleMessages<CompleteOrder>
 {
-    private readonly ILogger<OrderSaga> logger;
-
-    public OrderSaga(ILogger<OrderSaga> logger)
-    {
-        this.logger = logger;
-    }
-
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
     {
         mapper.MapSaga(saga => saga.OrderId)
             .ToMessage<StartOrder>(msg => msg.OrderId)
             .ToMessage<CompleteOrder>(msg => msg.OrderId);
+
+        mapper.ConfigureFinderMapping<CompletePaymentTransaction, CompletePaymentTransactionSagaFinder>();
     }
 
     public Task Handle(StartOrder message, IMessageHandlerContext context)
