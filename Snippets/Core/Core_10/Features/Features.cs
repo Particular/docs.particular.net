@@ -51,7 +51,7 @@ public class FeatureEnable
 {
     void Setup(EndpointConfiguration endpointConfiguration)
     {
-        #region FeatureEnabledByDefault
+        #region FeatureEnable
 
         endpointConfiguration.EnableFeature<MyFeature>();
 

@@ -47,7 +47,7 @@ The API also allows declaring optional dependencies on one or more listed featur
 
 For a feature to take part in the endpoint construction, it has to first be *enabled* and only then does it qualify for *activation*. By default, features are disabled unless explicitly enabled.
 
-snippet: FeatureEnabledByDefault
+snippet: FeatureEnable
 
 ### Enabling other features
 
