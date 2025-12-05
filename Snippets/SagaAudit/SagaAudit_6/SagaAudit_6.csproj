@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.SagaAudit" Version="6.0.0-alpha.2" />
+    <PackageReference Include="NServiceBus.SagaAudit" Version="6.0.0-alpha.3" />
   </ItemGroup>
 
 </Project>

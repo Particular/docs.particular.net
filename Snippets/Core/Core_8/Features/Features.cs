@@ -43,7 +43,7 @@
         }
     }
 
-    #region FeatureEnabledByDefault
+    #region FeatureEnable
     public class FeatureEnabledByDefault :
         Feature
     {

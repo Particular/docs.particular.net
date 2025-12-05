@@ -45,12 +45,9 @@ The API also allows declaring optional dependencies on one or more listed featur
 
 ## Enabling, disabling and activation
 
-For a feature to take part in the endpoint construction, it has to first be *enabled* and only then does it qualify for *activation*.   By default, features are disabled unless explicitly enabled.
+For a feature to take part in the endpoint construction, it has to first be *enabled* and only then does it qualify for *activation*. By default, features are disabled unless explicitly enabled.
 
-This can be overridden and a feature can be enabled by default, like most of NServiceBus's features are:
-
-snippet: FeatureEnabledByDefault
-
+snippet: FeatureEnable
 
 ### Enabling other features
 

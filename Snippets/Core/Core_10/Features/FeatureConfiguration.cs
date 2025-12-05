@@ -26,7 +26,6 @@ class MyFeature :
     async Task EndpointConfiguration(EndpointConfiguration endpointConfiguration)
     {
         #region EnableDisableFeatures
-        // this is not required if the feature uses EnableByDefault()
         endpointConfiguration.EnableFeature<MyFeature>();
 
         // disable features not in use

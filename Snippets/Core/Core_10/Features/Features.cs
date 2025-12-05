@@ -5,6 +5,7 @@ using NServiceBus.Configuration.AdvancedExtensibility;
 using NServiceBus.Features;
 
 #region MinimalFeature
+
 public class MinimalFeature :
     Feature
 {
@@ -12,6 +13,7 @@ public class MinimalFeature :
     {
     }
 }
+
 #endregion
 
 public class ComponentBFeature :
@@ -23,6 +25,7 @@ public class ComponentBFeature :
 }
 
 #region DependentFeature
+
 public class ComponentAFeature :
     Feature
 {
@@ -36,6 +39,7 @@ public class ComponentAFeature :
         DependsOn("Namespace.ComponentCFeature");
         DependsOnAtLeastOne("Namespace.ComponentDFeature", "Namespace.ComponentEFeature");
     }
+
     #endregion
 
     protected override void Setup(FeatureConfigurationContext context)
@@ -43,22 +47,28 @@ public class ComponentAFeature :
     }
 }
 
-#region FeatureEnabledByDefault
-public class FeatureEnabledByDefault :
-    Feature
+public class FeatureEnable
 {
-    public FeatureEnabledByDefault()
+    void Setup(EndpointConfiguration endpointConfiguration)
     {
-        EnableByDefault();
+        #region FeatureEnable
+
+        endpointConfiguration.EnableFeature<MyFeature>();
+
+        #endregion
     }
 
-    protected override void Setup(FeatureConfigurationContext context)
+    class MyFeature : Feature
     {
+        protected override void Setup(FeatureConfigurationContext context)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
-#endregion
 
 #region FeatureWithDefaults
+
 public class FeatureWithDefaults :
     Feature
 {
@@ -75,6 +85,7 @@ public class FeatureWithDefaults :
     {
     }
 }
+
 #endregion
 
 public class WriteSettings
@@ -100,7 +111,9 @@ public class EnablingOtherFeatures :
     public EnablingOtherFeatures()
     {
         #region EnablingOtherFeatures
-        Defaults(s => s.EnableFeatureByDefault<OtherFeature>());
+
+        Enable<OtherFeature>();
+
         #endregion
     }
 

@@ -12,7 +12,7 @@ class HandlerOrdering
     {
         #region HandlerOrderingWithFirst
 
-        endpointConfiguration.ExecuteTheseHandlersFirst(typeof(HandlerB));
+        endpointConfiguration.AddHandler<HandlerB>();
 
         #endregion
     }
@@ -21,26 +21,22 @@ class HandlerOrdering
     {
         #region HandlerOrderingWithMultiple
 
-        endpointConfiguration.ExecuteTheseHandlersFirst(
-            typeof(HandlerB),
-            typeof(HandlerA),
-            typeof(HandlerC));
+        endpointConfiguration.AddHandler<HandlerB>();
+        endpointConfiguration.AddHandler<HandlerA>();
+        endpointConfiguration.AddHandler<HandlerC>();
 
         #endregion
     }
 
-    public class HandlerA
+    public class HandlerA : IHandleMessages
     {
-
     }
 
-    public class HandlerB
+    public class HandlerB : IHandleMessages
     {
-
     }
 
-    public class HandlerC
+    public class HandlerC : IHandleMessages
     {
-
     }
 }

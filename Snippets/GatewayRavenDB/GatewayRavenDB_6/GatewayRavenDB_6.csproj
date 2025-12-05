@@ -3,6 +3,6 @@
     <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Gateway.RavenDB" Version="6.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.Gateway.RavenDB" Version="6.0.0-alpha.2" />
   </ItemGroup>
 </Project>
