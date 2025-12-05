@@ -1263,12 +1263,12 @@
     - Url: persistence/sql/saga
       Title: Sagas
       Articles:
-      - Url: persistence/sql/sqlsaga
-        Title: SqlSaga base class
       - Url: persistence/sql/saga-finder
         Title: Saga finders
       - Url: persistence/sql/saga-concurrency
         Title: Saga concurrency
+      - Url: persistence/sql/sqlsaga
+        Title: SqlSaga base class (Legacy)
     - Url: persistence/sql/subscriptions
       Title: Subscriptions
     - Url: persistence/sql/timeouts
