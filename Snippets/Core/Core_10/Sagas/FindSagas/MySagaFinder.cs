@@ -1,10 +1,9 @@
-﻿using NServiceBus;
-
-namespace Core.Sagas.FindSagas;
+﻿namespace Core.Sagas.FindSagas;
 
 using System.Threading;
 using System.Threading.Tasks;
 using NServiceBus.Extensibility;
+using NServiceBus;
 using NServiceBus.Persistence;
 using NServiceBus.Sagas;
 
