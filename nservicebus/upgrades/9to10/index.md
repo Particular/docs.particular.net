@@ -127,5 +127,5 @@ protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> ma
 
 Not having a finder configured for a given message will result in:
 
-**When the message is allowed to start the saga** - Compile time analyzer error [NSB0006](https://docs.particular.net/nservicebus/sagas/analyzers#message-that-starts-the-saga-does-not-have-a-message-mapping)
+**When the message is allowed to start the saga** - Compile time analyzer error [NSB0006](/nservicebus/sagas/analyzers#message-that-starts-the-saga-does-not-have-a-message-mapping)
 **When the message is not allowed to start the saga** - `Exception` when processing the message: `Message type CompletePaymentTransaction is handled by saga OrderSaga, but the saga does not contain a property mapping or custom saga finder to map the message to saga data. Consider adding a mapping in the saga's ConfigureHowToFindSaga method`
