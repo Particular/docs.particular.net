@@ -2,6 +2,7 @@
 
 using System.Threading;
 using System.Threading.Tasks;
+using NServiceBus;
 using NServiceBus.Extensibility;
 using NServiceBus.Persistence;
 using NServiceBus.Sagas;
@@ -22,3 +23,15 @@ public class MySagaFinder :
 }
 
 #endregion
+
+class MyFinderSaga : Saga<MySagaData>
+{
+    #region saga-finder-mapping
+
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
+    {
+        mapper.ConfigureFinderMapping<MyMessage, MySagaFinder>();
+    }
+
+    #endregion
+}

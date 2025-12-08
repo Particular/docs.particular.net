@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-
 Console.Title = "SqlServer";
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -21,10 +20,8 @@ var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlSaga
 var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
 persistence.SqlDialect<SqlDialect.MsSqlServer>();
 persistence.ConnectionBuilder(
-    connectionBuilder: () =>
-    {
-        return new SqlConnection(connectionString);
-    });
+    connectionBuilder: () => new SqlConnection(connectionString));
+
 var subscriptions = persistence.SubscriptionSettings();
 subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
@@ -61,4 +58,3 @@ while (true)
 }
 
 await host.StopAsync();
-

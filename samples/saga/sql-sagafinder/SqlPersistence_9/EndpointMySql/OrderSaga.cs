@@ -3,8 +3,6 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-#region saga
-
 public class OrderSaga(ILogger<OrderSaga> logger) :
     Saga<OrderSagaData>,
     IAmStartedByMessages<StartOrder>,
@@ -16,6 +14,8 @@ public class OrderSaga(ILogger<OrderSaga> logger) :
         mapper.MapSaga(saga => saga.OrderId)
             .ToMessage<StartOrder>(msg => msg.OrderId)
             .ToMessage<CompleteOrder>(msg => msg.OrderId);
+
+        mapper.ConfigureFinderMapping<CompletePaymentTransaction, OrderSagaFinder>();
     }
 
     public Task Handle(StartOrder message, IMessageHandlerContext context)
@@ -47,5 +47,3 @@ public class OrderSaga(ILogger<OrderSaga> logger) :
         return Task.CompletedTask;
     }
 }
-
-#endregion
