@@ -1,7 +1,7 @@
 ---
 title: Learning Persistence
 component: LearningPersistence
-reviewed: 2024-02-15
+reviewed: 2025-12-08
 related:
  - samples/saga/simple
  - transports/learning
@@ -48,7 +48,7 @@ Each saga will be stored a sub-directory matching the saga type name with the sa
 
 ## Saga concurrency
 
-When simultaneously handling messages, conflicts may occur. See below for examples of the exceptions which are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
+When handling messages simultaneously, conflicts may occur. See below for examples of the exceptions that are thrown. _[Saga concurrency](/nservicebus/sagas/concurrency.md)_ explains how these conflicts are handled, and contains guidance for high-load scenarios.
 
 ### Starting a saga
 
@@ -60,7 +60,7 @@ System.IO.IOException: The file 'S:\.sagas\OrderSaga\944b7efb-7146-adf1-d6ae-968
 
 ### Updating or deleting saga data
 
-Learning persistence uses file locks when updating or deleting saga data. The effect is similar to [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control) with the difference that failure will occur when reading the saga data, before the handler is invoked.
+Learning persistence uses file locks when updating or deleting saga data. The effect is similar to [optimistic concurrency control](https://en.wikipedia.org/wiki/Optimistic_concurrency_control), with the difference that failure occurs when reading the saga data before the handler is invoked.
 
 Example exception:
 
