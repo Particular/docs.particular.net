@@ -116,7 +116,7 @@ public class CustomPersistence : PersistenceDefinition
 
 ### Custom finders
 
-In Version 10 [custom saga finders](/nservicebus/sagas/saga-finding.md) are no longer automatically registered via assembly scanning and must be mapped in `ConfigureHowToFindSaga`
+In Version 10 [custom saga finders](/nservicebus/sagas/saga-finding.md) are no longer automatically registered via assembly scanning and must be mapped in the `ConfigureHowToFindSaga` method:
 
 ```
 protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
@@ -127,5 +127,5 @@ protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> ma
 
 Not having a finder configured for a given message will result in:
 
-**When the message is allowed to start the saga** - Compile time analyzer error [NSB0006](/nservicebus/sagas/analyzers.md#message-that-starts-the-saga-does-not-have-a-message-mapping)
-**When the message is not allowed to start the saga** - `Exception` when processing the message: `Message type CompletePaymentTransaction is handled by saga OrderSaga, but the saga does not contain a property mapping or custom saga finder to map the message to saga data. Consider adding a mapping in the saga's ConfigureHowToFindSaga method`
+- **When the message is allowed to start the saga** - Compile time analyzer error [NSB0006](/nservicebus/sagas/analyzers.md#message-that-starts-the-saga-does-not-have-a-message-mapping)
+- **When the message is not allowed to start the saga** - `Exception` when processing the message: `Message type CompletePaymentTransaction is handled by saga OrderSaga, but the saga does not contain a property mapping or custom saga finder to map the message to saga data. Consider adding a mapping in the saga's ConfigureHowToFindSaga method`
