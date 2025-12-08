@@ -2,8 +2,8 @@
 
 using System.Threading;
 using System.Threading.Tasks;
-using NServiceBus.Extensibility;
 using NServiceBus;
+using NServiceBus.Extensibility;
 using NServiceBus.Persistence;
 using NServiceBus.Sagas;
 
