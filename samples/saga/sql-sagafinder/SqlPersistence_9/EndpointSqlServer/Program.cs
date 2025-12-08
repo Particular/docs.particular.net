@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-
 Console.Title = "SqlServer";
 var builder = Host.CreateApplicationBuilder(args);
 
@@ -61,4 +60,3 @@ while (true)
 }
 
 await host.StopAsync();
-

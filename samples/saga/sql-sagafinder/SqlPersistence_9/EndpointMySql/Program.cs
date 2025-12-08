@@ -4,14 +4,12 @@ using Microsoft.Extensions.Hosting;
 using MySql.Data.MySqlClient;
 using NServiceBus;
 
-
 Console.Title = "MySql";
 var builder = Host.CreateApplicationBuilder(args);
 
 var endpointConfiguration = new EndpointConfiguration("Samples.SqlSagaFinder.MySql");
 endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-endpointConfiguration.SendFailedMessagesTo("error");
 endpointConfiguration.EnableInstallers();
 #region MySqlConfig
 
@@ -29,10 +27,7 @@ if (string.IsNullOrWhiteSpace(username))
 var connection = $"server=localhost;user={username};database=sqlpersistencesample;port=3306;password={password};AllowUserVariables=True;AutoEnlist=false";
 persistence.SqlDialect<SqlDialect.MySql>();
 persistence.ConnectionBuilder(
-    connectionBuilder: () =>
-    {
-        return new MySqlConnection(connection);
-    });
+    connectionBuilder: () => new MySqlConnection(connection));
 var subscriptions = persistence.SubscriptionSettings();
 subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
