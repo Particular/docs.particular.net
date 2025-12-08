@@ -16,14 +16,12 @@ endpointConfiguration.EnableInstallers();
 
 //for local instance or SqlExpress
 //var connectionString = @"Data Source=(localdb)\mssqllocaldb;Database=NsbSamplesSqlSagaFinder;Trusted_Connection=True;MultipleActiveResultSets=true";
-var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlSagaFinder;User Id=SA;Password=MyPassword1234!;Encrypt=false";
+var connectionString = @"Server=localhost,1433;Initial Catalog=NsbSamplesSqlSagaFinder;User Id=SA;Password=yourStrong(!)Password;Encrypt=false";
 var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
 persistence.SqlDialect<SqlDialect.MsSqlServer>();
 persistence.ConnectionBuilder(
-    connectionBuilder: () =>
-    {
-        return new SqlConnection(connectionString);
-    });
+    connectionBuilder: () => new SqlConnection(connectionString));
+
 var subscriptions = persistence.SubscriptionSettings();
 subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
