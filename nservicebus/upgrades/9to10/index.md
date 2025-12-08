@@ -116,7 +116,7 @@ public class CustomPersistence : PersistenceDefinition
 
 ### Custom finders
 
-In Version 10 custom saga finder are no longer automatically registered via assembly scanning and must be mapped in `ConfigureHowToFindSaga`
+In Version 10 [custom saga finders](/nservicebus/sagas/saga-finding) are no longer automatically registered via assembly scanning and must be mapped in `ConfigureHowToFindSaga`
 
 ```
 protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
