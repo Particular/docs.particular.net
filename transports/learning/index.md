@@ -1,7 +1,7 @@
 ---
 title: Learning Transport
 component: LearningTransport
-reviewed: 2024-02-19
+reviewed: 2025-12-08
 related:
  - persistence/learning
 redirects:
@@ -35,7 +35,7 @@ include: learning-usages
 
 ### Publish and subscribe
 
-The learning transport simulates a [multicast transport](/transports/types.md#multicast-enabled-transports), which means that routing configuration isn't needed in order to publish events. See the [native publish/subscribe](/nservicebus/messaging/publish-subscribe/#mechanics-native) documentation for further details.
+The learning transport simulates a [multicast transport](/transports/types.md#multicast-enabled-transports), so routing configuration isn't needed to publish events. See the [native publish/subscribe](/nservicebus/messaging/publish-subscribe/#mechanics-native) documentation for further details.
 
 ## Usage
 
@@ -58,19 +58,19 @@ By default, the transport runs with concurrency limited to 1. See the [tuning](/
 
 ### Storage Directory
 
-By default, all data is stored in a `.learningtransport` directory. The endpoint will traverse the folder hierarchy upwards in search for a `.learningtransport` directory or create one at the solution root folder if no matching folder has been found before.
+By default, all data is stored in a `.learningtransport` directory. The endpoint will traverse the folder hierarchy upwards to find a `.learningtransport` directory, or create one at the solution root folder if no matching directory is found.
 
 To manually configure the storage location:
 
 snippet: StorageDirectory
 
 > [!WARNING]
-> When using source control the storage directory should be excluded and never committed.
+> When using source control, the storage directory should be excluded and never committed.
 
 
 ### Payload size restriction
 
-To simulate a real transport, the serialized message size supported by the learning transport is limited to 64 kB. To remove this restriction:
+To simulate a real transport, the learning transport's serialized message size is limited to 64 kB. To remove this restriction:
 
 snippet: NoPayloadSizeRestriction
 
@@ -79,7 +79,7 @@ snippet: NoPayloadSizeRestriction
 
 ### Subscription metadata
 
-Native publish and subscribe is simulated by storing subscriber metadata in a `.events` folder in the root storage directory. Subscribers will write their address to a file named `{storage directory}\.events\{message type fullname}\{endpointname}.subscription`. Publishers will send copies of each published event to all registered subscribers.
+Native publish-subscribe is simulated by storing subscriber metadata in a `.events` folder at the root of the storage directory. Subscribers will write their address to a file named `{storage directory}\.events\{message type fullname}\{endpointname}.subscription`. Publishers will send copies of each published event to all registered subscribers.
 
 ### Message File Types
 
@@ -97,13 +97,13 @@ The serialized contents of a message.
 A serialized representation of the message metadata.
 
  * The first line is the path to the Message Body File.
- * The remaining lines are the json serialized headers of the message.
+ * The remaining lines are the JSON-serialized headers of the message.
  * File convention is `[MessageId].metadata.txt`.
 
 
 ### Error Directory
 
-When a message fails processing both its metadata and body files will be moved to the "error" directory. The name of the directory will be derived from [configured error queue address](/nservicebus/recoverability/configure-error-handling.md#configure-the-error-queue-address). The default error queue name, and hence the directory name, is "error".
+When a message fails processing, both its metadata and body files will be moved to the "error" directory. The name of the directory will be derived from [configured error queue address](/nservicebus/recoverability/configure-error-handling.md#configure-the-error-queue-address). The default error queue name, and hence the directory name, is "error".
 
 
 ### Endpoint Structure
@@ -128,8 +128,7 @@ Used to store messages that have been sent with a [Delayed Delivery](/nservicebu
 
 #### .pending (directory)
 
-Transaction directory that is used to mark a message as being processed. Also prevents duplicate processing.
-
+A transaction directory that is used to mark a message as being processed. Also prevents duplicate processing.
 
 #### .committed (directory)
 
