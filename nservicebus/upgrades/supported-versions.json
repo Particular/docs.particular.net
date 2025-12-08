@@ -738,6 +738,10 @@
         {
           "Minor": "8.2",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "8.3",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -754,6 +758,10 @@
         },
         {
           "Minor": "8.2",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "8.3",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -1186,6 +1194,14 @@
         {
           "Minor": "3.65",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.66",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "3.67",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -1259,7 +1275,7 @@
       "PackageId": "Particular.PlatformSample.ServiceControl",
       "Versions": [
         {
-          "Minor": "6.7",
+          "Minor": "6.8",
           "SupportLevel": "Mainstream"
         }
       ]
