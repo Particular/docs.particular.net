@@ -1,8 +1,8 @@
 ---
 title: DataBus Binary Serializer
-summary: A binary serializer for the data bus
+summary: BinaryFormatter-based DataBus serializer (deprecated and unsafe)
 component: BinaryDataBusSerializer
-reviewed: 2024-02-16
+reviewed: 2025-12-09
 redirects:
  - nservicebus/messaging/databus/binary
 related:
@@ -10,9 +10,15 @@ related:
  - samples/databus/custom-serializer
 ---
 
-This DataBus serializer uses the `BinaryFormatter` to serialize and deserialize data bus properties.
+This DataBus serializer uses **`BinaryFormatter`** to serialize and deserialize DataBus properties.
 
 snippet: BinaryDataBusUsage
 
-> [!WARNING]
-> `BinaryFormatter` [is dangerous and is not recommended for data processing](https://aka.ms/binaryformatter). Applications should stop using BinaryFormatter as soon as possible, even if they believe the data they're processing to be trustworthy. BinaryFormatter is insecure and can't be made secure. Switch to a [safer serializer](/nservicebus/messaging/claimcheck/#serialization). Refer to the [Migration from BinaryFormatter](/nservicebus/upgrades/7to8/databus.md#migration-from-binaryformatter) for details.
+> [!CAUTION]
+> **`BinaryFormatter` is unsafe and deprecated.**  
+> It cannot be secured and must not be used for processing data.  
+> Stop using it as soon as possible, even if the data appears trustworthy.  
+>
+> Use a [safer serializer](/nservicebus/messaging/claimcheck/#serialization) instead.  
+> For guidance, see the upgrade notes:  
+> **[Migration from BinaryFormatter](/nservicebus/upgrades/7to8/databus.md#migration-from-binaryformatter).**
