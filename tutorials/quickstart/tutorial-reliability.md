@@ -1,7 +1,7 @@
 ---
 title: "NServiceBus Quickstart: Recovering from failure"
 reviewed: 2025-02-18
-summary: "Part 2: Learn how to handle exceptions with NServiceBus in distributed systems and automatically retry them"
+summary: "Part 2: Learn how NServiceBus handles transient and fatal failures: automatic retries, error queuing and guaranteed message delivery for resilient systems"
 extensions:
 - !!tutorial
   nextText: "Next: Extending the system"
