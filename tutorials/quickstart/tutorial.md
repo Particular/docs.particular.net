@@ -1,7 +1,7 @@
 ---
 title: "Quickstart: Sending and processing your first messages"
 reviewed: 2025-06-15
-summary: "Part 1: See why software systems built on asynchronous messaging are superior to traditional synchronous HTTP-based web services."
+summary: "Part 1: A quick-start tutorial showing how to send commands, publish events, and handle messaging workflows easily"
 extensions:
 - !!tutorial
   nextText: "Next: Recovering from failure"
