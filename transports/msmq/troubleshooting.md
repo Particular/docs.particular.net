@@ -1,6 +1,6 @@
 ---
 title: MSMQ Transport Troubleshooting
-summary: Resolutions for common problems with the MSMQ transport.
+summary: MSMQ Transport troubleshooting: tips to fix duplicate QMId, undelivered messages, storage quota errors or VPN-related message delivery problems
 reviewed: 2024-10-24
 component: MsmqTransport
 isLearningPath: true
