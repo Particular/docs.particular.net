@@ -1,7 +1,7 @@
 ---
 title: Azure Blob Storage Data Bus
-summary: The Azure Blob Storage implementation of databus
-reviewed: 2024-02-16
+summary: The Azure Blob Storage data bus implementation
+reviewed: 2025-12-09
 component: ABSDataBus
 redirects:
  - nservicebus/messaging/databus/azure-blog-storage
@@ -28,7 +28,7 @@ partial: config
 
 ## Behavior
 
-The following extension methods are available for changing the behavior of `AzureDataBus` defaults:
+The following extension methods are available for changing the `AzureDataBus` defaults:
 
 snippet: AzureDataBusSetup
 

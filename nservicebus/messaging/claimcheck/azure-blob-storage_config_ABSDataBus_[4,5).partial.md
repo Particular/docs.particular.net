@@ -10,7 +10,7 @@ snippet: AzureDataBusConfigureServiceClient
 
 #### Using a custom provider
 
-A custom provider can be declared that provides a fully configured `BlobServiceClient`:
+A custom provider can be declared to provide a fully configured `BlobServiceClient`:
 
 snippet: CustomBlobServiceClientProvider
 
