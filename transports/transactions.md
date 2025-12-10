@@ -19,15 +19,15 @@ NServiceBus provides four transaction modes that offer different consistency gua
 
 ### Key concepts
 
-**Atomicity**: Ensures that operations either all succeed together or all fail together. For example, when processing a message, atomicity guarantees that receiving the message, updating the database, and sending outgoing messages are treated as a single unit of work.
+**[Atomicity](/nservicebus/concepts/glossary.md#atomicity)**: Ensures that operations either all succeed together or all fail together. For example, when processing a message, atomicity guarantees that receiving the message, updating the database, and sending outgoing messages are treated as a single unit of work.
 
-**Consistency**: Refers to how quickly data becomes visible across different parts of the system. *Immediate consistency* means data is available right away, while *eventual consistency* means data may not be immediately queryable but will become available after a short delay.
+**[Consistency](/nservicebus/concepts/glossary.md#consistency)**: Refers to how quickly data becomes visible across different parts of the system. *Immediate consistency* means data is available right away, while *eventual consistency* means data may not be immediately queryable but will become available after a short delay.
 
-**Idempotency**: The ability to process the same message multiple times without causing unintended side effects. An idempotent handler produces the same business outcome whether it processes a message once or multiple times.
+**[Idempotency](/nservicebus/concepts/glossary.md#idempotence)**: The ability to process the same message multiple times without causing unintended side effects. An idempotent handler produces the same business outcome whether it processes a message once or multiple times.
 
-**Ghost message**: A message that is sent to downstream systems, but the corresponding business data is never committed. This can occur when a message is successfully sent but the database transaction fails afterward.
+**[Ghost message](/nservicebus/concepts/glossary.md#ghost-message)**: A message that is sent to downstream systems, but the corresponding business data is never committed. This can occur when a message is successfully sent but the database transaction fails afterward.
 
-**Zombie record**: Business data that is stored in the database, but the corresponding messages are never sent to notify other parts of the system. This leaves "orphaned" data that other components don't know about.
+**[Zombie record](/nservicebus/concepts/glossary.md#zombie-record)**: Business data that is stored in the database, but the corresponding messages are never sent to notify other parts of the system. This leaves "orphaned" data that other components don't know about.
 
 > [!NOTE]
 > This article focuses on coordination and failure handling across message and data operations. It does not discuss transaction isolation levels, which only apply to database operations themselves.
