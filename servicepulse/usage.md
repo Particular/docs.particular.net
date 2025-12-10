@@ -1,6 +1,6 @@
 ---
 title: Measuring system usage
-summary: Learn how to measure the system usage of an NServiceBus system using ServicePulse
+summary: Use ServicePulse to track NServiceBus endpoints, throughput, and queues, creating usage reports for licensing
 reviewed: 2025-01-10
 redirects:
 - nservicebus/usage
