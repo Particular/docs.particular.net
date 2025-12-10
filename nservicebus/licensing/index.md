@@ -1,6 +1,6 @@
 ---
 title: License file information
-summary: How to install, configure and manage license files for NServiceBus endpoints, including paths, environment variables and expiry rules 
+summary: Learn how NServiceBus licensing works, including configuration, license types, usage reporting, and expiration
 component: core
 reviewed: 2024-05-07
 redirects:
