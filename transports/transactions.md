@@ -15,12 +15,34 @@ This article covers various levels of consistency guarantees with regard to:
  * updating user data
  * sending messages
 
-It does not discuss the transaction isolation aspect. Transaction isolation applies only to the process of updating the user data, it does not affect the overall coordination and failure handling.
+NServiceBus provides four transaction modes that offer different consistency guarantees. Understanding these modes is essential for building reliable message-based systems.
+
+### Key concepts
+
+**Atomicity**: Ensures that operations either all succeed together or all fail together. For example, when processing a message, atomicity guarantees that receiving the message, updating the database, and sending outgoing messages are treated as a single unit of work.
+
+**Consistency**: Refers to how quickly data becomes visible across different parts of the system. *Immediate consistency* means data is available right away, while *eventual consistency* means data may not be immediately queryable but will become available after a short delay.
+
+**Idempotency**: The ability to process the same message multiple times without causing unintended side effects. An idempotent handler produces the same business outcome whether it processes a message once or multiple times.
+
+**Ghost message**: A message that is sent to downstream systems, but the corresponding business data is never committed. This can occur when a message is successfully sent but the database transaction fails afterward.
+
+**Zombie record**: Business data that is stored in the database, but the corresponding messages are never sent to notify other parts of the system. This leaves "orphaned" data that other components don't know about.
+
+> [!NOTE]
+> This article focuses on coordination and failure handling across message and data operations. It does not discuss transaction isolation levels, which only apply to database operations themselves.
 
 
-## Transactions
+## Transaction modes
 
-Four levels of guarantees with regard to message processing are offered. A level's availability depends on the selected transport.
+NServiceBus offers four transaction modes that provide different levels of guarantees when processing messages. Each mode represents a trade-off between consistency, reliability, and complexity:
+
+1. **Transaction scope (Distributed transaction)** - Provides the strongest guarantees using distributed transactions across the transport and database
+2. **Sends atomic with Receive** - Ensures outgoing messages are sent atomically with the receive operation
+3. **Receive Only** - Guarantees the message won't be lost from the queue until successfully processed
+4. **Unreliable (Transactions Disabled)** - Provides no transactional guarantees for maximum performance
+
+The availability of each mode depends on the capabilities of the selected transport.
 
 
 ### Transaction levels supported by NServiceBus transports
@@ -50,103 +72,118 @@ include: mssql-dtc-warning
 
 #### Atomicity and consistency guarantees
 
-When the `TransportTransactionMode` is set to `TransactionScope`, handlers will execute inside a `System.Transactions.TransactionScope` created by the transport. This means that all the data updates and queue operations are committed or rolled back.
+When the `TransportTransactionMode` is set to `TransactionScope`, handlers execute inside a `System.Transactions.TransactionScope` created by the transport. All data updates and queue operations are committed or rolled back together as a single atomic operation.
 
-**A distributed transaction between the queueing system and the persistent storage guarantees _atomic commits_ but guarantees only _eventual consistency_.**
+**A distributed transaction between the queueing system and the persistent storage guarantees _atomic commits_ but only _eventual consistency_.**
 
-Consider a system using MSMQ transport and RavenDB persistence implementing the following message exchange scenario with a saga that models a simple order lifecycle:
+While the distributed transaction ensures that all operations commit atomically, data committed by one resource manager may not be immediately visible for queries, even after the transaction completes. This can cause consistency issues in scenarios where messages are processed very quickly.
+
+Consider a system using MSMQ transport and RavenDB persistence with a saga that models a simple order lifecycle:
 
  1. `OrderSaga` receives a `StartOrder` message
- 1. A new `OrderSagaData` instance is created and stored in RavenDB.
- 1. `OrderSaga` sends `VerifyPayment` message to `PaymentService`.
- 1. NServiceBus completes the distributed transaction and the DTC instructs MSMQ and RavenDB resource managers to commit their local transactions.
- 1. The `StartOrder` message is removed from the input queue and `VerifyPayment` is immediately sent to `PaymentService`.
- 1. RavenDB acknowledges the transaction commit and begins writing `OrderSagaData` to disk.
- 1. `PaymentService` receives a `VerifyPayment` message and immediately responds with a `CompleteOrder` message to the originating `OrderSaga`.
- 1. `OrderSaga` receives the `CompleteOrder` message and attempts to complete the saga.
- 1. `OrderSaga` queries RavenDB to find the `OrderSagaData` instance to complete.
- 1. RavenDB has not finished writing `OrderSagaData` to disk and returns an empty result set.
- 1. `OrderSaga` fails to complete.
+ 1. A new `OrderSagaData` instance is created and stored in RavenDB
+ 1. `OrderSaga` sends a `VerifyPayment` message to `PaymentService`
+ 1. NServiceBus completes the distributed transaction. The DTC instructs both MSMQ and RavenDB resource managers to commit their local transactions
+ 1. The `StartOrder` message is removed from the input queue and the `VerifyPayment` message is sent to `PaymentService`
+ 1. RavenDB acknowledges the transaction commit and begins writing `OrderSagaData` to disk
+ 1. `PaymentService` quickly processes the payment and sends a `CompleteOrder` message back to `OrderSaga`
+ 1. `OrderSaga` receives the `CompleteOrder` message and attempts to complete the saga
+ 1. `OrderSaga` queries RavenDB to find the `OrderSagaData` instance
+ 1. RavenDB has not yet finished writing `OrderSagaData` to disk and returns an empty result set
+ 1. `OrderSaga` fails to complete and the message will be retried
 
-In the example above the `TransactionScope` guarantees atomicity for the `OrderSaga`: consuming the incoming `StartOrder` message, storing `OrderSagaData` in RavenDB and sending the outgoing `VerifyPayment` message are _committed_ as one atomic operation. The saga data may not be immediately available for reading even though the incoming message has already been processed. `OrderSaga` is thus only _eventually consistent_. The `CompleteOrder` message needs to be [retried](/nservicebus/recoverability/) until RavenDB successfully returns an `OrderSagaData` instance.
+The `TransactionScope` guarantees atomicity: consuming the `StartOrder` message, storing `OrderSagaData` in RavenDB, and sending the `VerifyPayment` message all commit as one atomic operation. However, the saga data may not be immediately available for reading, even though the transaction has committed. The `CompleteOrder` message will be [automatically retried](/nservicebus/recoverability/) until RavenDB completes writing the data and the query succeeds.
 
 > [!NOTE]
 > This mode requires the selected storage to support participating in distributed transactions.
 
 ### Transport transaction - Sends atomic with Receive
 
-Some transports support enlisting outgoing operations in the current receive transaction. This prevents messages from being sent to downstream endpoints during retries.
+Some transports support enlisting outgoing operations in the current receive transaction. This ensures that messages are only sent to downstream endpoints when the receive operation completes successfully, preventing ghost messages during retries.
 
-Use the following code to use this mode:
+Use the following code to enable this mode:
 
 snippet: TransportTransactionAtomicSendsWithReceive
 
 #### Consistency guarantees
 
-This mode has the same consistency guarantees as the *Receive Only* mode, but additionally, it prevents the occurrence of [ghost messages](/nservicebus/concepts/glossary.md#ghost-message) since all outgoing operations are atomic with the ongoing receive operation.
+This mode provides the same consistency guarantees as *Receive Only* mode, with an important addition: it prevents ghost messages. Since all outgoing operations are committed atomically with the receive operation, messages are never sent if the handler fails and needs to be retried.
 
 ### Transport transaction - Receive Only
 
-In this mode, the receive operation is wrapped in a transport's native transaction. This mode guarantees that the message is not permanently deleted from the incoming queue until at least one processing attempt (including storing user data and sending out messages) is finished successfully. See also [recoverability](/nservicebus/recoverability/) for more details on retries.
+In this mode, the receive operation is wrapped in the transport's native transaction. The message is not permanently deleted from the queue until at least one processing attempt completes successfully. If processing fails, the message remains in the queue and will be [retried](/nservicebus/recoverability/).
 
 > [!NOTE]
-> [Sends and Publishes are batched](/nservicebus/messaging/batched-dispatch.md) and only transmitted until all handlers are successfully invoked.
-Messages that are required to be sent immediately should use the [immediate dispatch option](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately) which bypasses batching.
+> [Sends and Publishes are batched](/nservicebus/messaging/batched-dispatch.md) and only transmitted after all handlers successfully complete. Messages that must be sent immediately should use the [immediate dispatch option](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately), which bypasses batching.
 
-Use the following code to use this mode:
+Use the following code to enable this mode:
 
 snippet: TransportTransactionReceiveOnly
 
 
 #### Consistency guarantees
 
-In this mode some (or all) handlers might get invoked multiple times and partial results might be visible:
+This mode does not provide atomicity between the receive operation and other operations (database updates or sending messages). This can result in:
 
- * partial updates - where one handler succeeded in updating its data but the other didn't
- * partial sends - where some of the messages have been sent but others not
+ * **Partial updates** - Some handlers succeed in updating data while others fail
+ * **Partial sends** - Some messages are sent while others are not
+ * **Ghost messages** - Messages are sent successfully, but subsequent database operations fail
+ * **Zombie records** - Data is stored successfully, but outgoing messages fail to send
 
-When using this mode all handlers must be [idempotent](/nservicebus/concepts/glossary.md#idempotence), i.e. the result needs to be consistent from a business perspective even when the message is processed more than once.
+Additionally, handlers may be invoked multiple times for the same message due to retries. All handlers must be idempotent to ensure consistent business outcomes when processing the same message multiple times.
 
-See the `Outbox` section below for details on how NServiceBus can handle idempotency at the infrastructure level.
+The [Outbox feature](#outbox) can handle idempotency at the infrastructure level, eliminating the need to design handlers for idempotency manually.
 
 
 ### Unreliable (Transactions Disabled)
 
-Disabling transactions is generally not recommended, because it might lead to message loss. It might be considered if losing some messages is not problematic and if the messages get outdated quickly, e.g. when sending readings from sensors at regular intervals.
+This mode disables all transactional behavior and should only be used when message loss is acceptable. It may be appropriate for scenarios where messages become outdated quickly, such as sending sensor readings at regular intervals.
 
 > [!CAUTION]
-> In this mode, when encountering a critical failure such as a system or endpoint crash, the message is **permanently lost**.
+> In this mode, messages are **permanently lost** when encountering a critical failure such as a system or endpoint crash.
 
 snippet: TransactionsDisable
 
 > [!NOTE]
-> In this mode the transport doesn't wrap the receive operation in any kind of transaction. Should the message fail to process it will be moved straight to the error queue.
+> The transport does not wrap the receive operation in any transaction. Messages that fail to process are moved directly to the error queue. There are no retries and no guarantees about message delivery.
 
 
 ## Outbox
 
-The [Outbox](/nservicebus/outbox) feature provides idempotency at the infrastructure level and allows running in *transport transaction* mode while still getting the same semantics as *Transaction scope* mode.
+The [Outbox](/nservicebus/outbox) feature provides exactly-once message processing semantics without requiring distributed transactions. It enables *Transport transaction* modes to achieve the same guarantees as *Transaction scope* mode, while avoiding the complexity and infrastructure requirements of distributed transactions.
 
 > [!NOTE]
-> Outbox data needs to be stored in the same database as business data to achieve the `exactly-once delivery`.
+> The Outbox data must be stored in the same database as business data to achieve exactly-once delivery guarantees.
 
-When using the Outbox, any messages resulting from processing a given received message are not sent immediately but rather stored in the persistence database and pushed out after the handling logic is done. This mechanism ensures that the handling logic can only succeed once so there is no need to design for idempotency.
+### How the Outbox works
+
+When the Outbox is enabled, outgoing messages are not sent immediately. Instead:
+
+1. The incoming message is processed and business data is updated
+2. Outgoing messages are stored in an outbox table in the same database transaction as the business data
+3. The database transaction commits, ensuring business data and outbox messages are saved atomically
+4. After the transaction completes, the outgoing messages are dispatched from the outbox
+5. Once dispatched, the outbox record is marked as complete
+
+This approach ensures that message handling succeeds exactly once. Even if the message is processed multiple times due to retries, the outbox guarantees that outgoing messages maintain the same message ID. Receiving endpoints can deduplicate based on the message ID to ensure consistent processing, eliminating the need to design handlers for idempotency manually.
 
 
 ## Avoiding partial updates
 
-In transaction modes lower than [TransactionScope](#transactions-transaction-scope-distributed-transaction) there is a risk of partial updates because one handler might succeed in updating business data while another handler fails. To avoid this configure NServiceBus to wrap all handlers in a `TransactionScope` that will act as a unit of work and make sure that there are no partial updates. Use the following code to enable a wrapping scope:
+When using transaction modes other than [Transaction scope](#transaction-modes-transaction-scope-distributed-transaction), there is a risk of partial updates. One handler might successfully update its data while another handler fails, leaving the system in an inconsistent state.
+
+To prevent partial updates, NServiceBus can wrap all handlers in a `TransactionScope` that treats them as a single unit of work. This ensures that either all handlers succeed together or all fail together.
 
 snippet: TransactionsWrapHandlersExecutionInATransactionScope
 
 > [!NOTE]
-> This requires that all the data stores used by the handler support enlisting in a distributed transaction (e.g. SQL Server), including the saga store when using sagas.
+> This requires that all data stores used by handlers support distributed transactions (e.g. SQL Server), including the saga store when using sagas.
 
 > [!WARNING]
-> This might escalate to a distributed transaction if data in different databases are updated.
+> This may escalate to a full distributed transaction if handlers update data in different databases.
 
 > [!NOTE]
-> This API must not be used in combination with transports running in a *transaction scope* mode.
+> This API must not be used when the transport is already running in *Transaction scope* mode.
 
 
 partial: scope-options
