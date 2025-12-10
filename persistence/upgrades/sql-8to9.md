@@ -23,7 +23,7 @@ In version 9, the script generation that creates SQL scripts for sagas at compil
 
 The `SqlSaga<T>` base class, an alternate base class for defining a [saga](/nservicebus/sagas/), is deprecated with a warning starting in NServiceBus.Persistence.Sql version 8.3.0 and generates an error in version 9.0.0.
 
-The `SqlSaga` class existed primarily to make it easier to identify a saga's [correlation id](/nservicebus/sagas/message-correlation.md) so that it could be used to [generate SQL scripts](/persistence/sql/#script-creation) for saga classes, and to provide a simplified (but experimental) mapping syntax that was ultimately made unnecessary by improvements to the main NServiceBus saga mapping syntax. `SqlSaga` also did not benefit from the [Roslyn analyzers and code fixes for sagas](/nservicebus/sagas/analyzers.md) that help ensure sagas don't fall into various antipatterns.
+The `SqlSaga` class existed primarily to make it easier to identify a saga's [correlation ID](/nservicebus/sagas/message-correlation.md) so that it could be used to [generate SQL scripts](/persistence/sql/#script-creation) for saga classes, and to provide a simplified (but experimental) mapping syntax that was ultimately made unnecessary by improvements to the main NServiceBus saga mapping syntax. `SqlSaga` also did not benefit from the [Roslyn analyzers and code fixes for sagas](/nservicebus/sagas/analyzers.md) that help ensure sagas don't fall into various antipatterns.
 
 ### Converting SqlSaga
 
