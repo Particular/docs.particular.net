@@ -1,6 +1,6 @@
 ---
 title: NServiceBus and Azure
-summary: Using Azure for endpoint hosting and to provide Transports and Persistence
+summary: Explore how NServiceBus supports Microsoft Azure with cloud-native transports, persistence, host options and serverless patterns.
 reviewed: 2024-04-18
 ---
 
