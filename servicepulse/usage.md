@@ -1,6 +1,6 @@
 ---
 title: Measuring system usage
-summary: Generate and download a usage report showing endpoints, queues and throughput for licensing or audit
+summary: Use ServicePulse to track NServiceBus endpoints, throughput, and queues, creating usage reports for licensing
 reviewed: 2025-01-10
 redirects:
 - nservicebus/usage
