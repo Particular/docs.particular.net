@@ -1,6 +1,6 @@
 ---
 title: MassTransit Error Management - Early Access
-summary: Mnage errors from MassTransit systems with the Particular Service Platform
+summary: Manage errors from MassTransit systems with the Particular Service Platform
 reviewed: 2025-01-23
 ---
 
