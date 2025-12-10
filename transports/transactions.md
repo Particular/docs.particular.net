@@ -32,7 +32,7 @@ NServiceBus provides four transaction modes that offer different consistency gua
 > [!NOTE]
 > This article focuses on coordination and failure handling across message and data operations. It does not discuss transaction isolation levels, which only apply to database operations themselves.
 
-## Transaction modes
+## Transactions
 
 NServiceBus offers four transaction modes that provide different levels of guarantees when processing messages. Each mode represents a trade-off between consistency, reliability, and complexity:
 
