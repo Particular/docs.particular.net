@@ -64,10 +64,7 @@ protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> ma
 A `SqlSaga` may also override the `TransitionalCorrelationPropertyName` property to generate a SQL table that can facilitate transitioning from one correlation property to a new strategy. This feature can still be used via the [`[SqlSaga]` attribute](/persistence/sql/saga.md#correlation-ids-specifying-correlation-id-using-an-attribute):
 
 ```csharp
-[SqlSaga(
-    correlationProperty: nameof(MySagaData.OrderId),
-    transitionalCorrelationProperty: nameof(MySagaData.LegacyOrderId)
-)]
+[SqlSaga(transitionalCorrelationProperty: nameof(MySagaData.LegacyOrderId))]
 public class MySaga : Saga<MySagaData>
 {
     // Saga implementation
@@ -77,7 +74,7 @@ public class MySaga : Saga<MySagaData>
 Additionally, a `SqlSaga` may override the `TableSuffix` property to control the name of the table that is created by the SQL scripts. This can also be accomplished using the [`[SqlSaga]` attribute](/persistence/sql/saga.md#table-structure-table-name):
 
 ```csharp
-[SqlSaga(tableSuffix: "CustomOrderSagaTable")]
+[SqlSaga(tableSuffix: "CustomSagaDataTableName")]
 public class MySaga : Saga<MySagaData>
 {
     // Saga implementation
