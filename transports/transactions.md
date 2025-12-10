@@ -6,7 +6,7 @@ versions: "[4,)"
 redirects:
  - nservicebus/messaging/transactions
  - nservicebus/transports/transactions
-reviewed: 2024-02-19
+reviewed: 2025-12-10
 ---
 
 This article covers various levels of consistency guarantees with regard to:
