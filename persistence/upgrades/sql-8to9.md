@@ -14,13 +14,13 @@ upgradeGuideCoreVersions:
 
 ## Script generation via source generators
 
-In version 9, the script generation that creates SQL scripts for sagas at compile time now uses a Roslyn as the engine for analyzing saga classes.
+In version 9, the script generation that creates SQL scripts for sagas at compile time now uses Roslyn as the engine for analyzing saga classes.
 
 Previously, SQL script generation used the Mono.Cecil package to inspect the just-compiled assembly at the Intermediate Language (IL) level, stepping through individual compiler instructions (similar to assembly code) in order to infer a saga class's correlation id. Although relatively stable, the code to do it was quite complex as it had to account for all the things a person might potentially do in the instructions of a `ConfigureHowToFindSaga` method that have nothing to do with the correlation id. There was also always the risk that a new version of the .NET SDK would change something about how familiar saga mapping code was represented in IL instructions that would break the instruction analyzer.
 
 In this process, the MSBuild task that creates the SQL scripts had to load the just-compiled assembly and inspect it at a fairly deep level, enumerating through types and inspecting the implementation of specific methods.
 
-In version 9, the analysis is done using a Roslyn incremental source generator, which makes it resident inside the compiler at complile time. At this level of abstraction, the analysis takes place at the level of the saga code's syntax tree and semantic model, which creates a much more reliable way to confidently determine the correlation property by finding the call to `mapper.MapSaga(…)` and inspecting the expression inside.
+In version 9, the analysis is done using a Roslyn incremental source generator, which makes it resident inside the compiler at compile time. At this level of abstraction, the analysis takes place at the level of the saga code's syntax tree and semantic model, which creates a much more reliable way to confidently determine the correlation property by finding the call to `mapper.MapSaga(…)` and inspecting the expression inside.
 
 The source generator inspects the sagas during compilation and writes out a code file with one assembly-level attribute for each saga found, each containing the metadata for one saga type. The MSBuild task is then able to perform a shallow analysis of the just-compiled assembly to extract only these metadata attributes and then write the SQL scripts.
 
