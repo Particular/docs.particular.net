@@ -1481,6 +1481,10 @@
       Url: servicecontrol/upgrades/2to3
     - Title: Version 1 to 2
       Url: servicecontrol/upgrades/1to2
+  - Title: Security
+    Articles:
+    - Title: ServiceControl security
+      Url: servicecontrol
   - Title: Planning
     Articles:
     - Title: Optimizing for use in different environments
