@@ -100,3 +100,58 @@ $env:SERVICECONTROL_AUTHENTICATION_SERVICEPULSE_AUDIENCE = "api://your-app-id"
 $env:SERVICECONTROL_AUTHENTICATION_SERVICEPULSE_APISCOPES = '["api://your-app-id/api.access"]'
 ```
 
+
+## Identity provider guides
+
+For step-by-step instructions on configuring specific identity providers, see:
+
+- [Microsoft Entra ID](entra-id-authentication.md)
+
+## Configuration examples
+
+The following examples show complete authentication configurations for common identity providers.
+
+### Microsoft Entra ID
+
+```xml
+<!-- Enable authentication -->
+<add key="ServiceControl/Authentication.Enabled" value="true" />
+<add key="ServiceControl/Authentication.Authority" value="https://login.microsoftonline.com/{tenant-id}" />
+<add key="ServiceControl/Authentication.Audience" value="api://{app-id}" />
+
+<!-- ServicePulse settings -->
+<add key="ServiceControl/Authentication.ServicePulse.ClientId" value="{client-id}" />
+<add key="ServiceControl/Authentication.ServicePulse.Authority" value="https://login.microsoftonline.com/{tenant-id}/v2.0" />
+<add key="ServiceControl/Authentication.ServicePulse.Audience" value="api://{app-id}" />
+<add key="ServiceControl/Authentication.ServicePulse.ApiScopes" value="[&quot;api://{app-id}/api.access&quot;]" />
+```
+
+### Auth0
+
+```xml
+<!-- Enable authentication -->
+<add key="ServiceControl/Authentication.Enabled" value="true" />
+<add key="ServiceControl/Authentication.Authority" value="https://{auth0-domain}" />
+<add key="ServiceControl/Authentication.Audience" value="https://{api-identifier}" />
+
+<!-- ServicePulse settings -->
+<add key="ServiceControl/Authentication.ServicePulse.ClientId" value="{client-id}" />
+<add key="ServiceControl/Authentication.ServicePulse.Authority" value="https://{auth0-domain}" />
+<add key="ServiceControl/Authentication.ServicePulse.Audience" value="https://{api-identifier}" />
+<add key="ServiceControl/Authentication.ServicePulse.ApiScopes" value="[&quot;{scope1}&quot;,&quot;{scope2}&quot;]" />
+```
+
+### Keycloak
+
+```xml
+<!-- Enable authentication -->
+<add key="ServiceControl/Authentication.Enabled" value="true" />
+<add key="ServiceControl/Authentication.Authority" value="https://{keycloak-host}/realms/{realm}" />
+<add key="ServiceControl/Authentication.Audience" value="{api-client-id}" />
+
+<!-- ServicePulse settings -->
+<add key="ServiceControl/Authentication.ServicePulse.ClientId" value="{spa-client-id}" />
+<add key="ServiceControl/Authentication.ServicePulse.Authority" value="https://{keycloak-host}/realms/{realm}" />
+<add key="ServiceControl/Authentication.ServicePulse.Audience" value="{api-client-id}" />
+<add key="ServiceControl/Authentication.ServicePulse.ApiScopes" value="[&quot;{scope}&quot;]" />
+```

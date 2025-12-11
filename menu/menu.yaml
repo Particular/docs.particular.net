@@ -1487,6 +1487,8 @@
       Url: servicecontrol/security
     - Title: Configuration
       Url: servicecontrol/security/configuration
+    - Title: Microsoft Entra ID authentication
+      Url: servicecontrol/security/entra-id-authentication
   - Title: Planning
     Articles:
     - Title: Optimizing for use in different environments
