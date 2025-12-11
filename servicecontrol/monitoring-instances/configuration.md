@@ -93,6 +93,141 @@ The maximum allowed time for the process to complete the shutdown.
 | Installation via PowerShell (on Windows) | TimeSpan | `00:02:00` (2 minutes) |
 | Installation via ServiceControl Management Utility (SCMU) (on Windows) | TimeSpan | `00:02:00` (2 minutes) |
 
+## Authentication
+
+These settings configure [authentication using OAuth 2.0 and OpenID Connect](/servicecontrol/security/).
+
+### Monitoring/Authentication.Enabled
+
+_Added in version 6.9.0_
+
+Enables or disables authentication.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_AUTHENTICATION_ENABLED` |
+| **App config key** | `Monitoring/Authentication.Enabled` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
+### Monitoring/Authentication.Authority
+
+_Added in version 6.9.0_
+
+The URL of the OpenID Connect authority (identity provider) used to authenticate tokens.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_AUTHENTICATION_AUTHORITY` |
+| **App config key** | `Monitoring/Authentication.Authority` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### Monitoring/Authentication.Audience
+
+_Added in version 6.9.0_
+
+The expected audience value in the JWT token, typically the application ID or URI of the API.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_AUTHENTICATION_AUDIENCE` |
+| **App config key** | `Monitoring/Authentication.Audience` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### Monitoring/Authentication.ValidateIssuer
+
+_Added in version 6.9.0_
+
+Controls whether the token issuer is validated against the authority.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_AUTHENTICATION_VALIDATEISSUER` |
+| **App config key** | `Monitoring/Authentication.ValidateIssuer` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+### Monitoring/Authentication.ValidateAudience
+
+_Added in version 6.9.0_
+
+Controls whether the token audience is validated.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_AUTHENTICATION_VALIDATEAUDIENCE` |
+| **App config key** | `Monitoring/Authentication.ValidateAudience` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+### Monitoring/Authentication.ValidateLifetime
+
+_Added in version 6.9.0_
+
+Controls whether the token expiration is validated.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_AUTHENTICATION_VALIDATELIFETIME` |
+| **App config key** | `Monitoring/Authentication.ValidateLifetime` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+### Monitoring/Authentication.ValidateIssuerSigningKey
+
+_Added in version 6.9.0_
+
+Controls whether the token signing key is validated.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_AUTHENTICATION_VALIDATEISSUERSIGNINGKEY` |
+| **App config key** | `Monitoring/Authentication.ValidateIssuerSigningKey` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+### Monitoring/Authentication.RequireHttpsMetadata
+
+_Added in version 6.9.0_
+
+Controls whether HTTPS is required when retrieving metadata from the authority.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_AUTHENTICATION_REQUIREHTTPSMETADATA` |
+| **App config key** | `Monitoring/Authentication.RequireHttpsMetadata` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+> [!WARNING]
+> Setting this to `false` is not recommended for production environments.
+
 ## Logging
 
 ### Monitoring/LogPath

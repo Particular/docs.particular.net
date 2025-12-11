@@ -153,6 +153,141 @@ Run [ServiceControl audit instance in maintenance mode](/servicecontrol/ravendb/
 | --- | --- |
 | boolean | `False` |
 
+## Authentication
+
+These settings configure [authentication using OAuth 2.0 and OpenID Connect](/servicecontrol/security/).
+
+### ServiceControl.Audit/Authentication.Enabled
+
+_Added in version 6.9.0_
+
+Enables or disables authentication.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_AUTHENTICATION_ENABLED` |
+| **App config key** | `ServiceControl.Audit/Authentication.Enabled` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
+### ServiceControl.Audit/Authentication.Authority
+
+_Added in version 6.9.0_
+
+The URL of the OpenID Connect authority (identity provider) used to authenticate tokens.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_AUTHENTICATION_AUTHORITY` |
+| **App config key** | `ServiceControl.Audit/Authentication.Authority` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### ServiceControl.Audit/Authentication.Audience
+
+_Added in version 6.9.0_
+
+The expected audience value in the JWT token, typically the application ID or URI of the API.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_AUTHENTICATION_AUDIENCE` |
+| **App config key** | `ServiceControl.Audit/Authentication.Audience` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### ServiceControl.Audit/Authentication.ValidateIssuer
+
+_Added in version 6.9.0_
+
+Controls whether the token issuer is validated against the authority.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_AUTHENTICATION_VALIDATEISSUER` |
+| **App config key** | `ServiceControl.Audit/Authentication.ValidateIssuer` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+### ServiceControl.Audit/Authentication.ValidateAudience
+
+_Added in version 6.9.0_
+
+Controls whether the token audience is validated.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_AUTHENTICATION_VALIDATEAUDIENCE` |
+| **App config key** | `ServiceControl.Audit/Authentication.ValidateAudience` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+### ServiceControl.Audit/Authentication.ValidateLifetime
+
+_Added in version 6.9.0_
+
+Controls whether the token expiration is validated.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_AUTHENTICATION_VALIDATELIFETIME` |
+| **App config key** | `ServiceControl.Audit/Authentication.ValidateLifetime` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+### ServiceControl.Audit/Authentication.ValidateIssuerSigningKey
+
+_Added in version 6.9.0_
+
+Controls whether the token signing key is validated.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_AUTHENTICATION_VALIDATEISSUERSIGNINGKEY` |
+| **App config key** | `ServiceControl.Audit/Authentication.ValidateIssuerSigningKey` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+### ServiceControl.Audit/Authentication.RequireHttpsMetadata
+
+_Added in version 6.9.0_
+
+Controls whether HTTPS is required when retrieving metadata from the authority.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_AUTHENTICATION_REQUIREHTTPSMETADATA` |
+| **App config key** | `ServiceControl.Audit/Authentication.RequireHttpsMetadata` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+> [!WARNING]
+> Setting this to `false` is not recommended for production environments.
+
 ## Embedded database
 
 These settings are not valid for ServiceControl instances hosted in a container.
