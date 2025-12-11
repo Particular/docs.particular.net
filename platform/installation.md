@@ -73,11 +73,3 @@ ServicePulse, along with ServiceControl, can be hosted in Visual Studio, with no
 #### Switch between ServiceControl Error instances
 
 When multiple ServiceControl Error instances are deployed, ServicePulse can be configured to switch between instances via the [ServicePulse UI connection management screen](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui).
-
-### ServiceInsight
-
-ServiceInsight can be installed using a dedicated [installation package](https://particular.net/downloads), which installs ServiceInsight as a Windows application.
-
-#### Switch between ServiceControl instances
-
-When multiple ServiceControl Error instances are deployed, the instance can be chosen using ServiceInsight's [Endpoint Explorer](/serviceinsight/#endpoint-explorer).

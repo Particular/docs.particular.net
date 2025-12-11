@@ -1,11 +1,10 @@
 ---
 title: Third-party licenses
 summary: Licenses for third-party libraries used by the Particular Service Platform.
-reviewed: 2024-11-29
+reviewed: 2025-11-26
 related:
   - nservicebus/licensing
   - servicecontrol/license
-  - serviceinsight/license
 redirects:
   - nservicebus/upgrades/third-party-licenses
 ---
