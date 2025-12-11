@@ -1484,7 +1484,9 @@
   - Title: Security
     Articles:
     - Title: ServiceControl security
-      Url: servicecontrol
+      Url: servicecontrol/security
+    - Title: Configuration
+      Url: servicecontrol/security/configuration
   - Title: Planning
     Articles:
     - Title: Optimizing for use in different environments
