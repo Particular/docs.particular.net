@@ -75,7 +75,7 @@ include: mssql-dtc-warning
 When the `TransportTransactionMode` is set to `TransactionScope`, handlers execute inside a `System.Transactions.TransactionScope` created by the transport. All data updates and queue operations are committed or rolled back together as a single atomic operation.
 
 > [!WARNING]
-> Not all persisters guarantee _immediately consistency_ on a single or full clusters when a distributed transaction is committed and only guarantee _eventual consistency_. Review a persister its transaction consistency guarantees to ensure the system consistency behaves as expected regarding distributed transactions, and (global) clustering/replication consistency.
+> Not all persisters guarantee _immediate consistency_ on a single or full clusters when a distributed transaction is committed, and only guarantee _eventual consistency_. Review the selected persister's transaction consistency guarantees to ensure the system consistency behaves as expected regarding distributed transactions, and (global) clustering/replication consistency.
 
 ### Transport transaction - Sends atomic with Receive
 
