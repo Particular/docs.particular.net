@@ -1485,6 +1485,8 @@
     Articles:
     - Title: ServiceControl security
       Url: servicecontrol/security
+    - Title: Hosting guide
+      Url: servicecontrol/security/hosting-guide
     - Title: Configuration
       Url: servicecontrol/security/configuration
     - Title: Microsoft Entra ID authentication
