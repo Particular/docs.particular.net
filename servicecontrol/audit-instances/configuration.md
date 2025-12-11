@@ -288,6 +288,238 @@ Controls whether HTTPS is required when retrieving metadata from the authority.
 > [!WARNING]
 > Setting this to `false` is not recommended for production environments.
 
+## HTTPS
+
+These settings configure HTTPS. Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) for additional information.
+
+### ServiceControl.Audit/Https.Enabled
+
+_Added in version 6.9.0_
+
+Enables Kestrel HTTPS with a certificate.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_HTTPS_ENABLED` |
+| **App config key** | `ServiceControl.Audit/Https.Enabled` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
+### ServiceControl.Audit/Https.CertificatePath
+
+_Added in version 6.9.0_
+
+The path to the PFX or PEM certificate file.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_HTTPS_CERTIFICATEPATH` |
+| **App config key** | `ServiceControl.Audit/Https.CertificatePath` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### ServiceControl.Audit/Https.CertificatePassword
+
+_Added in version 6.9.0_
+
+The password for the certificate file, if required.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_HTTPS_CERTIFICATEPASSWORD` |
+| **App config key** | `ServiceControl.Audit/Https.CertificatePassword` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### ServiceControl.Audit/Https.RedirectHttpToHttps
+
+_Added in version 6.9.0_
+
+Redirects HTTP requests to HTTPS.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_HTTPS_REDIRECTHTTPTOHTTPS` |
+| **App config key** | `ServiceControl.Audit/Https.RedirectHttpToHttps` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
+### ServiceControl.Audit/Https.EnableHsts
+
+_Added in version 6.9.0_
+
+Enables HTTP Strict Transport Security (HSTS).
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_HTTPS_ENABLEHSTS` |
+| **App config key** | `ServiceControl.Audit/Https.EnableHsts` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
+### ServiceControl.Audit/Https.HstsMaxAgeSeconds
+
+_Added in version 6.9.0_
+
+The max-age value in seconds for the HSTS header.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_HTTPS_HSTSMAXAGESECONDS` |
+| **App config key** | `ServiceControl.Audit/Https.HstsMaxAgeSeconds` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| int | `31536000` (1 year) |
+
+### ServiceControl.Audit/Https.HstsIncludeSubDomains
+
+_Added in version 6.9.0_
+
+Includes subdomains in the HSTS policy.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_HTTPS_HSTSINCLUDESUBDOMAINS` |
+| **App config key** | `ServiceControl.Audit/Https.HstsIncludeSubDomains` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
+## Forwarded headers
+
+These settings configure forwarded headers for reverse proxy scenarios. Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) for additional information.
+
+### ServiceControl.Audit/ForwardedHeaders.Enabled
+
+_Added in version 6.9.0_
+
+Enables processing of forwarded headers (X-Forwarded-For, X-Forwarded-Proto, etc.).
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_FORWARDEDHEADERS_ENABLED` |
+| **App config key** | `ServiceControl.Audit/ForwardedHeaders.Enabled` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+### ServiceControl.Audit/ForwardedHeaders.TrustAllProxies
+
+_Added in version 6.9.0_
+
+Trusts forwarded headers from any source. Set to `false` when using `KnownProxies` or `KnownNetworks`.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_FORWARDEDHEADERS_TRUSTALLPROXIES` |
+| **App config key** | `ServiceControl.Audit/ForwardedHeaders.TrustAllProxies` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+> [!WARNING]
+> For production environments behind a reverse proxy, set this to `false` and configure `KnownProxies` or `KnownNetworks` to restrict which proxies are trusted.
+
+### ServiceControl.Audit/ForwardedHeaders.KnownProxies
+
+_Added in version 6.9.0_
+
+A comma-separated list of trusted proxy IP addresses.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_FORWARDEDHEADERS_KNOWNPROXIES` |
+| **App config key** | `ServiceControl.Audit/ForwardedHeaders.KnownProxies` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+Example: `127.0.0.1`
+
+### ServiceControl.Audit/ForwardedHeaders.KnownNetworks
+
+_Added in version 6.9.0_
+
+A comma-separated list of trusted CIDR network ranges.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_FORWARDEDHEADERS_KNOWNNETWORKS` |
+| **App config key** | `ServiceControl.Audit/ForwardedHeaders.KnownNetworks` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+Example: `10.0.0.0/8,172.16.0.0/12`
+
+## CORS
+
+These settings configure Cross-Origin Resource Sharing (CORS). Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) for additional information.
+
+### ServiceControl.Audit/Cors.AllowAnyOrigin
+
+_Added in version 6.9.0_
+
+Allows requests from any origin.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_CORS_ALLOWANYORIGIN` |
+| **App config key** | `ServiceControl.Audit/Cors.AllowAnyOrigin` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+> [!WARNING]
+> For production environments, set this to `false` and configure `AllowedOrigins` to restrict which origins can access the API.
+
+### ServiceControl.Audit/Cors.AllowedOrigins
+
+_Added in version 6.9.0_
+
+A comma-separated list of allowed origins.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_CORS_ALLOWEDORIGINS` |
+| **App config key** | `ServiceControl.Audit/Cors.AllowedOrigins` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+Example: `https://servicepulse.example.com,https://admin.example.com`
+
 ## Embedded database
 
 These settings are not valid for ServiceControl instances hosted in a container.
