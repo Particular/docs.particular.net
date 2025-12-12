@@ -58,6 +58,7 @@ As part of a full review, the following should be done:
 * Content is correct up to and including the current released version
 * Content can benefit from having its own header so that it is picked up while searching for a related topic.
 * Summary and title are adequate
+* Summary adheres to the [ai friendliness](https://github.com/particular/developereducation/tree/master/seo/ai-friendliness.md] guidelines.
 * Consider what is the best place to direct the reader after they are done reading the current page. Add a link to that page at the bottom.
 * Update the reviewed date in the header, even if no changes were made.
 * Remove [security advisories](https://docs.particular.net/security-advisories/) for no longer supported versions
