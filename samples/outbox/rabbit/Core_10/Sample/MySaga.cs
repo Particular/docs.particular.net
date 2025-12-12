@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
 
@@ -18,6 +19,19 @@ public class MySaga : Saga<MySagaData>
 
     public async Task Handle(MyMessage message, IMessageHandlerContext context)
     {
+        if (Data.MySequenceNumbers.Any())
+        {
+            var processedSequenceNumbers = string.Join(",", Data.MySequenceNumbers);
+
+            Console.WriteLine($"Saga existed, processing sequence number {message.SequenceNumber}, previously processed sequence numbers {processedSequenceNumbers}");
+        }
+        else
+        {
+            Console.WriteLine($"Saga did not exist, trying to processes sequence number {message.SequenceNumber}");
+        }
+
+
+
         Data.MySequenceNumbers.Add(message.SequenceNumber);
         var cmd = new MyCommand
         {
