@@ -41,3 +41,14 @@ ServiceControl supports TLS termination at either:
 - **A reverse proxy**: Such as NGINX, Apache, IIS, or Azure App Gateway
 
 See the [hosting and security guide](hosting-guide.md) for detailed configuration options including HTTPS certificates, HSTS, and reverse proxy settings.
+
+## ServiceInsight compatibility
+
+ServiceInsight does not support OAuth 2.0 or OpenID Connect authentication. If authentication is enabled on a ServiceControl instance, **ServiceInsight will not be able to connect**.
+
+Users relying on ServiceInsight have two options:
+
+1. **Do not enable authentication** on the relevant ServiceControl instance, or
+2. **Use ServicePulse instead of ServiceInsight**.
+
+The second option is recommended, as the functionality previously available in ServiceInsight has been migrated to ServicePulse.
