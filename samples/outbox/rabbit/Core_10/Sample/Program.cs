@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using NServiceBus;
+using NServiceBus.Logging;
 
 class Program
 {
@@ -9,7 +10,11 @@ class Program
     {
         Console.Title = "RabbitMQOutbox";
 
+        var defaultFactory = LogManager.Use<DefaultFactory>();
+        defaultFactory.Level(LogLevel.Error);
+
         #region ConfigureTransport
+
         var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.Outbox");
 
         var rabbitMqTransport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Classic), "host=localhost;username=rabbitmq;password=rabbitmq")
@@ -18,44 +23,53 @@ class Program
         };
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(rabbitMqTransport);
+
         #endregion
 
         #region ConfigurePersistence
+
         // for SqlExpress use Data Source=.\SqlExpress;Initial Catalog=NsbRabbitMqOutbox;Integrated Security=True;Max Pool Size=100;Encrypt=false
         // Password must match value in docker-compose.yml
-        var connectionString = @"Server=localhost,11433;Initial Catalog=NsbRabbitMqOutbox;User Id=SA;Password=NServiceBus!;Max Pool Size=100;Encrypt=false";
+        var connectionString = Environment.GetEnvironmentVariable("SQLServerConnectionString");
 
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SqlDialect<SqlDialect.MsSqlServer>();
         persistence.ConnectionBuilder(() => new SqlConnection(connectionString));
-        #endregion
-
-        endpointConfiguration.EnableInstallers();
-
-        #region SampleSteps
-
-        // STEP 1: Run code as is, duplicates can be observed in console and database
-
-        // STEP 2: Uncomment this line to enable the Outbox. Duplicates will be suppressed.
-        // endpointConfiguration.EnableOutbox();
-
-        // STEP 3: Comment out this line to allow concurrent processing. Concurrency exceptions will
-        // occur in the console window, but only 5 entries will be made in the database.
-        endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
 
         #endregion
+
+        //endpointConfiguration.EnableInstallers();
+
+//        endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
+
+
+        endpointConfiguration.Recoverability().Immediate(c => c.OnMessageBeingRetried((r, _) =>
+        {
+            Console.WriteLine($"Retry {r.RetryAttempt} for sequence number {r.Headers["sequence-number"]}");
+            return Task.CompletedTask;
+        }));
+
 
         Helper.EnsureDatabaseExists(connectionString);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-        Console.WriteLine("Endpoint started. Press Enter to send 5 sets of duplicate messages...");
-        Console.ReadLine();
+        int count = 10;
 
-        for (var i = 0; i < 5; i++)
+        var correlationId = Guid.NewGuid().ToString();
+        for (var i = 0; i < count; i++)
         {
-            var myMessage = new MyMessage();
-            await Helper.SendDuplicates(endpointInstance, myMessage, totalCount: 2);
+            var sendOptions = new SendOptions();
+
+            sendOptions.RouteToThisEndpoint();
+
+            sendOptions.SetHeader("sequence-number", i.ToString());
+            var myMessage = new MyMessage
+            {
+                CorrelationID = correlationId,
+                SequenceNumber = i
+            };
+            await endpointInstance.Send(myMessage, sendOptions);
         }
 
         await Task.Delay(5000);

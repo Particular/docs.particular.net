@@ -9,11 +9,3 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
-  sql:
-    image: mcr.microsoft.com/mssql/server
-    environment:
-      ACCEPT_EULA: Y
-      MSSQL_PID: Express
-      SA_PASSWORD: NServiceBus!
-    ports:
-      - "11433:1433"
