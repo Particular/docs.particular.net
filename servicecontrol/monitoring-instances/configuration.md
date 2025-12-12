@@ -93,6 +93,373 @@ The maximum allowed time for the process to complete the shutdown.
 | Installation via PowerShell (on Windows) | TimeSpan | `00:02:00` (2 minutes) |
 | Installation via ServiceControl Management Utility (SCMU) (on Windows) | TimeSpan | `00:02:00` (2 minutes) |
 
+## Authentication
+
+These settings configure [authentication using OAuth 2.0 and OpenID Connect](/servicecontrol/security/).
+
+### Monitoring/Authentication.Enabled
+
+_Added in version 6.9.0_
+
+Enables or disables authentication.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_AUTHENTICATION_ENABLED` |
+| **App config key** | `Monitoring/Authentication.Enabled` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
+### Monitoring/Authentication.Authority
+
+_Added in version 6.9.0_
+
+The URL of the OpenID Connect authority (identity provider) used to authenticate tokens.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_AUTHENTICATION_AUTHORITY` |
+| **App config key** | `Monitoring/Authentication.Authority` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### Monitoring/Authentication.Audience
+
+_Added in version 6.9.0_
+
+The expected audience value in the JWT token, typically the application ID or URI of the API.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_AUTHENTICATION_AUDIENCE` |
+| **App config key** | `Monitoring/Authentication.Audience` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### Monitoring/Authentication.ValidateIssuer
+
+_Added in version 6.9.0_
+
+Controls whether the token issuer is validated against the authority.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_AUTHENTICATION_VALIDATEISSUER` |
+| **App config key** | `Monitoring/Authentication.ValidateIssuer` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+### Monitoring/Authentication.ValidateAudience
+
+_Added in version 6.9.0_
+
+Controls whether the token audience is validated.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_AUTHENTICATION_VALIDATEAUDIENCE` |
+| **App config key** | `Monitoring/Authentication.ValidateAudience` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+### Monitoring/Authentication.ValidateLifetime
+
+_Added in version 6.9.0_
+
+Controls whether the token expiration is validated.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_AUTHENTICATION_VALIDATELIFETIME` |
+| **App config key** | `Monitoring/Authentication.ValidateLifetime` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+### Monitoring/Authentication.ValidateIssuerSigningKey
+
+_Added in version 6.9.0_
+
+Controls whether the token signing key is validated.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_AUTHENTICATION_VALIDATEISSUERSIGNINGKEY` |
+| **App config key** | `Monitoring/Authentication.ValidateIssuerSigningKey` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+### Monitoring/Authentication.RequireHttpsMetadata
+
+_Added in version 6.9.0_
+
+Controls whether HTTPS is required when retrieving metadata from the authority.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_AUTHENTICATION_REQUIREHTTPSMETADATA` |
+| **App config key** | `Monitoring/Authentication.RequireHttpsMetadata` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+> [!WARNING]
+> Setting this to `false` is not recommended for production environments.
+
+## HTTPS
+
+These settings configure HTTPS. Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) for additional information.
+
+### Monitoring/Https.Enabled
+
+_Added in version 6.9.0_
+
+Enables Kestrel HTTPS with a certificate.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_HTTPS_ENABLED` |
+| **App config key** | `Monitoring/Https.Enabled` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
+### Monitoring/Https.CertificatePath
+
+_Added in version 6.9.0_
+
+The path to the PFX or PEM certificate file.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_HTTPS_CERTIFICATEPATH` |
+| **App config key** | `Monitoring/Https.CertificatePath` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### Monitoring/Https.CertificatePassword
+
+_Added in version 6.9.0_
+
+The password for the certificate file, if required.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_HTTPS_CERTIFICATEPASSWORD` |
+| **App config key** | `Monitoring/Https.CertificatePassword` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### Monitoring/Https.RedirectHttpToHttps
+
+_Added in version 6.9.0_
+
+Redirects HTTP requests to HTTPS.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_HTTPS_REDIRECTHTTPTOHTTPS` |
+| **App config key** | `Monitoring/Https.RedirectHttpToHttps` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
+### Monitoring/Https.EnableHsts
+
+_Added in version 6.9.0_
+
+Enables HTTP Strict Transport Security (HSTS).
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_HTTPS_ENABLEHSTS` |
+| **App config key** | `Monitoring/Https.EnableHsts` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
+### Monitoring/Https.HstsMaxAgeSeconds
+
+_Added in version 6.9.0_
+
+The max-age value in seconds for the HSTS header.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_HTTPS_HSTSMAXAGESECONDS` |
+| **App config key** | `Monitoring/Https.HstsMaxAgeSeconds` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| int | `31536000` (1 year) |
+
+### Monitoring/Https.HstsIncludeSubDomains
+
+_Added in version 6.9.0_
+
+Includes subdomains in the HSTS policy.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_HTTPS_HSTSINCLUDESUBDOMAINS` |
+| **App config key** | `Monitoring/Https.HstsIncludeSubDomains` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
+## Forwarded headers
+
+These settings configure forwarded headers for reverse proxy scenarios. Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) for additional information.
+
+### Monitoring/ForwardedHeaders.Enabled
+
+_Added in version 6.9.0_
+
+Enables processing of forwarded headers (X-Forwarded-For, X-Forwarded-Proto, etc.).
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_FORWARDEDHEADERS_ENABLED` |
+| **App config key** | `Monitoring/ForwardedHeaders.Enabled` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+### Monitoring/ForwardedHeaders.TrustAllProxies
+
+_Added in version 6.9.0_
+
+Trusts forwarded headers from any source. Set to `false` when using `KnownProxies` or `KnownNetworks`.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_FORWARDEDHEADERS_TRUSTALLPROXIES` |
+| **App config key** | `Monitoring/ForwardedHeaders.TrustAllProxies` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+> [!WARNING]
+> For production environments behind a reverse proxy, set this to `false` and configure `KnownProxies` or `KnownNetworks` to restrict which proxies are trusted.
+
+### Monitoring/ForwardedHeaders.KnownProxies
+
+_Added in version 6.9.0_
+
+A comma-separated list of trusted proxy IP addresses.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_FORWARDEDHEADERS_KNOWNPROXIES` |
+| **App config key** | `Monitoring/ForwardedHeaders.KnownProxies` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+Example: `127.0.0.1`
+
+### Monitoring/ForwardedHeaders.KnownNetworks
+
+_Added in version 6.9.0_
+
+A comma-separated list of trusted CIDR network ranges.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_FORWARDEDHEADERS_KNOWNNETWORKS` |
+| **App config key** | `Monitoring/ForwardedHeaders.KnownNetworks` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+Example: `10.0.0.0/8,172.16.0.0/12`
+
+## CORS
+
+These settings configure Cross-Origin Resource Sharing (CORS). Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) for additional information.
+
+### Monitoring/Cors.AllowAnyOrigin
+
+_Added in version 6.9.0_
+
+Allows requests from any origin.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_CORS_ALLOWANYORIGIN` |
+| **App config key** | `Monitoring/Cors.AllowAnyOrigin` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+> [!WARNING]
+> For production environments, set this to `false` and configure `AllowedOrigins` to restrict which origins can access the API.
+
+### Monitoring/Cors.AllowedOrigins
+
+_Added in version 6.9.0_
+
+A comma-separated list of allowed origins.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `MONITORING_CORS_ALLOWEDORIGINS` |
+| **App config key** | `Monitoring/Cors.AllowedOrigins` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+Example: `https://servicepulse.example.com,https://admin.example.com`
+
 ## Logging
 
 ### Monitoring/LogPath
