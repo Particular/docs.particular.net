@@ -140,7 +140,7 @@ Optional. Used to capture the last date that a page was fully reviewed. Format i
 summary: Provides built-in message auditing for every endpoint.
 ```
 
-Optional, but encouraged. Used for the meta description tag (`<meta name="description" />`) and displaying the search results. When adding a summary review and follow Google's [best practices for meta-descriptions.](https://developers.google.com/search/docs/appearance/snippet#meta-descriptions)
+Optional, but encouraged. Used for the meta description tag (`<meta name="description" />`) and displaying the search results. When adding a summary review, follow Google's [best practices for meta-descriptions].(https://developers.google.com/search/docs/appearance/snippet#meta-descriptions)
 
 #### Hidden
 
