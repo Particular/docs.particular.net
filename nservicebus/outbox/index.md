@@ -130,7 +130,7 @@ Outgoing messages are sent to the messaging infrastructure, and the outbox stora
 * Endpoints using the outbox feature should not send messages to endpoints using DTC (see below), as the DTC-enabled endpoints treat duplicates coming from outbox-enabled endpoints as multiple messages.
 
 > [!NOTE]
-> Endpoints that use a transport in a transaction mode less than [**TransactionScope**](/transports/transactions.md#transactions-transaction-scope-distributed-transaction) are vulnerable to receiving the same message **more-than-once** regardless of whether the sender has the outbox feature enabled.
+> Endpoints that use a transport in a transaction mode less than [**TransactionScope**](/transports/transactions.md#transaction-modes-transaction-scope-distributed-transaction) are vulnerable to receiving the same message **more-than-once** regardless of whether the sender has the outbox feature enabled.
 
 ### Transaction scope
 

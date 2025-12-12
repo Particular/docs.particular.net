@@ -67,13 +67,13 @@ partial: errors
 
 ## Consistency
 
-If the bridge moves messages across different transport types or different brokers of the same type (e.g. Azure ServiceBus namespaces, or RabbitMQ virtual hosts), [`ReceiveOnly`](/transports/transactions.md#transactions-transport-transaction-receive-only) is the only supported transaction mode. In this mode, messages that are moved across the bridge may be duplicated if some infrastructure-related issue prevents the message from being moved to the target transport. To address this either [ensure that handlers are idempotent or enable deduplication of messages using the outbox](/transports/transactions.md#transactions-transport-transaction-receive-only-consistency-guarantees).
+If the bridge moves messages across different transport types or different brokers of the same type (e.g. Azure ServiceBus namespaces, or RabbitMQ virtual hosts), [`ReceiveOnly`](/transports/transactions.md#transaction-modes-transport-transaction-receive-only) is the only supported transaction mode. In this mode, messages that are moved across the bridge may be duplicated if some infrastructure-related issue prevents the message from being moved to the target transport. To address this either [ensure that handlers are idempotent or enable deduplication of messages using the outbox](/transports/transactions.md#transaction-modes-transport-transaction-receive-only-consistency-guarantees).
 
 The bridge uses this mode if at least one of the configured transports is unable to use distributed transactions.
 
 ### Distributed transactions
 
-If all configured transports support the [`TransactionScope`](/transports/transactions.md#transactions-transaction-scope-distributed-transaction) transaction mode, the bridge uses that transaction mode so that no messages are duplicated during message transfer between transports. This enables migration from the MSMQ transport to the SQL Server transport without having to make changes to the endpoints.
+If all configured transports support the [`TransactionScope`](/transports/transactions.md#transaction-modes-transaction-scope-distributed-transaction) transaction mode, the bridge uses that transaction mode so that no messages are duplicated during message transfer between transports. This enables migration from the MSMQ transport to the SQL Server transport without having to make changes to the endpoints.
 
 If `ReceiveOnly` transaction mode is preferred, the following configuration may be used:
 

@@ -152,7 +152,7 @@ snippet: Lifecycle
 
 ServiceControl Transport Adapter can operate in different consistency modes depending on the transport configuration on both sides. By default, the highest supported mode for the transport is used.
 
-If both transports support the [`TransactionScope` transaction mode](/transports/transactions.md#transactions-transaction-scope-distributed-transaction) the transport adapter guarantees not to introduce any duplicates while forwarding messages between the queues. This is very important for endpoints that can't cope with duplicates and rely on the DTC to ensure *exactly-once* message delivery.
+If both transports support the [`TransactionScope` transaction mode](/transports/transactions.md#transaction-modes-transaction-scope-distributed-transaction) the transport adapter guarantees not to introduce any duplicates while forwarding messages between the queues. This is very important for endpoints that can't cope with duplicates and rely on the DTC to ensure *exactly-once* message delivery.
 
 If at least one of the transports does not support the `TransactionScope` mode, or is explicitly configured to a lower mode, the transport adapter guarantees *at-least-once* message delivery. This means that messages won't be lost during forwarding (with the exception of control messages, as described above), but duplicates may be introduced on any side.
 
