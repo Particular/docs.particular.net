@@ -24,6 +24,20 @@ Any OpenID Connect (OIDC) compliant identity provider can be used, including:
 - Okta
 - Ping Identity
 
-## Configuration
+## Enabling authentication
 
 Each ServiceControl instance must be configured separately to enable authentication. Configuration is applied by editing the instance's App.config file or by setting environment variables. ServicePulse retrieves these settings automatically from the connected ServiceControl instances, so no separate configuration is required. Read the [configuring authentication](configuration.md) guide for more details.
+
+## Transport Layer Security (TLS)
+
+When authentication is enabled, ServiceControl and ServicePulse rely on OAuth 2.0 and OpenID Connect flows that involve exchanging access tokens. To protect these tokens and other sensitive data, **TLS must be enabled on every ServiceControl instance and on any reverse proxy in front of it**.
+
+> [!IMPORTANT]
+> Without TLS, tokens and other sensitive information are transmitted in clear text. This exposes the system to interception, session hijacking, and unauthorized access. Always secure ServiceControl with HTTPS in production environments.
+
+ServiceControl supports TLS termination at either:
+
+- **Kestrel**: Configure HTTPS directly on the ServiceControl instance
+- **A reverse proxy**: Such as NGINX, Apache, IIS, or Azure App Gateway
+
+See the [hosting and security guide](hosting-guide.md) for detailed configuration options including HTTPS certificates, HSTS, and reverse proxy settings.
