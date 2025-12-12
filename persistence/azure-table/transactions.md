@@ -4,10 +4,22 @@ component: ASP
 versions: 'ASTP:[3,]'
 related:
 - nservicebus/outbox
-reviewed: 2025-11-24
+reviewed: 2025-12-12
 ---
 
-partial: intro
+By default, the persistence does not attempt to atomically commit saga data and/or business data and uses the saga id as partition key to store sagas. Saga data, outbox data, and business data can be atomically committed if everything is stored in the same partition within the same table.
+
+#if-version [3,5)
+
+For more information refer to the Microsoft [TableBatchOperation](https://docs.microsoft.com/en-us/dotnet/api/microsoft.azure.cosmos.table.tablebatchoperation?view=azure-dotnet) API documentation.
+
+#end-if
+
+#if-version [5,)
+
+For more information refer to the Microsoft [TableTransactionAction](https://learn.microsoft.com/en-us/dotnet/api/azure.data.tables.tabletransactionaction?view=azure-dotnet) API documentation.
+
+#end-if
 
 A custom [behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) must be introduced to identify and insert the `TableEntityPartitionKey` value into the pipeline context for use by storage operations that occur during the processing of a given message.
 
