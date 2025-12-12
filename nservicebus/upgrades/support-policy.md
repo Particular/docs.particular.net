@@ -41,7 +41,7 @@ For more information refer to [the release policy](/nservicebus/upgrades/release
 
 include: supported-versions-nservicebus
 
-For other NServiceBus packages, refer to [the list of supported versions of all packages](supported-versions.md).
+The following section provides extended support details for all NServiceBus major versions. For other NServiceBus packages, refer to [the list of supported versions of all packages](supported-versions.md).
 
 ## Extended support
 
