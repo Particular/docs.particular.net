@@ -146,7 +146,7 @@ This approach ensures that message handling succeeds exactly once. Even if the m
 
 ## Avoiding partial updates
 
-When using transaction modes other than [Transaction scope](#transaction-modes-transaction-scope-distributed-transaction), there is a risk of partial updates. One handler might successfully update its data while another handler fails, leaving the system in an inconsistent state.
+When using transaction modes other than [Transaction scope](#transactions-transaction-scope-distributed-transaction), there is a risk of partial updates. One handler might successfully update its data while another handler fails, leaving the system in an inconsistent state.
 
 To prevent partial updates, NServiceBus can wrap all handlers in a `TransactionScope` that treats them as a single unit of work. This ensures that either all handlers succeed together or all fail together.
 
