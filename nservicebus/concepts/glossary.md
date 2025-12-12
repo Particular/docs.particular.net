@@ -128,4 +128,16 @@ Message handlers that modify business data in a database can run into problems w
 
 ### [Idempotence](https://en.wikipedia.org/wiki/Idempotence)
 
-The ability to call the same message handler more than once without causing inconsistent business results.
+The ability to call the same message handler more than once without causing inconsistent business results. An idempotent handler produces the same business outcome whether it processes a message once or multiple times.
+
+### [Atomicity](/transports/transactions.md#key-concepts)
+
+Ensures that operations either all succeed together or all fail together. For example, when processing a message, atomicity guarantees that receiving the message, updating the database, and sending outgoing messages are treated as a single unit of work.
+
+### [Consistency](/transports/transactions.md#key-concepts)
+
+Refers to how quickly data becomes visible across different parts of the system. Immediate consistency means data is available right away, while eventual consistency means data may not be immediately queryable but will become available after a short delay.
+
+### [Zombie record](/transports/transactions.md#key-concepts)
+
+Business data that is stored in the database, but the corresponding messages are never sent to notify other parts of the system. This leaves "orphaned" data that other components don't know about.

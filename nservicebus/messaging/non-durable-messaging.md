@@ -32,7 +32,7 @@ MSMQ typically uses _Store and Forward_ by default, storing messages durably on 
 Non-durable messages require [non-transactional queues](https://msdn.microsoft.com/en-us/library/ms704006). Configure this by setting `useTransactionalQueues` to `false` in the [transport connection string](/transports/msmq/connection-strings.md).
 
 > [!NOTE]
-> When using non-transactional queues, endpoints must be [configured not to use transactions](/transports/transactions.md#transactions-unreliable-transactions-disabled).
+> When using non-transactional queues, endpoints must be [configured not to use transactions](/transports/transactions.md#transaction-modes-unreliable-transactions-disabled).
 
 ### RabbitMQ
 

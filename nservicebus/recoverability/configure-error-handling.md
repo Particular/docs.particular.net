@@ -15,10 +15,10 @@ related:
 When an endpoint fails to process a message successfully, NServiceBus [automatically retries](/nservicebus/recoverability/configure-immediate-retries.md) the message the configured number of times. If the message can not be processed successfully even after the retried attempts, NServiceBus forwards the message to a designated error queue.
 
 > [!WARNING]
-> When running with [transport transactions disabled](/transports/transactions.md#transactions-unreliable-transactions-disabled), NServiceBus will perform a best-effort error message forwarding, i.e. if moving to the error queue fails, the message will be lost.
+> When running with [transport transactions disabled](/transports/transactions.md#transaction-modes-unreliable-transactions-disabled), NServiceBus will perform a best-effort error message forwarding, i.e. if moving to the error queue fails, the message will be lost.
 
 > [!WARNING]
-> When running with [transport transactions disabled](/transports/transactions.md#transactions-unreliable-transactions-disabled). Both [immediate retries](/nservicebus/recoverability/#immediate-retries) and [delayed retries](/nservicebus/recoverability/#delayed-retries) will be disabled automatically when transactions are turned off.
+> When running with [transport transactions disabled](/transports/transactions.md#transaction-modes-unreliable-transactions-disabled). Both [immediate retries](/nservicebus/recoverability/#immediate-retries) and [delayed retries](/nservicebus/recoverability/#delayed-retries) will be disabled automatically when transactions are turned off.
 
 The default error queue name is `error` but some transports require it to be explicitly configured.
 

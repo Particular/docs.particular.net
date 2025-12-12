@@ -69,3 +69,21 @@ It is also possible to migrate to [NHibernate Persistence](/persistence/nhiberna
 ## Summary
 
 Going forward, DTC transactions with RavenDB will not be supported, although support will be available to existing customers to migrate to a different solution using one of the alternatives above. [Contact support](https://customers.particular.net) for a more thorough discussion of a migration path.
+
+## Example
+
+Consider a system using transport that supports distributed transactions and RavenDB persistence with a saga that models a simple order lifecycle:
+
+ 1. `OrderSaga` receives a `StartOrder` message
+ 1. A new `OrderSagaData` instance is created and stored in RavenDB
+ 1. `OrderSaga` sends a `VerifyPayment` message to `PaymentService`
+ 1. NServiceBus completes the distributed transaction. The DTC instructs both MSMQ and RavenDB resource managers to commit their local transactions
+ 1. The `StartOrder` message is removed from the input queue and the `VerifyPayment` message is sent to `PaymentService`
+ 1. RavenDB acknowledges the transaction commit and begins writing `OrderSagaData` to disk
+ 1. `PaymentService` quickly processes the payment and sends a `CompleteOrder` message back to `OrderSaga`
+ 1. `OrderSaga` receives the `CompleteOrder` message and attempts to complete the saga
+ 1. `OrderSaga` queries RavenDB to find the `OrderSagaData` instance
+ 1. RavenDB has not yet finished writing `OrderSagaData` to disk and returns an empty result set
+ 1. `OrderSaga` fails to complete and the message will be retried
+
+The `TransactionScope` guarantees atomicity: consuming the `StartOrder` message, storing `OrderSagaData` in RavenDB, and sending the `VerifyPayment` message all commit as one atomic operation. However, the saga data may not be immediately available for reading, even though the transaction has committed. The `CompleteOrder` message will be [automatically retried](/nservicebus/recoverability/) until RavenDB completes writing the data and the query succeeds.
