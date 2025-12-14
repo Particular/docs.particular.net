@@ -140,7 +140,7 @@ Optional. Used to capture the last date that a page was fully reviewed. Format i
 summary: Provides built-in message auditing for every endpoint.
 ```
 
-Optional. This section defines a short YAML string used as the page’s meta description tag (`<meta name="description" />`). It provides a concise, SEO‑friendly summary that may be displayed in search results as a snippet. The content should be under 160 characters (including spaces), accurately reflect the page’s topic, and act as a pitch that convinces users the page matches their needs.
+Optional. This section defines a short YAML string used as the page’s meta description tag (`<meta name="description" />`). It provides a concise, SEO‑friendly summary that may be displayed in search results as a snippet. The content should be under 160 characters (including spaces), accurately reflect the page’s topic, and act as a "pitch" that convinces users the page matches their needs.
 
 #### Hidden
 
