@@ -1,6 +1,6 @@
 ---
 title: RabbitMQ Transport
-summary: How to configure RabbitMQ as a transport in NServiceBus, including broker requirements, routing topology, and delivery guarantees for messaging
+summary: Integrate NServiceBus with RabbitMQ transport for scalable messaging and reliable distributed communication
 reviewed: 2025-02-14
 component: Rabbit
 related:

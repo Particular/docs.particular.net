@@ -1,6 +1,6 @@
 ---
 title: Sagas
-summary: Maintain statefulness in distributed systems with the saga pattern and NServiceBus' event-driven architecture with built-in fault-tolerance and scalability.
+summary: Master NServiceBus sagas to coordinate distributed workflows and ensure reliable long running processes.
 component: Core
 reviewed: 2025-06-24
 redirects:
