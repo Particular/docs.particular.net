@@ -27,6 +27,12 @@ public class MySaga : Saga<MySagaData>
             Console.WriteLine($"Saga did not exist, trying to processes sequence number {message.SequenceNumber}");
         }
 
+//        // explicit idempotency
+//        if (Data.MySequenceNumbers.Contains(message.SequenceNumber))
+//        {
+//            return;
+//        }
+
         Data.MySequenceNumbers.Add(message.SequenceNumber);
 
         var cmd = new MyCommand

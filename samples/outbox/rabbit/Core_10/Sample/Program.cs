@@ -34,13 +34,13 @@ class Program
             return Task.CompletedTask;
         }));
 
-        endpointConfiguration.EnableOutbox();
-        endpointConfiguration.LimitMessageProcessingConcurrencyTo(10);
+        //endpointConfiguration.EnableOutbox();
+        endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         var numberOfConcurrentMessages = 10;
-        var numberOfDuplicateMessages = 2;
+        var numberOfDuplicateMessages = 1;
 
         var correlationId = Guid.NewGuid().ToString();
         for (var i = 0; i < numberOfConcurrentMessages; i++)
