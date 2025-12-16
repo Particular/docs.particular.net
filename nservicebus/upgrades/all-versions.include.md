@@ -228,13 +228,13 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/8.1.10) | 2024-06-25     | -                 | -                                 |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.PostgreSql/8.1.11) | 2024-06-25     | -                 | -                                 |
 
 #### [NServiceBus.Transport.SqlServer](/nuget/NServiceBus.Transport.SqlServer)
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.1.10) | 2024-06-25     | -                 | -                                 |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.1.11) | 2024-06-25     | -                 | -                                 |
 | [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/8.0.0) | ~~2024-04-16~~ | ~~2024-09-25~~    | ~~Superseded by 8.1.x~~           |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/7.0.12) | 2023-08-28     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.SqlServer/6.3.8) | 2021-06-23     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
@@ -1139,7 +1139,7 @@
 | [3.60.x](https://www.nuget.org/packages/Particular.PlatformSample/3.60.0) | 2025-10-29     | 2026-01-29        | Superseded by 3.61.x              |
 | [3.59.x](https://www.nuget.org/packages/Particular.PlatformSample/3.59.0) | 2025-09-18     | 2026-01-29        | Superseded by 3.60.x              |
 | [3.58.x](https://www.nuget.org/packages/Particular.PlatformSample/3.58.0) | 2025-09-17     | 2025-12-18        | Superseded by 3.59.x              |
-| [3.57.x](https://www.nuget.org/packages/Particular.PlatformSample/3.57.0) | 2025-08-21     | 2025-12-17        | Superseded by 3.58.x              |
+| [~~3.57.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.57.0) | ~~2025-08-21~~ | ~~2025-12-17~~    | ~~Superseded by 3.58.x~~          |
 | [~~3.56.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.56.1) | ~~2025-07-31~~ | ~~2025-11-21~~    | ~~Superseded by 3.57.x~~          |
 | [~~3.54.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.54.0) | ~~2025-07-15~~ | ~~2025-10-31~~    | ~~Superseded by 3.56.x~~          |
 | [~~3.51.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.51.0) | ~~2025-05-23~~ | ~~2025-10-15~~    | ~~Superseded by 3.54.x~~          |
