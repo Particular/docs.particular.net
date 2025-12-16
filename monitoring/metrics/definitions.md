@@ -61,7 +61,7 @@ Critical time does _not_ include:
 - The amount of time that a delayed message is held by a timeout mechanism (NServiceBus version 7.7 and above)
 
 > [!NOTE]
-> This is almost identical to the terms dwell time (used by Amazon SQS) or sojourn time (queueing theory) queing except these exclude the time where the message is batched and committed.
+> This is almost identical to the terms dwell time (used by Amazon SQS) or sojourn time (queueing theory), except these exclude the time where the message is batched in-memory, then dispatched to the transport, and committed.
 
 > [!NOTE]
 > Due to the fact that the critical time is calculated based on timestamps taken on two different machines (the sender and the receiver of a message), it is affected by the [clock drift problem](https://en.wikipedia.org/wiki/Clock_drift). In cases where the clocks of the machines differ significantly, the critical time may be reported as a negative value. Use well-known clock synchronization solutions, such as NTP, to mitigate the issue.
