@@ -1510,6 +1510,16 @@
       Url: servicecontrol/upgrades/2to3
     - Title: Version 1 to 2
       Url: servicecontrol/upgrades/1to2
+  - Title: Security
+    Articles:
+    - Title: ServiceControl security
+      Url: servicecontrol/security
+    - Title: Hosting guide
+      Url: servicecontrol/security/hosting-guide
+    - Title: Configuration
+      Url: servicecontrol/security/configuration
+    - Title: Microsoft Entra ID authentication
+      Url: servicecontrol/security/entra-id-authentication
   - Title: Planning
     Articles:
     - Title: Optimizing for use in different environments
