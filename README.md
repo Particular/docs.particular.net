@@ -224,14 +224,14 @@ Calls to action are defined in `calls-to-action.yaml`.
 
 ### An example header for an article
 
-In the following example, whenever the URLs `/servicecontrol/sc-si` or `/servicecontrol/debugging-servicecontrol` are being requested, the given article will be rendered.
+In the following example, whenever the URLs `/servicecontrol/sc-sp` or `/servicecontrol/debugging-servicecontrol` are being requested, the given article will be rendered.
 
 ```yaml
 ---
-title: ServiceInsight Interaction
-summary: 'Using ServiceInsight Together'
+title: ServicePulse Interaction
+summary: 'Using ServicePulse Together'
 redirects:
-- servicecontrol/sc-si
+- servicecontrol/sc-sp
 - servicecontrol/debugging-servicecontrol
 related:
 - servicecontrol/installation
