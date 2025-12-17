@@ -14,33 +14,34 @@ class Program
         defaultFactory.Level(LogLevel.Error);
 
         var endpointConfiguration = new EndpointConfiguration("Samples.RabbitMQ.Outbox");
-
-        var rabbitMqTransport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Classic), "host=localhost;username=rabbitmq;password=rabbitmq")
-        {
-            TransportTransactionMode = TransportTransactionMode.ReceiveOnly
-        };
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(rabbitMqTransport);
+
         endpointConfiguration.EnableInstallers();
         var connectionString = Environment.GetEnvironmentVariable("SQLServerConnectionString");
         Helper.EnsureDatabaseExists(connectionString);
 
+        endpointConfiguration.Recoverability().Immediate(c => c.OnMessageBeingRetried((r, _) =>
+        {
+            r.Headers.TryGetValue("sequence-number",  out var sequenceNumber);
+            Console.WriteLine($"Retry {r.RetryAttempt} {r.Headers[NServiceBus.Headers.EnclosedMessageTypes]} for sequence number {sequenceNumber}");
+            return Task.CompletedTask;
+        }));
+        var rabbitMqTransport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Classic), "host=localhost;username=rabbitmq;password=rabbitmq")
+        {
+            TransportTransactionMode = TransportTransactionMode.ReceiveOnly
+        };
+        endpointConfiguration.UseTransport(rabbitMqTransport);
         var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
         persistence.SqlDialect<SqlDialect.MsSqlServer>();
         persistence.ConnectionBuilder(() => new SqlConnection(connectionString));
-        endpointConfiguration.Recoverability().Immediate(c => c.OnMessageBeingRetried((r, _) =>
-        {
-            Console.WriteLine($"Retry {r.RetryAttempt} for sequence number {r.Headers["sequence-number"]}");
-            return Task.CompletedTask;
-        }));
 
-        //endpointConfiguration.EnableOutbox();
-        endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
+        endpointConfiguration.EnableOutbox();
+        endpointConfiguration.LimitMessageProcessingConcurrencyTo(10);
 
         var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
-        var numberOfConcurrentMessages = 10;
-        var numberOfDuplicateMessages = 1;
+        var numberOfConcurrentMessages = 5;
+        var numberOfDuplicateMessages = 2;
 
         var correlationId = Guid.NewGuid().ToString();
         for (var i = 0; i < numberOfConcurrentMessages; i++)
@@ -59,8 +60,8 @@ class Program
                     CorrelationID = correlationId,
                     SequenceNumber = i
                 };
-                await endpointInstance.Send(myMessage, sendOptions);
 
+                await endpointInstance.Send(myMessage, sendOptions);
             }
         }
 

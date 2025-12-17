@@ -3,8 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using NServiceBus;
 
-public class MySaga : Saga<MySagaData>
-    , IAmStartedByMessages<MyMessage>
+public class MySaga : Saga<MySagaData>, IAmStartedByMessages<MyMessage>
 {
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
     {
@@ -26,13 +25,10 @@ public class MySaga : Saga<MySagaData>
         {
             Console.WriteLine($"Saga did not exist, trying to processes sequence number {message.SequenceNumber}");
         }
-
-//        // explicit idempotency
-//        if (Data.MySequenceNumbers.Contains(message.SequenceNumber))
-//        {
-//            return;
-//        }
-
+        if (Data.MySequenceNumbers.Contains(message.SequenceNumber))
+        {
+            return;
+        }
         Data.MySequenceNumbers.Add(message.SequenceNumber);
 
         var cmd = new MyCommand
@@ -41,7 +37,12 @@ public class MySaga : Saga<MySagaData>
             Sequence = message.SequenceNumber,
             CurrentProcessedNumbers = Data.MySequenceNumbers
         };
-        await Task.Delay(TimeSpan.FromSeconds(0), context.CancellationToken);
         await context.SendLocal(cmd);
     }
 }
+
+//        // explicit idempotency
+//        if (Data.MySequenceNumbers.Contains(message.SequenceNumber))
+//        {
+//            return;
+//        }
