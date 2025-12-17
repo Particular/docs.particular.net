@@ -1,2 +1,4 @@
 > [!IMPORTANT]
-> ServiceInsight has been sunset, however, its most utilized features have been migrated to [ServicePulse](/servicepulse/).
+> **ServiceInsight has been sunset**
+>
+> We recommend [moving to ServicePulse](/servicepulse/installation.md) for vizualization and debugging capabilities.
