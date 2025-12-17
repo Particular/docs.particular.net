@@ -48,6 +48,7 @@ This metric measures the total number of messages that the endpoint has failed t
 
 Critical time is the amount of time between when a message is sent and when it is fully processed. It is a sum of the amounts of time it takes to perform all of the following :
 
+- Batching the message in-memory unless using [immediate dispatch](/nservicebus/messaging/send-a-message.md#dispatching-a-message-immediately)
 - Committing the sender outbox transaction (if outbox is enabled)
 - Network send time: the amount of time that a message spends on the network before arriving in the destination queue
 - Queue wait time: the amount of time that a message spends in the destination queue before being picked up and processed
@@ -58,6 +59,9 @@ Critical time does _not_ include:
 
 - The amount of time to complete the incoming message (i.e. commit the transport transaction or acknowledge)
 - The amount of time that a delayed message is held by a timeout mechanism (NServiceBus version 7.7 and above)
+
+> [!NOTE]
+> This is almost identical to the terms dwell time (used by Amazon SQS) or sojourn time (queueing theory), except these exclude the time where the message is batched in-memory, then dispatched to the transport, and committed.
 
 > [!NOTE]
 > Due to the fact that the critical time is calculated based on timestamps taken on two different machines (the sender and the receiver of a message), it is affected by the [clock drift problem](https://en.wikipedia.org/wiki/Clock_drift). In cases where the clocks of the machines differ significantly, the critical time may be reported as a negative value. Use well-known clock synchronization solutions, such as NTP, to mitigate the issue.
