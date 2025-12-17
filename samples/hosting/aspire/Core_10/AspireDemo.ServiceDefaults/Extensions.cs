@@ -62,7 +62,8 @@ public static class Extensions
             })
             .WithTracing(tracing =>
             {
-                tracing.AddSource("NServiceBus.*")
+                tracing.AddSource(builder.Environment.ApplicationName)
+                    .AddSource("NServiceBus.*")
                     .AddAspNetCoreInstrumentation(tracing =>
                         // Exclude health check requests from tracing
                         tracing.Filter = context =>
