@@ -5,6 +5,8 @@ reviewed: 2025-04-24
 component: ServiceInsight
 ---
 
+include: serviceinsight-sunset
+
 The sequence diagram shows when messages in the same conversation as the selected message were sent and handled relative to each other. It shows the interaction of endpoints involved in the conversation to give an understanding of the sequence of messages that occurred during that conversation.
 
 ![Sequence Diagram](sequence-diagram.png 'width=500')

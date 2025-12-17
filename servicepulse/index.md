@@ -4,6 +4,8 @@ summary: Monitor the health of an NServiceBus system real-time using ServicePuls
 reviewed: 2025-04-15
 component: ServicePulse
 isLearningPath: true
+redirects:
+- servicepulse/introduction-and-installing-servicepulse
 related:
 - servicecontrol/setting-custom-hostname
 - monitoring/metrics/performance-counters

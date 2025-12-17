@@ -13,6 +13,8 @@ related:
  - servicecontrol/upgrades/supported-versions
 ---
 
+include: serviceinsight-sunset
+
 Only the latest version of ServiceInsight is supported. The latest version can be found on the [downloads page](https://particular.net/downloads).
 
 ## Upgrade tips

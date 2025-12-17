@@ -5,6 +5,8 @@ summary: How to create custom viewers via an external plugin
 component: ServiceInsight
 ---
 
+include: serviceinsight-sunset
+
 Starting with version 2.4.0, custom message body viewers can be plugged into ServiceInsight. A custom message viewer is useful when displaying message bodies that are not supported by default by ServiceInsight. ServiceInsight supports displaying message bodies in the following formats: XML, json, and hexadecimal. If the message stored in ServiceControl is, for example encrypted, the message body cannot be properly displayed by ServiceInsight. Custom message body viewers can be deployed to ServiceInsight to provide custom visual formatting for message bodies.
 
 ### Create custom viewers

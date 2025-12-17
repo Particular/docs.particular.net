@@ -5,6 +5,8 @@ reviewed: 2025-08-07
 component: ServiceInsight
 ---
 
+include: serviceinsight-sunset
+
 ## ServiceInsight is slow
 
 If ServiceInsight takes a long time to load a conversation when selecting messages in the grid, verify if one of the following scenarios is occurring:

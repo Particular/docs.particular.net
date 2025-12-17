@@ -10,6 +10,8 @@ related:
 - nservicebus/licensing
 ---
 
+include: serviceinsight-sunset
+
 > [!NOTE]
 > If you do not have license installed when you first launch ServiceInsight, a 14-day trial will automatically be created and installed. 
 
