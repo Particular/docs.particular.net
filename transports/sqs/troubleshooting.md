@@ -54,7 +54,7 @@ When throttling occurs with no custom error logic implemented, one or more messa
 
 ### Sending with transactional session
 
-When using [transactional session](/nservicebus/transactional-session/), throttling can occur when the transactional session is committed. This is the same as the [sending outside a handler](#sending-outside-a-handler) case and any retry logic must be manually implemented.
+When using [transactional session](/nservicebus/transactional-session/), throttling can occur when the transactional session is committed. This is the same as the [sending outside a handler](#amazonsqsexception-request-is-throttled-sending-outside-a-handler) case and any retry logic must be manually implemented.
 
 Once the transactional session is successfully committed, the exception will be handled by the [recoverability feature](/nservicebus/recoverability/).
 
