@@ -62,6 +62,8 @@ This field can also contain a `*` as a wildcard to allow remote connections that
 > [!WARNING]
 > If the `ServiceControl/HostName` setting is changed, and the `ServiceControl/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/configure-ravendb-location.md).
 
+partial: ravendb-hostname-exposure-warning
+
 ### ServiceControl/Port
 
 The port to bind the embedded HTTP API server.
