@@ -16,7 +16,7 @@ related:
 > [!WARNING]
 > ServiceInsight has been sunset and will receive no further updates.  
 
-The latest version can be found on the [downloads page](https://particular.net/downloads), however, it is recommended to install the latest version of [ServicePulse](/servicepulse/installation.md) for the latest features and full support.
+> The latest version can be found on the [downloads page](https://particular.net/downloads), however, it is recommended to install the latest version of [ServicePulse](/servicepulse/installation.md) for the latest features and full support.
 
 ## ServiceControl compatibility
 
