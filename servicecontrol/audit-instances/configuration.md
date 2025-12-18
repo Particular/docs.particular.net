@@ -65,6 +65,11 @@ This field can also contain a `*` as a wildcard to allow remote connections that
 > [!WARNING]
 > If the `ServiceControl.Audit/HostName` setting is changed, and the `ServiceControl.Audit/DbPath` setting is not set, the path of the embedded RavenDB is changed. Refer to [Customize RavenDB Embedded Location](/servicecontrol/configure-ravendb-location.md).
 
+#if-version [5,)
+> [!NOTE]
+> Changing the `ServiceControl.Audit/HostName` setting does not affect how the embedded RavenDB database is exposed. The embedded RavenDB database remains accessible only via `localhost`.
+#end-if
+
 ### ServiceControl.Audit/Port
 
 The port to bind the embedded HTTP API server.
