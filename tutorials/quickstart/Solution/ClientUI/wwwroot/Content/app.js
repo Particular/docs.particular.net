@@ -70,8 +70,8 @@ _kms('//scripts.kissmetrics.io/' + _kmk + '.2.js');
 
     $(function () {
 
-        GA4.quickStartRunning();
-        _kmq.push(['record', 'QuickStart-Running-Control']);
+    GA4.quickStartRunning();
+    _kmq.push(['record', 'QuickStart-Running-Control']);
 
         window.sentMessage = function () {
             GA4.quickStartMessageSent();
@@ -84,7 +84,7 @@ _kms('//scripts.kissmetrics.io/' + _kmk + '.2.js');
             return;
         }
 
-        GA4.quickStartDisplayedLicenseButton();
+    GA4.quickStartDisplayedLicenseButton();
 
         licenseBtn.attr('href', 'https://particular.net/license/nservicebus?v=' + window.NSB_VERSION + '&t=0').click(function (e) {
             GA4.quickStartClickedLicenseButton();
