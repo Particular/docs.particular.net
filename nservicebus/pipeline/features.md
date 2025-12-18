@@ -1,7 +1,7 @@
 ---
 title: Features
 summary: Implement a Feature for the advanced extension of NServiceBus.
-reviewed: 2024-03-01
+reviewed: 2025-12-19
 component: Core
 versions: '[5.0,)'
 related:
