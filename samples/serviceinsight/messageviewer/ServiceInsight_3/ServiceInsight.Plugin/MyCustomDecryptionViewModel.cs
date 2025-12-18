@@ -5,7 +5,6 @@ namespace ServiceInsight.CustomViewer.Plugin
     using ServiceInsight.MessageViewers;
     using ServiceInsight.Models;
     using ServiceInsight.ServiceControl;
-    using Shared;
 
     public class MyCustomDecryptionViewModel : Screen, ICustomMessageBodyViewer
     {
