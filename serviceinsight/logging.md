@@ -7,6 +7,8 @@ redirects:
  - serviceinsight/how-logging-works
 ---
 
+include: serviceinsight-sunset
+
 ServiceInsight has a log window that contains details of the HTTP communication between ServiceInsight and ServiceControl.
 
 To keep the number of logs minimal and relevant, the log window relates mostly to HTTP operations and calls to ServiceControl, since they can cause the most confusion due to the nature of the HTTP operations (timeouts, network issues, etc.).

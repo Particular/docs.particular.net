@@ -5,6 +5,8 @@ summary: Why ServiceInsight cannot visualize a conversation
 component: ServiceInsight
 ---
 
+include: serviceinsight-sunset
+
 When selecting a message in ServiceInsight, the visualization windows may show the message "Data not available":
 
 ![No data available](./images/no-conversation-data-available.png)

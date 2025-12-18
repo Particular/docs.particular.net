@@ -5,6 +5,8 @@ component: ServiceInsight
 reviewed: 2024-06-25
 ---
 
+include: serviceinsight-sunset
+
 ## Prerequisites
 
 - Microsoft Windows
