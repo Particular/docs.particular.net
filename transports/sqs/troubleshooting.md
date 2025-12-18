@@ -2,7 +2,7 @@
 title: AmazonSQS Troubleshooting
 summary: Tips on what to do when the SQS transport is not behaving as expected
 component: SQS
-reviewed: 2024-02-28
+reviewed: 2025-12-18
 related:
  - transports/sqs
  - samples/aws/sqs-simple
@@ -32,6 +32,7 @@ Throttling can happen during any send or receive operation and can happen during
 - Incoming message (receiving)
 - Sending from within a handler
 - Sending outside a handler
+- Sending with transactional session
 
 ### Incoming message (receiving)
 
@@ -50,6 +51,12 @@ Throttling errors are similar to any other technical error that can occur.
 As message sending does not happen within a handler context, any failures during sending will not rely on or be covered by the [recoverability feature](/nservicebus/recoverability/) mechanism. Any retry logic must be manually implemented.
 
 When throttling occurs with no custom error logic implemented, one or more messages might not have been transmitted to Amazon SQS. The custom retry logic could either retry all messages to be sent again, including already succeeded messages, or only retry individual messages that failed.
+
+### Sending with transactional session
+
+When using [transactional session](/nservicebus/transactional-session/), throttling can occur when the transactional session is committed. This is the same as the [sending outside a handler](#sending-outside-a-handler) case and any retry logic must be manually implemented.
+
+Once the transactional session is successfully committed, the exception will be handled by the [recoverability feature](/nservicebus/recoverability/).
 
 ### Deduplication and outbox
 
