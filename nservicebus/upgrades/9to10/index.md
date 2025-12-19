@@ -62,7 +62,7 @@ Not having a finder configured for a given message will result in:
 
 ## Deprecated `IWantToRunBeforeConfigurationIsFinalized`
 
-The extension point [`IWantToRunBeforeConfigurationIsFinalized`](nservicebus/lifecycle/iwanttorunbeforeconfigurationisfinalized.md) is deprecated with a warning in NServiceBus version 10 and will be removed in NServiceBus version 11.
+The extension point [`IWantToRunBeforeConfigurationIsFinalized`](/nservicebus/lifecycle/iwanttorunbeforeconfigurationisfinalized.md) is deprecated with a warning in NServiceBus version 10 and will be removed in NServiceBus version 11.
 
 Final adjustments to settings before configuration is finalized should be applied via an explicit last configuration step on the endpoint configuration, instead of via implementations of this interface discovered by scanning.
 
