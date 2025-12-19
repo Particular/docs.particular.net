@@ -4,7 +4,7 @@ summary: Things to consider when installing and deploying endpoints that use SQL
 component: SqlPersistence
 related:
  - persistence/sql/installer-workflow
-reviewed: 2024-02-26
+reviewed: 2025-12-19
 ---
 
 The SQL persistence package generates scripts to create necessary database assets. It is recommended to run those scripts as part of the deployment process. See [Installer Workflow](installer-workflow.md) for more information.
