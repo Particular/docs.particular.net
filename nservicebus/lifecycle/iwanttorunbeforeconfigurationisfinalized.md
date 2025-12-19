@@ -7,6 +7,9 @@ related:
  - samples/startup-shutdown-sequence
 ---
 
+> [!CAUTION]
+> `IWantToRunBeforeConfigurationIsFinalized` is deprecated starting in NServiceBus version 10. Refer to the [NServiceBus 10 upgrade guide](/nservicebus/upgrades/9to10/#deprecated-iwanttorunbeforeconfigurationisfinalized).
+
 During endpoint creation the configuration object used to construct the endpoint becomes frozen and locked. Classes that implement `IWantToRunBeforeConfigurationIsFinalized` are instantiated and called just before this happens. Use `IWantToRunBeforeConfigurationIsFinalized` for any last minute alterations to the configuration that may rely on other configuration settings.
 
 Instances are:
