@@ -2,17 +2,17 @@
 title: FIPS Compliance
 summary: Describes NServiceBus compliance with FIPS
 component: Core
-reviewed: 2024-02-28
+reviewed: 2025-12-19
 ---
 
 The [Federal Information Processing Standards](https://en.wikipedia.org/wiki/Federal_Information_Processing_Standards) or FIPS are standards developed by the United States government for computer systems that set requirements for, among other things, cryptography.
 
-Microsoft [does not recommend enabling FIPS](https://blogs.technet.microsoft.com/secguide/2014/04/07/why-were-not-recommending-fips-mode-anymore/) unless it is required by government regulations.
+Microsoft [no longer recommends enabling FIPS](https://web.archive.org/web/20190419143230/https://blogs.technet.microsoft.com/secguide/2014/04/07/why-were-not-recommending-fips-mode-anymore/) unless it is required by government regulations.
 
 > [!NOTE]
 > FIPS policy enforcement does only exist on .NET Framework.
 
-The Particular Software Platform is not FIPS compatible, and no testing is done to ensure components will work properly on FIPS-enabled hardware. The platform currently uses `System.Security.Cryptography`classes only for hashing, and not for data security purposes.
+The Particular Software Platform is not FIPS compatible, and no testing is done to ensure components will work properly on FIPS-enabled hardware. The platform currently uses `System.Security.Cryptography` classes only for hashing, and not for data security purposes.
 
 There are workarounds that allow running NServiceBus and the Particular Service Platform on the .NET Framework on servers with FIPS enforcement enabled, but these workarounds are also not tested or verified in any way.
 
