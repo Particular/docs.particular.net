@@ -100,6 +100,24 @@ endpointConfiguration.DisableFeature<MyFeature>();
 
 Lastly, any `Feature` classes must now have a public paramaterless constructor.
 
+### Installers
+
+Like features, [installer classes]() which implement `INeedToInstallSomething` will not be automatically discovered by runtime assembly scanning in a future version of NServiceBus.
+
+Instead, installers should be explicitly registered either from an `EndpointConfiguration` or inside a feature's `Setup` method:
+
+```csharp
+endpointConfiguration.AddInstaller<CreateMyInfrastructure>();
+
+public class MyFeature : Feature
+{
+	protected override void Setup(FeatureConfigurationContext context)
+	{
+		context.AddInstaller<CreateMyInfrastructure>();
+	}
+}
+```
+
 ### StartupDiagnosticEntry has required properties
 
 As part of adding nullability annotations, the `Data` and `Name` properties of the `StartupDiagnosticEntry` class have been marked as `required`.
