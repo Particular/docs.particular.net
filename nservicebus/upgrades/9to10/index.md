@@ -69,6 +69,37 @@ This section describes changes to advanced extensibility APIs.
 
 As part of adding nullability annotations, the `ContextBag` class no longer allows storing `null` as a value. This also applies to all types derived from `ContextBag`, including all behavior context classes and `TransportTransaction`.
 
+### Features
+
+In a future version of NServiceBus, [`Feature` classes](/nservicebus/pipeline/features.md) will not be automatically discovered by runtime assembly scanning. Instead, each feature should be explicitly enabled for an endpoint.
+
+The preferred method of distributing a feature is to create an extension method on `EndpointConfiguration`, and enable the feature within that extension method:
+
+```csharp
+public static class MyFeatureConfigurationExtensions
+{
+    public static void EnableMyFeature(this EndpointConfiguration config)
+    {
+        config.EnableFeature<MyFeature>();
+    }
+}
+```
+
+The `EnableByDefault()` method is only used to signal that a Feature identified through assembly scanning should turn itself on by default, so this method is deprecated with a warning in NServiceBus version 10 to give advance notice of this change, and will be removed in version 11.
+
+In addition, APIs that work with features using a `Type` have been deprecated, and instead the generic-typed variants should be used. For example:
+
+```csharp
+// Instead of:
+endpointConfiguration.EnableFeature(typeof(MyFeature));
+endpointConfiguration.DisableFeature(typeof(MyFeature));
+// Use instead:
+endpointConfiguration.EnableFeature<MyFeature>();
+endpointConfiguration.DisableFeature<MyFeature>();
+```
+
+Lastly, any `Feature` classes must now have a public paramaterless constructor.
+
 ### StartupDiagnosticEntry has required properties
 
 As part of adding nullability annotations, the `Data` and `Name` properties of the `StartupDiagnosticEntry` class have been marked as `required`.
@@ -109,7 +140,7 @@ The `Supports<TStorageType>(…)` no longer accepts an action that gets access t
 public class CustomPersistence : PersistenceDefinition
 {
     internal CustomPersistence()
-    { 
+    {
         Supports<StorageType.Sagas>(s => s.EnableFeatureByDefault<SagaStorage>());
         Supports<StorageType.Subscriptions>(s => s.EnableFeatureByDefault<SubscrptionStorage>());
         Supports<StorageType.Outbox>(s => s.EnableFeatureByDefault<OutboxStorage>());
@@ -123,7 +154,7 @@ must be changed to `Supports<TStorageType, TFeatureType>()` like this:
 public class CustomPersistence : PersistenceDefinition
 {
     internal CustomPersistence()
-    { 
+    {
         Supports<StorageType.Sagas, SagaStorage>();
         Supports<StorageType.Subscriptions, SubscrptionStorage>();
         Supports<StorageType.Outbox, OutboxStorage>();
