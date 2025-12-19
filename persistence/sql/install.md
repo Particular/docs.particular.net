@@ -49,6 +49,10 @@ snippet: TablePrefix
 
 When using a database that supports schemas, a schema value other than default can be defined in the configuration API. Consult the documentation of the selected SQL dialect for details.
 
+- [SQL Server](/persistence/sql/dialect-mssql.md#schema-support)
+- [Oracle](/persistence/sql/dialect-oracle.md#schema-support)
+- [PostgreSQL](/persistence/sql/dialect-postgresql.md#schema-support)
+
 > [!NOTE]
 > The same value must be passed to the installation scripts as a parameter.
 
