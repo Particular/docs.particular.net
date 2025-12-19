@@ -26,7 +26,9 @@ In non-development environments, where the SQL persistence installation scripts 
 
 snippet: DisableInstaller
 
-partial: script-runner
+The `ScriptRunner` class can be used to run the scripts without creating and starting an NServiceBus endpoint
+
+snippet: ScriptRunner
 
 
 ## Table prefix
