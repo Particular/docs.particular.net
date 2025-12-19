@@ -102,7 +102,7 @@ Lastly, any `Feature` classes must now have a public paramaterless constructor.
 
 ### Installers
 
-Like features, [installer classes]() which implement `INeedToInstallSomething` will not be automatically discovered by runtime assembly scanning in a future version of NServiceBus.
+Like features, [installer classes](/nservicebus/operations/installers.md) which implement `INeedToInstallSomething` will not be automatically discovered by runtime assembly scanning in a future version of NServiceBus.
 
 Instead, installers should be explicitly registered either from an `EndpointConfiguration` or inside a feature's `Setup` method:
 

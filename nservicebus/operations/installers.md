@@ -50,4 +50,6 @@ Implement the `INeedToInstallSomething` interface to create a custom installer:
 
 snippet: InstallSomething
 
-Assemblies in the runtime directory are scanned for installers so no code is needed to register them.
+### Installer registration
+
+partial: registration

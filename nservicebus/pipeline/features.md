@@ -96,7 +96,7 @@ For a feature to be activated it needs to satisfy the following criteria:
 snippet: FeatureSetup
 
 > [!NOTE]
-> Features are automatically detected and registered by NServiceBus when the assembly is scanned.
+> In NServiceBus version 10 and below, features are automatically detected and registered by NServiceBus when the assembly is scanned. In a future version of NServiceBus [features will not be automatically detected during assembly scanning](/nservicebus/upgrades/9to10/#extensibility-features).
 
 
 ## Feature settings
