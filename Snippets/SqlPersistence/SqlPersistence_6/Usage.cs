@@ -406,10 +406,14 @@ class Usage
                     {
                         command.Transaction = transaction;
                         command.CommandText = File.ReadAllText(createScript);
-                        var parameter = command.CreateParameter();
-                        parameter.ParameterName = "tablePrefix";
-                        parameter.Value = tablePrefix;
-                        command.Parameters.Add(parameter);
+                        var tablePrefixParameter = command.CreateParameter();
+                        tablePrefixParameter.ParameterName = "tablePrefix";
+                        tablePrefixParameter.Value = tablePrefix;
+                        command.Parameters.Add(tablePrefixParameter);
+                        var schemaParameter = command.CreateParameter();
+                        schemaParameter.ParameterName = "schema";
+                        schemaParameter.Value = "public";
+                        command.Parameters.Add(schemaParameter);
                         command.ExecuteNonQuery();
                     }
                 }
