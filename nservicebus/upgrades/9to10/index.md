@@ -42,6 +42,25 @@ If message contracts are in a versioned library that has been migrated to `ClamC
 
 If message contracts are not in a versioned library, a local copy of the messages can be made to facilitate the transition. In this case it is imperative that all class names, namespaces, and property names are exactly the same to make sure the message can be properly deserialized when it is received.
 
+## Sagas
+
+### Custom finders
+
+In Version 10 [custom saga finders](/nservicebus/sagas/saga-finding.md) are no longer automatically registered via assembly scanning and must be mapped in the `ConfigureHowToFindSaga` method:
+
+```
+protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
+{
+    mapper.ConfigureFinderMapping<MyMessage, MySagaFinder>();
+}
+```
+
+Not having a finder configured for a given message will result in:
+
+- **When the message is allowed to start the saga** - Compile time analyzer error [NSB0006](/nservicebus/sagas/analyzers.md#message-that-starts-the-saga-does-not-have-a-message-mapping)
+- **When the message is not allowed to start the saga** - `Exception` when processing the message: `Message type CompletePaymentTransaction is handled by saga OrderSaga, but the saga does not contain a property mapping or custom saga finder to map the message to saga data. Consider adding a mapping in the saga's ConfigureHowToFindSaga method`
+
+
 ## Extensibility
 
 This section describes changes to advanced extensibility APIs.
@@ -112,20 +131,3 @@ public class CustomPersistence : PersistenceDefinition
 }
 ```
 
-## Sagas
-
-### Custom finders
-
-In Version 10 [custom saga finders](/nservicebus/sagas/saga-finding.md) are no longer automatically registered via assembly scanning and must be mapped in the `ConfigureHowToFindSaga` method:
-
-```
-protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
-{
-    mapper.ConfigureFinderMapping<MyMessage, MySagaFinder>();
-}
-```
-
-Not having a finder configured for a given message will result in:
-
-- **When the message is allowed to start the saga** - Compile time analyzer error [NSB0006](/nservicebus/sagas/analyzers.md#message-that-starts-the-saga-does-not-have-a-message-mapping)
-- **When the message is not allowed to start the saga** - `Exception` when processing the message: `Message type CompletePaymentTransaction is handled by saga OrderSaga, but the saga does not contain a property mapping or custom saga finder to map the message to saga data. Consider adding a mapping in the saga's ConfigureHowToFindSaga method`
