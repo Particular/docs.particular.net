@@ -73,6 +73,11 @@ snippet: ExecuteScriptsSqlServer
 
 snippet: ExecuteScriptsMySql
 
-partial: executescriptsoracle
+#### Oracle
 
-partial: executescriptspostgresql
+snippet: ExecuteScriptsOracle
+
+
+#### PostgreSQL
+
+snippet: ExecuteScriptsPostgreSQL
