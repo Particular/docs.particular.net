@@ -4,7 +4,7 @@ summary: Things to consider when installing and deploying endpoints that use SQL
 component: SqlPersistence
 related:
  - persistence/sql/installer-workflow
-reviewed: 2024-02-26
+reviewed: 2025-12-19
 ---
 
 The SQL persistence package generates scripts to create necessary database assets. It is recommended to run those scripts as part of the deployment process. See [Installer Workflow](installer-workflow.md) for more information.
@@ -26,7 +26,9 @@ In non-development environments, where the SQL persistence installation scripts 
 
 snippet: DisableInstaller
 
-partial: script-runner
+The `ScriptRunner` class can be used to run the scripts without creating and starting an NServiceBus endpoint
+
+snippet: ScriptRunner
 
 
 ## Table prefix
@@ -49,6 +51,10 @@ snippet: TablePrefix
 
 When using a database that supports schemas, a schema value other than default can be defined in the configuration API. Consult the documentation of the selected SQL dialect for details.
 
+- [SQL Server](/persistence/sql/dialect-mssql.md#schema-support)
+- [Oracle](/persistence/sql/dialect-oracle.md#schema-support)
+- [PostgreSQL](/persistence/sql/dialect-postgresql.md#schema-support)
+
 > [!NOTE]
 > The same value must be passed to the installation scripts as a parameter.
 
@@ -69,6 +75,11 @@ snippet: ExecuteScriptsSqlServer
 
 snippet: ExecuteScriptsMySql
 
-partial: executescriptsoracle
+#### Oracle
 
-partial: executescriptspostgresql
+snippet: ExecuteScriptsOracle
+
+
+#### PostgreSQL
+
+snippet: ExecuteScriptsPostgreSQL

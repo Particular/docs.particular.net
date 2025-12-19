@@ -1,4 +1,0 @@
-
-#### PostgreSQL
-
-snippet: ExecuteScriptsPostgreSQL

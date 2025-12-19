@@ -1,4 +1,0 @@
-
-#### Oracle
-
-snippet: ExecuteScriptsOracle
