@@ -103,7 +103,7 @@ endpointConfiguration.EnableFeature<MyFeature>();
 endpointConfiguration.DisableFeature<MyFeature>();
 ```
 
-Lastly, any `Feature` classes must now have a public paramaterless constructor.
+Lastly, any `Feature` classes must now have a paramaterless constructor.
 
 ### Installers
 
