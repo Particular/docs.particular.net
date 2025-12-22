@@ -22,7 +22,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [10.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.1.6) | 2025-04-14     | -                 | -                                 |
+| [10.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.1.7) | 2025-04-14     | -                 | -                                 |
 | [~~10.0.x~~](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.0.4) | ~~2025-03-11~~ | ~~2025-07-14~~    | ~~Superseded by 10.1.x~~          |
 | [9.2.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/9.2.2) | 2024-11-25     | 2026-03-11        | Superseded by 10.0.x              |
 | [8.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/8.0.9) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
@@ -595,7 +595,6 @@
 | [~~3.39.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.39.0) | ~~2025-04-08~~ | ~~2025-07-09~~    | ~~Superseded by 3.42.x~~          |
 | [~~3.37.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.37.0) | ~~2025-03-24~~ | ~~2025-07-08~~    | ~~Superseded by 3.39.x~~          |
 | [~~3.36.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.36.0) | ~~2025-03-21~~ | ~~2025-06-24~~    | ~~Superseded by 3.37.x~~          |
-| [~~3.34.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.34.0) | ~~2025-03-17~~ | ~~2025-06-21~~    | ~~Superseded by 3.36.x~~          |
 
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 
