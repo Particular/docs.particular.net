@@ -1,7 +1,7 @@
 ---
 title: AWS compute services
 summary: Describes multiple options (Serverless, PaaS, Containers, IaaS) offered by AWS to host the Particular Service Platform.
-reviewed: 2024-03-14
+reviewed: 2025-12-23
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
