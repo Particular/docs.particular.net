@@ -1,7 +1,7 @@
 ---
 title: Multi-tenant support
 summary: SQL Persistence support for multi-tenant systems using database per customer
-reviewed: 2024-03-07
+reviewed: 2025-12-24
 component: SqlPersistence
 versions: '[4.5,)'
 related:
@@ -38,7 +38,7 @@ snippet: MultiTenantWithFunc
 
 When using the [Outbox feature](/nservicebus/outbox/) with a single database, the endpoint will [clean up its own deduplication data](outbox.md#deduplication-record-lifespan). When using multi-tenant mode, it's impossible for the endpoint to know all the possible tenant databases it must clean up. If using the Outbox with multi-tenant mode, the cleanup process must be disabled and implemented as a SQL Agent (or similar) task, otherwise the following exception will be thrown at runtime:
 
-> MultiTenantConnectionBuilder can only be used with the Outbox feature if Outbox cleanup is handled by an external process (i.e. SQL Agent) and the endpoint is configured to disable Outbox cleanup using endpointConfiguration.EnableOutbox().DisableCleanup(). See the SQL Persistence documentation for more information on how to clean up Outbox tables from a scheduled task.
+> `MultiTenantConnectionBuilder` can only be used with the Outbox feature if Outbox cleanup is handled by an external process (i.e. SQL Agent) and the endpoint is configured to disable Outbox cleanup using `endpointConfiguration.EnableOutbox().DisableCleanup()`. See the [SQL Persistence documentation](outbox.md#deduplication-record-lifespan) for more information on how to clean up Outbox tables from a scheduled task.
 
 This opt-in approach ensures the user is not taken by surprise by the need to self-clean the Outbox tables. This approach also gives the advantage of being able to schedule the cleanup process to a slow time of day for that customer, or to optimize performance by running Outbox cleanup right before rebuilding database indexes.
 
