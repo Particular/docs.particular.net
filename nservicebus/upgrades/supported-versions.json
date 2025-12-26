@@ -998,10 +998,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "5.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "5.1",
           "SupportLevel": "Mainstream"
         }
