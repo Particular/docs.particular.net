@@ -5,7 +5,7 @@ summary: Hosting NServiceBus endpoints with AWS Lambda triggered by Simple Queue
 related:
  - samples/aws/lambda-sqs
  - samples/aws/lambda-sqs-annotations
-reviewed: 2024-03-06
+reviewed: 2026-01-02
 redirects:
  - previews/aws-lambda-simple-queue-service
 ---
@@ -82,4 +82,4 @@ The `AwsLambdaSQSEndpoint` class supports the full feature set of NServiceBus in
 
 ### Transactions
 
-As the `AwsLambdaSQSEndpoint` uses the `SqsTransport`, it only supports the Receive Only and Disabled [transaction modes](/transports/transactions.md).
+The `AwsLambdaSQSEndpoint` uses `SqsTransport`, which limits transaction support to the Receive Only and Disabled [transaction modes](/transports/transactions.md). Distributed transactions and atomic send-and-receive semantics are not available with this transport.
