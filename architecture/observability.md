@@ -1,7 +1,7 @@
 ---
 title: Observability
 summary: Observability in distributed systems including root-cause analysis, health/performance monitoring, OpenTelemetry guidance, and Particular Platform tools.
-reviewed: 2024-03-20
+reviewed: 2026-01-02
 callsToAction: ['solution-architect']
 ---
 
@@ -29,4 +29,4 @@ Video: [Message processing failed, but what’s the root cause?](https://www.you
 
 ## The Particular Service Platform
 
-The Particular Service Platform offers multiple capabilities that allow one to observe the message flows that are occurring in the system. ServiceInsight has an endpoint explorer view, allowing one to understand all components that are sending and receiving messages in the system. More importantly, ServiceInsight and ServicePulse have multiple views that offer insights into message and [saga flows](/architecture/workflows.md#orchestration-implementing-orchestrated-workflows), based on audit messages. These message-based conversations that are occurring in the systems, are visualized in [flow diagrams](/servicepulse/message-details.md#messages-with-audited-conversation-data-flow-diagram), [sequence diagrams](/servicepulse/message-details.md#messages-with-audited-conversation-data-sequence-diagram), and [saga views](/servicepulse/message-details.md#messages-with-audited-conversation-data-saga-diagram).
+The Particular Service Platform offers multiple capabilities that allow teams to observe the message flows that are occurring in the system. ServicePulse provides multiple views that offer insights into message and [saga flows](/architecture/workflows.md#orchestration-implementing-orchestrated-workflows) based on audited messages. These message-based conversations are visualized using [flow diagrams](/servicepulse/message-details.md#messages-with-audited-conversation-data-flow-diagram), [sequence diagrams](/servicepulse/message-details.md#messages-with-audited-conversation-data-sequence-diagram), and [saga views](/servicepulse/message-details.md#messages-with-audited-conversation-data-saga-diagram), helping teams understand how endpoints interact and how messages move through the system. These visualizations help teams understand the components that are sending and receiving messages across the system.
