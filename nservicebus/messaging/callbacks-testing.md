@@ -1,7 +1,7 @@
 ---
 title: Client-side Callbacks Testing
 summary: Shows how to unit test code that uses Callbacks.
-reviewed: 2024-01-05
+reviewed: 2026-01-05
 component: CallbacksTesting
 related:
 - samples/callbacks
