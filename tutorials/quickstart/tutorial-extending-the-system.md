@@ -33,7 +33,7 @@ First, make sure both browser windows and all console applications are closed. T
 Next, create a new Console Application project named **Shipping** and add it to the solution:
 
 ```shell
-> dotnet new console --name Shipping --framework net8.0
+> dotnet new console --name Shipping --framework net9.0
 > dotnet sln add Shipping
 ```
 
