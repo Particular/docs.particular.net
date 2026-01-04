@@ -15,11 +15,7 @@ public class RequestDataMessageHandler () :
 
         #region DataResponseReply
 
-        var response = new DataResponseMessage
-        {
-            DataId = message.DataId,
-            String = message.String
-        };
+        var response = new DataResponseMessage(message.DataId, message.String);
 
         await context.Reply(response);
 
