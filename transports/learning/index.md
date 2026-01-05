@@ -17,7 +17,7 @@ Added in Version 6.3.
 
 include: learning-usages
 
-[ServiceControl](/servicecontrol/) (and therefore [ServicePulse](/servicepulse/) and [ServiceInsight](/serviceinsight/)) are only supported for demonstration purposes through the use of the [Platform Sample package](/platform/platform-sample-package.md).
+[ServiceControl](/servicecontrol/) (and therefore [ServicePulse](/servicepulse/)) are only supported for demonstration purposes through the use of the [Platform Sample package](/platform/platform-sample-package.md).
 
 ## Transport at a glance
 
