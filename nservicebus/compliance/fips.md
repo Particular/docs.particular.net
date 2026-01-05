@@ -38,6 +38,6 @@ The following packages use MD5 and cannot be used with FIPS enforcement enabled:
 
 ## Disable enforcement of FIPS
 
-ServiceControl, ServicePulse, and ServiceInsight also use MD5 internally and will require disabling FIPS enforcement to run properly. As these tools do not execute user code and can be audited as 100% open source, it is sometimes possible to obtain a waiver to run these tools with a configuration flag that instructs the .NET Framework to skip enforcement of FIPS even when configured to do so at the server level with group policy.
+ServiceControl and ServicePulse also use MD5 internally and will require disabling FIPS enforcement to run properly. As these tools do not execute user code and can be audited as 100% open source, it is sometimes possible to obtain a waiver to run these tools with a configuration flag that instructs the .NET Framework to skip enforcement of FIPS even when configured to do so at the server level with group policy.
 
 FIPS enforcement can be disabled by setting the runtime setting `enforceFIPSPolicy` to `false` in the application's app.config or web.config. See the [MSDN article on how to change this setting](https://docs.microsoft.com/en-us/dotnet/framework/configure-apps/file-schema/runtime/enforcefipspolicy-element).

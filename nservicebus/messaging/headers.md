@@ -273,7 +273,7 @@ snippet: HeaderWriterDefer
 
 ## Diagnostic and informational headers
 
-Headers used to give visibility into the "where," "when," and "by whom" of a message. They are used by [ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse/).
+Headers used to give visibility into the "where," "when," and "by whom" of a message. They are used by [ServiceControl](/servicecontrol/) and [ServicePulse](/servicepulse/).
 
 ### $.diagnostics
 
@@ -296,7 +296,7 @@ The timestamp when the message should be delivered. Used for more accurate calcu
 The endpoint name the message was sent from.
 
 > [!NOTE]
-> Used for linking messages in ServiceInsight and ServicePulse. See [NServiceBus.ConversationId](#messaging-interaction-headers-nservicebus-conversationid)
+> Used for linking messages in ServicePulse. See [NServiceBus.ConversationId](#messaging-interaction-headers-nservicebus-conversationid)
 
 ### NServiceBus.OriginatingMachine
 
@@ -327,7 +327,7 @@ The timestamp when the processing of a message ended.
 Name of the endpoint where the message was processed.
 
 > [!NOTE]
-> Used for linking messages in ServiceInsight and ServicePulse. See [NServiceBus.ConversationId](#messaging-interaction-headers-nservicebus-conversationid)
+> Used for linking messages in ServicePulse. See [NServiceBus.ConversationId](#messaging-interaction-headers-nservicebus-conversationid)
 
 ### NServiceBus.ProcessingMachine
 

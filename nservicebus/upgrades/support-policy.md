@@ -1,7 +1,7 @@
 ---
 title: Support Policy
 summary: Versions of NServiceBus and component packages that are currently supported
-reviewed: 2023-06-25
+reviewed: 2026-01-05
 related:
  - nservicebus/licensing
  - nservicebus/upgrades/release-policy
@@ -71,13 +71,12 @@ Therefore the recommended approach is to upgrade *one* major version at a time, 
 
 ## FAQ
 
-**Does this policy apply to the [ServiceControl](/servicecontrol/), [ServiceInsight](/serviceinsight/), [ServicePulse](/servicepulse/) applications, or [Tools](/nservicebus/tools/)?**
+**Does this policy apply to the [ServiceControl](/servicecontrol/), [ServicePulse](/servicepulse/) applications, or [Tools](/nservicebus/tools/)?**
 
-No, the policy applies only to the supported NServiceBus packages listed on the [NServiceBus Packages Supported Versions](supported-versions.md) page. ServiceControl, ServicePulse and ServiceInsight are governed by their own support policy, linked below.
+No, the policy applies only to the supported NServiceBus packages listed on the [NServiceBus Packages Supported Versions](supported-versions.md) page. ServiceControl and ServicePulse are governed by their own support policy, linked below.
 
 - [ServiceControl support policy](/servicecontrol/upgrades/support-policy.md)
 - [ServicePulse support policy](/servicepulse/support-policy.md)
-- [ServiceInsight support policy](/serviceinsight/support-policy.md)
 
 **Which version of NServiceBus should be used to start a new project?**
 
