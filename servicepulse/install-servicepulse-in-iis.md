@@ -144,12 +144,6 @@ There are three roles defined:
 - `SPFailedMessages`: members can manage failed messages (retry, delete, groups etc.).
 - `SPMonitoring`: members can manage monitoring (e.g. enabling/disabling heartbeat monitoring for a particular endpoint).
 
-### Limitations
-
-If ServiceControl is secured with an authentication module other that Windows authentication, ServiceInsight will not be able to connect to the REST API exposed via IIS. ServiceInsight version 1.4 or greater is required to use Windows authentication.
-
-Older versions of ServiceInsight can still be used locally, bypassing the security by connecting to the ServiceControl port directly using the `http://localhost:33333/api` URL.
-
 ## Upgrading ServicePulse hosted in IIS
 
 When ServicePulse is hosted in IIS, the upgrade process is as follows:
