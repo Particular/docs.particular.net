@@ -2,7 +2,7 @@
 title: ServiceControl Transport Adapter
 summary: How to decouple ServiceControl from an endpoint's transport
 component: SCTransportAdapter
-reviewed: 2024-03-29
+reviewed: 2026-01-05
 ---
 
 > [!WARNING]
