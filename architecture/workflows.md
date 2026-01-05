@@ -16,7 +16,7 @@ Choreographed workflows are implemented by an implicit flow of events between se
 
 ![](/servicepulse/images/sequence-diagram.png)
 
-_A choreographed event-driven workflow across multiple endpoints, visualized by a [ServicePulse sequence diagram](/servicepulse/sequence-diagram)._
+_A choreographed event-driven workflow across multiple endpoints, visualized by a [ServicePulse sequence diagram](/servicepulse/sequence-diagram.md)._
 
 ### Implementing choreographed workflows
 
