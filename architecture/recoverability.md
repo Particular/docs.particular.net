@@ -42,7 +42,7 @@ Once the root cause of a persistent error has been resolved, messages can be mov
 > - NServiceBus automatically forwards messages exceeding the configured number of automated retries to the [error queue](/nservicebus/recoverability/configure-error-handling.md).
 > - ServiceControl can send [email notifications](/servicepulse/health-check-notifications.md) for dead-lettered messages.
 > - Messages moved to the error queue are [enhanced with additional metadata](/servicepulse/intro-failed-messages.md#failed-messages-page-message-details-page) to help with root cause detection.
-> - Both [ServiceInsight](/serviceinsight/managing-errors-and-retries.md) and [ServicePulse](/servicepulse/intro-failed-messages.md) offer monitoring and inspection of failed messages and advanced retry functionality.
+> - [ServicePulse](/servicepulse/intro-failed-messages.md) offers monitoring and inspection of failed messages as well as advanced retry functionality.
 
 ## Best practices
 
