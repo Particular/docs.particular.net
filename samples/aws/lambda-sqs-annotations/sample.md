@@ -1,6 +1,6 @@
 ---
 title: Using NServiceBus in AWS Lambda with annotations and SQS
-reviewed: 2024-03-07
+reviewed: 2026-01-05
 component: SQSLambda
 related:
  - samples/aws/sqs-simple
