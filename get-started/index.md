@@ -5,7 +5,7 @@ reviewed: 2025-10-29
 suppressRelated: true
 ---
 
-NServiceBus makes it quick and easy to send, process, and publish messages across a wide variety of on-premises and cloud-based queuing technologies. All the low-level serialization, threading, and transaction management is handled out-of-the box. Monitoring and debugging are easy to set up thanks to ServicePulse and ServiceInsight.
+NServiceBus makes it quick and easy to send, process, and publish messages across a wide variety of on-premises and cloud-based queuing technologies. All the low-level serialization, threading, and transaction management is handled out-of-the box. Monitoring and debugging are easy to set up thanks to ServicePulse.
 
 ### Start the journey with NServiceBus using these handy resources:
 
