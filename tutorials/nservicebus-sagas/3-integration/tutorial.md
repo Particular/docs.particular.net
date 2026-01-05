@@ -330,7 +330,7 @@ We also see a new message at the end, similar to what happened when timeout mess
 
 This is caused by the `ShipmentAcceptedByAlpine` message being returned _after_ the second timeout has already given up on Alpine, published `ShipmentFailed`, and marked the saga as complete, removing it from storage. As we've defined the saga thus far, this is working as intended, but this is another place where it all comes down to business requirements.
 
-It is possible to handle these instances by [creating an `IHandleSagaNotFound` implementation](/nservicebus/sagas/saga-not-found.md). Another possibility would be to keep the saga alive for longer (by not calling `MarkAsComplete()`) and setting another timeout to clean up the saga later on. It really depends on what the exact rules are for your specific scenario, which you can only discover through consultation with business stakeholders.
+It is possible to handle these instances by [creating a saga not found handler](/nservicebus/sagas/saga-not-found.md). Another possibility would be to keep the saga alive for longer (by not calling `MarkAsComplete()`) and setting another timeout to clean up the saga later on. It really depends on what the exact rules are for your specific scenario, which you can only discover through consultation with business stakeholders.
 
 
 ## Summary
