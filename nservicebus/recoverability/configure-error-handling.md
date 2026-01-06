@@ -2,7 +2,7 @@
 title: Configure error handling
 summary: Configure handling of failed messages
 component: Core
-reviewed: 2025-04-28
+reviewed: 2026-01-05
 redirects:
 - nservicebus/configure-error-queue
 related:
@@ -44,9 +44,9 @@ snippet: ErrorHeadersCustomizations
 
 Administrators should monitor the error queue in order to detect when problems occur. The message in the error queue contains relevant information such as the endpoint that initially processed the message and exception details. This allows an administrator to investigate the problem.
 
-Monitoring and handling of failed messages with [ServicePulse](/servicepulse/) provides access to full exception details, including the stack-trace. [ServiceInsight](/serviceinsight/) and ServicePulse offer advanced debugging capabilities, providing additional information like exception details as well as visualizing the flow of messages. They also provide `retry` functionality, which sends a failed message from the error queue back to the originating endpoint for re-processing. For more details on how to retry a message using ServicePulse, see [Introduction to Failed Messages Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md). To retry a message using ServiceInsight, see [Managing Errors and Retries in ServiceInsight](/serviceinsight/managing-errors-and-retries.md).
+Monitoring and handling of failed messages with [ServicePulse](/servicepulse/) provides access to full exception details, including the stack-trace. ServicePulse offers advanced debugging capabilities, providing additional information like exception details as well as visualizing the flow of messages. They also provide `retry` functionality, which sends a failed message from the error queue back to the originating endpoint for re-processing. For more details on how to retry a message using ServicePulse, see [Failed Message Monitoring in ServicePulse](/servicepulse/intro-failed-messages.md). To retry a message using ServicePulse, see [Retrying Failed Messages in ServicePulse](/servicepulse/intro-failed-message-retries.md).
 
-If ServicePulse and ServiceInsight are not available in the environment, the message retry functionality can be performed using the native management tools appropriate for the selected transport:
+If ServicePulse is not available in the environment, the message retry functionality can be performed using the native management tools appropriate for the selected transport:
 
  * [MSMQ Scripting](/transports/msmq/operations-scripting.md)
  * [RabbitMQ Scripting](/transports/rabbitmq/operations-scripting.md)

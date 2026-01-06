@@ -12,7 +12,6 @@ related:
  - nservicebus/upgrades/release-policy
  - nservicebus/upgrades/support-policy
  - servicecontrol/license
- - serviceinsight/license
 ---
 
 ## License details

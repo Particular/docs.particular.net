@@ -19,7 +19,7 @@ The distributed nature of parallel, message-driven systems makes them more diffi
 It is recommended to specify a central auditing queue for all related endpoints (i.e., endpoints that belong to the same system). This gives an overview of the entire system in one place and can help see how messages correlate. The audit queue can be considered a central record of everything that happened in the system.
 
 > [!IMPORTANT]
-> When auditing NServiceBus messages, it is important to have the capability to process messages sent to the audit queue: The Particular Service Platform, specifically [ServiceControl](/servicecontrol), processes messages from these auditing queues to provide diagnostic and visualization features. For more information, see the [ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse/) documentation.
+> When auditing NServiceBus messages, it is important to have the capability to process messages sent to the audit queue: The Particular Service Platform, specifically [ServiceControl](/servicecontrol), processes messages from these auditing queues to provide diagnostic and visualization features. For more information, see the [ServicePulse](/servicepulse/) documentation.
 
 ## How it works
 
