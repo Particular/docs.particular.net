@@ -55,7 +55,7 @@ protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> ma
 }
 ```
 
-### Mapping API
+### ConfigureMapping API deprecated
 
 Starting from [NServiceBus version 7.7 Roslyn analyzer](/nservicebus/sagas/analyzers.md) have been introduced that analyze the code in sagas and make suggestions for improvements directly in the editor. As part of those analyzers fixers (NSB0004, NSB0018) have been provided to [simplify the mapping expression](/nservicebus/sagas/analyzers.md#saga-mapping-expressions-can-be-simplified) from
 
