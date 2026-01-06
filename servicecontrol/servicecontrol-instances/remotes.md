@@ -161,7 +161,7 @@ It is possible to create a multi-region deployment using remotes.
 
 ```mermaid
 graph TD
-insight[ServiceInsight] -..-> crossRegionPrimary[Cross Region<br/>ServiceControl<br/>primary]
+pulse[ServicePulse] -..-> crossRegionPrimary[Cross Region<br/>ServiceControl<br/>primary]
 crossRegionPrimary -. connected to .-> primaryB
 
 subgraph Region B
@@ -185,21 +185,19 @@ end
 crossRegionPrimary -. connected to .-> primaryA
 
 classDef Endpoints fill:#00A3C4,stroke:#00729C,color:#FFFFFF
-classDef ServiceInsight fill:#878CAA,stroke:#585D80,color:#FFFFFF
 classDef ServicePulse fill:#409393,stroke:#205B5D,color:#FFFFFF
 classDef ServiceControlPrimary fill:#A84198,stroke:#92117E,color:#FFFFFF,stroke-width:4px
 classDef ServiceControlRemote fill:#A84198,stroke:#92117E,color:#FFFFFF
 
 class endpointsA,endpointsB Endpoints
-class insight ServiceInsight
-class servicePulseA,servicePulseB ServicePulse
+class pulse,servicePulseA,servicePulseB ServicePulse
 class primaryA,primaryB,crossRegionPrimary ServiceControlPrimary
 class auditA,auditB ServiceControlRemote
 ```
 
-In this deployment, each region has a full ServiceControl installation with a primary Error instance and an Audit instance. Each region can be managed and controlled via a dedicated ServicePulse.
+In this deployment, each region has a full ServiceControl installation with a primary Error instance and an Audit instance. Each region can be managed and controlled via a dedicated ServicePulse instance.
 
-A new cross-region primary instance is added to allow ServiceInsight to show messages from both regions. This cross-region instance includes each region-specific primary instance as a remote allowing it to query messages from both. The cross-region instance must disable error message ingestion management by setting with the value [`ServiceControl/IngestErrorMessages`](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontrolingesterrormessages) option to `false`.
+A new cross-region primary instance is added to allow another ServicePulse instance to show messages from both regions. This cross-region instance includes each region-specific primary instance as a remote allowing it to query messages from both. The cross-region instance must disable error message ingestion management by setting with the value [`ServiceControl/IngestErrorMessages`](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontrolingesterrormessages) option to `false`.
 
 ### Zero downtime upgrades
 
@@ -279,7 +277,7 @@ To change the address of a remote instance to a new host and/or port number:
 
 ## Considerations
 
-- Pagination in ServiceInsight may not work as expected. For example, each page may contain a different number of items, depending on how those items are distributed across the various ServiceControl instances.
+- Pagination in ServicePulse may not work as expected. For example, each page may contain a different number of items, depending on how those items are distributed across the various ServiceControl instances.
 - If the primary instance cannot contact a given remote instance, data from that remote instance will not be included in any views in ServicePulse.
 - Multi-instance configuration is not possible the ServiceControl Management utility.
 - Incorrect configuration may cause cyclical dependencies. For example, instance A may attempt to get data from instance B, and instance B may attempt to get data from instance A.
