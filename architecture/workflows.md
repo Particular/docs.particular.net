@@ -1,7 +1,7 @@
 ---
 title: Workflows
 summary: Stateful workflow techniques in distributed systems using NServiceBus sagas for choreographed and orchestrated business processes
-reviewed: 2025-06-30
+reviewed: 2026-01-05
 callsToAction: ['solution-architect']
 ---
 
@@ -14,9 +14,9 @@ Business processes typically involve various distributed components that need to
 
 Choreographed workflows are implemented by an implicit flow of events between services instead of a central owner of a process. Services are highly decoupled by the use of [publish/subscribe](/architecture/messaging.md#communication-styles-publishsubscribe-pattern). Published messages are called _events_ because they describe a fact about something that happened to the rest of the system. Subscribers react to events as required. There is no central state of the workflow.
 
-![](/serviceinsight/images/overview-sequence-diagram.png)
+![](/servicepulse/images/sequence-diagram.png)
 
-_A choreographed event-driven workflow across multiple endpoints, visualized by a [ServiceInsight sequence diagram](/serviceinsight/sequence-diagram)._
+_A choreographed event-driven workflow across multiple endpoints, visualized by a [ServicePulse sequence diagram](/servicepulse/sequence-diagram.md)._
 
 ### Implementing choreographed workflows
 
@@ -41,9 +41,9 @@ Orchestrated workflows are managed by a central process that instructs component
 
 NServiceBus is designed to handle long-running business processes in a robust and scalable way using the [saga feature](/nservicebus/sagas/). NServiceBus sagas are a convenient programming model to implement orchestrated, long-running business workflows or state machines using regular C# (or any other .NET language). Sagas handle recoverability, shared state, message correlation, timeouts, and more.
 
-![](/serviceinsight/images/overview-sagaview.png)
+![](/servicepulse/images/saga-diagram.png)
 
-_An orchestrated workflow implemented as an NServiceBus Saga, visualized by [ServiceInsight](/serviceinsight)._
+_An orchestrated workflow implemented as an NServiceBus Saga, visualized by [ServicePulse](/servicepulse)._
 
 [**Tutorial: Introduction to NServiceBus sagas →**](/tutorials/nservicebus-sagas/1-saga-basics/)
 
