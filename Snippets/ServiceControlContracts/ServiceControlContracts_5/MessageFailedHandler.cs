@@ -16,7 +16,7 @@
 
             var chatMessage = $@"Message with id: {failedMessageId} failed.
 Reason: '{exceptionMessage}'.
-Open in ServiceInsight: {GetServiceInsightUri(failedMessageId)}";
+Open in ServicePulse: {GetServicePulseUri(failedMessageId)}";
 
             using (var client = new HipchatClient())
             {
@@ -26,9 +26,9 @@ Open in ServiceInsight: {GetServiceInsightUri(failedMessageId)}";
         }
 
         #endregion
-        string GetServiceInsightUri(string failedMessageId)
+        string GetServicePulseUri(string failedMessageId)
         {
-            return $"si://localhost:33333/api?Search={failedMessageId}";
+            return $"http://localhost:9090/#/messages/{failedMessageId}";
         }
     }
 
