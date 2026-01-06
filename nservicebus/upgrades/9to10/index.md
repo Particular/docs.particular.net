@@ -66,6 +66,28 @@ The extension point [`IWantToRunBeforeConfigurationIsFinalized`](/nservicebus/li
 
 Final adjustments to settings before configuration is finalized should be applied via an explicit last configuration step on the endpoint configuration, instead of via implementations of this interface discovered by scanning.
 
+## Deprecated `ExecuteTheseHandlersFirst`
+
+Most of the time, any given message is only handled by one message handler or saga, but it is possible for multiple handlers to apply for a message type, especially when considering message types that have an inheritance hierarchy. In these cases, the handlers would be called one after the other, but not necessarily in a deterministic order, unless `ExecuteTheseHandlersFirst` specified the order:
+
+```csharp
+// Before NServiceBus 10
+endpointConfiguration.ExecuteTheseHandlersFirst(typeof(FirstHandler), typeof(SecondHandler));
+```
+
+Sometimes, handler order needed to be set to guarantee that some infrastructure task occurred, such as logging. In current versions of NServiceBus, this is an antipattern, and these infrastructure tasks should instead be replaced with [pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md). In addition to the docs, more information on pipeline bhaviors can be found in the blog post [Infrastructure soup](https://particular.net/blog/infrastructure-soup).
+
+Other examples that previously required `ExecuteTheseHandlersFirst` involved multiple handlers reacting to different types in a message inheritance hierarchy, for example with each handler doing part of the work on a data object that is loaded once using the [identity map pattern](https://en.wikipedia.org/wiki/Identity_map_pattern) and then persisted once incorporating the changes from both handlers.
+
+In these cases, replace the call to `ExecuteTheseHandlersFirst` with `AddHandler` or `AddSaga`. The handlers will be invoked in registration order. Any handlers later added during assembly scanning will continue to be invoked in a non-deterministic order after the explicitly registered handlers.
+
+```csharp
+endpointConfiguration.AddSaga<SagaGoesFirst>();
+endpointConfiguration.AddHandler<ThisHandlerNext>();
+endpointConfiguration.AddHandler<ThenThisHandler>();
+// Assembly scanned handlers go last
+```
+
 ## Extensibility
 
 This section describes changes to advanced extensibility APIs.
