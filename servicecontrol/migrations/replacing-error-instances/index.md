@@ -15,7 +15,7 @@ See [Replacing an Audit Instance](../replacing-audit-instances/) for similar gui
 
 ## Overview
 
-ServiceControl Error instances serve as the central access point for both Error and Audit data. When ServicePulse or ServiceInsight requests data from the API, those requests are either answered by the Error instance directly or passed through to one or more Audit instances in a scatter/gather pattern. So it is possible to create a new Error instance configured to communicate with the same Audit instance(s) and begin using the new Error instance to consume messages from the error queue. The critical aspect is to protect any active error messages during the transition that might still contain any valuable business data.
+ServiceControl Error instances serve as the central access point for both Error and Audit data. When ServicePulse requests data from the API, those requests are either answered by the Error instance directly or passed through to one or more Audit instances in a scatter/gather pattern. So it is possible to create a new Error instance configured to communicate with the same Audit instance(s) and begin using the new Error instance to consume messages from the error queue. The critical aspect is to protect any active error messages during the transition that might still contain any valuable business data.
 
 Keeping this in mind, an Error instance that can't be upgraded can be replaced without downtime. The process follows these steps:
 
@@ -63,4 +63,4 @@ Now that the only valuable error messages are held in the error queue, the Error
 
 Once complete, the old Error instance has been successfully replaced with a new one.
 
-If the procedure involved creating a new instance, rather than a forced upgrade, it will be necessary to adjust the connection information for ServicePulse and ServiceInsight to connect to the new Error instance's URL.
+If the procedure involved creating a new instance, rather than a forced upgrade, it will be necessary to adjust the connection information for ServicePulse to connect to the new Error instance's URL.

@@ -7,11 +7,11 @@ redirects:
 - servicecontrol/servicecontrol-instances/distributed-instances
 ---
 
-[ServiceInsight](/serviceinsight/) and [ServicePulse](/servicepulse) retrieve data from a [ServiceControl instance](/servicecontrol/servicecontrol-instances/) using an HTTP API. In some installations, that data may reside in multiple ServiceControl instances. The ServiceControl Remotes features allows a ServiceControl instance to aggregate data from other ServiceControl instances, providing a unified experience in ServiceInsight and ServicePulse.
+[ServicePulse](/servicepulse) retrieves data from a [ServiceControl instance](/servicecontrol/servicecontrol-instances/) using an HTTP API. In some installations, that data may reside in multiple ServiceControl instances. The ServiceControl Remotes features allows a ServiceControl instance to aggregate data from other ServiceControl instances, providing a unified experience in ServicePulse.
 
 ## Overview
 
-One ServiceControl Error instance is designated as the _primary_ instance. All other ServiceControl instances are _remote_ instances. The HTTP API of the primary instance aggregates data from the primary instance and from all the remote instances. ServiceInsight and ServicePulse are configured to connect to the primary instance.
+One ServiceControl Error instance is designated as the _primary_ instance. All other ServiceControl instances are _remote_ instances. The HTTP API of the primary instance aggregates data from the primary instance and from all the remote instances. ServicePulse is configured to connect to the primary instance.
 
 > [!NOTE]
 > The term _remote_ refers to the fact that remote instances are run in separate processes. The primary instance and one or more remote instances can run on the same machine.
@@ -29,20 +29,17 @@ Endpoints[endpoints] -- send audits to --> AuditQueue(audit queue)
 Endpoints -- send errors to --> ErrorQueue(error queue)
 
 ErrorQueue -- ingested by --> ServiceControl[ServiceControl<br/>primary]
-ServiceInsight -. connected to .-> ServiceControl
 ServicePulse -. connected to .-> ServiceControl
 
 AuditQueue -- ingested by --> ServiceControlAudit[ServiceControl Audit<br/>remote]
 ServiceControl -. connected to .-> ServiceControlAudit
 
 classDef Endpoints fill:#00A3C4,stroke:#00729C,color:#FFFFFF
-classDef ServiceInsight fill:#878CAA,stroke:#585D80,color:#FFFFFF
 classDef ServicePulse fill:#409393,stroke:#205B5D,color:#FFFFFF
 classDef ServiceControlPrimary fill:#A84198,stroke:#92117E,color:#FFFFFF,stroke-width:4px
 classDef ServiceControlRemote fill:#A84198,stroke:#92117E,color:#FFFFFF
 
 class Endpoints Endpoints
-class ServiceInsight ServiceInsight
 class ServicePulse ServicePulse
 class ServiceControl ServiceControlPrimary
 class ServiceControlAudit ServiceControlRemote
@@ -59,7 +56,6 @@ Endpoints[endpoints] -- send audits to --> AuditQueue(audit queue)
 Endpoints -- send errors to --> ErrorQueue(error queue)
 
 ErrorQueue -- ingested by --> ServiceControl[ServiceControl<br/>primary]
-ServiceInsight -. connected to .-> ServiceControl
 ServicePulse -. connected to .-> ServiceControl
 
 AuditQueue -- ingested by --> ServiceControlAudit1[ServiceControl Audit 1<br/>remote]
@@ -69,13 +65,11 @@ AuditQueue -- ingested by --> ServiceControlAudit2[ServiceControl Audit 2<br/>re
 ServiceControl -. connected to .-> ServiceControlAudit2
 
 classDef Endpoints fill:#00A3C4,stroke:#00729C,color:#FFFFFF
-classDef ServiceInsight fill:#878CAA,stroke:#585D80,color:#FFFFFF
 classDef ServicePulse fill:#409393,stroke:#205B5D,color:#FFFFFF
 classDef ServiceControlPrimary fill:#A84198,stroke:#92117E,color:#FFFFFF,stroke-width:4px
 classDef ServiceControlRemote fill:#A84198,stroke:#92117E,color:#FFFFFF
 
 class Endpoints Endpoints
-class ServiceInsight ServiceInsight
 class ServicePulse ServicePulse
 class ServiceControl ServiceControlPrimary
 class ServiceControlAudit1,ServiceControlAudit2 ServiceControlRemote
@@ -93,7 +87,6 @@ Endpoints1 -- send errors to --> ErrorQueue(error queue)
 Endpoints2[endpoints<br/>group 2] -- send errors to --> ErrorQueue
 
 ErrorQueue -- ingested by --> ServiceControl[ServiceControl<br/>primary]
-ServiceInsight -. connected to .->ServiceControl
 ServicePulse -. connected to .-> ServiceControl
 
 Endpoints2 -- send audits to--> AuditQueue2(audit queue 2)
@@ -105,13 +98,11 @@ ServiceControl -. connected to .-> ServiceControlAudit2[ServiceControl Audit 2<b
 AuditQueue2 -- ingested by --> ServiceControlAudit2
 
 classDef Endpoints fill:#00A3C4,stroke:#00729C,color:#FFFFFF
-classDef ServiceInsight fill:#878CAA,stroke:#585D80,color:#FFFFFF
 classDef ServicePulse fill:#409393,stroke:#205B5D,color:#FFFFFF
 classDef ServiceControlPrimary fill:#A84198,stroke:#92117E,color:#FFFFFF,stroke-width:4px
 classDef ServiceControlRemote fill:#A84198,stroke:#92117E,color:#FFFFFF
 
 class Endpoints1,Endpoints2 Endpoints
-class ServiceInsight ServiceInsight
 class ServicePulse ServicePulse
 class ServiceControl ServiceControlPrimary
 class ServiceControlAudit1,ServiceControlAudit2 ServiceControlRemote
@@ -119,7 +110,7 @@ class ServiceControlAudit1,ServiceControlAudit2 ServiceControlRemote
 
 ### Multi-transport deployments
 
-When a system uses multiple transports, the [Messaging Bridge](/nservicebus/bridge/) can be used to allow management of the entire system by single instances of ServicePulse and ServiceInsight.
+When a system uses multiple transports, the [Messaging Bridge](/nservicebus/bridge/) can be used to allow management of the entire system by single instances of ServicePulse.
 
 ```mermaid
 graph TD
@@ -129,7 +120,6 @@ primaryA -. connected to .-> auditC
 
 subgraph Transport A
 ServicePulse[ServicePulse] -. connected to .-> primaryA
-ServiceInsight[ServiceInsight] -. connected to .-> primaryA
 endpointsA[endpoints] -- send errors to --> errorQueueA[error queue]
 endpointsA -- send audits to --> auditQueueA[audit queue]
 errorQueueA -- ingested by --> primaryA[ServiceControl<br/>primary]
@@ -154,14 +144,12 @@ end
 
 classDef Endpoints fill:#00A3C4,stroke:#00729C,color:#FFFFFF
 classDef Bridge fill:#a8a032,stroke:#00729C,color:#FFFFFF
-classDef ServiceInsight fill:#878CAA,stroke:#585D80,color:#FFFFFF
 classDef ServicePulse fill:#409393,stroke:#205B5D,color:#FFFFFF
 classDef ServiceControlPrimary fill:#A84198,stroke:#92117E,color:#FFFFFF,stroke-width:4px
 classDef ServiceControlRemote fill:#A84198,stroke:#92117E,color:#FFFFFF
 
 class endpointsA,endpointsB,endpointsC Endpoints
 class bridgeB,bridgeC Bridge
-class ServiceInsight ServiceInsight
 class ServicePulse ServicePulse
 class primaryA,primaryB ServiceControlPrimary
 class auditA,auditB,auditC ServiceControlRemote
@@ -292,7 +280,7 @@ To change the address of a remote instance to a new host and/or port number:
 ## Considerations
 
 - Pagination in ServiceInsight may not work as expected. For example, each page may contain a different number of items, depending on how those items are distributed across the various ServiceControl instances.
-- If the primary instance cannot contact a given remote instance, data from that remote instance will not be included in any views in either ServiceInsight or ServicePulse.
+- If the primary instance cannot contact a given remote instance, data from that remote instance will not be included in any views in ServicePulse.
 - Multi-instance configuration is not possible the ServiceControl Management utility.
 - Incorrect configuration may cause cyclical dependencies. For example, instance A may attempt to get data from instance B, and instance B may attempt to get data from instance A.
 - It is recommended to run _only one_ primary instance. Multiple primary instances are _not recommended_.

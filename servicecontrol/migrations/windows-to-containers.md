@@ -21,7 +21,7 @@ When the objective is to migrate from Windows hosting to container-based hosting
 
 ## Migrating Audit instances
 
-Migration of an Audit instance is only necessary if audit message data must be preserved. Audit data is regularly deleted after it reaches the end of its retention period, so when considering a migration, it's necessary to consider whether the value of the audit data, as used by ServiceInsight and ServicePulse, is worth the added complexity of the migration procedure.
+Migration of an Audit instance is only necessary if audit message data must be preserved. Audit data is regularly deleted after it reaches the end of its retention period, so when considering a migration, it's necessary to consider whether the value of the audit data, as used by ServicePulse, is worth the added complexity of the migration procedure.
 
 See the article [Replacing an Audit instance](/servicecontrol/migrations/replacing-audit-instances/) for migration instructions. The procedure includes creating a new audit instance in parallel with the old one, and disabling audit ingestion on the old instance. In this way, audit data is served from both instances until all the audit data in the Audit instance reaches its retention period and is deleted, after which the old audit instance can be removed.
 

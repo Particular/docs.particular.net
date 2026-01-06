@@ -7,7 +7,7 @@ redirects:
  - servicecontrol/audit-instances/persistence
 ---
 
-Each endpoint in the system can be [configured to send audit copies of every message that is processed into a central audit queue](/nservicebus/operations/auditing.md). ServiceControl Audit instances consume and store the messages sent to the audit queue and make them available for visualizing message flows in [ServiceInsight](/serviceinsight/) or [ServicePulse](/servicepulse/).
+Each endpoint in the system can be [configured to send audit copies of every message that is processed into a central audit queue](/nservicebus/operations/auditing.md). ServiceControl Audit instances consume and store the messages sent to the audit queue and make them available for visualizing message flows in [ServicePulse](/servicepulse/).
 
 ServiceControl Audit can optionally forward these messages into an [audit log queue](configuration.md#transport-servicecontrol-auditforwardauditmessages) for further processing if required.
 
@@ -19,7 +19,6 @@ graph LR
   SC[ServiceControl<br>Instance]
   AuditQ --> SCA
 
-  ServiceInsight -.-> SC
   ServicePulse -.-> SC
   SCA --> AuditLog[Audit.Log<br>Queue]
 
@@ -30,10 +29,10 @@ graph LR
 Data about audit messages is exposed via an HTTP API from a ServiceControl Error instance, which aggregates the data stored in [all connected ServiceControl Audit instances](/servicecontrol/servicecontrol-instances/remotes.md#overview-sharding-audit-messages-with-competing-consumers).
 
 > [!IMPORTANT]
-> Connecting ServiceInsight or ServicePulse directly to a ServiceControl Audit instance is not supported.
+> Connecting ServicePulse directly to a ServiceControl Audit instance is not supported.
 
 > [!NOTE]
-> The ServiceControl HTTP API is designed for use by ServiceInsight or ServicePulse only and may change at any time. Use of this HTTP API for other purposes is discouraged.
+> The ServiceControl HTTP API is designed for use by ServicePulse only and may change at any time. Use of this HTTP API for other purposes is discouraged.
 
 ## Persistence
 

@@ -19,7 +19,7 @@ Messages can fail to be imported into the ServiceControl database for the follow
 
 Messages that fail to be imported are stored in the ServiceControl database in the `FailedAuditImports` and `FailedErrorImports` collections.
 
-In addition, a log with the failure reason is written for the message in the `%ServiceControl/LogPath%` ([error instances](/servicecontrol/servicecontrol-instances/configuration.md#logging-servicecontrollogpath)/[audit instances](/servicecontrol/audit-instances/configuration.md#logging-servicecontrol-auditlogpath)) `\FailedImports\{Audit|Error}\%failureid%.txt`. These messages will not be visible in ServiceInsight or ServicePulse.
+In addition, a log with the failure reason is written for the message in the `%ServiceControl/LogPath%` ([error instances](/servicecontrol/servicecontrol-instances/configuration.md#logging-servicecontrollogpath)/[audit instances](/servicecontrol/audit-instances/configuration.md#logging-servicecontrol-auditlogpath)) `\FailedImports\{Audit|Error}\%failureid%.txt`. These messages will not be visible in ServicePulse.
 
 ## Failed message custom check
 
@@ -29,7 +29,7 @@ When a failed import is detected in the ServiceControl database, the [**Message 
 
 To reimport the failed messages, the instance must be shut down and started from a command line using one of the following commands:
 
-While in import mode, ServiceControl or ServiceControl Audit will not process its input queues. Once the message is re-processed successfully, it is available in ServicePulse and ServiceInsight.
+While in import mode, ServiceControl or ServiceControl Audit will not process its input queues. Once the message is re-processed successfully, it is available in ServicePulse.
 
 The custom check will no longer be displayed if all failed imports have been successfully reimported.
 
