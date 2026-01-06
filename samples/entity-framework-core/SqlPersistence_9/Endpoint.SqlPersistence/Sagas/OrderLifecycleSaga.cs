@@ -5,17 +5,16 @@ using Microsoft.Extensions.Logging;
 using NServiceBus.Persistence.Sql;
 
 public class OrderLifecycleSaga(ILogger<OrderLifecycleSaga> logger) :
-    SqlSaga<OrderLifecycleSagaData>,
+    Saga<OrderLifecycleSagaData>,
     IAmStartedByMessages<OrderSubmitted>,
     IHandleTimeouts<OrderLifecycleSaga.OrderTimeout>
 {
-   
-    protected override void ConfigureMapping(IMessagePropertyMapper mapper)
-    {
-        mapper.ConfigureMapping<OrderSubmitted>(m => m.OrderId);
-    }
 
-    protected override string CorrelationPropertyName => nameof(OrderLifecycleSagaData.OrderId);
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderLifecycleSagaData> mapper)
+    {
+        mapper.MapSaga(saga => saga.OrderId)
+            .ToMessage<OrderSubmitted>(m => m.OrderId);
+    }
 
     public async Task Handle(OrderSubmitted message, IMessageHandlerContext context)
     {
