@@ -8,7 +8,7 @@ isLearningPath: true
 
 include: servicecontrol
 
-For more information on how ServiceControl, ServicePulse, and ServiceInsight work together, refer to [the Particular Service Platform](/platform/) article. For a quick overview of the different instances, what they do and how to configure endpoints, refer to the [how does ServiceControl work](/servicecontrol/how.md) article.
+For more information on how ServiceControl and ServicePulse work together, refer to [the Particular Service Platform](/platform/) article. For a quick overview of the different instances, what they do and how to configure endpoints, refer to the [how does ServiceControl work](/servicecontrol/how.md) article.
 
 ### ServiceControl instance types
 
@@ -17,7 +17,7 @@ There are three types of instances that can be created:
 - [Error instances](/servicecontrol/servicecontrol-instances/)
   This is the most commonly used ServiceControl instance and indispensable to ensure the smooth operation of an NServiceBus system. Together with ServicePulse, it provides the ability to visualize and retry failed messages.
 - [Audit instances](/servicecontrol/audit-instances/)
-  Audit instances provide valuable information about the message flow through a system. Among other things, this is used by ServiceInsight and ServicePulse to help visualize a distributed system.
+  Audit instances provide valuable information about the message flow through a system. Among other things, this is used by ServicePulse to help visualize a distributed system.
 - [Monitoring instances](/servicecontrol/monitoring-instances/)
   Monitoring instances performance monitoring and analyzing additional metrics and are useful for keeping track of the health of a distributed system.
 

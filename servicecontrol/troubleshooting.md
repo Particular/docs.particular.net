@@ -87,7 +87,7 @@ When encryption is enabled, SQL Server uses a certificate to encrypt communicati
 
 To fix this error, [update the SQL Server installation with a valid certificate and update the ServiceControl machine to trust this certificate](https://docs.microsoft.com/en-us/sql/database-engine/configure-windows/enable-encrypted-connections-to-the-database-engine) or add `Encrypt=False` to the connection string if encryption is truly not necessary.
 
-## Unable to connect to ServiceControl from either ServiceInsight or ServicePulse
+## Unable to connect to ServiceControl from ServicePulse
 
 Attempt to connect to the ServiceControl instance's URL using a web browser. A valid response with JSON data should be returned. If not, verify that network configuration and/or firewall settings do not block access to the ServiceControl port specified in the URL.
 
@@ -210,7 +210,7 @@ Resolution:
 - Consider disabling message bodies and headers *Full-Text search* as this causes most resource utilization for CPU and disk IO. This can be disabled in the latest version of ServiceControl by configuring each ServiceControl instance: open configuration (gear icon), scroll down to Advanced Configuration and set "Full-Text Search On Message Bodies" to Off, finally select Save, and then restart the instance.
 
 > [!WARNING]
-> Disabling *Full-Text Search* causes text search to be unavailable in ServiceInsight and ServicePulse.
+> Disabling *Full-Text Search* causes text search to be unavailable in ServicePulse.
 
 ## Saga audit data retention custom check failure
 

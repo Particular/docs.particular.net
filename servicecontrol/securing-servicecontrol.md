@@ -8,25 +8,25 @@ related:
 - servicecontrol/backup-sc-database
 ---
 
-ServiceControl serves as the back-end service for ServicePulse and ServiceInsight, supplying these client applications with the information required for their functionality. It does so by exposing an HTTP API that can be accessed by these and other third-party tools.
+ServiceControl serves as the back-end service for ServicePulse, supplying these client applications with the information required for their functionality. It does so by exposing an HTTP API that can be accessed by these and other third-party tools.
 
 The information gathered, stored, and exposed by ServiceControl contains all the messages audited and forwarded to the audit and error queues (including their metadata, headers, and body). This requires unlimited access to the ServiceControl embedded database and to all the information contained within the system's audited messages.
 
-It is critical to limit access to the ServiceControl instance, including accessing its data through its clients (ServiceInsight and ServicePulse), and accessing directly through the HTTP API.
+It is critical to limit access to the ServiceControl instance, including accessing its data through its clients (ServicePulse), and accessing directly through the HTTP API.
 
 
 ### Post-installation: secure and limited access by default
 
 When installing ServiceControl, the default installation will limit access from the local host only. Any attempt to access the service's HTTP API from outside the machines on which it is installed results in an `access denied` message.
 
-This applies also to accessing ServiceControl from ServicePulse and ServiceInsight. Using the default settings, these tools can access ServiceControl only when they are installed on the same machine as ServiceControl.
+This also applies to accessing ServiceControl from ServicePulse. Using the default settings, these tools can access ServiceControl only when they are installed on the same machine as ServiceControl.
 
 
 ### Extending access by changing host name
 
 ServiceControl can be accessed from other machines by [setting a custom host name and port number](/servicecontrol/setting-custom-hostname.md). The scope of the access extension allowed by this change depends on the specified custom host name and port number. It also depends on various network limitations (e.g. proxy, firewall, DNS settings) that may limit access to the specified ServiceControl host and port.
 
-Note that ServicePulse and ServiceInsight users must access the ServiceControl HTTP API using the specified custom host name and port number, so ensure that the network rules enable access when specifying these details (as well as when applying the various limiting network rules and policies).
+Note that ServicePulse users must access the ServiceControl HTTP API using the specified custom host name and port number, so ensure that the network rules enable access when specifying these details (as well as when applying the various limiting network rules and policies).
 
 
 ### Limiting access and data visibility

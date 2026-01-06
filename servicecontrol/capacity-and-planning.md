@@ -24,7 +24,7 @@ The location of the database has a significant impact on overall system performa
 
 The storage size that ServiceControl requires depends on the production load and is directly related to the quantity and size of messages that flow into the system.
 
-ServiceControl provides "recent-history" storage to support ServicePulse and ServiceInsight monitoring and debugging. This is different to a data archiving system that is intended to provide long-term archiving and storage (measured in years, subject to various business or regulatory requirements).
+ServiceControl provides "recent-history" storage to support ServicePulse monitoring and debugging. This is different to a data archiving system that is intended to provide long-term archiving and storage (measured in years, subject to various business or regulatory requirements).
 
 ServiceControl is configured with default expiration policies that delete old messages after predefined time periods. The expiration policies may be customized to decrease or increase the amount of time that data is retained, which impacts the storage requirements of ServiceControl.
 

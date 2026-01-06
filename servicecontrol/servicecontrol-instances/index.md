@@ -10,8 +10,8 @@ redirects:
 ---
 A ServiceControl Error instance:
 
-* Monitors [the central `error` queue](/nservicebus/recoverability/configure-error-handling.md#error-queue-monitoring) and stores the failed messages making them available for manual retries using [ServicePulse](/servicepulse/intro-failed-messages.md) or [ServiceInsight](/serviceinsight/managing-errors-and-retries.md).
-* Aggregates and forwards data from [Audit instances](/servicecontrol/audit-instances/) for visualization in [ServiceInsight](/serviceinsight/) or [ServicePulse](/servicepulse/).
+* Monitors [the central `error` queue](/nservicebus/recoverability/configure-error-handling.md#error-queue-monitoring) and stores the failed messages making them available for manual retries using [ServicePulse](/servicepulse/intro-failed-messages.md).
+* Aggregates and forwards data from [Audit instances](/servicecontrol/audit-instances/) for visualization in [ServicePulse](/servicepulse/).
 * Collects and serves [heartbeat](/monitoring/heartbeats/) and [custom check](/monitoring/custom-checks/) data for presentation by [ServicePulse](/servicepulse/health-check-notifications.md)
 * Publishes [integration events](/servicecontrol/contracts.md) that can be handled by user built [endpoints](/nservicebus/messaging/publish-subscribe/publish-handle-event.md) that can perform a custom action when those events occur.
 * If [configured](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicecontrolforwarderrormessages), forwards failed messages to an [error log queue](/servicecontrol/errorlog-auditlog-behavior.md) for custom processing.

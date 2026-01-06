@@ -42,7 +42,7 @@ There are [three types](/servicecontrol/#servicecontrol-instance-types) of Servi
       2. If multiple instances for different systems are installed on the same server, a name like `Particular.SystemName` is a common option.
    2. Select the appropriate user account.
       Note that ServiceControl instances will run as Windows Services in the background.
-   3. Be aware of the port numbers as these are used by ServicePulse and ServiceInsight to connect to ServiceControl.
+   3. Be aware of the port numbers as these are used by ServicePulse to connect to ServiceControl.
    4. Configure the [retention period](/servicecontrol/how-purge-expired-data.md) for each instance.
    5. Configure the name of the queue that messages should arrive in.
       This queue is important to endpoints that send error and audit messages to these ServiceControl instances, as well as [plugins](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolinstancename).
