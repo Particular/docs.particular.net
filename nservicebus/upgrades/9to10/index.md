@@ -131,7 +131,7 @@ After (v10):
 ```csharp
 // This is no longer possible
 var handler = serviceProvider.GetService<MyHandler>(); // Returns null
-var handler = serviceProvider.GetRequiredService<MyHandler>(); // throws
+var handler = serviceProvider.GetRequiredService<MyHandler>(); // throws an Exception
 
 // But dependency injection still works perfectly
 public class MyHandler : IHandleMessages<MyMessage>
@@ -142,6 +142,83 @@ public class MyHandler : IHandleMessages<MyMessage>
     }
 }
 ```
+
+### Changes required
+
+If no handlers, sagas, behaviors etc were resolved directly then there is **no action required**. They will continue to work exactly as before with full dependency injection support.
+
+If code directly resolves handlers, sagas, or other NServiceBus infrastructure from IServiceProvider or direct constructor injection, the code needs to be refactored. This pattern was never intended and indicates logic that should be extracted into proper services.
+
+So instead of
+
+```csharp
+// Treating a handler like a service
+var handler = serviceProvider.GetService<MyHandler>();
+handler.DoSomething(); // This confuses application and framework layers
+```
+
+adjust the code to something like
+
+```csharp
+// Extract the logic to a proper application service
+public interface IMyBusinessLogic
+{
+    void DoSomething();
+}
+
+public class MyBusinessLogic : IMyBusinessLogic
+{
+    public void DoSomething() { /* ... */ }
+}
+
+// Register it as an application service
+services.AddSingleton<IMyBusinessLogic, MyBusinessLogic>();
+
+// Use it in the handler (framework layer)
+public class MyHandler : IHandleMessages<MyMessage>
+{
+    private readonly IMyBusinessLogic _businessLogic;
+    
+    public MyHandler(IMyBusinessLogic businessLogic)
+    {
+        _businessLogic = businessLogic;
+    }
+    
+    public Task Handle(MyMessage message, IMessageHandlerContext context)
+    {
+        _businessLogic.DoSomething();
+        return Task.CompletedTask;
+    }
+}
+
+// Resolve and use the service
+var businessLogic = serviceProvider.GetService<IMyBusinessLogic>();
+businessLogic.DoSomething();
+```
+
+### Further benefits of the change
+
+By keeping infrastructure components out of the service collection, clean separation is maintained:
+
+- Framework layer: Handlers, sagas, behaviors managed by NServiceBus
+- Application layer: User services, abstractions, and business logic
+
+This separation makes it impossible to accidentally create the wrong kind of coupling in the codebase.
+
+This design aligns with how modern .NET frameworks handle infrastructure:
+
+- ASP.NET Core doesn't register controllers by default
+- Blazor doesn't register components
+- Minimal APIs don't register endpoint handlers
+
+NServiceBus now follows the same established patterns.
+
+For users using [`ValidateOnBuild`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions.validateonbuild) or [`ValidateScopes`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions.validatescopes) on their service collection, having fewer registrations provides concrete benefits:
+
+- Faster validation: Less services to validate means quicker startup times
+- Fewer false positives: Infrastructure types often have complex lifetime requirements that can cause validation to fail even though NServiceBus manages them correctly
+- More reliable builds: Validation focuses on application services where issues are more likely to occur
+- Clearer diagnostics: When validation does fail, it's about the users services, not framework internals
 
 ## Extensibility
 
