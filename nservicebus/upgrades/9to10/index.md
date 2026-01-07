@@ -75,7 +75,7 @@ Most of the time, any given message is only handled by one message handler or sa
 endpointConfiguration.ExecuteTheseHandlersFirst(typeof(FirstHandler), typeof(SecondHandler));
 ```
 
-Sometimes, handler order needed to be set to guarantee that some infrastructure task occurred, such as logging. In current versions of NServiceBus, it is recommended to replace these infrastructure tasks with [pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md). In addition to the docs, more information on pipeline behaviors can be found in the blog post [Infrastructure soup](https://particular.net/blog/infrastructure-soup).
+Sometimes, handler order needed to be set to guarantee that some infrastructure task occurred, such as logging. In current versions of NServiceBus, these infrastructure tasks should be replaced with [pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md). In addition to the docs, more information on pipeline behaviors can be found in the blog post [Infrastructure soup](https://particular.net/blog/infrastructure-soup).
 
 Other examples that previously required `ExecuteTheseHandlersFirst` involved multiple handlers reacting to different types in a message inheritance hierarchy, for example with each handler doing part of the work on a data object that is loaded once using the [identity map pattern](https://en.wikipedia.org/wiki/Identity_map_pattern) and then persisted once incorporating the changes from both handlers.
 
