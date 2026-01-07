@@ -101,7 +101,7 @@ endpointConfiguration.AddHandler<ThenThisHandler>();
 
 ## Service registration changes
 
-NServiceBus v10 changes how infrastructure components are registered and resolved. Infrastructure types such as handlers, sagas, behaviors, installers and custom checks that users should never directly resolve are no longer registered in the service collection, while still supporting dependency injection for their own dependencies.
+NServiceBus version 10 changes how infrastructure components are registered and resolved. Infrastructure types such as handlers, sagas, behaviors, installers and custom checks that users should never directly resolve are no longer registered in the service collection, while still supporting dependency injection for their own dependencies.
 
 This change aligns with fundamental principles in software architecture:
 
@@ -112,43 +112,16 @@ When infrastructure components are registered in the service collection, they be
 
 ASP.NET Core follows these same principles. Controllers are not registered in the service collection by default, yet they fully support dependency injection. This is the right architectural boundary: the framework manages its own infrastructure while users manage their application services.
 
-### Change in more detail
-
-In previous versions, NServiceBus registered all infrastructure components (handlers, sagas, behaviors, etc.) in the service collection during assembly scanning. In v10, these components are no longer registered but still support constructor injection.
-
-Before (v9 and earlier) (pseudo-code):
-
-```csharp
-// Infrastructure types were registered in the service collection during scanning
-services.AddScoped<MyHandler>(); // Registered by NServiceBus
-services.AddScoped<MySaga>(); // Registered by NServiceBus
-// This was possible but not intended
-var handler = serviceProvider.GetService<MyHandler>(); // Could resolve directly
-```
-
-After (v10):
-
-```csharp
-// This is no longer possible
-var handler = serviceProvider.GetService<MyHandler>(); // Returns null
-var handler = serviceProvider.GetRequiredService<MyHandler>(); // throws an Exception
-// But dependency injection still works perfectly
-public class MyHandler : IHandleMessages<MyMessage>
-{
-    public MyHandler(IMyService myService) // Still injected!
-    {
-        // myService is resolved from the service collection
-    }
-}
-```
-
 ### Changes required
 
-If no handlers, sagas, behaviors etc were resolved directly then there is **no action required**. They will continue to work exactly as before with full dependency injection support.
+If both of the following conditions are true of all handlers, sagas, behaviors, etc. then **no action is needed**, and they will continue to work exactly as before with full dependency injection support:
 
-If code directly resolves handlers, sagas, or other NServiceBus infrastructure from IServiceProvider or direct constructor injection, the code needs to be refactored. This pattern was never intended and indicates logic that should be extracted into proper services.
+* Not resolved directly using `GetService<T>()` or similar
+* Not used as a constructor injection argument in another class
 
-So instead of
+If one of these conditions is not true, the code needs to be refactored. This pattern was never intended and indicates logic that should be extracted into proper services.
+
+Instead of:
 
 ```csharp
 // Treating a handler like a service
@@ -156,7 +129,7 @@ var handler = serviceProvider.GetService<MyHandler>();
 handler.DoSomething(); // This confuses application and framework layers
 ```
 
-adjust the code to something like
+…adjust the code to be structured similar to:
 
 ```csharp
 // Extract the logic to a proper application service
