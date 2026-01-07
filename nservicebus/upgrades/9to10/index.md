@@ -104,10 +104,11 @@ endpointConfiguration.AddHandler<ThenThisHandler>();
 NServiceBus v10 changes how infrastructure components are registered and resolved. Infrastructure types such as handlers, sagas, behaviors, installers and custom checks that users should never directly resolve are no longer registered in the service collection, while still supporting dependency injection for their own dependencies.
 
 This change aligns with fundamental principles in software architecture:
-- The [Dependency Inversion Principle (DIP)](https://en.wikipedia.org/wiki/Dependency_inversion_principle) states that high-level modules (your business logic) should not depend on low-level modules (framework infrastructure). Both should depend on abstractions.
-- The [Hollywood Principle ("Don't call us, we'll call you")](https://en.wiktionary.org/wiki/Hollywood_principle) describes the relationship between frameworks and application code. NServiceBus calls your handlers and sagas when messages arrive. The application code should never call handlers directly.
 
-When infrastructure components are registered in the service collection, they become part of your application's public API. This creates a problem: developers can accidentally depend on framework internals that should be implementation details, and it becomes tempting to use the Service Locator anti-pattern (resolving from `IServiceProvider` directly) instead of proper constructor injection.
+- The [Dependency Inversion Principle (DIP)](https://en.wikipedia.org/wiki/Dependency_inversion_principle) states that high-level modules (business logic) should not depend on low-level modules (framework infrastructure). Both should depend on abstractions.
+- The [Hollywood Principle ("Don't call us, we'll call you")](https://en.wiktionary.org/wiki/Hollywood_principle) describes the relationship between frameworks and application code. NServiceBus calls handlers and sagas when messages arrive. Application code should never call handlers directly.
+
+When infrastructure components are registered in the service collection, they become part of the application's public API. This creates a problem: developers can accidentally depend on framework internals that should be implementation details, and it becomes tempting to use the Service Locator anti-pattern (resolving from `IServiceProvider` directly) instead of proper constructor injection.
 
 ASP.NET Core follows these same principles. Controllers are not registered in the service collection by default, yet they fully support dependency injection. This is the right architectural boundary: the framework manages its own infrastructure while users manage their application services.
 
@@ -121,7 +122,6 @@ Before (v9 and earlier) (pseudo-code):
 // Infrastructure types were registered in the service collection during scanning
 services.AddScoped<MyHandler>(); // Registered by NServiceBus
 services.AddScoped<MySaga>(); // Registered by NServiceBus
-
 // This was possible but not intended
 var handler = serviceProvider.GetService<MyHandler>(); // Could resolve directly
 ```
@@ -132,7 +132,6 @@ After (v10):
 // This is no longer possible
 var handler = serviceProvider.GetService<MyHandler>(); // Returns null
 var handler = serviceProvider.GetRequiredService<MyHandler>(); // throws an Exception
-
 // But dependency injection still works perfectly
 public class MyHandler : IHandleMessages<MyMessage>
 {
@@ -178,12 +177,12 @@ services.AddSingleton<IMyBusinessLogic, MyBusinessLogic>();
 public class MyHandler : IHandleMessages<MyMessage>
 {
     private readonly IMyBusinessLogic _businessLogic;
-    
+
     public MyHandler(IMyBusinessLogic businessLogic)
     {
         _businessLogic = businessLogic;
     }
-    
+
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
         _businessLogic.DoSomething();
@@ -201,7 +200,7 @@ businessLogic.DoSomething();
 By keeping infrastructure components out of the service collection, clean separation is maintained:
 
 - Framework layer: Handlers, sagas, behaviors managed by NServiceBus
-- Application layer: User services, abstractions, and business logic
+- Application layer: Services, abstractions, and business logic
 
 This separation makes it impossible to accidentally create the wrong kind of coupling in the codebase.
 
@@ -213,12 +212,12 @@ This design aligns with how modern .NET frameworks handle infrastructure:
 
 NServiceBus now follows the same established patterns.
 
-For users using [`ValidateOnBuild`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions.validateonbuild) or [`ValidateScopes`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions.validatescopes) on their service collection, having fewer registrations provides concrete benefits:
+For those using [`ValidateOnBuild`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions.validateonbuild) or [`ValidateScopes`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions.validatescopes) on their service collection, having fewer registrations provides concrete benefits:
 
-- Faster validation: Less services to validate means quicker startup times
+- Faster validation: Fewer services to validate means quicker startup times
 - Fewer false positives: Infrastructure types often have complex lifetime requirements that can cause validation to fail even though NServiceBus manages them correctly
 - More reliable builds: Validation focuses on application services where issues are more likely to occur
-- Clearer diagnostics: When validation does fail, it's about the users services, not framework internals
+- Clearer diagnostics: When validation does fail, it's about application services, not framework internals
 
 ## Extensibility
 
