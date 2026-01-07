@@ -1,7 +1,7 @@
 ---
 title: ServiceInsight
 summary: ServiceInsight provides advanced message visualizations and debugging tools for NServiceBus
-reviewed: 2024-03-29
+reviewed: 2026-01-07
 component: ServiceInsight
 redirects:
 - serviceinsight/getting-started-overview
