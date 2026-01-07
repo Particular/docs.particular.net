@@ -1384,35 +1384,6 @@
     - Url: nservicebus/aws/local-development
       Title: Local development
 
-- Name: ServiceInsight
-  Topics:
-  - Title: Introduction
-    Articles:
-    - Url: serviceinsight
-      Title: About ServiceInsight
-    - Url: serviceinsight/installation
-      Title: Installation
-    - Url: serviceinsight/license
-      Title: Licensing
-    - Url: serviceinsight/support-policy
-      Title: Support Policy
-  - Title: Usage
-    Articles:
-    - Url: serviceinsight/application-invocation
-      Title: Application Invocation
-    - Url: serviceinsight/managing-errors-and-retries
-      Title: Managing Errors and Retries
-    - Url: serviceinsight/sequence-diagram
-      Title: Sequence Diagram
-    - Url: serviceinsight/custom-message-viewers
-      Title: Custom Message Viewers
-    - Url: serviceinsight/no-data-available
-      Title: Data not available
-    - Url: serviceinsight/logging
-      Title: Logging
-    - Url: serviceinsight/troubleshooting
-      Title: Troubleshooting
-
 - Name: ServicePulse
   Topics:
     - Title: Introduction
