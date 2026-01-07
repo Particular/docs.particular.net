@@ -106,7 +106,7 @@ NServiceBus v10 changes how infrastructure components are registered and resolve
 This change aligns with fundamental principles in software architecture:
 
 - The [Dependency Inversion Principle (DIP)](https://en.wikipedia.org/wiki/Dependency_inversion_principle) states that high-level modules (business logic) should not depend on low-level modules (framework infrastructure). Both should depend on abstractions.
-- The [Hollywood Principle ("Don't call us, we'll call you")](https://en.wiktionary.org/wiki/Hollywood_principle) describes the relationship between frameworks and application code. NServiceBus calls handlers and sagas when messages arrive. Application code should never call handlers directly.
+- The [Hollywood Principle](https://en.wiktionary.org/wiki/Hollywood_principle) describes the relationship between frameworks and application code. NServiceBus calls handlers and sagas when messages arrive. Application code should never call handlers directly.
 
 When infrastructure components are registered in the service collection, they become part of the application's public API. This creates a problem: developers can accidentally depend on framework internals that should be implementation details, and it becomes tempting to use the Service Locator anti-pattern (resolving from `IServiceProvider` directly) instead of proper constructor injection.
 
