@@ -99,6 +99,50 @@ endpointConfiguration.AddHandler<ThenThisHandler>();
 // Assembly scanned handlers go last
 ```
 
+## Service registration changes
+
+NServiceBus v10 changes how infrastructure components are registered and resolved. Infrastructure types such as handlers, sagas, behaviors, installers and custom checks that users should never directly resolve are no longer registered in the service collection, while still supporting dependency injection for their own dependencies.
+
+This change aligns with fundamental principles in software architecture:
+- The [Dependency Inversion Principle (DIP)](https://en.wikipedia.org/wiki/Dependency_inversion_principle) states that high-level modules (your business logic) should not depend on low-level modules (framework infrastructure). Both should depend on abstractions.
+- The [Hollywood Principle ("Don't call us, we'll call you")](https://en.wiktionary.org/wiki/Hollywood_principle) describes the relationship between frameworks and application code. NServiceBus calls your handlers and sagas when messages arrive. The application code should never call handlers directly.
+
+When infrastructure components are registered in the service collection, they become part of your application's public API. This creates a problem: developers can accidentally depend on framework internals that should be implementation details, and it becomes tempting to use the Service Locator anti-pattern (resolving from `IServiceProvider` directly) instead of proper constructor injection.
+
+ASP.NET Core follows these same principles. Controllers are not registered in the service collection by default, yet they fully support dependency injection. This is the right architectural boundary: the framework manages its own infrastructure while users manage their application services.
+
+### Change in more detail
+
+In previous versions, NServiceBus registered all infrastructure components (handlers, sagas, behaviors, etc.) in the service collection during assembly scanning. In v10, these components are no longer registered but still support constructor injection.
+
+Before (v9 and earlier) (pseudo-code):
+
+```csharp
+// Infrastructure types were registered in the service collection during scanning
+services.AddScoped<MyHandler>(); // Registered by NServiceBus
+services.AddScoped<MySaga>(); // Registered by NServiceBus
+
+// This was possible but not intended
+var handler = serviceProvider.GetService<MyHandler>(); // Could resolve directly
+```
+
+After (v10):
+
+```csharp
+// This is no longer possible
+var handler = serviceProvider.GetService<MyHandler>(); // Returns null
+var handler = serviceProvider.GetRequiredService<MyHandler>(); // throws
+
+// But dependency injection still works perfectly
+public class MyHandler : IHandleMessages<MyMessage>
+{
+    public MyHandler(IMyService myService) // Still injected!
+    {
+        // myService is resolved from the service collection
+    }
+}
+```
+
 ## Extensibility
 
 This section describes changes to advanced extensibility APIs.
