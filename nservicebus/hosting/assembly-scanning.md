@@ -17,6 +17,8 @@ There are some cases where finer control over which assemblies are loaded is req
 > [!NOTE]
 > NServiceBus extensions such as `NServiceBus.RavenDB.dll` are not considered a core assembly but still must be included when customizing the assembly scanning.
 
+partial: disable-scanning
+
 ## AppDomain assemblies
 
 By default, the assemblies already loaded into the AppDomain are scanned. The endpoint can also be configured to disable AppDomain assembly scanning:

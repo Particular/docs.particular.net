@@ -99,4 +99,14 @@ class ScanningPublicApi
 
         #endregion
     }
+
+    void DisableAssemblyScanning(EndpointConfiguration endpointConfiguration)
+    {
+        #region DisableAssemblyScanning
+
+        var scanner = endpointConfiguration.AssemblyScanner();
+        scanner.Disable = true;
+
+        #endregion
+    }
 }
