@@ -147,18 +147,12 @@ public class MyBusinessLogic : IMyBusinessLogic
 services.AddSingleton<IMyBusinessLogic, MyBusinessLogic>();
 
 // Use it in the handler (framework layer)
-public class MyHandler : IHandleMessages<MyMessage>
+public class MyHandler(IMyBusinessLogic businessLogic) : IHandleMessages<MyMessage>
 {
-    private readonly IMyBusinessLogic _businessLogic;
-
-    public MyHandler(IMyBusinessLogic businessLogic)
-    {
-        _businessLogic = businessLogic;
-    }
 
     public Task Handle(MyMessage message, IMessageHandlerContext context)
     {
-        _businessLogic.DoSomething();
+        businessLogic.DoSomething();
         return Task.CompletedTask;
     }
 }
