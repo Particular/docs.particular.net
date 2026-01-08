@@ -17,10 +17,7 @@ Each ServiceControl instance uses a different configuration prefix:
 | ServiceControl.Audit | `ServiceControl.Audit/` | 44444 |
 | ServiceControl.Monitoring | `Monitoring/` | 33633 |
 
-Settings can be configured via:
-
-- App.config / Web.config files
-- Windows Registry (legacy)
+Settings can be configured via App.config files or using environment variables.
 
 ---
 
@@ -190,7 +187,8 @@ Reverse proxy with SSL termination and JWT authentication via an identity provid
 </appSettings>
 ```
 
-> **Note:** The token validation settings (`ValidateIssuer`, `ValidateAudience`, `ValidateLifetime`, `ValidateIssuerSigningKey`, `RequireHttpsMetadata`) all default to `true`.
+> [!NOTE]
+> The token validation settings (`ValidateIssuer`, `ValidateAudience`, `ValidateLifetime`, `ValidateIssuerSigningKey`, `RequireHttpsMetadata`) all default to `true`.
 
 ---
 
