@@ -15,6 +15,17 @@ namespace NServiceBusSubscriber
         {
             var envelope = DeserializeMassTransitPayload(context);
 
+            if (!envelope.ContainsKey("messageType"))
+            {
+                return next();
+            }
+            
+            var types = (envelope["messageType"] as JsonArray)
+                .Select(GetTypeName)
+                .ToArray();
+
+            context.Message.Headers[NServiceBus.Headers.EnclosedMessageTypes] = string.Join(";", types);
+            
             AddHeaderIfExists(context, envelope, "messageId", NServiceBus.Headers.MessageId);
             AddHeaderIfExists(context, envelope, "conversationId", NServiceBus.Headers.ConversationId);
             AddHeaderIfExists(context, envelope, "correlationId", NServiceBus.Headers.CorrelationId);
@@ -46,15 +57,6 @@ namespace NServiceBusSubscriber
                 {
                     context.Message.Headers[header.Key] = header.Value.GetValue<string>();
                 }
-            }
-
-            if (envelope.ContainsKey("messageType"))
-            {
-                var types = (envelope["messageType"] as JsonArray)
-                    .Select(GetTypeName)
-                    .ToArray();
-
-                context.Message.Headers[NServiceBus.Headers.EnclosedMessageTypes] = string.Join(";", types);
             }
 
             if (envelope.ContainsKey("message"))
