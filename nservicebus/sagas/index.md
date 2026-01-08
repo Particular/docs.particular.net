@@ -72,7 +72,7 @@ Messages can be delivered out of order, e.g. due to error recovery, network late
 To ensure messages are not discarded when they arrive out of order:
 
 - Implement multiple `IAmStartedByMessages<T>` interfaces for any message type that assumes the saga instance should already exist
-- Override the saga not found behavior and throw an exception using `IHandleSagaNotFound` and rely on NServiceBus recoverability capability to retry messages to resolve out-of-order issues.
+- Override the saga not found behavior and throw an exception using a saga not found handler and rely on NServiceBus recoverability capability to retry messages to resolve out-of-order issues.
 
 #### Multiple message types starting a saga
 
@@ -86,7 +86,7 @@ When messages arrive in reverse order, the handler for the `CompleteOrder` messa
 
 In most scenarios, an acceptable solution to deal with out-of-order message delivery is to throw an exception when the saga instance does not exist. The message will be automatically retried, which may resolve the issue; otherwise, it will be placed in the error queue, where it can be manually retried.
 
-To override the default saga not found behavior [implement `IHandleSagaNotFound` and throw an exception](saga-not-found.md).
+To override the default saga not found behavior [implement a saga not found handler and throw an exception](saga-not-found.md).
 
 ## Correlating messages to a saga
 
@@ -107,13 +107,13 @@ Instance cleanup is implemented differently by the various saga persisters and i
 
 ### Outstanding timeouts
 
-Outstanding timeouts requested by the saga instance will be discarded when they expire without triggering the [`IHandleSagaNotFound` API](saga-not-found.md)
+Outstanding timeouts requested by the saga instance will be discarded when they expire without triggering the [saga not found handler](saga-not-found.md)
 
 ### Messages arriving after a saga has been completed
 
 Messages that [are allowed to start a new saga instance](#starting-a-saga) will cause a new instance with the same correlation id to be created.
 
-Messages handled by the saga (`IHandleMessages<T>`) that arrive after the saga has completed will be passed to the [`IHandleSagaNotFound` API](saga-not-found.md).
+Messages handled by the saga (`IHandleMessages<T>`) that arrive after the saga has completed will be passed to the [saga not found handler](saga-not-found.md).
 
 ### Consistency considerations
 

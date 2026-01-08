@@ -16,11 +16,43 @@ public class SagaNotFoundHandler :
     }
 }
 
-public class SagaDisappearedMessage
+public class SagaDisappearedMessage;
+
+class SagaUsingNotFoundHandler : Saga<NotFoundSagaData>, IAmStartedByMessages<StartSagaMessage>, IHandleMessages<AnotherSagaMessage>
 {
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<NotFoundSagaData> mapper)
+    {
+        mapper.ConfigureNotFoundHandler<SagaNotFoundHandler>();
+        #endregion
+        mapper.MapSaga(saga => saga.CorrelationId)
+            .ToMessage<StartSagaMessage>(msg => msg.CorrelationId);
+    }
+
+    public Task Handle(StartSagaMessage message, IMessageHandlerContext context)
+    {
+        Data.CorrelationId = message.CorrelationId;
+        return Task.CompletedTask;
+    }
+
+    public Task Handle(AnotherSagaMessage message, IMessageHandlerContext context)
+    {
+        MarkAsComplete();
+        return Task.CompletedTask;
+    }
 }
 
-#endregion
+
+class AnotherSagaMessage;
+
+class StartSagaMessage
+{
+    public Guid CorrelationId { get; set; }
+}
+
+class NotFoundSagaData : ContainSagaData
+{
+    public Guid CorrelationId { get; set; }
+}
 
 #region saga-not-found-error-queue
 public sealed class SagaNotFoundException : Exception

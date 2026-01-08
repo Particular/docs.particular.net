@@ -44,11 +44,22 @@ If message contracts are not in a versioned library, a local copy of the message
 
 ## Sagas
 
+### Not found handlers
+
+In Version 10 the `IHandleSagaNotFound` interface has been deprecated in favour of `ISagaNotFoundHandler`. The [saga not found handlers](/nservicebus/sagas/saga-not-found.md) are no longer automatically registered via assembly scanning and must be mapped in the `ConfigureHowToFindSaga` method of the sagas that require the not found handler to be executed:
+
+```csharp
+protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
+{
+    mapper.ConfigureNotFoundHandler<MyNotFoundHandler>();
+}
+```
+
 ### Custom finders
 
 In Version 10 [custom saga finders](/nservicebus/sagas/saga-finding.md) are no longer automatically registered via assembly scanning and must be mapped in the `ConfigureHowToFindSaga` method:
 
-```
+```csharp
 protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
 {
     mapper.ConfigureFinderMapping<MyMessage, MySagaFinder>();
