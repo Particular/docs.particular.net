@@ -173,7 +173,7 @@ businessLogic.DoSomething();
 By keeping infrastructure components out of the service collection, clean separation is maintained:
 
 - Framework layer: Handlers, sagas, behaviors managed by NServiceBus
-- Application layer: Services, abstractions, and business logic
+- Application layer: Services, abstractions, and business logic managed by user code
 
 This separation makes it impossible to accidentally create the wrong kind of coupling in the codebase.
 
