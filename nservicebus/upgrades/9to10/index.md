@@ -112,6 +112,13 @@ When infrastructure components are registered in the service collection, they be
 
 ASP.NET Core follows these same principles. Controllers are not registered in the service collection by default, yet they fully support dependency injection. This is the right architectural boundary: the framework manages its own infrastructure while users manage their application services.
 
+For those using [`ValidateOnBuild`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions.validateonbuild) or [`ValidateScopes`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions.validatescopes) on their service collection, having fewer registrations provides concrete benefits:
+
+- Faster validation: Fewer services to validate means quicker startup times
+- Fewer false positives: Infrastructure types often have complex lifetime requirements that can cause validation to fail even though NServiceBus manages them correctly
+- More reliable builds: Validation focuses on application services where issues are more likely to occur
+- Clearer diagnostics: When validation does fail, it's about application services, not framework internals
+
 ### Changes required
 
 If both of the following conditions are true of all handlers, sagas, behaviors, etc. then **no action is needed**, and they will continue to work exactly as before with full dependency injection support:
@@ -161,31 +168,6 @@ public class MyHandler(IMyBusinessLogic businessLogic) : IHandleMessages<MyMessa
 var businessLogic = serviceProvider.GetService<IMyBusinessLogic>();
 businessLogic.DoSomething();
 ```
-
-### Further benefits of the change
-
-By keeping infrastructure components out of the service collection, clean separation is maintained:
-
-- Framework layer: Handlers, sagas, behaviors managed by NServiceBus
-- Application layer: Services, abstractions, and business logic managed by user code
-
-This separation makes it impossible to accidentally create the wrong kind of coupling in the codebase.
-
-This design aligns with how modern .NET frameworks handle infrastructure:
-
-- ASP.NET Core doesn't register controllers by default
-- Blazor doesn't register components
-- Minimal APIs don't register endpoint handlers
-
-NServiceBus now follows the same established patterns.
-
-For those using [`ValidateOnBuild`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions.validateonbuild) or [`ValidateScopes`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions.validatescopes) on their service collection, having fewer registrations provides concrete benefits:
-
-- Faster validation: Fewer services to validate means quicker startup times
-- Fewer false positives: Infrastructure types often have complex lifetime requirements that can cause validation to fail even though NServiceBus manages them correctly
-- More reliable builds: Validation focuses on application services where issues are more likely to occur
-- Clearer diagnostics: When validation does fail, it's about application services, not framework internals
-
 ## Extensibility
 
 This section describes changes to advanced extensibility APIs.
