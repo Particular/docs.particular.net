@@ -99,6 +99,75 @@ endpointConfiguration.AddHandler<ThenThisHandler>();
 // Assembly scanned handlers go last
 ```
 
+## Service registration changes
+
+NServiceBus version 10 changes how infrastructure components are registered and resolved. Infrastructure types such as handlers, sagas, behaviors, installers and custom checks that users should never directly resolve are no longer registered in the service collection, while still supporting dependency injection for their own dependencies.
+
+This change aligns with fundamental principles in software architecture:
+
+- The [Dependency Inversion Principle (DIP)](https://en.wikipedia.org/wiki/Dependency_inversion_principle) states that high-level modules (business logic) should not depend on low-level modules (framework infrastructure). Both should depend on abstractions.
+- The [Hollywood Principle](https://en.wiktionary.org/wiki/Hollywood_principle) describes the relationship between frameworks and application code. NServiceBus calls handlers and sagas when messages arrive. Application code should never call handlers directly.
+
+When infrastructure components are registered in the service collection, they become part of the application's public API. This creates a problem: developers can accidentally depend on framework internals that should be implementation details, and it becomes tempting to use the Service Locator anti-pattern (resolving from `IServiceProvider` directly) instead of proper constructor injection.
+
+ASP.NET Core follows these same principles. Controllers are not registered in the service collection by default, yet they fully support dependency injection. This is the right architectural boundary: the framework manages its own infrastructure while users manage their application services.
+
+For those using [`ValidateOnBuild`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions.validateonbuild) or [`ValidateScopes`](https://learn.microsoft.com/en-us/dotnet/api/microsoft.extensions.dependencyinjection.serviceprovideroptions.validatescopes) on their service collection, having fewer registrations provides concrete benefits:
+
+- Faster validation: Fewer services to validate means quicker startup times
+- Fewer false positives: Infrastructure types often have complex lifetime requirements that can cause validation to fail even though NServiceBus manages them correctly
+- More reliable builds: Validation focuses on application services where issues are more likely to occur
+- Clearer diagnostics: When validation does fail, it's about application services, not framework internals
+
+### Changes required
+
+If both of the following conditions are true of all handlers, sagas, behaviors, etc. then **no action is needed**, and they will continue to work exactly as before with full dependency injection support:
+
+* Not resolved directly using `GetService<T>()` or similar
+* Not used as a constructor injection argument in another class
+
+If one of these conditions is not true, the code needs to be refactored. This pattern was never intended and indicates logic that should be extracted into proper services.
+
+Instead of:
+
+```csharp
+// Treating a handler like a service
+var handler = serviceProvider.GetService<MyHandler>();
+handler.DoSomething(); // This confuses application and framework layers
+```
+
+…adjust the code to be structured similar to:
+
+```csharp
+// Extract the logic to a proper application service
+public interface IMyBusinessLogic
+{
+    void DoSomething();
+}
+
+public class MyBusinessLogic : IMyBusinessLogic
+{
+    public void DoSomething() { /* ... */ }
+}
+
+// Register it as an application service
+services.AddSingleton<IMyBusinessLogic, MyBusinessLogic>();
+
+// Use it in the handler (framework layer)
+public class MyHandler(IMyBusinessLogic businessLogic) : IHandleMessages<MyMessage>
+{
+
+    public Task Handle(MyMessage message, IMessageHandlerContext context)
+    {
+        businessLogic.DoSomething();
+        return Task.CompletedTask;
+    }
+}
+
+// Resolve and use the service
+var businessLogic = serviceProvider.GetService<IMyBusinessLogic>();
+businessLogic.DoSomething();
+```
 ## Extensibility
 
 This section describes changes to advanced extensibility APIs.
