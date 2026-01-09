@@ -198,14 +198,4 @@ Saga state is read immediately before a message processing method is invoked, an
 
 If multiple saga types are invoked for the same message, each read, invoke, write cycle will occur sequentially, for each saga type.
 
-## Manual saga registration
-
-#if-version [10.0, )
-
-By default, sagas are automatically discovered through [assembly scanning](/nservicebus/hosting/assembly-scanning.md). When assembly scanning is disabled, sagas must be manually registered using `AddSaga<TSaga>()`:
-
-snippet: RegisterSagaManually
-
-Each saga type must be registered individually. When registering sagas, ensure that [saga finders](/nservicebus/sagas/saga-finding.md) are properly configured in the saga's `ConfigureHowToFindSaga` method. For more information about manual registration when assembly scanning is disabled, see [Non-assembly scanning mode](/nservicebus/hosting/non-assembly-scanning-mode.md#registering-sagas).
-
-#end-if
+partial: manual-registration

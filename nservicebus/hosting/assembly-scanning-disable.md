@@ -11,7 +11,7 @@ Assembly scanning can be completely disabled. When disabled, no assemblies are s
 snippet: DisableAssemblyScanning
 
 > [!WARNING]
-> When assembly scanning is disabled, all required types (message handlers, sagas, features, etc.) must be explicitly registered. Failure to register required types will cause the endpoint to fail at startup or behave incorrectly.
+> When assembly scanning is disabled, message handlers, sagas, features, and installers must be explicitly registered. Messages received without a registered handler will fail and be moved to the error queue.
 
 ## Registering message handlers
 
@@ -36,7 +36,3 @@ snippet: EnableFeatureManually
 Use `AddInstaller<TInstaller>()` to register installers:
 
 snippet: RegisterInstallerManually
-
-## Migration guidance
-
-For detailed information about migrating from assembly scanning to manual registration, see [Non-assembly scanning mode](/nservicebus/hosting/non-assembly-scanning-mode.md).
