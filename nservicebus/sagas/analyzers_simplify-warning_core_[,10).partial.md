@@ -1,1 +1,3 @@
-The diagnostics NSB0004 and NSB0018 are the same but with different severity in different contexts. There is no duplication when only one mapping expression exists, so NSB0018 is presented at level Info. When two or more mapping expressions exist, duplication is present, so NSB0004 is presented as a Warning.
+* **Rule ID**: NSB0004
+* **Severity**: Error (NSB0004)
+include: simplify-warning-description
