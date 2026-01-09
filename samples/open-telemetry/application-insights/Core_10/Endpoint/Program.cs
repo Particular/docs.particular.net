@@ -40,11 +40,7 @@ var meterProvider = Sdk.CreateMeterProviderBuilder()
 
 #endregion
 
-#region enable-open-telemetry
 var endpointConfiguration = new EndpointConfiguration(endpointName);
-endpointConfiguration.EnableOpenTelemetry();
-#endregion
-
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport<LearningTransport>();
 var cancellation = new CancellationTokenSource();

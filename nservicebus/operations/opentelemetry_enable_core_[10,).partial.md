@@ -1,0 +1,1 @@
+In NServiceBus version 10 and later, OpenTelemetry instrumentation is enabled by default.

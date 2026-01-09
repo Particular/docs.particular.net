@@ -30,18 +30,12 @@ builder.Logging.AddOpenTelemetry(loggingOptions =>
 
 #endregion
 
-#region otel-nsb-config
-
 var endpointConfiguration = new EndpointConfiguration(endpointName);
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport(new LearningTransport());
 
-endpointConfiguration.EnableOpenTelemetry();
-
 builder.UseNServiceBus(endpointConfiguration);
-
-#endregion
 
 var host = builder.Build();
 
