@@ -2,7 +2,7 @@
 title: SQS Transport Scripting
 summary: Example code and scripts to facilitate deployment and operational actions against the SQS Transport.
 component: SQS
-reviewed: 2024-03-27
+reviewed: 2026-01-09
 related:
  - nservicebus/operations
 ---
