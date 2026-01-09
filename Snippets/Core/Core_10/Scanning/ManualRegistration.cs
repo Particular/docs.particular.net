@@ -44,29 +44,6 @@ class ManualRegistration
         #endregion
     }
 
-    void CompleteManualRegistration(EndpointConfiguration endpointConfiguration)
-    {
-        #region CompleteManualRegistration
-
-        var scanner = endpointConfiguration.AssemblyScanner();
-        scanner.Disable = true;
-
-        // Register message handlers
-        endpointConfiguration.AddHandler<OrderHandler>();
-        endpointConfiguration.AddHandler<PaymentHandler>();
-
-        // Register sagas
-        endpointConfiguration.AddSaga<OrderSaga>();
-
-        // Enable required features
-        endpointConfiguration.EnableFeature<MyCustomFeature>();
-
-        // Register installers
-        endpointConfiguration.AddInstaller<MyInstaller>();
-
-        #endregion
-    }
-
     class MyMessageHandler : IHandleMessages<MyMessage>
     {
         public Task Handle(MyMessage message, IMessageHandlerContext context)
@@ -78,14 +55,6 @@ class ManualRegistration
     class OrderHandler : IHandleMessages<OrderMessage>
     {
         public Task Handle(OrderMessage message, IMessageHandlerContext context)
-        {
-            return Task.CompletedTask;
-        }
-    }
-
-    class PaymentHandler : IHandleMessages<PaymentMessage>
-    {
-        public Task Handle(PaymentMessage message, IMessageHandlerContext context)
         {
             return Task.CompletedTask;
         }
@@ -126,21 +95,6 @@ class ManualRegistration
         }
     }
 
-    class MyCustomFeature : Feature
-    {
-        protected override void Setup(FeatureConfigurationContext context)
-        {
-        }
-    }
-
-    class MyInstaller : INeedToInstallSomething
-    {
-        public Task Install(string identity, CancellationToken cancellationToken)
-        {
-            return Task.CompletedTask;
-        }
-    }
-
     class DatabaseSetupInstaller : INeedToInstallSomething
     {
         public Task Install(string identity, CancellationToken cancellationToken)
@@ -161,10 +115,6 @@ class ManualRegistration
     }
 
     class OrderMessage
-    {
-    }
-
-    class PaymentMessage
     {
     }
 
