@@ -3,6 +3,6 @@
     <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Gateway" Version="6.0.0-alpha.6" />
+    <PackageReference Include="NServiceBus.Gateway" Version="6.0.0-alpha.9" />
   </ItemGroup>
 </Project>

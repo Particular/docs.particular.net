@@ -7,6 +7,6 @@
   <ItemGroup>
     <Compile Include="..\Consumer1\Contracts\Consumer1Contract.cs" />
     <Compile Include="..\Consumer2\Contracts\Consumer2Contract.cs" />
-    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.20" />
+    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.24" />
   </ItemGroup>
 </Project>

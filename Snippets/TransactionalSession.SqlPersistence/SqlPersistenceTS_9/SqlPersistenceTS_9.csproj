@@ -3,6 +3,6 @@
 		<TargetFramework>net10.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="NServiceBus.Persistence.Sql.TransactionalSession" Version="9.0.0-alpha.4" />
+		<PackageReference Include="NServiceBus.Persistence.Sql.TransactionalSession" Version="9.0.0-alpha.10" />
 	</ItemGroup>
 </Project>

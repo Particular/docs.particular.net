@@ -11,8 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.20" />
-    <PackageReference Include="NServiceBus.MessagingBridge" Version="5.0.0-alpha.2" />
+    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.24" />
+    <PackageReference Include="NServiceBus.MessagingBridge" Version="5.0.0-alpha.4" />
   </ItemGroup>
 
 </Project>

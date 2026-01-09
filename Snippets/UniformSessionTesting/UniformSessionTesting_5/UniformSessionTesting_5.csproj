@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.UniformSession.Testing" Version="5.0.0-alpha.3" />
+    <PackageReference Include="NServiceBus.UniformSession.Testing" Version="5.0.0-alpha.4" />
   </ItemGroup>
 
 </Project>
