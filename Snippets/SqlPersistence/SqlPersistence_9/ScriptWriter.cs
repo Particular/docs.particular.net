@@ -95,11 +95,11 @@ public class ScriptWriter
     {
         protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
         {
-            mapper.ConfigureMapping<StartSaga>(msg => msg.OrderNumber).ToSaga(saga => saga.OrderNumber);
+            mapper.MapSaga(saga => saga.OrderNumber)
+                .ToMessage<StartSaga>(msg => msg.OrderNumber);
         }
 
-        public class OrderSagaData :
-            ContainSagaData
+        public class OrderSagaData : ContainSagaData
         {
             public int OrderNumber { get; set; }
             public Guid OrderId { get; set; }
