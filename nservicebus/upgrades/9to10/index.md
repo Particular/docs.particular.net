@@ -80,7 +80,7 @@ protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapp
 }
 ```
 
-In Version 10 the mapping expression using `mapper.ConfigureMapping<OrderPlaced>(...).ToSaga(...)` or `mapper.ConfigureHeaderMapping<OrderPlaced>(...).ToSaga(...)` is no longer supported. NSB0004 and NSB0018 analyzers use severity Error now but still offer the possibility to automatically rewrite the saga syntax with the provided fixers.
+In Version 10 the mapping expression using `mapper.ConfigureMapping<OrderPlaced>(...).ToSaga(...)` or `mapper.ConfigureHeaderMapping<OrderPlaced>(...).ToSaga(...)` is no longer supported. NSB0004 and NSB0018 analyzers are merged into NSB0004 which uses severity Error now but still offers the possibility to automatically rewrite the saga syntax with the provided fixer.
 
 ### Custom finders
 
