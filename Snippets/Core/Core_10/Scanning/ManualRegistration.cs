@@ -1,10 +1,10 @@
 namespace Core.Scanning;
 
+using System.Threading;
+using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Features;
 using NServiceBus.Installation;
-using System.Threading;
-using System.Threading.Tasks;
 
 class ManualRegistration
 {
@@ -12,7 +12,7 @@ class ManualRegistration
     {
         #region RegisterHandlerManually
 
-        endpointConfiguration.AddHandler<OrderHandler>();
+        endpointConfiguration.AddHandler<PlaceOrderHandler>();
 
         #endregion
     }
@@ -21,7 +21,7 @@ class ManualRegistration
     {
         #region RegisterSagaManually
 
-        endpointConfiguration.AddSaga<OrderSaga>();
+        endpointConfiguration.AddSaga<ShippingSaga>();
 
         #endregion
     }
@@ -43,99 +43,55 @@ class ManualRegistration
 
         #endregion
     }
+}
 
-    class MyMessageHandler : IHandleMessages<MyMessage>
+public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
+{
+    public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
-        public Task Handle(MyMessage message, IMessageHandlerContext context)
-        {
-            return Task.CompletedTask;
-        }
-    }
-
-    class OrderHandler : IHandleMessages<OrderMessage>
-    {
-        public Task Handle(OrderMessage message, IMessageHandlerContext context)
-        {
-            return Task.CompletedTask;
-        }
-    }
-
-    class MySaga : Saga<MySagaData>,
-        IAmStartedByMessages<StartMessage>
-    {
-        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
-        {
-            mapper.ConfigureMapping<StartMessage>(m => m.OrderId).ToSaga(s => s.OrderId);
-        }
-
-        public Task Handle(StartMessage message, IMessageHandlerContext context)
-        {
-            return Task.CompletedTask;
-        }
-    }
-
-    class OrderSaga : Saga<OrderSagaData>,
-        IAmStartedByMessages<StartOrder>
-    {
-        protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderSagaData> mapper)
-        {
-            mapper.ConfigureMapping<StartOrder>(m => m.OrderId).ToSaga(s => s.OrderId);
-        }
-
-        public Task Handle(StartOrder message, IMessageHandlerContext context)
-        {
-            return Task.CompletedTask;
-        }
-    }
-
-    class MyFeature : Feature
-    {
-        protected override void Setup(FeatureConfigurationContext context)
-        {
-        }
-    }
-
-    class DatabaseSetupInstaller : INeedToInstallSomething
-    {
-        public Task Install(string identity, CancellationToken cancellationToken)
-        {
-            return Task.CompletedTask;
-        }
-    }
-
-    class CustomRoutingFeature : Feature
-    {
-        protected override void Setup(FeatureConfigurationContext context)
-        {
-        }
-    }
-
-    class MyMessage
-    {
-    }
-
-    class OrderMessage
-    {
-    }
-
-    class StartMessage
-    {
-        public string OrderId { get; set; }
-    }
-
-    class StartOrder
-    {
-        public string OrderId { get; set; }
-    }
-
-    class MySagaData : ContainSagaData
-    {
-        public string OrderId { get; set; }
-    }
-
-    class OrderSagaData : ContainSagaData
-    {
-        public string OrderId { get; set; }
+        return Task.CompletedTask;
     }
 }
 
+public class PlaceOrder
+{
+}
+
+public class ShippingSaga : Saga<ShippingSagaData>,
+    IAmStartedByMessages<ShipOrder>
+{
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShippingSagaData> mapper)
+    {
+        mapper.MapSaga(s => s.OrderId).ToMessage<ShipOrder>(m => m.OrderId);
+    }
+
+    public Task Handle(ShipOrder message, IMessageHandlerContext context)
+    {
+        return Task.CompletedTask;
+    }
+}
+
+public class ShippingSagaData : ContainSagaData
+{
+    public string OrderId { get; set; }
+}
+
+public class ShipOrder
+{
+    public string OrderId { get; set; }
+}
+
+public class CustomRoutingFeature : Feature
+{
+    protected override void Setup(FeatureConfigurationContext context)
+    {
+    }
+}
+
+public class DatabaseSetupInstaller : INeedToInstallSomething
+{
+    public Task Install(string identity, CancellationToken cancellationToken)
+    {
+        return Task.CompletedTask;
+    }
+}
