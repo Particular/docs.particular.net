@@ -123,6 +123,26 @@ public class MyFeature : Feature
 }
 ```
 
+### Assembly scanning
+
+Version 10 introduces the ability to completely disable assembly scanning. When assembly scanning is disabled, all types (message handlers, sagas, features, and installers) must be manually registered using the configuration API.
+
+To disable assembly scanning:
+
+```csharp
+var scanner = endpointConfiguration.AssemblyScanner();
+scanner.Disable = true;
+```
+
+When assembly scanning is disabled, use the following APIs to register types:
+
+* `AddHandler<THandler>()` - Register message handlers
+* `AddSaga<TSaga>()` - Register sagas
+* `EnableFeature<TFeature>()` - Enable features
+* `AddInstaller<TInstaller>()` - Register installers
+
+For more information, see [Disable assembly scanning](/nservicebus/hosting/assembly-scanning-disable.md).
+
 ### StartupDiagnosticEntry has required properties
 
 As part of adding nullability annotations, the `Data` and `Name` properties of the `StartupDiagnosticEntry` class have been marked as `required`.

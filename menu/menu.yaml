@@ -531,6 +531,8 @@
       Title: Overriding the machine name
     - Url: nservicebus/hosting/assembly-scanning
       Title: Assembly scanning
+    - Url: nservicebus/hosting/assembly-scanning-disable
+      Title: Disable assembly scanning
     - Url: nservicebus/hosting/cooperative-cancellation
       Title: Cooperative cancellation
     - Url: nservicebus/hosting/critical-errors

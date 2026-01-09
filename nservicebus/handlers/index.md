@@ -62,6 +62,18 @@ If the original message is not published as an event, but rather [sent](/nservic
   - Send a copy of the original message to each endpoint.
   - This provides the greatest degree of isolation and provides more granularity for retry policy customization and scaling, greater visibility, better monitoring, and other benefits.
 
+## Manual handler registration
+
+#if-version [10.0, )
+
+By default, message handlers are automatically discovered through [assembly scanning](/nservicebus/hosting/assembly-scanning.md). When assembly scanning is disabled, handlers must be manually registered using `AddHandler<THandler>()`:
+
+snippet: RegisterHandlerManually
+
+Each handler type must be registered individually. For more information about manual registration when assembly scanning is disabled, see [Non-assembly scanning mode](/nservicebus/hosting/non-assembly-scanning-mode.md#registering-message-handlers).
+
+#end-if
+
 ## Unit testing
 
 Unit testing handlers is supported by [the `NServiceBus.Testing` library](/nservicebus/testing/#testing-a-handler).
