@@ -2,7 +2,8 @@
 title: Before Configuration Finalized
 summary: An interface that allows hooking into the configuration sequence of NServiceBus
 component: Core
-reviewed: 2024-08-01
+versions: '[,10)'
+reviewed: 2026-01-09
 related:
  - samples/startup-shutdown-sequence
 ---
