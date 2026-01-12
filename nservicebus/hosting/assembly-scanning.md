@@ -81,7 +81,4 @@ snippet: SwallowScanningExceptions
 > [!WARNING]
 > Ignoring assembly scanning exceptions can cause the endpoint not to load some features, behaviors, messages or message handlers and cause incorrect behavior.
 
-## Disable assembly scanning
-
-> [!NOTE]
-> Assembly scanning can be completely disabled. When disabled, no assemblies are scanned, and the endpoint will not automatically discover message types, handlers, features, or installers. For more information, see [Disable assembly scanning](/nservicebus/hosting/assembly-scanning-disable.md).
+partial: disable-assembly-scanning
