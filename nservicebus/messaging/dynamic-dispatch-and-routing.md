@@ -2,7 +2,7 @@
 title: Dynamic dispatch and polymorphic routing
 summary: Implement polymorphic routing with NServiceBus-supported dynamic dispatch to route messages based on their types
 component: core
-reviewed: 2024-04-04
+reviewed: 2026-01-12
 related:
  - nservicebus/messaging/messages-as-interfaces
 ---
@@ -11,11 +11,11 @@ NServiceBus makes it easy to support dynamic dispatch and polymorphic message ro
 
 ## Using NServiceBus for dynamic dispatch
 
-Consider the following handler stubs for a `UserCreated` message which inherits from the `IEvent` stub interface:
+Consider the following handler stubs for a `UserCreated` message, which inherits from the `IEvent` stub interface:
 
 snippet: DynamicDispatchHandlerStubs
 
-When a message of type `UserCreated` is published, both handlers will be invoked independently which in itself is useful. However, this idea becomes more powerful as the system evolves and more functionality is added.
+When a message of type `UserCreated` is published, both handlers are invoked independently, which is useful in itself. However, this idea becomes more powerful as the system evolves and more functionality is added.
 
 Imagine there is a separate process that must happen if a user is created as part of an advertising campaign. For example, say the subscriber must register statistics about the campaign. In NServiceBus, this can be done by defining a new event and handler:
 
@@ -27,14 +27,14 @@ In this example, the new event, `UserCreatedFromCampaign`, has a clear relations
 
 ## Multiple inheritance to support polymorphic routing
 
-In the updated scenario, there are two concerns: a user is created and a campaign event occurred. The handlers for both events look as follows:
+In the updated scenario, there are two concerns: a user is created, and a campaign event occurred. The handlers for both events look as follows:
 
 snippet: PolymorphicRouting
 
-Now assume the system should perform some action specifically when a user is created from a campaign. For example, perhaps an email is sent to the user thanking them for engaging. This can be accomplished with an event that inherits from both `UserCreated` and `CampaignActivityOccurred` as follows:
+Now, assume the system should perform some action specifically when a user is created from a campaign. For example, an email may be sent to the user thanking them for engaging. This can be accomplished with an event that inherits from both `UserCreated` and `CampaignActivityOccurred` as follows:
 
 snippet: PolymorphicRoutingMultipleInheritance
 
-When a user is created from a campaign, the publisher can publish the latter event. It will get handled by the `SaveUser` and `RecordCampaignActivity` handlers defined earlier, and perhaps another handler that explicitly handles `UserCreatedFromCampaign` events. That is, the message is routed to multiple handlers based on the interfaces it implements; this is polymorphic routing. Furthermore, other campaign events can be created that inherit from `CampaignActivityOccurred` without interfering with any functionality around creating users as part of a campaign.
+When a user is created from a campaign, the publisher can publish the `UserCreatedFromCampaign` event. It will get handled by the `SaveUser` and `RecordCampaignActivity` handlers defined earlier, and perhaps another handler that explicitly handles `UserCreatedFromCampaign` events. That is, the message is routed to multiple handlers based on the interfaces it implements; this is polymorphic routing. Furthermore, other campaign events can be created that inherit from `CampaignActivityOccurred` without interfering with any functionality around creating users as part of a campaign.
 
-Combining this approach with the technique of using [interfaces as messages](./messages-as-interfaces.md) will make your system more resilient, extensible, and maintainable over time as handlers can be defined independent of each other much more easily.
+Combining this approach with the technique of using [interfaces as messages](./messages-as-interfaces.md) will make your system more resilient, extensible, and maintainable over time, as handlers can be defined independently of each other much more easily.
