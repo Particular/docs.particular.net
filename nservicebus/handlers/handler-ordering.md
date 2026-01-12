@@ -16,7 +16,7 @@ In the past, message handlers used to be the only way to implement cross-cutting
 If it is not possible to migrate this kind of functionality out of message handlers, there are a number of ways to specify the order in which they will be executed.
 
 > [!NOTE]
-> All message handlers in the endpoint that handle the same message type will execute in the same transaction scope.
+> Consult the [data access guidelines](/nservicebus/handlers/accessing-data.md) when multiple handlers for the same message need to participate in the same transaction.
 
 ### Overview of the implementation
 
