@@ -35,3 +35,6 @@ snippet: EnableFeatureManually
 Use `AddInstaller<TInstaller>()` to register installers:
 
 snippet: RegisterInstallerManually
+
+> [!NOTE]
+> Some NServiceBus packages and extensions provide their own manual registration APIs beyond the core APIs listed above. For example, custom checks have their own registration methods. When using additional NServiceBus packages, consult their documentation for any manual registration requirements.
