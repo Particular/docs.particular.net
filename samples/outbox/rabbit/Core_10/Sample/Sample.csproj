@@ -7,7 +7,7 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="10.0.0-alpha.24" />
     <PackageReference Include="NServiceBus.RabbitMQ" Version="11.0.0-alpha.4" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="9.0.0-alpha.10" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="9.0.0-alpha.11" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="5.*" />
   </ItemGroup>
 </Project>

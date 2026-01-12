@@ -11,7 +11,7 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus" Version="10.0.0-alpha.24" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.4" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="9.0.0-alpha.10" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="9.0.0-alpha.11" />
     <PackageReference Include="NServiceBus.Transport.SqlServer" Version="9.0.0-alpha.4" />
   </ItemGroup>
 
