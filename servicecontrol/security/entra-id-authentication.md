@@ -1,11 +1,11 @@
 ---
 title: Microsoft Entra ID authentication
 summary: Set up authentication with Microsoft Entra ID for ServiceControl and ServicePulse
-reviewed: 2025-12-11
+reviewed: 2026-01-13
 component: ServiceControl
 ---
 
-This guide explains how to configure Microsoft Entra ID (formerly Azure Active Directory) and ServiceControl to enable authentication for ServicePulse.
+This guide explains how to configure Microsoft Entra ID (formerly Azure Active Directory) as the identity provider for ServiceControl and ServicePulse.
 
 ## Prerequisites
 
@@ -13,133 +13,100 @@ This guide explains how to configure Microsoft Entra ID (formerly Azure Active D
 - ServiceControl 6.9.0 or later
 - ServicePulse 2.5.0 or later
 
-## Configure Microsoft Entra ID
+## Overview
 
-Register ServiceControl and ServicePulse as applications in Microsoft Entra ID to allow users to authenticate.
+Two app registrations are required in Microsoft Entra ID:
 
-### Create the ServiceControl app registration
+1. **ServiceControl API** - Represents the ServiceControl API that ServicePulse will call
+2. **ServicePulse** - Represents the ServicePulse single-page application that users sign into
 
-This app registration represents the ServiceControl API and defines the permissions that ServicePulse will request when users sign in.
+## Step 1: Register the ServiceControl API
 
-1. Navigate to the [Azure Portal](https://portal.azure.com/).
-2. Open **Microsoft Entra ID** and select **Manage** > **App registrations**.
-3. Click **+ New registration**.
-4. Configure the registration:
-   - **Name**: `ServiceControl API`
-   - **Supported account types**: Accounts in this organizational directory only (single tenant)
-   - Click **Register**.
+Follow Microsoft's guide to [register an application](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app) with the following settings:
 
-> [!NOTE]
-> Select **Accounts in any organizational directory** (multi-tenant) if users from multiple Entra ID tenants need access to ServicePulse.
+| Setting                 | Value                                                          |
+|-------------------------|----------------------------------------------------------------|
+| Name                    | `ServiceControl API`                                           |
+| Supported account types | Accounts in this organizational directory only (single tenant) |
 
-5. On the **Overview** page, copy the **Directory (tenant) ID**. This is used to construct the authority URLs.
-6. Select **Manage** > **Expose an API**.
-7. Next to **Application ID URI**, click **Add** and save the default value (e.g., `api://{application-id}`).
-8. Copy the **Application ID URI**. This is used for `ServiceControl/Authentication.Audience`.
-9. Under **Scopes defined by this API**, click **Add a scope** and configure:
-   - **Scope name**: `api.access`
-   - **Who can consent?**: Admins and users
-   - **Admin consent display name**: `Full access to ServiceControl API`
-   - **Admin consent description**: `Allows ServicePulse to call ServiceControl`
-   - **State**: Enabled
-   - Click **Add scope**.
+After registration, collect these values from the app registration:
 
-### Create the ServicePulse app registration
+| Value                 | Location      | Used for                          |
+|-----------------------|---------------|-----------------------------------|
+| Directory (tenant) ID | Overview page | Authority URLs                    |
+| Application ID URI    | Expose an API | `Authentication.Audience` setting |
 
-This app registration represents ServicePulse as a client application that users will sign into.
+### Expose the API
 
-1. In **App registrations**, click **+ New registration**.
-2. Configure the registration:
-   - **Name**: `ServicePulse`
-   - **Supported account types**: Accounts in this organizational directory only (single tenant)
-   - **Redirect URI**:
-     - **Platform**: Single-page application (SPA)
-     - **URI**: The URL where ServicePulse is hosted (e.g., `https://servicepulse.example.com/`)
-   - Click **Register**.
+Follow Microsoft's guide to [expose a web API](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-configure-app-expose-web-apis) and add a scope with these settings:
+
+| Setting                    | Value                                        |
+|----------------------------|----------------------------------------------|
+| Application ID URI         | Accept the default (`api://{app-id}`)        |
+| Scope name                 | `api.access`                                 |
+| Who can consent            | Admins and users                             |
+| Admin consent display name | `Full access to ServiceControl API`          |
+| Admin consent description  | `Allows ServicePulse to call ServiceControl` |
+
+## Step 2: Register ServicePulse
+
+Follow Microsoft's guide to [register an application](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-register-app) with the following settings:
+
+| Setting                 | Value                                                                            |
+|-------------------------|----------------------------------------------------------------------------------|
+| Name                    | `ServicePulse`                                                                   |
+| Supported account types | Accounts in this organizational directory only (single tenant)                   |
+| Redirect URI - Platform | Single-page application (SPA)                                                    |
+| Redirect URI - URI      | The URL where ServicePulse is hosted (e.g., `https://servicepulse.example.com/`) |
+
+After registration, collect this value:
+
+| Value                   | Location      | Used for                                      |
+|-------------------------|---------------|-----------------------------------------------|
+| Application (client) ID | Overview page | `Authentication.ServicePulse.ClientId` setting |
 
 > [!WARNING]
-> Redirect URIs must use HTTPS in production environments. HTTP is only acceptable for local development (e.g., `http://localhost:9090/`).
+> Redirect URIs must use HTTPS in production. HTTP is only acceptable for local development. If ServicePulse is accessed from multiple URLs, add each as a redirect URI under **Manage** > **Authentication**.
 
-3. Copy the **Application (client) ID**. This is used for `ServiceControl/Authentication.ServicePulse.ClientId`.
-4. Select **Manage** > **API permissions**.
-5. Click **+ Add a permission**.
-6. Select the **APIs my organization uses** tab.
-7. Select **ServiceControl API**.
-8. Under **Delegated permissions**, check **api.access**.
-9. Click **Add permissions**.
+### Grant API permissions
+
+Follow Microsoft's guide to [configure a client application to access a web API](https://learn.microsoft.com/en-us/entra/identity-platform/quickstart-configure-app-access-web-apis):
+
+1. In the ServicePulse app registration, go to **API permissions**
+2. Add a permission for **ServiceControl API** (under My APIs)
+3. Select the **api.access** delegated permission
+
+## Step 3: Configure ServiceControl
+
+Use the collected values to configure ServiceControl. For Entra ID, the authority URLs follow this pattern:
+
+- **ServiceControl authority**: `https://login.microsoftonline.com/{tenant-id}`
+- **ServicePulse authority**: `https://login.microsoftonline.com/{tenant-id}/v2.0`
+
+The following table summarizes how Entra ID values map to ServiceControl settings:
+
+| Entra ID value                       | ServiceControl setting                   |
+|--------------------------------------|------------------------------------------|
+| Directory (tenant) ID                | Used in `Authentication.Authority` URL   |
+| Application ID URI                   | `Authentication.Audience`                |
+| Application ID URI + `/api.access`   | `Authentication.ServicePulse.ApiScopes`  |
+| ServicePulse Application (client) ID | `Authentication.ServicePulse.ClientId`   |
+
+See [Authentication Configuration](configuration/authentication.md) for all settings and configuration examples, including App.config and environment variable formats.
 
 > [!NOTE]
-> If ServicePulse is accessed from multiple URLs (e.g., localhost during development and a production URL), add each URL as a redirect URI in the ServicePulse app registration under **Manage** > **Authentication**.
-
-## Configure ServiceControl
-
-Add the Entra ID application details to the ServiceControl Error instance configuration to enable authentication. The same settings apply to Audit and Monitoring instances, using their respective prefixes.
-
-### Collected values
-
-During the Entra ID configuration, the following values should have been collected:
-
-| Value | Source | Used for |
-|-------|--------|----------|
-| Directory (tenant) ID | ServiceControl API app registration > Overview | Authority URLs |
-| Application ID URI | ServiceControl API app registration > Expose an API | `Authentication.Audience` and `Authentication.ServicePulse.ApiScopes` |
-| Application (client) ID | ServicePulse app registration > Overview | `Authentication.ServicePulse.ClientId` |
-
-### Using App.config
-
-Add the following settings to the ServiceControl configuration file:
-
-```xml
-<add key="ServiceControl/Authentication.Enabled" value="true" />
-<add key="ServiceControl/Authentication.Authority" value="https://login.microsoftonline.com/{tenant-id}" />
-<add key="ServiceControl/Authentication.Audience" value="{application-id-uri}" />
-<add key="ServiceControl/Authentication.ServicePulse.ClientId" value="{client-id}" />
-<add key="ServiceControl/Authentication.ServicePulse.Authority" value="https://login.microsoftonline.com/{tenant-id}/v2.0" />
-<add key="ServiceControl/Authentication.ServicePulse.ApiScopes" value="[&quot;{application-id-uri}/api.access&quot;]" />
-```
-
-Replace the placeholder values:
-
-| Placeholder | Example value |
-|-------------|---------------|
-| `{tenant-id}` | `a1b2c3d4-e5f6-7890-abcd-ef1234567890` |
-| `{application-id-uri}` | `api://a1b2c3d4-e5f6-7890-abcd-ef1234567890` |
-| `{client-id}` | `f9e8d7c6-b5a4-3210-fedc-ba0987654321` |
-
-### Using environment variables
-
-Environment variables can be used instead of App.config, which is useful for containerized deployments. Environment variables take precedence over App.config settings.
-
-```powershell
-$env:SERVICECONTROL_AUTHENTICATION_ENABLED = "true"
-$env:SERVICECONTROL_AUTHENTICATION_AUTHORITY = "https://login.microsoftonline.com/{tenant-id}"
-$env:SERVICECONTROL_AUTHENTICATION_AUDIENCE = "{application-id-uri}"
-$env:SERVICECONTROL_AUTHENTICATION_SERVICEPULSE_CLIENTID = "{client-id}"
-$env:SERVICECONTROL_AUTHENTICATION_SERVICEPULSE_AUTHORITY = "https://login.microsoftonline.com/{tenant-id}/v2.0"
-$env:SERVICECONTROL_AUTHENTICATION_SERVICEPULSE_APISCOPES = '["{application-id-uri}/api.access"]'
-```
-
-### Audit and Monitoring instances
-
-To enable authentication on Audit and Monitoring instances, configure the same settings using their respective prefixes. Only the base authentication settings are required; the ServicePulse settings are only needed on the Error instance.
-
-**Audit instance:**
-
-```xml
-<add key="ServiceControl.Audit/Authentication.Enabled" value="true" />
-<add key="ServiceControl.Audit/Authentication.Authority" value="https://login.microsoftonline.com/{tenant-id}" />
-<add key="ServiceControl.Audit/Authentication.Audience" value="{application-id-uri}" />
-```
-
-**Monitoring instance:**
-
-```xml
-<add key="Monitoring/Authentication.Enabled" value="true" />
-<add key="Monitoring/Authentication.Authority" value="https://login.microsoftonline.com/{tenant-id}" />
-<add key="Monitoring/Authentication.Audience" value="{application-id-uri}" />
-```
+> All ServiceControl instances (Primary, Audit, and Monitoring) must be configured with the same authority and audience values. ServicePulse settings are only required on the Primary instance.
 
 ## Verify the configuration
 
-Once configured, restart the ServiceControl instances. When accessing ServicePulse, users will be redirected to Microsoft Entra ID to sign in.
+After configuring ServiceControl, restart all instances. When accessing ServicePulse:
 
+1. The browser should redirect to the Microsoft sign-in page
+2. After signing in, ServicePulse should load and display data from ServiceControl
+
+If authentication fails, check the ServiceControl logs for token validation errors.
+
+## Related topics
+
+- [Authentication Configuration](configuration/authentication.md) - All authentication settings
+- [Hosting Guide](hosting-guide.md) - Deployment scenarios with HTTPS and authentication

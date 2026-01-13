@@ -342,22 +342,6 @@ The URL of the OpenID Connect authority for ServicePulse to use when authenticat
 | --- | --- |
 | string | None |
 
-### ServiceControl/Authentication.ServicePulse.Audience
-
-_Added in version 6.9.0_
-
-The audience value for ServicePulse to include when requesting tokens.
-
-| Context | Name |
-| --- | --- |
-| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_SERVICEPULSE_AUDIENCE` |
-| **App config key** | `ServiceControl/Authentication.ServicePulse.Audience` |
-| **SCMU field** | N/A |
-
-| Type | Default value |
-| --- | --- |
-| string | None |
-
 ### ServiceControl/Authentication.ServicePulse.ApiScopes
 
 _Added in version 6.9.0_
@@ -433,7 +417,7 @@ The password for the certificate file, if required.
 
 _Added in version 6.9.0_
 
-Redirects HTTP requests to HTTPS.
+Redirects HTTP requests to HTTPS. This is intended for use with a reverse proxy that handles both HTTP and HTTPS traffic.
 
 | Context | Name |
 | --- | --- |
@@ -444,6 +428,22 @@ Redirects HTTP requests to HTTPS.
 | Type | Default value |
 | --- | --- |
 | bool | `false` |
+
+### ServiceControl/Https.Port
+
+_Added in version 6.9.0_
+
+The HTTPS port to use in redirect URLs. Required when `RedirectHttpToHttps` is enabled in reverse proxy scenarios.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_HTTPS_PORT` |
+| **App config key** | `ServiceControl/Https.Port` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| int | None |
 
 ### ServiceControl/Https.EnableHsts
 

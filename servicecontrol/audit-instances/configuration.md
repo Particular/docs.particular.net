@@ -344,7 +344,7 @@ The password for the certificate file, if required.
 
 _Added in version 6.9.0_
 
-Redirects HTTP requests to HTTPS.
+Redirects HTTP requests to HTTPS. This is intended for use with a reverse proxy that handles both HTTP and HTTPS traffic.
 
 | Context | Name |
 | --- | --- |
@@ -355,6 +355,22 @@ Redirects HTTP requests to HTTPS.
 | Type | Default value |
 | --- | --- |
 | bool | `false` |
+
+### ServiceControl.Audit/Https.Port
+
+_Added in version 6.9.0_
+
+The HTTPS port to use in redirect URLs. Required when `RedirectHttpToHttps` is enabled in reverse proxy scenarios.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_HTTPS_PORT` |
+| **App config key** | `ServiceControl.Audit/Https.Port` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| int | None |
 
 ### ServiceControl.Audit/Https.EnableHsts
 

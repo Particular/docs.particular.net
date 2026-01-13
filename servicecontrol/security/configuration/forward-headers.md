@@ -9,7 +9,7 @@ When ServiceControl instances are deployed behind a reverse proxy (like NGINX, T
 
 ## Configuration
 
-ServiceControl instances can be configured via environment variables or App.config. Each instance type uses a different prefix. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings in conjustion with [Authentication](authentication.md) and [HTTPS](https.md) configuration settings in a scenario based format.
+ServiceControl instances can be configured via environment variables or App.config. Each instance type uses a different prefix. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings in conjunction with [Authentication](authentication.md) and [TLS](tls.md) configuration settings in a scenario based format.
 
 include: servicecontrol-instance-prefix
 
@@ -55,7 +55,7 @@ When using a reverse proxy that terminates SSL, you can configure ServiceControl
 3. ServiceControl reads this header (via forwarded headers processing)
 4. If the original request was HTTP and redirect is enabled, ServiceControl returns a redirect to HTTPS
 
-To enable HTTP to HTTPS redirect, see [HTTPS Configuration](https.md) for details on how to do this.
+To enable HTTP to HTTPS redirect, see [TLS Configuration](tls.md) for details on how to do this.
 
 ## Proxy Chain Behavior (ForwardLimit)
 
@@ -70,3 +70,46 @@ For example, with `X-Forwarded-For: 203.0.113.50, 10.0.0.1, 192.168.1.1`:
 
 - **TrustAllProxies = true**: Returns `203.0.113.50` (original client)
 - **TrustAllProxies = false**: Returns `192.168.1.1` (last proxy)
+
+## Configuration examples
+
+The following examples show common forwarded headers configurations for different deployment scenarios.
+
+### Single reverse proxy (known IP)
+
+When running behind a single reverse proxy with a known IP address:
+
+```xml
+<add key="ServiceControl/ForwardedHeaders.Enabled" value="true" />
+<add key="ServiceControl/ForwardedHeaders.TrustAllProxies" value="false" />
+<add key="ServiceControl/ForwardedHeaders.KnownProxies" value="10.0.0.5" />
+```
+
+### Multiple reverse proxies
+
+When running behind multiple proxies (e.g., load balancer and application gateway):
+
+```xml
+<add key="ServiceControl/ForwardedHeaders.Enabled" value="true" />
+<add key="ServiceControl/ForwardedHeaders.TrustAllProxies" value="false" />
+<add key="ServiceControl/ForwardedHeaders.KnownProxies" value="10.0.0.5,10.0.0.6" />
+```
+
+### Container/Kubernetes environment
+
+When running in a container environment where proxy IPs are dynamic, trust a network range:
+
+```xml
+<add key="ServiceControl/ForwardedHeaders.Enabled" value="true" />
+<add key="ServiceControl/ForwardedHeaders.TrustAllProxies" value="false" />
+<add key="ServiceControl/ForwardedHeaders.KnownNetworks" value="10.0.0.0/8" />
+```
+
+### Development/trusted environment
+
+For development or fully trusted environments (not recommended for production):
+
+```xml
+<add key="ServiceControl/ForwardedHeaders.Enabled" value="true" />
+<add key="ServiceControl/ForwardedHeaders.TrustAllProxies" value="true" />
+```

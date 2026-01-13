@@ -5,14 +5,14 @@ reviewed: 2026-01-12
 component: ServiceControl
 ---
 
-ServiceControl instances can be configured to require JWT authentication using OpenID Connect (OIDC). This enables integration with identity providers like Microsoft Entra ID (Azure AD), Okta, Auth0, and other OIDC-compliant providers. This guide explains how to configure ServiceControl to enable authentication for both ServiceControl and ServicePulse.
+ServiceControl instances can be configured to require [JWT](https://en.wikipedia.org/wiki/JSON_Web_Token) authentication using [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/). This enables integration with identity providers like Microsoft Entra ID (Azure AD), Okta, Auth0, and other OIDC-compliant providers. This guide explains how to configure ServiceControl to enable authentication for both ServiceControl and ServicePulse.
 
 > [!NOTE]
 > Authentication is disabled by default. To enable it, see below.
 
 ## Configuration
 
-ServiceControl instances can be configured via environment variables or App.config. Each instance type uses a different prefix. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings in conjustion with [Forward Header](forward-headers.md) and [HTTPS](https.md) configuration settings in a scenario based format.
+ServiceControl instances can be configured via environment variables or App.config. Each instance type uses a different prefix. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings in conjunction with [Forward Header](forward-headers.md) and [TLS](tls.md) configuration settings in a scenario based format.
 
 include: servicecontrol-instance-prefix
 
@@ -103,3 +103,42 @@ The following examples show complete authentication configurations for common id
 <add key="ServiceControl/Authentication.ServicePulse.Authority" value="https://{keycloak-host}/realms/{realm}" />
 <add key="ServiceControl/Authentication.ServicePulse.ApiScopes" value="[&quot;{scope}&quot;]" />
 ```
+
+## Limitations
+
+### Anonymous endpoints
+
+The following endpoints are accessible without authentication, even when authentication is enabled:
+
+| Endpoint                            | Purpose                                                            |
+|-------------------------------------|--------------------------------------------------------------------|
+| `/api/authentication/configuration` | Returns authentication configuration for clients like ServicePulse |
+
+This endpoint must remain accessible so clients can obtain the authentication configuration needed to acquire tokens before authenticating.
+
+### Scatter-gather endpoints
+
+The Primary ServiceControl instance communicates with other ServiceControl instances to aggregate data. The following endpoints support this scatter-gather communication and are accessible without authentication:
+
+| Endpoint                     | Purpose                                                   |
+|------------------------------|-----------------------------------------------------------|
+| `/api`                       | API root/discovery - returns available endpoints          |
+| `/api/instance-info`         | Returns instance configuration information                |
+| `/api/configuration`         | Returns instance configuration information (alias)        |
+| `/api/configuration/remotes` | Returns remote instance configurations for scatter-gather |
+
+These endpoints allow the Primary instance to discover remote instances.
+
+### Same Authentication Configuration Required
+
+When using scatter-gather with authentication enabled:
+
+- All instances (Primary, Audit, Monitoring) must use the **same** Authority and Audience
+- Client tokens must be valid for all instances
+- There is no service-to-service authentication mechanism; client tokens are forwarded directly
+
+### Token Forwarding Security Considerations
+
+- Client tokens are forwarded to remote instances in their entirety
+- Remote instances see the same token as the primary instance
+- Token scope/claims are not modified during forwarding

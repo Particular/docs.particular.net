@@ -1492,8 +1492,10 @@
         Url: servicecontrol/security/configuration/authentication
       - Title: Forward Headers
         Url: servicecontrol/security/configuration/forward-headers
-      - Title: HTTPS
-        Url: servicecontrol/security/configuration/https
+      - Title: TLS
+        Url: servicecontrol/security/configuration/tls
+      - Title: CORS
+        Url: servicecontrol/security/configuration/cors
     - Title: Hosting guide
       Url: servicecontrol/security/hosting-guide
     - Title: Examples

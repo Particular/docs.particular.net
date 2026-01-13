@@ -21,7 +21,7 @@ If you place IIS, nginx, or another web server in front of ServiceControl, it ac
 > [!WARNING]
 > When authentication is enabled, all instances (Primary, Audit, Monitoring) must use the **same** Identity Provider (IdP) Authority and Audience settings. Client tokens are forwarded to remote instances during scatter-gather operations.
 
-The below scenarios assume the use of `App.config` and only show the configuration for the primary ServiceControl instance. For additional details on environment variables and the other ServiceControl instances, see [Authentication](configuration/authentication.md), [HTTPS](configuration/https.md), and [Forward Headers](configuration/forward-headers.md).
+The below scenarios assume the use of `App.config` and only show the configuration for the primary ServiceControl instance. For additional details on environment variables and the other ServiceControl instances, see [Authentication](configuration/authentication.md), [TLS](configuration/tls.md), and [Forward Headers](configuration/forward-headers.md).
 
 ### Scenario 0: Default / Backward Compatible Configuration
 
@@ -83,7 +83,7 @@ Client → HTTPS → Reverse Proxy → HTTP → ServiceControl
 | Restricted Proxy Trust  | ✅ Enabled                     |
 
 > [!NOTE]
-> HTTPS redirection is optional in this scenario. The reverse proxy typically handles HTTP to HTTPS redirection at its layer. However, enabling it at ServiceControl provides defense-in-depth - if an HTTP request somehow bypasses the proxy and reaches ServiceControl directly, it will be redirected to the HTTPS URL. This requires configuring `Https.Port` to specify the external [HTTPS port](configuration/https.md) used by the proxy.
+> HTTPS redirection is optional in this scenario. The reverse proxy typically handles HTTP to HTTPS redirection at its layer. However, enabling it at ServiceControl provides defense-in-depth - if an HTTP request somehow bypasses the proxy and reaches ServiceControl directly, it will be redirected to the HTTPS URL. This requires configuring `Https.Port` to specify the external [HTTPS port](configuration/tls.md) used by the proxy.
 
 #### Example Configuration
 
@@ -144,7 +144,8 @@ Client → HTTPS → ServiceControl (Kestrel)
 | Forwarded Headers       | ❌ Disabled (no proxy) |
 | Restricted Proxy Trust  | N/A                   |
 
-> **Note:** HTTPS redirection is not configured in this scenario because clients connect directly over HTTPS. There is no HTTP endpoint exposed that would need to redirect. HTTPS redirection is only useful when a reverse proxy handles SSL termination and ServiceControl needs to redirect HTTP requests to the proxy's HTTPS endpoint.
+> [!NOTE]
+> HTTPS redirection is not configured in this scenario because clients connect directly over HTTPS. There is no HTTP endpoint exposed that would need to redirect. HTTPS redirection is only useful when a reverse proxy handles SSL termination and ServiceControl needs to redirect HTTP requests to the proxy's HTTPS endpoint.
 
 #### Example Configuration
 
@@ -206,7 +207,8 @@ Client → HTTPS → Reverse Proxy → HTTPS → ServiceControl (Kestrel)
 | Restricted Proxy Trust     | ✅ Enabled                |
 | Internal Traffic Encrypted | ✅ Yes                    |
 
-> **Note:** HTTPS redirection and HSTS are not applicable in this scenario because ServiceControl only exposes an HTTPS endpoint (Kestrel HTTPS is enabled). There is no HTTP endpoint to redirect from. The reverse proxy is responsible for redirecting external HTTP requests to HTTPS and sending HSTS headers to browsers. Compare this to Scenario 1, where Kestrel HTTPS is disabled and ServiceControl exposes an HTTP endpoint - in that case, HTTPS redirection can optionally be enabled as defense-in-depth.
+> [!NOTE]
+> HTTPS redirection and HSTS are not applicable in this scenario because ServiceControl only exposes an HTTPS endpoint (Kestrel HTTPS is enabled). There is no HTTP endpoint to redirect from. The reverse proxy is responsible for redirecting external HTTP requests to HTTPS and sending HSTS headers to browsers. Compare this to Scenario 1, where Kestrel HTTPS is disabled and ServiceControl exposes an HTTP endpoint - in that case, HTTPS redirection can optionally be enabled as defense-in-depth.
 
 #### Example Configuration
 

@@ -1,6 +1,6 @@
 ---
-title: HTTPS
-summary: How to enable and configure HTTPS for ServiceControl instances
+title: TLS Configuration
+summary: How to enable and configure TLS for ServiceControl instances
 reviewed: 2026-01-12
 component: ServiceControl
 ---
@@ -58,3 +58,48 @@ The `HTTPS_REDIRECTHTTPTOHTTPS` setting is intended for use with a reverse proxy
 
 > [!NOTE]
 > When running ServiceControl directly without a reverse proxy, the application only listens on a single protocol (HTTP or HTTPS).
+
+## Configuration examples
+
+The following examples show common TLS configurations for different deployment scenarios.
+
+### Direct HTTPS with certificate
+
+When ServiceControl handles TLS directly using a PFX certificate:
+
+```xml
+<add key="ServiceControl/Https.Enabled" value="true" />
+<add key="ServiceControl/Https.CertificatePath" value="C:\certs\servicecontrol.pfx" />
+<add key="ServiceControl/Https.CertificatePassword" value="{certificate-password}" />
+```
+
+### Direct HTTPS with HSTS
+
+When ServiceControl handles TLS directly and you want to enable HSTS:
+
+```xml
+<add key="ServiceControl/Https.Enabled" value="true" />
+<add key="ServiceControl/Https.CertificatePath" value="C:\certs\servicecontrol.pfx" />
+<add key="ServiceControl/Https.CertificatePassword" value="{certificate-password}" />
+<add key="ServiceControl/Https.EnableHsts" value="true" />
+<add key="ServiceControl/Https.HstsMaxAgeSeconds" value="31536000" />
+```
+
+### Reverse proxy with HTTP to HTTPS redirect
+
+When TLS is terminated at a reverse proxy and you want ServiceControl to redirect HTTP requests:
+
+```xml
+<add key="ServiceControl/Https.RedirectHttpToHttps" value="true" />
+<add key="ServiceControl/Https.Port" value="443" />
+```
+
+### Reverse proxy with HSTS
+
+When TLS is terminated at a reverse proxy and you want ServiceControl to add HSTS headers:
+
+```xml
+<add key="ServiceControl/Https.EnableHsts" value="true" />
+<add key="ServiceControl/Https.HstsMaxAgeSeconds" value="31536000" />
+<add key="ServiceControl/Https.HstsIncludeSubDomains" value="true" />
+```
