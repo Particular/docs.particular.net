@@ -55,6 +55,33 @@ protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> ma
 }
 ```
 
+### ConfigureMapping API deprecated
+
+Starting from [NServiceBus version 7.7 Roslyn analyzers](/nservicebus/sagas/analyzers.md) have been introduced that analyze the code in sagas and make suggestions for improvements directly in the editor. As part of those analyzers, code fixes (provided by analyzer rule IDs NSB0004 and NSB0018) have been provided to [simplify the mapping expression](/nservicebus/sagas/analyzers.md#saga-mapping-expressions-can-be-simplified) from
+
+```csharp
+protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
+{
+    mapper.ConfigureMapping<OrderPlaced>(msg => msg.OrderId).ToSaga(sagaData => sagaData.OrderId);
+    mapper.ConfigureMapping<OrderBilled>(msg => msg.OrderId).ToSaga(sagaData => sagaData.OrderId);
+    mapper.ConfigureMapping<OrderShipped>(msg => msg.OrderId).ToSaga(sagaData => sagaData.OrderId);
+}
+```
+
+to look like this:
+
+```csharp
+protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
+{
+    mapper.MapSaga(saga => saga.OrderId)
+        .ToMessage<OrderPlaced>(msg => msg.OrderId)
+        .ToMessage<OrderBilled>(msg => msg.OrderId)
+        .ToMessage<OrderShipped>(msg => msg.OrderId);
+}
+```
+
+In Version 10 the mapping expression using `mapper.ConfigureMapping<OrderPlaced>(...).ToSaga(...)` or `mapper.ConfigureHeaderMapping<OrderPlaced>(...).ToSaga(...)` is no longer supported. NSB0004 and NSB0018 analyzers are merged into NSB0004 which now uses Error severity but still offers the possibility to automatically rewrite the saga syntax with the provided fixer.
+
 ### Custom finders
 
 In Version 10 [custom saga finders](/nservicebus/sagas/saga-finding.md) are no longer automatically registered via assembly scanning and must be mapped in the `ConfigureHowToFindSaga` method:
