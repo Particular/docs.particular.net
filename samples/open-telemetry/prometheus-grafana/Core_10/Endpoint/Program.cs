@@ -29,11 +29,7 @@ public class Program
 
         var meterProvider = meterProviderBuilder.Build();
 
-        #region enable-opentelemetry
         var endpointConfiguration = new EndpointConfiguration(EndpointName);
-        endpointConfiguration.EnableOpenTelemetry();
-        #endregion
-
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();
 

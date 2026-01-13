@@ -9,9 +9,9 @@
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.*" />
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
-    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.23" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.3" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="9.0.0-alpha.7" />
-    <PackageReference Include="NServiceBus.Transport.SqlServer" Version="9.0.0-alpha.3" />
+    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.24" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.4" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="9.0.0-alpha.11" />
+    <PackageReference Include="NServiceBus.Transport.SqlServer" Version="9.0.0-alpha.4" />
   </ItemGroup>
 </Project>

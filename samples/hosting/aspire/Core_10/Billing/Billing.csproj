@@ -14,11 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.3" />
-    <PackageReference Include="NServiceBus.Heartbeat" Version="6.0.0-alpha.3" />
-    <PackageReference Include="NServiceBus.Metrics" Version="6.0.0-alpha.4" />
-    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="6.0.0-alpha.2" />
-    <PackageReference Include="NServiceBus.RabbitMQ" Version="11.0.0-alpha.3" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.4" />
+    <PackageReference Include="NServiceBus.Heartbeat" Version="6.0.0-alpha.4" />
+    <PackageReference Include="NServiceBus.Metrics" Version="6.0.0-alpha.5" />
+    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="6.0.0-alpha.3" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="11.0.0-alpha.4" />
   </ItemGroup>
 
 </Project>

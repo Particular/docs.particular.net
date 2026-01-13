@@ -30,9 +30,7 @@ The sample contains two endpoints exchanging publish-subscribe events and point-
 
 snippet: jaeger-exporter-configuration
 
-NServiceBus must also enable the OpenTelemetry instrumentation:
-
-snippet: jaeger-endpoint-configuration
+partial: enableotel
 
 ## Running the sample
 

@@ -76,9 +76,7 @@ To monitor [handler time, processing time, and critical time](/monitoring/metric
 
 ## Code walk-through
 
-The OpenTelemetry instrumentation is enabled on the endpoint.
-
-snippet: enable-open-telemetry
+partial: enableotel
 
 ### Tracing
 

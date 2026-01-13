@@ -6,7 +6,6 @@ var builder = Host.CreateApplicationBuilder();
 builder.AddServiceDefaults();
 
 var endpointConfiguration = new EndpointConfiguration("Billing");
-endpointConfiguration.EnableOpenTelemetry();
 
 var connectionString = builder.Configuration.GetConnectionString("transport");
 var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);

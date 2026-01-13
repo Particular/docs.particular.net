@@ -6,8 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.20" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.3" />
+    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.24" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.4" />
     <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.*" />
     <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.*" />
   </ItemGroup>

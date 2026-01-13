@@ -9,8 +9,8 @@
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.*" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
     <PackageReference Include="Npgsql" Version="9.*" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="9.0.0-alpha.4" />
-    <PackageReference Include="NServiceBus.Persistence.Sql.ScriptBuilder" Version="9.0.0-alpha.4" />
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="9.0.0-alpha.11" />
+    <PackageReference Include="NServiceBus.Persistence.Sql.ScriptBuilder" Version="9.0.0-alpha.11" />
     <PackageReference Include="NUnit" Version="4.*" />
     <PackageReference Include="NUnit.Analyzers" Version="4.*" />
     <PackageReference Include="NUnit3TestAdapter" Version="5.*" />

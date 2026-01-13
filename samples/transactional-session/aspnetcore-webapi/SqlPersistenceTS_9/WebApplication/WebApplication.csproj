@@ -5,8 +5,8 @@
     <RootNamespace>Sample.WebApplication</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.3" />
-    <PackageReference Include="NServiceBus.Persistence.Sql.TransactionalSession" Version="9.0.0-alpha.4" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.4" />
+    <PackageReference Include="NServiceBus.Persistence.Sql.TransactionalSession" Version="9.0.0-alpha.11" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.*" />
   </ItemGroup>
