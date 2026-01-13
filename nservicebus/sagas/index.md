@@ -197,3 +197,5 @@ Saga state is read immediately before a message processing method is invoked, an
 - Saga state reads and writes do not occur during a stage. They occur during invocation in the `Invoke Handlers` stage and cannot be intercepted.
 
 If multiple saga types are invoked for the same message, each read, invoke, write cycle will occur sequentially, for each saga type.
+
+partial: manual-registration

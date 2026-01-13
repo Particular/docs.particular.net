@@ -80,3 +80,5 @@ snippet: SwallowScanningExceptions
 
 > [!WARNING]
 > Ignoring assembly scanning exceptions can cause the endpoint not to load some features, behaviors, messages or message handlers and cause incorrect behavior.
+
+partial: disable-assembly-scanning
