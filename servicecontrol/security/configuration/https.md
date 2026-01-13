@@ -28,8 +28,9 @@ include: servicecontrol-instance-prefix
 
 ## Security Considerations
 
-### Certificate File Security
+### Certificate Management
 
+- ServiceControl supports PFX (PKCS#12) certificate files
 - Store certificate files securely with appropriate file permissions
 - Rotate certificates before expiration
 - Use certificates from a trusted Certificate Authority for production

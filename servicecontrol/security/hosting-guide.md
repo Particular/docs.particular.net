@@ -21,7 +21,7 @@ If you place IIS, nginx, or another web server in front of ServiceControl, it ac
 > [!WARNING]
 > When authentication is enabled, all instances (Primary, Audit, Monitoring) must use the **same** Identity Provider (IdP) Authority and Audience settings. Client tokens are forwarded to remote instances during scatter-gather operations.
 
-The below scenarios assume the use of `App.config` and only show the configuration for the primary ServiceControl instance. For additional details, see [Authentication](configuration/authentication.md), [HTTPS](configuration/https.md), and [Forward Headers](configuration/forward-headers.md).
+The below scenarios assume the use of `App.config` and only show the configuration for the primary ServiceControl instance. For additional details on environment variables and the other ServiceControl instances, see [Authentication](configuration/authentication.md), [HTTPS](configuration/https.md), and [Forward Headers](configuration/forward-headers.md).
 
 ### Scenario 0: Default / Backward Compatible Configuration
 
@@ -29,8 +29,8 @@ The default configuration with no additional setup required. Backwards compatibl
 
 #### Security Features
 
-| Feature                 | Status                   |
-|-------------------------|--------------------------|
+| Feature                 | Status                  |
+|-------------------------|-------------------------|
 | JWT Authentication      | ❌ Disabled              |
 | Kestrel HTTPS           | ❌ Disabled              |
 | HTTPS Redirection       | ❌ Disabled              |
@@ -59,9 +59,9 @@ Or explicitly:
 </appSettings>
 ```
 
-### Scenario 1: Reverse Proxy with Authentication
+### Scenario 1: Strict Reverse Proxy with Authentication
 
-Reverse proxy with SSL termination and JWT authentication via an identity provider (Azure AD, Okta, Auth0, Keycloak, etc.).
+Strict Reverse proxy with SSL termination and JWT authentication via an identity provider (Azure AD, Okta, Auth0, Keycloak, etc.).
 
 #### Architecture
 
@@ -72,8 +72,8 @@ Client → HTTPS → Reverse Proxy → HTTP → ServiceControl
 
 #### Security Features
 
-| Feature                 | Status                         |
-|-------------------------|--------------------------------|
+| Feature                 | Status                        |
+|-------------------------|-------------------------------|
 | JWT Authentication      | ✅ Enabled                     |
 | Kestrel HTTPS           | ❌ Disabled (handled by proxy) |
 | HTTPS Redirection       | ✅ Enabled (optional)          |
@@ -124,19 +124,29 @@ Client → HTTPS → Reverse Proxy → HTTP → ServiceControl
 
 ### Scenario 2: Direct HTTPS with Authentication
 
-Kestrel handles TLS directly with JWT authentication. No reverse proxy.
+Kestrel handles TLS directly with JWT authentication without a reverse proxy.
 
-**Security Features:**
+**Architecture:**
+
+```text
+Client → HTTPS → ServiceControl (Kestrel)
+                 (TLS + JWT validation)
+```
+
+#### Security Features
 
 | Feature                 | Status                |
 |-------------------------|-----------------------|
 | JWT Authentication      | ✅ Enabled             |
 | Kestrel HTTPS           | ✅ Enabled             |
-| HTTPS Redirection       | ✅ Enabled             |
 | HSTS                    | ✅ Enabled             |
 | Restricted CORS Origins | ✅ Enabled             |
 | Forwarded Headers       | ❌ Disabled (no proxy) |
 | Restricted Proxy Trust  | N/A                   |
+
+> **Note:** HTTPS redirection is not configured in this scenario because clients connect directly over HTTPS. There is no HTTP endpoint exposed that would need to redirect. HTTPS redirection is only useful when a reverse proxy handles SSL termination and ServiceControl needs to redirect HTTP requests to the proxy's HTTPS endpoint.
+
+#### Example Configuration
 
 ```xml
 <appSettings>
@@ -146,24 +156,25 @@ Kestrel handles TLS directly with JWT authentication. No reverse proxy.
   <add key="ServiceControl/Https.CertificatePassword" value="your-certificate-password" />
   <add key="ServiceControl/Https.EnableHsts" value="true" />
   <add key="ServiceControl/Https.HstsMaxAgeSeconds" value="31536000" />
-  <add key="ServiceControl/Https.RedirectHttpToHttps" value="true" />
 
   <!-- Authentication -->
   <add key="ServiceControl/Authentication.Enabled" value="true" />
   <add key="ServiceControl/Authentication.Authority" value="https://login.microsoftonline.com/{tenant-id}/v2.0" />
   <add key="ServiceControl/Authentication.Audience" value="api://servicecontrol" />
+
+  <!-- Token validation settings -->
   <add key="ServiceControl/Authentication.ValidateIssuer" value="true" />
   <add key="ServiceControl/Authentication.ValidateAudience" value="true" />
   <add key="ServiceControl/Authentication.ValidateLifetime" value="true" />
   <add key="ServiceControl/Authentication.ValidateIssuerSigningKey" value="true" />
   <add key="ServiceControl/Authentication.RequireHttpsMetadata" value="true" />
 
-  <!-- ServicePulse client -->
+  <!-- ServicePulse client configuration -->
   <add key="ServiceControl/Authentication.ServicePulse.ClientId" value="your-servicepulse-client-id" />
   <add key="ServiceControl/Authentication.ServicePulse.Authority" value="https://login.microsoftonline.com/{tenant-id}/v2.0" />
-  <add key="ServiceControl/Authentication.ServicePulse.ApiScopes" value="api://servicecontrol/.default" />
+  <add key="ServiceControl/Authentication.ServicePulse.ApiScopes" value="api://servicecontrol/access_as_user" />
 
-  <!-- Restrict CORS -->
+  <!-- Restrict CORS to your ServicePulse domain -->
   <add key="ServiceControl/Cors.AllowedOrigins" value="https://servicepulse.yourcompany.com" />
 
   <!-- No forwarded headers (no proxy) -->
@@ -171,49 +182,57 @@ Kestrel handles TLS directly with JWT authentication. No reverse proxy.
 </appSettings>
 ```
 
----
+### Scenario 3: End-to-End Encryption with Reverse Proxy and Direct HTTPS
 
-### Scenario 6: End-to-End Encryption with Reverse Proxy and Authentication
+For environments requiring encryption of internal traffic. End-to-end TLS encryption where the reverse proxy terminates external TLS and re-encrypts traffic to ServiceControl over HTTPS.
 
-End-to-end TLS encryption where the reverse proxy terminates external TLS and re-encrypts traffic to ServiceControl over HTTPS. Includes JWT authentication.
+**Architecture:**
 
-**Security Features:**
+```text
+Client → HTTPS → Reverse Proxy → HTTPS → ServiceControl (Kestrel)
+                 (TLS termination)       (TLS + JWT validation)
+```
 
-| Feature                 | Status                        |
-|-------------------------|-------------------------------|
-| JWT Authentication      | ✅ Enabled                     |
-| Kestrel HTTPS           | ✅ Enabled                     |
-| HTTPS Redirection       | ❌ Disabled (handled by proxy) |
-| HSTS                    | ❌ Disabled (handled by proxy) |
-| Restricted CORS Origins | ✅ Enabled                     |
-| Forwarded Headers       | ✅ Enabled                     |
-| Restricted Proxy Trust  | ✅ Enabled                     |
+#### Security Features
+
+| Feature                    | Status                   |
+|----------------------------|--------------------------|
+| JWT Authentication         | ✅ Enabled                |
+| Kestrel HTTPS              | ✅ Enabled                |
+| HTTPS Redirection          | N/A (no HTTP endpoint)   |
+| HSTS                       | N/A (configure at proxy) |
+| Restricted CORS Origins    | ✅ Enabled                |
+| Forwarded Headers          | ✅ Enabled                |
+| Restricted Proxy Trust     | ✅ Enabled                |
+| Internal Traffic Encrypted | ✅ Yes                    |
+
+> **Note:** HTTPS redirection and HSTS are not applicable in this scenario because ServiceControl only exposes an HTTPS endpoint (Kestrel HTTPS is enabled). There is no HTTP endpoint to redirect from. The reverse proxy is responsible for redirecting external HTTP requests to HTTPS and sending HSTS headers to browsers. Compare this to Scenario 1, where Kestrel HTTPS is disabled and ServiceControl exposes an HTTP endpoint - in that case, HTTPS redirection can optionally be enabled as defense-in-depth.
+
+#### Example Configuration
 
 ```xml
 <appSettings>
-  <!-- Kestrel HTTPS for internal encryption -->
+   <!-- Kestrel HTTPS for internal encryption -->
   <add key="ServiceControl/Https.Enabled" value="true" />
   <add key="ServiceControl/Https.CertificatePath" value="C:\certs\servicecontrol-internal.pfx" />
   <add key="ServiceControl/Https.CertificatePassword" value="your-certificate-password" />
-
-  <!-- HSTS/Redirection handled by reverse proxy -->
-  <add key="ServiceControl/Https.EnableHsts" value="false" />
-  <add key="ServiceControl/Https.RedirectHttpToHttps" value="false" />
 
   <!-- Authentication -->
   <add key="ServiceControl/Authentication.Enabled" value="true" />
   <add key="ServiceControl/Authentication.Authority" value="https://login.microsoftonline.com/{tenant-id}/v2.0" />
   <add key="ServiceControl/Authentication.Audience" value="api://servicecontrol" />
+
+  <!-- Token validation settings -->
   <add key="ServiceControl/Authentication.ValidateIssuer" value="true" />
   <add key="ServiceControl/Authentication.ValidateAudience" value="true" />
   <add key="ServiceControl/Authentication.ValidateLifetime" value="true" />
   <add key="ServiceControl/Authentication.ValidateIssuerSigningKey" value="true" />
   <add key="ServiceControl/Authentication.RequireHttpsMetadata" value="true" />
 
-  <!-- ServicePulse client -->
+  <!-- ServicePulse client configuration -->
   <add key="ServiceControl/Authentication.ServicePulse.ClientId" value="your-servicepulse-client-id" />
   <add key="ServiceControl/Authentication.ServicePulse.Authority" value="https://login.microsoftonline.com/{tenant-id}/v2.0" />
-  <add key="ServiceControl/Authentication.ServicePulse.ApiScopes" value="api://servicecontrol/.default" />
+  <add key="ServiceControl/Authentication.ServicePulse.ApiScopes" value="api://servicecontrol/access_as_user" />
 
   <!-- Forwarded headers - trust only your reverse proxy -->
   <add key="ServiceControl/ForwardedHeaders.Enabled" value="true" />
@@ -225,77 +244,17 @@ End-to-end TLS encryption where the reverse proxy terminates external TLS and re
 </appSettings>
 ```
 
----
-
-## Configuration Reference
-
-### Authentication Settings
-
-| Setting                                   | Type   | Default | Description                                                 |
-|-------------------------------------------|--------|---------|-------------------------------------------------------------|
-| `Authentication.Enabled`                  | bool   | `false` | Enable JWT Bearer authentication                            |
-| `Authentication.Authority`                | string | -       | OpenID Connect authority URL (required when enabled)        |
-| `Authentication.Audience`                 | string | -       | Expected audience for tokens (required when enabled)        |
-| `Authentication.ValidateIssuer`           | bool   | `true`  | Validate token issuer                                       |
-| `Authentication.ValidateAudience`         | bool   | `true`  | Validate token audience                                     |
-| `Authentication.ValidateLifetime`         | bool   | `true`  | Validate token expiration                                   |
-| `Authentication.ValidateIssuerSigningKey` | bool   | `true`  | Validate token signing key                                  |
-| `Authentication.RequireHttpsMetadata`     | bool   | `true`  | Require HTTPS for metadata endpoint                         |
-| `Authentication.ServicePulse.ClientId`    | string | -       | OAuth client ID for ServicePulse                            |
-| `Authentication.ServicePulse.Authority`   | string | -       | Authority URL for ServicePulse (defaults to main Authority) |
-| `Authentication.ServicePulse.ApiScopes`   | string | -       | API scopes for ServicePulse to request                      |
-
-### HTTPS Settings
-
-| Setting                       | Type   | Default    | Description                           |
-|-------------------------------|--------|------------|---------------------------------------|
-| `Https.Enabled`               | bool   | `false`    | Enable Kestrel HTTPS with certificate |
-| `Https.CertificatePath`       | string | -          | Path to PFX/PEM certificate file      |
-| `Https.CertificatePassword`   | string | -          | Certificate password (if required)    |
-| `Https.RedirectHttpToHttps`   | bool   | `false`    | Redirect HTTP requests to HTTPS       |
-| `Https.EnableHsts`            | bool   | `false`    | Enable HTTP Strict Transport Security |
-| `Https.HstsMaxAgeSeconds`     | int    | `31536000` | HSTS max-age in seconds (1 year)      |
-| `Https.HstsIncludeSubDomains` | bool   | `false`    | Include subdomains in HSTS            |
-
-### Forwarded Headers Settings
-
-| Setting                            | Type   | Default | Description                                   |
-|------------------------------------|--------|---------|-----------------------------------------------|
-| `ForwardedHeaders.Enabled`         | bool   | `true`  | Enable forwarded headers processing           |
-| `ForwardedHeaders.TrustAllProxies` | bool   | `true`  | Trust X-Forwarded-* from any source           |
-| `ForwardedHeaders.KnownProxies`    | string | -       | Comma-separated list of trusted proxy IPs     |
-| `ForwardedHeaders.KnownNetworks`   | string | -       | Comma-separated list of trusted CIDR networks |
-
-> **Note:** If `KnownProxies` or `KnownNetworks` are configured, `TrustAllProxies` is automatically set to `false`.
-
-### CORS Settings
-
-| Setting               | Type   | Default | Description                             |
-|-----------------------|--------|---------|-----------------------------------------|
-| `Cors.AllowAnyOrigin` | bool   | `true`  | Allow requests from any origin          |
-| `Cors.AllowedOrigins` | string | -       | Comma-separated list of allowed origins |
-
-> **Note:** If `AllowedOrigins` is configured, `AllowAnyOrigin` is automatically set to `false`.
-
----
-
 ## Scenario Comparison Matrix
 
-| Feature                        | Default  | Reverse Proxy (SSL Termination) | Direct HTTPS | Reverse Proxy + Auth |       Direct HTTPS + Auth        | End-to-End Encryption + Auth |
-|--------------------------------|:--------:|:-------------------------------:|:------------:|:--------------------:|:--------------------------------:|:----------------------------:|
-| **JWT Authentication**         |    ❌     |                ❌                |      ❌       |          ✅           |                ✅                 |              ✅               |
-| **Direct (Kestrel) HTTPS**     |    ❌     |                ❌                |      ✅       |          ❌           |                ✅                 |              ✅               |
-| **HTTPS Redirection**          |    ❌     |                ❌                |      ✅       |          ❌           |                ✅                 | ❌ (Handled by Reverse Proxy) |
-| **HSTS**                       |    ❌     |                ❌                |      ✅       |          ❌           |                ✅                 | ❌ (Handled by Reverse Proxy) |
-| **Restricted CORS**            |    ❌     |                ✅                |      ✅       |          ✅           |                ✅                 |              ✅               |
-| **Forwarded Headers**          |    ✅     |                ✅                |      ❌       |          ✅           | ❌ (Not needed. No Reverse Proxy) |              ✅               |
-| **Restricted Proxy Trust**     |    ❌     |                ✅                |     N/A      |          ✅           |               N/A                |              ✅               |
-|                                |          |                                 |              |                      |                                  |                              |
-| **Reverse Proxy**              | Optional |               Yes               |      No      |         Yes          |                No                |             Yes              |
-| **Internal Traffic Encrypted** |    ❌     |                ❌                |      ✅       |          ❌           |                ✅                 |              ✅               |
-
-**Legend:**
-
-- ✅ = Enabled
-- ❌ = Disabled
-- N/A = Not Applicable
+| Feature                        | Reverse Proxy + Auth | Direct HTTPS + Auth | End-to-End Encryption |
+|--------------------------------|:--------------------:|:-------------------:|:---------------------:|
+| **JWT Authentication**         |          ✅           |          ✅          |           ✅           |
+| **Kestrel HTTPS**              |          ❌           |          ✅          |           ✅           |
+| **HTTPS Redirection**          |     ✅ (optional)     |          ✅          |     ❌ (at proxy)      |
+| **HSTS**                       |     ❌ (at proxy)     |          ✅          |     ❌ (at proxy)      |
+| **Restricted CORS**            |          ✅           |          ✅          |           ✅           |
+| **Forwarded Headers**          |          ✅           |          ❌          |           ✅           |
+| **Restricted Proxy Trust**     |          ✅           |         N/A         |           ✅           |
+| **Internal Traffic Encrypted** |          ❌           |          ✅          |           ✅           |
+| **Requires Reverse Proxy**     |         Yes          |         No          |          Yes          |
+| **Certificate Management**     |    At proxy only     |  At ServiceControl  |         Both          |
