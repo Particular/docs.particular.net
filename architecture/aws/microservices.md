@@ -1,7 +1,7 @@
 ---
 title: Microservice architecture style on AWS
 summary: Gives an overview of how the Particular Service Platform can help build microservices on AWS
-reviewed: 2024-04-09
+reviewed: 2026-01-13
 callsToAction: ['solution-architect', 'ADSD']
 ---
 
