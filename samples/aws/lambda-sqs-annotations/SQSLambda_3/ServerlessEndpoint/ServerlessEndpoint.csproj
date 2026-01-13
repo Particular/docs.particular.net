@@ -21,4 +21,8 @@
     <PackageReference Include="NServiceBus.AwsLambda.SQS" Version="3.*" />
   </ItemGroup>
 
+  <ItemGroup Label="Elevated transitive dependencies">
+    <PackageReference Include="AWSSDK.Core" Version="4.0.3.8" />
+  </ItemGroup>
+
 </Project>
