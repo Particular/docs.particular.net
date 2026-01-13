@@ -4,4 +4,3 @@ By default, sagas are automatically discovered through [assembly scanning](/nser
 
 snippet: RegisterSagaManually
 
-

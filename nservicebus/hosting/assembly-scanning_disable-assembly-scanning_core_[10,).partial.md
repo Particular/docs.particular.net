@@ -1,6 +1,6 @@
 ## Disable assembly scanning
 
-Assembly scanning can be completely disabled. When disabled, no assemblies are scanned, and the endpoint will not automatically discover message types, handlers, features, or installers.
+Assembly scanning can be completely disabled. When disabled, no assemblies are scanned, and the endpoint will not automatically discover handlers, features, or installers.
 
 snippet: DisableAssemblyScanning
 

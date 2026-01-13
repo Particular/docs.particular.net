@@ -53,9 +53,7 @@ public class PlaceOrderHandler : IHandleMessages<PlaceOrder>
     }
 }
 
-public class PlaceOrder
-{
-}
+public class PlaceOrder;
 
 public class ShippingSaga : Saga<ShippingSagaData>,
     IAmStartedByMessages<ShipOrder>
