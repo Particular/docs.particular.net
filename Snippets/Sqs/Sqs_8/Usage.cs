@@ -71,7 +71,9 @@ class Usage
     {
         #region SqsTransport
 
-        // S3 bucket only required for messages larger than 256KB
+        // S3 bucket only required for messages larger than
+        // 256KB (version 8.0) or commands larger than 1MB 
+        // and events larger than 256KB(version 8.1 and later)
         var transport = new SqsTransport
         {
             S3 = new S3Settings("myBucketName", "my/key/prefix")
