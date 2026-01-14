@@ -24,7 +24,7 @@ CORS configuration is required when:
 - ServicePulse is hosted on a different domain than ServiceControl
 - ServiceControl is accessed through a reverse proxy with a different domain
 
-## Configuration example
+## Configuration examples
 
 To restrict access to only your ServicePulse domain, using the primary ServiceControl instance:
 
