@@ -1,11 +1,13 @@
 ---
 title: ServiceControl Security Overview
-summary: Secure ServiceControl and ServicePulse with authentication, HTTPS, and other security features
-reviewed: 2026-01-13
+summary: Secure ServiceControl with authentication, TLS, and other security features
+reviewed: 2026-01-14
 component: ServiceControl
+related:
+- servicepulse/security
 ---
 
-This section covers security features for ServiceControl and ServicePulse, including authentication, transport layer security (TLS), and reverse proxy configuration.
+This section covers security features for ServiceControl, including authentication, transport layer security (TLS), and reverse proxy configuration.
 
 ## In this section
 

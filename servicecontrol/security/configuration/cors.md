@@ -1,8 +1,10 @@
 ---
-title: CORS Configuration
+title: ServiceControl CORS Configuration
 summary: How to configure Cross-Origin Resource Sharing for ServiceControl instances
-reviewed: 2026-01-13
+reviewed: 2026-01-14
 component: ServiceControl
+related:
+- servicecontrol/security/hosting-guide
 ---
 
 Cross-Origin Resource Sharing (CORS) controls which web applications can make requests to ServiceControl. This is important when ServicePulse is hosted on a different domain than ServiceControl.

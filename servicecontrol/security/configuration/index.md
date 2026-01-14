@@ -1,8 +1,11 @@
 ---
-title: Security Configuration
+title: ServiceControl Security Configuration
 summary: How to secure ServiceControl instances
 reviewed: 2026-01-12
 component: ServiceControl
+related:
+- servicecontrol/security/hosting-guide
+- servicepulse/security/hosting-guide
 ---
 
 ServiceControl provides several configuration options to secure instances. This section covers the available security settings and how to configure them.
@@ -30,8 +33,3 @@ Configure Cross-Origin Resource Sharing to control which web applications can ac
 ServiceControl instances can be configured via environment variables or App.config. Each instance type uses a different prefix:
 
 include: servicecontrol-instance-prefix
-
-## Related topics
-
-- [Hosting Guide](../hosting-guide.md) - Complete examples combining authentication, HTTPS, and forward headers configuration
-- [Microsoft Entra ID](../entra-id-authentication.md) - Step-by-step guide for configuring authentication with Microsoft Entra ID

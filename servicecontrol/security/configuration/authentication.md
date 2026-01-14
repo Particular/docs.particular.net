@@ -1,8 +1,11 @@
 ---
-title: Authentication Configuration
-summary: How to enable and configure authentication for ServiceControl and ServicePulse
+title: ServiceControl Authentication Configuration
+summary: How to enable and configure authentication for ServiceControl
 reviewed: 2026-01-12
 component: ServiceControl
+related:
+- servicecontrol/security/hosting-guide
+- servicepulse/security/configuration/authentication
 ---
 
 ServiceControl instances can be configured to require [JWT](https://en.wikipedia.org/wiki/JSON_Web_Token) authentication using [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/). This enables integration with identity providers like Microsoft Entra ID (Azure AD), Okta, Auth0, and other OIDC-compliant providers. This guide explains how to configure ServiceControl to enable authentication for both ServiceControl and ServicePulse.

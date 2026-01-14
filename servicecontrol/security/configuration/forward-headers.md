@@ -1,8 +1,11 @@
 ---
-title: Forward Headers Configuration
+title: ServiceControl Forward Headers Configuration
 summary: How to enable and configure forward headers for ServiceControl instances
-reviewed: 2026-01-12
+reviewed: 2026-01-14
 component: ServiceControl
+related:
+- servicecontrol/security/hosting-guide
+- servicepulse/security/configuration/forward-headers
 ---
 
 When ServiceControl instances are deployed behind a reverse proxy (like NGINX, Traefik, or a cloud load balancer) that terminates SSL/TLS, you need to configure forwarded headers so ServiceControl correctly understands the original client request.

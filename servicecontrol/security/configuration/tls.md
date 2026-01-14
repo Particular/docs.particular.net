@@ -1,8 +1,11 @@
 ---
-title: TLS Configuration
+title: ServiceControl TLS Configuration
 summary: How to enable and configure TLS for ServiceControl instances
 reviewed: 2026-01-12
 component: ServiceControl
+related:
+- servicecontrol/security/hosting-guide
+- servicepulse/security/configuration/tls
 ---
 
 ServiceControl instances can be configured to use HTTPS directly, enabling encrypted connections without relying on a reverse proxy for SSL termination.

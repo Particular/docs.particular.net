@@ -1400,6 +1400,21 @@
       Articles:
       - Title: Version 1 to 2
         Url: servicepulse/1to2
+    - Title: Security
+      Articles:
+      - Title: Overview
+        Url: servicepulse/security
+      - Title: Configuration
+        Url: servicepulse/security/configuration
+        Articles:
+        - Title: Authentication
+          Url: servicepulse/security/configuration/authentication
+        - Title: Forward Headers
+          Url: servicepulse/security/configuration/forward-headers
+        - Title: TLS
+          Url: servicepulse/security/configuration/tls
+      - Title: Hosting guide
+        Url: servicepulse/security/hosting-guide
     - Title: Configuration
       Articles:
         - Url: servicepulse/host-config

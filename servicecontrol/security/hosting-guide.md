@@ -1,8 +1,14 @@
 ---
-title: Hosting and Security Guide
-summary: Hosting and security options for ServiceControl instances
+title: ServiceControl Hosting and Security Guide
+summary: Example hosting options for ServiceControl instances
 reviewed: 2026-01-12
 component: ServiceControl
+related:
+- servicecontrol/security/configuration/authentication
+- servicecontrol/security/configuration/cors
+- servicecontrol/security/configuration/forward-headers
+- servicecontrol/security/configuration/tls
+- servicepulse/security/hosting-guide
 ---
 
 This guide covers hosting and security options available for ServiceControl, ServiceControl.Audit, and ServiceControl.Monitoring instances.

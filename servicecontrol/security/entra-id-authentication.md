@@ -3,6 +3,9 @@ title: Microsoft Entra ID authentication
 summary: Set up authentication with Microsoft Entra ID for ServiceControl and ServicePulse
 reviewed: 2026-01-13
 component: ServiceControl
+related:
+- servicecontrol/security/configuration/authentication
+- servicepulse/security/configuration/authentication
 ---
 
 This guide explains how to configure Microsoft Entra ID (formerly Azure Active Directory) as the identity provider for ServiceControl and ServicePulse.
@@ -105,8 +108,3 @@ After configuring ServiceControl, restart all instances. When accessing ServiceP
 2. After signing in, ServicePulse should load and display data from ServiceControl
 
 If authentication fails, check the ServiceControl logs for token validation errors.
-
-## Related topics
-
-- [Authentication Configuration](configuration/authentication.md) - All authentication settings
-- [Hosting Guide](hosting-guide.md) - Deployment scenarios with HTTPS and authentication
