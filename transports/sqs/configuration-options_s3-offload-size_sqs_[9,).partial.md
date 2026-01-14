@@ -1,1 +1,1 @@
-This option configures the S3 bucket to be used to store messages larger than 1 MiB. If this option is not specified, S3 will not be used at all and any attempt to send a message larger than 1 MiB will fail.
+This option configures the S3 bucket to be used to store messages larger than 1 MiB for commands and 256KiB for events. If this option is not specified, S3 will not be used at all and any attempt to send a message larger than the size limits will fail

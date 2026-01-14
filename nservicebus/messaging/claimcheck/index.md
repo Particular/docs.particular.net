@@ -32,7 +32,7 @@ The `DataBus` may be used to send messages which exceed the transport's message 
 
 | Transport                         | Maximum size |
 | --------------------------------- | ------------:|
-| Amazon SQS                        | [1MB](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html) |
+| Amazon SQS                        | [1MB for SQS](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html) and [256KB for SNS](https://docs.aws.amazon.com/general/latest/gr/sns.html) |
 | Amazon SQS (using S3)             | [2GB](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html) |
 | Azure Storage Queues              | [64KB](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted#capacity-and-quotas) |
 | Azure Service Bus (Standard tier) | [256KB](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted#capacity-and-quotas) |
