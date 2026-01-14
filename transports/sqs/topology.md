@@ -25,6 +25,11 @@ partial: pub-sub-hybrid
 
 ## S3
 
-[SQS supports a maximum message size of 256 KiB](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html). The transport works around this size limit by using [Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html) to store message payloads for messages that are larger than 256 KiB. This allows the transport to send and receive messages of practically any size. Note that messages that fit within the size limit only use SQS; S3 does not come into play.
+[SQS supports a maximum message size of 1 MiB](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html). The transport works around this size limit by using [Amazon S3](https://docs.aws.amazon.com/AmazonS3/latest/dev/Welcome.html) to store message payloads for messages that are larger than 1 MiB. This allows the transport to send and receive messages of practically any size. Note that messages that fit within the size limit only use SQS; S3 does not come into play.
+
+#if-version (,8.1)
+> [!NOTE]
+> The 1 MiB message size support is implemented only in versions 8.1 and newer. Older versions support a maximum message size of 256 KiB.
+#end-if
 
 When a large message is sent, the transport uploads the message body to an S3 bucket and then sends an SQS message that contains a reference to the S3 object. On the receiving end, the transport receives the message from SQS, identifies the reference to the S3 object, downloads it, and processes the message as usual. When the message is to be deleted, the transport deletes the message from SQS and then deletes it from S3. To ensure that the message is deleted from S3, the transport applies a [lifecycle policy](https://docs.aws.amazon.com/AmazonS3/latest/dev/object-lifecycle-mgmt.html) to the S3 bucket that deletes any messages that are older than the configured [retention period](/transports/sqs/configuration-options.md#retention-period).

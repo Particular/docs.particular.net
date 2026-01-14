@@ -28,11 +28,11 @@ If the location is not available upon sending, the send operation will fail. Whe
 The `DataBus` may be used to send messages which exceed the transport's message size limit, which is determined by the message size limit of the underlying queuing/storage technologies.
 
 > [!NOTE]
-> Not all transports have message size limits and some technologies, such as Azure Service Bus, have increased over time. Current message size limits are stated in the documentation linked in the table below.
+> Not all transports have message size limits and some technologies, such as Azure Service Bus or Amazon SQS, have increased over time. Current message size limits are stated in the documentation linked in the table below.
 
 | Transport                         | Maximum size |
 | --------------------------------- | ------------:|
-| Amazon SQS                        | [256KB](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html) |
+| Amazon SQS                        | [1MB](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html) |
 | Amazon SQS (using S3)             | [2GB](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/SQSDeveloperGuide/quotas-messages.html) |
 | Azure Storage Queues              | [64KB](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted#capacity-and-quotas) |
 | Azure Service Bus (Standard tier) | [256KB](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted#capacity-and-quotas) |

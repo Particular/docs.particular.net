@@ -62,7 +62,7 @@ partial: queuenamegenerator
 
 **Default**: Disabled. Any attempt to send a message larger than the SQS limit will fail.
 
-This option configures the S3 bucket to be used to store messages larger than 256 kB. If this option is not specified, S3 will not be used at all and any attempt to send a message larger than 256 kB will fail.
+partial: s3-offload-size
 
 If the specified bucket doesn't exist, it will be created when the endpoint starts.
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Net;
 using Amazon;
 using Amazon.Runtime;
@@ -6,6 +7,7 @@ using Amazon.S3;
 using Amazon.SimpleNotificationService;
 using Amazon.SQS;
 using NServiceBus;
+using NServiceBus.Transport.SQS;
 
 
 class Usage
