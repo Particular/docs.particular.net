@@ -17,15 +17,24 @@ When ServicePulse is deployed behind a reverse proxy that terminates SSL/TLS (li
 
 There are two hosting options for ServiceControl, [Container](/servicepulse/containerization/) and [Windows Service](/servicepulse/installation.md). The container is configured via environment variables and the windows service is configured using command-line arguments. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings in conjustion with [Authentication](authentication.md) and [TLS](tls.md) configuration settings in a scenario based format.
 
-| Container Environment Variable                  | Windows Service Command-Line Argument | Default | Description                                                      |
-|-------------------------------------------------|---------------------------------------|---------|------------------------------------------------------------------|
-| `SERVICEPULSE_FORWARDEDHEADERS_ENABLED`         | `--forwardedheadersenabled=`          | `true`  | Enable forwarded headers processing                              |
-| `SERVICEPULSE_FORWARDEDHEADERS_TRUSTALLPROXIES` | `--forwardedheaderstrustallproxies=`  | `true`  | Trust all proxies (auto-disabled if known proxies/networks set)  |
-| `SERVICEPULSE_FORWARDEDHEADERS_KNOWNPROXIES`    | `--forwardedheadersknownproxies=`     | (none)  | Comma-separated IP addresses of trusted proxies                  |
-| `SERVICEPULSE_FORWARDEDHEADERS_KNOWNNETWORKS`   | `--forwardedheadersknownnetworks=`    | (none)  | Comma-separated CIDR networks (e.g., `10.0.0.0/8,172.16.0.0/12`) |
+### Container
 
-> [!WARNING]
-> The default configuration (`TrustAllProxies = true`) is suitable for development and trusted container environments only. For production deployments accessible from untrusted networks, its recommended to configure `KnownProxies` or `KnownNetworks` to restrict which sources can set forwarded headers. Failing to do so can allow attackers to spoof client IP addresses.
+- [Container forward header settings](/servicepulse/containerization/#settings-forward-headers)
+
+### Windows Service
+
+| Command-Line Argument                 | Default | Description                                                      |
+|---------------------------------------|---------|------------------------------------------------------------------|
+| `--forwardedheadersenabled=`          | `true`  | Enable forwarded headers processing                              |
+| `--forwardedheaderstrustallproxies=`  | `true`  | Trust all proxies (auto-disabled if known proxies/networks set)  |
+| `--forwardedheadersknownproxies=`     | (none)  | Comma-separated IP addresses of trusted proxies                  |
+| `--forwardedheadersknownnetworks=`    | (none)  | Comma-separated CIDR networks (e.g., `10.0.0.0/8,172.16.0.0/12`) |
+
+Example:
+
+```cmd
+"C:\Program Files (x86)\Particular Software\ServicePulse\ServicePulse.Host.exe" --forwardedheadersenabled=true --forwardedheaderstrustallproxies=true
+```
 
 ## What Headers Are Processed
 
@@ -116,9 +125,9 @@ For example, with `X-Forwarded-For: 203.0.113.50, 10.0.0.1, 192.168.1.1`:
 - **TrustAllProxies = true**: Returns `203.0.113.50` (original client)
 - **TrustAllProxies = false**: Returns `192.168.1.1` (last proxy)
 
-## Configuration Examples
+## Configuration examples
 
-The following examples show common forwarded headers configurations for different deployment scenarios.
+The following examples show common forward header configurations for different deployment scenarios.
 
 ### Single reverse proxy (known IP)
 
@@ -190,3 +199,7 @@ docker run -e SERVICEPULSE_FORWARDEDHEADERS_ENABLED=true \
 ```cmd
 ServicePulse.Host.exe --forwardedheadersenabled=true --forwardedheaderstrustallproxies=true
 ```
+
+## Troubleshooting
+
+include: forward-header-troubleshooting

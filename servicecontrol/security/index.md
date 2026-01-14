@@ -58,7 +58,7 @@ sequenceDiagram
     ServicePulse-->>User: Display data
 ```
 
-Certain endpoints remain accessible without authentication to support API discovery, client bootstrapping, and scatter-gather communication between ServiceControl instances. See [Authentication Configuration](configuration/authentication.md#limitations) for the full list of anonymous endpoints and security considerations.
+Certain endpoints remain accessible without authentication to support API discovery, client bootstrapping, and scatter-gather communication between ServiceControl instances.
 
 ### Anonymous endpoints
 

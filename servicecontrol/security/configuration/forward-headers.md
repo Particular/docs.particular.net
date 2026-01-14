@@ -124,3 +124,7 @@ For development or fully trusted environments (not recommended for production):
 <add key="ServiceControl/ForwardedHeaders.Enabled" value="true" />
 <add key="ServiceControl/ForwardedHeaders.TrustAllProxies" value="true" />
 ```
+
+## Troubleshooting
+
+include: forward-header-troubleshooting

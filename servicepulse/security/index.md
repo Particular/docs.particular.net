@@ -11,10 +11,10 @@ This section covers security features for ServicePulse, including authentication
 
 ## In this section
 
-- [Security Configuration](configuration/) - Configuration reference for TLS and forward headers
+- Security Configuration - Configuration reference for TLS and forward headers
 - [Hosting Guide](hosting-guide.md) - Deployment scenarios with complete configuration examples
 
-## Authentication
+## [Authentication](/servicepulse/security/configuration/authentication.md)
 
 ServicePulse supports standards-based authentication using [OAuth 2.0](https://oauth.net/2/) with [JSON Web Tokens (JWT)](https://en.wikipedia.org/wiki/JSON_Web_Token), and [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/).
 
@@ -50,7 +50,7 @@ sequenceDiagram
     ServicePulse-->>User: Display data
 ```
 
-## TLS
+## [TLS](/servicepulse/security/configuration/tls.md)
 
 When authentication is enabled, access tokens are exchanged between ServicePulse and ServiceControl. To protect these tokens, TLS must be enabled.
 
@@ -62,17 +62,13 @@ ServicePulse supports two approaches for HTTPS:
 - **Direct HTTPS**: Configure Kestrel to handle TLS with a certificate
 - **Reverse proxy**: Terminate TLS at a reverse proxy (NGINX, IIS, Azure App Gateway, etc.) and forward requests to ServicePulse over HTTP
 
-See [TLS Configuration](configuration/tls.md) for settings and certificate management.
-
-## Reverse proxy support
+## [Reverse proxy support](/servicepulse/security/configuration/forward-headers.md)
 
 When ServicePulse runs behind a reverse proxy, forwarded headers ensure ServicePulse correctly interprets client requests. This is important for:
 
 - Determining the original client IP address
 - Understanding whether the original request used HTTPS
 - Generating correct redirect URLs
-
-See [Forward Headers Configuration](configuration/forward-headers.md) for settings.
 
 ## Deployment scenarios
 

@@ -17,19 +17,29 @@ ServicePulse can be configured to use HTTPS directly, enabling encrypted connect
 
 There are two hosting options for ServiceControl, [Container](/servicepulse/containerization/) and [Windows Service](/servicepulse/installation.md). The container is configured via environment variables and the windows service is configured using command-line arguments. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings in conjustion with [Authentication](authentication.md) and [Forward Headers](forward-headers.md) configuration settings in a scenario based format.
 
-| Container Environment Variable             | Windows Service Command-Line Argument | Default    | Description                                                    |
-|--------------------------------------------|---------------------------------------|------------|----------------------------------------------------------------|
-| `SERVICEPULSE_HTTPS_ENABLED`               | `--httpsenabled=`                     | `false`    | Enable HTTPS with Kestrel                                      |
-| `SERVICEPULSE_HTTPS_CERTIFICATEPATH`       | N/A (See note below)                  | (none)     | Path to the certificate file (.pfx)                            |
-| `SERVICEPULSE_HTTPS_CERTIFICATEPASSWORD`   | N/A (See note below)                  | (none)     | Password for the certificate file                              |
-| `SERVICEPULSE_HTTPS_REDIRECTHTTPTOHTTPS`   | `--httpsredirecthttptohttps=`         | `false`    | Redirect HTTP requests to HTTPS                                |
-| `SERVICEPULSE_HTTPS_PORT`                  | `--httpsport=`                        | (none)     | HTTPS port for redirect (required for reverse proxy scenarios) |
-| `SERVICEPULSE_HTTPS_ENABLEHSTS`            | `--httpsenablehsts=`                  | `false`    | Enable HTTP Strict Transport Security                          |
-| `SERVICEPULSE_HTTPS_HSTSMAXAGESECONDS`     | `--httpshstsmaxageseconds=`           | `31536000` | HSTS max-age in seconds (default: 1 year)                      |
-| `SERVICEPULSE_HTTPS_HSTSINCLUDESUBDOMAINS` | `--httpshstsincludesubdomains=`       | `false`    | Include subdomains in HSTS policy                              |
+### Container
+
+- [Container TLS settings](/servicepulse/containerization/#settings-tls)
+
+### Window Service
+
+| Command-Line Argument           | Default    | Description                                                    |
+|---------------------------------|------------|----------------------------------------------------------------|
+| `--httpsenabled=`               | `false`    | Enable HTTPS with Kestrel                                      |
+| `--httpsredirecthttptohttps=`   | `false`    | Redirect HTTP requests to HTTPS                                |
+| `--httpsport=`                  | (none)     | HTTPS port for redirect (required for reverse proxy scenarios) |
+| `--httpsenablehsts=`            | `false`    | Enable HTTP Strict Transport Security                          |
+| `--httpshstsmaxageseconds=`     | `31536000` | HSTS max-age in seconds (default: 1 year)                      |
+| `--httpshstsincludesubdomains=` | `false`    | Include subdomains in HSTS policy                              |
 
 > [!NOTE]
 > The windows service uses Windows HttpListener which requires [SSL certificate binding at the OS level using `netsh`](https://learn.microsoft.com/en-us/dotnet/framework/wcf/feature-details/how-to-configure-a-port-with-an-ssl-certificate). The certificate is not configured in the application itself.
+
+Example:
+
+```cmd
+"C:\Program Files (x86)\Particular Software\ServicePulse\ServicePulse.Host.exe" --httpsenabled=true --httpsredirecthttptohttps=false
+```
 
 ## Security Considerations
 
@@ -138,3 +148,21 @@ docker run -e SERVICEPULSE_HTTPS_ENABLEHSTS=true \
 ```cmd
 ServicePulse.Host.exe --httpsenablehsts=true --httpshstsmaxageseconds=31536000 --httpshstsincludesubdomains=true
 ```
+
+## Troubleshooting
+
+include: tls-troubleshooting
+
+### SSL certificate binding fails (Windows Service)
+
+**Symptom**: ServicePulse fails to start with HTTPS enabled, or `netsh http add sslcert` returns an error.
+
+**Cause**: The certificate is not properly bound to the port, the certificate is missing from the certificate store, or the thumbprint/appid is incorrect.
+
+**Solutions**:
+
+- Verify the certificate is installed in the Windows certificate store (Local Computer > Personal)
+- Check the certificate thumbprint is correct (no spaces, lowercase)
+- Ensure the port is not already bound to another certificate: `netsh http show sslcert`
+- Remove existing binding before adding a new one: `netsh http delete sslcert ipport=0.0.0.0:443`
+- Run the command prompt as Administrator

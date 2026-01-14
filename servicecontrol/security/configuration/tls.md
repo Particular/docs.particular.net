@@ -80,3 +80,7 @@ When TLS is terminated at a reverse proxy and you want ServiceControl to add HST
 <add key="ServiceControl/Https.HstsMaxAgeSeconds" value="31536000" />
 <add key="ServiceControl/Https.HstsIncludeSubDomains" value="true" />
 ```
+
+## Troubleshooting
+
+include: tls-troubleshooting

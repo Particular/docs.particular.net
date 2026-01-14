@@ -93,13 +93,13 @@ The maximum allowed time for the process to complete the shutdown.
 | Installation via PowerShell (on Windows) | TimeSpan | `00:02:00` (2 minutes) |
 | Installation via ServiceControl Management Utility (SCMU) (on Windows) | TimeSpan | `00:02:00` (2 minutes) |
 
-## Authentication
+## [Authentication](/servicecontrol/security/configuration/authentication.md)
 
-These settings configure [authentication using OAuth 2.0 and OpenID Connect](/servicecontrol/security/).
+These settings configure [authentication using OAuth 2.0 and OpenID Connect](/servicecontrol/security/). Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md), or [authentication configuration examples](/servicecontrol/security/configuration/authentication.md#identity-provider-setup-configuration-examples) for additional information.
 
 ### Monitoring/Authentication.Enabled
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
 Enables or disables authentication.
 
@@ -115,7 +115,7 @@ Enables or disables authentication.
 
 ### Monitoring/Authentication.Authority
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
 The URL of the OpenID Connect authority (identity provider) used to authenticate tokens.
 
@@ -131,7 +131,7 @@ The URL of the OpenID Connect authority (identity provider) used to authenticate
 
 ### Monitoring/Authentication.Audience
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
 The expected audience value in the JWT token, typically the application ID or URI of the API.
 
@@ -147,7 +147,7 @@ The expected audience value in the JWT token, typically the application ID or UR
 
 ### Monitoring/Authentication.ValidateIssuer
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
 Controls whether the token issuer is validated against the authority.
 
@@ -163,7 +163,7 @@ Controls whether the token issuer is validated against the authority.
 
 ### Monitoring/Authentication.ValidateAudience
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
 Controls whether the token audience is validated.
 
@@ -179,7 +179,7 @@ Controls whether the token audience is validated.
 
 ### Monitoring/Authentication.ValidateLifetime
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
 Controls whether the token expiration is validated.
 
@@ -195,7 +195,7 @@ Controls whether the token expiration is validated.
 
 ### Monitoring/Authentication.ValidateIssuerSigningKey
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
 Controls whether the token signing key is validated.
 
@@ -211,7 +211,7 @@ Controls whether the token signing key is validated.
 
 ### Monitoring/Authentication.RequireHttpsMetadata
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
 Controls whether HTTPS is required when retrieving metadata from the authority.
 
@@ -228,13 +228,13 @@ Controls whether HTTPS is required when retrieving metadata from the authority.
 > [!WARNING]
 > Setting this to `false` is not recommended for production environments.
 
-## HTTPS
+## [TLS](/servicecontrol/security/configuration/tls.md)
 
-These settings configure HTTPS. Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) for additional information.
+These settings configure HTTPS. Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md), or [TLS configuration examples](/servicecontrol/security/configuration/tls.md#configuration-examples) for additional information.
 
 ### Monitoring/Https.Enabled
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
 Enables Kestrel HTTPS with a certificate.
 
@@ -250,7 +250,7 @@ Enables Kestrel HTTPS with a certificate.
 
 ### Monitoring/Https.CertificatePath
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
 The path to the PFX or PEM certificate file.
 
@@ -266,7 +266,7 @@ The path to the PFX or PEM certificate file.
 
 ### Monitoring/Https.CertificatePassword
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
 The password for the certificate file, if required.
 
@@ -282,7 +282,7 @@ The password for the certificate file, if required.
 
 ### Monitoring/Https.RedirectHttpToHttps
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
 Redirects HTTP requests to HTTPS. This is intended for use with a reverse proxy that handles both HTTP and HTTPS traffic.
 
@@ -296,9 +296,12 @@ Redirects HTTP requests to HTTPS. This is intended for use with a reverse proxy 
 | --- | --- |
 | bool | `false` |
 
+> [!NOTE]
+> When running ServiceControl directly without a reverse proxy, the application only listens on a single protocol (HTTP or HTTPS). This setting is intended for use with a reverse proxy that handles both HTTP and HTTPS traffic.
+
 ### Monitoring/Https.Port
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
 The HTTPS port to use in redirect URLs. Required when `RedirectHttpToHttps` is enabled in reverse proxy scenarios.
 
@@ -314,7 +317,7 @@ The HTTPS port to use in redirect URLs. Required when `RedirectHttpToHttps` is e
 
 ### Monitoring/Https.EnableHsts
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
 Enables HTTP Strict Transport Security (HSTS).
 
@@ -328,9 +331,12 @@ Enables HTTP Strict Transport Security (HSTS).
 | --- | --- |
 | bool | `false` |
 
+> [!NOTE]
+> Review the implications of [enabling HSTS](/servicecontrol/security/configuration/tls.md#security-considerations-hsts) before doing so.
+
 ### Monitoring/Https.HstsMaxAgeSeconds
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
 The max-age value in seconds for the HSTS header.
 
@@ -346,7 +352,7 @@ The max-age value in seconds for the HSTS header.
 
 ### Monitoring/Https.HstsIncludeSubDomains
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
 Includes subdomains in the HSTS policy.
 
@@ -360,13 +366,13 @@ Includes subdomains in the HSTS policy.
 | --- | --- |
 | bool | `false` |
 
-## Forwarded headers
+## [Forwarded headers](/servicecontrol/security/configuration/forward-headers.md)
 
-These settings configure forwarded headers for reverse proxy scenarios. Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) for additional information.
+These settings configure forwarded headers for reverse proxy scenarios. Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md), or [forward headers configuration examples](/servicecontrol/security/configuration/forward-headers.md#configuration-examples) for additional information.
 
 ### Monitoring/ForwardedHeaders.Enabled
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
 Enables processing of forwarded headers (X-Forwarded-For, X-Forwarded-Proto, etc.).
 
@@ -382,7 +388,7 @@ Enables processing of forwarded headers (X-Forwarded-For, X-Forwarded-Proto, etc
 
 ### Monitoring/ForwardedHeaders.TrustAllProxies
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
 Trusts forwarded headers from any source. Set to `false` when using `KnownProxies` or `KnownNetworks`.
 
@@ -401,9 +407,9 @@ Trusts forwarded headers from any source. Set to `false` when using `KnownProxie
 
 ### Monitoring/ForwardedHeaders.KnownProxies
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
-A comma-separated list of trusted proxy IP addresses.
+A comma-separated list of trusted proxy IP addresses e.g., `127.0.0.1`
 
 | Context | Name |
 | --- | --- |
@@ -415,13 +421,11 @@ A comma-separated list of trusted proxy IP addresses.
 | --- | --- |
 | string | None |
 
-Example: `127.0.0.1`
-
 ### Monitoring/ForwardedHeaders.KnownNetworks
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
-A comma-separated list of trusted CIDR network ranges.
+A comma-separated list of trusted CIDR network ranges e.g., `10.0.0.0/8,172.16.0.0/12`
 
 | Context | Name |
 | --- | --- |
@@ -431,17 +435,15 @@ A comma-separated list of trusted CIDR network ranges.
 
 | Type | Default value |
 | --- | --- |
-| string | None |
+| string | None | 
 
-Example: `10.0.0.0/8,172.16.0.0/12`
+## [CORS](/servicecontrol/security/configuration/cors.md)
 
-## CORS
-
-These settings configure Cross-Origin Resource Sharing (CORS). Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) for additional information.
+These settings configure Cross-Origin Resource Sharing (CORS). Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md), or [cors configuration examples](/servicecontrol/security/configuration/cors.md#configuration-examples) for additional information.
 
 ### Monitoring/Cors.AllowAnyOrigin
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
 Allows requests from any origin.
 
@@ -460,9 +462,9 @@ Allows requests from any origin.
 
 ### Monitoring/Cors.AllowedOrigins
 
-_Added in version 6.9.0_
+_Added in version 6.10.0_
 
-A comma-separated list of allowed origins.
+A comma-separated list of allowed origins e.g., `https://servicepulse.example.com,https://admin.example.com`
 
 | Context | Name |
 | --- | --- |
@@ -473,8 +475,6 @@ A comma-separated list of allowed origins.
 | Type | Default value |
 | --- | --- |
 | string | None |
-
-Example: `https://servicepulse.example.com,https://admin.example.com`
 
 ## Logging
 
