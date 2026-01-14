@@ -16,7 +16,7 @@ ServicePulse supports authentication using [OpenID Connect (OIDC)](https://openi
 
 ## Configuration
 
-Authentication in ServicePulse is [configured in the primary ServiceControl instance](/servicecontrol/security/configuration/authentication.md#configuration-servicepulse-settings). ServicePulse fetches authentication settings on startup from the ServiceControl API and the following settings are set:
+Authentication in ServicePulse is [configured in the primary ServiceControl instance](/servicecontrol/security/configuration/authentication.md#configuration). ServicePulse fetches authentication settings on startup from the ServiceControl API and the following settings are set:
 
 | Setting      | Description                                                                   |
 |--------------|-------------------------------------------------------------------------------|
