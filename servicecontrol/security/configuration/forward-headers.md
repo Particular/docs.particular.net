@@ -1,5 +1,5 @@
 ---
-title: ServiceControl Forward Headers Configuration
+title: ServiceControl Forward Headers for Reverse Proxy Configuration
 summary: How to enable and configure forward headers for ServiceControl instances
 reviewed: 2026-01-14
 component: ServiceControl
@@ -57,6 +57,24 @@ When using a reverse proxy that terminates SSL, you can configure ServiceControl
 2. The proxy sets `X-Forwarded-Proto` to indicate the original protocol
 3. ServiceControl reads this header (via forwarded headers processing)
 4. If the original request was HTTP and redirect is enabled, ServiceControl returns a redirect to HTTPS
+
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Proxy as Reverse Proxy
+    participant SC as ServiceControl
+
+    Client->>Proxy: HTTP Request
+    Note over Proxy: Terminates request<br/>Sets X-Forwarded-Proto: http
+    Proxy->>SC: Request + X-Forwarded-Proto: http
+    Note over SC: Reads X-Forwarded-Proto<br/>Detects original was HTTP
+    SC-->>Proxy: 301 Redirect to HTTPS
+    Proxy-->>Client: 301 Redirect to HTTPS
+    Client->>Proxy: HTTPS Request
+    Note over Proxy: Terminates SSL<br/>Sets X-Forwarded-Proto: https
+    Proxy->>SC: Request + X-Forwarded-Proto: https
+    SC->>Client: Response (via Proxy)
+```
 
 To enable HTTP to HTTPS redirect, see [TLS Configuration](tls.md) for details on how to do this.
 

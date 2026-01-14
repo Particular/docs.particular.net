@@ -1,5 +1,5 @@
 ---
-title: Microsoft Entra ID authentication
+title: Microsoft Entra ID Authentication Guide
 summary: Set up authentication with Microsoft Entra ID for ServiceControl and ServicePulse
 reviewed: 2026-01-13
 component: ServiceControl

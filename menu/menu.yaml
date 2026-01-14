@@ -1409,7 +1409,7 @@
         Articles:
         - Title: Authentication
           Url: servicepulse/security/configuration/authentication
-        - Title: Forward Headers
+        - Title: Forward Headers for Reverse Proxy
           Url: servicepulse/security/configuration/forward-headers
         - Title: TLS
           Url: servicepulse/security/configuration/tls
@@ -1505,7 +1505,7 @@
       Articles:
       - Title: Authentication
         Url: servicecontrol/security/configuration/authentication
-      - Title: Forward Headers
+      - Title: Forward Headers for Reverse Proxy
         Url: servicecontrol/security/configuration/forward-headers
       - Title: TLS
         Url: servicecontrol/security/configuration/tls
@@ -1515,7 +1515,7 @@
       Url: servicecontrol/security/hosting-guide
     - Title: Examples
       Articles:
-      - Title: Microsoft Entra ID authentication
+      - Title: Microsoft Entra ID Authentication Guide
         Url: servicecontrol/security/entra-id-authentication
   - Title: Planning
     Articles:

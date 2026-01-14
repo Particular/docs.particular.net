@@ -21,11 +21,11 @@ include: servicecontrol-instance-prefix
 
 ### Core Settings
 
-| Environment Variable                | App.config                          | Default | Description                                                                               |
-|-------------------------------------|-------------------------------------|---------|-------------------------------------------------------------------------------------------|
-| `{PREFIX}_AUTHENTICATION_ENABLED`   | `{PREFIX}/Authentication.Enabled`   | `false` | Enable JWT authentication                                                                 |
-| `{PREFIX}_AUTHENTICATION_AUTHORITY` | `{PREFIX}/Authentication.Authority` | (none)  | OpenID Connect authority URL (e.g., `https://login.microsoftonline.com/{tenant-id}/v2.0`) |
-| `{PREFIX}_AUTHENTICATION_AUDIENCE`  | `{PREFIX}/Authentication.Audience`  | (none)  | The audience identifier (typically your API identifier or client ID, e.g., `api://servicecontrol`)                      |
+| Environment Variable                | App.config                          | Default | Description                                                                                        |
+|-------------------------------------|-------------------------------------|---------|----------------------------------------------------------------------------------------------------|
+| `{PREFIX}_AUTHENTICATION_ENABLED`   | `{PREFIX}/Authentication.Enabled`   | `false` | Enable JWT authentication                                                                          |
+| `{PREFIX}_AUTHENTICATION_AUTHORITY` | `{PREFIX}/Authentication.Authority` | (none)  | OpenID Connect authority URL (e.g., `https://login.microsoftonline.com/{tenant-id}/v2.0`)          |
+| `{PREFIX}_AUTHENTICATION_AUDIENCE`  | `{PREFIX}/Authentication.Audience`  | (none)  | The audience identifier (typically your API identifier or client ID, e.g., `api://servicecontrol`) |
 
 ### Token Validation Settings
 
@@ -55,17 +55,31 @@ These settings are served to ServicePulse through a bootstrap endpoint hosting i
 > [!NOTE]
 > The ServicePulse audience Open ID Connect configuration is automatically filled in using the [ServiceControl audience setting](#configuration-core-settings).
 
-## Identity provider guides
+## Identity Provider Setup
+
+When registering ServiceControl with your identity provider, you will need the following information:
+
+| Setting                       | Description                                                                                                      |
+|-------------------------------|------------------------------------------------------------------------------------------------------------------|
+| Application type              | Web application / API (confidential client)                                                                      |
+| Redirect URI                  | Not required for API-only registration                                                                           |
+| Audience                      | A unique identifier for the ServiceControl API (e.g., `api://servicecontrol` or a custom URI)                    |
+| Scopes                        | Define at least one scope that ServicePulse can request (e.g., `api.access`)                                     |
+| Allowed token audiences       | Must include the audience configured in ServiceControl                                                           |
+
+Additionally, a separate application registration is required for ServicePulse. See [ServicePulse Identity Provider Setup](/servicepulse/security/configuration/authentication.md#identity-provider-setup) for those requirements.
+
+### Identity Provider Guides
 
 For step-by-step instructions on configuring specific identity providers, see:
 
 - [Microsoft Entra ID](../entra-id-authentication.md)
 
-## Configuration examples
+### Configuration examples
 
 The following examples show complete authentication configurations for common identity providers.
 
-### Microsoft Entra ID
+#### Microsoft Entra ID
 
 ```xml
 <!-- Enable authentication -->
@@ -79,7 +93,7 @@ The following examples show complete authentication configurations for common id
 <add key="ServiceControl/Authentication.ServicePulse.ApiScopes" value="[&quot;api://{app-id}/api.access&quot;]" />
 ```
 
-### Auth0
+#### Auth0
 
 ```xml
 <!-- Enable authentication -->
@@ -93,7 +107,7 @@ The following examples show complete authentication configurations for common id
 <add key="ServiceControl/Authentication.ServicePulse.ApiScopes" value="[&quot;{scope1}&quot;,&quot;{scope2}&quot;]" />
 ```
 
-### Keycloak
+#### Keycloak
 
 ```xml
 <!-- Enable authentication -->
@@ -106,6 +120,67 @@ The following examples show complete authentication configurations for common id
 <add key="ServiceControl/Authentication.ServicePulse.Authority" value="https://{keycloak-host}/realms/{realm}" />
 <add key="ServiceControl/Authentication.ServicePulse.ApiScopes" value="[&quot;{scope}&quot;]" />
 ```
+
+## Troubleshooting
+
+### 401 Unauthorized responses
+
+This error occurs when:
+
+1. The token is missing or malformed
+2. The token has expired
+3. The token audience doesn't match the configured `Authentication.Audience`
+4. The token issuer doesn't match the configured `Authentication.Authority`
+
+**Solution:** Verify that the `Authority` and `Audience` settings match exactly what is configured in your identity provider. Check the ServiceControl logs for detailed validation error messages.
+
+### Token validation fails with "IDX10205: Issuer validation failed"
+
+This typically means:
+
+1. The `Authority` URL is incorrect or doesn't match the token's `iss` claim
+2. For Microsoft Entra ID, ensure the authority URL includes or excludes `/v2.0` consistently with your token version
+
+**Solution:** Compare the `iss` claim in your JWT token (decode it at [jwt.ms](https://jwt.ms)) with your configured authority URL.
+
+### Token validation fails with "IDX10214: Audience validation failed"
+
+This occurs when:
+
+1. The `Audience` setting doesn't match the token's `aud` claim
+2. The identity provider is issuing tokens for a different audience
+
+**Solution:** Verify the `aud` claim in your token matches the `Authentication.Audience` configuration exactly.
+
+### Unable to retrieve OpenID Connect metadata
+
+This error appears when ServiceControl cannot reach the identity provider's discovery endpoint:
+
+1. Network connectivity issues to the identity provider
+2. Firewall blocking outbound HTTPS connections
+3. Invalid `Authority` URL
+4. TLS/SSL certificate issues
+
+**Solution:** Verify network connectivity to `{authority}/.well-known/openid-configuration`. For local development, you may need to set `RequireHttpsMetadata` to `false`.
+
+### ServicePulse cannot authenticate
+
+If ServicePulse shows authentication errors:
+
+1. Verify the ServicePulse-specific settings are configured on the **primary** ServiceControl instance
+2. Ensure the `ServicePulse.ClientId` matches the SPA application registration
+3. Check that `ServicePulse.ApiScopes` includes the correct scope(s) for your API
+
+**Solution:** See the [ServicePulse authentication troubleshooting](/servicepulse/security/configuration/authentication.md#troubleshooting) for client-side issues.
+
+### Clock skew causing token validation failures
+
+JWT tokens are time-sensitive. If server clocks are not synchronized:
+
+1. Tokens may be rejected as "not yet valid" or "expired"
+2. This commonly occurs in virtual machines or containers
+
+**Solution:** Ensure all servers are using NTP to synchronize their clocks.
 
 ## Limitations
 

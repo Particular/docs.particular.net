@@ -45,6 +45,8 @@ The default configuration with no additional setup required. Backwards compatibl
 | Forwarded Headers       | ✅ Enabled (trusts all)  |
 | Restricted Proxy Trust  | ❌ Disabled              |
 
+#### Example Configuration
+
 ```xml
 <!-- No configuration needed - defaults work out of the box -->
 <!-- Authentication: disabled by default -->
@@ -65,15 +67,20 @@ Or explicitly:
 </appSettings>
 ```
 
-### Scenario 1: Strict Reverse Proxy with Authentication
+### Scenario 1: Strict Reverse Proxy
 
 Strict Reverse proxy with SSL termination and JWT authentication via an identity provider (Azure AD, Okta, Auth0, Keycloak, etc.).
 
 #### Architecture
 
-```text
-Client → HTTPS → Reverse Proxy → HTTP → ServiceControl
-                 (SSL termination)     (JWT validation)
+```mermaid
+sequenceDiagram
+    participant Client
+    participant RP as Reverse Proxy<br/>(SSL termination)
+    participant SC as ServiceControl<br/>(JWT validation)
+
+    Client->>RP: HTTPS
+    RP->>SC: HTTP
 ```
 
 #### Security Features
@@ -132,11 +139,14 @@ Client → HTTPS → Reverse Proxy → HTTP → ServiceControl
 
 Kestrel handles TLS directly with JWT authentication without a reverse proxy.
 
-**Architecture:**
+#### Architecture
 
-```text
-Client → HTTPS → ServiceControl (Kestrel)
-                 (TLS + JWT validation)
+```mermaid
+sequenceDiagram
+    participant Client
+    participant SC as ServiceControl (Kestrel)<br/>(TLS + JWT validation)
+
+    Client->>SC: HTTPS
 ```
 
 #### Security Features
@@ -193,11 +203,16 @@ Client → HTTPS → ServiceControl (Kestrel)
 
 For environments requiring encryption of internal traffic. End-to-end TLS encryption where the reverse proxy terminates external TLS and re-encrypts traffic to ServiceControl over HTTPS.
 
-**Architecture:**
+#### Architecture
 
-```text
-Client → HTTPS → Reverse Proxy → HTTPS → ServiceControl (Kestrel)
-                 (TLS termination)       (TLS + JWT validation)
+```mermaid
+sequenceDiagram
+    participant Client
+    participant RP as Reverse Proxy<br/>(TLS termination)
+    participant SC as ServiceControl (Kestrel)<br/>(TLS + JWT validation)
+
+    Client->>RP: HTTPS
+    RP->>SC: HTTPS
 ```
 
 #### Security Features
@@ -251,18 +266,3 @@ Client → HTTPS → Reverse Proxy → HTTPS → ServiceControl (Kestrel)
   <add key="ServiceControl/Cors.AllowedOrigins" value="https://servicepulse.yourcompany.com" />
 </appSettings>
 ```
-
-## Scenario Comparison Matrix
-
-| Feature                        | Reverse Proxy + Auth | Direct HTTPS + Auth | End-to-End Encryption |
-|--------------------------------|:--------------------:|:-------------------:|:---------------------:|
-| **JWT Authentication**         |          ✅           |          ✅          |           ✅           |
-| **Kestrel HTTPS**              |          ❌           |          ✅          |           ✅           |
-| **HTTPS Redirection**          |     ✅ (optional)     |          ✅          |     ❌ (at proxy)      |
-| **HSTS**                       |     ❌ (at proxy)     |          ✅          |     ❌ (at proxy)      |
-| **Restricted CORS**            |          ✅           |          ✅          |           ✅           |
-| **Forwarded Headers**          |          ✅           |          ❌          |           ✅           |
-| **Restricted Proxy Trust**     |          ✅           |         N/A         |           ✅           |
-| **Internal Traffic Encrypted** |          ❌           |          ✅          |           ✅           |
-| **Requires Reverse Proxy**     |         Yes          |         No          |          Yes          |
-| **Certificate Management**     |    At proxy only     |  At ServiceControl  |         Both          |
