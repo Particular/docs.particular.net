@@ -1,0 +1,1 @@
+This option configures the S3 bucket to be used to store messages larger than 1 MiB (_since version 8.1; previous versions support only 256 KiB_). If this option is not specified, S3 will not be used at all and any attempt to send a message larger than 1 MiB (_256 KiB_) will fail.
