@@ -11,7 +11,7 @@ related:
 > [!NOTE]
 > This page is **not** relevant if the [ServicePulse static files have been extracted](/servicepulse/install-servicepulse-in-iis.md), and is being hosted in anything other than the [Container](/servicepulse/containerization/) or [Windows Service](/servicepulse/installation.md) hosting options provided. Forward header configuration is only required if using a reverse proxy.
 
-When ServicePulse is deployed behind a reverse proxy (like nginx, Traefik, or a cloud load balancer) that terminates SSL/TLS, you need to configure forwarded headers so ServicePulse correctly understands the original client request.
+When ServicePulse is deployed behind a reverse proxy that terminates SSL/TLS (like nginx, Traefik, or a cloud load balancer), you need to configure forwarded headers so ServicePulse correctly understands the original client request.
 
 ## Configuration
 

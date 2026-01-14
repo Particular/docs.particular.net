@@ -1405,7 +1405,6 @@
       - Title: Overview
         Url: servicepulse/security
       - Title: Configuration
-        Url: servicepulse/security/configuration
         Articles:
         - Title: Authentication
           Url: servicepulse/security/configuration/authentication
@@ -1501,7 +1500,6 @@
     - Title: Overview
       Url: servicecontrol/security
     - Title: Configuration
-      Url: servicecontrol/security/configuration
       Articles:
       - Title: Authentication
         Url: servicecontrol/security/configuration/authentication

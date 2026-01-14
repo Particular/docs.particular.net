@@ -13,17 +13,9 @@ Cross-Origin Resource Sharing (CORS) controls which web applications can make re
 
 ServiceControl instances can be configured via environment variables or App.config. Each instance type uses a different prefix. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings in conjunction with [Authentication](authentication.md), [TLS](tls.md), and [Forward Headers](forward-headers.md) configuration settings in a scenario based format.
 
-include: servicecontrol-instance-prefix
-
-### Settings
-
-| Environment Variable              | App.config                        | Default | Description                                      |
-|-----------------------------------|-----------------------------------|---------|--------------------------------------------------|
-| `{PREFIX}_CORS_ALLOWANYORIGIN`    | `{PREFIX}/Cors.AllowAnyOrigin`    | `true`  | Allow requests from any origin                   |
-| `{PREFIX}_CORS_ALLOWEDORIGINS`    | `{PREFIX}/Cors.AllowedOrigins`    | (none)  | Comma-separated list of allowed origins          |
-
-> [!WARNING]
-> The default configuration (`AllowAnyOrigin = true`) allows any website to make requests to ServiceControl. For production deployments, set `AllowAnyOrigin` to `false` and configure `AllowedOrigins` to restrict access to trusted domains only.
+- [Primary Instance](/servicecontrol/servicecontrol-instances/configuration.md#cors)
+- [Audit Instance](/servicecontrol/audit-instances/configuration.md#cors)
+- [Monitoring Instance](/servicecontrol/monitoring-instances/configuration.md#cors)
 
 ## When to configure CORS
 
@@ -34,7 +26,7 @@ CORS configuration is required when:
 
 ## Configuration example
 
-To restrict access to only your ServicePulse domain:
+To restrict access to only your ServicePulse domain, using the primary ServiceControl instance:
 
 ```xml
 <appSettings>

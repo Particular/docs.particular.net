@@ -8,25 +8,15 @@ related:
 - servicepulse/security/configuration/forward-headers
 ---
 
-When ServiceControl instances are deployed behind a reverse proxy (like NGINX, Traefik, or a cloud load balancer) that terminates SSL/TLS, you need to configure forwarded headers so ServiceControl correctly understands the original client request.
+When ServiceControl instances are deployed behind a reverse proxy that terminates SSL/TLS (like NGINX, Traefik, or a cloud load balancer), you need to configure forwarded headers so ServiceControl correctly understands the original client request.
 
 ## Configuration
 
 ServiceControl instances can be configured via environment variables or App.config. Each instance type uses a different prefix. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings in conjunction with [Authentication](authentication.md) and [TLS](tls.md) configuration settings in a scenario based format.
 
-include: servicecontrol-instance-prefix
-
-### Settings
-
-| Environment Variable                        | App.config                                  | Default | Description                                                                  |
-|---------------------------------------------|---------------------------------------------|---------|------------------------------------------------------------------------------|
-| `{PREFIX}_FORWARDEDHEADERS_ENABLED`         | `{PREFIX}/ForwardedHeaders.Enabled`         | `true`  | Enable forwarded headers processing                                          |
-| `{PREFIX}_FORWARDEDHEADERS_TRUSTALLPROXIES` | `{PREFIX}/ForwardedHeaders.TrustAllProxies` | `true`  | Trust all proxies (auto-disabled if known proxies/networks set)              |
-| `{PREFIX}_FORWARDEDHEADERS_KNOWNPROXIES`    | `{PREFIX}/ForwardedHeaders.KnownProxies`    | (none)  | Comma-separated IP addresses of trusted proxies (e.g., `127.0.0.1,10.0.0.5`) |
-| `{PREFIX}_FORWARDEDHEADERS_KNOWNNETWORKS`   | `{PREFIX}/ForwardedHeaders.KnownNetworks`   | (none)  | Comma-separated CIDR networks (e.g., `10.0.0.0/8,172.16.0.0/12`)             |
-
-> [!WARNING]
-> The default configuration (`TrustAllProxies = true`) is suitable for development and trusted container environments only. For production deployments accessible from untrusted networks, its recommended to configure `KnownProxies` or `KnownNetworks` to restrict which sources can set forwarded headers. Failing to do so can allow attackers to spoof client IP addresses.
+- [Primary Instance](/servicecontrol/servicecontrol-instances/configuration.md#forwarded-headers)
+- [Audit Instance](/servicecontrol/audit-instances/configuration.md#forwarded-headers)
+- [Monitoring Instance](/servicecontrol/monitoring-instances/configuration.md#forwarded-headers)
 
 ## What Headers are Processed
 
@@ -94,7 +84,7 @@ For example, with `X-Forwarded-For: 203.0.113.50, 10.0.0.1, 192.168.1.1`:
 
 ## Configuration examples
 
-The following examples show common forwarded headers configurations for different deployment scenarios.
+The following examples show common forwarded headers configurations for different deployment scenarios using the primary ServiceControl instance.
 
 ### Single reverse proxy (known IP)
 

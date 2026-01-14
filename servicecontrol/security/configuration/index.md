@@ -27,9 +27,3 @@ Configure forwarded header processing for deployments behind a reverse proxy. En
 ### [CORS](cors.md)
 
 Configure Cross-Origin Resource Sharing to control which web applications can access the ServiceControl API.
-
-## Configuration methods
-
-ServiceControl instances can be configured via environment variables or App.config. Each instance type uses a different prefix:
-
-include: servicecontrol-instance-prefix

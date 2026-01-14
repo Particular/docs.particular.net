@@ -14,20 +14,9 @@ ServiceControl instances can be configured to use HTTPS directly, enabling encry
 
 ServiceControl instances can be configured via environment variables or App.config. Each instance type uses a different prefix. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings in conjustion with [Authentication](authentication.md) and [Forward Headers](forward-headers.md) configuration settings in a scenario based format.
 
-include: servicecontrol-instance-prefix
-
-### Settings
-
-| Environment Variable                   | App.config                                   | Default    | Description                                                    |
-|----------------------------------------|----------------------------------------------|------------|----------------------------------------------------------------|
-| `{PREFIX}_HTTPS_ENABLED`               | `{PREFIX}/Https.Enabled`                     | `false`    | Enable HTTPS with Kestrel                                      |
-| `{PREFIX}_HTTPS_CERTIFICATEPATH`       | `{PREFIX}/Https.CertificatePath`             | (none)     | Path to the certificate file (.pfx)                            |
-| `{PREFIX}_HTTPS_CERTIFICATEPASSWORD`   | `{PREFIX}/Https.CertificatePassword`         | (none)     | Password for the certificate file                              |
-| `{PREFIX}_HTTPS_REDIRECTHTTPTOHTTPS`   | `ServiceControl/Https.RedirectHttpToHttps`   | `false`    | Redirect HTTP requests to HTTPS                                |
-| `{PREFIX}_HTTPS_PORT`                  | `ServiceControl/Https.Port`                  | (none)     | HTTPS port for redirect (required for reverse proxy scenarios) |
-| `{PREFIX}_HTTPS_ENABLEHSTS`            | `{PREFIX}/Https.EnableHsts`                  | `false`    | Enable HTTP Strict Transport Security                          |
-| `{PREFIX}_HTTPS_HSTSMAXAGESECONDS`     | `ServiceControl/Https.HstsMaxAgeSeconds`     | `31536000` | HSTS max-age in seconds (default: 1 year)                      |
-| `{PREFIX}_HTTPS_HSTSINCLUDESUBDOMAINS` | `ServiceControl/Https.HstsIncludeSubDomains` | `false`    | Include subdomains in HSTS policy                              |
+- [Primary Instance](/servicecontrol/servicecontrol-instances/configuration.md#https)
+- [Audit Instance](/servicecontrol/audit-instances/configuration.md#https)
+- [Monitoring Instance](/servicecontrol/monitoring-instances/configuration.md#https)
 
 ## Security Considerations
 
@@ -49,7 +38,7 @@ The `HTTPS_REDIRECTHTTPTOHTTPS` setting is intended for use with a reverse proxy
 
 ## Configuration examples
 
-The following examples show common TLS configurations for different deployment scenarios.
+The following examples show common TLS configurations for different deployment scenarios using the primary ServiceControl instance.
 
 ### Direct HTTPS with certificate
 

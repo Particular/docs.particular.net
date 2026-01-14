@@ -11,11 +11,11 @@ This section covers security features for ServiceControl, including authenticati
 
 ## In this section
 
-- [Security Configuration](configuration/) - Configuration reference for authentication, TLS, and forward headers
+- Security Configuration - Configuration reference for authentication, TLS, and forward headers
 - [Hosting Guide](hosting-guide.md) - Deployment scenarios with complete configuration examples
 - [Microsoft Entra ID](entra-id-authentication.md) - Step-by-step guide for configuring authentication with Microsoft Entra ID
 
-## Authentication
+## [Authentication](configuration/authentication.md)
 
 ServiceControl and [ServicePulse](/servicepulse/) support standards-based authentication using [OAuth 2.0](https://oauth.net/2/) with [JSON Web Tokens (JWT)](https://en.wikipedia.org/wiki/JSON_Web_Token), and [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/). When enabled, users must sign in through the configured identity provider before accessing ServicePulse.
 
@@ -60,9 +60,36 @@ sequenceDiagram
 
 Certain endpoints remain accessible without authentication to support API discovery, client bootstrapping, and scatter-gather communication between ServiceControl instances. See [Authentication Configuration](configuration/authentication.md#limitations) for the full list of anonymous endpoints and security considerations.
 
-See [Authentication Configuration](configuration/authentication.md) for settings, or [Microsoft Entra ID](entra-id-authentication.md) for a complete setup guide.
+### Anonymous endpoints
 
-## TLS
+The following endpoints are accessible without authentication, even when authentication is enabled:
+
+| Endpoint                            | Purpose                                                            |
+|-------------------------------------|--------------------------------------------------------------------|
+| `/api/authentication/configuration` | Returns authentication configuration for clients like ServicePulse |
+
+This endpoint must remain accessible so clients can obtain the authentication configuration needed to acquire tokens before authenticating.
+
+### Scatter-gather endpoints
+
+The Primary ServiceControl instance communicates with other ServiceControl instances to aggregate data. The following endpoints support this scatter-gather communication and are accessible without authentication:
+
+| Endpoint                     | Purpose                                                   |
+|------------------------------|-----------------------------------------------------------|
+| `/api`                       | API root/discovery - returns available endpoints          |
+| `/api/instance-info`         | Returns instance configuration information                |
+| `/api/configuration`         | Returns instance configuration information (alias)        |
+| `/api/configuration/remotes` | Returns remote instance configurations for scatter-gather |
+
+These endpoints allow the Primary instance to discover remote instances.
+
+### Token Forwarding Security Considerations
+
+- Client tokens are forwarded to remote instances in their entirety
+- Remote instances see the same token as the primary instance
+- Token scope/claims are not modified during forwarding
+
+## [TLS](configuration/tls.md)
 
 When authentication is enabled, access tokens are exchanged between ServicePulse and ServiceControl. To protect these tokens, TLS must be enabled.
 
@@ -74,9 +101,7 @@ ServiceControl supports two approaches for HTTPS:
 - **Direct HTTPS**: Configure Kestrel to handle TLS with a certificate
 - **Reverse proxy**: Terminate TLS at a reverse proxy (NGINX, IIS, Azure App Gateway, etc.) and forward requests to ServiceControl over HTTP
 
-See [TLS Configuration](configuration/tls.md) for settings and certificate management.
-
-## Reverse proxy support
+## [Reverse proxy support](configuration/forward-headers.md)
 
 When ServiceControl runs behind a reverse proxy, forwarded headers ensure ServiceControl correctly interprets client requests. This is important for:
 
@@ -84,11 +109,9 @@ When ServiceControl runs behind a reverse proxy, forwarded headers ensure Servic
 - Understanding whether the original request used HTTPS
 - Generating correct redirect URLs
 
-See [Forward Headers Configuration](configuration/forward-headers.md) for settings.
+## [Deployment scenarios](hosting-guide.md)
 
-## Deployment scenarios
-
-The [Hosting Guide](hosting-guide.md) provides complete configuration examples for common deployment patterns:
+The Hosting Guide provides complete configuration examples for common deployment patterns:
 
 - **Default configuration**: No authentication, HTTP only (backward compatible)
 - **Reverse proxy with authentication**: TLS termination at proxy, JWT authentication

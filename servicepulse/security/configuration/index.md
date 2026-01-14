@@ -23,10 +23,3 @@ Enable encrypted connections by configuring ServicePulse to use HTTPS directly. 
 ### [Forward Headers](forward-headers.md)
 
 Configure forwarded header processing for deployments behind a reverse proxy. Ensures ServicePulse correctly interprets client requests when SSL/TLS is terminated at a load balancer or proxy.
-
-## Configuration methods
-
-ServicePulse can be configured differently depending on the hosting option:
-
-- **Container**: Environment variables (e.g., `SERVICEPULSE_HTTPS_ENABLED`)
-- **Windows Service**: Command-line arguments (e.g., `--httpsenabled=`)

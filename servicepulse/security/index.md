@@ -50,8 +50,6 @@ sequenceDiagram
     ServicePulse-->>User: Display data
 ```
 
-See [ServiceControl Security Overview](/servicecontrol/security/) for complete authentication documentation, or [Microsoft Entra ID](/servicecontrol/security/entra-id-authentication.md) for a step-by-step setup guide.
-
 ## TLS
 
 When authentication is enabled, access tokens are exchanged between ServicePulse and ServiceControl. To protect these tokens, TLS must be enabled.
