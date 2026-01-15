@@ -95,3 +95,164 @@ _Added in version 1.44.0_
 | **Environment variable** | `ENABLE_REVERSE_PROXY` |
 | **Type** | bool |
 | **Default** | `true` |
+
+### [Forward headers](/servicepulse/security/configuration/forward-headers.md)
+
+These settings configure forward headers for reverse proxy scenarios. Refer to the [hosting and security guide](/servicepulse/security/hosting-guide.md), or [forward headers configuration examples](/servicepulse/security/configuration/forward-headers.md#configuration-examples) for additional information.
+
+#### Forward headers enabled
+
+_Added in version 2.5.0_
+
+Enable forward headers processing.
+
+| | |
+|-|-|
+| **Environment variable** | `SERVICEPULSE_FORWARDEDHEADERS_ENABLED` |
+| **Type** | bool |
+| **Default** | `true` |
+
+#### Trust all proxies
+
+_Added in version 2.5.0_
+
+Trust all proxies. Auto-disabled if known proxies/networks set.
+
+| | |
+|-|-|
+| **Environment variable** | `SERVICEPULSE_FORWARDEDHEADERS_TRUSTALLPROXIES` |
+| **Type** | bool |
+| **Default** | `true` |
+
+> [!WARNING]
+> The default configuration (`TrustAllProxies = true`) is suitable for development and trusted container environments only. For production deployments accessible from untrusted networks, its recommended to configure `KnownProxies` or `KnownNetworks` to restrict which sources can set forwarded headers. Failing to do so can allow attackers to spoof client IP addresses.
+
+#### Known proxies
+
+_Added in version 2.5.0_
+
+Comma-separated IP addresses of trusted proxies (e.g., `10.0.0.1,172.16.0.1`).
+
+| | |
+|-|-|
+| **Environment variable** | `SERVICEPULSE_FORWARDEDHEADERS_KNOWNPROXIES` |
+| **Type** | string |
+| **Default** | (none) |
+
+#### Known networks
+
+_Added in version 2.5.0_
+
+Comma-separated CIDR networks (e.g., `10.0.0.0/8,172.16.0.0/12`).
+
+| | |
+|-|-|
+| **Environment variable** | `SERVICEPULSE_FORWARDEDHEADERS_KNOWNNETWORKS` |
+| **Type** | string |
+| **Default** | (none) |
+
+### [TLS](/servicepulse/security/configuration/tls.md)
+
+These settings configure HTTPS. Refer to the [hosting and security guide](/servicepulse/security/hosting-guide.md), or [TLS configuration examples](/servicepulse/security/configuration/tls.md#configuration-examples) for additional information.
+
+#### HTTPS enabled
+
+_Added in version 2.5.0_
+
+Enable HTTPS with Kestrel.
+
+| | |
+|-|-|
+| **Environment variable** | `SERVICEPULSE_HTTPS_ENABLED` |
+| **Type** | bool |
+| **Default** | `false` |
+
+#### Certificate path
+
+_Added in version 2.5.0_
+
+Path to the certificate file (.pfx).
+
+| | |
+|-|-|
+| **Environment variable** | `SERVICEPULSE_HTTPS_CERTIFICATEPATH` |
+| **Type** | string |
+| **Default** | (none) |
+
+#### Certificate password
+
+_Added in version 2.5.0_
+
+Password for the certificate file.
+
+| | |
+|-|-|
+| **Environment variable** | `SERVICEPULSE_HTTPS_CERTIFICATEPASSWORD` |
+| **Type** | string |
+| **Default** | (none) |
+
+#### Redirect HTTP to HTTPS
+
+_Added in version 2.5.0_
+
+Redirect HTTP requests to HTTPS.
+
+| | |
+|-|-|
+| **Environment variable** | `SERVICEPULSE_HTTPS_REDIRECTHTTPTOHTTPS` |
+| **Type** | bool |
+| **Default** | `false` |
+
+> [!NOTE]
+> When running ServicePulse directly without a reverse proxy, the application only listens on a single protocol (HTTP or HTTPS). This setting is intended for use with a reverse proxy that handles both HTTP and HTTPS traffic.
+
+#### HTTPS port
+
+_Added in version 2.5.0_
+
+HTTPS port for redirect (required for reverse proxy scenarios).
+
+| | |
+|-|-|
+| **Environment variable** | `SERVICEPULSE_HTTPS_PORT` |
+| **Type** | int |
+| **Default** | (none) |
+
+#### Enable HSTS
+
+_Added in version 2.5.0_
+
+Enable HTTP Strict Transport Security.
+
+| | |
+|-|-|
+| **Environment variable** | `SERVICEPULSE_HTTPS_ENABLEHSTS` |
+| **Type** | bool |
+| **Default** | `false` |
+
+> [!NOTE]
+> Review the implications of [enabling HSTS](/servicepulse/security/configuration/tls.md#security-considerations-hsts) before doing so.
+
+#### HSTS max age
+
+_Added in version 2.5.0_
+
+HSTS max-age in seconds.
+
+| | |
+|-|-|
+| **Environment variable** | `SERVICEPULSE_HTTPS_HSTSMAXAGESECONDS` |
+| **Type** | int |
+| **Default** | `31536000` (1 year) |
+
+#### HSTS include subdomains
+
+_Added in version 2.5.0_
+
+Include subdomains in HSTS policy.
+
+| | |
+|-|-|
+| **Environment variable** | `SERVICEPULSE_HTTPS_HSTSINCLUDESUBDOMAINS` |
+| **Type** | bool |
+| **Default** | `false` |
