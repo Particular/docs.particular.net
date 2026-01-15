@@ -38,13 +38,18 @@ snippet: DiscardingOldMessagesWithCode
 
 ## Clock synchronization considerations
 
-When using TTBR, be aware of potential clock synchronization issues between sender and receiver. If the receiver's clock is ahead of the sender's, messages may be discarded immediately as stale.
+When using TTBR, clock synchronization issues ([clock skew](https://en.wikipedia.org/wiki/Clock_skew)) between sender and receiver can cause premature message discard. If the receiver's clock is ahead of the sender's, messages may be rejected immediately as stale.
 
-- This issue is most relevant for small TTBR values.
-- In most environments, clocks are only a few minutes out of sync.
+> [!INFO]
+> **Frequently synchronize time between hosts**
+> Ensure the endpoint hosts share the same clock source. These clocks should be very frequently synchronized to ensure reliable timestamps.
 
-**Recommendation:**
-Add the maximum expected clock drift to the TTBR value. For example, if TTBR is 90 seconds and the maximum clock drift is 300 seconds, set TTBR to 390 seconds.
+> [!WARNING]
+> **Add clock skew safety margin for TTBR values under 1 minute**
+> With opposing 30-second drifts per system, total skew reaches 60 seconds. Add safety margin.
+> 
+> Formula: TTBR = intended_lifetime + (2 × max_expected_drift)
+> Example: 90s lifetime + 30s max drift = 150 seconds TTBR
 
 ## Discarding messages at startup
 
