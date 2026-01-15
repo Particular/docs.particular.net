@@ -40,7 +40,7 @@ snippet: DiscardingOldMessagesWithCode
 
 When using TTBR, clock synchronization issues ([clock skew](https://en.wikipedia.org/wiki/Clock_skew)) between sender and receiver can cause premature message discard. If the receiver's clock is ahead of the sender's, messages may be rejected immediately as stale.
 
-> [!INFO]
+> [!NOTE]
 > **Frequently synchronize time between hosts**
 > Ensure the endpoint hosts share the same clock source. These clocks should be synchronized very frequently to ensure reliable timestamps.
 
