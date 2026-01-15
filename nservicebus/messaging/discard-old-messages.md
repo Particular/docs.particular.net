@@ -42,18 +42,18 @@ When using TTBR, clock synchronization issues ([clock skew](https://en.wikipedia
 
 > [!INFO]
 > **Frequently synchronize time between hosts**
-> Ensure the endpoint hosts share the same clock source. These clocks should be very frequently synchronized to ensure reliable timestamps.
+> Ensure the endpoint hosts share the same clock source. These clocks should be synchronized very frequently to ensure reliable timestamps.
 
 > [!WARNING]
 > **Add clock skew safety margin for TTBR values under 1 minute**
-> With opposing 30-second drifts per system, total skew reaches 60 seconds. Add safety margin.
+> With opposing 30-second drifts per system, total skew reaches 60 seconds. Add a safety margin.
 > 
 > Formula: TTBR = intended_lifetime + (2 × max_expected_drift)
 > Example: 90s lifetime + 30s max drift = 150 seconds TTBR
 
 ## Discarding messages at startup
 
-In certain situations, it may be required that messages in the incoming queue should not be processed after restarting the endpoint. This usually applies to development and test environments, but may also be appropriate for messages containing information that gets outdated or otherwise unneeded, e.g. change notifications, readings from sensors in IoT apps, etc.
+In certain situations, it may be necessary to prevent messages in the incoming queue from being processed after restarting the endpoint. This usually applies to development and test environments, but may also be appropriate for messages containing information that gets outdated or otherwise unneeded, e.g., change notifications, readings from sensors in IoT apps, etc.
 
 > [!WARNING]
 > It's not recommended to discard messages at startup in a production environment because it may lead to subtle message loss situations that can be hard to diagnose.
@@ -70,11 +70,11 @@ partial: msmq
 
 ### RabbitMQ transport
 
-RabbitMQ checks the TTBR value, but only for message at the front of the queue. Expired messages are not removed from the queue, and their disk space is not reclaimed until they reach the front of the queue. Using TTBR as a disk-saving measure on RabbitMQ is recommended only when all messages in the queue use the same TTBR value. Otherwise, messages in front of the queue may prevent other stale messages from being cleaned.
+RabbitMQ checks the TTBR value, but only for the message at the front of the queue. Expired messages are not removed from the queue, and their disk space is not reclaimed until they reach the front of the queue. Using TTBR as a disk-saving measure on RabbitMQ is recommended only when all messages in the queue use the same TTBR value. Otherwise, messages in front of the queue may prevent other stale messages from being cleaned.
 
 ### Azure transports
 
-The Azure transports evaluate the TTBR for a message only when the message is requested by the client. Expired messages are not removed from the queue and their disk space will not be reclaimed until they reach the front of the queue and a consumer tries to read them. Using TTBR as a storage saving measure on the Azure transports is not a good choice for queues with long-lived messages like audit and forward.
+The Azure transports evaluate the TTBR for a message only when the client requests it. Expired messages are not removed from the queue, and their disk space will not be reclaimed until they reach the front of the queue and a consumer tries to read them. Using TTBR as a storage-saving measure on the Azure transports is not a good choice for queues with long-lived messages like audit and forward.
 
 ### SQL transport
 
