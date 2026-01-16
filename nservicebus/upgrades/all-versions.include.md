@@ -773,7 +773,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/3.0.0) | 2025-06-06     | -                 | -                                 |
+| [3.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/3.1.0) | 2026-01-15     | -                 | -                                 |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/3.0.1) | 2025-06-06     | 2026-04-15        | Superseded by 3.1.x               |
 | [2.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/2.1.0) | 2025-04-11     | 2026-06-06        | Superseded by 3.0.x               |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/2.0.1) | ~~2024-04-16~~ | ~~2025-07-11~~    | ~~Superseded by 2.1.x~~           |
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/1.1.2) | 2023-09-21     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
