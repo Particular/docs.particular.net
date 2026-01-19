@@ -1,6 +1,6 @@
 ---
 title: Gateway
-reviewed: 2024-04-25
+reviewed: 2026-01-19
 component: Gateway
 related:
 - nservicebus/gateway
@@ -14,8 +14,7 @@ This sample demonstrates how logically different sites (such as a headquarters a
 
 ## Headquarters.Shared
 
-A shared class library for common code including message definitions.
-
+A shared class library for common code, including message definitions.
 
 ## Headquarters
 
@@ -61,6 +60,6 @@ snippet: PriceUpdatedHandler
 
 ## WebClient
 
-This project represents an external integration point. It sends a `UpdatePrice` to the channel `http://localhost:25899/Headquarters/`.
+This project represents an external integration point. It sends an `UpdatePrice` message to the channel `http://localhost:25899/Headquarters/`.
 
 snippet: SendUpdatePrice
