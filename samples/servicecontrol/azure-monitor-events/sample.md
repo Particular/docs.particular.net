@@ -2,7 +2,7 @@
 title: Monitor ServiceControl events with Azure Application Insights
 summary: A sample showing how to monitor events published by ServiceControl with Azure Application Insights
 component: ServiceControlContracts
-reviewed: 2024-04-26
+reviewed: 2026-01-19
 related:
  - servicecontrol
  - servicecontrol/contracts
@@ -17,7 +17,7 @@ downloadbutton
 
 ## Connect to Application Insights Azure Monitor
 
-To connect the sample code to Application Insights, the instrumentation key must be provided. The key is loaded from the `ApplicationInsightKey` environment variable.
+To connect the sample code to Application Insights, the instrumentation key must be provided. The key is set in a string variable, as shown in the snippet below.
 
 The instrumentation key can be retrieved from the Azure Portal by locating the Application Insights instance, then navigating to the Properties view.
 
