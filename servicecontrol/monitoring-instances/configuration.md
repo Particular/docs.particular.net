@@ -101,7 +101,7 @@ These settings configure [authentication using OAuth 2.0 and OpenID Connect](/se
 
 _Added in version 6.10.0_
 
-Enables or disables authentication.
+Enables or disables authentication. This is a **Global switch** and all other authentication settings are ignored unless this is `true`.
 
 | Context | Name |
 | --- | --- |
