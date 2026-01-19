@@ -1,7 +1,7 @@
 ---
 title: NServiceBus and Azure
 summary: Explore how NServiceBus supports Microsoft Azure with cloud-native transports, persistence, host options and serverless patterns.
-reviewed: 2024-04-18
+reviewed: 2026-01-19
 ---
 
 NServiceBus helps create distributed .NET systems not only on premises but also in the Microsoft Azure cloud. It provides a variety of capabilities built for Microsoft Azure such as hosting, Azure-specific transports, and persistence.
