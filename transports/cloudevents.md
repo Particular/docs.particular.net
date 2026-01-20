@@ -1,13 +1,13 @@
 ---
 title: CloudEvents support
-summary: Explains how to consume CloudEvents in transports
+summary: Provides details about CloudEvents support in NServiceBus and the platform
 component: Core
 reviewed: 2025-12-16
 versions: '[10,]'
 ---
 
 > [!WARNING]
-> This is an experimental feature and might change in the future.
+> This is an experimental feature and, as such, is subject to changes.
 
 This guideline shows how to receive [CloudEvents](https://cloudevents.io/) in the NServiceBus endpoints.
 
@@ -17,7 +17,7 @@ This section describes [CloudEvents formats](https://github.com/cloudevents/spec
 
 ### JSON
 
-NServiceBus supports [JSON format](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md#3-envelope) only. It does not support [JSON Batch format](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md#4-json-batch-format).
+NServiceBus supports the [JSON format](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md#3-envelope). The [JSON Batch format](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md#4-json-batch-format) is not supported.
 
 The implementation relies on [System.Text.Json](https://learn.microsoft.com/en-us/dotnet/api/system.text.json?view=net-10.0) package to parse the JSON content.
 
@@ -27,24 +27,31 @@ This section describes [CloudEvents bindings](https://github.com/cloudevents/spe
 
 ### Strutured Content Mode for HTTP and AMQP
 
-NServiceBus supports [HTTP Structured Content Mode](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/bindings/http-protocol-binding.md#32-structured-content-mode) and [AMQP Structured Content Mode](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/bindings/amqp-protocol-binding.md#32-structured-content-mode). Two implementation modes are provided: Strict and Permissive.
+NServiceBus supports [HTTP Structured](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/bindings/http-protocol-binding.md#32-structured-content-mode) and [AMQP Structured](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/bindings/amqp-protocol-binding.md#32-structured-content-mode) content modes. For each content mode, two implementations are provided:
+
+- Strict
+- Permissive
 
 #### Strict mode
 
-To recognize the CloudEvents message, the `Content-Type` header must be equal to or contain `application/cloudevents+json`. The implementation will not attempt to deserialize the payload if the `Content-Type` header does not meet the requirements.
+In Strict mode, the CloudEvents message `Content-Type` header must be equal to or contain `application/cloudevents+json`. The implementation will not attempt to deserialize the payload if the `Content-Type` header does not meet the requirements.
 
 Fields [`id`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#id), [`source`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#source-1), [`type`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type), and at least one of `data` and `data_base64` must be present. The [`specversion`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#specversion) is not required to be present or to equal to `1.0`.
 
 
 #### Permissive mode
 
-To recognize the CloudEvents message, [`type`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type) field must be present. The `Content-Type` header is not verified, and the payload is always deserialized.
+In Premissive mode, the CloudEvents message [`type`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type) field must be present. The `Content-Type` header is not verified, and a payload deserialization attempt is always executed.
 
 ### Binary Content Mode for HTTP and AMQP
 
-NServiceBus supports [HTTP Binary Content Mode](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/bindings/http-protocol-binding.md#31-binary-content-mode) and [AMQP Binary Content Mode](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/bindings/amqp-protocol-binding.md#31-binary-content-mode).
+NServiceBus supports the [HTTP Binary](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/bindings/http-protocol-binding.md#31-binary-content-mode) and [AMQP Binary](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/bindings/amqp-protocol-binding.md#31-binary-content-mode) content modes.
 
-To recognize the CloudEvents message, fields [`id`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#id), [`source`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#source-1), and [`type`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type) must be present. The [`specversion`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#specversion) is not required to be present or to equal to `1.0`. The field names must be encoded according to the binding specification (e.g., `ce-id` for the `id` field when using HTTP). The implementation will not attempt to deserialize the payload is the headers do not meet the requirements.
+To recognize the CloudEvents message, the fields [`id`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#id), [`source`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#source-1), and [`type`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type) must be present. The [`specversion`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#specversion) field is not required to be present or to equal to `1.0`.
+
+Field names must be encoded according to the binding specification (e.g., `ce-id` for the `id` field when using HTTP).
+
+The implementation will not attempt to deserialize the payload if the headers do not meet the requirements.
 
 The [HTTP Content-Type](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/bindings/http-protocol-binding.md#311-http-content-type) and [AMQP Content-Type](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/bindings/amqp-protocol-binding.md#321-amqp-content-type) headers are not validated.
 
@@ -52,7 +59,7 @@ The [HTTP Content-Type](https://github.com/cloudevents/spec/blob/v1.0.2/cloudeve
 
 This section describes the configuration options.
 
-### Enabling the configuration
+### Enabling CloudEvents
 
 To enable the CloudEvents support:
 
@@ -60,7 +67,7 @@ snippet: sqs-cloudevents-configuration
 
 ### Type mapping
 
-`TypeMappings` configure how to match the incoming messages with the class definitions:
+`TypeMappings` configure how to match the incoming message content-type value with the class definition used in the NServiceBus message handler:
 
 snippet: sqs-cloudevents-typemapping
 

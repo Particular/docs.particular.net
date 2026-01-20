@@ -96,9 +96,9 @@ There are metrics that measure various spects of the [transactional session oper
 
 ### Envelope handling metrics
 
-Various metrics track performance of the envelope handling when interoperating with external systems. The generic metrics include:
+Various metrics track envelope-handling performance when receiving messages that require envelope unwrapping, such as CloudEvents. The generic metrics include:
 
-- Envelope unwrapping errors - how many times a single envelope handler failed to unwrap the incoming message
+- Envelope unwrapping attempts - how many times a single envelope handler attempted to unwrap an incoming message. The metric also reports whether the operation was successful or not, the envelope handler type, and the exception in case of failure
 
 #### CloudEvents specific metrics
 

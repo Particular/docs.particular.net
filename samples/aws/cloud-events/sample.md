@@ -1,6 +1,6 @@
 ---
 title: AmazonSQS CloudEvents Sample
-summary: Demonstrates how to consume CloudEvents via the Amazon SQS
+summary: Demonstrates how to consume CloudEvents received through Amazon SQS
 reviewed: 2025-12-10
 component: Sqs
 related:
@@ -23,12 +23,12 @@ See also [AWS Regions](https://docs.aws.amazon.com/general/latest/gr/rande.html)
 
 ### S3 configuration
 
-The S3 bucket should be configured to generate notifications that are ultimately delivered to the SQS queue matching the endpoint. There are many ways to configure the setup. One example configuration includes:
+The S3 bucket should be configured to generate notifications that are ultimately delivered to the SQS queue matching the endpoint. The following is a sample configuration that can be used to generate S3 notifications:
 
-- Configuring S3 bucket to [send notifications to SQS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-event-types-and-destinations.html#supported-notification-event-types)
-- Creating [Amazon EventBridge Pipe](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-event-target.html) that picks up the messages from the SQS queue
-- Configuring the Pipe to [transform](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-input-transformation.html) the messages to the CloudEvents schema as specified in the [CloudEvents specification](https://github.com/cloudevents/spec/blob/main/cloudevents/adapters/aws-s3.md). 
-- Configuring the Pipe to call AWS Lambda that would enrich the message with the proper `content-type` property and send the message to the SQS queue matching the endpoint.
+- Configure an S3 bucket to [send notifications to SQS](https://docs.aws.amazon.com/AmazonS3/latest/userguide/notification-how-to-event-types-and-destinations.html#supported-notification-event-types)
+- Create an [Amazon EventBridge Pipe](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-event-target.html) that picks up the messages from the SQS queue
+- Configure the Amazon EventBridge Pipe to [transform](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-pipes-input-transformation.html) messages to the CloudEvents schema as specified in the [CloudEvents specification](https://github.com/cloudevents/spec/blob/main/cloudevents/adapters/aws-s3.md)
+- Configure the Amazon EventBridge Pipe to call AWS Lambda that would enrich messages with the proper `content-type` property and send them to the SQS queue matching the endpoint
 
 ## Code walk-through
 
@@ -53,7 +53,7 @@ CloudEvents support must be explicitly enabled:
 
 snippet: sqs-cloudevents-configuration
 
-The configuration includes the type mapping to match the messages with the classes:
+The configuration includes the type mapping to match the message's content-type with the .NET types representing the incoming messages:
 
 snippet: sqs-cloudevents-typemapping
 
