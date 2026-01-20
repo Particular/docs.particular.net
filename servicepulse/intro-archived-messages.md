@@ -2,14 +2,14 @@
 title: Deleted Message Management
 summary: Describes how ServicePulse monitors deleted failed messages, and allows restoring deleted failed messages.
 component: ServicePulse
-reviewed: 2024-05-03
+reviewed: 2026-01-19
 ---
 
 ## About deleting messages
 
 Archiving can be useful for failed messages that no longer have business value. Once a message is deleted, it can be automatically cleaned up according to the configuration of the [retention policy](/servicecontrol/servicecontrol-instances/configuration.md#data-retention-servicecontrolerrorretentionperiod).
 
-Archiving in ServicePulse means that the failed messages are marked as `Deleted`. Data from a deleted message is still available, but it is no longer displayed in the Failed Messages list in ServicePulse, is not counted by the Failed Messages indicator in the ServicePulse dashboard, nor will it appear in any failed message groups.
+Archiving in ServicePulse marks failed messages as `Deleted`. Data from a deleted message is still available, but it is no longer displayed in the Failed Messages list in ServicePulse, is not counted by the Failed Messages indicator in the ServicePulse dashboard, and will not appear in any failed message groups.
 
 > [!NOTE]
 > Deleted failed messages are still included in [ServicePulse](/servicepulse/) diagrams and search results.
@@ -25,7 +25,7 @@ Messages can also be deleted from:
 
 ## Managing deleted messages
 
-The Deleted Messages tab will open, showing messages deleted and not yet cleaned up according to the [retention policy](/servicecontrol/servicecontrol-instances/configuration.md#data-retention-servicecontrolerrorretentionperiod).
+The Deleted Messages tab will open, showing messages that have been deleted and not yet cleaned up, according to the [retention policy](/servicecontrol/servicecontrol-instances/configuration.md#data-retention-servicecontrolerrorretentionperiod).
 
 ![Deleted Messages Tab](images/archive.png 'width=500')
 
@@ -52,11 +52,11 @@ The Deleted Message Groups tab shows the deleted messages grouped by the followi
 > [!NOTE]
 > The number of listed groups may differ depending on the selected classification type view.
 
-Clicking on a group of messages will navigate to the Deleted Messages page containing all the messages from that group.
+Clicking a group of messages navigates to the Deleted Messages page, which contains all the messages from that group.
 
 ## Restoring deleted failed messages
 
-If there are failed messages that were deleted by mistake, they can be restored via the Deleted Messages tab. Once restored, they will be displayed in the [Failed Message Groups and Failed Messages screen](intro-failed-messages.md), where they can be retried or deleted again.
+If any failed messages were deleted by mistake, they can be restored from the Deleted Messages tab. Once restored, they will be displayed in the [Failed Message Groups and Failed Messages screen](intro-failed-messages.md), where they can be retried or deleted again.
 
 ![Restore Select](images/archive-unarchive-select.png)
 
