@@ -1,7 +1,7 @@
 ---
 title: Azure Storage Queues Native Publish Subscribe
 summary: Describes the native publish/subscribe implementation in the Azure Storage Queues transport
-reviewed: 2024-04-30
+reviewed: 2026-01-20
 component: ASQ
 versions: '[10,)'
 ---
