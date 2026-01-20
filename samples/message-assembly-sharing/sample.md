@@ -1,7 +1,7 @@
 ---
 title: Sharing message assemblies
 summary: Demonstrate how the NServiceBus.MessageInterfaces package enables message assemblies to be shared across major versions of NServiceBus
-reviewed: 2024-04-20
+reviewed: 2026-01-20
 component: Core
 related:
   - nservicebus/messaging/unobtrusive-mode
@@ -9,7 +9,7 @@ related:
 
 This sample shows how the `NServiceBus.MessageInterfaces` package can be used to create a shared message assembly that can be used by multiple major versions of NServiceBus, and in projects using different target frameworks, while still relying on the `ICommand` and `IEvent` marker interfaces.
 
-In this sample, an NServiceBus 8.2 endpoint running on .NET Framework can share a message assembly with another endpoint running a newer version of NServiceBus and .NET without the need to employ [unobtrusive message conventions](/nservicebus/messaging/unobtrusive-mode.md), which is especially useful for projects transitioning from .NET Framework to .NET that were not originally designed with message conventions in mind.
+In this sample, an NServiceBus endpoint running on .NET Framework can share a message assembly with another endpoint running a newer version of NServiceBus and .NET without the need to employ [unobtrusive message conventions](/nservicebus/messaging/unobtrusive-mode.md), which is especially useful for projects transitioning from .NET Framework to .NET that were not originally designed with message conventions in mind.
 
 ### Shared project
 
