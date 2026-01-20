@@ -200,7 +200,7 @@ This is a popular transport for systems hosted in AWS, the Amazon Cloud offering
 
 - Can be expensive in a high-throughput scenario
 - Less adoption on the .NET platform; it can be more difficult to find relevant resources
-- SQS does not have native publish/subscribe capability; it requires Amazon Simple Notification Service(SNS), another Amazon Cloud service, to support publish/subscribe. See the [SQS transport documentation](/sqs/) for more details. 
+- SQS does not have native publish/subscribe capability; it requires Amazon Simple Notification Service(SNS), another Amazon Cloud service, to support publish/subscribe. See the [SQS transport documentation](/transports/sqs/) for more details. 
 
 ### When to select this transport
 
