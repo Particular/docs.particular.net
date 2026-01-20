@@ -1,20 +1,20 @@
 ---
 title: Selecting a transport
 summary: A guide for selecting the right NServicebus transport
-reviewed: 2024-04-17
+reviewed: 2026-01-20
 isLearningPath: true
 ---
 
-This document provides guidance for deciding which [transport](/transports) may best suit a specific scenario.
+This document provides guidance on deciding which [transport](/transports) best suits a specific scenario.
 
-This guide does not provide definitive answers for all scenarios. Every decision has trade-offs, some of which are described in the documentation for each transport. If it is unclear what the best choice is, or there are very specific constraints, contact [Particular Software](https://particular.net/contactus).
+This guide does not provide definitive answers for all scenarios. Every decision has trade-offs, some of which are described in the documentation for each transport. If it is unclear which is the best choice, or if there are very specific constraints, contact [Particular Software](https://particular.net/contactus).
 
 
 ## Broker versus federated
 
-The queueing technologies behind most transports take the form of a central message broker that handles physical message routing. The transports which use these queueing technologies rely on the broker to send and receive messages. It is important that the broker be highly available. If it cannot be reached, the system will be unable to send or receive messages. Note that, although a broker is involved, this is still a "bus" architecture and not a "broker" architecture. See [bus versus broker architecture](/architecture/messaging.md#bus-versus-broker-architectural-styles) for a discussion on the distinction.
+The queueing technologies behind most transports typically use a central message broker to handle physical message routing. The transports which use these queueing technologies rely on the broker to send and receive messages. It is important that the broker be highly available. If it cannot be reached, the system will be unable to send or receive messages. Note that, although a broker is involved, this is still a "bus" architecture and not a "broker" architecture. See [bus versus broker architecture](/architecture/messaging.md#bus-versus-broker-architectural-styles) for a discussion on the distinction.
 
-Other queueing technologies are "federated" and deployed on every machine that sends or receives messages. The only supported transport using federated queueing technology is [MSMQ](msmq). The MSMQ transport uses a "store and forward" delivery strategy. When a message is sent, it is stored locally and delivered to the remote machine only when that machine is reachable. That means messages can be sent even if the remote machine is unreachable, although they won’t be delivered until the remote machine is reachable.
+Other queueing technologies are "federated" and deployed on every machine that sends or receives messages. The only supported transport using federated queueing technology is [MSMQ](msmq). The MSMQ transport uses a "store and forward" delivery strategy. When a message is sent, it is stored locally and delivered to the remote machine only when it becomes reachable. That means messages can be sent even if the remote machine is unreachable, though they won’t be delivered until it becomes reachable.
 
 ## Supported transports
 
@@ -29,7 +29,7 @@ Each of the following sections describes the advantages and disadvantages of eac
 * [MSMQ](#msmq)
 * [Learning Transport](#learning)
 
-For transports that use a cloud hosted queueing technology the quality of the network connection between the applications and cloud provider is important. If the connection is problematic, it may not be possible to send messages. For example, this may result in problems capturing data from a user interface. If applications are running the same data centre as the queueing technology, this risk is mitigated.
+For transports that use a cloud-hosted queueing technology, the quality of the network connection between the applications and the cloud provider is important. If the connection is problematic, it may not be possible to send messages. For example, this may result in problems capturing data from a user interface. If applications are running in the same data centre as the queueing technology, this risk is mitigated.
 
 This is a basic flowchart for selecting a supported transport. Where more than one transport is listed, refer to the sections below. They describe the advantages and disadvantages of each transport in more detail.
 
@@ -55,7 +55,7 @@ NNN-->|No|NNNN[<center>RabbitMQ/<br/>SQL Server</center>]
 
 The learning transport should not be used in production.
 
-This transport is intended to learn how to work with NServiceBus. It does not require the installation of a queueing technology and works "out of the box". This is done by storing sent and received messages as files on disk.
+This transport is intended to learn how to work with NServiceBus. It does not require installing queueing technology and works "out of the box". This is done by storing sent and received messages as files on disk.
 
 ## Azure Service Bus
 
@@ -69,25 +69,25 @@ Azure provides multiple messaging technologies. One of the most advanced and rel
 - Supports message transactions. Other Azure queueing technologies do not
 - Up to 100MB message size on the Premium tier. See [Large messages support](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-premium-messaging#large-messages-support) for more information
 - More native capabilities, such as delayed message delivery, which requires an [outbox](/nservicebus/outbox) when using some other transports
+- Local development experience using the [Azure Service Bus Emulator](https://learn.microsoft.com/en-us/azure/service-bus-messaging/overview-emulator)
 
 ### Disadvantages
 
 - Requires careful monitoring of costs, although the transport does provide features for throttling throughput
-- On-premises development and testing is not possible
+- Atomic message receive, and data manipulation requires an [outbox](/nservicebus/outbox).
 - Message processing time is limited to 5 minutes
 - Relies on TCP, which may require opening additional ports in a firewall
 
 ### When to select this transport
 
 - When the application is running on Microsoft Azure
-- For enterprise messaging features such as additional reliability
+- For enterprise messaging features, such as additional reliability
 - When messages are too large for Azure Storage Queues
 - When elastic scaling is required
 
-
 ## Azure Storage Queues
 
-Azure Storage Queues has fewer features than Azure Service Bus but can be more cost effective.
+Azure Storage Queues has fewer features than Azure Service Bus, but can be more cost-effective.
 
 ### Advantages
 
@@ -98,24 +98,24 @@ Azure Storage Queues has fewer features than Azure Service Bus but can be more c
 
 ### Disadvantages
 
-- The size of a single message is limited to 64 KB including headers and body. NServiceBus uses headers for metadata, which could consume a lot of the message overall size.
-- Atomic message receive and data manipulation requires an [outbox](/nservicebus/outbox).
+- The size of a single message is limited to 64 KB, including headers and body. NServiceBus uses headers for metadata, which could consume a lot of the message's overall size.
+- Atomic message receive, and data manipulation requires an [outbox](/nservicebus/outbox).
 - Does not offer a native publish-subscribe mechanism. A database is required for storing event subscriptions (via [NServiceBus persistence](/persistence)). [Explicit routing for publish/subscribe](/nservicebus/messaging/routing.md#event-routing-message-driven) must also be specified.
 - Significant latency when receiving messages, due to polling over HTTP for new messages.
 
 ### When to select this transport
 
-- When the application is running on Microsoft Azure and the additional features of Azure Service Bus are not worth the cost
+- When the application is running on Microsoft Azure, and the additional features of Azure Service Bus are not worth the cost
 - When high throughput is not required
 - When scale-out is not required. Scaling out requires Azure Service Bus
 
 ## SQL Server
 
-The SQL Server transport implements queues using relational database tables. Each row of a queue table holds one message with an ID, headers, and body, plus additional columns for backward compatibility.
+The SQL Server transport uses relational database tables for queues. Each row of a queue table holds one message with an ID, headers, and body, plus additional columns for backward compatibility.
 
 ### Advantages
 
-- SQL Server is already present in many organizations. This could result in lower licensing and training costs, as well as a reduction in operational risk, since the skills and knowledge required to run SQL Server are already present.
+- SQL Server is already present in many organizations. This could result in lower licensing and training costs, as well as reduced operational risk, since the skills and knowledge required to run SQL Server are already in place.
 - Mature tooling, such as [SQL Server Management Studio (SSMS)](https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms) and [Azure Data Studio](https://learn.microsoft.com/en-us/azure-data-studio/download-azure-data-studio)
 - Free to start with the [SQL Server Express or Developer editions](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 - Easy scale-out through competing consumers. Multiple instances of the same endpoint consume messages from a single queue.
@@ -125,9 +125,9 @@ The SQL Server transport implements queues using relational database tables. Eac
 ### Disadvantages
 
 - Adds pressure to the database server due to polling for new messages
-- Depending on throughput, can add significant load to an existing SQL Server installation
-- Can have significant costs in Production for high throughput systems where extra servers or cores are required to support the load
-- Inherently not designed as a messaging broker which can lead to lower performance and connection limitations when utilized for a larger system with many endpoints
+- Depending on throughput, can add a significant load to an existing SQL Server installation
+- Can have high costs in Production for high-throughput systems, where extra servers or cores are required to support the load
+- Inherently not designed as a messaging broker, which can lead to lower performance and connection limitations when utilized for a larger system with many endpoints
 
 ### When to select this transport
 
@@ -138,11 +138,11 @@ The SQL Server transport implements queues using relational database tables. Eac
 
 ## PostgreSQL
 
-Similar to [SQL Server](#sql-server), the PostgreSQL transport implements queues using relational database tables. Each row of a queue table holds one message with an ID, headers, and body.
+Similar to [SQL Server](#sql-server), the PostgreSQL transport uses relational database tables for queues. Each row of a queue table holds one message with an ID, headers, and body.
 
 ### Advantages
 
-- PostgreSQL is already present in many organizations, as a relational database that doesn't have the licensing limitations of a commercial solution such as SQL Server or Oracle. This could result in lower licensing and training costs, as well as a reduction in operational risk, since the skills and knowledge required to run PostgreSQL are already present.
+- PostgreSQL is already present in many organizations, as a relational database that doesn't have the licensing limitations of a commercial solution such as SQL Server or Oracle. This could result in lower licensing and training costs, as well as reduced operational risk, since the skills and knowledge required to run PostgreSQL are already in place.
 - Mature tooling, such as [pgAdmin](https://www.pgadmin.org) and [Azure Data Studio](https://learn.microsoft.com/en-us/azure-data-studio/download-azure-data-studio)
 - Easy scale-out through competing consumers. Multiple instances of the same endpoint consume messages from a single queue.
 - Can store both queues and business data in a single backup, making it easier to restore a system to a consistent state
@@ -150,9 +150,9 @@ Similar to [SQL Server](#sql-server), the PostgreSQL transport implements queues
 ### Disadvantages
 
 - Adds pressure to the database server due to polling for new messages
-- Depending on throughput, can add significant load to an existing PostgreSQL installation
-- Inherently not designed as a messaging broker which can lead to lower performance and connection limitations when utilized for a larger system with many endpoints.
-  - PostgreSQL opens a new process for each connection and therefore has a [default concurrent connection limit of 100](https://postgresqlco.nf/doc/en/param/max_connections/). This limit is overridable, but will use more processes/resources. Having this relatively low connection limit can lead to connection starvation in systems with many [endpoints and/or endpoint instances](/nservicebus/endpoints/)
+- Depending on throughput, can add a significant load to an existing PostgreSQL installation
+- Inherently not designed as a messaging broker, which can lead to lower performance and connection limitations when utilized for a larger system with many endpoints.
+  - PostgreSQL opens a new process for each connection and therefore has a [default concurrent connection limit of 100](https://postgresqlco.nf/doc/en/param/max_connections/). This limit is overridable, but it will use more processes/resources. Having this relatively low connection limit can lead to connection starvation in systems with many [endpoints and/or endpoint instances](/nservicebus/endpoints/)
 
 ### When to select this transport
 
@@ -188,7 +188,7 @@ Similar to [SQL Server](#sql-server), the PostgreSQL transport implements queues
 
 ## Amazon SQS
 
-This is a popular transport for systems hosted in AWS, the Amazon cloud offering.
+This is a popular transport for systems hosted in AWS, the Amazon Cloud offering.
 
 ### Advantages
 
@@ -198,19 +198,21 @@ This is a popular transport for systems hosted in AWS, the Amazon cloud offering
 
 ### Disadvantages
 
-- Can be expensive in a high throughput scenario
-- Less adoption on the .NET platform; can be more difficult to find relevant resources
+- Can be expensive in a high-throughput scenario
+- Less adoption on the .NET platform; it can be more difficult to find relevant resources
+- SQS does not have native publish/subscribe capability; it requires Amazon Simple Notification Service(SNS), another Amazon Cloud service, to support publish/subscribe. See the [SQS transport documentation](/transports/sqs/) for more details. 
 
 ### When to select this transport
 
 - When the application targets AWS
 - For integration with other systems that are already running on Amazon SQS
+- Simple queueing requirements
 
 
 ## MSMQ
 
 > [!WARNING]
-> Microsoft is not making MSMQ available for .NET Core; building new systems using MSMQ is not recommended.
+> Microsoft is not making MSMQ available for .NET Core; building new systems that use MSMQ is not recommended.
 
 The MSMQ transport uses the native Windows queueing technology, MSMQ, to send and deliver messages. MSMQ is a distributed or "federated" system consisting of multiple processes, one on each machine. The client only interacts with the local MSMQ process, which stores the messages on disk. The messages are forwarded to the remote machine in the background.
 
@@ -218,7 +220,7 @@ The MSMQ transport uses the native Windows queueing technology, MSMQ, to send an
 
 - Built-in component of the Windows operating system (though not installed by default)
 - Supports distributed transactions, allowing atomic message processing and data manipulation in database systems which also support distributed transactions (e.g. SQL Server), using the [Microsoft Distributed Transaction Coordinator (MSDTC)](https://docs.microsoft.com/en-us/previous-versions/windows/desktop/ms684146(v=vs.85))
-- Uses a store and forward mechanism that allows sending messages even when the destination machine is unavailable due to network issues or other problems
+- Uses a store-and-forward mechanism that allows sending messages even when the destination machine is unavailable due to network issues or other problems
 
 ### Disadvantages
 
@@ -228,5 +230,5 @@ The MSMQ transport uses the native Windows queueing technology, MSMQ, to send an
 ### When to select this transport
 
 - For a better guarantee that the queueing technology is available for applications to send messages
-- When running a Windows environment on-premises and unable to invest in licenses or training for other technologies
-- When distributed transactions are required to guarantee consistency of data for message handling
+- When running a Windows environment on-premises, and unable to invest in licenses or training for other technologies
+- When distributed transactions are required to guarantee the consistency of data for message handling
