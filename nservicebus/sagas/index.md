@@ -159,22 +159,39 @@ A common scenario is a saga controlling the process of billing a customer throug
 
 The usual way is to correlate on some kind of ID and let the user control how to find the correct saga instance using that ID. NServiceBus provides native support for these types of interactions. If a `Reply` is done in response to a message coming from a saga, NServiceBus will detect it and automatically set the correct headers so that it can correlate the reply back to the saga instance that issued the request. This is called [auto-correlation](message-correlation.md#auto-correlation). The exception to this rule is the request/response message exchange between two sagas. In such case the automatic correlation won't work and the reply message needs to be explicitly mapped using `ConfigureHowToFindSaga`.
 
-## Accessing databases and other resources from a saga
+## Avoid External Resource Access
 
 > [!WARNING]
-> Other than interacting with its own internal state, a saga should **not** access a database, call out to web services, or access other resources - neither directly nor indirectly by having such dependencies injected into it.
+> A saga should only interact with its own internal state and send or publish messages. It must not perform any I/O operations, including calls to databases, web services, or other external resources, either directly or indirectly through injected dependencies.
 
-The main reason for avoiding accessing data from external resources is possible contention and inconsistency of saga state. Depending on persister, the saga state is retrieved and persisted with either pessimistic or optimistic locking. If the transaction takes too long, it's possible another message will come in that correlates to the same saga instance. It might be processed on a different (concurrent) thread (or perhaps a scaled out endpoint) and it will either fail immediately (pessimistic locking) or while trying to persist the state (optimistic locking). In both cases the message will be retried.
+Accessing external resources from within a saga creates significant contention and consistency challenges. Saga state is retrieved and persisted using either pessimistic or optimistic locking, depending on the persister implementation. Extended transaction durations increase the likelihood of concurrent message processing issues.
 
-This is the expected behavior and cannot be completely avoided, however, the longer the lock is open the more likely it is such situation will occur. In order to minimize chances of such problems use sagas only as a mechanism of business process orchestration.
+When a transaction remains open for an extended period, another message correlating to the same saga instance may arrive. This message might be processed on a different thread or by a scaled-out endpoint instance, resulting in:
 
-If a saga needs additional data from external sources to process the message, then the best approach is to have the saga collect all the data it needs by handling messages that provide that data. This may result in sagas that "live forever", i.e. don't have a message that would cause them to `MarkAsComplete()`.
+- **Pessimistic locking**: Immediate lock contention failure and message retry
+- **Optimistic locking**: Concurrency conflict during state persistence and message retry
 
-Since sagas, when they're not processing messages, are effectively a record in a database, leaving a saga running "forever" is equivalent to not deleting a record from a database. This is similar to how regular business entities in a system are not deleted.
+While this retry behavior is expected and cannot be entirely prevented, the duration of an open lock directly correlates to collision probability. To minimize these issues, use sagas exclusively as business process orchestration mechanisms.
 
-This approach often results in sagas whose responsibility grows enough to be considered an [Aggregate Root in Domain-Driven Design](https://martinfowler.com/bliki/DDD_Aggregate.html).
+### Event-Driven Data Collection
 
-When it comes to integration scenarios, like calling external systems, dedicated sagas should be designed to manage the interaction - yet those sagas shouldn't perform the external calls directly. Instead, those sagas should send messages to other endpoints which will perform those actions. It is common for those endpoints to send response messages back to the saga, as described in the previous section. These endpoints can be hosted in separate processes or in the same process as the saga depending on other architectural decisions.
+When a saga requires additional data from external sources to process messages, the recommended approach is to design the saga to collect that data through message handlers. Rather than querying external systems, the saga receives messages containing the necessary information.
+
+This pattern often results in sagas that persist indefinitely without calling `MarkAsComplete()`. Since inactive sagas exist as database records, an indefinitely-running saga is functionally equivalent to maintaining any other business entity record in your system. This approach frequently evolves sagas into what Domain-Driven Design identifies as [Aggregate Roots](https://martinfowler.com/bliki/DDD_Aggregate.html).
+
+### Managing External System Integration
+
+For integration scenarios requiring external system calls, design dedicated sagas to orchestrate these interactions without performing the actual I/O operations. Instead, these sagas should:
+
+1. Send (command) messages to dedicated message handlers.
+2. Have those handlers execute the - sometimes very long running - external operations and [reply](/nservicebus/messaging/reply-to-a-message.md) the result back to the saga for processing.
+3. Process these results not requiring IO as all data is already contains in the response message.
+
+This separation maintains the saga's role as a coordinator while delegating execution to appropriate handlers.
+
+These handlers can be hosted in the same or separate endpoints.
+
+Hosting these in separate endpoints allows for better tweaking the concurrency limit and allowed retries that are better suited if these handlers access external resources that allow no 
 
 ## Querying saga data
 
