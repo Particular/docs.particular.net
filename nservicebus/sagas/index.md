@@ -2,7 +2,7 @@
 title: Sagas
 summary: Master NServiceBus sagas to coordinate distributed workflows and ensure reliable long-running processes.
 component: Core
-reviewed: 2025-06-24
+reviewed: 2026-01-23
 redirects:
 - nservicebus/sagas-in-nservicebus
 related:
