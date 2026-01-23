@@ -122,7 +122,7 @@ The concurrency limit applies to an entire endpoint. If the endpoint hosts many 
 
 ### Avoid I/O or CPU bound operations in a saga handler
 
-The longer it takes for a saga handler to execute, the more likely it is to suffer from data contention. When using pessimistic locking, the handler will cause the lock to be held for longer. When using OCC, conflicts are more likely. Ensure saga handlers *only* read and write saga state and send messages. Avoid accessing databases and other resources, and long running CPU bound work. These operations should be performed in [separate message handlers](/nservicebus/sagas/#accessing-databases-and-other-resources-from-a-saga) which are not part of the saga.
+The longer it takes for a saga handler to execute, the more likely it is to suffer from data contention. When using pessimistic locking, the handler will cause the lock to be held for longer. When using OCC, conflicts are more likely. Ensure saga handlers *only* read and write saga state and send messages. Avoid accessing databases and other resources, and long running CPU bound work. These operations should be performed in [separate message handlers](/nservicebus/sagas/#avoid-external-resource-access) which are not part of the saga.
 
 ### Do not enlist in the transport transaction
 
