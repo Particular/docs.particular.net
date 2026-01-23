@@ -49,5 +49,3 @@ snippet: asb-cloudevents-serialization
 1. Run the sample.
 2. Generate the `BlobCreated` event by creating a new file in the Azure Blob Storage container.
 3. Observe that the sample prints out the URL of the newly created file.
-
-
