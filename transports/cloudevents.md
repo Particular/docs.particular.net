@@ -11,6 +11,8 @@ versions: '[10,]'
 
 This guideline shows how to receive [CloudEvents](https://cloudevents.io/) in the NServiceBus endpoints.
 
+How are you using CLoudEvents? We want to [hear from you](https://survey.alchemer.com/s3/8658927/CloudEvents-Survey) about how CloudEvents fit into your development life cycle.
+
 ## Supported formats
 
 This section describes [CloudEvents formats](https://github.com/cloudevents/spec/tree/v1.0.2/cloudevents/formats) supported by NServiceBus.
