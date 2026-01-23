@@ -16,7 +16,7 @@ redirects:
 ---
 
 > [!WARNING]
-> Starting 1 January 2027, it will become mandatory for all projects in active development to use [ServicePulse](./../../servicepulse/usage.md) for usage data collection. Once configured, ServicePulse provides the ability to report throughput instantly at any time, without needing to run an external tool or wait for data collection.
+> Starting 1 January 2027, all projects in active development will be required to use [ServicePulse](./../../servicepulse/usage.md) for usage data collection. Once configured, ServicePulse provides the ability to report throughput instantly at any time, without needing to run an external tool or wait for data collection.
 >
 > The legacy endpoint throughput counter tool is offered as an alternate option for customers who aren't able to use ServicePulse. If you encounter any issues installing ServicePulse in your environment, please reach out so we can assist in finding a solution.
 >
