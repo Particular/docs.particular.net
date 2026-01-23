@@ -21,8 +21,6 @@ This section describes [CloudEvents formats](https://github.com/cloudevents/spec
 
 NServiceBus supports the [JSON format](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md#3-envelope). The [JSON Batch format](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/formats/json-format.md#4-json-batch-format) is not supported.
 
-The implementation relies on [System.Text.Json](https://learn.microsoft.com/en-us/dotnet/api/system.text.json?view=net-10.0) package to parse the JSON content.
-
 ## Supported bindings
 
 This section describes [CloudEvents bindings](https://github.com/cloudevents/spec/tree/v1.0.2/cloudevents/bindings) supported by NServiceBus.
