@@ -138,7 +138,6 @@
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/3.0.1) | 2025-06-04     | -                 | -                                 |
 | [2.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/2.2.1) | 2025-06-03     | 2026-06-04        | Superseded by 3.0.x               |
 | [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/2.1.0) | ~~2025-04-23~~ | ~~2025-09-03~~    | ~~Superseded by 2.2.x~~           |
-| [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/2.0.2) | ~~2024-04-16~~ | ~~2025-07-23~~    | ~~Superseded by 2.1.x~~           |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/1.0.2) | 2023-05-09     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 
 #### [NServiceBus.Persistence.DynamoDB.TransactionalSession](/nuget/NServiceBus.Persistence.DynamoDB.TransactionalSession)
@@ -148,7 +147,6 @@
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/3.0.1) | 2025-06-04     | -                 | -                                 |
 | [2.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/2.2.1) | 2025-06-03     | 2026-06-04        | Superseded by 3.0.x               |
 | [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/2.1.0) | ~~2025-04-23~~ | ~~2025-09-03~~    | ~~Superseded by 2.2.x~~           |
-| [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/2.0.2) | ~~2024-04-16~~ | ~~2025-07-23~~    | ~~Superseded by 2.1.x~~           |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/1.0.2) | 2023-05-09     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 
 #### [NServiceBus.Persistence.NonDurable](/nuget/NServiceBus.Persistence.NonDurable)
