@@ -9,7 +9,7 @@
 - Verify the certificate path is correct and the file exists
 - Check that the certificate file has appropriate permissions
 - Confirm the certificate password is correct
-- For containers, ensure the volume mount is correct (e.g., `-v /path/to/certs:/certs`)
+- For containers, ensure the volume mount is correct (e.g., `-v certificate.pfx:/usr/share/ParticularSoftware/certificate.pfx`)
 
 ### HTTPS redirect not working
 

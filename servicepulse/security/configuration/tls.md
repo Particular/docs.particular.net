@@ -15,7 +15,7 @@ ServicePulse can be configured to use HTTPS directly, enabling encrypted connect
 
 ## Configuration
 
-There are two hosting options for ServiceControl, [Container](/servicepulse/containerization/) and [Windows Service](/servicepulse/installation.md). The container is configured via environment variables and the windows service is configured using command-line arguments. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings in conjustion with [Authentication](authentication.md) and [Forward Headers](forward-headers.md) configuration settings in a scenario based format.
+There are two hosting options for ServiceControl, [Container](/servicepulse/containerization/) and [Windows Service](/servicepulse/installation.md). The container is configured via environment variables, while the Windows Service is configured using command-line arguments. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings, along with [Authentication](authentication.md) and [Forward Headers](forward-headers.md), in a scenario-based format.
 
 ### Container
 

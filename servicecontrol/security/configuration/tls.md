@@ -12,7 +12,7 @@ ServiceControl instances can be configured to use HTTPS directly, enabling encry
 
 ## Configuration
 
-ServiceControl instances can be configured via environment variables or App.config. Each instance type uses a different prefix. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings in conjustion with [Authentication](authentication.md) and [Forward Headers](forward-headers.md) configuration settings in a scenario based format.
+ServiceControl instances can be configured via environment variables or App.config. Each instance type uses a different prefix. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings, along with [Authentication](authentication.md) and [Forward Headers](forward-headers.md), in a scenario-based format.
 
 - [Primary Instance](/servicecontrol/servicecontrol-instances/configuration.md#tls)
 - [Audit Instance](/servicecontrol/audit-instances/configuration.md#tls)
