@@ -40,7 +40,6 @@ In Strict mode, the CloudEvents message `Content-Type` header must be equal to o
 
 Fields [`id`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#id), [`source`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#source-1), [`type`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type), and at least one of `data` and `data_base64` must be present. The [`specversion`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#specversion) is not required to be present or to equal to `1.0`.
 
-
 #### Permissive mode
 
 In Premissive mode, the CloudEvents message [`type`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type) field must be present. The `Content-Type` header is not verified, and a payload deserialization attempt is always executed.
