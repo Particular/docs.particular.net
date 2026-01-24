@@ -58,30 +58,23 @@ sequenceDiagram
     ServicePulse-->>User: Display data
 ```
 
-Certain endpoints remain accessible without authentication to support API discovery, client bootstrapping, and scatter-gather communication between ServiceControl instances.
+Certain endpoints remain accessible without authentication to support API discovery, client bootstrapping, and service-to-service communication between ServiceControl instances.
 
 ### Anonymous endpoints
 
-The following endpoints are accessible without authentication, even when authentication is enabled:
+The following endpoints remain anonymous to support API Discovery, health checks, and authentication bootstrapping:
 
-| Endpoint                            | Purpose                                                            |
-|-------------------------------------|--------------------------------------------------------------------|
-| `/api/authentication/configuration` | Returns authentication configuration for clients like ServicePulse |
-
-This endpoint must remain accessible so clients can obtain the authentication configuration needed to acquire tokens before authenticating.
-
-### Scatter-gather endpoints
-
-The Primary ServiceControl instance communicates with other ServiceControl instances to aggregate data. The following endpoints support this scatter-gather communication and are accessible without authentication:
-
-| Endpoint                     | Purpose                                                   |
-|------------------------------|-----------------------------------------------------------|
-| `/api`                       | API root/discovery - returns available endpoints          |
-| `/api/instance-info`         | Returns instance configuration information                |
-| `/api/configuration`         | Returns instance configuration information (alias)        |
-| `/api/configuration/remotes` | Returns remote instance configurations for scatter-gather |
-
-These endpoints allow the Primary instance to discover remote instances.
+| Endpoint                            | Method  | Instance                   | Purpose                                                            |
+|-------------------------------------|---------|----------------------------|--------------------------------------------------------------------|
+| `/api`                              | GET     | Primary, Audit             | API root/discovery - returns available endpoints                   |
+| `/api/instance-info`                | GET     | Primary, Audit             | Returns instance configuration information                         |
+| `/api/configuration`                | GET     | Primary, Audit             | Returns instance configuration information (alias)                 |
+| `/api/configuration/remotes`        | GET     | Primary                    | Returns remote instance configurations                             |
+| `/api/authentication/configuration` | GET     | Primary                    | Returns authentication configuration for clients like ServicePulse |
+| `/api/connection`                   | GET     | Primary, Audit, Monitoring | API Discovery for the Platform Connector Plugin                    |
+| `/`                                 | GET     | Monitoring                 | API root/discovery - returns instance information                  |
+| `/`                                 | OPTIONS | Monitoring                 | CORS support - returns supported operations                        |
+| `/endpoints`                        | OPTIONS | Monitoring                 | CORS support - returns supported operations                        |
 
 ### Token Forwarding Security Considerations
 
