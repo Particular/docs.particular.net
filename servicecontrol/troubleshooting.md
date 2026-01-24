@@ -449,3 +449,55 @@ Dirty memory issues can be mitigated using one or more of the following strategi
 - Consider adding faster storage to reduce I/O impact and allow the RavenDB instance to flush dirty memory faster
 - Reduce the instance max concurrency level by reducing the `MaximumConcurrencyLevel` setting ([error instance documentation](servicecontrol-instances/configuration.md#performance-tuning-servicecontrolmaximumconcurrencylevel), [audit instance documentation](audit-instances/configuration.md#performance-tuning-servicecontrol-auditmaximumconcurrencylevel))
 - If the issue affects an audit instance, consider [scaling it out using a sharding or a competing consumer approach](servicecontrol-instances/remotes.md).
+
+## Benchmark container storage
+
+Storage performance can be tested on (linux) containers using flo. Use a distro image like `alpine:latest` which is lightweight:
+
+Replace `/path/to/test` with the mounted volume.
+
+```sh
+docker run --rm -v /path/to/test:/data \
+  alpine:latest \
+  sh -c "apk add --no-cache fio && fio --name=test --filename=/data/testfile --size=1G --rw=randrw --bs=4k --runtime=60 --fsync_on_close=1"
+```
+
+> [!NOTE]
+> The `--fsync_on_close` argument is very important as that is what determines write performance on databases as this guarantees that data has been flushed.
+
+Example output:
+```
+test: (groupid=0, jobs=1): err= 0: pid=22: Fri Jan 23 15:10:56 2026
+  read: IOPS=402k, BW=1570MiB/s (1646MB/s)(512MiB/326msec)
+    clat (nsec): min=611, max=24306, avg=1020.08, stdev=215.50
+     lat (nsec): min=622, max=24316, avg=1038.48, stdev=217.75
+    clat percentiles (nsec):
+     |  1.00th=[  732],  5.00th=[  852], 10.00th=[  884], 20.00th=[  924],
+     | 30.00th=[  956], 40.00th=[  980], 50.00th=[  996], 60.00th=[ 1020],
+     | 70.00th=[ 1048], 80.00th=[ 1096], 90.00th=[ 1176], 95.00th=[ 1240],
+     | 99.00th=[ 1416], 99.50th=[ 1576], 99.90th=[ 3952], 99.95th=[ 5152],
+     | 99.99th=[ 7136]
+  write: IOPS=402k, BW=1571MiB/s (1647MB/s)(512MiB/326msec); 0 zone resets
+    clat (nsec): min=681, max=37179, avg=1105.74, stdev=246.63
+     lat (nsec): min=701, max=37209, avg=1128.39, stdev=247.98
+    clat percentiles (nsec):
+     |  1.00th=[  796],  5.00th=[  924], 10.00th=[  964], 20.00th=[ 1004],
+     | 30.00th=[ 1048], 40.00th=[ 1064], 50.00th=[ 1080], 60.00th=[ 1112],
+     | 70.00th=[ 1144], 80.00th=[ 1192], 90.00th=[ 1256], 95.00th=[ 1336],
+     | 99.00th=[ 1496], 99.50th=[ 1688], 99.90th=[ 4576], 99.95th=[ 5280],
+     | 99.99th=[ 6944]
+  lat (nsec)   : 750=0.80%, 1000=33.75%
+  lat (usec)   : 2=65.25%, 4=0.09%, 10=0.10%, 20=0.01%, 50=0.01%
+  cpu          : usr=32.62%, sys=66.46%, ctx=8, majf=0, minf=11
+  IO depths    : 1=100.0%, 2=0.0%, 4=0.0%, 8=0.0%, 16=0.0%, 32=0.0%, >=64=0.0%
+     submit    : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     complete  : 0=0.0%, 4=100.0%, 8=0.0%, 16=0.0%, 32=0.0%, 64=0.0%, >=64=0.0%
+     issued rwts: total=131040,131104,0,0 short=0,0,0,0 dropped=0,0,0,0
+     latency   : target=0, window=0, percentile=100.00%, depth=1
+
+Run status group 0 (all jobs):
+   READ: bw=1570MiB/s (1646MB/s), 1570MiB/s-1570MiB/s (1646MB/s-1646MB/s), io=512MiB (537MB), run=326-326msec
+  WRITE: bw=1571MiB/s (1647MB/s), 1571MiB/s-1571MiB/s (1647MB/s-1647MB/s), io=512MiB (537MB), run=326-326msec
+```
+
+The repored `write: IOPS=` value gives a good estimate on the storage performance.
