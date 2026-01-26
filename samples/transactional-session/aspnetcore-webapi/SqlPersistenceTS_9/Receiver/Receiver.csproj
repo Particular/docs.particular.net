@@ -8,7 +8,7 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.4" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.*" />
   </ItemGroup>
   <ItemGroup>

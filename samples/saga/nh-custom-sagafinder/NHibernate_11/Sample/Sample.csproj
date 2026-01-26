@@ -9,9 +9,9 @@
 
   <ItemGroup>
     <PackageReference Include="NHibernate" Version="5.*" />
-    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.24" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.4" />
-    <PackageReference Include="NServiceBus.NHibernate" Version="11.0.0-alpha.5" />
+    <PackageReference Include="NServiceBus" Version="10.*" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
+    <PackageReference Include="NServiceBus.NHibernate" Version="11.*" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.3" />
   </ItemGroup>
 

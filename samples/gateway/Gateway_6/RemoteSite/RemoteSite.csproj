@@ -12,9 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.4" />
-    <PackageReference Include="NServiceBus.Gateway" Version="6.0.0-alpha.9" />
-    <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="3.0.0-alpha.5" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
+    <PackageReference Include="NServiceBus.Gateway" Version="6.*" />
+    <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="3.*" />
   </ItemGroup>
 
 </Project>

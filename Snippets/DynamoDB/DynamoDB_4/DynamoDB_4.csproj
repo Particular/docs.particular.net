@@ -6,8 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Persistence.DynamoDB" Version="4.0.0-alpha.7" />
-    <PackageReference Include="NServiceBus.Testing" Version="10.0.0-alpha.6" />
+    <PackageReference Include="NServiceBus.Persistence.DynamoDB" Version="4.*" />
+    <PackageReference Include="NServiceBus.Testing" Version="10.*" />
   </ItemGroup>
 
 </Project>

@@ -17,7 +17,7 @@
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Http" Version="3.*" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Extensions.Kafka" Version="4.*" />
     <PackageReference Include="Microsoft.Azure.Functions.Worker.Sdk" Version="2.*" />
-    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="6.0.0-alpha.5" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="6.*" />
   </ItemGroup>
 
   <ItemGroup>

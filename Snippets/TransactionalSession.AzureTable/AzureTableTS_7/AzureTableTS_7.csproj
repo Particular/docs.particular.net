@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Persistence.AzureTable.TransactionalSession" Version="7.0.0-alpha.4" />
+    <PackageReference Include="NServiceBus.Persistence.AzureTable.TransactionalSession" Version="7.*" />
   </ItemGroup>
 
 </Project>

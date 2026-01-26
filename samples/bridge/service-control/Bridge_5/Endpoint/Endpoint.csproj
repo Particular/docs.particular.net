@@ -11,10 +11,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.24" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.4" />
-    <PackageReference Include="NServiceBus.Heartbeat" Version="6.0.0-alpha.4" />
-    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="6.0.0-alpha.3" />
+    <PackageReference Include="NServiceBus" Version="10.*" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
+    <PackageReference Include="NServiceBus.Heartbeat" Version="6.*" />
+    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="6.*" />
   </ItemGroup>
 
 </Project>

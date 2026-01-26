@@ -5,11 +5,11 @@
     <LangVersion>14.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.24" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.4" />
-    <PackageReference Include="NServiceBus.MessagingBridge" Version="5.0.0-alpha.4" />
-    <PackageReference Include="NServiceBus.MessagingBridge.Msmq" Version="5.0.0-alpha.4" />
-    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="6.0.0-alpha.5" />
+    <PackageReference Include="NServiceBus" Version="10.*" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
+    <PackageReference Include="NServiceBus.MessagingBridge" Version="5.*" />
+    <PackageReference Include="NServiceBus.MessagingBridge.Msmq" Version="5.*" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="6.*" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />

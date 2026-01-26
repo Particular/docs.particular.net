@@ -6,8 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.4" />
-    <PackageReference Include="NServiceBus.RavenDB" Version="11.0.0-alpha.4" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
+    <PackageReference Include="NServiceBus.RavenDB" Version="11.*" />
     <PackageReference Include="RavenDB.Client" Version="6.*" />
   </ItemGroup>
   <ItemGroup>

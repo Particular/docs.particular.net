@@ -1,18 +1,13 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using Azure.Storage.Queues;
 using Azure.Storage.Queues.Models;
 using Newtonsoft.Json;
-using NUnit.Framework;
 
-[TestFixture]
 public class AzureHelper
 {
-    [Test]
-    [Explicit]
-    public async Task WriteOutData()
+    public static async Task WriteOutData()
     {
         #region UsingHelpers
 
@@ -44,7 +39,7 @@ public class AzureHelper
 
         dynamic parsedJson = JsonConvert.DeserializeObject(json);
         Console.WriteLine("Message contents:");
-        Console.WriteLine(JsonConvert.SerializeObject((object) parsedJson, Formatting.Indented));
+        Console.WriteLine(JsonConvert.SerializeObject((object)parsedJson, Formatting.Indented));
 
         var body = (string)parsedJson?.Body;
         Console.WriteLine("Deserialized message body:");

@@ -4,7 +4,7 @@
     <LangVersion>14.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.24" />
+    <PackageReference Include="NServiceBus" Version="10.*" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.0-preview2.25178.5" />
   </ItemGroup>
 </Project>
