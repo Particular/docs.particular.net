@@ -3,13 +3,14 @@
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
     <GenerateRuntimeConfigurationFiles>true</GenerateRuntimeConfigurationFiles>
     <AWSProjectType>Lambda</AWSProjectType>
     <!-- This property makes the build directory similar to a publish directory and helps the AWS .NET Lambda Mock Test Tool find project dependencies. -->
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <!-- Generate ready to run images during publishing to improve cold start time. -->
     <PublishReadyToRun>true</PublishReadyToRun>
-    <LangVersion>preview</LangVersion>
+    <LangVersion>14.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,8 +20,8 @@
   <ItemGroup>
     <PackageReference Include="Amazon.Lambda.Core" Version="2.*" />
     <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.*" />
-    <PackageReference Include="NServiceBus.AwsLambda.SQS" Version="2.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.Persistence.DynamoDB" Version="2.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.AwsLambda.SQS" Version="4.*" />
+    <PackageReference Include="NServiceBus.Persistence.DynamoDB" Version="4.*" />
   </ItemGroup>
 
 </Project>
