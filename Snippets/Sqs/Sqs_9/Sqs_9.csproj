@@ -3,6 +3,6 @@
     <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.AmazonSQS" Version="9>*" />
+    <PackageReference Include="NServiceBus.AmazonSQS" Version="9.*" />
   </ItemGroup>
 </Project>

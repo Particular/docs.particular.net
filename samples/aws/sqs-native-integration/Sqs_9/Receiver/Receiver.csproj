@@ -10,7 +10,7 @@
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus" Version="10.*" />
-    <PackageReference Include="NServiceBus.AmazonSQS" Version="9>*" />
+    <PackageReference Include="NServiceBus.AmazonSQS" Version="9.*" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="5.*" />
   </ItemGroup>
