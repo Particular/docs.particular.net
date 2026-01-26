@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.TransactionalSession" Version="4.0.0-alpha.5" />
+    <PackageReference Include="NServiceBus.TransactionalSession" Version="4.*" />
     <!-- Can be removed once the transactional session has caught up with this Core alpha version -->
-    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.24" />
+    <PackageReference Include="NServiceBus" Version="10.*" />
   </ItemGroup>
 
 </Project>

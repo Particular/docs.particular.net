@@ -5,10 +5,10 @@
     <LangVersion>14.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.4" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="NHibernate" Version="5.*" />
-    <PackageReference Include="NServiceBus.NHibernate" Version="11.0.0-alpha.5" />
-    <PackageReference Include="NServiceBus.Transport.SqlServer" Version="9.0.0-alpha.4" />
+    <PackageReference Include="NServiceBus.NHibernate" Version="11.*" />
+    <PackageReference Include="NServiceBus.Transport.SqlServer" Version="9.*" />
   </ItemGroup>
 </Project>

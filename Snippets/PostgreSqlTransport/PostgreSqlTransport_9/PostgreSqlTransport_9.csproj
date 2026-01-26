@@ -6,7 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Azure.Identity" Version="1.*" />
-    <PackageReference Include="NServiceBus.Transport.PostgreSql" Version="9.0.0-alpha.4" />
-    <PackageReference Include="NServiceBus.Heartbeat" Version="6.0.0-alpha.4" />
+    <PackageReference Include="NServiceBus.Transport.PostgreSql" Version="9.*" />
+    <PackageReference Include="NServiceBus.Heartbeat" Version="6.*" />
   </ItemGroup>
 </Project>

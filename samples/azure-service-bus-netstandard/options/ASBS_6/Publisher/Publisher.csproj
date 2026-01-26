@@ -9,11 +9,11 @@
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="6.0.0-alpha.5" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.4" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="6.*" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
   </ItemGroup>
   <ItemGroup Label="Transitive dependencies">
-    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.24" />
+    <PackageReference Include="NServiceBus" Version="10.*" />
     <PackageReference Include="Azure.Messaging.ServiceBus" Version="7.*" />
   </ItemGroup>
 </Project>

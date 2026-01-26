@@ -4,6 +4,6 @@
     <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Transport.PostgreSql" Version="9.0.0-alpha.4" />
+    <PackageReference Include="NServiceBus.Transport.PostgreSql" Version="9.*" />
   </ItemGroup>
 </Project>
