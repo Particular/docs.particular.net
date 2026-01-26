@@ -1,0 +1,144 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Transform" : "AWS::Serverless-2016-10-31",
+  "Description" : "Template that creates an SQS queue and a function that is invoked when a new message arrives.",
+  "Resources": {
+    "ErrorQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "Samples-DynamoDB-Lambda-Error"
+      }
+    },
+    "ClientQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "Samples-DynamoDB-Lambda-ClientUI"
+      }
+    },
+    "ClientDelayQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "Samples-DynamoDB-Lambda-ClientUI-delay.fifo",
+        "FifoQueue": "true",
+        "DelaySeconds": 900
+      }
+    },
+    "SalesQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "Samples-DynamoDB-Lambda-Sales"
+      }
+    },
+    "SalesDelayQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "Samples-DynamoDB-Lambda-Sales-delay.fifo",
+        "FifoQueue": "true",
+        "DelaySeconds": 900
+      }
+    },
+    "OrderShippedTopic": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "OrderShipped",
+        "DisplayName": "OrderShipped"
+      }
+    },
+    "OrderDelayedTopic": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "OrderDelayed",
+        "DisplayName": "OrderDelayed"
+      }
+    },
+    "OrderReceivedTopic": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "OrderReceived",
+        "DisplayName": "OrderReceived"
+      }
+    },
+    "CustomerBilledTopic": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "CustomerBilled",
+        "DisplayName": "CustomerBilled"
+      }
+    },
+    "InventoryStagedTopic": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "InventoryStaged",
+        "DisplayName": "InventoryStaged"
+      }
+    },
+    "DynamoTable": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "TableName": "Samples.DynamoDB.Lambda",
+        "BillingMode": "PAY_PER_REQUEST",
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "PK",
+            "AttributeType": "S"
+          },
+          {
+            "AttributeName": "SK",
+            "AttributeType": "S"
+          }
+        ],
+        "KeySchema": [
+          {
+            "AttributeName": "PK",
+            "KeyType": "HASH"
+          },
+          {
+            "AttributeName": "SK",
+            "KeyType": "RANGE"
+          }
+        ]
+      }
+    },
+    "SQSTriggerFunction": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "Sales::OrderProcessor::ProcessOrder",
+        "Runtime": "dotnet10",
+        "CodeUri": "",
+        "Description": "Process an order",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Policies": [ "AWSLambda_FullAccess", "AmazonSQSFullAccess", "AmazonSNSFullAccess", "AmazonDynamoDBFullAccess" ],
+        "Events": {
+          "SqsEvent": {
+            "Type": "SQS",
+            "Properties": {
+              "BatchSize": 10,
+              "Queue": { "Fn::GetAtt": [ "SalesQueue", "Arn" ] }
+            }
+          }
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "ClientQueueQueueURL": {
+      "Description": "The URL of the client queue",
+      "Value": {
+        "Ref": "ClientQueue"
+      }
+    },
+    "ErrorQueueQueueURL": {
+      "Description": "The URL of the error queue",
+      "Value": {
+        "Ref": "ErrorQueue"
+      }
+    },
+    "SalesQueueQueueURL": {
+      "Description": "The URL of the Lambda input queue",
+      "Value": {
+        "Ref": "SalesQueue"
+      }
+    }
+  }
+}
