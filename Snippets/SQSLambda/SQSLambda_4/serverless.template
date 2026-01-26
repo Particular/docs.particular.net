@@ -17,7 +17,7 @@
         }
       },
       "Properties": {
-        "Runtime": "dotnet8",
+        "Runtime": "dotnet10",
         "CodeUri": ".",
         "MemorySize": 512,
         "Timeout": 30,
@@ -25,7 +25,7 @@
           "AWSLambdaBasicExecutionRole"
         ],
         "PackageType": "Zip",
-        "Handler": "SQSLambda_2::SQSLambdaSnippets.Usage_FunctionHandler_Generated::FunctionHandler",
+        "Handler": "SQSLambda_4::SQSLambdaSnippets.Usage_FunctionHandler_Generated::FunctionHandler",
         "Events": {
           "endpointname": {
             "Type": "SQS",

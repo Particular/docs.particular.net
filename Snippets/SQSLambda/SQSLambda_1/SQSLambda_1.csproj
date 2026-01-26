@@ -6,7 +6,6 @@
 
   <ItemGroup>
     <PackageReference Include="NServiceBus.AwsLambda.SQS" Version="1.*" />
-    <PackageReference Include="NServiceBus" Version="8.*" />
   </ItemGroup>
 
 </Project>
