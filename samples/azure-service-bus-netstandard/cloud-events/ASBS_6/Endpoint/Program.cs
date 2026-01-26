@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text.Json;
+using Azure.Messaging.EventGrid.SystemEvents;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
@@ -34,7 +34,7 @@ var cloudEventsConfiguration = endpointConfiguration.EnableCloudEvents();
 #endregion
 
 #region asb-cloudevents-typemapping
-cloudEventsConfiguration.TypeMappings["Microsoft.Storage.BlobCreated"] = [typeof(BlobCreated)];
+cloudEventsConfiguration.TypeMappings["Microsoft.Storage.BlobCreated"] = [typeof(StorageBlobCreatedEventData)];
 #endregion
 
 

@@ -1,11 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using Azure.Messaging.EventGrid.SystemEvents;
 using Microsoft.Extensions.Logging;
 using NServiceBus;
 
-public class BlobCreatedHandler(ILogger<BlobCreated> logger) :
-    IHandleMessages<BlobCreated>
+public class BlobCreatedHandler(ILogger<StorageBlobCreatedEventData> logger) :
+    IHandleMessages<StorageBlobCreatedEventData>
 {
-    public Task Handle(BlobCreated message, IMessageHandlerContext context)
+    public Task Handle(StorageBlobCreatedEventData message, IMessageHandlerContext context)
     {
         logger.LogInformation("Blob {Url} created!", message.Url);
         return Task.CompletedTask;

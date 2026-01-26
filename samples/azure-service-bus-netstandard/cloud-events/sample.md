@@ -17,18 +17,16 @@ Azure Event Grid needs to be configured to receive Azure Blob Storage notificati
 
 This sample shows an endpoint receiving a CloudEvents message from Azure Service Bus. Such a message can be created by Azure Blob Storage and delivered to Azure Service Bus via Azure Event Grid.
 
-* The `Endpoint` defines the schema for the CloudEvents message.
+* The `Endpoint` uses the Azure EventGrid SDK to access the schema of the CloudEvents message.
 * The `Endpoint` enables CloudEvents support and configures the type mapping.
 * The `Endpoint` configures the serializer to support fields and properties with different casing.
 * The `Endpoint` receives the message and calls the proper handler.
 
 ### CloudEvents message schema
 
-The message schema is defined as follows:
+The message schema is defined in the [Azure Event Grid SDK](https://learn.microsoft.com/en-us/dotnet/api/overview/azure/messaging.eventgrid-readme?view=azure-dotnet).
 
-snippet: asb-cloudevents-message-definition
-
-This schema must match the [Event Grid notifications schema](https://learn.microsoft.com/en-us/azure/event-grid/event-schema-blob-storage?tabs=cloud-event-schema#microsoftstorageblobcreated-event).
+This schema matches the [Event Grid notifications schema](https://learn.microsoft.com/en-us/azure/event-grid/event-schema-blob-storage?tabs=cloud-event-schema#microsoftstorageblobcreated-event).
 
 ### CloudEvents support configuration
 
