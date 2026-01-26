@@ -1,6 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using NServiceBus;
-using NServiceBus.AwsLambda.SQS;
 
 namespace LambdaFunctions;
 

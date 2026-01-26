@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.Logging;
+﻿using NServiceBus.Logging;
 
 public class ResponseMessageHandler : IHandleMessages<ResponseMessage>
 {

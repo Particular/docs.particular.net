@@ -1,7 +1,7 @@
 {
   "AWSTemplateFormatVersion": "2010-09-09",
   "Transform": "AWS::Serverless-2016-10-31",
-  "Description": "Template that creates an SQS queue and a function that is invoked when a new message arrives. This template is partially managed by Amazon.Lambda.Annotations (v1.7.0.0).",
+  "Description": "Template that creates an SQS queue and a function that is invoked when a new message arrives. This template is partially managed by Amazon.Lambda.Annotations (v1.8.0.0).",
   "Resources": {
     "ErrorQueue": {
       "Properties": {
@@ -52,7 +52,7 @@
         }
       },
       "Properties": {
-        "Runtime": "dotnet8",
+        "Runtime": "dotnet10",
         "CodeUri": ".",
         "MemorySize": 256,
         "Timeout": 30,
@@ -87,7 +87,7 @@
         }
       },
       "Properties": {
-        "Runtime": "dotnet8",
+        "Runtime": "dotnet10",
         "CodeUri": ".",
         "MemorySize": 512,
         "Timeout": 30,

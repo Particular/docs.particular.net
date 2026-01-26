@@ -1,12 +1,10 @@
-using System.Threading.Tasks;
 using Amazon.Lambda.Annotations;
 using Amazon.Lambda.Annotations.APIGateway;
 using Amazon.Lambda.Core;
 using Amazon.Lambda.Serialization.SystemTextJson;
-using NServiceBus;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
-[assembly:LambdaSerializer(typeof(DefaultLambdaJsonSerializer))]
+[assembly: LambdaSerializer(typeof(DefaultLambdaJsonSerializer))]
 
 namespace LambdaFunctions;
 
