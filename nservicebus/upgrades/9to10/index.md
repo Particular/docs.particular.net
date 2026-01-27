@@ -40,7 +40,7 @@ Changing from using `DataBusProperty<T>` to specifying conventions for the claim
 
 If message contracts are in a versioned library that has been migrated to `ClamCheckProperty<T>`, then DataBus endpoints can remain on an older version of the contracts library until they can be upgraded to NServiceBus.ClaimCheck.
 
-If message contracts are not in a versioned library, a local copy of the messages can be made to facilitate the transition. In this case it is imperative that all class names, namespaces, and property names are exactly the same to make sure the message can be properly deserialized when it is received.
+If message contracts are not in a versioned library, a local copy of the messages can be made to facilitate the transition. In this case, it is imperative that all class names, namespaces, and property names be exactly the same to make sure the message can be properly deserialized when it is received.
 
 ## Sagas
 
@@ -57,7 +57,7 @@ protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> ma
 
 ### ConfigureMapping API deprecated
 
-Starting from [NServiceBus version 7.7 Roslyn analyzers](/nservicebus/sagas/analyzers.md) have been introduced that analyze the code in sagas and make suggestions for improvements directly in the editor. As part of those analyzers, code fixes (provided by analyzer rule IDs NSB0004 and NSB0018) have been provided to [simplify the mapping expression](/nservicebus/sagas/analyzers.md#saga-mapping-expressions-can-be-simplified) from
+Starting from NServiceBus version 7.7, [Roslyn analyzers](/nservicebus/sagas/analyzers.md) have been introduced that analyze the code in sagas and make suggestions for improvements directly in the editor. As part of those analyzers, code fixes (provided by analyzer rule IDs NSB0004 and NSB0018) have been provided to [simplify the mapping expression](/nservicebus/sagas/analyzers.md#saga-mapping-expressions-can-be-simplified) from
 
 ```csharp
 protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapper)
@@ -80,11 +80,11 @@ protected override void ConfigureHowToFindSaga(SagaPropertyMapper<SagaData> mapp
 }
 ```
 
-In Version 10 the mapping expression using `mapper.ConfigureMapping<OrderPlaced>(...).ToSaga(...)` or `mapper.ConfigureHeaderMapping<OrderPlaced>(...).ToSaga(...)` is no longer supported. NSB0004 and NSB0018 analyzers are merged into NSB0004 which now uses Error severity but still offers the possibility to automatically rewrite the saga syntax with the provided fixer.
+In Version 10, the mapping expression using `mapper.ConfigureMapping<OrderPlaced>(...).ToSaga(...)` or `mapper.ConfigureHeaderMapping<OrderPlaced>(...).ToSaga(...)` is no longer supported. NSB0004 and NSB0018 analyzers are merged into NSB0004, which now uses Error severity but still offers the possibility to automatically rewrite the saga syntax with the provided fixer.
 
 ### Custom finders
 
-In Version 10 [custom saga finders](/nservicebus/sagas/saga-finding.md) are no longer automatically registered via assembly scanning and must be mapped in the `ConfigureHowToFindSaga` method:
+In Version 10, [custom saga finders](/nservicebus/sagas/saga-finding.md) are no longer automatically registered via assembly scanning and must be mapped in the `ConfigureHowToFindSaga` method:
 
 ```csharp
 protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
@@ -115,7 +115,7 @@ endpointConfiguration.ExecuteTheseHandlersFirst(typeof(FirstHandler), typeof(Sec
 
 Sometimes, handler order needed to be set to guarantee that some infrastructure task occurred, such as logging. In current versions of NServiceBus, these infrastructure tasks should be replaced with [pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md). In addition to the docs, more information on pipeline behaviors can be found in the blog post [Infrastructure soup](https://particular.net/blog/infrastructure-soup).
 
-Other examples that previously required `ExecuteTheseHandlersFirst` involved multiple handlers reacting to different types in a message inheritance hierarchy, for example with each handler doing part of the work on a data object that is loaded once using the [identity map pattern](https://en.wikipedia.org/wiki/Identity_map_pattern) and then persisted once incorporating the changes from both handlers.
+Other examples that previously required `ExecuteTheseHandlersFirst` involved multiple handlers reacting to different types in a message inheritance hierarchy, for example, with each handler doing part of the work on a data object that is loaded once using the [identity map pattern](https://en.wikipedia.org/wiki/Identity_map_pattern) and then persisted once incorporating the changes from both handlers.
 
 In these cases, replace the call to `ExecuteTheseHandlersFirst` with `AddHandler` or `AddSaga`. The handlers will be invoked in registration order. Any handlers later added during [assembly scanning](/nservicebus/hosting/assembly-scanning.md) will continue to be invoked in a non-deterministic order after the explicitly registered handlers.
 
@@ -128,7 +128,7 @@ endpointConfiguration.AddHandler<ThenThisHandler>();
 
 ## Service registration changes
 
-NServiceBus version 10 changes how infrastructure components are registered and resolved. Infrastructure types such as handlers, sagas, behaviors, installers and custom checks that users should never directly resolve are no longer registered in the service collection, while still supporting dependency injection for their own dependencies.
+NServiceBus version 10 changes how infrastructure components are registered and resolved. Infrastructure types such as handlers, sagas, behaviors, installers, and custom checks that users should never directly resolve are no longer registered in the service collection, while still supporting dependency injection for their own dependencies.
 
 This change aligns with fundamental principles in software architecture:
 
@@ -148,7 +148,7 @@ For those using [`ValidateOnBuild`](https://learn.microsoft.com/en-us/dotnet/api
 
 ### Changes required
 
-If both of the following conditions are true of all handlers, sagas, behaviors, etc. then **no action is needed**, and they will continue to work exactly as before with full dependency injection support:
+If both of the following conditions are true of all handlers, sagas, behaviors, etc., then **no action is needed**, and they will continue to work exactly as before with full dependency injection support:
 
 * Not resolved directly using `GetService<T>()` or similar
 * Not used as a constructor injection argument in another class
@@ -163,7 +163,7 @@ var handler = serviceProvider.GetService<MyHandler>();
 handler.DoSomething(); // This confuses application and framework layers
 ```
 
-…adjust the code to be structured similar to:
+…adjust the code to be structured similarly to:
 
 ```csharp
 // Extract the logic to a proper application service
@@ -221,7 +221,7 @@ public static class MyFeatureConfigurationExtensions
 
 The `EnableByDefault()` method is only used to signal that a Feature identified through assembly scanning should turn itself on by default, so this method is deprecated with a warning in NServiceBus version 10 to give advance notice of this change, and will be removed in version 11.
 
-In addition, APIs that work with features using a `Type` have been deprecated, and instead the generic-typed variants should be used. For example:
+In addition, APIs that work with features using a `Type` have been deprecated, and instead, the generic-typed variants should be used. For example:
 
 ```csharp
 // Instead of:
@@ -232,7 +232,7 @@ endpointConfiguration.EnableFeature<MyFeature>();
 endpointConfiguration.DisableFeature<MyFeature>();
 ```
 
-Lastly, any `Feature` classes must now have a paramaterless constructor.
+Lastly, any `Feature` classes must now have a parameterless constructor.
 
 ### Installers
 
@@ -258,7 +258,7 @@ As part of adding nullability annotations, the `Data` and `Name` properties of t
 
 ### ICompletableSynchronizedStorageSession and IOutboxTransaction implement IAsyncDisposable
 
-`ICompletableSynchronizedStorageSession` and `IOutboxTransaction` implement `IAsyncDisposable` to better support asynchronous operations during the disposal of both types. For more information about IAsyncDisposable visit consult the [Implement a DisposeAsync guidelines](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-disposeasync).
+`ICompletableSynchronizedStorageSession` and `IOutboxTransaction` implement `IAsyncDisposable` to better support asynchronous operations during the disposal of both types. For more information about IAsyncDisposable, visit [Implement a DisposeAsync guidelines](https://learn.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-disposeasync).
 
 ### PersistenceDefinition
 
