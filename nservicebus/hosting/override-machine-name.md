@@ -3,7 +3,7 @@ title: Overriding the machine name
 summary: How to override the machine name for NServiceBus endpoints
 component: Core
 versions: '[4.0,)'
-reviewed: 2024-05-07
+reviewed: 2026-01-27
 ---
 
 The machine name is used by various components. For example:
