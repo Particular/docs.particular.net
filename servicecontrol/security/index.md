@@ -71,7 +71,6 @@ The following endpoints remain anonymous to support API Discovery, health checks
 | `/api/configuration`                | GET     | Primary, Audit             | Returns instance configuration information (alias)                 |
 | `/api/configuration/remotes`        | GET     | Primary                    | Returns remote instance configurations                             |
 | `/api/authentication/configuration` | GET     | Primary                    | Returns authentication configuration for clients like ServicePulse |
-| `/api/connection`                   | GET     | Primary, Audit, Monitoring | API Discovery for the Platform Connector Plugin                    |
 | `/`                                 | GET     | Monitoring                 | API root/discovery - returns instance information                  |
 | `/`                                 | OPTIONS | Monitoring                 | CORS support - returns supported operations                        |
 | `/endpoints`                        | OPTIONS | Monitoring                 | CORS support - returns supported operations                        |
