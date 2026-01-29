@@ -1,7 +1,7 @@
 ---
 title: Add feature toggles to handlers
 summary: Checks feature toggles to determine whether or not a handler should be executed for a given message.
-reviewed: 2024-05-07
+reviewed: 2026-01-29
 component: Core
 related:
 - nservicebus/pipeline
