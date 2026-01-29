@@ -47,4 +47,7 @@
 - Use a certificate from a trusted Certificate Authority for production
 - Ensure the certificate's Common Name (CN) or Subject Alternative Name (SAN) matches the hostname
 - Check that the certificate has not expired
+- Ensure the certificate is in the correct Trusted Root Certificate Authorities store. e.g.,
+  - If running in a Windows Service as `Local System`, the certificate should be in the `Local Computer` store.
+  - If running as yourself, the certificate should be in the `Current User` store.
 - For internal/development use, add the self-signed certificate to the trusted root store
