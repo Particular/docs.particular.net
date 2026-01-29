@@ -22,7 +22,7 @@ redirects:
 >
 > If necessary, [open a support case](https://customers.particular.net/request-support/licensing) to get help with installing or configuring ServicePulse for usage data collection.
 
-The Endpoint Throughput Counter tool can typically be installed on a [user's workstation](#frequently-asked-questions-does-the-tool-need-to-run-on-my-production-server) and run against a production system to identify endpoints and measure their throughput over a period of time.
+The Endpoint Throughput Counter tool can typically be installed on a [user's workstation](#frequently-asked-questions-does-the-tool-need-to-run-on-my-production-server) and run against a production system to identify endpoints and measure their throughput over a period of time. ISVs who do not have access to their clients production environments can run the tool in a pre-production environment to produce the validated list of endpoints.
 
 ## Installation
 
