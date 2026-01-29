@@ -97,3 +97,17 @@ There are metrics that measure various spects of the [transactional session oper
 - Dispatch druation - how long it took to dispatch the control message
 - Attempts - how many times the mechanism attempted to process the control message for a given transaction
 - Transit time - how long it took between dispatching the control message and starting to process it again
+
+### Envelope handling metrics
+
+Various metrics track envelope-handling performance when receiving messages that require envelope unwrapping, such as CloudEvents. The generic metrics include:
+
+- Envelope unwrapping attempts - how many times a single envelope handler attempted to unwrap an incoming message. The metric also reports whether the operation was successful or not, the envelope handler type, and the exception in case of failure
+
+#### CloudEvents specific metrics
+
+Metrics related to [CloudEvents](/transports/cloudevents.md) track the following:
+
+- Unwrapping attempt - number of attempts to unwrap a message
+- Invalid messages received - number of messages that don't meet the specification requirements (e.g., they lack mandatory fields)
+- Unexpected version received - number of messages that use unexpected specification version
