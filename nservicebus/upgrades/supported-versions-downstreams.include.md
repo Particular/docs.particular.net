@@ -565,33 +565,6 @@
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Wcf/3.0.1) | 2022-11-17     | 2026-04-16        | Bounded by NServiceBus 8.2.x      |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Wcf/2.0.0) | 2018-05-29     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
-#### [Particular.PlatformSample](/nuget/Particular.PlatformSample)
-
-| Version   | Released       | Supported until   | Notes                             |
-|:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [3.72.x](https://www.nuget.org/packages/Particular.PlatformSample/3.72.0) | 2026-01-24     | -                 | -                                 |
-| [3.71.x](https://www.nuget.org/packages/Particular.PlatformSample/3.71.0) | 2026-01-20     | 2026-04-24        | Superseded by 3.72.x              |
-| [3.70.x](https://www.nuget.org/packages/Particular.PlatformSample/3.70.0) | 2026-01-14     | 2026-04-20        | Superseded by 3.71.x              |
-| [3.69.x](https://www.nuget.org/packages/Particular.PlatformSample/3.69.0) | 2026-01-05     | 2026-04-14        | Superseded by 3.70.x              |
-| [3.68.x](https://www.nuget.org/packages/Particular.PlatformSample/3.68.0) | 2025-12-10     | 2026-04-05        | Superseded by 3.69.x              |
-| [3.67.x](https://www.nuget.org/packages/Particular.PlatformSample/3.67.0) | 2025-12-05     | 2026-03-10        | Superseded by 3.68.x              |
-| [3.66.x](https://www.nuget.org/packages/Particular.PlatformSample/3.66.0) | 2025-12-05     | 2026-03-05        | Superseded by 3.67.x              |
-| [3.65.x](https://www.nuget.org/packages/Particular.PlatformSample/3.65.0) | 2025-11-14     | 2026-03-05        | Superseded by 3.66.x              |
-| [3.64.x](https://www.nuget.org/packages/Particular.PlatformSample/3.64.0) | 2025-11-14     | 2026-02-14        | Superseded by 3.65.x              |
-| [3.63.x](https://www.nuget.org/packages/Particular.PlatformSample/3.63.0) | 2025-11-14     | 2026-02-14        | Superseded by 3.64.x              |
-| [3.62.x](https://www.nuget.org/packages/Particular.PlatformSample/3.62.0) | 2025-11-13     | 2026-02-14        | Superseded by 3.63.x              |
-| [3.61.x](https://www.nuget.org/packages/Particular.PlatformSample/3.61.0) | 2025-10-29     | 2026-02-13        | Superseded by 3.62.x              |
-| [~~3.60.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.60.0) | ~~2025-10-29~~ | ~~2026-01-29~~    | ~~Superseded by 3.61.x~~          |
-| [~~3.59.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.59.0) | ~~2025-09-18~~ | ~~2026-01-29~~    | ~~Superseded by 3.60.x~~          |
-| [~~3.58.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.58.0) | ~~2025-09-17~~ | ~~2025-12-18~~    | ~~Superseded by 3.59.x~~          |
-| [~~3.57.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.57.0) | ~~2025-08-21~~ | ~~2025-12-17~~    | ~~Superseded by 3.58.x~~          |
-| [~~3.56.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.56.1) | ~~2025-07-31~~ | ~~2025-11-21~~    | ~~Superseded by 3.57.x~~          |
-| [~~3.54.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.54.0) | ~~2025-07-15~~ | ~~2025-10-31~~    | ~~Superseded by 3.56.x~~          |
-| [~~3.51.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.51.0) | ~~2025-05-23~~ | ~~2025-10-15~~    | ~~Superseded by 3.54.x~~          |
-| [~~3.49.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.49.0) | ~~2025-05-19~~ | ~~2025-08-23~~    | ~~Superseded by 3.51.x~~          |
-| [~~3.47.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.47.0) | ~~2025-05-13~~ | ~~2025-08-19~~    | ~~Superseded by 3.49.x~~          |
-| [~~3.45.x~~](https://www.nuget.org/packages/Particular.PlatformSample/3.45.0) | ~~2025-04-29~~ | ~~2025-08-13~~    | ~~Superseded by 3.47.x~~          |
-
 #### [ServiceControl.Contracts](/nuget/ServiceControl.Contracts)
 
 | Version   | Released       | Supported until   | Notes                             |

@@ -1137,59 +1137,6 @@
       ]
     },
     {
-      "PackageId": "Particular.PlatformSample",
-      "Versions": [
-        {
-          "Minor": "3.61",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.62",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.63",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.64",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.65",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.66",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.67",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.68",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.69",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.70",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.71",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "3.72",
-          "SupportLevel": "Mainstream"
-        }
-      ]
-    },
-    {
       "PackageId": "ServiceControl.Contracts",
       "Versions": [
         {
@@ -1201,50 +1148,6 @@
           "SupportLevel": "Mainstream"
         }
       ]
-    },
-    {
-      "PackageId": "ServiceControl.Plugin.Nsb3.CustomChecks",
-      "Versions": []
-    },
-    {
-      "PackageId": "ServiceControl.Plugin.Nsb3.Heartbeat",
-      "Versions": []
-    },
-    {
-      "PackageId": "ServiceControl.Plugin.Nsb4.CustomChecks",
-      "Versions": []
-    },
-    {
-      "PackageId": "ServiceControl.Plugin.Nsb4.Heartbeat",
-      "Versions": []
-    },
-    {
-      "PackageId": "ServiceControl.Plugin.Nsb4.SagaAudit",
-      "Versions": []
-    },
-    {
-      "PackageId": "ServiceControl.Plugin.Nsb5.CustomChecks",
-      "Versions": []
-    },
-    {
-      "PackageId": "ServiceControl.Plugin.Nsb5.Heartbeat",
-      "Versions": []
-    },
-    {
-      "PackageId": "ServiceControl.Plugin.Nsb5.SagaAudit",
-      "Versions": []
-    },
-    {
-      "PackageId": "ServiceControl.Plugin.Nsb6.CustomChecks",
-      "Versions": []
-    },
-    {
-      "PackageId": "ServiceControl.Plugin.Nsb6.Heartbeat",
-      "Versions": []
-    },
-    {
-      "PackageId": "ServiceControl.Plugin.Nsb6.SagaAudit",
-      "Versions": []
     },
     {
       "PackageId": "ServiceControl.TransportAdapter",
