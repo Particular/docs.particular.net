@@ -4,7 +4,7 @@ summary: Receiving messages from external systems
 component: Core
 related:
 - nservicebus/messaging/headers
-reviewed: 2024-05-09
+reviewed: 2026-01-29
 ---
 
 Endpoints can receive messages from external systems (such as BizTalk, TIBCO, etc). To ensure those messages can be handled correctly by NServiceBus, additional information might be required which is otherwise provided by NServiceBus automatically.
