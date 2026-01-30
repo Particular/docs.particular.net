@@ -29,7 +29,7 @@ Each of the following sections describes the advantages and disadvantages of eac
 * [MSMQ](#msmq)
 * [Learning Transport](#learning)
 
-For transports that use a cloud-hosted queueing technology, the quality of the network connection between the applications and the cloud provider is important. If the connection is problematic, it may not be possible to send messages. For example, this may result in problems capturing data from a user interface. If applications are running in the same data centre as the queueing technology, this risk is mitigated.
+For transports that use a cloud-hosted queueing technology, the quality of the network connection between the applications and the cloud provider is important. If the connection is problematic, it may not be possible to send messages. For example, this may result in problems capturing data from a user interface. If applications are running in the same data center as the queueing technology, this risk is mitigated.
 
 This is a basic flowchart for selecting a supported transport. Where more than one transport is listed, refer to the sections below. They describe the advantages and disadvantages of each transport in more detail.
 
@@ -55,7 +55,7 @@ NNN-->|No|NNNN[<center>RabbitMQ/<br/>SQL Server</center>]
 
 The learning transport should not be used in production.
 
-This transport is intended to learn how to work with NServiceBus. It does not require installing queueing technology and works "out of the box". This is done by storing sent and received messages as files on disk.
+This transport is intended for learning how to work with NServiceBus. It does not require installing queueing technology and works "out of the box". This is done by storing sent and received messages as files on disk.
 
 ## Azure Service Bus
 
@@ -66,15 +66,15 @@ Azure provides multiple messaging technologies. One of the most advanced and rel
 - Fully managed, turn-key infrastructure
 - Ease of scaling
 - Ease of feature selection
-- Supports message transactions. Other Azure queueing technologies do not
-- Up to 100MB message size on the Premium tier. See [Large messages support](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-premium-messaging#large-messages-support) for more information
-- More native capabilities, such as delayed message delivery, which requires an [outbox](/nservicebus/outbox) when using some other transports
-- Local development experience using the [Azure Service Bus Emulator](https://learn.microsoft.com/en-us/azure/service-bus-messaging/overview-emulator)
+- Supports message transactions (other Azure queueing technologies do not)
+- Up to 100MB message size on the Premium tier (see [Large messages support](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-premium-messaging#large-messages-support) for more information)
+- More native capabilities (including delayed message delivery, which requires an [outbox](/nservicebus/outbox) when using some other transports)
+- Local development supported using the [Azure Service Bus Emulator](https://learn.microsoft.com/en-us/azure/service-bus-messaging/overview-emulator)
 
 ### Disadvantages
 
-- Requires careful monitoring of costs, although the transport does provide features for throttling throughput
-- Atomic message receive, and data manipulation requires an [outbox](/nservicebus/outbox).
+- Requires careful monitoring of costs (although the transport does provide features for throttling throughput)
+- Atomic message receive and data manipulation requires an [outbox](/nservicebus/outbox)
 - Message processing time is limited to 5 minutes
 - Relies on TCP, which may require opening additional ports in a firewall
 
@@ -99,7 +99,7 @@ Azure Storage Queues has fewer features than Azure Service Bus, but can be more 
 ### Disadvantages
 
 - The size of a single message is limited to 64 KB, including headers and body. NServiceBus uses headers for metadata, which could consume a lot of the message's overall size.
-- Atomic message receive, and data manipulation requires an [outbox](/nservicebus/outbox).
+- Atomic message receive and data manipulation requires an [outbox](/nservicebus/outbox).
 - Does not offer a native publish-subscribe mechanism. A database is required for storing event subscriptions (via [NServiceBus persistence](/persistence)). [Explicit routing for publish/subscribe](/nservicebus/messaging/routing.md#event-routing-message-driven) must also be specified.
 - Significant latency when receiving messages, due to polling over HTTP for new messages.
 
@@ -107,7 +107,7 @@ Azure Storage Queues has fewer features than Azure Service Bus, but can be more 
 
 - When the application is running on Microsoft Azure, and the additional features of Azure Service Bus are not worth the cost
 - When high throughput is not required
-- When scale-out is not required. Scaling out requires Azure Service Bus
+- When scale-out is not required (scaling out requires Azure Service Bus)
 
 ## SQL Server
 
