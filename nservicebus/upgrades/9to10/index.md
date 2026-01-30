@@ -13,9 +13,9 @@ include: upgrade-major
 
 ## .NET target framework
 
-The minimum version of .NET that can be used with NServiceBus 10 is .NET 10.
+The minimum version of .NET required for NServiceBus 10 is .NET 10.
 
-## DataBus feature moved to separate NServiceBus.ClaimCheck package
+## DataBus feature moved to a separate NServiceBus.ClaimCheck package
 
 The DataBus feature has been removed from the main NServiceBus package. Code needs to be migrated to use the [NServiceBus.ClaimCheck](https://www.nuget.org/packages/NServiceBus.ClaimCheck/) package that was introduced with NServiceBus 9.
 
@@ -32,7 +32,7 @@ The table below shows the type mapping:
 
 ### Migrating message contracts
 
-NServiceBus.ClaimCheck is **wire-compatible** with the original DataBus feature. In-flight messages sent using DataBus will be handled correctly by endpoints upgraded to ClaimCheck, and vice versa.
+NServiceBus.ClaimCheck is **wire-level compatible** with the original DataBus feature. In-flight messages sent using DataBus will be handled correctly by endpoints upgraded to ClaimCheck, and vice versa.
 
 DataBus and ClaimCheck are wire-compatible but **not runtime-compatible**. An endpoint using DataBus cannot write `ClaimCheckProperty<T>` properties to the DataBus storage. Similarly, an endpoint using ClaimCheck cannot write `DataBusProperty<T>` properties. Each endpoint needs a message contract copy that matches its property type.
 
@@ -42,17 +42,17 @@ The simplest migration path is to use conventions for claim check properties ins
 
 #### Independent versioned message assemblies
 
-When message contracts are in a versioned library DataBus endpoints can stay an older version of the contracts library until they can be migrated to the version using `ClaimCheckProperty<T>`
+When message contracts are in a versioned library, DataBus endpoints can stay an older version of the contracts library until they can be migrated to the version using `ClaimCheckProperty<T>`.
 
-#### Serializer compatible fully qualied type names
+#### Serializer compatible fully qualified type names
 
-When message contracts are not maintained in separate versioned library, ensure each endpoint has its own local copy of the messages where all class names, namespaces, and property names match exactly to ensure (de)serializer compatbility.
+When message contracts are not maintained in a separate versioned library, ensure each endpoint has its own local copy of the messages, where all class names, namespaces, and property names match exactly to ensure (de)serializer compatibility.
 
 ## Sagas
 
 ### Not found handlers
 
-In Version 10 the `IHandleSagaNotFound` interface has been deprecated in favour of `ISagaNotFoundHandler`. The [saga not found handlers](/nservicebus/sagas/saga-not-found.md) are no longer automatically registered via assembly scanning and must be mapped in the `ConfigureHowToFindSaga` method of the sagas that require the not found handler to be executed:
+In Version 10, the `IHandleSagaNotFound` interface has been deprecated in favour of `ISagaNotFoundHandler`. The [saga not found handlers](/nservicebus/sagas/saga-not-found.md) are no longer automatically registered via assembly scanning and must be mapped in the `ConfigureHowToFindSaga` method of the sagas that require the not found handler to be executed:
 
 ```csharp
 protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
@@ -112,14 +112,14 @@ Final adjustments to settings before configuration is finalized should be applie
 
 ## Deprecated `ExecuteTheseHandlersFirst`
 
-Most of the time, any given message is only handled by one message handler or saga, but it is possible for multiple handlers to apply for a message type, especially when considering message types that have an inheritance hierarchy. In these cases, the handlers would be called one after the other, but not necessarily in a deterministic order, unless `ExecuteTheseHandlersFirst` specified the order:
+Most of the time, a given message is handled by only one message handler or saga, but it is possible for multiple handlers to handle a message type, especially when the message type has an inheritance hierarchy. In these cases, the handlers would be called one after the other, but not necessarily in a deterministic order, unless `ExecuteTheseHandlersFirst` specified the order:
 
 ```csharp
 // Before NServiceBus 10
 endpointConfiguration.ExecuteTheseHandlersFirst(typeof(FirstHandler), typeof(SecondHandler));
 ```
 
-Sometimes, handler order needed to be set to guarantee that some infrastructure task occurred, such as logging. In current versions of NServiceBus, these infrastructure tasks should be replaced with [pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md). In addition to the docs, more information on pipeline behaviors can be found in the blog post [Infrastructure soup](https://particular.net/blog/infrastructure-soup).
+Sometimes, the handler order needed to be set to guarantee that some infrastructure task occurred, such as logging. In current versions of NServiceBus, these infrastructure tasks should be replaced with [pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md). In addition to the docs, more information on pipeline behaviors can be found in the blog post [Infrastructure soup](https://particular.net/blog/infrastructure-soup).
 
 Other examples that previously required `ExecuteTheseHandlersFirst` involved multiple handlers reacting to different types in a message inheritance hierarchy, for example, with each handler doing part of the work on a data object that is loaded once using the [identity map pattern](https://en.wikipedia.org/wiki/Identity_map_pattern) and then persisted once incorporating the changes from both handlers.
 
