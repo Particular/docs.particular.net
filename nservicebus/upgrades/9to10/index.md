@@ -38,7 +38,7 @@ Some care should be taken when migrating message contracts from `DataBusProperty
 
 Changing from using `DataBusProperty<T>` to specifying conventions for the claim check properties will be the easiest way to migrate whilst maintaining runtime compatibility between the new and old versions. If this is not possible, the message contracts can be versioned separately too.
 
-If message contracts are in a versioned library that has been migrated to `ClamCheckProperty<T>`, then DataBus endpoints can remain on an older version of the contracts library until they can be upgraded to NServiceBus.ClaimCheck.
+If message contracts are in a versioned library that has been migrated to `ClaimCheckProperty<T>`, then DataBus endpoints can remain on an older version of the contracts library until they can be upgraded to NServiceBus.ClaimCheck.
 
 If message contracts are not in a versioned library, a local copy of the messages can be made to facilitate the transition. In this case, it is imperative that all class names, namespaces, and property names be exactly the same to make sure the message can be properly deserialized when it is received.
 
