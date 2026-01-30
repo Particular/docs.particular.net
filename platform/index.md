@@ -15,7 +15,7 @@ The Particular Service Platform consists of [NServiceBus](/nservicebus), [Servic
 
 ![Particular Service Platform architecture](architecture-overview.png)
 
-The details of each component are discussed below. A Particular Service Platform-based system consists of several NServiceBus [endpoints](/nservicebus/endpoints/). Endpoints are logical entities that perform business operations. They communicate with each other using messages (via queues) and forward messages to ServiceControl for auditing. ServiceControl stores this audit trail and provides integration points for ServicePulse. ServicePulse provides monitoring and recoverability for production systems. ServicePulse provides debugging information and visualization of how the system works.
+The details of each component are discussed below. A Particular Service Platform-based system consists of several NServiceBus [endpoints](/nservicebus/endpoints/). Endpoints are logical entities that perform business operations. They communicate with each other using messages (via queues) and forward messages to ServiceControl for auditing. ServiceControl stores this audit trail and provides integration points for ServicePulse. ServicePulse provides monitoring and recoverability for production systems, as well as debugging information and visualization of how the system works.
 
 ## [NServiceBus](/nservicebus) - where it all begins
 
