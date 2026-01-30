@@ -74,7 +74,7 @@ snippet: sqs-cloudevents-typemapping
 
 The `EnvelopeUnwrappers` property contains the list of enabled modes. By default, both Binary Content Mode and Structured Content Mode in Strict Mode are enabled.
 
-To enable or disable the modes, modify the `EnvelopeUnwrappers` property and add or remove unwrappers.
+To enable or disable unrappers, modify the `EnvelopeUnwrappers` property by adding or removing unwrappers.
 
 The following code snippet shows how to change the JSON Structured Content unwrapper from Strict to Permissive:
 
