@@ -1,6 +1,6 @@
 ---
 title: Outbox
-summary: Ensure message consistency with NServiceBus Outbox pattern preventing duplicate message processing in distributed systems.
+summary: Use the NServiceBus Outbox pattern to ensure message consistency and prevent duplicate message processing in distributed systems.
 reviewed: 2025-06-05
 component: Core
 isLearningPath: true
