@@ -450,9 +450,9 @@ Dirty memory issues can be mitigated using one or more of the following strategi
 - Reduce the instance max concurrency level by reducing the `MaximumConcurrencyLevel` setting ([error instance documentation](servicecontrol-instances/configuration.md#performance-tuning-servicecontrolmaximumconcurrencylevel), [audit instance documentation](audit-instances/configuration.md#performance-tuning-servicecontrol-auditmaximumconcurrencylevel))
 - If the issue affects an audit instance, consider [scaling it out using a sharding or a competing consumer approach](servicecontrol-instances/remotes.md).
 
-## Benchmark container storage
+## Benchmarking storage performance on Linux containers
 
-Storage performance can be tested on (linux) containers using flo. Use a distro image like `alpine:latest` which is lightweight:
+Storage performance can be tested on containers by using [Flexible I/O tester (fio)](https://fio.readthedocs.io/en/latest/). Use a distro image like `[alpine:latest](https://www.alpinelinux.org/)` which is lightweight:
 
 Replace `/path/to/test` with the mounted volume.
 
@@ -463,7 +463,7 @@ docker run --rm -v /path/to/test:/data \
 ```
 
 > [!NOTE]
-> The `--fsync_on_close` argument is very important as that is what determines write performance on databases as this guarantees that data has been flushed.
+> The `--fsync_on_close` argument ensures that data has been flushed; this is necessary to accurately determine write performance.
 
 Example output:
 ```
@@ -500,4 +500,4 @@ Run status group 0 (all jobs):
   WRITE: bw=1571MiB/s (1647MB/s), 1571MiB/s-1571MiB/s (1647MB/s-1647MB/s), io=512MiB (537MB), run=326-326msec
 ```
 
-The repored `write: IOPS=` value gives a good estimate on the storage performance.
+The reported `write: IOPS=` value provides a reasonably accurate estimate on storage performance.
