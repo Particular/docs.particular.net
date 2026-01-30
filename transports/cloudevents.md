@@ -89,24 +89,22 @@ When selecting an unwrapper for the message:
 - A metric is emitted for every unwrapping attempt to show errors. The metric's value indicates whether the unwrapping succeeded or crashed. Mind that if the unwrapper recognizes that it can't unwrap the message (e.g., because the message lacks required fields), then it's considered a successful unwrapping.
 
 Structured Content Mode in Strict Mode produces the following signals:
-- A metric is emitted to indicate if the unwrapper attempts to unwrap the message (i.e., if the message has incorrect `Content-Type` header value).
-- A metric is emitted to indicate if the message's body can be deserialized, if the body doesn't contain the required fields, or if the body is correct.
-- A warning message is logged to indicate if the message's body cannot be deserialized.
-- A warning message is logged for every required field that is missing.
-- A metric is emitted to indicate if the version field contains a correct version, if the version field contains an incorrect version, or if the version field is missing.
-- A warning message is logged when the version field contains unexpected value or if the version field is missing.
+- If the message has correct content type header, a metric is emitted.
+- If and only if the message has correct content type header, a metric is emitted if the message's body canot be deserialized or if the message doesn't have at least one required field.
+- If and only if the message has correct content type header and all required fields, a metric is emitted if the version field contains an unexpected value or if the version field is missing.
+- If and only if the message has correct content type header, a warning message is logged if the message's body cannot be deserialized or if the message doesn't have a required field.
+- If and only if the message has correct content type header and all required fields, a warning message is logged if the version field contains an unexpected value or if the version field is missing.
 
 Structured Content Mode in Permissive Mode produces the following signals:
 - A metric is emitted to indicate that the unwrapper attempts to unwrap the message (i.e., for every messages).
-- A metric is emitted to indicate when the message's body is correct.
-- A metric is emitted to indicate when the version field contains an unexpected value.
-- A warning message is logged when the version field contains unexpected value.
+- If and only if the message could be parsed and the message contains the type field, a metric is emitted if the version field contains an unexpected value.
+- If and only if the message could be parsed and the message contains the type field, a warning message is logged if the version field contains unexpected value.
 
 Binary Content Mode produces the following signals:
-- A metric is emitted to indicate that the unwrapper attempts to unwrap the message (i.e., for every messages).
-- A metric is emitted to indicate when the expected headers are present.
-- A metric is emitted to indicate if the version header contains a correct version, if the version header contains an incorrect version, or if the version header is missing.
-- A warning message is logged when the version header contains unexpected value or if the version header is missing.
+- A metric is emitted if at least one of the required headers is absent.
+- A metric is emitted if the required headers are present.
+- If and only if the message has required headers, a metric is emitted if the version header contains an unexpected value or if the version header is missing
+- If and only if the message has required headers, a warning message is logged if the version header contains an unexpected value or if the version header is missing.
 
 ## Troubleshooting
 
