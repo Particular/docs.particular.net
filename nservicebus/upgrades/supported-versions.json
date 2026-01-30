@@ -14,6 +14,10 @@
         {
           "Minor": "9.2",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "10.0",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -38,6 +42,10 @@
         },
         {
           "Minor": "8.1",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "9.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -76,6 +84,10 @@
         },
         {
           "Minor": "3.1",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "4.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -148,6 +160,10 @@
         {
           "Minor": "5.0",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "6.0",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -164,6 +180,10 @@
         },
         {
           "Minor": "5.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "6.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -186,6 +206,10 @@
       "Versions": [
         {
           "Minor": "1.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "2.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -328,6 +352,10 @@
         {
           "Minor": "5.1",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "6.0",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -366,6 +394,10 @@
         {
           "Minor": "3.0",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "4.0",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -382,6 +414,10 @@
         },
         {
           "Minor": "5.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "6.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -461,6 +497,10 @@
         {
           "Minor": "5.0",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "6.0",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -525,6 +565,10 @@
         {
           "Minor": "4.1",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "5.0",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -542,6 +586,10 @@
         {
           "Minor": "10.1",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "11.0",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -558,6 +606,10 @@
         },
         {
           "Minor": "10.1",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "11.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -962,6 +1014,10 @@
         {
           "Minor": "9.0",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "10.0",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -978,6 +1034,10 @@
         },
         {
           "Minor": "3.4",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "4.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -999,6 +1059,10 @@
         },
         {
           "Minor": "5.1",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "6.0",
           "SupportLevel": "Mainstream"
         }
       ]
@@ -1090,6 +1154,10 @@
         {
           "Minor": "4.0",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "5.0",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -1106,6 +1174,10 @@
         },
         {
           "Minor": "4.0",
+          "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "5.0",
           "SupportLevel": "Mainstream"
         }
       ]

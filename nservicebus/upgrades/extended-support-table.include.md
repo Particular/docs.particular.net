@@ -1,6 +1,7 @@
 |          Version           |  Released               | Current Support | Mainstream <nobr>Support Expires</nobr> | Extended <nobr>Support Expires</nobr> |
 | :------------------------: | :---------------------: | :-------------: | :-------------------------------------: | :-----------------------------------: |
-| <nobr>NServiceBus 9</nobr> | <nobr>2024-04-16</nobr> |   Mainstream    |             Current Version             |            Current Version            |
+| <nobr>NServiceBus 10</nobr> | <nobr>2026-01-29</nobr> |   Mainstream    |             Current Version             |            Current Version            |
+| <nobr>NServiceBus 9</nobr> | <nobr>2024-04-16</nobr> |   Mainstream    |               2028-01-29                |              2030-01-29               |
 | <nobr>NServiceBus 8</nobr> | <nobr>2022-11-17</nobr> |   Mainstream    |               2026-04-16                |              2028-04-16<sup>1</sup>   |
 | <nobr>NServiceBus 7</nobr> | <nobr>2018-05-29</nobr> |   Extended      |               2024-11-17                |              2026-11-17               |
 | <nobr>NServiceBus 6</nobr> | <nobr>2016-10-11</nobr> |   Unsupported   |               2020-05-29                |              2022-05-29               |
