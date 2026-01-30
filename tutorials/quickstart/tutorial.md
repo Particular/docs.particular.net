@@ -1,7 +1,7 @@
 ---
 title: "Quickstart: Sending and processing your first messages"
 reviewed: 2025-06-15
-summary: "Part 1: Learn messaging basics with NServiceBus quickstart guide covering commands,events, and publish subscribe patterns"
+summary: "Part 1: Learn messaging basics with NServiceBus quickstart guide covering commands, events, and the publish-subscribe pattern"
 extensions:
 - !!tutorial
   nextText: "Next: Recovering from failure"
