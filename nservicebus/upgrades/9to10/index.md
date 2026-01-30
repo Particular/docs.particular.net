@@ -17,11 +17,11 @@ The minimum version of .NET that can be used with NServiceBus 10 is .NET 10.
 
 ## DataBus feature moved to separate NServiceBus.ClaimCheck package
 
-The DataBus feature has been removed from the main NServiceBus package and has been released as a separate package, called [NServiceBus.ClaimCheck](https://www.nuget.org/packages/NServiceBus.ClaimCheck/).
+The DataBus feature has been removed from the main NServiceBus package. Code needs to be migrated to use the [NServiceBus.ClaimCheck](https://www.nuget.org/packages/NServiceBus.ClaimCheck/) package that was introduced with NServiceBus 9.
 
-The namespace for the DataBus feature has changed from `NServiceBus.DataBus` to `NServiceBus.ClaimCheck`. The API has also been updated to use the term ClaimCheck instead of DataBus.
+The namespace changed from `NServiceBus.DataBus` to `NServiceBus.ClaimCheck`. All API types now use the term **ClaimCheck** instead of **DataBus**.
 
-The table below shows the mapping from the DataBus configuration types to their ClaimCheck equivalents.
+The table below shows the type mapping:
 
 | DataBus feature | NServiceBus.ClaimCheck |
 | --- | --- |
@@ -32,15 +32,21 @@ The table below shows the mapping from the DataBus configuration types to their 
 
 ### Migrating message contracts
 
-The NServiceBus.ClaimCheck library is wire compatible with the original DataBus feature, in-flight messages that are sent using DataBus will be properly handled by endpoints that have been upgraded to use NServiceBus.ClaimCheck; this is also true in reverse.
+NServiceBus.ClaimCheck is **wire-compatible** with the original DataBus feature. In-flight messages sent using DataBus will be handled correctly by endpoints upgraded to ClaimCheck, and vice versa.
 
-Some care should be taken when migrating message contracts from `DataBusProperty<T>` to `ClaimCheckProperty<T>`. While DataBus and NServiceBus.ClaimCheck are wire compatible, they are not runtime compatible. An endpoint that is currently using the DataBus feature will not write properties that are `ClaimCheckProperty<T>` to the DataBus. The reverse is true of NServiceBus.ClaimCheck endpoints and `DataBusProperty<T>`.  To facilitate the migration, each endpoint will need a copy of the message contract that uses the supported property type.
+DataBus and ClaimCheck are wire-compatible but **not runtime-compatible**. An endpoint using DataBus cannot write `ClaimCheckProperty<T>` properties to the DataBus storage. Similarly, an endpoint using ClaimCheck cannot write `DataBusProperty<T>` properties. Each endpoint needs a message contract copy that matches its property type.
 
-Changing from using `DataBusProperty<T>` to specifying conventions for the claim check properties will be the easiest way to migrate whilst maintaining runtime compatibility between the new and old versions. If this is not possible, the message contracts can be versioned separately too.
+#### Conventions
 
-If message contracts are in a versioned library that has been migrated to `ClaimCheckProperty<T>`, then DataBus endpoints can remain on an older version of the contracts library until they can be upgraded to NServiceBus.ClaimCheck.
+The simplest migration path is to use conventions for claim check properties instead of `DataBusProperty<T>`. This maintains runtime compatibility between old and new versions.
 
-If message contracts are not in a versioned library, a local copy of the messages can be made to facilitate the transition. In this case, it is imperative that all class names, namespaces, and property names be exactly the same to make sure the message can be properly deserialized when it is received.
+#### Independent versioned message assemblies
+
+When message contracts are in a versioned library DataBus endpoints can stay an older version of the contracts library until they can be migrated to the version using `ClaimCheckProperty<T>`
+
+#### Serializer compatible fully qualied type names
+
+When message contracts are not maintained in separate versioned library, ensure each endpoint has its own local copy of the messages where all class names, namespaces, and property names match exactly to ensure (de)serializer compatbility.
 
 ## Sagas
 
