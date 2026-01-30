@@ -107,31 +107,29 @@ Instance cleanup is implemented differently by the various saga persisters and i
 
 ### Outstanding timeouts
 
-Outstanding timeouts requested by the saga instance will be discarded when they expire without triggering the [saga not found handler](saga-not-found.md)
+Outstanding timeouts requested by the saga instance will be discarded when they expire without triggering the [saga not found handler](saga-not-found.md).
 
 ### Messages arriving after a saga has been completed
 
-Messages that [are allowed to start a new saga instance](#starting-a-saga) will cause a new instance with the same correlation id to be created.
+Messages that [are allowed to start a new saga instance](#starting-a-saga) will cause a new instance with the same `CorrelationId` to be created.
 
 Messages handled by the saga (`IHandleMessages<T>`) that arrive after the saga has completed will be passed to the [saga not found handler](saga-not-found.md).
 
 ### Consistency considerations
 
-Completing a saga is a destructive operation, so transaction support of the selected transport and persistence must be considered to ensure correctness. If the persistence is able to participate in the same transaction as the incoming receive operation, either using DTC or by sharing the transport's storage transaction (e.g. SQL Server transport), no further action is needed.
+Completing a saga is a destructive operation, so the transactional capabilities of the chosen transport and persistence must be considered to ensure correctness. If the persistence can participate in the same transaction as the message receive operation, either via DTC or by sharing the transport’s storage transaction (e.g. SQL Server transport), no additional action is required. If it cannot, extra measures are necessary to prevent incorrect system behavior when a saga completes.
 
-If the persistence can't participate in the same transaction as the incoming receive operation, then an additional action is needed to avoid saga completion causing incorrect behavior. The problematic scenario is when sagas are being completed together with sending/publishing outgoing messages. In case of failure after the saga is completed, the outgoing messages may not be dispatched. However, when the incoming message is retried the completed saga is not found, which results in outgoing messages being lost.
+A risk arises when a saga is completed while sending/publishing outgoing messages. If a failure occurs after the saga is completed but before the outgoing messages are dispatched, those messages may be lost. If an incoming message is retried, the saga no longer exists, so the outgoing messages are not sent again and are lost.
 
 This issue can be avoided by:
 
- 1. Enabling the [Outbox feature](/nservicebus/outbox/), if supported by the chosen persistence.
- 1. Ensure that no outgoing messages will be dispatched by completing the saga from a timeout or sending an explicit command to self.
- 1. Replace saga completion with soft delete by setting a flag/timestamp and using some native mechanism of the selected storage to clean up old saga instances.
+ 1. Enabling the [Outbox feature](/nservicebus/outbox/) if it supported by the chosen persistence.
+ 1. Ensuring that no outgoing messages will be dispatched by completing the saga from a timeout or sending an explicit command to self.
+ 1. Replacing saga completion with a soft delete, then setting a flag/timestamp to clean up old saga instances afterward
 
 ## Notifying callers of status
 
-Messages can be published from a saga at any time. This is often used to notify the original caller that initiated the saga of some interim state that isn't relevant to other subscribers.
-
-Using `Reply()` or `Return()` to communicate with the caller would only achieve the desired result when the current message came from that caller, not when another caller sent a message to that saga. For this reason, notice that the saga data contains the original client's return address. It also contains the message ID of the original request so that the caller can correlate status messages on its end.
+Messages can be published from a saga at any time. This is often used to notify the original caller that initiated the saga of some interim state that isn't relevant to other subscribers. The saga data contains the original client's return address and the message ID of the original request so that the caller can correlate status messages on its end.Using `Reply()` or `Return()`. to communicate with the caller would only achieve the desired result when the current message came from that caller, not when another caller sent a message to that saga. For this reason, notice that
 
 To communicate status in the previous example:
 
