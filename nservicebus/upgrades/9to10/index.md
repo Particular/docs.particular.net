@@ -15,7 +15,7 @@ include: upgrade-major
 
 The minimum version of .NET required for NServiceBus 10 is .NET 10.
 
-## DataBus feature moved to a separate NServiceBus.ClaimCheck package
+## DataBus feature moved to separate NServiceBus.ClaimCheck package
 
 The DataBus feature has been removed from the main NServiceBus package. Code needs to be migrated to use the [NServiceBus.ClaimCheck](https://www.nuget.org/packages/NServiceBus.ClaimCheck/) package that was introduced with NServiceBus 9.
 
