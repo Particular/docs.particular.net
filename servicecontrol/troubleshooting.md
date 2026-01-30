@@ -452,7 +452,7 @@ Dirty memory issues can be mitigated using one or more of the following strategi
 
 ## Benchmarking storage performance on Linux containers
 
-Storage performance can be tested on containers by using [Flexible I/O tester (fio)](https://fio.readthedocs.io/en/latest/). Use a distro image like `[alpine:latest](https://www.alpinelinux.org/)` which is lightweight:
+Storage performance can be tested on containers by using [Flexible I/O tester (fio)](https://fio.readthedocs.io/en/latest/). Use a distro image like `[alpine:latest](https://www.alpinelinux.org/)` which is lightweight.
 
 Replace `/path/to/test` with the mounted volume.
 
