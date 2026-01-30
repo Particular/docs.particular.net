@@ -76,7 +76,7 @@ The `EnvelopeUnwrappers` property contains the list of enabled modes. By default
 
 To enable or disable the modes, modify the `EnvelopeUnwrappers` property and add or remove unwrappers.
 
-To change the Structured Content Mode to use Permissive Mode, change the mode in the configuration:
+The following code snippet shows how to change the JSON Structured Content unwrapper from Strict to Permissive:
 
 snippet: sqs-cloudevents-json-permissive
 
