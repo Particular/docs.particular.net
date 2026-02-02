@@ -191,7 +191,7 @@ This separation maintains the saga's role as a coordinator while delegating exec
 
 These handlers can be hosted in the same or separate endpoints.
 
-Hosting these handlers on separate endpoints allows fine-grained control over concurrency limits and retry behavior per endpoint. This is particularly important when handlers interact with external systems that enforce strict concurrency caps or require tailored retry strategies to handle rate limiting and backoff correctly.
+Hosting these handlers on separate endpoints enables fine-grained control over per-endpoint [concurrency limits](/nservicebus/operations/tuning.md) and [retry behavior](/nservicebus/recoverability). This is particularly important when handlers interact with external systems that enforce strict concurrency caps or require tailored retry strategies to handle rate limiting and backoff correctly.
 
 ## Querying saga data
 
