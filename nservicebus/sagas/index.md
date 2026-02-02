@@ -76,7 +76,7 @@ To ensure messages are not discarded when they arrive out of order:
 
 #### Multiple message types starting a saga
 
-If multiple message types can start a saga, it's necessary to ensure that saga behavior will remain correct for all possible combinations of the order in which those messages are received.
+If multiple message types can start a saga, it's important to ensure correct saga behavior regardless of the order in which messages are received.
 
 In the previous example, the `StartOrder` message contains both an `OrderId` and a `CustomerId` but the `CompleteOrder` message contains only an `OrderId`. The handler for `CompleteOrder` requires `CustomerId` to complete the order saga (i.e. initiate a shipping process). If a `StartOrder` message is processed first, the saga persists both the `OrderId` and the `CustomerId` in the saga data and when a corresponding `CompleteOrder` message arrives later, it retrieves the `CustomerId` from the saga data.
 
@@ -119,7 +119,7 @@ Messages handled by the saga (`IHandleMessages<T>`) that arrive after the saga h
 
 Completing a saga is a destructive operation, so the transactional capabilities of the chosen transport and persistence must be considered to ensure correctness. If the persistence can participate in the same transaction as the message receive operation, either via DTC or by sharing the transport’s storage transaction (e.g. SQL Server transport), no additional action is required. If it cannot, extra measures are necessary to prevent incorrect system behavior when a saga completes.
 
-A risk arises when a saga is completed while sending/publishing outgoing messages. If a failure occurs after the saga is completed but before the outgoing messages are dispatched, those messages may be lost. If an incoming message is retried, the saga no longer exists, so the outgoing messages are not sent again and are lost.
+A risk arises when a saga is completed while sending/publishing outgoing messages. If a failure occurs after the saga is completed but before the outgoing messages are dispatched, those messages will be lost. If an incoming message is retried, the saga no longer exists, so the outgoing messages are not sent again.
 
 This issue can be avoided by:
 
@@ -129,9 +129,9 @@ This issue can be avoided by:
 
 ## Notifying callers of status
 
-Messages can be published from a saga at any time. This is often used to notify the original caller that initiated the saga of some interim state that isn't relevant to other subscribers. The saga data contains the original client's return address and the message ID of the original request so that the caller can correlate status messages on its end.Using `Reply()` or `Return()`. to communicate with the caller would only achieve the desired result when the current message came from that caller, not when another caller sent a message to that saga. For this reason, notice that
+Messages can be published from a saga at any time. Using `Reply()` or `Return()` will send a message to the current messages' caller. The saga data also contains the original client's return address and the message ID of the original request so that the caller can correlate status messages on its end. 
 
-To communicate status in the previous example:
+To communicate to the original caller (e.g. to notify the original caller of some interim state that isn't relevant to other subscribers):
 
 snippet: saga-with-reply
 
@@ -151,7 +151,7 @@ The auto subscription feature applies to sagas as well as the regular message ha
 
 ## Sagas and request/response
 
-Sagas often play the role of coordinator, especially when used in integration scenarios. In essence this means that the saga decides what to do next and then asks someone else to do it. This allows sagas to remain free from interacting with non-transactional things like file systems and rest services. The most suitable communication pattern for this type of interaction is the request/response pattern since there is really only one party interested in the response and that is the saga itself.
+Sagas often play the role of coordinator, especially when used in integration scenarios. In essence, this means that the saga decides what to do next and then asks someone else to do it. This allows sagas to remain free from interacting with non-transactional things like file systems and REST services. The most suitable communication pattern for this type of interaction is the request/response pattern since there is really only one party interested in the response, and that is the saga itself.
 
 A common scenario is a saga controlling the process of billing a customer through Visa or MasterCard. It is often the case that there are separate endpoints for making the web service/rest-calls to each payment provider and a saga coordinating retries and fallback rules. Each payment request would be a separate saga instance, so how would the instance hydrate and invoke when the response returns?
 
@@ -162,7 +162,7 @@ The usual way is to correlate on some kind of ID and let the user control how to
 > [!WARNING]
 > A saga should only interact with its own internal state and send or publish messages. It must not perform any I/O operations, including calls to databases, web services, or other external resources, either directly or indirectly through injected dependencies.
 
-Accessing external resources from within a saga creates significant contention and consistency challenges. Saga state is retrieved and persisted using either pessimistic or optimistic locking, depending on the persister implementation. Extended transaction durations increase the likelihood of concurrent message processing issues.
+Accessing external resources from within a saga can create significant contention and consistency challenges. Saga state is retrieved and persisted using either pessimistic or optimistic locking, depending on the persister implementation. Extended transaction durations increase the likelihood of concurrent message processing issues.
 
 When a transaction remains open for an extended period, another message correlating to the same saga instance may arrive. This message might be processed on a different thread or by a scaled-out endpoint instance, resulting in:
 
@@ -193,7 +193,7 @@ Hosting these in separate endpoints allows for better tweaking of the concurrenc
 
 ## Querying saga data
 
-Sagas manage the state of potentially long-running business processes. It is possible to query the saga data directly, but it is not recommended except for very simple administrative or support functionality. The reasons for this are:
+Sagas manage the state of potentially long-running business processes. Although querying saga data directly is possible, it's not recommended except for very simple administrative or support functionality. The reasons for this are:
 
  * The way a given persistence chooses to store the saga data is an implementation detail of the specific persistence that can potentially change over time. By directly querying for the saga data, that query is being coupled to this implementation and risks being affected by format changes.
  * By exposing the data outside of the safeguards of the business logic in the saga, the risk is that the data is not treated as read-only. Eventually, a component tries to bypass the saga and directly modify the data.
