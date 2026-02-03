@@ -39,6 +39,8 @@ asb-transport migration endpoint create name
 
 `-b` | `--subscription`: Subscription name (defaults to endpoint name)
 
+`-h` | `--hierarchy-namespace`: Sets the hierarchy namespace for prefixing destinations in the format `<hierarchy-namespace>/<topic-or-queue>` (available from version 6.1)
+
 ### asb-transport migration endpoint subscribe
 
 Creates a new subscription for an endpoint using single-topic approach.
@@ -61,6 +63,8 @@ asb-transport migration endpoint subscribe name event-type
 `-b` | `--subscription`: Subscription name (defaults to endpoint name)
 
 `-r` | `--rule-name`: Rule name (defaults to event type)
+
+`-h` | `--hierarchy-namespace`: Sets the hierarchy namespace for prefixing destinations in the format `<hierarchy-namespace>/<topic-or-queue>` (available from version 6.1)
 
 ### asb-transport migration endpoint unsubscribe
 
@@ -85,6 +89,8 @@ asb-transport migration endpoint unsubscribe name event-type
 
 `-r` | `--rule-name`: Rule name (defaults to event type)
 
+`-h` | `--hierarchy-namespace`: Sets the hierarchy namespace for prefixing destinations in the format <hierarchy-namespace>/<topic-or-queue> (available from version 6.1)
+
 ### asb-transport migration endpoint subscribe-migrated
 
 Creates a new subscription for an endpoint using topic-per-event approach.
@@ -102,6 +108,8 @@ asb-transport migration endpoint subscribe-migrated name topic
 
 `-b` | `--subscription`: Subscription name (defaults to endpoint name)
 
+`-h` | `--hierarchy-namespace`: Sets the hierarchy namespace for prefixing destinations in the format `<hierarchy-namespace>/<topic-or-queue>` (available from version 6.1)
+
 ### asb-transport migration endpoint unsubscribe-migrated
 
 Deletes a subscription for an endpoint using topic-per-event approach.
@@ -118,3 +126,5 @@ asb-transport migration endpoint unsubscribe-migrated name topic
 `-n` | `--namespace` : Sets the fully qualified namespace to connect with cached credentials, e.g., credentials from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
 
 `-b` | `--subscription`: Subscription name (defaults to endpoint name)
+
+`-h` | `--hierarchy-namespace`: Sets the hierarchy namespace for prefixing destinations in the format `<hierarchy-namespace>/<topic-or-queue>` (available from version 6.1)

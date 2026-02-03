@@ -18,6 +18,8 @@ asb-transport endpoint create name
 
 `-p` | `--partitioned`: Enable partitioning
 
+`-h` | `--hierarchy-namespace`: Sets the hierarchy namespace for prefixing destinations in the format `<hierarchy-namespace>/<topic-or-queue>` (available from version 6.1)
+
 ### asb-transport endpoint subscribe
 
 Creates a new subscription for an endpoint.
@@ -35,6 +37,8 @@ asb-transport endpoint subscribe name topic
 
 `-b` | `--subscription`: Subscription name (defaults to endpoint name)
 
+`-h` | `--hierarchy-namespace`: Sets the hierarchy namespace for prefixing destinations in the format `<hierarchy-namespace>/<topic-or-queue>` (available from version 6.1)
+
 ### asb-transport endpoint unsubscribe
 
 Deletes a subscription for an endpoint.
@@ -51,3 +55,5 @@ asb-transport endpoint unsubscribe name topic
 `-n` | `--namespace` : Sets the fully qualified namespace to connect with cached credentials, e.g., credentials from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
 
 `-b` | `--subscription`: Subscription name (defaults to endpoint name)
+
+`-h` | `--hierarchy-namespace`: Sets the hierarchy namespace for prefixing destinations in the format `<hierarchy-namespace>/<topic-or-queue>` (available from version 6.1)
