@@ -8,11 +8,11 @@ From version 6.1 onward, the Azure Service Bus transport supports configuring hi
 
 In scenarios when a message must be sent outside of the hierarchy, designated message types or interfaces can defined and excluded from the hierarchy using the `HierarchyNamespaceOptions.ExcludeMessageType<TMessageType>()` method.
 
-Considering the following message types for exclusion
+Considering the following message types for exclusion:
 
 snippet: azure-service-bus-hierarchynamespace-excluded-message-types
 
-the `HierarchyNamespaceOptions` can be configured to exclude them individually or by interface:
+The `HierarchyNamespaceOptions` can be configured to exclude them individually or by interface so that only these message types will be sent outside of the `my-hierarchy` hierarchy:
 
 snippet: azure-service-bus-hierarchynamespace-options
 
