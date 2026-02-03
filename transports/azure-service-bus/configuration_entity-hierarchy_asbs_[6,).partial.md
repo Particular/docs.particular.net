@@ -8,30 +8,13 @@ From version 6.1 onward, the Azure Service Bus transport supports configuring hi
 
  In scenarios when a message must be sent outside of the hierarchy, designated message types or interfaces can defined and excluded from the hierarchy using the `HierarchyNamespaceOptions.ExcludeMessageType<TMessageType>()` method:
 
-  ```csharp
-  // snippet placeholder
-  public class MySingleExcludedMessage {}
+snippet: azure-service-bus-hierarchynamespace-excluded-message-types
 
-  public interface IAmExcludedFromTheHierarchy {}
-
-  public class MyExcludedMessageByInterface1 : IAmExcludedFromTheHierarchy {}
-  ```
-
-  ```csharp
-  // snippet placeholder
-  var transport = new AzureServiceBusTransport("Endpoint=sb://[NAMESPACE].servicebus.windows.net/;SharedAccessKeyName=[KEYNAME];SharedAccessKey=[KEY]", TopicTopology.Default);
-  transport.HierarchyNamespaceOptions = new HierarchyNamespaceOptions { HierarchyNamespace = "my-hierarchy" };
-
-  // exclude only a concrete type
-  transport.HierarchyNamespaceOptions.ExcludeMessageType<MySingleExcludedMessage>();
-
-  // exclude all types that inherit an interface or base type
-  transport.HierarchyNamespaceOptions.ExcludeMessageType<IAmExcludedFromTheHierarchy>();
-  ```
+snippet: azure-service-bus-hierarchynamespace-options
 
 #### Usage with topology mapping
 
-The hierarchy namespace prefix is applied to all messages, so topology mappings do not need to specify the hierarchy namespace to utilize this feature. This also means that topology mappings are unable to "escape" the hierarchy if it is set. 
+The hierarchy namespace prefix is applied to all messages, so topology mappings do not need to specify the hierarchy namespace to utilize this feature. This also means that topology mappings are unable to "escape" the hierarchy if it is set.
 
 If a topology mapping attempts to set the same hierarchy prefix, it will be ignored, but if it attempts to set a different one, it will still be prepended with the hierarchy namespace.
 
