@@ -23,7 +23,7 @@ string ReturnFirstExisting(params string[] paths)
     throw new Exception("Could not find any paths in: " + string.Join(", ", paths));
 }
 
-var serviceControlSln = ReturnFirstExisting("../../checkout/ServiceControl/src/ServiceControl.sln", "../../../ServiceControl/src/ServiceControl.sln");
+var serviceControlSln = ReturnFirstExisting("../../checkout/ServiceControl/src/ServiceControl.slnx", "../../../ServiceControl/src/ServiceControl.slnx");
 var servicePulseSln = ReturnFirstExisting("../../checkout/ServicePulse/src/ServicePulse.sln", "../../../ServicePulse/src/ServicePulse.sln");
 var servicePulseNpm = ReturnFirstExisting("../../checkout/ServicePulse/src/Frontend", "../../../ServicePulse/src/Frontend");
 
