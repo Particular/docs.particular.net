@@ -34,6 +34,8 @@ include: managed-access-rights
 
 partial: entity-topology
 
+partial: entity-hierarchy
+
 partial: entity-settings
 
 partial: subscription-rule-customization
