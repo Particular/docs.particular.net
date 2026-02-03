@@ -139,8 +139,10 @@ class Usage
 
         #region azure-service-bus-hierarchynamespace-options
         transport.HierarchyNamespaceOptions = new HierarchyNamespaceOptions { HierarchyNamespace = "my-hierarchy" };
+        #endregion
+        #region azure-service-bus-hierarchynamespace-escape
         // exclude only a concrete type
-        transport.HierarchyNamespaceOptions.ExcludeMessageType<MySingleExcludedMessage>();
+        transport.HierarchyNamespaceOptions.ExcludeMessageType<MyExcludedMessage>();
         // exclude all types that inherit an interface or base type
         transport.HierarchyNamespaceOptions.ExcludeMessageType<IAmExcludedFromTheHierarchy>();
         #endregion
@@ -148,11 +150,13 @@ class Usage
 
 
     #region azure-service-bus-hierarchynamespace-excluded-message-types
-    public class MySingleExcludedMessage {}
+    public class MyExcludedMessage {}
 
     public interface IAmExcludedFromTheHierarchy {}
 
-    public class MyExcludedMessageByInterface1 : IAmExcludedFromTheHierarchy {}
+    public class MyExcludedMessageByInterface : IAmExcludedFromTheHierarchy { }
+    
+    public class MyOtherExcludedMessageByInterface : IAmExcludedFromTheHierarchy {}
     #endregion
     class MyEvent;
 }
