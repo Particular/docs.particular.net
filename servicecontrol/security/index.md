@@ -62,18 +62,19 @@ Certain endpoints remain accessible without authentication to support API discov
 
 ### Anonymous endpoints
 
-The following endpoints remain anonymous to support API Discovery, health checks, and authentication bootstrapping:
+The following endpoints remain anonymous to support API Discovery, health checks, service-to-service requests, and authentication bootstrapping:
 
-| Endpoint                            | Method  | Instance                   | Purpose                                                            |
-|-------------------------------------|---------|----------------------------|--------------------------------------------------------------------|
-| `/api`                              | GET     | Primary, Audit             | API root/discovery - returns available endpoints                   |
-| `/api/instance-info`                | GET     | Primary, Audit             | Returns instance configuration information                         |
-| `/api/configuration`                | GET     | Primary, Audit             | Returns instance configuration information (alias)                 |
-| `/api/configuration/remotes`        | GET     | Primary                    | Returns remote instance configurations                             |
-| `/api/authentication/configuration` | GET     | Primary                    | Returns authentication configuration for clients like ServicePulse |
-| `/`                                 | GET     | Monitoring                 | API root/discovery - returns instance information                  |
-| `/`                                 | OPTIONS | Monitoring                 | CORS support - returns supported operations                        |
-| `/endpoints`                        | OPTIONS | Monitoring                 | CORS support - returns supported operations                        |
+| Endpoint                            | Method  | Instance       | Purpose                                                            |
+|-------------------------------------|---------|----------------|--------------------------------------------------------------------|
+| `/api`                              | GET     | Primary, Audit | API root/discovery - returns available endpoints                   |
+| `/api/instance-info`                | GET     | Primary, Audit | Returns instance configuration information                         |
+| `/api/configuration`                | GET     | Primary, Audit | Returns instance configuration information (alias)                 |
+| `/api/configuration/remotes`        | GET     | Primary        | Returns remote instance configurations                             |
+| `/api/authentication/configuration` | GET     | Primary        | Returns authentication configuration for clients like ServicePulse |
+| `/`                                 | GET     | Monitoring     | API root/discovery - returns instance information                  |
+| `/`                                 | OPTIONS | Monitoring     | CORS support - returns supported operations                        |
+| `/endpoints`                        | OPTIONS | Monitoring     | CORS support - returns supported operations                        |
+| `/endpoints/{endpoint}/audit-count` | GET     | Audit          | Service-to-service request                                         |
 
 ### Token Forwarding Security Considerations
 
