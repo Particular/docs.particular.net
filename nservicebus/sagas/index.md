@@ -15,7 +15,7 @@ related:
 
 Long-running business processes exist in many systems. Whether the steps are automated, manual, or a combination, effective handling of these processes is critical. NServiceBus employs event-driven architectural principles to bake fault-tolerance and scalability into these processes. The saga is a pattern that addresses the challenges uncovered by the relational database community years ago, packaged in NServiceBus for ease of use.
 
-One common mistake developers make when designing distributed systems is assuming time is constant. If something runs quickly on their machine, it is easy to assume it will perform similarly in production. Network invocations (like web service calls) are misleading this way. When invoked on the developer's local machine, they perform well, but across firewalls and data centers in the real world of production, performance is slow by comparison.
+One common mistake developers make when designing distributed systems is assuming time is constant. If something runs quickly on their machine, they're likely to assume it will perform similarly in production. Network invocations (like web service calls) are misleading this way. When invoked on the developer's local machine, they perform well. In production, across firewalls and data centers, they don't perform nearly as well.
 
 While a single web service invocation need not be considered "long-running", once there are two or more calls within a given use case, consistency issues should be taken into account. The first call may succeed, but the second may time out. Sagas allow coding for these cases in a simple and robust fashion.
 
@@ -129,7 +129,7 @@ This issue can be avoided by:
 
 ## Notifying callers of status
 
-Messages can be published from a saga at any time. This is often used to notify the original caller that initiated the saga of some interim state that isn't relevant to other subscribers.
+Messages can be published from a saga at any time. This is often used to notify the original caller who initiated the saga of some interim state that isn't relevant to other subscribers.
 
 Using `Reply()` or `Return()` to communicate with the caller would only achieve the desired result when the current message came from that caller, not when another caller sent a message to that saga. For this reason, notice that the saga data contains the original client's return address. It also contains the message ID of the original request so that the caller can correlate status messages on its end.
 
