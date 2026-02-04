@@ -7,7 +7,7 @@ related:
 - serviceinsight
 ---
 
-ServiceInsight has been sunset and will receive no further updates.  It will be deprecated on February 10th, 2026, at which time it will no longer be supported. 
+ServiceInsight has been sunset and will receive no further updates.  It will be deprecated on February 10th, 2027, at which time it will no longer be supported. 
 
 ServicePulse is the recommended replacement for visualization and debugging capabilities. 
 

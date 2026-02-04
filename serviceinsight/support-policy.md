@@ -14,11 +14,13 @@ related:
 ---
 
 > [!WARNING]
-> ServiceInsight has been sunset and will receive no further improvements or features.  
+> **ServiceInsight has been sunset and will be deprecated on February 10th, 2027.**
 >
-> The latest version of ServiceInsight is supported (including bug fixes) until migration instructions to ServicePulse are available.
+> No further improvements or features will be made and support (including bug fixes) will end after the deprecation date.
+> 
+> We recommend [migrating to ServicePulse](/servicepulse/migrate-from-serviceinsight.md) before the deprecation date for vizualization and debugging capabilities.
 
-The latest version can be found on the [downloads page](https://particular.net/downloads); however, it is recommended to install the latest version of [ServicePulse](/servicepulse/installation.md) for the latest features and full support.
+The latest version can be found on the [downloads page](https://particular.net/downloads); however, it is recommended to migrat to the latest version of [ServicePulse](/servicepulse/migrate-from-serviceinsight.md) for the latest features and full support.
 
 ## ServiceControl compatibility
 
