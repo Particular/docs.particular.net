@@ -16,7 +16,7 @@ related:
 > [!WARNING]
 > **ServiceInsight has been sunset and will be deprecated on February 10th, 2027.**
 >
-> No further improvements or features will be made and support (including bug fixes) will end after the deprecation date.
+> No further improvements or features will be made and but support (including bug fixes) will continue until the deprecation date has passed.
 > 
 > We recommend [migrating to ServicePulse](/servicepulse/migrate-from-serviceinsight.md) before the deprecation date for vizualization and debugging capabilities.
 
