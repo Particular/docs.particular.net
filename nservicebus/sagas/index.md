@@ -117,15 +117,15 @@ Messages handled by the saga (`IHandleMessages<T>`) that arrive after the saga h
 
 ### Consistency considerations
 
-Different transports and persistence options have different transactional capabilities which need to be taken into account to ensure transactional consistency. If the persistence can participate in the same transaction as the incoming message receive (for example, when using DTC or SQL Server transport with SQL persistence), then everything happens atomically: receiving a message, sending/publishing a message, and updating/deleting the saga data succeed or fail as one unit. In other words, if anything goes wrong, the whole operation rolls back. Because of this, there is no risk of message loss and no additional steps are needed.
+Completing a saga is a destructive operation, so the transactional capabilities of the chosen transport and persistence must be considered to ensure correctness. If the persistence can participate in the same transaction as the message receive operation, either via DTC or by sharing the transport’s storage transaction (e.g. SQL Server transport), no additional action is required. If it cannot, extra measures are necessary to prevent incorrect system behavior when a saga completes.
 
-However, if it cannot (as is the case with Azure Storage, CosmosDB, etc.), extra measures are necessary to prevent data inconsistencies, particularly in cases when completing a saga, i.e. calling `MarkAsComplete()`. For example, if a saga is completed in the same handler that sends/publishes outgoing messages, a failure can occur after the saga is completed but before the outgoing messages are dispatched. NServiceBus will then retry the incoming messages for that saga, at which point, the saga no longer exists. In this case, the outgoing messages are never sent, resulting in message loss.
+A risk arises when a saga is completed while sending/publishing outgoing messages. If a failure occurs after the saga is completed but before the outgoing messages are dispatched, those messages will be lost. If an incoming message is retried, the saga no longer exists, so the outgoing messages are not sent again.
 
 This issue can be avoided by:
 
  1. Enabling the [Outbox feature](/nservicebus/outbox/) if it supported by the chosen persistence.
- 1. Ensuring that no outgoing messages will be dispatched by completing the saga from a timeout or sending an explicit command to itself.
- 1. Replacing saga completion with a soft delete, then setting a flag/timestamp to clean up old saga instances afterward.
+ 1. Ensuring that no outgoing messages will be dispatched by completing the saga from a timeout or sending an explicit command to self.
+ 1. Replacing saga completion with a soft delete, then setting a flag/timestamp to clean up old saga instances afterward
 
 ## Notifying callers of status
 
