@@ -181,7 +181,7 @@ These settings configure [authentication using OAuth 2.0 and OpenID Connect](/se
 
 ### ServiceControl/Authentication.Enabled
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 Enables or disables authentication. This is a **Global switch** and all other authentication settings are ignored unless this is `true`.
 
@@ -197,7 +197,7 @@ Enables or disables authentication. This is a **Global switch** and all other au
 
 ### ServiceControl/Authentication.Authority
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 The URL of the OpenID Connect authority (identity provider) used to authenticate tokens.
 
@@ -213,7 +213,7 @@ The URL of the OpenID Connect authority (identity provider) used to authenticate
 
 ### ServiceControl/Authentication.Audience
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 The expected audience value in the JWT token, typically the application ID or URI of the API.
 
@@ -232,7 +232,7 @@ The expected audience value in the JWT token, typically the application ID or UR
 
 ### ServiceControl/Authentication.ValidateIssuer
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 Controls whether the token issuer is validated against the authority.
 
@@ -248,7 +248,7 @@ Controls whether the token issuer is validated against the authority.
 
 ### ServiceControl/Authentication.ValidateAudience
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 Controls whether the token audience is validated.
 
@@ -264,7 +264,7 @@ Controls whether the token audience is validated.
 
 ### ServiceControl/Authentication.ValidateLifetime
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 Controls whether the token expiration is validated.
 
@@ -280,7 +280,7 @@ Controls whether the token expiration is validated.
 
 ### ServiceControl/Authentication.ValidateIssuerSigningKey
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 Controls whether the token signing key is validated.
 
@@ -296,7 +296,7 @@ Controls whether the token signing key is validated.
 
 ### ServiceControl/Authentication.RequireHttpsMetadata
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 Controls whether HTTPS is required when retrieving metadata from the authority.
 
@@ -315,7 +315,7 @@ Controls whether HTTPS is required when retrieving metadata from the authority.
 
 ### ServiceControl/Authentication.ServicePulse.ClientId
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 The client ID for ServicePulse to use when authenticating with the identity provider.
 
@@ -331,7 +331,7 @@ The client ID for ServicePulse to use when authenticating with the identity prov
 
 ### ServiceControl/Authentication.ServicePulse.Authority
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 The URL of the OpenID Connect authority for ServicePulse to use when authenticating users.
 
@@ -347,7 +347,7 @@ The URL of the OpenID Connect authority for ServicePulse to use when authenticat
 
 ### ServiceControl/Authentication.ServicePulse.ApiScopes
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 The API scopes for ServicePulse to request when authenticating. This is a JSON array of scope strings e.g., `["api://{app-id}/api.access"]`
 
@@ -367,7 +367,7 @@ These settings configure HTTPS. Refer to the [hosting and security guide](/servi
 
 ### ServiceControl/Https.Enabled
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 Enables Kestrel HTTPS with a certificate.
 
@@ -383,7 +383,7 @@ Enables Kestrel HTTPS with a certificate.
 
 ### ServiceControl/Https.CertificatePath
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 The path to the PFX or PEM certificate file. If hosting as a container, the certificate file can also be volume-mounted to the container:
 
@@ -403,7 +403,7 @@ The path to the PFX or PEM certificate file. If hosting as a container, the cert
 
 ### ServiceControl/Https.CertificatePassword
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 The password for the certificate file, if required.
 
@@ -419,7 +419,7 @@ The password for the certificate file, if required.
 
 ### ServiceControl/Https.RedirectHttpToHttps
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 Redirects HTTP requests to HTTPS. This is intended for use with a reverse proxy that handles both HTTP and HTTPS traffic.
 
@@ -438,7 +438,7 @@ Redirects HTTP requests to HTTPS. This is intended for use with a reverse proxy 
 
 ### ServiceControl/Https.Port
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 The HTTPS port to use in redirect URLs. Required when `RedirectHttpToHttps` is enabled in reverse proxy scenarios.
 
@@ -454,7 +454,7 @@ The HTTPS port to use in redirect URLs. Required when `RedirectHttpToHttps` is e
 
 ### ServiceControl/Https.EnableHsts
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 Enables HTTP Strict Transport Security (HSTS).
 
@@ -473,7 +473,7 @@ Enables HTTP Strict Transport Security (HSTS).
 
 ### ServiceControl/Https.HstsMaxAgeSeconds
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 The max-age value in seconds for the HSTS header.
 
@@ -489,7 +489,7 @@ The max-age value in seconds for the HSTS header.
 
 ### ServiceControl/Https.HstsIncludeSubDomains
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 Includes subdomains in the HSTS policy.
 
@@ -509,7 +509,7 @@ These settings configure forwarded headers for reverse proxy scenarios. Refer to
 
 ### ServiceControl/ForwardedHeaders.Enabled
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 Enables processing of forwarded headers (X-Forwarded-For, X-Forwarded-Proto, etc.).
 
@@ -525,7 +525,7 @@ Enables processing of forwarded headers (X-Forwarded-For, X-Forwarded-Proto, etc
 
 ### ServiceControl/ForwardedHeaders.TrustAllProxies
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 Trusts forwarded headers from any source. Set to `false` when using `KnownProxies` or `KnownNetworks`.
 
@@ -544,7 +544,7 @@ Trusts forwarded headers from any source. Set to `false` when using `KnownProxie
 
 ### ServiceControl/ForwardedHeaders.KnownProxies
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 A comma-separated list of trusted proxy IP addresses e.g., `10.0.0.5,10.0.0.6`
 
@@ -560,7 +560,7 @@ A comma-separated list of trusted proxy IP addresses e.g., `10.0.0.5,10.0.0.6`
 
 ### ServiceControl/ForwardedHeaders.KnownNetworks
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 A comma-separated list of trusted CIDR network ranges e.g., `10.0.0.0/24,192.168.1.0/24`
 
@@ -580,7 +580,7 @@ These settings configure Cross-Origin Resource Sharing (CORS). Refer to the [hos
 
 ### ServiceControl/Cors.AllowAnyOrigin
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 Allows requests from any origin.
 
@@ -599,7 +599,7 @@ Allows requests from any origin.
 
 ### ServiceControl/Cors.AllowedOrigins
 
-_Added in version 6.10.0_
+_Added in version 6.11.0_
 
 A comma-separated list of allowed origins e.g., `https://servicepulse.yourcompany.com,https://admin.yourcompany.com`
 
