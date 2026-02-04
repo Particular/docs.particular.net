@@ -2,7 +2,8 @@
 using Microsoft.Extensions.Logging;
 using NServiceBus;
 
-public class Message1Handler (ILogger<Message1Handler> logger):
+public class
+    Message1Handler (ILogger<Message1Handler> logger):
     IHandleMessages<Message1>
 {
 
