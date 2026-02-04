@@ -18,8 +18,12 @@ if (string.IsNullOrWhiteSpace(connectionString))
 }
 
 var transport = new AzureServiceBusTransport(connectionString, TopicTopology.Default);
+#region namespaceOptions
 transport.HierarchyNamespaceOptions = new HierarchyNamespaceOptions { HierarchyNamespace = "my-hierarchy" };
+#endregion
+#region excludedMessage
 transport.HierarchyNamespaceOptions.ExcludeMessageType<MessageExcluded>();
+#endregion
 endpointConfiguration.UseTransport(transport);
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
