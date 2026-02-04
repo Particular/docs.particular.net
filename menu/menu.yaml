@@ -1427,6 +1427,8 @@
           Title: Support Policy
     - Title: Upgrade Guides
       Articles:
+      - Title: ServiceInsight to ServicePulse
+        Url: servicepulse/migrate-from-serviceinsight
       - Title: Version 1 to 2
         Url: servicepulse/1to2
     - Title: Configuration
