@@ -9,6 +9,7 @@ Console.Title = "Endpoint1";
 var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.HierarchyNamespace.Endpoint1");
 endpointConfiguration.EnableInstallers();
 
+#region config
 var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
 if (string.IsNullOrWhiteSpace(connectionString))
 {
@@ -16,11 +17,12 @@ if (string.IsNullOrWhiteSpace(connectionString))
 }
 
 var transport = new AzureServiceBusTransport(connectionString, TopicTopology.Default);
-#region config
+#region namespaceOptions
 transport.HierarchyNamespaceOptions = new HierarchyNamespaceOptions { HierarchyNamespace = "my-hierarchy" };
 #endregion
 endpointConfiguration.UseTransport(transport);
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+#endregion
 
 
 Console.WriteLine("Starting...");

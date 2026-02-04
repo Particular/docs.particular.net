@@ -15,8 +15,13 @@ include: asb-connectionstring-xplat
 
 This sample shows a usage of hierarchy namespace with Azure Service Bus. Both endpoints (`Endpoint1` and `Endpoint2`) are configured using `HierarchyNamespace`:
 
-snippet: config
+snippet: namespaceOptions
 
+This means that the endpoints will be effectively:
+* `Endpoint1`: `my-hierarchy/Samples.ASBS.HierarchyNamespace.Endpoint1`
+* `Endpoint2`: `my-hierarchy/Samples.ASBS.HierarchyNamespace.Endpoint2`
+
+The behavior is as follows:
 * `Endpoint1` sends a `Message1` message to `Endpoint2`.
 * `Endpoint2` replies to `Endpoint1` with a `Message2` instance.
 
@@ -28,6 +33,6 @@ snippet: config
 
 The following queues for the two endpoints can be seen in the Azure Portal or a third-party tool:
 
-* `samples.asbs.sendreply.endpoint1`
-* `samples.asbs.sendreply.endpoint2`
+* `my-hierarchy/samples.asbs.hierarchynamespace.endpoint1`
+* `my-hierarchy/samples.asbs.hierarchynamespace.endpoint2`
 * `error`
