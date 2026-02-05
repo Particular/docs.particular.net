@@ -687,7 +687,7 @@
       Title: Custom
   - Title: Message Envelopes
     Articles:
-    - Url: transports/cloudevents
+    - Url: nservicebus/cloudevents
       Title: CloudEvents
   - Title: Dependency Injection
     Articles:
