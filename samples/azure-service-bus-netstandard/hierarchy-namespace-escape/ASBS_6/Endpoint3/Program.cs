@@ -8,7 +8,7 @@ Console.Title = "Endpoint3";
 
 var builder = Host.CreateApplicationBuilder(args);
 
-var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.HierarchyNamespaceEscape.Endpoint3");
+var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.HierarchyNamespace.Endpoint3");
 endpointConfiguration.EnableInstallers();
 
 var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");

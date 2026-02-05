@@ -8,7 +8,7 @@ Console.Title = "Endpoint1";
 
 #region config
 
-var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.HierarchyNamespaceEscape.Endpoint1");
+var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.HierarchyNamespace.Endpoint1");
 endpointConfiguration.EnableInstallers();
 
 var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
@@ -57,7 +57,7 @@ while (true)
         };
         try
         {
-            await messageSession.Send("Samples.ASBS.HierarchyNamespaceEscape.Endpoint2", message);
+            await messageSession.Send("Samples.ASBS.HierarchyNamespace.Endpoint2", message);
             Console.WriteLine("MessageExcluded to endpoint 2 sent");
         }
         catch (Exception)
@@ -74,7 +74,7 @@ while (true)
         {
             Property = "Hello from Endpoint1 - excluded from hierarchy"
         };
-        await messageSession.Send("Samples.ASBS.HierarchyNamespaceEscape.Endpoint3", message);
+        await messageSession.Send("Samples.ASBS.HierarchyNamespace.Endpoint3", message);
         Console.WriteLine("MessageExcluded to endpoint 3 sent");
         continue;
     }
