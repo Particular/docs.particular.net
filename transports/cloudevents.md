@@ -2,8 +2,8 @@
 title: CloudEvents support
 summary: Provides details about CloudEvents support in NServiceBus and the platform
 component: Core
-reviewed: 2025-12-16
-versions: '[10,]'
+reviewed: 2026-02-05
+versions: '[10.1,]'
 ---
 
 > [!WARNING]
@@ -62,13 +62,13 @@ This section describes the configuration options.
 
 To enable the CloudEvents support:
 
-snippet: sqs-cloudevents-configuration
+snippet: cloudevents-configuration
 
 ### Type mapping
 
 `TypeMappings` configure how to match the incoming message content-type value with the class definition used in the NServiceBus message handler:
 
-snippet: sqs-cloudevents-typemapping
+snippet: cloudevents-typemapping
 
 ### Enabled unwrappers
 
@@ -78,7 +78,7 @@ To enable or disable unrappers, modify the `EnvelopeUnwrappers` property by addi
 
 The following code snippet shows how to change the JSON Structured Content unwrapper from Strict to Permissive:
 
-snippet: sqs-cloudevents-json-permissive
+snippet: cloudevents-json-permissive
 
 ## Metrics and logging
 
