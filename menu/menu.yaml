@@ -685,6 +685,10 @@
       Title: Xml
     - Url: nservicebus/serialization/custom-serializer
       Title: Custom
+  - Title: Message Envelopes
+    Articles:
+    - Url: transports/cloudevents
+      Title: CloudEvents
   - Title: Dependency Injection
     Articles:
     - Url: nservicebus/dependency-injection
