@@ -12,6 +12,7 @@ BinaryDataBusSerializer: NServiceBus.DataBus.BinarySerializer
 Callbacks: NServiceBus.Callbacks
 CallbacksTesting: NServiceBus.Callbacks.Testing
 Castle: NServiceBus.CastleWindsor
+CloudEvents: NServiceBus.Envelope.CloudEvents
 CommonLogging: NServiceBus.CommonLogging
 Core: NServiceBus
 CustomChecks3: ServiceControl.Plugin.Nsb3.CustomChecks
