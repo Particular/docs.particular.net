@@ -1,7 +1,7 @@
 ---
 title: Full Duplex
 summary: Using full-duplex and request/response communication.
-reviewed: 2024-02-28
+reviewed: 2026-01-05
 component: Core
 redirects:
 - nservicebus/full-duplex-sample
@@ -30,11 +30,7 @@ The client console has an input loop:
 
 snippet: ClientLoop
 
-This code performs the following action every time the 'Enter' key is pressed:
-
- * A new GUID is created and then set in the outgoing headers of the bus using the "Test" key.
- * The bus sends a `RequestDataMessage `whose DataId property is set to the same `Guid` and whose `String` property is set to an XML fragment.
- * A callback is registered and invoked when a response arrives to the request sent. In the callback, the values of several headers are written to the console.
+This code sends a message with a new `Guid` and a string value every time the 'Enter' key is pressed.
 
 ### Server
 
@@ -48,11 +44,7 @@ The `Handle` method of this class contains this:
 
 snippet: DataResponseReply
 
-Finally, the bus replies with the response message, sending it to the InputQueue specified in the `MsmqTransportConfig` section in the app.config of the `Client` endpoint. The bus knows to send the responses to where the message is sent every time it sends a message from the queue.
-
-When configuring the routing in the bus, continue with the premise of regular request/response communication such that clients need to know where the server is, but servers do not need to know about clients.
-
-Look back at `ClientEndpoint.cs` to see that it gets the header information from the handler on the server.
+Finally, the bus replies with the response message. The bus knows to send the responses to where the message was sent from, every time it receives a message from the queue.
 
 Open `DataResponseMessageHandler.cs` in the `Client` project and find a class whose signature looks similar to the message handler on the server:
 

@@ -19,14 +19,7 @@ class Program
             .Build();
         #endregion
 
-        #region jaeger-endpoint-configuration
-
         var endpointConfiguration = new EndpointConfiguration(EndpointName);
-
-        endpointConfiguration.EnableOpenTelemetry();
-
-        #endregion
-
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 

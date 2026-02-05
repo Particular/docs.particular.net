@@ -2,7 +2,7 @@
 title: Data distribution
 summary: Broadcasting to many nodes is unreliable for synced state; prefer distributed caches or config stores over pub/sub for consistency
 
-reviewed: 2024-04-16
+reviewed: 2026-01-20
 redirects:
 - nservicebus/azure/data-distribution
 - samples/routing/data-distribution

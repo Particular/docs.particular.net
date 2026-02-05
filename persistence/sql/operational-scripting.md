@@ -2,7 +2,7 @@
 title: Operational Scripting
 summary: How to generate database scripts for the SQL persister
 component: SqlPersistence
-reviewed: 2024-03-27
+reviewed: 2026-01-02
 ---
 
 In order to generate database scripts outside of a build process, use the `NServiceBus.Persistence.Sql.CommandLine` command prompt tool developed for this purpose.

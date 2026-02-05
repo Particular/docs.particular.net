@@ -14,7 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v5.0.1
+        uses: actions/setup-dotnet@v5.1.0
         with:
           global-json-file: global.json
         # Caching is done to limit data transfer on each PR, not to optimize CI speed
@@ -23,7 +23,7 @@ jobs:
            curl --connect-timeout 5 --max-time 15 --silent --show-error https://f.feedz.io/particular-software/packages/nuget/v3/packages/particular.docstool/index.json >> docstool-versions.json
       - name: Cache docstool
         id: cache-docstool
-        uses: actions/cache@v4.2.4
+        uses: actions/cache@v5.0.3
         with:
           path: |
              ~/.dotnet/tools/docstool
@@ -59,7 +59,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v5.0.1
+        uses: actions/setup-dotnet@v5.1.0
         with:
           global-json-file: global.json
       - name: Run integrity tests

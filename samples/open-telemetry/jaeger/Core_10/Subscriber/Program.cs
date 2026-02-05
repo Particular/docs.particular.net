@@ -18,8 +18,6 @@ class Program
 
         var endpointConfiguration = new EndpointConfiguration(EndpointName);
 
-        endpointConfiguration.EnableOpenTelemetry();
-
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport(new LearningTransport());
 

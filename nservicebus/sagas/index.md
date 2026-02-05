@@ -1,8 +1,8 @@
 ---
 title: Sagas
-summary: Maintain statefulness in distributed systems with the saga pattern and NServiceBus' event-driven architecture with built-in fault-tolerance and scalability.
+summary: Master NServiceBus sagas to coordinate distributed workflows and ensure reliable long-running processes.
 component: Core
-reviewed: 2025-06-24
+reviewed: 2026-01-23
 redirects:
 - nservicebus/sagas-in-nservicebus
 related:
@@ -15,11 +15,11 @@ related:
 
 Long-running business processes exist in many systems. Whether the steps are automated, manual, or a combination, effective handling of these processes is critical. NServiceBus employs event-driven architectural principles to bake fault-tolerance and scalability into these processes. The saga is a pattern that addresses the challenges uncovered by the relational database community years ago, packaged in NServiceBus for ease of use.
 
-One of the common mistakes developers make when designing distributed systems is based on the assumptions that time is constant. If something runs quickly on their machine, they're liable to assume it will run with a similar performance characteristic in production. Network invocations (like web service calls) are misleading this way. When invoked on the developer's local machine, they perform well. In production, across firewalls and data centers, they don't perform nearly as well.
+One common mistake developers make when designing distributed systems is assuming time is constant. If something runs quickly on their machine, it is easy to assume it will perform similarly in production. Network invocations (like web service calls) are misleading this way. When invoked on the developer's local machine, they perform well, but across firewalls and data centers in the real world of production, performance is slow by comparison.
 
-While a single web service invocation need not be considered "long-running", once there are two or more calls within a given use case, consistency issues should be taken into account. The first call may be successful but the second call can time out. Sagas allow coding for these cases in a simple and robust fashion.
+While a single web service invocation need not be considered "long-running", once there are two or more calls within a given use case, consistency issues should be taken into account. The first call may succeed, but the second may time out. Sagas allow coding for these cases in a simple and robust fashion.
 
-Design processes with more than one remote call to use sagas.
+Design processes with multiple remote calls to use sagas.
 
 While it may seem excessive at first, the business implications of the system getting out of sync with the other systems it interacts with can be substantial. It's not just about exceptions that end up in the logs.
 
@@ -72,11 +72,11 @@ Messages can be delivered out of order, e.g. due to error recovery, network late
 To ensure messages are not discarded when they arrive out of order:
 
 - Implement multiple `IAmStartedByMessages<T>` interfaces for any message type that assumes the saga instance should already exist
-- Override the saga not found behavior and throw an exception using `IHandleSagaNotFound` and rely on NServiceBus recoverability capability to retry messages to resolve out-of-order issues.
+- Override the saga not found behavior and throw an exception using a saga not found handler and rely on NServiceBus recoverability capability to retry messages to resolve out-of-order issues.
 
 #### Multiple message types starting a saga
 
-If multiple message types can start a saga, it's necessary to ensure that saga behavior will remain correct for all possible combinations of order in which those messages are received.
+If multiple message types can start a saga, it's important to ensure correct saga behavior regardless of the order in which messages are received.
 
 In the previous example, the `StartOrder` message contains both an `OrderId` and a `CustomerId` but the `CompleteOrder` message contains only an `OrderId`. The handler for `CompleteOrder` requires `CustomerId` to complete the order saga (i.e. initiate a shipping process). If a `StartOrder` message is processed first, the saga persists both the `OrderId` and the `CustomerId` in the saga data and when a corresponding `CompleteOrder` message arrives later, it retrieves the `CustomerId` from the saga data.
 
@@ -86,11 +86,11 @@ When messages arrive in reverse order, the handler for the `CompleteOrder` messa
 
 In most scenarios, an acceptable solution to deal with out-of-order message delivery is to throw an exception when the saga instance does not exist. The message will be automatically retried, which may resolve the issue; otherwise, it will be placed in the error queue, where it can be manually retried.
 
-To override the default saga not found behavior [implement `IHandleSagaNotFound` and throw an exception](saga-not-found.md).
+To override the default saga not found behavior [implement a saga not found handler and throw an exception](saga-not-found.md).
 
 ## Correlating messages to a saga
 
-Correlation is needed in order to find existing saga instances based on data on the incoming message. See [Message Correlation](message-correlation.md) for more details.
+Correlation is needed in order to find existing saga instances based on data in the incoming message. See [Message Correlation](message-correlation.md) for more details.
 
 > [!NOTE]
 > The saga `Id` available via `IContainSagaData` or `ContainSagaData` is considered internal to NServiceBus and must not be used to correlate messages. Instead, add an additional property that contains a unique saga instance identifier.
@@ -107,33 +107,31 @@ Instance cleanup is implemented differently by the various saga persisters and i
 
 ### Outstanding timeouts
 
-Outstanding timeouts requested by the saga instance will be discarded when they expire without triggering the [`IHandleSagaNotFound` API](saga-not-found.md)
+Outstanding timeouts requested by the saga instance will be discarded when they expire without triggering the [saga not found handler](saga-not-found.md).
 
 ### Messages arriving after a saga has been completed
 
-Messages that [are allowed to start a new saga instance](#starting-a-saga) will cause a new instance with the same correlation id to be created.
+Messages that [are allowed to start a new saga instance](#starting-a-saga) will cause a new instance with the same `CorrelationId` to be created.
 
-Messages handled by the saga (`IHandleMessages<T>`) that arrive after the saga has completed will be passed to the [`IHandleSagaNotFound` API](saga-not-found.md).
+Messages handled by the saga (`IHandleMessages<T>`) that arrive after the saga has completed will be passed to the [saga not found handler](saga-not-found.md).
 
 ### Consistency considerations
 
-Completing a saga is a destructive operation so transaction support of the selected transport and persistence must be considered to ensure correctness. If the persistence is able to participate in the same transaction as the incoming receive operation, either using DTC or by sharing the transport's storage transaction (e.g. SQL Server transport), no further action is needed.
+Different transports and persistence options have different transactional capabilities which need to be taken into account to ensure transactional consistency. If the persistence can participate in the same transaction as the incoming message receive (for example, when using DTC or SQL Server transport with SQL persistence), then everything happens atomically: receiving a message, sending/publishing a message, and updating/deleting the saga data succeed or fail as one unit. In other words, if anything goes wrong, the whole operation rolls back. Because of this, there is no risk of message loss and no additional steps are needed.
 
-If the persistence can't participate in the same transaction as the incoming receive operation, then an additional action is needed to avoid saga completion causing incorrect behavior. The problematic scenario is when sagas are being completed together with sending/publishing outgoing messages. In case of failure after the saga is completed, the outgoing messages may not be dispatched. However, when the incoming message is retried the completed saga is not found, which results in outgoing messages being lost.
+However, if it cannot (as is the case with Azure Storage, CosmosDB, etc.), extra measures are necessary to prevent data inconsistencies, particularly in cases when completing a saga, i.e. calling `MarkAsComplete()`. For example, if a saga is completed in the same handler that sends/publishes outgoing messages, a failure can occur after the saga is completed but before the outgoing messages are dispatched. NServiceBus will then retry the incoming messages for that saga, at which point, the saga no longer exists. In this case, the outgoing messages are never sent, resulting in message loss.
 
 This issue can be avoided by:
 
- 1. Enabling the [Outbox feature](/nservicebus/outbox/), if supported by the chosen persistence.
- 1. Ensure that no outgoing messages will be dispatched by completing the saga from a timeout or sending an explicit command to self.
- 1. Replace saga completion with soft delete by setting a flag/timestamp and use some native mechanism of the selected storage to cleanup old saga instances.
+ 1. Enabling the [Outbox feature](/nservicebus/outbox/) if it supported by the chosen persistence.
+ 1. Ensuring that no outgoing messages will be dispatched by completing the saga from a timeout or sending an explicit command to itself.
+ 1. Replacing saga completion with a soft delete, then setting a flag/timestamp to clean up old saga instances afterward.
 
 ## Notifying callers of status
 
-Messages can be published from a saga at any time. This is often used to notify the original caller that initiated the saga of some interim state that isn't relevant to other subscribers.
+Messages can be published from a saga at any time. Using `Reply()` or `Return()` will send a message to the current messages' caller. The saga data also contains the original client's return address and the message ID of the original request so that the caller can correlate status messages on its end. 
 
-Using `Reply()` or `Return()` to communicate with the caller would only achieve the desired result in the case where the current message came from that client, and not in the case where any other partner sent a message arriving at that saga. For this reason, notice that the saga data contains the original client's return address. It also contains the message ID of the original request so that the client can correlate status messages on its end.
-
-To communicate status in the previous example:
+To communicate to the original caller (e.g. to notify the original caller of some interim state that isn't relevant to other subscribers):
 
 snippet: saga-with-reply
 
@@ -153,39 +151,56 @@ The auto subscription feature applies to sagas as well as the regular message ha
 
 ## Sagas and request/response
 
-Sagas often play the role of coordinator, especially when used in integration scenarios. In essence this means that the saga decides what to do next and then asks someone else to do it. This allows sagas to remain free from interacting with non-transactional things like file systems and rest services. The most suitable communication pattern for this type of interaction is the request/response pattern since there is really only one party interested in the response and that is the saga itself.
+Sagas often play the role of coordinator, especially when used in integration scenarios. In essence, this means that the saga decides what to do next and then asks someone else to do it. This allows sagas to remain free from interacting with non-transactional things like file systems and REST services. The most suitable communication pattern for this type of interaction is the request/response pattern since there is really only one party interested in the response, and that is the saga itself.
 
 A common scenario is a saga controlling the process of billing a customer through Visa or MasterCard. It is often the case that there are separate endpoints for making the web service/rest-calls to each payment provider and a saga coordinating retries and fallback rules. Each payment request would be a separate saga instance, so how would the instance hydrate and invoke when the response returns?
 
 The usual way is to correlate on some kind of ID and let the user control how to find the correct saga instance using that ID. NServiceBus provides native support for these types of interactions. If a `Reply` is done in response to a message coming from a saga, NServiceBus will detect it and automatically set the correct headers so that it can correlate the reply back to the saga instance that issued the request. This is called [auto-correlation](message-correlation.md#auto-correlation). The exception to this rule is the request/response message exchange between two sagas. In such case the automatic correlation won't work and the reply message needs to be explicitly mapped using `ConfigureHowToFindSaga`.
 
-## Accessing databases and other resources from a saga
+## Avoid External Resource Access
 
 > [!WARNING]
-> Other than interacting with its own internal state, a saga should **not** access a database, call out to web services, or access other resources - neither directly nor indirectly by having such dependencies injected into it.
+> A saga should only interact with its own internal state and send or publish messages. It must not perform any I/O operations, including calls to databases, web services, or other external resources, either directly or indirectly through injected dependencies.
 
-The main reason for avoiding accessing data from external resources is possible contention and inconsistency of saga state. Depending on persister, the saga state is retrieved and persisted with either pessimistic or optimistic locking. If the transaction takes too long, it's possible another message will come in that correlates to the same saga instance. It might be processed on a different (concurrent) thread (or perhaps a scaled out endpoint) and it will either fail immediately (pessimistic locking) or while trying to persist the state (optimistic locking). In both cases the message will be retried.
+Accessing external resources from within a saga can create significant contention and consistency challenges. Saga state is retrieved and persisted using either pessimistic or optimistic locking, depending on the persister implementation. Extended transaction durations increase the likelihood of concurrent message processing issues.
 
-This is the expected behavior and cannot be completely avoided, however, the longer the lock is open the more likely it is such situation will occur. In order to minimize chances of such problems use sagas only as a mechanism of business process orchestration.
+When a transaction remains open for an extended period, another message correlating to the same saga instance may arrive. This message might be processed on a different thread or by a scaled-out endpoint instance, resulting in:
 
-If a saga needs additional data from external sources to process the message, then the best approach is to have the saga collect all the data it needs by handling messages that provide that data. This may result in sagas that "live forever", i.e. don't have a message that would cause them to `MarkAsComplete()`.
+- **Pessimistic locking**: Immediate lock contention failure and message retry
+- **Optimistic locking**: Concurrency conflict during state persistence and message retry
 
-Since sagas, when they're not processing messages, are effectively a record in a database, leaving a saga running "forever" is equivalent to not deleting a record from a database. This is similar to how regular business entities in a system are not deleted.
+While this retry behavior is expected and cannot be entirely prevented, the duration of an open lock directly correlates to collision probability. To minimize these issues, use sagas exclusively as business process orchestration mechanisms.
 
-This approach often results in sagas whose responsibility grows enough to be considered an [Aggregate Root in Domain-Driven Design](https://martinfowler.com/bliki/DDD_Aggregate.html).
+### Event-Driven Data Collection
 
-When it comes to integration scenarios, like calling external systems, dedicated sagas should be designed to manage the interaction - yet those sagas shouldn't perform the external calls directly. Instead, those sagas should send messages to other endpoints which will perform those actions. It is common for those endpoints to send response messages back to the saga, as described in the previous section. These endpoints can be hosted in separate processes or in the same process as the saga depending on other architectural decisions.
+When a saga requires additional data from external sources to process messages, the recommended approach is to design the saga to collect that data through message handlers. Rather than querying external systems, the saga receives messages containing the necessary information.
+
+This pattern often results in sagas that persist indefinitely without calling `MarkAsComplete()`. Since inactive sagas exist as database records, an indefinitely-running saga is functionally equivalent to maintaining any other business entity record in your system. This approach frequently evolves sagas into what Domain-Driven Design identifies as [Aggregate Roots](https://martinfowler.com/bliki/DDD_Aggregate.html).
+
+### Managing External System Integration
+
+For integration scenarios requiring external system calls, design dedicated sagas to orchestrate these interactions without performing the actual I/O operations. Instead, these sagas should:
+
+1. Send (command) messages to dedicated message handlers.
+2. Have those handlers execute the - sometimes very long-running - external operations and [reply](/nservicebus/messaging/reply-to-a-message.md) the result back to the saga for processing.
+3. Process these results, not requiring IO, as all data is already contained in the response message.
+
+This separation maintains the saga's role as a coordinator while delegating execution to appropriate handlers.
+
+These handlers can be hosted in the same or separate endpoints.
+
+Hosting these handlers on separate endpoints enables fine-grained control over per-endpoint [concurrency limits](/nservicebus/operations/tuning.md) and [retry behavior](/nservicebus/recoverability). This is particularly important when handlers interact with external systems that enforce strict concurrency caps or require tailored retry strategies to handle rate limiting and backoff correctly.
 
 ## Querying saga data
 
-Sagas manage state of potentially long-running business processes. It is possible to query the saga data directly but it is not recommended except for very simple administrative or support functionality. The reasons for this are:
+Sagas manage the state of potentially long-running business processes. Although querying saga data directly is possible, it's not recommended except for very simple administrative or support functionality. The reasons for this are:
 
- * The way a given persistence chooses to store the saga data is an implementation detail to the specific persistence that can potentially change over time. By directly querying for the saga data that query is being coupled to this implementation and risks being affected by format changes.
- * By exposing the data outside of the safeguards of the business logic in the saga the risk is that the data is not treated as read-only. Eventually, a component tries to bypass the saga and directly modify the data.
- * Querying the data might require additional indexes, resources etc. which need to be managed by the component issuing the query. Those additional resources can influence saga performance.
- * The saga data may not contain all the required data. A saga handling the order process may keep track of the "payment id" and the status of the payment, but it is not interested in keeping track of the amount paid. On the other hand, for querying it may be required to query the paid amount along with other data.
+ * The way a given persistence chooses to store the saga data is an implementation detail of the specific persistence that can potentially change over time. By directly querying for the saga data, that query is being coupled to this implementation and risks being affected by format changes.
+ * By exposing the data outside of the safeguards of the business logic in the saga, the risk is that the data is not treated as read-only. Eventually, a component tries to bypass the saga and directly modify the data.
+ * Querying the data might require additional indexes, resources, etc., which need to be managed by the component issuing the query. Those additional resources can influence saga performance.
+ * The saga data may not contain all the required data. A saga handling the order process may keep track of the "payment id" and the payment status, but it is not interested in the amount paid. On the other hand, for querying, it may be required to query the paid amount along with other data.
 
-The recommended approach is for the saga to publish events containing the required data and have handlers that process these events and store the data in one or more read model(s) for querying purposes. This reduces coupling to the internals of the specific saga persistence, removes contention, and preserves the safeguards of the existing saga logic.
+The recommended approach is for the saga to publish events containing the required data and have handlers that process these events and store the data in one or more read models for querying purposes. This reduces coupling to the internals of the specific saga persistence, removes contention, and preserves the safeguards of the existing saga logic.
 
 ## Saga state read/write behavior
 
@@ -197,3 +212,5 @@ Saga state is read immediately before a message processing method is invoked, an
 - Saga state reads and writes do not occur during a stage. They occur during invocation in the `Invoke Handlers` stage and cannot be intercepted.
 
 If multiple saga types are invoked for the same message, each read, invoke, write cycle will occur sequentially, for each saga type.
+
+partial: manual-registration

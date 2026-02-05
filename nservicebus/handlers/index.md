@@ -2,7 +2,7 @@
 title: Handlers
 summary: Write a class to handle messages in NServiceBus.
 component: Core
-reviewed: 2024-05-05
+reviewed: 2026-01-19
 redirects:
 - nservicebus/how-do-i-handle-a-message
 ---
@@ -61,6 +61,8 @@ If the original message is not published as an event, but rather [sent](/nservic
 - Host each handler in a separate endpoint:
   - Send a copy of the original message to each endpoint.
   - This provides the greatest degree of isolation and provides more granularity for retry policy customization and scaling, greater visibility, better monitoring, and other benefits.
+
+partial: manual-registration
 
 ## Unit testing
 

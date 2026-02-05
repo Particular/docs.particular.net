@@ -382,7 +382,7 @@ The `IMessageHandlerContext.HandleCurrentMessageLater()` method has been depreca
 
 To handle the current message later and abort the current processing attempt, throw an exception in the message handler and let [recoverability](/nservicebus/recoverability) reschedule the message. Note the following restrictions:
 
- * Retries are enabled only when the transport is configured to use transactions (i.e. anything other than [`TransportTransactionMode.None`](/transports/transactions.md#transactions-unreliable-transactions-disabled).
+ * Retries are enabled only when the transport is configured to use transactions (i.e. anything other than [`TransportTransactionMode.None`](/transports/transactions.md#transaction-modes-unreliable-transactions-disabled).
  * When throwing an exception, the current transaction will be rolled back, causing outgoing messages to be discarded.
  * The retry attempts and delays depend on the specific configuration.
  * Depending on the transport's transaction behavior, the message will reappear at the front or at the back of the queue.

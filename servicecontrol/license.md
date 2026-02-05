@@ -49,10 +49,6 @@ snippet: config-licensepath
 > [!NOTE]
 > This is the same setting to configure a license path for an NServiceBus 7 or lower endpoint. This license configuration option is [no longer supported in NServiceBus 8](/nservicebus/upgrades/7to8/#change-to-license-file-locations) or later endpoints.
 
-## Using ServiceInsight
-
-A machine-wide license file can be installed using [ServiceInsight](/serviceinsight/license.md) which can then be used by ServiceControl.
-
 ## Troubleshooting
 
 ### ServiceControl license was updated, but ServicePulse reports the license has expired

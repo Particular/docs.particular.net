@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.RabbitMQ" Version="11.0.0-alpha.3" />
+    <PackageReference Include="NServiceBus.RabbitMQ" Version="11.*" />
     <PackageReference Include="RabbitMQ.Client" Version="7.*" />
   </ItemGroup>
 

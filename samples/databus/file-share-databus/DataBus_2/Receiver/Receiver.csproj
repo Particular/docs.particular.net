@@ -6,8 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.ClaimCheck" Version="2.0.0-alpha.5" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.3" />
+    <PackageReference Include="NServiceBus.ClaimCheck" Version="2.*" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
 </Project>

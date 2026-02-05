@@ -1,27 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <LangVersion>14.0</LangVersion>
-    <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Azure.WebJobs" Version="3.*" />
     <PackageReference Include="Microsoft.Azure.WebJobs.Host.Storage" Version="5.*" />
-    <PackageReference Include="NServiceBus" Version="10.0.0-alpha.20" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.3" />
-    <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="3.0.0-alpha.3" />
-    <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="14.0.0-alpha.3" />
-  </ItemGroup>
-
-  <ItemGroup Label="Resolves vulnerabilities">
-    <PackageReference Include="Azure.Identity" Version="1.*" />
-    <PackageReference Include="Microsoft.Identity.Client" Version="4.*" />
-  </ItemGroup>
-
-  <ItemGroup Label="To disable Dashboard logging (https://docs.microsoft.com/en-us/azure/app-service/webjobs-sdk-get-started#enable-console-logging)">
-    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="10.0.0-rc.1.25451.107" />
+    <PackageReference Include="NServiceBus" Version="10.*" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
+    <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="3.*" />
+    <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="14.*" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,7 +1,7 @@
 ---
 title: Platform Releases
 summary: Links to current and previous releases as well as release notes for the Particular Service Platform applications
-reviewed: 2025-05-13
+reviewed: 2025-11-26
 ---
 
 ## Applications and tools
@@ -12,7 +12,6 @@ The Particular Service Platform source code, current and previous releases, and 
 | | | |
 |:--- |:--- |:--- |
 | **NServiceBus** | [Releases](https://github.com/Particular/NServiceBus/tags) | [Release Notes](https://github.com/Particular/NServiceBus/releases)|
-| **ServiceInsight** | [Releases](https://github.com/Particular/ServiceInsight/tags)|[Release Notes](https://github.com/Particular/ServiceInsight/releases)|
 | **ServicePulse** | [Releases](https://github.com/Particular/ServicePulse/tags)|[Release Notes](https://github.com/Particular/ServicePulse/releases)|
 | **ServiceControl** | [Releases](https://github.com/Particular/ServiceControl/tags)|[Release Notes](https://github.com/Particular/ServiceControl/releases)|
 

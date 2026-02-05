@@ -1,0 +1,123 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Transform" : "AWS::Serverless-2016-10-31",
+  "Description" : "Template that creates an SQS queue and a function that is invoked when a new message arrives.",
+  "Resources": {
+    "ErrorQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "error"
+      }
+    },
+    "ClientQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "Samples-Aurora-Lambda-ClientUI"
+      }
+    },
+    "ClientDelayQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "Samples-Aurora-Lambda-ClientUI-delay.fifo",
+        "FifoQueue": "true",
+        "DelaySeconds": 900
+      }
+    },
+    "SalesQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "Samples-Aurora-Lambda-Sales"
+      }
+    },
+    "SalesDelayQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "Samples-Aurora-Lambda-Sales-delay.fifo",
+        "FifoQueue": "true",
+        "DelaySeconds": 900
+      }
+    },
+    "OrderShippedTopic": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "OrderShipped",
+        "DisplayName": "OrderShipped"
+      }
+    },
+    "OrderDelayedTopic": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "OrderDelayed",
+        "DisplayName": "OrderDelayed"
+      }
+    },
+    "OrderReceivedTopic": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "OrderReceived",
+        "DisplayName": "OrderReceived"
+      }
+    },
+    "CustomerBilledTopic": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "CustomerBilled",
+        "DisplayName": "CustomerBilled"
+      }
+    },
+    "InventoryStagedTopic": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "TopicName": "InventoryStaged",
+        "DisplayName": "InventoryStaged"
+      }
+    },
+    "SQSTriggerFunction": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "Sales::OrderProcessor::ProcessOrder",
+        "Runtime": "dotnet10",
+        "CodeUri": "",
+        "Description": "Process an order",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [ "AWSLambda_FullAccess", "AmazonSQSFullAccess", "AmazonSNSFullAccess" ],
+        "Events": {
+          "SqsEvent": {
+            "Type": "SQS",
+            "Properties": {
+              "BatchSize": 10,
+              "Queue": { "Fn::GetAtt": [ "SalesQueue", "Arn" ] }
+            }
+          }
+        },
+       "Environment": {
+             "Variables": {
+                 "AuroraLambda_ConnectionString": "server=localhost;user=root;database=dbname;port=3306;password=pass;AllowUserVariables=True;AutoEnlist=false"
+             }
+         }
+      }
+    }
+  },
+  "Outputs": {
+    "ClientQueueQueueURL": {
+      "Description": "The URL of the client queue",
+      "Value": {
+        "Ref": "ClientQueue"
+      }
+    },
+    "ErrorQueueQueueURL": {
+      "Description": "The URL of the error queue",
+      "Value": {
+        "Ref": "ErrorQueue"
+      }
+    },
+    "SalesQueueQueueURL": {
+      "Description": "The URL of the Lambda input queue",
+      "Value": {
+        "Ref": "SalesQueue"
+      }
+    }
+  }
+}

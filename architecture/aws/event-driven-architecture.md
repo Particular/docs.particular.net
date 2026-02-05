@@ -1,7 +1,7 @@
 ---
 title: Event-driven architecture style on AWS
 summary: Describes event-driven architecture including the components, challenges, and technology options for AWS
-reviewed: 2024-04-04
+reviewed: 2026-01-13
 callsToAction: ['solution-architect', 'ADSD']
 ---
 

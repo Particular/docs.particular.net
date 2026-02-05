@@ -14,14 +14,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Setup .NET SDK
-        uses: actions/setup-dotnet@v5.0.1
+        uses: actions/setup-dotnet@v5.1.0
         with:
           global-json-file: global.json
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2
       - name: Restore NuGet Cache
         id: nuget-cache-restore
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
@@ -32,7 +32,7 @@ jobs:
       - name: Save NuGet Cache
         id: nuget-cache-save
         if: always() && steps.nuget-cache-restore.outputs.cache-hit != 'true'
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v5
         with:
           path: ~/.nuget/packages
           key: ${{ steps.nuget-cache-restore.outputs.cache-primary-key }}

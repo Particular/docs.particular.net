@@ -1,7 +1,7 @@
 ---
 title: AWS observability services
-summary: Gives an overview of the observability options offered by AWS and how to use them with the Particular Service Platform
-reviewed: 2024-03-28
+summary: An overview of the observability options offered by AWS and how to use them with the Particular Service Platform
+reviewed: 2026-01-12
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
@@ -9,7 +9,7 @@ AWS offers several observability solutions that can be used with the Particular 
 
 ## Amazon CloudWatch
 
-[Amazon CloudWatch](https://aws.amazon.com/cloudwatch/) is a monitoring and observability service that allows one to collect and access performance and operational data in the form of logs and metrics on a single platform.
+[Amazon CloudWatch](https://aws.amazon.com/cloudwatch/) is a monitoring and observability service that allows the collection and access of performance and operational data in the form of logs and metrics on a single platform.
 
 :heavy_plus_sign: Pros:
 
@@ -53,4 +53,4 @@ The Particular Service Platform allows observability tools to capture spans emit
 
 [Message processing failed... But what's the root cause?](https://particular.net/videos/message-processing-failed)
 
-In this presentation, Laila Bougria discusses the need for distributed tracing in distributed systems, as well as the [ADOT collector (AWS Distro for OpenTelemetry Collector)](https://aws-otel.github.io/docs/getting-started/collector), AWS’ OpenTelemetry Collector implementation that simplifies the export of distributed traces from applications to AWS X-Ray, amongst others.
+In this presentation, Laila Bougria discusses the need for distributed tracing in distributed systems, as well as the [ADOT collector (AWS Distro for OpenTelemetry Collector)](https://aws-otel.github.io/docs/getting-started/collector), AWS’ OpenTelemetry Collector implementation that simplifies exporting distributed traces from applications to AWS X-Ray, among others.

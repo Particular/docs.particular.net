@@ -25,7 +25,9 @@ using (var receiverDataContext = new ReceiverDataContext(new DbContextOptionsBui
 
 var endpointConfiguration = new EndpointConfiguration("Samples.EntityFrameworkUnitOfWork.SQL");
 endpointConfiguration.EnableInstallers();
-endpointConfiguration.ExecuteTheseHandlersFirst(typeof(CreateOrderHandler), typeof(OrderLifecycleSaga), typeof(CreateShipmentHandler));
+endpointConfiguration.AddHandler<CreateOrderHandler>();
+endpointConfiguration.AddSaga<OrderLifecycleSaga>();
+endpointConfiguration.AddHandler<CreateShipmentHandler>();
 
 endpointConfiguration.UseTransport(new SqlServerTransport(connectionString)
 {

@@ -58,6 +58,7 @@ As part of a full review, the following should be done:
 * Content is correct up to and including the current released version
 * Content can benefit from having its own header so that it is picked up while searching for a related topic.
 * Summary and title are adequate
+* Summary adheres to the [ai friendliness](https://github.com/particular/developereducation/tree/master/seo/ai-friendliness.md] guidelines.
 * Consider what is the best place to direct the reader after they are done reading the current page. Add a link to that page at the bottom.
 * Update the reviewed date in the header, even if no changes were made.
 * Remove [security advisories](https://docs.particular.net/security-advisories/) for no longer supported versions
@@ -140,7 +141,7 @@ Optional. Used to capture the last date that a page was fully reviewed. Format i
 summary: Provides built-in message auditing for every endpoint.
 ```
 
-Optional. Used for the meta description tag (`<meta name="description" />`) and displaying the search results.
+Optional. This section defines a short YAML string used as the page’s meta description tag (`<meta name="description" />`). It provides a concise, SEO‑friendly summary that may be displayed in search results as a snippet. The content should be under 160 characters (including spaces), accurately reflect the page’s topic, and act as a "pitch" that convinces users the page matches their needs.
 
 #### Hidden
 
@@ -224,14 +225,14 @@ Calls to action are defined in `calls-to-action.yaml`.
 
 ### An example header for an article
 
-In the following example, whenever the URLs `/servicecontrol/sc-si` or `/servicecontrol/debugging-servicecontrol` are being requested, the given article will be rendered.
+In the following example, whenever the URLs `/servicecontrol/sc-sp` or `/servicecontrol/debugging-servicecontrol` are being requested, the given article will be rendered.
 
 ```yaml
 ---
-title: ServiceInsight Interaction
-summary: 'Using ServiceInsight Together'
+title: ServicePulse Interaction
+summary: 'Using ServicePulse Together'
 redirects:
-- servicecontrol/sc-si
+- servicecontrol/sc-sp
 - servicecontrol/debugging-servicecontrol
 related:
 - servicecontrol/installation

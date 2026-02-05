@@ -1,6 +1,6 @@
 ---
 title: Message replay tutorial
-reviewed: 2024-03-12
+reviewed: 2026-01-06
 summary: In this tutorial, you'll learn how to replay a failed message using the Particular Service Platform tools.
 previewImage: failed-message-groups.png
 ---

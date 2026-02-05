@@ -13,12 +13,12 @@ related:
  - servicecontrol/upgrades/supported-versions
 ---
 
-Only the latest version of ServiceInsight is supported. The latest version can be found on the [downloads page](https://particular.net/downloads).
+> [!WARNING]
+> ServiceInsight has been sunset and will receive no further improvements or features.  
+>
+> The latest version of ServiceInsight is supported (including bug fixes) until migration instructions to ServicePulse are available.
 
-## Upgrade tips
-
-1. Ensure the machine running ServiceInsight can reach the machine running ServiceControl and has access to the correct IP address and port.
-1. The application settings are automatically migrated to the newer version when ServiceInsight is upgraded.
+The latest version can be found on the [downloads page](https://particular.net/downloads); however, it is recommended to install the latest version of [ServicePulse](/servicepulse/installation.md) for the latest features and full support.
 
 ## ServiceControl compatibility
 

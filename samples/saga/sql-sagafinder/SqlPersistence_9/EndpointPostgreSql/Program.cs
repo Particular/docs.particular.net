@@ -5,13 +5,11 @@ using Npgsql;
 using NpgsqlTypes;
 using NServiceBus;
 
-
 Console.Title = "PostgreSql";
 var builder = Host.CreateApplicationBuilder(args);
 var endpointConfiguration = new EndpointConfiguration("Samples.SqlSagaFinder.PostgreSql");
 endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-endpointConfiguration.SendFailedMessagesTo("error");
 endpointConfiguration.EnableInstallers();
 #region PostgreSqlConfig
 
@@ -47,7 +45,6 @@ subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 #endregion
 
 builder.UseNServiceBus(endpointConfiguration);
-
 
 var host = builder.Build();
 

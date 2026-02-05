@@ -1,6 +1,6 @@
 ---
 title: Transaction Support
-reviewed: 2024-02-20
+reviewed: 2025-12-19
 component: ASBS
 versions: '[1,)'
 ---

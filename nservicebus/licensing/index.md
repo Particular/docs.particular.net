@@ -1,6 +1,6 @@
 ---
 title: License file information
-summary: Learn how to configure NServiceBus license and troubleshoot any license scanning issues 
+summary: Learn how NServiceBus licensing works, including configuration, license types, usage reporting, and expiration
 component: core
 reviewed: 2024-05-07
 redirects:
@@ -12,7 +12,6 @@ related:
  - nservicebus/upgrades/release-policy
  - nservicebus/upgrades/support-policy
  - servicecontrol/license
- - serviceinsight/license
 ---
 
 ## License details

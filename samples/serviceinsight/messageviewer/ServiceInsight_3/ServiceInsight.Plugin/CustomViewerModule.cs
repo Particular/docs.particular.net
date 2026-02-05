@@ -9,7 +9,7 @@ namespace ServiceInsight.CustomViewer.Plugin
         {
             builder.RegisterType<MyCustomDecryptionViewModel>().AsImplementedInterfaces().AsSelf().SingleInstance();
             builder.RegisterType<MyCustomDecryptionView>().AsImplementedInterfaces().AsSelf().SingleInstance();
-            builder.RegisterType<MessageEncryptor>().AsImplementedInterfaces().AsSelf().SingleInstance();
+            builder.RegisterType<MessageEncoder>().As<IMessageEncoder>().SingleInstance();
         }
     }
     #endregion

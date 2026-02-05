@@ -2,7 +2,7 @@
 title: Interfaces as messages
 summary: Define interfaces as messages in NServiceBus to support multiple inheritance scenarios
 component: core
-reviewed: 2024-04-04
+reviewed: 2026-01-13
 related:
 - nservicebus/messaging/dynamic-dispatch-and-routing
 redirects:

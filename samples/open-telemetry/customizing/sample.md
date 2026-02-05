@@ -21,9 +21,7 @@ As the messages are sent and processed, trace data is exported to the console. S
 
 ### Global configuration
 
-NServiceBus OpenTelemetry instrumentation is not enabled by default. It must be enabled on the endpoint configuration.
-
-snippet: enable-opentelemetry
+partial: enableotel
 
 OpenTelemetry is configured to export all traces to the command line. It includes the `NServiceBus.*` sources built into NServiceBus and a custom activity source defined in the sample (see below).
 

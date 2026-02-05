@@ -14,6 +14,9 @@ The `NServiceBus.Metrics.ServiceControl` component enables sending monitoring da
 > [!NOTE]
 > The metrics feature can't be used on send-only endpoints
 
+> [!NOTE]
+> When using MSMQ, the additional `NServiceBus.Metrics.ServiceControl.Msmq` package must also be installed.
+
 ## Configuration
 
 The package allows collection and propagation of metrics to ServiceControl.

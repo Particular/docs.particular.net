@@ -7,8 +7,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.3" />
-    <PackageReference Include="NServiceBus.Persistence.DynamoDB" Version="4.0.0-alpha.4" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
+    <PackageReference Include="NServiceBus.Persistence.DynamoDB" Version="4.*" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SharedMessages\SharedMessages.csproj" />

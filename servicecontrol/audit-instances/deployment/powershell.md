@@ -35,7 +35,7 @@ include: powershell-new-configuration
 > [!NOTE]
 > The address of a ServiceControl Error instance must be provided to send notifications to.
 
-Once a ServiceControl Audit instance is created, it must be added to the ServiceControl Error instance as a [remote](/servicecontrol/servicecontrol-instances/remotes.md) to be included in results returned to [ServiceInsight](/serviceinsight/) or [ServicePulse](/servicepulse/). Use the `Add-ServiceControlRemote` cmdlet to add a remote to the Error instance:
+Once a ServiceControl Audit instance is created, it must be added to the ServiceControl Error instance as a [remote](/servicecontrol/servicecontrol-instances/remotes.md) to be included in results returned to [ServicePulse](/servicepulse/). Use the `Add-ServiceControlRemote` cmdlet to add a remote to the Error instance:
 
 snippet: ps-add-audit-remote
 

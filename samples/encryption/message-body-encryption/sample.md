@@ -7,7 +7,6 @@ related:
 - nservicebus/security
 - nservicebus/security/property-encryption
 - nservicebus/pipeline/message-mutators
-- serviceinsight/custom-message-viewers
 ---
 
 

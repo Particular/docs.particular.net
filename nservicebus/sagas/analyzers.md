@@ -18,7 +18,11 @@ The `ConfigureHowToFindSaga` method is executed to determine the mappings betwee
 
 See [message correlation](message-correlation.md) for details on how to map incoming messages to stored saga data.
 
-partial: simplify-mapping
+## Saga mapping expressions can be simplified
+
+partial: simplify-warning
+
+partial: single-correlation
 
 ## Message that starts the saga does not have a message mapping
 
@@ -118,17 +122,11 @@ Sagas should not use a base class (i.e. `MySaga : MyAbstractSaga<TSagaData>`) to
 
 A better way to provide shared functionality to multiple saga types and reduce code duplication is to use [extension methods](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/extension-methods).
 
-## Saga should not implement IHandleSagaNotFound
+## Saga should not implement saga not found handler
 
 * **Rule ID**: NSB0015
 * **Severity**: Warning, Error starting in NServiceBus version 8
-* **Example message**: A saga should not implement `IHandleSagaNotFound`, as this catch-all handler will handle messages where *any* saga is not found. Implement `IHandleSagaNotFound` on a separate class instead.
-
-A ["saga not found" handler](/nservicebus/sagas/saga-not-found.md) provides a way to deal with messages that are not allowed to start a saga but cannot find existing saga data.
-
-"Saga not found" handlers operate on all saga messages within an endpoint, no matter which saga the message was originally bound for. So it is misleading to implement `IHandleSagaNotFound` on a saga because it creates the impression that it will only handle not found messages for that _specific_ saga, which is false.
-
-Instead, implement `IHandleSagaNotFound` on an independent class.
+partial: not-found-handler
 
 ## Correlation property must match message mapping expression type
 

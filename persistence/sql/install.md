@@ -4,11 +4,10 @@ summary: Things to consider when installing and deploying endpoints that use SQL
 component: SqlPersistence
 related:
  - persistence/sql/installer-workflow
-reviewed: 2024-02-26
+reviewed: 2025-12-19
 ---
 
 The SQL persistence package generates scripts to create necessary database assets. It is recommended to run those scripts as part of the deployment process. See [Installer Workflow](installer-workflow.md) for more information.
-
 
 ## Script execution during development
 
@@ -19,15 +18,15 @@ snippet: ExecuteAtStartup
 > [!NOTE]
 > Automatically executing generated scripts is recommended only in development environments.
 
-
 ## Script execution in non-development environments
 
 In non-development environments, where the SQL persistence installation scripts have been executed as part of the deployment, it may be necessary to explicitly disable the SQL persistence installers if [standard installers](/nservicebus/operations/installers.md) need to be used for other purposes.
 
 snippet: DisableInstaller
 
-partial: script-runner
+The `ScriptRunner` class can be used to run the scripts without creating and starting an NServiceBus endpoint.
 
+snippet: ScriptRunner
 
 ## Table prefix
 
@@ -44,14 +43,16 @@ When using the default approach to installation (execute at startup), the value 
 
 snippet: TablePrefix
 
-
 ## Database schema
 
 When using a database that supports schemas, a schema value other than default can be defined in the configuration API. Consult the documentation of the selected SQL dialect for details.
 
+- [SQL Server](/persistence/sql/dialect-mssql.md#schema-support)
+- [Oracle](/persistence/sql/dialect-oracle.md#schema-support)
+- [PostgreSQL](/persistence/sql/dialect-postgresql.md#schema-support)
+
 > [!NOTE]
 > The same value must be passed to the installation scripts as a parameter.
-
 
 ## Manual installation
 
@@ -59,16 +60,18 @@ When performing a custom script execution the table prefix is required. See also
 
 Note that `scriptDirectory` can be either the root directory for all scripts or the specific locations for a given storage type i.e. Saga, Outbox, Subscription and Timeout scripts.
 
-
 ### SQL Server
 
 snippet: ExecuteScriptsSqlServer
-
 
 ### MySQL
 
 snippet: ExecuteScriptsMySql
 
-partial: executescriptsoracle
+#### Oracle
 
-partial: executescriptspostgresql
+snippet: ExecuteScriptsOracle
+
+#### PostgreSQL
+
+snippet: ExecuteScriptsPostgreSQL

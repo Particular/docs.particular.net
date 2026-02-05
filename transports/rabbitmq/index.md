@@ -1,6 +1,6 @@
 ---
 title: RabbitMQ Transport
-summary: An overview of the RabbitMQ transport, learn how to configure and use RabbitMQ as a transport in NServiceBus
+summary: Integrate NServiceBus with RabbitMQ transport for scalable messaging and reliable distributed communication
 reviewed: 2025-02-14
 component: Rabbit
 related:

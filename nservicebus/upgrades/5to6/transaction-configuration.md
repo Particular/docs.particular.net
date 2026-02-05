@@ -114,7 +114,7 @@ transactionSettings.WrapHandlersExecutionInATransactionScope();
 
 ## Forwarding messages to error queue when transactions are disabled
 
-When transactions are disabled and if any errors are encountered during the processing of the message, then the messages will be forwarded to the error queue. In NServiceBus version 5, this message would have been lost. For more details, read the [new behavior changes in version 6](/transports/transactions.md#transactions-unreliable-transactions-disabled).
+When transactions are disabled and if any errors are encountered during the processing of the message, then the messages will be forwarded to the error queue. In NServiceBus version 5, this message would have been lost. For more details, read the [new behavior changes in version 6](/transports/transactions.md#transaction-modes-unreliable-transactions-disabled).
 
 
 ## Suppressing the ambient transaction
@@ -133,7 +133,7 @@ var transactions = busConfiguration.Transactions();
 transactions.DoNotWrapHandlersExecutionInATransactionScope();
 ```
 
-For more information see [Transport transaction - sends atomic with receive](/transports/transactions.md#transactions-transport-transaction-sends-atomic-with-receive).
+For more information see [Transport transaction - sends atomic with receive](/transports/transactions.md#transaction-modes-transport-transaction-sends-atomic-with-receive).
 
 NServiceBus version 6 leans on native transport transactions and the new [batched dispatch](/nservicebus/messaging/batched-dispatch.md) support to achieve the same level of consistency with better performance.
 

@@ -1155,6 +1155,8 @@
         Title: Version 2 to 3
     - Title: NHibernate
       Articles:
+      - Url: persistence/upgrades/nhibernate-10to11
+        Title: Version 10 to 11
       - Url: persistence/upgrades/nhibernate-8to9
         Title: Version 8 to 9
       - Url: persistence/upgrades/nhibernate-8to8.1
@@ -1195,8 +1197,8 @@
         Title: Version 1 to 2
     - Title: SQL
       Articles:
-      - Url: persistence/upgrades/sql-client4
-        Title: Microsoft.Data.SqlClient version 4
+      - Url: persistence/upgrades/sql-8to9
+        Title: Version 8 to 9
       - Url: persistence/upgrades/sql-6to7
         Title: Version 6 to 7
       - Url: persistence/upgrades/sql-5to6
@@ -1213,6 +1215,8 @@
         Title: Version 1 to 2
       - Url: persistence/upgrades/sql-1.0.0-1.0.1
         Title: Version 1 to 1.0.1
+      - Url: persistence/upgrades/sql-client4
+        Title: Microsoft.Data.SqlClient version 4
       - Url: persistence/upgrades/sql-null-endpoint
         Title: Support NServiceBus 5 subscribers
   - Title: Learning

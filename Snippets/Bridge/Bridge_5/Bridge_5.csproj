@@ -3,8 +3,8 @@
     <TargetFramework>net10.0-windows</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.MessagingBridge" Version="5.0.0-alpha.2" />
-    <PackageReference Include="NServiceBus.MessagingBridge.Msmq" Version="5.0.0-alpha.2" />
-    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="6.0.0-alpha.4" />
+    <PackageReference Include="NServiceBus.MessagingBridge" Version="5.*" />
+    <PackageReference Include="NServiceBus.MessagingBridge.Msmq" Version="5.*" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="6.*" />
   </ItemGroup>
 </Project>

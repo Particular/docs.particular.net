@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="NHibernate" Version="5.*" />
-    <PackageReference Include="NServiceBus.NHibernate" Version="11.0.0-alpha.3" />
+    <PackageReference Include="NServiceBus.NHibernate" Version="11.*" />
   </ItemGroup>
 
 </Project>

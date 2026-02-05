@@ -2,7 +2,7 @@
 using NServiceBus.Persistence.Sql;
 
 public class OrderLifecycleSaga(ILogger<OrderLifecycleSaga> logger) :
-    SqlSaga<OrderLifecycleSagaData>,
+    Saga<OrderLifecycleSagaData>,
     IAmStartedByMessages<OrderSubmitted>,
     IHandleTimeouts<OrderTimeout>
 {
@@ -20,10 +20,9 @@ public class OrderLifecycleSaga(ILogger<OrderLifecycleSaga> logger) :
         return Task.CompletedTask;
     }
 
-    protected override void ConfigureMapping(IMessagePropertyMapper mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<OrderLifecycleSagaData> mapper)
     {
-        mapper.ConfigureMapping<OrderSubmitted>(m => m.OrderId);
+        mapper.MapSaga(saga => saga.OrderId)
+            .ToMessage<OrderSubmitted>(m => m.OrderId);
     }
-
-    protected override string CorrelationPropertyName => "OrderId";
 }

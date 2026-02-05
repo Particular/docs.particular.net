@@ -16,13 +16,13 @@ redirects:
 ---
 
 > [!WARNING]
-> Starting 1 January 2027, it will become mandatory for all projects in active development to use [ServicePulse](./../../servicepulse/usage.md) for usage data collection. Once configured, ServicePulse provides the ability to report throughput instantly at any time, without needing to run an external tool or wait for data collection.
+> Starting 1 January 2027, all projects in active development will be required to use [ServicePulse](./../../servicepulse/usage.md) for usage data collection. Once configured, ServicePulse provides the ability to report usage instantly at any time, without needing to run an external tool or wait for data collection.
 >
-> The legacy endpoint throughput counter tool is offered as an alternate option for customers who aren't able to use ServicePulse. If you encounter any issues installing ServicePulse in your environment, please reach out so we can assist in finding a solution.
+> The legacy Endpoint Throughput Counter tool is offered as an alternate option for customers who aren't able to use ServicePulse. If you encounter any issues installing ServicePulse in your environment, please reach out so we can assist in finding a solution.
 >
 > If necessary, [open a support case](https://customers.particular.net/request-support/licensing) to get help with installing or configuring ServicePulse for usage data collection.
 
-The Particular endpoint throughput counter tool can typically be installed on a [user's workstation](#frequently-asked-questions-does-the-tool-need-to-run-on-my-production-server) and run against a production system to measure the throughput of each endpoint over a period of time.
+The Endpoint Throughput Counter tool can typically be installed on a [user's workstation](#frequently-asked-questions-does-the-tool-need-to-run-on-my-production-server) and run against a production system to identify endpoints and measure their throughput over a period of time. ISVs who do not have access to their clients' production environments can run the tool in a pre-production environment to produce the validated list of endpoints.
 
 ## Installation
 

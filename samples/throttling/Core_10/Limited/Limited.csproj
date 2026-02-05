@@ -5,7 +5,7 @@
     <LangVersion>14.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.3" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
     <PackageReference Include="Octokit" Version="9.*" />
   </ItemGroup>

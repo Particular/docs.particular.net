@@ -1,6 +1,6 @@
 ---
 title: MSMQ Transport Troubleshooting
-summary: Resolutions for common problems with the MSMQ transport.
+summary: MSMQ Transport troubleshooting for NServiceBus to resolve common errors like duplicate QMId , quota limits, VPN delivery issues, and undelivered messages
 reviewed: 2024-10-24
 component: MsmqTransport
 isLearningPath: true

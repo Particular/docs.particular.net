@@ -2,7 +2,7 @@
 title: SQL Server Transport Scripting
 summary: Example code and scripts to facilitate deployment and operational actions against the SQLServer Transport.
 component: SqlTransport
-reviewed: 2024-03-29
+reviewed: 2026-01-09
 related:
  - nservicebus/operations
 redirects:

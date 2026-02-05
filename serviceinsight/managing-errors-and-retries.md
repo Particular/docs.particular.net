@@ -2,8 +2,10 @@
 title: Managing Errors and Retries
 summary: View the details of failed messages with ServiceInsight and retry them
 component: ServiceInsight
-reviewed: 2024-02-28
+reviewed: 2025-12-19
 ---
+
+include: serviceinsight-sunset
 
 When a message fails during processing, NServiceBus will [automatically retry it](/nservicebus/recoverability/). If a message continues to fail, it is forwarded to the error queue and becomes visible within ServiceInsight.
 

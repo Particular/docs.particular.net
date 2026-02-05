@@ -1,7 +1,7 @@
 ---
 title: Simple Saga Usage
 summary: How build and use a saga.
-reviewed: 2024-03-07
+reviewed: 2025-12-24
 component: Core
 redirects:
 - samples/saga/complexfindinglogic

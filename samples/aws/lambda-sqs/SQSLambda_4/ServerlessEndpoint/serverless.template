@@ -1,0 +1,133 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Transform": "AWS::Serverless-2016-10-31",
+  "Description": "Template that creates an SQS queue and a function that is invoked when a new message arrives. This template is partially managed by Amazon.Lambda.Annotations (v1.8.0.0).",
+  "Resources": {
+    "ErrorQueue": {
+      "Properties": {
+        "QueueName": "error"
+      },
+      "Type": "AWS::SQS::Queue"
+    },
+    "RegularEndpointQueue": {
+      "Properties": {
+        "QueueName": "RegularEndpoint"
+      },
+      "Type": "AWS::SQS::Queue"
+    },
+    "RegularEndpointDelayQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "RegularEndpoint-delay.fifo",
+        "FifoQueue": "true",
+        "DelaySeconds": 900
+      }
+    },
+    "ServerlessEndpointQueue": {
+      "Properties": {
+        "QueueName": "ServerlessEndpoint"
+      },
+      "Type": "AWS::SQS::Queue"
+    },
+    "ServerlessEndpointDelayQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+        "QueueName": "ServerlessEndpoint-delay.fifo",
+        "FifoQueue": "true",
+        "DelaySeconds": 900
+      }
+    },
+    "SQSTriggerFunction": {
+      "Type": "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "ServerlessEndpoint::LambdaFunctions.SqsLambda::FunctionHandler",
+        "Runtime": "dotnet8",
+        "CodeUri": "",
+        "Description": "Function handling sqs events produced by pushing messages to the ServerlessEndpoint queue",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Role": null,
+        "Policies": [
+          "AWSLambda_FullAccess",
+          "AmazonSQSFullAccess"
+        ],
+        "Events": {
+          "SqsEvent": {
+            "Type": "SQS",
+            "Properties": {
+              "BatchSize": 10,
+              "Queue": {
+                "Fn::GetAtt": [
+                  "ServerlessEndpointQueue",
+                  "Arn"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "LambdaFunctionsHttpLambdaHttpGetHandlerGenerated": {
+      "Type": "AWS::Serverless::Function",
+      "Metadata": {
+        "Tool": "Amazon.Lambda.Annotations",
+        "SyncedEvents": [
+          "RootGet"
+        ],
+        "SyncedEventProperties": {
+          "RootGet": [
+            "Path",
+            "Method"
+          ]
+        }
+      },
+      "Properties": {
+        "Runtime": "dotnet10",
+        "CodeUri": ".",
+        "MemorySize": 256,
+        "Timeout": 30,
+        "Policies": [
+          "AWSLambda_FullAccess",
+          "AmazonSQSFullAccess"
+        ],
+        "PackageType": "Zip",
+        "Handler": "ServerlessEndpoint::LambdaFunctions.HttpLambda_HttpGetHandler_Generated::HttpGetHandler",
+        "Events": {
+          "RootGet": {
+            "Type": "HttpApi",
+            "Properties": {
+              "Path": "/",
+              "Method": "GET"
+            }
+          }
+        }
+      }
+    }
+  },
+  "Outputs": {
+    "ApiURL": {
+      "Description": "API endpoint URL of the HttpGet trigger function",
+      "Value": {
+        "Fn::Sub": "https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/"
+      }
+    },
+    "ErrorQueueURL": {
+      "Description": "The URL of the queue",
+      "Value": {
+        "Ref": "ErrorQueue"
+      }
+    },
+    "ServerlessEndpointQueueURL": {
+      "Description": "The URL of the serverless endpoint queue",
+      "Value": {
+        "Ref": "ServerlessEndpointQueue"
+      }
+    },
+    "RegularEndpointQueueURL": {
+      "Description": "The URL of the on premise endpoint queue",
+      "Value": {
+        "Ref": "RegularEndpointQueue"
+      }
+    }
+  }
+}

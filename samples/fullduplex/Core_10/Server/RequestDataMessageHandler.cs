@@ -1,16 +1,17 @@
+using System;
 using System.Threading.Tasks;
 using NServiceBus;
-using Microsoft.Extensions.Logging;
 
 #region RequestDataMessageHandler
-public class RequestDataMessageHandler(ILogger<RequestDataMessageHandler> logger) :
+
+public class RequestDataMessageHandler () :
     IHandleMessages<RequestDataMessage>
 #endregion
 {
     public async Task Handle(RequestDataMessage message, IMessageHandlerContext context)
     {
-        logger.LogInformation("Received request {DataId}.", message.DataId);
-        logger.LogInformation("String received: {Description}.", message.String);
+        Console.WriteLine($"Received request {message.DataId}.");
+        Console.WriteLine($"String received: {message.String}.");
 
         #region DataResponseReply
 
@@ -20,4 +21,5 @@ public class RequestDataMessageHandler(ILogger<RequestDataMessageHandler> logger
 
         #endregion
     }
+
 }

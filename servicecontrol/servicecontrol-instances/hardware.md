@@ -2,7 +2,7 @@
 title: ServiceControl Hardware Considerations
 summary: Hardware recommendations for running ServiceControl instances
 component: ServiceControl
-reviewed: 2024-05-06
+reviewed: 2026-01-29
 ---
 
 This article provides recommendations and performance benchmarks to help select resources for a ServiceControl production environment.
@@ -11,7 +11,7 @@ This article provides recommendations and performance benchmarks to help select 
 
 * A dedicated production server for installing ServiceControl instances (Error, Audit, and Monitoring).
 * A minimum of 16 GB of RAM (excluding RAM for OS and other services).
-* 2 GHz quad core CPU or better.
+* 3 GHz quad core CPU or better.
 * A dedicated, non-virtual, pre-allocated SSD for ServiceControl databases (not the disk where the operating system is installed).
 
 ### Scaling ServiceControl
@@ -62,7 +62,7 @@ In general, [the smaller the messages](https://particular.net/blog/putting-your-
 For audit messages, lower the [`ServiceControl.Audit/MaxBodySizeToStore`](/servicecontrol/audit-instances/configuration.md#performance-tuning-servicecontrol-auditmaxbodysizetostore) setting to skip storage of larger audit messages. This setting will only reduce load if non-binary [serialization](/nservicebus/serialization/) is used.
 
 > [!WARNING]
-> When using ServiceInsight or ServicePulse, the message body is not viewable for messages that exceed the `ServiceControl/MaxBodySizeToStore` limit.
+> When using ServicePulse, the message body is not viewable for messages that exceed the `ServiceControl/MaxBodySizeToStore` limit.
 
 ### Separate disks for database and index files
 

@@ -48,7 +48,7 @@ snippet: add-nsb-otel
 
 ### Endpoint projects
 
-Each of the endpoint projects contain the same code to create an application host, apply the configuration from the ServiceDefaults project and enable OpenTelemetry on the NServiceBus endpoint.
+Each of the endpoint projects contain the same code to create an application host, apply the configuration from the ServiceDefaults project on the NServiceBus endpoint.
 
 snippet: always-config
 

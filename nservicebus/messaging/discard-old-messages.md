@@ -38,20 +38,25 @@ snippet: DiscardingOldMessagesWithCode
 
 ## Clock synchronization considerations
 
-When using TTBR, be aware of potential clock synchronization issues between sender and receiver. If the receiver's clock is ahead of the sender's, messages may be discarded immediately as stale.
+When using TTBR, clock synchronization issues, ([clock skew](https://en.wikipedia.org/wiki/Clock_skew)), between sender and receiver can cause premature message discard. If the receiver's clock is ahead of the sender's, messages may be rejected immediately as stale.
 
-- This issue is most relevant for small TTBR values.
-- In most environments, clocks are only a few minutes out of sync.
+> [!NOTE]
+> **Frequently synchronize time between hosts**
+> Ensure the endpoint hosts share the same clock source. These clocks should be synchronized very frequently to ensure reliable timestamps.
 
-**Recommendation:**
-Add the maximum expected clock drift to the TTBR value. For example, if TTBR is 90 seconds and the maximum clock drift is 300 seconds, set TTBR to 390 seconds.
+> [!WARNING]
+> **Add clock skew safety margin for TTBR values under 1 minute**
+> With opposing 30-second drifts per system, total skew reaches 60 seconds. Add a safety margin.
+> 
+> Formula: TTBR = intended_lifetime + (2 × max_expected_drift)
+> Example: 90s lifetime + 30s max drift = 150 seconds TTBR
 
 ## Discarding messages at startup
 
-In certain situations, it may be required that messages in the incoming queue should not be processed after restarting the endpoint. This usually applies to development and test environments, but may also be appropriate for messages containing information that gets outdated or otherwise unneeded, e.g. change notifications, readings from sensors in IoT apps, etc.
+In certain situations, it may be necessary to prevent messages in the incoming queue from being processed after restarting the endpoint. This usually applies to development and test environments, but may also be appropriate for messages containing information that becomes outdated or otherwise unnecessary, e.g., change notifications, sensor readings in IoT apps, etc.
 
 > [!WARNING]
-> It's not recommended to discard messages at startup in a production environment because it may lead to subtle message loss situations that can be hard to diagnose.
+> It's to discard messages at startup in a production environment because this may lead to subtle message loss that's hard to diagnose.
 
 To discard all existing messages in the incoming queue at startup:
 
@@ -65,12 +70,12 @@ partial: msmq
 
 ### RabbitMQ transport
 
-RabbitMQ checks the TTBR value, but only for message at the front of the queue. Expired messages are not removed from the queue, and their disk space is not reclaimed until they reach the front of the queue. Using TTBR as a disk-saving measure on RabbitMQ is recommended only when all messages in the queue use the same TTBR value. Otherwise, messages in front of the queue may prevent other stale messages from being cleaned.
+RabbitMQ checks the TTBR value, but only for the message at the front of the queue. Expired messages are not removed from the queue, and their disk space is not reclaimed until they reach the front of the queue. Using TTBR as a disk-saving measure on RabbitMQ is recommended only when all messages in the queue use the same TTBR value. Otherwise, messages in front of the queue may prevent other stale messages from being cleaned.
 
 ### Azure transports
 
-The Azure transports evaluate the TTBR for a message only when the message is requested by the client. Expired messages are not removed from the queue and their disk space will not be reclaimed until they reach the front of the queue and a consumer tries to read them. Using TTBR as a storage saving measure on the Azure transports is not a good choice for queues with long-lived messages like audit and forward.
+The Azure transports evaluate the TTBR for a message only when the client requests it. Expired messages are not removed from the queue, and their disk space will not be reclaimed, until they reach the front of the queue and a consumer tries to read them. Using TTBR as a storage-saving measure on the Azure transports is not a good choice for queues with long-lived messages like audit and forward.
 
 ### SQL transport
 
-The SQL Server transport runs a periodic task that removes expired messages from the queue. The task is first executed when the endpoint starts and is subsequently scheduled to execute 5 minutes after the previous run when the task has been completed. Expired messages are not received from the queue and their disk space will be reclaimed when the periodic task executes.
+The SQL Server transport runs a periodic task that removes expired messages from the queue. The task is first executed when the endpoint starts and is subsequently scheduled to execute 5 minutes after the previous run, when the task has been completed. Expired messages are not received from the queue and their disk space will be reclaimed when the periodic task executes.

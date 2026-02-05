@@ -1,6 +1,6 @@
 ---
 title: MassTransit Error Management - Early Access
-summary: How to manage errors from MassTransit systems
+summary: Manage errors from MassTransit systems with the Particular Service Platform
 reviewed: 2025-01-23
 ---
 
@@ -12,7 +12,7 @@ The platform provides an aggregated view of the information necessary to detect,
 ![MassTransit Fault Management](masstransit-overview-s.png  "width=715")
 
 
-youtube: https://www.youtube.com/watch?v=h5gcHWizS7o++
+youtube: https://www.youtube.com/watch?v=h5gcHWizS7o
 
 <div class="text-center inline-download hidden-xs"><a id='masstransit-sample' target="_blank" href='https://github.com/particular/MassTransitShowcaseDemo/' class="btn btn-primary btn-lg"><span class="glyphicon" aria-hidden="true"></span>Check the GitHub Showcase</a>
 </div>

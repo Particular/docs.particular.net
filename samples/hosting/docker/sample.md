@@ -30,7 +30,7 @@ Running the sample involves building the container images and starting the multi
 Build the container images by using the following command:
 
 ```
-dotnet publish Docker.sln -f net8.0 --os linux --arch x64 /t:PublishContainer
+dotnet publish Docker.sln -f net9.0 --os linux --arch x64 /t:PublishContainer
 ```
 
 ### Starting containers
@@ -38,7 +38,7 @@ dotnet publish Docker.sln -f net8.0 --os linux --arch x64 /t:PublishContainer
 When the container images are ready, the containers can be started:
 
 ```
-docker-compose up -d
+docker compose up -d
 ```
 
 ## Observing containers

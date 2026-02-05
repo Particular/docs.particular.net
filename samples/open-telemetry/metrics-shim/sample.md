@@ -44,11 +44,9 @@ Navigate to _Monitoring_ → _Metrics_ on the Azure portal dashboard for the con
 
 ## Code walk-through
 
-The OpenTelemetry instrumentation is enabled on the endpoint.
+partial: enableotel
 
-snippet: enable-open-telemetry
-
-Next, metrics are enabled.
+To enable metrics:
 
 snippet: enable-meters
 

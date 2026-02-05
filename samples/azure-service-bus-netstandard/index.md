@@ -1,5 +1,5 @@
 ---
 title: Azure Service Bus transport
-reviewed: 2024-03-27
+reviewed: 2026-01-02
 component: ASBS
 ---

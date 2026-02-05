@@ -7,7 +7,6 @@ using NpgsqlTypes;
 var builder = Host.CreateApplicationBuilder();
 
 var endpointConfiguration = new EndpointConfiguration("Shipping");
-endpointConfiguration.EnableOpenTelemetry();
 
 builder.AddServiceDefaults();
 #endregion

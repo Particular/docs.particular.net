@@ -1,11 +1,11 @@
 ---
 title: Queue-based architecture style on AWS
 summary: Gives a description of queue-based architecture including the components, challenges, and technology options for AWS
-reviewed: 2024-03-14
+reviewed: 2026-01-05
 callsToAction: ['solution-architect', 'ADSD']
 ---
 
-The AWS [Well-Architected Framework](well-architected.md) describes the [queue-based architectural style](https://docs.aws.amazon.com/wellarchitected/latest/high-performance-computing-lens/queue-based-architecture.html) as a way to offload compute intensive operations from clients. It is ideal as a model to quickly scale and respond to bursts of requests in a short period of time to support processing of periodic tasks, background jobs, asynchronous flows, etc. The architecture is composed of clients sending commands to a queue which are processed by a dedicated worker.
+The queue-based architectural style is a way to offload compute intensive operations from clients. It is ideal as a model to quickly scale and respond to bursts of requests in a short period of time to support processing of periodic tasks, background jobs, asynchronous flows, etc. The architecture is composed of clients sending commands to a queue which are processed by a dedicated worker.
 
 The following diagram is an example of what a queue based architecture would look like.
 
@@ -27,5 +27,5 @@ The queue-based architectural style can make use of AWS managed services such as
 
 ## Additional resources
 
-- [Queue-Based Architecture - High Performance Computing Lens (amazon.com)](https://docs.aws.amazon.com/wellarchitected/latest/high-performance-computing-lens/queue-based-architecture.html)
 - [AWS Well-Architected Framework](https://aws.amazon.com/architecture/well-architected/)
+- [High Performance Computing Lens (amazon.com)](https://docs.aws.amazon.com/wellarchitected/latest/high-performance-computing-lens/high-performance-computing-lens.html)

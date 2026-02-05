@@ -18,13 +18,7 @@ using var tracerProvider = Sdk.CreateTracerProviderBuilder()
 
 #endregion
 
-#region enable-opentelemetry
-
 var endpointConfiguration = new EndpointConfiguration("MyEndpoint");
-endpointConfiguration.EnableOpenTelemetry();
-
-#endregion
-
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport<LearningTransport>();
 

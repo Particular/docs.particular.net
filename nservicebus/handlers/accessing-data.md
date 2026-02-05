@@ -83,7 +83,7 @@ This guarantees that no duplicate messages are sent.
 
 ### Distributed transactions
 
-[Distributed transactions](/transports/transactions.md#transactions-transaction-scope-distributed-transaction) are atomic and durable transactions that span multiple transactional resources (like databases or queues). By enlisting both transport and persistence into the same distributed transaction, NServiceBus can guarantee exactly-once message processing by preventing duplicate messages from being created.
+[Distributed transactions](/transports/transactions.md#transaction-modes-transaction-scope-distributed-transaction) are atomic and durable transactions that span multiple transactional resources (like databases or queues). By enlisting both transport and persistence into the same distributed transaction, NServiceBus can guarantee exactly-once message processing by preventing duplicate messages from being created.
 
 Distributed transactions are supported by the following transport and persistence components:
 

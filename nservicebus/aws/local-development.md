@@ -1,6 +1,6 @@
 ---
 title: AWS local development using LocalStack
-summary: How to use LocalStack for your development needs when using Amazon SQS Transport and DynamoDB Persistence
+summary: Learn how to configure NServiceBus for AWS local development using LocalStack, with sample settings for SQS, SNS, and DynamoDB.
 reviewed: 2024-10-29
 ---
 
