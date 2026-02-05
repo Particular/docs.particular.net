@@ -44,7 +44,7 @@
 | [5.1.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/5.1.2) | 2025-09-26     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/5.0.4) | ~~2025-02-26~~ | ~~2025-12-26~~    | ~~Superseded by 5.1.x~~           |
 | [4.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.2.5) | 2024-09-24     | 2026-02-26        | Superseded by 5.0.x               |
-| [3.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.2.7) | 2023-03-23     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [3.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/3.2.8) | 2023-03-23     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/2.0.8) | 2021-10-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
 #### [NServiceBus.Transport.AzureStorageQueues](/nuget/NServiceBus.Transport.AzureStorageQueues)
@@ -147,7 +147,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/4.0.0) | 2026-01-30     | -                 | -                                 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/4.0.1) | 2026-01-30     | -                 | -                                 |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/3.0.1) | 2025-06-04     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [2.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/2.2.1) | 2025-06-03     | 2026-06-04        | Superseded by 3.0.x               |
 | [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/2.1.0) | ~~2025-04-23~~ | ~~2025-09-03~~    | ~~Superseded by 2.2.x~~           |
@@ -157,7 +157,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/4.0.0) | 2026-01-30     | -                 | -                                 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/4.0.1) | 2026-01-30     | -                 | -                                 |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/3.0.1) | 2025-06-04     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [2.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/2.2.1) | 2025-06-03     | 2026-06-04        | Superseded by 3.0.x               |
 | [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/2.1.0) | ~~2025-04-23~~ | ~~2025-09-03~~    | ~~Superseded by 2.2.x~~           |
