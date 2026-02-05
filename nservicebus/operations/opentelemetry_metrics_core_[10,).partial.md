@@ -31,8 +31,8 @@ Meter source `NServiceBus.TransactionalSession`:
 
 Meter source `NServiceBus.Envelope.CloudEvents`:
 
-- [`nservicebus.envelope.cloud_events.received.unwrapping_attempt`](/monitoring/metrics/definitions.md#cloudevents-specific-metrics) - Total number of unwrapping attempts
-- [`nservicebus.envelope.cloud_events.received.invalid_message`](/monitoring/metrics/definitions.md#cloudevents-specific-metrics) - Total number of received messages not conforming to the specification
-- [`nservicebus.envelope.cloud_events.received.unexpected_version`](/monitoring/metrics/definitions.md#cloudevents-specific-metrics) - Total number of received messages with unexpected version field value
+- [`nservicebus.envelope.cloud_events.received.unwrapping_attempt`](/monitoring/metrics/definitions.md#metrics-captured-envelope-handling-metrics-cloudevents-specific-metrics) - Total number of unwrapping attempts
+- [`nservicebus.envelope.cloud_events.received.invalid_message`](/monitoring/metrics/definitions.md#metrics-captured-envelope-handling-metrics-cloudevents-specific-metrics) - Total number of received messages not conforming to the specification
+- [`nservicebus.envelope.cloud_events.received.unexpected_version`](/monitoring/metrics/definitions.md#metrics-captured-envelope-handling-metrics-cloudevents-specific-metrics) - Total number of received messages with unexpected version field value
 
 See the [OpenTelemetry samples](/samples/open-telemetry/) for instructions on how to send metric information to different tools.
