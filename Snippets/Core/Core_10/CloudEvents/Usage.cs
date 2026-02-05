@@ -11,15 +11,7 @@ class Usage
 
         var cloudEventsConfiguration = endpointConfiguration.EnableCloudEvents();
 
-        #endregion
-
-        #region cloudevents-serialization
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>().Options(new JsonSerializerOptions
-        {
-            PropertyNameCaseInsensitive = true,
-            IncludeFields = true
-        });
-        #endregion
+        #endregions
 
         #region cloudevents-typemapping
         cloudEventsConfiguration.TypeMappings["ObjectCreated:Put"] = [typeof(AwsBlobNotification)];
