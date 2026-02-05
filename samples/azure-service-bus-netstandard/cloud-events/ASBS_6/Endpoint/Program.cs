@@ -12,10 +12,10 @@ var builder = Host.CreateApplicationBuilder(args);
 var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.CloudEvents.Endpoint");
 endpointConfiguration.EnableInstallers();
 
-var connectionString = builder.Configuration.GetConnectionString("AzureServiceBusConnectionString");
+var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
 if (string.IsNullOrWhiteSpace(connectionString))
 {
-    throw new Exception("Could not read the 'AzureServiceBusConnectionString' value. Check the sample prerequisites.");
+    throw new Exception("Could not read the 'AzureServiceBus_ConnectionString' environment variable. Check the sample prerequisites.");
 }
 
 var transport = new AzureServiceBusTransport(connectionString, TopicTopology.Default);
