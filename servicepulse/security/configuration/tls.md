@@ -69,14 +69,41 @@ When ServicePulse handles TLS directly using a PFX certificate:
 
 **Container:**
 
+> [!NOTE]
+> The following is a docker compose snippets. For full examples, see the [Platform Container Examples repository](https://github.com/Particular/PlatformContainerExamples).
+
 ```bash
-docker run -e SERVICEPULSE_HTTPS_ENABLED=true \
-           -e SERVICEPULSE_HTTPS_CERTIFICATEPATH=/certs/servicepulse.pfx \
-           -e SERVICEPULSE_HTTPS_CERTIFICATEPASSWORD={certificate-password} \
-           -v /path/to/certs:/certs \
-           ...
-           particular/servicepulse:latest
+servicepulse:
+    image: particular/servicepulse:latest
+    ports:
+      - "9090:9090"
+    environment:
+      SERVICECONTROL_URL: https://servicecontrol:33333
+      MONITORING_URL: https://servicecontrol-monitoring:33633
+      SERVICEPULSE_HTTPS_ENABLED: "true"
+      SERVICEPULSE_HTTPS_CERTIFICATEPATH: "/usr/share/ParticularSoftware/certificate.pfx"
+      SERVICEPULSE_HTTPS_CERTIFICATEPASSWORD: "..."
+      SSL_CERT_FILE: "/etc/ssl/certs/ca-bundle.crt"
+      ASPNETCORE_URLS: "https://+:9090"
+    restart: unless-stopped
+    volumes:
+      - C:\path\to\servicecontrol\cert.pfx:/usr/share/ParticularSoftware/certificate.pfx
+      - C:\path\to\servicecontrol\ca-bundle.crt:/etc/ssl/certs/ca-bundle.crt:ro
+    depends_on:
+      servicecontrol:
+        condition: service_healthy
+      servicecontrol-monitoring:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
 ```
+
+**SSL_CERT_FILE (CRT)**: This tells SSL/TLS libraries (including .NET's HttpClient, OpenSSL, and libcurl) the path to a CA (Certificate Authority) certificate bundle file. This bundle contains the public certificates of trusted CAs used to verify the authenticity of SSL/TLS certificates presented by remote servers. This certificate is used to verify HTTPS (trust others).
+
+**SERVICEPULSE_HTTPS_CERTIFICATEPATH (PFX)**: This is a binary archive format that bundles together the private key, public certificate, and certificate chain. This certificate is used to serve HTTPS (prove identity).
+
+> [!NOTE]
+> When containers communicate with each other over HTTPS, they use the Docker service names (like `servicecontrol`, `servicecontrol-audit`) as hostnames, and TLS validation will fail if the certificate doesn't include these names in its Subject Alternative Names (SANs).
 
 **Windows Service:**
 
@@ -85,68 +112,6 @@ The Windows service uses Windows HttpListener which requires SSL certificate bin
 ```cmd
 netsh http add sslcert ipport=0.0.0.0:443 certhash={certificate-thumbprint} appid={application-guid}
 ServicePulse.Host.exe --httpsenabled=true
-```
-
-### Direct HTTPS with HSTS
-
-When ServicePulse handles TLS directly and you want to enable HSTS:
-
-**Container:**
-
-```bash
-docker run -e SERVICEPULSE_HTTPS_ENABLED=true \
-           -e SERVICEPULSE_HTTPS_CERTIFICATEPATH=/certs/servicepulse.pfx \
-           -e SERVICEPULSE_HTTPS_CERTIFICATEPASSWORD={certificate-password} \
-           -e SERVICEPULSE_HTTPS_ENABLEHSTS=true \
-           -e SERVICEPULSE_HTTPS_HSTSMAXAGESECONDS=31536000 \
-           -v /path/to/certs:/certs \
-           ...
-           particular/servicepulse:latest
-```
-
-**Windows Service:**
-
-```cmd
-ServicePulse.Host.exe --httpsenabled=true --httpsenablehsts=true --httpshstsmaxageseconds=31536000
-```
-
-### Reverse proxy with HTTP to HTTPS redirect
-
-When TLS is terminated at a reverse proxy and you want ServicePulse to redirect HTTP requests:
-
-**Container:**
-
-```bash
-docker run -e SERVICEPULSE_HTTPS_REDIRECTHTTPTOHTTPS=true \
-           -e SERVICEPULSE_HTTPS_PORT=443 \
-           ...
-           particular/servicepulse:latest
-```
-
-**Windows Service:**
-
-```cmd
-ServicePulse.Host.exe --httpsredirecthttptohttps=true --httpsport=443
-```
-
-### Reverse proxy with HSTS
-
-When TLS is terminated at a reverse proxy and you want ServicePulse to add HSTS headers:
-
-**Container:**
-
-```bash
-docker run -e SERVICEPULSE_HTTPS_ENABLEHSTS=true \
-           -e SERVICEPULSE_HTTPS_HSTSMAXAGESECONDS=31536000 \
-           -e SERVICEPULSE_HTTPS_HSTSINCLUDESUBDOMAINS=true \
-           ...
-           particular/servicepulse:latest
-```
-
-**Windows Service:**
-
-```cmd
-ServicePulse.Host.exe --httpsenablehsts=true --httpshstsmaxageseconds=31536000 --httpshstsincludesubdomains=true
 ```
 
 ## Troubleshooting
