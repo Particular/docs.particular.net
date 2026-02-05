@@ -106,7 +106,7 @@ Various metrics track envelope-handling performance when receiving messages that
 
 #### CloudEvents specific metrics
 
-Metrics related to [CloudEvents](/transports/cloudevents.md) track the following:
+Metrics related to [CloudEvents](/nservicebus/cloudevents.md) track the following:
 
 - Unwrapping attempt - number of attempts to unwrap a message
 - Invalid messages received - number of messages that don't meet the specification requirements (e.g., they lack mandatory fields)
