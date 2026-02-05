@@ -8,9 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Envelope.CloudEvents" Version="1.0.0-alpha.1" />
-    <PackageReference Include="NServiceBus.AmazonSQS" Version="9.0.0-alpha.3" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.3" />
+    <PackageReference Include="NServiceBus.Envelope.CloudEvents" Version="1.0.0" />
+    <PackageReference Include="NServiceBus.AmazonSQS" Version="9.0.0" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0" />
   </ItemGroup>
 
 </Project>

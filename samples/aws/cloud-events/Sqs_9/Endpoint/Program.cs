@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Microsoft.Extensions.Hosting;
+using NServiceBus.Envelope.CloudEvents;
 
 Console.Title = "CloudEvents";
 
@@ -25,7 +26,7 @@ cloudEventsConfiguration.TypeMappings["ObjectCreated:Put"] = [typeof(AwsBlobNoti
 #endregion
 
 #region sqs-cloudevents-json-permissive
-cloudEvents.EnvelopeUnwrappers.Find<CloudEventJsonStructuredEnvelopeUnwrapper>().EnvelopeHandlingMode = JsonStructureEnvelopeHandlingMode.Permissive;
+cloudEventsConfiguration.EnvelopeUnwrappers.Find<CloudEventJsonStructuredEnvelopeUnwrapper>()?.EnvelopeHandlingMode = JsonStructureEnvelopeHandlingMode.Permissive;
 #endregion
 
 var transport = new SqsTransport();

@@ -6,11 +6,11 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Azure.Messaging.EventGrid" Version="5.0.0" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0-alpha.3" />
-    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="6.0.0-alpha.4" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="6.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Envelope.CloudEvents" Version="1.0.0-alpha.1" />
+    <PackageReference Include="NServiceBus.Envelope.CloudEvents" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
     <None Update="appsettings.json">
