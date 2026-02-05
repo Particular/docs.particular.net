@@ -8,10 +8,8 @@ class Usage
     void Configuration(EndpointConfiguration endpointConfiguration)
     {
         #region cloudevents-configuration
-
         var cloudEventsConfiguration = endpointConfiguration.EnableCloudEvents();
-
-        #endregions
+        #endregion
 
         #region cloudevents-typemapping
         cloudEventsConfiguration.TypeMappings["ObjectCreated:Put"] = [typeof(AwsBlobNotification)];
