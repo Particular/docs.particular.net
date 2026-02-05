@@ -20,6 +20,9 @@ Meter source `NServiceBus.Core.Pipeline.Incoming`:
 - [`nservicebus.recoverability.immediate`](/monitoring/metrics/definitions.md#metrics-captured-immediate-retries) - Total number of immediate retries requested
 - [`nservicebus.recoverability.delayed`](/monitoring/metrics/definitions.md#metrics-captured-delayed-retries) - Total number of delayed retries requested
 - [`nservicebus.recoverability.error`](/monitoring/metrics/definitions.md#metrics-captured-moved-to-error-queue) - Total number of messages sent to the error queue
+
+Starting NServiceBus V10.1 unvelope unwrapping metrics are emitted as part of the `NServiceBus.Core.Pipeline.Incoming` source:
+
 - [`nservicebus.envelope.uwrapped`](/monitoring/metrics/definitions.md#metrics-captured-envelope-handling-metrics) - Total number of times when an envelope handler failed to unwrap an incoming message. Emitted for every unwrapping attempt
 
 Meter source `NServiceBus.TransactionalSession`:
