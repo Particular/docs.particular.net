@@ -3,6 +3,8 @@ title: Operational Scripting
 summary: Explains how to create queues and topics with the Azure Service Bus transport using scripting
 component: ASBS
 reviewed: 2025-02-17
+related:
+- transports/azure-service-bus/configuration
 ---
 
 ## Operational Scripting
@@ -29,40 +31,7 @@ Once installed, the `asb-transport` command line tool will be available for use.
 
 partial: endpoint-command
 
-### asb-transport queue create
-
-Create a queue using:
-
-```
-asb-transport queue create name
-                              [--size]
-                              [--partitioned]
-```
-
-#### options
-
-`-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
-
-`-n` | `--namespace` : Sets the fully qualified namespace to connect with cached credentials, e.g., credentials from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
-
-`-s` | `--size`: Queue size in GB (defaults to 5)
-
-`-p` | `--partitioned`: Enable partitioning
-
-
-### asb-transport queue delete
-
-Delete a queue using:
-
-```
-asb-transport queue delete name
-```
-
-#### options
-
-`-c` | `--connection-string` : Overrides the environment variable 'AzureServiceBus_ConnectionString'
-
-`-n` | `--namespace` : Sets the fully qualified namespace to connect with cached credentials, e.g., credentials from Azure PowerShell or CLI. This setting cannot be used in conjunction with the connection string setting.
+partial: queue-command
 
 partial: migration-endpoint-command
 
