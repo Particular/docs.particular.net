@@ -6,7 +6,7 @@ Starting from version 10.1.0, auditing configuration can also be done via enviro
 
 #### NSERVICEBUS__AUDIT__DISABLED
 
-The `NSERVICEBUS__AUDIT__DISABLED` environment variable can be set to `TRUE` to disable auditing, even if it was enabled in code.  This allows for auditing to be disabled without needing to recompile and redeply the code.
+The `NSERVICEBUS__AUDIT__DISABLED` environment variable can be set to `TRUE` to disable auditing, even if it was enabled in code.  This allows for auditing to be disabled without needing to recompile and redeploy the code.
 
 #### NSERVICEBUS__AUDIT__ADDRESS
 
