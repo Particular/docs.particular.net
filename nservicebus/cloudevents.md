@@ -1,5 +1,5 @@
 ---
-title: CloudEvents support
+title: CloudEvents
 summary: Provides details about CloudEvents support in NServiceBus and the platform
 component: Core
 reviewed: 2026-02-05
