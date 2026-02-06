@@ -12,9 +12,10 @@ related:
 > [!WARNING]
 > This is an experimental feature and, as such, is subject to changes.
 
-This guideline shows how to receive [CloudEvents](https://cloudevents.io/) in the NServiceBus endpoints.
+This guideline explains how to configure NServiceBus endpoints to receive [CloudEvents](https://cloudevents.io/).
 
-How are you using CloudEvents? [Share your feedback](https://survey.alchemer.com/s3/8658927/CloudEvents-Survey) about how CloudEvents fit into your development life cycle.
+> [!NOTE]
+> How are you using CloudEvents? [Share your feedback](https://survey.alchemer.com/s3/8658927/CloudEvents-Survey) about how CloudEvents fit into your development life cycle.
 
 ## Supported formats
 
@@ -28,7 +29,7 @@ NServiceBus supports the [JSON format](https://github.com/cloudevents/spec/blob/
 
 This section describes [CloudEvents bindings](https://github.com/cloudevents/spec/tree/v1.0.2/cloudevents/bindings) supported by NServiceBus.
 
-### Strutured Content Mode for HTTP and AMQP
+### Structured Content Mode for HTTP and AMQP
 
 NServiceBus supports [HTTP Structured](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/bindings/http-protocol-binding.md#32-structured-content-mode) and [AMQP Structured](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/bindings/amqp-protocol-binding.md#32-structured-content-mode) content modes. For each content mode, two implementations are provided:
 
