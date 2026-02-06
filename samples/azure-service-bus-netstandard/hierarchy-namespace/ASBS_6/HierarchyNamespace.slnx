@@ -4,5 +4,8 @@
   </Configurations>
   <Project Path="Endpoint1/Endpoint1.csproj" />
   <Project Path="Endpoint2/Endpoint2.csproj" />
+  <Project Path="Endpoint3/Endpoint3.csproj" />
+  <Project Path="Publisher/Publisher.csproj" />
   <Project Path="Shared/Shared.csproj" />
+  <Project Path="Subscriber/Subscriber.csproj" />
 </Solution>

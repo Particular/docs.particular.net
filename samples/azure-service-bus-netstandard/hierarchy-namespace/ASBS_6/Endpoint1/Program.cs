@@ -6,10 +6,11 @@ using NServiceBus.Transport.AzureServiceBus;
 
 Console.Title = "Endpoint1";
 
+#region config
+
 var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.HierarchyNamespace.Endpoint1");
 endpointConfiguration.EnableInstallers();
 
-#region config
 var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
 if (string.IsNullOrWhiteSpace(connectionString))
 {
@@ -20,10 +21,13 @@ var transport = new AzureServiceBusTransport(connectionString, TopicTopology.Def
 #region namespaceOptions
 transport.HierarchyNamespaceOptions = new HierarchyNamespaceOptions { HierarchyNamespace = "my-hierarchy" };
 #endregion
+#region excludedMessage
+transport.HierarchyNamespaceOptions.ExcludeMessageType<MessageExcluded>();
+#endregion
 endpointConfiguration.UseTransport(transport);
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-#endregion
 
+#endregion
 
 Console.WriteLine("Starting...");
 
@@ -36,7 +40,8 @@ await host.StartAsync();
 
 var messageSession = host.Services.GetRequiredService<IMessageSession>();
 
-Console.WriteLine("Press [Enter] to send a message to endpoint2 to be replied to");
+Console.WriteLine("Press [2] to send an excluded message to endpoint2 (my-hierarchy/..endpoint2)");
+Console.WriteLine("Press [3] to send an excluded message to endpoint3 (..endpoint3)");
 Console.WriteLine("Press any other key to exit");
 
 while (true)
@@ -44,14 +49,33 @@ while (true)
     var key = Console.ReadKey();
     Console.WriteLine();
 
-    if (key.Key == ConsoleKey.Enter)
+    if (key.Key == ConsoleKey.D2)
     {
-        var message = new Message1
+        var message = new MessageExcluded()
         {
-            Property = "Hello from Endpoint1"
+            Property = "Hello from Endpoint1 - excluded from hierarchy"
         };
-        await messageSession.Send("Samples.ASBS.HierarchyNamespace.Endpoint2", message);
-        Console.WriteLine("Message1 sent");
+        try
+        {
+            await messageSession.Send("Samples.ASBS.HierarchyNamespace.Endpoint2", message);
+            Console.WriteLine("MessageExcluded to endpoint 2 sent");
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Sending a MessageExcluded to endpoint 2 failed");
+        }
+
+        continue;
+    }
+
+    if (key.Key == ConsoleKey.D3)
+    {
+        var message = new MessageExcluded
+        {
+            Property = "Hello from Endpoint1 - excluded from hierarchy"
+        };
+        await messageSession.Send("Samples.ASBS.HierarchyNamespace.Endpoint3", message);
+        Console.WriteLine("MessageExcluded to endpoint 3 sent");
         continue;
     }
 
