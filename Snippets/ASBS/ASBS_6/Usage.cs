@@ -119,8 +119,8 @@ class Usage
         #endregion
 
         #region azure-service-bus-RetryPolicyOptions
-        var azureAsbRetryOptions = new Azure.Messaging.ServiceBus.ServiceBusRetryOptions 
-        { 
+        var azureAsbRetryOptions = new Azure.Messaging.ServiceBus.ServiceBusRetryOptions
+        {
             Mode = Azure.Messaging.ServiceBus.ServiceBusRetryMode.Exponential,
             MaxRetries = 5,
             Delay = TimeSpan.FromSeconds(0.8),
@@ -136,8 +136,28 @@ class Usage
         #region azure-service-bus-enablepartitioning
         transport.EnablePartitioning = true;
         #endregion
+
+        #region azure-service-bus-hierarchynamespace-options
+        transport.HierarchyNamespaceOptions = new HierarchyNamespaceOptions { HierarchyNamespace = "my-hierarchy" };
+        #endregion
+        #region azure-service-bus-hierarchynamespace-escape
+        // exclude only a concrete type
+        transport.HierarchyNamespaceOptions.ExcludeMessageType<MyExcludedMessage>();
+        // exclude all types that inherit an interface or base type
+        transport.HierarchyNamespaceOptions.ExcludeMessageType<IAmExcludedFromTheHierarchy>();
+        #endregion
     }
 
+
+    #region azure-service-bus-hierarchynamespace-excluded-message-types
+    public class MyExcludedMessage {}
+
+    public interface IAmExcludedFromTheHierarchy {}
+
+    public class MyExcludedMessageByInterface : IAmExcludedFromTheHierarchy { }
+    
+    public class MyOtherExcludedMessageByInterface : IAmExcludedFromTheHierarchy {}
+    #endregion
     class MyEvent;
 }
 

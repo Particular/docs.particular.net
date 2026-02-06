@@ -1,0 +1,9 @@
+<Solution>
+  <Configurations>
+    <BuildType Name="Debug" />
+  </Configurations>
+  <Project Path="Receiver1\Receiver1.csproj" />
+  <Project Path="Receiver2\Receiver2.csproj" />
+  <Project Path="SenderAndPublisher\SenderAndPublisher.csproj" />
+  <Project Path="Shared/Shared.csproj" />
+</Solution>
