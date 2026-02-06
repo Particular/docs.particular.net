@@ -5,7 +5,7 @@ component: Core
 reviewed: 2026-02-05
 versions: '[10.1,]'
 related:
-- samples/aws/cloud-events/
+- samples/aws/cloud-events
 - samples/azure-service-bus-netstandard/cloud-events/
 ---
 
