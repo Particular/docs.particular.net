@@ -403,7 +403,7 @@
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/7.0.0) | 2026-01-30     | -                 | -                                 |
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/6.0.1) | 2025-03-17     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [5.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.2.3) | 2024-06-26     | 2026-03-17        | Superseded by 6.0.x               |
-| [4.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.2.6) | 2023-09-21     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [4.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.2.7) | 2023-09-21     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [3.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/3.1.2) | 2022-08-31     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
 #### [NServiceBus.Extensions.Hosting](/nuget/NServiceBus.Extensions.Hosting)
