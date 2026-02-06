@@ -1,7 +1,6 @@
 using NServiceBus;
 
-public class MessageExcluded :
-    IMessage
+public class ExcludedMessage : IMessage
 {
     public string Property { get; set; }
 }

@@ -3,12 +3,14 @@
     <TargetFramework>net10.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <LangVersion>14.0</LangVersion>
+    <AssemblyName>SenderAndPublisher</AssemblyName>
+    <RootNamespace>SenderAndPublisher</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
-    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="6.1.0-alpha.1" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="6.1.0-alpha.2" />
   </ItemGroup>
 </Project>
