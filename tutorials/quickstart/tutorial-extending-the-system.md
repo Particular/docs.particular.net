@@ -1,6 +1,6 @@
 ---
-title: "NServiceBus Quick Start: Extending the system"
-reviewed: 2025-02-18
+title: "NServiceBus Quickstart: Extending the system"
+reviewed: 2026-02-06
 summary: "Part 3: Learn how easy it is to extend a distributed system by adding new functionality without affecting the other components of the system"
 extensions:
 - !!tutorial
@@ -33,7 +33,7 @@ First, make sure both browser windows and all console applications are closed. T
 Next, create a new Console Application project named **Shipping** and add it to the solution:
 
 ```shell
-> dotnet new console --name Shipping --framework net8.0
+> dotnet new console --name Shipping --framework net10.0
 > dotnet sln add Shipping
 ```
 
@@ -154,7 +154,7 @@ You also implemented an additional event subscriber, showing how to decouple ind
         $('#tweet-completion').on('click', function (e) {
           e.preventDefault();
           gtag('event','quick_start_tweet_completion_click', { 'send_to': 'G-GMZ1FS541B' });
-          window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent('I just completed the #NServiceBus Quick Start tutorial at docs.particular.net/tutorials/quickstart'));
+          window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent('I just completed the #NServiceBus Quickstart tutorial at docs.particular.net/tutorials/quickstart'));
         });
       });
     };
