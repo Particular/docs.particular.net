@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Quickstart: Recovering from failure"
-reviewed: 2025-02-18
+reviewed: 2026-02-06
 summary: "Part 2: Learn how NServiceBus handles transient and fatal failures: automatic retries, error queuing and guaranteed message delivery for resilient systems"
 extensions:
 - !!tutorial
@@ -14,7 +14,7 @@ In [Part 1 of this tutorial](/tutorials/quickstart), you reviewed the project st
 
 One of the most powerful advantages of asynchronous messaging is reliability. Failures in one part of a system aren't propagated and won't bring the whole system down.
 
-If you didn't already download the Quick Start solution in the [previous lesson](/tutorials/quickstart), you can download it now:
+If you didn't already download the Quickstart solution in the [previous lesson](/tutorials/quickstart), you can download it now:
 
 downloadbutton
 
@@ -76,9 +76,6 @@ Of course, there are other exceptions that may be harder to recover from than si
 
 ## Systemic failures
 
-> [!WARNING]
-> In order to use the portable version of the Particular Service Platform included in this tutorial, you'll need to use a Windows operating system.
-
 A systemic failure is one that is simply unrecoverable, no matter how many times we retry. Usually these are just plain old bugs. Most of the time these kinds of failures require a redeployment with new code in order to fix them. But what happens to the messages in this case?
 
 > [!NOTE]
@@ -125,18 +122,25 @@ For now, let's focus on the **Failed Messages** view. It's not much to look at r
 1. Undock the ServicePulse browser tab into a new window to better see what's going on.
 2. In the **ClientUI** window, send one message while watching the **Sales** window.
 
-Immediately, we see an exception flash past, followed by a WARN message:
+Immediately, we see an exception flash past, followed by a INFO message similar to:
 
 ```
-WARN  NServiceBus.RecoverabilityExecutor Delayed Retry will reschedule message 'ea962f05-7d82-4be1-926a-a9de01749767' after a delay of 00:00:02 because of an exception:
+INFO Immediate Retry is going to retry message 'ea962f05-7d82-4be1-926a-a9de01749767' because of an exception:
+System.Exception: BOOM
+```
+
+This happens a couple more times, until we see a WARN message similar to:
+
+```
+WARN Delayed Retry will reschedule message 'ea962f05-7d82-4be1-926a-a9de01749767' after a delay of 00:00:02 because of an exception:
 System.Exception: BOOM
    at <long stack trace>
 ```
 
-Two seconds later, text will flash past again, warning of a 4-second delay. Four seconds later, the text will flash again, warning of a 6-second delay. And finally, six seconds after that, text will flash by again, ending with an ERROR message:
+Two seconds later, text will flash past again, warning of a 4-second delay. Four seconds later, the text will flash again, warning of a 6-second delay. And finally, six seconds after that, text will flash by again, ending with an ERROR message similar to:
 
 ```
-ERROR NServiceBus.RecoverabilityExecutor Moving message 'ea962f05-7d82-4be1-926a-a9de01749767' to the error queue 'error' because processing failed due to an exception:
+ERROR Moving message 'ea962f05-7d82-4be1-926a-a9de01749767' to the error queue 'error' because processing failed due to an exception:
 System.Exception: BOOM
    at <long stack trace>
 ```
