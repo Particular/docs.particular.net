@@ -67,15 +67,14 @@ The solution is configured to have [multiple startup projects](https://docs.micr
 In the **ClientUI** web application, click the **Place order** button to place an order, and watch what happens on the other windows.
 
 It may happen too quickly to see, but the **PlaceOrder** command will be sent to the **Sales** endpoint.
-In the **Sales** endpoint window you will see:
-
+In the **Sales** endpoint window you will see something similar to:
 ```
 INFO Received PlaceOrder, OrderId = 9b16a5ce
 INFO Publishing OrderPlaced, OrderId = 9b16a5ce
 ```
 
 As shown, when the **Sales** endpoint receives an **PlaceOrder** command, it publishes an **OrderPlaced** event, which will be received by the **Billing** endpoint.
-In the **Billing** endpoint window you will see:
+In the **Billing** endpoint window you will see something similar to:
 
 ```
 INFO Billing has received OrderPlaced, OrderId = 9b16a5ce
