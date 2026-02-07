@@ -1,6 +1,6 @@
 ---
-title: "Quickstart: Sending and processing your first messages"
-reviewed: 2025-06-15
+title: "NServiceBus Quickstart: Sending and processing your first messages"
+reviewed: 2026-02-06
 summary: "Part 1: Learn messaging basics with NServiceBus quickstart guide covering commands, events, and the publish-subscribe pattern"
 extensions:
 - !!tutorial
@@ -21,7 +21,7 @@ In just 10 minutes, see how to:
 
 ## About the solution
 
-The solution mimics a real-life retail system where a [command](/nservicebus/messaging/messages-events-commands.md) to place an order is sent as a result of customer interaction. An [event](/nservicebus/messaging/messages-events-commands.md) is published to kick off processes in the background. Using the [publish-subscribe pattern](/nservicebus/messaging/publish-subscribe/) allows us to isolate the component that performs billing from the one that places orders. This reduces coupling and makes the system easier to maintain in the long run. Later in this tutorial, you will learn how to add a second subscriber to that event in a new **Shipping** endpoint which will begin the process of shipping orders.
+The solution mimics a retail system where a [command](/nservicebus/messaging/messages-events-commands.md) to place an order is sent as a result of customer interaction. An [event](/nservicebus/messaging/messages-events-commands.md) then is published to kick off processes in the background. Using the [publish-subscribe pattern](/nservicebus/messaging/publish-subscribe/) allows us to isolate the component that performs billing from the one that places orders. This reduces coupling and makes the system easier to maintain in the long run. Later in this tutorial, you will learn how to add a second subscriber to that event in a new **Shipping** endpoint which will begin the process of shipping orders.
 
 ## Download the solution
 
@@ -61,7 +61,7 @@ The solution is configured to have [multiple startup projects](https://docs.micr
 > [!WARNING]
 > Did all three windows appear?
 > - For [Visual Studio Code](https://code.visualstudio.com/) users, ensure the _Debug All_ launch configuration is selected from the dropdown list under the _Run and Debug_ tab.
-> - In versions prior to Visual Studio 2019 16.1, there is a bug ([Link 1](https://developercommunity.visualstudio.com/content/problem/290091/unable-to-launch-the-previously-selected-debugger-1.html), [Link 2](https://developercommunity.visualstudio.com/content/problem/101400/unable-to-launch-the-previously-selected-debugger.html?childToView=583221#comment-583221)) that will sometimes prevent one or more projects from launching with an error message. If this is the case, stop debugging and try again. The problem usually happens only on the first attempt.
+> - In versions prior to Visual Studio 2019 16.1, there is a [bug ](https://developercommunity.visualstudio.com/content/problem/101400/unable-to-launch-the-previously-selected-debugger.html?childToView=583221#comment-583221) that will sometimes prevent one or more projects from launching with an error message. If this is the case, stop debugging and try again. The problem usually happens only on the first attempt.
 > - For [Rider](https://www.jetbrains.com/rider/) users, follow the steps described on [their documentation](https://www.jetbrains.com/help/rider/Run_Debug_Multiple.html#multi_launch)
 
 In the **ClientUI** web application, click the **Place order** button to place an order, and watch what happens on the other windows.
