@@ -50,4 +50,4 @@ ServicePulse currently connects to one ServiceControl instance at a time. To wor
 
 ### Custom message viewer plugins
 
-There is currently no equivalent to the [custom message viewer plugin model](/serviceinsight/custom-message-viewers.md) used by ServiceInsight; however, a [feature request has been created](https://github.com/Particular/ServicePulse/issues/2778) for the known use case of this functionality.
+There is currently no equivalent to the [custom message viewer plugin model](/serviceinsight/custom-message-viewers.md) used by ServiceInsight; however, a [feature request has been created](https://github.com/Particular/ServicePulse/issues/2778) so leave a comment if you need that functionality.
