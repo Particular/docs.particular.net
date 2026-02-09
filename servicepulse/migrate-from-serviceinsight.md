@@ -46,7 +46,7 @@ Uninstalling ServiceInsight is optional. It will continue to function as long as
 
 ### Connection to multiple ServiceControl instances
 
-ServicePulse currently connects to one ServiceControl instance at a time. To work around this, a separate container can be run for each system that needs to be monitored, or [separate URLs](https://docs.particular.net/servicepulse/host-config#configuring-connections-via-servicepulse-url-query-string-parameters) can be saved for each primary and monitoring connection configuration.
+ServicePulse currently connects to one ServiceControl instance at a time. To work around this, a separate container can be run for each system that needs to be monitored, or [separate URLs](https://docs.particular.net/servicepulse/host-config#configuring-connections-via-servicepulse-url-query-string-parameters) can be bookmarked for each primary and monitoring connection configuration.
 
 ### Custom message viewer plugins
 
