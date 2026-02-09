@@ -175,6 +175,444 @@ Run [ServiceControl error instance in maintenance mode](/servicecontrol/ravendb/
 | --- | --- |
 | bool | False |
 
+## [Authentication](/servicecontrol/security/configuration/authentication.md)
+
+These settings configure [authentication using OAuth 2.0 and OpenID Connect](/servicecontrol/security/). Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md), or [authentication configuration examples](/servicecontrol/security/configuration/authentication.md#identity-provider-setup-configuration-examples) for additional information.
+
+### ServiceControl/Authentication.Enabled
+
+_Added in version 6.11.0_
+
+Enables or disables authentication. This is a **Global switch** and all other authentication settings are ignored unless this is `true`.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_ENABLED` |
+| **App config key** | `ServiceControl/Authentication.Enabled` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
+### ServiceControl/Authentication.Authority
+
+_Added in version 6.11.0_
+
+The URL of the OpenID Connect authority (identity provider) used to authenticate tokens.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_AUTHORITY` |
+| **App config key** | `ServiceControl/Authentication.Authority` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### ServiceControl/Authentication.Audience
+
+_Added in version 6.11.0_
+
+The expected audience value in the JWT token, typically the application ID or URI of the API.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_AUDIENCE` |
+| **App config key** | `ServiceControl/Authentication.Audience` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+> [!NOTE]
+> ServicePulse with use this ServiceControl audience setting.
+
+### ServiceControl/Authentication.ValidateIssuer
+
+_Added in version 6.11.0_
+
+Controls whether the token issuer is validated against the authority.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_VALIDATEISSUER` |
+| **App config key** | `ServiceControl/Authentication.ValidateIssuer` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+### ServiceControl/Authentication.ValidateAudience
+
+_Added in version 6.11.0_
+
+Controls whether the token audience is validated.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_VALIDATEAUDIENCE` |
+| **App config key** | `ServiceControl/Authentication.ValidateAudience` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+### ServiceControl/Authentication.ValidateLifetime
+
+_Added in version 6.11.0_
+
+Controls whether the token expiration is validated.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_VALIDATELIFETIME` |
+| **App config key** | `ServiceControl/Authentication.ValidateLifetime` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+### ServiceControl/Authentication.ValidateIssuerSigningKey
+
+_Added in version 6.11.0_
+
+Controls whether the token signing key is validated.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_VALIDATEISSUERSIGNINGKEY` |
+| **App config key** | `ServiceControl/Authentication.ValidateIssuerSigningKey` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+### ServiceControl/Authentication.RequireHttpsMetadata
+
+_Added in version 6.11.0_
+
+Controls whether HTTPS is required when retrieving metadata from the authority.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_REQUIREHTTPSMETADATA` |
+| **App config key** | `ServiceControl/Authentication.RequireHttpsMetadata` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+> [!WARNING]
+> Setting this to `false` is not recommended for production environments. Disabling this setting allows metadata to be retrieved over unencrypted HTTP connections, which could expose sensitive configuration information to attackers.
+
+### ServiceControl/Authentication.ServicePulse.ClientId
+
+_Added in version 6.11.0_
+
+The client ID for ServicePulse to use when authenticating with the identity provider.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_SERVICEPULSE_CLIENTID` |
+| **App config key** | `ServiceControl/Authentication.ServicePulse.ClientId` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### ServiceControl/Authentication.ServicePulse.Authority
+
+_Added in version 6.11.0_
+
+The URL of the OpenID Connect authority for ServicePulse to use when authenticating users.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_SERVICEPULSE_AUTHORITY` |
+| **App config key** | `ServiceControl/Authentication.ServicePulse.Authority` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### ServiceControl/Authentication.ServicePulse.ApiScopes
+
+_Added in version 6.11.0_
+
+The API scopes for ServicePulse to request when authenticating. This is a JSON array of scope strings e.g., `["api://{app-id}/api.access"]`
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUTHENTICATION_SERVICEPULSE_APISCOPES` |
+| **App config key** | `ServiceControl/Authentication.ServicePulse.ApiScopes` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string (JSON array) | None |
+
+## [TLS](/servicecontrol/security/configuration/tls.md)
+
+These settings configure HTTPS. Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md), or [TLS configuration examples](/servicecontrol/security/configuration/tls.md#configuration-examples) for additional information.
+
+### ServiceControl/Https.Enabled
+
+_Added in version 6.11.0_
+
+Enables Kestrel HTTPS with a certificate.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_HTTPS_ENABLED` |
+| **App config key** | `ServiceControl/Https.Enabled` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
+### ServiceControl/Https.CertificatePath
+
+_Added in version 6.11.0_
+
+The path to the PFX or PEM certificate file. If hosting as a container, the certificate file can also be volume-mounted to the container:
+
+```text
+-v certificate.pfx:/usr/share/ParticularSoftware/certificate.pfx
+```
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_HTTPS_CERTIFICATEPATH` |
+| **App config key** | `ServiceControl/Https.CertificatePath` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### ServiceControl/Https.CertificatePassword
+
+_Added in version 6.11.0_
+
+The password for the certificate file, if required.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_HTTPS_CERTIFICATEPASSWORD` |
+| **App config key** | `ServiceControl/Https.CertificatePassword` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### ServiceControl/Https.RedirectHttpToHttps
+
+_Added in version 6.11.0_
+
+Redirects HTTP requests to HTTPS. This is intended for use with a reverse proxy that handles both HTTP and HTTPS traffic.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_HTTPS_REDIRECTHTTPTOHTTPS` |
+| **App config key** | `ServiceControl/Https.RedirectHttpToHttps` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
+> [!NOTE]
+> When running ServiceControl directly without a reverse proxy, the application only listens on a single protocol (HTTP or HTTPS). This setting is intended for use with a reverse proxy that handles both HTTP and HTTPS traffic.
+
+### ServiceControl/Https.Port
+
+_Added in version 6.11.0_
+
+The HTTPS port to use in redirect URLs. Required when `RedirectHttpToHttps` is enabled in reverse proxy scenarios.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_HTTPS_PORT` |
+| **App config key** | `ServiceControl/Https.Port` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| int | None |
+
+### ServiceControl/Https.EnableHsts
+
+_Added in version 6.11.0_
+
+Enables HTTP Strict Transport Security (HSTS).
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_HTTPS_ENABLEHSTS` |
+| **App config key** | `ServiceControl/Https.EnableHsts` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
+> [!NOTE]
+> Review the implications of [enabling HSTS](/servicecontrol/security/configuration/tls.md#security-considerations-hsts) before doing so.
+
+### ServiceControl/Https.HstsMaxAgeSeconds
+
+_Added in version 6.11.0_
+
+The max-age value in seconds for the HSTS header.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_HTTPS_HSTSMAXAGESECONDS` |
+| **App config key** | `ServiceControl/Https.HstsMaxAgeSeconds` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| int | `31536000` (1 year) |
+
+### ServiceControl/Https.HstsIncludeSubDomains
+
+_Added in version 6.11.0_
+
+Includes subdomains in the HSTS policy.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_HTTPS_HSTSINCLUDESUBDOMAINS` |
+| **App config key** | `ServiceControl/Https.HstsIncludeSubDomains` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
+## [Forwarded headers](/servicecontrol/security/configuration/forward-headers.md)
+
+These settings configure forwarded headers for reverse proxy scenarios. Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md), or [forward headers configuration examples](/servicecontrol/security/configuration/forward-headers.md#configuration-examples) for additional information.
+
+### ServiceControl/ForwardedHeaders.Enabled
+
+_Added in version 6.11.0_
+
+Enables processing of forwarded headers (X-Forwarded-For, X-Forwarded-Proto, etc.).
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_FORWARDEDHEADERS_ENABLED` |
+| **App config key** | `ServiceControl/ForwardedHeaders.Enabled` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+### ServiceControl/ForwardedHeaders.TrustAllProxies
+
+_Added in version 6.11.0_
+
+Trusts forwarded headers from any source. Set to `false` when using `KnownProxies` or `KnownNetworks`.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_FORWARDEDHEADERS_TRUSTALLPROXIES` |
+| **App config key** | `ServiceControl/ForwardedHeaders.TrustAllProxies` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+> [!WARNING]
+> For production environments behind a reverse proxy, set this to `false` and configure `KnownProxies` or `KnownNetworks` to restrict which proxies are trusted.
+
+### ServiceControl/ForwardedHeaders.KnownProxies
+
+_Added in version 6.11.0_
+
+A comma-separated list of trusted proxy IP addresses e.g., `10.0.0.5,10.0.0.6`
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_FORWARDEDHEADERS_KNOWNPROXIES` |
+| **App config key** | `ServiceControl/ForwardedHeaders.KnownProxies` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+### ServiceControl/ForwardedHeaders.KnownNetworks
+
+_Added in version 6.11.0_
+
+A comma-separated list of trusted CIDR network ranges e.g., `10.0.0.0/24,192.168.1.0/24`
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_FORWARDEDHEADERS_KNOWNNETWORKS` |
+| **App config key** | `ServiceControl/ForwardedHeaders.KnownNetworks` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
+## [CORS](/servicecontrol/security/configuration/cors.md)
+
+These settings configure Cross-Origin Resource Sharing (CORS). Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md), or [cors configuration examples](/servicecontrol/security/configuration/cors.md#configuration-examples) for additional information.
+
+### ServiceControl/Cors.AllowAnyOrigin
+
+_Added in version 6.11.0_
+
+Allows requests from any origin.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_CORS_ALLOWANYORIGIN` |
+| **App config key** | `ServiceControl/Cors.AllowAnyOrigin` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `true` |
+
+> [!WARNING]
+> For production environments, set this to `false` and configure `AllowedOrigins` to restrict which origins can access the API.
+
+### ServiceControl/Cors.AllowedOrigins
+
+_Added in version 6.11.0_
+
+A comma-separated list of allowed origins e.g., `https://servicepulse.yourcompany.com,https://admin.yourcompany.com`
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_CORS_ALLOWEDORIGINS` |
+| **App config key** | `ServiceControl/Cors.AllowedOrigins` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| string | None |
+
 ## Embedded database
 
 These settings are not valid for ServiceControl instances hosted in a container.

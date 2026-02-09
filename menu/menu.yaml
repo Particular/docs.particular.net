@@ -1437,6 +1437,20 @@
         Url: servicepulse/migrate-from-serviceinsight
       - Title: Version 1 to 2
         Url: servicepulse/1to2
+    - Title: Security
+      Articles:
+      - Title: Overview
+        Url: servicepulse/security
+      - Title: Configuration
+        Articles:
+        - Title: Authentication
+          Url: servicepulse/security/configuration/authentication
+        - Title: Forward Headers for Reverse Proxy
+          Url: servicepulse/security/configuration/forward-headers
+        - Title: TLS
+          Url: servicepulse/security/configuration/tls
+      - Title: Hosting guide
+        Url: servicepulse/security/hosting-guide
     - Title: Configuration
       Articles:
         - Url: servicepulse/host-config
@@ -1518,6 +1532,26 @@
       Url: servicecontrol/upgrades/2to3
     - Title: Version 1 to 2
       Url: servicecontrol/upgrades/1to2
+  - Title: Security
+    Articles:
+    - Title: Overview
+      Url: servicecontrol/security
+    - Title: Configuration
+      Articles:
+      - Title: Authentication
+        Url: servicecontrol/security/configuration/authentication
+      - Title: Forward Headers for Reverse Proxy
+        Url: servicecontrol/security/configuration/forward-headers
+      - Title: TLS
+        Url: servicecontrol/security/configuration/tls
+      - Title: CORS
+        Url: servicecontrol/security/configuration/cors
+    - Title: Hosting guide
+      Url: servicecontrol/security/hosting-guide
+    - Title: Examples
+      Articles:
+      - Title: Microsoft Entra ID Authentication Guide
+        Url: servicecontrol/security/entra-id-authentication
   - Title: Planning
     Articles:
     - Title: Optimizing for use in different environments
