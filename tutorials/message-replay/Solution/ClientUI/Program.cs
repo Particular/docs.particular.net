@@ -1,70 +1,43 @@
-﻿using System;
-using System.Threading.Tasks;
-using Messages;
-using NServiceBus;
-using Microsoft.Extensions.Logging;
+﻿using Messages;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
-namespace ClientUI
+Console.Title = "ClientUI";
+
+var builder = Host.CreateApplicationBuilder(args);
+
+var endpointConfiguration = new EndpointConfiguration("ClientUI");
+
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+var routing = endpointConfiguration.UseTransport<LearningTransport>().Routing();
+routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
+
+builder.UseNServiceBus(endpointConfiguration);
+var host = builder.Build();
+
+await host.StartAsync();
+
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+while (true)
 {
-    class Program
+    Console.WriteLine("Press 'P' to place an order, or any other key to quit.");
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    if (key.Key != ConsoleKey.P)
     {
-        static async Task Main()
-        {
-            Console.Title = "ClientUI";
-
-            var endpointConfiguration = new EndpointConfiguration("ClientUI");
-
-            endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-
-            var transport = endpointConfiguration.UseTransport<LearningTransport>();
-
-            var routing = transport.Routing();
-            routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
-
-            var endpointInstance = await Endpoint.Start(endpointConfiguration);
-
-            await RunLoop(endpointInstance);
-
-            await endpointInstance.Stop();
-        }
-
-        private static readonly ILogger<Program> logger =
-        LoggerFactory.Create(builder =>
-        {
-            builder.AddConsole();
-        }).CreateLogger<Program>();
-
-        static async Task RunLoop(IEndpointInstance endpointInstance)
-        {
-            while (true)
-            {
-                logger.LogInformation("Press 'P' to place an order, or 'Q' to quit.");
-                var key = Console.ReadKey();
-                Console.WriteLine();
-
-                switch (key.Key)
-                {
-                    case ConsoleKey.P:
-                        // Instantiate the command
-                        var command = new PlaceOrder
-                        {
-                            OrderId = Guid.NewGuid().ToString()
-                        };
-
-                        // Send the command
-                        logger.LogInformation("Sending PlaceOrder command, OrderId = {OrderId}", command.OrderId);
-                        await endpointInstance.Send(command);
-
-                        break;
-
-                    case ConsoleKey.Q:
-                        return;
-
-                    default:
-                        logger.LogInformation("Unknown input. Please try again.");
-                        break;
-                }
-            }
-        }
+        break;
     }
+
+    var command = new PlaceOrder
+    {
+        OrderId = Guid.NewGuid().ToString()
+    };
+
+    // Send the command
+    await messageSession.Send(command);
+    Console.WriteLine($"Sending PlaceOrder command, OrderId = {command.OrderId}");
 }
+
+await host.StopAsync();

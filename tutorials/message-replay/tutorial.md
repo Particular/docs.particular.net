@@ -67,7 +67,7 @@ System.Exception: BOOM
    at <stack trace>
 ```
 
-Note that the **Sales** endpoint did not peform any delayed retries. This is because retries have been [disabled](/nservicebus/recoverability/configure-delayed-retries.md) in the **Sales** endpoint's **Program.cs** file:
+Note that the **Sales** endpoint did not perform any delayed retries. This is because retries have been [disabled](/nservicebus/recoverability/configure-delayed-retries.md) in the **Sales** endpoint's **Program.cs** file:
 
 snippet: NoDelayedRetries
 
