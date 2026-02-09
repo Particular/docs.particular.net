@@ -10,7 +10,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/4.0.18.2/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/4.0.18.3/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SQS" target="_blank">AWSSDK.SQS</a> | <a href="https://www.nuget.org/packages/AWSSDK.SQS/4.0.2.14/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/4.0.5.9/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/4.0.2.16/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
@@ -319,6 +319,7 @@
 | <a href="https://www.npmjs.com/package/diff" target="_blank">diff</a> | <a href="https://opensource.org/licenses/BSD-3-Clause" target="_blank">BSD-3-Clause</a> | <i>None provided</i> |
 | <a href="https://www.npmjs.com/package/hex-to-css-filter" target="_blank">hex-to-css-filter</a> | <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> | <a href="https://github.com/willmendesneto/hex-to-css-filter#readme" target="_blank">Project Site</a> |
 | <a href="https://www.npmjs.com/package/lossless-json" target="_blank">lossless-json</a> | <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> | <a href="https://github.com/josdejong/lossless-json#readme" target="_blank">Project Site</a> |
+| <a href="https://www.npmjs.com/package/oidc-client-ts" target="_blank">oidc-client-ts</a> | <a href="https://opensource.org/licenses/Apache-2.0" target="_blank">Apache-2.0</a> | <a href="https://github.com/authts/oidc-client-ts#readme" target="_blank">Project Site</a> |
 | <a href="https://www.npmjs.com/package/pinia" target="_blank">pinia</a> | <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> | <a href="https://pinia.vuejs.org" target="_blank">Project Site</a> |
 | <a href="https://www.npmjs.com/package/vue-codemirror6" target="_blank">vue-codemirror6</a> | <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> | <a href="https://github.com/logue/vue-codemirror6" target="_blank">Project Site</a> |
 | <a href="https://www.npmjs.com/package/vue-router" target="_blank">vue-router</a> | <a href="https://opensource.org/licenses/MIT" target="_blank">MIT</a> | <a href="https://router.vuejs.org" target="_blank">Project Site</a> |
