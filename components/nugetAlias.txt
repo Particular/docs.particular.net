@@ -100,3 +100,4 @@ MongoTS: NServiceBus.Storage.MongoDB.TransactionalSession
 RavenTS: NServiceBus.RavenDB.TransactionalSession
 DynamoDB: NServiceBus.Persistence.DynamoDB
 DynamoTS: NServiceBus.Persistence.DynamoDB.TransactionalSession
+Envelope.CloudEvents: NServiceBus.Envelope.CloudEvents
