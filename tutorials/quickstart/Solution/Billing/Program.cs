@@ -1,6 +1,4 @@
-using System;
 using Microsoft.Extensions.Hosting;
-using NServiceBus;
 
 Console.Title = "Billing";
 
@@ -23,4 +21,3 @@ builder.UseNServiceBus(endpointConfiguration);
 var app = builder.Build();
 
 await app.RunAsync();
-

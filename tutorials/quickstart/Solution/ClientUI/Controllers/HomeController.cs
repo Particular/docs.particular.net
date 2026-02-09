@@ -1,16 +1,11 @@
-﻿using System;
-using System.Dynamic;
-using System.Threading;
-using System.Threading.Tasks;
+﻿using System.Dynamic;
 using Messages;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
 
 namespace ClientUI.Controllers
 {
     [Route("/")]
-    public class HomeController(IMessageSession messageSession, ILogger<HomeController> logger): Controller
+    public class HomeController(IMessageSession messageSession, ILogger<HomeController> logger) : Controller
     {
         static int messagesSent;
 

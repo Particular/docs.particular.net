@@ -2,19 +2,20 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net9.0</TargetFramework>
-    <LangVersion>13.0</LangVersion>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>14.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="9.*" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.*" />
-    <PackageReference Include="NServiceBus.Heartbeat" Version="5.*" />
-    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="5.*" />
+    <ProjectReference Include="..\Messages\Messages.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Messages\Messages.csproj" />
+    <PackageReference Include="NServiceBus" Version="10.*" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
+    <PackageReference Include="NServiceBus.Heartbeat" Version="6.*" />
+    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="6.*" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ---
-title: "NServiceBus Quick Start: Extending the system"
-reviewed: 2025-02-18
+title: "NServiceBus Quickstart: Extending the system"
+reviewed: 2026-02-06
 summary: "Part 3: Learn how easy it is to extend a distributed system by adding new functionality without affecting the other components of the system"
 extensions:
 - !!tutorial
@@ -10,7 +10,7 @@ extensions:
 
 In [Part 1 of this tutorial](/tutorials/quickstart), you saw that publishing events using the [Publish-Subscribe pattern](/nservicebus/messaging/publish-subscribe/) reduces coupling and makes maintaining a system easier in the long run. Then, in [Part 2](/tutorials/quickstart/tutorial-reliability.md) you saw how to handle failures gracefully. Now, let's look at how you can add an additional subscriber without needing to modify any existing code.
 
-If you didn't already download the Quick Start solution in the [previous lesson](/tutorials/quickstart), you can download it now:
+If you didn't already download the Quickstart solution in the [previous lesson](/tutorials/quickstart), you can download it now:
 
 downloadbutton
 
@@ -33,7 +33,7 @@ First, make sure both browser windows and all console applications are closed. T
 Next, create a new Console Application project named **Shipping** and add it to the solution:
 
 ```shell
-> dotnet new console --name Shipping --framework net8.0
+> dotnet new console --name Shipping --framework net10.0
 > dotnet sln add Shipping
 ```
 
@@ -154,7 +154,7 @@ You also implemented an additional event subscriber, showing how to decouple ind
         $('#tweet-completion').on('click', function (e) {
           e.preventDefault();
           gtag('event','quick_start_tweet_completion_click', { 'send_to': 'G-GMZ1FS541B' });
-          window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent('I just completed the #NServiceBus Quick Start tutorial at docs.particular.net/tutorials/quickstart'));
+          window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent('I just completed the #NServiceBus Quickstart tutorial at docs.particular.net/tutorials/quickstart'));
         });
       });
     };
