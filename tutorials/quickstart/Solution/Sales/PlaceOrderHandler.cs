@@ -25,15 +25,15 @@ namespace Sales
 
             #region ThrowTransientException
             // Uncomment to test throwing transient exceptions
-            //if (random.Next(0, 5) == 0)
-            //{
-            //    throw new Exception("Oops");
-            //}
+            // if (random.Next(0, 5) == 0)
+            // {
+            //     throw new Exception("Oops");
+            // }
             #endregion
 
             #region ThrowFatalException
             // Uncomment to test throwing fatal exceptions
-            //throw new Exception("BOOM");
+            // throw new Exception("BOOM");
             #endregion
 
             var orderPlaced = new OrderPlaced

@@ -12,7 +12,7 @@ namespace Platform
             Console.Title = "Platform Launcher";
             // The Particular Service Platform tools are disabled initially.
             // To enable them, replace the line below with:
-            //   await Particular.PlatformLauncher.Launch();
+            // await Particular.PlatformLauncher.Launch();
             await Task.CompletedTask;
         }
 
