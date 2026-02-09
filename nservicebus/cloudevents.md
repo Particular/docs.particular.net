@@ -40,11 +40,11 @@ NServiceBus supports [HTTP Structured](https://github.com/cloudevents/spec/blob/
 
 In Strict mode, the CloudEvents message `Content-Type` header must be equal to or contain `application/cloudevents+json`. The implementation will not attempt to deserialize the payload if the `Content-Type` header does not meet the requirements.
 
-Fields [`id`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#id), [`source`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#source-1), [`type`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type), and at least one of `data` and `data_base64` must be present. The [`specversion`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#specversion) is not required to be present or to equal to `1.0`.
+Fields [`id`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#id), [`source`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#source-1), [`type`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type), and at least one of `data` or `data_base64` must be present. The [`specversion`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#specversion) is not required to be present or to equal to `1.0`.
 
 #### Permissive mode
 
-In Premissive mode, the CloudEvents message [`type`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type) field must be present. The `Content-Type` header is not verified, and a payload deserialization attempt is always executed.
+In Permissive mode, the CloudEvents message [`type`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type) field must be present. The `Content-Type` header is not verified, and a payload deserialization attempt is always executed.
 
 ### Binary Content Mode for HTTP and AMQP
 
@@ -52,7 +52,7 @@ NServiceBus supports the [HTTP Binary](https://github.com/cloudevents/spec/blob/
 
 To recognize the CloudEvents message, the fields [`id`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#id), [`source`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#source-1), and [`type`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#type) must be present. The [`specversion`](https://github.com/cloudevents/spec/blob/v1.0.2/cloudevents/spec.md#specversion) field is not required to be present or to equal to `1.0`.
 
-Field names must be encoded according to the binding specification (e.g., `ce-id` for the `id` field when using HTTP).
+Field names must be encoded according to the binding specification (e.g. `ce-id` for the `id` field when using HTTP).
 
 The implementation will not attempt to deserialize the payload if the headers do not meet the requirements.
 
@@ -78,7 +78,7 @@ snippet: cloudevents-typemapping
 
 The `EnvelopeUnwrappers` property contains the list of enabled modes. By default, both Binary Content Mode and Structured Content Mode in Strict Mode are enabled.
 
-To enable or disable unrappers, modify the `EnvelopeUnwrappers` property by adding or removing unwrappers.
+To enable or disable unwrappers, modify the `EnvelopeUnwrappers` property by adding or removing unwrappers.
 
 The following code snippet shows how to change the JSON Structured Content unwrapper from Strict to Permissive:
 
@@ -90,29 +90,25 @@ The package provides metrics and logs insights into every stage of receiving a m
 
 When selecting an unwrapper for the message:
 - A warning message is logged when the unwrapper fails to unwrap the message.
-- A metric is emitted for every unwrapping attempt to show errors. The metric's value indicates whether the unwrapping succeeded or crashed. Mind that if the unwrapper recognizes that it can't unwrap the message (e.g., because the message lacks required fields), then it's considered a successful unwrapping.
+- A metric is emitted for every unwrapping attempt. The metric's value indicates whether the unwrapping succeeded or crashed. Keep in mind that, if the unwrapper recognizes that it can't unwrap the message (e.g. because the message lacks required fields), then it's considered a successful unwrapping.
 
 Structured Content Mode in Strict Mode produces the following signals:
-- If the message has correct content type header, a metric is emitted.
-- If and only if the message has correct content type header, a metric is emitted if the message's body canot be deserialized or if the message doesn't have at least one required field.
-- If and only if the message has correct content type header and all required fields, a metric is emitted if the version field contains an unexpected value or if the version field is missing.
-- If and only if the message has correct content type header, a warning message is logged if the message's body cannot be deserialized or if the message doesn't have a required field.
-- If and only if the message has correct content type header and all required fields, a warning message is logged if the version field contains an unexpected value or if the version field is missing.
+- If the message has the correct content type header, a metric is emitted.
+- If, and only if, the message has the correct content type header, a metric is emitted and a warning message is logged if the message's body cannot be deserialized, or if the message doesn't have at least one required field.
+- If, and only if, the message has the correct content type header and all required fields, a metric is emitted and a warning message is logged if the version field contains an unexpected value, or if the version field is missing.
 
 Structured Content Mode in Permissive Mode produces the following signals:
-- A metric is emitted to indicate that the unwrapper attempts to unwrap the message (i.e., for every messages).
-- If and only if the message could be parsed and the message contains the type field, a metric is emitted if the version field contains an unexpected value.
-- If and only if the message could be parsed and the message contains the type field, a warning message is logged if the version field contains unexpected value.
+- A metric is emitted to indicate that the unwrapper attempts to unwrap the message (i.e. for every message).
+- If, and only if, the message could be parsed, and the message contains the type field, a metric is emitted and a warning message is logged if the version field contains an unexpected value.
 
 Binary Content Mode produces the following signals:
 - A metric is emitted if at least one of the required headers is absent.
 - A metric is emitted if the required headers are present.
-- If and only if the message has required headers, a metric is emitted if the version header contains an unexpected value or if the version header is missing
-- If and only if the message has required headers, a warning message is logged if the version header contains an unexpected value or if the version header is missing.
+- If, and only if, the message has required headers, a metric is emitted and a warning message is logged if the version header contains an unexpected value, or if the version header is missing
 
 ## Troubleshooting
 
-To troubleshoot the mechanism, examine the metrics and logs to understand why messages are not unwrapped as CloudEvents. Non-exhaustive list of elements to check includes:
+To troubleshoot the mechanism, examine the metrics and logs to understand why messages are not unwrapped as CloudEvents. A non-exhaustive list of elements to check includes:
 
 - Is the mechanism enabled?
 - Are correct unwrappers registered?

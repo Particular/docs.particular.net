@@ -1,6 +1,6 @@
 ## Meters
 
-NServiceBus endpoints can be configured to expose metrics related to message processing. To capture meter information, add the appropriate meter source (e.g., `NServiceBus.Core.Pipeline.Incoming`) to the OpenTelemetry configuration:
+NServiceBus endpoints can be configured to expose metrics related to message processing. To capture meter information, add the appropriate meter source (e.g. `NServiceBus.Core.Pipeline.Incoming`) to the OpenTelemetry configuration:
 
 > [!NOTE]
 > The metric definitions published by NServiceBus are not yet finalized and could change in a minor release.
@@ -21,7 +21,7 @@ Meter source `NServiceBus.Core.Pipeline.Incoming`:
 - [`nservicebus.recoverability.delayed`](/monitoring/metrics/definitions.md#metrics-captured-delayed-retries) - Total number of delayed retries requested
 - [`nservicebus.recoverability.error`](/monitoring/metrics/definitions.md#metrics-captured-moved-to-error-queue) - Total number of messages sent to the error queue
 
-Starting NServiceBus V10.1 unvelope unwrapping metrics are emitted as part of the `NServiceBus.Core.Pipeline.Incoming` source:
+Starting NServiceBus V10.1 envelope unwrapping metrics are emitted as part of the `NServiceBus.Core.Pipeline.Incoming` source:
 
 - [`nservicebus.envelope.uwrapped`](/monitoring/metrics/definitions.md#metrics-captured-envelope-handling-metrics) - Total number of times when an envelope handler failed to unwrap an incoming message. Emitted for every unwrapping attempt
 
