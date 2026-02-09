@@ -821,3 +821,13 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.DynamoDB
   NugetOrder:
     - NServiceBus.Persistence.DynamoDB.TransactionalSession
+
+- Key: Envelope.CloudEvents
+  Name: NServiceBus.Envelope.CloudEvents
+  DocsUrl: /nservicebus/cloudevents
+  GitHubOwner: Particular
+  Category: Core
+  LicenseUrl: https://github.com/Particular/NServiceBus.Envelope.CloudEvents/blob/main/LICENSE.md
+  ProjectUrl: https://github.com/Particular/NServiceBus.Envelope.CloudEvents
+  NugetOrder:
+    - NServiceBus.Envelope.CloudEvents
