@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
@@ -10,7 +9,6 @@ var builder = Host.CreateApplicationBuilder(args);
 var endpointConfiguration = new EndpointConfiguration("Billing");
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-
 endpointConfiguration.UseTransport<LearningTransport>();
 
 Console.WriteLine("Press any key, the application is starting");

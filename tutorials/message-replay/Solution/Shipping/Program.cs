@@ -1,7 +1,6 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using System;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
-using System;
-using System.Threading.Tasks;
 
 Console.Title = "Shipping";
 

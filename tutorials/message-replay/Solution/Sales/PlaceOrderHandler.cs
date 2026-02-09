@@ -1,14 +1,13 @@
-using System;
 using System.Threading.Tasks;
 using Messages;
-using NServiceBus;
 using Microsoft.Extensions.Logging;
+using NServiceBus;
 
 #pragma warning disable 162
 
 namespace Sales
 {
-    public class PlaceOrderHandler (ILogger<PlaceOrderHandler> logger) :
+    public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) :
         IHandleMessages<PlaceOrder>
     {
 
@@ -19,7 +18,7 @@ namespace Sales
             // This is normally where some business logic would occur
 
             // Uncomment to test throwing a systemic exception
-            //throw new Exception("BOOM");
+            // throw new Exception("BOOM");
 
             var orderPlaced = new OrderPlaced
             {
