@@ -2,7 +2,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [10.0.x](https://www.nuget.org/packages/NServiceBus/10.0.1) | 2026-01-29     | -                 | -                                 |
+| [10.1.x](https://www.nuget.org/packages/NServiceBus/10.1.0) | 2026-02-06     | -                 | -                                 |
+| [10.0.x](https://www.nuget.org/packages/NServiceBus/10.0.1) | 2026-01-29     | 2026-08-06        | Superseded by 10.1.x              |
 | [9.2.x](https://www.nuget.org/packages/NServiceBus/9.2.9) | 2024-09-10     | 2028-01-29        | Superseded by 10.0.x              |
 | [~~9.1.x~~](https://www.nuget.org/packages/NServiceBus/9.1.4) | ~~2024-07-19~~ | ~~2025-03-10~~    | ~~Superseded by 9.2.x~~           |
 | [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus/9.0.5) | ~~2024-04-16~~ | ~~2025-01-19~~    | ~~Superseded by 9.1.x~~           |
@@ -315,9 +316,9 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/7.0.0) | 2026-01-30     | -                 | -                                 |
-| [6.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/6.1.0) | 2025-06-03     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
+| [6.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/6.1.1) | 2025-06-03     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/6.0.1) | ~~2024-04-16~~ | ~~2025-09-03~~    | ~~Superseded by 6.1.x~~           |
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/5.0.2) | 2022-11-23     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/5.0.3) | 2022-11-23     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/4.0.1) | ~~2022-11-17~~ | ~~2023-11-23~~    | ~~Superseded by 5.0.x~~           |
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/3.2.2) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/3.1.1) | ~~2021-03-01~~ | ~~2022-12-19~~    | ~~Superseded by 3.2.x~~           |
@@ -328,9 +329,9 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable.TransactionalSession/7.0.0) | 2026-01-30     | -                 | -                                 |
-| [6.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable.TransactionalSession/6.1.0) | 2025-06-03     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
+| [6.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable.TransactionalSession/6.1.1) | 2025-06-03     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable.TransactionalSession/6.0.1) | ~~2024-04-16~~ | ~~2025-09-03~~    | ~~Superseded by 6.1.x~~           |
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable.TransactionalSession/5.0.2) | 2022-11-23     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable.TransactionalSession/5.0.3) | 2022-11-23     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable.TransactionalSession/4.0.1) | ~~2022-11-17~~ | ~~2023-11-23~~    | ~~Superseded by 5.0.x~~           |
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable.TransactionalSession/3.2.2) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
