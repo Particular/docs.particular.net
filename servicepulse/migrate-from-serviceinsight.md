@@ -17,7 +17,7 @@ ServicePulse is the recommended replacement for visualization and debugging capa
 
 - A running instance of [ServiceControl](/servicecontrol). Both ServiceInsight and ServicePulse require this, so if you're reading this because you've been using ServiceInsight, this requirement is met.
 - Docker for running ServicePulse in a container is recommended, because it is cross-platform and supports monitoring multiple systems. 
-  - Alternatively, a Windows machine with .NET Framework 4.5 or later to install ServicePulse directly. Only one instance can be installed at a time, which limits this option to monitoring a single system.
+  - Alternatively, a Windows machine with .NET Framework 4.5 or later to install ServicePulse directly. Only one instance can be installed at a time, so if there are multiple systems to monitor then multiple distinct [URL connection configurations will need to be used](/servicepulse/host-config.md#configuring-connections-via-servicepulse-url-query-string-parameters).
 - A modern web browser (Microsoft Edge, Chrome, Firefox, or Safari)
 
 ### Migration steps
@@ -37,7 +37,7 @@ ServicePulse is the recommended replacement for visualization and debugging capa
     If [monitoring](/servicepulse/how-to-configure-endpoints-for-monitoring.md) is enabled on your endpoints system, the ServiceControl monitoring url can be configured at this time to allow ServicePulse to display monitoring information.
 
   > [!NOTE]
-  > If there were multiple urls configured in ServiceInsight, a separate container or installation is needed for each.  See the [known limitations](#known-limitations-connection-to-multiple-servicecontrol-instances).
+  > If there were multiple urls configured in ServiceInsight, a separate container or URL is needed for each.  See the [known limitations](#known-limitations-connection-to-multiple-servicecontrol-instances).
 
 
 Uninstalling ServiceInsight is optional. It will continue to function as long as the ServiceControl api remains the same, but it will no longer receive updates and support will end when it is deprecated.
@@ -46,7 +46,7 @@ Uninstalling ServiceInsight is optional. It will continue to function as long as
 
 ### Connection to multiple ServiceControl instances
 
-ServicePulse currently connects to one ServiceControl instance at a time. To work around this, a separate container can be run for each system that needs to be monitored.
+ServicePulse currently connects to one ServiceControl instance at a time. To work around this, a separate container can be run for each system that needs to be monitored, or [separate URLs](/servicepulse/host-config.md#configuring-connections-via-servicepulse-url-query-string-parameters) can be bookmarked for each primary and monitoring connection configuration.
 
 ### Custom message viewer plugins
 
