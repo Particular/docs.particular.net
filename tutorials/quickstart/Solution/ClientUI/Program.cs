@@ -1,8 +1,4 @@
-using System;
 using Messages;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using NServiceBus;
 
 Console.Title = "ClientUI";
 

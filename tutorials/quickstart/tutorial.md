@@ -61,7 +61,6 @@ The solution is configured to have [multiple startup projects](https://docs.micr
 > [!WARNING]
 > Did all three windows appear?
 > - For [Visual Studio Code](https://code.visualstudio.com/) users, ensure the _Debug All_ launch configuration is selected from the dropdown list under the _Run and Debug_ tab.
-> - In versions prior to Visual Studio 2019 16.1, there is a [bug ](https://developercommunity.visualstudio.com/content/problem/101400/unable-to-launch-the-previously-selected-debugger.html?childToView=583221#comment-583221) that will sometimes prevent one or more projects from launching with an error message. If this is the case, stop debugging and try again. The problem usually happens only on the first attempt.
 > - For [Rider](https://www.jetbrains.com/rider/) users, follow the steps described on [their documentation](https://www.jetbrains.com/help/rider/Run_Debug_Multiple.html#multi_launch)
 
 In the **ClientUI** web application, click the **Place order** button to place an order, and watch what happens on the other windows.

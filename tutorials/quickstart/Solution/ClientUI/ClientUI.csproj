@@ -2,11 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
     <LangVersion>14.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\Content\app.js" />
+    <ProjectReference Include="..\Messages\Messages.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Messages\Messages.csproj" />
+    <None Include="wwwroot\Content\app.js" />
   </ItemGroup>
 
 </Project>

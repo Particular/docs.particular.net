@@ -95,7 +95,7 @@ snippet: ThrowFatalException
 Next, let's enable the Particular Service Platform tools and see what they do.
 
 1. In the **PlatformLauncher** project, locate and open the **Program.cs** file.
-2. Within **Main**, replace the line `await Task.CompletedTask;` with `await Particular.PlatformLauncher.Launch();`. This is responsible for launching the platform when we start our project.
+2. Uncomment the `await Particular.PlatformLauncher.Launch();` line. This is responsible for launching the platform when we start our project.
 
 snippet: PlatformMain
 

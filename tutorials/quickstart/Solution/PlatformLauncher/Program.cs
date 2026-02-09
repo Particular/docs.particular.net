@@ -1,21 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿#region PlatformMain
 
-namespace Platform
-{
-    class Program
-    {
-        #region PlatformMain
+Console.Title = "Platform Launcher";
+// The Particular Service Platform tools are disabled initially.
+// To enable them, uncomment the line below:
+//await Particular.PlatformLauncher.Launch();
 
-        static async Task Main()
-        {
-            Console.Title = "Platform Launcher";
-            // The Particular Service Platform tools are disabled initially.
-            // To enable them, replace the line below with:
-            // await Particular.PlatformLauncher.Launch();
-            await Task.CompletedTask;
-        }
-
-        #endregion
-    }
-}
+#endregion
