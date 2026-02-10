@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Step-by-step: Sending a command"
-reviewed: 2024-05-13
+reviewed: 2026-02-10
 summary: In this 15-20 minute tutorial, you'll learn how to define NServiceBus messages and handlers, and send and receive a message.
 redirects:
 - tutorials/intro-to-nservicebus/2-sending-a-command
@@ -27,7 +27,7 @@ snippet: Command
 
 By implementing this interface, we let NServiceBus know that the class is a command so that it can build up some metadata about the message type when the endpoint starts up. Any properties you create within the message constitutes the message data.
 
-The name of your command class is important, as it allows others to infer the intent of the class without looking at its content. A command is an order to do something, so it should be named in the [imperative tense](https://en.wikipedia.org/wiki/Imperative_mood). 
+The name of your command class is important, as it allows others to infer the intent of the class without looking at its content. A command is an order to do something, so it should be named in the [imperative tense](https://en.wikipedia.org/wiki/Imperative_mood).
 `PlaceOrder` and `ChargeCreditCard` are good names for commands, because they are phrased as a command and are very specific. We could expect that `PlaceOrder` will place an order and `ChargeCreditCard` will charge money on a credit card. `CustomerMessage`, on the other hand, is not a good example. It is not in the imperative, and it's vague. Ideally another person should know exactly what a command's purpose is just by reading its name.
 
 Command names should also convey business intent. `UpdateCustomerPropertyXYZ`, while more specific than `CustomerMessage` isn't a good name for a command because it's focused only on the data manipulation rather than the business meaning behind it. `MarkCustomerAsGold`, or something else that is domain oriented, is a better choice.
@@ -54,7 +54,7 @@ Messages are data contracts and as such, they are shared between multiple endpoi
 > [!NOTE]
 > It is technically possible to embed messages within the endpoint assembly, but those messages can't be exchanged with other endpoints. Some of the samples in our documentation break this rule and embed the messages in the endpoint assembly in order to make the sample easier to understand. In this tutorial, we'll stick to keeping them in dedicated message assemblies.
 
-Additionally, message assemblies should have no dependencies other than libraries included with the .NET Framework, and the NServiceBus core assembly, which is required to reference the `ICommand` interface.
+Additionally, message assemblies should have no dependencies other than the core .NET libraries and the NServiceBus message interfaces assembly, which is required to reference the `ICommand` interface.
 
 Following these guidelines will make your message contracts easy to evolve in the future.
 
@@ -91,7 +91,7 @@ To share messages between endpoints, they need to be self-contained in a separat
  1. In the solution, create a new project and select the **Class Library** project type.
  1. Set the name of the project to **Messages**.
  1. Remove the automatically created **Class1.cs** file from the project.
- 1. Add the NServiceBus NuGet package to the **Messages** project.
+ 1. Add the NServiceBus.MessageInterfaces NuGet package to the **Messages** project.
  1. In the **ClientUI** project, add a reference to the **Messages** project.
 
 ### Create a message
@@ -100,10 +100,7 @@ Let's create our first command.
 
  1. In the **Messages** project, create a new class named `PlaceOrder`.
  1. Mark `PlaceOrder` as `public` and implement `ICommand`.
- 1. Add a public property of type `string` named `OrderId`.
-
-> [!WARNING]
-> The .NET Framework contains its own interface named `ICommand` in the `System.Windows.Input` namespace. If you use tooling to resolve the namespace, be sure to select `NServiceBus.ICommand`. Most of the types you will need will reside in the `NServiceBus` namespace.
+ 1. Add a public property of type `string?` named `OrderId`.
 
 When complete, your `PlaceOrder` class should look like the following:
 
@@ -133,11 +130,11 @@ snippet: PlaceOrderHandler
 
 Now we have a message and a handler to process it. Let's send that message.
 
-In the **ClientUI** project, we are currently stopping the endpoint when we press <kbd>Ctrl+C</kbd>. Let's change that, and put the user input processing logic in a long running task using a [`BackgroundService`](https://learn.microsoft.com/en-us/aspnet/core/fundamentals/host/hosted-services?view=aspnetcore-8.0&tabs=visual-studio#backgroundservice-base-class)
+In the **ClientUI** project, we are currently stopping the endpoint when we press <kbd>Ctrl+C</kbd>. Instead, let's create a run loop that will allow us to be a little more interactive, so that we can use the keyboard to decide whether to send a message or quit.
 
-Create a class named `InputLoopService` and add the following code:
+Add the following method to the **Program.cs** file:
 
-snippet: InputLoopService
+snippet: RunLoop
 
 Let's take a closer look at the case when we want to place an order. In order to create the `PlaceOrder` command, create an instance of the `PlaceOrder` class and supply a unique value for the `OrderId`. Then, after logging the details, we can send it with the `SendLocal` method.
 
@@ -148,9 +145,9 @@ Let's take a closer look at the case when we want to place an order. In order to
 
 Because `SendLocal()` returns a `Task`, we need to be sure to `await` it properly.
 
-Now let's modify `Program.cs` method and register the `InputLoopService` in the host:
+Now let's modify `Program.cs` to call the new `RunLoop` method:
 
-snippet: AddInputLoopService
+snippet: AddRunLoop
 
 ### Running the solution
 

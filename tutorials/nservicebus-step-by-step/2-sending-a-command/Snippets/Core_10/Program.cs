@@ -2,14 +2,13 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-Console.Title = "ClientUI";
-
 var builder = Host.CreateApplicationBuilder(args);
 
 var endpointConfiguration = new EndpointConfiguration("ClientUI");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.UseTransport<LearningTransport>();
 
+#region AddRunLoop
 builder.UseNServiceBus(endpointConfiguration);
 
 var app = builder.Build();
@@ -20,6 +19,9 @@ var messageSession = app.Services.GetRequiredService<IMessageSession>();
 await RunLoop(messageSession);
 
 await app.StopAsync();
+#endregion
+
+#region RunLoop
 
 static async Task RunLoop(IMessageSession messageSession)
 {
@@ -53,3 +55,5 @@ static async Task RunLoop(IMessageSession messageSession)
         }
     }
 }
+
+#endregion

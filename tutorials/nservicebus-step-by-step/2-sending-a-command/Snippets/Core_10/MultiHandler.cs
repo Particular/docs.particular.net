@@ -1,15 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
+﻿using Microsoft.Extensions.Logging;
 
-namespace Core_9;
+namespace Core;
 
 #region MultiHandler
 
-public class DoSomethingHandler(ILogger<DoSomethingHandler> logger) :
-    IHandleMessages<DoSomething>,
-    IHandleMessages<DoSomethingElse>
+public class DoSomethingHandler(ILogger<DoSomethingHandler> logger) : IHandleMessages<DoSomething>, IHandleMessages<DoSomethingElse>
 {
     public Task Handle(DoSomething message, IMessageHandlerContext context)
     {
@@ -26,7 +21,6 @@ public class DoSomethingHandler(ILogger<DoSomethingHandler> logger) :
 
 #endregion
 
-public class DoSomethingElse :
-    ICommand
+public class DoSomethingElse : ICommand
 {
 }

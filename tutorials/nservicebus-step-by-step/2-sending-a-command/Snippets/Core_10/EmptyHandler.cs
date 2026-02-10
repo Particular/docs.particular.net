@@ -1,11 +1,7 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
-
-namespace Core_9.EmptyHandler;
+﻿namespace Core.EmptyHandler;
 
 #region EmptyHandler
-public class DoSomethingHandler :
-    IHandleMessages<DoSomething>
+public class DoSomethingHandler : IHandleMessages<DoSomething>
 {
     public Task Handle(DoSomething message, IMessageHandlerContext context)
     {
