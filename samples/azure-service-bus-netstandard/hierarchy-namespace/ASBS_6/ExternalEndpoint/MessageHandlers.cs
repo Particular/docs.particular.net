@@ -10,7 +10,8 @@ public class MessageHandlers(ILogger<MessageHandlers> logger) :
     IHandleMessages<HierarchyCommand>,
     IHandleMessages<HierarchyEvent>,
     IHandleMessages<ExternalCommand>,
-    IHandleMessages<ExternalEvent>
+    IHandleMessages<ExternalEvent>,
+    IHandleMessages<OtherExternalEvent>
 {
     public Task Handle(HierarchyCommand message, IMessageHandlerContext context)
     {

@@ -62,10 +62,28 @@ while (true)
         var hierarchyCommandToHierarchy = new HierarchyCommand { Source = "HierarchyClient", Destination = "HierarchyEndpoint" };
         var hierarchyCommandToExternal = new HierarchyCommand { Source = "HierarchyClient", Destination = "ExternalEndpoint" };
 
-        await messageSession.Send("Samples.ASBS.HierarchyNamespace.HierarchyEndpoint", hierarchyCommandToHierarchy);
-        await messageSession.Send("Samples.ASBS.HierarchyNamespace.ExternalEndpoint", hierarchyCommandToExternal);
+        try
+        {
+            Console.WriteLine("Sending a regular message to HierarchyEndpoint...");
+            await messageSession.Send("Samples.ASBS.HierarchyNamespace.HierarchyEndpoint", hierarchyCommandToHierarchy);
+            Console.WriteLine("Sending successful!");
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Sending failed!");
+        }
 
-        Console.WriteLine("Sending successful!");
+        try
+        {
+            Console.WriteLine("Sending a regular message to ExternalEndpoint...");
+            await messageSession.Send("Samples.ASBS.HierarchyNamespace.ExternalEndpoint", hierarchyCommandToExternal);
+            Console.WriteLine("Sending successful!");
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Sending failed!");
+        }
+
         continue;
     }
 
@@ -76,10 +94,28 @@ while (true)
         var externalCommandToExternal = new ExternalCommand { Source = "HierarchyClient", Destination = "ExternalEndpoint" };
         var externalCommandToHierarchy = new ExternalCommand { Source = "HierarchyClient", Destination = "HierarchyEndpoint" };
 
-        await messageSession.Send("Samples.ASBS.HierarchyNamespace.ExternalEndpoint", externalCommandToExternal);
-        await messageSession.Send("Samples.ASBS.HierarchyNamespace.HierarchyEndpoint", externalCommandToHierarchy);
+        try
+        {
+            Console.WriteLine("Sending a regular message to ExternalEndpoint...");
+            await messageSession.Send("Samples.ASBS.HierarchyNamespace.ExternalEndpoint", externalCommandToExternal);
+            Console.WriteLine("Sending successful!");
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Sending failed!");
+        }
 
-        Console.WriteLine("Sending successful!");
+        try
+        {
+            Console.WriteLine("Sending a regular message to HierarchyEndpoint...");
+            await messageSession.Send("Samples.ASBS.HierarchyNamespace.HierarchyEndpoint", externalCommandToHierarchy);
+            Console.WriteLine("Sending successful!");
+        }
+        catch (Exception)
+        {
+            Console.WriteLine("Sending failed!");
+        }
+
         continue;
     }
 
