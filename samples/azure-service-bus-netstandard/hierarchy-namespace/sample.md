@@ -13,58 +13,54 @@ include: asb-connectionstring-xplat
 
 ## Code walk-through
 
-This sample shows a usage of hierarchy namespace with Azure Service Bus. In the sample there are three endpoints:
-- `HierarchyClient` - belonging to a hierarchy (`my-hierarchy`), sends messages and publishes an event,
-- `HierarchyEndpoint` - belonging to the same hierarchy, handles messages and subscribes to the event,
-- `ExternalEndpoint` - outside of the hierarchy, handles messages and subscribes to the event.
+This sample shows a hierarchy namespace with the Azure Service Bus transport. In the sample, there are three endpoints:
+- `HierarchyClient` - belongs to a hierarchy (`my-hierarchy`), and sends messages and publishes an event
+- `HierarchyEndpoint` - belongs to the same hierarchy, and handles all commands and events, but should only receive those from the hierarchy
+- `ExternalEndpoint` - outside of the hierarchy, and handles all commands and events, but should only receive those excluded from the hierarchy
 
-The `HierarchyClient` is going to send the following messages
+The `HierarchyClient` sends the following messages
 - Commands
-  - `HierarchyCommand`,
-  - `ExternalCommand`, that is excluded from the hierarchy with the following code:
+  - `HierarchyCommand` 
+  - `ExternalCommand`
 - Events
   - `HierarchyEvent`,
-  - `ExternalEvent` and `OtherExternalEvent`, both implementing the `IExternalEvent` interface.
+  - `ExternalEvent` and `OtherExternalEvent` (both implement the `IExternalEvent` interface)
 
-The message types are excluded from the hierarchy with the following code:
+### Transport configuration
+
+The two hierarchy endpoints (`HierarchyClient` and `HierarchyEndpoint`) are configured to be included in the hierarchy with the following configuration:
+
+snippet: namespaceOptions
+
+The `ExternalEndpoint` is not included in the hierarchy.
+
+#### Escaping the hierarchy
+
+Messages can be configured to be sent outside of the hierarchy using the `ExcludeMessageType` method on the `HierarchyNamespaceOptions` property of the transport:
 
 snippet: excludedMessage
 
-The command is excluded explicitly (by using its type), but events are excluded with their interfaces (so that one line excludes all events under `IExternalEvent`).
+The command is excluded explicitly (by using its concrete type), and the events are excluded using their shared interface (so that one line excludes all events inheriting `IExternalEvent`).
 
-The sample covers the following scenarios:
+### Scenario 1 - hierarchy command
 
-### Scenario 1 - hierarchy message
-
-`HierarchyClient` sends a `HierarchyCommand` to both endpoints. It is sent successfully to `HierarchyEndpoint`, because it belongs to the same hierarchy. It is not sent to `ExternalEndpoint`, because it is outside of the hierarchy. The following message is included in the exception:
+`HierarchyClient` sends a `HierarchyCommand` to both endpoints. It is sent successfully to `HierarchyEndpoint` because it belongs to the same hierarchy. It is not sent to `ExternalEndpoint` because it is outside the hierarchy, and the expected queue  does not exist(`my-hierarchy/Samples.ASBS.HierarchyNamespace.ExternalEndpoint` should not be prefixed with `my-hierarchy\`). The following message is included in the exception:
 
 `The messaging entity 'sb://xxx.servicebus.windows.net/my-hierarchy/Samples.ASBS.HierarchyNamespace.ExternalEndpoint' could not be found.`
 
-### Scenario 2 - excluded message
+### Scenario 2 - excluded command
 
-`HierarchyClient` sends an `ExternalCommand` to both receivers. It is sent successfully to `ExternalEndpoint`, because this type of message is excluded from the hierarchy and `ExternalEndpoint` is outside of the hierarchy. It is not sent to `HierarchyEndpoint`, because it is in the hierarchy. The following message is included in the exception:
+`HierarchyClient` sends an `ExternalCommand` to both receivers. It is sent successfully to `ExternalEndpoint` because this type of message is excluded from the hierarchy, and `ExternalEndpoint` is outside the hierarchy. It is not sent to `HierarchyEndpoint`, because it is in the hierarchy, and the expected queue does not exist (`Samples.ASBS.HierarchyNamespace.HierarchyEndpoint` should be prefixed with `my-hierarchy/`). The following message is included in the exception:
 
 `The messaging entity 'sb://xxx.servicebus.windows.net/Samples.ASBS.HierarchyNamespace.HierarchyEndpoint' could not be found.`
 
 ### Scenario 3 - hierarchy event
 
-`HierarchyClient` publshes a `HierarchyEvent`. Both receivers are subscribed to this type of event. Only `HierarchyEndpoint` receives it though, because it is in the same hierarchy as `HierarchyClient`. Since `ExternalEndpoint` is outside of the hierarchy, that event is not delivered there.
+`HierarchyClient` publishes a `HierarchyEvent`. Both endpoints are subscribed to this event. Only `HierarchyEndpoint` receives it because it is in the same hierarchy as `HierarchyClient`. Since `ExternalEndpoint` is outside the hierarchy, the event is not delivered to it.
 
- Note that there are no exceptions while publishing an event, even though it is not delivered to `ExternalEndpoint` that has a handler for this kind of events.
+ ### Scenario 4 - excluded events
 
- ### Scenario 4 - hierarchy event
-
-`HierarchyClient` publshes both a `ExternalEvent` and `OtherExternalEvent`. Both endpoints are subscribed to this type of event. Only `ExternalEndpoint` receives them though, because it is in the same hierarchy as `HierarchyClient`. Since `HierarchyEndpoint` is in the hierarchy, those event are not delivered there.
-
-### Transport configuration
-
-snippet: config
-
-Two endpoints (`HierarchyClient` and `HierarchyEndpoint` are configured to be included in the hierarchy `my-hierarchy`). `ExternalEndpoint` is not included in the hierarchy.
-
-snippet: namespaceOptions
-
-This is necessary to include an endpoint in a hierarchy.
+`HierarchyClient` publishes both `ExternalEvent` and `OtherExternalEvent` events. Both endpoints are subscribed to these events. Only `ExternalEndpoint` receives them because it is outside of the `my-hierarchy` hierarchy, and these events have been excluded.
 
 ## Viewing messages in-flight
 
@@ -75,7 +71,7 @@ The following queues and topics for the endpoints can be seen in the Azure Porta
 - `my-hierarchy/samples.asbs.hierarchynamespaceescape.hierarchyclient`
 - `my-hierarchy/samples.asbs.hierarchynamespaceescape.hierarchyendpoint`
 - `samples.asbs.hierarchynamespaceescape.externalendpoint`
-- `my-hierarchy/error
+- `my-hierarchy/error`
 - `error`
 
 ### Topics
@@ -86,4 +82,3 @@ The following queues and topics for the endpoints can be seen in the Azure Porta
 - `hierarchyevent`
 - `shared.externalevent`
 - `shared.otherexternalevent`
-- `error`

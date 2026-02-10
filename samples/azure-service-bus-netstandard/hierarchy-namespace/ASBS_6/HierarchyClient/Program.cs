@@ -7,8 +7,6 @@ using Shared;
 
 Console.Title = "HierarchyClient";
 
-#region config
-
 var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.HierarchyNamespace.HierarchyClient");
 endpointConfiguration.EnableInstallers();
 
@@ -31,8 +29,6 @@ transport.HierarchyNamespaceOptions.ExcludeMessageType<IExternalEvent>();
 #endregion
 endpointConfiguration.UseTransport(transport);
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-
-#endregion
 
 Console.WriteLine("Starting...");
 
