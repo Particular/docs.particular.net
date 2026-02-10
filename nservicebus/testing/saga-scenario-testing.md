@@ -15,6 +15,9 @@ The `TestableSaga` class enables this kind of scenario testing and supports the 
 * Emulates saga processing behavior in NServiceBus, including automatic correlation property assignment in saga data upon receiving the first message.
 * Stores timeouts internally, which can be triggered by [advancing time](#advancing-time).
 
+> [!NOTE]
+> Testing [custom finders](/nservicebus/sagas/saga-finding) and [saga not found handlers](https://docs.particular.net/nservicebus/sagas/saga-not-found) is currently not supported.
+
 ## Example
 
 A simple scenario test of a `ShippingPolicy` saga, including timeouts:
