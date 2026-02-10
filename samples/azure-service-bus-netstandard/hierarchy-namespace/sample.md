@@ -70,9 +70,16 @@ This is necessary to include an endpoint in a hierarchy.
 
 The following queues and topics for the endpoints can be seen in the Azure Portal or a third-party tool:
 
+### Queues
+
 - `my-hierarchy/samples.asbs.hierarchynamespaceescape.hierarchyclient`
 - `my-hierarchy/samples.asbs.hierarchynamespaceescape.hierarchyendpoint`
 - `samples.asbs.hierarchynamespaceescape.externalendpoint`
+- `my-hierarchy/error
+- `error`
+
+### Topics
+
 - `my-hierarchy/shared.hierarchyevent`
 - `my-hierarchy/shared.externalevent`
 - `my-hierarchy/shared.otherexternalevent`
