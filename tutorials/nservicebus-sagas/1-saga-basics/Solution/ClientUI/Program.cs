@@ -1,4 +1,3 @@
-using ClientUI;
 using Messages;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -19,6 +18,39 @@ routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
 builder.UseNServiceBus(endpointConfiguration);
 
-builder.Services.AddHostedService<InputLoopService>();
+var host = builder.Build();
+await host.StartAsync();
 
-await builder.Build().RunAsync();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+
+while (true)
+{
+    Console.WriteLine("Press 'P' to place an order, or 'Q' to quit.");
+    var key = Console.ReadKey();
+    Console.WriteLine();
+
+    if (key.Key == ConsoleKey.Q)
+    {
+        break;
+    }
+
+    if (key.Key == ConsoleKey.P)
+    {
+        // Instantiate the command
+        var command = new PlaceOrder
+        {
+            OrderId = Guid.NewGuid().ToString()
+        };
+
+        // Send the command
+        Console.WriteLine($"Sending PlaceOrder command, OrderId = {command.OrderId}");
+        await messageSession.Send(command);
+    }
+
+    else
+    {
+        Console.WriteLine("Unknown input. Please try again.");
+    }
+}
+
+await host.StopAsync();
