@@ -45,6 +45,12 @@
 
 ### Core packages
 
+#### [NServiceBus.Envelope.CloudEvents](/nuget/NServiceBus.Envelope.CloudEvents)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.Envelope.CloudEvents/1.0.0) | 2026-02-06     | -                 | -                                 |
+
 #### [NServiceBus.MessageInterfaces](/nuget/NServiceBus.MessageInterfaces)
 
 | Version   | Released       | Supported until   | Notes                             |
@@ -191,7 +197,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.0.0) | 2026-01-29     | -                 | -                                 |
+| [6.1.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.1.0) | 2026-02-09     | -                 | -                                 |
+| [6.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.0.0) | 2026-01-29     | 2026-05-09        | Superseded by 6.1.x               |
 | [5.1.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/5.1.2) | 2025-09-26     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/5.0.4) | ~~2025-02-26~~ | ~~2025-12-26~~    | ~~Superseded by 5.1.x~~           |
 | [4.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/4.2.5) | 2024-09-24     | 2026-02-26        | Superseded by 5.0.x               |

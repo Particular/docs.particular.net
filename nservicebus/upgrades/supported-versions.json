@@ -312,6 +312,15 @@
       ]
     },
     {
+      "PackageId": "NServiceBus.Envelope.CloudEvents",
+      "Versions": [
+        {
+          "Minor": "1.0",
+          "SupportLevel": "Mainstream"
+        }
+      ]
+    },
+    {
       "PackageId": "NServiceBus.Extensions.DependencyInjection",
       "Versions": [
         {
@@ -1172,6 +1181,10 @@
         {
           "Minor": "6.0",
           "SupportLevel": "Mainstream"
+        },
+        {
+          "Minor": "6.1",
+          "SupportLevel": "Mainstream"
         }
       ]
     },
@@ -1354,7 +1367,7 @@
       "PackageId": "Particular.PlatformSample.ServiceControl",
       "Versions": [
         {
-          "Minor": "6.10",
+          "Minor": "6.11",
           "SupportLevel": "Mainstream"
         }
       ]
