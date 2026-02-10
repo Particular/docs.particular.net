@@ -1,9 +1,6 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
+﻿using Microsoft.Extensions.Logging;
 
-namespace Core_9.Lesson1.SagaMappings;
-#pragma warning disable 1998
+namespace Lesson1.SagaMappings;
 
 #region ExtendedShippingPolicyData
 public class ShippingPolicyData : ContainSagaData
@@ -46,5 +43,3 @@ public class ShippingPolicy(ILogger<ShippingPolicy> logger) : Saga<ShippingPolic
         return Task.CompletedTask;
     }
 }
-
-#pragma warning restore 1998

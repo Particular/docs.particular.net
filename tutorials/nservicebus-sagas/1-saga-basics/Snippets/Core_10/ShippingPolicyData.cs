@@ -1,8 +1,7 @@
-﻿using NServiceBus;
-
-namespace Core_9.Lesson1;
+﻿namespace Lesson1;
 
 #region BasicShippingPolicyData
+
 public class ShippingPolicyData : ContainSagaData
 {
     public bool IsOrderPlaced { get; set; }

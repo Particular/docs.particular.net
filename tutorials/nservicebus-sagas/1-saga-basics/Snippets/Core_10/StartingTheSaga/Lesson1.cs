@@ -1,10 +1,8 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
+﻿using Microsoft.Extensions.Logging;
 
-namespace Core_9.Lesson1.StartingTheSaga
+namespace Lesson1.StartingTheSaga
 {
-#pragma warning disable 1998
+
 #pragma warning disable NSB0006 // Message that starts the saga does not have a message mapping
 
     namespace StartedBy1Message
@@ -63,6 +61,5 @@ namespace Core_9.Lesson1.StartingTheSaga
         }
     }
 
-#pragma warning restore 1998
 #pragma warning restore NSB0006 // Message that starts the saga does not have a message mapping
 }

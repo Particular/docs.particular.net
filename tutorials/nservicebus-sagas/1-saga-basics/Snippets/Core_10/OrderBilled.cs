@@ -1,4 +1,4 @@
-﻿namespace Core_9.Lesson1;
+﻿namespace Lesson1;
 
 public class OrderBilled
 {

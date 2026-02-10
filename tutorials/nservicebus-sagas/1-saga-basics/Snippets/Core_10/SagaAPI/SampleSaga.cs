@@ -1,7 +1,4 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
-
-namespace Core_9.SagaAPI;
+﻿namespace Lesson1.SagaAPI;
 
 class SampleSaga : Saga<SampleSagaData>, IHandleMessages<MyMessageType>
 {

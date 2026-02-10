@@ -1,10 +1,7 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
+﻿using Microsoft.Extensions.Logging;
 
-namespace Core_9.Lesson1.OrderProcessing;
+namespace Lesson1.OrderProcessing;
 
-#pragma warning disable 1998
 #region ShippingPolicyShipOrder
 public class ShipOrder : ICommand
 {
@@ -60,7 +57,7 @@ public class ShippingPolicy(ILogger<ShippingPolicy> logger) : Saga<ShippingPolic
 #region EmptyShipOrderHandler
 class ShipOrderHandler(ILogger<ShipOrderHandler> logger) : IHandleMessages<ShipOrder>
 {
-  
+
     public Task Handle(ShipOrder message, IMessageHandlerContext context)
     {
         logger.LogInformation("Order [{OrderId}] - Successfully shipped.", message.OrderId);
@@ -68,5 +65,3 @@ class ShipOrderHandler(ILogger<ShipOrderHandler> logger) : IHandleMessages<ShipO
     }
 }
 #endregion
-
-#pragma warning restore 1998
