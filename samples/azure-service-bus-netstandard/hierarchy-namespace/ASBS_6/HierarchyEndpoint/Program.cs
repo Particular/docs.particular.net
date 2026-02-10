@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Transport.AzureServiceBus;
 
-Console.Title = "Receiver1";
+Console.Title = "HierarchyEndpoint";
 
 var builder = Host.CreateApplicationBuilder(args);
 
-var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.HierarchyNamespace.Receiver1");
+var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.HierarchyNamespace.HierarchyEndpoint");
 endpointConfiguration.EnableInstallers();
 
 var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
@@ -19,6 +18,7 @@ if (string.IsNullOrWhiteSpace(connectionString))
 
 var transport = new AzureServiceBusTransport(connectionString, TopicTopology.Default);
 transport.HierarchyNamespaceOptions = new HierarchyNamespaceOptions { HierarchyNamespace = "my-hierarchy" };
+
 endpointConfiguration.UseTransport(transport);
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 

@@ -2,8 +2,8 @@
   <Configurations>
     <BuildType Name="Debug" />
   </Configurations>
-  <Project Path="Receiver1\Receiver1.csproj" />
-  <Project Path="Receiver2\Receiver2.csproj" />
-  <Project Path="SenderAndPublisher\SenderAndPublisher.csproj" />
+  <Project Path="ExternalEndpoint\ExternalEndpoint.csproj" />
+  <Project Path="HierarchyClient\HierarchyClient.csproj" />
+  <Project Path="HierarchyEndpoint\HierarchyEndpoint.csproj" />
   <Project Path="Shared/Shared.csproj" />
 </Solution>

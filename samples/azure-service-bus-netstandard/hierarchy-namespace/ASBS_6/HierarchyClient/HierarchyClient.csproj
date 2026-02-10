@@ -3,8 +3,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <OutputType>Exe</OutputType>
     <LangVersion>14.0</LangVersion>
-    <AssemblyName>SenderAndPublisher</AssemblyName>
-    <RootNamespace>SenderAndPublisher</RootNamespace>
+    <PackageId>HierarchyClient</PackageId>
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\Shared\Shared.csproj" />
