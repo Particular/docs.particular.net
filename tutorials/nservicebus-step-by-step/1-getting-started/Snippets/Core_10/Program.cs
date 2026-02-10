@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿#region Program
+using Microsoft.Extensions.Hosting;
 
 Console.Title = "ClientUI";
 
@@ -13,3 +14,5 @@ builder.UseNServiceBus(endpointConfiguration);
 var app = builder.Build();
 
 await app.RunAsync();
+
+#endregion
