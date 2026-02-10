@@ -1,17 +1,20 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>14.0</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
     <OutputType>Exe</OutputType>
-    <LangVersion>13.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="9.*" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.*" />
+    <PackageReference Include="NServiceBus" Version="10.*" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Billing.Messages\Billing.Messages.csproj" />
     <ProjectReference Include="..\Sales.Messages\Sales.Messages.csproj" />
   </ItemGroup>
+
 </Project>
