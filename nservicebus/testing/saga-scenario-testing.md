@@ -16,7 +16,7 @@ The `TestableSaga` class enables this kind of scenario testing and supports the 
 * Stores timeouts internally, which can be triggered by [advancing time](#advancing-time).
 
 > [!NOTE]
-> Testing [custom finders](/nservicebus/sagas/saga-finding) and [saga not found handlers](https://docs.particular.net/nservicebus/sagas/saga-not-found) is currently not supported.
+> Testing [custom finders](/nservicebus/sagas/saga-finding) and [saga not found handlers](/nservicebus/sagas/saga-not-found) is currently not supported.
 
 ## Example
 
