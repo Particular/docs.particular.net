@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Step-by-step: Getting started"
-reviewed: 2024-05-13
+reviewed: 2026-02-10
 summary: In this 10-15 minute tutorial, you will learn how to set up a development machine for NServiceBus and create your very first messaging endpoint.
 redirects:
 - tutorials/intro-to-nservicebus/1-getting-started
@@ -20,25 +20,25 @@ In this first lesson, which should take 10-15 minutes, you will create your firs
 
 Let's build something simple to give NServiceBus a try.
 
-This tutorial uses NServiceBus version 9, .NET 8, and assumes an up-to-date installation of [Visual Studio 2022](https://www.visualstudio.com/downloads/).
+This tutorial uses NServiceBus version 10, .NET 10, and assumes an up-to-date installation of [Visual Studio 2026](https://www.visualstudio.com/downloads/).
 
 ### Create a solution
 
 First, let's create a basic solution and include the dependencies we need.
 
  1. In Visual Studio, create a new project and select the **Console App** project type.
- 2. Select **.NET 8.0 (Long Term Support)** from the Framework dropdown.
+ 2. Select **.NET 10.0 (Long Term Support)** from the Framework dropdown.
  3. Set the project name to **ClientUI**.
  4. Set the solution name to **RetailDemo**.
 
-Next, add the NServiceBus NuGet package as a dependency. Using PowerShell or another terminal alternative, navigate to the ClientUI project directory and run the following command:
+Next, add the `NServiceBus` NuGet package as a dependency. Using PowerShell or another terminal alternative, navigate to the `ClientUI` project directory and run the following command:
 
 ```
 dotnet add package NServiceBus
 dotnet add package NServiceBus.Extensions.Hosting
 ```
 
-This adds NServiceBus and NSeviceBus.Extension.Hosting package references to the ClientUI project. Now we're ready to start writing code.
+This adds `NServiceBus` and `NSeviceBus.Extension.Hosting` package references to the `ClientUI` project. Now we're ready to start writing code.
 
 ### Configure an endpoint
 
@@ -82,7 +82,7 @@ When setting up the endpoint configuration you can choose how you want to serial
 
 snippet: LearningTransport
 
-This setting defines the [**transport**](/transports/) that NServiceBus will use to send and receive messages. We are using the [Learning transport](/transports/learning/), which is bundled in the NServiceBus.Core library as a starter transport for learning how to use NServiceBus without additional dependencies. All other transports are provided using different NuGet packages.
+This setting defines the [**transport**](/transports/) that NServiceBus will use to send and receive messages. We are using the [Learning transport](/transports/learning/), which is bundled in the `NServiceBus.Core` library as a starter transport for learning how to use NServiceBus without additional dependencies. All other transports are provided using different NuGet packages.
 
 Capturing the `transport` settings in a variable as shown will make things easier in [a later lesson](../3-multiple-endpoints/) when we start defining message routing rules.
 

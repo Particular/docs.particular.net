@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-namespace Core_9;
+namespace Core_10;
 
 #pragma warning disable 1998
 
