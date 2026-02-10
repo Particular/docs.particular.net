@@ -1,6 +1,4 @@
-﻿using NServiceBus;
-
-namespace Shipping;
+﻿namespace Shipping;
 
 class ShippingPolicyData : ContainSagaData
 {

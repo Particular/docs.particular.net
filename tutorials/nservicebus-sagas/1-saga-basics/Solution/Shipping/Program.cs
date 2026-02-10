@@ -1,7 +1,4 @@
 ﻿using Microsoft.Extensions.Hosting;
-using NServiceBus;
-using System;
-using System.Threading.Tasks;
 
 var endpointName = "Shipping";
 
@@ -13,7 +10,7 @@ var endpointConfiguration = new EndpointConfiguration(endpointName);
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-endpointConfiguration.UseTransport<LearningTransport>(new LearningTransport());
+endpointConfiguration.UseTransport(new LearningTransport());
 
 endpointConfiguration.UsePersistence<LearningPersistence>();
 

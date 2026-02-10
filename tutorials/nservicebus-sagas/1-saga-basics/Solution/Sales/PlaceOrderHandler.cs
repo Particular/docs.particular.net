@@ -1,8 +1,5 @@
-﻿using System.Threading.Tasks;
-using Messages;
+﻿using Messages;
 using Microsoft.Extensions.Logging;
-using NServiceBus;
-using System;
 
 namespace Sales;
 
