@@ -9,6 +9,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
-    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="6.1.0-alpha.1" />
+    <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="6.1.0" />
   </ItemGroup>
 </Project>

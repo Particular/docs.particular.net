@@ -4,11 +4,11 @@ using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using NServiceBus.Transport.AzureServiceBus;
 
-Console.Title = "Endpoint2";
+Console.Title = "Receiver1";
 
 var builder = Host.CreateApplicationBuilder(args);
 
-var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.SendReply.Endpoint2");
+var endpointConfiguration = new EndpointConfiguration("Samples.ASBS.HierarchyNamespace.Receiver1");
 endpointConfiguration.EnableInstallers();
 
 var connectionString = Environment.GetEnvironmentVariable("AzureServiceBus_ConnectionString");
