@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Step-by-step: Publishing Events"
-reviewed: 2024-05-21
+reviewed: 2026-02-10
 summary: In this 25-30 minute tutorial, you'll learn how to use the Publish/Subscribe pattern in NServiceBus to define, publish, and subscribe to an event.
 redirects:
 - tutorials/intro-to-nservicebus/4-publishing-events
@@ -27,7 +27,7 @@ You can see that in many ways, commands and events are exact opposites, and the 
 
 A command can be sent from anywhere, but is processed by one receiver. This is very similar to a web service, or any other [RPC](https://en.wikipedia.org/wiki/Remote_procedure_call)-style service. The big difference is that a command does not have any return value like a web service would have. This means that the handler for the command is doing work for whomever is calling it, and that the sender has a very good idea about what it expects to happen as a result of sending the command. It is the sender saying "Will you please do something for me?" and so commands should be named in the [imperative tense](https://en.wikipedia.org/wiki/Imperative_mood), like `PlaceOrder` and `ChargeCreditCard`. This creates tight coupling between the sender and receiver, because while it is possible to reject a command, you can't have true autonomy if someone else can tell you what to do.
 
-An event, on the other hand, is sent by one logical sender, and received by many receivers, or maybe one receiver, or even zero receivers.  This makes it an announcement that something has already happened. A subscriber can't reject or cancel an event any more than you could stop the New York Times from delivering newspapers to all of their subscribers. The publisher has no idea (and doesn't care) what receivers choose to do with the event; it's just making an announcement. So events should be named in the [past tense](https://en.wikipedia.org/wiki/Past_tense), commonly ending with the **-ed** suffix, like `OrderPlaced` and `CreditCardCharged`. This creates loose coupling, because while the contract (the content of the message) must be agreed upon, there is no requirement that subscribers of an event do anything.
+An event, on the other hand, is sent by one logical sender, and received by many receivers, or maybe one receiver, or even zero receivers. This makes it an announcement that something has already happened. A subscriber can't reject or cancel an event any more than you could stop the New York Times from delivering newspapers to all of their subscribers. The publisher has no idea (and doesn't care) what receivers choose to do with the event; it's just making an announcement. So events should be named in the [past tense](https://en.wikipedia.org/wiki/Past_tense), commonly ending with the **-ed** suffix, like `OrderPlaced` and `CreditCardCharged`. This creates loose coupling, because while the contract (the content of the message) must be agreed upon, there is no requirement that subscribers of an event do anything.
 
 Let's take a look at these differences side-by-side:
 
@@ -92,7 +92,7 @@ Let's create our first event, `OrderPlaced`:
 
  1. In the **Sales.Messages** project, create a new class called `OrderPlaced`.
  1. Mark `OrderPlaced` as `public` and implement `IEvent`.
- 1. Add a public property of type `string` named `OrderId`.
+ 1. Add a public property of type `string?` named `OrderId`.
 
 When complete, your `OrderPlaced` class should look like the following:
 
@@ -120,7 +120,7 @@ When an order is placed, we want to charge the credit card for that order. So we
 > Since this is the third endpoint we've created, the instructions will be a little more abbreviated. Refer back to [Lesson 2](../2-sending-a-command/) where we created the Sales endpoint for more detailed instructions.
 
  1. Create a new **Console Application** named **Billing**.
- 1. Add references for the **NServiceBus NuGet package** and the **Sales.Messages** assembly.
+ 1. Add references to the **NServiceBus** NuGet package and the **Sales.Messages** assembly.
  1. Copy the configuration from the **Program.cs** file in **Sales**, and paste it into the same file in **Billing**.
  1. In the **Billing** endpoint's **Program.cs**, change the value of `Console.Title` and the endpoint name argument of the `EndpointConfiguration` constructor to `"Billing"`.
  1. In the **Billing** endpoint, add a class named `OrderPlacedHandler`, mark it as `public`, and implement `IHandleMessages<OrderPlaced>`.
