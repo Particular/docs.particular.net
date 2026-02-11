@@ -407,7 +407,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/7.0.0) | 2026-01-30     | -                 | -                                 |
+| [7.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/7.1.0) | 2026-02-10     | -                 | -                                 |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/7.0.0) | 2026-01-30     | 2026-05-10        | Superseded by 7.1.x               |
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/6.0.1) | 2025-03-17     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [5.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.2.3) | 2024-06-26     | 2026-03-17        | Superseded by 6.0.x               |
 | [4.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.2.7) | 2023-09-21     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
@@ -577,7 +578,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [10.0.x](https://www.nuget.org/packages/NServiceBus.Testing/10.0.0) | 2026-01-29     | -                 | -                                 |
+| [10.0.x](https://www.nuget.org/packages/NServiceBus.Testing/10.0.1) | 2026-01-29     | -                 | -                                 |
 | [9.0.x](https://www.nuget.org/packages/NServiceBus.Testing/9.0.1) | 2024-04-16     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.Testing/8.1.1) | 2023-06-19     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [7.4.x](https://www.nuget.org/packages/NServiceBus.Testing/7.4.2) | 2022-03-11     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
