@@ -1,7 +1,5 @@
 ﻿using Messages;
-using NServiceBus;
 using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
 
 namespace Shipping;
 
