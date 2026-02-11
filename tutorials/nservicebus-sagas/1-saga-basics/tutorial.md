@@ -69,6 +69,9 @@ snippet: EmptyShippingPolicy
 
 We haven't done anything substantial yet, just reorganized two message handlers into one file. But unlike message handlers, sagas require state. Let's build that next.
 
+> [!NOTE]
+> Use the [Saga diagram feature](/servicepulse/saga-diagram) in ServicePulse for a chronological visualization of state transitions and message flows for each saga instance.
+
 #### Saga state
 
 Sagas store their state in a class that inherits from `ContainSagaData` which automatically gives it a few properties (including an `Id`) required by NServiceBus. All the saga's data is represented as properties on the saga data class.
