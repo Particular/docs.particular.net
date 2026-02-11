@@ -70,7 +70,7 @@ snippet: EmptyShippingPolicy
 We haven't done anything substantial yet, just reorganized two message handlers into one file. But unlike message handlers, sagas require state. Let's build that next.
 
 > [!NOTE]
-> Use the [Saga diagram feature](/servicepulse/saga-diagram) in ServicePulse for a chronological visualization of state transitions and message flows for each saga instance. This visualization is especially useful for understanding complex workflows, debugging message flows, and validating long-running business processes.
+> Use the [Saga diagram feature](/servicepulse/saga-diagram.md) in ServicePulse for a chronological visualization of state transitions and message flows for each saga instance. This visualization is especially useful for understanding complex workflows, debugging message flows, and validating long-running business processes.
 
 #### Saga state
 
