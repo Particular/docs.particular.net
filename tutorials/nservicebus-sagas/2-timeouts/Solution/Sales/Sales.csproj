@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
-    <LangVersion>14.0</LangVersion>
     <ImplicitUsings>true</ImplicitUsings>
     <Nullable>enable</Nullable>
     <OutputType>Exe</OutputType>
@@ -15,4 +15,5 @@
   <ItemGroup>
     <ProjectReference Include="..\Sales.Messages\Sales.Messages.csproj" />
   </ItemGroup>
+
 </Project>

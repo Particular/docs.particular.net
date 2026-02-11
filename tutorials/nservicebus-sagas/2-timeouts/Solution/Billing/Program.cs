@@ -5,11 +5,8 @@ Console.Title = "Billing";
 var builder = Host.CreateApplicationBuilder(args);
 
 var endpointConfiguration = new EndpointConfiguration("Billing");
-
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-
 endpointConfiguration.UseTransport<LearningTransport>();
-
 endpointConfiguration.SendFailedMessagesTo("error");
 endpointConfiguration.AuditProcessedMessagesTo("audit");
 
