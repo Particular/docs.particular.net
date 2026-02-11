@@ -1,6 +1,4 @@
-﻿using NServiceBus;
-
-namespace Messages;
+﻿namespace Core;
 
 public class OrderPlaced : IEvent
 {

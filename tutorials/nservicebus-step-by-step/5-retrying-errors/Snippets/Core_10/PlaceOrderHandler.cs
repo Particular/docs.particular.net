@@ -1,10 +1,10 @@
-﻿using Messages;
-using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.Logging;
 
-namespace Sales;
+namespace Core;
 
 public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) : IHandleMessages<PlaceOrder>
 {
+    #region ThrowSystemic
     public async Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
         logger.LogInformation("Received PlaceOrder, OrderId = {orderId}", message.OrderId);
@@ -17,13 +17,17 @@ public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) : IHandleMessa
         };
         await context.Publish(orderPlaced);
 
-        // Uncomment to test throwing a systemic exception
-        //throw new Exception("BOOM");
+        throw new Exception("BOOM");
+    }
+    #endregion
 
-        //Uncomment to test throwing a transient exception
-        //if (Random.Shared.Next(0, 5) == 0)
-        //{
-        //    throw new Exception("Oops");
-        //}
+    public void ThrowTransient()
+    {
+        #region ThrowTransient
+        if (Random.Shared.Next(0, 5) == 0)
+        {
+            throw new Exception("Oops");
+        }
+        #endregion
     }
 }

@@ -1,12 +1,9 @@
-﻿using System.Threading.Tasks;
-using Messages;
+﻿using Messages;
 using Microsoft.Extensions.Logging;
-using NServiceBus;
 
 namespace Shipping;
 
-public class OrderBilledHandler(ILogger<OrderBilledHandler> logger) :
-    IHandleMessages<OrderBilled>
+public class OrderBilledHandler(ILogger<OrderBilledHandler> logger) : IHandleMessages<OrderBilled>
 {
     public Task Handle(OrderBilled message, IMessageHandlerContext context)
     {

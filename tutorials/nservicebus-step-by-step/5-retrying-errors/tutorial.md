@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Step-by-step: Retrying errors"
-reviewed: 2024-05-21
+reviewed: 2026-02-10
 summary: In this 25-30 minute tutorial, you'll learn the different causes of errors and how to manage them with NServiceBus.
 redirects:
 - tutorials/intro-to-nservicebus/5-retrying-errors
@@ -87,7 +87,7 @@ In this exercise we'll throw an exception inside a message handler, and see how 
 First, let's throw an exception. For the purposes of this exercise, we'll create a specific bug in the **Sales** endpoint and watch what happens when we run the endpoint.
 
 1. In the **Sales** endpoint, locate the **PlaceOrderHandler**.
-1. After logging receipt of the message, throw an exception:
+1. At the end of the method, throw an exception:
 
 snippet: ThrowSystemic
 
