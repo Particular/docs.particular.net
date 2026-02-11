@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus sagas: Timeouts"
-reviewed: 2024-10-02
+reviewed: 2026-02-09
 isLearningPath: true
 summary: "Implement the buyer's remorse pattern using NServiceBus, a common business case to cancel orders within a certain amount of time after the purchase."
 previewImage: saga-tutorial-2-feature.png
@@ -12,6 +12,7 @@ extensions:
 
 Being able to model the concept of time as part of a long-running process is incredibly powerful. Batch jobs are a feeble attempt at this. They fail at handling things in real-time and make every instance of a long-running process dependent on every other instance. What if the batch job fails?
 
+> [!NOTE]
 > For more on the difficulties associated with batch jobs, see [Death to the Batch Job](https://particular.net/blog/death-to-the-batch-job).
 
 ![Do I REALLY want to buy this?](saga-tutorial-2-feature.png)
@@ -42,7 +43,7 @@ In this tutorial, we'll model the delay period using a saga timeout. We'll chang
 > **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the relevant **.Messages** assembly, which contains the classes that define the messages exchanged in our system.
 > To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
 >
-> This tutorial uses NServiceBus version 9, .NET 8, and assumes an up-to-date installation of Visual Studio 2022.
+> This tutorial uses NServiceBus 10, .NET 10, and assumes an up-to-date installation of Visual Studio 2022.
 
 ### Saga storage
 
