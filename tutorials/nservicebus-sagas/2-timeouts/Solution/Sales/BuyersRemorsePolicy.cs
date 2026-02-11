@@ -61,5 +61,5 @@ internal class BuyersRemorseIsOver
 
 public class BuyersRemorseState : ContainSagaData
 {
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }
