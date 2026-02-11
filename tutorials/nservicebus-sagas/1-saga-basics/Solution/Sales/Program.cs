@@ -1,12 +1,10 @@
 ﻿using Microsoft.Extensions.Hosting;
 
-var endpointName = "Sales";
-
-Console.Title = endpointName;
+Console.Title = "Sales";
 
 var builder = Host.CreateApplicationBuilder(args);
 
-var endpointConfiguration = new EndpointConfiguration(endpointName);
+var endpointConfiguration = new EndpointConfiguration("Sales");
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 

@@ -1,15 +1,10 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Hosting;
-using NServiceBus;
+﻿using Microsoft.Extensions.Hosting;
 
-var endpointName = "Billing";
-
-Console.Title = endpointName;
+Console.Title = "Billing";
 
 var builder = Host.CreateApplicationBuilder(args);
 
-var endpointConfiguration = new EndpointConfiguration(endpointName);
+var endpointConfiguration = new EndpointConfiguration("Billing");
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 

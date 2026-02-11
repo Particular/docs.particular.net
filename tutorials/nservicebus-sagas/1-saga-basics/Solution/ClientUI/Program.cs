@@ -2,55 +2,56 @@ using Messages;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-var endpointName = "ClientUI";
-
-Console.Title = endpointName;
+Console.Title = "ClientUI";
 
 var builder = Host.CreateApplicationBuilder(args);
 
-var endpointConfiguration = new EndpointConfiguration(endpointName);
-
+var endpointConfiguration = new EndpointConfiguration("ClientUI");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
 var routing = endpointConfiguration.UseTransport(new LearningTransport());
-
 routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
 builder.UseNServiceBus(endpointConfiguration);
 
-var host = builder.Build();
-await host.StartAsync();
+var app = builder.Build();
 
-var messageSession = host.Services.GetRequiredService<IMessageSession>();
+await app.StartAsync();
 
-while (true)
+var messageSession = app.Services.GetRequiredService<IMessageSession>();
+await RunLoop(messageSession);
+
+await app.StopAsync();
+
+static async Task RunLoop(IMessageSession messageSession)
 {
-    Console.WriteLine("Press 'P' to place an order, or 'Q' to quit.");
-    var key = Console.ReadKey();
-    Console.WriteLine();
-
-    if (key.Key == ConsoleKey.Q)
+    while (true)
     {
-        break;
-    }
+        Console.WriteLine("Press 'P' to place an order, or 'Q' to quit.");
+        var key = Console.ReadKey();
+        Console.WriteLine();
 
-    if (key.Key == ConsoleKey.P)
-    {
-        // Instantiate the command
-        var command = new PlaceOrder
+        switch (key.Key)
         {
-            OrderId = Guid.NewGuid().ToString()
-        };
+            case ConsoleKey.P:
+                // Instantiate the command
+                var command = new PlaceOrder
+                {
+                    OrderId = Guid.NewGuid().ToString()
+                };
 
-        // Send the command
-        Console.WriteLine($"Sending PlaceOrder command, OrderId = {command.OrderId}");
-        await messageSession.Send(command);
-    }
+                // Send the command
+                Console.WriteLine($"PlaceOrder sent, OrderId = {command.OrderId}");
+                await messageSession.Send(command);
 
-    else
-    {
-        Console.WriteLine("Unknown input. Please try again.");
+                break;
+
+            case ConsoleKey.Q:
+                return;
+
+            default:
+                Console.WriteLine("Unknown input. Please try again.");
+                break;
+        }
     }
 }
-
-await host.StopAsync();
