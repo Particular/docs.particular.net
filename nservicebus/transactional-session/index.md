@@ -166,8 +166,8 @@ Internally, the transactional session doesn't use a single transaction that span
 6. Transport operations are captured by the `PendingTransportOperations`
 7. The user can store any data using the persistence-specific session, which is accessible through the transactional session.
 8. When all operations are registered, the user calls `Commit` on the transactional session.
-9. A dispatch message to complete the transaction is sent. The dispatch message is independent of the message operations and is not stored in the outbox record.
-10. The message operations are converted into an outbox record.
+9. A `DispatchMessage` to complete the transaction is sent. This message is independent of the message operations and is not stored in the outbox record.
+10. The message operations (`PendingTransportOperations`) are converted into an outbox record.
 11. The outbox record is returned to the transactional session
 12. The outbox record is saved to the storage seam.
 13. The transaction is committed, and the outbox record and business data modifications are stored atomically.
@@ -177,11 +177,11 @@ Internally, the transactional session doesn't use a single transaction that span
 
 ### Phase 2
 
-The dispatch message is processed as follows:
+The `DispatchMessage` is processed as follows:
 
 * Find the outbox record.
   * If it exists, and it hasn't been marked as dispatched, and there are pending operations:
-    * Dispatched the messages, and the outbox record is set as dispatched.
+    * Dispatch the messages, and mark the outbox record as dispatched.
   * If it doesn't exist yet, delay the processing of the dispatch message.
 
 ## Failure scenarios
