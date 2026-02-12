@@ -30,7 +30,8 @@ With the buyer's remorse pattern, the purchase is kept in a holding state until 
 
 ## Exercise
 
-In this tutorial, we'll model the delay period using a saga timeout. We'll change the existing project so that when the **Sales** endpoint receives the `PlaceOrder` command, we don't instantly publish the `OrderPlaced` event. Instead, we'll store the order state in the saga and set a timeout and do that in the future. When the timeout is due, we'll publish the `OrderPlaced` event, unless we've received a `CancelOrder` command in the meantime.
+In this tutorial, we'll model the delay period using a saga timeout. We'll change the existing project so that when the **Sales** endpoint receives the `PlaceOrder` command, we don't instantly publish the `OrderPlaced` event. 
+Instead, we'll store the order state in a saga and set a timeout and do that in the future. When the timeout is due, we'll publish the `OrderPlaced` event, unless we've received a `CancelOrder` command in the meantime.
 
 > [!NOTE]
 > **What if I didn't do the previous tutorial?**
@@ -84,7 +85,7 @@ Besides the `context`, the `RequestTimeout` method has two interesting parameter
 > [!NOTE]
 > Instead of a `TimeSpan`, we could provide a `DateTime` instance, such as `DateTime.UtcNow.AddDays(10)`. When using this format, remember that local time is affected by Daylight Savings Time (DST) changes, so use UTC dates instead to avoid DST conversion issues.
 
-The other interesting parameter is the message that will be sent when the timeout elapses. In this case, we are providing an instance of `BuyersRemorseIsOver`, a class which is not yet defined. Let's define it now. You can put it in the same file as our saga and leave it as an empty class:
+The other interesting parameter is the message that will be sent when the timeout elapses. In this case, we are providing an instance of `BuyersRemorseIsOver`, a class which is not yet defined. Let's define it now. You can put it at the end of file of our saga and leave it as an empty class:
 
 snippet: BuyersRemorseTimeoutClassDefinition
 
@@ -118,9 +119,7 @@ snippet: BuyersRemorseCancelOrderHandling
 
 The `Handle` method is very similar to the saga's `Timeout` method. We log some information, execute some business logic, then mark the saga complete. This effectively cancels any outstanding timeouts currently in place for the saga. Remember, by calling `MarkAsComplete`, we tell this saga instance that there is no further work to be performed.
 
-> [!NOTE]
-> If the system is busy, the cancellation message may be processed *after* the timeout message, even though the cancellation message was sent before the timeout message was due. The shorter the timeout duration is, the higher the probability is of this occurring.
-
+If the system is busy, the cancellation message may be processed *after* the timeout message, even though the cancellation message was sent before the timeout message was due. The shorter the timeout duration is, the higher the probability is of this occurring.
 Consider what happens when the buyer's remorse period has ended. The saga has been marked complete but maybe the Cancel button still appears on the user's screen and they click it. Assuming a `CancelOrder` command is fired, nothing will happen. The saga instance is already complete so the message is discarded. In effect, we can't cancel an order that has already been placed. Similarly, we can't complete an order that has already been processed. `MarkAsComplete` handles both of these scenarios for us.
 
 > [!NOTE]
@@ -133,16 +132,16 @@ Finally, let's update the UI so that our customers can take advantage of our buy
 
 #### Allow the UI to cancel orders
 
-Now we need to modify ClientUI to send a `CancelOrder` command. First, we define the routing for the command in the `Main` method of the `Program` class:
+Now we need to modify ClientUI to send a `CancelOrder` command. First, we define the routing for the command in the `Program` class:
 
 snippet: BuyersRemorseCancelOrderRouting
 
-To allow users to cancel orders, we'll modify the ClientUI input loop in the `InputLoopService` class to:
+To allow users to cancel orders, we'll modify the ClientUI  class to:
 
 * store the ID of the sent order
 * accept another command, `cancel`, that uses the previously stored ID to cancel the sent order
 
-The new input loop looks like the following:
+The new loop looks like the following:
 
 snippet: BuyersRemorseCancellingOrders
 
