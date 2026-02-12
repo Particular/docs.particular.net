@@ -2,7 +2,8 @@
 
 namespace BuyersRemorseTimeoutRequest;
 
-class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>,IAmStartedByMessages<PlaceOrder>
+class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>,
+    IAmStartedByMessages<PlaceOrder>
 {
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseData> mapper)
     {
