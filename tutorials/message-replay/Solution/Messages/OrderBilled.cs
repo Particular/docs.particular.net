@@ -2,5 +2,5 @@
 
 public class OrderBilled : IEvent
 {
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }
