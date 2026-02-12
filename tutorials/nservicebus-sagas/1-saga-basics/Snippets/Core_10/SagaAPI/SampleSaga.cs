@@ -1,4 +1,4 @@
-﻿namespace Lesson1.SagaAPI;
+﻿namespace SagaAPI;
 
 class SampleSaga : Saga<SampleSagaData>, IHandleMessages<MyMessageType>
 {
