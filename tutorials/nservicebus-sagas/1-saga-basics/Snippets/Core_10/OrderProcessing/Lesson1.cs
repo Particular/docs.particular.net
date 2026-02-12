@@ -16,7 +16,7 @@ public class ShippingPolicyData : ContainSagaData
     public bool IsOrderBilled { get; set; }
 }
 
-[System.Diagnostics.CodeAnalysis.SuppressMessage("NServiceBus.Sagas", "NSB0006:Message that starts the saga does not have a message mapping", Justification = "<Pending>")]
+#pragma warning disable NSB0006 // Message that starts the saga does not have a message mapping
 public class ShippingPolicy(ILogger<ShippingPolicy> logger) : Saga<ShippingPolicyData>,
     IAmStartedByMessages<OrderPlaced>,
     IAmStartedByMessages<OrderBilled>
@@ -53,6 +53,8 @@ public class ShippingPolicy(ILogger<ShippingPolicy> logger) : Saga<ShippingPolic
     }
     #endregion
 }
+
+#pragma warning restore NSB0006 // Message that starts the saga does not have a message mapping
 
 #region EmptyShipOrderHandler
 class ShipOrderHandler(ILogger<ShipOrderHandler> logger) : IHandleMessages<ShipOrder>
