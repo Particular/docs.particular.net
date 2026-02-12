@@ -28,7 +28,7 @@ static async Task RunLoop(IMessageSession messageSession)
 {
     while (true)
     {
-        Console.WriteLine("Press 'P' to place an order, or any other key to quit.");
+        Console.WriteLine("Press 'P' to place an order, or 'Q' to quit.");
         var key = Console.ReadKey();
         Console.WriteLine();
 
