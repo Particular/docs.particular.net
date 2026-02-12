@@ -75,8 +75,7 @@ sequenceDiagram
 | Forwarded Headers       | ✅ Enabled                     |
 | Restricted Proxy Trust  | ✅ Enabled                     |
 
-> [!NOTE]
-> HTTPS redirection is optional in this scenario. The reverse proxy typically handles HTTP to HTTPS redirection at its layer. However, enabling it at ServicePulse provides defense-in-depth - if an HTTP request somehow bypasses the proxy and reaches ServicePulse directly, it will be redirected to the HTTPS URL. This requires configuring `Https.Port` to specify the external [HTTPS port](configuration/tls.md) used by the proxy.
+> HTTPS redirection is optional in this scenario. The reverse proxy typically handles HTTP to HTTPS redirection at its layer, however enabling it at ServicePulse provides defense-in-depth; if an HTTP request somehow bypasses the proxy and reaches ServicePulse directly, it will be redirected to the HTTPS URL. This requires configuring `Https.Port` to specify the external [HTTPS port](configuration/tls.md) used by the proxy.
 
 #### Example Configuration
 
@@ -135,7 +134,7 @@ docker run -e SERVICEPULSE_HTTPS_ENABLED=true \
 
 ### Scenario 3: End-to-End Encryption with Reverse Proxy and Direct HTTPS
 
-For environments requiring encryption of internal traffic. End-to-end TLS encryption where the reverse proxy terminates external TLS and re-encrypts traffic to ServicePulse over HTTPS.
+For environments requiring encryption of internal traffic. End-to-end TLS encryption exists where the reverse proxy terminates external TLS and re-encrypts traffic to ServicePulse over HTTPS.
 
 #### Architecture
 

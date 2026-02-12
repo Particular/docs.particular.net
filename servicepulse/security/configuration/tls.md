@@ -15,7 +15,7 @@ ServicePulse can be configured to use HTTPS directly, enabling encrypted connect
 
 ## Configuration
 
-There are two hosting options for ServiceControl, [Container](/servicepulse/containerization/) and [Windows Service](/servicepulse/installation.md). The container is configured via environment variables, while the Windows Service is configured using command-line arguments. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings, along with [Authentication](authentication.md) and [Forward Headers](forward-headers.md), in a scenario-based format.
+There are two hosting options for ServicePulse: [Container](/servicepulse/containerization/) and [Windows Service](/servicepulse/installation.md). The container is configured via environment variables, while the Windows Service is configured using command-line arguments. See the [Hosting Guide](../hosting-guide.md) for example usage of these configuration settings, along with [Authentication](authentication.md) and [Forward Headers](forward-headers.md), in a scenario-based format.
 
 ### Container
 
@@ -70,7 +70,7 @@ When ServicePulse handles TLS directly using a PFX certificate:
 **Container:**
 
 > [!NOTE]
-> The following is a docker compose snippets. For full examples, see the [Platform Container Examples repository](https://github.com/Particular/PlatformContainerExamples).
+> The following is a docker compose snippet. For full examples, see the [Platform Container Examples repository](https://github.com/Particular/PlatformContainerExamples).
 
 ```bash
 servicepulse:

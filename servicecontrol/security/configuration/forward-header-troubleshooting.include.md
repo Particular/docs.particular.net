@@ -12,7 +12,7 @@
 
 ### Wrong host in generated URLs
 
-**Symptom**: Links or redirects use the internal hostname (e.g., `localhost` or container name) instead of the public hostname.
+**Symptom**: Links or redirects use the internal hostname (e.g. `localhost` or container name) instead of the public hostname.
 
 **Cause**: The `X-Forwarded-Host` header is not being trusted or processed.
 
@@ -42,7 +42,7 @@
 
 **Solutions**:
 
-- Use `KnownNetworks` with the pod/service CIDR range instead of specific IPs (e.g., `10.0.0.0/8`)
+- Use `KnownNetworks` with the pod/service CIDR range instead of specific IPs (e.g. `10.0.0.0/8`)
 - Check what IP the request is actually coming from (ingress controller pod IP, node IP, or load balancer IP)
 - For development/testing, temporarily enable `TrustAllProxies=true` to confirm headers are the issue
 

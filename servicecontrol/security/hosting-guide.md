@@ -27,7 +27,7 @@ If you place IIS, nginx, or another web server in front of ServiceControl, it ac
 > [!WARNING]
 > When authentication is enabled, all instances (Primary, Audit, Monitoring) must use the **same** Identity Provider (IdP) Authority and Audience settings. Client tokens are forwarded to remote instances during scatter-gather operations.
 
-The below scenarios assume the use of `App.config` and only show the configuration for the primary ServiceControl instance. For additional details on environment variables and the other ServiceControl instances, see [Authentication](configuration/authentication.md), [TLS](configuration/tls.md), and [Forward Headers](configuration/forward-headers.md).
+The scenarios below assume the use of `App.config` and only show the configuration for the primary ServiceControl instance. For additional details on environment variables and the other ServiceControl instances, see [Authentication](configuration/authentication.md), [TLS](configuration/tls.md), and [Forward Headers](configuration/forward-headers.md).
 
 ### Scenario 0: Default / Backward Compatible Configuration
 
@@ -96,7 +96,7 @@ sequenceDiagram
 | Restricted Proxy Trust  | ✅ Enabled                     |
 
 > [!NOTE]
-> HTTPS redirection is optional in this scenario. The reverse proxy typically handles HTTP to HTTPS redirection at its layer. However, enabling it at ServiceControl provides defense-in-depth - if an HTTP request somehow bypasses the proxy and reaches ServiceControl directly, it will be redirected to the HTTPS URL. This requires configuring `Https.Port` to specify the external [HTTPS port](configuration/tls.md) used by the proxy.
+> HTTPS redirection is optional in this scenario. The reverse proxy typically handles HTTP to HTTPS redirection at its layer, however enabling it at ServiceControl provides defense-in-depth; if an HTTP request somehow bypasses the proxy and reaches ServiceControl directly, it will be redirected to the HTTPS URL. This requires configuring `Https.Port` to specify the external [HTTPS port](configuration/tls.md) used by the proxy.
 
 #### Example Configuration
 
@@ -201,7 +201,7 @@ sequenceDiagram
 
 ### Scenario 3: End-to-End Encryption with Reverse Proxy and Direct HTTPS
 
-For environments requiring encryption of internal traffic. End-to-end TLS encryption where the reverse proxy terminates external TLS and re-encrypts traffic to ServiceControl over HTTPS.
+For environments requiring encryption of internal traffic. End-to-end TLS encryption exists where the reverse proxy terminates external TLS and re-encrypts traffic to ServiceControl over HTTPS.
 
 #### Architecture
 

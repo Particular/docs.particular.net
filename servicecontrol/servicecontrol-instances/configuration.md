@@ -177,13 +177,13 @@ Run [ServiceControl error instance in maintenance mode](/servicecontrol/ravendb/
 
 ## [Authentication](/servicecontrol/security/configuration/authentication.md)
 
-These settings configure [authentication using OAuth 2.0 and OpenID Connect](/servicecontrol/security/). Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md), or [authentication configuration examples](/servicecontrol/security/configuration/authentication.md#identity-provider-setup-configuration-examples) for additional information.
+These settings configure [authentication using OAuth 2.0 and OpenID Connect](/servicecontrol/security/). Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) or [authentication configuration examples](/servicecontrol/security/configuration/authentication.md#identity-provider-setup-configuration-examples) for additional information.
 
 ### ServiceControl/Authentication.Enabled
 
 _Added in version 6.11.0_
 
-Enables or disables authentication. This is a **Global switch** and all other authentication settings are ignored unless this is `true`.
+Enables or disables authentication. This is a **global switch** and all other authentication settings are ignored unless this is `true`.
 
 | Context | Name |
 | --- | --- |
@@ -228,7 +228,7 @@ The expected audience value in the JWT token, typically the application ID or UR
 | string | None |
 
 > [!NOTE]
-> ServicePulse with use this ServiceControl audience setting.
+> ServicePulse will also use this ServiceControl audience setting.
 
 ### ServiceControl/Authentication.ValidateIssuer
 
@@ -349,7 +349,7 @@ The URL of the OpenID Connect authority for ServicePulse to use when authenticat
 
 _Added in version 6.11.0_
 
-The API scopes for ServicePulse to request when authenticating. This is a JSON array of scope strings e.g., `["api://{app-id}/api.access"]`
+The API scopes for ServicePulse to request when authenticating. This is a JSON array of scope strings e.g. `["api://{app-id}/api.access"]`
 
 | Context | Name |
 | --- | --- |
@@ -363,7 +363,7 @@ The API scopes for ServicePulse to request when authenticating. This is a JSON a
 
 ## [TLS](/servicecontrol/security/configuration/tls.md)
 
-These settings configure HTTPS. Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md), or [TLS configuration examples](/servicecontrol/security/configuration/tls.md#configuration-examples) for additional information.
+These settings configure HTTPS. Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) or [TLS configuration examples](/servicecontrol/security/configuration/tls.md#configuration-examples) for additional information.
 
 ### ServiceControl/Https.Enabled
 
@@ -505,7 +505,7 @@ Includes subdomains in the HSTS policy.
 
 ## [Forwarded headers](/servicecontrol/security/configuration/forward-headers.md)
 
-These settings configure forwarded headers for reverse proxy scenarios. Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md), or [forward headers configuration examples](/servicecontrol/security/configuration/forward-headers.md#configuration-examples) for additional information.
+These settings configure forwarded headers for reverse proxy scenarios. Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) or [forward headers configuration examples](/servicecontrol/security/configuration/forward-headers.md#configuration-examples) for additional information.
 
 ### ServiceControl/ForwardedHeaders.Enabled
 
@@ -546,7 +546,7 @@ Trusts forwarded headers from any source. Set to `false` when using `KnownProxie
 
 _Added in version 6.11.0_
 
-A comma-separated list of trusted proxy IP addresses e.g., `10.0.0.5,10.0.0.6`
+A comma-separated list of trusted proxy IP addresses e.g. `10.0.0.5,10.0.0.6`
 
 | Context | Name |
 | --- | --- |
@@ -562,7 +562,7 @@ A comma-separated list of trusted proxy IP addresses e.g., `10.0.0.5,10.0.0.6`
 
 _Added in version 6.11.0_
 
-A comma-separated list of trusted CIDR network ranges e.g., `10.0.0.0/24,192.168.1.0/24`
+A comma-separated list of trusted CIDR network ranges e.g. `10.0.0.0/24,192.168.1.0/24`
 
 | Context | Name |
 | --- | --- |
@@ -576,7 +576,7 @@ A comma-separated list of trusted CIDR network ranges e.g., `10.0.0.0/24,192.168
 
 ## [CORS](/servicecontrol/security/configuration/cors.md)
 
-These settings configure Cross-Origin Resource Sharing (CORS). Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md), or [cors configuration examples](/servicecontrol/security/configuration/cors.md#configuration-examples) for additional information.
+These settings configure Cross-Origin Resource Sharing (CORS). Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) or [cors configuration examples](/servicecontrol/security/configuration/cors.md#configuration-examples) for additional information.
 
 ### ServiceControl/Cors.AllowAnyOrigin
 
@@ -601,7 +601,7 @@ Allows requests from any origin.
 
 _Added in version 6.11.0_
 
-A comma-separated list of allowed origins e.g., `https://servicepulse.yourcompany.com,https://admin.yourcompany.com`
+A comma-separated list of allowed origins e.g. `https://servicepulse.yourcompany.com,https://admin.yourcompany.com`
 
 | Context | Name |
 | --- | --- |

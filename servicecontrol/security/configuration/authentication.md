@@ -11,7 +11,7 @@ related:
 ServiceControl instances can be configured to require [JWT](https://en.wikipedia.org/wiki/JSON_Web_Token) authentication using [OpenID Connect (OIDC)](https://openid.net/developers/how-connect-works/). This enables integration with identity providers like Microsoft Entra ID (Azure AD), Okta, Auth0, and other OIDC-compliant providers. This guide explains how to configure ServiceControl to enable authentication for both ServiceControl and ServicePulse.
 
 > [!NOTE]
-> Authentication is disabled by default. To enable it, see below.
+> Authentication is disabled by default. To enable it, follow the configuration instructions for each instance type below.
 
 ## Configuration
 
@@ -29,21 +29,21 @@ When registering ServiceControl with your identity provider, you will need the f
 |-------------------------------|------------------------------------------------------------------------------------------------------------------|
 | Application type              | Web application / API (confidential client)                                                                      |
 | Redirect URI                  | Not required for API-only registration                                                                           |
-| Audience                      | A unique identifier for the ServiceControl API (e.g., `api://servicecontrol` or a custom URI)                    |
-| Scopes                        | Define at least one scope that ServicePulse can request (e.g., `api.access`)                                     |
+| Audience                      | A unique identifier for the ServiceControl API (e.g. `api://servicecontrol` or a custom URI)                    |
+| Scopes                        | Define at least one scope that ServicePulse can request (e.g. `api.access`)                                     |
 | Allowed token audiences       | Must include the audience configured in ServiceControl                                                           |
 
 Additionally, a separate application registration is required for ServicePulse. See [ServicePulse Identity Provider Setup](/servicepulse/security/configuration/authentication.md#identity-provider-setup) for those requirements.
 
 ### Identity Provider Guides
 
-For step-by-step instructions on configuring specific identity providers, see:
+Step-by-step instructions on configuring some specific identity providers are provided below. For any other identity providers, please read their specific documentation, and adapt it to the general guidance covered for [Microsoft Entra ID](../entra-id-authentication.md).
 
 - [Microsoft Entra ID](../entra-id-authentication.md)
 
 ### Configuration examples
 
-The following examples show complete authentication configurations for common identity providers using the primary ServiceControl instance.
+The following examples show complete authentication configurations for some common identity providers using the primary ServiceControl instance.
 
 #### Microsoft Entra ID
 
