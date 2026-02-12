@@ -1,6 +1,4 @@
-﻿namespace Lesson1;
-
-public class OrderPlaced
+﻿public class OrderPlaced
 {
     public string OrderId { get; set; }
 }

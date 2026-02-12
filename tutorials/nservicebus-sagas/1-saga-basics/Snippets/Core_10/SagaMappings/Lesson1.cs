@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace Lesson1.SagaMappings;
+namespace SagaMappings;
 
 #region ExtendedShippingPolicyData
 public class ShippingPolicyData : ContainSagaData

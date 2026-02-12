@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace Lesson1.SagaState;
+namespace SagaState;
 
 #region ShippingPolicyAugmentedWithData
 public class ShippingPolicy(ILogger<ShippingPolicy> logger) : Saga<ShippingPolicyData>,

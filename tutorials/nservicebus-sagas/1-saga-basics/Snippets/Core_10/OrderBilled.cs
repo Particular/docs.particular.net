@@ -1,6 +1,4 @@
-﻿namespace Lesson1;
-
-public class OrderBilled
+﻿public class OrderBilled
 {
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }

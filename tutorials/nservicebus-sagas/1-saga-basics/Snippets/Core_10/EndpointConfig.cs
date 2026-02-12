@@ -1,6 +1,4 @@
-﻿namespace Lesson1;
-
-class EndpointConfig
+﻿class EndpointConfig
 {
     public EndpointConfig()
     {

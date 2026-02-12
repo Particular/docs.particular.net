@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace Lesson1.OrderProcessing;
+namespace OrderProcessing;
 
 #region ShippingPolicyShipOrder
 public class ShipOrder : ICommand

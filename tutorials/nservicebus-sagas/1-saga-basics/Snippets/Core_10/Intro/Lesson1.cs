@@ -1,6 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿namespace Intro;
 
-namespace Lesson1.Intro;
+using Microsoft.Extensions.Logging;
 
 #region EmptyShippingPolicy
 

@@ -1,6 +1,4 @@
-﻿namespace Lesson1;
-
-#region BasicShippingPolicyData
+﻿#region BasicShippingPolicyData
 
 public class ShippingPolicyData : ContainSagaData
 {

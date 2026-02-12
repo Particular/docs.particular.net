@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace Lesson1.StartingTheSaga
+namespace StartingTheSaga
 {
 
 #pragma warning disable NSB0006 // Message that starts the saga does not have a message mapping
