@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Step-by-step: Multiple Endpoints"
-reviewed: 2025-02-19
+reviewed: 2026-02-10
 summary: In this 15-20-minute tutorial, you'll learn how to send messages between multiple endpoints and control the logical routing of messages between endpoints.
 redirects:
 - tutorials/intro-to-nservicebus/3-multiple-endpoints
@@ -48,11 +48,11 @@ We say *logical routing* because this is at a logical layer only, which isn't ne
 >
 > An [**endpoint instance**](/nservicebus/concepts/glossary.md#endpoint-instance) is a physical instance of the endpoint deployed to a single server. Many endpoint instances may be deployed to many servers in order to scale out the processing of a high-volume message to multiple servers.
 >
-> The IMessageSession API provides basic message operations
+> The `IMessageSession` API provides basic message operations.
 
 For now, we'll only concern ourselves with logical routing, and leave the rest of it (physical routing, scale-out, etc.) for a later time.
 
-Because logical routing does not cover physical concerns, but only defines logical ownership, this is something that we (as the implementators) should control, and is not an Operations (as in the part of our organization that handles the underlaying hardware infrastructure) concern. While Operations may want to be able to move an endpoint to a different server using only configuration files, changing the owner for messages would require code changes and a recompile/redeploy anyway.
+Because logical routing does not cover physical concerns, but only defines logical ownership, this is something that we (as the implementers) should control, and is not an Operations (as in the part of our organization that handles the underlying hardware infrastructure) concern. While Operations may want to be able to move an endpoint to a different server using only configuration files, changing the owner for messages would require code changes and a recompile/redeploy anyway.
 
 Therefore, it makes sense that logical routing is defined in code.
 
@@ -117,7 +117,7 @@ This means that the **Sales** endpoint will create its own queue named `Sales` w
 
 At this point, we could run the **Sales** endpoint, although we wouldn't expect **Sales** to do anything except start up, create its queues, and then wait for messages that would never arrive. This is a good exercise to do, although you can skip it if you're in a hurry.
 
-However, it's common in NServiceBus solutions to run multiple projects (i.e. endpoints) at once. To make this easier, configure both endpoints (**ClientUI** and **Sales**) to run at startup using Visual Studio's [multiple startup projects](https://msdn.microsoft.com/en-us/library/ms165413.aspx) feature.
+However, it's common in NServiceBus solutions to run multiple projects (i.e. endpoints) at once. To make this easier, configure both endpoints (**ClientUI** and **Sales**) to run at startup using Visual Studio's [multiple startup projects](https://learn.microsoft.com/en-us/visualstudio/ide/how-to-set-multiple-startup-projects?view=visualstudio) feature.
 
 If you run the project now, **ClientUI** will work just as it did before, and **Sales** will start up and wait for messages that will never arrive.
 
@@ -144,14 +144,14 @@ The important takeaway is, if a message is accidentally sent to an endpoint we d
 
 Now we need to change **ClientUI** so that it is sending `PlaceOrder` to the **Sales** endpoint.
 
-1. In the **ClientUI** endpoint, modify the **InputLoopService.cs** file so that `messageSession.SendLocal(command, stoppingToken)` is replaced by `messageSession.Send(command, stoppingToken)`.
+1. In the **ClientUI** endpoint, modify the **Program.cs** file so that `messageSession.SendLocal(command, stoppingToken)` is replaced by `messageSession.Send(command, stoppingToken)`.
 1. In the **Program.cs** file, use the `routing` variable to access the routing configuration and specify the logical routing for `PlaceOrder` by adding the following code after the line that configures the Learning Transport:
 
 snippet: AddingRouting
 
 This establishes that commands of type `PlaceOrder` should be sent to the **Sales** endpoint.
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > As noted in [configuring an endpoint](#exercise-configuring-an-endpoint), ensure the configuration (e.g. message transport and serializers used) between endpoints match.
 
 ### Running the solution

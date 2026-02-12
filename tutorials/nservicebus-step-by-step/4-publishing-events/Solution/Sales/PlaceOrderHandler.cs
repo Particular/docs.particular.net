@@ -1,12 +1,9 @@
-﻿using System.Threading.Tasks;
-using Messages;
+﻿using Messages;
 using Microsoft.Extensions.Logging;
-using NServiceBus;
 
 namespace Sales;
 
-public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) :
-    IHandleMessages<PlaceOrder>
+public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) : IHandleMessages<PlaceOrder>
 {
     #region UpdatedHandler
 

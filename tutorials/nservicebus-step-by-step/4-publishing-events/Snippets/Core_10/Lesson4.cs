@@ -1,19 +1,14 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
-
-namespace Core_9;
+﻿namespace Core;
 
 #region Event
-public class SomethingHappened :
-    IEvent
+public class SomethingHappened : IEvent
 {
-    public string SomeProperty { get; set; }
+    public string? SomeProperty { get; set; }
 }
 #endregion
 
 #region EventHandler
-public class SomethingHappenedHandler :
-    IHandleMessages<SomethingHappened>
+public class SomethingHappenedHandler : IHandleMessages<SomethingHappened>
 {
     public Task Handle(SomethingHappened message, IMessageHandlerContext context)
     {
