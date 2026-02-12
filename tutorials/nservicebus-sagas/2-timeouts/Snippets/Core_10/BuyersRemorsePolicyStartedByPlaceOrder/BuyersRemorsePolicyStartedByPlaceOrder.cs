@@ -9,6 +9,11 @@ namespace BuyersRemorsePolicyStartedByPlaceOrder;
 class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>,
     IAmStartedByMessages<PlaceOrder>
 {
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseData> mapper)
+    {
+        // TO BE IMPLEMENTED
+    }
+
     public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
         logger.LogInformation("Received PlaceOrder, OrderId = {OrderId}", message.OrderId);
@@ -16,11 +21,6 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemo
         Data.OrderId = message.OrderId;
 
         return Task.CompletedTask;
-    }
-
-    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseData> mapper)
-    {
-        // TO BE IMPLEMENTED
     }
 }
 
