@@ -19,4 +19,4 @@ public class BuyersRemorseData : ContainSagaData
 }
 #endregion
 
-#pragma warning restore  9113
+#pragma warning restore 9113

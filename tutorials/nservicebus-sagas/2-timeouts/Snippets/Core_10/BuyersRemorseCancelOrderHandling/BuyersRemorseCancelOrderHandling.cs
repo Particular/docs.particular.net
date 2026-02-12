@@ -5,38 +5,13 @@ namespace BuyersRemorseCancelOrderHandling;
 #region BuyersRemorseCancelOrderHandling
 
 class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>,
-    IAmStartedByMessages<PlaceOrder>,
-    IHandleMessages<CancelOrder>,
-    IHandleTimeouts<BuyersRemorseIsOver>
+    IHandleMessages<CancelOrder>
 {
-  protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseData> mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseData> mapper)
     {
         mapper.MapSaga(saga => saga.OrderId)
             .ToMessage<PlaceOrder>(message => message.OrderId)
             .ToMessage<CancelOrder>(message => message.OrderId);
-    }
-
-    public async Task Handle(PlaceOrder message, IMessageHandlerContext context)
-    {
-        logger.LogInformation("Received PlaceOrder, OrderId = {OrderId}", message.OrderId);
-        Data.OrderId = message.OrderId;
-
-        logger.LogInformation("Starting cool down period for order #{OrderId}.", Data.OrderId);
-        await RequestTimeout(context, TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
-    }
-
-    public async Task Timeout(BuyersRemorseIsOver state, IMessageHandlerContext context)
-    {
-        logger.LogInformation("Cooling down period for order #{OrderId} has elapsed.", Data.OrderId);
-
-        var orderPlaced = new OrderPlaced
-        {
-            OrderId = Data.OrderId
-        };
-
-        await context.Publish(orderPlaced);
-
-        MarkAsComplete();
     }
 
     public Task Handle(CancelOrder message, IMessageHandlerContext context)
@@ -53,26 +28,17 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemo
 
 #endregion
 
-internal class BuyersRemorseIsOver
-{
-}
-
 internal class PlaceOrder
 {
-    public object? OrderId { get; set; }
-}
-
-internal class OrderPlaced
-{
-    public object? OrderId { get; set; }
+    public string? OrderId { get; internal set; }
 }
 
 internal class BuyersRemorseData : ContainSagaData
 {
-    public object? OrderId { get; set; }
+    public string? OrderId { get; set; }
 }
 
 internal class CancelOrder
 {
-    public object? OrderId { get; set; }
+    public string? OrderId { get; set; }
 }

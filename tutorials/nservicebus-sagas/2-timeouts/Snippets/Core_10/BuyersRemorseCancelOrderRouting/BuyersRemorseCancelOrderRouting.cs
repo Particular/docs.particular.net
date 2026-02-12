@@ -6,6 +6,7 @@ class EndpointConfig
     {
         var endpointConfiguration = new EndpointConfiguration("Fake");
         var routing = endpointConfiguration.UseTransport(new LearningTransport());
+
         #region BuyersRemorseCancelOrderRouting
         routing.RouteToEndpoint(typeof(CancelOrder), "Sales");
         #endregion
