@@ -61,6 +61,12 @@ As of versions 4.33.3 and 5.0.5 of ServiceControl, support for partitioned entit
 
 * `EnablePartitioning=<True|False>` — Configures the transport to create entities that support partitioning. The default value is `false`.
 
+### Enabling Hierarchical Entities
+
+As of version 6.12.0 of ServiceControl, support for hierarchical entities can be enabled by adding the following connection string parameter:
+
+* `HierarchyNamespace=<hierarchyNamespacePrefix>` — Configures the transport to use [a hierarchy namespace prefix](/transports/azure-service-bus/configuration.md#entity-creation-hierarchy-namespace). The default value is `null`, which means no hierarchy namespace is used.
+
 ### Example connection string
 
 ```text
