@@ -18,10 +18,10 @@ class SampleSaga : Saga<SampleSagaData>, IHandleMessages<MyMessageType>
 
 class SampleSagaData : ContainSagaData
 {
-    public string SagaPropertyName { get; set; }
+    public string? SagaPropertyName { get; set; }
 }
 
 class MyMessageType
 {
-    public string MessagePropertyName { get; set; }
+    public string? MessagePropertyName { get; set; }
 }
