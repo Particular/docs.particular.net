@@ -28,12 +28,12 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemo
 
 internal class PlaceOrder
 {
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }
 
 internal class BuyersRemorseData : ContainSagaData
 {
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }
 
 #pragma warning restore NSB0006 // Message that starts the saga does not have a message mapping

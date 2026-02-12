@@ -79,15 +79,15 @@ internal class BuyersRemorseIsOver
 
 internal class PlaceOrder
 {
-    public object OrderId { get; internal set; }
+    public object? OrderId { get; set; }
 }
 
 internal class BuyersRemorseData
 {
-    public object OrderId { get; set; }
+    public object? OrderId { get; set; }
 }
 
 internal class CancelOrder
 {
-    public object OrderId { get; set; }
+    public object? OrderId { get; set; }
 }

@@ -24,10 +24,10 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemo
 
 internal class PlaceOrder
 {
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }
 
 internal class BuyersRemorseData : ContainSagaData
 {
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }

@@ -31,7 +31,7 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemo
 
 internal class OrderPlaced
 {
-    public object OrderId { get; set; }
+    public object? OrderId { get; set; }
 }
 
 internal class BuyersRemorseIsOver
@@ -44,5 +44,5 @@ internal class PlaceOrder
 
 internal class BuyersRemorseData : ContainSagaData
 {
-    public object OrderId { get; set; }
+    public object? OrderId { get; set; }
 }

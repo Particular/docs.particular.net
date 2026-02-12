@@ -15,7 +15,7 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemo
 
 public class BuyersRemorseData : ContainSagaData
 {
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }
 #endregion
 

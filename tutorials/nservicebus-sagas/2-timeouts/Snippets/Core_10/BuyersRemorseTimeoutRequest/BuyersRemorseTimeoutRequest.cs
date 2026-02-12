@@ -30,10 +30,10 @@ internal class BuyersRemorseIsOver
 
 public class BuyersRemorseData : ContainSagaData
 {
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }
 
 internal class PlaceOrder
 {
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }
