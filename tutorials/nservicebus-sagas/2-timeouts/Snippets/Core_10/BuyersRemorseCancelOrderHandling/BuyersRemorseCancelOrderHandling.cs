@@ -16,6 +16,29 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemo
             .ToMessage<CancelOrder>(message => message.OrderId);
     }
 
+    public Task Handle(PlaceOrder message, IMessageHandlerContext context)
+    {
+        logger.LogInformation("Received PlaceOrder, OrderId = {OrderId}", message.OrderId);
+
+        Data.OrderId = message.OrderId;
+
+        return Task.CompletedTask;
+    }
+
+    public async Task Timeout(BuyersRemorseIsOver state, IMessageHandlerContext context)
+    {
+        logger.LogInformation("Cooling down period for order #{OrderId} has elapsed.", Data.OrderId);
+
+        var orderPlaced = new OrderPlaced
+        {
+            OrderId = Data.OrderId
+        };
+
+        await context.Publish(orderPlaced);
+
+        MarkAsComplete();
+    }
+
     public Task Handle(CancelOrder message, IMessageHandlerContext context)
     {
         logger.LogInformation("Order #{OrderId} was cancelled.", message.OrderId);
@@ -30,49 +53,6 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemo
 
 #endregion
 
-internal interface IHandleTimeouts<T>
-{
-}
-
-internal interface IHandleMessages<T>
-{
-}
-
-internal interface IAmStartedByMessages<T>
-{
-}
-
-public interface IMessageHandlerContext
-{
-}
-
-internal class Saga<T>
-{
-    protected virtual void ConfigureHowToFindSaga(SagaPropertyMapper<T> mapper) { }
-
-    protected void MarkAsComplete()
-    {
-    }
-}
-
-internal class SagaPropertyMapper<TSagaData>
-{
-    internal SagaPropertyMapper<TSagaData> MapSaga(Func<TSagaData, object> p)
-    {
-        return this;
-    }
-
-    internal SagaPropertyMapper<TSagaData> ToMessage<T>(Func<T, object> p)
-    {
-        return this;
-    }
-}
-
-internal class OrderPlaced
-{
-    public object OrderId { get; set; }
-}
-
 internal class BuyersRemorseIsOver
 {
 }
@@ -82,7 +62,12 @@ internal class PlaceOrder
     public object? OrderId { get; set; }
 }
 
-internal class BuyersRemorseData
+internal class OrderPlaced
+{
+    public object? OrderId { get; set; }
+}
+
+internal class BuyersRemorseData : ContainSagaData
 {
     public object? OrderId { get; set; }
 }
