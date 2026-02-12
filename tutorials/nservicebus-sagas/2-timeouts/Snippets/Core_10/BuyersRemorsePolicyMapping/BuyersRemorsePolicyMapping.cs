@@ -15,7 +15,10 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemo
 
     public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
-        //To be replaced with business code
+        logger.LogInformation("Received PlaceOrder, OrderId = {OrderId}", message.OrderId);
+
+        Data.OrderId = message.OrderId;
+
         return Task.CompletedTask;
     }
 }
