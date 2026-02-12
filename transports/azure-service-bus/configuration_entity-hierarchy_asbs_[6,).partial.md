@@ -8,6 +8,9 @@ snippet: azure-service-bus-hierarchynamespace-options
 
 Doing so will prefix all entities with the `{HierarchyNamespace}/{original-entity-path}` format.
 
+> [!NOTE]
+> Using a hierarchy namespace has [implications for ServiceControl configurations](/servicecontrol/transports.md#azure-service-bus-enabling-hierarchical-entities).
+
 #### Escaping the hierarchy
 
 In scenarios when a message must be sent outside of the hierarchy, designated message types or interfaces can defined and excluded from the hierarchy using the `HierarchyNamespaceOptions.ExcludeMessageType<TMessageType>()` method.
