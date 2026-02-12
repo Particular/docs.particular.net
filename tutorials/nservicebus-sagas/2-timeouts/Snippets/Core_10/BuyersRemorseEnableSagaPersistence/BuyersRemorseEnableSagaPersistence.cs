@@ -4,7 +4,7 @@ class Program
 {
     void BuyersRemorseEnableSagaPersistence()
     {
-        EndpointConfiguration endpointConfiguration = null;
+        var endpointConfiguration = new EndpointConfiguration("Sales");
 
         #region BuyersRemorseEnableSagaPersistence
         var persistence = endpointConfiguration.UsePersistence<LearningPersistence>();
