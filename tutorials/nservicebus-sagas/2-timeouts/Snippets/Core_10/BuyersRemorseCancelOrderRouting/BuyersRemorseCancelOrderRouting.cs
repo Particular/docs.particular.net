@@ -1,6 +1,4 @@
-﻿using NServiceBus;
-
-namespace Core_9.BuyersRemorseCancelOrderRouting;
+﻿namespace BuyersRemorseCancelOrderRouting;
 
 class EndpointConfig
 {

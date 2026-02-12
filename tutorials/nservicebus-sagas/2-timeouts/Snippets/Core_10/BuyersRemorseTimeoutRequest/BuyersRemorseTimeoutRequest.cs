@@ -1,9 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
+﻿using Microsoft.Extensions.Logging;
 
-namespace Core_9.BuyersRemorseTimeoutRequest;
+namespace BuyersRemorseTimeoutRequest;
 
 class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>
 {

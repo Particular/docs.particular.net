@@ -1,9 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
-
-namespace Core_9.BuyersRemorseCancellingOrders;
+﻿namespace BuyersRemorseCancellingOrders;
 
 class UICommands
 {
@@ -57,10 +52,10 @@ class UICommands
 
 internal class PlaceOrder
 {
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }
 
 internal class CancelOrder
 {
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }

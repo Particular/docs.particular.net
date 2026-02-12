@@ -1,4 +1,4 @@
-﻿namespace Core_9.BuyersRemorseTimeoutClassDefinition;
+﻿namespace BuyersRemorseTimeoutClassDefinition;
 
 #region BuyersRemorseTimeoutClassDefinition
 

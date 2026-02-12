@@ -1,9 +1,8 @@
 ﻿using Microsoft.Extensions.Logging;
-using NServiceBus;
 
-namespace Core_9.EmptyBuyersRemorsePolicy;
+namespace EmptyBuyersRemorsePolicy;
 
-#pragma warning disable 1998, 9113
+#pragma warning disable 9113
 
 #region EmptyBuyersRemorsePolicy
 class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>
@@ -20,4 +19,4 @@ public class BuyersRemorseData : ContainSagaData
 }
 #endregion
 
-#pragma warning restore 1998, 9113
+#pragma warning restore  9113

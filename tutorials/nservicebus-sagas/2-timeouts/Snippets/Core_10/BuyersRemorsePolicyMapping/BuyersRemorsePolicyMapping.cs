@@ -1,10 +1,6 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
+﻿using Microsoft.Extensions.Logging;
 
-namespace Core_9.BuyersRemorsePolicyMapping;
-
-#pragma warning disable 9113
+namespace BuyersRemorsePolicyMapping;
 
 #region BuyersRemorsePolicyMapping
 
@@ -25,8 +21,6 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemo
 }
 
 #endregion
-
-#pragma warning restore 9113
 
 internal class PlaceOrder
 {

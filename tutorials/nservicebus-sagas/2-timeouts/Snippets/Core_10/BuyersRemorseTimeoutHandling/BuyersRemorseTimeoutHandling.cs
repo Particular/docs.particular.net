@@ -1,8 +1,6 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
+﻿using Microsoft.Extensions.Logging;
 
-namespace Core_9.BuyersRemorseTimeoutHandling;
+namespace BuyersRemorseTimeoutHandling;
 
 #region BuyersRemorseTimeoutHandling
 

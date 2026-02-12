@@ -1,10 +1,8 @@
-﻿using System.Threading.Tasks;
-using Microsoft.Extensions.Logging;
-using NServiceBus;
+﻿using Microsoft.Extensions.Logging;
 
 #pragma warning disable NSB0006 // Message that starts the saga does not have a message mapping
 
-namespace Core_9.BuyersRemorsePolicyStartedByPlaceOrder;
+namespace BuyersRemorsePolicyStartedByPlaceOrder;
 
 #region BuyersRemorsePolicyStartedByPlaceOrder
 

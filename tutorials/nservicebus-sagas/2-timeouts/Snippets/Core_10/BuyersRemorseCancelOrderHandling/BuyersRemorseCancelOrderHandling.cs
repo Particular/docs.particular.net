@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 
-namespace Core_9.BuyersRemorseCancelOrderHandling;
+namespace BuyersRemorseCancelOrderHandling;
 
 #region BuyersRemorseCancelOrderHandling
 

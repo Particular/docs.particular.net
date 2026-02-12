@@ -1,11 +1,7 @@
-﻿using NServiceBus;
+﻿#region BuyersRemorseCancelOrderCommand
 
-namespace Core_9.BuyersRemorseCancelOrderCommand;
-
-#region BuyersRemorseCancelOrderCommand
-public class CancelOrder
-    : ICommand
+public class CancelOrder : ICommand
 {
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }
 #endregion
