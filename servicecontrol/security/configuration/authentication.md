@@ -37,7 +37,7 @@ Additionally, a separate application registration is required for ServicePulse. 
 
 ### Identity Provider Guides
 
-Step-by-step instructions on configuring some specific identity providers are provided below. For any other identity providers, please read their specific documentation, and adapt it to the general guidance covered for [Microsoft Entra ID](../entra-id-authentication.md).
+Step-by-step instructions on configuring some specific identity providers are provided below. For any other identity providers, read their specific documentation and adapt it to the general guidance covered for [Microsoft Entra ID](../entra-id-authentication.md).
 
 - [Microsoft Entra ID](../entra-id-authentication.md)
 
