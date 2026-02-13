@@ -75,6 +75,7 @@ sequenceDiagram
 | Forwarded Headers       | ✅ Enabled                     |
 | Restricted Proxy Trust  | ✅ Enabled                     |
 
+> [!NOTE]
 > HTTPS redirection is optional in this scenario. The reverse proxy typically handles HTTP to HTTPS redirection at its layer, however enabling it at ServicePulse provides defense-in-depth; if an HTTP request somehow bypasses the proxy and reaches ServicePulse directly, it will be redirected to the HTTPS URL. This requires configuring `Https.Port` to specify the external [HTTPS port](configuration/tls.md) used by the proxy.
 
 #### Example Configuration

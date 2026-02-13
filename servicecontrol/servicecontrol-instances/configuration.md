@@ -349,7 +349,7 @@ The URL of the OpenID Connect authority for ServicePulse to use when authenticat
 
 _Added in version 6.11.0_
 
-The API scopes for ServicePulse to request when authenticating. This is a JSON array of scope strings e.g. `["api://{app-id}/api.access"]`
+The API scopes for ServicePulse to request when authenticating. This is a JSON array of scope strings, e.g. `["api://{app-id}/api.access"]`
 
 | Context | Name |
 | --- | --- |
@@ -546,7 +546,7 @@ Trusts forwarded headers from any source. Set to `false` when using `KnownProxie
 
 _Added in version 6.11.0_
 
-A comma-separated list of trusted proxy IP addresses e.g. `10.0.0.5,10.0.0.6`
+A comma-separated list of trusted proxy IP addresses, e.g. `10.0.0.5,10.0.0.6`
 
 | Context | Name |
 | --- | --- |
@@ -562,7 +562,7 @@ A comma-separated list of trusted proxy IP addresses e.g. `10.0.0.5,10.0.0.6`
 
 _Added in version 6.11.0_
 
-A comma-separated list of trusted CIDR network ranges e.g. `10.0.0.0/24,192.168.1.0/24`
+A comma-separated list of trusted CIDR network ranges, e.g. `10.0.0.0/24,192.168.1.0/24`
 
 | Context | Name |
 | --- | --- |
@@ -601,7 +601,7 @@ Allows requests from any origin.
 
 _Added in version 6.11.0_
 
-A comma-separated list of allowed origins e.g. `https://servicepulse.yourcompany.com,https://admin.yourcompany.com`
+A comma-separated list of allowed origins, e.g. `https://servicepulse.yourcompany.com,https://admin.yourcompany.com`
 
 | Context | Name |
 | --- | --- |
