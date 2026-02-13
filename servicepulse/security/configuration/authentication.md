@@ -40,7 +40,7 @@ When registering ServicePulse with your identity provider, configure the followi
 
 ### Identity Provider Guides
 
-For step-by-step instructions on configuring specific identity providers, see:
+Step-by-step instructions on configuring some specific identity providers are provided below. For any other identity providers, read their specific documentation and adapt it to the general guidance covered for [Microsoft Entra ID](/servicecontrol/security/entra-id-authentication.md).
 
 - [Microsoft Entra ID](/servicecontrol/security/entra-id-authentication.md)
 
@@ -69,7 +69,7 @@ User tokens are stored in the browser's `sessionStorage`. This means:
 
 ServicePulse automatically renews access tokens before they expire using a hidden iframe (`silent-renew.html`). This provides a seamless experience without requiring users to re-authenticate.
 
-If silent renewal fails (e.g., session expired at the identity provider), users are redirected to log in again.
+If silent renewal fails (e.g. session expired at the identity provider), users are redirected to log in again.
 
 ## User Interface
 
@@ -129,6 +129,6 @@ For production deployments, [always use HTTPS](tls.md). OIDC tokens are sensitiv
 
 Token lifetime is controlled by your identity provider. Consider configuring:
 
-- **Access token lifetime** - Short-lived (e.g., 1 hour) for security
+- **Access token lifetime** - Short-lived (e.g. 1 hour) for security
 - **Refresh token lifetime** - Longer-lived to enable silent renewal
 - **Session policies** - Maximum session duration before re-authentication is required

@@ -7,7 +7,7 @@ related:
 - servicecontrol/security/hosting-guide
 ---
 
-Cross-Origin Resource Sharing (CORS) controls which web applications can make requests to ServiceControl. This is important when ServicePulse is hosted on a different domain than ServiceControl.
+Cross-Origin Resource Sharing (CORS) controls which web applications can make requests to ServiceControl. This is important when ServicePulse is hosted on a different domain or port than ServiceControl.
 
 ## Configuration
 
@@ -58,8 +58,11 @@ To allow multiple origins:
 - Verify the origin in `AllowedOrigins` matches exactly, including:
   - Protocol (`https://` vs `http://`)
   - Domain name (no trailing slash)
-  - Port number if non-standard (e.g., `https://servicepulse.example.com:8080`)
-- For testing, temporarily set `AllowAnyOrigin` to `true` to confirm CORS is the issue
+  - Port number if non-standard (e.g. `https://servicepulse.example.com:8080`)
+- For testing, temporarily set `AllowAnyOrigin` to `true` to confirm CORS is the issue.
+
+> [!CAUTION]
+> Do not leave `AllowAnyOrigin` set to `true` in any production environment. This removes a key browser security feature.
 
 ### CORS preflight requests failing
 

@@ -9,7 +9,7 @@
 - Verify the certificate path is correct and the file exists
 - Check that the certificate file has appropriate permissions
 - Confirm the certificate password is correct
-- For containers, ensure the volume mount is correct (e.g., `-v certificate.pfx:/usr/share/ParticularSoftware/certificate.pfx`)
+- For containers, ensure the volume mount is correct (e.g. `-v certificate.pfx:/usr/share/ParticularSoftware/certificate.pfx`)
 
 ### HTTPS redirect not working
 
@@ -47,7 +47,7 @@
 - Use a certificate from a trusted Certificate Authority for production
 - Ensure the certificate's Common Name (CN) or Subject Alternative Name (SAN) matches the hostname
 - Check that the certificate has not expired
-- Ensure the certificate is in the correct Trusted Root Certificate Authorities store. e.g.,
+- Ensure the certificate is in the correct Trusted Root Certificate Authorities store. e.g.
   - If running in a Windows Service as `Local System`, the certificate should be in the `Local Computer` store.
   - If running as yourself, the certificate should be in the `Current User` store.
 - For internal/development use, add the self-signed certificate to the trusted root store
@@ -55,13 +55,13 @@
 
 ### The remote certificate is invalid according to the validation procedure
 
-**Symptom**: Service starts but fails when calling other services (e.g., ServiceControl can't reach ServiceControl-Audit) or when validating tokens with Azure AD.
+**Symptom**: Service starts but fails when calling other services (e.g. ServiceControl can't reach ServiceControl-Audit) or when validating tokens with Azure AD.
 
 **Cause**: The CA bundle doesn't contain the CA certificate that signed the remote server's certificate.
 
 **Solutions**:
 
-- Ensure the CA bundle includes your local CA certificate (e.g., mkcert's rootCA.pem)
+- Ensure the CA bundle includes your local CA certificate (e.g. mkcert's rootCA.pem)
 - For Azure AD authentication, append the Mozilla CA bundle: curl https://curl.se/ca/cacert.pem >> ca-bundle.crt
 - Verify `SSL_CERT_FILE` environment variable points to the correct path inside the container
 - Check the CA bundle is mounted correctly
@@ -79,7 +79,7 @@
 
 ### Health checks fail with certificate errors
 
-**Symptom**: Container health check reports unhealthy, logs show SSL errors from the health check command.
+**Symptom**: Container health check reports unhealthy; logs show SSL errors from the health check command.
 
 **Cause**: The health check binary inside the container doesn't trust the certificate.
 

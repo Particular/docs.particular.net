@@ -60,7 +60,7 @@ Follow Microsoft's guide to [register an application](https://learn.microsoft.co
 | Name                    | `ServicePulse`                                                                   |
 | Supported account types | Accounts in this organizational directory only (single tenant)                   |
 | Redirect URI - Platform | Single-page application (SPA)                                                    |
-| Redirect URI - URI      | The URL where ServicePulse is hosted (e.g., `https://servicepulse.example.com/`) |
+| Redirect URI - URI      | The URL where ServicePulse is hosted (e.g. `https://servicepulse.example.com/`) |
 
 After registration, collect this value:
 

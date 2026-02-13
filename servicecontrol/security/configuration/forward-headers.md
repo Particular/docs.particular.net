@@ -20,7 +20,7 @@ ServiceControl instances can be configured via environment variables or App.conf
 
 ## What Headers are Processed
 
-When enabled, ServiceControl instances processes:
+When enabled, ServiceControl instances process:
 
 - `X-Forwarded-For` - Original client IP address
 - `X-Forwarded-Proto` - Original protocol (http/https)
@@ -28,8 +28,8 @@ When enabled, ServiceControl instances processes:
 
 When the proxy is trusted:
 
-- `Request.Scheme` will be set from `X-Forwarded-Proto` (e.g., `https`)
-- `Request.Host` will be set from `X-Forwarded-Host` (e.g., `servicecontrol.example.com`)
+- `Request.Scheme` will be set from `X-Forwarded-Proto` (e.g. `https`)
+- `Request.Host` will be set from `X-Forwarded-Host` (e.g. `servicecontrol.example.com`)
 - Client IP will be available from `X-Forwarded-For`
 
 When the proxy is **not** trusted (incorrect `KnownProxies`):
@@ -41,7 +41,7 @@ When the proxy is **not** trusted (incorrect `KnownProxies`):
 
 ## HTTP to HTTPS Redirect
 
-When using a reverse proxy that terminates SSL, you can configure ServiceControl instances to redirect HTTP requests to HTTPS. This works in combination with forwarded headers:
+When using a reverse proxy that terminates SSL, ServiceControl instances can be configured to redirect HTTP requests to HTTPS. This works in combination with forwarded headers:
 
 1. The reverse proxy forwards both HTTP and HTTPS requests to ServiceControl
 2. The proxy sets `X-Forwarded-Proto` to indicate the original protocol
@@ -66,7 +66,7 @@ sequenceDiagram
     SC->>Client: Response (via Proxy)
 ```
 
-To enable HTTP to HTTPS redirect, see [TLS Configuration](tls.md) for details on how to do this.
+To enable HTTP to HTTPS redirect, see [TLS Configuration](tls.md).
 
 ## Proxy Chain Behavior (ForwardLimit)
 
@@ -98,7 +98,7 @@ When running behind a single reverse proxy with a known IP address:
 
 ### Multiple reverse proxies
 
-When running behind multiple proxies (e.g., load balancer and application gateway):
+When running behind multiple proxies (e.g. load balancer and application gateway):
 
 ```xml
 <add key="ServiceControl/ForwardedHeaders.Enabled" value="true" />

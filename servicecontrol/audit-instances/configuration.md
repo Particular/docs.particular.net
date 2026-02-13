@@ -155,7 +155,7 @@ Run [ServiceControl audit instance in maintenance mode](/servicecontrol/ravendb/
 
 ## [Authentication](/servicecontrol/security/configuration/authentication.md)
 
-These settings configure [authentication using OAuth 2.0 and OpenID Connect](/servicecontrol/security/). Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md), or [authentication configuration examples](/servicecontrol/security/configuration/authentication.md#identity-provider-setup-configuration-examples) for additional information.
+These settings configure [authentication using OAuth 2.0 and OpenID Connect](/servicecontrol/security/). Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) or [authentication configuration examples](/servicecontrol/security/configuration/authentication.md#identity-provider-setup-configuration-examples) for additional information.
 
 ### ServiceControl.Audit/Authentication.Enabled
 
@@ -290,7 +290,7 @@ Controls whether HTTPS is required when retrieving metadata from the authority.
 
 ## [TLS](/servicecontrol/security/configuration/tls.md)
 
-These settings configure HTTPS. Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md), or [TLS configuration examples](/servicecontrol/security/configuration/tls.md#configuration-examples) for additional information.
+These settings configure HTTPS. Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) or [TLS configuration examples](/servicecontrol/security/configuration/tls.md#configuration-examples) for additional information.
 
 ### ServiceControl.Audit/Https.Enabled
 
@@ -469,7 +469,7 @@ Trusts forwarded headers from any source. Set to `false` when using `KnownProxie
 
 _Added in version 6.11.0_
 
-A comma-separated list of trusted proxy IP addresses e.g., `127.0.0.1`
+A comma-separated list of trusted proxy IP addresses, e.g. `127.0.0.1`
 
 | Context | Name |
 | --- | --- |
@@ -485,7 +485,7 @@ A comma-separated list of trusted proxy IP addresses e.g., `127.0.0.1`
 
 _Added in version 6.11.0_
 
-A comma-separated list of trusted CIDR network ranges e.g., `10.0.0.0/8,172.16.0.0/12`
+A comma-separated list of trusted CIDR network ranges, e.g. `10.0.0.0/8,172.16.0.0/12`
 
 | Context | Name |
 | --- | --- |
@@ -499,7 +499,7 @@ A comma-separated list of trusted CIDR network ranges e.g., `10.0.0.0/8,172.16.0
 
 ## [CORS](/servicecontrol/security/configuration/cors.md)
 
-These settings configure Cross-Origin Resource Sharing (CORS). Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md), or [cors configuration examples](/servicecontrol/security/configuration/cors.md#configuration-examples) for additional information.
+These settings configure Cross-Origin Resource Sharing (CORS). Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) or [cors configuration examples](/servicecontrol/security/configuration/cors.md#configuration-examples) for additional information.
 
 ### ServiceControl.Audit/Cors.AllowAnyOrigin
 
@@ -524,7 +524,7 @@ Allows requests from any origin.
 
 _Added in version 6.11.0_
 
-A comma-separated list of allowed origins e.g., `https://servicepulse.example.com,https://admin.example.com`
+A comma-separated list of allowed origins, e.g. `https://servicepulse.example.com,https://admin.example.com`
 
 | Context | Name |
 | --- | --- |

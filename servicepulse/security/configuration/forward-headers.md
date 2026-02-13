@@ -28,7 +28,7 @@ There are two hosting options for ServiceControl, [Container](/servicepulse/cont
 | `--forwardedheadersenabled=`          | `true`  | Enable forwarded headers processing                              |
 | `--forwardedheaderstrustallproxies=`  | `true`  | Trust all proxies (auto-disabled if known proxies/networks set)  |
 | `--forwardedheadersknownproxies=`     | (none)  | Comma-separated IP addresses of trusted proxies                  |
-| `--forwardedheadersknownnetworks=`    | (none)  | Comma-separated CIDR networks (e.g., `10.0.0.0/8,172.16.0.0/12`) |
+| `--forwardedheadersknownnetworks=`    | (none)  | Comma-separated CIDR networks (e.g. `10.0.0.0/8,172.16.0.0/12`) |
 
 Example:
 
@@ -46,8 +46,8 @@ When enabled, ServicePulse processes:
 
 When the proxy is trusted:
 
-- `Request.Scheme` will be set from `X-Forwarded-Proto` (e.g., `https`)
-- `Request.Host` will be set from `X-Forwarded-Host` (e.g., `servicepulse.example.com`)
+- `Request.Scheme` will be set from `X-Forwarded-Proto` (e.g. `https`)
+- `Request.Host` will be set from `X-Forwarded-Host` (e.g. `servicepulse.example.com`)
 - Client IP will be available from `X-Forwarded-For`
 
 When the proxy is **not** trusted (incorrect `KnownProxies`):
@@ -109,7 +109,7 @@ sequenceDiagram
     SP->>Client: Response (via Proxy)
 ```
 
-To enable HTTP to HTTPS redirect, see [TLS Configuration](tls.md) for details on how to do this.
+To enable HTTP to HTTPS redirect, see [TLS Configuration](tls.md).
 
 ## Proxy Chain Behavior (ForwardLimit)
 
@@ -151,7 +151,7 @@ ServicePulse.Host.exe --forwardedheadersenabled=true --forwardedheaderstrustallp
 
 ### Multiple reverse proxies
 
-When running behind multiple proxies (e.g., load balancer and application gateway):
+When running behind multiple proxies (e.g. load balancer and application gateway):
 
 **Container:**
 

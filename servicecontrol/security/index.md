@@ -58,11 +58,9 @@ sequenceDiagram
     ServicePulse-->>User: Display data
 ```
 
-Certain endpoints remain accessible without authentication to support API discovery, client bootstrapping, and service-to-service communication between ServiceControl instances.
-
 ### Anonymous endpoints
 
-The following endpoints remain anonymous to support API Discovery, health checks, service-to-service requests, and authentication bootstrapping:
+The following endpoints remain anonymous to support API Discovery, health checks, service-to-service requests between ServiceControl instances, and authentication bootstrapping:
 
 | Endpoint                            | Method  | Instance       | Purpose                                                            |
 |-------------------------------------|---------|----------------|--------------------------------------------------------------------|
@@ -117,5 +115,5 @@ The Hosting Guide provides complete configuration examples for common deployment
 
 Users relying on ServiceInsight can:
 
-1. **[Use ServicePulse](/servicepulse/installation.md)** instead (Recommended. Functionality previously in ServiceInsight has been migrated to ServicePulse.)
+1. **[Use ServicePulse](/servicepulse/installation.md)** instead. This is the recommended approach, since functionality previously exclusive to ServiceInsight has been migrated to ServicePulse.
 2. **Leave authentication disabled** on the relevant ServiceControl instance

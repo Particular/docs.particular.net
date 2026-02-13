@@ -98,7 +98,7 @@ _Added in version 1.44.0_
 
 ### [Forward headers](/servicepulse/security/configuration/forward-headers.md)
 
-These settings configure forward headers for reverse proxy scenarios. Refer to the [hosting and security guide](/servicepulse/security/hosting-guide.md), or [forward headers configuration examples](/servicepulse/security/configuration/forward-headers.md#configuration-examples) for additional information.
+These settings configure forward headers for reverse proxy scenarios. Refer to the [hosting and security guide](/servicepulse/security/hosting-guide.md) or [forward headers configuration examples](/servicepulse/security/configuration/forward-headers.md#configuration-examples) for additional information.
 
 #### Forward headers enabled
 
@@ -116,7 +116,7 @@ Enable forward headers processing.
 
 _Added in version 2.5.0_
 
-Trust all proxies. Auto-disabled if known proxies/networks set.
+Trust all proxies. Auto-disabled if known proxies/networks are set.
 
 | | |
 |-|-|
@@ -131,7 +131,7 @@ Trust all proxies. Auto-disabled if known proxies/networks set.
 
 _Added in version 2.5.0_
 
-Comma-separated IP addresses of trusted proxies (e.g., `10.0.0.1,172.16.0.1`).
+Comma-separated IP addresses of trusted proxies (e.g. `10.0.0.1,172.16.0.1`).
 
 | | |
 |-|-|
@@ -143,7 +143,7 @@ Comma-separated IP addresses of trusted proxies (e.g., `10.0.0.1,172.16.0.1`).
 
 _Added in version 2.5.0_
 
-Comma-separated CIDR networks (e.g., `10.0.0.0/8,172.16.0.0/12`).
+Comma-separated CIDR networks (e.g. `10.0.0.0/8,172.16.0.0/12`).
 
 | | |
 |-|-|
@@ -153,7 +153,7 @@ Comma-separated CIDR networks (e.g., `10.0.0.0/8,172.16.0.0/12`).
 
 ### [TLS](/servicepulse/security/configuration/tls.md)
 
-These settings configure HTTPS. Refer to the [hosting and security guide](/servicepulse/security/hosting-guide.md), or [TLS configuration examples](/servicepulse/security/configuration/tls.md#configuration-examples) for additional information.
+These settings configure HTTPS. Refer to the [hosting and security guide](/servicepulse/security/hosting-guide.md) or [TLS configuration examples](/servicepulse/security/configuration/tls.md#configuration-examples) for additional information.
 
 #### HTTPS enabled
 

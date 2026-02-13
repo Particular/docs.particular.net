@@ -53,7 +53,7 @@ When ServiceControl handles TLS directly using a PFX certificate:
 **Container**:
 
 > [!NOTE]
-> The following is a docker compose snippets. For full examples, see the [Platform Container Examples repository](https://github.com/Particular/PlatformContainerExamples).
+> The following is a docker compose snippet. For full examples, see the [Platform Container Examples repository](https://github.com/Particular/PlatformContainerExamples).
 
 ```bash
 servicecontrol:
@@ -97,7 +97,7 @@ servicecontrol:
 **SERVICEPULSE_HTTPS_CERTIFICATEPATH (PFX)**: This is a binary archive format that bundles together the private key, public certificate, and certificate chain. This certificate is used to serve HTTPS (prove identity).
 
 > [!NOTE]
-> When containers communicate with each other over HTTPS, they use the Docker service names (like `servicecontrol`, `servicecontrol-audit`) as hostnames, and TLS validation will fail if the certificate doesn't include these names in its Subject Alternative Names (SANs).
+> When containers communicate with each other over HTTPS, they use the Docker service names (like `servicecontrol`, `servicecontrol-audit`) as hostnames. TLS validation will fail if the certificate doesn't include these names in its Subject Alternative Names (SANs).
 
 ### Direct HTTPS with HSTS
 
