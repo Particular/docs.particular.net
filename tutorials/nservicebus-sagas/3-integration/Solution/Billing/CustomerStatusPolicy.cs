@@ -8,7 +8,6 @@ public class CustomerStatusPolicy(ILogger<CustomerStatusPolicy> logger) :
     IAmStartedByMessages<OrderBilled>,
     IHandleTimeouts<CustomerStatusPolicy.OrderExpired>
 {
-
     //values hardcoded for simplicity
     const int preferredStatusAmount = 250;
     readonly TimeSpan orderExpiryTimeout = TimeSpan.FromSeconds(10);
