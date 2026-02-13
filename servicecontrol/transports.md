@@ -61,6 +61,25 @@ As of versions 4.33.3 and 5.0.5 of ServiceControl, support for partitioned entit
 
 * `EnablePartitioning=<True|False>` — Configures the transport to create entities that support partitioning. The default value is `false`.
 
+### Enabling Hierarchical Entities
+
+When [a hierarchy namespace prefix](/transports/azure-service-bus/configuration.md#entity-creation-hierarchy-namespace) is configured on endpoints, ServiceControl needs to be configured for the hierarchy namespace to monitor those endpoints.
+
+At a minimum, the error queue name needs the prefix prepended to the queue name, separated by a `/`.  If monitoring or auditing are enabled, they also need to be modified.
+
+For example, given a hierarchy namespace of `my-hierarchy` and error, audit, and monitoring queues named `error`, `audit`, and `monitoring`:
+- The [error queue name](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicebuserrorqueue) would need to be set to `my-hierarchy/error`.
+- The [audit queue name](/servicecontrol/audit-instances/configuration.md#transport-servicebusauditqueue) would need to be set to `my-hierarchy/audit`.
+- The [monitoring queue name](/servicecontrol/monitoring-instances/configuration.md#transport-monitoringerrorqueue) would need to be set to `my-hierarchy/monitoring`.
+
+This isolates the ServiceControl instance to the hierarchy, so an instance-per-hierarchy would be required to monitor multiple hierarchies.
+
+#### Configuring a single ServiceControl instance for multiple hierarchies
+
+Endpoints configured with a hierarchy namespace will use error, audit, and monitoring queues prefixed with the hierarchy namespace.  To monitor all hierarchies with a single ServiceControl installation:
+1. Configure ServiceControl error, audit, and monitoring instances as you would without using a hierarchy namespace.
+2. For each hierarchy-specific error, audit, and monitoring queue that you wish to monitor centrally, configure [auto-forwarding for their corresponding queues in azure](https://learn.microsoft.com/en-us/azure/service-bus-messaging/enable-auto-forward#update-the-auto-forward-setting-for-an-existing-queue) to forward messages to the central error, audit, and monitoring queues.
+
 ### Example connection string
 
 ```text
