@@ -1,15 +1,14 @@
 ﻿using Microsoft.Extensions.Logging;
 
-#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
-
 #region Creation-SagaStart
 class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
     Saga<ShipOrderWorkflow.ShipOrderData>,
     IAmStartedByMessages<ShipOrder>
 {
-    public async Task Handle(ShipOrder message, IMessageHandlerContext context)
+    public Task Handle(ShipOrder message, IMessageHandlerContext context)
     {
         logger.LogInformation("Handling ShipOrder");
+        return Task.CompletedTask;
     }
 
     internal class ShipOrderData : ContainSagaData
@@ -27,4 +26,3 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
     }
     #endregion
 }
-#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
