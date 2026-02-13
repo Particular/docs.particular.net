@@ -1,9 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
-using Billing;
+﻿using Billing;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NServiceBus;
 
 var endpointName = "Billing";
 

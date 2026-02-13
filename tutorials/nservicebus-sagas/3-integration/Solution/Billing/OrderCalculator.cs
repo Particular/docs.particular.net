@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Billing;
+﻿namespace Billing;
 
 public class OrderCalculator
 {

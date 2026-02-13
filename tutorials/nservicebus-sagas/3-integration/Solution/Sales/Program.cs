@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using NServiceBus;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 
 var endpointName = "Sales";
 

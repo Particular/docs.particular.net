@@ -1,8 +1,5 @@
 ﻿using Messages;
-using NServiceBus;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
 
 namespace Billing;
 

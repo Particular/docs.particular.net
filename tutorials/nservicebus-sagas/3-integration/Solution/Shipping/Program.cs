@@ -1,8 +1,5 @@
-﻿using Microsoft.Extensions.Hosting;
-using NServiceBus;
-using System;
-using System.Threading.Tasks;
-using Messages;
+﻿using Messages;
+using Microsoft.Extensions.Hosting;
 
 var endpointName = "Shipping";
 
