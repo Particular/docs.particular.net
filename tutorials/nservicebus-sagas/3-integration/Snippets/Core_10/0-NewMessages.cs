@@ -1,14 +1,14 @@
 ﻿#region ShipWithMapleCommand
 public class ShipWithMaple : ICommand
 {
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }
 #endregion
 
 #region ShipWithAlpineCommand
 public class ShipWithAlpine : ICommand
 {
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }
 #endregion
 
@@ -27,6 +27,6 @@ public class ShipmentAcceptedByAlpine : IMessage
 #region ShipmentFailedEvent
 public class ShipmentFailed : IEvent
 {
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }
 #endregion

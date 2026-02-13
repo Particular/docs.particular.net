@@ -35,7 +35,7 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
     #region AcceptedByAlpine-Data
     internal class ShipOrderData : ContainSagaData
     {
-        public string OrderId { get; set; }
+        public string? OrderId { get; set; }
         public bool ShipmentAcceptedByMaple { get; set; }
         public bool ShipmentOrderSentToAlpine { get; set; }
         public bool ShipmentAcceptedByAlpine { get; set; }

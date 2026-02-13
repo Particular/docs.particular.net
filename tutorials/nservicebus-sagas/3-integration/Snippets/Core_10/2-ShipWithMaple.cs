@@ -50,7 +50,7 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
     #region ShipWithMaple-Data
     internal class ShipOrderData : ContainSagaData
     {
-        public string OrderId { get; set; }
+        public string? OrderId { get; set; }
         public bool ShipmentAcceptedByMaple { get; set; }
     }
     #endregion

@@ -13,7 +13,7 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
 
     internal class ShipOrderData : ContainSagaData
     {
-        public string OrderId { get; set; }
+        public string? OrderId { get; set; }
     }
     // ...
     #endregion

@@ -1,4 +1,4 @@
 ﻿public class ShipOrder
 {
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }
