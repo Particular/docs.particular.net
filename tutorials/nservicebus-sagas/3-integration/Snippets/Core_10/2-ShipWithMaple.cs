@@ -10,7 +10,6 @@ class Program
         #region ShipWithMaple-Routing
         routing.RouteToEndpoint(typeof(ShipOrder), "Shipping");
         routing.RouteToEndpoint(typeof(ShipWithMaple), "Shipping");
-
         #endregion
     }
 }
