@@ -9,8 +9,8 @@ public class CustomerStatusPolicy(ILogger<CustomerStatusPolicy> logger) :
     IHandleTimeouts<CustomerStatusPolicy.OrderExpired>
 {
     //values hardcoded for simplicity
-    const int preferredStatusAmount = 250;
-    readonly TimeSpan orderExpiryTimeout = TimeSpan.FromSeconds(10);
+    private const int preferredStatusAmount = 250;
+    private readonly TimeSpan orderExpiryTimeout = TimeSpan.FromSeconds(10);
 
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<CustomerStatusPolicyData> mapper)
     {
