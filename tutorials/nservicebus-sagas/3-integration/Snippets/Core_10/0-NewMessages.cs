@@ -1,6 +1,4 @@
-﻿using NServiceBus;
-
-#region ShipWithMapleCommand
+﻿#region ShipWithMapleCommand
 public class ShipWithMaple : ICommand
 {
     public string OrderId { get; set; }

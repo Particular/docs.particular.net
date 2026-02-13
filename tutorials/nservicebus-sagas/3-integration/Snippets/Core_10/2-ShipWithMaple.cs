@@ -1,7 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using NServiceBus;
-using System;
-using System.Threading.Tasks;
 
 namespace Maple;
 // ShipWithMapleHandler snippet located in solution

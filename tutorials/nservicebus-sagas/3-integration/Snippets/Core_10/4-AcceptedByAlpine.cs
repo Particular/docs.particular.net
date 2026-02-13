@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using NServiceBus;
-using System.Threading.Tasks;
 
 namespace AlpineAccepted;
 
