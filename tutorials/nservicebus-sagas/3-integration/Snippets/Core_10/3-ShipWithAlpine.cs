@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 
 namespace Alpine;
-// ShipWithMapleHandler snipopet located in solution
+// ShipWithMapleHandler snippet located in solution
 
 class Program
 {
