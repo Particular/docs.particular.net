@@ -2,5 +2,5 @@
 
 public interface CustomerHasBecomeNonPreferred : IEvent
 {
-    string CustomerId { get; set; }
+    string? CustomerId { get; set; }
 }

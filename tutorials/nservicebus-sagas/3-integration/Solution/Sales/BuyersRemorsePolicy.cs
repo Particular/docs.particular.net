@@ -58,6 +58,6 @@ internal class BuyersRemorseIsOver
 
 public class BuyersRemorsePolicyData : ContainSagaData
 {
-    public string CustomerId { get; set; }
-    public string OrderId { get; set; }
+    public string? CustomerId { get; set; }
+    public string? OrderId { get; set; }
 }

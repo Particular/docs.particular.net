@@ -58,7 +58,7 @@ public class CustomerStatusPolicy(ILogger<CustomerStatusPolicy> logger) :
 
 public class CustomerStatusPolicyData : ContainSagaData
 {
-    public string CustomerId { get; set; }
+    public string? CustomerId { get; set; }
     public decimal RunningTotal { get; set; }
     public bool PreferredStatus { get; set; }
 }

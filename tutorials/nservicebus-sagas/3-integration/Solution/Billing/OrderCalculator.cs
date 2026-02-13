@@ -2,7 +2,7 @@
 
 public class OrderCalculator
 {
-    public decimal GetOrderTotal(string orderId)
+    public decimal GetOrderTotal(string? orderId)
     {
         // Retrieve order from database
         // Calculate price
