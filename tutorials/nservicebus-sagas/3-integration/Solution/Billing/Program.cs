@@ -1,5 +1,4 @@
-﻿using Billing;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Messages;
 using Microsoft.Extensions.Hosting;
 
 var endpointName = "Billing";
@@ -12,7 +11,8 @@ var endpointConfiguration = new EndpointConfiguration(endpointName);
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-endpointConfiguration.UseTransport(new LearningTransport());
+var routing = endpointConfiguration.UseTransport(new LearningTransport());
+routing.RouteToEndpoint(typeof(OrderBilled), "Shipping");
 
 endpointConfiguration.UsePersistence<LearningPersistence>();
 
@@ -27,7 +27,5 @@ recoverability.Delayed(
 );
 
 builder.UseNServiceBus(endpointConfiguration);
-
-builder.Services.AddSingleton<OrderCalculator>();
 
 await builder.Build().RunAsync();

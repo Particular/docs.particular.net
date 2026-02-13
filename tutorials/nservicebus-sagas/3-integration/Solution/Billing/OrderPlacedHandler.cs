@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Billing;
 
-public class OrderPlacedHandler(OrderCalculator orderCalculator, ILogger<OrderPlacedHandler> logger): IHandleMessages<OrderPlaced>
+public class OrderPlacedHandler(ILogger<OrderPlacedHandler> logger): IHandleMessages<OrderPlaced>
 {
     public Task Handle(OrderPlaced message, IMessageHandlerContext context)
     {
@@ -11,9 +11,7 @@ public class OrderPlacedHandler(OrderCalculator orderCalculator, ILogger<OrderPl
 
         var orderBilled = new OrderBilled
         {
-            CustomerId = message.CustomerId,
             OrderId = message.OrderId,
-            OrderValue = orderCalculator.GetOrderTotal(message.OrderId)
         };
         return context.Publish(orderBilled);
     }
