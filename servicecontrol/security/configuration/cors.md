@@ -7,7 +7,7 @@ related:
 - servicecontrol/security/hosting-guide
 ---
 
-Cross-Origin Resource Sharing (CORS) controls which web applications can make requests to ServiceControl. This is important when ServicePulse is hosted on a different domain than ServiceControl.
+Cross-Origin Resource Sharing (CORS) controls which web applications can make requests to ServiceControl. This is important when ServicePulse is hosted on a different domain or port than ServiceControl.
 
 ## Configuration
 

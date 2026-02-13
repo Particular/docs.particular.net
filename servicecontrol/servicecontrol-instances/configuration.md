@@ -527,7 +527,7 @@ Enables processing of forwarded headers (X-Forwarded-For, X-Forwarded-Proto, etc
 
 _Added in version 6.11.0_
 
-Trusts forwarded headers from any source. Set to `false` when using `KnownProxies` or `KnownNetworks`.
+Trusts forwarded headers from any source. This setting is overwritten to `false` when using `KnownProxies` or `KnownNetworks`.
 
 | Context | Name |
 | --- | --- |
