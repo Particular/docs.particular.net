@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using NUnit.Framework;
-using NUnit.Framework.Internal;
 
 namespace IntegrityTests
 {
@@ -16,7 +15,18 @@ namespace IntegrityTests
         {
             var allErrors = new Dictionary<string, List<string>>();
             var allPartials = Directory.GetFiles(TestSetup.DocsRootPath, "*.partial.md", SearchOption.AllDirectories);
-            var allArticles = Directory.GetFiles(TestSetup.DocsRootPath, "*.md", SearchOption.AllDirectories).Except(allPartials);
+
+            // Find the paths of all .md files where the first folder start with .
+            var allDotDirectories = Directory.GetDirectories(TestSetup.DocsRootPath, ".*", SearchOption.AllDirectories);
+            var allFilesInsideADotDirectory = new List<string>();
+            foreach (var directory in allDotDirectories)
+            {
+                 allFilesInsideADotDirectory.AddRange(Directory.GetFiles(directory, "*.md", SearchOption.AllDirectories));
+            }
+
+            var allArticles = Directory.GetFiles(TestSetup.DocsRootPath, "*.md", SearchOption.AllDirectories)
+                .Except(allPartials)
+                .Except(allFilesInsideADotDirectory);
 
             foreach (var articlePath in allArticles)
             {
