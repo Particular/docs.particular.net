@@ -7,6 +7,8 @@ related:
 reviewed: 2024-08-02
 ---
 
+include: azurefunctions-inprocess-sunset
+
 To configure a custom trigger function, remove the native `NServiceBusTriggerFunction` attribute. A custom trigger function can then be added manually to the project:
 
 snippet: custom-trigger-definition
