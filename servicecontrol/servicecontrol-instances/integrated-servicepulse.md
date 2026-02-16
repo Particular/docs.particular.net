@@ -21,7 +21,7 @@ Drawbacks:
 
 ## Enable integrated ServicePulse
 
-Integrated ServicePulse can be [enabled in the ServiceControl Error instance configuration](/servicecontrol/servicecontrol-instances/configuration.md#integrated-servicepulse).
+Integrated ServicePulse can be [enabled in the ServiceControl Error instance configuration](/servicecontrol/servicecontrol-instances/configuration.md#servicecontrolenableintegratedservicepulse).
 
 When upgrading an existing ServiceControl Error instance via ServiceControl Management, the user is prompted to enable integrated ServicePulse.
 
