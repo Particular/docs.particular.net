@@ -17,6 +17,7 @@ docker run -d --name servicecontrol -p 33333:33333 \
     -e CONNECTIONSTRING="host=rabbitmq" \
     -e RAVENDB_CONNECTIONSTRING="http://servicecontrol-db:8080" \
     -e REMOTEINSTANCES='[{"api_uri":"http://audit:44444/api"}]' \
+    -e ENABLE_INTEGRATED_SERVICEPULSE="true" \
     particular/servicecontrol:latest
 ```
 
@@ -64,6 +65,12 @@ include: servicecontrol-container-ravenconnectionstring
 _Environment variable:_ `REMOTEINSTANCES`
 
 A JSON structure that provides URLs for the Error instance to access any [remote audit instances](/servicecontrol/servicecontrol-instances/remotes.md). When requesting audit data via the ServiceControl API, the Error instance will communicate to each of the remote audit instances in a scatter-gather pattern and then return the combined results. The URLs must be accessible by the Error instance directly, not constructed to be accessible from an external browser.
+
+### Enable integrated ServicePulse
+
+_Environment variable:_ `ENABLE_INTEGRATED_SERVICEPULSE`
+
+A boolean value whether to enable the [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) for this Error instance.
 
 include: servicecontrol-container-license
 

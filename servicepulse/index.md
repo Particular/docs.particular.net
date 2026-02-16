@@ -20,6 +20,8 @@ ServicePulse uses information provided by ServiceControl. To use ServicePulse, f
   - For message flow visualisation and viewing successful messages, one or more [audit instances](/servicecontrol/audit-instances/) are required.
   - For monitoring throughput and other metrics, a [monitoring instance](/servicecontrol/monitoring-instances/) is required.
 
+[ServiceControl version 6.12 and above include ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md).
+
 #### Relationship between ServicePulse, ServiceControl, Monitoring, and Endpoints
 
 ```mermaid

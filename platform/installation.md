@@ -52,17 +52,25 @@ ServiceControl, along with ServicePulse, can be hosted in Visual Studio, with no
 
 ServicePulse is a single page application which can be deployed in multiple ways:
 
-#### Windows service
+#### Integrated in ServiceControl
+
+ServiceControl version 6.12 and above includes [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) and can host ServicePulse from a ServiceControl Error instance host.
+
+#### Separate from ServiceControl
+
+ServicePulse can be installed as a separate application from ServiceControl, although it still must be connected to a ServiceControl Error instance to function.
+
+##### Windows service
 
 ServicePulse can be installed using a dedicated [installation package](https://particular.net/downloads), which deploys ServicePulse as a Windows service host.
 
 ServicePulse can be installed more than once on a single machine, with each instance listening on its own port. This is done by [specifying appropriate arguments during installation](/servicepulse/installation.md#installation-available-installation-parameters).
 
-#### Container (Linux only)
+##### Container (Linux only)
 
 A container image for ServicePulse is pushed to [Docker Hub](https://hub.docker.com/u/particular) creating the ability to deploy ServicePulse on a Linux and [OCI compatible](https://opencontainers.org/) container host, e.g. Docker or Kubernetes.
 
-#### Extracted
+##### Extracted
 
 Using the [installation package](https://particular.net/downloads), ServicePulse can be [extracted as a set of HTML, JavaScript, and CSS files](/servicepulse/install-servicepulse-in-iis.md#basic-setup-detailed-steps) and subsequently deployed to any web server.
 

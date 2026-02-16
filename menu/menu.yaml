@@ -1576,6 +1576,8 @@
     Articles:
     - Title: ServiceControl Error instances
       Url: servicecontrol/servicecontrol-instances
+    - Title: Integrated ServicePulse
+      Url: servicecontrol/servicecontrol-instances/integrated-servicepulse
     - Title: Deployment
       Url: servicecontrol/servicecontrol-instances/deployment
       Articles:

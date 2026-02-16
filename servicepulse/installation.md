@@ -8,7 +8,7 @@ related:
 ---
 
 > [!NOTE]
-> It is also possible to run ServicePulse in a [container](containerization).
+> This guide explains how to install ServicePulse using the standalone installer package. It is also possible to run ServicePulse [in ServiceControl](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) or in a [container](containerization).
 
 ## Prerequisites
 
