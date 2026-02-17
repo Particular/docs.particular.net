@@ -40,7 +40,7 @@ In this exercise we'll build a saga to handle the situation outlined above, wher
 >
 > Check out the [NServiceBus step-by-step tutorial overview](/tutorials/nservicebus-step-by-step/) for a diagram of how the existing code works. Or, if you like, you can complete those lessons first to learn the basics of sending messages and publishing events with NServiceBus and return to this lesson afterward.
 >
-> This tutorial uses NServiceBus 10, .NET 10, and assumes an up-to-date installation of Visual Studio 2022.
+> This tutorial uses NServiceBus 10, .NET 10, and assumes an up-to-date installation of Visual Studio 2026.
 
 We will create a saga in the **Shipping** endpoint that will handle the `OrderPlaced` and `OrderBilled` events. When it receives both, it'll send the `ShipOrder` command to initiate the delivery.
 

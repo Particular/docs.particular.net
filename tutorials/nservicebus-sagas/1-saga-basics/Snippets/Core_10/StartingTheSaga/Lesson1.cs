@@ -13,7 +13,6 @@ namespace StartingTheSaga
             IHandleMessages<OrderBilled>       // But surely, not this one!?
         #endregion
         {
-
             protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShippingPolicyData> mapper)
             {
                 // TODO
@@ -39,9 +38,8 @@ namespace StartingTheSaga
         public class ShippingPolicy(ILogger<ShippingPolicy> logger) : Saga<ShippingPolicyData>,
             IAmStartedByMessages<OrderPlaced>, // I can start the saga!
             IAmStartedByMessages<OrderBilled>  // I can start the saga too!
+        #endregion
         {
-            #endregion
-
             protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShippingPolicyData> mapper)
             {
                 // TODO
