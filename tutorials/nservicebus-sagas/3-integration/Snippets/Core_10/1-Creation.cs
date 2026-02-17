@@ -1,9 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 
 #region Creation-SagaStart
-class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
-    Saga<ShipOrderWorkflow.ShipOrderData>,
-    IAmStartedByMessages<ShipOrder>
+class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) : Saga<ShipOrderWorkflow.ShipOrderData>, IAmStartedByMessages<ShipOrder>
 {
     public Task Handle(ShipOrder message, IMessageHandlerContext context)
     {

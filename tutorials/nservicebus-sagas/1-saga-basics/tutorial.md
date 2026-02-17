@@ -85,11 +85,6 @@ In the **Shipping** endpoint, let's create a new class called `ShippingPolicyDat
 
 snippet: BasicShippingPolicyData
 
-> [!NOTE]
-> **Where do I put the `ShippingPolicyData` class?**
->
-> Saga data is private to the saga, since it stores state for a specific saga and cannot be used by any other component in the system. When designing a system, it is convenient to define saga data as a nested class inside the saga definition. This approach helps in strengthening the close relationship between the two artifacts. However, it is important to verify that your persistence and serialization choices support the use of nested classes.
-
 To tell the saga what class to use for its data, we inherit from `Saga<TData>` where `TData` is the saga data type. So for the `ShippingPolicy`, we'll inherit from `Saga<ShippingPolicyData>` like this:
 
 snippet: ShippingPolicyAugmentedWithData

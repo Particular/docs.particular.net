@@ -2,8 +2,6 @@
 
 #region BuyersRemorseTimeoutClassDefinition
 
-class BuyersRemorseIsOver
-{
-}
+internal class BuyersRemorseIsOver { }
 
 #endregion

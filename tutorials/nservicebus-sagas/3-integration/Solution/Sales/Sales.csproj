@@ -8,11 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Sales.Messages\Sales.Messages.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="NServiceBus" Version="10.*" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Sales.Messages\Sales.Messages.csproj" />
-  </ItemGroup>
 </Project>

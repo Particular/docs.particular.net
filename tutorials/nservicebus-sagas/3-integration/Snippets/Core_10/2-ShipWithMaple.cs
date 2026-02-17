@@ -5,7 +5,7 @@ namespace Maple;
 
 class Program
 {
-    static void Routing(RoutingSettings<LearningTransport> routing)
+    public static void Routing(RoutingSettings<LearningTransport> routing)
     {
         #region ShipWithMaple-Routing
         routing.RouteToEndpoint(typeof(ShipOrder), "Shipping");
@@ -14,16 +14,12 @@ class Program
     }
 }
 
-class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
-    Saga<ShipOrderWorkflow.ShipOrderData>,
-    IAmStartedByMessages<ShipOrder>,
-    IHandleMessages<ShipmentAcceptedByMaple>
+class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) : Saga<ShipOrderWorkflow.ShipOrderData>, IAmStartedByMessages<ShipOrder>, IHandleMessages<ShipmentAcceptedByMaple>
 {
-
     #region HandleShipOrder
     public async Task Handle(ShipOrder message, IMessageHandlerContext context)
     {
-        logger.LogInformation("ShipOrderWorkflow for Order [{.OrderId}] - Trying Maple first.", Data.OrderId);
+        logger.LogInformation("ShipOrderWorkflow for Order [{orderId}] - Trying Maple first.", Data.OrderId);
 
         // Execute order to ship with Maple
         await context.Send(new ShipWithMaple() { OrderId = Data.OrderId });
@@ -36,7 +32,7 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
     #region ShipWithMaple-ShipmentAccepted
     public Task Handle(ShipmentAcceptedByMaple message, IMessageHandlerContext context)
     {
-        logger.LogInformation("Order [{OrderId}] - Successfully shipped with Maple", Data.OrderId);
+        logger.LogInformation("Order [{orderId}] - Successfully shipped with Maple", Data.OrderId);
 
         Data.ShipmentAcceptedByMaple = true;
 
@@ -50,6 +46,7 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
     internal class ShipOrderData : ContainSagaData
     {
         public string? OrderId { get; set; }
+
         public bool ShipmentAcceptedByMaple { get; set; }
     }
     #endregion

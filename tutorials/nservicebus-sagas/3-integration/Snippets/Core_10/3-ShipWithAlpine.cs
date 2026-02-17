@@ -1,11 +1,11 @@
 ﻿using Microsoft.Extensions.Logging;
 
 namespace Alpine;
-// ShipWithMapleHandler snippet located in solution
+// ShipWithAlpineHandler snippet located in solution
 
 class Program
 {
-    static void Routing(RoutingSettings<LearningTransport> routing)
+    public static void Routing(RoutingSettings<LearningTransport> routing)
     {
         #region ShipWithAlpine-Routing
         routing.RouteToEndpoint(typeof(ShipOrder), "Shipping");
@@ -15,13 +15,9 @@ class Program
     }
 }
 
-class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
-    Saga<ShipOrderWorkflow.ShipOrderData>,
-    IAmStartedByMessages<ShipOrder>,
-    IHandleMessages<ShipmentAcceptedByMaple>,
-    IHandleTimeouts<ShipOrderWorkflow.ShippingEscalation>
+class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) : Saga<ShipOrderWorkflow.ShipOrderData>, IAmStartedByMessages<ShipOrder>, IHandleMessages<ShipmentAcceptedByMaple>, IHandleTimeouts<ShipOrderWorkflow.ShippingEscalation>
 {
-   public Task Handle(ShipOrder message, IMessageHandlerContext context)
+    public Task Handle(ShipOrder message, IMessageHandlerContext context)
     {
         // Stub only
         return Task.CompletedTask;
@@ -32,7 +28,7 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
     {
         if (!Data.ShipmentOrderSentToAlpine)
         {
-            logger.LogInformation("Order [{OrderId}] - Successfully shipped with Maple", Data.OrderId);
+            logger.LogInformation("Order [{orderId}] - Successfully shipped with Maple", Data.OrderId);
 
             Data.ShipmentAcceptedByMaple = true;
 
@@ -48,7 +44,7 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
     {
         if (!Data.ShipmentAcceptedByMaple && !Data.ShipmentOrderSentToAlpine)
         {
-            logger.LogInformation("Order [{OrderId}] - We didn't receive answer from Maple, let's try Alpine.", Data.OrderId);
+            logger.LogInformation("Order [{orderId}] - We didn't receive answer from Maple, let's try Alpine.", Data.OrderId);
             Data.ShipmentOrderSentToAlpine = true;
             await context.Send(new ShipWithAlpine() { OrderId = Data.OrderId });
             await RequestTimeout(context, TimeSpan.FromSeconds(20), new ShippingEscalation());
@@ -60,7 +56,9 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
     internal class ShipOrderData : ContainSagaData
     {
         public string? OrderId { get; set; }
+
         public bool ShipmentAcceptedByMaple { get; set; }
+
         public bool ShipmentOrderSentToAlpine { get; set; }
     }
     #endregion

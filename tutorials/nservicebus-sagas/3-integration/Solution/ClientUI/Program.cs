@@ -2,19 +2,16 @@ using Messages;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-var endpointName = "ClientUI";
-
-Console.Title = endpointName;
+Console.Title = "ClientUI";
 
 var builder = Host.CreateApplicationBuilder(args);
 
-var endpointConfiguration = new EndpointConfiguration(endpointName);
-
+var endpointConfiguration = new EndpointConfiguration("ClientUI");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
 var routing = endpointConfiguration.UseTransport(new LearningTransport());
-
 routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
+routing.RouteToEndpoint(typeof(CancelOrder), "Sales");
 
 builder.UseNServiceBus(endpointConfiguration);
 
@@ -29,9 +26,11 @@ await app.StopAsync();
 
 static async Task RunLoop(IMessageSession messageSession)
 {
+    var lastOrder = string.Empty;
+
     while (true)
     {
-        Console.WriteLine("Press 'P' to place an order, or 'Q' to quit.");
+        Console.WriteLine("Press 'P' to place an order, 'C' to cancel an order, or 'Q' to quit.");
         var key = Console.ReadKey();
         Console.WriteLine();
 
@@ -45,9 +44,19 @@ static async Task RunLoop(IMessageSession messageSession)
                 };
 
                 // Send the command
-                Console.WriteLine($"PlaceOrder sent, OrderId = {command.OrderId}");
+                Console.WriteLine($"Sending PlaceOrder command, OrderId = {command.OrderId}");
                 await messageSession.Send(command);
 
+                lastOrder = command.OrderId; // Store order identifier to cancel if needed.
+                break;
+
+            case ConsoleKey.C:
+                var cancelCommand = new CancelOrder
+                {
+                    OrderId = lastOrder
+                };
+                await messageSession.Send(cancelCommand);
+                Console.WriteLine($"Sent a CancelOrder command, {cancelCommand.OrderId}");
                 break;
 
             case ConsoleKey.Q:

@@ -22,10 +22,7 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemo
     #endregion
 }
 
-internal class BuyersRemorseIsOver
-{
-
-}
+internal class BuyersRemorseIsOver { }
 
 public class BuyersRemorseData : ContainSagaData
 {

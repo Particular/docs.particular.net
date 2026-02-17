@@ -13,7 +13,7 @@ class ShipWithAlpineHandler(ILogger<ShipWithAlpineHandler> logger) : IHandleMess
     {
         var waitingTime = Random.Shared.Next(MaximumTimeAlpineMightRespond);
 
-        logger.LogInformation("ShipWithAlpineHandler: Delaying Order [{OrderId}] {WaitingTime} seconds.", message.OrderId, waitingTime);
+        logger.LogInformation("ShipWithAlpineHandler: Delaying Order [{orderId}] {WaitingTime} seconds.", message.OrderId, waitingTime);
 
         await Task.Delay(waitingTime * 1000, CancellationToken.None);
 

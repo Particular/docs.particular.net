@@ -1,6 +1,6 @@
-﻿namespace Messages;
+﻿using NServiceBus;
 
-using NServiceBus;
+namespace Messages;
 
 public class CancelOrder : ICommand
 {

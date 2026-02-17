@@ -33,9 +33,7 @@ internal class OrderPlaced
     public string? OrderId { get; set; }
 }
 
-internal class BuyersRemorseIsOver
-{
-}
+internal class BuyersRemorseIsOver { }
 
 
 internal class BuyersRemorseData : ContainSagaData

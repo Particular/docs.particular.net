@@ -3,10 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Shipping;
 
-class ShippingPolicy(ILogger<ShippingPolicy> logger) :
-    Saga<ShippingPolicyData>,
-    IAmStartedByMessages<OrderBilled>,
-    IAmStartedByMessages<OrderPlaced>
+class ShippingPolicy(ILogger<ShippingPolicy> logger) : Saga<ShippingPolicyData>, IAmStartedByMessages<OrderBilled>, IAmStartedByMessages<OrderPlaced>
 {
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShippingPolicyData> mapper)
     {
@@ -17,14 +14,14 @@ class ShippingPolicy(ILogger<ShippingPolicy> logger) :
 
     public Task Handle(OrderPlaced message, IMessageHandlerContext context)
     {
-        logger.LogInformation("OrderPlaced message received for {OrderId}.", message.OrderId);
+        logger.LogInformation("OrderPlaced message received for {orderId}.", message.OrderId);
         Data.IsOrderPlaced = true;
         return ProcessOrder(context);
     }
 
     public Task Handle(OrderBilled message, IMessageHandlerContext context)
     {
-        logger.LogInformation("OrderBilled message received for {OrderId}.", message.OrderId);
+        logger.LogInformation("OrderBilled message received for {orderId}.", message.OrderId);
         Data.IsOrderBilled = true;
         return ProcessOrder(context);
     }
@@ -42,6 +39,8 @@ class ShippingPolicy(ILogger<ShippingPolicy> logger) :
 class ShippingPolicyData : ContainSagaData
 {
     public string? OrderId { get; set; }
+
     public bool IsOrderPlaced { get; set; }
+
     public bool IsOrderBilled { get; set; }
 }

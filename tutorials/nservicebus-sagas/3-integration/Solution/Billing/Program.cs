@@ -1,20 +1,12 @@
-﻿using Messages;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 
-var endpointName = "Billing";
-
-Console.Title = endpointName;
+Console.Title = "Billing";
 
 var builder = Host.CreateApplicationBuilder(args);
 
-var endpointConfiguration = new EndpointConfiguration(endpointName);
-
+var endpointConfiguration = new EndpointConfiguration("Billing");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-
-var routing = endpointConfiguration.UseTransport(new LearningTransport());
-routing.RouteToEndpoint(typeof(OrderBilled), "Shipping");
-
-endpointConfiguration.UsePersistence<LearningPersistence>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
 endpointConfiguration.SendFailedMessagesTo("error");
 endpointConfiguration.AuditProcessedMessagesTo("audit");
@@ -22,9 +14,7 @@ endpointConfiguration.AuditProcessedMessagesTo("audit");
 // Decrease the default delayed delivery interval so that we don't
 // have to wait too long for the message to be moved to the error queue
 var recoverability = endpointConfiguration.Recoverability();
-recoverability.Delayed(
-    delayed => { delayed.TimeIncrease(TimeSpan.FromSeconds(2)); }
-);
+recoverability.Delayed(delayed => delayed.TimeIncrease(TimeSpan.FromSeconds(2)));
 
 builder.UseNServiceBus(endpointConfiguration);
 
