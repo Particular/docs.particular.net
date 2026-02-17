@@ -32,7 +32,7 @@ partial: configuration
 
 ### Transactions
 
-Unlike the [in-process hosting model](/nservicebus/hosting/azure-functions-service-bus/in-process/), the isolated worker model does not support using [`TransportTransactionMode.SendsAtomicWithReceive`](/transports/transactions.md#transaction-modes-transport-transaction-sends-atomic-with-receive). [`TransportTransactionMode.ReceiveOnly`](/transports/transactions.md#transaction-modes-transport-transaction-receive-only) is the default option.
+The isolated worker model does not support using [`TransportTransactionMode.SendsAtomicWithReceive`](/transports/transactions.md#transaction-modes-transport-transaction-sends-atomic-with-receive). [`TransportTransactionMode.ReceiveOnly`](/transports/transactions.md#transaction-modes-transport-transaction-receive-only) is the default option.
 
 ### Startup Diagnostics
 
