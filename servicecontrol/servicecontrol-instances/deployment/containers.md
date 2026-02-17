@@ -70,7 +70,7 @@ A JSON structure that provides URLs for the Error instance to access any [remote
 
 _Environment variable:_ `ENABLE_INTEGRATED_SERVICEPULSE`
 
-A boolean value whether to enable the [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) for this Error instance.
+A boolean value specifying whether to enable the [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) for this Error instance.
 
 include: servicecontrol-container-license
 

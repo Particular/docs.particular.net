@@ -9,15 +9,15 @@ Version 6.12 of ServiceControl and above include integrated ServicePulse. Integr
 
 Benefits:
 - No need for a standalone ServicePulse installation. Install and manage ServiceControl and ServicePulse in one place.
-- No need to configure ServicePulse with ServiceControl Error instance url. Integrated ServicePulse is preconfigured to connect to the ServiceControl installation it runs in.
+- No need to configure ServicePulse with the ServiceControl Error instance url. Integrated ServicePulse is preconfigured to connect to the ServiceControl installation it runs in.
 - No need to upgrade ServicePulse. Each new version of ServiceControl includes the latest ServicePulse. Every time ServiceControl is upgraded, integrated ServicePulse is upgraded as well.
 
 Drawbacks:
 - Can not use built-in ServicePulse reverse proxy. Enable [security features of ServiceControl](/servicecontrol/security/) to secure access to ServiceControl data.
 - Can not use a single ServicePulse instance to control multiple ServiceControl installations. Each ServiceControl Error instance can be configured with a dedicated integrated ServicePulse.
 
->[!NOTE]
->Standalone ServicePulse installations continue to function normally and can be used in conjunction with integrated ServicePulse.
+> [!NOTE]
+> Standalone ServicePulse installations continue to function normally and can be used in conjunction with integrated ServicePulse.
 
 ## Enable integrated ServicePulse
 
@@ -29,12 +29,12 @@ When upgrading an existing ServiceControl Error instance via ServiceControl Mana
 
 When upgrading an existing ServiceControl Error instance via Powershell or docker, update the configuration manually to enable integrated ServicePulse.
 
->[!NOTE]
->Once integrated ServicePulse is enabled, standalone ServicePulse installations can be safely removed.
+> [!NOTE]
+> Once integrated ServicePulse is enabled, standalone ServicePulse installations are no longer needed and can be removed.
 
 ## Configuring integrated ServicePulse
 
-Integrated ServicePulse shares settings with the ServiceControl Error instance it is hosted with (the hosting instance).
+Integrated ServicePulse shares settings with the ServiceControl Error instance it is hosted by (the hosting instance).
 
 - All host settings (such as [host name](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolhostname) and [port number](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolport)) are shared with the hosting instance. Integrated ServicePulse is available at the root url (`http://localhost:33333/` in a default installation).
 - All security settings are shared with the hosting instance. There is no need to enable [header forwarding](/servicecontrol/security/configuration/forward-headers.md), [CORS](/servicecontrol/security/configuration/cors.md), or [ServicePulse specific authorization configuration](/servicecontrol/servicecontrol-instances/configuration.md#authentication-servicecontrolauthentication-servicepulse-clientid).

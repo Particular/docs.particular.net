@@ -54,7 +54,7 @@ ServicePulse is a single page application which can be deployed in multiple ways
 
 #### Integrated in ServiceControl
 
-ServiceControl version 6.12 and above includes [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) and can host ServicePulse from a ServiceControl Error instance host.
+ServiceControl version 6.12 and above includes [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) and can host ServicePulse from a ServiceControl [Error instance](/servicecontrol/servicecontrol-instances/) host.
 
 #### Separate from ServiceControl
 

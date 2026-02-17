@@ -15,7 +15,7 @@ For more information on how ServiceControl and ServicePulse work together, refer
 There are three types of instances that can be created:
 
 - [Error instances](/servicecontrol/servicecontrol-instances/)
-  This is the most commonly used ServiceControl instance and indispensable to ensure the smooth operation of an NServiceBus system. Together with ServicePulse (which can be [hosted in the ServiceControl Error instance](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md)), it provides the ability to visualize and retry failed messages.
+  This is the most commonly used ServiceControl instance and is indispensable to ensure the smooth operation of an NServiceBus system. Together with ServicePulse (which can be [hosted by the ServiceControl Error instance](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md)), it provides the ability to visualize and retry failed messages.
 - [Audit instances](/servicecontrol/audit-instances/)
   Audit instances provide valuable information about the message flow through a system. Among other things, this is used by ServicePulse to help visualize a distributed system.
 - [Monitoring instances](/servicecontrol/monitoring-instances/)
