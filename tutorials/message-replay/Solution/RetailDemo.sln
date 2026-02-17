@@ -1,10 +1,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29728.190
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11505.172 d18.3
 MinimumVisualStudioVersion = 15.0.26730.12
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClientUI", "ClientUI\ClientUI.csproj", "{D4DCF868-A625-4B0B-BB20-C150553A6548}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Messages", "Messages\Messages.csproj", "{F6DE8266-1F56-4241-965C-2DDBB76CEC1E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sales", "Sales\Sales.csproj", "{CD42E5DF-D4A7-4933-8017-1398B2E9560F}"
 EndProject
@@ -14,6 +12,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Shipping", "Shipping\Shippi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlatformTools", "PlatformTools\PlatformTools.csproj", "{6DE93070-C47B-4FA6-86FF-421115654E6C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Billing.Messages", "Billing.Messages\Billing.Messages.csproj", "{BA05E3A9-1B84-7496-D11B-02830BBF0ED8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sales.Messages", "Sales.Messages\Sales.Messages.csproj", "{3F6E948F-FB2D-FA42-ECE3-D747B11C0845}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,8 +23,6 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D4DCF868-A625-4B0B-BB20-C150553A6548}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D4DCF868-A625-4B0B-BB20-C150553A6548}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F6DE8266-1F56-4241-965C-2DDBB76CEC1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F6DE8266-1F56-4241-965C-2DDBB76CEC1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CD42E5DF-D4A7-4933-8017-1398B2E9560F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CD42E5DF-D4A7-4933-8017-1398B2E9560F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BF02A43-6D9D-4B49-A06D-603A66C6BCB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -31,6 +31,10 @@ Global
 		{41F0D809-8FA4-4139-9131-09441D69AFB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DE93070-C47B-4FA6-86FF-421115654E6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6DE93070-C47B-4FA6-86FF-421115654E6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA05E3A9-1B84-7496-D11B-02830BBF0ED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA05E3A9-1B84-7496-D11B-02830BBF0ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F6E948F-FB2D-FA42-ECE3-D747B11C0845}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F6E948F-FB2D-FA42-ECE3-D747B11C0845}.Debug|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

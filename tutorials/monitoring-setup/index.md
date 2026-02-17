@@ -4,7 +4,6 @@ reviewed: 2024-11-07
 summary: Setting up the Particular Service Platform to monitor an NServiceBus system.
 component: Core
 isLearningPath: true
-versions: '[5,)'
 redirects:
 - tutorials/monitoring/setup
 ---
@@ -180,7 +179,9 @@ The error queue is created with a new ServiceControl instance. By default, it is
 
 Configure your endpoint to send failed messages to the error queue.
 
-partial: error-config
+Add the following code to your endpoint configuration:
+
+snippet: SetupMonitoring-ConfigureError
 
 > [!NOTE]
 > If you are using the MSMQ transport then you also need to specify the machine where the error queue is located. i.e. `error@MACHINENAME`. This should be the same machine where your ServiceControl instance is installed.
@@ -193,7 +194,9 @@ The audit queue is created with a new ServiceControl instance. By default, it is
 
 Configure your endpoint to send processed messages to an audit queue.
 
-partial: audit-config
+Add the following code to your endpoint configuration:
+
+snippet: SetupMonitoring-ConfigureAudit
 
 > [!NOTE]
 > If you are using the MSMQ transport then you also need to specify the machine where the audit queue is located. i.e. `audit@MACHINENAME`. This should be the same machine where your ServiceControl instance is installed.
