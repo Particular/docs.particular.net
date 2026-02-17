@@ -9,7 +9,7 @@ var builder = Host.CreateApplicationBuilder(args);
 var endpointConfiguration = new EndpointConfiguration("ClientUI");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-var routing = endpointConfiguration.UseTransport<LearningTransport>().Routing();
+var routing = endpointConfiguration.UseTransport(new LearningTransport());
 routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
 builder.UseNServiceBus(endpointConfiguration);
@@ -19,7 +19,6 @@ var app = builder.Build();
 await app.StartAsync();
 
 var messageSession = app.Services.GetRequiredService<IMessageSession>();
-
 await RunLoop(messageSession);
 
 await app.StopAsync();

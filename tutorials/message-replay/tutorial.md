@@ -15,12 +15,11 @@ To get started, download the solution, extract the archive, and then open the **
 
 downloadbutton
 
-
 ## Project Structure
 
 The solution contains six projects. Similar to the one built in the [NServiceBus Step-by-step](/tutorials/nservicebus-step-by-step/) tutorial, the **ClientUI**, **Sales**, **Billing**, and **Shipping** projects are [endpoints](/nservicebus/endpoints/) that communicate with each other using NServiceBus messages. In addition, this tutorial introduces the **PlatformTools** project which launches a portable version of ServiceControl and ServicePulse.
 
-The **ClientUI** endpoint mimics a web application and is an entry point in our system. The **Sales**, **Billing**, and **Shipping** endpoints contain business logic related to processing and fulfilling orders. Each endpoint references the **Messages** assembly, which contains the definitions of messages as [POCO classes](https://en.wikipedia.org/wiki/Plain_old_CLR_object).
+The **ClientUI** endpoint mimics a web application and is an entry point in our system. The **Sales**, **Billing**, and **Shipping** endpoints contain business logic related to processing and fulfilling orders. Endpoints reference the appropriate message assemblies (**Billing.Messages** and **Sales.Messages**), which contain the definitions of messages as [POCO classes](https://en.wikipedia.org/wiki/Plain_old_CLR_object).
 
 As shown in the diagram, the **ClientUI** endpoint sends a **PlaceOrder** command to the **Sales** endpoint. As a result, the **Sales** endpoint will publish an `OrderPlaced` event using the publish/subscribe pattern, which will be received by the **Billing** and **Shipping** endpoints. Additionally, the **Billing** endpoint will publish an `OrderBilled` event that will also be received by the **Shipping** endpoint.
 
@@ -51,7 +50,7 @@ INFO  Shipping.OrderBilledHandler Received OrderBilled, OrderId = 96dfd084-2bb0-
 Now, let's throw an exception that will cause a message to make its way to the error queue. For the purposes of this exercise, we'll create a specific bug in the Sales endpoint and watch what happens when we run the endpoint.
 
  1. In the **Sales** endpoint, locate the **PlaceOrderHandler**.
- 1. Uncomment the line that throws the exception. The code in the project contains a `#pragma` directive to prevent Visual Studio from interpreting the unreachable code after the `throw` statement as a build error.
+ 1. Uncomment the line that throws the exception.
 
 Now, run the solution.
 
@@ -72,7 +71,6 @@ Note that the **Sales** endpoint did not perform any delayed retries. This is be
 snippet: NoDelayedRetries
 
 Since we are going to be causing a lot of messages to fail in this exercise, we'd prefer not to wait around for several rounds of delayed retries to complete.
-
 
 ### Replay a message
 
