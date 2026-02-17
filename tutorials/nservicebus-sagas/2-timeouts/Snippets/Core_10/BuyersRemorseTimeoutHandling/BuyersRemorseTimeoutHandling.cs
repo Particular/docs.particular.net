@@ -4,17 +4,16 @@ namespace BuyersRemorseTimeoutHandling;
 
 #region BuyersRemorseTimeoutHandling
 
-class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>,
-    IHandleTimeouts<BuyersRemorseIsOver>
+class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>, IHandleTimeouts<BuyersRemorseIsOver>
 {
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseData> mapper)
     {
         //Omitted for clarity
     }
 
-    public async Task Timeout(BuyersRemorseIsOver timeout, IMessageHandlerContext context)
+    public async Task Timeout(BuyersRemorseIsOver state, IMessageHandlerContext context)
     {
-        logger.LogInformation("Cooling down period for order #{OrderId} has elapsed.", Data.OrderId);
+        logger.LogInformation("Cooling down period for order #{orderId} has elapsed.", Data.OrderId);
 
         var orderPlaced = new OrderPlaced
         {

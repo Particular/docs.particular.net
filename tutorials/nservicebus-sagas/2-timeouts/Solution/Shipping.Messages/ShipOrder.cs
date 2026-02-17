@@ -1,7 +1,8 @@
-﻿namespace Messages;
+﻿using NServiceBus;
 
-public class ShipOrder :
-    ICommand
+namespace Messages;
+
+public class ShipOrder : ICommand
 {
     public string? OrderId { get; set; }
 }

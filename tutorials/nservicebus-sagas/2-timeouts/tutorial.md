@@ -30,7 +30,7 @@ With the buyer's remorse pattern, the purchase is kept in a holding state until 
 
 ## Exercise
 
-In this tutorial, we'll model the delay period using a saga timeout. We'll change the existing project so that when the **Sales** endpoint receives the `PlaceOrder` command, we don't instantly publish the `OrderPlaced` event. 
+In this tutorial, we'll model the delay period using a saga timeout. We'll change the existing project so that when the **Sales** endpoint receives the `PlaceOrder` command, we don't instantly publish the `OrderPlaced` event.
 Instead, we'll store the order state in a saga and set a timeout and do that in the future. When the timeout is due, we'll publish the `OrderPlaced` event, unless we've received a `CancelOrder` command in the meantime.
 
 > [!NOTE]
@@ -44,7 +44,7 @@ Instead, we'll store the order state in a saga and set a timeout and do that in 
 > **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references the relevant **.Messages** assembly, which contains the classes that define the messages exchanged in our system.
 > To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
 >
-> This tutorial uses NServiceBus 10, .NET 10, and assumes an up-to-date installation of Visual Studio 2022.
+> This tutorial uses NServiceBus 10, .NET 10, and assumes an up-to-date installation of Visual Studio 2026.
 
 ### Saga storage
 
@@ -103,7 +103,7 @@ The code in the `Timeout` method is business logic; stuff that is supposed to ha
 
 The last line of the method is a call to the `MarkAsComplete` method. This is important because it tells the saga instance that it's finished. Any further messages to this instance will be ignored because there is no further work to be done for the saga. We'll return to this concept in the next section when handling cancellation.
 
-We now have a working buyer's remorse policy so we don't need our existing `PlaceOrderhandler`. Delete this class from the Sales project.
+We now have a working buyer's remorse policy so we don't need our existing `PlaceOrderHandler`. Delete this class from the Sales project.
 
 But it's not much of a buyer's remorse policy if we can't cancel the order. Let's do that now.
 

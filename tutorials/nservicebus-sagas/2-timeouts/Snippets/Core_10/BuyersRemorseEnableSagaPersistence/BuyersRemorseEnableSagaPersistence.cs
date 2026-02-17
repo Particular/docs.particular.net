@@ -2,7 +2,7 @@
 
 class Program
 {
-    void BuyersRemorseEnableSagaPersistence()
+    public void BuyersRemorseEnableSagaPersistence()
     {
         var endpointConfiguration = new EndpointConfiguration("Sales");
 

@@ -4,8 +4,7 @@ namespace BuyersRemorseCancelOrderHandling;
 
 #region BuyersRemorseCancelOrderHandling
 
-class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>,
-    IHandleMessages<CancelOrder>
+class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>, IHandleMessages<CancelOrder>
 {
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseData> mapper)
     {
@@ -16,7 +15,7 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemo
 
     public Task Handle(CancelOrder message, IMessageHandlerContext context)
     {
-        logger.LogInformation("Order #{OrderId} was cancelled.", message.OrderId);
+        logger.LogInformation("Order #{orderId} was cancelled.", message.OrderId);
 
         //TODO: Possibly publish an OrderCancelled event?
 

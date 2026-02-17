@@ -2,7 +2,7 @@
 
 namespace EmptyBuyersRemorsePolicy;
 
-#pragma warning disable 9113
+#pragma warning disable CS9113 // Parameter is unread.
 
 #region EmptyBuyersRemorsePolicy
 class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>
@@ -19,4 +19,4 @@ public class BuyersRemorseData : ContainSagaData
 }
 #endregion
 
-#pragma warning restore 9113
+#pragma warning restore CS9113 // Parameter is unread.

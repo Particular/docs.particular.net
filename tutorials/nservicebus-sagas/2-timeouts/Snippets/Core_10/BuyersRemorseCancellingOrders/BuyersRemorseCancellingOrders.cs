@@ -2,7 +2,7 @@
 
 class UICommands
 {
-    async Task Execute(IMessageSession endpointInstance)
+    public async Task Execute(IMessageSession messageSession)
     {
         #region BuyersRemorseCancellingOrders
         var lastOrder = string.Empty;
@@ -24,7 +24,7 @@ class UICommands
 
                     // Send the command
                     Console.WriteLine($"Sending PlaceOrder command, OrderId = {command.OrderId}");
-                    await endpointInstance.Send(command);
+                    await messageSession.Send(command);
 
                     lastOrder = command.OrderId; // Store order identifier to cancel if needed.
                     break;
@@ -34,7 +34,7 @@ class UICommands
                     {
                         OrderId = lastOrder
                     };
-                    await endpointInstance.Send(cancelCommand);
+                    await messageSession.Send(cancelCommand);
                     Console.WriteLine($"Sent a CancelOrder command, {cancelCommand.OrderId}");
                     break;
 
