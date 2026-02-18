@@ -9,7 +9,7 @@ The [MassTransit Connector for ServiceControl](https://hub.docker.com/r/particul
 
 ## How the MassTransit Connector works
 
-The MassTransit Connector for ServiceControl container monitors for the existence of any error queues, or of the error queues specified in the `queues.txt` file if it exists. These error queues contain messages that have faulted and have been moved out of the consumer's input queue. The container then takes that message, ensures the correct format of all the headers, and moves the faulted message to the input queue of ServiceControl.
+The MassTransit Connector for ServiceControl container monitors for the existence of the error queues specified in the `queues.txt ` file. These error queues contain messages that have faulted and have been moved out of the consumer's input queue. The container then takes that message, ensures the correct format of all the headers, and moves the faulted message to the input queue of ServiceControl.
 
 ServiceControl reads the faulted message, extracting information and metadata about the fault. It also indexes the metadata, allowing operations and support teams to see the faulted message within the ServicePulse dashboard.
 
