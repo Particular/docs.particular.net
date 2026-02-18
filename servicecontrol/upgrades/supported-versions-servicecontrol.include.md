@@ -2,7 +2,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.11.x](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/6.11.0) | 2026-02-09     | -                 | -                                 |
+| [6.12.x](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/6.12.0) | 2026-02-17     | -                 | -                                 |
+| [~~6.11.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/6.11.0) | ~~2026-02-09~~ | ~~2026-02-17~~    | ~~Superseded by 6.12.x~~          |
 | [~~6.10.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/6.10.1) | ~~2026-02-04~~ | ~~2026-02-09~~    | ~~Superseded by 6.11.x~~          |
 | [~~6.9.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/6.9.1) | ~~2026-01-14~~ | ~~2026-02-04~~    | ~~Superseded by 6.10.x~~          |
 | [~~6.8.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/6.8.1) | ~~2025-12-05~~ | ~~2026-01-14~~    | ~~Superseded by 6.9.x~~           |
