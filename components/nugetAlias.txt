@@ -30,6 +30,7 @@ Heartbeats4: ServiceControl.Plugin.Nsb4.Heartbeat
 Heartbeats5: ServiceControl.Plugin.Nsb5.Heartbeat
 Heartbeats6: ServiceControl.Plugin.Nsb6.Heartbeat
 Heartbeats: NServiceBus.Heartbeat
+IbmMq: NServiceBus.Transport.IbmMq
 Host: NServiceBus.Host
 Log4Net: NServiceBus.Log4Net
 MessageInterfaces: NServiceBus.MessageInterfaces
