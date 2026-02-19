@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus sagas: Integrations"
-reviewed: 2024-10-02
+reviewed: 2026-02-09
 summary: Learn how to use NServiceBus sagas to manage integration with external systems that communicate via HTTP.
 previewImage: https://img.youtube.com/vi/BHlKPgY2xxg/maxresdefault.jpg
 ---
@@ -30,7 +30,7 @@ In the exercises so far, we had a `ShippingPolicy` saga that was rather passive 
 > **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references relevant **.Messages** assembly, which contains the classes that define the messages exchanged in our system.
 > To see how to start building this system from scratch, check out the [NServiceBus step-by-step tutorial](/tutorials/nservicebus-step-by-step/).
 >
-> This tutorial uses NServiceBus version 9, .NET 8, and assumes an up-to-date installation of Visual Studio 2022.
+> This tutorial uses NServiceBus 10, .NET 10, and assumes an up-to-date installation of Visual Studio 2026.
 
 ### A new saga
 
@@ -44,7 +44,7 @@ To get started, create a new class in the **Shipping** project called `ShipOrder
 
 snippet: Creation-SagaStart
 
-This creates a saga that is started by `ShipOrder` messages and uses `ShipOrderData` to store its data. Because the saga data is tightly coupled to the saga implementation, we include it as an internal class. The `Handle` method is currently empty—we will need to complete that in just a bit.
+This creates a saga that is started by `ShipOrder` messages and uses `ShipOrderData` to store its data. Because the saga data is tightly coupled to the saga implementation, we include it as an internal class. The `Handle` method is currently empty—we will complete that in just a bit.
 
 > [!NOTE]
 > For a more in-depth explanation of the basic saga concepts, see [NServiceBus sagas: Saga basics](/tutorials/nservicebus-sagas/1-saga-basics/).
@@ -82,13 +82,13 @@ snippet: ShippingEscalationTimeout
 Note that the `ShippingEscalation` timeout class should be **nested inside** the `ShipOrderWorkflow` class and marked as `internal`. It is very tightly coupled to the `ShipOrderWorkflow`—there's no need to use it anywhere else. It also doesn't need any special interface or content. A timeout, after all, is just an alarm clock—we get all we need to know just from the type name. Everything else will already exist in the saga's stored data.
 
 > [!NOTE]
-> For more on saga timeouts, see [NServiceBus sagas: Timeouts](/tutorials/nservicebus-sagas/3-integration/).
+> For more on saga timeouts, see [NServiceBus sagas: Timeouts](/tutorials/nservicebus-sagas/2-timeouts/).
 
 Now, in our `ShipOrderWorkflow` class, we can implement the `Handle` method as follows:
 
 snippet: HandleShipOrder
 
-We've sent a `ShipWithMaple` command and requested a `ShippingEscalation` timeout of 20 seconds so that if Maple doesn't respond within that time, we can ship with Alpine instead. Also, notice how we can use `Data.OrderId` immediately—because of the mapping in our `ConfigureHowToFindSaga` method, NServiceBus already knows that the saga data's `OrderId` property needs to be filled using the message's `OrderId` property, so it helpfully prefills this for us.
+We've sent a `ShipWithMaple` command and requested a `ShippingEscalation` timeout of 20 seconds so that if Maple doesn't respond within that time, we can ship with Alpine instead. Also, notice how we can use `Data.OrderId` immediately, because of the mapping in our `ConfigureHowToFindSaga` method, NServiceBus already knows that the saga data's `OrderId` property needs to be filled using the message's `OrderId` property, so it helpfully prefills this for us.
 
 > [!NOTE]
 > **Why 20 seconds?**
@@ -104,7 +104,7 @@ We will use a separate message handler to communicate with the Maple web service
 > [!NOTE]
 > **Why not contact the web service directly within the saga?**
 >
-> While the saga is processing the message, it holds a database lock on your saga data so that if multiple messages from the same saga try to modify the data simultaneously, only one of them will succeed.
+> While the saga is processing the message, it holds a database lock on your saga data, so that if multiple messages from the same saga try to modify the data simultaneously, only one of them will succeed.
 > This presents two problems for a web service request. First, a web request can't be added to a database transaction, meaning that if a concurrency exception occurs, the web request can't be undone. The second is that the time it takes for the web request to complete will hold the saga database transaction open longer, making it even more likely that another message will be processed concurrently, creating more contention.
 >
 > This is why a saga should be only a message-driven state machine: a message comes in, decisions are made, and messages go out. Leave all the other processing to external message handlers, as shown in this tutorial.
@@ -127,11 +127,11 @@ There are a few things to point out here:
 * `ShipmentAcceptedByMaple` is marked as an `IMessage`, not an `ICommand` or `IEvent`. Reply messages created by using `context.Reply(…)`, are not commands or events. They're just messages.
 * `ShipmentAcceptedByMaple` doesn't have any properties at all.
 
-The last point is due to a process called **auto-correlation**. When the saga sends the `ShipWithMaple` command, it includes a header containing the saga's SagaId. The `ShipWithMapleHandler` will then reflect that SagaId header back in the reply message when we call `context.Reply(…)`. This means we don't need to propagate any identifying information (in this case, our `OrderId`) in the response message. It also means that we don't have to do anything in the saga's `ConfigureHowToFindSaga` for it to know how to handle the returning `ShipmentAcceptedByMaple` reply message. Because it's a reply message, we also don't have to specify routing for it—because it's a reply, it goes back to the saga that sent the `ShipWithMaple` command.
+The last point is due to a process called **auto-correlation**. When the saga sends the `ShipWithMaple` command, it includes a header containing the saga's SagaId. The `ShipWithMapleHandler` will then reflect that SagaId header back in the reply message when we call `context.Reply(…)`. This means we don't need to propagate any identifying information (in this case, our `OrderId`) in the response message. It also means that we don't have to do anything in the saga's `ConfigureHowToFindSaga` for it to know how to handle the returning `ShipmentAcceptedByMaple` reply message. Because it's a reply message, we also don't have to specify routing for it, because it's a reply, it goes back to the saga that sent the `ShipWithMaple` command.
 
-In essence, because of the tight coupling between the `ShipOrderWorkflow` saga, the `ShipWithMaple` command, `ShipWithMapleHandler`, and `ShipmentAcceptedByMaple` reply message, we get to take a few shortcuts and leave the routing and correlation duties up to NServiceBus.
+In essence, because of the tight coupling between the `ShipOrderWorkflow` saga, the `ShipWithMaple` command, `ShipWithMapleHandler` handler, and `ShipmentAcceptedByMaple` reply message, we get to take a few shortcuts and leave the routing and correlation duties up to NServiceBus.
 
-Another option could be to publish `ShipmentAcceptedByMaple` as an event, but then we need to include `OrderId` as a property. This makes sense, because while a reply message is only meant for the saga, any endpoint could subscribe to an event, and in that case, the event message wouldn't make sense without containing the `OrderId` identifying it.
+Another option could be to publish `ShipmentAcceptedByMaple` as an event, but then we need to include `OrderId` as a property. This could be useful, because while the reply message is only meant for the saga, any endpoint could subscribe to an event, and in that case, the event message wouldn't make sense without containing the `OrderId` identifying it.
 
 ### Success with Maple
 
@@ -175,7 +175,7 @@ Note that this timeout handler also checks `Data.ShipmentOrderSentToAlpine` to s
 
 ### Late arrivals
 
-Before we move on, it's important to remember that even once the timeout handler executes and we move on to requesting shipment through Alpine, it's _still possible for Maple to respond with `ShipmentAcceptedByMaple`_, but just later than we were willing to wait. This raises some additional concerns, which we will discuss in the [Edge cases](#exercise-edge-cases) section toward the end, but for now, we need to change the handler so that the late arrival of a `ShipmentAcceptedByMaple` will not end the saga.
+Before we move on, it's important to remember that even once the timeout handler executes and we move on to requesting shipment through Alpine, it's still possible for Maple to respond with `ShipmentAcceptedByMaple`, but just later than we were willing to wait. This raises some additional concerns, which we will discuss in the [Edge cases](#exercise-edge-cases) section toward the end, but for now, we need to change the handler so that the late arrival of a `ShipmentAcceptedByMaple` will not end the saga.
 
 In the **ShipOrderWorkflow**, modify the handler for `ShipmentAcceptedByMaple` like this:
 
@@ -271,9 +271,9 @@ The happy path for this workflow is for Maple, our preferred provider, to respon
 
 In this case, shipping via Maple was attempted first, and Maple responded in 7 seconds, which is shorter than the requested 20-second timeout.
 
-Note that the last `INFO` line mentions that a saga could not be found for a timeout message. This was our 20-second `ShippingEscalation` timeout, but by the time the timeout had arrived, the `ShipmentAcceptedByMaple` response had already been processed, resulting in the saga ending with the call to `MarkAsComplete()`. The saga data was deleted, and as a result, the timeout was ignored.
+Note that the last `INFO` line mentions that a saga could not be found for a timeout message. This was our 20-second `ShippingEscalation` timeout, but by the time the timeout had arrived, the `ShipmentAcceptedByMaple` response had already been processed, resulting in the saga ending with the call to `MarkAsComplete()`. The saga data was completed, and as a result, the timeout was ignored.
 
-_**This is perfectly fine.**_
+**This is perfectly fine.**
 
 Timeouts are designed to be reminders for the saga to take action. If the saga determines before that time that its work is done, that's OK. That's why the log message (which comes from NServiceBus, not the code in ShipOrderWorkflow) is presented as `INFO` and not a warning or error.
 
@@ -337,4 +337,4 @@ It is possible to handle these instances by [creating a saga not found handler](
 
 In this lesson, we learned about sagas that execute several steps within a business process via commands. Sagas orchestrate and delegate the work to other handlers. The reason for delegation is to adhere to the Single Responsibility Principle and to avoid potential contention. We've also taken another look at timeouts. And finally, we've seen how different scenarios in our business process can be modeled and implemented using sagas.
 
-For more information on sagas, check out the [saga documentation](/nservicebus/sagas/) or our [other saga tutorials](/tutorials/nservicebus-sagas/). If you've got questions, you could also [talk to us about a proof of concept](https://particular.net/proof-of-concept).
+For more information on sagas, check out the [saga documentation](/nservicebus/sagas/). If you've got questions, you could also [talk to us about a proof of concept](https://particular.net/proof-of-concept).

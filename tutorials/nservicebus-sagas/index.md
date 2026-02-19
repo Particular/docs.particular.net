@@ -1,7 +1,7 @@
 ---
 title: "NServiceBus Sagas"
 suppressRelated: true
-reviewed: 2024-05-23
+reviewed: 2026-02-09
 summary: An introduction to Sagas and how to use them
 extensions:
 - !!tutorial
@@ -16,7 +16,7 @@ Even in the face of errors and endpoint failures, we can fail gracefully and, in
 However, message handlers are stateless and many business processes are not. For example, how do we ship an order when we have to wait for *both* `OrderPlaced` and `OrderBilled` to be processed first? 
 How do we create a delay so that we can trigger an action at some point in the future? How do we make decisions based on what happened minutes, hours, or even years ago?
 
-For these types of scenarios, you need a *stateful* message handler. Other ways to describe what is needed might include a message-driven state machine or an orchestration engine. 
+For these types of scenarios, we need a *stateful* message handler. Other ways to describe what is needed might include a message-driven state machine or an orchestration engine. 
 In NServiceBus, we call these [**Sagas**](/nservicebus/sagas/). In this tutorial, we'll build on the solution from the [NServiceBus Step-by-step tutorial](/tutorials/nservicebus-step-by-step/) and learn to master NServiceBus Sagas.
 
 These lessons make the most sense when tackled in order, but it's not required.

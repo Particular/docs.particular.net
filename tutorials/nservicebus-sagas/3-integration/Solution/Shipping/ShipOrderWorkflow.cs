@@ -1,19 +1,11 @@
-using System;
-using System.Threading.Tasks;
 using Messages;
 using Microsoft.Extensions.Logging;
-using NServiceBus;
 
 namespace Shipping;
 
-class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
-    Saga<ShipOrderWorkflowData>,
-    IAmStartedByMessages<ShipOrder>,
-    IHandleMessages<ShipmentAcceptedByMaple>,
-    IHandleMessages<ShipmentAcceptedByAlpine>,
-    IHandleTimeouts<ShipOrderWorkflow.ShippingEscalation>
+class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) : Saga<ShipOrderWorkflow.ShipOrderData>, IAmStartedByMessages<ShipOrder>, IHandleMessages<ShipmentAcceptedByMaple>, IHandleMessages<ShipmentAcceptedByAlpine>, IHandleTimeouts<ShipOrderWorkflow.ShippingEscalation>
 {
-    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShipOrderWorkflowData> mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShipOrderData> mapper)
     {
         mapper.MapSaga(saga => saga.OrderId)
             .ToMessage<ShipOrder>(message => message.OrderId);
@@ -21,7 +13,7 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
 
     public async Task Handle(ShipOrder message, IMessageHandlerContext context)
     {
-        logger.LogInformation("ShipOrderWorkflow for Order [{.OrderId}] - Trying Maple first.", Data.OrderId);
+        logger.LogInformation("ShipOrderWorkflow for Order [{orderId}] - Trying Maple first.", Data.OrderId);
 
         // Execute order to ship with Maple
         await context.Send(new ShipWithMaple() { OrderId = Data.OrderId });
@@ -34,7 +26,7 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
     {
         if (!Data.ShipmentOrderSentToAlpine)
         {
-            logger.LogInformation("Order [{OrderId}] - Successfully shipped with Maple", Data.OrderId);
+            logger.LogInformation("Order [{orderId}] - Successfully shipped with Maple", Data.OrderId);
 
             Data.ShipmentAcceptedByMaple = true;
 
@@ -46,7 +38,7 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
 
     public Task Handle(ShipmentAcceptedByAlpine message, IMessageHandlerContext context)
     {
-        logger.LogInformation("Order [{OrderId}] - Successfully shipped with Alpine", Data.OrderId);
+        logger.LogInformation("Order [{orderId}] - Successfully shipped with Alpine", Data.OrderId);
 
         Data.ShipmentAcceptedByAlpine = true;
 
@@ -61,14 +53,14 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
         {
             if (!Data.ShipmentOrderSentToAlpine)
             {
-                logger.LogInformation("Order [{OrderId}] - No answer from Maple, let's try Alpine.", Data.OrderId);
+                logger.LogInformation("Order [{orderId}] - No answer from Maple, let's try Alpine.", Data.OrderId);
                 Data.ShipmentOrderSentToAlpine = true;
                 await context.Send(new ShipWithAlpine() { OrderId = Data.OrderId });
                 await RequestTimeout(context, TimeSpan.FromSeconds(20), new ShippingEscalation());
             }
             else if (!Data.ShipmentAcceptedByAlpine) // No response from Maple nor Alpine
             {
-                logger.LogWarning("Order [{.OrderId}] - No answer from Maple/Alpine. We need to escalate!", Data.OrderId);
+                logger.LogWarning("Order [{orderId}] - No answer from Maple/Alpine. We need to escalate!", Data.OrderId);
 
                 // escalate to Warehouse Manager!
                 await context.Publish<ShipmentFailed>();
@@ -78,15 +70,18 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) :
         }
     }
 
+    internal class ShipOrderData : ContainSagaData
+    {
+        public string? OrderId { get; set; }
+
+        public bool ShipmentAcceptedByMaple { get; set; }
+
+        public bool ShipmentOrderSentToAlpine { get; set; }
+
+        public bool ShipmentAcceptedByAlpine { get; set; }
+    }
+
     internal class ShippingEscalation
     {
     }
-}
-
-public class ShipOrderWorkflowData : ContainSagaData
-{
-    public string OrderId { get; set; }
-    public bool ShipmentAcceptedByMaple { get; set; }
-    public bool ShipmentOrderSentToAlpine { get; set; }
-    public bool ShipmentAcceptedByAlpine { get; set; }
 }

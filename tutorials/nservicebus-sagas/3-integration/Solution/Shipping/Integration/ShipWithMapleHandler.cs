@@ -1,9 +1,5 @@
-﻿using NServiceBus;
+﻿using Messages;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Messages;
 
 namespace Shipping.Integration;
 
@@ -17,7 +13,7 @@ class ShipWithMapleHandler(ILogger<ShipWithMapleHandler> logger) : IHandleMessag
     {
         var waitingTime = Random.Shared.Next(MaximumTimeMapleMightRespond);
 
-        logger.LogInformation("ShipWithMapleHandler: Delaying Order [{OrderId}] {WaitingTime} seconds.", message.OrderId, waitingTime);
+        logger.LogInformation("ShipWithMapleHandler: Delaying Order [{orderId}] {WaitingTime} seconds.", message.OrderId, waitingTime);
 
         await Task.Delay(waitingTime * 1000, CancellationToken.None);
 

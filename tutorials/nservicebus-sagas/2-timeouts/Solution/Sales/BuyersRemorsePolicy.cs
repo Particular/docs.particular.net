@@ -1,18 +1,11 @@
-﻿using NServiceBus;
+﻿using Messages;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
-using Messages;
 
 namespace Sales;
 
-class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger)
-    : Saga<BuyersRemorseState>
-    , IAmStartedByMessages<PlaceOrder>
-    , IHandleMessages<CancelOrder>
-    , IHandleTimeouts<BuyersRemorseIsOver>
+class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>, IAmStartedByMessages<PlaceOrder>, IHandleMessages<CancelOrder>, IHandleTimeouts<BuyersRemorseIsOver>
 {
-    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseState> mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseData> mapper)
     {
         mapper.MapSaga(saga => saga.OrderId)
             .ToMessage<PlaceOrder>(message => message.OrderId)
@@ -21,16 +14,16 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger)
 
     public async Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
-        logger.LogInformation("Received PlaceOrder, OrderId = {OrderId}", message.OrderId);
+        logger.LogInformation("Received PlaceOrder, OrderId = {orderId}", message.OrderId);
 
-        logger.LogInformation("Starting cool down period for order #{OrderId}.", Data.OrderId);
+        logger.LogInformation("Starting cool down period for order #{orderId}.", Data.OrderId);
 
         await RequestTimeout(context, TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
     }
 
     public async Task Timeout(BuyersRemorseIsOver state, IMessageHandlerContext context)
     {
-        logger.LogInformation("Cooling down period for order #{OrderId} has elapsed.", Data.OrderId);
+        logger.LogInformation("Cooling down period for order #{orderId} has elapsed.", Data.OrderId);
 
         var orderPlaced = new OrderPlaced
         {
@@ -44,7 +37,7 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger)
 
     public Task Handle(CancelOrder message, IMessageHandlerContext context)
     {
-        logger.LogInformation("Order #{OrderId} was cancelled.", message.OrderId);
+        logger.LogInformation("Order #{orderId} was cancelled.", message.OrderId);
 
         //TODO: Possibly publish an OrderCancelled event?
 
@@ -54,12 +47,9 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger)
     }
 }
 
-internal class BuyersRemorseIsOver
-{
+internal class BuyersRemorseIsOver { }
 
-}
-
-public class BuyersRemorseState : ContainSagaData
+public class BuyersRemorseData : ContainSagaData
 {
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }
