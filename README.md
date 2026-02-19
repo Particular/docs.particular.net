@@ -530,6 +530,8 @@ Tutorials are similar to samples but optimized for new users to follow in a step
 * Markdown file must be named `tutorial.md`
 * No component specified in the header
 * Focus on only the most recent version
+  * Projects are not multi-targeted
+  * Projects do not have a `LangVersion` property defined
 * Rendered without button toolbar and component information at the top
 * By default, solution download button is rendered at the end
   * An inline download button can be created instead using a `downloadbutton` directive on its own line within the tutorial markdown.

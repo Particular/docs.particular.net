@@ -98,11 +98,10 @@ namespace IntegrityTests
         }
 
         [Test]
-        public void SnippetsShouldNotBeMultiTargeted()
+        public void SnippetsAndTutorialsShouldNotBeMultiTargeted()
         {
-            new TestRunner("*.csproj", "Snippets projects should not be multi-targeted")
+            new TestRunner("*.csproj", "Snippets and Tutorial projects should not be multi-targeted")
                 .IgnoreSamples()
-                .IgnoreTutorials()
                 .Run(projectFilePath =>
                 {
                     var xdoc = XDocument.Load(projectFilePath);

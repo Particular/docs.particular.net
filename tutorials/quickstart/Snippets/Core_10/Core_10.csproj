@@ -1,13 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-	  <TargetFramework>net10.0</TargetFramework>
-    <LangVersion>14.0</LangVersion>
+    <TargetFramework>net10.0</TargetFramework>
     <OutputType>exe</OutputType>
   </PropertyGroup>
+
   <ItemGroup>
-	<PackageReference Include="NServiceBus" Version="10.*" />
-	<PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
-	<PackageReference Include="NServiceBus.Heartbeat" Version="6.*" />
-	<PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="6.*" />
+    <PackageReference Include="NServiceBus" Version="10.*" />
+    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
+    <PackageReference Include="NServiceBus.Heartbeat" Version="6.*" />
+    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="6.*" />
   </ItemGroup>
+
 </Project>
