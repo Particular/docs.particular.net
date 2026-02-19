@@ -6,6 +6,8 @@ component: Core
 isLearningPath: true
 redirects:
 - nservicebus/logging-in-nservicebus
+- nservicebus/logging/usage
+- nservicebus/logging/message-contents
 related:
 - samples/logging
 ---
@@ -15,7 +17,7 @@ related:
 
 ## Default Logging
 
-NServiceBus has a built-in logging mechanism that does not depend on any external libraries. While limited in terms of available log targets, this built-in mechanism is production-ready and offers defaults that are reasonable for most deployments. The built-in framework is available and used as default in all NServiceBus hosting modes (e.g. self-hosting or Windows Service). Regardless of if the built-in logging or a custom logging library is used under the hood, the NServiceBus logging abstractions can be used for [logging in the user code](/nservicebus/logging/usage.md). By default NServiceBus has three log targets configured:
+NServiceBus has a built-in logging mechanism that does not depend on any external libraries. While limited in terms of available log targets, this built-in mechanism is production-ready and offers defaults that are reasonable for most deployments. The built-in framework is available and used as default in all NServiceBus hosting modes (e.g. self-hosting or Windows Service). Regardless of if the built-in logging or a custom logging library is used under the hood, the NServiceBus logging abstractions can be used for [logging in the user code](#writing-a-log-entry). By default NServiceBus has three log targets configured:
 
 
 ### Console
@@ -83,6 +85,35 @@ It is important to configure logging before any endpoint configuration is done s
 
 
 partial: exception-data
+
+## Writing a log entry
+
+In legacy endpoints the NServiceBus logging abstraction is used for writing log messages from user code.
+
+Set up a single static field to an `ILog` in the classes, and then use it in all methods:
+
+snippet: UsingLogging
+
+> [!WARNING]
+> Make sure that logging is correctly initialized before resolving the `ILog` instance. Not doing so can result in a logger using an incorrect configuration
+
+> [!NOTE]
+> To avoid unnecessary processing, especially when logging more verbose messages, such as `Debug`, make sure to first check if logging at that level is enabled.
+
+> [!NOTE]
+> Since `LogManager.GetLogger(..);` is an expensive call, it is important that the field is `static` so that the call happens only once per class and has the best possible performance.
+
+> [!NOTE]
+> The `*Format` APIs pass their message and format arguments to the corresponding APIs of the underlying logging framework so their behavior varies. Some frameworks, like NLog, use special syntax to create structured log entries. Refer to the documentation of the specific logging framework for details. The built-in logging uses `string.Format` to generate the message that is written.
+
+### Logging message contents
+
+When NServiceBus sends a message, it writes the result of the `ToString()` method of the message class to the log. By default, this writes the name of the message type only. To write the full message contents to the log, override the `ToString()` method of the relevant message class. Here's an example:
+
+snippet: MessageWithToStringLogged
+
+> [!NOTE]
+> NServiceBus only makes these calls at a log threshold of DEBUG or lower.
 
 ## Unit testing
 

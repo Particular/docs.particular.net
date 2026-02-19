@@ -721,10 +721,6 @@
       Title: NLog
     - Url: nservicebus/logging/common-logging
       Title: CommonLogging
-    - Url: nservicebus/logging/message-contents
-      Title: Message contents
-    - Url: nservicebus/logging/usage
-      Title: Writing a log entry
     - Url: nservicebus/operations/auditing
       Title: Auditing Messages
   - Title: Security
