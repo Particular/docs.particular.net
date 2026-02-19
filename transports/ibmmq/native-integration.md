@@ -5,74 +5,54 @@ reviewed: 2026-02-19
 component: IbmMq
 ---
 
-The IBM MQ transport stores NServiceBus messages using standard IBM MQ message structures, making it possible to send and receive messages between NServiceBus endpoints and native IBM MQ applications.
+The IBM MQ transport uses standard IBM MQ message structures, making it possible to exchange messages between NServiceBus endpoints and native IBM MQ applications.
 
 ## Message structure
 
-NServiceBus messages on IBM MQ consist of two parts:
+NServiceBus messages on IBM MQ consist of a standard message descriptor (MQMD) and custom properties stored in MQRFH2 headers.
 
-### MQMD (Message Descriptor)
+### MQMD fields
 
-The MQMD is the standard IBM MQ message header. The transport maps the following fields:
+The transport maps NServiceBus concepts to the following MQMD fields:
 
-|MQMD field|NServiceBus usage|
+|MQMD field|Usage|
 |:---|---|
-|MessageId|24-byte binary; set from the `NServiceBus.MessageId` header as a GUID padded to 24 bytes|
-|CorrelationId|24-byte binary; set from the `NServiceBus.CorrelationId` header|
-|MessageType|Always `MQMT_DATAGRAM` (8)|
-|Persistence|`MQPER_PERSISTENT` by default; `MQPER_NOT_PERSISTENT` if `NonDurableMessage` header is set|
-|Expiry|Set from `DiscardIfNotReceivedBefore` in tenths of seconds; `MQEI_UNLIMITED` if not specified|
-|CharacterSet|UTF-8 (CCSID 1208) by default|
+|MessageId|Set from the `NServiceBus.MessageId` header|
+|CorrelationId|Set from the `NServiceBus.CorrelationId` header|
+|MessageType|Always `MQMT_DATAGRAM`|
+|Persistence|Persistent by default; non-persistent if `NonDurableMessage` header is set|
+|Expiry|Set from the time-to-be-received setting; unlimited if not specified|
 |ReplyToQueueName|Set from the `NServiceBus.ReplyToAddress` header|
 
-### MQRFH2 properties
+### NServiceBus headers
 
-All NServiceBus headers are stored as MQRFH2 custom properties on the message. Property names are escaped to comply with IBM MQ naming rules:
+All NServiceBus headers are stored as MQRFH2 message properties. Property names are escaped because IBM MQ only allows alphanumeric characters and underscores in property names. The escaping rules are:
 
 - Underscores are doubled: `_` becomes `__`
-- Non-alphanumeric characters are encoded as `_xHHHH` where `HHHH` is the Unicode code point
-
-For example, the header `NServiceBus.MessageId` is stored as the property `NServiceBus_x002EMessageId`.
-
-Two additional manifest properties are included:
-
-|Property|Purpose|
-|:---|---|
-|`nsbhdrs`|Comma-separated list of all escaped header names|
-|`nsbempty`|Comma-separated list of escaped header names with empty values|
+- Other special characters are encoded as `_xHHHH` (e.g., `.` becomes `_x002E`)
 
 > [!NOTE]
-> IBM MQ silently discards string properties with empty values. The manifest properties work around this limitation by tracking which headers exist and which have empty values.
+> IBM MQ silently discards string properties with empty values. The transport includes manifest properties (`nsbhdrs` and `nsbempty`) to track all header names and preserve empty values.
 
 ## Sending messages from native applications
 
 To send a message to an NServiceBus endpoint from a native IBM MQ application:
 
-1. Create an `MQMessage` targeting the endpoint's input queue.
-2. Set the message body to a serialized representation of the message (e.g., JSON or XML).
-3. Set MQRFH2 properties for the required NServiceBus headers.
+1. Put a message on the endpoint's input queue.
+2. Set the message body to a serialized representation (e.g., JSON).
+3. Set the following MQRFH2 properties as a minimum:
 
-The minimum required headers are:
-
-|Header (escaped property name)|Description|
+|Property name|Description|
 |:---|---|
 |`NServiceBus_x002EEnclosedMessageTypes`|The fully qualified .NET type name of the message|
-|`NServiceBus_x002EContentType`|The MIME type of the body serialization (e.g., `application/json`)|
-|`NServiceBus_x002EMessageId`|A unique identifier for the message (typically a GUID)|
+|`NServiceBus_x002EContentType`|The MIME type of the body (e.g., `application/json`)|
+|`NServiceBus_x002EMessageId`|A unique identifier (typically a GUID)|
 
 > [!WARNING]
-> If the `NServiceBus.EnclosedMessageTypes` header is missing, the endpoint will not be able to deserialize and route the message.
+> If the `EnclosedMessageTypes` header is missing, the endpoint will not be able to deserialize and route the message.
 
 ## Receiving messages in native applications
 
-Native applications can consume messages from queues that NServiceBus publishes or sends to. The application should:
+Native applications can consume messages from queues that NServiceBus publishes or sends to. The message body contains the serialized payload, and NServiceBus headers are available as MQRFH2 properties.
 
-1. Read the message body bytes from the `MQMessage`.
-2. Read MQRFH2 properties to access NServiceBus headers. Use the `nsbhdrs` manifest to enumerate all headers, and `nsbempty` to identify headers with empty values.
-3. Unescape property names by replacing `__` with `_` and `_xHHHH` with the corresponding character.
-
-## Interoperability considerations
-
-- NServiceBus always sets `MessageType` to `MQMT_DATAGRAM`. Native applications that rely on `MQMT_REQUEST`/`MQMT_REPLY` patterns should use a separate set of queues or translate at an integration boundary.
-- The body encoding is determined by the NServiceBus serializer configuration, typically JSON. Native applications must use the same serialization format.
-- Message expiry (time-to-be-received) is mapped to the MQMD `Expiry` field in tenths of seconds.
+To read headers, use the `nsbhdrs` manifest property to enumerate all header names, and unescape property names by replacing `__` with `_` and `_xHHHH` with the corresponding character.
