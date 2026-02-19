@@ -192,7 +192,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/System.Data.SqlClient" target="_blank">System.Data.SqlClient</a> | <a href="https://www.nuget.org/packages/System.Data.SqlClient/4.9.0/license" target="_blank">MIT</a> | <a href="https://github.com/dotnet/maintenance-packages" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/System.Data.SqlClient" target="_blank">System.Data.SqlClient</a> | <a href="https://www.nuget.org/packages/System.Data.SqlClient/4.9.1/license" target="_blank">MIT</a> | <a href="https://github.com/dotnet/maintenance-packages" target="_blank">Project Site</a> |
 
 ### NServiceBus.Storage.MongoDB
 
@@ -272,7 +272,7 @@
 | <a href="https://www.nuget.org/packages/Mindscape.Raygun4Net.NetCore" target="_blank">Mindscape.Raygun4Net.NetCore</a> | <a href="https://www.nuget.org/packages/Mindscape.Raygun4Net.NetCore/11.2.5/license" target="_blank">View License</a> | <a href="https://raygun.com/platform/crash-reporting" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/NLog.Extensions.Logging" target="_blank">NLog.Extensions.Logging</a> | <a href="https://www.nuget.org/packages/NLog.Extensions.Logging/6.1.1/license" target="_blank">BSD-2-Clause</a> | <a href="https://github.com/NLog/NLog.Extensions.Logging" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/NuGet.Versioning" target="_blank">NuGet.Versioning</a> | <a href="https://www.nuget.org/packages/NuGet.Versioning/7.3.0/license" target="_blank">Apache-2.0</a> | <a href="https://aka.ms/nugetprj" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/NUnit" target="_blank">NUnit</a> | <a href="https://www.nuget.org/packages/NUnit/4.4.0/license" target="_blank">MIT</a> | <a href="https://nunit.org/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/NUnit" target="_blank">NUnit</a> | <a href="https://www.nuget.org/packages/NUnit/4.5.0/license" target="_blank">MIT</a> | <a href="https://nunit.org/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/OpenTelemetry.Exporter.Console" target="_blank">OpenTelemetry.Exporter.Console</a> | <a href="https://www.nuget.org/packages/OpenTelemetry.Exporter.Console/1.15.0/license" target="_blank">Apache-2.0</a> | <a href="https://opentelemetry.io/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/OpenTelemetry.Exporter.OpenTelemetryProtocol" target="_blank">OpenTelemetry.Exporter.OpenTelemetryProtocol</a> | <a href="https://www.nuget.org/packages/OpenTelemetry.Exporter.OpenTelemetryProtocol/1.15.0/license" target="_blank">Apache-2.0</a> | <a href="https://opentelemetry.io/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/OpenTelemetry.Extensions.Hosting" target="_blank">OpenTelemetry.Extensions.Hosting</a> | <a href="https://www.nuget.org/packages/OpenTelemetry.Extensions.Hosting/1.15.0/license" target="_blank">Apache-2.0</a> | <a href="https://opentelemetry.io/" target="_blank">Project Site</a> |
