@@ -1,7 +1,7 @@
 ---
 title: Logging
 summary: NServiceBus logging
-reviewed: 2024-08-06
+reviewed: 2026-02-19
 component: Core
 isLearningPath: true
 redirects:
@@ -17,14 +17,14 @@ related:
 
 ## Default Logging
 
-NServiceBus has a built-in logging mechanism that does not depend on any external libraries. While limited in terms of available log targets, this built-in mechanism is production-ready and offers defaults that are reasonable for most deployments. The built-in framework is available and used as default in all NServiceBus hosting modes (e.g. self-hosting or Windows Service). Regardless of if the built-in logging or a custom logging library is used under the hood, the NServiceBus logging abstractions can be used for [logging in the user code](#writing-a-log-entry). By default NServiceBus has three log targets configured:
+NServiceBus has a built-in logging mechanism that does not depend on any external libraries. While limited in terms of available log targets, this built-in mechanism is production-ready and offers defaults that are reasonable for most deployments. The built-in framework is available and used as default in all NServiceBus hosting modes (e.g. self-hosting or Windows Service). Regardless of whether the built-in logging or a custom logging library is used under the hood, the NServiceBus logging abstractions can be used for [logging in the user code](#writing-a-log-entry). By default NServiceBus has three log targets configured:
 
 
 ### Console
 
 All `Info` (and above) messages are written to the current console if one is available in the hosting environment.
 
-Errors will be written with `ConsoleColor.Red`. Warnings will be written with `ConsoleColor.DarkYellow`. All other message will be written with `ConsoleColor.White`.
+Errors will be written with `ConsoleColor.Red`. Warnings will be written with `ConsoleColor.DarkYellow`. All other messages will be written with `ConsoleColor.White`.
 
 
 ### Trace
@@ -80,7 +80,7 @@ partial: custom
 It is important to configure logging before any endpoint configuration is done since logging is configured in the static context of each NServiceBus class. It should be configured *as early as possible* at the startup of the app. For example
 
  * At the start of the `Main` of a console app or windows service.
- * At the start of the `Global.Application_Start` in a asp.net application.
+ * At the start of the `Global.Application_Start` in an ASP.NET application.
  * [Using endpoint configuration API in an application hosted via NServiceBus Host](/nservicebus/hosting/nservicebus-host/logging-configuration.md)
 
 
