@@ -517,10 +517,10 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/5.0.0) | 2026-01-30     | -                 | -                                 |
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/4.0.3) | 2024-09-15     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/5.0.1) | 2026-01-30     | -                 | -                                 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/4.0.4) | 2024-09-15     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.MessagingBridge/3.1.2) | ~~2024-09-05~~ | ~~2025-09-15~~    | ~~Superseded by 4.0.x~~           |
-| [2.3.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.3.2) | 2024-09-05     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
+| [2.3.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.3.3) | 2024-09-05     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 
 #### [NServiceBus.Metrics](/nuget/NServiceBus.Metrics)
 
