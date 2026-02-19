@@ -15,7 +15,7 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemo
 
     public Task Handle(CancelOrder message, IMessageHandlerContext context)
     {
-        logger.LogInformation("Order #{orderId} was cancelled.", message.OrderId);
+        logger.LogInformation("Order #{OrderId} was cancelled.", message.OrderId);
 
         //TODO: Possibly publish an OrderCancelled event?
 

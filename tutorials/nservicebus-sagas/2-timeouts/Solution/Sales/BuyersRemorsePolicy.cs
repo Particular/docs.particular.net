@@ -14,16 +14,16 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemo
 
     public async Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
-        logger.LogInformation("Received PlaceOrder, OrderId = {orderId}", message.OrderId);
+        logger.LogInformation("Received PlaceOrder, OrderId = {OrderId}", message.OrderId);
 
-        logger.LogInformation("Starting cool down period for order #{orderId}.", Data.OrderId);
+        logger.LogInformation("Starting cool down period for order #{OrderId}.", Data.OrderId);
 
         await RequestTimeout(context, TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
     }
 
     public async Task Timeout(BuyersRemorseIsOver state, IMessageHandlerContext context)
     {
-        logger.LogInformation("Cooling down period for order #{orderId} has elapsed.", Data.OrderId);
+        logger.LogInformation("Cooling down period for order #{OrderId} has elapsed.", Data.OrderId);
 
         var orderPlaced = new OrderPlaced
         {
@@ -37,7 +37,7 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemo
 
     public Task Handle(CancelOrder message, IMessageHandlerContext context)
     {
-        logger.LogInformation("Order #{orderId} was cancelled.", message.OrderId);
+        logger.LogInformation("Order #{OrderId} was cancelled.", message.OrderId);
 
         //TODO: Possibly publish an OrderCancelled event?
 

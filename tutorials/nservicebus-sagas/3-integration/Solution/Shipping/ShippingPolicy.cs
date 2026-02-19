@@ -14,14 +14,14 @@ class ShippingPolicy(ILogger<ShippingPolicy> logger) : Saga<ShippingPolicyData>,
 
     public Task Handle(OrderPlaced message, IMessageHandlerContext context)
     {
-        logger.LogInformation("OrderPlaced message received for {orderId}.", message.OrderId);
+        logger.LogInformation("OrderPlaced message received for {OrderId}.", message.OrderId);
         Data.IsOrderPlaced = true;
         return ProcessOrder(context);
     }
 
     public Task Handle(OrderBilled message, IMessageHandlerContext context)
     {
-        logger.LogInformation("OrderBilled message received for {orderId}.", message.OrderId);
+        logger.LogInformation("OrderBilled message received for {OrderId}.", message.OrderId);
         Data.IsOrderBilled = true;
         return ProcessOrder(context);
     }

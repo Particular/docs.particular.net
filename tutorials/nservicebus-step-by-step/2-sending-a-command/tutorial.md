@@ -118,7 +118,7 @@ Now that we've defined a message, we can create a corresponding message handler.
     ```
  1. Within the `Handle` method, use the logger to record the receipt of the `PlaceOrder` message, including the value of the `OrderId` message property:
     ```cs
-    logger.LogInformation("Received PlaceOrder, OrderId = {orderId}", message.OrderId);
+    logger.LogInformation("Received PlaceOrder, OrderId = {OrderId}", message.OrderId);
     ```
  1. Since everything we have done in this handler method is synchronous, return `Task.CompletedTask`.
 

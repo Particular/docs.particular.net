@@ -6,7 +6,7 @@ var builder = Host.CreateApplicationBuilder(args);
 
 var endpointConfiguration = new EndpointConfiguration("ClientUI");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-endpointConfiguration.UseTransport<LearningTransport>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
 #region AddRunLoop
 builder.UseNServiceBus(endpointConfiguration);

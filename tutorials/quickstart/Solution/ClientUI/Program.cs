@@ -6,9 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 var endpointConfiguration = new EndpointConfiguration("ClientUI");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
-var routing = transport.Routing();
+var routing = endpointConfiguration.UseTransport(new LearningTransport());
 routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
 endpointConfiguration.SendFailedMessagesTo("error");

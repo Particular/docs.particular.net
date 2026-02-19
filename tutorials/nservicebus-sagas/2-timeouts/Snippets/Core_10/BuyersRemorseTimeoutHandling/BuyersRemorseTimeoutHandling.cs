@@ -13,7 +13,7 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemo
 
     public async Task Timeout(BuyersRemorseIsOver state, IMessageHandlerContext context)
     {
-        logger.LogInformation("Cooling down period for order #{orderId} has elapsed.", Data.OrderId);
+        logger.LogInformation("Cooling down period for order #{OrderId} has elapsed.", Data.OrderId);
 
         var orderPlaced = new OrderPlaced
         {

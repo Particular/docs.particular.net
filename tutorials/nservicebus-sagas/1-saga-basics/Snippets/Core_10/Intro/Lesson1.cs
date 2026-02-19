@@ -8,13 +8,13 @@ public class ShippingPolicy(ILogger<ShippingPolicy> logger) : IHandleMessages<Or
 {
     public Task Handle(OrderPlaced message, IMessageHandlerContext context)
     {
-        logger.LogInformation("Received OrderPlaced, OrderId = {orderId}", message.OrderId);
+        logger.LogInformation("Received OrderPlaced, OrderId = {OrderId}", message.OrderId);
         return Task.CompletedTask;
     }
 
     public Task Handle(OrderBilled message, IMessageHandlerContext context)
     {
-        logger.LogInformation("Received OrderBilled, OrderId = {orderId}", message.OrderId);
+        logger.LogInformation("Received OrderBilled, OrderId = {OrderId}", message.OrderId);
         return Task.CompletedTask;
     }
 }
