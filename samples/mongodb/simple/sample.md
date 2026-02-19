@@ -1,7 +1,7 @@
 ---
 title: MongoDB Persistence
 summary: Using MongoDB for NServiceBus persistence.
-reviewed: 2024-05-18
+reviewed: 2026-02-19
 component: mongodb
 related:
 - nservicebus/sagas
@@ -36,7 +36,7 @@ endpointConfiguration.UsePersistence<MongoPersistence>().UseTransactions(false)
 
 ### Data visualization
 
-To visualize data in MongoDB, it is useful to install a [MongoDB visualization tool](https://www.mongodb.com/docs/tools-and-connectors/), like for example, [Compass](https://www.mongodb.com/try/download/compass). The screen shots in this sample are from [Robomongo](https://robomongo.org/).
+To visualize data in MongoDB, it is useful to install a [MongoDB visualization tool](https://www.mongodb.com/docs/tools-and-connectors/), like for example, [Compass](https://www.mongodb.com/try/download/compass). The screenshots in this sample are taken using Compass.
 
 ## Code walk-through
 
@@ -71,7 +71,6 @@ snippet: sagadata
 ![](sagadata.png)
 
 - `_id` stores `IContainSagaData.Id`
-- `_t` is type serialization metadata used by the [MongoDB .NET/C# Driver](https://www.mongodb.com/docs/languages/csharp/)
 - `Originator` stores `IContainSagaData.Originator`
 - `OriginalMessageId` stores `IContainSagaData.OriginalMessageId`
 - `OrderID` stores `OrderSagaData.OrderID`
