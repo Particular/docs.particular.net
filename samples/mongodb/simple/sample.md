@@ -1,6 +1,6 @@
 ---
 title: MongoDB Persistence
-summary: Using MongoDB for NServiceBus persistence.
+summary: Learn how to use MongoDB as a persistence mechanism for NServiceBus, including saga and timeout storage.
 reviewed: 2026-02-19
 component: mongodb
 related:
