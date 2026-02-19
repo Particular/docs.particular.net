@@ -77,11 +77,12 @@ partial: custom
 
 ## When to configure logging
 
-It is important to configure logging before any endpoint configuration is done since logging is configured in the static context of each NServiceBus class. It should be configured *as early as possible* at the startup of the app. For example
+Logging must be configured *as early as possible* at application startup, before any NServiceBus endpoint configuration is performed. This is required because the NServiceBus logging infrastructure is initialized in a static context.
 
- * At the start of the `Main` of a console app or windows service.
- * At the start of the `Global.Application_Start` in an ASP.NET application.
- * [Using endpoint configuration API in an application hosted via NServiceBus Host](/nservicebus/hosting/nservicebus-host/logging-configuration.md)
+For example:
+
+ * At the start of the `Main` method in console applications or Windows services
+ * During application startup configuration in ASP.NET Core applications
 
 
 partial: exception-data
