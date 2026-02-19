@@ -1082,6 +1082,20 @@
       Title: Scaling out
     - Url: transports/msmq/sender-side-distribution
       Title: Scaling out with Sender-Side Distribution
+  - Title: IBM MQ
+    Articles:
+    - Url: transports/ibmmq
+      Title: IBM MQ transport
+    - Url: transports/ibmmq/connection-settings
+      Title: Connection settings
+    - Url: transports/ibmmq/topology
+      Title: Publish/subscribe topology
+    - Url: transports/ibmmq/transactions
+      Title: Transaction support
+    - Url: transports/ibmmq/native-integration
+      Title: Native integration
+    - Url: transports/ibmmq/operations-scripting
+      Title: Scripting
   - Title: RabbitMQ
     Articles:
     - Url: transports/rabbitmq
