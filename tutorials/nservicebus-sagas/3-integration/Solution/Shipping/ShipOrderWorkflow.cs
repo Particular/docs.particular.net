@@ -13,7 +13,7 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) : Saga<ShipOrderWorkf
 
     public async Task Handle(ShipOrder message, IMessageHandlerContext context)
     {
-        logger.LogInformation("ShipOrderWorkflow for Order [{orderId}] - Trying Maple first.", Data.OrderId);
+        logger.LogInformation("ShipOrderWorkflow for Order [{OrderId}] - Trying Maple first.", Data.OrderId);
 
         // Execute order to ship with Maple
         await context.Send(new ShipWithMaple() { OrderId = Data.OrderId });
@@ -26,7 +26,7 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) : Saga<ShipOrderWorkf
     {
         if (!Data.ShipmentOrderSentToAlpine)
         {
-            logger.LogInformation("Order [{orderId}] - Successfully shipped with Maple", Data.OrderId);
+            logger.LogInformation("Order [{OrderId}] - Successfully shipped with Maple", Data.OrderId);
 
             Data.ShipmentAcceptedByMaple = true;
 
@@ -38,7 +38,7 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) : Saga<ShipOrderWorkf
 
     public Task Handle(ShipmentAcceptedByAlpine message, IMessageHandlerContext context)
     {
-        logger.LogInformation("Order [{orderId}] - Successfully shipped with Alpine", Data.OrderId);
+        logger.LogInformation("Order [{OrderId}] - Successfully shipped with Alpine", Data.OrderId);
 
         Data.ShipmentAcceptedByAlpine = true;
 
@@ -53,14 +53,14 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) : Saga<ShipOrderWorkf
         {
             if (!Data.ShipmentOrderSentToAlpine)
             {
-                logger.LogInformation("Order [{orderId}] - No answer from Maple, let's try Alpine.", Data.OrderId);
+                logger.LogInformation("Order [{OrderId}] - No answer from Maple, let's try Alpine.", Data.OrderId);
                 Data.ShipmentOrderSentToAlpine = true;
                 await context.Send(new ShipWithAlpine() { OrderId = Data.OrderId });
                 await RequestTimeout(context, TimeSpan.FromSeconds(20), new ShippingEscalation());
             }
             else if (!Data.ShipmentAcceptedByAlpine) // No response from Maple nor Alpine
             {
-                logger.LogWarning("Order [{orderId}] - No answer from Maple/Alpine. We need to escalate!", Data.OrderId);
+                logger.LogWarning("Order [{OrderId}] - No answer from Maple/Alpine. We need to escalate!", Data.OrderId);
 
                 // escalate to Warehouse Manager!
                 await context.Publish<ShipmentFailed>();

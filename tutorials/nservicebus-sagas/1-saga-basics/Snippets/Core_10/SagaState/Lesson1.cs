@@ -16,14 +16,14 @@ public class ShippingPolicy(ILogger<ShippingPolicy> logger) : Saga<ShippingPolic
     #region HandleBasicImplementation
     public Task Handle(OrderPlaced message, IMessageHandlerContext context)
     {
-        logger.LogInformation("OrderPlaced message received for {orderId}.", message.OrderId);
+        logger.LogInformation("OrderPlaced message received for {OrderId}.", message.OrderId);
         Data.IsOrderPlaced = true;
         return Task.CompletedTask;
     }
 
     public Task Handle(OrderBilled message, IMessageHandlerContext context)
     {
-        logger.LogInformation("OrderPlaced message received for {orderId}.", message.OrderId);
+        logger.LogInformation("OrderPlaced message received for {OrderId}.", message.OrderId);
         Data.IsOrderBilled = true;
         return Task.CompletedTask;
     }

@@ -11,14 +11,14 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) : Saga<ShipOrderWorkf
         {
             if (!Data.ShipmentOrderSentToAlpine)
             {
-                logger.LogInformation("Order [{orderId}] - No answer from Maple, let's try Alpine.", Data.OrderId);
+                logger.LogInformation("Order [{OrderId}] - No answer from Maple, let's try Alpine.", Data.OrderId);
                 Data.ShipmentOrderSentToAlpine = true;
                 await context.Send(new ShipWithAlpine() { OrderId = Data.OrderId });
                 await RequestTimeout(context, TimeSpan.FromSeconds(20), new ShippingEscalation());
             }
             else if (!Data.ShipmentAcceptedByAlpine) // No response from Maple nor Alpine
             {
-                logger.LogWarning("Order [{orderId}] - No answer from Maple/Alpine. We need to escalate!", Data.OrderId);
+                logger.LogWarning("Order [{OrderId}] - No answer from Maple/Alpine. We need to escalate!", Data.OrderId);
 
                 // escalate to Warehouse Manager!
                 await context.Publish<ShipmentFailed>();

@@ -28,7 +28,7 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) : Saga<ShipOrderWorkf
     {
         if (!Data.ShipmentOrderSentToAlpine)
         {
-            logger.LogInformation("Order [{orderId}] - Successfully shipped with Maple", Data.OrderId);
+            logger.LogInformation("Order [{OrderId}] - Successfully shipped with Maple", Data.OrderId);
 
             Data.ShipmentAcceptedByMaple = true;
 
@@ -44,7 +44,7 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) : Saga<ShipOrderWorkf
     {
         if (!Data.ShipmentAcceptedByMaple && !Data.ShipmentOrderSentToAlpine)
         {
-            logger.LogInformation("Order [{orderId}] - We didn't receive answer from Maple, let's try Alpine.", Data.OrderId);
+            logger.LogInformation("Order [{OrderId}] - We didn't receive answer from Maple, let's try Alpine.", Data.OrderId);
             Data.ShipmentOrderSentToAlpine = true;
             await context.Send(new ShipWithAlpine() { OrderId = Data.OrderId });
             await RequestTimeout(context, TimeSpan.FromSeconds(20), new ShippingEscalation());

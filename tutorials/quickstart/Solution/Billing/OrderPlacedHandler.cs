@@ -7,7 +7,7 @@ public class OrderPlacedHandler(ILogger<OrderPlacedHandler> logger) : IHandleMes
 {
     public Task Handle(OrderPlaced message, IMessageHandlerContext context)
     {
-        logger.LogInformation("Billing has received OrderPlaced, OrderId = {orderId}", message.OrderId);
+        logger.LogInformation("Billing has received OrderPlaced, OrderId = {OrderId}", message.OrderId);
         return Task.CompletedTask;
     }
 }

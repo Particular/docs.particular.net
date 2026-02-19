@@ -19,7 +19,7 @@ class ShipOrderWorkflow(ILogger<ShipOrderWorkflow> logger) : Saga<ShipOrderWorkf
     #region ShipmentAcceptedByAlpine
     public Task Handle(ShipmentAcceptedByAlpine message, IMessageHandlerContext context)
     {
-        logger.LogInformation("Order [{orderId}] - Successfully shipped with Alpine", Data.OrderId);
+        logger.LogInformation("Order [{OrderId}] - Successfully shipped with Alpine", Data.OrderId);
 
         Data.ShipmentAcceptedByAlpine = true;
 

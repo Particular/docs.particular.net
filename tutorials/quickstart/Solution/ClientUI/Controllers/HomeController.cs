@@ -25,7 +25,7 @@ public class HomeController(IMessageSession messageSession, ILogger<HomeControll
         // Send the command
         await messageSession.Send(command);
 
-        logger.LogInformation("Sending PlaceOrder, OrderId = {orderId}", orderId);
+        logger.LogInformation("Sending PlaceOrder, OrderId = {OrderId}", orderId);
 
         dynamic model = new ExpandoObject();
         model.OrderId = orderId;

@@ -13,7 +13,7 @@ public class OrderPlacedHandler(ILogger<OrderPlacedHandler> logger) :
     public Task Handle(OrderPlaced message, IMessageHandlerContext context)
     {
         logger.LogInformation(
-            "Shipping has received OrderPlaced, OrderId = {orderId}", message.OrderId);
+            "Shipping has received OrderPlaced, OrderId = {OrderId}", message.OrderId);
         return Task.CompletedTask;
     }
 }

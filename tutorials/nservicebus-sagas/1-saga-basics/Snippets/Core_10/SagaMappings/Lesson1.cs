@@ -33,7 +33,7 @@ public class ShippingPolicy(ILogger<ShippingPolicy> logger) : Saga<ShippingPolic
         // DON'T NEED THIS! NServiceBus does this for us.
         Data.OrderId = message.OrderId;
 
-        logger.LogInformation("OrderPlaced message received for {orderId}.", message.OrderId);
+        logger.LogInformation("OrderPlaced message received for {OrderId}.", message.OrderId);
         Data.IsOrderPlaced = true;
         return Task.CompletedTask;
     }
@@ -41,7 +41,7 @@ public class ShippingPolicy(ILogger<ShippingPolicy> logger) : Saga<ShippingPolic
 
     public Task Handle(OrderBilled message, IMessageHandlerContext context)
     {
-        logger.LogInformation("OrderPlaced message received for {orderId}.", message.OrderId);
+        logger.LogInformation("OrderPlaced message received for {OrderId}.", message.OrderId);
         return Task.CompletedTask;
     }
 }
