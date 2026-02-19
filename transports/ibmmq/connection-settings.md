@@ -1,6 +1,6 @@
 ---
 title: Connection Settings
-summary: Information about connection settings for the IBM MQ transport, including SSL/TLS and high availability
+summary: Connection settings for the IBM MQ transport, including SSL/TLS, high availability, and advanced configuration
 reviewed: 2026-02-19
 component: IbmMq
 ---
@@ -47,7 +47,7 @@ var transport = new IbmMqTransport(options =>
 
 ## Application name
 
-The application name appears in IBM MQ monitoring tools (e.g., `DISPLAY CONN(*)` in runmqsc) and is useful for identifying connections:
+The application name appears in IBM MQ monitoring tools and is useful for identifying connections:
 
 ```csharp
 var transport = new IbmMqTransport(options =>
@@ -61,7 +61,7 @@ If not specified, the application name defaults to the entry assembly name.
 
 ## High availability
 
-For high availability scenarios with multi-instance queue managers or a set of candidate queue managers, provide a connection name list instead of a single host and port:
+For high availability scenarios with multi-instance queue managers, provide a connection name list instead of a single host and port:
 
 ```csharp
 var transport = new IbmMqTransport(options =>
@@ -73,14 +73,14 @@ var transport = new IbmMqTransport(options =>
 });
 ```
 
-When `Connections` is specified, the `Host` and `Port` properties are ignored. The IBM MQ client will attempt each connection in order, connecting to the first available queue manager.
+When `Connections` is specified, the `Host` and `Port` properties are ignored. The client will attempt each connection in order, connecting to the first available queue manager.
 
 > [!NOTE]
-> All entries in the connection name list must point to instances of the same queue manager (by name). This is not a load balancing mechanism; it provides failover to a standby instance.
+> All entries in the connection name list must point to instances of the same queue manager (by name). This provides failover to a standby instance, not load balancing.
 
 ## SSL/TLS
 
-To enable encrypted communication with the queue manager, configure the SSL key repository and cipher specification. The cipher must match the `SSLCIPH` attribute on the SVRCONN channel.
+To enable encrypted communication, configure the SSL key repository and cipher specification. The cipher must match the `SSLCIPH` attribute on the SVRCONN channel.
 
 ```csharp
 var transport = new IbmMqTransport(options =>
@@ -96,13 +96,13 @@ var transport = new IbmMqTransport(options =>
 
 |Value|Description|
 |:---|---|
-|`*SYSTEM`|Use the Windows system certificate store|
-|`*USER`|Use the Windows user certificate store|
+|`*SYSTEM`|Windows system certificate store|
+|`*USER`|Windows user certificate store|
 |File path|Path to a key database file (without extension), e.g., `/var/mqm/ssl/key`|
 
 ### Peer name verification
 
-For additional security, verify the queue manager's certificate distinguished name:
+Verify the queue manager's certificate distinguished name for additional security:
 
 ```csharp
 var transport = new IbmMqTransport(options =>
@@ -114,28 +114,71 @@ var transport = new IbmMqTransport(options =>
 });
 ```
 
-### Key reset count
+> [!NOTE]
+> Both `SslKeyRepository` and `CipherSpec` must be specified together. Setting one without the other will cause a configuration validation error.
 
-SSL key renegotiation can be configured to periodically reset the secret key after a specified number of bytes:
+## Topic naming
+
+Topics are named using a configurable `TopicNaming` strategy. The default uses a prefix of `DEV` and the fully qualified type name.
+
+### Custom topic prefix
+
+To change the prefix:
 
 ```csharp
 var transport = new IbmMqTransport(options =>
 {
-    // ... connection and SSL settings ...
-    options.KeyResetCount = 40000; // Renegotiate every 40 KB
+    // ... connection settings ...
+    options.TopicNaming = new TopicNaming("PROD");
 });
 ```
 
-The default value of `0` disables client-side key reset, deferring to the channel or queue manager setting.
+### Custom topic naming strategy
 
-> [!NOTE]
-> Both `SslKeyRepository` and `CipherSpec` must be specified together. Setting one without the other will cause a configuration validation error.
+IBM MQ topic names are limited to 48 characters. If event type names are long, subclass `TopicNaming` to implement a shortening strategy:
+
+```csharp
+public class ShortTopicNaming() : TopicNaming("APP")
+{
+    public override string GenerateTopicName(Type eventType)
+    {
+        return $"APP.{eventType.Name}".ToUpperInvariant();
+    }
+}
+```
+
+```csharp
+var transport = new IbmMqTransport(options =>
+{
+    // ... connection settings ...
+    options.TopicNaming = new ShortTopicNaming();
+});
+```
+
+## Resource name sanitization
+
+IBM MQ queue and topic names are limited to 48 characters and allow only `A-Z`, `a-z`, `0-9`, `.`, and `_`. If endpoint names contain invalid characters or are too long, configure a sanitizer:
+
+```csharp
+var transport = new IbmMqTransport(options =>
+{
+    // ... connection settings ...
+    options.ResourceNameSanitizer = name =>
+    {
+        var sanitized = name.Replace("-", ".").Replace("/", ".");
+        return sanitized.Length > 48 ? sanitized[..48] : sanitized;
+    };
+});
+```
+
+> [!WARNING]
+> Ensure the sanitizer produces deterministic and unique names. Two different input names mapping to the same sanitized name will cause messages to be delivered to the wrong endpoint.
 
 ## Message processing settings
 
 ### Polling interval
 
-The transport polls queues for messages using the IBM MQ `MQGET` with wait. The wait interval controls how long each poll waits for a message before returning:
+The wait interval controls how long each poll waits for a message before returning:
 
 ```csharp
 var transport = new IbmMqTransport(options =>
@@ -149,11 +192,9 @@ var transport = new IbmMqTransport(options =>
 |:---|---|---|
 |MessageWaitInterval|5000 ms|100–30,000 ms|
 
-Shorter intervals improve responsiveness but increase CPU usage. Longer intervals reduce CPU usage but increase message processing latency.
-
 ### Maximum message size
 
-The maximum message size the transport will accept. This should match or be less than the queue manager's `MAXMSGL` setting:
+Should match or be less than the queue manager's `MAXMSGL` setting:
 
 ```csharp
 var transport = new IbmMqTransport(options =>
@@ -165,11 +206,11 @@ var transport = new IbmMqTransport(options =>
 
 |Setting|Default|Range|
 |:---|---|---|
-|MaxMessageLength|4 MB (4,194,304 bytes)|1 KB – 100 MB|
+|MaxMessageLength|4 MB|1 KB – 100 MB|
 
 ### Character set
 
-The Coded Character Set Identifier (CCSID) used for message text encoding:
+The Coded Character Set Identifier (CCSID) used for message text encoding. The default is UTF-8 (1208), which is recommended for most scenarios.
 
 ```csharp
 var transport = new IbmMqTransport(options =>
@@ -179,10 +220,9 @@ var transport = new IbmMqTransport(options =>
 });
 ```
 
-Common values:
+## Message persistence
 
-|CCSID|Encoding|
-|:---|---|
-|1208|UTF-8 (recommended)|
-|819|ISO 8859-1 (Latin-1)|
-|1252|Windows Latin-1|
+By default, all messages are sent as persistent, meaning they survive queue manager restarts. Messages marked with the `NonDurableMessage` header are sent as non-persistent for higher throughput.
+
+> [!CAUTION]
+> Non-persistent messages are lost if the queue manager restarts before they are consumed.

@@ -11,9 +11,7 @@ Provides support for sending messages over [IBM MQ](https://www.ibm.com/products
 
 ## Broker compatibility
 
-The transport requires IBM MQ 9.0 or later. It uses the managed .NET client library (`IBMMQDotnetClient`) which communicates with queue managers via the client connection (SVRCONN) channel.
-
-The transport has been tested with:
+The transport requires IBM MQ 9.0 or later. It has been tested with:
 
 - IBM MQ on Linux and Windows
 - IBM MQ on z/OS
@@ -25,11 +23,11 @@ The transport has been tested with:
 |Feature                    |   |
 |:---                       |---
 |Transactions               |None, ReceiveOnly, SendsAtomicWithReceive
-|Pub/Sub                    |Native (via IBM MQ topics and durable subscriptions)
+|Pub/Sub                    |Native
 |Timeouts                   |Not natively supported
-|Large message bodies       |Up to 100 MB (configurable, must match queue manager MAXMSGL)
+|Large message bodies       |Up to 100 MB (configurable)
 |Scale-out                  |Competing consumer
-|Scripted Deployment        |Supported via [CLI tool](operations-scripting.md) and IBM MQ admin commands
+|Scripted Deployment        |Supported via [CLI tool](operations-scripting.md)
 |Installers                 |Optional
 |Native integration         |[Supported](native-integration.md)
 |Case Sensitive             |Yes
@@ -61,51 +59,18 @@ See [connection settings](connection-settings.md) for all available connection a
 ### Advantages
 
 - Enterprise-grade messaging platform with decades of proven reliability in mission-critical systems.
-- Native publish-subscribe mechanism via IBM MQ topics and durable subscriptions; does not require NServiceBus persistence for storing event subscriptions.
-- Supports atomic sends with receive using IBM MQ syncpoint, ensuring send and receive operations commit or roll back together.
-- Integrates with mainframe and legacy systems that already use IBM MQ, bridging distributed .NET applications with z/OS, IBM i, and other platforms.
+- Native publish-subscribe mechanism; does not require NServiceBus persistence for storing event subscriptions.
+- Supports [atomic sends with receive](/transports/transactions.md), ensuring send and receive operations commit or roll back together.
+- Integrates with mainframe and legacy systems that already use IBM MQ, bridging .NET applications with z/OS, IBM i, and other platforms.
 - Built-in high availability via multi-instance queue managers and connection name lists.
-- Supports SSL/TLS encryption and certificate-based authentication for secure communication.
+- Supports SSL/TLS encryption and certificate-based authentication.
 - Supports the [competing consumer](https://www.enterpriseintegrationpatterns.com/patterns/messaging/CompetingConsumers.html) pattern out of the box for horizontal scaling.
 
 ### Disadvantages
 
-- Requires an IBM MQ license; IBM MQ is a commercial product with per-VPC or per-core licensing.
-- IBM MQ queue and topic names are limited to 48 characters, which can require custom name sanitization for longer endpoint or event type names.
-- Does not support native delayed delivery; delayed delivery requires an external timeout storage mechanism.
+- Requires an IBM MQ license; IBM MQ is a commercial product.
+- Queue and topic names are limited to 48 characters, which can require [custom name sanitization](connection-settings.md#resource-name-sanitization).
+- Does not support native delayed delivery; requires an external timeout storage mechanism.
 - Does not support `TransactionScope` mode (distributed transactions).
-- Fewer .NET-focused community resources compared to RabbitMQ or cloud-native alternatives.
-- Queue manager administration requires specialized IBM MQ knowledge (runmqsc, MQ Explorer, or equivalent tooling).
-
-## Queue naming constraints
-
-IBM MQ imposes strict naming rules on queues and topics:
-
-- Maximum 48 characters
-- Allowed characters: `A-Z`, `a-z`, `0-9`, `.`, `_`
-- No hyphens, spaces, or other special characters
-
-If endpoint or event type names exceed these constraints, configure a `ResourceNameSanitizer` to transform names:
-
-```csharp
-var transport = new IbmMqTransport(options =>
-{
-    // ... connection settings ...
-    options.ResourceNameSanitizer = name =>
-    {
-        // Replace invalid characters and truncate
-        var sanitized = name.Replace("-", ".").Replace("/", ".");
-        return sanitized.Length > 48 ? sanitized[..48] : sanitized;
-    };
-});
-```
-
-> [!WARNING]
-> Ensure the sanitizer produces deterministic and unique names. Two different input names mapping to the same sanitized name will cause messages to be delivered to the wrong endpoint.
-
-## Message persistence
-
-By default, all messages are sent as persistent (`MQPER_PERSISTENT`), meaning they survive queue manager restarts. To send non-persistent messages for higher throughput at the expense of durability, mark messages with the `NonDurableMessage` header.
-
-> [!CAUTION]
-> Non-persistent messages are lost if the queue manager restarts before they are consumed.
+- Fewer .NET community resources compared to RabbitMQ or cloud-native alternatives.
+- Queue manager administration requires specialized IBM MQ knowledge.
