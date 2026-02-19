@@ -7,7 +7,7 @@ var builder = Host.CreateApplicationBuilder(args);
 var endpointConfiguration = new EndpointConfiguration("Sales");
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-endpointConfiguration.UseTransport<LearningTransport>();
+endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.UsePersistence<LearningPersistence>();
 
 endpointConfiguration.SendFailedMessagesTo("error");
