@@ -48,6 +48,7 @@ There are [three types](/servicecontrol/#servicecontrol-instance-types) of Servi
       This queue is important to endpoints that send error and audit messages to these ServiceControl instances, as well as [plugins](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolinstancename).
    6. If needed, configure [forwarding queues](/servicecontrol/errorlog-auditlog-behavior.md).
    7. Full-text search can be turned off for [performance reasons](/servicecontrol/capacity-and-planning.md#storage-performance) if it's not needed.
+   8. Disable [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) if it is not needed.
 
 A monitoring instance differs from error and audit instances in its configuration:
 

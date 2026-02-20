@@ -7,6 +7,7 @@ $serviceControlInstance = New-ServiceControlInstance `
   -Port 33334 `
   -DatabaseMaintenancePort 33335 `
   -Transport MSMQ `
+  -EnableIntegratedServicePulse `
   -ErrorQueue error1 `
   -ErrorRetentionPeriod 10:00:00:00
 # endcode

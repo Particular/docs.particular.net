@@ -175,6 +175,22 @@ Run [ServiceControl error instance in maintenance mode](/servicecontrol/ravendb/
 | --- | --- |
 | bool | False |
 
+### ServiceControl/EnableIntegratedServicePulse
+
+_Added in version 6.12.0_
+
+Set to `true` to enable [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) included in ServiceControl versions 6.12 and above.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_ENABLEINTEGRATEDSERVICEPULSE` |
+| **App config key** | `ServiceControl/EnableIntegratedServicePulse` |
+| **SCMU field** | `Enable integrated ServicePulse` |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
 ## [Authentication](/servicecontrol/security/configuration/authentication.md)
 
 These settings configure [authentication using OAuth 2.0 and OpenID Connect](/servicecontrol/security/). Refer to the [hosting and security guide](/servicecontrol/security/hosting-guide.md) or [authentication configuration examples](/servicecontrol/security/configuration/authentication.md#identity-provider-setup-configuration-examples) for additional information.
