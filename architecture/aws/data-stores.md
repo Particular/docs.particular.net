@@ -1,7 +1,7 @@
 ---
 title: AWS data stores
 summary: Gives an overview of the data storage options offered by AWS and how to use them with the Particular Service Platform
-reviewed: 2024-05-06
+reviewed: 2026-02-20
 callsToAction: ['solution-architect', 'poc-help']
 ---
 
