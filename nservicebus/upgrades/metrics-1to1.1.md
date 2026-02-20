@@ -47,7 +47,7 @@ metrics.EnableMetricTracing(TimeSpan.FromSeconds(5));
 
 ### EnableLogTracing
 
-Replace with explicit calls to an [NServiceBus logger](/nservicebus/logging/usage.md).
+Replace with explicit calls to an [NServiceBus logger](/nservicebus/logging/#writing-a-log-entry).
 
 ```csharp
 // For Metrics version 1.x
