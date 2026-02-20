@@ -60,7 +60,7 @@ When an infrastructure outage occurs in a production environment it's possible t
 
 ## Anti-virus checks
 
-Exclude the ServiceControl and ServiceControl Audit database directories from anti-virus real-time and scheduled scans. Both ServiceControl Error and ServiceControl Audit instances use an embedded RavenDB database and produce significant storage I/O. Anti-virus software adds overhead to I/O operations, causing a significant performance impact, but can also cause data corruption when the virus scanner <!-- intentionally for SEO, keep this term --> quarantines or removes files.
+Exclude the ServiceControl and ServiceControl Audit database directories from antivirus real-time and scheduled scans. Both ServiceControl Error and ServiceControl Audit instances use an embedded RavenDB database and produce significant storage I/O. Antivirus software adds overhead to I/O operations, which causes a significant performance impact and can also cause data corruption when the virus scanner quarantines or removes files.
 
 ### Database directories
 
@@ -89,10 +89,7 @@ Microsoft recommends excluding database process executables from active antiviru
 
 Excluding these executables prevents the antivirus from interfering with process loading and memory-mapped file operations, which can cause instability and performance degradation.
 
-However, excluding executables introduces a security tradeoff: if a malicious actor were able to replace the executable, it would run without detection by the antivirus. Particular Software mitigates this risk by:
-
-- Signing all release binaries with a code signing certificate
-- Scanning every release with ClamAV before publishing (see latest scan results for [ServiceControl 6.12.0](https://github.com/Particular/ServiceControl/releases/tag/6.12.0))
+However, excluding executables introduces a security tradeoff: if a malicious actor were able to replace the executable, it would run without detection by the antivirus. Particular Software mitigates this risk by signing all release binaries with a code signing certificate and scanning every release with ClamAV before publishing.
 
 Whether to exclude the executables should be decided in consultation with your organization's security team.
 
@@ -104,8 +101,7 @@ Whether to exclude the executables should be decided in consultation with your o
 Particular Software takes several steps to secure the software supply chain:
 
 - All release binaries are signed with a code signing certificate
-- Every release is scanned with ClamAV before publishing
-- The scan results are published alongside each release (example: [ServiceControl 6.12.0 ClamAV scan](https://github.com/Particular/ServiceControl/releases/tag/6.12.0))
+- Every release is scanned with ClamAV before publishing, with scan results published alongside each release (example: [ServiceControl 6.12.0 ClamAV scan](https://github.com/Particular/ServiceControl/releases/tag/6.12.0))
 
 For more information, see the [RavenDB embedded deployment guidance](https://ravendb.net/learn/inside-ravendb-book/reader/4.0/16-monitoring-troubleshooting-and-disaster-recovery) which also recommends excluding database directories from antivirus scans.
 
