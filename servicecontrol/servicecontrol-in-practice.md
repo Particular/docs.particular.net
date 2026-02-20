@@ -87,6 +87,9 @@ Microsoft recommends excluding database process executables from active antiviru
 - `ServiceControl.exe`
 - `ServiceControl.Audit.exe`
 
+> [!NOTE]
+> On Windows systems using Microsoft Defender, process exclusions apply to child processes. Since RavenDB runs as a subprocess in embedded mode, excluding the ServiceControl executable also excludes the embedded database process.
+
 Excluding these executables prevents the antivirus from interfering with process loading and memory-mapped file operations, which can cause instability and performance degradation.
 
 However, excluding executables introduces a security tradeoff: if a malicious actor were able to replace the executable, it would run without detection by the antivirus. Particular Software mitigates this risk by signing all release binaries with a code signing certificate and scanning every release with ClamAV before publishing.
