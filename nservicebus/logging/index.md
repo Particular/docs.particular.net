@@ -97,7 +97,7 @@ snippet: UsingLogging
 
 Make sure that logging is correctly initialized before resolving the `ILog` instance. Not doing so can result in a logger using an incorrect configuration.
 
-Since `LogManager.GetLogger(..);` is an expensive call, it is important that the field is `static` so that the call happens only once per class and has the best possible performance.
+Since `LogManager.GetLogger(..);` is a relatively expensive call, it is important that the field is `static` so that the call happens only once per class and has the best possible performance.
 
 To avoid unnecessary processing, especially when logging more verbose messages, such as `Debug`, make sure to first check if logging at that level is enabled.
 
