@@ -60,10 +60,53 @@ When an infrastructure outage occurs in a production environment it's possible t
 
 ## Anti-virus checks
 
-Exclude the ServiceControl [database directory](/servicecontrol/configure-ravendb-location.md) from anti-virus checks. ServiceControl uses an embedded database and produces a lot of storage I/O. Anti-virus software adds overhead to I/O operations causing a significant performance impact but can also cause corruption when the virus scanner <!-- intentionally for SEO, keep this term --> quarantines or removes files.
+Exclude the ServiceControl and ServiceControl Audit database directories from antivirus real-time and scheduled scans. Both ServiceControl Error and ServiceControl Audit instances use an embedded RavenDB database and produce significant storage I/O. Antivirus software adds overhead to I/O operations, which causes a significant performance impact and can also cause data corruption when the virus scanner <!-- intentionally for SEO, keep this term --> quarantines or removes files.
+
+### Database directories
 
 > [!NOTE]
-> By default, Windows installs with Windows Defender which isn't always known to be active.
+> For container deployments, the database location differs. See [ServiceControl container deployment](/servicecontrol/servicecontrol-instances/deployment/containers.md) or [ServiceControl Audit container deployment](/servicecontrol/audit-instances/deployment/containers.md) for details.
+
+The default database directory locations are:
+
+- **ServiceControl Error instance**: `%PROGRAMDATA%\Particular\ServiceControl\<instance_name>\DB`
+- **ServiceControl Audit instance**: `%PROGRAMDATA%\Particular\ServiceControl.Audit\<instance_name>\DB`
+
+The database paths can be customized. To find the configured paths:
+
+- **Error instance**: See [ServiceControl DBPath configuration](/servicecontrol/servicecontrol-instances/configuration.md)
+- **Audit instance**: See [ServiceControl Audit DBPath configuration](/servicecontrol/audit-instances/configuration.md)
+
+### Executable exclusions (optional)
+
+> [!NOTE]
+> Executable exclusions only apply to Windows service installations. For container deployments, antivirus scanning is typically handled at the container host level and the considerations differ.
+
+Microsoft recommends excluding database process executables from active antivirus scanning for optimal performance and stability. For ServiceControl Error and Audit instances deployed as Windows services, this means excluding:
+
+- `ServiceControl.exe`
+- `ServiceControl.Audit.exe`
+
+> [!NOTE]
+> On Windows systems using Microsoft Defender, process exclusions apply to child processes. Since RavenDB runs as a subprocess in embedded mode, excluding the ServiceControl executable also excludes the embedded database process.
+
+Excluding these executables prevents the antivirus from interfering with process loading and memory-mapped file operations, which can cause instability and performance degradation.
+
+However, excluding executables introduces a security tradeoff: if a malicious actor were able to replace the executable, it would run without detection by the antivirus. Particular Software mitigates this risk by signing all release binaries with a code signing certificate and scanning every release with ClamAV before publishing.
+
+Whether to exclude the executables should be decided in consultation with your organization's security team.
+
+> [!NOTE]
+> In embedded mode, RavenDB runs as a subprocess of the ServiceControl process. The RavenDB executable is not directly accessible for exclusion; excluding the ServiceControl executable effectively covers the embedded database process as well.
+
+### Supply chain security
+
+Particular Software takes several steps to secure the software supply chain:
+
+- All release binaries are signed with a code signing certificate
+- Every release is scanned with ClamAV before publishing, with scan results published alongside each release (example: [ServiceControl 6.12.0 ClamAV scan](https://github.com/Particular/ServiceControl/releases/tag/6.12.0))
+
+For more information, see the [RavenDB embedded deployment guidance](https://ravendb.net/learn/inside-ravendb-book/reader/4.0/16-monitoring-troubleshooting-and-disaster-recovery) which also recommends excluding database directories from antivirus scans.
 
 ## Version downgrades
 
