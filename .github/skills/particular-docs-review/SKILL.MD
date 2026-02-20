@@ -285,3 +285,21 @@ Evaluate:
 - Obsolete content removal
 - Code sample updates to current patterns
 - Outdated references to deprecated features
+
+---
+
+## Local Validation
+
+Before submitting documentation changes, run the docs tool locally to catch issues that would fail CI:
+
+**Install Particular.DocsTool:**
+```bash
+dotnet tool install -g Particular.DocsTool --add-source https://f.feedz.io/particular-software/packages/nuget/index.json
+```
+
+**Run validation:**
+```bash
+docstool test
+```
+
+This runs the same checks that CI performs on pull requests. Always verify locally before submitting.
