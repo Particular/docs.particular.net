@@ -105,9 +105,6 @@ Particular Software takes several steps to secure the software supply chain:
 
 For more information, see the [RavenDB embedded deployment guidance](https://ravendb.net/learn/inside-ravendb-book/reader/4.0/16-monitoring-troubleshooting-and-disaster-recovery) which also recommends excluding database directories from antivirus scans.
 
-> [!NOTE]
-> By default, Windows installs with Windows Defender which isn't always known to be active.
-
 ## Version downgrades
 
 Do not downgrade releases of ServiceControl. ServiceControl uses an embedded database and changes to the internal data structures can occur between releases. Rolling back may cause index corruption or data loss. Perform testing in a lower environment before upgrading in production environments.
