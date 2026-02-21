@@ -9,7 +9,8 @@ related:
 
 Correlation is the process of finding saga instances based on data in the incoming message. For example, an `OrderId ` property of a `CompleteOrder` message can be used to find the existing saga instance for that order.
 
-> **_NOTE:_** The correlation property may be case-sensitive, depending on the persistence and datastore settings.
+> [!NOTE]
+> The correlation property may be case-sensitive, depending on the persistence and datastore settings.
 
 To declare this, use the `ConfigureHowToFindSaga` method and use the `Mapper` to specify which saga property each message maps to.
 
