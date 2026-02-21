@@ -34,7 +34,7 @@ The alternative is to [create a brand new instance](#replace-the-error-instance-
 
 Perform a **Forced upgrade** for the old Error instance. 
 > [!WARNING]
-> This is a destructive operation. A database backup is made but will require application re-installation of the instance to recover._
+> This is a destructive operation. A database backup is made but will require application re-installation of the instance to recover.
 
 ```ps1
 # List existing error/primary instances
