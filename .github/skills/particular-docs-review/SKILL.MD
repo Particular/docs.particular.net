@@ -84,6 +84,14 @@ Common corrections:
 
 ### Code Sample Requirements
 
+**Prefer snippet projects over inline code blocks:**
+
+- Code samples must come from snippet projects under `snippets/{ComponentKey}/` or sample projects
+- Use the `snippet:` key to reference snippets (e.g., `snippet: YourSnippetName`)
+- Use component keys defined in `components/component.yaml` to reference the correct snippet project
+- Inline fenced code blocks in markdown should be avoided; only use them for very small, illustrative examples (e.g., single-line expressions)
+- For multi-line code, always use the `snippet:` key to reference the snippet project
+
 **Every code sample must:**
 - Compile and run (or clearly mark as pseudo-code if not)
 - Use current API patterns and best practices
@@ -92,7 +100,7 @@ Common corrections:
 - Show expected output when relevant
 - Handle error cases when applicable
 
-**Code sample format:**
+**Code sample format (for inline blocks only):**
 - Use syntax highlighting with proper language identifier
 - Indent consistently (spaces preferred over tabs)
 - Line length under 100 characters when possible
