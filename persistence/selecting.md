@@ -32,7 +32,6 @@ A --> |No| I{Which transport?}
 I --> |MSMQ|L[SQL]
 I --> |All other transports|J[None required]
 B --> |MongoDB|M[MongoDB]
-B --> |"Service Fabric<br/>(stateful services)"|C[Service Fabric]
 B --> |RavenDB|E[RavenDB]
 B --> |Azure|Q{PaaS/IaaS?}
 B --> |AWS|P{PaaS/IaaS?}
@@ -128,10 +127,6 @@ With MongoDB 4.0 and greater, MongoDB supports multi-document transactions. Mess
 ### NHibernate
 
 For new development, this persister is not recommended. Instead, use the SQL persister.
-
-### Service Fabric
-
-This option is relevant only if endpoints are hosted using [stateful services](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-introduction#stateful-reliable-services) in Service Fabric.
 
 ### RavenDB
 

@@ -4,6 +4,8 @@ reviewed: 2025-10-23
 component: ServiceFabricPersistence
 ---
 
+include: servicefabric-sunset
+
 The current storage transaction is exposed via the `SynchronizedStorageSession` property on the `IMessageHandlerContext` implementation. The transaction can be used to ensure atomicity of operations performed by both the business logic and the persister. When running endpoints with the [Outbox](/nservicebus/outbox/) feature turned on; the same transaction will be used for any outgoing messages as well.
 
 
