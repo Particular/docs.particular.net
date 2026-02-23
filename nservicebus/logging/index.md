@@ -103,7 +103,7 @@ To avoid unnecessary processing, especially when logging more verbose messages, 
 
 The `*Format` APIs pass their message and format arguments to the corresponding APIs of the underlying logging framework so their behavior varies. Some frameworks, like NLog, use special syntax to create structured log entries. Refer to the documentation of the specific logging framework for details. The built-in logging uses `string.Format` to generate the message that is written.
 
-### Logging message contents
+## Logging message contents
 
 When NServiceBus sends a message, it writes the result of the `ToString()` method of the message class to the log. By default, this writes the name of the message type only. To write the full message contents to the log, override the `ToString()` method of the relevant message class:
 
