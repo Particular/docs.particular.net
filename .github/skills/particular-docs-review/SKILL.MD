@@ -119,7 +119,7 @@ Examples:
 - Use numbered lists for sequences: `1. Step one`, `2. Step two`
 - Code fences with language: ````csharp`, ````json`, ````bash`
 - Bold for emphasis on key terms
-- Italic for variables and placeholders: `your-api-key`, `{endpoint}`
+- Code formatting for variables and placeholders: `your-api-key`, `{endpoint}`
 - Links with descriptive text: [API documentation](https://...) not [click here](...)
 
 ---
@@ -187,7 +187,7 @@ For each code sample, verify:
 - Link text is descriptive, not generic
 
 **Link text examples:**
-- ✓ [Message handler configuration](/nservicebus/messaging/handlers)
+- ✓ [Message handler configuration](/nservicebus/messaging/handlers.md)
 - ✓ [NServiceBus documentation](https://docs.particular.net/nservicebus/)
 - ✗ [click here](/page)
 - ✗ [more info](/another-page)
