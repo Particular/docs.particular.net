@@ -110,7 +110,6 @@ Common corrections:
 
 Establish and maintain consistent terminology:
 - Choose one term per concept and stick with it
-- Document terminology decisions in glossaries when helpful
 - Avoid synonyms that could confuse readers
 - Use standard industry terms when available
 - Use consistent casing for product names and acronyms (e.g., "IBMMQ" or "IbmMq" - pick one and use throughout)
