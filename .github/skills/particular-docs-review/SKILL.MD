@@ -97,6 +97,7 @@ Establish and maintain consistent terminology:
 - Document terminology decisions in glossaries when helpful
 - Avoid synonyms that could confuse readers
 - Use standard industry terms when available
+- Use consistent casing for product names and acronyms (e.g., "IBMMQ" or "IbmMq" - pick one and use throughout)
 
 Examples:
 - ✓ "message handler" (consistent)
@@ -292,14 +293,24 @@ Evaluate:
 
 Before submitting documentation changes, run the docs tool locally to catch issues that would fail CI:
 
-**Install Particular.DocsTool:**
+**Troubleshooting:** If you encounter weird unrelated errors, there may be old files on disk. Try:
 ```bash
-dotnet tool install -g Particular.DocsTool --add-source https://f.feedz.io/particular-software/packages/nuget/index.json
+git clean -dxf
+```
+
+**Install Particular.DocsTool locally:**
+```bash
+dotnet tool install --tool-manifest .config/dotnet-tools.json Particular.DocsTool --add-source https://f.feedz.io/particular-software/packages/nuget/index.json
+```
+
+**Update the tool (if already installed):**
+```bash
+dotnet tool update -g Particular.DocsTool --add-source https://f.feedz.io/particular-software/packages/nuget/index.json
 ```
 
 **Run validation:**
 ```bash
-docstool test
+dotnet docstool test
 ```
 
 This runs the same checks that CI performs on pull requests. Always verify locally before submitting.
