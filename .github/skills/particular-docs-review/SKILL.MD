@@ -8,6 +8,14 @@ invocable: false
 
 Review documentation to ensure quality, accuracy, and consistency using en-US language standards and technical writing best practices.
 
+When reviewing documentation, update the `reviewed` date in the frontmatter using ISO format (YYYY-MM-DD):
+
+```yaml
+reviewed: 2026-02-23
+```
+
+This ensures consistency across the documentation and allows for easy sorting and comparison.
+
 ## Language Standards (en-US)
 
 ### Spelling
