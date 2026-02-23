@@ -298,9 +298,9 @@ Before submitting documentation changes, run the docs tool locally to catch issu
 git clean -dxf
 ```
 
-**Install Particular.DocsTool locally:**
+**Install Particular.DocsTool globally:**
 ```bash
-dotnet tool install --tool-manifest .config/dotnet-tools.json Particular.DocsTool --add-source https://f.feedz.io/particular-software/packages/nuget/index.json
+dotnet tool install -g Particular.DocsTool --add-source https://f.feedz.io/particular-software/packages/nuget/index.json
 ```
 
 **Update the tool (if already installed):**
@@ -310,7 +310,7 @@ dotnet tool update -g Particular.DocsTool --add-source https://f.feedz.io/partic
 
 **Run validation:**
 ```bash
-dotnet docstool test
+docstool test
 ```
 
 This runs the same checks that CI performs on pull requests. Always verify locally before submitting.
