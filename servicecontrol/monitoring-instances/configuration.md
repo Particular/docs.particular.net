@@ -536,7 +536,7 @@ The connection string for the transport. This setting must be entered in the `co
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | MONITORING_CONNECTIONSTRING OR CONNECTIONSTRING |
+| **Environment variable** | `MONITORING_CONNECTIONSTRING` or `CONNECTIONSTRING` |
 | **App config key** | `NServiceBus/Transport` in `connectionStrings` |
 | **SCMU field** | Connection String |
 
