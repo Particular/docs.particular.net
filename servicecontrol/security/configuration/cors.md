@@ -27,6 +27,7 @@ CORS configuration is required when:
 CORS configuration is *not* required when:
 
 - ServicePulse is [hosted by ServiceControl](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md)
+- ServicePulse is using the [internal reverse proxy](/servicepulse/containerization/#settings-enable-reverse-proxy).
 
 ## Configuration examples
 
