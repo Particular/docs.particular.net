@@ -532,11 +532,11 @@ Valid values are documented in the [ServiceControl transport configuration docum
 
 ### NServiceBus/Transport
 
-The connection string for the transport.
+The connection string for the transport. This setting must be entered in the `connectionStrings` section of the configuration file when configured using the app config.
 
 | Context | Name |
 | --- | --- |
-| **Environment variable** | `NSERVICEBUS_TRANSPORT` |
+| **Environment variable** | MONITORING_CONNECTIONSTRING OR CONNECTIONSTRING |
 | **App config key** | `NServiceBus/Transport` in `connectionStrings` |
 | **SCMU field** | Connection String |
 
