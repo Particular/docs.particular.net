@@ -83,11 +83,11 @@ The following factors should be considered when choosing a data store:
 
 ### Existing infrastructure
 
-Using existing infrastructure and know-how can significantly speed up the development process and lower the risks associated with using unfamiliar data store technologies. Unless the existing infrastructure and technologies do not meet the architectural requirements, they are a good default choice.
+Using existing infrastructure and know-how can significantly speed up the development process and lower the risks associated with using unfamiliar data store technologies. They are a good default choice, unless the existing infrastructure and technologies do not meet the architectural requirements.
 
 ### Compatibility
 
-When migrating or modernizing existing applications, data stores that are compatible with currently used protocols and languages simplify the switch to cloud-based services significantly. For example, a data store may understand PostgreSQL, MySQL, or MongoDB dialects which allow applications using any of these dialects to connect with minimal changes required.
+When migrating or modernizing existing applications, data stores that are compatible with currently used protocols and languages significantly simplify the switch to cloud-based services. For example, a data store may understand PostgreSQL, MySQL, or MongoDB dialects which allow applications using any of these dialects to connect with minimal changes required.
 
 ### Transactions and consistency model
 
@@ -111,7 +111,7 @@ Data stores can have significantly different pricing models. Charges may be base
 
 ### Portability
 
-Some data stores are only available in the cloud, with no on-premises equivalent. This may affect hosting, CI, testing and development. Some data stores support open standards or protocols which allows the use of on-premises or local data stores in those scenarios.
+Some data stores are only available in the cloud, with no on-premises equivalent. This may affect hosting, CI, testing and development. Some data stores support open standards or protocols, allowing for the use of on-premises or local data stores.
 
 ### Security
 
