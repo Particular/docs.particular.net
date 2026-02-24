@@ -37,7 +37,8 @@ When upgrading an existing ServiceControl Error instance via Powershell or docke
 Integrated ServicePulse shares settings with the ServiceControl Error instance it is hosted by (the hosting instance).
 
 - All host settings (such as [host name](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolhostname) and [port number](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolport)) are shared with the hosting instance. Integrated ServicePulse is available at the root url (`http://localhost:33333/` in a default installation).
-- All security settings are shared with the hosting instance. There is no need to enable [header forwarding](/servicecontrol/security/configuration/forward-headers.md), [CORS](/servicecontrol/security/configuration/cors.md), or [ServicePulse specific authorization configuration](/servicecontrol/servicecontrol-instances/configuration.md#authentication-servicecontrolauthentication-servicepulse-clientid).
+- Most security settings are shared with the hosting instance. There is no need to enable [header forwarding](/servicepulse/security/configuration/forward-headers.md) for ServicePulse specifically, and [CORS](/servicecontrol/security/configuration/cors.md) is no longer required
+- [ServicePulse specific authorization configuration](/servicecontrol/servicecontrol-instances/configuration.md#authentication-servicecontrolauthentication-servicepulse-clientid) is still required.
 - Integrated ServicePulse is automatically configured to connect to the hosting instance. This configuration is read-only and cannot be changed.
 - Connection to a ServiceControl Monitoring instance can be [configured via the ServicePulse UI](/servicepulse/host-config.md#configuring-connections-via-the-servicepulse-ui).
 
