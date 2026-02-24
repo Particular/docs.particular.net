@@ -8,7 +8,7 @@ related:
  - samples/azure-service-bus-netstandard/options
  - samples/azure-service-bus-netstandard/send-receive-with-nservicebus
  - samples/azure-service-bus-netstandard/topology-migration
-reviewed: 2024-05-17
+reviewed: 2026-02-23
 ---
 
 The Azure Service Bus transport leverages the [Azure.Messaging.ServiceBus](https://www.nuget.org/packages/Azure.Messaging.ServiceBus/) client library for .NET.
