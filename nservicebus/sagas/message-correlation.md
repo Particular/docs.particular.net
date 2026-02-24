@@ -2,7 +2,7 @@
 title: Message Correlation
 summary: Correlation is needed in order to find existing saga instances based on data in the incoming message
 component: Core
-reviewed: 2025-02-24
+reviewed: 2026-02-24
 related:
  - nservicebus/sagas/concurrency
 ---
