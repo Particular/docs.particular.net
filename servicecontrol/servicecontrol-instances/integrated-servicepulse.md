@@ -5,7 +5,7 @@ reviewed: 2026-02-16
 component: ServiceControl
 ---
 
-Version 6.12 of ServiceControl and above include integrated ServicePulse. Integrated ServicePulse is hosted in the same host process as the ServiceControl Error instance, and is automatically configured to use it.
+Version 6.13 of ServiceControl and above include integrated ServicePulse. Integrated ServicePulse is hosted in the same host process as the ServiceControl Error instance, and is automatically configured to use it.
 
 Benefits:
 - No need for a standalone ServicePulse installation. Install and manage ServiceControl and ServicePulse in one place.

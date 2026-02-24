@@ -177,9 +177,9 @@ Run [ServiceControl error instance in maintenance mode](/servicecontrol/ravendb/
 
 ### ServiceControl/EnableIntegratedServicePulse
 
-_Added in version 6.12.0_
+_Added in version 6.13.0_
 
-Set to `true` to enable [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) included in ServiceControl versions 6.12 and above.
+Set to `true` to enable [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) included in ServiceControl versions 6.13 and above.
 
 | Context | Name |
 | --- | --- |
