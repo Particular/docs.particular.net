@@ -7,6 +7,12 @@ related:
 - transports/azure-service-bus
 ---
 
+> [!WARNING]
+> **NServiceBus.Persistence.ServiceFabric component has been sunset**
+> We will continue to provide support and address critical fixes during the sunset period, but no new features will be added.
+> If you require assistance migrating to a [different persister](/persistence/#supported-persisters), contact our [support](https://particular.net/support).
+> For information on the date when this component will stop receiving any update check our [support policy page](/nservicebus/upgrades/all-versions.md#persistence-packages-nservicebus-persistence-servicefabric).
+
 This sample demonstrates how the NServiceBus API can be used to implement partition-aware routing for services hosted inside a Service Fabric cluster. It takes advantage of [routing system extensibility points](/nservicebus/messaging/routing-extensibility.md) and [custom pipeline behaviors](/nservicebus/pipeline/manipulate-with-behaviors.md) to support various types of NServiceBus communication patterns. It is assumed that NServiceBus users are able to define a mapping between message type and service partition for each message. It is also assumed that `send local`, `timeout` and `reply` messages are partition-affine i.e. they should be processed in the context of the originating partition. The sample consists of services hosted inside and outside of Service Fabric and enables proper communication between the two.
 
 ## Prerequisites

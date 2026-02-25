@@ -10,7 +10,6 @@ redirects:
 related:
 - samples/outbox
 - persistence/nhibernate/outbox
-- persistence/service-fabric/outbox
 - persistence/ravendb/outbox
 - persistence/sql/outbox
 - persistence/cosmosdb
@@ -223,5 +222,4 @@ For more information on the outbox persistence options available, refer to the d
 * [MongoDB](/persistence/mongodb/#outbox)
 * [NHibernate](/persistence/nhibernate/outbox.md)
 * [RavenDB](/persistence/ravendb/outbox.md)
-* [ServiceFabric](/persistence/service-fabric/outbox.md)
 * [SQL](/persistence/sql/outbox.md)

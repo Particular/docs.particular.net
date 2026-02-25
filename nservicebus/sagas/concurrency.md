@@ -76,7 +76,6 @@ The following saga persisters support pessimistic locking:
 
 - [NHibernate](/persistence/nhibernate/)
 - [MongoDB](/persistence/mongodb/) (since version 2.2.0)
-- [Service Fabric](/persistence/service-fabric/) (since version 2.2.0)
 - [SQL](/persistence/sql/) (since version 4.1.1)
 - [RavenDB](/persistence/ravendb/) (available since version 6.4.0, default since version 7.0.0)
 - [CosmosDB](/persistence/cosmosdb/)
@@ -95,7 +94,6 @@ The following saga persisters support OCC:
 - [Non-Durable](/persistence/non-durable/)
 - [MongoDB](/persistence/mongodb/) (prior to 2.2.0)
 - [RavenDB](/persistence/ravendb/) (prior to 7.0.0)
-- [Service Fabric](/persistence/service-fabric/) (prior to 2.2.0)
 - [SQL](/persistence/sql/) (prior to 4.1.1)
 - [CosmosDB](/persistence/cosmosdb/)
 - [DynamoDB](/persistence/dynamodb/)

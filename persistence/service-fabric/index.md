@@ -6,6 +6,8 @@ related:
 - samples/azure/azure-service-fabric-routing
 ---
 
+include: servicefabric-sunset
+
 A persister built on top of [Service Fabric Reliable Collections](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-reliable-collections).
 
 

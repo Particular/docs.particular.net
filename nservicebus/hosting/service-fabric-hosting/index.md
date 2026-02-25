@@ -1,7 +1,6 @@
 ---
 title: Service Fabric Hosting
 related:
- - persistence/service-fabric
  - samples/azure/azure-service-fabric-routing
 reviewed: 2024-11-05
 component: Core

@@ -23,7 +23,6 @@ NServiceBus helps create distributed .NET systems not only on premises but also 
 ## Persistence
 
 * [Azure Table Persistence](/persistence/azure-table/)
-* [Service Fabric Persistence](/persistence/service-fabric/)
 * [Azure CosmosDB Persistence](/persistence/cosmosdb/)
 
 ## Cloud native extensions and samples
