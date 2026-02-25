@@ -402,14 +402,14 @@ The following requests will be sent to the monitoring instance:
 The generated report will contain the names of endpoints/queues. Certain strings can be masked in the report file if the queue names contain confidential or proprietary information.
 
 ```shell
-throughput-counter [command] [options] --queueNameMasks Samples
+throughput-counter [command] [options] --queueNameMasks Samples Simple
 ```
 
 This will result in a report file with masked data, such as:
 
 ```json
 {
-  "QueueName": "***.RabbitMQ.SimpleReceiver",
+  "QueueName": "REDACTED1.RabbitMQ.REDACTED2Receiver",
   "Throughput": 0
 }
 ```
