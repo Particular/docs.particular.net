@@ -1,6 +1,4 @@
 > [!WARNING]
-> **NServiceBus.Persistence.ServiceFabric component has been sunset**
-> We will continue to provide support and address critical fixes during the sunset period, but no new features will be added.
-> If you require assistance migrating to a [different persister](/persistence/#supported-persisters), contact our [support](https://particular.net/support).
-> For information on the date when this component will stop receiving any update check our [support policy page](/nservicebus/upgrades/all-versions.md#persistence-packages-nservicebus-persistence-servicefabric).
-
+> **NServiceBus.Persistence.ServiceFabric has been sunset**  
+> This component is no longer actively developed. We will continue to provide support and address critical fixes during the sunset period, but no new features will be added. If you need help migrating to a different [persistence option](https://docs.particular.net/persistence/#supported-persisters), please contact [support](https://particular.net/support).  
+> For information on when this component will reach end of support, see our [support policy page](https://docs.particular.net/nservicebus/upgrades/all-versions#persistence-packages-nservicebus-persistence-servicefabric). 
