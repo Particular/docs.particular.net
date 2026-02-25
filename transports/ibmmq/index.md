@@ -36,21 +36,7 @@ The transport requires IBM MQ 9.0 or later. It has been tested with:
 
 To use IBM MQ as the underlying transport:
 
-```csharp
-var endpointConfiguration = new EndpointConfiguration("MyEndpoint");
-
-var transport = new IbmMqTransport(options =>
-{
-    options.Host = "mq-server.example.com";
-    options.Port = 1414;
-    options.Channel = "DEV.APP.SVRCONN";
-    options.QueueManagerName = "QM1";
-    options.User = "app";
-    options.Password = "passw0rd";
-});
-
-endpointConfiguration.UseTransport(transport);
-```
+snippet: ibmmq-config-basic
 
 See [connection settings](connection-settings.md) for all available connection and configuration options.
 

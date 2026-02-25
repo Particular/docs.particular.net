@@ -9,15 +9,7 @@ component: IbmMq
 
 The transport connects to an IBM MQ queue manager using a host, port, and SVRCONN channel:
 
-```csharp
-var transport = new IbmMqTransport(options =>
-{
-    options.Host = "mq-server.example.com";
-    options.Port = 1414;
-    options.Channel = "DEV.APP.SVRCONN";
-    options.QueueManagerName = "QM1";
-});
-```
+snippet: ibmmq-basic-connection
 
 ### Defaults
 
@@ -32,15 +24,7 @@ var transport = new IbmMqTransport(options =>
 
 User credentials can be provided to authenticate with the queue manager:
 
-```csharp
-var transport = new IbmMqTransport(options =>
-{
-    options.Host = "mq-server.example.com";
-    options.QueueManagerName = "QM1";
-    options.User = "app";
-    options.Password = "passw0rd";
-});
-```
+snippet: ibmmq-authentication
 
 > [!NOTE]
 > When no credentials are provided, the connection uses the operating system identity. This may be appropriate for local development but typically requires explicit credentials in production.
@@ -49,13 +33,7 @@ var transport = new IbmMqTransport(options =>
 
 The application name appears in IBM MQ monitoring tools and is useful for identifying connections:
 
-```csharp
-var transport = new IbmMqTransport(options =>
-{
-    // ... connection settings ...
-    options.ApplicationName = "OrderService";
-});
-```
+snippet: ibmmq-application-name
 
 If not specified, the application name defaults to the entry assembly name.
 
@@ -63,15 +41,7 @@ If not specified, the application name defaults to the entry assembly name.
 
 For high availability scenarios with multi-instance queue managers, provide a connection name list instead of a single host and port:
 
-```csharp
-var transport = new IbmMqTransport(options =>
-{
-    options.QueueManagerName = "QM1";
-    options.Channel = "APP.SVRCONN";
-    options.Connections.Add("mqhost1(1414)");
-    options.Connections.Add("mqhost2(1414)");
-});
-```
+snippet: ibmmq-high-availability
 
 When `Connections` is specified, the `Host` and `Port` properties are ignored. The client will attempt each connection in order, connecting to the first available queue manager.
 
@@ -82,15 +52,7 @@ When `Connections` is specified, the `Host` and `Port` properties are ignored. T
 
 To enable encrypted communication, configure the SSL key repository and cipher specification. The cipher must match the `SSLCIPH` attribute on the SVRCONN channel.
 
-```csharp
-var transport = new IbmMqTransport(options =>
-{
-    options.Host = "mq-server.example.com";
-    options.QueueManagerName = "QM1";
-    options.SslKeyRepository = "*SYSTEM";
-    options.CipherSpec = "TLS_RSA_WITH_AES_256_CBC_SHA256";
-});
-```
+snippet: ibmmq-ssl-tls
 
 ### Key repository options
 
@@ -104,15 +66,7 @@ var transport = new IbmMqTransport(options =>
 
 Verify the queue manager's certificate distinguished name for additional security:
 
-```csharp
-var transport = new IbmMqTransport(options =>
-{
-    // ... connection settings ...
-    options.SslKeyRepository = "*SYSTEM";
-    options.CipherSpec = "TLS_RSA_WITH_AES_256_CBC_SHA256";
-    options.SslPeerName = "CN=MQSERVER01,O=MyCompany,C=US";
-});
-```
+snippet: ibmmq-ssl-peer-name
 
 > [!NOTE]
 > Both `SslKeyRepository` and `CipherSpec` must be specified together. Setting one without the other will cause a configuration validation error.
@@ -125,51 +79,21 @@ Topics are named using a configurable `TopicNaming` strategy. The default uses a
 
 To change the prefix:
 
-```csharp
-var transport = new IbmMqTransport(options =>
-{
-    // ... connection settings ...
-    options.TopicNaming = new TopicNaming("PROD");
-});
-```
+snippet: ibmmq-custom-topic-prefix
 
 ### Custom topic naming strategy
 
 IBM MQ topic names are limited to 48 characters. If event type names are long, subclass `TopicNaming` to implement a shortening strategy:
 
-```csharp
-public class ShortTopicNaming() : TopicNaming("APP")
-{
-    public override string GenerateTopicName(Type eventType)
-    {
-        return $"APP.{eventType.Name}".ToUpperInvariant();
-    }
-}
-```
+snippet: ibmmq-custom-topic-naming-class
 
-```csharp
-var transport = new IbmMqTransport(options =>
-{
-    // ... connection settings ...
-    options.TopicNaming = new ShortTopicNaming();
-});
-```
+snippet: ibmmq-custom-topic-naming-usage
 
 ## Resource name sanitization
 
 IBM MQ queue and topic names are limited to 48 characters and allow only `A-Z`, `a-z`, `0-9`, `.`, and `_`. If endpoint names contain invalid characters or are too long, configure a sanitizer:
 
-```csharp
-var transport = new IbmMqTransport(options =>
-{
-    // ... connection settings ...
-    options.ResourceNameSanitizer = name =>
-    {
-        var sanitized = name.Replace("-", ".").Replace("/", ".");
-        return sanitized.Length > 48 ? sanitized[..48] : sanitized;
-    };
-});
-```
+snippet: ibmmq-resource-sanitization
 
 > [!WARNING]
 > Ensure the sanitizer produces deterministic and unique names. Two different input names mapping to the same sanitized name will cause messages to be delivered to the wrong endpoint.
@@ -180,13 +104,7 @@ var transport = new IbmMqTransport(options =>
 
 The wait interval controls how long each poll waits for a message before returning:
 
-```csharp
-var transport = new IbmMqTransport(options =>
-{
-    // ... connection settings ...
-    options.MessageWaitInterval = TimeSpan.FromMilliseconds(2000);
-});
-```
+snippet: ibmmq-polling-interval
 
 |Setting|Default|Range|
 |:---|---|---|
@@ -196,13 +114,7 @@ var transport = new IbmMqTransport(options =>
 
 Should match or be less than the queue manager's `MAXMSGL` setting:
 
-```csharp
-var transport = new IbmMqTransport(options =>
-{
-    // ... connection settings ...
-    options.MaxMessageLength = 10 * 1024 * 1024; // 10 MB
-});
-```
+snippet: ibmmq-max-message-size
 
 |Setting|Default|Range|
 |:---|---|---|
@@ -212,13 +124,7 @@ var transport = new IbmMqTransport(options =>
 
 The Coded Character Set Identifier (CCSID) used for message text encoding. The default is UTF-8 (1208), which is recommended for most scenarios.
 
-```csharp
-var transport = new IbmMqTransport(options =>
-{
-    // ... connection settings ...
-    options.CharacterSet = 1208; // UTF-8 (default)
-});
-```
+snippet: ibmmq-character-set
 
 ## Message persistence
 

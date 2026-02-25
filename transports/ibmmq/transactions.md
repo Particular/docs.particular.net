@@ -20,13 +20,7 @@ The IBM MQ transport supports the following [transport transaction modes](/trans
 
 In `SendsAtomicWithReceive` mode, the message receive and all outgoing send/publish operations are committed or rolled back as a single unit of work.
 
-```csharp
-var transport = new IbmMqTransport(options =>
-{
-    // ... connection settings ...
-});
-transport.TransportTransactionMode = TransportTransactionMode.SendsAtomicWithReceive;
-```
+snippet: ibmmq-sends-atomic-with-receive
 
 > [!NOTE]
 > Messages sent outside of a handler (e.g., via `IMessageSession`) are not included in the atomic operation.
@@ -37,13 +31,7 @@ In `ReceiveOnly` mode, the message receive is transactional. Successfully proces
 
 This is the default transaction mode.
 
-```csharp
-var transport = new IbmMqTransport(options =>
-{
-    // ... connection settings ...
-});
-transport.TransportTransactionMode = TransportTransactionMode.ReceiveOnly;
-```
+snippet: ibmmq-receive-only
 
 > [!WARNING]
 > If the connection to the queue manager is lost after processing succeeds but before the commit, the message will be redelivered. This can result in duplicate processing. Use the [Outbox](/nservicebus/outbox/) feature to guarantee exactly-once processing.
@@ -52,13 +40,7 @@ transport.TransportTransactionMode = TransportTransactionMode.ReceiveOnly;
 
 In `None` mode, messages are consumed without any transactional guarantees. If processing fails, the message is lost.
 
-```csharp
-var transport = new IbmMqTransport(options =>
-{
-    // ... connection settings ...
-});
-transport.TransportTransactionMode = TransportTransactionMode.None;
-```
+snippet: ibmmq-transactions-none
 
 > [!CAUTION]
 > This mode should only be used when message loss is acceptable, such as for non-critical telemetry or logging messages.
