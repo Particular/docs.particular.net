@@ -14,7 +14,7 @@ snippet: Sending
 
 ## Receiving
 
-The following code starts the configured receiver (identified by ID `"Primary"`). Each infrastructure object can contain multiple receivers. Each receiver can be started separately. Once stopped, receivers cannot be restarted. If pause functionality is needed, create a new infrastructure object each time.
+The following code starts the configured receiver (identified by ID `"Primary"`). Each infrastructure object can contain multiple receivers and each receiver can be started separately. Once stopped, receivers cannot be restarted; if pause-like functionality is required, it is necessary to create a new infrastructure object on each pause resume.
 
 snippet: Receiving
 
