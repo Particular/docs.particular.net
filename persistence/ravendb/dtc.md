@@ -1,7 +1,8 @@
 ---
 title: DTC not supported for RavenDB Persistence
 component: raven
-reviewed: 2024-05-23
+summary: Distributed transactions are not supported with RavenDB persistence. Discover the risks, affected versions, and recommended migration paths for NServiceBus.
+reviewed: 2026-02-26
 ---
 
 RavenDB's implementation of distributed transactions contains a bug that can cause an endpoint, in certain (rare) conditions, to lose data. The RavenDB team [has no further plans to address this issue](https://issues.hibernatingrhinos.com/issue/RavenDB-4431). Starting with RavenDB 4.0, RavenDB will not support the Distributed Transaction Coordinator (DTC), making this bug irrelevant beyond RavenDB 3.5.
@@ -14,7 +15,7 @@ All customers using RavenDB persistence with distributed transactions, which are
 
 Customers using RavenDB with local transactions only and who have disabled the Distributed Transaction Coordinator on the servers running endpoints are not affected.
 
-All affected versions of the `NServiceBus.RavenDB`-package were patched to log a warning if an unsafe configuration is detected. In Versions 5.0 and above, the configuration is not supported and will throw an exception if detected.
+All affected versions of the `NServiceBus.RavenDB` package were patched to log a warning if an unsafe configuration is detected. In Versions 5.0 and above, the configuration is not supported and will throw an exception if detected.
 
 ## Cause of data loss
 
@@ -37,7 +38,7 @@ All customers using RavenDB persistence are recommended to either:
 
 In NServiceBus, the DTC is used to guarantee consistency between messaging operations and data operations. Messaging operations include the message being processed as well as any messages being sent out as a result. Data persistence includes any business data persisted, as well as any NServiceBus saga or timeout data stored in the database. The DTC ensures that all these operations either completed successfully, or all rolled back.
 
-Instead of the DTC, the [Outbox feature](/nservicebus/outbox/) can be used to mimic this level of consistency without the need for distributed transactions. It does this by first storing any outgoing messages in the database, taking advantage of same (non-distributed) local transaction to ensure that the messaging operations are stored atomically with any changes to business data and NServiceBus data. Once that transaction commits successfully, the data for the outgoing messages are dispatched to the message transport separately.
+Instead of the DTC, the [Outbox feature](/nservicebus/outbox/) can be used to mimic this level of consistency without the need for distributed transactions. It does this by first storing any outgoing messages in the database, taking advantage of the same (non-distributed) local transaction to ensure that the messaging operations are stored atomically with any changes to business data and NServiceBus data. Once that transaction commits successfully, the data for the outgoing messages are dispatched to the message transport separately.
 
 > [!WARNING]
 > The Outbox relies upon the local RavenDB database transaction, meaning that all business data and NServiceBus data for the transaction must be contained within the same RavenDB database.
