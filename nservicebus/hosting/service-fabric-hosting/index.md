@@ -2,7 +2,7 @@
 title: Service Fabric Hosting
 related:
  - samples/azure/azure-service-fabric-routing
-reviewed: 2024-11-05
+reviewed: 2026-02-26
 component: Core
 versions: '[6,9)'
 isLearningPath: true
@@ -16,21 +16,21 @@ NServiceBus endpoints can be hosted in Service Fabric using any of these three o
 1. Stateful services
 1. Guest executable
 
-Refer to the [Service Fabric documentation](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-overview) for more information on when to use each option.
+Refer to the [Service Fabric documentation](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-overview) for more information on when to use each option.
 
 > [!NOTE]
 > The Actor model is another Service Fabric programming model. It is not currently supported by NServiceBus.
 
 ### Stateless service
 
-Hosting with a stateless service is similar to [self-hosting](/nservicebus/hosting/#self-hosting) with [Azure App Service](https://docs.microsoft.com/en-us/azure/app-service/)). Endpoints are stateless and use storage external to Service Fabric to manage data needed for their operation. Endpoints can be scaled out, leveraging [competing consumer](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers) at the transport level.
+Hosting with a stateless service is similar to [self-hosting](/nservicebus/hosting/#self-hosting) with [Azure App Service](https://learn.microsoft.com/en-us/azure/app-service/). Endpoints are stateless and use storage external to Service Fabric to manage data needed for their operation. Endpoints can be scaled out, leveraging [competing consumer](/nservicebus/scaling.md#scaling-out-to-multiple-nodes-competing-consumers) at the transport level.
 
-With stateless services, the number of service instances can range from one to `the number of nodes in the cluster - 1`. Endpoints are self-hosted and should be started using a custom Service Fabric [`ICommunicationListener`](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-communication) implementation.
+With stateless services, the number of service instances can range from one to `the number of nodes in the cluster - 1`. Endpoints are self-hosted and should be started using a custom Service Fabric [`ICommunicationListener`](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-reliable-services-communication) implementation.
 
 snippet: StatelessEndpointCommunicationListener
 
 > [!NOTE]
-> If stateless services are used to host web application frameworks, such as ASP.NET, ASP.NET Core, or WebAPI, it is recommended to start the endpoint inside the service collection extensions instead of the communication listener, as shown in [using NServiceBus in an ASP.NET Core WebAPI application](/samples/web/asp-web-application/). This approach is simpler than having to coordinate multiple communication listeners since no coordination is needed between the listeners. If only stateless services are used to host web application frameworks, it might be useful to consider Azure AppServices. For more guidance, refer to the [Azure App Service, Virtual Machines, Service Fabric, and Cloud Services comparison](https://docs.microsoft.com/en-us/azure/app-service/choose-web-site-cloud-service-vm) guidance.
+> If stateless services are used to host web application frameworks, such as ASP.NET, ASP.NET Core, or WebAPI, it is recommended to start the endpoint inside the service collection extensions instead of the communication listener, as shown in [using NServiceBus in an ASP.NET Core WebAPI application](/samples/web/asp-web-application/). This approach is simpler than having to coordinate multiple communication listeners since no coordination is needed between the listeners. If only stateless services are used to host web application frameworks, it might be useful to consider Azure AppServices. For more guidance, refer to [Choose an Azure compute service](https://learn.microsoft.com/en-us/azure/architecture/guide/technology-choices/compute-decision-tree) and [Service Fabric application scenarios](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-application-scenarios).
 
 ### Stateful service
 
@@ -48,12 +48,12 @@ Due to characteristics of stateful services, i.e. data partitioning and local da
 
 See [Service Fabric Partition Aware Routing](/samples/azure/azure-service-fabric-routing) for more information on how to host NServiceBus with stateful services and to learn how to configure routing between service partitions and persist data in reliable collections.
 
-NServiceBus provides persistence based on reliable collections for saga and outbox data. See [Service Fabric persistence](/persistence/service-fabric) for details.
+NServiceBus provides persistence for saga and outbox data. See [Persistence](/persistence/) for available options.
 
 
 ### Guest executable
 
-The [guest executable](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-deploy-existing-app) option allows packaging and deployment of an existing endpoint into Service Fabric with minimal or no change at all. Service Fabric treats a guest executable as a stateless service.
+The [guest executable](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-deploy-existing-app) option allows packaging and deployment of an existing endpoint into Service Fabric with minimal or no change at all. Service Fabric treats a guest executable as a stateless service.
 
 This option can be used as an interim solution for the endpoints that eventually need to be converted to Service Fabric services but cannot be converted right away.
 
@@ -63,6 +63,6 @@ This option can be used as an interim solution for the endpoints that eventually
 
 ## Hosting NServiceBus in a standalone cluster
 
-Service Fabric can be deployed to run in any environment that contains a set of interconnected Windows Server machines. See the [official documentation](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-creation-for-windows-server) for details.
+Service Fabric can be deployed to run in any environment that contains a set of interconnected Windows Server machines. See the [official documentation](https://learn.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-creation-for-windows-server) for details.
 
 On Azure, Service Fabric can be hosted with [Azure Service Fabric service](https://azure.microsoft.com/en-us/services/service-fabric/).
