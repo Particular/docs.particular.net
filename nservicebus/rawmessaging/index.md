@@ -2,7 +2,7 @@
 title: Raw messaging using NServiceBus
 summary: How to send and receive raw messages using NServiceBus transport infrastructure
 component: RawMessaging
-reviewed: 2024-05-23
+reviewed: 2026-02-26
 ---
 
 partial: content
