@@ -1,15 +1,17 @@
-﻿using System;
+namespace Core9;
+
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NServiceBus;
 using NServiceBus.Routing;
 using NServiceBus.Transport;
 
-public class Usage
+public class RawUsage
 {
     static async Task Start()
     {
-        #region Configuration
+        #region RawConfiguration
 
         var transport = new LearningTransport();
 
@@ -37,7 +39,7 @@ public class Usage
 
         #endregion
 
-        #region Sending
+        #region RawSending
 
         var body = Serialize();
         var headers = new Dictionary<string, string>
@@ -59,7 +61,7 @@ public class Usage
 
         #endregion
 
-        #region Receiving
+        #region RawReceiving
 
         var receiver = infrastructure.Receivers["Primary"];
         await receiver.Initialize(new PushRuntimeSettings(8),
@@ -74,7 +76,7 @@ public class Usage
 
         #endregion
 
-        #region Shutdown
+        #region RawShutdown
 
         await receiver.StopReceive();
         await infrastructure.Shutdown();

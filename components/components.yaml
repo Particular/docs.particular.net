@@ -432,18 +432,6 @@
   NugetOrder:
     - NServiceBus.RavenDB
 
-- Key: RawMessaging
-  Name: NServiceBus raw messaging
-  DocsUrl: /nservicebus/rawmessaging
-  GitHubOwner: SzymonPobiega
-  Category: Other
-  SupportLevel: Community
-  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.Raw/blob/master/LICENSE.md
-  ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.Raw
-  NugetOrder:
-    - NServiceBus
-    - NServiceBus.Raw
-
 - Key: SqlPersistence
   Name: Sql Persistence
   DocsUrl: /persistence/sql

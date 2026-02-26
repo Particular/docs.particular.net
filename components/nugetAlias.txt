@@ -47,7 +47,6 @@ OracleAQ: NServiceBus.OracleAQ
 PerfCounters: NServiceBus.Metrics.PerformanceCounters
 PlatformConnector: NServiceBus.ServicePlatform.Connector
 PropertyEncryption: NServiceBus.Encryption.MessageProperty
-RawMessaging: NServiceBus.Raw
 RawDelayedRetries: NServiceBus.Raw.DelayedRetries
 Rabbit: NServiceBus.RabbitMQ
 Raven: NServiceBus.RavenDB
