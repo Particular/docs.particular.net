@@ -1,31 +1,31 @@
-﻿namespace Core;
-
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using NServiceBus;
-using NServiceBus.Routing;
-using NServiceBus.Transport;
-
-public class RawUsage
+﻿namespace Core8
 {
-    static async Task Start()
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using NServiceBus;
+    using NServiceBus.Routing;
+    using NServiceBus.Transport;
+
+    public class RawUsage
     {
-        #region RawConfiguration
+        static async Task Start()
+        {
+            #region RawConfiguration
 
-        var transport = new LearningTransport();
+            var transport = new LearningTransport();
 
-        var hostSettings = new HostSettings(
-            name: "MyRawEndpoint",
-            hostDisplayName: "My Raw Endpoint",
-            startupDiagnostic: new StartupDiagnosticEntries(),
-            criticalErrorAction: (message, exception, token) =>
-            {
-                Console.WriteLine("Critical error: " + exception);
-            },
-            setupInfrastructure: true);
+            var hostSettings = new HostSettings(
+                name: "MyRawEndpoint",
+                hostDisplayName: "My Raw Endpoint",
+                startupDiagnostic: new StartupDiagnosticEntries(),
+                criticalErrorAction: (message, exception, token) =>
+                {
+                    Console.WriteLine("Critical error: " + exception);
+                },
+                setupInfrastructure: true);
 
-        var infrastructure = await transport.Initialize(hostSettings, new[]
+            var infrastructure = await transport.Initialize(hostSettings, new[]
             {
                 new ReceiveSettings(
                     id: "Primary",
@@ -35,61 +35,62 @@ public class RawUsage
                     errorQueue: "error")
             }, new string[0]);
 
-        var sender = infrastructure.Dispatcher;
+            var sender = infrastructure.Dispatcher;
 
-        #endregion
+            #endregion
 
-        #region RawSending
+            #region RawSending
 
-        var body = Serialize();
-        var headers = new Dictionary<string, string>
-        {
-            ["SomeHeader"] = "SomeValue"
-        };
-        var request = new OutgoingMessage(
-            messageId: Guid.NewGuid().ToString(),
-            headers: headers,
-            body: body);
+            var body = Serialize();
+            var headers = new Dictionary<string, string>
+            {
+                ["SomeHeader"] = "SomeValue"
+            };
+            var request = new OutgoingMessage(
+                messageId: Guid.NewGuid().ToString(),
+                headers: headers,
+                body: body);
 
-        var operation = new TransportOperation(
-            request,
-            new UnicastAddressTag("Receiver"));
+            var operation = new TransportOperation(
+                request,
+                new UnicastAddressTag("Receiver"));
 
-        await sender.Dispatch(
+            await sender.Dispatch(
                 outgoingMessages: new TransportOperations(operation),
                 transaction: new TransportTransaction());
 
-        #endregion
+            #endregion
 
-        #region RawReceiving
+            #region RawReceiving
 
-        var receiver = infrastructure.Receivers["Primary"];
-        await receiver.Initialize(new PushRuntimeSettings(8),
-            onMessage: (context, token) =>
-            {
-                var message = Deserialize(context.Body);
-                return Console.Out.WriteLineAsync(message);
-            },
-            onError: (context, token) => Task.FromResult(ErrorHandleResult.RetryRequired));
+            var receiver = infrastructure.Receivers["Primary"];
+            await receiver.Initialize(new PushRuntimeSettings(8),
+                onMessage: (context, token) =>
+                {
+                    var message = Deserialize(context.Body);
+                    return Console.Out.WriteLineAsync(message);
+                },
+                onError: (context, token) => Task.FromResult(ErrorHandleResult.RetryRequired));
 
-        await receiver.StartReceive();
+            await receiver.StartReceive();
 
-        #endregion
+            #endregion
 
-        #region RawShutdown
+            #region RawShutdown
 
-        await receiver.StopReceive();
-        await infrastructure.Shutdown();
+            await receiver.StopReceive();
+            await infrastructure.Shutdown();
 
-        #endregion
-    }
-    static byte[] Serialize()
-    {
-        throw new NotImplementedException();
-    }
+            #endregion
+        }
+        static byte[] Serialize()
+        {
+            throw new NotImplementedException();
+        }
 
-    static string Deserialize(ReadOnlyMemory<byte> body)
-    {
-        throw new NotImplementedException();
+        static string Deserialize(ReadOnlyMemory<byte> body)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

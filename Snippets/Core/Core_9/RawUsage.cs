@@ -1,4 +1,4 @@
-namespace Core;
+namespace Core9;
 
 using System;
 using System.Collections.Generic;
