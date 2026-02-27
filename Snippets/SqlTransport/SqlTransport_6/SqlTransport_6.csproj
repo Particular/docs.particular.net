@@ -16,7 +16,6 @@
     <PackageReference Include="Azure.Identity" Version="1.*" />
     <PackageReference Include="Microsoft.IdentityModel.JsonWebTokens" Version="6.*" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.*" />
-    <PackageReference Include="System.Text.Json" Version="8.*" />
   </ItemGroup>
 
 </Project>
