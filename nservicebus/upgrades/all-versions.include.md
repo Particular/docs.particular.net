@@ -1187,7 +1187,7 @@
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [5.1.x](https://www.nuget.org/packages/ServiceControl.Contracts/5.1.0) | 2025-12-03     | -                 | -                                 |
-| [5.0.x](https://www.nuget.org/packages/ServiceControl.Contracts/5.0.0) | 2024-09-04     | 2026-03-03        | Superseded by 5.1.x               |
+| [~~5.0.x~~](https://www.nuget.org/packages/ServiceControl.Contracts/5.0.0) | ~~2024-09-04~~ | ~~2026-03-03~~    | ~~Superseded by 5.1.x~~           |
 | [~~4.0.x~~](https://www.nuget.org/packages/ServiceControl.Contracts/4.0.0) | ~~2022-02-01~~ | ~~2025-09-04~~    | ~~Superseded by 5.0.x~~           |
 | [~~3.0.x~~](https://www.nuget.org/packages/ServiceControl.Contracts/3.0.0) | ~~2021-04-16~~ | ~~2023-02-01~~    | ~~Superseded by 4.0.x~~           |
 | [~~2.0.x~~](https://www.nuget.org/packages/ServiceControl.Contracts/2.0.0) | ~~2021-03-23~~ | ~~2022-04-16~~    | ~~Superseded by 3.0.x~~           |
