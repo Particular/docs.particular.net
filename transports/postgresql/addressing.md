@@ -1,7 +1,7 @@
 ---
 title: Addressing
 summary: How PostgreSQL addresses queues
-reviewed: 2024-05-24
+reviewed: 2026-03-03
 component: PostgreSqlTransport
 ---
 
@@ -45,14 +45,14 @@ snippet: postgresql-multischema-config-for-queue-send
 snippet: postgresql-multischema-config-for-queue-error
 
 > [!NOTE]
-> If the queue name contains a "." and the first part is not a schema name, enclose the queue name in quotes.
+> If the queue name contains a "." and the first part is not a schema name, enclose the queue name in double quotes.
 
 snippet: postgresql-multischema-config-for-queue-heartbeats
 
 The following values determine the schema, in priority order:
 
-* A schema configured for a given queue via `UseSchemaForQueue`.
-* A schema configured for a given endpoint via `UseSchemaForEndpoint`.
-* A schema contained in the destination address.
-* A default schema configured via `DefaultSchema`.
-* Otherwise, `public` is used as a default schema.
+- A schema configured for a given queue via `UseSchemaForQueue`.
+- A schema configured for a given endpoint via `UseSchemaForEndpoint`.
+- A schema contained in the destination address.
+- A default schema configured via `DefaultSchema`.
+- Otherwise, `public` is used as a default schema.
