@@ -94,7 +94,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [11.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate/11.0.0) | 2026-01-29     | -                 | -                                 |
 | [10.1.x](https://www.nuget.org/packages/NServiceBus.NHibernate/10.1.1) | 2025-06-03     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
-| [~~10.0.x~~](https://www.nuget.org/packages/NServiceBus.NHibernate/10.0.3) | ~~2024-04-16~~ | ~~2025-09-03~~    | ~~Superseded by 10.1.x~~          |
 | [9.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate/9.0.5) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [8.6.x](https://www.nuget.org/packages/NServiceBus.NHibernate/8.6.4) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
@@ -104,7 +103,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [11.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/11.0.0) | 2026-01-29     | -                 | -                                 |
 | [10.1.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/10.1.1) | 2025-06-03     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
-| [~~10.0.x~~](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/10.0.3) | ~~2024-04-16~~ | ~~2025-09-03~~    | ~~Superseded by 10.1.x~~          |
 | [9.0.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/9.0.5) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [8.6.x](https://www.nuget.org/packages/NServiceBus.NHibernate.TransactionalSession/8.6.4) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
@@ -114,7 +112,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/7.0.0) | 2026-01-30     | -                 | -                                 |
 | [6.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/6.1.1) | 2025-06-03     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
-| [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/6.0.1) | ~~2024-04-16~~ | ~~2025-09-03~~    | ~~Superseded by 6.1.x~~           |
 | [5.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/5.0.3) | 2022-11-23     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable/3.2.2) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
@@ -124,7 +121,6 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable.TransactionalSession/7.0.0) | 2026-01-30     | -                 | -                                 |
 | [6.1.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable.TransactionalSession/6.1.1) | 2025-06-03     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
-| [~~6.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable.TransactionalSession/6.0.1) | ~~2024-04-16~~ | ~~2025-09-03~~    | ~~Superseded by 6.1.x~~           |
 | [5.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable.TransactionalSession/5.0.3) | 2022-11-23     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.AzureTable.TransactionalSession/3.2.2) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
@@ -135,7 +131,6 @@
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/4.0.0) | 2026-01-30     | -                 | -                                 |
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.2.1) | 2025-10-13     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.1.3) | ~~2025-06-03~~ | ~~2026-01-13~~    | ~~Superseded by 3.2.x~~           |
-| [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.0.2) | ~~2024-04-16~~ | ~~2025-09-03~~    | ~~Superseded by 3.1.x~~           |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/2.0.4) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.2.2) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
@@ -146,7 +141,6 @@
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/4.0.0) | 2026-01-30     | -                 | -                                 |
 | [3.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/3.2.1) | 2025-10-13     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/3.1.3) | ~~2025-06-03~~ | ~~2026-01-13~~    | ~~Superseded by 3.2.x~~           |
-| [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/3.0.2) | ~~2024-04-16~~ | ~~2025-09-03~~    | ~~Superseded by 3.1.x~~           |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/2.0.4) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/1.2.2) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
@@ -157,7 +151,6 @@
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/4.0.1) | 2026-01-30     | -                 | -                                 |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/3.0.1) | 2025-06-04     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [2.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/2.2.1) | 2025-06-03     | 2026-06-04        | Superseded by 3.0.x               |
-| [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/2.1.0) | ~~2025-04-23~~ | ~~2025-09-03~~    | ~~Superseded by 2.2.x~~           |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB/1.0.2) | 2023-05-09     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 
 #### [NServiceBus.Persistence.DynamoDB.TransactionalSession](/nuget/NServiceBus.Persistence.DynamoDB.TransactionalSession)
@@ -167,7 +160,6 @@
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/4.0.1) | 2026-01-30     | -                 | -                                 |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/3.0.1) | 2025-06-04     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [2.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/2.2.1) | 2025-06-03     | 2026-06-04        | Superseded by 3.0.x               |
-| [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/2.1.0) | ~~2025-04-23~~ | ~~2025-09-03~~    | ~~Superseded by 2.2.x~~           |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.DynamoDB.TransactionalSession/1.0.2) | 2023-05-09     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 
 #### [NServiceBus.Persistence.NonDurable](/nuget/NServiceBus.Persistence.NonDurable)
@@ -192,7 +184,6 @@
 | [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/9.0.0) | 2026-01-30     | -                 | -                                 |
 | [8.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.3.0) | 2025-12-05     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [8.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.2.0) | 2025-06-03     | 2026-03-05        | Superseded by 8.3.x               |
-| [~~8.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/8.1.2) | ~~2024-06-25~~ | ~~2025-09-03~~    | ~~Superseded by 8.2.x~~           |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/7.0.7) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [6.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql/6.6.5) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
@@ -203,7 +194,6 @@
 | [9.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/9.0.0) | 2026-01-30     | -                 | -                                 |
 | [8.3.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.3.0) | 2025-12-05     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [8.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.2.0) | 2025-06-03     | 2026-03-05        | Superseded by 8.3.x               |
-| [~~8.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/8.1.2) | ~~2024-06-25~~ | ~~2025-09-03~~    | ~~Superseded by 8.2.x~~           |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/7.0.7) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [6.6.x](https://www.nuget.org/packages/NServiceBus.Persistence.Sql.TransactionalSession/6.6.5) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
@@ -215,7 +205,6 @@
 | [10.1.x](https://www.nuget.org/packages/NServiceBus.RavenDB/10.1.0) | 2025-09-09     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [~~10.0.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/10.0.0) | ~~2025-08-22~~ | ~~2025-12-09~~    | ~~Superseded by 10.1.x~~          |
 | [9.1.x](https://www.nuget.org/packages/NServiceBus.RavenDB/9.1.0) | 2025-06-03     | 2026-08-22        | Superseded by 10.0.x              |
-| [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB/9.0.1) | ~~2024-04-16~~ | ~~2025-09-03~~    | ~~Superseded by 9.1.x~~           |
 | [8.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB/8.2.1) | 2023-04-05     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [7.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB/7.2.0) | 2023-01-17     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
@@ -227,7 +216,6 @@
 | [10.1.x](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/10.1.0) | 2025-09-09     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [~~10.0.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/10.0.0) | ~~2025-08-22~~ | ~~2025-12-09~~    | ~~Superseded by 10.1.x~~          |
 | [9.1.x](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/9.1.0) | 2025-06-03     | 2026-08-22        | Superseded by 10.0.x              |
-| [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/9.0.1) | ~~2024-04-16~~ | ~~2025-09-03~~    | ~~Superseded by 9.1.x~~           |
 | [8.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/8.2.1) | 2023-04-05     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [7.2.x](https://www.nuget.org/packages/NServiceBus.RavenDB.TransactionalSession/7.2.0) | 2023-01-17     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
@@ -239,7 +227,6 @@
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/6.0.1) | 2025-09-05     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [5.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/5.0.0) | 2025-06-07     | 2026-09-05        | Superseded by 6.0.x               |
 | [4.2.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/4.2.0) | 2025-06-03     | 2026-06-07        | Superseded by 5.0.x               |
-| [~~4.1.x~~](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/4.1.1) | ~~2024-09-17~~ | ~~2025-09-03~~    | ~~Superseded by 4.2.x~~           |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/3.0.5) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [2.3.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB/2.3.3) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
@@ -251,7 +238,6 @@
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/6.0.1) | 2025-09-05     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [5.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/5.0.0) | 2025-06-07     | 2026-09-05        | Superseded by 6.0.x               |
 | [4.2.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/4.2.0) | 2025-06-03     | 2026-06-07        | Superseded by 5.0.x               |
-| [~~4.1.x~~](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/4.1.1) | ~~2024-09-17~~ | ~~2025-09-03~~    | ~~Superseded by 4.2.x~~           |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/3.0.5) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [2.3.x](https://www.nuget.org/packages/NServiceBus.Storage.MongoDB.TransactionalSession/2.3.3) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
@@ -590,7 +576,6 @@
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/4.0.0) | 2026-01-29     | -                 | -                                 |
 | [3.4.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.4.0) | 2025-09-09     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [~~3.3.x~~](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.3.0) | ~~2025-06-03~~ | ~~2025-12-09~~    | ~~Superseded by 3.4.x~~           |
-| [~~3.2.x~~](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.2.1) | ~~2024-09-02~~ | ~~2025-09-03~~    | ~~Superseded by 3.3.x~~           |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/2.0.3) | 2022-11-17     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [1.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/1.0.3) | 2022-09-19     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 
