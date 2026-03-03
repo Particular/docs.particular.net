@@ -1,0 +1,40 @@
+name: CollectSampleData
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+    paths:
+      - 'samples/**'
+      - 'tools/collect-samples-data.ps1'
+
+jobs:
+  collect-sample-data:
+    name: Collect sample data
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Generate samples data JSON
+        shell: pwsh
+        run: |
+          ./tools/collect-samples-data.ps1 -OutputPath ./samples-data.json
+
+      - name: Upload samples data to Internal Automation
+        shell: bash
+        run: |
+          curl --fail-with-body --show-error --silent \
+            -X POST \
+            -H "Content-Type: application/json" \
+            -H "x-functions-key: ${{ secrets.FUNCTIONS_AUTHKEY }}" \
+            --data-binary "@./samples-data.json" \
+            "${{ secrets.PROCESSSAMPLESDATARESULTS_URL }}"
+
+      - name: Archive generated payload on failure
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: samples-data-json
+          path: ./samples-data.json
+          if-no-files-found: ignore
