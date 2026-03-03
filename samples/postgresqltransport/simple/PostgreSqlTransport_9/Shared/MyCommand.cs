@@ -1,5 +1,3 @@
 ﻿using NServiceBus;
 
-public class MyCommand : IMessage
-{
-}
+public class MyCommand : ICommand;
