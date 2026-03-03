@@ -9,7 +9,9 @@ related:
 ---
 
 > [!NOTE]
-> This page is **not** relevant if the [ServicePulse static files have been extracted](/servicepulse/install-servicepulse-in-iis.md), and is being hosted in anything other than the [Container](/servicepulse/containerization/) or [Windows Service](/servicepulse/installation.md) hosting options provided. If using [authentication](/servicepulse/security/configuration/authentication.md), it is recommended to use TLS encryption.
+> This page is **not** relevant if:
+> - [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) is used. Integrated ServicePulse will use [the TLS configuration of the ServiceControl Error instance](/servicecontrol/security/configuration/tls.md) that hosts it.
+> - the [ServicePulse static files have been extracted](/servicepulse/install-servicepulse-in-iis.md), and is being hosted in anything other than the [Container](/servicepulse/containerization/) or [Windows Service](/servicepulse/installation.md) hosting options provided. If using [authentication](/servicepulse/security/configuration/authentication.md), it is recommended to use TLS encryption.
 
 ServicePulse can be configured to use HTTPS directly, enabling encrypted connections without relying on a reverse proxy for SSL termination.
 
