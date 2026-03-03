@@ -1,6 +1,6 @@
 ---
 title: Addressing
-summary: How PostgreSQL addresses queues
+summary: Learn how the PostgreSQL transport addresses queues using schema-qualified quoted identifiers and how schema resolution priority is determined.
 reviewed: 2026-03-03
 component: PostgreSqlTransport
 ---
