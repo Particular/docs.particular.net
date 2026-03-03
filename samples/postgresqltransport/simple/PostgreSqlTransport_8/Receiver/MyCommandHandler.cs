@@ -1,4 +1,3 @@
-using System.Threading.Tasks;
 using NServiceBus;
 using Microsoft.Extensions.Logging;
 
