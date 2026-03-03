@@ -114,6 +114,100 @@ function Get-PackageVersion($packageNode) {
     return $null
 }
 
+function Parse-MajorVersion([string]$version) {
+    if ([string]::IsNullOrWhiteSpace($version)) {
+        return $null
+    }
+
+    $match = [regex]::Match($version.Trim(), "\d+")
+    if (-not $match.Success) {
+        return $null
+    }
+
+    return [int]$match.Value
+}
+
+function Get-NServiceBusMajorsFromPackages($packages) {
+    $majorSet = [System.Collections.Generic.HashSet[int]]::new()
+
+    foreach ($package in $packages) {
+        if ($package.name -ne "NServiceBus") {
+            continue
+        }
+
+        $major = Parse-MajorVersion $package.version
+        if ($null -ne $major) {
+            $null = $majorSet.Add($major)
+        }
+    }
+
+    return @($majorSet | Sort-Object)
+}
+
+function Resolve-NServiceBusMajorsFromAssets([string]$versionDirectoryPath, $projectFiles) {
+    $majorSet = [System.Collections.Generic.HashSet[int]]::new()
+
+    try {
+        $solutionFiles = @(Get-ChildItem -Path $versionDirectoryPath -Include "*.sln", "*.slnx" -File -Recurse | Sort-Object FullName)
+        if ($solutionFiles.Count -gt 0) {
+            foreach ($solution in $solutionFiles) {
+                Write-Host "Restoring solution for NSB major detection: $($solution.FullName)"
+                & dotnet restore $solution.FullName --nologo | Out-Null
+                if ($LASTEXITCODE -ne 0) {
+                    throw "dotnet restore failed for '$($solution.FullName)'."
+                }
+            }
+        }
+        else {
+            foreach ($projectFile in $projectFiles) {
+                Write-Host "Restoring project for NSB major detection: $($projectFile.FullName)"
+                & dotnet restore $projectFile.FullName --nologo | Out-Null
+                if ($LASTEXITCODE -ne 0) {
+                    throw "dotnet restore failed for '$($projectFile.FullName)'."
+                }
+            }
+        }
+    }
+    catch {
+        Write-Warning "Failed to restore in '$versionDirectoryPath' for NSB major detection. $($_.Exception.Message)"
+        return @()
+    }
+
+    foreach ($projectFile in $projectFiles) {
+        $projectDirectory = Split-Path -Parent $projectFile.FullName
+        $assetsPath = Join-Path $projectDirectory "obj/project.assets.json"
+
+        if (-not (Test-Path $assetsPath)) {
+            continue
+        }
+
+        try {
+            $assets = Get-Content -Path $assetsPath -Raw | ConvertFrom-Json -AsHashtable
+            $libraries = $assets["libraries"]
+            if ($null -eq $libraries) {
+                continue
+            }
+
+            foreach ($libraryKey in $libraries.Keys) {
+                $match = [regex]::Match($libraryKey, "^NServiceBus/([^/]+)$")
+                if (-not $match.Success) {
+                    continue
+                }
+
+                $major = Parse-MajorVersion $match.Groups[1].Value
+                if ($null -ne $major) {
+                    $null = $majorSet.Add($major)
+                }
+            }
+        }
+        catch {
+            Write-Warning "Failed to inspect assets file '$assetsPath'. $($_.Exception.Message)"
+        }
+    }
+
+    return @($majorSet | Sort-Object)
+}
+
 function Parse-ProjectData([string]$projectPath) {
     $xmlText = Get-Content -Path $projectPath -Raw
     [xml]$projectXml = $xmlText
@@ -139,7 +233,7 @@ function Parse-ProjectData([string]$projectPath) {
 
         $version = Get-PackageVersion $package
 
-        $packages += [ordered]@{
+        $packages += [pscustomobject]@{
             name = $name
             version = $version
         }
@@ -226,16 +320,28 @@ foreach ($sampleMd in $sampleMdFiles) {
             $allLangVersions += $projectData.langVersions
         }
 
+        $packages = @($allPackages | Sort-Object name, version -Unique)
+        $nsbMajors = @(Get-NServiceBusMajorsFromPackages $packages)
+        if ($nsbMajors.Count -eq 0) {
+            $hasAnyNsbPackage = $packages | Where-Object { $_.name -like "NServiceBus.*" } | Select-Object -First 1
+            if ($null -ne $hasAnyNsbPackage) {
+                $nsbMajors = @(Resolve-NServiceBusMajorsFromAssets $versionDirectory.FullName $projectFiles)
+            }
+        }
+
         $relativeVersionPath = [System.IO.Path]::GetRelativePath($docsAbsolutePath, $versionDirectory.FullName).Replace("\\", "/")
         $versionRecords += [ordered]@{
             versionName = $versionDirectory.Name
             path = $relativeVersionPath
-            packages = @($allPackages | Sort-Object name, version -Unique)
+            packages = $packages
             frameworks = @($allFrameworks | Sort-Object -Unique)
             langVersions = @($allLangVersions | Sort-Object -Unique)
+            nserviceBusMajors = $nsbMajors
             projectCount = $projectFiles.Count
         }
     }
+
+    $sampleNsbMajors = @($versionRecords | ForEach-Object { $_.nserviceBusMajors } | Where-Object { $null -ne $_ } | Sort-Object -Unique)
 
     $sampleUrl = "https://docs.particular.net/$relativeSamplePath/"
     $samples += [ordered]@{
@@ -246,6 +352,7 @@ foreach ($sampleMd in $sampleMdFiles) {
         component = if ($frontMatter.ContainsKey("component")) { $frontMatter["component"] } else { $null }
         path = $relativeSamplePath
         url = $sampleUrl
+        nserviceBusMajors = $sampleNsbMajors
         versions = @($versionRecords | Sort-Object versionName)
     }
 }
