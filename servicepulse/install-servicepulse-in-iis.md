@@ -1,7 +1,7 @@
 ---
 title: Install ServicePulse in IIS
 summary: Describes how to manually install ServicePulse in IIS
-reviewed: 2024-06-27
+reviewed: 2026-02-27
 component: ServicePulse
 ---
 
@@ -14,6 +14,9 @@ These instructions assume the following:
 - ServicePulse has been installed.
 
 ## Basic setup
+
+A basic setup would include installing ServicePulse on a machine that doesn't allow ServicePulse to be used outside of the machine that it's installed on. 
+In other words if the user would like to interact with it, they must be logged in to the host machine. To enable remote access to ServicePulse follow the [Advanced configuration](#advanced-configuration) guide.
 
 Steps
 
@@ -52,12 +55,9 @@ netsh http delete urlacl http://+:9090/
 > [!NOTE]
 > Make sure that the ServicePulse Windows Service is not running and that the URLACL has been removed or else IIS will not be able to use port 9090.
 
-> [!NOTE]
-> If TLS is to be applied to ServicePulse then ServiceControl also must be configured for TLS. This can be achieved by reverse proxying ServiceControl through IIS as outlined [below](#advanced-configuration-servicecontrol).
-
 ## Advanced configuration
 
-ServicePulse relies on the ServiceControl and ServiceControl Monitoring REST APIs. Both can be exposed. It is possible to add a [reverse proxy](https://en.wikipedia.org/wiki/Reverse_proxy) to the ServicePulse website using the Microsoft [URL Rewrite IIS extension](https://www.iis.net/downloads/microsoft/url-rewrite).
+In order to enable remote access to ServicePulse the host will need to remotely access the ServiceControl and the ServiceControl Monitoring APIs. Follow the steps below to configure this functionality.
 
 ### ServiceControl
 
@@ -98,6 +98,9 @@ It is also recommended that the IIS website be configured to use TLS if an autho
 
 ### ServiceControl monitoring
 
+> [!NOTE]
+> If ServiceControl is configured with a hostname other than `localhost` then change the hostname value back to `localhost`.
+
 When using [monitoring capabilities](/monitoring) the following steps should be followed to create a reverse proxy to access the monitoring API from IIS.
 
 Installation steps:
@@ -132,9 +135,9 @@ Installation steps:
 
 ### Role-based security
 
-After executing the steps outlined above, ServicePulse requires authentication before accessing any functionality.
+If using advanced configuration it's recommended to enable some form of authentication in order to prevent unauthenticated users from accessing the system's private data. 
 
-However, once authenticated, authorization rules are not checked, so users have access to all functionality. To restrict access to specific features, use the `IIS URL Authorization` feature. The following snippet can be placed in the `web.config` file in the root of the website to restrict access based on roles:
+To restrict access to specific features, use the `IIS URL Authorization` feature. The following snippet can be placed in the `web.config` file in the root of the website to restrict access based on roles:
 
 snippet: RoleBasedSecurity
 
