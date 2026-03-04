@@ -1,7 +1,7 @@
 ---
 title: ServicePulse Troubleshooting
 summary: ServicePulse installation and common issues troubleshooting
-reviewed: 2024-05-11
+reviewed: 2026-03-04
 component: ServicePulse
 ---
 
@@ -38,11 +38,11 @@ After a period of inactivity, a web application endpoint is failing with the mes
 Endpoint has failed to send expected heartbeat to ServiceControl. It is possible that the endpoint could be down or is unresponsive. If this condition persists restart the endpoint.
 ```
 
-When accessed, the web application is operating as expected. However shortly after accessing the web application, the heartbeat message is restored and indicates the endpoint status as active.
+When accessed, the web application is operating as expected. However, shortly after accessing the web application, the heartbeat message is restored and indicates the endpoint status as active.
 
 #### Causes and solutions
 
-The issue is due to the way IIS handles application pools. By default after a certain period of inactivity, the application pool is stopped or, under certain configurable conditions, the application pool is recycled. In both cases the ServicePulse heartbeat is not sent anymore until a new web request comes in waking up the web application.
+The issue is due to the way IIS handles application pools. By default, after a certain period of inactivity, the application pool is stopped or, under certain configurable conditions, the application pool is recycled. In both cases the ServicePulse heartbeat is not sent anymore until a new web request comes in waking up the web application.
 
 To avoid the issue, configure IIS to keep the application pool alive:
 
