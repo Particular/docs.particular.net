@@ -304,6 +304,25 @@ Evaluate:
 
 ---
 
+## Conservative Change Philosophy
+
+**The cost of an unnecessary change is higher than the cost of a missed improvement.**
+
+Documentation lives in a version-controlled repository. Every change creates noise: diff churn, review burden, and the risk of introducing new errors while fixing perceived ones. This review process is optimized to catch real problems, not to impose stylistic preferences.
+
+### The Core Rule
+
+Only suggest or apply a change if it can be justified by a specific, named rule in this skill file. If a change cannot be pinned to a written rule, do not make it. Style preferences, gut feelings, and "this could be clearer" instincts that aren't grounded in a documented standard are not sufficient justification.
+
+### When in Doubt, Leave It Alone
+
+If existing text is technically correct and a reasonable professional reader would find it acceptable, do not flag it. The question is not "could this be better?" but "is this wrong by a defined standard?"
+
+### Consistency Beats Correctness
+
+If a phrasing, capitalization style, or structural pattern is used consistently throughout the existing documentation, do not flag it — even if you would have written it differently. Consistency within the corpus is more valuable than conforming to an external preference. Before flagging anything stylistic, check whether the same pattern appears elsewhere in the docs. If it does, leave it alone.
+
+---
 ## Local Validation
 
 Before submitting documentation changes, run the docs tool locally to catch issues that would fail CI:
