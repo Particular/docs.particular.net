@@ -35,3 +35,7 @@ The `Particular.ServiceControl.staging` queue ensures that messages aren't dupli
 The `Particular.ServiceControl.errors` queue tracks any internal errors that may occur within ServiceControl.
 
 Other transport-specific queues might also be created. For example, when using RabbitMQ, a queue called `nsb.v2.verify-stream-flag-enabled` will be created to validate that the setup of the RabbitMQ broker enables streams and quorum queues.
+
+## Further information
+
+For more information on configuring and using the connector, see the [container documentation](https://hub.docker.com/r/particular/servicecontrol-masstransit-connector).
