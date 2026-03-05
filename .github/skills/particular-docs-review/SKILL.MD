@@ -128,9 +128,10 @@ Incorrect: handler / messageprocessor
 # Markdown Rules
 
 - Use ATX headers (`## Header`)
-- Leave a blank line before headers
+- Leave a blank line before and after headers
 - Use `-` for lists
 - Use numbered lists for sequences
+- Leave a blank line before and after lists
 - Include language identifiers in code fences
 - Use `code` formatting for variables
 - Use descriptive link text
