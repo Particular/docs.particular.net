@@ -1,5 +1,6 @@
 ---
 title: The Particular Service Platform
+summary: Discover how NServiceBus, ServiceControl, and ServicePulse work together to monitor, recover, and scale distributed messaging systems.
 reviewed: 2026-03-05
 suppressRelated: true
 isLearningPath: true
