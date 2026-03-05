@@ -2,7 +2,7 @@ ServiceControl is the backend for ServicePulse. It is a background process that 
 
 - messages that cannot be processed, along with their exceptions
 - [every message](/nservicebus/operations/auditing.md) flowing through the system
-- [saga](/nservicebus/sagas/) state changes
+- [saga](/nservicebus/sagas/saga-audit.md) state changes
 - endpoint [heartbeats](/monitoring/heartbeats/)
 - [detailed performance metrics](/monitoring/metrics/)
 
