@@ -869,10 +869,6 @@
           "SupportLevel": "Mainstream"
         },
         {
-          "Minor": "8.2",
-          "SupportLevel": "Mainstream"
-        },
-        {
           "Minor": "8.3",
           "SupportLevel": "Mainstream"
         },
@@ -891,10 +887,6 @@
         },
         {
           "Minor": "7.0",
-          "SupportLevel": "Mainstream"
-        },
-        {
-          "Minor": "8.2",
           "SupportLevel": "Mainstream"
         },
         {
@@ -1363,7 +1355,7 @@
       "PackageId": "Particular.PlatformSample.ServiceControl",
       "Versions": [
         {
-          "Minor": "6.12",
+          "Minor": "6.13",
           "SupportLevel": "Mainstream"
         }
       ]
