@@ -1,7 +1,7 @@
 ---
 title: Collecting usage data using legacy Endpoint Throughput Counter tool
 summary: Use the Particular endpoint throughput counter tool to measure the usage of an NServiceBus system.
-reviewed: 2024-05-22
+reviewed: 2026-03-06
 related:
   - servicepulse/usage
 redirects:
@@ -109,7 +109,7 @@ throughput-counter azureservicebus [options] --resourceId /subscriptions/xxxxxxx
 Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
 
 ```shell
-Particular.EndpointThroughputCounter.exe azureservicebus [options] --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace  --region xxxxxxxxx
+Particular.EndpointThroughputCounter.exe azureservicebus [options] --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace --region xxxxxxxxx
 ```
 
 #### Options
@@ -236,7 +236,7 @@ include: throughput-tool-global-options
 <sup>1</sup> See [examples of SQL Server connection strings](https://www.connectionstrings.com/sql-server/). Authentication is often via username/password `User Id=myUsername;Password=myPassword`, integrated security `Integrated Security=true`, or active directory with MFA `Authentication=ActiveDirectoryInteractive;UID=user@domain.com`.
 
 > [!NOTE]
-> In recent versions of Microsoft's Sql Server drivers encryption has been enabled by default. When trying to connect to a Sql Server instance that uses a self-signed cerftificate, the tool may display an exception stating *[The certificate chain was issued by an authority that is not trusted](https://learn.microsoft.com/en-us/troubleshoot/sql/connect/certificate-chain-not-trusted?tabs=ole-db-driver-19)*. To bypass this exception update the connection string to include `;Trust Server Certificate=true`.
+> In recent versions of Microsoft's Sql Server drivers encryption has been enabled by default. When trying to connect to a Sql Server instance that uses a self-signed certificate, the tool may display an exception stating *[The certificate chain was issued by an authority that is not trusted](https://learn.microsoft.com/en-us/troubleshoot/sql/connect/certificate-chain-not-trusted?tabs=ole-db-driver-19)*. To bypass this exception update the connection string to include `;Trust Server Certificate=true`.
 
 #### What the tool does
 
@@ -452,7 +452,7 @@ It's generally sufficient to find one NServiceBus application, as in most cases,
 
 ### Look for transport DLLs
 
-Examine the executable directory of the NServiceBus services. The presence of any of the DLLs listed below will determine what message transport is used, which in turn dictates the data collection mechansim.
+Examine the executable directory of the NServiceBus services. The presence of any of the DLLs listed below will determine what message transport is used, which in turn dictates the data collection mechanism.
 
 | DLL Name | Message Transport | Collection Method |
 |-|-|-|
@@ -493,7 +493,7 @@ Note that ServiceControl is a form of a database, and is commonly installed on i
 To find where a ServiceControl instance might be:
 
 1. Find an instance on the current server by using <kbd>Windows</kbd> + <kbd>R</kbd> to run `services.msc` and look for services that contain the word `ServiceControl` in either the **Name** or **Description** column.
-2. If the system has been determined to use the MSMQ transport, it might be possible to find the ServiceControl server by following the steps under the [If no transport DLLs exist](#determining-message-transport-look-for-transport-dlls-if-no-transport-dlls-exist) to find the Outgoing Queues. An outgoing queue for `error` or `audit` (or a queue name containing one of those words) will likely point to the ServivceControl server.
+2. If the system has been determined to use the MSMQ transport, it might be possible to find the ServiceControl server by following the steps under the [If no transport DLLs exist](#determining-message-transport-look-for-transport-dlls-if-no-transport-dlls-exist) to find the Outgoing Queues. An outgoing queue for `error` or `audit` (or a queue name containing one of those words) will likely point to the ServiceControl server.
 
 If a ServiceControl instance can't be found, email contact@particular.net for instructions on how to estimate the number of endpoints and system throughput.
 
@@ -501,7 +501,7 @@ If a ServiceControl instance can't be found, email contact@particular.net for in
 
 ### What does the tool do
 
-The tool measures the number of endpoints used in a system, along with each endpoint's maximum daily throughout. After collecting this data, it produces a report in the directory where the tool was run.
+The tool measures the number of endpoints used in a system, along with each endpoint's maximum daily throughput. After collecting this data, it produces a report in the directory where the tool was run.
 
 ### Why should I run the tool
 
