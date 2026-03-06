@@ -10,6 +10,8 @@ redirects:
  - servicecontrol/multi-transport-support
 ---
 
+include: portable-application-note
+
 Every component in the Particular Service Platform (not including NServiceBus), including ServiceControl, must be [downloaded](https://particular.net/downloads) and installed.
 
 #if-version [,5)

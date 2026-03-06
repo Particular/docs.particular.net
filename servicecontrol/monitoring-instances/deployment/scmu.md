@@ -5,6 +5,8 @@ redirects:
  - servicecontrol/monitoring-instances/installation
 ---
 
+include: portable-application-note
+
 The ServiceControl installation package includes a utility to manage the installation, upgrade, and removal of ServiceControl instances, including monitoring instances. This utility is launched as the final step in the installation process and is also available via the Windows Start Menu.
 
 ## Usage

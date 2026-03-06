@@ -1,0 +1,2 @@
+> [!NOTE]
+> ServiceControl Management is distributed as a portable application. It won't install on machines and it'll not add any start menu entry. To apply changes to an existing ServiceControl installation, relaunch the ServiceControl Management version used to install the instance.
