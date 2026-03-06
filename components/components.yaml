@@ -56,7 +56,7 @@
 - Key: IBMMQ
   Name: IBM MQ Transport
   DocsUrl: /transports/ibmmq
-  GitHubOwner: ParticularLabs
+  GitHubOwner: Particular
   Category: Transport
   ProjectUrl: https://github.com/Particular/NServiceBus.Transport.IBMMQ
   NugetOrder:

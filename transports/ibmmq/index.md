@@ -2,7 +2,7 @@
 title: IBM MQ Transport
 summary: Integrate NServiceBus with IBM MQ for enterprise messaging on mainframe and distributed platforms
 reviewed: 2026-02-19
-component: IbmMq
+component: IBMMQ
 related:
 redirects:
 ---

@@ -2,7 +2,7 @@
 title: Native integration
 summary: How to integrate NServiceBus endpoints with native IBM MQ applications
 reviewed: 2026-02-19
-component: IbmMq
+component: IBMMQ
 ---
 
 The IBM MQ transport uses standard IBM MQ message structures, making it possible to exchange messages between NServiceBus endpoints and native IBM MQ applications.

@@ -2,7 +2,7 @@
 title: Connection Settings
 summary: Connection settings for the IBM MQ transport, including SSL/TLS, high availability, and advanced configuration
 reviewed: 2026-02-19
-component: IbmMq
+component: IBMMQ
 ---
 
 ## Basic connection

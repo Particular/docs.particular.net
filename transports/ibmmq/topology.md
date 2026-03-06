@@ -2,7 +2,7 @@
 title: Publish/subscribe topology
 summary: How the IBM MQ transport implements publish/subscribe messaging using topics and durable subscriptions
 reviewed: 2026-02-19
-component: IbmMq
+component: IBMMQ
 ---
 
 The IBM MQ transport implements publish/subscribe messaging using IBM MQ's native topic and subscription infrastructure. This means event subscriptions do not require NServiceBus persistence.

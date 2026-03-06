@@ -2,7 +2,7 @@
 title: Transaction support
 summary: Transaction modes supported by the IBM MQ transport
 reviewed: 2026-02-19
-component: IbmMq
+component: IBMMQ
 ---
 
 The IBM MQ transport supports the following [transport transaction modes](/transports/transactions.md):
