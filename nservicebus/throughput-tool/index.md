@@ -69,7 +69,7 @@ The tool can collect data using various methods depending on the system's config
 - [PostgreSQL Transport](#running-the-tool-postgresql-transport)
 - Microsoft Message Queueing (MSMQ) – Use [ServiceControl data collection](#running-the-tool-servicecontrol)
 - Azure Storage Queues – Use [ServiceControl data collection](#running-the-tool-servicecontrol)
-- [Click here if unsure what message transport is used by the system](#determining-message-transport)
+- [Not sure what message transport is used? See determining message transport](#determining-message-transport)
 
 > [!TIP]
 > If the system uses MSMQ or Azure Storage Queues but does not use ServiceControl, this tool cannot be used to measure throughput.
@@ -595,7 +595,7 @@ The tool requires a [ServiceControl Monitoring](/servicecontrol/monitoring-insta
 
 The tool queries the monitoring instance once every hour to get the per-endpoint throughput information for the last hour. It repeats this query 23 additional times to gather information for a 24-hour period.
 
-For endpoints not configured to [send metrics data to ServiceControl](/monitoring/metrics/install-plugin.md), the tool inspect Audit information to find how many messages have been successfully processed.
+For endpoints not configured to [send metrics data to ServiceControl](/monitoring/metrics/install-plugin.md), the tool inspects audit information to find how many messages have been successfully processed.
 
 See the [technical details](#running-the-tool-servicecontrol-what-the-tool-does) for more information.
 
