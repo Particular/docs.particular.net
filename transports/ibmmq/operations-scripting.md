@@ -2,7 +2,7 @@
 title: IBM MQ Transport Scripting
 summary: Command-line tool and scripts for managing IBM MQ transport infrastructure
 reviewed: 2026-02-19
-component: IbmMq
+component: IBMMQ
 related:
  - nservicebus/operations
 ---
@@ -11,14 +11,14 @@ The IBM MQ transport includes a command-line tool for creating and managing tran
 
 ## Command-line tool
 
-The `NServiceBus.Transport.IbmMq.CommandLine` package provides the `ibmmq-transport` CLI tool for managing IBM MQ resources.
+The `NServiceBus.Transport.IBMMQ.CommandLine` package provides the `ibmmq-transport` CLI tool for managing IBM MQ resources.
 
 ### Installation
 
 Install the tool globally:
 
 ```bash
-dotnet tool install -g NServiceBus.Transport.IbmMq.CommandLine
+dotnet tool install -g NServiceBus.Transport.IBMMQ.CommandLine
 ```
 
 ### Connection options

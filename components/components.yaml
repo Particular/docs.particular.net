@@ -53,14 +53,14 @@
   NugetOrder:
     - NServiceBus.AmazonSQS
 
-- Key: IbmMq
+- Key: IBMMQ
   Name: IBM MQ Transport
   DocsUrl: /transports/ibmmq
   GitHubOwner: ParticularLabs
   Category: Transport
-  ProjectUrl: https://github.com/ParticularLabs/NServiceBus.IBMMQ
+  ProjectUrl: https://github.com/Particular/NServiceBus.Transport.IBMMQ
   NugetOrder:
-    - NServiceBus.Transport.IbmMq
+    - NServiceBus.Transport.IBMMQ
 
 - Key: ASB
   Name: Azure Service Bus Transport (Legacy)

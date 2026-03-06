@@ -1,6 +1,6 @@
 using System;
 using NServiceBus;
-using NServiceBus.Transport.IbmMq;
+using NServiceBus.Transport.IBMMQ;
 
 class Usage
 {

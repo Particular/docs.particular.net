@@ -1,5 +1,5 @@
 using System;
-using NServiceBus.Transport.IbmMq;
+using NServiceBus.Transport.IBMQMQ;
 
 #region ibmmq-custom-topic-naming-class
 
