@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL Transport Design
 summary: The design and implementation details of PostgreSQL Transport
-reviewed: 2024-05-28
+reviewed: 2026-03-09
 component: PostgreSqlTransport
 ---
 

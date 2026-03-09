@@ -1,7 +1,7 @@
 ---
 title: Azure observability services
 summary: Gives an overview of the observability options offered by Azure and how to use them with the Particular Service Platform
-reviewed: 2024-05-27
+reviewed: 2026-03-09
 related:
  - nservicebus/logging
  - monitoring/metrics

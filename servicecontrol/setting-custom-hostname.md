@@ -1,7 +1,7 @@
 ---
 title: Configure the ServiceControl URI
 summary: How to configure ServiceControl to be exposed through a custom hostname and IP port
-reviewed: 2024-05-28
+reviewed: 2026-03-09
 ---
 
 To set a custom hostname and IP port for an instance of the ServiceControl service:

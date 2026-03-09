@@ -1,7 +1,7 @@
 ---
 title: Connection Settings
 summary: Information about the connection settings for the PostgreSQL transport, including custom database schemas and circuit breakers
-reviewed: 2024-05-27
+reviewed: 2026-03-09
 component: PostgreSqlTransport
 ---
 

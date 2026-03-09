@@ -5,7 +5,7 @@ component: Raven
 related:
  - nservicebus/sagas
  - persistence/ravendb
-reviewed: 2024-05-23
+reviewed: 2026-03-09
 ---
 
 include: dtc-warning
