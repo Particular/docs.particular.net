@@ -126,7 +126,7 @@ include: throughput-tool-global-options
 
 First, the tool uses a `ServiceBusAdministrationClient` to [query the queue names](https://learn.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.administration.servicebusadministrationclient.getqueuesasync?view=azure-dotnet) from the namespace. Next, a `MetricsClient` is used to [query for `CompleteMessage` metrics](https://learn.microsoft.com/en-us/dotnet/api/azure.monitor.query.metricsclient.queryresourcesasync?view=azure-dotnet) for the past 90 days from each queue.
 
-Using Azure Service Bus metrics allows the tool to capture the last 90 days worth of data at once. Although the tool collects 90 days worth of data, only the highest daily throughput is included in the report.
+Using Azure Service Bus metrics allows the tool to capture the last 90 days worth of data at once.
 
 ### Amazon SQS
 
@@ -163,7 +163,7 @@ include: throughput-tool-global-options
 
 The tool first queries the SQS API to [fetch all queue names](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ListQueues.html). Then, for each queue that is discovered, the tool queries the [CloudWatch API](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricStatistics.html) for the `NumberOfMessagesDeleted` metrics for the past 30 days.
 
-Unlike ServiceControl, using SQS and CloudWatch metrics allows the tool to capture the last 365 days' worth of data at once, which means that the report will be generated without delay. Although the tool collects 365 days worth of data, only the highest daily throughput is included in the report.
+Unlike ServiceControl, using SQS and CloudWatch metrics allows the tool to capture the last 365 days' worth of data at once, which means that the report will be generated without delay.
 
 ### RabbitMQ
 
