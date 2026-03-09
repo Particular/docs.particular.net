@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL transport
 summary: An overview of the NServiceBus PostgreSQL transport.
-reviewed: 2024-05-28
+reviewed: 2026-03-09
 component: PostgreSqlTransport
 redirects:
 related:

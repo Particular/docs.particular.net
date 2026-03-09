@@ -1,7 +1,7 @@
 ---
 title: Endpoints and endpoint instances
 summary: Defines the concepts of endpoint and endpoint instance.
-reviewed: 2024-05-28
+reviewed: 2026-03-09
 component: Core
 redirects:
 - nservicebus/endpoint
