@@ -1,7 +1,7 @@
 ---
 title: Azure observability services
 summary: Gives an overview of the observability options offered by Azure and how to use them with the Particular Service Platform
-reviewed: 2024-05-27
+reviewed: 2026-03-09
 related:
  - nservicebus/logging
  - monitoring/metrics
@@ -29,6 +29,6 @@ Azure’s main observability solution is [Azure Monitor](https://azure.microsoft
 
 The Particular Service Platform collects metrics in two forms:
 
-- OpenTelemetry-based metrics, which can be collected by enabling OpenTelemetry and exporting the metrics to Amazon CloudWatch
+- OpenTelemetry-based metrics, which can be collected by enabling OpenTelemetry and exporting the metrics to Azure Monitor
 - Custom metrics with [NServiceBus.Metrics](/monitoring/metrics) which can be exported to Azure Monitor Application Insights. NServiceBus version 8 and above supports [OpenTelemetry](https://opentelemetry.io/docs/instrumentation/net/) through [traces](/nservicebus/operations/opentelemetry.md#traces), [metrics](/nservicebus/operations/opentelemetry.md#meters), and [logging](/nservicebus/operations/opentelemetry.md#logging). See the [OpenTelemetry samples](/samples/open-telemetry/) for details on how to integrate with standard OpenTelemetry exporters.
 

@@ -1,7 +1,7 @@
 ---
 title: Collecting usage data using legacy Endpoint Throughput Counter tool
 summary: Use the Particular endpoint throughput counter tool to measure the usage of an NServiceBus system.
-reviewed: 2026-03-06
+reviewed: 2026-03-09
 related:
   - servicepulse/usage
 redirects:

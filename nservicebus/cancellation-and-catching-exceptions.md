@@ -1,7 +1,7 @@
 ---
 title: Cancellation and catching exceptions
 summary: How to correctly catch exceptions from cancellable operations
-reviewed: 2024-05-28
+reviewed: 2026-03-09
 related:
   - nservicebus/hosting/cooperative-cancellation
 ---
