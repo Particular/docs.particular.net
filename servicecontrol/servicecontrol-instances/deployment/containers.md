@@ -17,7 +17,7 @@ docker run -d --name servicecontrol -p 33333:33333 \
     -e CONNECTIONSTRING="host=rabbitmq" \
     -e RAVENDB_CONNECTIONSTRING="http://servicecontrol-db:8080" \
     -e REMOTEINSTANCES='[{"api_uri":"http://audit:44444/api"}]' \
-    -e ENABLE_INTEGRATED_SERVICEPULSE="true" \
+    -e ENABLEINTEGRATEDSERVICEPULSE="true" \
     particular/servicecontrol:latest
 ```
 
@@ -68,7 +68,7 @@ A JSON structure that provides URLs for the Error instance to access any [remote
 
 ### Enable integrated ServicePulse
 
-_Environment variable:_ `ENABLE_INTEGRATED_SERVICEPULSE`
+_Environment variable:_ `ENABLEINTEGRATEDSERVICEPULSE`
 
 A boolean value specifying whether to enable the [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) for this Error instance.
 
