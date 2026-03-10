@@ -32,7 +32,7 @@ All NServiceBus headers are stored as MQRFH2 message properties. Property names 
 - Other special characters are encoded as `_xHHHH` (e.g., `.` becomes `_x002E`)
 
 > [!NOTE]
-> IBM MQ silently discards string properties with empty values. The transport includes manifest properties (`nsbhdrs` and `nsbempty`) to track all header names and preserve empty values.
+> IBM MQ silently discards string properties with empty values. The transport includes manifest properties (`nsbhdrs` and `nsbempty`) to track all header names and preserve empty values. The header fields with non-compliant names will now be displayed in the IBMMQ Console.
 
 ## Sending messages from native applications
 
