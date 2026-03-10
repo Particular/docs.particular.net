@@ -12,13 +12,13 @@ redirects:
   - tutorials/nservicebus-sagas/1-getting-started
 ---
 
-When you build a system with asynchronous messages, you divide each process into discrete message handlers that are executed when an incoming message arrives. Your system naturally becomes more reliable because each of these message handlers can be retried until they are successful. Additionally, it becomes easier to understand since each message handler is responsible for just one specific task. This means that there's less code to keep in your head at any time.
+When you build a system with asynchronous messages, you divide each process into discrete message handlers that are executed when an incoming message arrives. Your system naturally becomes more reliable because each of these message handlers can be retried until they are successful. Additionally, it becomes easier to understand since each message handler is responsible for just one specific task. This means that there is less code to keep in mind at any given time.
 
 What happens when some process is dependent upon *more than one message*?
 
 ![Should I ship it?](feature-image.png)
 
-Let's say a we have a retail system, with 3 services: **Shipping**, **Sales** and **Billing**. They all have different responsibilities, but they are interconnected: the **Shipping** service can't ship an order (that is, send a `ShipOrder` command) until it has successfully received `OrderPlaced` from the **Sales** service *and* `OrderBilled` from the **Billing** service. Normal message handlers don't store any state, so we need a way to keep track of which events have already been received.
+Let's say we have a retail system, with 3 services: **Shipping**, **Sales**, and **Billing**. They all have different responsibilities, but they are interconnected: the **Shipping** service can't ship an order (that is, send a `ShipOrder` command) until it has successfully received `OrderPlaced` from the **Sales** service *and* `OrderBilled` from the **Billing** service. Normal message handlers don't store any state, so we need a way to keep track of which events have already been received.
 
 In this tutorial, we'll solve this problem by building a simple [**saga**](/nservicebus/sagas/), which is essentially a message-driven state machine, or a collection of message handlers that control a persisted shared state. Sagas represent a business process where multiple related messages can trigger state changes. Future lessons in this series will focus on more problems you can solve with sagas, such as integrating with external services or replacing nightly batch jobs with a system that processes changes in real time.
 
@@ -27,7 +27,7 @@ Let's get started building a saga!!
 
 ### Exercise
 
-In this exercise we'll build a saga to handle the situation outlined above, where `OrderPlaced` and `OrderBilled` must both arrive before we can ship an order. We'll extend the solution from [the step 5 of the NServiceBus Step-by-step](/tutorials/nservicebus-step-by-step/5-retrying-errors/) with a NServiceBus saga to handle the shipping process.
+In this exercise, we'll build a saga to handle the situation outlined above, where `OrderPlaced` and `OrderBilled` must both arrive before we can ship an order. We'll extend the solution from [the step 5 of the NServiceBus Step-by-step](/tutorials/nservicebus-step-by-step/5-retrying-errors/) with an NServiceBus saga to handle the shipping process.
 
 > [!NOTE]
 > **What if I didn't do the previous tutorial?**
@@ -36,9 +36,9 @@ In this exercise we'll build a saga to handle the situation outlined above, wher
 >
 > downloadbutton(Download Previous Solution, /tutorials/nservicebus-step-by-step/5-retrying-errors)
 >
-> The **ClientUI**, **Sales**, **Billing**, and **Shipping** projects define endpoints that communicate with each other using NServiceBus messages. The **ClientUI** endpoint mimics a web application and is the entry point to the system. **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references relevant **.Messages** assemblies, which contains the classes defining messages exchanged in our system.
+> The **ClientUI**, **Sales**, **Billing**, and **Shipping** projects define endpoints that communicate with each other using NServiceBus messages. The **ClientUI** endpoint mimics a web application and is the entry point to the system. **Sales**, **Billing**, and **Shipping** contain business logic related to processing, fulfilling, and shipping orders. Each endpoint references relevant **.Messages** assemblies, which contain the classes defining messages exchanged in our system.
 >
-> Check out the [NServiceBus step-by-step tutorial overview](/tutorials/nservicebus-step-by-step/) for a diagram of how the existing code works. Or, if you like, you can complete those lessons first to learn the basics of sending messages and publishing events with NServiceBus and return to this lesson afterward.
+> Check out the [NServiceBus step-by-step tutorial overview](/tutorials/nservicebus-step-by-step/) for a diagram of how the existing code works. Alternatively, you may want to complete those lessons first to learn the basics of sending messages and publishing events with NServiceBus before returning to this lesson.
 >
 > This tutorial uses NServiceBus 10, .NET 10, and assumes an up-to-date installation of Visual Studio 2026.
 
@@ -54,11 +54,11 @@ We will create a saga in the **Shipping** endpoint that will handle the `OrderPl
 
 #### Sagas as policies
 
-It's useful to think of sagas as **policies**. After all, the main use of a saga is to decide what to do once additional incoming messages arrive. Therefore it's useful to use the word **Policy** in a saga's name.
+It's useful to think of sagas as **policies**. After all, the main use of a saga is to decide what to do once additional incoming messages arrive. Therefore, it's useful to use the word **Policy** in a saga's name.
 
 We're going to call this saga **ShippingPolicy** as it defines the policy around shipping an item, namely, that it requires the order be both *placed* and *billed*.
 
-In our solution, these activities are currently happening in separate handlers. In the **Shipping** endpoint you should be able to find **OrderPlacedHandler** as well as **OrderBilledHandler**, both logging the fact that their respective messages arrived, but unable to decide what to do next without the help of the other.
+In our solution, these activities are currently happening in separate handlers. In the **Shipping** endpoint, you should be able to find **OrderPlacedHandler** as well as **OrderBilledHandler**, both logging the fact that their respective messages arrived, but unable to decide what to do next without the help of the other.
 
 The first thing we're going to do is reorganize these handlers into one class named **ShippingPolicy**.
 
@@ -89,7 +89,7 @@ To tell the saga what class to use for its data, we inherit from `Saga<TData>` w
 
 snippet: ShippingPolicyAugmentedWithData
 
-The `Saga<TData>` base class requires us to implement an abstract method called `ConfigureHowToFindSaga`. We'll get to this in a minute. For now we'll just insert a stub so that we can compile:
+The `Saga<TData>` base class requires us to implement an abstract method called `ConfigureHowToFindSaga`. We'll get to this in a minute. For now, we'll insert a stub so that we can compile:
 
 snippet: EmptyConfigureHowToFindSaga
 
@@ -105,7 +105,7 @@ snippet: HandleBasicImplementation
 Notice we didn't have to worry about loading and unloading this data — that's done for us. NServiceBus loads the saga state from storage whenever a message related to the particular saga instance is received by an endpoint and then stores any changes after the message is processed. Later in this lesson, we'll explain how NServiceBus can determine saga state based on incoming messages.
 
 > [!NOTE]
-> NServiceBus sagas are templates representing a process. At runtime, there can be multiple active instances, each representing the shipment process for a specific order. You can think about the distinction between saga and saga instance as similar to a class and object instance in object oriented design. In this scenario, there will be as many `ShippingPolicy` saga instances as there are shipments currently in progress.
+> NServiceBus sagas are templates representing a process. At runtime, there can be multiple active instances, each representing the shipment process for a specific order. You can think about the distinction between saga and saga instance as similar to a class and object instance in object-oriented design. In this scenario, there will be as many `ShippingPolicy` saga instances as there are shipments currently in progress.
 
 Now, how do we determine how to start a saga?
 
@@ -121,7 +121,7 @@ snippet: ShippingPolicyStartedBy1Message
 
 _**Not so fast!**_
 
-In message-driven systems, there's generally no way to guarantee message ordering. This is very different than when using the HTTP-based method invocation. In traditional synchronous systems we'd expect that messages are received in the same order as they are sent, i.e. `OrderPlaced` should be received by Shipping before `OrderBilled`.
+In message-driven systems, there's generally no way to guarantee message ordering. This is very different than when using the HTTP-based method invocation. In traditional synchronous systems, we'd expect the messages to be received in the same order as they are sent, i.e. `OrderPlaced` should be received by Shipping before `OrderBilled`.
 
 What happens if we're processing multiple messages in parallel? By sheer luck, it's possible that `OrderBilled` may arrive first! If it happens that `OrderBilled` arrives first, it would be discarded, assumed to belong to an already-finished saga. Then, `OrderPlaced` would arrive and start a new saga instance, but its partner message would never arrive.
 
@@ -131,7 +131,7 @@ So, let's change our `ShippingPolicy` class so that instead of implementing `IHa
 
 snippet: ShippingPolicyStartedBy2Messages
 
-The `IAmStartedByMessages<T>` interface implements the `IHandleMessages<T>` interface already, so we don't need to make any other changes to make the swap. Now the NServiceBus infrastructure knows that a message of either type can create a new saga instance, if one doesn't already exist. The `IHandleMessages<T>` interface requires a saga instance to exist already. If no matching saga instance is found, then the incoming message will be ignored.
+The `IAmStartedByMessages<T>` interface implements the `IHandleMessages<T>` interface, so we don't need to make any other changes to make the swap. Now the NServiceBus infrastructure knows that a message of either type can create a new saga instance, if one doesn't already exist. The `IHandleMessages<T>` interface requires a saga instance to exist already. If no matching saga instance is found, then the incoming message will be ignored.
 
 > [!NOTE]
 > See [Sagas Not Found](/nservicebus/sagas/saga-not-found.md) for more details about what happens when NServiceBus can't find a saga instance for a message.
@@ -140,9 +140,9 @@ The `IAmStartedByMessages<T>` interface implements the `IHandleMessages<T>` inte
 
 Wait a minute! How can NServiceBus know that a saga instance already exists for a specific incoming message?
 
-We need to tell our saga how to recognize which messages are related to the same saga instance. When you made the `ShippingPolicy` saga inherit from the `Saga<T>` base class you were required to implement an abstract method provided by the base class: `ConfigureHowToFindSaga`. Now it's time to fill that in.
+We need to tell our saga how to recognize which messages are related to the same saga instance. When you made the `ShippingPolicy` saga inherit from the `Saga<T>` base class, you were required to implement an abstract method provided by the base class: `ConfigureHowToFindSaga`. Now it's time to fill that in.
 
-The `ConfigureHowToFindSaga` method configures mappings between incoming messages and a saga instances based on message properties. In our scenario both `OrderPlaced` and `OrderBilled` events have an `OrderId` property that is a unique order identifier. It's a perfect, natural candidate for correlating messages to saga instances.
+The `ConfigureHowToFindSaga` method configures mappings between incoming messages and saga instances based on message properties. In our scenario, both `OrderPlaced` and `OrderBilled` events have an `OrderId` property that is a unique order identifier. It's a perfect, natural candidate for correlating messages to saga instances.
 
 The first thing we need to do is extend the `ShippingPolicyData` class to keep track of the `OrderId` when storing state information:
 
@@ -190,7 +190,7 @@ Next, let's add a `ProcessOrder` method to the saga to handle the order delivery
 
 snippet: ShippingPolicyProcessOrder
 
-In the `ProcessOrder` method we check if both messages have been received. In such a case the saga will send a message to deliver the order. For this specific `OrderId` the shipment process is now complete. We don't need that saga instance anymore, so it can be safely deleted by invoking the `MarkAsComplete` method.
+In the `ProcessOrder` method, we check if both messages have been received. In such a case, the saga will send a message to deliver the order. For this specific `OrderId`, the shipment process is now complete. We don't need that saga instance anymore, so it can be safely deleted by invoking the `MarkAsComplete` method.
 
 > [!NOTE]
 > While the more architecturally-clean approach would have been to `Send()` the `ShipOrder` command in this case, rather than use `SendLocal()`, that would have required us to add a routing rule to define where the message would be sent to, just as we did in the [step-by-step tutorial on multiple endpoints](/tutorials/nservicebus-step-by-step/3-multiple-endpoints/#exercise-sending-to-another-endpoint). The use of `SendLocal()` in this case was just to simplify the sample.
@@ -199,23 +199,23 @@ Now, let's modify each of our `Handle` methods so that they call `ProcessOrder` 
 
 snippet: ShippingPolicyFinalHandleWithProcessOrder
 
-We also want to be able to handle the `ShipOrder` command we're sending from the saga. In the **Shipping** endpoint create a new handler class named `ShipOrderHandler`. Here's how:
+We also want to be able to handle the `ShipOrder` command we're sending from the saga. In the **Shipping** endpoint, create a new handler class named `ShipOrderHandler`. Here's how:
 
 snippet: EmptyShipOrderHandler
 
 #### Saga persistence
 
-Before being able to fully run the solution and test if the `ShippingPolicy` saga is working as expected, you need to configure one last thing: *Saga persistence*.
+Before you can fully run the solution and test if the `ShippingPolicy` saga is working as expected, you need to configure one last thing: *Saga persistence*.
 
 Saga state needs to be persisted, so we need to configure the **Shipping** endpoint with a chosen persistence. In the `Program` class where the endpoint configuration code is, add the following line after the transport configuration:
 
 snippet: ShippingEndpointConfigLearningPersistence
 
-This line is configuring the endpoint to use `LearningPersistence` which is designed for testing and development. It stores data on the disk in a folder in the executable path. In production yous should use one of [our production-level persistence options](/persistence/#supported-persisters) instead.
+This line configures the endpoint to use `LearningPersistence`, which is designed for testing and development. It stores data on the disk in a folder in the executable path. In production, you should use one of [our production-level persistence options](/persistence/#supported-persisters) instead.
 
 #### Running the solution
 
-You can now press <kbd>F5</kbd> and test the `ShippingPolicy` saga. By sending a new order from the ClientUI endpoint you should see the following message flow:
+You can now press <kbd>F5</kbd> and test the `ShippingPolicy` saga. By sending a new order from the ClientUI endpoint, you should see the following message flow:
 
 * The `PlaceOrder`command is sent from ClientUI to Sales.
 * Sales publishes the `OrderPlaced` event that is handled by Billing and Shipping.
@@ -242,4 +242,4 @@ In this lesson, we learned to think of sagas as a tool to implement business pol
 
 Using an NServiceBus saga, we designed a state machine to satisfy these business requirements. As a message-driven state machine, a saga is a perfect way to implement a business policy as it describes the conditions that must be satisfied in order to make a decision.
 
-In the next lesson we'll see how [using timeouts](/tutorials/nservicebus-sagas/2-timeouts/) enables us to add the dimension of time to our business policies, allowing us to send messages into the future to wake up our saga and take action, even if nothing else is happening.
+In the next lesson, we'll see how [using timeouts](/tutorials/nservicebus-sagas/2-timeouts/) enables us to add the dimension of time to our business policies, allowing us to send messages into the future to wake up our saga and take action, even if nothing else is happening.
