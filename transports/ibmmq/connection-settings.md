@@ -18,16 +18,13 @@ snippet: ibmmq-basic-connection
 |Host|`localhost`|
 |Port|`1414`|
 |Channel|`DEV.ADMIN.SVRCONN`|
-|QueueManagerName|Empty (local default queue manager)|
+|QueueManagerName|Empty (local default queue manager named QM1)|
 
 ## Authentication
 
 User credentials can be provided to authenticate with the queue manager:
 
 snippet: ibmmq-authentication
-
-> [!NOTE]
-> When no credentials are provided, the connection uses the operating system identity. This may be appropriate for local development but typically requires explicit credentials in production.
 
 ## Application name
 
@@ -91,7 +88,8 @@ snippet: ibmmq-custom-topic-naming-usage
 
 ## Resource name sanitization
 
-IBM MQ queue and topic names are limited to 48 characters and allow only `A-Z`, `a-z`, `0-9`, `.`, and `_`. If endpoint names contain invalid characters or are too long, configure a sanitizer:
+IBM MQ queue and topic names are limited to 48 characters and allow only `A-Z`, `a-z`, `0-9`, `.`, and `_`.
+If endpoint names contain invalid characters or are too long, you need to configure a sanitizer:
 
 snippet: ibmmq-resource-sanitization
 
