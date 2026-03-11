@@ -28,7 +28,7 @@ jobs:
             -X POST \
             -H "Content-Type: application/json" \
             -H "x-functions-key: ${{ secrets.FUNCTIONS_AUTHKEY }}" \
-            --data-binary "@./samples-data.json" \
+            --data-binary "@./tools/samples-data.json" \
             "${{ secrets.PROCESSSAMPLESDATARESULTS_URL }}"
 
       - name: Archive generated payload on failure
@@ -36,5 +36,5 @@ jobs:
         uses: actions/upload-artifact@v7
         with:
           name: samples-data-json
-          path: ./samples-data.json
+          path: ./tools/samples-data.json
           if-no-files-found: ignore
