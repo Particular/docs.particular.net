@@ -2,8 +2,6 @@
 title: Service Fabric Persistence
 reviewed: 2025-11-28
 component: ServiceFabricPersistence
-related:
-- samples/azure/azure-service-fabric-routing
 ---
 
 include: servicefabric-sunset

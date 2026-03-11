@@ -132,7 +132,7 @@ The default message processing model is a single queue with one or more [competi
 
 Note that it isn't necessary to [shard](https://en.wikipedia.org/wiki/Shard_(database_architecture)) or [partition](https://en.wikipedia.org/wiki/Partition_(database)) saga data, although those techniques could be applied to improve performance even further.
 
-A partitioned endpoint instance must be configured to be uniquely addressable using `MakeInstanceUniquelyAddressable`. Messages must be sent to the appropriate endpoint instances using [routing extensibility](/nservicebus/messaging/routing-extensibility.md). This is demonstrated in the [Service Fabric Partition-Aware Routing sample](/samples/azure/azure-service-fabric-routing/).
+A partitioned endpoint instance must be configured to be uniquely addressable using `MakeInstanceUniquelyAddressable`. Messages must be sent to the appropriate endpoint instances using [routing extensibility](/nservicebus/messaging/routing-extensibility.md).
 
 ### Decrease network latency or bandwidth
 
