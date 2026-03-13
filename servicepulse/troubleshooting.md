@@ -51,16 +51,16 @@ To avoid the issue, configure IIS to keep the application pool alive:
  1. Install the [Application Initialization Module](https://docs.microsoft.com/en-us/iis/get-started/whats-new-in-iis-8/iis-80-application-initialization).
  1. Add the following to the web.config in the [system.webServer node](https://msdn.microsoft.com/en-us/library/ms689429.aspx).
 
+This approach also has the benefit of avoiding the "first user after idle time" wake-up response-time hit.
+
 ```xml
 <applicationInitialization doAppInitAfterRestart="true" >
     <add initializationPage="/" />
 </applicationInitialization>
 ```
 
-This approach also has the benefit of avoiding the "first user after idle time" wake-up response-time hit.
-
 > [!NOTE]
-> IIS versions prior to v7.5 do not support the Application Initialization Module. It is recommended to run on the latest version of IIS, however if this is not possible then one of the following strategies will achieve the same effect:
+> IIS versions prior to v7.5 do not support the Application Initialization Module. It is recommended to run on the latest version of IIS; however, if this is not possible then one of the following strategies will achieve the same effect:
 >  - manually setting the application pool [recycling interval](https://learn.microsoft.com/en-us/iis/configuration/system.applicationhost/applicationpools/add/recycling/) to 0 
 >  - creating an application that calls a HTTP GET on the application pool at least every 20 minutes (the default IIS recycle-on-idle time).
 
