@@ -89,7 +89,7 @@ partial: exception-data
 
 ## Writing a log entry
 
-In legacy endpoints the NServiceBus logging abstraction is used for writing log messages from user code.
+In legacy endpoints, the NServiceBus logging abstraction is used for writing log messages from user code.
 
 Set up a single static field to an `ILog` in the classes, and then use it in all methods:
 
