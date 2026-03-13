@@ -1137,8 +1137,8 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/4.0.0) | 2026-01-29     | -                 | -                                 |
-| [3.4.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.4.0) | 2025-09-09     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/4.0.1) | 2026-01-29     | -                 | -                                 |
+| [3.4.x](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.4.1) | 2025-09-09     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
 | [~~3.3.x~~](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.3.0) | ~~2025-06-03~~ | ~~2025-12-09~~    | ~~Superseded by 3.4.x~~           |
 | [~~3.2.x~~](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.2.1) | ~~2024-09-02~~ | ~~2025-09-03~~    | ~~Superseded by 3.3.x~~           |
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.TransactionalSession/3.1.0) | ~~2024-07-05~~ | ~~2024-12-02~~    | ~~Superseded by 3.2.x~~           |
