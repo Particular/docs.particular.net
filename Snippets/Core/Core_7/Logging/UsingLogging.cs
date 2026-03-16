@@ -14,7 +14,7 @@
             log.Warn("Something unexpected happened.");
             if (log.IsDebugEnabled)
             {
-                log.Debug("Something expected happened.");
+                log.Debug("Unexpected thing that happened.");
                 log.DebugFormat("Also, this other thing happened {0} times.", times);
             }
         }

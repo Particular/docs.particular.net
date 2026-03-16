@@ -89,7 +89,7 @@ partial: exception-data
 
 ## Writing a log entry
 
-In legacy endpoints the NServiceBus logging abstraction is used for writing log messages from user code.
+In legacy endpoints, the NServiceBus logging abstraction is used for writing log messages.
 
 Set up a single static field to an `ILog` in the classes, and then use it in all methods:
 
@@ -97,11 +97,9 @@ snippet: UsingLogging
 
 Make sure that logging is correctly initialized before resolving the `ILog` instance. Not doing so can result in a logger using an incorrect configuration.
 
-Since `LogManager.GetLogger(..);` is a relatively expensive call, it is important that the field is `static` so that the call happens only once per class and has the best possible performance.
+Since `LogManager.GetLogger(..);` is a relatively expensive call, it is important that the field is `static` so that the call happens only once per class and has the best possible performance. In addition, wrapping logging messages in conditional statements prevents unnecessary processing when a given level of logging is not needed. For example, when writing debug messsages, ensure `log.IsDebugEnabled` before proceeding. 
 
-To avoid unnecessary processing, especially when logging more verbose messages, such as `Debug`, make sure to first check if logging at that level is enabled.
-
-The `*Format` APIs pass their message and format arguments to the corresponding APIs of the underlying logging framework so their behavior varies. Some frameworks, like NLog, use special syntax to create structured log entries. Refer to the documentation of the specific logging framework for details. The built-in logging uses `string.Format` to generate the message that is written.
+The `*Format` APIs pass the message template and its arguments to the underlying logging framework, so their behavior can vary depending on the framework being used. Some frameworks, such as NLog, support special formatting syntax that allows structured log entries to be created. Refer to the documentation for the specific logging framework for details. When using the built-in logger, the message is formatted using `string.Format` before it is written.
 
 ## Logging message contents
 
