@@ -151,15 +151,18 @@ class Usage
         #endregion
     }
 
+#pragma warning disable CS0618 // Type or member is obsolete
     public void UseExternalAuthMechanism(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-external-auth-mechanism
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+
         transport.UseExternalAuthMechanism();
 
         #endregion
     }
+#pragma warning restore CS0618 // Type or member is obsolete
 
     public void ChangeRequestedHeartbeatForDebugging(EndpointConfiguration endpointConfiguration)
     {
