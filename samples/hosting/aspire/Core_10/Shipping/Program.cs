@@ -12,7 +12,7 @@ builder.AddServiceDefaults();
 #endregion
 
 #region transport-config
-var connectionString = builder.Configuration.GetConnectionString("transport");
+var connectionString = builder.Configuration.GetConnectionString("transport") ?? throw new Exception("No connection string for transport");
 var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
 #endregion
 
