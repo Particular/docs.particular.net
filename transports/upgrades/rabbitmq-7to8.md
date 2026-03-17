@@ -18,7 +18,7 @@ The [timeout manager has been removed from NServiceBus 8](/nservicebus/upgrades/
 
 ## Certificate connection string options removed
 
-The `certPath` and `certPassphrase` connection string options have been removed. The [`SetClientCertificate`](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-client-authentication) API should be used instead.
+The `certPath` and `certPassphrase` connection string options have been removed. The [`SetClientCertificate`](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-peer-verification) API should be used instead.
 
 ## `requestedHeartbeat` connection string option removed
 
@@ -38,6 +38,6 @@ The `type` parameter of the `SetupSubscription` and `TeardownSubscription` metho
 
 ## Invocation of handler code has changed
 
-The invocation of handler code has changed to use the RabbitMQ async consumer.  
-This has implications when it comes to parallel execution of handlers. For example synchronous handlers will run sequentially.  
-In order to achieve higher parallelism, handlers need to be modified according to the [asynchronous handlers documentation](/nservicebus/handlers/async-handlers.md).  
+The invocation of handler code has changed to use the RabbitMQ async consumer.
+This has implications when it comes to parallel execution of handlers. For example synchronous handlers will run sequentially.
+In order to achieve higher parallelism, handlers need to be modified according to the [asynchronous handlers documentation](/nservicebus/handlers/async-handlers.md).
