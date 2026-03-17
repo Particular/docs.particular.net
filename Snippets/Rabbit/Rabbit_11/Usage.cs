@@ -177,7 +177,7 @@ class Usage
 
     public void CustomAuthMechanisms(EndpointConfiguration endpointConfiguration)
     {
-        #region rabbitmq-external-auth-mechanism
+        #region rabbitmq-custom-auth-mechanisms
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
 

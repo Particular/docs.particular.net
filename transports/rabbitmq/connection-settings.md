@@ -99,9 +99,7 @@ By default, the broker requires a username and password to authenticate the clie
 
 snippet: rabbitmq-external-auth-mechanism
 
-Starting from version 11.1 the external authentication can be configured by setting `ExternalMechanismFactory` as the only authentication mechanism.
-
-snippet: rabbitmq-set-external-auth-mechanism
+partial: external-auth
 
 partial: add-cluster-node
 
@@ -109,11 +107,7 @@ partial: management-api-configuration
 
 partial: delivery-limit-validation
 
-### Custom authentication
-
-Starting from version 11.1 it is possible to configure multiple and custom authentication mechanisms that are attempted to be used in the specified order.
-
-snippet: rabbitmq-custom-auth-mechanisms
+partial: auth-mechanisms
 
 ## Controlling the prefetch count
 
