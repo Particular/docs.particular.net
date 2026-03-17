@@ -15,8 +15,7 @@ These instructions assume the following:
 
 ## Basic setup
 
-A basic setup would include installing ServicePulse on a machine that doesn't allow ServicePulse to be used outside of the machine that it's installed on. 
-In other words if the user would like to interact with it, they must be logged in to the host machine. To enable remote access to ServicePulse follow the [Advanced configuration](#advanced-configuration) guide.
+A basic setup of ServicePulse runs only on the machine where it is installed. This means users must be logged in to that machine to access it. To enable remote access to ServicePulse follow the [Advanced configuration](#advanced-configuration) guide.
 
 Steps
 
@@ -57,7 +56,7 @@ netsh http delete urlacl http://+:9090/
 
 ## Advanced configuration
 
-In order to enable remote access to ServicePulse the host will need to remotely access the ServiceControl and the ServiceControl Monitoring APIs. Follow the steps below to configure this functionality.
+In order to enable remote access to ServicePulse, the host machine must also allow remote access to both the ServiceControl and the ServiceControl Monitoring APIs. Follow the steps below to configure this.
 
 ### ServiceControl
 
