@@ -164,6 +164,41 @@ class Usage
     }
 #pragma warning restore CS0618 // Type or member is obsolete
 
+    public void SetExternalAuthMechanism(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-set-external-auth-mechanism
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+
+        transport.SetAuthMechanisms([new ExternalMechanismFactory()]);
+
+        #endregion
+    }
+
+    public void CustomAuthMechanisms(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-external-auth-mechanism
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+
+        transport.SetAuthMechanisms([new CustomMechanismFactory(), new ExternalMechanismFactory()]);
+
+        #endregion
+    }
+
+    public class CustomMechanismFactory : IAuthMechanismFactory
+    {
+        public string Name
+        {
+            get { return "CUSTOM"; }
+        }
+
+        public IAuthMechanism GetInstance()
+        {
+            return null;
+        }
+    }
+
     public void ChangeRequestedHeartbeatForDebugging(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-debug-api
