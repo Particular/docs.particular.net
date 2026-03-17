@@ -1,3 +1,3 @@
-Starting from version 11.1 the external authentication can be configured by setting `ExternalMechanismFactory` as the only authentication mechanism.
+Starting from version 11.1, the following API can be used instead:
 
 snippet: rabbitmq-set-external-auth-mechanism

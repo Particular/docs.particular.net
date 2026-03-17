@@ -2,6 +2,7 @@
 using System.Security.Cryptography.X509Certificates;
 
 using NServiceBus;
+using RabbitMQ.Client;
 
 class Usage
 {
@@ -181,7 +182,7 @@ class Usage
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
 
-        transport.SetAuthMechanisms([new CustomMechanismFactory(), new ExternalMechanismFactory()]);
+        transport.SetAuthMechanisms([new CustomMechanismFactory(), new PlainMechanismFactory()]);
 
         #endregion
     }
