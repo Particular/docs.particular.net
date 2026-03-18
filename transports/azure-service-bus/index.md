@@ -32,4 +32,17 @@ The Azure Service Bus transport leverages the [Azure.Messaging.ServiceBus](https
 > [!NOTE]
 > The Azure Service Bus transport only supports the Standard and Premium tiers of the Microsoft Azure Service Bus service. Premium tier is recommended for production environments.
 >
-> The Azure Service Bus transport is not compatible with the [Azure Service Bus emulator](https://learn.microsoft.com/en-us/azure/service-bus-messaging/overview-emulator) because the emulator [doesn't support on-the-fly management operations](https://learn.microsoft.com/en-us/azure/service-bus-messaging/overview-emulator#known-limitations) through the client-side SDK, which prevents operations like creating queues or subscribing to events.
+
+## Azure Service Bus Emulator
+
+The Azure Service Bus transport works with the [Azure Service Bus emulator](https://learn.microsoft.com/en-us/azure/service-bus-messaging/overview-emulator). To use the emulator, your [connection string](https://learn.microsoft.com/en-us/azure/service-bus-messaging/test-locally-with-service-bus-emulator?tabs=automated-script#choosing-the-right-connection-string) must include `UseDevelopmentEmulator=true;`
+
+### Known Emulator Limitations
+
+The emulator is only suitable for small systems, since it contains limitations on connections and queue size. For anything larger, a full Azure Service Bus instance will be required.
+
+The current [known limitations](https://learn.microsoft.com/en-us/azure/service-bus-messaging/overview-emulator#known-limitations) that affect functionality with the Particular Service Platform are:
+
+- A limit of 10 connections. Each NServiceBus endpoint will use a connection for sending and a connection for receiving, effectively using 2 connections for a full endpoint.
+- `MaxDeliveryCount` is fixed at 10.
+
