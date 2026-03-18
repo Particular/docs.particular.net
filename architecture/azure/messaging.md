@@ -19,6 +19,7 @@ Azure Service Bus has two pricing tiers: [Standard and Premium](https://learn.mi
 - Up to 100 MB message size on the Premium tier
 - Scripted infrastructure deployment using the [NServiceBus ASB CLI](/transports/azure-service-bus/operational-scripting.md)
 - Supports the AMQP 1.0 protocol over TCP and WebSockets
+- Emulator for local development and testing, [albeit with significant limitations](/transports/azure-service-bus/#azure-service-bus-emulator)
 
 :heavy_minus_sign: Cons:
 
@@ -26,7 +27,6 @@ Azure Service Bus has two pricing tiers: [Standard and Premium](https://learn.mi
 - The maximum message size is 256 KB on the Standard tier
 - Cross-entity transactions are limited to 100 messages
 - No cross-namespace communication
-- Emulator for local development and testing [does not have required features](/transports/azure-service-bus/#transport-at-a-glance) to work with the Particular Service Platform.
 
 [**Try the Azure Service Bus Tutorial →**](https://learn.microsoft.com/en-us/azure/service-bus-messaging/build-message-driven-apps-nservicebus?tabs=Sender)
 
