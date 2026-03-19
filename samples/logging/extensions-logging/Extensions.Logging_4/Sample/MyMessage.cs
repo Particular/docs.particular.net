@@ -1,3 +1,1 @@
-﻿using NServiceBus;
-
-public class MyMessage : IMessage;
+﻿public class MyMessage : IMessage;

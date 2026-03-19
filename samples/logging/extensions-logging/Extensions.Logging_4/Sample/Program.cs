@@ -1,56 +1,42 @@
-﻿using System;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using NLog.Config;
+﻿using NLog.Config;
 using NLog.Extensions.Logging;
 using NLog.Targets;
-using NServiceBus;
 using NServiceBus.Extensions.Logging;
 
 Console.Title = "ExtensionsLogging";
 
-var host = Host.CreateDefaultBuilder(args)
-    .UseConsoleLifetime()
-    .UseNServiceBus(_ =>
-    {
-        #region NLogConfiguration
-        var config = new LoggingConfiguration();
+#region NLogConfiguration
+var config = new LoggingConfiguration();
 
-        var consoleTarget = new ColoredConsoleTarget
-        {
-            Layout = "${level}|${logger}|${message}${onexception:${newline}${exception:format=tostring}}"
-        };
-        config.AddTarget("console", consoleTarget);
-        config.LoggingRules.Add(new LoggingRule("*", NLog.LogLevel.Debug, consoleTarget));
+var consoleTarget = new ColoredConsoleTarget
+{
+    Layout = "${level}|${logger}|${message}${onexception:${newline}${exception:format=tostring}}"
+};
+config.AddTarget("console", consoleTarget);
+config.LoggingRules.Add(new LoggingRule("*", NLog.LogLevel.Debug, consoleTarget));
 
-        NLog.LogManager.Configuration = config;
-        #endregion
+NLog.LogManager.Configuration = config;
 
-        #region MicrosoftExtensionsLoggingNLog
-        Microsoft.Extensions.Logging.ILoggerFactory extensionsLoggerFactory = new NLogLoggerFactory();
+#endregion
 
-        NServiceBus.Logging.ILoggerFactory nservicebusLoggerFactory =
-            new ExtensionsLoggerFactory(loggerFactory: extensionsLoggerFactory);
+#region MicrosoftExtensionsLoggingNLog
 
-        NServiceBus.Logging.LogManager.UseFactory(loggerFactory: nservicebusLoggerFactory);
-        #endregion
+Microsoft.Extensions.Logging.ILoggerFactory extensionsLoggerFactory = new NLogLoggerFactory();
 
-        var endpointConfiguration = new EndpointConfiguration("Samples.Logging.ExtensionsLogging");
+NServiceBus.Logging.ILoggerFactory nservicebusLoggerFactory = new ExtensionsLoggerFactory(loggerFactory: extensionsLoggerFactory);
 
-        endpointConfiguration.UseTransport<LearningTransport>();
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+NServiceBus.Logging.LogManager.UseFactory(loggerFactory: nservicebusLoggerFactory);
 
-        return endpointConfiguration;
-    })
-    .Build();
+#endregion
 
-await host.StartAsync();
+var endpointConfiguration = new EndpointConfiguration("Samples.Logging.ExtensionsLogging");
 
-var endpointInstance = host.Services.GetRequiredService<IMessageSession>();
+endpointConfiguration.UseTransport<LearningTransport>();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-await endpointInstance.SendLocal(new MyMessage());
-
+var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var myMessage = new MyMessage();
+await endpointInstance.SendLocal(myMessage);
 Console.WriteLine("Press any key to exit");
 Console.ReadKey();
-
-await host.StopAsync();
+await endpointInstance.Stop();
