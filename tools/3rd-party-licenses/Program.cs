@@ -37,4 +37,5 @@ var npm = new Npm(("ServicePulse", servicePulseNpm));
 output.WritePackages((await nuGetPackages.GetPackagesForSolution())
     .Concat(await nuGetPackages.GetPackages())
     .Concat(await npm.GetPackagesForPackageJson())
-    .OrderBy(info => info.Id));
+    .OrderBy(info => info.Id)
+    .DistinctBy(info => info.Id));
