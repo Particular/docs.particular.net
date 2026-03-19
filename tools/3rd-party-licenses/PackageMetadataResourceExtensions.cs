@@ -56,7 +56,7 @@ public static class PackageMetadataResourceExtensions
                 .OrderByDescending(pkg => pkg.Identity.Version)
                 .FirstOrDefault(pkg => dependency.VersionRange.Satisfies(pkg.Identity.Version));
 
-            if (dependencyPackage.Authors == "Particular Software" || dependencyPackage.Authors == "NServiceBus Ltd")
+            if (dependencyPackage == null || dependencyPackage.Authors is "Particular Software" or "NServiceBus Ltd")
             {
                 continue;
             }
