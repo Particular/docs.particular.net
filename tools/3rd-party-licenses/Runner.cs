@@ -24,7 +24,7 @@ static class Runner
             {
                 process.OutputDataReceived += (sender, e) =>
                 {
-                    if (e.Data == null)
+                    if (e.Data is null)
                     {
                         outputWaitHandle.Set();
                     }
@@ -36,7 +36,7 @@ static class Runner
 
                 process.ErrorDataReceived += (sender, e) =>
                 {
-                    if (e.Data == null)
+                    if (e.Data is null)
                     {
                         errorWaitHandle.Set();
                     }

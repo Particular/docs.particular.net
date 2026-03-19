@@ -8,7 +8,7 @@ using NuGet.Versioning;
 string corePackageName = "NServiceBus";
 
 SourceRepository nuGet = Repository.Factory.GetCoreV3("https://www.nuget.org/api/v2/");
-SourceRepository  feedz = Repository.Factory.GetCoreV3("https://f.feedz.io/particular-software/packages/nuget");
+SourceRepository feedz = Repository.Factory.GetCoreV3("https://f.feedz.io/particular-software/packages/nuget");
 SemanticVersion minCoreVersion = new SemanticVersion(3, 3, 0);
 
 var coreDependencies = "../../components/core-dependencies";
@@ -30,7 +30,6 @@ foreach (var packageName in packageNames)
     Process(allPackages, packageName, coreDependencies);
 }
 
-
 void Process(List<IPackageSearchMetadata> allPackages, string packageName, string coreDependencies)
 {
     var packagesForName = allPackages.Where(x => x.Identity.Id == packageName).ToList();
@@ -43,11 +42,8 @@ void Process(List<IPackageSearchMetadata> allPackages, string packageName, strin
             var packageVersion = package.Identity.Version;
             var nsbDependency = GetDependencies(package, allPackages)
                 .FirstOrDefault(d => d.Id == corePackageName);
-            if (nsbDependency == null)
-            {
-                continue;
-            }
-            if (nsbDependency.VersionRange.MinVersion < minCoreVersion)
+
+            if (nsbDependency is null || nsbDependency.VersionRange.MinVersion < minCoreVersion)
             {
                 continue;
             }
@@ -58,21 +54,21 @@ void Process(List<IPackageSearchMetadata> allPackages, string packageName, strin
             {
                 continue;
             }
-      processed.Add(majorVersion);
-      int version;
-      if (nsbDependency.VersionRange.IsMaxInclusive)
-      {
-        version = nsbDependency.VersionRange.MaxVersion.Version.Major;
-      }
-      else if (nsbDependency.VersionRange.MaxVersion != null)
-      {
-        version = nsbDependency.VersionRange.MaxVersion.Version.Major - 1;
-      }
-      else
-      {
-        version = nsbDependency.VersionRange.MinVersion.Version.Major;
-      }
-      writer.WriteLine($"{majorVersion} : {version}");
+            processed.Add(majorVersion);
+            int version;
+            if (nsbDependency.VersionRange.IsMaxInclusive)
+            {
+                version = nsbDependency.VersionRange.MaxVersion.Version.Major;
+            }
+            else if (nsbDependency.VersionRange.MaxVersion is not null)
+            {
+                version = nsbDependency.VersionRange.MaxVersion.Version.Major - 1;
+            }
+            else
+            {
+                version = nsbDependency.VersionRange.MinVersion.Version.Major;
+            }
+            writer.WriteLine($"{majorVersion} : {version}");
         }
         writer.Flush();
     }
@@ -97,54 +93,54 @@ async Task<List<IPackageSearchMetadata>> GetAllPackages(List<string> packageName
 {
     var allPackages = new ConcurrentBag<IPackageSearchMetadata>();
 
-  await Parallel.ForEachAsync(packageNames, async (packageName, token) =>
-  {
-    var packages = await ListedPackages(nuGet, packageName);
-
-    foreach (var package in packages)
+    await Parallel.ForEachAsync(packageNames, async (packageName, token) =>
     {
-      allPackages.Add(package);
-    }
+        var packages = await ListedPackages(nuGet, packageName);
 
-    packages = await ListedPackages(feedz, packageName);
+        foreach (var package in packages)
+        {
+            allPackages.Add(package);
+        }
 
-    foreach (var package in packages)
-    {
-      allPackages.Add(package);
-    }
-  });
+        packages = await ListedPackages(feedz, packageName);
+
+        foreach (var package in packages)
+        {
+            allPackages.Add(package);
+        }
+    });
 
     return allPackages.ToList();
 }
 
 static async Task<IEnumerable<IPackageSearchMetadata>> ListedPackages(SourceRepository repository, string packageName)
 {
-  var resource = await repository.GetResourceAsync<PackageMetadataResource>();
-  var cache = new SourceCacheContext();
-  var logger = NullLogger.Instance;
+    var resource = await repository.GetResourceAsync<PackageMetadataResource>();
+    var cache = new SourceCacheContext();
+    var logger = NullLogger.Instance;
 
     return await resource.GetMetadataAsync(packageName, true, false, cache, logger, CancellationToken.None);
 }
 
 static IEnumerable<PackageDependency> GetDependencies(IPackageSearchMetadata package, List<IPackageSearchMetadata> packages)
 {
-  foreach (var dependency in package.DependencySets.SelectMany(x => x.Packages))
-  {
-    yield return dependency;
-
-    foreach (var subPackage in packages.OrderBy(x => x.Identity.Version))
+    foreach (var dependency in package.DependencySets.SelectMany(x => x.Packages))
     {
-      if (dependency.VersionRange.Satisfies(subPackage.Identity.Version))
-      {
-        if (subPackage.Identity.Id != dependency.Id || !dependency.VersionRange.Satisfies(subPackage.Identity.Version))
+        yield return dependency;
+
+        foreach (var subPackage in packages.OrderBy(x => x.Identity.Version))
         {
-          continue;
+            if (dependency.VersionRange.Satisfies(subPackage.Identity.Version))
+            {
+                if (subPackage.Identity.Id != dependency.Id || !dependency.VersionRange.Satisfies(subPackage.Identity.Version))
+                {
+                    continue;
+                }
+                foreach (var subDependency in subPackage.DependencySets.SelectMany(x => x.Packages))
+                {
+                    yield return subDependency;
+                }
+            }
         }
-        foreach (var subDependency in subPackage.DependencySets.SelectMany(x => x.Packages))
-        {
-          yield return subDependency;
-        }
-      }
     }
-  }
 }
