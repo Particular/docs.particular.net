@@ -1,7 +1,7 @@
 ---
 title: "InvalidOperationException: Sequence contains no matching element"
 summary: "ServiceControl Management Utility shows System.InvalidOperationException: Sequence contains no matching element"
-reviewed: 2024-06-06
+reviewed: 2026-03-20
 ---
 
 ## Symptoms

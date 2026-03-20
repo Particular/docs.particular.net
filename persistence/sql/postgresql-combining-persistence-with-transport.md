@@ -1,7 +1,7 @@
 ---
 title: Combining PostgreSQL Persistence and Transport
 component: SqlPersistence
-reviewed: 2024-06-14
+reviewed: 2026-03-20
 related:
   - persistence/sql/dialect-postgresql
   - transports/postgresql

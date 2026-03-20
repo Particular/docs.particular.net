@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL Native Publish Subscribe
 summary: Describes the native publish subscribe implementation in the PostgreSQL transport
-reviewed: 2024-05-28
+reviewed: 2026-03-20
 component: PostgreSqlTransport
 ---
 
