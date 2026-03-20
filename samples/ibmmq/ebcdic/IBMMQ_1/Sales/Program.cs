@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
+using NServiceBus.Transport.IBMMQ;
 
 var host = Host.CreateDefaultBuilder(args)
     .UseNServiceBus(context =>
@@ -16,7 +17,6 @@ var host = Host.CreateDefaultBuilder(args)
             o.QueueManagerName = "QM1";
             o.Channel = "APP.SVRCONN";
             o.User = "sales";
-            o.TopicNaming = new ShortenedTopicNaming();
         });
 
         var routing = endpointConfiguration.UseTransport(transport);
