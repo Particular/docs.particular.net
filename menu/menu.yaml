@@ -1020,6 +1020,8 @@
       Title: Callback support
     - Url: transports/sql/sql-azure
       Title: Azure SQL considerations
+    - Url: transports/sql/azure-sql-failover
+      Title: Azure SQL failover
     - Url: transports/sql/troubleshooting
       Title: Troubleshooting
   - Title: PostgreSQL
