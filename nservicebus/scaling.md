@@ -4,7 +4,7 @@ summary: NServiceBus provides several options to scale out a system
 redirects:
  - transports/scale-out
  - nservicebus/architecture/scaling
-reviewed: 2024-06-17
+reviewed: 2026-03-20
 ---
 
 There are several reasons to scale out [logical endpoints](/nservicebus/endpoints/), such as to achieve higher message throughput, or to provide high availability.
@@ -15,7 +15,7 @@ If message throughput is an issue, the first method to consider is splitting up 
 
 One message type might take considerably longer to process than other message types. The faster processing messages might suffer in throughput because of the slower processing messages. A good way to monitor and detect this is by using [ServicePulse's monitoring capabilities](/monitoring/metrics/in-servicepulse.md).
 
-Separating slower messages from faster messages leads to higher throughput for the faster messages. For this reason, it can be beneficial to seperate different message types and their corresponding handlers into different logical endpoints.
+Separating slower messages from faster messages leads to higher throughput for the faster messages. For this reason, it can be beneficial to separate different message types and their corresponding handlers into different logical endpoints.
 
 ## Scaling out to multiple nodes
 

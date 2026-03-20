@@ -1,7 +1,7 @@
 ---
 title: Unit of work using custom pipeline behavior
 summary: How to use IoC and a pipeline behavior to create a custom unit of work implementation.
-reviewed: 2024-06-10
+reviewed: 2026-03-20
 component: Core
 related:
  - nservicebus/pipeline
