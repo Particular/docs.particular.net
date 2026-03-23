@@ -2,7 +2,7 @@
 title: SQL Gateway Storage
 summary: SQL deduplication storage for the gateway component
 component: GatewaySql
-reviewed: 2024-06-19
+reviewed: 2026-03-20
 related:
  - samples/gateway
 ---
