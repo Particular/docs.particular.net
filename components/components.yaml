@@ -810,7 +810,7 @@
   NugetOrder:
     - NServiceBus.Persistence.DynamoDB.TransactionalSession
 
-- Key: Envelope.CloudEvents
+- Key: CloudEvents
   Name: NServiceBus.Envelope.CloudEvents
   DocsUrl: /nservicebus/cloudevents
   GitHubOwner: Particular
