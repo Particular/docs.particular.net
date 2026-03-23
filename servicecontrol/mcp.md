@@ -18,11 +18,11 @@ The MCP server is disabled by default and must be enabled separately on each ins
 
 ### Error instance
 
-See [EnableMcpServer](/servicecontrol/servicecontrol-instances/configuration.md#enablemcpserver) in the error instance configuration settings.
+See [EnableMcpServer](/servicecontrol/servicecontrol-instances/configuration.md#mcp-servicecontrolenablemcpserver) in the error instance configuration settings.
 
 ### Audit instance
 
-See [EnableMcpServer](/servicecontrol/audit-instances/configuration.md#enablemcpserver) in the audit instance configuration settings.
+See [EnableMcpServer](/servicecontrol/audit-instances/configuration.md#mcp-servicecontrol-auditenablemcpserver) in the audit instance configuration settings.
 
 ## Connecting an MCP client
 
