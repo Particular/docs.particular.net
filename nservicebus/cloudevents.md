@@ -1,9 +1,9 @@
 ---
 title: CloudEvents
 summary: Provides details about CloudEvents support in NServiceBus and the platform
-component: Core
+component: CloudEvents
 reviewed: 2026-02-05
-versions: '[10.1,]'
+versions: '[1,]'
 related:
 - samples/aws/cloud-events
 - samples/azure-service-bus-netstandard/cloud-events
