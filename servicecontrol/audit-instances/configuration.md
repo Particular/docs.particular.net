@@ -910,6 +910,22 @@ The ServiceControl primary instance queue name to use to send plugin messages (e
 | --- | --- |
 | string | `Particular.ServiceControl` |
 
+## MCP
+
+### ServiceControl.Audit/EnableMcpServer
+
+Enables the [Model Context Protocol (MCP)](/servicecontrol/mcp.md) server, allowing AI-powered tools and assistants to interact with ServiceControl Audit data.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_AUDIT_ENABLEMCPSERVER` |
+| **App config key** | `ServiceControl.Audit/EnableMcpServer` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
 ## Troubleshooting
 
 ### ServiceControl.Audit/DataSpaceRemainingThreshold
