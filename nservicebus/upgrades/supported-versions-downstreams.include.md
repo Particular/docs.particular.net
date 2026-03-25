@@ -47,7 +47,7 @@
 
 | Version   | Released       | Supported until   | Notes                             |
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
-| [6.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.2.0) | 2026-03-18     | -                 | -                                 |
+| [6.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.2.1) | 2026-03-18     | -                 | -                                 |
 | [6.1.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.1.0) | 2026-02-09     | 2026-06-18        | Superseded by 6.2.x               |
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.0.0) | 2026-01-29     | 2026-05-09        | Superseded by 6.1.x               |
 | [5.1.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/5.1.2) | 2025-09-26     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
