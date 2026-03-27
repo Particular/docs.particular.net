@@ -24,6 +24,7 @@ Each of the following sections describes the advantages and disadvantages of eac
 * [Azure Storage Queues](#azure-storage-queues)
 * [Amazon SQS](#amazon-sqs)
 * [RabbitMQ](#rabbitmq)
+* [IBM MQ](#ibm-mq)
 * [SQL Server](#sql-server)
 * [PostgreSQL](#postgresql)
 * [MSMQ](#msmq)
@@ -185,6 +186,33 @@ Similar to [SQL Server](#sql-server), the PostgreSQL transport uses relational d
 - For native integration with other platforms.
 - When RabbitMQ is already used in the organization and the benefit of introducing another queueing technology is outweighed by the cost of licenses, training, and ongoing maintenance.
 
+## IBM MQ
+
+[IBM MQ](https://www.ibm.com/products/mq) is an enterprise messaging platform used across mainframe, distributed, and cloud environments. It is widely deployed in financial services, government, and other regulated industries.
+
+### Advantages
+
+- Enterprise-grade messaging with decades of proven reliability in mission-critical systems
+- Native integration with mainframe (z/OS) and midrange (IBM i) systems already using IBM MQ
+- Supports atomic sends with receive via IBM MQ syncpoint
+- Native publish-subscribe via topics and durable subscriptions; does not require NServiceBus persistence for storing event subscriptions
+- Built-in high availability with multi-instance queue managers
+- SSL/TLS encryption and certificate-based authentication
+
+### Disadvantages
+
+- Commercial licensing costs (per-VPC or per-core)
+- Queue and topic names are limited to 48 characters, which can require custom name sanitization
+- Does not support native delayed delivery
+- Queue manager administration requires specialized IBM MQ skills
+- Fewer .NET community resources compared to RabbitMQ
+
+### When to select this transport
+
+- When the organization already uses IBM MQ and wants to integrate .NET applications with existing messaging infrastructure
+- For systems that must communicate with mainframe or legacy applications over IBM MQ
+- When enterprise-grade reliability and support contracts are required
+- In regulated industries where IBM MQ is already an approved messaging platform
 
 ## Amazon SQS
 

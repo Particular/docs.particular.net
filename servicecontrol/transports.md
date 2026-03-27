@@ -21,6 +21,7 @@ The value for the `TransportType` settings can be any of the following:
 | [RabbitMQ](#rabbitmq)<br/><i>See topology options below.</i> | `RabbitMQ.QuorumConventionalRouting`<br/>`RabbitMQ.ClassicConventionalRouting`<br/>`RabbitMQ.QuorumDirectRouting`<br/>`RabbitMQ.ClassicDirectRouting` |
 | [SQL Server](#sql) | `SQLServer` |
 | [PostgreSQL](#postgresql) | `PostgreSQL` |
+| [IBM MQ](#ibm-mq) | `IBMMQ` |
 | [Microsoft Message Queuing (MSMQ)](#msmq) | `MSMQ` |
 
 
@@ -184,6 +185,41 @@ The following ServiceControl connection string options are available:
 ```text
 Region=<REGION>;QueueNamePrefix=<prefix>;TopicNamePrefix=<prefix>;AccessKeyId=<ACCESSKEYID>;SecretAccessKey=<SECRETACCESSKEY>;S3BucketForLargeMessages=<BUCKETNAME>;S3KeyPrefix=<KEYPREFIX>
 ```
+
+## IBM MQ
+
+ServiceControl uses a URI-based connection string to configure the IBM MQ transport. The connection string format is:
+
+```
+mq://[user[:password]]@host[:port]/[QueueManagerName]?[options]
+```
+
+The following connection string options are available:
+
+| Option | Description | Default |
+|:---|---|---|
+| `channel` | SVRCONN channel name | `DEV.ADMIN.SVRCONN` |
+| `topicprefix` | Prefix for topic names and topic strings | `DEV` |
+| `appname` | Application name shown in IBM MQ monitoring tools | _(assembly name)_ |
+| `sslkeyrepo` | SSL key repository (`*SYSTEM`, `*USER`, or file path) | _(none)_ |
+| `cipherspec` | SSL cipher specification (must match SVRCONN channel) | _(none)_ |
+| `sslpeername` | Distinguished name pattern of the server certificate | _(none)_ |
+
+If no port is specified, the default IBM MQ port `1414` is used. If no queue manager name is specified, `QM1` is used.
+
+### Example connection string
+
+```text
+mq://admin:passw0rd@mq-server.example.com:1414/QM1?channel=APP.SVRCONN&topicprefix=PROD
+```
+
+### Example connection string with SSL
+
+```text
+mq://admin:passw0rd@mq-server.example.com:1414/QM1?channel=APP.SVRCONN&topicprefix=PROD&sslkeyrepo=*SYSTEM&cipherspec=TLS_RSA_WITH_AES_256_CBC_SHA256
+```
+
+See the [IBM MQ transport connection settings](/transports/ibmmq/connection-settings.md) for details on individual settings.
 
 ## MSMQ
 
