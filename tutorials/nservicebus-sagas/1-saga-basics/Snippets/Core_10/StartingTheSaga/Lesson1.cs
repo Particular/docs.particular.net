@@ -26,7 +26,7 @@ namespace StartingTheSaga
 
             public Task Handle(OrderBilled message, IMessageHandlerContext context)
             {
-                logger.LogInformation("OrderPlaced message received for {OrderId}.", message.OrderId);
+                logger.LogInformation("OrderBilled message received for {OrderId}.", message.OrderId);
                 return Task.CompletedTask;
             }
         }
@@ -53,7 +53,7 @@ namespace StartingTheSaga
 
             public Task Handle(OrderBilled message, IMessageHandlerContext context)
             {
-                logger.LogInformation("OrderPlaced message received for {OrderId}.", message.OrderId);
+                logger.LogInformation("OrderBilled message received for {OrderId}.", message.OrderId);
                 return Task.CompletedTask;
             }
         }

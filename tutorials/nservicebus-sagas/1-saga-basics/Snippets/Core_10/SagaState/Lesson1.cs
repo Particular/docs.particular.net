@@ -23,7 +23,7 @@ public class ShippingPolicy(ILogger<ShippingPolicy> logger) : Saga<ShippingPolic
 
     public Task Handle(OrderBilled message, IMessageHandlerContext context)
     {
-        logger.LogInformation("OrderPlaced message received for {OrderId}.", message.OrderId);
+        logger.LogInformation("OrderBilled message received for {OrderId}.", message.OrderId);
         Data.IsOrderBilled = true;
         return Task.CompletedTask;
     }
