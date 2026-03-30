@@ -3,7 +3,8 @@ using Microsoft.Extensions.Hosting;
 using NServiceBus.MessageMutator;
 using NServiceBus.Transport.IBMMQ;
 
-var host = Host.CreateDefaultBuilder(args)
+var host = Host
+    .CreateDefaultBuilder(args)
     .UseNServiceBus(context =>
     {
         var endpointConfiguration = new EndpointConfiguration("DEV.RECEIVER");

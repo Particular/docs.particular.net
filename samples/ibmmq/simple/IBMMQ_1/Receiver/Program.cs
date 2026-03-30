@@ -6,7 +6,7 @@ var builder = Host.CreateApplicationBuilder(args);
 
 var ibmmq = new IBMMQTransport()
 {
-    QueueManagerName = "QM1",
+   QueueManagerName = "QM1",
    Host = "localhost",
    Port = 1414,
    Channel = "DEV.ADMIN.SVRCONN",

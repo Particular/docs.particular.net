@@ -33,15 +33,13 @@ await host.StartAsync();
 
 var instance = host.Services.GetRequiredService<IMessageSession>();
 
-
 using var cts = new CancellationTokenSource();
+
 Console.CancelKeyPress += (_, e) =>
 {
     e.Cancel = true;
     cts.Cancel();
 };
-
-
 
 while (!cts.IsCancellationRequested)
 {
