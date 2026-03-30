@@ -1,4 +1,3 @@
-using Contracts;
 using Microsoft.Extensions.Logging;
 
 #region PlaceOrderHandler

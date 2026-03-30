@@ -1,5 +1,1 @@
-﻿namespace Contracts;
-
-public record PlaceOrder(Guid OrderId, string Product, int Quantity) : ICommand
-{
-}
+﻿public record PlaceOrder(Guid OrderId, string Product, int Quantity) : ICommand;
