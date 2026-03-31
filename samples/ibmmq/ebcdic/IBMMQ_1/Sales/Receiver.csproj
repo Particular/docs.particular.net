@@ -10,7 +10,7 @@
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="10.1.0" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.0.0" />
-    <PackageReference Include="NServiceBus.Transport.IBMMQ" Version="1.0.0-alpha.7" />
+    <PackageReference Include="NServiceBus.Transport.IBMMQ" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
