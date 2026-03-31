@@ -1,6 +1,6 @@
 ---
 title: ServiceControl Audit instances deployment options
-reviewed: 2024-06-24
+reviewed: 2026-03-30
 component: ServiceControl
 ---
 partial: prereqs
