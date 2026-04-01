@@ -231,6 +231,12 @@
 | [10.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/10.0.6) | 2021-03-16     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
 | [~~9.0.x~~](https://www.nuget.org/packages/NServiceBus.Transport.AzureStorageQueues/9.0.4) | ~~2020-11-25~~ | ~~2022-03-16~~    | ~~Superseded by 10.0.x~~          |
 
+#### [NServiceBus.Transport.IBMMQ](/nuget/NServiceBus.Transport.IBMMQ)
+
+| Version   | Released       | Supported until   | Notes                             |
+|:---------:|:--------------:|:-----------------:|:---------------------------------:|
+| [1.0.x](https://www.nuget.org/packages/NServiceBus.Transport.IBMMQ/1.0.0) | 2026-03-31     | -                 | -                                 |
+
 #### [NServiceBus.Transport.Msmq](/nuget/NServiceBus.Transport.Msmq)
 
 | Version   | Released       | Supported until   | Notes                             |
