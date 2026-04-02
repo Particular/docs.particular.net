@@ -9,9 +9,14 @@ related:
  - nservicebus/upgrades/release-policy
 ---
 
-This page lists both currently and recently supported versions of all NServiceBus packages according to the [support policy](support-policy.md). See the [complete history](all-versions.md) for older versions.
+> [!TIP]
+> This page shows currently and recently supported versions only.
+>
+> Looking for older or unsupported versions?
+> [View the complete version history →](all-versions.md)
 
 > [!NOTE]
+> The [Support Policy](support-policy.md) outlines how support decisions are made.
 > [Extended support plans](/nservicebus/upgrades/support-policy.md#extended-support) are available.
 
 include: supported-versions-nservicebus
