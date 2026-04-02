@@ -1360,7 +1360,7 @@
       "PackageId": "Particular.PlatformSample.ServiceControl",
       "Versions": [
         {
-          "Minor": "6.13",
+          "Minor": "6.14",
           "SupportLevel": "Mainstream"
         }
       ]
