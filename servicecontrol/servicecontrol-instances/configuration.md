@@ -1306,6 +1306,22 @@ When configuring the heartbeat grace period, make sure it is greater than the [h
 > [!NOTE]
 > When monitoring multiple endpoints, ensure that the heartbeat grace period is larger than any individual heartbeat interval set by the endpoints.
 
+## MCP
+
+### ServiceControl/EnableMcpServer
+
+Enables the [Model Context Protocol (MCP)](/servicecontrol/mcp.md) server, allowing AI-powered tools and assistants to interact with ServiceControl.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_ENABLEMCPSERVER` |
+| **App config key** | `ServiceControl/EnableMcpServer` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
 ## Troubleshooting
 
 ### ServiceControl/DataSpaceRemainingThreshold
