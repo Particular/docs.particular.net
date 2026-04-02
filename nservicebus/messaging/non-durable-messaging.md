@@ -38,11 +38,9 @@ Non-durable messages require [non-transactional queues](https://msdn.microsoft.c
 
 partial: rabbitmq
 
-
 ### SQL Server
 
 The SQL Server transport has no support for this setting and it is ignored.
-
 
 ### Azure Service Bus
 
@@ -55,3 +53,7 @@ The Azure Storage Queues transport has no support for this setting and it is ign
 ### Amazon SQS
 
 The Amazon SQS transport has no support for this setting and it is ignored.
+
+### IBM MQ
+
+The IBM MQ transports supports non-durable messaging with all supported transaction modes.
