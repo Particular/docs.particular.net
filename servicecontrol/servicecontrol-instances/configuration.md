@@ -1322,6 +1322,22 @@ Enables the [Model Context Protocol (MCP)](/servicecontrol/mcp.md) server, allow
 | --- | --- |
 | bool | `false` |
 
+### ServiceControl/EnableMcpWriteMode
+
+Enables write operations in the [Model Context Protocol (MCP)](/servicecontrol/mcp.md) server, allowing AI-powered tools and assistants to perform actions such as retrying and archiving failed messages. When disabled, the MCP server operates in read-only mode.
+
+Requires [`ServiceControl/EnableMcpServer`](#mcp-servicecontrolenablemcpserver) to be enabled.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `SERVICECONTROL_ENABLEMCPWRITEMODE` |
+| **App config key** | `ServiceControl/EnableMcpWriteMode` |
+| **SCMU field** | N/A |
+
+| Type | Default value |
+| --- | --- |
+| bool | `false` |
+
 ## Troubleshooting
 
 ### ServiceControl/DataSpaceRemainingThreshold

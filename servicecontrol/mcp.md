@@ -24,6 +24,15 @@ See [EnableMcpServer](/servicecontrol/servicecontrol-instances/configuration.md#
 
 See [EnableMcpServer](/servicecontrol/audit-instances/configuration.md#mcp-servicecontrol-auditenablemcpserver) in the audit instance configuration settings.
 
+## Write mode
+
+By default, the MCP server on the error instance operates in read-only mode. Write operations such as retrying and archiving failed messages are disabled unless write mode is explicitly enabled.
+
+To enable write operations, set [EnableMcpWriteMode](/servicecontrol/servicecontrol-instances/configuration.md#mcp-servicecontrolenablemcpwritemode) to `true` on the error instance in addition to enabling the MCP server.
+
+> [!WARNING]
+> Enabling write mode allows MCP clients to perform destructive operations on failed messages, such as retrying or archiving them. Only enable this if you trust the MCP clients connecting to the instance.
+
 ## Connecting an MCP client
 
 Once enabled, configure an MCP client to connect to the ServiceControl instance using the HTTP Streamable transport. For example, an error instance running on its default address would be accessible at:
