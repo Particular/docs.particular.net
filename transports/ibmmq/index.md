@@ -7,7 +7,7 @@ related:
 redirects:
 ---
 
-Provides support for sending messages over [IBM MQ](https://www.ibm.com/products/mq) using the [IBM MQ .NET client](https://www.nuget.org/packages/IBMMQDotnetClient/).
+Integrates NServiceBus with [IBM MQ](https://www.ibm.com/products/mq) using the [IBM MQ .NET client](https://www.nuget.org/packages/IBMMQDotnetClient/).
 
 ## Broker compatibility
 
