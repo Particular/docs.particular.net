@@ -1202,6 +1202,15 @@
       "Versions": []
     },
     {
+      "PackageId": "NServiceBus.Transport.IBMMQ",
+      "Versions": [
+        {
+          "Minor": "1.0",
+          "SupportLevel": "Mainstream"
+        }
+      ]
+    },
+    {
       "PackageId": "NServiceBus.Transport.Msmq",
       "Versions": [
         {
@@ -1351,7 +1360,7 @@
       "PackageId": "Particular.PlatformSample.ServiceControl",
       "Versions": [
         {
-          "Minor": "6.13",
+          "Minor": "6.14",
           "SupportLevel": "Mainstream"
         }
       ]

@@ -5,7 +5,7 @@ summary: Learn how to use NServiceBus sagas to manage integration with external 
 previewImage: https://img.youtube.com/vi/BHlKPgY2xxg/maxresdefault.jpg
 ---
 
-YouTube: https://www.youtube.com/watch?v=BHlKPgY2xxg
+youtube: https://www.youtube.com/watch?v=BHlKPgY2xxg
 
 The need for business process orchestration often arises when integrating with third parties. We frequently need to call a third-party service and, depending on the result, either initiate a local process or call a different third-party service.
 

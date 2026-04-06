@@ -79,7 +79,22 @@ When the `TransportTransactionMode` is set to `TransactionScope`, handlers execu
 
 ### Transport transaction - Sends atomic with Receive
 
-Some transports support enlisting outgoing operations in the current receive transaction. This ensures that messages are only sent to downstream endpoints when the receive operation completes successfully, preventing ghost messages during retries.
+Some transports support enlisting outgoing operations in the current receive transaction. This ensures that the incoming message and all outgoing messages are committed or rolled back as a single unit of work, preventing ghost messages during retries.
+
+```mermaid
+graph LR
+    subgraph "Atomic operation"
+        R[Receive message] --> H[Handle message]
+        H --> S1[Send reply]
+        H --> S2[Publish event]
+    end
+    S1 --> C{Success?}
+    S2 --> C
+    C -->|Yes| CM[Commit all]
+    C -->|No| RB[Rollback all]
+```
+
+When processing succeeds, the receive and all outgoing operations are committed together. When processing fails, everything is rolled back — the incoming message is returned to the queue and no outgoing messages are sent.
 
 Use the following code to enable this mode:
 
@@ -88,6 +103,9 @@ snippet: TransportTransactionAtomicSendsWithReceive
 #### Consistency guarantees
 
 This mode provides the same consistency guarantees as *Receive Only* mode, with an important addition: it prevents ghost messages. Since all outgoing operations are committed atomically with the receive operation, messages are never sent if the handler fails and needs to be retried.
+
+> [!NOTE]
+> Database operations within the handler are still not part of the transport transaction. To ensure consistency between message operations and database changes, use the [Outbox](#outbox) feature.
 
 ### Transport transaction - Receive Only
 

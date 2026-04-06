@@ -2,7 +2,7 @@
 title: Installing ServiceInsight
 summary: Learn about the prerequisites and the steps involved in installing ServiceInsight
 component: ServiceInsight
-reviewed: 2024-06-25
+reviewed: 2026-04-03
 ---
 
 include: serviceinsight-sunset

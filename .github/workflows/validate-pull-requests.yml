@@ -53,7 +53,5 @@ jobs:
         uses: actions/setup-dotnet@v5.2.0
         with:
           global-json-file: global.json
-      - name: Add MSBuild to PATH
-        uses: microsoft/setup-msbuild@v2
       - name: Build affected samples & snippets
         run: pwsh.exe -NoLogo -NonInteractive -File .\tools\build-samples-and-snippets.ps1

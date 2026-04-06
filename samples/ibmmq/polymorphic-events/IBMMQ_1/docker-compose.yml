@@ -1,0 +1,19 @@
+services:
+  ibm-mq:
+    image: icr.io/ibm-messaging/mq:latest
+    container_name: ibm-mq
+    ports:
+      - "1414:1414"  # MQ listener port
+      - "9443:9443"  # Web console
+    environment:
+      LICENSE: accept
+      MQ_QMGR_NAME: QM1
+      MQ_ADMIN_PASSWORD: passw0rd
+    healthcheck:
+      test: ["CMD", "dspmq"]
+      interval: 10s
+      retries: 5
+      start_period: 10s
+      timeout: 5s
+
+#management console address: https://localhost:9443/ibmmq/console
