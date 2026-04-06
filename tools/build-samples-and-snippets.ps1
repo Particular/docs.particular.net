@@ -97,18 +97,9 @@ foreach($solution in $solutions) {
 
     try
     {
-        $msBuildMarkerFile = CombinePaths $solution.Directory "msbuild"
         $out = ""
-        if(Test-Path $msBuildMarkerFile)
-        {
-            Write-Output ("::warning::Using msbuild for solution using legacy csproj format: {0}" -f $solution.FullName)
-            Write-Output ("🟡 Using msbuild for solution using legacy csproj format: {0}" -f $solution.FullName) | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
-            msbuild $solution.Name -maxCpuCount -verbosity:minimal -restore -property:RestorePackagesConfig=true | Tee-Object -Variable out
-        }
-        else
-        {
-            dotnet build $solution.Name -maxCpuCount --verbosity quiet | Tee-Object -Variable out
-        }
+
+        dotnet build $solution.Name -maxCpuCount --verbosity quiet | Tee-Object -Variable out
 
         if( -not $? ) {
             $exitCode = 1
