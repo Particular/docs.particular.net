@@ -196,12 +196,8 @@
     Articles:
     - Url: nservicebus/upgrades
       Title: About upgrading NServiceBus
-    - Url: nservicebus/upgrades/callbacks-1to2
-      Title: Callbacks 1 to 2
-    - Url: nservicebus/upgrades/sqs-lambda-2to3
-      Title: AwsLambda SQS 2 to 3
-    - Url: nservicebus/upgrades/sqs-lambda-1to2
-      Title: AwsLambda SQS 1 to 2
+    - Url: nservicebus/upgrades/10to11
+      Title: NServiceBus 10 to 11
     - Url: nservicebus/upgrades/9to10
       Title: NServiceBus 9 to 10
     - Url: nservicebus/upgrades/9to9.1
@@ -269,6 +265,8 @@
       Title: NServiceBus 4 to 5
     - Url: nservicebus/upgrades/3to4
       Title: NServiceBus 3 to 4
+    - Url: nservicebus/upgrades/callbacks-1to2
+      Title: Callbacks 1 to 2
     - Title: Metrics
       Articles:
       - Url: nservicebus/upgrades/metrics-1to2
@@ -327,6 +325,12 @@
         Title: Version 2 to 3
       - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-1to2
         Title: Version 1 to 2
+    - Title: AWSLambda SQS
+      Articles:
+      - Url: nservicebus/upgrades/sqs-lambda-2to3
+        Title: AwsLambda SQS 2 to 3
+      - Url: nservicebus/upgrades/sqs-lambda-1to2
+        Title: AwsLambda SQS 1 to 2
     - Title: Gateway
       Articles:
       - Url: nservicebus/upgrades/gateway-3to4
