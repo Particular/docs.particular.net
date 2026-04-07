@@ -13,7 +13,7 @@ The [Support Policy](support-policy.md) outlines how support decisions are made.
 [Extended support plans](/nservicebus/upgrades/support-policy.md#extended-support) are available.
 
 > [!TIP]
-> This page shows currently and recently supported versions only.
+> This page shows currently supported versions only.
 >
 > Looking for older or unsupported versions?
 > [View the complete version history →](all-versions.md)
