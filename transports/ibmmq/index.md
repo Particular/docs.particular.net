@@ -4,6 +4,9 @@ summary: Integrate NServiceBus with IBM MQ for enterprise messaging on mainframe
 reviewed: 2026-03-23
 component: IBMMQ
 related:
+ - samples/ibmmq/simple
+ - samples/ibmmq/ebcdic
+ - samples/ibmmq/polymorphic-events
 redirects:
 ---
 
