@@ -10,10 +10,10 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/4.0.20.3/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.SQS" target="_blank">AWSSDK.SQS</a> | <a href="https://www.nuget.org/packages/AWSSDK.SQS/4.0.2.23/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/4.0.5.18/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/4.0.2.25/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.S3" target="_blank">AWSSDK.S3</a> | <a href="https://www.nuget.org/packages/AWSSDK.S3/4.0.20.4/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.SQS" target="_blank">AWSSDK.SQS</a> | <a href="https://www.nuget.org/packages/AWSSDK.SQS/4.0.2.24/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken" target="_blank">AWSSDK.SecurityToken</a> | <a href="https://www.nuget.org/packages/AWSSDK.SecurityToken/4.0.5.19/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService" target="_blank">AWSSDK.SimpleNotificationService</a> | <a href="https://www.nuget.org/packages/AWSSDK.SimpleNotificationService/4.0.2.26/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/BitFaster.Caching" target="_blank">BitFaster.Caching</a> | <a href="https://www.nuget.org/packages/BitFaster.Caching/2.5.4/license" target="_blank">View License</a> | <i>None provided</i> |
 
 ### NServiceBus.Autofac
@@ -153,7 +153,7 @@
 
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
-| <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2" target="_blank">AWSSDK.DynamoDBv2</a> | <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2/4.0.17.6/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2" target="_blank">AWSSDK.DynamoDBv2</a> | <a href="https://www.nuget.org/packages/AWSSDK.DynamoDBv2/4.0.17.7/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 
 ### NServiceBus.Persistence.ServiceFabric
 
@@ -246,7 +246,7 @@
 | Dependency | License | Project Site |
 |:-----------|:-------:|:------------:|
 | <a href="https://www.nuget.org/packages/Autofac" target="_blank">Autofac</a> | <a href="https://www.nuget.org/packages/Autofac/9.1.0/license" target="_blank">MIT</a> | <a href="https://autofac.org/" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch" target="_blank">AWSSDK.CloudWatch</a> | <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch/4.0.9.1/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch" target="_blank">AWSSDK.CloudWatch</a> | <a href="https://www.nuget.org/packages/AWSSDK.CloudWatch/4.0.9.2/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aws/aws-sdk-net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.Identity" target="_blank">Azure.Identity</a> | <a href="https://www.nuget.org/packages/Azure.Identity/1.20.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Identity_1.20.0/sdk/identity/Azure.Identity/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.Monitor.Query.Metrics" target="_blank">Azure.Monitor.Query.Metrics</a> | <a href="https://www.nuget.org/packages/Azure.Monitor.Query.Metrics/1.0.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.Monitor.Query.Metrics_1.0.0/sdk/monitor/Azure.Monitor.Query.Metrics/README.md" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Azure.ResourceManager.ServiceBus" target="_blank">Azure.ResourceManager.ServiceBus</a> | <a href="https://www.nuget.org/packages/Azure.ResourceManager.ServiceBus/1.1.0/license" target="_blank">MIT</a> | <a href="https://github.com/Azure/azure-sdk-for-net/blob/Azure.ResourceManager.ServiceBus_1.1.0/sdk/servicebus/Azure.ResourceManager.ServiceBus/README.md" target="_blank">Project Site</a> |
@@ -332,6 +332,6 @@
 | <a href="https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Owin" target="_blank">Microsoft.AspNet.WebApi.Owin</a> | <a href="https://www.nuget.org/packages/Microsoft.AspNet.WebApi.Owin/5.3.0/license" target="_blank">View License</a> | <a href="https://www.asp.net/web-api" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.Extensions.FileProviders.Embedded" target="_blank">Microsoft.Extensions.FileProviders.Embedded</a> | <a href="https://www.nuget.org/packages/Microsoft.Extensions.FileProviders.Embedded/10.0.5/license" target="_blank">MIT</a> | <a href="https://asp.net/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Microsoft.Owin.SelfHost" target="_blank">Microsoft.Owin.SelfHost</a> | <a href="https://www.nuget.org/packages/Microsoft.Owin.SelfHost/4.2.3/license" target="_blank">Apache-2.0</a> | <a href="https://github.com/aspnet/AspNetKatana" target="_blank">Project Site</a> |
-| <a href="https://www.nuget.org/packages/WixToolset.Dtf.CustomAction" target="_blank">WixToolset.Dtf.CustomAction</a> | <a href="https://www.nuget.org/packages/WixToolset.Dtf.CustomAction/6.0.2/license" target="_blank">View License</a> | <a href="https://wixtoolset.org/" target="_blank">Project Site</a> |
+| <a href="https://www.nuget.org/packages/WixToolset.Dtf.CustomAction" target="_blank">WixToolset.Dtf.CustomAction</a> | <a href="https://www.nuget.org/packages/WixToolset.Dtf.CustomAction/7.0.0/license" target="_blank">View License</a> | <a href="https://wixtoolset.org/" target="_blank">Project Site</a> |
 | <a href="https://www.nuget.org/packages/Yarp.ReverseProxy" target="_blank">Yarp.ReverseProxy</a> | <a href="https://www.nuget.org/packages/Yarp.ReverseProxy/2.3.0/license" target="_blank">MIT</a> | <a href="https://github.com/dotnet/yarp" target="_blank">Project Site</a> |
 
