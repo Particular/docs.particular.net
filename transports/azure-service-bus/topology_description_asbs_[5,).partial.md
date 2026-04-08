@@ -143,7 +143,7 @@ snippet: asb-interface-based-inheritance-declined
 This will make auto-subscribe create these two topics instead and wire the subscription to them.
 
 > [!WARNING]
-> When explicit routes are configured using `SubscribeTo<>`, the implicit default routes created by auto-subscribe are no longer used. If the default route is also required, it must be added explicitly.
+> When explicit routes are configured using `SubscribeTo<>`, the implicit default route created by auto-subscribe is no longer used. If the default route is also required, it must be added explicitly.
 
 Alternatively, the publisher can be configure to publish all its derived events onto the single `IOrderStatusChanged`  topic that multi-plexes all status changed related events:
 
