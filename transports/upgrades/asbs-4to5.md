@@ -15,7 +15,7 @@ Upgrading Azure Service Bus transport from version 4 to version 5 is a major upg
 
 ## Polymorphic dispatch
 
-[Polymorphic dispatch using message type inheritance](/nservicebus/messaging/dynamic-dispatch-and-routing.md) no longer auto subscribes to all descendant types. Polymorphic dispatch is still supported but requires that each descendant type in the inheritance tree [requires an explicit type subscription on the topology object](/transports/azure-service-bus/topology.md#subscription-rule-matching-interface-based-inheritance).
+[Polymorphic dispatch using message type inheritance](/nservicebus/messaging/dynamic-dispatch-and-routing.md) no longer auto subscribes to all descendant types. Polymorphic dispatch is still supported but requires that each descendant type in the inheritance tree [is configured with an explicit type subscription on the topology object](/transports/azure-service-bus/topology.md#subscription-rule-matching-interface-based-inheritance).
 
 
 ## Topologies
