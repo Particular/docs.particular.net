@@ -106,7 +106,7 @@ rabbitmq-transport delays transfer [options]
 #### Usage example
 
 ```
-rabbitmq-transport delays transfer --sourceConnectionString "amqp://user:pass@source-host" --sourceManagementApiUrl "http://source-host:15672" --destinationConnectionString "amqp://user:pass@destination-host" --destinationManagementApiUrl "http://destination-host:15672" --routingTopology conventional
+rabbitmq-transport delays transfer --sourceConnectionString "amqp://user:pass@source-host" --destinationConnectionString "amqp://user:pass@destination-host" 
 ```
 
 ### `delays verify`
