@@ -9,6 +9,9 @@ permissions:
 concurrency:
   group: publish
   cancel-in-progress: true
+defaults:
+  run:
+    shell: bash
 jobs:
   publish-samples:
     name: Publish Samples
@@ -37,13 +40,6 @@ jobs:
         run: dotnet tool install Particular.DocsTool --global --add-source https://f.feedz.io/particular-software/packages/nuget/index.json
       - name: Run docstool
         run: docstool test --no-version-check --zipfiles --out ~/build-output
-      - name: Upload Output
-        uses: actions/upload-artifact@v7
-        with:
-          name: samples
-          path: ~/build-output
-          if-no-files-found: error
-          retention-days: 1
       - name: Azure Login
         uses: azure/login@v3
         with:
