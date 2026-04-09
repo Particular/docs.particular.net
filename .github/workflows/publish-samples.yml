@@ -50,4 +50,4 @@ jobs:
         uses: azure/cli@v3
         with:
           azcliversion: latest
-          inlineScript: az storage blob upload-batch --source ~/build-output --destination zips --account-name particulardocs --pattern "*.zip" --overwrite 
+          inlineScript: az storage blob upload-batch --source build-output --destination zips --account-name particulardocs --pattern "*.zip" --overwrite 
