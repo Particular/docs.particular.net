@@ -89,6 +89,26 @@ rabbitmq-transport delays transfer [options]
 `--disableCertValidation` : Disable remote certificate validation when connecting to the broker<br />
 `--routingTopology` | `-r` : The routing topology to use<br />
 
+> [!NOTE]
+> Before running this command, the destination broker must have the v2 delay infrastructure in place. Use the [`delays create`](#delays-create) command to set it up:
+>
+> ```
+> rabbitmq-transport delays create --connectionString "amqp://user:pass@destination-host" --managementApiUrl "http://destination-host:15672"
+> ```
+
+> [!NOTE]
+> All exchanges and queues that exist on the source broker must also exist on the destination broker before running this command. Use the [`endpoint create`](#endpoint-create) command for each endpoint:
+>
+> ```
+> rabbitmq-transport endpoint create <endpointName> --connectionString "amqp://user:pass@destination-host"
+> ```
+
+#### Usage example
+
+```
+rabbitmq-transport delays transfer --sourceConnectionString "amqp://user:pass@source-host" --destinationConnectionString "amqp://user:pass@destination-host" 
+```
+
 ### `delays verify`
 
 Use this command to verify broker requirements for using the v2 delay infrastructure:
