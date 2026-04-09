@@ -1,6 +1,7 @@
 name: Publish Samples
 on:
-  pull_request:
+  push:
+    branches: master
 env:
   DOTNET_NOLOGO: true
 permissions:
