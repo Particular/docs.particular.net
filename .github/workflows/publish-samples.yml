@@ -1,4 +1,4 @@
-name: Publish Samples
+name: Publish
 on:
   push:
     branches: master
@@ -6,6 +6,9 @@ env:
   DOTNET_NOLOGO: true
 permissions:
   id-token: write
+concurrency:
+  group: publish
+  cancel-in-progress: true
 jobs:
   publish-samples:
     name: Publish Samples
