@@ -6,8 +6,6 @@ reviewed: 2025-05-02
 versions: '[4,]'
 redirects:
  - nservicebus/rabbitmq/delayed-delivery
-related:
- - samples/rabbitmq/delayed-delivery
 ---
 
 partial: v1-warning
