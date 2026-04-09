@@ -13,6 +13,13 @@ upgradeGuideCoreVersions:
 
 Upgrading Azure Service Bus transport from version 4 to version 5 is a major upgrade and requires careful planning. Read the entire upgrade guide before beginning the upgrade process.
 
+## Polymorphic dispatch
+
+[Polymorphic dispatch using message type inheritance](/nservicebus/messaging/dynamic-dispatch-and-routing.md) no longer auto subscribes to all descendant types. Polymorphic dispatch is still supported but requires that each descendant type in the inheritance tree [is configured with an explicit type subscription on the topology object](/transports/azure-service-bus/topology.md#subscription-rule-matching-interface-based-inheritance).
+
+
+## Topologies
+
 Version 5 of the transport introduces the concept of choosing a topic topology. The following two topologies are supported:
 
 - Migration topology
@@ -20,7 +27,6 @@ Version 5 of the transport introduces the concept of choosing a topic topology. 
 
 The topology selection must be explicitly passed into the constructor of the transport when the transport is being created.
 
-## Topologies
 
 ### Topic-per-event type topology
 
