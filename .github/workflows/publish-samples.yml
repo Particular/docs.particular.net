@@ -47,4 +47,4 @@ jobs:
           tenant-id: ${{ secrets.AZURE_OPENID_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_OPENID_SUBSCRIPTION_ID }}
       - name: Publish Samples
-        run: az storage blob upload-batch --source ~/build-output --destination zips --account-name particulardocs --pattern "*.zip" --overwrite 
+        run: az storage blob upload-batch --source ~/build-output --destination zips --account-name particulardocs --pattern "*.zip" --overwrite --auth-mode login
