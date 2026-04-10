@@ -9,7 +9,7 @@ redirects:
 
 ServiceControl Audit instance can be configured using environment variables and/or the `ServiceControl.Audit.exe.config` file. Configuration settings provided using environment variables take precedence over the application configuration file entries.
 
-When used the ServiceControl Management utility (SCMU) enables controlling a subset of configuration settings which are read from and written to the application configuration file.
+When used, the ServiceControl Management utility (SCMU) enables controlling a subset of configuration settings that are read from and written to the application configuration file.
 
 >[!NOTE]
 >Configuration settings in the application configuration file are applicable to the `appSettings` section unless otherwise specified.
