@@ -2,13 +2,14 @@
 title: Audit Instance Configuration Settings
 summary: Categorized list of ServiceControl Audit instance configuration settings.
 component: ServiceControl
-reviewed: 2024-06-24
+reviewed: 2026-04-10
 redirects:
  - servicecontrol/audit-instances/creating-config-file
 ---
-The configuration of a ServiceControl Audit instance is controlled by the `ServiceControl.Audit.exe.config` file or by setting environment variables. When a setting configuration exists as both an environment variable and in the application configuration file the environment variable setting takes precedence.
 
-Deployments using the ServiceControl Management utility (SCMU) can use that application to make a subset of configuration settings which are read from and written to the application configuration file.
+ServiceControl Audit instance can be configured using environment variables and/or the `ServiceControl.Audit.exe.config` file. Configuration settings provided using environment variables take precedence over the application configuration file entries.
+
+When used the ServiceControl Management utility (SCMU) enables controlling a subset of configuration settings which are read from and written to the application configuration file.
 
 >[!NOTE]
 >Configuration settings in the application configuration file are applicable to the `appSettings` section unless otherwise specified.
