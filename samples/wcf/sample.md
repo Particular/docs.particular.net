@@ -1,7 +1,7 @@
 ---
 title: Reliable WCF communication over messaging
 component: Wcf
-reviewed: 2024-07-03
+reviewed: 2026-04-10
 related:
  - nservicebus/wcf
 ---
