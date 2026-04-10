@@ -1,7 +1,7 @@
 ---
 title: Azure Table Persistence
 summary: Using Azure Tables as persistence
-reviewed: 2025-11-20
+reviewed: 2026-04-10
 component: ASP
 related:
  - persistence/upgrades/asp-saga-deduplication
@@ -57,5 +57,4 @@ Saga correlation property values are subject to the underlying Azure Storage tab
 
 ### Storage format
 
-> [!WARNING]
-> When the default partition key is not explicitly set, Outbox rows are not separated by endpoint name. As a result, multiple logical endpoints cannot share the same table since [message identities are not unique across endpoints from a processing perspective](/nservicebus/outbox/#message-identity). To avoid conflicts, either assign each endpoint to a separate table or [override the partition key](transactions.md).
+partial: outbox-storage-format
