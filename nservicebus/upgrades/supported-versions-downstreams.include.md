@@ -20,7 +20,7 @@
 |:---------:|:--------------:|:-----------------:|:---------------------------------:|
 | [9.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/9.0.0) | 2026-01-29     | -                 | -                                 |
 | [8.1.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/8.1.0) | 2026-01-14     | 2028-01-29        | Extended by NServiceBus 9.2.x     |
-| [8.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/8.0.1) | 2025-06-04     | 2026-04-14        | Superseded by 8.1.x               |
+| [~~8.0.x~~](https://www.nuget.org/packages/NServiceBus.AmazonSQS/8.0.1) | ~~2025-06-04~~ | ~~2026-04-14~~    | ~~Superseded by 8.1.x~~           |
 | [7.3.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.3.0) | 2025-04-14     | 2026-06-04        | Superseded by 8.0.x               |
 | [6.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.2.1) | 2023-11-20     | 2026-04-16        | Extended by NServiceBus 8.2.x     |
 | [5.7.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.7.3) | 2023-03-07     | 2024-11-17        | [Extended support](/nservicebus/upgrades/support-policy.md#extended-support) until 2026-11-17 |
