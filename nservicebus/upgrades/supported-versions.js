@@ -1,5 +1,7 @@
 'use strict';
 (function () {
+    // Broken, needs rewrite
+    return;
     var now = new Date();
     var x = document.getElementsByTagName("tr");
     var i;
