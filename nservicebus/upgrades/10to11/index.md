@@ -79,10 +79,10 @@ var salesDb = new DatabaseService("sales-db");
 var billingDb = new DatabaseService("billing-db");
 
 builder.Services.AddKeyedSingleton<DatabaseService>("Sales", salesDb);
-builder.Services.AddKeyedSIngleton<DatabaseService>("Billing", billingDb);
+builder.Services.AddKeyedSingleton<DatabaseService>("Billing", billingDb);
 
-builder.Services.AddNServiceBusEndpoint(salesConfig);
-builder.Services.AddNServiceBusEndpoint(billingConfig);
+builder.Services.AddNServiceBusEndpoint(salesConfig, "Sales");
+builder.Services.AddNServiceBusEndpoint(billingConfig, "Billing");
 ```
 
 ### Logging
