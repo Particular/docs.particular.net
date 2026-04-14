@@ -98,7 +98,7 @@ snippet: ibmmq-resource-sanitization
 
 ## Circuit breaker
 
-If the transport cannot communicate with the queue manager for a sustained period, it triggers a critical error. The default timeout is 2 minutes:
+If the transport cannot communicate with the queue manager for a sustained period, it triggers a [critical error](/nservicebus/hosting/critical-errors.md). The default timeout is 2 minutes:
 
 snippet: ibmmq-circuit-breaker
 
