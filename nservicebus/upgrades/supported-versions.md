@@ -20,5 +20,3 @@ The [Support Policy](support-policy.md) outlines how support decisions are made.
 
 include: supported-versions-nservicebus
 include: supported-versions-downstreams
-
-<script type="text/javascript" src="supported-versions.js"></script>
