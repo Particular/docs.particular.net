@@ -1,7 +1,7 @@
 ---
 title: Upgrade Version 10 to 11
 summary: Instructions on how to upgrade NServiceBus from version 10 to version 11.
-reviewed: 2025-09-03
+reviewed: 2026-04-14
 component: Core
 isUpgradeGuide: true
 upgradeGuideCoreVersions:
@@ -87,13 +87,109 @@ builder.Services.AddNServiceBusEndpoint(billingConfig, "Billing");
 
 ### Logging
 
-TODO
+NServiceBus now uses [Microsoft.Extensions.Logging](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/) as its built-in logging infrastructure. When no other logging providers are configured, NServiceBus provides opinionated defaults: a rolling file logger and a colored console logger, just like the previous `DefaultFactory` did, but now powered by the `Microsoft.Extensions.Logging` pipeline under the covers. As soon as other logging providers are registered on the host, these built-in providers automatically disable themselves so that the externally configured providers take over without any manual opt-out.
 
-Deprecated list:
+The legacy NServiceBus logging configuration APIs have been deprecated and will produce compiler warnings. These APIs will cause compile errors in NServiceBus version 11 and will be removed in NServiceBus version 12.
 
-- NServiceBus.Logging.DefaultFactory - use `IServiceCollection.Configure<RollingLoggerProviderOptions>()` instead
-  - void Directory(string directory) - use `RollingLoggerProviderOptions.Directory` instead
-  - void Level(LogLevel level) - use `RollingLoggerProviderOptions.LogLevel` instead
-- NServiceBus.Logging.LogManager.Use<T>() where T : LoggingFactoryDefinition - Use Microsoft.Extensions.Logging instead
-- NServiceBus.Logging.LogManager.UseFactory(ILoggerFactory loggerFactory) - Use Microsoft.Extensions.Logging instead
-- NServiceBus.Logging.LoggingFactoryDefinition
+#### Migrating from LogManager.GetLogger to ILogger<T>
+
+`LogManager.GetLogger` is not deprecated yet, but it will be deprecated in a future version. It should be replaced with `Microsoft.Extensions.Logging`, which offers two approaches depending on the application structure. For more details, see [Logging in .NET](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/overview).
+
+##### Dependency injection (recommended)
+
+In applications that use dependency injection or a host, `ILogger<T>` should be obtained through constructor injection. This is the primary and recommended pattern in `Microsoft.Extensions.Logging`.
+
+Instead of:
+
+```csharp
+public class MyHandler : IHandleMessages<MyMessage>
+{
+    static ILog log = LogManager.GetLogger(typeof(MyHandler));
+
+    public Task Handle(MyMessage message, IMessageHandlerContext context)
+    {
+        log.Info("Handling message");
+        return Task.CompletedTask;
+    }
+}
+```
+
+use constructor-injected `ILogger<T>`:
+
+```csharp
+public class MyHandler(ILogger<MyHandler> logger) : IHandleMessages<MyMessage>
+{
+    public Task Handle(MyMessage message, IMessageHandlerContext context)
+    {
+        logger.LogInformation("Handling message");
+        return Task.CompletedTask;
+    }
+}
+```
+
+> [!NOTE]
+> `Microsoft.Extensions.Logging` is designed as a dependency-injection-first framework. The category name is derived from the type parameter of `ILogger<T>`, which determines how log events are filtered and routed. Using `ILogger<T>` via constructor injection ensures that logger instances are properly scoped and configured by the host.
+
+##### Static logging (non-hosted contexts)
+
+In scenarios where dependency injection is not available, such as before the host is built or in static contexts, an `ILoggerFactory` can be created directly following the guidance in [Get started with .NET logging](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/overview?tabs=command-line#get-started):
+
+```csharp
+using ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
+ILogger logger = factory.CreateLogger("MyCategory");
+logger.LogInformation("Message logged before the host is built.");
+```
+
+This approach is suitable only for trivial scenarios. In non-trivial applications, `ILoggerFactory` and `ILogger` should be obtained from the DI container rather than created directly, as described in [Integration with hosts and dependency injection](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/overview#integration-with-hosts-and-dependency-injection).
+
+##### High-performance logging
+
+For high-performance scenarios, the [`LoggerMessage`](https://learn.microsoft.com/en-us/dotnet/core/extensions/loggermessage-generator) source generator creates strongly-typed logging methods that avoid unnecessary allocations and string formatting overhead.
+
+#### Using custom logging providers
+
+Instead of `LogManager.Use<T>()` or `LogManager.UseFactory(...)`, register custom logging providers directly with the `Microsoft.Extensions.Logging` infrastructure on the host:
+
+```csharp
+var builder = Host.CreateApplicationBuilder();
+
+builder.Logging.AddSerilog();
+```
+
+> [!NOTE]
+> Consider transitioning to the standard logging infrastructure provided by `Microsoft.Extensions.Logging`, for example, using providers like Serilog, NLog, or the built-in console provider. This offers richer filtering, structured logging, and integration with the broader .NET ecosystem, and avoids dependency on NServiceBus-specific logging infrastructure.
+
+#### Configuring the rolling file logger
+
+The `RollingLoggerProviderOptions` section is only relevant when relying on NServiceBus default logging. If the host already has an external logging provider configured, the built-in rolling file and console log providers are automatically disabled and these options have no effect.
+
+Instead of using `DefaultFactory`, configure the rolling file logger through the options pattern:
+
+```csharp
+var builder = Host.CreateApplicationBuilder();
+
+builder.Services.Configure<RollingLoggerProviderOptions>(options =>
+{
+    options.Directory = "C:/logs";
+    options.LogLevel = LogLevel.Debug;
+    options.NumberOfArchiveFilesToKeep = 10;
+    options.MaxFileSizeInBytes = 10L * 1024 * 1024;
+});
+```
+
+#### Direct logger retrieval from DefaultFactory
+
+Calling `DefaultFactory.GetLoggingFactory().GetLogger(...)` is no longer supported and will throw an exception at runtime. Use `ILogger<T>` via dependency injection instead.
+
+#### Deprecated APIs
+
+The following APIs are deprecated:
+
+| Deprecated API | Replacement |
+| --- | --- |
+| `LogManager.Use<T>()` | Register an `ILoggerProvider` via `IServiceCollection` |
+| `LogManager.UseFactory(ILoggerFactory)` | Configure `Microsoft.Extensions.Logging` directly on the host |
+| `DefaultFactory` | `services.Configure<RollingLoggerProviderOptions>()` |
+| `DefaultFactory.Directory(string)` | `RollingLoggerProviderOptions.Directory` |
+| `DefaultFactory.Level(LogLevel)` | `RollingLoggerProviderOptions.LogLevel` |
+| `LoggingFactoryDefinition` | Implement `ILoggerProvider` and register via `services.AddSingleton<ILoggerProvider, YourProvider>()` |
