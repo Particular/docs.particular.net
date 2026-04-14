@@ -91,5 +91,3 @@ In accordance with the [release policy](release-policy.md), important fixes are 
 Component packages, such as [transports](/transports/), [persisters](/persistence/), [dependency injection](/nservicebus/dependency-injection/), or [serializers](/nservicebus/serialization/), have much less upgrade risk than the NServiceBus package. Therefore, the commitment to backporting fixes affecting the NServiceBus package is higher than for the many component packages.
 
 The support dates for NServiceBus and each component package can be found on the [supported versions](supported-versions.md) page.
-
-<script type="text/javascript" src="supported-versions.js"></script>
