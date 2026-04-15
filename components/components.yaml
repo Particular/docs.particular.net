@@ -823,7 +823,7 @@
   Name: NServiceBus.Envelope.CloudEvents
   DocsUrl: /nservicebus/cloudevents
   GitHubOwner: Particular
-  Category: Core
+  Category: Other
   LicenseUrl: https://github.com/Particular/NServiceBus.Envelope.CloudEvents/blob/main/LICENSE.md
   ProjectUrl: https://github.com/Particular/NServiceBus.Envelope.CloudEvents
   NugetOrder:
