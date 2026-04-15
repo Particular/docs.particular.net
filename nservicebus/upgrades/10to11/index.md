@@ -87,7 +87,7 @@ builder.Services.AddNServiceBusEndpoint(billingConfig, "Billing");
 
 ### Logging
 
-NServiceBus now uses [Microsoft.Extensions.Logging](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/) as its built-in logging infrastructure. When no other logging providers are configured, NServiceBus provides opinionated defaults: a rolling file logger and a colored console logger, just like the previous `DefaultFactory` did, but now powered by the `Microsoft.Extensions.Logging` pipeline under the covers. As soon as other logging providers are registered on the host, these built-in providers automatically disable themselves so that the externally configured providers take over without any manual opt-out.
+NServiceBus now uses [Microsoft.Extensions.Logging](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/) as its built-in logging infrastructure. When no other logging providers are configured, NServiceBus provides opinionated defaults: a rolling file logger and a colored console logger, just like the previous `DefaultFactory` did, but now powered by the `Microsoft.Extensions.Logging` pipeline. As soon as other logging providers are registered on the host, these built-in providers automatically disable themselves so that the externally configured providers take over without any manual opt-out.
 
 The legacy NServiceBus logging configuration APIs have been deprecated and will produce compiler warnings. These APIs will cause compile errors in NServiceBus version 11 and will be removed in NServiceBus version 12.
 
@@ -148,7 +148,7 @@ For high-performance scenarios, the [`LoggerMessage`](https://learn.microsoft.co
 
 #### Using custom logging providers
 
-Instead of `LogManager.Use<T>()` or `LogManager.UseFactory(...)`, register custom logging providers directly with the `Microsoft.Extensions.Logging` infrastructure on the host:
+Instead of `LogManager.Use<T>()` or `LogManager.UseFactory(…)`, register custom logging providers directly with the `Microsoft.Extensions.Logging` infrastructure on the host:
 
 ```csharp
 var builder = Host.CreateApplicationBuilder();
