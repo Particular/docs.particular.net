@@ -5,6 +5,6 @@
 | [10.1.x](https://www.nuget.org/packages/NServiceBus/10.1.1)| **Current** | 2026-02-06     | Active            | Active                            |
 | [10.0.x](https://www.nuget.org/packages/NServiceBus/10.0.1)| Mainstream Support | 2026-01-29     | 2026-08-06        | 2028-08-06                        |
 | [9.2.x](https://www.nuget.org/packages/NServiceBus/9.2.9)| Mainstream Support | 2024-09-10     | 2028-01-29        | 2030-01-29                        |
-| [8.2.x](https://www.nuget.org/packages/NServiceBus/8.2.6)| Mainstream Support | 2024-04-11     | 2026-04-16        | 2028-04-16                        |
+| [~~8.2.x~~](https://www.nuget.org/packages/NServiceBus/8.2.6)| ~~Unsupported~~ | ~~2024-04-11~~ | ~~2026-04-16~~    | ~~2028-04-16~~                    |
 | [7.8.x](https://www.nuget.org/packages/NServiceBus/7.8.6)| Extended Support | 2022-09-19     | 2024-11-17        | 2026-11-17                        |
 
