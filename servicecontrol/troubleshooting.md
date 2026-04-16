@@ -27,6 +27,25 @@ There are various reasons that can cause the ServiceControl Windows Service fail
 
 In Windows applications, critical exception thrown at service start up will be reported via an error message in the `Application` Windows Event Log.
 
+## ServiceControl instance upgrade failure
+
+During a ServiceControl instance upgrade, the ServiceControl Management Utility (SCMU) may fail to activate the new version and also fail to automatically restore the previous version. When this occurs, SCMU displays the following error:
+
+> Error while making new version active and unsuccessful in restoring previous version. Manually restore `<InstallPath>.old` to `<InstallPath>` to repair instance.
+
+> [!NOTE] This error is commonly caused by antivirus or anti-malware software scanning the installation folder which should be [excluded from such checks](servicecontrol-in-practice.md#anti-virus-checks).
+
+The previous version's files are stored in a folder with an `.old` suffix. To restore the instance manually:
+
+1. Stop the Windows service for the affected instance if it is still running
+2. Delete or rename the current installation folder
+3. Rename the `.old` folder back to the original name
+4. Start the Windows service
+
+The instance will run on the previous version. After confirming the instance is healthy, the upgrade can be retried via SCMU.
+
+Contact [Particular support](https://particular.net/support) if the issue persists.
+
 ## The port is already in use (Windows)
 
 When adding a ServiceControl instance the configured port number is checked to ensure it is available. This is not infallible though as another application or service that uses the same port may not be running at the time the service is added.
