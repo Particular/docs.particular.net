@@ -11,6 +11,5 @@
 | [~~6.8.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/6.8.1)| ~~Unsupported~~ | ~~2025-12-05~~ | ~~2026-01-14~~    |
 | [~~6.7.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/6.7.7)| ~~Unsupported~~ | ~~2025-07-03~~ | ~~2025-12-05~~    |
 | [~~6.6.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/6.6.4)| ~~Unsupported~~ | ~~2025-04-16~~ | ~~2025-07-03~~    |
-| [~~6.5.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/6.5.3)| ~~Unsupported~~ | ~~2025-03-17~~ | ~~2025-04-16~~    |
 | [~~5.11.x~~](https://www.nuget.org/packages/Particular.PlatformSample.ServiceControl/5.11.11)| ~~Unsupported~~ | ~~2024-10-04~~ | ~~2025-10-17~~    |
 
