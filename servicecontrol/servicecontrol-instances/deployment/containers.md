@@ -1,7 +1,7 @@
 ---
 title: Deploying ServiceControl Error instances using Containers
 summary: A guide to setting up and deploying ServiceControl Error instances using Containers
-reviewed: 2024-07-08
+reviewed: 2026-04-17
 component: ServiceControl
 versions: '[5.3, )'
 redirects:
@@ -36,7 +36,7 @@ docker run --rm {OPTIONS} particular/servicecontrol --setup
 
 Setup mode may require different settings, such as a different transport connection string with permissions to create queues.
 
-After setup is complete, the container will exit, and the `--rm` (or equivalent) option may be used to automatically remove the container.
+After setup is complete, the container will exit, and the `--rm` (or equivalent) option can be used to automatically remove it.
 
 The setup process should be repeated any time the container is [updated to a new version](#upgrading).
 
@@ -49,7 +49,7 @@ Instead of running `--setup` as a separate container, the setup and run operatio
 docker run {OPTIONS} particular/servicecontrol --setup-and-run
 ```
 
-The `--setup-and-run` argument will run the setup process when the container is run, after which the application will run normally. This simplifies deployment by removing the need for a separate init container in environments where the setup process does not need different settings.
+The `--setup-and-run` argument runs the setup process when the container starts, after which the application runs normally. This simplifies deployment by removing the need for a separate init container in environments where the setup process does not need different settings.
 
 Using `--setup-and-run` removes the need to repeat a setup process when the container is updated to a new version.
 
@@ -64,7 +64,7 @@ include: servicecontrol-container-ravenconnectionstring
 
 _Environment variable:_ `REMOTEINSTANCES`
 
-A JSON structure that provides URLs for the Error instance to access any [remote audit instances](/servicecontrol/servicecontrol-instances/remotes.md). When requesting audit data via the ServiceControl API, the Error instance will communicate to each of the remote audit instances in a scatter-gather pattern and then return the combined results. The URLs must be accessible by the Error instance directly, not constructed to be accessible from an external browser.
+A JSON structure that provides URLs for the Error instance to access any [remote audit instances](/servicecontrol/servicecontrol-instances/remotes.md). When requesting audit data via the ServiceControl API, the Error instance will communicate with each remote audit instance in a scatter-gather pattern, then return the combined results. The URLs must be accessible directly by the Error instance, not constructed to be accessible from an external browser.
 
 ### Enable integrated ServicePulse
 
@@ -84,17 +84,17 @@ The Error instance is stateless and does not require any mounted volumes.
 
 ## Additional settings
 
-Additional optional settings are documented in [Error Instance Configuration Settings](/servicecontrol/servicecontrol-instances/configuration.md) which describes all available settings, allowed values, and the environment variable keys used to configure the container.
+Additional optional settings are documented in [Error Instance Configuration Settings](/servicecontrol/servicecontrol-instances/configuration.md), which describes all available settings, allowed values, and the environment variable keys used to configure the container.
 
-When using tools such as Docker Compose that can share environment information between many containers, the prefix `SERVICECONTROL_` can be dropped from an environment variable name, and the value will still be understood by the container. This facilitates sharing values such as `TRANSPORTTYPE` when all instances will be configured with the same values.
+When using tools such as Docker Compose that share environment information across many containers, the `SERVICECONTROL_` prefix can be dropped from an environment variable name, and the value will still be understood by the container. This facilitates sharing values such as `TRANSPORTTYPE` when all instances will be configured with the same values.
 
 In the event of a naming collision, a fully qualified key such as `SERVICECONTROL_TRANSPORTTYPE` will be preferred over the shared `TRANSPORTTYPE` variant.
 
-Not all settings are relevant to error instances running in a container. For example, HTTP hostname and port use standard values inside the container, and mapped to real hosts and ports by infrastructure external to the container. Be sure to check the documentation for each configuration setting carefully to ensure it is relevant in a container context.
+Not all settings are relevant to error instances running in a container. For example, HTTP hostname and port use standard values inside the container, and are mapped to real hosts and ports by infrastructure external to the container. Be sure to carefully review the documentation for each configuration setting to ensure it is relevant in a container context.
 
 ## Upgrading
 
-An ServiceControl error instance is upgraded by removing the container for the old version and replacing it with a container built using the new version. However, the container should be run in [setup mode](#initial-setup) each time it is upgraded. For example:
+A ServiceControl error instance is upgraded by removing the container for the old version and replacing it with a container built using the new version. However, the container should be run in [setup mode](#initial-setup) each time it is upgraded. For example:
 
 ```shell
 docker stop error
