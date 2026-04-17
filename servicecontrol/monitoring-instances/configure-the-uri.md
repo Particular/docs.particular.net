@@ -8,7 +8,7 @@ redirects:
 ---
 
 > [!NOTE]
-> By default, anyone who can access the Monitoring instance URL has a complete access to data stored by the instance. This is why the default URL on which the instance servers the requests equals to `localhost`. Before deploying to any environment security implications should be carefully considered follwoing [the platfrom hosting guidles](/servicecontrol/security/hosting-guide).
+> By default, anyone who can access the Monitoring instance URL has a complete access to data stored by the instance. This is why the default URL on which the instance servers the requests equals to `localhost`. Before deploying to any environment security implications should be carefully considered follwoing [the platfrom hosting guidles](/servicecontrol/security/hosting-guide.md).
 
 ## Changing the Monitoring instance URI
 
