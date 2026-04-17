@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<endpoints>
-  <endpoint name="Samples.FairDistribution.Server">
-    <instance queue="Samples.FairDistribution.Server-1"/>
-    <instance queue="Samples.FairDistribution.Server-2"/>
-  </endpoint>
-</endpoints>

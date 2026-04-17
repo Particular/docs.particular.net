@@ -1,2 +1,0 @@
-AzureFunctions.KafkaTrigger.FunctionsHostBuilder\AzureFunctions.KafkaTrigger.FunctionsHostBuilder.csproj
-ConsoleEndpoint\ConsoleEndpoint.csproj
