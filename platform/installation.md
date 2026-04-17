@@ -38,7 +38,7 @@ This application is used to deploy and manage one or more instances of any of th
 
 #### PowerShell (Windows only)
 
-[A PowerShell module](/servicecontrol/servicecontrol-instances/deployment/powershell) is provided to deploy any of the ServiceControl instance types as a Windows service.
+[A PowerShell module](/servicecontrol/servicecontrol-instances/deployment/powershell.md) is provided to deploy any of the ServiceControl instance types as a Windows service.
 
 #### Containers (Linux only)
 
