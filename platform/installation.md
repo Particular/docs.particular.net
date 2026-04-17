@@ -1,7 +1,7 @@
 ---
 title: Platform Installation
 summary: Guidance on the different ways to deploy and use the platform
-reviewed: 2024-06-25
+reviewed: 2026-04-17
 ---
 
 The Particular Service Platform may be installed on either a server, for use in production environments, or a workstation, during development. A [portable version](platform-sample-package.md) is also available, for use in samples or demonstrations.
@@ -38,7 +38,7 @@ This application is used to deploy and manage one or more instances of any of th
 
 #### PowerShell (Windows only)
 
-A PowerShell module is provided to deploy any of the ServiceControl instance types as a Windows service.
+[A PowerShell module](/servicecontrol/servicecontrol-instances/deployment/powershell) is provided to deploy any of the ServiceControl instance types as a Windows service.
 
 #### Containers (Linux only)
 
