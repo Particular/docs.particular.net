@@ -1,6 +1,6 @@
 ---
 title: Deploying ServiceControl Monitoring instances using PowerShell
-reviewed: 2024-06-28
+reviewed: 2026-04-17
 component: ServiceControl
 redirects:
  - servicecontrol/monitoring-instances/installation/installation-powershell
@@ -51,7 +51,7 @@ Once the PowerShell module is updated, use the `Invoke-MonitoringInstanceUpgrade
 
 snippet: ps-upgrade-monitoring-instance
 
-To upgrade and instance to the latest version of the binaries run.
+To upgrade an instance to the latest version of the binaries, run.
 
 ```ps
 Invoke-MonitoringInstanceUpgrade -Name <Instance To upgrade>
