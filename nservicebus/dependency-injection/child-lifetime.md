@@ -2,7 +2,7 @@
 title: Child containers
 summary: Child containers allow for more granular instance lifetime configuration.
 component: Core
-reviewed: 2024-07-09
+reviewed: 2026-04-17
 
 redirects:
  - nservicebus/nservicebus-support-for-child-containers
@@ -10,7 +10,6 @@ redirects:
 ---
 
 Child containers are a snapshot of the main container providing an additional instance lifetime scope.
-
 
 ## Child container scope in NServiceBus
 
@@ -22,4 +21,4 @@ snippet: InstancePerUnitOfWorkRegistration
 
 ## Deterministic disposal
 
-Child containers automatically dispose all [IDisposable](https://msdn.microsoft.com/en-us/library/system.idisposable.aspx) instances created with `InstancePerUnitOfWork` lifetime once the message is processed. This is useful for managing things like  database sessions which must be disposed of properly.
+Child containers automatically dispose all [IDisposable](https://learn.microsoft.com/en-us/dotnet/api/system.idisposable) instances created with `InstancePerUnitOfWork` lifetime once the message is processed. This is useful for managing things like database sessions which must be disposed of properly.
