@@ -129,7 +129,6 @@ sealed class ComponentDocsMover
                 candidate.NewRelativePath,
                 candidate.OldUrl,
                 candidate.NewUrl,
-                candidate.OriginalContent,
                 updatedContent,
                 contentChanged));
         }
@@ -145,7 +144,6 @@ sealed class ComponentDocsMover
                 companion.Kind,
                 companion.OldRelativePath,
                 companion.NewRelativePath,
-                companionContent,
                 rewritten,
                 contentChanged));
         }
@@ -184,7 +182,6 @@ sealed class ComponentDocsMover
             {
                 componentsUpdate = new ComponentsYamlUpdate(
                     componentsAbsolutePath,
-                    componentsContent,
                     updatedComponentsContent,
                     oldDocsUrl!,
                     newDocsUrl!);
@@ -231,7 +228,6 @@ sealed class ComponentDocsMover
             attentionItems,
             menuChanged,
             menuAbsolutePath,
-            menuContent,
             menuUpdatedContent);
     }
 
@@ -1058,7 +1054,6 @@ sealed record DocumentMove(
     string NewRelativePath,
     string OldUrl,
     string NewUrl,
-    string OriginalContent,
     string UpdatedContent,
     bool ContentChanged);
 
@@ -1078,7 +1073,6 @@ sealed record MovePlan(
     IReadOnlyList<string> AttentionItems,
     bool MenuChanged,
     string MenuAbsolutePath,
-    string MenuOriginalContent,
     string MenuUpdatedContent);
 
 sealed record IndexScaffold(
@@ -1097,7 +1091,6 @@ sealed record MenuTopLevelPlaceholder(
 
 sealed record ComponentsYamlUpdate(
     string AbsolutePath,
-    string OriginalContent,
     string UpdatedContent,
     string OldDocsUrl,
     string NewDocsUrl);
@@ -1117,6 +1110,5 @@ sealed record CompanionFileMove(
     CompanionKind Kind,
     string OldRelativePath,
     string NewRelativePath,
-    string OriginalContent,
     string UpdatedContent,
     bool ContentChanged);

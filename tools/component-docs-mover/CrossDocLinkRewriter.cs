@@ -54,7 +54,7 @@ sealed class CrossDocLinkRewriter
                 continue;
             }
 
-            rewrites.Add(new CrossDocLinkRewrite(relative, originalContent, updatedContent));
+            rewrites.Add(new CrossDocLinkRewrite(relative, updatedContent));
         }
 
         return rewrites;
@@ -267,4 +267,4 @@ sealed class CrossDocLinkRewriter
     }
 }
 
-sealed record CrossDocLinkRewrite(string RelativePath, string OriginalContent, string UpdatedContent);
+sealed record CrossDocLinkRewrite(string RelativePath, string UpdatedContent);

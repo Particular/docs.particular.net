@@ -21,7 +21,4 @@ sealed class MoveDocsSettings : CommandSettings
 
     [CommandOption("--apply")]
     public bool Apply { get; init; }
-
-    [CommandOption("--undo")]
-    public bool Undo { get; init; }
 }

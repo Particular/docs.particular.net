@@ -9,23 +9,6 @@ sealed class MoveDocsCommand : Command<MoveDocsSettings>
     {
         try
         {
-            if (settings.Apply && settings.Undo)
-            {
-                throw new InvalidOperationException("Use either --apply or --undo, not both.");
-            }
-
-            var repoRoot = ResolveRepoRoot(settings.RepoRoot);
-            if (settings.Undo)
-            {
-                var journal = OperationJournalStore.Load(repoRoot);
-                var undoer = new OperationUndoer(journal);
-                undoer.Undo();
-                OperationJournalStore.Delete(repoRoot);
-                AnsiConsole.MarkupLine(
-                    $"[green]Undo completed for component '{Markup.Escape(journal.Component)}' ({Markup.Escape(journal.From)} -> {Markup.Escape(journal.To)}).[/]");
-                return 0;
-            }
-
             var resolved = ResolveSettings(settings);
             var mover = new ComponentDocsMover(resolved);
             var plan = mover.BuildPlan();
@@ -37,7 +20,6 @@ sealed class MoveDocsCommand : Command<MoveDocsSettings>
                 return 0;
             }
 
-            OperationJournalStore.SaveFromPlan(plan);
             mover.Apply(plan);
             AnsiConsole.MarkupLine(
                 $"[green]Applied {plan.Documents.Count} document move(s), {plan.ImageMoves.Count} image move(s), {plan.IndexScaffolds.Count} destination index scaffold(s), and {plan.SourceIndexReplacements.Count} source index replacement(s){(plan.MenuChanged ? ", with menu updates." : ".")}[/]");
@@ -50,8 +32,7 @@ sealed class MoveDocsCommand : Command<MoveDocsSettings>
                 }
             }
             AnsiConsole.MarkupLine("[grey]Next:[/] run [blue]docstool test --no-version-check[/].");
-            AnsiConsole.MarkupLine(
-                "[grey]Then either keep changes, or undo with:[/] [blue]dotnet run --project .\\tools\\component-docs-mover\\component-docs-mover.csproj -- --undo[/]");
+            AnsiConsole.MarkupLine("[grey]Revert with[/] [blue]git restore .[/] [grey]and[/] [blue]git clean -fd[/] [grey]if anything looks wrong.[/]");
             return 0;
         }
         catch (Exception ex)
