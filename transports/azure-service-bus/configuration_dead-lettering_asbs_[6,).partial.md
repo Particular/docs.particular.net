@@ -8,12 +8,7 @@ For background information on Azure Service Bus dead-letter queues, see [Overvie
 
 When queues are created by the transport, native dead-lettered messages can be auto-forwarded to the configured error queue:
 
-```csharp
-var transport = new AzureServiceBusTransport("<connection string>", TopicTopology.Default)
-{
-    AutoForwardDeadLetteredMessagesToErrorQueue = true
-};
-```
+snippet: enable-dlq-auto-forwarding
 
 This setting is opt-in and affects only entities created by the transport. See the [`asb-transport` provisioning commands](/transports/azure-service-bus/operational-scripting.md) for more details on scripting options.
 
@@ -21,10 +16,7 @@ This setting is opt-in and affects only entities created by the transport. See t
 
 To route failed messages to the native Azure Service Bus dead-letter queue instead of the NServiceBus error queue, enable:
 
-```csharp
-var recoverability = endpointConfiguration.Recoverability();
-recoverability.MoveErrorsToAzureServiceBusDeadLetterQueue();
-```
+snippet: dlq-all-errors
 
 #### Request dead lettering from recoverability
 
@@ -32,42 +24,14 @@ Use a [custom recoverability policy](/nservicebus/recoverability/custom-recovera
 
 Dead-letter with standard NServiceBus fault metadata:
 
-```csharp
-endpointConfiguration.Recoverability()
-    .CustomPolicy((config, errorContext) =>
-    {
-        if (errorContext.Exception is PoisonMessageException)
-        {
-            return RecoverabilityAction.DeadLetter();
-        }
-
-        return DefaultRecoverabilityPolicy.Invoke(config, errorContext);
-    });
-```
+snippet: explicit-dlq
 
 Dead-letter with custom reason, description, and modified application properties:
 
 > [!NOTE]
 > Using this option does note automatically add the NServiceBus faults metadata to the application properties.
 
-```csharp
-endpointConfiguration.Recoverability()
-    .CustomPolicy((config, errorContext) =>
-    {
-        if (errorContext.Exception is MyBusinessException ex)
-        {
-            return RecoverabilityAction.DeadLetter(
-                deadLetterReason: "Business rule validation failed",
-                deadLetterErrorDescription: ex.Message,
-                propertiesToModify: new Dictionary<string, object>
-                {
-                    ["FailureCategory"] = "Validation"
-                });
-        }
-
-        return DefaultRecoverabilityPolicy.Invoke(config, errorContext);
-    });
-```
+snippet: explicit-dlq-full-control
 
 #### Fault header mapping
 
@@ -83,7 +47,7 @@ This mapping helps tools such as ServiceControl and ServicePulse present failure
 
 [ServicePulse failed message monitoring](/servicepulse/intro-failed-messages.md) tracks messages in the NServiceBus error queue. If endpoint failures are kept in native Azure Service Bus dead-letter queues without forwarding, those failures require Azure-native operational tooling.
 
-Enable dlq forwarding described above when you want native dead lettering and centralized failed-message handling together.
+Enable dlq forwarding as described above when you want to centralized native dead lettering and failed-message handling.
 
 #### Caveats
 
