@@ -15,15 +15,15 @@ sealed class FrontMatterFile
         @"^---[ \t]*(\r?\n|$)",
         RegexOptions.Multiline | RegexOptions.Compiled);
 
-    public string OriginalContent { get; }
-
     public bool HasFrontMatter { get; }
 
-    public string HeaderText { get; }
+    string OriginalContent { get; }
 
-    public int HeaderStart { get; }
+    string HeaderText { get; }
 
-    public int HeaderLength { get; }
+    int HeaderStart { get; }
+
+    int HeaderLength { get; }
 
     readonly YamlMappingNode? rootMapping;
     readonly string headerNewline;
@@ -90,7 +90,7 @@ sealed class FrontMatterFile
         return node is YamlScalarNode scalar ? scalar.Value : null;
     }
 
-    public IReadOnlyList<string>? GetSequence(string key)
+    IReadOnlyList<string>? GetSequence(string key)
     {
         var node = FindValue(key);
         if (node is not YamlSequenceNode sequence)

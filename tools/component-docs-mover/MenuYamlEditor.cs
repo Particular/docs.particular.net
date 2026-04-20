@@ -147,15 +147,15 @@ sealed class MenuYamlEditor
     {
         var lines = new List<string>
         {
-            $"- Name: {displayName}",
+            $"- Name: \"TODO: {displayName}\"",
             "  Topics:",
-            "  - Title: Introduction (placeholder)",
+            "  - Title: \"TODO: Introduction (replace scaffolded placeholder in menu/menu.yaml)\"",
             $"    Url: {topLevelSegment}"
         };
 
         if (!string.Equals(toPrefix, topLevelSegment, StringComparison.OrdinalIgnoreCase))
         {
-            lines.Add("  - Title: Moved content (placeholder)");
+            lines.Add("  - Title: \"TODO: Moved content (replace scaffolded placeholder in menu/menu.yaml)\"");
             lines.Add($"    Url: {toPrefix}");
         }
 
@@ -207,7 +207,7 @@ sealed class MenuYamlEditor
         }
     }
 
-    public static string SlugifyName(string value)
+    static string SlugifyName(string value)
     {
         var source = value.Trim().ToLowerInvariant();
         var builder = new StringBuilder(source.Length);

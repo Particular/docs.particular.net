@@ -5,6 +5,31 @@ namespace component_docs_mover;
 
 sealed class MoveDocsCommand : Command<MoveDocsSettings>
 {
+    public static bool IsInteractiveLaunch { get; set; }
+
+    public override ValidationResult Validate(CommandContext context, MoveDocsSettings settings)
+    {
+        if (IsInteractiveLaunch)
+        {
+            return ValidationResult.Success();
+        }
+
+        if (string.IsNullOrWhiteSpace(settings.Component))
+        {
+            return ValidationResult.Error("--component is required");
+        }
+        if (string.IsNullOrWhiteSpace(settings.From))
+        {
+            return ValidationResult.Error("--from is required");
+        }
+        if (string.IsNullOrWhiteSpace(settings.To))
+        {
+            return ValidationResult.Error("--to is required");
+        }
+
+        return ValidationResult.Success();
+    }
+
     public override int Execute(CommandContext context, MoveDocsSettings settings)
     {
         try
@@ -47,124 +72,34 @@ sealed class MoveDocsCommand : Command<MoveDocsSettings>
         var repoRoot = ResolveRepoRoot(settings.RepoRoot);
         var menuPath = string.IsNullOrWhiteSpace(settings.MenuPath) ? @"menu\menu.yaml" : settings.MenuPath.Trim();
 
-        var missingFrom = string.IsNullOrWhiteSpace(settings.From);
-        var missingTo = string.IsNullOrWhiteSpace(settings.To);
-        var missingComponent = string.IsNullOrWhiteSpace(settings.Component);
-        var interactive = missingFrom || missingTo || missingComponent;
-        var promptForApply = interactive && !settings.Apply;
+        var component = IsInteractiveLaunch && string.IsNullOrWhiteSpace(settings.Component)
+            ? PromptForNonEmpty("Component key (YAML front-matter value):")
+            : settings.Component!.Trim();
 
-        if (interactive)
-        {
-            RenderInteractiveIntro(
-                repoRoot,
-                settings,
-                missingFrom,
-                missingTo,
-                missingComponent,
-                promptForApply);
-        }
-
-        var totalSteps = (missingFrom ? 1 : 0) + (missingTo ? 1 : 0) + (missingComponent ? 1 : 0) + (promptForApply ? 1 : 0);
-        var currentStep = 1;
-
-        var from = missingFrom
-            ? PromptDocsPath(
-                $"[[{currentStep++}/{totalSteps}]] Select source docs path",
-                repoRoot,
-                excluded: null,
-                preferred: "nservicebus",
-                requireExisting: true)
+        var from = IsInteractiveLaunch && string.IsNullOrWhiteSpace(settings.From)
+            ? PromptForNonEmpty("Source docs path (e.g. nservicebus/hosting):")
             : settings.From!.Trim();
 
-        var to = missingTo
-            ? PromptDocsPath(
-                $"[[{currentStep++}/{totalSteps}]] Select destination docs path",
-                repoRoot,
-                excluded: from,
-                preferred: "other",
-                requireExisting: false)
+        var to = IsInteractiveLaunch && string.IsNullOrWhiteSpace(settings.To)
+            ? PromptForNonEmpty("Destination docs path (e.g. hosting/azure/azure-functions):")
             : settings.To!.Trim();
 
-        string component;
-        if (missingComponent)
-        {
-            var discoveredComponents = DiscoverComponents(repoRoot, from);
-            if (discoveredComponents.Count > 0)
-            {
-                component = AnsiConsole.Prompt(
-                    new SelectionPrompt<string>()
-                        .Title($"[[{currentStep++}/{totalSteps}]] Select component")
-                        .PageSize(20)
-                        .MoreChoicesText("[grey](Move up and down to reveal more components)[/]")
-                        .AddChoices(discoveredComponents));
-            }
-            else
-            {
-                component = AnsiConsole.Prompt(
-                    new TextPrompt<string>($"[[{currentStep++}/{totalSteps}]] Enter component key")
-                        .PromptStyle("green")
-                        .Validate(input => string.IsNullOrWhiteSpace(input)
-                            ? ValidationResult.Error("[red]Component cannot be empty[/]")
-                            : ValidationResult.Success()));
-            }
-        }
-        else
-        {
-            component = settings.Component!.Trim();
-        }
-
         var apply = settings.Apply;
-        if (interactive && !apply)
+        if (IsInteractiveLaunch && !apply)
         {
-            apply = AnsiConsole.Prompt(
-                new SelectionPrompt<bool>()
-                    .Title($"[[{currentStep++}/{totalSteps}]] Apply changes now?")
-                    .PageSize(3)
-                    .UseConverter(value => value ? "Yes" : "No")
-                    .AddChoices(false, true));
+            apply = AnsiConsole.Confirm("Apply changes now?", defaultValue: false);
         }
 
         return new ResolvedMoveDocsSettings(component, from, to, repoRoot, menuPath, apply);
     }
 
-    static void RenderInteractiveIntro(
-        string repoRoot,
-        MoveDocsSettings settings,
-        bool missingFrom,
-        bool missingTo,
-        bool missingComponent,
-        bool promptForApply)
-    {
-        AnsiConsole.Write(new Rule("[bold cyan]Component Docs Mover[/]").LeftJustified());
-
-        var lines = new List<string>
-        {
-            "[bold]Guided mode[/] will walk you through the inputs needed to move docs by component.",
-            $"[grey]Detected docs repo root:[/] {Markup.Escape(repoRoot)}",
-            "",
-            "[bold]What this tool does[/]",
-            "  • Finds markdown files by YAML [green]component[/] value",
-            "  • Moves matching docs from source path to destination path",
-            "  • Preserves subfolder structure",
-            "  • Adds redirects for old URLs",
-            "  • Scaffolds missing index.md files for newly created destination directories",
-            "  • Moves referenced images and updates menu URLs when applicable",
-            ""
-        };
-
-        lines.Add("[bold]Inputs[/]");
-        lines.Add($"  • Source docs path (from): {(missingFrom ? "[yellow]prompted[/]" : $"[grey]provided[/] ({Markup.Escape(settings.From!.Trim())})")}");
-        lines.Add($"  • Destination docs path (to): {(missingTo ? "[yellow]prompted[/]" : $"[grey]provided[/] ({Markup.Escape(settings.To!.Trim())})")}");
-        lines.Add($"  • Component key: {(missingComponent ? "[yellow]prompted[/]" : $"[grey]provided[/] ({Markup.Escape(settings.Component!.Trim())})")}");
-        lines.Add($"  • Apply changes: {(promptForApply ? "[yellow]prompted[/]" : (settings.Apply ? "[grey]provided[/] (apply)" : "[grey]default[/] (dry run)"))}");
-
-        var panel = new Panel(new Markup(string.Join(Environment.NewLine, lines)))
-            .Border(BoxBorder.Rounded)
-            .Padding(1, 0, 1, 0)
-            .Header("Interactive walkthrough");
-
-        AnsiConsole.Write(panel);
-    }
+    static string PromptForNonEmpty(string title) =>
+        AnsiConsole.Prompt(
+            new TextPrompt<string>(title)
+                .PromptStyle("green")
+                .Validate(input => string.IsNullOrWhiteSpace(input)
+                    ? ValidationResult.Error("[red]Value cannot be empty[/]")
+                    : ValidationResult.Success()));
 
     static string ResolveRepoRoot(string? explicitRepoRoot)
     {
@@ -235,99 +170,4 @@ sealed class MoveDocsCommand : Command<MoveDocsSettings>
         var componentsPath = Path.Combine(path, "components", "components.yaml");
         return File.Exists(menuPath) && File.Exists(componentsPath);
     }
-
-    static string PromptDocsPath(
-        string title,
-        string repoRoot,
-        string? excluded,
-        string preferred,
-        bool requireExisting)
-    {
-        const string customPathChoice = "Enter custom path...";
-        var roots = Directory.GetDirectories(repoRoot)
-            .Select(Path.GetFileName)
-            .Where(name => !string.IsNullOrWhiteSpace(name))
-            .Where(name => !name!.StartsWith(".", StringComparison.Ordinal))
-            .Where(name => excluded is null || !name!.Equals(excluded, StringComparison.OrdinalIgnoreCase))
-            .OrderByDescending(name => name!.Equals(preferred, StringComparison.OrdinalIgnoreCase))
-            .ThenBy(name => name, StringComparer.OrdinalIgnoreCase)
-            .Cast<string>()
-            .ToList();
-
-        roots.Add(customPathChoice);
-
-        var selected = AnsiConsole.Prompt(
-            new SelectionPrompt<string>()
-                .Title(title)
-                .PageSize(20)
-                .MoreChoicesText("[grey](Move up and down to reveal more docs paths)[/]")
-                .AddChoices(roots));
-
-        if (!selected.Equals(customPathChoice, StringComparison.Ordinal))
-        {
-            return selected;
-        }
-
-        while (true)
-        {
-            var customPath = AnsiConsole.Prompt(
-                new TextPrompt<string>("Enter docs path (examples: [green]other[/], [green]hosting/azure/azure-functions[/])")
-                    .PromptStyle("green"));
-
-            try
-            {
-                var normalizedPath = NormalizeDocsPath(customPath);
-                if (excluded is not null && normalizedPath.Equals(excluded, StringComparison.OrdinalIgnoreCase))
-                {
-                    throw new InvalidOperationException("Path must be different from source path.");
-                }
-
-                if (requireExisting)
-                {
-                    var absolutePath = Path.GetFullPath(Path.Combine(repoRoot, normalizedPath.Replace('/', Path.DirectorySeparatorChar)));
-                    if (!Directory.Exists(absolutePath))
-                    {
-                        throw new InvalidOperationException($"Source path '{normalizedPath}' does not exist.");
-                    }
-                }
-
-                return normalizedPath;
-            }
-            catch (Exception ex)
-            {
-                AnsiConsole.MarkupLineInterpolated($"[red]{Markup.Escape(ex.Message)}[/]");
-            }
-        }
-    }
-
-    static string NormalizeDocsPath(string path)
-    {
-        if (string.IsNullOrWhiteSpace(path))
-        {
-            throw new InvalidOperationException("Path cannot be empty.");
-        }
-
-        var normalized = path.Trim().Replace('\\', '/').Trim('/');
-        if (string.IsNullOrWhiteSpace(normalized))
-        {
-            throw new InvalidOperationException("Path cannot be empty.");
-        }
-
-        if (Path.IsPathRooted(normalized) || normalized.Contains(':', StringComparison.Ordinal))
-        {
-            throw new InvalidOperationException("Use a relative docs path, not an absolute path.");
-        }
-
-        var segments = normalized.Split('/', StringSplitOptions.RemoveEmptyEntries);
-        if (segments.Any(segment => segment is "." or ".."))
-        {
-            throw new InvalidOperationException("Path cannot contain '.' or '..' segments.");
-        }
-
-        return normalized;
-    }
-
-    static List<string> DiscoverComponents(string repoRoot, string from) =>
-        ComponentDiscovery.DiscoverComponents(repoRoot, from);
-
 }

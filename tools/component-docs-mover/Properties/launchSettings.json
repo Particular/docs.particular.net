@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "component-docs-mover (guided)": {
+      "commandName": "Project",
+      "workingDirectory": "..\\..\\"
+    }
+  }
+}

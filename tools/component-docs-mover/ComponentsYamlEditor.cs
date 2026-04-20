@@ -14,8 +14,6 @@ sealed class ComponentsYamlEditor
         this.rootSequence = rootSequence;
     }
 
-    public string OriginalContent => originalContent;
-
     public static ComponentsYamlEditor Load(string content)
     {
         var stream = new YamlStream();
@@ -31,27 +29,6 @@ sealed class ComponentsYamlEditor
         }
 
         return new ComponentsYamlEditor(content, rootSequence);
-    }
-
-    public string? GetDocsUrl(string componentKey)
-    {
-        var record = FindComponentRecord(componentKey);
-        if (record is null)
-        {
-            return null;
-        }
-
-        foreach (var pair in record.Children)
-        {
-            if (pair.Key is YamlScalarNode keyScalar &&
-                string.Equals(keyScalar.Value, "DocsUrl", StringComparison.Ordinal) &&
-                pair.Value is YamlScalarNode valueScalar)
-            {
-                return valueScalar.Value;
-            }
-        }
-
-        return null;
     }
 
     public bool TryRewriteDocsUrlForPrefix(string componentKey, string fromPrefix, string toPrefix, out string updatedContent, out string? oldDocsUrl, out string? newDocsUrl)
