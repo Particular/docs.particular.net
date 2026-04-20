@@ -55,7 +55,7 @@ protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> ma
 }
 ```
 
-> [!WARNING]
+> [!INFO]
 In Version 10, not-found handlers trigger for **each individual saga that is not found**. This behavior differs from the global not-found handlers in Version 9, which would only trigger if **no sagas were found for the message being processed**.
 
 To create a global not-found handler similar to Version 9:
