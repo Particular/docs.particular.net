@@ -439,8 +439,8 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/6.0.0)| **Current** | 2026-01-30     | Active            | Active |
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/5.0.1)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
+| [6.0.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/6.0.1)| **Current** | 2026-01-30     | Active            | Active |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/5.0.2)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/4.0.2)| Extended Support | 2023-03-08     | 2026-04-16        | 2028-04-16 |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Encryption.MessageProperty/2.0.1)| Extended Support | 2018-05-29     | 2024-11-17        | 2026-11-17 |
 
