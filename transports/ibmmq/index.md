@@ -12,18 +12,13 @@ redirects:
 
 Integrates NServiceBus with [IBM MQ](https://www.ibm.com/products/mq) using the [IBM MQ .NET client](https://www.nuget.org/packages/IBMMQDotnetClient/).
 
-## Broker compatibility
+## Broker version compatibility
 
-The transport requires IBM MQ 9.0 or later. 
+The transport requires IBM MQ 9.0 or later. IBM guarantees that [any supported MQ client can connect to any supported queue manager](https://www.ibm.com/docs/en/ibm-mq/9.4?topic=cci-compatibility-between-different-versions-mq-client-queue-manager), regardless of version.
 
-## Versioning
+The transport ships the IBM-provided [managed .NET client](https://www.ibm.com/docs/en/ibm-mq/9.4?topic=net-installing-mq-classes-standard) (`IBMMQDotnetClient`) and tracks the latest Continuous Delivery (CD) or Cumulative Security Update (CSU) release rather than pinning to a Long Term Support (LTS) fix pack. The managed client is wire-compatible with LTS queue managers, so customers on an LTS queue manager receive the newest client-side fixes through transport upgrades without needing to change their queue manager.
 
-IBM MQ does not follow SemVer but uses their ["V.R.M.F" version numbers to identify LTS (Long term support), CD (Continious Delivery), CSU (Cumulative security update (CSU) and Fix packs](https://www.ibm.com/support/pages/ibm-mq-faq-long-term-support-and-continuous-delivery-releases).
-
-The [IBM MQ management client version is backwards and forwards compatible](https://www.ibm.com/docs/en/ibm-mq/9.4.x?topic=cci-compatibility-between-different-versions-mq-client-queue-manager). For example, managed client 9.
-A CD/CSU version 9.4.4.1 can connect to Queue Manager version 9.x
-
-
+IBM MQ does not follow SemVer; it uses a four-segment `V.R.M.F` scheme with parallel LTS and CD streams. See the [IBM MQ versioning FAQ](https://www.ibm.com/support/pages/ibm-mq-faq-long-term-support-and-continuous-delivery-releases) for the full scheme and the [IBM product lifecycle page](https://www.ibm.com/support/pages/lifecycle/details/?q45=MQSeries,+MQ) for supported-version dates.
 
 ## Transport at a glance
 
