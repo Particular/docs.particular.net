@@ -16,6 +16,15 @@ Integrates NServiceBus with [IBM MQ](https://www.ibm.com/products/mq) using the 
 
 The transport requires IBM MQ 9.0 or later. 
 
+## Versioning
+
+IBM MQ does not follow SemVer but uses their ["V.R.M.F" version numbers to identify LTS (Long term support), CD (Continious Delivery), CSU (Cumulative security update (CSU) and Fix packs](https://www.ibm.com/support/pages/ibm-mq-faq-long-term-support-and-continuous-delivery-releases).
+
+The [IBM MQ management client version is backwards and forwards compatible](https://www.ibm.com/docs/en/ibm-mq/9.4.x?topic=cci-compatibility-between-different-versions-mq-client-queue-manager). For example, managed client 9.
+A CD/CSU version 9.4.4.1 can connect to Queue Manager version 9.x
+
+
+
 ## Transport at a glance
 
 |Feature                    |   |
