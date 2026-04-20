@@ -61,14 +61,23 @@ protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> ma
 To create a global not found handler similar to Version 9:
 
 ```csharp
-// register behaviors in endpoint configuration
-endpointConfiguration.Pipeline.Register(typeof(CaptureSagasBehavior), "Captures sagas to be activated");
-endpointConfiguration.Pipeline.Register(typeof(ThrowIfNoSagaWasActivatedBehavior), "Detects and throw if no saga was found for the given message");
+// define context object
+public class SagaProcessingContext
+{
+    public Dictionary<Type, bool> Sagas = [];
 
-// update not found registrations in sagas that should participate in the global handler
-mapper.ConfigureNotFoundHandler<SharedSagaNotFoundHandler<MySaga>>();
+    public void MarkAsNotFound<TSaga>()
+    {
+        Sagas[typeof(TSaga)] = false;
+    }
 
-// define behaviors
+    public void RegisterSaga(Type sagaType)
+    {
+        Sagas[sagaType] = true;
+    }
+}
+
+// define behavior to capture sagas to be invoked
 public class CaptureSagasBehavior : Behavior<IInvokeHandlerContext>
 {
     public override Task Invoke(IInvokeHandlerContext context, Func<Task> next)
@@ -84,6 +93,7 @@ public class CaptureSagasBehavior : Behavior<IInvokeHandlerContext>
     }
 }
 
+// define behavior that throws if no saga was activated for the incoming message
 public class ThrowIfNoSagaWasActivatedBehavior : Behavior<IIncomingLogicalMessageContext>
 {
     public override async Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
@@ -98,11 +108,36 @@ public class ThrowIfNoSagaWasActivatedBehavior : Behavior<IIncomingLogicalMessag
         {
             throw new Exception($"None of the sagas: {string.Join(", ", sagaProcessingContext.Sagas.Keys.Select(saga => saga.Name))} was activated for message {messageTypeBeingProcessed}");
         }
-        else
-        {
-            Console.WriteLine($"At least one saga was activated for {messageTypeBeingProcessed}");
-        }
     }
+}
+
+// register behaviors in endpoint configuration
+endpointConfiguration.Pipeline.Register(typeof(CaptureSagasBehavior), "Captures sagas to be activated");
+endpointConfiguration.Pipeline.Register(typeof(ThrowIfNoSagaWasActivatedBehavior), "Detects and throw if no saga was found for the given message");
+
+// create shared saga not found handler
+public class SharedSagaNotFoundHandler<TSaga> : ISagaNotFoundHandler
+{
+    public Task Handle(object message, IMessageProcessingContext context)
+    {
+        context.Extensions.Get<SagaProcessingContext>().MarkAsNotFound<TSaga>();
+        return Task.CompletedTask;
+    }
+}
+
+// register global not-found handler in sagas
+protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
+{
+    mapper.ConfigureNotFoundHandler<SharedSagaNotFoundHandler<MySaga>>();
+    mapper.MapSaga(saga => saga.SomeId)
+        .ToMessage<StartMessage>(message => message.SomeId);
+}
+
+protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySecondSagaData> mapper)
+{
+    mapper.ConfigureNotFoundHandler<SharedSagaNotFoundHandler<MySecondSaga>>();
+    mapper.MapSaga(saga => saga.SomeId)
+        .ToMessage<StartMessage>(message => message.SomeId);
 }
 ```
 
