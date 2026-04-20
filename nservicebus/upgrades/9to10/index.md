@@ -55,6 +55,57 @@ protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> ma
 }
 ```
 
+> [!WARNING]
+> In Version 10 not found handlers trigger for **each individual saga that is not found**, this behavior is different from to the global not found handlers in Version 9 that would only trigger in **if no sagas was found for the message being processed**.
+
+To create a global not found handler similar to Version 9:
+
+```csharp
+// register behaviors in endpoint configuration
+endpointConfiguration.Pipeline.Register(typeof(CaptureSagasBehavior), "Captures sagas to be activated");
+endpointConfiguration.Pipeline.Register(typeof(ThrowIfNoSagaWasActivatedBehavior), "Detects and throw if no saga was found for the given message");
+
+// update not found registrations in sagas that should participate in the global handler
+mapper.ConfigureNotFoundHandler<SharedSagaNotFoundHandler<MySaga>>();
+
+// define behaviors
+public class CaptureSagasBehavior : Behavior<IInvokeHandlerContext>
+{
+    public override Task Invoke(IInvokeHandlerContext context, Func<Task> next)
+    {
+        var sagaProcessingContext = context.Extensions.Get<SagaProcessingContext>();
+
+        if (context.MessageHandler.Instance is Saga)
+        {
+            sagaProcessingContext.RegisterSaga(context.MessageHandler.HandlerType);
+        }
+
+        return next();
+    }
+}
+
+public class ThrowIfNoSagaWasActivatedBehavior : Behavior<IIncomingLogicalMessageContext>
+{
+    public override async Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
+    {
+        var sagaProcessingContext = context.Extensions.GetOrCreate<SagaProcessingContext>();
+
+        await next();
+
+        var messageTypeBeingProcessed = context.Message.MessageType.Name;
+
+        if (sagaProcessingContext.Sagas.Values.Any(found => !found))
+        {
+            throw new Exception($"None of the sagas: {string.Join(", ", sagaProcessingContext.Sagas.Keys.Select(saga => saga.Name))} was activated for message {messageTypeBeingProcessed}");
+        }
+        else
+        {
+            Console.WriteLine($"At least one saga was activated for {messageTypeBeingProcessed}");
+        }
+    }
+}
+```
+
 ### ConfigureMapping API deprecated
 
 Starting from NServiceBus version 7.7, [Roslyn analyzers](/nservicebus/sagas/analyzers.md) have been introduced that analyze the code in sagas and make suggestions for improvements directly in the editor. As part of those analyzers, code fixes (provided by analyzer rule IDs NSB0004 and NSB0018) have been provided to [simplify the mapping expression](/nservicebus/sagas/analyzers.md#saga-mapping-expressions-can-be-simplified) from
@@ -313,4 +364,3 @@ public class CustomPersistence : PersistenceDefinition
     }
 }
 ```
-
