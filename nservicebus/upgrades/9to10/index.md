@@ -46,12 +46,98 @@ If message contracts are not in a versioned library, a local copy of the message
 
 ### Not found handlers
 
-In Version 10 the `IHandleSagaNotFound` interface has been deprecated in favour of `ISagaNotFoundHandler`. The [saga not found handlers](/nservicebus/sagas/saga-not-found.md) are no longer automatically registered via assembly scanning and must be mapped in the `ConfigureHowToFindSaga` method of the sagas that require the not found handler to be executed:
+In Version 10, the `IHandleSagaNotFound` interface has been deprecated in favor of `ISagaNotFoundHandler`. The [saga not found handlers](/nservicebus/sagas/saga-not-found.md) are no longer automatically registered via assembly scanning and must be mapped in the `ConfigureHowToFindSaga` method of the sagas that require the not found handler to be executed:
 
 ```csharp
 protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
 {
     mapper.ConfigureNotFoundHandler<MyNotFoundHandler>();
+}
+```
+
+> [!NOTE]
+> In Version 10, not-found handlers trigger for **each individual saga that is not found**. This behavior differs from the global not-found handlers in Version 9, which would only trigger if **no sagas were found for the message being processed**.
+
+To create a global not-found handler similar to Version 9:
+
+```csharp
+// define context object
+public class SagaProcessingContext
+{
+    public Dictionary<Type, bool> Sagas = [];
+
+    public void MarkAsNotFound<TSaga>()
+    {
+        Sagas[typeof(TSaga)] = false;
+    }
+
+    public void RegisterSaga(Type sagaType)
+    {
+        Sagas[sagaType] = true;
+    }
+}
+
+// define behavior to capture sagas to be invoked
+public class CaptureSagasBehavior : Behavior<IInvokeHandlerContext>
+{
+    public override Task Invoke(IInvokeHandlerContext context, Func<Task> next)
+    {
+        var sagaProcessingContext = context.Extensions.Get<SagaProcessingContext>();
+
+        if (context.MessageHandler.Instance is Saga)
+        {
+            sagaProcessingContext.RegisterSaga(context.MessageHandler.HandlerType);
+        }
+
+        return next();
+    }
+}
+
+// define behavior that throws if no saga was activated for the incoming message
+public class ThrowIfNoSagaWasActivatedBehavior : Behavior<IIncomingLogicalMessageContext>
+{
+    public override async Task Invoke(IIncomingLogicalMessageContext context, Func<Task> next)
+    {
+        var sagaProcessingContext = context.Extensions.GetOrCreate<SagaProcessingContext>();
+
+        await next();
+
+        var messageTypeBeingProcessed = context.Message.MessageType.Name;
+
+        if (sagaProcessingContext.Sagas.Values.Any(found => !found))
+        {
+            throw new Exception($"None of the sagas: {string.Join(", ", sagaProcessingContext.Sagas.Keys.Select(saga => saga.Name))} was activated for message {messageTypeBeingProcessed}");
+        }
+    }
+}
+
+// register behaviors in endpoint configuration
+endpointConfiguration.Pipeline.Register(typeof(CaptureSagasBehavior), "Captures sagas to be activated");
+endpointConfiguration.Pipeline.Register(typeof(ThrowIfNoSagaWasActivatedBehavior), "Detects and throw if no saga was found for the given message");
+
+// create shared saga not found handler
+public class SharedSagaNotFoundHandler<TSaga> : ISagaNotFoundHandler
+{
+    public Task Handle(object message, IMessageProcessingContext context)
+    {
+        context.Extensions.Get<SagaProcessingContext>().MarkAsNotFound<TSaga>();
+        return Task.CompletedTask;
+    }
+}
+
+// register global not-found handler in sagas
+protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
+{
+    mapper.ConfigureNotFoundHandler<SharedSagaNotFoundHandler<MySaga>>();
+    mapper.MapSaga(saga => saga.SomeId)
+        .ToMessage<StartMessage>(message => message.SomeId);
+}
+
+protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySecondSagaData> mapper)
+{
+    mapper.ConfigureNotFoundHandler<SharedSagaNotFoundHandler<MySecondSaga>>();
+    mapper.MapSaga(saga => saga.SomeId)
+        .ToMessage<StartMessage>(message => message.SomeId);
 }
 ```
 
@@ -313,4 +399,3 @@ public class CustomPersistence : PersistenceDefinition
     }
 }
 ```
-
