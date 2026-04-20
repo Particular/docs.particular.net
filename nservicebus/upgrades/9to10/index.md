@@ -46,7 +46,7 @@ If message contracts are not in a versioned library, a local copy of the message
 
 ### Not found handlers
 
-In Version 10 the `IHandleSagaNotFound` interface has been deprecated in favour of `ISagaNotFoundHandler`. The [saga not found handlers](/nservicebus/sagas/saga-not-found.md) are no longer automatically registered via assembly scanning and must be mapped in the `ConfigureHowToFindSaga` method of the sagas that require the not found handler to be executed:
+In Version 10, the `IHandleSagaNotFound` interface has been deprecated in favor of `ISagaNotFoundHandler`. The [saga not found handlers](/nservicebus/sagas/saga-not-found.md) are no longer automatically registered via assembly scanning and must be mapped in the `ConfigureHowToFindSaga` method of the sagas that require the not found handler to be executed:
 
 ```csharp
 protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> mapper)
@@ -56,14 +56,14 @@ protected override void ConfigureHowToFindSaga(SagaPropertyMapper<MySagaData> ma
 ```
 
 > [!WARNING]
-> In Version 10 not found handlers trigger for **each individual saga that is not found**, this behavior is different from to the global not found handlers in Version 9 that would only trigger in **if no sagas was found for the message being processed**.
+In Version 10, not-found handlers trigger for **each individual saga that is not found**. This behavior differs from the global not-found handlers in Version 9, which would only trigger if **no sagas were found for the message being processed**.
 
-To create a global not found handler similar to Version 9:
+To create a global not-found handler similar to Version 9:
 
 ```csharp
 // register behaviors in endpoint configuration
 endpointConfiguration.Pipeline.Register(typeof(CaptureSagasBehavior), "Captures sagas to be activated");
-endpointConfiguration.Pipeline.Register(typeof(ThrowIfNoSagaWasActivatedBehavior), "Detects and throw if no saga was found for the given message");
+endpointConfiguration.Pipeline.Register(typeof(ThrowIfNoSagaWasActivatedBehavior), "Detects and throws if no saga was found for the given message");
 
 // update not found registrations in sagas that should participate in the global handler
 mapper.ConfigureNotFoundHandler<SharedSagaNotFoundHandler<MySaga>>();
