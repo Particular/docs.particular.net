@@ -33,7 +33,8 @@ During a ServiceControl instance upgrade, the ServiceControl Management Utility 
 
 > Error while making new version active and unsuccessful in restoring previous version. Manually restore `<InstallPath>.old` to `<InstallPath>` to repair instance.
 
-> [!NOTE] This error is commonly caused by antivirus or anti-malware software scanning the installation folder which should be [excluded from such checks](servicecontrol-in-practice.md#anti-virus-checks).
+> [!NOTE] 
+> This error is commonly caused by antivirus or anti-malware software scanning the installation folder which should be [excluded from such checks](servicecontrol-in-practice.md#anti-virus-checks).
 
 The previous version's files are stored in a folder with an `.old` suffix. To restore the instance manually:
 
