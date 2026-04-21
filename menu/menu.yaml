@@ -514,15 +514,6 @@
         Title: Customizing DataBus
   - Title: Hosting
     Articles:
-    - Url: nservicebus/hosting
-      Title: About hosting
-    - Url: nservicebus/endpoints
-      Title: Endpoints
-      Articles:
-      - Url: nservicebus/endpoints/specify-endpoint-name
-        Title: Endpoint Name
-    - Url: nservicebus/hosting/selecting
-      Title: Selecting a host
     - Url: nservicebus/hosting/startup-diagnostics
       Title: Startup diagnostics
     - Url: nservicebus/endpoints/decommissioning-endpoints
@@ -1409,6 +1400,22 @@
       Title: Transactions
     - Url: nservicebus/aws/local-development
       Title: Local development
+
+- Name: Hosting
+  Topics:
+  - Title: General
+    Articles:
+    - Url: nservicebus/hosting
+      Title: About hosting
+    - Url: nservicebus/endpoints
+      Title: Endpoints
+    - Url: nservicebus/hosting/selecting
+      Title: Selecting a host
+
+
+
+
+
 
 - Name: ServiceInsight
   Topics:
