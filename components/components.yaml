@@ -674,7 +674,7 @@
 
 - Key: ASBFunctionsWorker
   Name: NServiceBus.AzureFunctions.Worker.ServiceBus
-  DocsUrl: /nservicebus/hosting/azure-functions-service-bus
+  DocsUrl: /hosting/azure/functions/worker
   GitHubOwner: Particular
   Category: Host
   ProjectUrl: https://github.com/Particular/NServiceBus.AzureFunctions.Worker.ServiceBus

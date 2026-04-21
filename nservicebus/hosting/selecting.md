@@ -60,7 +60,7 @@ Within AppServices, [WebJobs](https://docs.microsoft.com/en-us/azure/app-service
 
 ### Azure Functions
 
-Azure Functions can run NServiceBus endpoints in a serverless and dynamically scaled environment. See [Azure Functions with Azure Service Bus](/nservicebus/hosting/azure-functions-service-bus/) for more details.
+Azure Functions can run NServiceBus endpoints in a serverless and dynamically scaled environment. See [Azure Functions with Azure Service Bus](/hosting/azure/functions/worker/) for more details.
 
 ### Service Fabric
 

@@ -5,7 +5,7 @@ component: ASBFunctionsWorker
 reviewed: 2024-08-23
 related:
  - hosting/azure/functions/in-process
- - nservicebus/hosting/azure-functions-service-bus
+ - hosting/azure/functions/worker
  - samples/azure-functions/service-bus-worker
 isUpgradeGuide: false
 ---
