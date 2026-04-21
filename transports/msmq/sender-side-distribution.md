@@ -5,7 +5,6 @@ component: MsmqTransport
 reviewed: 2025-09-17
 versions: '[6,)'
 related:
- - transports/msmq/routing
  - nservicebus/messaging/routing
 ---
 
@@ -48,7 +47,6 @@ snippet: RoutingExtensibility-Distribution
 
 snippet: RoutingExtensibility-DistributionStrategy
 
-To learn more about creating custom distribution strategies, see the [fair distribution sample](/samples/routing/fair-distribution/).
 
 ## Events and subscriptions
 
