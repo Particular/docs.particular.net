@@ -7,7 +7,7 @@ Azure Service Bus provides a native dead-letter queue (DLQ) for each queue and s
 
 For background information on Azure Service Bus dead-letter queues, see [Overview of Service Bus dead-letter queues](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dead-letter-queues).
 
-#### Forward dead-lettered messages to the error queue
+### Forward dead-lettered messages to the error queue
 
 When queues are created by the transport, native dead-lettered messages can be auto-forwarded to the configured error queue:
 
@@ -15,13 +15,13 @@ snippet: enable-dlq-auto-forwarding
 
 This setting is opt-in and affects only queues created by the transport. See the [`asb-transport` provisioning commands](/transports/azure-service-bus/operational-scripting.md) for more details on scripting options.
 
-#### Route all failed messages to the native DLQ
+### Route all failed messages to the native DLQ
 
 To route failed messages to the native Azure Service Bus dead-letter queue instead of the NServiceBus error queue, enable:
 
 snippet: dlq-all-errors
 
-#### Request dead lettering from recoverability
+### Request dead lettering from recoverability
 
 Use a [custom recoverability policy](/nservicebus/recoverability/custom-recoverability-policy.md) to explicitly request dead lettering for selected failures.
 
@@ -36,7 +36,7 @@ Dead-letter with custom reason, description, and modified application properties
 
 snippet: explicit-dlq-full-control
 
-#### Fault header mapping
+### Fault header mapping
 
 When processing dead-lettered messages, the transport maps native dead-letter properties to [error forwarding headers](/nservicebus/messaging/headers.md#error-forwarding-headers) when those headers are not already present:
 
@@ -46,13 +46,13 @@ When processing dead-lettered messages, the transport maps native dead-letter pr
 
 This mapping helps tools such as ServiceControl and ServicePulse present failure information consistently.
 
-#### Monitoring and operations
+### Monitoring and operations
 
 [ServicePulse failed message monitoring](/servicepulse/intro-failed-messages.md) tracks messages in the NServiceBus error queue. If endpoint failures are kept in native Azure Service Bus dead-letter queues without forwarding, those failures require Azure-native operational tooling.
 
 Enable DLQ forwarding as described above when you want to centralized native dead lettering and failed-message handling.
 
-#### Caveats
+### Caveats
 
 - `TransportTransactionMode.None` uses receive-and-delete semantics, so dead-lettering actions cannot be performed in that mode. See [transport transactions](/transports/transactions.md#transaction-modes-unreliable-transactions-disabled).
 - The transport truncates dead-letter reason and description to 1024 characters to reduce oversized message risk. Review Azure limits in [Service Bus quotas](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-quotas).
