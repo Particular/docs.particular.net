@@ -6,6 +6,7 @@ redirects:
  - previews/azure-functions-service-bus
  - nservicebus/hosting/azure-functions
  - nservicebus/hosting/azure-functions/service-bus
+ - nservicebus/hosting/azure-functions-service-bus/in-process
 reviewed: 2025-06-05
 ---
 
@@ -51,7 +52,7 @@ snippet: asb-function-override-trigger-function-name
 
 #### Customizing triggers
 
-The Azure Service Bus trigger can be declared manually instead of relying on the auto-generated trigger. See the article on [custom Azure Functions triggers](/nservicebus/hosting/azure-functions-service-bus/in-process/custom-triggers.md) for more information.
+The Azure Service Bus trigger can be declared manually instead of relying on the auto-generated trigger. See the article on [custom Azure Functions triggers](/hosting/azure/functions/in-process/custom-triggers.md) for more information.
 
 ### Dispatching outside a message handler
 
@@ -75,7 +76,7 @@ snippet: asb-function-enable-sends-atomic-with-receive-with-attribute
 
 This is equivalent to the [`SendsAtomicWithReceive`](/transports/transactions.md#transaction-modes-transport-transaction-sends-atomic-with-receive) transport transaction mode. By default, transactional consistency is disabled, providing the same transport guarantees as the [`ReceiveOnly`](/transports/transactions.md#transaction-modes-transport-transaction-receive-only) transport transaction mode.
 
-For more information on configuring message consistency using custom triggers, refer to the [custom Azure Functions triggers](/nservicebus/hosting/azure-functions-service-bus/in-process/custom-triggers.md) documentation.
+For more information on configuring message consistency using custom triggers, refer to the [custom Azure Functions triggers](/hosting/azure/functions/in-process/custom-triggers.md) documentation.
 
 include: servicebus_options_enable_cross_entity_transactions
 

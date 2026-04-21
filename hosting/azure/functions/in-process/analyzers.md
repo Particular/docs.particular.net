@@ -4,6 +4,8 @@ summary: Details of the Roslyn analyzers that promote code quality in Azure Func
 component: ASBFunctions
 versions: '[4.3,)'
 reviewed: 2025-08-18
+redirects:
+- nservicebus/hosting/azure-functions-service-bus/in-process/analyzers
 ---
 
 include: azurefunctions-inprocess-sunset

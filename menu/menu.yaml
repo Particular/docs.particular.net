@@ -553,12 +553,12 @@
         Title: Custom triggers
       - Url: nservicebus/hosting/azure-functions-service-bus/analyzers
         Title: Roslyn analyzers
-    - Url: nservicebus/hosting/azure-functions-service-bus/in-process
+    - Url: hosting/azure/functions/in-process
       Title: Azure Functions with Service Bus (In Process)
       Articles:
-      - Url: nservicebus/hosting/azure-functions-service-bus/in-process/custom-triggers
+      - Url: hosting/azure/functions/in-process/custom-triggers
         Title: Custom triggers
-      - Url: nservicebus/hosting/azure-functions-service-bus/in-process/analyzers
+      - Url: hosting/azure/functions/in-process/analyzers
         Title: Roslyn analyzers
     - Url: nservicebus/hosting/aws-lambda-simple-queue-service
       Title: AWS Lambda with SQS
@@ -1818,3 +1818,10 @@
     Url: shape-the-future/iac-provisioning
   - Title: NServiceBus and AsyncAPI
     Url: shape-the-future/asyncapi
+
+- Name: "TODO: Hosting"
+  Topics:
+  - Title: "TODO: Introduction (replace scaffolded placeholder in menu/menu.yaml)"
+    Url: hosting
+  - Title: "TODO: Moved content (replace scaffolded placeholder in menu/menu.yaml)"
+    Url: hosting/azure/functions/in-process
