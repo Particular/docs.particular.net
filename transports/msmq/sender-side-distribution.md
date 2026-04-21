@@ -7,7 +7,6 @@ versions: '[6,)'
 related:
  - transports/msmq/routing
  - nservicebus/messaging/routing
- - samples/scaleout/senderside
 ---
 
 Endpoints using the MSMQ transport cannot use the competing consumers pattern to scale out by adding additional worker instances. Sender-side distribution is a method of scaling out an endpoint using the MSMQ transport without relying on a centralized distributor assigning messages to available workers.
