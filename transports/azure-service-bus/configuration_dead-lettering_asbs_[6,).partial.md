@@ -1,5 +1,8 @@
 ### Dead lettering
 
+> [!NOTE]
+> Support for dead lettering is available in Version 6.3.0 and higher.
+
 Azure Service Bus provides a native dead-letter queue (DLQ) for each queue and subscription. NServiceBus can integrate with this mechanism, allowing failed messages to be dead-lettered natively and forwarded to the central NServiceBus error queue.
 
 For background information on Azure Service Bus dead-letter queues, see [Overview of Service Bus dead-letter queues](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-dead-letter-queues).
