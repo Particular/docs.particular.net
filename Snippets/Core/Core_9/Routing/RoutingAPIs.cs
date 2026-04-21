@@ -10,7 +10,7 @@ namespace Core9.Routing
         {
             #region Routing-Logical
 
-            var routing = endpointConfiguration.UseTransport(new TransportDefinition());
+            var routing = endpointConfiguration.UseTransport(new MyTransport());
 
             routing.RouteToEndpoint(
                 assembly: typeof(AcceptOrder).Assembly,
@@ -32,7 +32,7 @@ namespace Core9.Routing
         {
             #region Routing-RegisterPublisher
 
-            var routing = endpointConfiguration.UseTransport(new TransportDefinition());
+            var routing = endpointConfiguration.UseTransport(new MyTransport());
 
             routing.RegisterPublisher(
                 assembly: typeof(OrderAccepted).Assembly,
@@ -62,6 +62,10 @@ namespace Core9.Routing
         }
 
         class OrderAccepted
+        {
+        }
+
+        class MyTransport : TransportDefinition
         {
         }
     }
