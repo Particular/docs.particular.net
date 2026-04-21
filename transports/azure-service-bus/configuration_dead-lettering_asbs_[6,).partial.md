@@ -50,7 +50,7 @@ This mapping helps tools such as ServiceControl and ServicePulse present failure
 
 [ServicePulse failed message monitoring](/servicepulse/intro-failed-messages.md) tracks messages in the NServiceBus error queue. If endpoint failures are kept in native Azure Service Bus dead-letter queues without forwarding, those failures require Azure-native operational tooling.
 
-Enable dlq forwarding as described above when you want to centralized native dead lettering and failed-message handling.
+Enable DLQ forwarding as described above when you want to centralized native dead lettering and failed-message handling.
 
 #### Caveats
 
