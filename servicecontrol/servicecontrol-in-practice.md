@@ -87,6 +87,8 @@ Microsoft recommends excluding database process executables from active antiviru
 - `ServiceControl.exe`
 - `ServiceControl.Audit.exe`
 
+The exclusion should be applied also to the `<InstallationPath>.old` and `<InstallationPath>.new` folders which are temporary locations created and deleted during ServiceControl instance upgrade process.
+
 > [!NOTE]
 > On Windows systems using Microsoft Defender, process exclusions apply to child processes. Since RavenDB runs as a subprocess in embedded mode, excluding the ServiceControl executable also excludes the embedded database process.
 
