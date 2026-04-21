@@ -13,7 +13,7 @@ When queues are created by the transport, native dead-lettered messages can be a
 
 snippet: enable-dlq-auto-forwarding
 
-This setting is opt-in and affects only entities created by the transport. See the [`asb-transport` provisioning commands](/transports/azure-service-bus/operational-scripting.md) for more details on scripting options.
+This setting is opt-in and affects only queues created by the transport. See the [`asb-transport` provisioning commands](/transports/azure-service-bus/operational-scripting.md) for more details on scripting options.
 
 #### Route all failed messages to the native DLQ
 
