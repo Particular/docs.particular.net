@@ -6,7 +6,6 @@ reviewed: 2025-12-02
 redirects:
  - nservicebus/unit-of-work-in-nservicebus
 related:
- - samples/unit-of-work
  - samples/pipeline/unit-of-work
 ---
 
