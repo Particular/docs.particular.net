@@ -384,7 +384,7 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [7.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/7.1.0)| **Current** | 2026-02-10     | Active            | Active |
+| [7.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/7.1.1)| **Current** | 2026-02-10     | Active            | Active |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/7.0.0)| Mainstream Support | 2026-01-30     | 2026-05-10        | Ineligible |
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/6.0.1)| Mainstream Support | 2025-03-17     | 2028-01-29        | 2030-01-29 |
 | [4.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.2.7)| Extended Support | 2023-09-21     | 2026-04-16        | 2028-04-16 |
