@@ -1,9 +1,10 @@
 ---
 title: Compacting RavenDB instances
-summary: How to compact the RavenDB database backing ServiceControl for RavenDB 3.5 instances
-reviewed: 2024-07-19
+summary: How to compact the RavenDB database backing ServiceControl for RavenDB 5 and RavenDB 3.5 instances
+reviewed: 2026-04-20
+component: ServiceControl
 redirects:
-  - servciecontrol/db-compaction-v5
+  - servicecontrol/db-compaction-v5
 ---
 
 If a ServiceControl instance's retention period, message throughput, or average message size have been reduced, it may be possible to compact the database. If none of these have changed, compacting may not provide a significant reduction in database size, or it may have only a small, temporary effect.
@@ -12,13 +13,13 @@ If a ServiceControl instance's retention period, message throughput, or average 
 
 The following applies to all databases used with ServiceControl version 5 and above, as well as audit instances that were originally created with ServiceControl 4.26.0 or later.
 
-ServiceControl's RavenDB 5 database can be compacted by [accessing the database](/servicecontrol/ravendb/accessing-database.md), then following the [RavenDB process for compacting a database](https://ravendb.net/docs/article-page/5.4/csharp/studio/database/stats/storage-report).
+ServiceControl's RavenDB 5 database can be compacted by [accessing the database](/servicecontrol/ravendb/accessing-database.md), then following the [RavenDB process for compacting a database](https://docs.ravendb.net/5.4/studio/database/stats/storage-report).
 
 ## RavenDB 3.5 databases
 
 The following applies to ServiceControl Error and Audit instances using RavenDB 3.5 as the storage option.
 
-ServiceControl's embedded RavenDB 3.5 database can be compacted in one of two ways: with the  [Extensible Storage Engine Utility (esentutl)](https://technet.microsoft.com/en-us/library/hh875546.aspx), or by using the RavenDB management portal.
+ServiceControl's embedded RavenDB 3.5 database can be compacted in one of two ways: with the  [Extensible Storage Engine Utility (esentutl)](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/hh875546(v=ws.11)), or by using the RavenDB management portal.
 
 ### Using EsentUtl (Preferred approach)
 

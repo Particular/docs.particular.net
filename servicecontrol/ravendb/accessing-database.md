@@ -1,7 +1,8 @@
 ---
 title: Accessing the ServiceControl database
 summary: How to get direct access to the database used by ServiceControl Error and Audit instances
-reviewed: 2024-07-11
+reviewed: 2026-04-20
+component: ServiceControl
 redirects:
   - servicecontrol/maintenance-mode
   - servicecontrol/audit-instances/maintenance-mode
