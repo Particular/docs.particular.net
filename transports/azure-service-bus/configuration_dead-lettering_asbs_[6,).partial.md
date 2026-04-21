@@ -1,4 +1,4 @@
-### Dead lettering
+## Dead lettering
 
 > [!NOTE]
 > Support for dead lettering is available in Version 6.3.0 and higher.
