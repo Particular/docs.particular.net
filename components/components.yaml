@@ -14,7 +14,7 @@
   GitHubOwner: Particular
   ProjectUrl: https://github.com/Particular/NServiceBus.MessageInterfaces
   NugetOrder:
-    - NServiceBus.MessageInterfaces    
+    - NServiceBus.MessageInterfaces
 
 - Key: DataBus
   Name: DataBus
@@ -662,6 +662,15 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.UniformSession
   NugetOrder:
     - NServiceBus.UniformSession.Testing
+
+- Key: AzureFunctions
+  Name: NServiceBus.AzureFunctions
+  DocsUrl: /nservicebus/hosting/azure/functions
+  GitHubOwner: Particular
+  Category: Host
+  ProjectUrl: https://github.com/Particular/NServiceBus.AzureFunctions
+  NugetOrder:
+    - NServiceBus.AzureFunctions.Common
 
 - Key: ASBFunctions
   Name: NServiceBus.AzureFunctions.InProcess.ServiceBus
