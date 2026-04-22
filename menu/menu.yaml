@@ -514,22 +514,8 @@
         Title: Customizing DataBus
   - Title: Hosting
     Articles:
-    - Url: nservicebus/hosting/startup-diagnostics
-      Title: Startup diagnostics
-    - Url: nservicebus/endpoints/decommissioning-endpoints
-      Title: Decommissioning Endpoints
     - Url: nservicebus/hosting/windows-service
       Title: Windows Service Installation
-    - Url: nservicebus/hosting/override-hostid
-      Title: Overriding the host identifier
-    - Url: nservicebus/hosting/override-machine-name
-      Title: Overriding the machine name
-    - Url: nservicebus/hosting/assembly-scanning
-      Title: Assembly scanning
-    - Url: nservicebus/hosting/cooperative-cancellation
-      Title: Cooperative cancellation
-    - Url: nservicebus/hosting/critical-errors
-      Title: Critical Errors
     - Url: nservicebus/hosting/extensions-hosting
       Title: Microsoft Generic Host
     - Url: nservicebus/hosting/web-application
@@ -537,20 +523,6 @@
       Articles:
       - Url: nservicebus/hosting/asp-net
         Title: ASP.NET
-    - Url: nservicebus/hosting/azure-functions-service-bus
-      Title: Azure Functions with Service Bus (Isolated Worker)
-      Articles:
-      - Url: nservicebus/hosting/azure-functions-service-bus/custom-triggers
-        Title: Custom triggers
-      - Url: nservicebus/hosting/azure-functions-service-bus/analyzers
-        Title: Roslyn analyzers
-    - Url: nservicebus/hosting/azure-functions-service-bus/in-process
-      Title: Azure Functions with Service Bus (In Process)
-      Articles:
-      - Url: nservicebus/hosting/azure-functions-service-bus/in-process/custom-triggers
-        Title: Custom triggers
-      - Url: nservicebus/hosting/azure-functions-service-bus/in-process/analyzers
-        Title: Roslyn analyzers
     - Url: nservicebus/hosting/aws-lambda-simple-queue-service
       Title: AWS Lambda with SQS
       Articles:
@@ -562,19 +534,6 @@
       Title: Publishing from Web Applications
     - Url: nservicebus/wcf
       Title: Exposing endpoints via WCF
-    - Url: nservicebus/hosting/nservicebus-host
-      Title: NServiceBus Host
-      Articles:
-      - Url: nservicebus/hosting/nservicebus-host/installation
-        Title: Installation
-      - Url: nservicebus/hosting/nservicebus-host/profiles
-        Title: Profiles
-      - Url: nservicebus/hosting/nservicebus-host/profiles-customization
-        Title: Profiles customization
-      - Url: nservicebus/hosting/nservicebus-host/logging-configuration
-        Title: Logging configuration
-      - Url: nservicebus/hosting/nservicebus-host/troubleshooting
-        Title: Troubleshooting
     - Url: nservicebus/hosting/docker-host
       Title: Docker Container Host
     - Url: nservicebus/lifecycle
@@ -1411,8 +1370,53 @@
       Title: Endpoints
     - Url: nservicebus/hosting/selecting
       Title: Selecting a host
+    - Url: nservicebus/hosting/override-hostid
+      Title: Overriding the host identifier
+    - Url: nservicebus/hosting/override-machine-name
+      Title: Overriding the machine name
+    - Url: nservicebus/hosting/assembly-scanning
+      Title: Assembly scanning
+    - Url: nservicebus/hosting/cooperative-cancellation
+      Title: Cooperative cancellation
+    - Url: nservicebus/hosting/critical-errors
+      Title: Critical Errors
 
 
+
+  - Title: Azure Functions
+    Articles:
+    # For the new multi-endpoint NServiceBus.AzureFunctions
+    #- Url: nservicebus/hosting/azure/functions
+    #  Title: Multi-Endpoint Functions Hosting
+    - Url: nservicebus/hosting/azure-functions-service-bus
+      Title: Isolated Worker, Single-Endpoint Model
+      Articles:
+      - Url: nservicebus/hosting/azure-functions-service-bus/custom-triggers
+        Title: Custom triggers
+      - Url: nservicebus/hosting/azure-functions-service-bus/analyzers
+        Title: Roslyn analyzers
+    - Url: nservicebus/hosting/azure-functions-service-bus/in-process
+      Title: In-Process hosting (Deprecated)
+      Articles:
+      - Url: nservicebus/hosting/azure-functions-service-bus/in-process/custom-triggers
+        Title: Custom triggers
+      - Url: nservicebus/hosting/azure-functions-service-bus/in-process/analyzers
+        Title: Roslyn analyzers
+
+  - Title: NServiceBus Host (Deprecated)
+    Articles:
+    - Url: nservicebus/hosting/nservicebus-host
+      Title: Overview
+    - Url: nservicebus/hosting/nservicebus-host/installation
+      Title: Installation
+    - Url: nservicebus/hosting/nservicebus-host/profiles
+      Title: Profiles
+    - Url: nservicebus/hosting/nservicebus-host/profiles-customization
+      Title: Profiles customization
+    - Url: nservicebus/hosting/nservicebus-host/logging-configuration
+      Title: Logging configuration
+    - Url: nservicebus/hosting/nservicebus-host/troubleshooting
+      Title: Troubleshooting
 
 
 
@@ -1624,8 +1628,6 @@
         Url: servicecontrol/transports
       - Title: Configure the URI
         Url: servicecontrol/setting-custom-hostname
-      - Title: Overriding the host identifier
-        Url: nservicebus/hosting/override-hostid
       - Title: RavenDB location
         Url: servicecontrol/configure-ravendb-location
       - Title: Logging
@@ -1655,8 +1657,6 @@
           Url: servicecontrol/transports
         - Title: Configure the URI
           Url: servicecontrol/setting-custom-hostname
-        - Title: Overriding the host identifier
-          Url: nservicebus/hosting/override-hostid
         - Title: RavenDB location
           Url: servicecontrol/configure-ravendb-location
         - Title: Logging
@@ -1686,8 +1686,6 @@
           Url: servicecontrol/transports
         - Title: Configure the URI
           Url: servicecontrol/monitoring-instances/configure-the-uri
-        - Title: Overriding the host identifier
-          Url: nservicebus/hosting/override-hostid
   - Title: Data Management
     Articles:
     - Title: Data expiration
