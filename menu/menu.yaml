@@ -512,39 +512,6 @@
         Title: DataBus binary serializer
       - Url: nservicebus/messaging/claimcheck/custom
         Title: Customizing DataBus
-  - Title: Hosting
-    Articles:
-    - Url: nservicebus/hosting/windows-service
-      Title: Windows Service Installation
-    - Url: nservicebus/hosting/extensions-hosting
-      Title: Microsoft Generic Host
-    - Url: nservicebus/hosting/web-application
-      Title: Web Applications
-      Articles:
-      - Url: nservicebus/hosting/asp-net
-        Title: ASP.NET
-    - Url: nservicebus/hosting/aws-lambda-simple-queue-service
-      Title: AWS Lambda with SQS
-      Articles:
-      - Url: nservicebus/hosting/aws-lambda-simple-queue-service/analyzers
-        Title: Roslyn analyzers
-    - Url: nservicebus/hosting/service-fabric-hosting
-      Title: Service Fabric
-    - Url: nservicebus/hosting/publishing-from-web-applications
-      Title: Publishing from Web Applications
-    - Url: nservicebus/wcf
-      Title: Exposing endpoints via WCF
-    - Url: nservicebus/hosting/docker-host
-      Title: Docker Container Host
-    - Url: nservicebus/lifecycle
-      Title: Interface lifecycles
-      Articles:
-      - Url: nservicebus/lifecycle/ineedinitialization
-        Title: Initialization
-      - Url: nservicebus/lifecycle/iwanttorunbeforeconfigurationisfinalized
-        Title: Before Configuration Finalized
-      - Url: nservicebus/lifecycle/endpointstartandstop
-        Title: Endpoint Instance Starts and Stops
   - Title: Handlers and sagas
     Articles:
     - Url: nservicebus/handlers-and-sagas
@@ -1380,9 +1347,30 @@
       Title: Cooperative cancellation
     - Url: nservicebus/hosting/critical-errors
       Title: Critical Errors
-
-
-
+    - Url: nservicebus/lifecycle
+      Title: Interface lifecycles
+      Articles:
+      - Url: nservicebus/lifecycle/ineedinitialization
+        Title: Initialization
+      - Url: nservicebus/lifecycle/iwanttorunbeforeconfigurationisfinalized
+        Title: Before Configuration Finalized
+      - Url: nservicebus/lifecycle/endpointstartandstop
+        Title: Endpoint Instance Starts and Stops
+  - Title: Standard Hosting
+    Articles:
+    - Url: nservicebus/hosting/extensions-hosting
+      Title: Microsoft Generic Host
+    - Url: nservicebus/hosting/web-application
+      Title: Web Applications
+      Articles:
+      - Url: nservicebus/hosting/asp-net
+        Title: ASP.NET
+      - Url: nservicebus/hosting/publishing-from-web-applications
+        Title: Publishing from Web Applications
+    - Url: nservicebus/hosting/docker-host
+      Title: Docker Container Host
+    - Url: nservicebus/hosting/windows-service
+      Title: Windows Service Installation
   - Title: Azure Functions
     Articles:
     # For the new multi-endpoint NServiceBus.AzureFunctions
@@ -1402,24 +1390,32 @@
         Title: Custom triggers
       - Url: nservicebus/hosting/azure-functions-service-bus/in-process/analyzers
         Title: Roslyn analyzers
-
-  - Title: NServiceBus Host (Deprecated)
+  - Title: AWS Lambda
     Articles:
-    - Url: nservicebus/hosting/nservicebus-host
-      Title: Overview
-    - Url: nservicebus/hosting/nservicebus-host/installation
-      Title: Installation
-    - Url: nservicebus/hosting/nservicebus-host/profiles
-      Title: Profiles
-    - Url: nservicebus/hosting/nservicebus-host/profiles-customization
-      Title: Profiles customization
-    - Url: nservicebus/hosting/nservicebus-host/logging-configuration
-      Title: Logging configuration
-    - Url: nservicebus/hosting/nservicebus-host/troubleshooting
-      Title: Troubleshooting
-
-
-
+      - Url: nservicebus/hosting/aws-lambda-simple-queue-service
+        Title: AWS Lambda with SQS
+      - Url: nservicebus/hosting/aws-lambda-simple-queue-service/analyzers
+        Title: Roslyn analyzers
+  - Title: Deprecated Hosting Options
+    Articles:
+    - Title: NServiceBus Host App
+      Articles:
+      - Url: nservicebus/hosting/nservicebus-host
+        Title: Overview
+      - Url: nservicebus/hosting/nservicebus-host/installation
+        Title: Installation
+      - Url: nservicebus/hosting/nservicebus-host/profiles
+        Title: Profiles
+      - Url: nservicebus/hosting/nservicebus-host/profiles-customization
+        Title: Profiles customization
+      - Url: nservicebus/hosting/nservicebus-host/logging-configuration
+        Title: Logging configuration
+      - Url: nservicebus/hosting/nservicebus-host/troubleshooting
+        Title: Troubleshooting
+    - Url: nservicebus/hosting/service-fabric-hosting
+      Title: Service Fabric
+    - Url: nservicebus/wcf
+      Title: Exposing endpoints via WCF
 
 - Name: ServiceInsight
   Topics:
