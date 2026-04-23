@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "Cinema.TicketSales": {
-      "commandName": "Project",
-      "commandLineArgs": "Cinema.TicketSales"
-    }
-  }
-}

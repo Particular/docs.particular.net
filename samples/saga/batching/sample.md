@@ -15,7 +15,7 @@ This sample shows how to control task generation via batching of the work items 
 - when many messages are generated as part of an incoming message. In this case, the number of messages can further delay other messages in the same queue.
 - when the work as a whole is completed only when all messages are processed. If all messages are generated upfront and the work is considered 'cancelled' or 'failed', generated messages that are already in the queue would still have to be processed (e.g. no-op).
 
-To avoid congestion in the queue, messages can be generated and routed to a [specific endpoint](/nservicebus/messaging/routing.md#make-instance-uniquely-addressable) (endpoint per work type), or [the concurrency limit can be set to 1](/nservicebus/operations/tuning.md#configuring-concurrency-limit) to have the messages processed sequentially. The [routing slip pattern](/samples/routing-slips/) is also a good alternative in processing sequential messages.
+To avoid congestion in the queue, messages can be generated and routed to a [specific endpoint](/nservicebus/messaging/routing.md#make-instance-uniquely-addressable) (endpoint per work type), or [the concurrency limit can be set to 1](/nservicebus/operations/tuning.md#configuring-concurrency-limit) to have the messages processed sequentially.
 
 The messages generated upfront could cause delays on processing of the message that get in the queue, whereas with batching, saga processing can be interleaved and multiple batches can be processed in parallel.
 
