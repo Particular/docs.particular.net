@@ -1,7 +1,7 @@
 ---
 title: Replacing an Error instance using ServiceControl Management
 summary: Instructions on how to replace a ServiceControl Error instance with zero downtime
-reviewed: 2024-07-10
+reviewed: 2026-04-23
 component: ServiceControl
 related:
   - servicecontrol/migrations/replacing-error-instances/powershell
@@ -40,7 +40,7 @@ The alternative is to [create a brand new instance](#replace-the-error-instance-
  * _**Note:** This is a destructive operation. A database backup is made but will require application re-installation of the instance to recover._
 4. Once the instance is running, re-enable error message ingestion by removing the `ServiceControl/IngestErrorMessages` setting from the `ServiceControl.exe.config` file, and restart the Error instance for the configuration change to take effect.
 
-Once condfident of a successful upgrade, the old database can be removed:
+Once confident of a successful upgrade, the old database can be removed:
 
 1. In ServiceControl Management, click the Browse… button under DB Path.
 2. In Windows Explorer, move up one directory level.
@@ -65,6 +65,6 @@ Now that the instance is created, the configuration must be modified so that the
 5. Save the file.
 6. In ServiceControl Management, stop and restart the Error instance for the changes to take effect.
 
-Now, the old and new Error instance's are both available, but the old Error instance is not ingesting messages.
+Now, the old and new Error instances are both available, but the old Error instance is not ingesting messages.
 
 When confident of a successful upgrade, the old Error instance can be removed by clicking the wrench <kbd> :wrench: </kbd> icon, then **Remove**, and following the prompts.
