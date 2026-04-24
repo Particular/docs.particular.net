@@ -13,22 +13,12 @@ Organizations adopt polycloud strategies for several reasons:
 
 - Distributing workloads across providers reduces dependency on any single vendor's pricing, roadmap, or availability.
 - Different providers excel in different areas. A system might use Azure Service Bus for messaging while running compute workloads on AWS.
-- Certain data may need to remain within a specific jurisdiction while other components can run anywhere.
+- Certain data may need to remain within a specific jurisdiction, while other components can run anywhere.
 - Mergers and acquisitions bring existing cloud investments that need to be integrated without a full rewrite.
 
-## Messaging in a polycloud system
+## Cloud-specific service selection
 
-Each cloud provider offers its own native messaging infrastructure and services:
-
-- AWS provides [Amazon SQS](/transports/sqs/), which is the recommended default for AWS-hosted endpoints
-- Azure provides [Azure Service Bus](/transports/azure-service-bus/), which is the recommended default for Azure-hosted endpoints
-- On-premises or cloud-agnostic environments may use [RabbitMQ](/transports/rabbitmq/), [SQL Server](/transports/sql/), or [PostgreSQL](/transports/postgresql/)
-
-Endpoints connected to different transports cannot communicate directly. A dedicated bridge component is needed to route messages between them.
-
-## Transport selection per cloud
-
-Each transport is designed for its environment. The general recommendation is to use the native transport for each cloud.
+The general recommendation is to use the native services for each cloud provider.
 
 ### On Azure
 
@@ -44,13 +34,13 @@ For persistence, [Amazon DynamoDB](/persistence/dynamodb/) stores saga state and
 
 ### Cloud-agnostic environments
 
-In environments not tied to a specific cloud provider, [RabbitMQ](/transports/rabbitmq/), [PostgreSQL](/transports/postgresql/), or [SQL Server](/transports/sql/) [can be selected](/transports/selecting.md)
+In environments not tied to a specific cloud provider, other technologies like [RabbitMQ](/transports/rabbitmq/), [PostgreSQL](/transports/postgresql/), or [SQL Server](/transports/sql/) [can be selected based on specific requirements](/transports/selecting.md).
 
 ## Messaging Bridge
 
 The [Messaging Bridge pattern](https://www.enterpriseintegrationpatterns.com/patterns/messaging/MessagingBridge.html) solves cross-transport communication by providing a dedicated component that transfers messages between two or more transports. The bridge is transparent to endpoints on both sides: they send and receive messages to and from logical endpoints as if no bridge were involved.
 
-The [NServiceBus Message Bridge](/nservicebus/bridge/) is a production-ready implementation of this pattern. It supports all NServiceBus transports, making it well suited for polycloud deployments.
+The [NServiceBus Message Bridge](/nservicebus/bridge/) is a production-ready implementation of this pattern. It supports all NServiceBus transports, making it well-suited for polycloud deployments.
 
 In the following example, endpoints running on AWS (using Amazon SQS) communicate with endpoints running on Azure (using Azure Service Bus) through a bridge:
 
@@ -67,13 +57,13 @@ subgraph Azure
 end
 ```
 
-Because message routing is handled by the bridge, endpoints on both sides require [no changes](/samples/bridge/simple/) to communicate across clouds.
+Because the bridge handles message routing, endpoints on both sides require [no changes](/samples/bridge/simple/) to communicate across clouds.
 
 ## Bridge deployment options
 
 ### Two-cloud
 
-The simplest topology connects two cloud environments with a single bridge instance. The bridge is configured with one transport on each side and routes messages between them.
+The simplest topology connects two cloud environments with a single bridge instance. The bridge is configured with one transport on each side, routing messages between them.
 
 ```mermaid
 flowchart LR
@@ -94,7 +84,7 @@ end
 
 ### Multiple clouds
 
-When endpoints span three or more cloud environments, multiple bridges can be chained or run in parallel. Each bridge instance connects two transports. A message originating in AWS can pass through a bridge to Azure, and from there through a second bridge to an on-premises environment.
+When endpoints span three or more cloud environments, multiple bridges can be chained or run in parallel. Each bridge instance connects two transports. A message originating in AWS can pass through a bridge to Azure, and from there through a second bridge to another Azure environment.
 
 ```mermaid
 flowchart LR
@@ -119,7 +109,7 @@ end
 
 Alternatively, a single bridge instance can be configured with more than two transports, acting as a hub that routes between all connected environments without chaining.
 
-In other scenarios, [multiple bridge instances](/nservicebus/bridge/performance.md) can be deployed depending on the amount of traffic, each responsible for routing messages for a subset of endpoints. This distributes load without requiring all endpoints to be reconfigured.
+In other scenarios, [multiple bridge instances](/nservicebus/bridge/performance.md) can be deployed depending on the amount of traffic, each responsible for routing messages for a subset of endpoints. This distributes the load without requiring all endpoints to be reconfigured.
 
 ### Bridge placement
 
@@ -127,7 +117,7 @@ The bridge must be reachable to the messaging infrastructure of both transports 
 
 ## Observability
 
-The Platform tools support polycloud deployments. The NServiceBus Messaging Bridge unifies observability across all clouds by capturing audit and error messages from every endpoint, giving a single view of failed messages, retries, and heartbeats regardless of where they originate.
+The Particular Platform tools support polycloud deployments. The NServiceBus Messaging Bridge unifies observability across all clouds by capturing audit and error messages from every endpoint, giving a single view of failed messages, retries, and heartbeats regardless of where they originate.
 
 ```mermaid
 flowchart LR
@@ -140,4 +130,4 @@ Azure ASB] -->|audit/error| Br
 Br --> SC
 ```
 
-[The bridge forwards audit and error messages](/samples/bridge/service-control/) across transport boundaries. ServicePulse then provides a unified view of all endpoints, failed messages, and message flow across the entire polycloud system.
+[The bridge forwards audit and error messages](/samples/bridge/service-control/) across transport boundaries. ServicePulse then provides a unified view of all endpoints, failed messages, and message flows across the entire polycloud system.
