@@ -12,3 +12,9 @@ suppressRelated: true
   * MSMQ permissions vulnerability.
 * [Security Advisory 2016-07-05](sqlserver-sqlinjection.md)
   * NServiceBus SQL Server Transport injection vulnerability.
+
+## CVEs in transitive dependencies
+
+- We scan regularly
+- Issues raised in each repo for each branch. you can subscribe for updates
+- A team is formed to address. In the meantime elevate the dependency if you cannot wait.
