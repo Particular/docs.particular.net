@@ -1701,6 +1701,8 @@
       Url: servicecontrol/contracts
     - Title: Transport adapter
       Url: servicecontrol/transport-adapter
+    - Title: Model Context Protocol (MCP)
+      Url: servicecontrol/mcp
   - Title: MassTransit
     Articles:
     - Title: Introduction
