@@ -1,6 +1,6 @@
 ---
-title: Hosting endpoints with AddNServiceBusEndpoint
-summary: Register NServiceBus endpoints on IServiceCollection using the built-in Core hosting model.
+title: Recommended hosting model
+summary: Use AddNServiceBusEndpoint with Microsoft.Extensions.Hosting for the recommended single-endpoint and multi-endpoint hosting model.
 component: Core
 reviewed: 2026-04-24
 related:
@@ -8,7 +8,16 @@ related:
  - samples/hosting/generic-host
 ---
 
-NServiceBus Core integrates with `Microsoft.Extensions.Hosting` through the `AddNServiceBusEndpoint` extension on `IServiceCollection`. It is the entry point for both single-endpoint hosting and hosting multiple isolated endpoints in one process.
+NServiceBus integrates with `Microsoft.Extensions.Hosting` through the `AddNServiceBusEndpoint` extension on `IServiceCollection`. It is the entry point for both single-endpoint hosting and hosting multiple isolated endpoints in one process.
+
+## Choosing between Generic Host integrations
+
+NServiceBus provides two integration paths with `Microsoft.Extensions.Hosting`:
+
+- **Recommended for new development**: use `AddNServiceBusEndpoint` on `IServiceCollection` (this article).
+- **Existing package integration**: use `NServiceBus.Extensions.Hosting` with `UseNServiceBus` when maintaining existing applications that already use that package.
+
+For details on the `UseNServiceBus` approach, see [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md).
 
 ## Hosting a single endpoint
 

@@ -1358,6 +1358,8 @@
         Title: Endpoint Instance Starts and Stops
   - Title: Standard Hosting
     Articles:
+    - Url: nservicebus/hosting/core-hosting
+      Title: Recommended hosting model
     - Url: nservicebus/hosting/extensions-hosting
       Title: Microsoft Generic Host
     - Url: nservicebus/hosting/web-application
