@@ -9,7 +9,6 @@ NServiceBus helps create distributed .NET systems not only on premises but also 
 ## Hosting
 
 * [Hosting in Azure WebJobs](/samples/azure/webjob-host/)
-* [Hosting in Service Fabric](/nservicebus/hosting/service-fabric-hosting/)
 
 ## Serverless
 
