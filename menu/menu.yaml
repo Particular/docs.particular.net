@@ -1412,8 +1412,6 @@
         Title: Logging configuration
       - Url: nservicebus/hosting/nservicebus-host/troubleshooting
         Title: Troubleshooting
-    - Url: nservicebus/hosting/service-fabric-hosting
-      Title: Service Fabric
     - Url: nservicebus/wcf
       Title: Exposing endpoints via WCF
 

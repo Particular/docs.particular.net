@@ -7,6 +7,7 @@ redirects:
 - nservicebus/hosting/self-hosting
 - nservicebus/hosting/self-hosting-v4.x
 - nservicebus/hosting/send-only-endpoints
+- nservicebus/hosting/service-fabric-hosting
 ---
 
 NServiceBus is a library at its core so that it can be hosted in any .NET process.
@@ -76,10 +77,6 @@ NServiceBus can be hosted using any web technology that supports .NET. See [Web 
 ### WebJob hosting
 
 NServiceBus can be hosted in a WebJob. See [Self-Hosting in Azure WebJobs](/samples/azure/webjob-host)
-
-### Service Fabric hosting
-
-[Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/) can host NServiceBus endpoints in several ways. See [Service Fabric Hosting](/nservicebus/hosting/service-fabric-hosting).
 
 ### Serverless hosting
 
