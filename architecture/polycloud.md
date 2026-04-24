@@ -1,6 +1,6 @@
 ---
 title: Polycloud systems
-summary: Guidance for systems that span multiple cloud providers, including transport selection per cloud, bridge topology patterns, connectivity, consistency, observability, and bridge hosting.
+summary: Architectural guidance for systems that span multiple cloud providers.
 reviewed: 2026-04-21
 callsToAction: ['solution-architect', 'poc-help']
 ---
