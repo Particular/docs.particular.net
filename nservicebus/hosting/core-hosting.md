@@ -2,7 +2,7 @@
 title: Hosting endpoints with AddNServiceBusEndpoint
 summary: Register NServiceBus endpoints on IServiceCollection using the built-in Core hosting model.
 component: Core
-reviewed: 2026-04-23
+reviewed: 2026-04-24
 related:
  - nservicebus/upgrades/10to11/index
  - samples/hosting/generic-host
@@ -35,6 +35,12 @@ Multi-endpoint hosting is used when multiple logical endpoints run in one proces
 - Multi-tenant systems where each tenant requires an isolated endpoint.
 - Partitioned throughput where each partition is an endpoint sharing a host.
 - Co-located infrastructure endpoints that do not justify a separate process.
+
+Before moving from one endpoint to multiple endpoints in the same process, verify that the operational tradeoff is intentional:
+
+- Each endpoint adds startup and registration overhead, so standardize configuration early.
+- Adopt a clear endpoint identity convention to keep multi-endpoint setups easy to reason about.
+- Operations remain endpoint-centric, but deployment and resource isolation are now process-shared.
 
 Each endpoint is registered with its own `EndpointConfiguration`. Pass an identifier string as the second argument to distinguish them in dependency injection:
 
