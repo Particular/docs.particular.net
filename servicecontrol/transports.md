@@ -24,7 +24,6 @@ The value for the `TransportType` settings can be any of the following:
 | [IBM MQ](#ibm-mq) | `IBMMQ` |
 | [Microsoft Message Queuing (MSMQ)](#msmq) | `MSMQ` |
 
-
 ## Azure Service Bus
 
 ### Topic-per-event topology for integration events
@@ -85,8 +84,10 @@ For example, given a hierarchy namespace of `my-hierarchy` and error, audit, and
 - The [audit queue name](/servicecontrol/audit-instances/configuration.md#transport-servicebusauditqueue) would need to be set to `my-hierarchy/audit`.
 - The [monitoring queue name](/servicecontrol/monitoring-instances/configuration.md#transport-monitoringerrorqueue) would need to be set to `my-hierarchy/monitoring`.
 
-
 ### Example connection string
+
+> [!NOTE]
+> when using the [Azure Service Bus emulator](https://learn.microsoft.com/en-us/azure/service-bus-messaging/overview-emulator), the default connection string points to `localhost` for the Endpoint value. That results in an error being looged during ServiceControl instances startup. The error can be safely ignored as it doesn't afftect ServiceControl operations, instead it's related to the throughput and licensing portion of Servicecontrol, which will be anyway not available when using the Azure Service Bus emulator. It's possible to prevent the error to show up in the logs by creating an alias for `localhost` containing a `.`, such as for example, `servicebus-emulator.local` or by specifying an IP address, such as `127.0.0.1` for the Endpoint value.
 
 ```text
 Endpoint=sb://[namespace].servicebus.windows.net; SharedSecretIssuer=<owner>;SharedSecretValue=<someSecret>;QueueLengthQueryDelayInterval=<IntervalInMilliseconds(Default=500ms)>;TopicName=<TopicBundleName(Default=bundle-1)>;EnablePartitioning=<true|false(Default=false)>;HierarchyNamespace=<hierarchyNamespacePrefix>
