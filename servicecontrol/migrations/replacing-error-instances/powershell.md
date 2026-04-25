@@ -1,7 +1,7 @@
 ---
 title: Replacing an Error instance using PowerShell
 summary: Instructions on how to replace a ServiceControl Error instance with zero downtime
-reviewed: 2024-07-10
+reviewed: 2026-04-24
 component: ServiceControl
 related:
   - servicecontrol/migrations/replacing-error-instances/scmu
