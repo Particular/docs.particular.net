@@ -63,6 +63,8 @@
       Url: architecture/workflows
     - Title: Hybrid systems
       Url: architecture/hybrid-systems
+    - Title: Polycloud systems
+      Url: architecture/polycloud
     - Title: Observability
       Url: architecture/observability
     - Title: Data distribution

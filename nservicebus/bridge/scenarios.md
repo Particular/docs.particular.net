@@ -76,6 +76,6 @@ The [configuration documentation](/nservicebus/bridge/configuration.md) describe
 
 Another possible scenario is where there are multiple instances of the same transport. As with [multiple transports](#multiple-transports), this is a scenario which could remain in place for the life of the system.
 
-An example of this scenario is using different namespaces in Azure Service Bus, or different SQL Server database instances, or even different SQL Server instances.
+An example of this scenario is using different namespaces in Azure Service Bus, or different SQL Server database instances, or even different SQL Server instances. Finally, a multi-transport deployment is used in a [polycloud distributed system](/architecture/polycloud.md).
 
 The [bridge sample](/samples/bridge/simple) shows how this is achieved by using the LearningTransport on each side of the bridge. The second instance of the LearningTransport is stored in a different location than the first instance. This simulates endpoints that cannot communicate with each other directly and need the NServiceBus Messaging Bridge to bridge the two instances of the LearningTransport.
