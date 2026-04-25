@@ -2,7 +2,7 @@
 title: Amazon SQS Transport
 summary: A transport for Amazon Web Services Simple Queue Service.
 component: SQS
-reviewed: 2024-07-11
+reviewed: 2026-03-24
 related:
  - samples/aws/sqs-simple
 redirects:
