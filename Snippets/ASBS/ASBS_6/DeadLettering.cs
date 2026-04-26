@@ -53,8 +53,8 @@ class DeadLettering
 
                 return DefaultRecoverabilityPolicy.Invoke(config, errorContext);
 
-                #endregion
             });
+        #endregion
     }
 
     class PoisonMessageException : Exception
