@@ -6,6 +6,7 @@ Creates infrastructure for an endpoint -- input queue.
 asb-transport endpoint create name
                               [--size]
                               [--partitioned]
+                              [--forward-dlq-to]
 ```
 
 #### options
@@ -19,6 +20,8 @@ asb-transport endpoint create name
 `-p` | `--partitioned`: Enable partitioning
 
 `-h` | `--hierarchy-namespace`: Sets the hierarchy namespace for prefixing destinations in the format `<hierarchy-namespace>/<topic-or-queue>` (available from version 6.1)
+
+`-f` | `--forward-dlq-to`: Queue name to auto-forward dead-lettered messages to. The queue will be created if it does not exist. The resolved queue name cannot be the same as the endpoint queue.
 
 ### asb-transport endpoint subscribe
 
