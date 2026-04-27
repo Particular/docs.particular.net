@@ -17,7 +17,7 @@ AWS DynamoDB charges for data access in terms of [read capacity units (RCUs) and
 | Standard write | 1 WCU per 1 KB (rounded up) |
 | Transactional write | 2 WCUs per 1 KB (rounded up) |
 
-All write operations performed as part of the `TransactWriteItems` API call are charged at the transactional rate (2× the standard write cost). Standard `UpdateItemAsync`, `DeleteItemAsync`, and `BatchWriteItemAsync` calls are charged at the standard rate.
+All write operations performed as part of the `TransactWriteItems` API call are charged at the transactional rate (2× the standard write cost). Standard `UpdateItem`, `DeleteItem`, and `BatchWriteItem` calls are charged at the standard rate.
 
 In on-demand mode, the same ratios apply but are expressed as read request units (RRUs) and write request units (WRUs) billed per actual request rather than provisioned hourly.
 
