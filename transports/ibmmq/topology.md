@@ -5,11 +5,11 @@ reviewed: 2026-03-26
 component: IBMMQ
 ---
 
-The IBM MQ transport implements publish/subscribe messaging using IBM MQ's native topic and subscription infrastructure. Event subscriptions do not require NServiceBus persistence.
+The IBM MQ transport implements publish/subscribe messaging using IBM MQ's native topic and subscription infrastructure. Event subscriptions do not require NServiceBus persistence as IBM MQ handles durability natively.
 
 ## Topology
 
-The transport uses one IBM MQ topic per concrete event type. When an event is published, the message is sent to the corresponding topic. Subscribers create durable subscriptions against the topic, with messages delivered to their input queue.
+The transport uses one IBM MQ topic per concrete event type. When an event is published, the message is sent to the corresponding topic. Subscribers create durable subscriptions against the topic. Messages are delivered to each subscriber's input queue.
 
 ```mermaid
 graph LR
@@ -46,7 +46,7 @@ The transport uses three types of IBM MQ resources:
 
 ### Queues
 
-Local queues (`QLOCAL`) are used for point-to-point messaging (commands) and as the destination for durable subscriptions (events). Each endpoint has an input queue named after the endpoint.
+Local queues (`QLOCAL`) handle two functions: point-to-point messaging for commands and destination queues for durable subscription(events). Each endpoint has an input queue named after the endpoint.
 
 ### Topic objects
 
@@ -89,9 +89,11 @@ See [security and permissions](security.md) for the IBM MQ authorities required 
 
 ## Polymorphism
 
-IBM MQ uses a topic-per-event model: each concrete event type is published to its own topic. Subscribing to a base class or interface does **not** automatically subscribe to topics for derived types. Without explicit configuration, a handler for `IOrderEvent` would only receive messages published directly to the `IOrderEvent` topic, missing messages published as `OrderPlaced` or `OrderCancelled`.
+The transport uses a **topic-per-event model**—each concrete event type gets its own topic. This design ensures predictable message routing but requires explicit configuration when using event hierarchies.
 
-To prevent accidental under-subscription, the transport throws an `InvalidOperationException` at startup when subscribing to a type that has known descendants in the loaded assemblies. This guard is controlled by `ThrowOnPolymorphicSubscription` (default: `true`).
+When subscribing to a base class or interface, you don't automatically subscribe to topics for derived types. Without explicit configuration, a handler for `IOrderEvent` would only receive messages published directly to the `IOrderEvent` topic, missing messages published as `OrderPlaced` or `OrderCancelled`.
+
+To prevent accidental under-subscription, the transport checks for known descendants when you subscribe. If descendants are found, it throws an `InvalidOperationException` at startup. This guard is controlled by `ThrowOnPolymorphicSubscription` (default: `true`).
 
 ### Explicit subscription routing
 
@@ -130,7 +132,7 @@ snippet: ibmmq-disable-polymorphic-guard
 
 ### Deployment recommendations for polymorphic event hierarchies
 
-When using polymorphic events, distribute event types in dedicated, independently versioned packages. This allows subscribers to reference new concrete types and update their subscriptions before the publisher begins publishing those events.
+To avoid message loss with polymorphic events, follow these deployment practices. Distribute event types in dedicated, independently versioned packages, which allows subscribers to reference new concrete types and update their subscriptions before the publisher begins publishing those events.
 
 Ensure that the deployment pipeline runs all subscriber subscription steps **before** starting the new version of the publisher. If a publisher starts publishing a new concrete event type before subscribers have created their subscriptions, those messages will be lost because no durable subscription exists to route them to a queue.
 
@@ -143,7 +145,7 @@ A typical deployment order:
 
 ## Topic naming
 
-Topics are named using a configurable strategy. The prefix defaults to `DEV` and the fully qualified type name determines the rest:
+Topics use a configurable naming strategy with a `DEV` prefix by default. The fully qualified type name determines the remainder:
 
 |Concept|Example|
 |:---|---|
