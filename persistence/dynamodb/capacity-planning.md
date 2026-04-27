@@ -48,7 +48,7 @@ If a concurrent modification is detected at commit time (the version check condi
 |---|---|---|
 | Load saga | `GetItem` | `⌈saga size / 4 KB⌉` RCUs |
 | Save / update | `TransactWriteItems` | `⌈saga size / 1 KB⌉ × 2` WCUs |
-| Complete saga | `TransactWriteItems` | 1 WCU (key-only delete) |
+| Complete saga | `TransactWriteItems` | `⌈saga size / 1 KB⌉ × 2` WCUs |
 
 ### Pessimistic locking (optional)
 
@@ -77,7 +77,7 @@ Lock release is handled differently depending on whether the session was committ
 |---|---|---|
 | Acquire lock (existing saga) | `UpdateItem` | `⌈saga size / 1 KB⌉` WCUs |
 | Save / update | `TransactWriteItems` | `⌈saga size / 1 KB⌉ × 2` WCUs |
-| Complete saga | `TransactWriteItems` | 1 WCU (key-only delete) |
+| Complete saga | `TransactWriteItems` | `⌈saga size / 1 KB⌉ × 2` WCUs |
 | Release lock (if no commit) | `UpdateItem` or `DeleteItem` | `⌈saga size / 1 KB⌉` WCUs |
 
 ## Outbox
