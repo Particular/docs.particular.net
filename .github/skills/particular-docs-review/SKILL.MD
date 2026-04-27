@@ -301,6 +301,8 @@ Rules:
 
 Run the docs tool before submitting changes.
 
+In Copilot cloud agent sessions for this repository, `docstool` is preinstalled by `.github/workflows/copilot-setup-steps.yml`.
+
 Install:
 
 ```bash
@@ -316,7 +318,7 @@ dotnet tool update -g Particular.DocsTool --add-source https://f.feedz.io/partic
 Run:
 
 ```bash
-docstool test
+docstool test --no-version-check
 ```
 
 If you encounter stale files:
