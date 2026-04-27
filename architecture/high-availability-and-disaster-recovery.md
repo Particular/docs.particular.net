@@ -53,12 +53,12 @@ For many messaging systems, asynchronous DR is incomplete in a key way: some pro
 In multi‑region architectures, the physical distance between data centers sets the baseline network latency, which determines whether synchronous replication is viable. Typical round‑trip times (RTT) are:
 
 | Network Path                     | Typical RTT |
-|:----------------------------------|------------:|
+|----------------------------------|------------:-
 | Intra‑Region (Cross‑AZ)          | 1–5 ms      | 
-| US East - US West                | 60–70 ms    | 
-| US East - EU West                | 80–100 ms   | 
-| US West - Asia‑Pacific           | 120–150 ms  | 
-| US East - Australia              | 200–240 ms  | 
+| NA East - NA West                | 60–70 ms    | 
+| NA East - EU West                | 80–100 ms   | 
+| NA West - Asia‑Pacific           | 120–150 ms  | 
+| NA East - Australia              | 200–240 ms  | 
 
 
 Synchronous replication between the US and Europe adds roughly 100 ms to each publish, which is typically unacceptable for real‑time streaming workloads.
