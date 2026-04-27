@@ -5,3 +5,7 @@ component: AzureFunctions
 reviewed: 2026-04-22
 hidden: true
 ---
+
+Snippets are coming.
+
+snippet: stub
