@@ -2,13 +2,13 @@
 title: Recommended hosting model
 summary: Use AddNServiceBusEndpoint with Microsoft.Extensions.Hosting for the recommended single-endpoint and multi-endpoint hosting model.
 component: Core
-reviewed: 2026-04-24
+reviewed: 2026-04-27
 related:
- - nservicebus/upgrades/10to11/index
- - samples/hosting/generic-host
+  - nservicebus/upgrades/10to11/index
+  - samples/hosting/generic-host
 ---
 
-NServiceBus integrates with `Microsoft.Extensions.Hosting` through the `AddNServiceBusEndpoint` extension on `IServiceCollection`. It is the entry point for both single-endpoint hosting and hosting multiple isolated endpoints in one process.
+For modern .NET applications, the recommended way to host NServiceBus is through `Microsoft.Extensions.Hosting` by registering endpoints with `IServiceCollection` using `AddNServiceBusEndpoint`. This aligns endpoint startup, dependency injection, and logging with the standard .NET hosting model, and it supports both the common single-endpoint case and advanced scenarios that host multiple endpoints in one process.
 
 ## Choosing between Generic Host integrations
 
@@ -21,7 +21,7 @@ For details on the `UseNServiceBus` approach, see [NServiceBus.Extensions.Hostin
 
 ## Hosting a single endpoint
 
-Register the endpoint on the host's service collection. This is the direct replacement for the `UseNServiceBus` pattern in `NServiceBus.Extensions.Hosting`.
+Register the endpoint on the host's service collection. For new development, this is the recommended alternative to the `UseNServiceBus` pattern in `NServiceBus.Extensions.Hosting`.
 
 ```csharp
 var builder = Host.CreateApplicationBuilder();
@@ -39,7 +39,7 @@ The endpoint starts and stops with the host's lifecycle. `IMessageSession` is av
 
 ## Hosting multiple endpoints
 
-Multi-endpoint hosting is used when multiple logical endpoints run in one process. Each additional endpoint adds registration and configuration the application must manage. Common scenarios:
+Multi-endpoint hosting is an advanced scenario where multiple logical endpoints run in one process. Each additional endpoint adds registration and configuration the application must manage. Common scenarios:
 
 - Multi-tenant systems where each tenant requires an isolated endpoint.
 - Partitioned throughput where each partition is an endpoint sharing a host.
@@ -65,7 +65,7 @@ The endpoint name is the recommended identifier. A distinct identifier is only r
 
 ### Endpoint-scoped dependencies
 
-When a shared service needs its own per-endpoint instance, register it as a [keyed dependency](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) using the endpoint name as the key:
+When a shared service needs its own per-endpoint instance, register it as a [keyed service](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) using the endpoint name as the key:
 
 ```csharp
 var salesDb = new DatabaseService("sales-db");
