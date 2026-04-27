@@ -55,10 +55,10 @@ In multi‑region architectures, the physical distance between data centers sets
 | Network Path                     | Typical RTT |
 |:----------------------------------|------------:|
 | Intra‑Region (Cross‑AZ)          | 1–5 ms      | 
-| US East ↔ US West                | 60–70 ms    | 
-| US East ↔ EU West                | 80–100 ms   | 
-| US West ↔ Asia‑Pacific           | 120–150 ms  | 
-| US East ↔ Australia              | 200–240 ms  | 
+| US East - US West                | 60–70 ms    | 
+| US East - EU West                | 80–100 ms   | 
+| US West - Asia‑Pacific           | 120–150 ms  | 
+| US East - Australia              | 200–240 ms  | 
 
 
 Synchronous replication between the US and Europe adds roughly 100 ms to each publish, which is typically unacceptable for real‑time streaming workloads.
