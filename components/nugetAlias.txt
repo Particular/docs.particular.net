@@ -8,7 +8,7 @@ ASQN: NServiceBus.Transport.AzureStorageQueues
 ASP: NServiceBus.Persistence.AzureStorage
 ASTP: NServiceBus.Persistence.AzureTable
 Autofac: NServiceBus.Autofac
-AzureFunctions: NServiceBus.AzureFunctions.Common
+AzureFunctions: NServiceBus.AzureFunctions.AzureServiceBus
 BinaryDataBusSerializer: NServiceBus.DataBus.BinarySerializer
 Callbacks: NServiceBus.Callbacks
 CallbacksTesting: NServiceBus.Callbacks.Testing

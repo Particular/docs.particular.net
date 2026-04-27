@@ -670,7 +670,7 @@
   Category: Host
   ProjectUrl: https://github.com/Particular/NServiceBus.AzureFunctions
   NugetOrder:
-    - NServiceBus.AzureFunctions.Common
+    - NServiceBus.AzureFunctions.AzureServiceBus
 
 - Key: ASBFunctions
   Name: NServiceBus.AzureFunctions.InProcess.ServiceBus
