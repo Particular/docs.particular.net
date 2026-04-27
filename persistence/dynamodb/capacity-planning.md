@@ -47,8 +47,11 @@ If a concurrent modification is detected at commit time (the version check condi
 | Step | API call | Capacity |
 |---|---|---|
 | Load saga | `GetItem` | `⌈saga size / 4 KB⌉` RCUs |
-| Save / update | `TransactWriteItems` | `⌈saga size / 1 KB⌉ × 2` WCUs |
-| Complete saga | `TransactWriteItems` | `⌈saga size / 1 KB⌉ × 2` WCUs |
+| Save / update _(alternative)_ | `TransactWriteItems` | `⌈saga size / 1 KB⌉ × 2` WCUs |
+| Complete saga _(alternative)_ | `TransactWriteItems` | `⌈saga size / 1 KB⌉ × 2` WCUs |
+
+> [!NOTE]
+> Save / update and Complete saga are mutually exclusive — only one applies per message handler invocation.
 
 ### Pessimistic locking (optional)
 
@@ -75,10 +78,13 @@ Lock release is handled differently depending on whether the session was committ
 
 | Step | API call | Capacity |
 |---|---|---|
-| Acquire lock (existing saga) | `UpdateItem` | `⌈saga size / 1 KB⌉` WCUs |
-| Save / update | `TransactWriteItems` | `⌈saga size / 1 KB⌉ × 2` WCUs |
-| Complete saga | `TransactWriteItems` | `⌈saga size / 1 KB⌉ × 2` WCUs |
+| Acquire lock and read saga | `UpdateItem` | `⌈saga size / 1 KB⌉` WCUs |
+| Save / update _(alternative)_ | `TransactWriteItems` | `⌈saga size / 1 KB⌉ × 2` WCUs |
+| Complete saga _(alternative)_ | `TransactWriteItems` | `⌈saga size / 1 KB⌉ × 2` WCUs |
 | Release lock (if no commit) | `UpdateItem` or `DeleteItem` | `⌈saga size / 1 KB⌉` WCUs |
+
+> [!NOTE]
+> The lock acquisition uses `ReturnValues = ALL_NEW`, so the updated item (including saga data) is returned inline. No separate `GetItem` is needed. Save / update and Complete saga are mutually exclusive — only one applies per message handler invocation.
 
 ## Outbox
 
@@ -125,7 +131,7 @@ After the deduplication retention period (7 days by default), DynamoDB automatic
 
 | Step | API call | Capacity |
 |---|---|---|
-| Deduplication check | `Query` (consistent) | `⌈(1 + N items) / 4 KB⌉` RCUs |
+| Deduplication check | `Query` (consistent) | `⌈metadata / 4 KB⌉` RCUs |
 | Store records | `TransactWriteItems` | `⌈metadata / 1 KB⌉ × 2 + Σ ⌈op[i] / 1 KB⌉ × 2` WCUs |
 | Mark dispatched | `UpdateItem` | 1 WCU |
 | Delete operations | `BatchWriteItem` | N WCUs (minimum) |
@@ -139,7 +145,7 @@ For a handler that loads a saga, sends N messages, and updates the saga:
 
 | Step | API calls | Capacity |
 |---|---|---|
-| Deduplication check | `Query` | `⌈(1 + N items) / 4 KB⌉` RCUs |
+| Deduplication check | `Query` | `⌈metadata / 4 KB⌉` RCUs |
 | Load saga | `GetItem` | `⌈saga size / 4 KB⌉` RCUs |
 | Commit (saga update + outbox) | `TransactWriteItems` | `(⌈saga / 1 KB⌉ + ⌈metadata / 1 KB⌉ + Σ ⌈op[i] / 1 KB⌉) × 2` WCUs |
 | Mark dispatched | `UpdateItem` | 1 WCU |
