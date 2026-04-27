@@ -121,7 +121,7 @@ The **dual‑write problem** occurs when a database update and a message publish
 
 The **outbox pattern** mitigates this by embedding the intention to publish in the database transaction. [NServiceBus implements outbox](/nservicebus/outbox/) and [transactional session](/nservicebus/transactional-session/). NService bus first commits the business object and an outbox row atomically, then publishes messages on a best‑effort basis. The outbox ensures atomicity between the database and the intent to publish but does not on its own prevent duplicates: publishing can fail after sending the message but before marking the outbox row as delivered, causing the same event to be published again.
 
-An alternative is a **distributed transaction** between messaging and the database, also [implemented by NServiceBus](/transports/transactions#transaction-modes-transaction-scope-distributed-transaction). This form of distributed transaction is often unavailable across heterogeneous systems or too operationally costly. It also increases coupling and brittleness during outages. Modern event‑driven guidance usually prefers **transactional outbox** or **CDC plus idempotent consumers** over two‑phase commit between broker and database. The recovery model becomes "safe to retry" rather than "guaranteed never to repeat."
+An alternative is a **distributed transaction** between messaging and the database, also [implemented by NServiceBus](/transports/transactions). This form of distributed transaction is often unavailable across heterogeneous systems or too operationally costly. It also increases coupling and brittleness during outages. Modern event‑driven guidance usually prefers **transactional outbox** or **CDC plus idempotent consumers** over two‑phase commit between broker and database. The recovery model becomes "safe to retry" rather than "guaranteed never to repeat."
 
 ***
 
@@ -131,7 +131,7 @@ NServiceBus handles many types of errors as part of its [recoverability pipeline
 
 ### Replay with idempotency
 
-When it is uncertain whether a message was processed, the safer default is to **replay it and rely on consumer deduplication** rather than to drop it and risk silent data loss. This only works if the consumer’s deduplication state is stored durably enough that restoration does not reset the state needed to reject duplicates. There are multiple ways to [implement idempotency](/architecture/consistency#idempotency) to maintain consistency.
+When it is uncertain whether a message was processed, the safer default is to **replay it and rely on consumer deduplication** rather than to drop it and risk silent data loss. This only works if the consumer’s deduplication state is stored durably enough that restoration does not reset the state needed to reject duplicates. There are multiple ways to [implement idempotency](/architecture/consistency) to maintain consistency.
 
 ### Reconcile before failback
 
