@@ -1,3 +1,9 @@
+---
+title: High Availability and Disaster Recovery in Messaging Systems
+summary: Designing resilient messaging with High Availability (HA) and Disaster Recovery (DR) in mind
+reviewed: 2026-04-27
+---
+
 ## High Availability and Disaster Recovery in Messaging Systems
 
 Modern distributed systems are event‑driven, real‑time, and globally dispersed. Message brokers and streaming platforms move data between microservices, databases, and analytics pipelines. Designing resilient messaging requires treating **High Availability (HA)** and **Disaster Recovery (DR)** as distinct but complementary disciplines. HA masks localized failures from end‑users; DR ensures the business can continue after the loss of an entire data center or cloud region.
