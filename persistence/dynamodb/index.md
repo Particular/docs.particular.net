@@ -7,6 +7,7 @@ related:
 - samples/aws/dynamodb-simple
 - samples/aws/dynamodb-transactions
 - nservicebus/transactional-session/persistences/dynamodb
+- persistence/dynamodb/capacity-planning
 ---
 
 Uses the [AWS DynamoDB](https://aws.amazon.com/pm/dynamodb/) NoSQL database service for storage.
