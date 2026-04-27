@@ -7,7 +7,7 @@ snippet: DisableAssemblyScanning
 > [!WARNING]
 > When assembly scanning is disabled, message handlers, sagas, features, and installers must be explicitly registered. Messages received without a registered handler or saga [will fail and be moved to the error queue](/nservicebus/handlers/?version=core_10#no-handler-for-a-message).
 >
-> See [Registering Handlers and Sagas](/nservicebus/handlers-and-sagas/registration.md) for details on explicit registration approaches.
+> See [Registering Handlers and Sagas](/nservicebus/handlers-and-sagas-registration.md) for details on explicit registration approaches.
 
 > [!NOTE]
 > Manual registration APIs work alongside assembly scanning, enabling a hybrid approach. Use [assembly exclusion options](#assemblies-to-scan) to limit what gets scanned, then manually register specific components as needed.

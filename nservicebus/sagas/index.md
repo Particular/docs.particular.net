@@ -51,7 +51,7 @@ partial: disable-shared-state-check
 > If a saga property is a [record type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record), that record type must be mutable so it can be deserialized.
 
 > [!NOTE]
-> By default, sagas are discovered via assembly scanning. They can also be registered explicitly. See [Registering Handlers and Sagas](/nservicebus/handlers-and-sagas/registration.md) for all registration options.
+> By default, sagas are discovered via assembly scanning. They can also be registered explicitly. See [Registering Handlers and Sagas](/nservicebus/handlers-and-sagas-registration.md) for all registration options.
 
 ## Adding behavior
 
