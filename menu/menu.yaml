@@ -1339,6 +1339,9 @@
       Title: Scripting
     - Title: Migration from Azure Table Storage to Cosmos DB Table API
       Url: persistence/azure-table/migration-from-azure-storage-table-to-cosmos-table
+    - Url: persistence/azure-table/capacity-planning
+      Title: Capacity planning
+
   - Title: RavenDB
     Articles:
     - Url: persistence/ravendb
