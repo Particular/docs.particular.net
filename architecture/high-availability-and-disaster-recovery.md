@@ -61,7 +61,7 @@ In multi‑region architectures, the physical distance between data centers sets
 | NA East - Australia              | 200–240 ms  | 
 
 
-Synchronous replication between the US and Europe adds roughly 100 ms to each publish, which is typically unacceptable for real‑time streaming workloads.
+Synchronous replication between North America and Europe adds roughly 100 ms to each publish, which is typically unacceptable for real‑time streaming workloads.
 
 ***
 
