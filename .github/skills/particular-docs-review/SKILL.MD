@@ -191,6 +191,14 @@ Ensure:
 
 ---
 
+# Anchor Stability
+
+The docs engine generates anchors from a heading stack. A new H2 resets the stack; sub-headings append to it. `## Heading 1` followed by `### Heading 1.1` produces `#heading-1-heading-1-1`. Reparenting a heading under a new H2 changes its slug and breaks external links.
+
+When restructuring pages, keep headings at their original level or verify cross-page links. Prefer versioned partials over wrapping legacy sections under new H2s.
+
+---
+
 # Common Issues
 
 ## Spelling
