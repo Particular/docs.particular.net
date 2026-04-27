@@ -2,7 +2,7 @@
 title: Sagas
 summary: Master NServiceBus sagas to coordinate distributed workflows and ensure reliable long-running processes.
 component: Core
-reviewed: 2026-01-23
+reviewed: 2026-04-27
 redirects:
 - nservicebus/sagas-in-nservicebus
 related:
@@ -49,6 +49,9 @@ partial: disable-shared-state-check
 
 > [!NOTE]
 > If a saga property is a [record type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/record), that record type must be mutable so it can be deserialized.
+
+> [!NOTE]
+> By default, sagas are discovered via assembly scanning. They can also be registered explicitly. See [Registering Handlers and Sagas](/nservicebus/handlers-and-sagas/registration.md) for all registration options.
 
 ## Adding behavior
 
@@ -212,5 +215,3 @@ Saga state is read immediately before a message processing method is invoked, an
 - Saga state reads and writes do not occur during a stage. They occur during invocation in the `Invoke Handlers` stage and cannot be intercepted.
 
 If multiple saga types are invoked for the same message, each read, invoke, write cycle will occur sequentially, for each saga type.
-
-partial: manual-registration

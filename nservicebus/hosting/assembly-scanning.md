@@ -1,13 +1,16 @@
 ---
 title: Assembly scanning
 summary: To enable the automatic detection of various features, NServiceBus scans assemblies for well-known types
-reviewed: 2024-10-24
+reviewed: 2026-04-27
 component: core
 redirects:
  - nservicebus/assembly-scanning
 ---
 
 NServiceBus scans assemblies at endpoint startup to automatically detect and load [message types](/nservicebus/messaging/messages-events-commands.md), [message handlers](/nservicebus/handlers/), [features](/nservicebus/pipeline/features.md), and [installers](/nservicebus/operations/installers.md).
+
+> [!NOTE]
+> Assembly scanning is optional starting in NServiceBus version 10.2. For the modern explicit registration approaches, see [Registering Handlers and Sagas](/nservicebus/handlers-and-sagas/registration.md).
 
 There are some cases where finer control over which assemblies are loaded is required:
 
