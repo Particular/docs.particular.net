@@ -62,7 +62,7 @@ For Azure Cosmos DB Table API, item size directly affects RU consumption. See [r
 
 Unlike Azure Cosmos DB, Azure Table storage has no native time-to-live (TTL) mechanism. Dispatched outbox records are updated to clear the operations payload but are **not automatically deleted** from the table.
 
-The number of outbox records retained at steady state is proportional to message throughput and the [outbox deduplication period](/nservicebus/outbox/#important-design-considerations-data-retention):
+The number of outbox records retained at steady state is proportional to message throughput and the [outbox deduplication period](/nservicebus/outbox/#outbox-expiration-duration):
 
 ```text
 Retained outbox records ≈ Message throughput (per second) × Deduplication period (seconds)
