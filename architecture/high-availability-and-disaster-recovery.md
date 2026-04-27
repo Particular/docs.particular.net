@@ -73,7 +73,7 @@ Replication topology is one of the most important design choices. The cleanest w
 
 In **active/passive**, one site processes production traffic while the secondary site remains on standby and receives replicated data or configuration. This model avoids concurrent writers and most replication conflicts. Only one site owns producer traffic; only one set of consumers commits side effects; failover is primarily a routing decision plus a controlled promotion of the standby.
 
-However, failover quality depends on replication freshness and completeness:
+Failover quality depends on replication freshness and completeness:
 
 - With asynchronous cross‑region replication, the passive site may be missing recent messages at switchover.  
 - If DR replicates only publishes and not acknowledgements, the passive site may replay messages already processed on the active site.
@@ -111,7 +111,7 @@ For systems without native EOS, the most robust defense is **idempotent consumer
 
 ### Message ordering guarantees
 
-Strict ordering is often required in event‑driven designs (for example, "Order Created" before "Order Shipped"). However, HA and DR topologies frequently break ordering guarantees.
+Strict ordering is often required in event‑driven designs (for example, "Order Created" before "Order Shipped"). HA and DR topologies frequently break ordering guarantees.
 
 This effect is amplified in multi‑region active/active topologies. If producers in Region A and Region B publish events for the same customer to local clusters, replication latency can reorder those events when they reach the other region. Applications requiring strict global ordering cannot safely run on active/active messaging without application‑level sequence tracking.
 
@@ -127,7 +127,7 @@ An alternative is a **distributed transaction** between messaging and the databa
 
 ## Recovery patterns
 
-NServicebus handles many types of errors as part of its [recoverability pipeline](https://docs.particular.net/architecture/recoverability). However, similar patterns may need to be implemented on an architecture level, especially when integrating multiple systems.
+NServicebus handles many types of errors as part of its [recoverability pipeline](https://docs.particular.net/architecture/recoverability). Analogous patterns need to be implemented on an architecture level.
 
 ### Replay with idempotency
 
