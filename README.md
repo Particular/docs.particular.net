@@ -955,6 +955,28 @@ Which means elsewhere in the page you can link to it with this:
 [Goto My Heading](#My-Heading)
 ```
 
+#### Anchor hierarchy
+
+The docs tool generates anchors by maintaining a stack of headings. When a new top-level heading (`##`) is encountered, the stack resets; when a sub-heading (`###`, `####`, etc.) is encountered, it is appended to the current stack.
+
+For example:
+
+```markdown
+## Heading 1
+### Heading 1.1
+## Heading 2
+```
+
+produces these anchors:
+
+| Heading | Generated anchor |
+|---------|-----------------|
+| Heading 1 | `#heading-1` |
+| Heading 1.1 | `#heading-1-heading-1-1` |
+| Heading 2 | `#heading-2` |
+
+This means **reparenting a heading under a new `##` changes its anchor slug**, which will break existing external links. If you need to keep a stable anchor for backward compatibility, keep the heading at its original level in the hierarchy.
+
 ### Images
 
 Images can be added using the following markdown syntax
