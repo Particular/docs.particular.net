@@ -4,8 +4,6 @@ summary: Designing resilient messaging with High Availability (HA) and Disaster 
 reviewed: 2026-04-27
 ---
 
-## High Availability and Disaster Recovery in Messaging Systems
-
 Modern distributed systems are event‑driven, real‑time, and globally dispersed. Message brokers and streaming platforms move data between microservices, databases, and analytics pipelines. Designing resilient messaging requires treating **High Availability (HA)** and **Disaster Recovery (DR)** as distinct but complementary disciplines. HA masks localized failures from end‑users; DR ensures the business can continue after the loss of an entire data center or cloud region.
 
 Design decisions are constrained by two business‑continuity metrics:
@@ -14,8 +12,6 @@ Design decisions are constrained by two business‑continuity metrics:
 - **Recovery Time Objective (RTO):** The maximum tolerated downtime. RTO defines how quickly producers and consumers must resume operations after an outage. RTO = 0 implies seamless, automatic failover.
 
 All technical choices must align with RPO and RTO requirements and be configured to meet them.
-
-***
 
 ## Fundamentals of HA and DR
 
@@ -26,6 +22,7 @@ All technical choices must align with RPO and RTO requirements and be configured
 In messaging, this often means using **local synchronous replication for HA** and **remote asynchronous replication or rehydration for DR**.
 
 ### Replication basics
+
 Replication copies data or state changes from one node or site to another so that the failure of one location does not destroy service or data. In messaging this can include message appends or enqueues, metadata and schemas, and, in some products, acknowledgements, offsets, or consumer‑related state. If DR replicates only published messages and not acknowledgements, failover can replay already‑consumed messages, producing duplicates.
 
 Replication is typically implemented in one of two ways:
@@ -53,17 +50,14 @@ For many messaging systems, asynchronous DR is incomplete in a key way: some pro
 In multi‑region architectures, the physical distance between data centers sets the baseline network latency, which determines whether synchronous replication is viable. Typical round‑trip times (RTT) are:
 
 | Network Path                     | Typical RTT |
-|----------------------------------|------------:-
+|----------------------------------|------------:|
 | Intra‑Region (Cross‑AZ)          | 1–5 ms      | 
 | NA East - NA West                | 60–70 ms    | 
 | NA East - EU West                | 80–100 ms   | 
 | NA West - Asia‑Pacific           | 120–150 ms  | 
-| NA East - Australia              | 200–240 ms  | 
-
+| NA East - Australia              | 200–240 ms  |
 
 Synchronous replication between North America and Europe adds roughly 100 ms to each publish, which is typically unacceptable for real‑time streaming workloads.
-
-***
 
 ## Topologies
 
@@ -99,7 +93,7 @@ Deploying brokers in HA or DR configurations exposes failure modes unique to asy
 The most common HA challenge is **message duplication**, which arises primarily in two scenarios:
 
 1. **Producer retries:** A producer sends a message, the broker commits it, but the connection drops before the acknowledgment is returned. The producer retries, resulting in a duplicate record.  
-2. **Consumer  failures:** A consumer processes a message but crashes before committing the result. A new consumer resumes and reprocesses the message.
+2. **Consumer failures:** A consumer processes a message but crashes before committing the result. A new consumer resumes and reprocesses the message.
 
 Messaging systems typically expose these delivery semantics:
 
@@ -122,8 +116,6 @@ The **dual‑write problem** occurs when a database update and a message publish
 The **outbox pattern** mitigates this by embedding the intention to publish in the database transaction. [NServiceBus implements outbox](/nservicebus/outbox/) and [transactional session](/nservicebus/transactional-session/). NServiceBus first commits the business object and an outbox row atomically, then publishes messages on a best‑effort basis. The outbox ensures atomicity between the database and the intent to publish but does not on its own prevent duplicates: publishing can fail after sending the message but before marking the outbox row as delivered, causing the same event to be published again.
 
 An alternative is a **distributed transaction** between messaging and the database, also [implemented by NServiceBus](/transports/transactions.md). This form of distributed transaction is often unavailable across heterogeneous systems or too operationally costly. It also increases coupling and brittleness during outages. Modern event‑driven guidance usually prefers **transactional outbox** or **CDC plus idempotent consumers** over two‑phase commit between broker and database. The recovery model becomes "safe to retry" rather than "guaranteed never to repeat."
-
-***
 
 ## Recovery patterns
 
@@ -148,8 +140,6 @@ Bring systems back in stages:
 
 This sequencing reduces the risk that partially restored infrastructure begins consuming or publishing against environments whose replication, deduplication, or routing assumptions are not yet valid.
 
-***
-
 ## Configuration guidance
 
 ### Failure‑domain design
@@ -159,6 +149,7 @@ This sequencing reduces the risk that partially restored infrastructure begins c
 - Place replicas so that a rack or zone failure does not remove all copies of the same queue or log segment.
 
 ### Write acknowledgement and client behavior
+
 - Producers should wait for the durability level that matches the intended failure tolerance.  
 - Clusters should be configured so that a minority partition cannot continue acknowledging writes if the business requires no loss of confirmed data.  
 - Clients must support automatic reconnection, awareness of multiple brokers or a correctly configured non‑sticky load balancer, bounded retry policies, and idempotent publish and consume behavior. HA is ineffective if reconnects loop back to a dead node or if retries create unbounded duplicate side effects.
