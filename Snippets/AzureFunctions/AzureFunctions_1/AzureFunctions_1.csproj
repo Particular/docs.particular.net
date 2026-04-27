@@ -4,11 +4,6 @@
     <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <!-- Temporary until we have an alpha, get integrity test to not complain -->
-    <PackageReference Include="NServiceBus" Version="10.2.0-alpha.5" />
-  </ItemGroup>
-
   <!-- First alpha not yet released
   <ItemGroup>
     <PackageReference Include="NServiceBus.AzureFunctions.AzureServiceBus" Version="1.*-*" />
