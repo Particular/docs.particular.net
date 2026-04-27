@@ -10,7 +10,7 @@ related:
 redirects:
 ---
 
-The IBM MQ transport allows NServiceBus endpoints to send and receive messages using IBM MQ. IBM MQ Transport integrates NServiceBus with [IBM MQ](https://www.ibm.com/products/mq) using the [IBM MQ .NET client](https://www.nuget.org/packages/IBMMQDotnetClient/).
+The IBM MQ transport allows NServiceBus endpoints to send and receive messages using IBM MQ. IBM MQ transport integrates NServiceBus with [IBM MQ](https://www.ibm.com/products/mq) using the [IBM MQ .NET client](https://www.nuget.org/packages/IBMMQDotnetClient/).
 
 ## Broker version compatibility
 
