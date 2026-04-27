@@ -10,7 +10,7 @@ related:
 redirects:
 ---
 
-Integrates NServiceBus with [IBM MQ](https://www.ibm.com/products/mq) using the [IBM MQ .NET client](https://www.nuget.org/packages/IBMMQDotnetClient/).
+The IBM MQ transport allows NServiceBus endpoints to send and receive messages using IBM MQ. IBM MQ Transport integrates NServiceBus with [IBM MQ](https://www.ibm.com/products/mq) using the [IBM MQ .NET client](https://www.nuget.org/packages/IBMMQDotnetClient/).
 
 ## Broker version compatibility
 
@@ -50,7 +50,7 @@ See [connection settings](connection-settings.md) for all available connection a
 
 ## Message persistence
 
-By default, all messages are sent as persistent, meaning they survive queue manager restarts. Messages marked as [non-durable](/nservicebus/messaging/non-durable-messaging.md) are sent as non-persistent for higher throughput.
+By default, all messages are sent as persistent, meaning they are  written to disk and survive queue manager restarts. Messages marked as [non-durable](/nservicebus/messaging/non-durable-messaging.md) are sent as non?persistent messages that stay in memory and offer higher throughput, but risks message loss if the queue manager stops unexpectedly.
 
 > [!CAUTION]
 > Non-persistent messages are lost if the queue manager restarts before they are consumed.
