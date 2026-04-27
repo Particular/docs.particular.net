@@ -53,7 +53,7 @@ The following sizes can be used as a starting point for storage capacity estimat
 | Record type                       | Estimated base size |
 |:----------------------------------|:---------------------------------------------------------:|
 | Outbox record (pending dispatch)  | ~300 bytes + outgoing message bodies and headers          |
-| Outbox record (dispatched).       | ~200 bytes (operations payload is cleared after dispatch) |
+| Outbox record (dispatched)        | ~200 bytes (operations payload is cleared after dispatch) |
 | Saga record                       | ~300 bytes + saga data                                    |
 
 For Azure Cosmos DB Table API, item size directly affects RU consumption. See [request unit considerations](https://learn.microsoft.com/en-us/azure/cosmos-db/request-units#request-unit-considerations) for details.
@@ -68,7 +68,7 @@ The number of outbox records retained at steady state is proportional to message
 Retained outbox records ≈ Message throughput (per second) × Deduplication period (seconds)
 ```
 
-With the default 7-day deduplication period (604,800 seconds), an endpoint processing 10 messages/second accumulates approximately 6 million outbox records. A cleanup process should be scheduled to delete outbox records older than the configured deduplication period.
+With the default seven-day deduplication period (604,800 seconds), an endpoint processing ten messages/second accumulates approximately six million outbox records. A cleanup process should be scheduled to delete outbox records older than the configured deduplication period.
 
 ## Monitoring
 
