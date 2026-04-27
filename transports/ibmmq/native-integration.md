@@ -32,11 +32,11 @@ All NServiceBus headers are stored as MQRFH2 message properties. Property names 
 - Other special characters are encoded as `_xHHHH` (e.g., `.` becomes `_x002E`)
 
 > [!NOTE]
-> IBM MQ silently discards string properties with empty values. The transport includes manifest properties (`nsbhdrs` and `nsbempty`) to track all header names and preserve empty values. The header fields with non-compliant names will now be displayed in the IBMMQ Console.
+> IBM MQ silently discards string properties with empty values. To preserve all header names and maintain empty values, the transport uses manifest properties: `nsbhdrs` (lists all header names) and `nsbempty` (tracks empty-valued headers). The header fields with non-compliant names will now be displayed in the IBMMQ Console.
 
 ## Receiving from non-NServiceBus senders
 
-When a message arrives from a native IBM MQ application that does not set MQRFH2 properties, the transport promotes the following MQMD fields to NServiceBus headers. Promotion only occurs when the corresponding NServiceBus header is not already present, so NServiceBus-originated messages are unaffected.
+When a message arrives from a native IBM MQ application that does not set MQRFH2 properties, the transport promotes the following MQMD fields to NServiceBus headers. Promotion only occurs if the corresponding NServiceBus header is not already set. This ensures NServiceBus-originated messages are not overwritten.
 
 |MQMD field|NServiceBus header|Notes|
 |:---|---|---|
@@ -53,7 +53,7 @@ This enables native senders to rely on standard MQMD fields for identity and rou
 To send a message to an NServiceBus endpoint from a native IBM MQ application:
 
 1. Put a message on the endpoint's input queue.
-2. Set the message body to a serialized representation (e.g., JSON).
+2. Set the message body to your serialized content (e.g., JSON). NServiceBus will deserialize it based on the `ContentType` property you set.
 3. Set the following MQRFH2 properties as a minimum:
 
 |Property name|Description|
@@ -69,4 +69,9 @@ To send a message to an NServiceBus endpoint from a native IBM MQ application:
 
 Native applications can consume messages from queues that NServiceBus publishes or sends to. The message body contains the serialized payload, and NServiceBus headers are available as MQRFH2 properties.
 
-To read headers, use the `nsbhdrs` manifest property to enumerate all header names, and unescape property names by replacing `__` with `_` and `_xHHHH` with the corresponding character.
+To read NServiceBus headers from received messages:
+
+1. Use the `nsbhdrs` manifest property to enumerate all header names.
+2. For each header name, unescape the property name by:
+   - Replacing `__` with `_`
+   - Replacing `_xHHHH` with the corresponding character (e.g., `_x002E` becomes `.`)

@@ -8,7 +8,7 @@ related:
 - transports/ibmmq/operations-scripting
 ---
 
-The IBM MQ transport requires specific queue manager authorities depending on the endpoint's role and whether infrastructure setup (installers) is enabled. Use `setmqaut`, the IBM MQ Explorer, or equivalent tooling to grant the required authorities.
+The IBM MQ transport requires specific queue manager authorities depending on the endpoint's function (sender, publisher, subscriber) and whether infrastructure setup (installers) is enabled. Use `setmqaut`, the IBM MQ Explorer, or equivalent tooling to grant the required authorities.
 
 ## Infrastructure setup permissions
 
@@ -30,7 +30,7 @@ The following resources are created automatically:
 |Error queue|Any endpoint configured to send to it|
 |Send destination queues|The sending endpoint|
 |Topic objects|Any endpoint with explicit `PublishTo` or `SubscribeTo` routes configured|
-|Durable subscriptions|The subscribing endpoint, at subscribe time|
+|Durable subscriptions|The subscribing endpoint when it subscribes to an event type|
 
 > [!WARNING]
 > Topic objects are only created automatically when explicit routes are configured via `PublishTo` or `SubscribeTo`. Topics derived from the naming convention are created on first subscription or publish if the queue manager's topic tree allows implicit topic strings.
@@ -41,6 +41,8 @@ The following resources are created automatically:
 > These are the minimum permissions required when all infrastructure is pre-created using the [command-line tool](operations-scripting.md), `runmqsc` scripts, or by an administrator.
 
 ### All endpoints
+
+These permissions are required by all endpoints regardless of their messaging role:
 
 |Operation|Object type|Object|Authority|
 |:---|---|---|---|
@@ -74,11 +76,13 @@ The following resources are created automatically:
 
 ## Least privilege
 
-In production environments, avoid granting `crt` authority to application accounts. Instead:
+This is the recommended approach for production environments. Avoid granting `crt` authority to application accounts:
 
 1. Pre-create all queues, topics, and subscriptions using the [command-line tool](operations-scripting.md) or native `runmqsc` scripts during deployment.
 2. Run endpoints without `EnableInstallers()`.
 3. Grant only the minimum runtime authorities listed above.
+
+This ensures application accounts have minimal necessary privileges and reduces the attack surface.
 
 ## SSL/TLS authentication
 

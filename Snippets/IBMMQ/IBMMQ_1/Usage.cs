@@ -12,12 +12,12 @@ class Usage
 
         var transport = new IBMMQTransport
         {
-            Host = "mq-server.example.com",
-            Port = 1414,
-            Channel = "DEV.APP.SVRCONN",
-            QueueManagerName = "QM1",
-            User = "app",
-            Password = "passw0rd"
+            Host = "mq-server.example.com", // MQ server hostname
+            Port = 1414, // Listener port
+            Channel = "DEV.APP.SVRCONN",  // Client connection channel
+            QueueManagerName = "QM1", //  Queue Manager
+            User = "app",// MQ username
+            Password = "passw0rd"// MQ password
         };
 
         endpointConfiguration.UseTransport(transport);

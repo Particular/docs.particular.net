@@ -5,7 +5,7 @@ reviewed: 2026-02-19
 component: IBMMQ
 ---
 
-The IBM MQ transport supports the following [transport transaction modes](/transports/transactions.md):
+The IBM MQ transport supports the following [transport transaction modes](/transports/transactions.md). Choose a mode based on your requirements for delivery guarantees, performance, and exactly-once processing:
 
 - Transport transaction - Sends atomic with receive
 - Transport transaction - Receive only (default)
@@ -27,20 +27,20 @@ snippet: ibmmq-sends-atomic-with-receive
 
 ## Receive only
 
-In `ReceiveOnly` mode, the message receive is transactional. Successfully processed messages are committed; failed messages are returned to the queue. Outgoing send and publish operations are not part of the receive transaction.
+In `ReceiveOnly` mode, the message receive is transactional. Successfully processed messages are committed. Failed messages are returned to the queue for reprocessing. Outgoing send and publish operations are not part of the receive transaction.
 
 This is the default transaction mode.
 
 snippet: ibmmq-receive-only
 
 > [!WARNING]
-> If the connection to the queue manager is lost after processing succeeds but before the commit, the message will be redelivered. This can result in duplicate processing. Use the [Outbox](/nservicebus/outbox/) feature to guarantee exactly-once processing.
+> If the queue manager connection is lost after processing succeeds but before the transaction commits, the message is redelivered. This can result in duplicate processing. Use the [Outbox](/nservicebus/outbox/) feature to guarantee exactly-once processing.
 
 ## Unreliable (transactions disabled)
 
-In `None` mode, messages are consumed without any transactional guarantees. If processing fails, the message is lost.
+In `None` mode (transactions disabled), messages are consumed without any transactional guarantees. If processing fails, the message is lost.
 
 snippet: ibmmq-transactions-none
 
 > [!CAUTION]
-> This mode should only be used when message loss is acceptable, such as for non-critical telemetry or logging messages.
+> This mode should only be used when message loss is acceptable, such as for non-critical telemetry or logging messages. Avoid this mode for business-critical events.

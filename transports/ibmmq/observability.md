@@ -7,11 +7,11 @@ related:
 - nservicebus/operations/opentelemetry
 ---
 
-The IBM MQ transport instruments send, receive, and dispatch operations using `System.Diagnostics.Activity` and follows the [OpenTelemetry messaging semantic conventions](https://opentelemetry.io/docs/specs/semconv/messaging/).
+The IBM MQ transport instruments send, receive, and dispatch operations using `System.Diagnostics.Activity`, following the [OpenTelemetry messaging semantic conventions](https://opentelemetry.io/docs/specs/semconv/messaging/). This enables consistent tracing and monitoring across your messaging infrastructure.
 
 ## Activity source
 
-The transport emits activities under the activity source named `NServiceBus.Transport.IBMMQ`. Register this source with the OpenTelemetry tracer provider to collect transport-level spans:
+The transport emits activities under the activity source named `NServiceBus.Transport.IBMMQ`. Register this source with the OpenTelemetry tracer provider to collect and export transport-level traces for monitoring and diagnostics:
 
 ```csharp
 builder.Services.AddOpenTelemetry()
@@ -22,7 +22,10 @@ builder.Services.AddOpenTelemetry()
 
 ## Activities
 
-The following activities are created for each transport operation:
+The following activities are created for each transport operation. The `Kind` field indicates the activity's role in the messaging flow:
+- **Consumer**: Receiving messages from the transport
+- **Producer**: Sending or publishing messages
+- **Internal**: Internal processing operations
 
 | Activity name | Kind | Display name |
 |:---|---|---|
@@ -34,10 +37,11 @@ The following activities are created for each transport operation:
 
 The `Attempt` activity wraps each processing attempt inside the immediate retry loop. It records failure details when message processing raises an exception.
 
-NServiceBus core parents its receive pipeline activity to the transport `Receive` activity, producing a complete trace from transport dequeue through handler execution.
+NServiceBus core links its receive pipeline activity to the transport `Receive` activity. This creates a complete trace from message dequeue through handler execution.
 
 ## Tags
 
+Activities are tagged with contextual information used for filtering, querying, and analyzing traces.
 ### Standard messaging tags
 
 These tags follow the [OpenTelemetry messaging semantic conventions](https://opentelemetry.io/docs/specs/semconv/messaging/):
