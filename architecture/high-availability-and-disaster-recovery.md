@@ -127,7 +127,7 @@ An alternative is a **distributed transaction** between messaging and the databa
 
 ## Recovery patterns
 
-NServicebus handles many types of errors as part of its [recoverability pipeline](https://docs.particular.net/architecture/recoverability). Analogous patterns need to be implemented on an architecture level.
+NServicebus handles many types of errors as part of its [recoverability pipeline](https://docs.particular.net/architecture/recoverability).
 
 ### Replay with idempotency
 
