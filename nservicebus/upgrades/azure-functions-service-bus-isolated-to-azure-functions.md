@@ -201,6 +201,12 @@ The old worker package exposed `DoNotSendMessagesToErrorQueue()` as the way to s
 
 In the new package, use the [explicit dead-letter support](https://github.com/Particular/docs.particular.net/pull/8191).
 
+## Startup diagnostics
+
+The old worker package documents an explicit startup diagnostics configuration step. See the [old startup diagnostics documentation](/nservicebus/hosting/azure-functions-service-bus/#configuration-startup-diagnostics).
+
+With the new package, startup diagnostics are automatically forwarded to the logs, so the old `LogDiagnostics()` guidance is no longer needed.
+
 ## Recommended migration sequence
 
 1. Remove `NServiceBus.AzureFunctions.Worker.ServiceBus` and add `NServiceBus.AzureFunctions.AzureServiceBus`.
