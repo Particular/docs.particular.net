@@ -1,7 +1,6 @@
 ---
 title: Recommended hosting model
 summary: Use AddNServiceBusEndpoint with Microsoft.Extensions.Hosting for the recommended single-endpoint and multi-endpoint hosting model.
-versions: '[10,)'
 component: Core
 versions: '[10,)'
 reviewed: 2026-04-27
@@ -45,7 +44,11 @@ Each endpoint is registered with its own `EndpointConfiguration`. Pass an identi
 
 snippet: AddNServiceBusEndpointMulti
 
-The endpoint name is the recommended identifier. A distinct identifier is only required when the same endpoint definition is hosted more than once with different per-instance configuration — for example, a per-tenant deployment where the endpoint name is composed at runtime.
+The endpoint name is the recommended identifier. A distinct identifier is only required when the same endpoint definition is hosted more than once with different per-instance configuration — for example, a per-tenant deployment where the endpoint name is composed at runtime:
+
+snippet: AddNServiceBusEndpointPerTenant
+
+In this case the endpoint name distinguishes each runtime instance for routing, while the tenant key serves as the DI identifier so callers can resolve a specific tenant's `IMessageSession` and keyed services.
 
 ### Endpoint-scoped dependencies
 

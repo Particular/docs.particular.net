@@ -31,8 +31,8 @@ class AddNServiceBusEndpointHosting
         var salesConfig = new EndpointConfiguration("Sales");
         var billingConfig = new EndpointConfiguration("Billing");
 
-        builder.Services.AddNServiceBusEndpoint(salesConfig, "Sales");
-        builder.Services.AddNServiceBusEndpoint(billingConfig, "Billing");
+        builder.Services.AddNServiceBusEndpoint(salesConfig, salesConfig.EndpointName);
+        builder.Services.AddNServiceBusEndpoint(billingConfig, billingConfig.EndpointName);
 
         #endregion
     }
@@ -50,8 +50,23 @@ class AddNServiceBusEndpointHosting
         builder.Services.AddKeyedSingleton<DatabaseService>(salesConfig.EndpointName, salesDb);
         builder.Services.AddKeyedSingleton<DatabaseService>(billingConfig.EndpointName, billingDb);
 
-        builder.Services.AddNServiceBusEndpoint(salesConfig, "Sales");
-        builder.Services.AddNServiceBusEndpoint(billingConfig, "Billing");
+        builder.Services.AddNServiceBusEndpoint(salesConfig, salesConfig.EndpointName);
+        builder.Services.AddNServiceBusEndpoint(billingConfig, billingConfig.EndpointName);
+
+        #endregion
+    }
+
+    void PerTenantEndpoints(HostApplicationBuilder builder, string[] tenants)
+    {
+        #region AddNServiceBusEndpointPerTenant
+
+        foreach (var tenant in tenants)
+        {
+            var endpointConfig = new EndpointConfiguration($"Sales-{tenant}");
+            // shared per-tenant configuration
+
+            builder.Services.AddNServiceBusEndpoint(endpointConfig, tenant);
+        }
 
         #endregion
     }
