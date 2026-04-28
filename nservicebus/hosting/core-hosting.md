@@ -54,7 +54,7 @@ snippet: AddNServiceBusEndpointKeyedServices
 
 Each endpoint resolves its own instance from the keyed slot. Services that do not vary per endpoint are registered normally on `IServiceCollection` and every endpoint resolves the same instance.
 
-For the migration path from `EndpointConfiguration.RegisterComponents`, see the [NServiceBus 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/).
+It is still possible to use `EndpointConfiguration.RegisterComponents` and the API will internally automatically use the right approach regardless whether a single endpoint or multiple endpoints are used. The API is obsoleted with a warning and it is recommended to migrate to explicit registrations shown above. For more migration guidance see the [NServiceBus 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/).
 
 ## Endpoint identity and the DI identifier
 
