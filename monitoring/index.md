@@ -1,7 +1,7 @@
 ---
 title: Monitoring
-summary: Monitor NserviceBus endpoint health and performance using ServiceControl and ServicePulse visualization tools
-reviewed: 2024-10-24
+summary: Monitor NServiceBus endpoint health and performance using ServiceControl and ServicePulse visualization tools
+reviewed: 2026-04-27
 isLearningPath: true
 ---
 
@@ -14,7 +14,6 @@ Endpoints collect [performance metrics](/monitoring/metrics/) about their own op
 Alternatively, by [consuming the raw data](/monitoring/metrics/raw.md), endpoint performance metrics can be sent to any metrics database.
 
 Use this data to understand [which message handlers need to be optimized](/tutorials/monitoring-demo/walkthrough-1.md), [which endpoints need to be scaled out](/tutorials/monitoring-demo/walkthrough-2.md), and [where there are recoverable errors slowing the system down](/tutorials/monitoring-demo/walkthrough-3.md).
-
 
 ## Endpoint health
 
