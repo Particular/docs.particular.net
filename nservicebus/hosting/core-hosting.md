@@ -48,11 +48,11 @@ The endpoint name is the recommended identifier. A distinct identifier is only r
 
 ### Endpoint-scoped dependencies
 
-When a shared service needs its own per-endpoint instance, register it as a [keyed service](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) using the endpoint name as the key:
+When a shared service needs its own per-endpoint instance, register it as a [keyed service](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) using the previously chosen (e.g. endpoint name) identifier as a key:
 
 snippet: AddNServiceBusEndpointKeyedServices
 
-Each endpoint resolves its own instance from the keyed slot. Services that do not vary per endpoint are registered normally on `IServiceCollection` and every endpoint resolves the same instance.
+Each endpoint resolves its own instance as keyed services using the previously chosen identifier as a key. Services that do not vary per endpoint are registered normally (non-keyed) on `IServiceCollection` and every endpoint resolves the same instance.
 
 It is still possible to use `EndpointConfiguration.RegisterComponents` and the API will internally automatically use the right approach regardless whether a single endpoint or multiple endpoints are used. The API is obsoleted with a warning and it is recommended to migrate to explicit registrations shown above. For more migration guidance see the [NServiceBus 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/).
 
@@ -65,7 +65,7 @@ In a single-endpoint host, the two are the same value and the distinction does n
 
 ## Logging
 
-Core uses [`Microsoft.Extensions.Logging`](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/) as its built-in logging infrastructure. Log events flow through the host's configured `ILoggerFactory` with endpoint context attached. The `NServiceBus.Extensions.Logging` package is no longer required.
+NServiceBus uses [`Microsoft.Extensions.Logging`](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/) as its built-in logging infrastructure. Log events flow through the host's configured `ILoggerFactory` with endpoint context attached. The `NServiceBus.Extensions.Logging` package is no longer required.
 
 For migration from `LogManager.Use<T>`, `LogManager.UseFactory`, `DefaultFactory`, and `LogManager.GetLogger`, see the [Logging section of the NServiceBus 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/).
 
