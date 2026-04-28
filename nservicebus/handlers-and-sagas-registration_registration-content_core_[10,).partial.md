@@ -8,7 +8,7 @@ The generated API is composable: each scanned assembly produces extension method
 endpointConfiguration.Handlers.MyAssembly.MyNamespace.AddAll();
 ```
 
-Source-generated registration is trimming and AOT friendly because it references handler and saga types directly from the composition root (the host). It also eliminates runtime surprises: any type that is discoverable at build time is discoverable at runtime with no additional scanning.
+Source-generated registration is trimming-friendly and AOT-friendly because it references handler and saga types directly from the composition root (the host). It also eliminates runtime surprises: any type that is discoverable at build time is discoverable at runtime with no additional scanning.
 
 ### Advanced source generation configuration
 
