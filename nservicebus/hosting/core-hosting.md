@@ -3,6 +3,7 @@ title: Recommended hosting model
 summary: Use AddNServiceBusEndpoint with Microsoft.Extensions.Hosting for the recommended single-endpoint and multi-endpoint hosting model.
 versions: '[10,)'
 component: Core
+versions: '[10,)'
 reviewed: 2026-04-27
 related:
   - nservicebus/upgrades/10to11
