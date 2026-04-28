@@ -18,7 +18,7 @@ As most web technologies operate in a scale-out manner, NServiceBus can be hoste
 
 ### Using Microsoft.Extensions.Hosting
 
-NServiceBus integrates with any web host that supports the [.NET Generic Host](https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host). For new development, use [Hosting with Microsoft.Extensions.Hosting](/nservicebus/hosting/core-hosting.md). Existing applications can continue with [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md). In both paths, `IMessageSession` is available through dependency injection.
+NServiceBus integrates with any web host that supports the [.NET Generic Host](https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host). For new development, use the [recommended hosting model](/nservicebus/hosting/core-hosting.md). Existing applications can continue with [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md). In both paths, `IMessageSession` is available through dependency injection.
 
 ### Self-hosting
 

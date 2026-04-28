@@ -1,7 +1,7 @@
 ---
-title: Hosting with Microsoft.Extensions.Hosting
-summary: Use AddNServiceBusEndpoint with Microsoft.Extensions.Hosting for single-endpoint and multi-endpoint hosting in NServiceBus 10.2+.
-versions: '[10.2,)'
+title: Recommended hosting model
+summary: Use AddNServiceBusEndpoint with Microsoft.Extensions.Hosting for the recommended single-endpoint and multi-endpoint hosting model.
+versions: '[10,)'
 component: Core
 reviewed: 2026-04-27
 related:

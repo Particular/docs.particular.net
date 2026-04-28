@@ -1373,7 +1373,7 @@
   - Title: Standard Hosting
     Articles:
     - Url: nservicebus/hosting/core-hosting
-      Title: Hosting with Microsoft.Extensions.Hosting
+      Title: Recommended hosting model
     - Url: nservicebus/hosting/extensions-hosting
       Title: NServiceBus.Extensions.Hosting
     - Url: nservicebus/hosting/web-application
