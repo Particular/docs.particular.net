@@ -822,6 +822,10 @@
 | [~~0.4.x~~](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/0.4.0)| ~~Unsupported~~ | ~~2021-01-04~~ | ~~2021-04-14~~    | ~~Ineligible~~ |
 | [~~0.3.x~~](https://www.nuget.org/packages/NServiceBus.AwsLambda.Sqs/0.3.1)| ~~Unsupported~~ | ~~2020-11-02~~ | ~~2021-04-04~~    | ~~Ineligible~~ |
 
+#### [NServiceBus.AzureFunctions.AzureServiceBus](/nuget/NServiceBus.AzureFunctions.AzureServiceBus)
+
+No versions released.
+
 #### [NServiceBus.AzureFunctions.InProcess.ServiceBus](/nuget/NServiceBus.AzureFunctions.InProcess.ServiceBus)
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |

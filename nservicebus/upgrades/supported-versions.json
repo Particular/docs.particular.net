@@ -97,6 +97,10 @@
       "Versions": []
     },
     {
+      "PackageId": "NServiceBus.AzureFunctions.AzureServiceBus",
+      "Versions": []
+    },
+    {
       "PackageId": "NServiceBus.AzureFunctions.InProcess.ServiceBus",
       "Versions": [
         {
