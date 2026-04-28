@@ -195,6 +195,12 @@ If the app manually declares the Service Bus trigger instead of using the genera
 
 The new package no longer relies on `NServiceBusTriggerFunction` for this scenario. The `ServiceBusTrigger(...)` definition is part of the endpoint method itself.
 
+## Recoverability
+
+The old worker package exposed `DoNotSendMessagesToErrorQueue()` as the way to stop forwarding failed messages to the error queue and let Azure Service Bus dead-lettering handle them instead. See the [old error queue documentation](/nservicebus/hosting/azure-functions-service-bus/#configuration-error-queue).
+
+In the new package, use the [explicit dead-letter support](https://github.com/Particular/docs.particular.net/pull/8191).
+
 ## Recommended migration sequence
 
 1. Remove `NServiceBus.AzureFunctions.Worker.ServiceBus` and add `NServiceBus.AzureFunctions.AzureServiceBus`.
