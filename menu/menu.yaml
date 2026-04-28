@@ -1373,9 +1373,9 @@
   - Title: Standard Hosting
     Articles:
     - Url: nservicebus/hosting/core-hosting
-      Title: Recommended hosting model
+      Title: Hosting with Microsoft.Extensions.Hosting
     - Url: nservicebus/hosting/extensions-hosting
-      Title: Microsoft Generic Host
+      Title: NServiceBus.Extensions.Hosting
     - Url: nservicebus/hosting/web-application
       Title: Web Applications
       Articles:

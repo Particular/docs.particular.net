@@ -2,7 +2,7 @@
 title: Hosting
 summary: Describes the various approaches to endpoint hosting
 component: Core
-reviewed: 2026-04-24
+reviewed: 2026-04-27
 redirects:
 - nservicebus/hosting/self-hosting
 - nservicebus/hosting/self-hosting-v4.x
@@ -14,12 +14,12 @@ NServiceBus is a library at its core so that it can be hosted in any .NET proces
 
 There are several approaches to hosting.
 
-## Microsoft Generic Host
+## Microsoft.Extensions.Hosting
 
-The [Microsoft Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) is the most common way to host NServiceBus on .NET Core. There are two integration paths:
+The [.NET Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/host/generic-host) is the most common way to host NServiceBus in modern .NET applications. There are two integration paths:
 
-- [Recommended hosting model](/nservicebus/hosting/core-hosting.md) using `AddNServiceBusEndpoint`.
-- [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) using `UseNServiceBus`.
+- [Hosting with Microsoft.Extensions.Hosting](/nservicebus/hosting/core-hosting.md) using the built-in `AddNServiceBusEndpoint` integration.
+- [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md) for the existing package-based `UseNServiceBus` integration.
 
 ## Self-hosting
 

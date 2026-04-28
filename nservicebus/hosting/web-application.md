@@ -1,7 +1,7 @@
 ---
 title: Web application hosting
 summary: Hosting NServiceBus in a website or web service
-reviewed: 2025-01-14
+reviewed: 2026-04-27
 isLearningPath: true
 related:
  - samples/web
@@ -16,9 +16,9 @@ As most web technologies operate in a scale-out manner, NServiceBus can be hoste
 
 ## Dependency injection integration
 
-### Using the Generic Host
+### Using Microsoft.Extensions.Hosting
 
-NServiceBus can be integrated into any web host that supports the [Microsoft Generic Host](https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host) using the [NServiceBus Generic Host integration](/nservicebus/hosting/extensions-hosting.md). The Generic Host integration automatically registers `IMessageSession` with the dependency injection container.
+NServiceBus integrates with any web host that supports the [.NET Generic Host](https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host). For new development, use [Hosting with Microsoft.Extensions.Hosting](/nservicebus/hosting/core-hosting.md). Existing applications can continue with [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md). In both paths, `IMessageSession` is available through dependency injection.
 
 ### Self-hosting
 
