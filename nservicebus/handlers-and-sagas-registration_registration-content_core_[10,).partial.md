@@ -5,9 +5,7 @@ Starting in NServiceBus version 10.2, a source generation package can scan assem
 The generated API is composable: each scanned assembly produces extension methods that attach to a registry. For example, after referencing the source generator package, the registration code looks like this:
 
 ```csharp
-var registry = new HandlerRegistry();
-registry.Handlers.MyAssembly.MyNamespace.AddAll();
-endpointConfiguration.UseHandlerRegistry(registry);
+endpointConfiguration.Handlers.MyAssembly.MyNamespace.AddAll();
 ```
 
 Source-generated registration is trimming and AOT friendly because it references handler and saga types directly from the composition root (the host). It also eliminates runtime surprises: any type that is discoverable at build time is discoverable at runtime with no additional scanning.
