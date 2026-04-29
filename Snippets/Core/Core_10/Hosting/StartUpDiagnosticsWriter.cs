@@ -1,4 +1,6 @@
-﻿namespace Core.Hosting;
+﻿using Microsoft.Extensions.Hosting;
+
+namespace Core.Hosting;
 
 using System;
 using System.Linq;
@@ -28,11 +30,16 @@ public class StartUpDiagnosticsWriter
         });
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        var builder = Host.CreateApplicationBuilder();
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+        var host = builder.Build();
+        await host.StartAsync();
+
         var jsonFormatted = JToken.Parse(diagnostics).ToString(Formatting.Indented);
         var abbreviated = jsonFormatted.Split(["\r\n", "\n", "\r"], StringSplitOptions.None).Take(20);
         var substring = string.Join("\r", abbreviated) + "\r\n...";
         SnippetLogger.Write(substring);
-        await endpointInstance.Stop();
+
+        await host.StopAsync();
     }
 }

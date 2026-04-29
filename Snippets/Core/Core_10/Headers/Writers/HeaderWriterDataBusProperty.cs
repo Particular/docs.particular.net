@@ -1,4 +1,7 @@
-﻿namespace Core.Headers.Writers;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+namespace Core.Headers.Writers;
 
 using System.Text;
 using System.Threading;
@@ -33,16 +36,20 @@ public class HeaderWriterDataBusProperty
         endpointConfiguration.RegisterMessageMutator(new Mutator());
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        var builder = Host.CreateApplicationBuilder();
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+        var host = builder.Build();
+        await host.StartAsync();
+        var messageSession = host.Services.GetRequiredService<IMessageSession>();
 
         var messageToSend = new MessageToSend
         {
             LargeProperty1 = new ClaimCheckProperty<byte[]>(new byte[10]),
             LargeProperty2 = new ClaimCheckProperty<byte[]>(new byte[10])
         };
-        await endpointInstance.SendLocal(messageToSend);
+        await messageSession.SendLocal(messageToSend);
         ManualResetEvent.WaitOne();
-        await endpointInstance.Stop();
+        await host.StopAsync();
     }
 
     class MessageToSend :
