@@ -19,7 +19,7 @@ This dependency can cause problems when different services run different version
 > [!NOTE]
 > It's also possible to use the [NServiceBus.MessageInterfaces](https://www.nuget.org/packages/NServiceBus.MessageInterfaces) to build message assemblies targeting `netstandard2.0` that can be shared between different major versions of NServiceBus and different versions of .NET. See the details in the [sharing message assemblies sample](/samples/message-assembly-sharing/).
 
-This is not a big deal for commands because they are always used within the boundary of a single service, and it's fair to require a service to use the same version of NServiceBus. However, when it comes to events, this becomes more of a problem since it requires the services to all use the same version of NServiceBus, thereby forcing them to upgrade NServiceBus all at once.
+For systems following SOA design guidelines, this is not an issue for commands because they should only be used within the boundary of a single service, and it's fair to require a service to use the same version of NServiceBus. However, when it comes to events, this becomes more of a problem since it requires the services to all use the same version of NServiceBus, thereby forcing them to upgrade NServiceBus all at once.
 
 
 ## The solution
