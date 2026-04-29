@@ -83,6 +83,18 @@ Write for experienced software developers.
 - Use lists for 3+ items
 - Use clear heading hierarchy
 
+## Versioned Product Documentation
+
+Review version-specific documentation from the perspective of a reader using that version after it is released, not from the perspective of the transition that created the change.
+
+- Present the recommended API or pattern as the way to use the product for that version
+- Avoid framing the recommended path as one more choice unless there are supported alternatives for new work
+- Move migration details, obsolete APIs, and compatibility notes to upgrade guides when they primarily help existing users move forward
+- Use versioned partials or callout boxes for temporary notes that apply only to older supported versions
+- Consider support windows: content that is useful only while an older minor version is supported should not dominate pages for a newer major version
+- Prefer direct guidance over historical explanation; include history only when it helps the reader make a current decision
+- For multi-version pages, make it clear which guidance applies to each version without forcing new users through legacy options
+
 ---
 
 # Code Samples
