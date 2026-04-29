@@ -60,7 +60,7 @@ snippet: aws-configure-dont-move-to-error
 
 ### Licenses
 
-The license is provided via the `NSERVICEBUS_LICENSE` environment variable, which can be set via the Function settings in the [Lambda console](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html).
+The license is provided via the `PARTICULARSOFTWARE_LICENSE` (with a fallback to `NSERVICEBUS_LICENSE` for backward compatibility reasons) environment variable, which can be set via the Function settings in the [Lambda console](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html).
 
 ## Native integration
 
