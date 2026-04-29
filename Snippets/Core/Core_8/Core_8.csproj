@@ -24,4 +24,8 @@
     <Reference Include="System.Web" />
   </ItemGroup>
 
+  <ItemGroup Label="Lifting transitive dependencies with CVE">
+    <PackageReference Include="System.Security.Cryptography.Xml" Version="8.0.3" />
+  </ItemGroup>
+
 </Project>
