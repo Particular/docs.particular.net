@@ -1,8 +1,8 @@
 ---
-title: NServiceBus DataBus feature
-summary: How to handle messages that are too large to be sent by a transport natively by using NServiceBus DataBus
+title: Claim Check (DataBus)
+summary: How to handle messages that are too large to be sent by a transport natively by using NServiceBus Claim Check
 component: DataBus
-reviewed: 2024-08-01
+reviewed: 2026-04-28
 redirects:
  - nservicebus/databus
  - samples/pipeline/stream-properties
@@ -13,7 +13,7 @@ related:
  - samples/databus/redis
 ---
 
-Although messaging systems work best with small message sizes, some scenarios require sending binary large objects ([blobs](https://en.wikipedia.org/wiki/Binary_large_object)) data along with a message (also known as a [_Claim Check_](https://learn.microsoft.com/en-us/azure/architecture/patterns/claim-check)). For this purpose, NServiceBus has a `DataBus` feature to overcome the message size limitations imposed by the underlying transport.
+Although messaging systems work best with small message sizes, some scenarios require sending [binary large object (blob)](https://en.wikipedia.org/wiki/Binary_large_object) data along with a message (also known as a [_Claim Check_](https://learn.microsoft.com/en-us/azure/architecture/patterns/claim-check)). For this purpose, NServiceBus has a `DataBus` feature to overcome message size limitations imposed by the underlying transport.
 
 partial: obsolete
 
@@ -25,7 +25,7 @@ If the location is not available upon sending, the send operation will fail. Whe
 
 ## Transport message size limits
 
-The `DataBus` may be used to send messages which exceed the transport's message size limit, which is determined by the message size limit of the underlying queuing/storage technologies.
+The `DataBus` may be used to send messages that exceed the transport's message size limit, which is determined by the message size limit of the underlying queuing/storage technologies.
 
 > [!NOTE]
 > Not all transports have message size limits and some technologies, such as Azure Service Bus or Amazon SQS, have increased over time. Current message size limits are stated in the documentation linked in the table below.
@@ -37,7 +37,7 @@ The `DataBus` may be used to send messages which exceed the transport's message 
 | Azure Storage Queues              | [64KB](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted#capacity-and-quotas) |
 | Azure Service Bus (Standard tier) | [256KB](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-azure-and-service-bus-queues-compared-contrasted#capacity-and-quotas) |
 | Azure Service Bus (Premium tier)  | [100MB](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-premium-messaging#large-messages-support) |
-| RabbitMQ                          | Configured by [`max_message_size`](https://www.rabbitmq.com/configure.html#config-items) |
+| RabbitMQ                          | Configured by [`max_message_size`](https://www.rabbitmq.com/docs/configure#config-items) |
 | SQL Server                        | No limit |
 | Learning                          | No limit |
 | MSMQ                              | [4MB](https://learn.microsoft.com/en-us/previous-versions/windows/desktop/msmq/ms711436(v=vs.85)#maximum-message-size) |
@@ -56,35 +56,7 @@ By default, blobs are stored with no set expiration. If messages have a [time to
 > [!NOTE]
 > The value used should be aligned with the [ServiceControl audit retention period](/servicecontrol/how-purge-expired-data.md) if it is required that `DataBus` blob keys in messages sent to the audit queue can still be fetched.
 
-## Specifying `DataBus` properties
-
-There are two ways to specify the message properties to be sent using the `DataBus`:
-
- 1. Using the `ClaimCheckProperty<T>` type
- 1. Message conventions
-
-> [!NOTE]
-> `DataBus` properties must be top-level properties on a message class.
->
-> Apart from `byte[]`, any data type is supported as long as it is serializable. For example, you can use `string`, custom classes, or other serializable types as `DataBus` properties.
-
-### Using `ClaimCheckProperty<T>`
-
-Set the type of the property to be sent over as `ClaimCheckProperty<byte[]>`, or any other serializable type:
-
-snippet: MessageWithLargePayload
-
-### Using message conventions
-
-NServiceBus also supports defining `DataBus` properties by convention. This allows data properties to be sent using the `DataBus` without using `ClaimCheckProperty<T>`, thus removing the need for having a dependency on NServiceBus from the message types.
-
-In the configuration of the endpoint include:
-
-snippet: DefineMessageWithLargePayloadUsingConvention
-
-Set the type of the property as `byte[]`, or any other serializable type:
-
-snippet: MessageWithLargePayloadUsingConvention
+partial: property-type
 
 partial: serialization
 
@@ -117,7 +89,7 @@ Automatically removing these attachments can cause problems in many situations. 
   - Read on demand: Attachments are only retrieved when read by a consumer.
   - Async enumeration: The package supports processing all data items using an `IAsyncEnumerable`.
   - No serialization: The serializer is not used, which may result in a significant reduction in memory usage.
-  - Direct stream access: This makes the package more suitable for [binary large objects (blobs](https://en.wikipedia.org/wiki/Binary_large_object) since stream contents do not necessarily have to be loaded into memory before storing them or when retrieving them.
+  - Direct stream access: This makes the package more suitable for [binary large objects (blobs)](https://en.wikipedia.org/wiki/Binary_large_object) since stream contents do not necessarily have to be loaded into memory before storing them or when retrieving them.
 
 ## Other considerations
 

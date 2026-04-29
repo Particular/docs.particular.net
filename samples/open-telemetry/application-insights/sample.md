@@ -1,7 +1,7 @@
 ---
 title: Monitoring NServiceBus endpoints with Application Insights
 summary: How to configure NServiceBus to export OpenTelemetry traces and meters to Application Insights
-reviewed: 2024-07-26
+reviewed: 2026-04-28
 component: Core
 previewImage: trace-timeline.png
 related:
@@ -11,7 +11,7 @@ redirects:
   - samples/tracing
 ---
 
-[Azure Application Insights](https://docs.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview) (App Insights) provides monitoring and alerting capabilities that can be leveraged to monitor the health of NServiceBus endpoints.
+[Azure Application Insights](https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview) (App Insights) provides monitoring and alerting capabilities that can be leveraged to monitor the health of NServiceBus endpoints.
 
 This sample shows how to capture NServiceBus OpenTelemetry traces and export them to App Insights. The sample simulates message load as well as a 10% failure rate on processing messages.
 
@@ -31,22 +31,22 @@ This sample requires an App Insights connection string.
 
 ### Reviewing traces
 
-1. On the Azure portal dashboard, open the _Investigate_ → _Performance_ panel
+1. In the Azure portal Application Insights resource you just created, open the _Investigate_ → _Performance_ panel
 2. Drill into the samples
 3. Review the custom properties
 
 ![Timeline view of a trace in Application Insights](trace-timeline.png)
 
-### Reviewing meters
+### Reviewing metrics
 
-Navigate to _Monitoring_ → _Metrics_ on the Azure portal dashboard for the configured Application Insight instance to start creating graphs.
+Navigate to _Monitoring_ → _Metrics_ on the Azure portal dashboard for the configured Application Insights instance to start creating graphs.
 
 > [!NOTE]
-> It may take a few minutes for the meter data to populate to Azure. Meters will only appear on the dashboard once they have reported at least one value.
+> It may take a few minutes for the metrics data to populate to Azure. Metrics will only appear on the dashboard once they have reported at least one value.
 
 #### Message processing counters
 
-To monitor the rate of messages being fetched from the queuing system, processed successfully, retried, and failed for the endpoint use:
+To monitor the rate of messages being fetched from the queuing system, processed successfully, retried, and failed for the endpoint, use the following metrics:
 
 - `nservicebus.messaging.fetches`
 - `nservicebus.messaging.successes`
@@ -66,7 +66,7 @@ To monitor [recoverability](/nservicebus/recoverability/) metrics use:
 
 #### Handler time, critical time, and processing time
 
-To monitor [handler time, processing time, and critical time](/monitoring/metrics/definitions.md#metrics-captured) (in seconds) for successfully processed messages use:
+To monitor [handler time, processing time, and critical time](/monitoring/metrics/definitions.md#metrics-captured) (in seconds) for successfully processed messages, use:
 
 - `nservicebus.messaging.handler_time`
 - `nservicebus.messaging.processing_time`

@@ -1,20 +1,20 @@
 ---
 title: ServiceControl remote instances
-summary: Aggregate data from other ServiceControl instances using the ServiceControl Remotes features
-reviewed: 2024-07-19
+summary: Aggregate data from other ServiceControl instances using the ServiceControl Remotes feature
+reviewed: 2026-04-28
 component: ServiceControl
 redirects:
 - servicecontrol/servicecontrol-instances/distributed-instances
 ---
 
-[ServicePulse](/servicepulse) retrieves data from a [ServiceControl instance](/servicecontrol/servicecontrol-instances/) using an HTTP API. In some installations, that data may reside in multiple ServiceControl instances. The ServiceControl Remotes features allows a ServiceControl instance to aggregate data from other ServiceControl instances, providing a unified experience in ServicePulse.
+[ServicePulse](/servicepulse/) retrieves data from a [ServiceControl instance](/servicecontrol/servicecontrol-instances/) using an HTTP API. In some installations, that data may reside in multiple ServiceControl instances. The ServiceControl Remotes feature allows a ServiceControl instance to aggregate data from other ServiceControl instances, providing a unified experience in ServicePulse.
 
 ## Overview
 
 One ServiceControl Error instance is designated as the _primary_ instance. All other ServiceControl instances are _remote_ instances. The HTTP API of the primary instance aggregates data from the primary instance and from all the remote instances. ServicePulse is configured to connect to the primary instance.
 
 > [!NOTE]
-> The term _remote_ refers to the fact that remote instances are run in separate processes. The primary instance and one or more remote instances can run on the same machine.
+> The term _remote_ refers to the fact that remote instances run in separate processes. The primary instance and one or more remote instances can run on the same machine.
 
 In ServiceControl version 4 and later, a ServiceControl Error instance can be configured with remote instances that are also [ServiceControl Error instances](/servicecontrol/servicecontrol-instances/) or are [ServiceControl Audit instances](/servicecontrol/audit-instances/). ServiceControl Audit instances cannot be configured as primary instances.
 
@@ -77,7 +77,7 @@ class ServiceControlAudit1,ServiceControlAudit2 ServiceControlRemote
 
 ### Sharding audit messages with split audit queues
 
-Endpoints are partitioned into groups. Each group sends messages to its own a different audit queue. Each audit queue is managed by a different ServiceControl Audit instance. This approach is useful if different audit retention periods are required for specific groups of endpoints.
+Endpoints are partitioned into groups. Each group sends messages to a different audit queue. Each audit queue is managed by a different ServiceControl Audit instance. This approach is useful if different audit retention periods are required for specific groups of endpoints.
 
 ```mermaid
 graph TD
@@ -110,7 +110,7 @@ class ServiceControlAudit1,ServiceControlAudit2 ServiceControlRemote
 
 ### Multi-transport deployments
 
-When a system uses multiple transports, the [Messaging Bridge](/nservicebus/bridge/) can be used to allow management of the entire system by single instances of ServicePulse.
+When a system uses multiple transports, the [Messaging Bridge](/nservicebus/bridge/) can be used to allow management of the entire system by a single instance of ServicePulse.
 
 ```mermaid
 graph TD
@@ -197,7 +197,7 @@ class auditA,auditB ServiceControlRemote
 
 In this deployment, each region has a full ServiceControl installation with a primary Error instance and an Audit instance. Each region can be managed and controlled via a dedicated ServicePulse instance.
 
-A new cross-region primary instance is added to allow another ServicePulse instance to show messages from both regions. This cross-region instance includes each region-specific primary instance as a remote allowing it to query messages from both. The cross-region instance must disable error message ingestion management by setting with the value [`ServiceControl/IngestErrorMessages`](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontrolingesterrormessages) option to `false`.
+A new cross-region primary instance is added to allow another ServicePulse instance to show messages from both regions. This cross-region instance includes each region-specific primary instance as a remote allowing it to query messages from both. The cross-region instance must disable error message ingestion management by setting the [`ServiceControl/IngestErrorMessages`](/servicecontrol/servicecontrol-instances/configuration.md#recoverability-servicecontrolingesterrormessages) option to `false`.
 
 ### Zero downtime upgrades
 
@@ -205,7 +205,7 @@ The remotes feature can be used to perform [zero downtime upgrades](/servicecont
 
 ## Configuration
 
-Remote instances are listed in the `ServiceControl/RemoteInstances` app setting in the primary instance [configuration file](/servicecontrol/servicecontrol-instances/configuration.md). The value of this setting is a JSON array of remote instances. Each entry requires an `api_url` property specifying the API URL of the remote instance. For ServiceControl version 3 and earlier, each entry requires a `queue_address` property specifying the queue address of the remote instance.
+Remote instances are listed in the `ServiceControl/RemoteInstances` app setting in the primary instance [configuration file](/servicecontrol/servicecontrol-instances/configuration.md). The value of this setting is a JSON array of remote instances. Each entry requires an `api_uri` property specifying the API URL of the remote instance. For ServiceControl version 3 and earlier, each entry requires a `queue_address` property specifying the queue address of the remote instance.
 
 > [!NOTE]
 > Changes to the configuration file do not take effect until the primary instance is restarted.
@@ -279,6 +279,6 @@ To change the address of a remote instance to a new host and/or port number:
 
 - Pagination in ServicePulse may not work as expected. For example, each page may contain a different number of items, depending on how those items are distributed across the various ServiceControl instances.
 - If the primary instance cannot contact a given remote instance, data from that remote instance will not be included in any views in ServicePulse.
-- Multi-instance configuration is not possible the ServiceControl Management utility.
+- Multi-instance configuration is not possible with the ServiceControl Management utility.
 - Incorrect configuration may cause cyclical dependencies. For example, instance A may attempt to get data from instance B, and instance B may attempt to get data from instance A.
 - It is recommended to run _only one_ primary instance. Multiple primary instances are _not recommended_.
