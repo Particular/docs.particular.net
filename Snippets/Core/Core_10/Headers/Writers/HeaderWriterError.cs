@@ -1,4 +1,7 @@
-﻿namespace Core.Headers.Writers;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+namespace Core.Headers.Writers;
 
 using System;
 using System.Threading;
@@ -30,7 +33,10 @@ public class HeaderWriterError
         errorIngestion.Pipeline.Register(typeof(ErrorMutator), "Capture headers on failed messages");
         errorIngestion.UseSerialization<SystemJsonSerializer>();
 
-        await Endpoint.Start(errorIngestion);
+        var builder = Host.CreateApplicationBuilder();
+        builder.Services.AddNServiceBusEndpoint(errorIngestion);
+        var host = builder.Build();
+        await host.StartAsync();
 
         var endpointConfiguration = new EndpointConfiguration(endpointName);
         endpointConfiguration.SendFailedMessagesTo("error");
@@ -48,10 +54,17 @@ public class HeaderWriterError
             settings.NumberOfRetries(0);
         });
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        var builder2 = Host.CreateApplicationBuilder();
+        builder2.Services.AddNServiceBusEndpoint(endpointConfiguration);
+        var host2 = builder2.Build();
+        await host2.StartAsync();
+        var messageSession = host2.Services.GetRequiredService<IMessageSession>();
 
-        await endpointInstance.SendLocal(new MessageToSend());
+        await messageSession.SendLocal(new MessageToSend());
         ManualResetEvent.WaitOne();
+
+        await host.StopAsync();
+        await host2.StopAsync();
     }
 
     class MessageToSend :

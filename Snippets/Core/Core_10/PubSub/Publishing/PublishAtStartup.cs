@@ -1,4 +1,7 @@
-﻿namespace Core.PubSub.Publishing;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
+namespace Core.PubSub.Publishing;
 
 using System.Threading.Tasks;
 using NServiceBus;
@@ -9,8 +12,12 @@ class PublishAtStartup
     {
         #region publishAtStartup
         // Other config
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
-        await endpointInstance.Publish(new MyEvent());
+        var builder = Host.CreateApplicationBuilder();
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+        var host = builder.Build();
+        await host.StartAsync();
+        var messageSession = host.Services.GetRequiredService<IMessageSession>();
+        await messageSession.Publish(new MyEvent());
 
         #endregion
 
