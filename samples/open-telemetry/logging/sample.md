@@ -37,7 +37,7 @@ will lead to the following output:
 
 ```text
 info: MyMessageHandler[0]
-      Received message #54
+Received message #54
 LogRecord.Timestamp:               2022-06-28T09:02:34.5342602Z
 LogRecord.TraceId:                 964b320925ab08cd2134c02d0abe920d
 LogRecord.SpanId:                  066fce94c5438add

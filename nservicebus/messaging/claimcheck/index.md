@@ -39,7 +39,7 @@ The `DataBus` may be used to send messages that exceed the transport's message s
 | Azure Service Bus (Premium tier)  | [100MB](https://learn.microsoft.com/en-us/azure/service-bus-messaging/service-bus-premium-messaging#large-messages-support) |
 | RabbitMQ                          | Configured by [`max_message_size`](https://www.rabbitmq.com/docs/configure#config-items) |
 | SQL Server                        | No limit |
-| Learning Transport                | No limit |
+| Learning                          | No limit |
 | MSMQ                              | [4MB](https://learn.microsoft.com/en-us/previous-versions/windows/desktop/msmq/ms711436(v=vs.85)#maximum-message-size) |
 
 ## Enabling the `DataBus`
