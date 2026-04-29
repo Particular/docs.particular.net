@@ -6,7 +6,7 @@ using NServiceBus;
 
 class DeferForTimeSpan
 {
-    async Task SendDelayedMessage(EndpointConfiguration endpointConfiguration, IEndpointInstance endpoint, IMessageHandlerContext handlerContext)
+    async Task SendDelayedMessage(EndpointConfiguration endpointConfiguration, IMessageSession messageSession, IMessageHandlerContext handlerContext)
     {
         #region configure-persistence-timeout
 
@@ -22,7 +22,7 @@ class DeferForTimeSpan
 
         await handlerContext.Send(new MessageToBeSentLater(), sendOptions);
         // OR
-        await endpoint.Send(new MessageToBeSentLater(), sendOptions, handlerContext.CancellationToken);
+        await messageSession.Send(new MessageToBeSentLater(), sendOptions, handlerContext.CancellationToken);
 
         #endregion
     }
