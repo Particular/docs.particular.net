@@ -79,3 +79,10 @@ With the default seven-day deduplication period (604,800 seconds), an endpoint p
 ### Azure Cosmos DB Table API
 
 The [Azure Cosmos DB Diagnostic Settings](https://learn.microsoft.com/en-us/azure/cosmos-db/monitor-resource-logs) can route diagnostic logs to an Azure Log Analytics workspace, where they can be queried to observe RU consumption per operation. The [Cosmos DB capacity calculator](https://cosmos.azure.com/capacitycalculator/) can also be used with the operation counts from the tables above to estimate the required provisioned throughput.
+
+## Capacity planning approach
+
+1. Measure saga and outbox item sizes in a test environment.
+2. Apply the formulas above to calculate Request Units.
+3. Multiply by expected message throughput (messages per second) to estimate costs.
+4. Account for retries due to optimistic concurrency conflicts or transient throttling — each retry adds one full set of operations.
