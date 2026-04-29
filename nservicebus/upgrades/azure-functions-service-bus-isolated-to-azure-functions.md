@@ -207,6 +207,12 @@ The old worker package documents an explicit startup diagnostics configuration s
 
 With the new package, startup diagnostics are automatically forwarded to the logs, so the old `LogDiagnostics()` guidance is no longer needed.
 
+## Host ID
+
+If the old setup used `WEBSITE_SITE_NAME` to control the host ID, migrate that logic to the standard NServiceBus host ID override APIs.
+
+Use the guidance in [Overriding the host identifier](/nservicebus/hosting/override-hostid.md) to take full control over the host ID and keep it stable across restarts and deployments.
+
 ## Recommended migration sequence
 
 1. Remove `NServiceBus.AzureFunctions.Worker.ServiceBus` and add `NServiceBus.AzureFunctions.AzureServiceBus`.
