@@ -116,57 +116,38 @@ Provides operations support for RabbitMQ applications that run on NServiceBus vi
 
 Created by [SouthsideSoft](http://southsidesoft.com/).
 
-## [Verify.NServiceBus](https://github.com/NServiceBusExtensions/Verify.NServiceBus)
+## [Verify.NServiceBus](https://github.com/NServiceBusCommunity/Verify.NServiceBus)
 
 Adds [Verify](https://github.com/VerifyTests/Verify) support to verify NServiceBus test contexts. Given an NServiceBus message handler, Verify.NServiceBus writes the results of the handler's execution (messages sent, published, etc.) to a file that is diffed against the previous test run to make sure the results are as expected without needing to write multiple assertions for each property.
 
-Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
+Part of the [NServiceBusCommunity](https://github.com/NServiceBusCommunity) suite of extensions.
 
-## [NServiceBus.Attachments](https://github.com/NServiceBusExtensions/NServiceBus.Attachments)
+## [NServiceBus.Attachments](https://github.com/NServiceBusCommunity/NServiceBus.Attachments)
 
 Adds a streaming based attachment functionality to NServiceBus.
 
-Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
+Part of the [NServiceBusCommunity](https://github.com/NServiceBusCommunity) suite of extensions.
 
-## [NServiceBus.AuditFilter](https://github.com/NServiceBusExtensions/NServiceBus.AuditFilter)
+## [NServiceBus.AuditFilter](https://github.com/NServiceBusCommunity/NServiceBus.AuditFilter)
 
 Adds audit message filtering functionality to NServiceBus, so that certain message types can be included or excluded from normal NServiceBus auditing by adding an attribute to the message type.
 
-Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
+Part of the [NServiceBusCommunity](https://github.com/NServiceBusCommunity) suite of extensions.
 
-[Newtonsoft.Json.Encryption](https://github.com/NServiceBusExtensions/Newtonsoft.Json.Encryption)
+[Newtonsoft.Json.Encryption](https://github.com/NServiceBusCommunity/Newtonsoft.Json.Encryption)
 
 Leverages the Newtonsoft extension API to encrypt/decrypt specific nodes at serialization time. So only the nodes that require encryption are touched, the remaining content is still human readable. This approach provides a compromise between readability/debugability and security.
 
-Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
+Part of the [NServiceBusCommunity](https://github.com/NServiceBusCommunity) suite of extensions.
 
-## [NServiceBus.SqlServer.Native](https://github.com/NServiceBusExtensions/NServiceBus.Native)
+## [NServiceBus.SqlServer.Native](https://github.com/NServiceBusCommunity/NServiceBus.Native)
 
 A shim providing low-level access to the [NServiceBus SQL Server Transport](/transports/sql/) with no NServiceBus or SQL Server Transport reference required.
 
-Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
+Part of the [NServiceBusCommunity](https://github.com/NServiceBusCommunity) suite of extensions.
 
-## [NServiceBus Validation](https://github.com/NServiceBusExtensions/NServiceBus.Validation)
+## [NServiceBus Validation](https://github.com/NServiceBusCommunity/NServiceBus.Validation)
 
 Allows validating message contents with options to use [DataAnnotations](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations) and [FluentValidation](https://github.com/JeremySkinner/FluentValidation).
 
-Part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions.
-
-## Serializers
-
-These packages add support for alternate message serialization technologies. These can be useful in situations where special requirements for messages serialization, such as speed, compactness, or integration with external systems are necessary.
-
-### NServiceBusExtensions Serializers
-
-These serializer packages are part of the [NServiceBusExtensions](https://github.com/NServiceBusExtensions) suite of extensions:
-
-* [Bond](https://github.com/NServiceBusExtensions/NServiceBus.Bond)
-* [Hyperion](https://github.com/NServiceBusExtensions/NServiceBus.Hyperion)
-* [Jil](https://github.com/NServiceBusExtensions/NServiceBus.Jil)
-* [MessagePack](https://github.com/NServiceBusExtensions/NServiceBus.MessagePack)
-* [MsgPack](https://github.com/NServiceBusExtensions/NServiceBus.MsgPack)
-* [ProtoBuf-Google](https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufGoogle)
-* [ProtoBuf-Net](https://github.com/NServiceBusExtensions/NServiceBus.ProtoBufNet)
-  * Fork: [ramonsmits/NServiceBus.ProtoBufNet](https://github.com/ramonsmits/NServiceBus.ProtoBufNet)
-* [Utf8Json](https://github.com/NServiceBusExtensions/NServiceBus.Utf8Json)
-* [ZeroFormatter](https://www.nuget.org/packages/NServiceBus.ZeroFormatter)
+Part of the [NServiceBusCommunity](https://github.com/NServiceBusCommunity) suite of extensions.
