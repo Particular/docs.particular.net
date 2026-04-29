@@ -66,7 +66,7 @@ This is a curated list of community-developed extensions and integrations for th
 
 ## [Aggregates.NET](https://github.com/charlessolar/Aggregates.NET)
 
-A framework to help developers integrate NServiceBus with [EventStore](https://github.com/EventStore/EventStore).
+A framework to help developers integrate NServiceBus with [KurrentDB](https://github.com/kurrent-io/KurrentDB) (formerly EventStore).
 
 ## [Community.NServiceBus.LambdaHandlers](https://github.com/timbussmann/Community.NServiceBus.LambdaHandlers)
 
@@ -116,19 +116,17 @@ Provides operations support for RabbitMQ applications that run on NServiceBus vi
 
 Created by [SouthsideSoft](http://southsidesoft.com/).
 
-## [Verify.NServiceBus](https://github.com/NServiceBusCommunity/Verify.NServiceBus)
+## [Verify.NServiceBus](https://github.com/VerifyTests/Verify.NServiceBus)
 
 Adds [Verify](https://github.com/VerifyTests/Verify) support to verify NServiceBus test contexts. Given an NServiceBus message handler, Verify.NServiceBus writes the results of the handler's execution (messages sent, published, etc.) to a file that is diffed against the previous test run to make sure the results are as expected without needing to write multiple assertions for each property.
 
-Part of the [NServiceBusCommunity](https://github.com/NServiceBusCommunity) suite of extensions.
-
-## [NServiceBus.Attachments](https://github.com/NServiceBusCommunity/NServiceBus.Attachments)
+## [NServiceBus.Attachments](https://github.com/NServiceBusCommunity/NServiceBus.Community.Attachments)
 
 Adds a streaming based attachment functionality to NServiceBus.
 
 Part of the [NServiceBusCommunity](https://github.com/NServiceBusCommunity) suite of extensions.
 
-## [NServiceBus.AuditFilter](https://github.com/NServiceBusCommunity/NServiceBus.AuditFilter)
+## [NServiceBus.AuditFilter](https://github.com/NServiceBusCommunity/NServiceBus.Community.AuditFilter)
 
 Adds audit message filtering functionality to NServiceBus, so that certain message types can be included or excluded from normal NServiceBus auditing by adding an attribute to the message type.
 
@@ -140,14 +138,14 @@ Leverages the Newtonsoft extension API to encrypt/decrypt specific nodes at seri
 
 Part of the [NServiceBusCommunity](https://github.com/NServiceBusCommunity) suite of extensions.
 
-## [NServiceBus.SqlServer.Native](https://github.com/NServiceBusCommunity/NServiceBus.Native)
+## [NServiceBus.SqlServer.Native](https://github.com/NServiceBusCommunity/NServiceBus.Community.SqlNative)
 
 A shim providing low-level access to the [NServiceBus SQL Server Transport](/transports/sql/) with no NServiceBus or SQL Server Transport reference required.
 
 Part of the [NServiceBusCommunity](https://github.com/NServiceBusCommunity) suite of extensions.
 
-## [NServiceBus Validation](https://github.com/NServiceBusCommunity/NServiceBus.Validation)
+## [NServiceBus Validation](https://github.com/NServiceBusCommunity/NServiceBus.Community.Validation)
 
-Allows validating message contents with options to use [DataAnnotations](https://docs.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations) and [FluentValidation](https://github.com/JeremySkinner/FluentValidation).
+Allows validating message contents with options to use [DataAnnotations](https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations) and [FluentValidation](https://github.com/FluentValidation/FluentValidation).
 
 Part of the [NServiceBusCommunity](https://github.com/NServiceBusCommunity) suite of extensions.
