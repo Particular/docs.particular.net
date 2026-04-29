@@ -12,8 +12,6 @@ class Hosting
 
         var endpointConfiguration = new EndpointConfiguration("EndpointName");
         endpointConfiguration.SendOnly();
-        // Apply other necessary endpoint configuration, e.g. transport
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
 
         #endregion
     }

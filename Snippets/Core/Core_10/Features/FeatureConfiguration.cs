@@ -30,8 +30,6 @@ class MyFeature :
 
         // disable features not in use
         endpointConfiguration.DisableFeature<Sagas>();
-
-        var startableEndpoint = await Endpoint.Create(endpointConfiguration);
         #endregion
     }
 
