@@ -1,10 +1,8 @@
-﻿namespace Shared
-{
-    using System;
-    using NServiceBus;
+﻿namespace Shared;
 
-    public class OrderReceived : IEvent
-    {
-        public Guid OrderId { get; set; }
-    }
+using NServiceBus;
+
+public class OrderReceived : IEvent
+{
+    public Guid OrderId { get; set; }
 }
