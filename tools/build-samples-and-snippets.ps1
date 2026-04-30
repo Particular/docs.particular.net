@@ -16,21 +16,6 @@ function CombinePaths()
     return $fullPath
 }
 
-function Write-GitHubStepSummary()
-{
-    param(
-        [Parameter(ValueFromRemainingArguments = $true)]
-        [string[]] $Lines
-    )
-
-    if([string]::IsNullOrWhiteSpace($Env:GITHUB_STEP_SUMMARY))
-    {
-        return
-    }
-
-    $Lines | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
-}
-
 # Assumes that the current working directory is the root of the docs repo
 function Get-BuildSolutions
 {
@@ -143,12 +128,17 @@ foreach($solution in $solutions) {
 
         if( -not $? ) {
             $exitCode = 1
-            Write-Output ("::error::Build failed: {0}" -f $solution.FullName)
-            Write-GitHubStepSummary ("🔴 Build failed: {0}" -f $solution.FullName)
-            Write-GitHubStepSummary '```txt'
-            Write-GitHubStepSummary $out
-            Write-GitHubStepSummary '```'
             $failedSolutions.Add($solution.FullName)
+   
+            Write-Output ("::error::Build failed: {0}" -f $solution.FullName)
+   
+            if(-not [string]::IsNullOrWhiteSpace($Env:GITHUB_STEP_SUMMARY))
+            {           
+                Write-Output ("🔴 Build failed: {0}" -f $solution.FullName) | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
+                Write-Output ('```txt') | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
+                Write-Output $out | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
+                Write-Output ('```') | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
+            }
         }
     }
     finally
