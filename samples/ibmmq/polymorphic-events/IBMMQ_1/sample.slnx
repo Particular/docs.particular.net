@@ -1,8 +1,0 @@
-<Solution>
-    <Folder Name="/Solution Items/">
-        <File Path="docker-compose.yml" />
-    </Folder>
-    <Project Path="Orders\Orders.csproj" />
-    <Project Path="Shared\Shared.csproj" />
-    <Project Path="Shipping\Shipping.csproj" />
-</Solution>
