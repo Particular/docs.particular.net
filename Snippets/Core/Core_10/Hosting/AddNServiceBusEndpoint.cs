@@ -63,8 +63,9 @@ class AddNServiceBusEndpointHosting
 
         foreach (var tenant in tenants)
         {
-            var endpointConfig = new EndpointConfiguration($"Sales-{tenant}");
-            // shared per-tenant configuration
+            var endpointConfig = new EndpointConfiguration("Sales");
+            endpointConfig.OverrideLocalAddress($"Sales-{tenant}");
+            // additional per-tenant configuration
 
             builder.Services.AddNServiceBusEndpoint(endpointConfig, tenant);
         }

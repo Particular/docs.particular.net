@@ -41,15 +41,15 @@ NServiceBus also supports hosting multiple logical endpoints in one process. Com
 
 Compared to a single-endpoint host, each additional endpoint adds registration, startup overhead, and coordination within the shared process.
 
-Each endpoint is registered with its own `EndpointConfiguration`. Pass an identifier string as the second argument to distinguish them in dependency injection:
+Each endpoint is registered with its own `EndpointConfiguration`. The second argument to `AddNServiceBusEndpoint` is the DI identifier — a [service key](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) used to distinguish that endpoint's `IMessageSession` and per-endpoint keyed services:
 
 snippet: AddNServiceBusEndpointMulti
 
-The endpoint name is the recommended identifier. A distinct identifier is only required when the same endpoint definition is hosted more than once with different per-instance configuration — for example, a per-tenant deployment where the endpoint name is composed at runtime:
+The endpoint name is the recommended DI identifier. A distinct identifier is only required when the same endpoint definition is hosted more than once with different per-instance configuration — for example, a per-tenant deployment where each tenant reads from its own input queue:
 
 snippet: AddNServiceBusEndpointPerTenant
 
-In this case the endpoint name distinguishes each runtime instance for routing, while the tenant key serves as the DI identifier so callers can resolve a specific tenant's `IMessageSession` and keyed services.
+Each tenant shares the `Sales` endpoint name but [overrides its local address](/nservicebus/endpoints/specify-endpoint-name.md#input-queue) for queue isolation. The tenant key serves as the DI identifier so callers can resolve a specific tenant's `IMessageSession` and keyed services.
 
 ### Endpoint-scoped dependencies
 
