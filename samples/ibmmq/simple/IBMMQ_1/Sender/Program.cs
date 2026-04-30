@@ -1,7 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NServiceBus.Transport.IBMMQ;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 Console.Title = "Sender";
 var builder = Host.CreateApplicationBuilder(args);
@@ -66,6 +65,4 @@ while (!cts.IsCancellationRequested)
     Console.WriteLine("Done");
 }
 
-
 await host.StopAsync();
-
