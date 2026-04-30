@@ -9,7 +9,7 @@ related:
 ---
 
 > [!NOTE]
-> For new development, prefer the [recommended hosting model](/nservicebus/hosting/core-hosting.md), which uses the built-in `AddNServiceBusEndpoint` integration on `IServiceCollection`. This page describes the existing package-based `NServiceBus.Extensions.Hosting` and `UseNServiceBus` integration path.
+> For new development, prefer [hosting with Microsoft.Extensions.Hosting](/nservicebus/hosting/core-hosting.md) using the built-in `AddNServiceBusEndpoint` integration on `IServiceCollection`. This page describes the existing package-based `NServiceBus.Extensions.Hosting` and `UseNServiceBus` integration path.
 
 ## Configuration
 
