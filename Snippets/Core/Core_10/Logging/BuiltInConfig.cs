@@ -4,6 +4,7 @@ using NServiceBus.Logging;
 
 class BuiltInConfig
 {
+#pragma warning disable CS0618 // Type or member is obsolete
 
     void ChangingLevel()
     {
@@ -25,5 +26,5 @@ class BuiltInConfig
 
         #endregion
     }
-
+#pragma warning restore CS0618 // Type or member is obsolete
 }
