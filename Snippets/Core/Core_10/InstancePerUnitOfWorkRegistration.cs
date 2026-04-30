@@ -7,6 +7,7 @@ class InstancePerUnitOfWorkRegistration
 {
     InstancePerUnitOfWorkRegistration(EndpointConfiguration endpointConfiguration)
     {
+#pragma warning disable CS0618 // Type or member is obsolete
         #region InstancePerUnitOfWorkRegistration
 
         endpointConfiguration.RegisterComponents(
@@ -16,6 +17,7 @@ class InstancePerUnitOfWorkRegistration
             });
 
         #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
     }
 
     class InstancePerUnitOfWork { }
