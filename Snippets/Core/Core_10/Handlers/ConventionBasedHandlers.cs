@@ -1,10 +1,14 @@
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 using NServiceBus;
 
 namespace OuterNS.InnerNS;
 
 public record MyMessage();
+public record Msg1();
+public record Msg2();
 
 #region SimpleConventionBasedHandler
 
@@ -45,7 +49,31 @@ public class DecoratedConventionHandler
 
 #endregion
 
+
+#region ConventionHandlersTldrSample
+
+[Handler]
+public class HandlersByConvention
+{
+    public async Task Handle(Msg1 message,
+        IMessageHandlerContext context,
+        CancellationToken cancellationToken)
+    {
+    }
+
+    public static async Task Handle(Msg2 message,
+        IMessageHandlerContext context,
+        DatabaseService database,
+        IConfiguration configuration,
+        IHttpClientFactory httpClientFactory,
+        CancellationToken cancellationToken)
+    {
+    }
+}
+#endregion
+
 public class DatabaseService;
+public class
 
 public class ConventionHandlerRegistration
 {
@@ -86,7 +114,4 @@ public class ConventionHandlerRegistration
 }
 
 [HandlerRegistryExtensions(EntryPointName = "SampleProject")]
-public static partial class RegistrationExtensions
-{
-
-}
+public static partial class RegistrationExtensions;

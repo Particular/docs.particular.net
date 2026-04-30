@@ -7,7 +7,15 @@ reviewed: 2026-05-04
 related:
 ---
 
-Starting with NServiceBus version 10.2.0, NServiceBus supports **convention-based message handlers** that do not implement `IHandleMessages<T>`. These handlers are not discovered through traditional assembly scanning, but instead are either added to an NServiceBus endpoint declaratively, or with help from Roslyn analyzers and source generators.
+Starting with NServiceBus version 10.2.0, NServiceBus supports **convention-based message handlers** that do not implement `IHandleMessages<T>`, enabling handlers to be expressed like this:
+
+snippet: ConventionHandlersTldrSample
+
+And then registered on the endpoint like this:
+
+snippet: ConventionHandlerAddAllFromAssembly
+
+Convention-based handlers are not discovered through traditional assembly scanning, but instead are either added to an NServiceBus endpoint declaratively, or with help from Roslyn analyzers and source generators.
 
 ## Handler structure
 
@@ -27,8 +35,7 @@ These requirements must be met for a class to be recognized as a convention-base
 - After the first two parameters, any additional parameters must be either a `CancellationToken` or Services registered in the host's `IServiceCollection`.
 - It can be an instance or static method.
 - A handler class may contain multiple handler methods, differing by the message type, but these methods become an inseparable unit. It is not possible to register one handler method on a class but not the other.
-
-TODO: What happens if there are 2 handler methods for the same message type but with different additional params?
+- If multiple handler methods use the same message type as the first parameter, they will all be executed on the same message.
 
 ## Registering handlers
 
