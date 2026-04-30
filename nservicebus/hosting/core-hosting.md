@@ -90,11 +90,3 @@ When a DI identifier is needed, the endpoint name is the recommended value. A di
 ## Logging
 
 NServiceBus uses [`Microsoft.Extensions.Logging`](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/) as its built-in logging infrastructure. Log events flow through the host's configured `ILoggerFactory` with endpoint context attached. The `NServiceBus.Extensions.Logging` package is no longer required.
-
-For migration from `LogManager.Use<T>`, `LogManager.UseFactory`, `DefaultFactory`, and `LogManager.GetLogger`, see the [Logging section of the NServiceBus 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/).
-
-## Migrating from self-hosted endpoints
-
-Self-hosting an endpoint with `Endpoint.Create()` or `Endpoint.Start()` is deprecated, along with `IEndpointInstance`, `IStartableEndpoint`, and `NServiceBus.Installer`. `EndpointConfiguration.RegisterComponents` is also obsolete; dependency registrations now flow through the host's `IServiceCollection` directly, or through keyed services when per-endpoint scoping is required.
-
-See the [NServiceBus 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/) for the full migration surface.
