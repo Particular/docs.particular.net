@@ -30,8 +30,8 @@ The general recommendation is to use the native services for each cloud provider
 
 #### Persistence options
 Depending on the scenario, different persistence options can be used for storing saga state and outbox records:
- - [Azure Cosmos DB](/persistence/cosmosdb/). See the [simple Cosmos DB sample](/samples/cosmosdb/simple/) to get started.
- - [Amazon DynamoDB](/persistence/dynamodb/). See the [simple DynamoDB persistence sample](/samples/aws/dynamodb-simple/) or the [sagas with SQS and Lambda sample](/samples/aws/sagas/) to get started.
+- [Azure Cosmos DB](/persistence/cosmosdb/). See the [simple Cosmos DB sample](/samples/cosmosdb/simple/) to get started.
+- [Amazon DynamoDB](/persistence/dynamodb/). See the [simple DynamoDB persistence sample](/samples/aws/dynamodb-simple/) or the [sagas with SQS and Lambda sample](/samples/aws/sagas/) to get started.
 
 
 ### Cloud-agnostic environments
