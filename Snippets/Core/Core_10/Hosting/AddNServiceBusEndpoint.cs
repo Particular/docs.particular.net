@@ -1,5 +1,6 @@
 namespace Core.Hosting;
 
+using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -70,6 +71,63 @@ class AddNServiceBusEndpointHosting
 
         #endregion
     }
+
+    void ResolveFromProvider(IServiceProvider serviceProvider)
+    {
+        #region AddNServiceBusEndpointGetSession
+
+        var session = serviceProvider.GetRequiredService<IMessageSession>();
+
+        #endregion
+    }
+
+    void ResolveKeyedFromProvider(IServiceProvider serviceProvider)
+    {
+        #region AddNServiceBusEndpointGetKeyedSession
+
+        var salesSession = serviceProvider.GetRequiredKeyedService<IMessageSession>("Sales");
+        var billingSession = serviceProvider.GetRequiredKeyedService<IMessageSession>("Billing");
+
+        #endregion
+    }
 }
 
 record DatabaseService(string Name);
+record Order(string Id);
+
+class MyService
+{
+    public void DoSomething() { }
+}
+
+#region AddNServiceBusEndpointInjectSession
+
+class OrderService(IMessageSession session)
+{
+    public Task Submit(Order order) => session.Send(order);
+}
+
+#endregion
+
+#region AddNServiceBusEndpointInjectKeyedSession
+
+class SalesOrderService([FromKeyedServices("Sales")] IMessageSession session)
+{
+    public Task Submit(Order order) => session.Send(order);
+}
+
+#endregion
+
+#region AddNServiceBusEndpointInjectMixed
+
+// MyService is a global (non-keyed) service; IMessageSession is keyed for the "Sales" endpoint.
+class SalesOrderRouter(MyService service, [FromKeyedServices("Sales")] IMessageSession session)
+{
+    public Task Submit(Order order)
+    {
+        service.DoSomething();
+        return session.Send(order);
+    }
+}
+
+#endregion

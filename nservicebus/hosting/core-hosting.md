@@ -20,7 +20,13 @@ Register the endpoint on the host's service collection:
 
 snippet: AddNServiceBusEndpointSingle
 
-The endpoint starts and stops with the host's lifecycle. `IMessageSession` is available in dependency injection for components that need to send or publish from outside a message handler.
+The endpoint starts and stops with the host's lifecycle. `IMessageSession` is registered on the host's `IServiceCollection` and can be resolved from the service provider:
+
+snippet: AddNServiceBusEndpointGetSession
+
+Or injected into controllers, background services, or any other component that needs to send or publish from outside a message handler or other NServiceBus extension point:
+
+snippet: AddNServiceBusEndpointInjectSession
 
 For most applications, a single endpoint per process is the simplest place to start.
 
@@ -53,6 +59,20 @@ snippet: AddNServiceBusEndpointKeyedServices
 Each endpoint resolves its own instance as keyed services using the previously chosen identifier as a key. Services that do not vary per endpoint are registered normally (non-keyed) on `IServiceCollection` and every endpoint resolves the same instance.
 
 It is still possible to use `EndpointConfiguration.RegisterComponents` and the API will internally automatically use the right approach regardless whether a single endpoint or multiple endpoints are used. The API is obsoleted with a warning and it is recommended to migrate to explicit registrations shown above. For more migration guidance see the [NServiceBus 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/).
+
+### Resolving services per endpoint
+
+Inside NServiceBus extension points — message handlers, sagas, features, and installers — per-endpoint services resolve automatically from the right scope. `[FromKeyedServices]` is not needed in those contexts.
+
+Outside extension points (for example, controllers, background services, or any host-level component that needs to send or publish), use `GetRequiredKeyedService<T>(identifier)` from the service provider or `[FromKeyedServices(identifier)]` for constructor injection:
+
+snippet: AddNServiceBusEndpointGetKeyedSession
+
+snippet: AddNServiceBusEndpointInjectKeyedSession
+
+Global (non-keyed) services and per-endpoint keyed services can be mixed in the same constructor:
+
+snippet: AddNServiceBusEndpointInjectMixed
 
 ## Endpoint name and DI identifier
 
