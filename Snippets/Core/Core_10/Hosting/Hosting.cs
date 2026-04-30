@@ -6,7 +6,7 @@ using NServiceBus;
 
 class Hosting
 {
-    async Task SendOnly()
+    void SendOnly()
     {
         #region Hosting-SendOnly
 
@@ -16,6 +16,7 @@ class Hosting
         #endregion
     }
 
+#pragma warning disable CS0618 // Type or member is obsolete
     async Task Startup()
     {
         #region Hosting-Startup
@@ -31,6 +32,7 @@ class Hosting
 
     async Task Shutdown(IEndpointInstance endpointInstance)
     {
+
         #region Hosting-Shutdown
         await endpointInstance.Stop();
         #endregion
@@ -50,4 +52,5 @@ class Hosting
         }
     }
     #endregion
+#pragma warning restore CS0618 // Type or member is obsolete
 }
