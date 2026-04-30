@@ -45,11 +45,11 @@ Each endpoint is registered with its own `EndpointConfiguration`. The second arg
 
 snippet: AddNServiceBusEndpointMulti
 
-The endpoint name is the recommended DI identifier. A distinct identifier is only required when the same endpoint definition is hosted more than once with different per-instance configuration — for example, a per-tenant deployment where each tenant reads from its own input queue:
+A distinct DI identifier is only needed when the same endpoint is registered more than once in a process — for example, a per-tenant deployment where each tenant has its own input queue:
 
 snippet: AddNServiceBusEndpointPerTenant
 
-Each tenant shares the `Sales` endpoint name but [overrides its local address](/nservicebus/endpoints/specify-endpoint-name.md#input-queue) for queue isolation. The tenant key serves as the DI identifier so callers can resolve a specific tenant's `IMessageSession` and keyed services.
+All tenants share the `Sales` endpoint name; each gets its own [input queue](/nservicebus/endpoints/specify-endpoint-name.md#input-queue). The tenant key serves as the DI identifier so callers can resolve a specific tenant's `IMessageSession` and keyed services.
 
 ### Endpoint-scoped dependencies
 
