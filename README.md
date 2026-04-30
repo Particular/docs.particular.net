@@ -41,7 +41,7 @@ For more information about devcontainers visit the [official documentation](http
 
 ### Building samples and snippets
 
-To build all samples and snippets run `.\tools\build-samples-and-snippets.ps1` from the repository root folder.
+To build all samples and snippets run `.\tools\build-samples-and-snippets.ps1 -FullBuild` from the repository root folder. Without `-FullBuild`, the script only builds affected solutions unless it is running on `master`.
 
 ## Conventions
 

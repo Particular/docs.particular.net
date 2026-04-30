@@ -1,3 +1,8 @@
+[CmdletBinding()]
+param(
+    [switch] $FullBuild
+)
+
 # Assumes working directory is Docs repository root folder
 function CombinePaths()
 {
@@ -11,10 +16,45 @@ function CombinePaths()
     return $fullPath
 }
 
+function Write-GitHubStepSummary()
+{
+    param(
+        [Parameter(ValueFromRemainingArguments = $true)]
+        [string[]] $Lines
+    )
+
+    if([string]::IsNullOrWhiteSpace($Env:GITHUB_STEP_SUMMARY))
+    {
+        return
+    }
+
+    $Lines | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
+}
+
 # Assumes that the current working directory is the root of the docs repo
 function Get-BuildSolutions
 {
+    param(
+        [switch] $FullBuild
+    )
+
+    if($FullBuild)
+    {
+        Write-Host "Full build requested; building every solution file in repo"
+        $result = Get-ChildItem -Filter *.sln -Recurse | Sort-Object LastWriteTime -Descending
+        return $result
+    }
+
     $branch = $env:GITHUB_REF
+    if(-not $branch)
+    {
+        $localBranch = git branch --show-current
+        if( -not $? -or [string]::IsNullOrWhiteSpace($localBranch) ) {
+            throw "Unable to determine current branch"
+        }
+
+        $branch = "refs/heads/$localBranch"
+    }
     Write-Host "Current branch is $branch"
 
     if($branch -eq "refs/heads/master")
@@ -81,7 +121,7 @@ $failedSolutions = New-Object Collections.Generic.List[String]
 $failedSolutionsOutput = CombinePaths $pwd.Path "failed-samples-and-snippets.log"
 $executionDirectory = Get-Location
 
-$solutions = Get-BuildSolutions
+$solutions = Get-BuildSolutions -FullBuild:$FullBuild
 
 # Don't really need this polluting the console output when we have Actions Summary output for failed jobs
 # but leaving it commented here in case there's a problem in the future with the git diff logic
@@ -104,10 +144,10 @@ foreach($solution in $solutions) {
         if( -not $? ) {
             $exitCode = 1
             Write-Output ("::error::Build failed: {0}" -f $solution.FullName)
-            Write-Output ("🔴 Build failed: {0}" -f $solution.FullName) | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
-            Write-Output ('```txt') | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
-            Write-Output $out | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
-            Write-Output ('```') | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
+            Write-GitHubStepSummary ("🔴 Build failed: {0}" -f $solution.FullName)
+            Write-GitHubStepSummary '```txt'
+            Write-GitHubStepSummary $out
+            Write-GitHubStepSummary '```'
             $failedSolutions.Add($solution.FullName)
         }
     }
