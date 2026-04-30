@@ -68,13 +68,14 @@ public class InstallerSetup
 
         hostBuilder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
-        // this will run the installers and then stop the host
+        // On run, this will run the installers and then stop the host
         hostBuilder.Services.AddNServiceBusInstallers();
 
-        //or
-        hostBuilder.Services.AddNServiceBusInstallers(options => options.ShutdownBehavior = InstallersShutdownBehavior.Continue);
+        // OR, this will run the installers and allow the host to continue
+        hostBuilder.Services.AddNServiceBusInstallers(options =>
+            options.ShutdownBehavior = InstallersShutdownBehavior.Continue);
 
-        // this will run the installers and keep the host running
+        // This will run the installers with the requested ShutdownBehavior
         await hostBuilder.Build()
             .RunAsync();
 
