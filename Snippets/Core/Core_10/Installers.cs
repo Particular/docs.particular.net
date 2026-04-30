@@ -9,14 +9,11 @@ using NServiceBus.Installation;
 
 class ForInstallationOnReplacement
 {
-    async Task Simple(EndpointConfiguration endpointConfiguration)
+    void Simple(EndpointConfiguration endpointConfiguration)
     {
         #region Installers
 
         endpointConfiguration.EnableInstallers();
-
-        // this will run the installers
-        await Endpoint.Start(endpointConfiguration);
 
         #endregion
     }
