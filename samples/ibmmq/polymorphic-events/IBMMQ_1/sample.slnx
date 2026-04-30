@@ -1,10 +1,8 @@
 <Solution>
-    <Folder Name="/sample/">
-        <Project Path="Shipping\Shipping.csproj"/>
-        <Project Path="Orders\Orders.csproj"/>
-        <Project Path="Shared\Shared.csproj"/>
-    </Folder>
     <Folder Name="/Solution Items/">
-        <File Path="docker-compose.yml"/>
+        <File Path="docker-compose.yml" />
     </Folder>
+    <Project Path="Orders\Orders.csproj" />
+    <Project Path="Shared\Shared.csproj" />
+    <Project Path="Shipping\Shipping.csproj" />
 </Solution>

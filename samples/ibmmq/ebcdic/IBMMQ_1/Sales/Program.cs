@@ -3,35 +3,32 @@ using Microsoft.Extensions.Hosting;
 using NServiceBus.MessageMutator;
 using NServiceBus.Transport.IBMMQ;
 
-var host = Host
-    .CreateDefaultBuilder(args)
-    .UseNServiceBus(context =>
-    {
-        var endpointConfiguration = new EndpointConfiguration("DEV.RECEIVER");
+var builder = Host.CreateApplicationBuilder(args);
 
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.Recoverability().Delayed(settings => settings.NumberOfRetries(0));
-        endpointConfiguration.EnableInstallers();
+var endpointConfiguration = new EndpointConfiguration("DEV.RECEIVER");
 
-        var transport = new IBMMQTransport()
-        {
-            QueueManagerName = "QM1",
-            Channel = "DEV.ADMIN.SVRCONN",
-            User = "admin",
-            Password = "passw0rd"
-        };
-        endpointConfiguration.UseTransport(transport);
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.Recoverability().Delayed(settings => settings.NumberOfRetries(0));
+endpointConfiguration.EnableInstallers();
 
-        #region FixedLengthEBCDICToJsonMutatorRegistration
-        //in order to use IBM500 EBCDIC encoding, we need to register the code page provider
-        Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+var transport = new IBMMQTransport()
+{
+    QueueManagerName = "QM1",
+    Channel = "DEV.ADMIN.SVRCONN",
+    User = "admin",
+    Password = "passw0rd"
+};
+endpointConfiguration.UseTransport(transport);
 
-        endpointConfiguration.RegisterMessageMutator(new FixedLengthEBCDICToJsonMutator());
+#region FixedLengthEBCDICToJsonMutatorRegistration
+//in order to use IBM500 EBCDIC encoding, we need to register the code page provider
+Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
 
-        #endregion
-      
-        return endpointConfiguration;
-    })
-    .Build();
+endpointConfiguration.RegisterMessageMutator(new FixedLengthEBCDICToJsonMutator());
 
+#endregion
+
+builder.UseNServiceBus(endpointConfiguration);
+
+var host = builder.Build();
 await host.RunAsync();
