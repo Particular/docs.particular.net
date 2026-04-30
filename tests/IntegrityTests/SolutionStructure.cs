@@ -39,5 +39,12 @@ namespace IntegrityTests
 
             Assert.That(directoriesWithMoreThanOneProject, Is.Empty, errMsg);
         }
+
+        [Test]
+        public void DoNotUseSlnxFiles()
+        {
+            new TestRunner("*.slnx", "Do not use slnx files")
+                .Run(solutionFilePath => false);
+        }
     }
 }
