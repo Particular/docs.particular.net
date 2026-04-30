@@ -5,6 +5,7 @@ using NServiceBus;
 
 class Usage
 {
+#pragma warning disable CS0618 // Type or member is obsolete
     void InstancePerCall(EndpointConfiguration endpointConfiguration)
     {
         #region InstancePerCall
@@ -82,4 +83,5 @@ class Usage
 
         #endregion
     }
+#pragma warning restore CS0618 // Type or member is obsolete
 }
