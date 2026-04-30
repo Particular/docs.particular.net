@@ -1,4 +1,6 @@
-﻿namespace Core;
+﻿using Microsoft.Extensions.Hosting;
+
+namespace Core;
 
 using System;
 using System.Linq;
@@ -21,10 +23,10 @@ class ForInstallationOnReplacement
 
 class SwitchInstallersWithCommandline
 {
-    static EndpointConfiguration endpointConfiguration = new EndpointConfiguration("someEndpoint");
-
-    public static async Task Main_(string[] args)
+    public static void InstallersRunWhenNecessaryCommandLine()
     {
+        var endpointConfiguration = new EndpointConfiguration("someEndpoint");
+
         #region InstallersRunWhenNecessaryCommandLine
 
         var runInstallers = Environment.GetCommandLineArgs().Any(x => string.Equals(x, "/runInstallers", StringComparison.OrdinalIgnoreCase));
@@ -32,9 +34,6 @@ class SwitchInstallersWithCommandline
         if (runInstallers)
         {
             endpointConfiguration.EnableInstallers();
-            // This will run the installers but not start the instance.
-            await Endpoint.Create(endpointConfiguration);
-            Environment.Exit(0);
         }
 
         #endregion
@@ -53,6 +52,7 @@ class SwitchInstallersByMachineNameConvention
         }
 
         #endregion
+
         return Task.CompletedTask;
     }
 }
@@ -62,30 +62,22 @@ public class InstallerSetup
     public static async Task MainProgram()
     {
         #region installer-setup
-        var endpointConfiguration = new EndpointConfiguration("my-endpoint");
-        // configure endpoint
 
-        await Installer.Setup(endpointConfiguration);
-        #endregion
-    }
-}
+        var hostBuilder = new HostApplicationBuilder();
+        var endpointConfiguration = new EndpointConfiguration("someEndpoint");
 
-public class InstallerSetupExternallyManagedContainer
-{
-    public static async Task MainProgram()
-    {
-        #region installer-setup-externally-managed-container
-        var endpointConfiguration = new EndpointConfiguration("my-endpoint");
-        // configure endpoint
+        hostBuilder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
-        var serviceCollection = new ServiceCollection();
-        // custom registrations
+        // this will run the installers and then stop the host
+        hostBuilder.Services.AddNServiceBusInstallers();
 
-        var installer = Installer.CreateInstallerWithExternallyManagedContainer(endpointConfiguration, serviceCollection);
+        //or
+        hostBuilder.Services.AddNServiceBusInstallers(options => options.ShutdownBehavior = InstallersShutdownBehavior.Continue);
 
-        var serviceProvider = serviceCollection.BuildServiceProvider();
+        // this will run the installers and keep the host running
+        await hostBuilder.Build()
+            .RunAsync();
 
-        await installer.Setup(serviceProvider);
         #endregion
     }
 }
