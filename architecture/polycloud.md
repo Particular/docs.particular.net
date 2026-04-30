@@ -35,7 +35,7 @@ Depending on the scenario, different persistence options can be used for storing
 - [Azure Cosmos DB](/persistence/cosmosdb/). See the [simple Cosmos DB sample](/samples/cosmosdb/simple/) to get started.
 - [Amazon DynamoDB](/persistence/dynamodb/). See the [simple DynamoDB persistence sample](/samples/aws/dynamodb-simple/) or the [sagas with SQS and Lambda sample](/samples/aws/sagas/) to get started.
 - [SQL-based](/persistence/sql)
-- [Other storage technologies](https://docs.particular.net/persistence/#supported-persisters)
+- [Other storage technologies](/persistence/#supported-persisters)
  
 ### Cloud-agnostic environments
 
