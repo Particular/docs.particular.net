@@ -51,15 +51,15 @@ In the following example, endpoints running on AWS (using Amazon SQS) communicat
 
 ```mermaid
 flowchart LR
-Br(Bridge)
-OrderService[Order Service] <---> Br
-Br <---> BillingService[Billing Service]
-subgraph AWS
-  OrderService
-end
-subgraph Azure
-  BillingService
-end
+ Br(Bridge)
+ OrderService[Order Service] <---> Br
+ Br <---> BillingService[Billing Service]
+ subgraph AWS
+   OrderService
+ end
+ subgraph Azure
+   BillingService
+ end
 ```
 
 Because the bridge handles message routing, endpoints on both sides require [no changes](/samples/bridge/simple/) to communicate across clouds.
@@ -72,19 +72,19 @@ The simplest topology connects two cloud environments with a single bridge insta
 
 ```mermaid
 flowchart LR
-Br(Bridge)
-A[Endpoint A] <---> Br
-B[Endpoint B] <---> Br
-Br <---> C[Endpoint C]
-Br <---> D[Endpoint D]
-subgraph AWS
-  A
-  B
-end
-subgraph Azure
-  C
-  D
-end
+ Br(Bridge)
+ A[Endpoint A] <---> Br
+ B[Endpoint B] <---> Br
+ Br <---> C[Endpoint C]
+ Br <---> D[Endpoint D]
+ subgraph AWS
+   A
+   B
+ end
+ subgraph Azure
+   C
+   D
+ end
 ```
 
 ### Multiple clouds
@@ -93,23 +93,23 @@ When endpoints span three or more cloud environments, multiple bridges can be ch
 
 ```mermaid
 flowchart LR
-Br1(Bridge 1)
-Br2(Bridge 2)
-A[Endpoint A] <---> Br1
-Br1 <---> B[Endpoint B]
-B <---> Br2
-Br2 <---> C[Endpoint C]
-subgraph AWS
-  A
-  Br1
-end
-subgraph Azure Business Unit 1
-  B
-  Br2
-end
-subgraph Azure Business Unit 2
-  C
-end
+    Br1(Bridge 1)
+    Br2(Bridge 2)
+    A[Endpoint A] <---> Br1
+    Br1 <---> B[Endpoint B]
+    B <---> Br2
+    Br2 <---> C[Endpoint C]
+    subgraph AWS
+      A
+      Br1
+    end
+    subgraph "Azure<br>Business Unit 1"
+      B
+      Br2
+    end
+    subgraph "Azure<br>Business Unit 2"
+      C
+    end
 ```
 
 Alternatively, a single bridge instance can be configured with more than two transports, acting as a hub that routes between all connected environments without chaining.
@@ -126,13 +126,11 @@ The Particular Platform tools support polycloud deployments. The NServiceBus Mes
 
 ```mermaid
 flowchart LR
-Br(Bridge)
-SC[ServiceControl]
-A[Endpoint A
-AWS SQS] -->|audit/error| Br
-B[Endpoint B
-Azure ASB] -->|audit/error| Br
-Br --> SC
+    Br(Bridge)
+    SC[ServiceControl]
+    A["Endpoint A<br>AWS SQS"] -->|audit/error| Br
+    B["Endpoint B<br>Azure ASB"] -->|audit/error| Br
+    Br --> SC
 ```
 
 [The bridge forwards audit and error messages](/samples/bridge/service-control/) across transport boundaries. ServicePulse then provides a unified view of all endpoints, failed messages, and message flows across the entire polycloud system.
