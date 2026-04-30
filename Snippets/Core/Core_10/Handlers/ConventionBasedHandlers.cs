@@ -73,7 +73,6 @@ public class HandlersByConvention
 #endregion
 
 public class DatabaseService;
-public class
 
 public class ConventionHandlerRegistration
 {
