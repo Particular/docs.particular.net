@@ -76,6 +76,21 @@ function Get-BuildSolutions
     return $result | Sort-Object | Get-Unique
 }
 
+function Write-GitHubStepSummary
+{
+    param
+    (
+        [string] $Content
+    )
+
+    if([string]::IsNullOrWhiteSpace($Env:GITHUB_STEP_SUMMARY))
+    {
+        return
+    }
+
+    $Content | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
+}
+
 $exitCode = 0
 $failedSolutions = New-Object Collections.Generic.List[String]
 $failedSolutionsOutput = CombinePaths $pwd.Path "failed-samples-and-snippets.log"
@@ -104,10 +119,10 @@ foreach($solution in $solutions) {
         if( -not $? ) {
             $exitCode = 1
             Write-Output ("::error::Build failed: {0}" -f $solution.FullName)
-            Write-Output ("🔴 Build failed: {0}" -f $solution.FullName) | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
-            Write-Output ('```txt') | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
-            Write-Output $out | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
-            Write-Output ('```') | Out-File -FilePath $Env:GITHUB_STEP_SUMMARY -Encoding utf-8 -Append
+            Write-GitHubStepSummary ("🔴 Build failed: {0}" -f $solution.FullName)
+            Write-GitHubStepSummary '```txt'
+            Write-GitHubStepSummary $out
+            Write-GitHubStepSummary '```'
             $failedSolutions.Add($solution.FullName)
         }
     }
