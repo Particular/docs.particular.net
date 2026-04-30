@@ -28,11 +28,12 @@ The general recommendation is to use the native services for each cloud provider
 
 [For components hosted in AWS](/architecture/aws/messaging.md), [Amazon SQS](/transports/sqs/) is the recommended option. It is fully managed, scales automatically, and integrates with other AWS services. NServiceBus uses Amazon SNS alongside SQS to support the publish/subscribe pattern. When messages exceed the SQS size limit (256 KB for events, 1 MiB for commands), the transport can offload payloads to Amazon S3.
 
-#### Persistence options
+### Persistence options
+
 Depending on the scenario, different persistence options can be used for storing saga state and outbox records:
+
 - [Azure Cosmos DB](/persistence/cosmosdb/). See the [simple Cosmos DB sample](/samples/cosmosdb/simple/) to get started.
 - [Amazon DynamoDB](/persistence/dynamodb/). See the [simple DynamoDB persistence sample](/samples/aws/dynamodb-simple/) or the [sagas with SQS and Lambda sample](/samples/aws/sagas/) to get started.
-
 
 ### Cloud-agnostic environments
 
