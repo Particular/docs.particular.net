@@ -11,7 +11,7 @@ Starting with NServiceBus version 10.2.0, NServiceBus supports **convention-base
 
 ## Handler structure
 
-A convention-based handler can look exactly like a regula rmessage handler, but does not implement the interface:
+A convention-based handler can look exactly like a regular message handler, but does not implement the interface:
 
 snippet: SimpleConventionBasedHandler
 
@@ -19,13 +19,13 @@ Without the rigid structure of the `IHandleMessages<T>` interface, additional pa
 
 snippet: ConventionsBasedHandlerExtraParams
 
-These requirements must be met for a class to be recongizable as a convention-based message handler:
+These requirements must be met for a class to be recognized as a convention-based message handler:
 
 - Must contain a handler method named `Handle` which returns `Task`.
 - The handler method's first parameter must be a message class.
-- The hadnler method's second parameter must be an `IMessageHandlerContext`.
-- After the first two parameters, any additional parameters must be either a `CancellationToken` or registered in host's `IServiceCollection`.
-- The method can be an instance or static method.
+- The handler method's second parameter must be an `IMessageHandlerContext`.
+- After the first two parameters, any additional parameters must be either a `CancellationToken` or Services registered in the host's `IServiceCollection`.
+- It can be an instance or static method.
 - A handler class may contain multiple handler methods, differing by the message type, but these methods become an inseparable unit. It is not possible to register one handler method on a class but not the other.
 
 TODO: What happens if there are 2 handler methods for the same message type but with different additional params?
@@ -55,7 +55,7 @@ snippet: ConventionHandlerAllGeneratedAddMethods
 While the source generation simplifies registering multiple handlers or sagas to an endpoint with one line of code, the generation relies on the `[Handler]` and `[Saga]` attributes to identify what qualifies as a handler or a saga.
 
 > [!TIP]
-> The reason the source generation works on the `[Handler]` and `[Saga]` attributes is because source generators, which may run in your editor up to every time you press a key, must be very fast and efficient. Identifying generation targets using a marker attribute is the most optimized method availble when using the Roslyn SDK. On the other hand, using marker interfaces to identify generation targets is [explicitly called out as an anti-pattern in the source generator documentation](https://github.com/dotnet/roslyn/blob/main/docs/features/incremental-generators.cookbook.md).
+> The reason the source generation works on the `[Handler]` and `[Saga]` attributes is because source generators, which may run in your editor up to every time you press a key, must be very fast and efficient. Identifying generation targets using a marker attribute is the most optimized method available when using the Roslyn SDK. On the other hand, using marker interfaces to identify generation targets is [explicitly called out as an anti-pattern in the source generator documentation](https://github.com/dotnet/roslyn/blob/main/docs/features/incremental-generators.cookbook.md).
 
 Roslyn analyzers help to ensure that handlers or sagas don't accidentally escape identification, causing them to remain unregistered accidentally:
 
