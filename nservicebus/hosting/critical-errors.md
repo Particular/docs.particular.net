@@ -1,7 +1,7 @@
 ---
 title: Critical Errors
 summary: How to handle critical errors in NServiceBus that adversely affect messaging in an endpoint.
-reviewed: 2026-04-27
+reviewed: 2026-01-12
 component: Core
 ---
 
@@ -27,7 +27,7 @@ Critical errors can sometimes be persistent. When a critical error persists, it 
 
 ### Stop the endpoint
 
-When hosted with [`Microsoft.Extensions.Hosting`](https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host), calling `IHostApplicationLifetime.StopApplication()` stops the host gracefully, which in turn stops the NServiceBus endpoint.
+[Microsoft Generic Host's](/nservicebus/hosting/extensions-hosting.md) `IHostApplicationLifetime.Stop` method stops the NServiceBus endpoint gracefully.
 
 Alternatively, a call to `criticalErrorContext.Stop` can be used.
 
@@ -38,7 +38,7 @@ Calling `criticalErrorContext.Stop` without terminating the host process will on
 
 ### Terminate and restart the process
 
-1. Terminate the process. If using `Environment.FailFast` or `IHostApplicationLifetime.StopApplication()`, the NServiceBus endpoint can attempt a graceful shutdown, which can be useful in non-transactional processing environments.
+1. Terminate the process. If using `Environment.FailFast` or `IHostApplicationLifetime.Stop`, the NServiceBus endpoint can attempt a graceful shutdown, which can be useful in non-transactional processing environments.
 2. Ensure the environment is configured to automatically restart processes when they stop.
   * IIS: The IIS host will automatically spawn a new instance.
   * Windows Service: The OS can restart the service after 1 minute if [Windows Service Recovery](/nservicebus/hosting/windows-service.md#installation-setting-the-restart-recovery-options) is enabled.
