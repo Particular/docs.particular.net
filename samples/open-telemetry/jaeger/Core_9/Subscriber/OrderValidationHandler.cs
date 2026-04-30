@@ -1,13 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
-using NServiceBus;
-using Shared;
+﻿using Shared;
 
 public class OrderValidationHandler : IHandleMessages<OrderReceived>
 {
     public async Task Handle(OrderReceived message, IMessageHandlerContext context)
     {
         await Task.Delay(50, context.CancellationToken);
+
         if (Random.Shared.NextDouble() >= 0.5)
         {
             Console.WriteLine($"Confirming order {message.OrderId}");
