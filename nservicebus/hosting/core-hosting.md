@@ -9,20 +9,14 @@ related:
   - samples/hosting/generic-host
 ---
 
-Starting in NServiceBus version 10.2, the recommended way to host NServiceBus is through `Microsoft.Extensions.Hosting` by registering endpoints with `IServiceCollection` using `AddNServiceBusEndpoint`. This aligns endpoint startup, dependency injection, and logging with the standard .NET hosting model, and it supports both the common single-endpoint case and advanced scenarios that host multiple endpoints in one process.
+NServiceBus endpoints are hosted with [`Microsoft.Extensions.Hosting`](https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host) by registering them on `IServiceCollection` using `AddNServiceBusEndpoint`. Endpoint startup, dependency injection, and logging align with the standard .NET hosting model, and the same registration approach supports both single-endpoint and multi-endpoint hosts.
 
-## Choosing an integration path
-
-NServiceBus provides two integration paths with `Microsoft.Extensions.Hosting`:
-
-- **Built-in integration** (recommended): use `AddNServiceBusEndpoint` on `IServiceCollection`. Available starting in NServiceBus 10.2.
-- **Package-based integration** (legacy): the [`NServiceBus.Extensions.Hosting`](https://www.nuget.org/packages/NServiceBus.Extensions.Hosting) package and its `UseNServiceBus` method are no longer the recommended path. Existing applications should plan to migrate; new applications should use the built-in integration.
-
-For details on the `UseNServiceBus` approach, see [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md).
+> [!NOTE]
+> Earlier versions of NServiceBus relied on the [`NServiceBus.Extensions.Hosting`](https://www.nuget.org/packages/NServiceBus.Extensions.Hosting) package and the `UseNServiceBus` extension method on `IHostBuilder`. That package is still supported in NServiceBus 10 but is no longer the recommended approach for new development. For details, see [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md).
 
 ## Hosting a single endpoint
 
-Register the endpoint on the host's service collection. For new development, this is the recommended alternative to the `UseNServiceBus` pattern in `NServiceBus.Extensions.Hosting`.
+Register the endpoint on the host's service collection:
 
 snippet: AddNServiceBusEndpointSingle
 
@@ -60,12 +54,18 @@ Each endpoint resolves its own instance as keyed services using the previously c
 
 It is still possible to use `EndpointConfiguration.RegisterComponents` and the API will internally automatically use the right approach regardless whether a single endpoint or multiple endpoints are used. The API is obsoleted with a warning and it is recommended to migrate to explicit registrations shown above. For more migration guidance see the [NServiceBus 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/).
 
-## Endpoint identity and the DI identifier
+## Endpoint name and DI identifier
 
-- **Endpoint name** — the NServiceBus identity set on `EndpointConfiguration`. Drives the input queue, routing, diagnostics, and log context. Unique across the system.
-- **Endpoint identifier** — the dependency-injection slot used to resolve this endpoint's `IMessageSession` and keyed dependencies. Scoped to a single process. Defaults to the endpoint name.
+Two identifiers describe an endpoint:
 
-In a single-endpoint host, the two are the same value and the distinction does not matter. In a multi-endpoint host, each endpoint retains its own input queue, `IMessageSession`, and per-endpoint configuration.
+|                | Endpoint name                                       | DI identifier                                                              |
+| -------------- | --------------------------------------------------- | -------------------------------------------------------------------------- |
+| Identifies     | The logical endpoint (queue, routing, log context)  | The DI registration for `IMessageSession` and per-endpoint keyed services  |
+| Set via        | `new EndpointConfiguration(name)`                   | Second argument to `AddNServiceBusEndpoint(config, identifier)`            |
+| Required       | Always                                              | When more than one endpoint is registered on the same `IServiceCollection` |
+| Unique across  | Logical endpoints in the system                     | Endpoint registrations in the process                                      |
+
+When a DI identifier is needed, the endpoint name is the recommended value. A different value is only needed when the same endpoint definition is hosted more than once in one process — for example, a per-tenant deployment. See [Hosting multiple endpoints](#hosting-multiple-endpoints) for the registration patterns.
 
 ## Logging
 
