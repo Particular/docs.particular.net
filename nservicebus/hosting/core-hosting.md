@@ -32,13 +32,14 @@ For most applications, a single endpoint per process is the simplest place to st
 
 ## Hosting multiple endpoints
 
-NServiceBus also supports hosting multiple logical endpoints in one process. This is typically useful when a single-endpoint host is not the right fit. Common scenarios:
+NServiceBus also supports hosting multiple logical endpoints in one process. Common scenarios:
 
 - Multi-tenant systems where each tenant requires an isolated endpoint.
+- Modular monoliths where each module owns its own endpoint within a shared host.
 - Partitioned throughput where each partition is an endpoint sharing a host.
 - Co-located infrastructure endpoints that do not justify a separate process.
 
-Compared to a single-endpoint host, each additional endpoint adds registration, startup overhead, and coordination within the shared process. Keep the configuration and endpoint identities explicit so the host remains easy to reason about.
+Compared to a single-endpoint host, each additional endpoint adds registration, startup overhead, and coordination within the shared process.
 
 Each endpoint is registered with its own `EndpointConfiguration`. Pass an identifier string as the second argument to distinguish them in dependency injection:
 
@@ -52,13 +53,11 @@ In this case the endpoint name distinguishes each runtime instance for routing, 
 
 ### Endpoint-scoped dependencies
 
-When a shared service needs its own per-endpoint instance, register it as a [keyed service](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) using the previously chosen (e.g. endpoint name) identifier as a key:
+When each endpoint requires a different implementation of a shared service, register it as a [keyed service](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) using the chosen DI identifier (typically the endpoint name) as the key:
 
 snippet: AddNServiceBusEndpointKeyedServices
 
-Each endpoint resolves its own instance as keyed services using the previously chosen identifier as a key. Services that do not vary per endpoint are registered normally (non-keyed) on `IServiceCollection` and every endpoint resolves the same instance.
-
-It is still possible to use `EndpointConfiguration.RegisterComponents` and the API will internally automatically use the right approach regardless whether a single endpoint or multiple endpoints are used. The API is obsoleted with a warning and it is recommended to migrate to explicit registrations shown above. For more migration guidance see the [NServiceBus 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/).
+Each endpoint resolves its own `DatabaseService` instance as keyed services using the previously chosen identifier as a key. Services that do not vary per endpoint are registered normally (non-keyed) on `IServiceCollection` and every endpoint resolves the same instance.
 
 ### Resolving services per endpoint
 
@@ -74,7 +73,7 @@ Global (non-keyed) services and per-endpoint keyed services can be mixed in the 
 
 snippet: AddNServiceBusEndpointInjectMixed
 
-## Endpoint name and DI identifier
+## Understanding endpoint identity
 
 Two identifiers describe an endpoint:
 
