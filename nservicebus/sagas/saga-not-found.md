@@ -1,8 +1,7 @@
 ---
-title: Sagas Not Found
-summary: How is a message handled when a saga could execute it but no saga could be found?
+title: Saga Not Found
 component: Core
-reviewed: 2024-08-01
+reviewed: 2026-04-30
 related:
 - samples/saga
 ---
