@@ -3,7 +3,7 @@ title: Monitoring NServiceBus endpoints with Prometheus and Grafana
 summary: How to configure NServiceBus to export OpenTelemetry metrics to Prometheus and Grafana
 component: Core
 isLearningPath: true
-reviewed: 2024-07-26
+reviewed: 2026-04-30
 previewImage: grafana.png
 related:
 - nservicebus/operations/opentelemetry
@@ -70,7 +70,7 @@ To monitor [handler time, processing time, and critical time](/monitoring/metric
 
 The metrics are gathered using OpenTelemetry standards on the endpoint and must be reported and collected by an external service. A Prometheus HTTP listener exposes this data so the Prometheus service, hosted as a docker service, can retrieve and store this information.
 
-The listener is available via the `OpenTelemetry.Exporter.Prometheus.HttpListener"` NuGet package. In this sample, the service that exposes the data to scrape is hosted on `http://127.0.0.1:9464/metrics`:
+The listener is available via the `OpenTelemetry.Exporter.Prometheus.HttpListener` NuGet package. In this sample, the service that exposes the data to scrape is hosted on `http://127.0.0.1:9464/metrics`:
 
 snippet: enable-prometheus-http-listener
 
@@ -101,7 +101,7 @@ graph TD
     B -->|Expose| C{Metric Endpoint}
     C -->|No Metrics| D[Status 200]
     C -->|Has Metrics| E[Return Metrics]
-    F[Promethus Service] --> |Poll Metrics| E
+    F[Prometheus Service] --> |Poll Metrics| E
     F --> |Store Metrics| F
     G[Grafana] --> |Query Data| F
 ```
@@ -126,11 +126,11 @@ avg(rate(nservicebus_messaging_successes_total[5m]))
 
 Open Grafana on `http://localhost:3000`, which is made available as part of the [Docker stack](#prerequisites)
 
-For a production environment, Grafana must be installed and configured to display the data scraped and stored in Prometheus. For more information on how to install Grafana, refer to the [Grafana installation guide](https://docs.grafana.org/installation).
+For a production environment, Grafana must be installed and configured to display the data scraped and stored in Prometheus. For more information on how to install Grafana, refer to the [Grafana installation guide](https://grafana.com/docs/grafana/latest/setup-grafana/installation/).
 
 ### Dashboard
 
-This sample includes an [export of the Grafana dashboard](grafana-endpoints-dashboard.json) which can be [imported](https://docs.grafana.org/reference/export_import/) as a reference.
+This sample includes an [export of the Grafana dashboard](grafana-endpoints-dashboard.json) which can be [imported](https://grafana.com/docs/grafana/latest/visualizations/dashboards/build-dashboards/import-dashboards/) as a reference.
 
 To create a custom dashboard using Prometheus data, the following steps must be performed:
 
