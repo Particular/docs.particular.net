@@ -1,7 +1,7 @@
 ---
 title: Customizing OpenTelemetry tracing
 summary: Demonstrates how to add data to existing OpenTelemetry traces
-reviewed: 2024-07-26
+reviewed: 2026-04-30
 component: Core
 related:
 - nservicebus/operations/opentelemetry
@@ -17,7 +17,7 @@ Press <kbd>O</kbd> to send a `CreateOrder` message with a randomized `OrderId`. 
 
 As the messages are sent and processed, trace data is exported to the console. Some of the trace data originates from NServiceBus and some from custom code in the sample.
 
-## Code walk through
+## Code walkthrough
 
 ### Global configuration
 
