@@ -2,18 +2,11 @@
 using NServiceBus;
 
 #region Controller
-public class MyController
+public class MyController(IMessageSession messageSession)
 {
-    IEndpointInstance endpointInstance;
-
-    public MyController(IEndpointInstance endpointInstance)
-    {
-        this.endpointInstance = endpointInstance;
-    }
-
     public Task HandleRequest()
     {
-        return endpointInstance.Send(new MyMessage());
+        return messageSession.Send(new MyMessage());
     }
 }
 #endregion
