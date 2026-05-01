@@ -11,9 +11,6 @@ related:
 
 NServiceBus endpoints are hosted with [`Microsoft.Extensions.Hosting`](https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host) by registering them on `IServiceCollection` using `AddNServiceBusEndpoint`. Endpoint startup, dependency injection, and logging align with the standard .NET hosting model, and the same registration approach supports both single-endpoint and multi-endpoint hosts.
 
-> [!NOTE]
-> Earlier versions of NServiceBus relied on the [`NServiceBus.Extensions.Hosting`](https://www.nuget.org/packages/NServiceBus.Extensions.Hosting) package and the `UseNServiceBus` extension method on `IHostBuilder`. That package is still supported in NServiceBus 10 but is no longer the recommended approach for new development. For details, see [NServiceBus.Extensions.Hosting](/nservicebus/hosting/extensions-hosting.md).
-
 ## Hosting a single endpoint
 
 Register the endpoint on the host's service collection:
