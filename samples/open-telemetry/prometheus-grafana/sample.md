@@ -70,12 +70,9 @@ To monitor [handler time, processing time, and critical time](/monitoring/metric
 
 The metrics are gathered using OpenTelemetry standards on the endpoint and must be reported and collected by an external service. A Prometheus HTTP listener exposes this data so the Prometheus service, hosted as a docker service, can retrieve and store this information.
 
-The listener is available via the `OpenTelemetry.Exporter.Prometheus.HttpListener` NuGet package. In this sample, the service that exposes the data to scrape is hosted on `http://127.0.0.1:9464/metrics`:
+The listener is available via the `OpenTelemetry.Exporter.Prometheus.HttpListener` NuGet package. In this sample, the service that exposes the data to scrape is hosted on `http://*:9464/metrics`, allowing the Prometheus service running in Docker to reach it via `host.docker.internal:9464`:
 
 snippet: enable-prometheus-http-listener
-
-> [!NOTE]
-> `127.0.0.1` is used so that the Prometheus service running in Docker can reach it over the network.
 
 The raw metrics retrieved through the scraping endpoint look as follows:
 
