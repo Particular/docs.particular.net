@@ -5,7 +5,7 @@
     <LangVersion>14.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="10.*" />
+    <PackageReference Include="NServiceBus" Version="10.*-*" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
     <PackageReference Include="NServiceBus.MessagingBridge" Version="5.*" />
     <PackageReference Include="NServiceBus.MessagingBridge.Msmq" Version="5.*" />
