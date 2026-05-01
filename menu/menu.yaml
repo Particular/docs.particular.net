@@ -472,15 +472,17 @@
     Articles:
     - Url: nservicebus/handlers-and-sagas
       Title: About handlers and sagas
-    - Url: nservicebus/handlers/async-handlers
-      Title: Asynchronous Handlers
     - Url: nservicebus/handlers
       Title: Handlers
       Articles:
       - Url: nservicebus/handlers/accessing-data
         Title: Accessing data
+      - Url: nservicebus/handlers/convention-based
+        Title: Convention-based handlers
       - Url: nservicebus/handlers/handler-ordering
         Title: Handler Order
+      - Url: nservicebus/handlers/async-handlers
+        Title: Asynchronous Handlers
     - Url: nservicebus/sagas
       Title: Sagas
       Articles:
