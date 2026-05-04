@@ -74,11 +74,19 @@ class AddNServiceBusEndpointHosting
         #endregion
     }
 
-    void ResolveFromProvider(IServiceProvider serviceProvider)
+    void ResolveFromProvider()
     {
         #region AddNServiceBusEndpointGetSession
 
-        var session = serviceProvider.GetRequiredService<IMessageSession>();
+        var builder = Host.CreateApplicationBuilder();
+
+        var endpointConfiguration = new EndpointConfiguration("Sales");
+        // configure transport, persistence, etc.
+
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+
+        var host = builder.Build();
+        var messageSession = host.Services.GetRequiredService<IMessageSession>();
 
         #endregion
     }
