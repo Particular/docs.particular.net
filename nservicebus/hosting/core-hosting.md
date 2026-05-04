@@ -3,7 +3,7 @@ title: Hosting with Microsoft.Extensions.Hosting
 summary: Host NServiceBus endpoints with Microsoft.Extensions.Hosting using AddNServiceBusEndpoint, for both single-endpoint and multi-endpoint scenarios.
 component: Core
 versions: '[10,)'
-reviewed: 2026-04-27
+reviewed: 2026-05-04
 related:
   - nservicebus/upgrades/10to11
   - samples/hosting/generic-host
@@ -38,19 +38,19 @@ NServiceBus also supports hosting multiple logical endpoints in one process. Com
 
 Compared to a single-endpoint host, each additional endpoint adds registration, startup overhead, and coordination within the shared process.
 
-Each endpoint is registered with its own `EndpointConfiguration`. The second argument to `AddNServiceBusEndpoint` is the DI identifier — a [service key](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) used to distinguish that endpoint's `IMessageSession` and per-endpoint keyed services:
+Each endpoint is registered with its own `EndpointConfiguration`. The second argument to `AddNServiceBusEndpoint` is the endpoint identifier — a [service key](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) used to distinguish that endpoint's `IMessageSession` and per-endpoint keyed services:
 
 snippet: AddNServiceBusEndpointMulti
 
-Most of the time, the endpoint name is the ideal identifier to separate endpoint-specific services in the service collection. A distinct DI identifier is only needed when the same endpoint is registered more than once in a process — for example, a per-tenant deployment where each tenant has the same point but with its own input queue:
+Most of the time, the endpoint name is the ideal identifier to separate endpoint-specific services in the service collection. A distinct endpoint identifier is only needed when the same endpoint is registered more than once in a process — for example, a per-tenant deployment where each tenant has the same point but with its own input queue:
 
 snippet: AddNServiceBusEndpointPerTenant
 
-All tenants share the `Sales` endpoint name; each gets its own [input queue](/nservicebus/endpoints/specify-endpoint-name.md#input-queue). The tenant key serves as the DI identifier so callers can resolve a specific tenant's `IMessageSession` and keyed services.
+All tenants share the `Sales` endpoint name; each gets its own [input queue](/nservicebus/endpoints/specify-endpoint-name.md#input-queue). The tenant key serves as the endpoint identifier so callers can resolve a specific tenant's `IMessageSession` and keyed services.
 
 ### Endpoint-scoped dependencies
 
-When each endpoint requires a different implementation of a shared service, register it as a [keyed service](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) using the chosen DI identifier (typically the endpoint name) as the key:
+When each endpoint requires a different implementation of a shared service, register it as a [keyed service](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) using the chosen endpoint identifier (typically the endpoint name) as the key:
 
 snippet: AddNServiceBusEndpointKeyedServices
 
@@ -74,14 +74,14 @@ snippet: AddNServiceBusEndpointInjectMixed
 
 Two identifiers describe an endpoint:
 
-|                | Endpoint name                                       | DI identifier                                                              |
+|                | Endpoint name                                       | Endpoint identifier                                                        |
 | -------------- | --------------------------------------------------- | -------------------------------------------------------------------------- |
 | Identifies     | The logical endpoint (queue, routing, log context)  | The DI registration for `IMessageSession` and per-endpoint keyed services  |
-| Set via        | `new EndpointConfiguration(name)`                   | Second argument to `AddNServiceBusEndpoint(config, identifier)`            |
+| Set via        | `new EndpointConfiguration(name)`                   | Second argument to `AddNServiceBusEndpoint(config, endpointIdentifier)`    |
 | Required       | Always                                              | When more than one endpoint is registered on the same `IServiceCollection` |
 | Unique across  | Logical endpoints in the system                     | Endpoint registrations in the process                                      |
 
-When a DI identifier is needed, the endpoint name is the recommended value. A different value is only needed when the same endpoint definition is hosted more than once in one process — for example, a per-tenant deployment. See [Hosting multiple endpoints](#hosting-multiple-endpoints) for the registration patterns.
+When an endpoint identifier is needed, the endpoint name is the recommended value. A different value is only needed when the same endpoint definition is hosted more than once in one process — for example, a per-tenant deployment. See [Hosting multiple endpoints](#hosting-multiple-endpoints) for the registration patterns.
 
 ## Logging
 
