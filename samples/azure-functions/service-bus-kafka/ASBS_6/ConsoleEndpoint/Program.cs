@@ -1,5 +1,7 @@
 ﻿using AzureFunctions.Messages.KafkaMessages;
 using Confluent.Kafka;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 const string endpointName = "Samples.KafkaTrigger.ConsoleEndpoint";
 Console.Title = endpointName;
@@ -17,7 +19,10 @@ if (string.IsNullOrWhiteSpace(connectionString))
 var transport = new AzureServiceBusTransport(connectionString, TopicTopology.Default);
 endpointConfiguration.UseTransport(transport);
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+var host = builder.Build();
+await host.StartAsync();
 
 var config = new ProducerConfig
 {
@@ -62,4 +67,4 @@ using (var producer = new ProducerBuilder<string, string>(config)
     }
 }
 
-await endpointInstance.Stop();
+await host.StopAsync();
