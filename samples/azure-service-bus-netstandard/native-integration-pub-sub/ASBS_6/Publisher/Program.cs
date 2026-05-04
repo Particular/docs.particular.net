@@ -1,5 +1,7 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 Console.Title = "Publisher";
@@ -20,18 +22,23 @@ if (string.IsNullOrWhiteSpace(connectionString))
 var transport = new AzureServiceBusTransport(connectionString, TopicTopology.Default);
 endpointConfiguration.UseTransport(transport);
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+var host = builder.Build();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+await host.StartAsync();
+
 Console.WriteLine("Press any key to publish events");
 Console.ReadKey();
 Console.WriteLine();
 
-await endpointInstance.Publish(new EventOne
+await messageSession.Publish(new EventOne
 {
     Content = $"{nameof(EventOne)} sample content",
     PublishedOnUtc = DateTime.UtcNow
 });
 
-await endpointInstance.Publish(new EventTwo
+await messageSession.Publish(new EventTwo
 {
     Content = $"{nameof(EventTwo)} sample content",
     PublishedOnUtc = DateTime.UtcNow
@@ -39,4 +46,4 @@ await endpointInstance.Publish(new EventTwo
 
 Console.WriteLine("Press any key to exit");
 Console.ReadKey();
-await endpointInstance.Stop();
+await host.StopAsync();
