@@ -2,10 +2,14 @@
 title: Externally Managed Mode
 summary: A sample that uses the externally managed mode feature to configure a dependency injection container.
 component: Core
+versions: '[,10)'
 reviewed: 2025-10-03
 related:
  - nservicebus/dependency-injection
 ---
+
+> [!WARNING]
+> In NServiceBus version 10.2.0 and above, externally managed mode is no longer a relevant concept, as integration with the Microsoft .NET Host is integrated directly into NServiceBus.
 
 ### Configuring the endpoint
 
