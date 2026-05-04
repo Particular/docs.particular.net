@@ -9,7 +9,7 @@ related:
   - samples/hosting/generic-host
 ---
 
-NServiceBus endpoints are hosted with [`Microsoft.Extensions.Hosting`](https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host) by registering them on `IServiceCollection` using `AddNServiceBusEndpoint`. Endpoint startup, dependency injection, and logging align with the standard .NET hosting model, and the same registration approach supports both single-endpoint and multi-endpoint hosts.
+NServiceBus endpoints are hosted with [`Microsoft.Extensions.Hosting`](https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host) by registering them on `IServiceCollection` using the `AddNServiceBusEndpoint` method. Endpoint startup, dependency injection, and logging align with the standard .NET hosting model, and the same registration approach supports both single-endpoint and multi-endpoint hosts.
 
 ## Hosting a single endpoint
 
@@ -42,7 +42,7 @@ Each endpoint is registered with its own `EndpointConfiguration`. The second arg
 
 snippet: AddNServiceBusEndpointMulti
 
-A distinct DI identifier is only needed when the same endpoint is registered more than once in a process — for example, a per-tenant deployment where each tenant has its own input queue:
+Most of the time, the endpoint name is the ideal identifier to separate endpoint-specific services in the service collection. A distinct DI identifier is only needed when the same endpoint is registered more than once in a process — for example, a per-tenant deployment where each tenant has the same point but with its own input queue:
 
 snippet: AddNServiceBusEndpointPerTenant
 
@@ -85,4 +85,4 @@ When a DI identifier is needed, the endpoint name is the recommended value. A di
 
 ## Logging
 
-NServiceBus uses [`Microsoft.Extensions.Logging`](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/) as its built-in logging infrastructure. Log events flow through the host's configured `ILoggerFactory` with endpoint context attached. The `NServiceBus.Extensions.Logging` package is no longer required.
+NServiceBus uses [`Microsoft.Extensions.Logging`](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging/) as its built-in logging infrastructure. Log events flow through the host's configured `ILoggerFactory` with endpoint context attached.

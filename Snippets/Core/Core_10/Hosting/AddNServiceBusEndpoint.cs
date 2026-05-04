@@ -19,8 +19,7 @@ class AddNServiceBusEndpointHosting
 
         builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
-        var host = builder.Build();
-        await host.RunAsync();
+        await builder.Build().RunAsync();
 
         #endregion
     }
