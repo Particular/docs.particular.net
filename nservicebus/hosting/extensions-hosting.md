@@ -2,14 +2,14 @@
 title: NServiceBus.Extensions.Hosting
 summary: NServiceBus package-based integration with Microsoft.Extensions.Hosting
 component: Extensions.Hosting
-reviewed: 2026-04-27
+reviewed: 2026-05-04
 related:
  - samples/hosting/generic-host
  - samples/dependency-injection/aspnetcore
 ---
 
 > [!NOTE]
-> For new development, prefer [hosting with Microsoft.Extensions.Hosting](/nservicebus/hosting/core-hosting.md) using the built-in `AddNServiceBusEndpoint` integration on `IServiceCollection`. This page describes the existing package-based `NServiceBus.Extensions.Hosting` and `UseNServiceBus` integration path.
+> For new development, prefer [hosting with Microsoft.Extensions.Hosting](/nservicebus/hosting/core-hosting.md) using the built-in `AddNServiceBusEndpoint` integration on `IServiceCollection`. The package-based `NServiceBus.Extensions.Hosting` and `UseNServiceBus` integration described on this page is deprecated starting with NServiceBus 10.2.0. See the [upgrade guide](/nservicebus/upgrades/10to11/) for migration details.
 
 ## Configuration
 
