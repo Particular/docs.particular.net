@@ -95,7 +95,7 @@ class AddNServiceBusEndpointHosting
 record DatabaseService(string Name);
 record Order(string Id);
 
-class MyService
+class MyGlobalService
 {
     public void DoSomething() { }
 }
@@ -120,8 +120,8 @@ class SalesOrderService([FromKeyedServices("Sales")] IMessageSession session)
 
 #region AddNServiceBusEndpointInjectMixed
 
-// MyService is a global (non-keyed) service; IMessageSession is keyed for the "Sales" endpoint.
-class SalesOrderRouter(MyService service, [FromKeyedServices("Sales")] IMessageSession session)
+// MyGlobalService is a global (non-keyed) service; IMessageSession is keyed for the "Sales" endpoint.
+class SalesOrderRouter(MyGlobalService service, [FromKeyedServices("Sales")] IMessageSession session)
 {
     public Task Submit(Order order)
     {
