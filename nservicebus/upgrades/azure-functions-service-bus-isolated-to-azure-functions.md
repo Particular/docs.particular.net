@@ -67,7 +67,7 @@ Remove the `[assembly: NServiceBusTriggerFunction(...)]` attribute. The new pack
 
 ## Migrate the receiving endpoint
 
-With the old package, a project maps to a single endpoint and the queue-triggered function is generated from `NServiceBusTriggerFunction`, for example `[assembly: NServiceBusTriggerFunction("Sales")]`.
+With the old package, a project maps to a single endpoint, and the queue-triggered function is generated from `NServiceBusTriggerFunction`, for example, `[assembly: NServiceBusTriggerFunction("Sales")]`.
 
 With the new package, the receiving endpoint is declared explicitly in code. A minimal one-to-one migration looks like this:
 
@@ -203,12 +203,6 @@ In the new package, use the [explicit dead-letter support](/transports/azure-ser
 
 > [!NOTE]
 > The new package automatically enables [DLQ forwarding](/transports/azure-service-bus/configuration.md#dead-lettering-forward-dead-lettered-messages-to-the-error-queue) to allow dead-lettered messages to be managed by the platform.
-
-## Startup diagnostics
-
-The old worker package documents an explicit startup diagnostics configuration step. See the [old startup diagnostics documentation](/nservicebus/hosting/azure-functions-service-bus/#configuration-startup-diagnostics).
-
-With the new package, startup diagnostics are automatically forwarded to the logs, so the old `LogDiagnostics()` guidance is no longer needed.
 
 ## Host ID
 
