@@ -37,4 +37,4 @@ while (true)
     Console.WriteLine($"Sent a message with id: {id:N}");
 }
 
-await host.StopAsync();
+await host.StopAsync()

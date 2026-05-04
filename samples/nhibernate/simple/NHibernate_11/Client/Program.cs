@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 Console.Title = "Client";
@@ -8,7 +10,11 @@ endpointConfiguration.EnableInstallers();
 endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+var host = builder.Build();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+await host.StartAsync();
 
 Console.WriteLine("Press 'enter' to send a StartOrder messages");
 Console.WriteLine("Press any other key to exit");
@@ -28,8 +34,8 @@ while (true)
     {
         OrderId = orderId
     };
-    await endpointInstance.Send("Samples.NHibernate.Server", startOrder);
+    await messageSession.Send("Samples.NHibernate.Server", startOrder);
     Console.WriteLine($"StartOrder Message sent with OrderId {orderId}");
 }
 
-await endpointInstance.Stop();
+await host.StopAsync();

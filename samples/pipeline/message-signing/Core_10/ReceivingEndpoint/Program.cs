@@ -14,5 +14,5 @@ endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.RegisterSigningBehaviors();
 
 Console.WriteLine("Waiting to receive messages. Press Enter to exit.");
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 await builder.Build().RunAsync();
