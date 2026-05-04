@@ -131,7 +131,7 @@ public static void ConfigureSales(EndpointConfiguration configuration, IServiceC
 }
 ```
 
-## Migrate dispatching outside message handlers
+## Migrate usages of IFunctionEndpoint
 
 With the old worker package, Azure Functions that send messages outside handlers typically inject `IFunctionEndpoint`.
 
@@ -199,7 +199,7 @@ The new package no longer relies on `NServiceBusTriggerFunction` for this scenar
 
 The old worker package exposed `DoNotSendMessagesToErrorQueue()` as the way to stop forwarding failed messages to the error queue and let Azure Service Bus dead-lettering handle them instead. See the [old error queue documentation](/nservicebus/hosting/azure-functions-service-bus/#configuration-error-queue).
 
-In the new package, use the [explicit dead-letter support](https://github.com/Particular/docs.particular.net/pull/8191).
+In the new package, use the [explicit dead-letter support](/transports/azure-service-bus/configuration.md#dead-lettering).
 
 ## Startup diagnostics
 
