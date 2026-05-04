@@ -46,7 +46,7 @@ Most of the time, the endpoint name is the ideal identifier to separate endpoint
 
 snippet: AddNServiceBusEndpointPerTenant
 
-All tenants share the `Sales` endpoint name; each gets its own [input queue](/nservicebus/endpoints/specify-endpoint-name.md#input-queue). The tenant key serves as the endpoint identifier so callers can resolve a specific tenant's `IMessageSession` and keyed services.
+All tenants share the `Sales` endpoint name; each gets its own [input queue](/nservicebus/endpoints/specify-endpoint-name.md#input-queue). A tenant-scoped identifier (`Sales-<tenant>`) lets callers resolve a specific tenant's `IMessageSession` and keyed services. Including the endpoint name in the identifier keeps it unique when other endpoints (for example, `Billing`) are also hosted per tenant in the same process.
 
 ### Endpoint-scoped dependencies
 

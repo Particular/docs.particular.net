@@ -62,11 +62,13 @@ class AddNServiceBusEndpointHosting
 
         foreach (var tenant in tenants)
         {
+            var key = $"Sales-{tenant}";
+
             var endpointConfig = new EndpointConfiguration("Sales");
-            endpointConfig.OverrideLocalAddress($"Sales-{tenant}");
+            endpointConfig.OverrideLocalAddress(key);
             // additional per-tenant configuration
 
-            builder.Services.AddNServiceBusEndpoint(endpointConfig, tenant);
+            builder.Services.AddNServiceBusEndpoint(endpointConfig, key);
         }
 
         #endregion
