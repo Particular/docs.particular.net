@@ -201,6 +201,9 @@ The old worker package exposed `DoNotSendMessagesToErrorQueue()` as the way to s
 
 In the new package, use the [explicit dead-letter support](/transports/azure-service-bus/configuration.md#dead-lettering).
 
+> [!NOTE]
+> The new package automatically enables [DLQ forwarding](/transports/azure-service-bus/configuration.md#dead-lettering-forward-dead-lettered-messages-to-the-error-queue) to allow dead-lettered messages to be managed by the platform.
+
 ## Startup diagnostics
 
 The old worker package documents an explicit startup diagnostics configuration step. See the [old startup diagnostics documentation](/nservicebus/hosting/azure-functions-service-bus/#configuration-startup-diagnostics).
