@@ -45,7 +45,6 @@ var meterProvider = Sdk.CreateMeterProviderBuilder()
 var endpointConfiguration = new EndpointConfiguration(endpointName);
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport<LearningTransport>();
-var cancellation = new CancellationTokenSource();
 
 var builder = Host.CreateApplicationBuilder();
 builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
@@ -54,7 +53,7 @@ var messageSession = host.Services.GetRequiredService<IMessageSession>();
 await host.StartAsync();
 
 var simulator = new LoadSimulator(messageSession, TimeSpan.Zero, TimeSpan.FromSeconds(10));
-simulator.Start(cancellation.Token);
+simulator.Start();
 
 try
 {
@@ -62,13 +61,13 @@ try
 
     while (Console.ReadKey(true).Key != ConsoleKey.Escape)
     {
-        await messageSession.SendLocal(new SomeMessage(), cancellation.Token);
+        await messageSession.SendLocal(new SomeMessage());
     }
 }
 finally
 {
-    await simulator.Stop(cancellation.Token);
-    await host.StopAsync(cancellation.Token);
+    simulator.Stop();
+    await host.StopAsync();
     traceProvider?.Dispose();
     meterProvider?.Dispose();
 }

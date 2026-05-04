@@ -1,9 +1,11 @@
 // Simulates busy (almost no delay) / quite time in a sine wave
 class LoadSimulator(IMessageSession messageSession, TimeSpan minimumDelay, TimeSpan idleDuration)
 {
-    public void Start(CancellationToken cancellationToken)
+
+    public void Start()
     {
-        _ = Task.Run(() => Loop(cancellationToken), cancellationToken);
+        cancellation = new CancellationTokenSource();
+        _ = Task.Run(() => Loop(cancellation.Token));
     }
 
     async Task Loop(CancellationToken cancellationToken)
@@ -50,10 +52,9 @@ class LoadSimulator(IMessageSession messageSession, TimeSpan minimumDelay, TimeS
         return messageSession.Send(new SomeMessage(), sendOptions, cancellationToken);
     }
 
-    public Task Stop(CancellationToken cancellationToken)
-    {
-        return Task.CompletedTask;
-    }
+    public void Stop() => cancellation.Cancel();
 
+
+    CancellationTokenSource cancellation;
     int index;
 }
