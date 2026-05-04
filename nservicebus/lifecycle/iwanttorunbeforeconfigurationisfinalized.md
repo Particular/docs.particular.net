@@ -4,8 +4,6 @@ summary: An interface that allows hooking into the configuration sequence of NSe
 component: Core
 versions: '[,10)'
 reviewed: 2026-01-09
-related:
- - samples/startup-shutdown-sequence
 ---
 
 > [!CAUTION]

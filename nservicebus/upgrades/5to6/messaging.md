@@ -18,8 +18,6 @@ In NServiceBus version 6, custom [correlation IDs](/nservicebus/messaging/header
 
 The `WinIdName` existed to enable the Principal Replacement feature (`RunHandlersUnderIncomingPrincipal` in NServiceBus version 4 and `ImpersonateSender` in version 3).
 
-See the [appending username using headers](/samples/username-header/) sample for usage of this API.
-
 This feature was removed in version 5 and the `WinIdName` header will no longer be added to outgoing messages.
 
 To re-add this header to outgoing messages a [mutator](/nservicebus/pipeline/message-mutators.md) can be used.
@@ -36,9 +34,6 @@ public class WinIdNameMutator :
     }
 }
 ```
-
-Another option is to use a custom header as illustrated in the [appending username using headers](/samples/username-header/) sample.
-
 
 ## Throttling
 
