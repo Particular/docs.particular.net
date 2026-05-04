@@ -212,9 +212,14 @@ With the new package, startup diagnostics are automatically forwarded to the log
 
 ## Host ID
 
-If the old setup used `WEBSITE_SITE_NAME` to control the host ID, migrate that logic to the standard NServiceBus host ID override APIs.
+The old package used the `WEBSITE_SITE_NAME` environment variable as the NServiceBus Host ID. This resulted in instances not being visible in ServicePulse as the function was scaled up or down. In the new package, [`WEBSITE_INSTANCE_ID`](https://learn.microsoft.com/en-us/azure/app-service/reference-app-settings?tabs=kudu%2Cdotnet#scaling) is used to ensure that all instances are identifiable.
 
-Use the guidance in [Overriding the host identifier](/nservicebus/hosting/override-hostid.md) to take full control over the host ID and keep it stable across restarts and deployments.
+> [!NOTE]
+> It's recommended to [configure ServicePulse not to track heartbeats for these instances](https://docs.particular.net/monitoring/heartbeats/in-servicepulse#configuration-do-not-track-instances) to avoid false negatives.
+
+The logic falls back to [`CONTAINER_NAME` when running in Azure container apps](https://learn.microsoft.com/en-us/azure/container-apps/environment-variables?tabs=portal#apps) and `Environment.MachineName` for local development.
+
+If needed, use the guidance in [Overriding the host identifier](/nservicebus/hosting/override-hostid.md) to take full control over the host ID and keep it stable across restarts and deployments.
 
 ## Recommended migration sequence
 
