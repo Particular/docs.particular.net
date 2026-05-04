@@ -1,4 +1,6 @@
-﻿using Shared;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Shared;
 
 Console.Title = "SimpleSender";
 
@@ -13,9 +15,14 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 transport.Routing().RouteToEndpoint(typeof(MyCommand), "Samples.RabbitMQ.SimpleReceiver");
 endpointConfiguration.EnableInstallers();
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
-await SendMessages(endpointInstance);
-await endpointInstance.Stop();
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+var host = builder.Build();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+await host.StartAsync();
+
+await SendMessages(messageSession);
+await host.StopAsync();
 
 static async Task SendMessages(IMessageSession messageSession)
 {
