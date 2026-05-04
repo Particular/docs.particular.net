@@ -12,5 +12,5 @@ var pipeline = endpointConfiguration.Pipeline;
 pipeline.Register(new StoreTenantIdBehavior(), "Stores tenant ID in the session");
 pipeline.Register(new PropagateTenantIdBehavior(), "Propagates tenant ID to outgoing messages");
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 await builder.Build().RunAsync();
