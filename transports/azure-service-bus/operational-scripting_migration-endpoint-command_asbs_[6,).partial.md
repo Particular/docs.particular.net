@@ -30,6 +30,8 @@ asb-transport migration endpoint create name
 
 `-s` | `--size` : Queue size in GB (defaults to 5)
 
+`-d` | `--delivery-count`: Maximum delivery count until the message will be moved to the deadletter queue (defaults to `int.Max`)
+
 `-p` | `--partitioned`: Enable partitioning
 
 `-t` | `--topic`: Topic name (defaults to 'bundle-1')

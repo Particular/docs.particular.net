@@ -17,6 +17,8 @@ asb-transport endpoint create name
 
 `-s` | `--size` : Queue size in GB (defaults to 5)
 
+`-d` | `--delivery-count`: Maximum delivery count until the message will be moved to the deadletter queue (defaults to `int.Max`)
+
 `-p` | `--partitioned`: Enable partitioning
 
 `-h` | `--hierarchy-namespace`: Sets the hierarchy namespace for prefixing destinations in the format `<hierarchy-namespace>/<topic-or-queue>` (available from version 6.1)
