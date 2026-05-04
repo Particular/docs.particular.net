@@ -1,42 +1,40 @@
 ﻿using System;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using MySql.Data.MySqlClient;
 using NServiceBus;
 
-partial class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "EndpointMySql";
+Console.Title = "EndpointMySql";
 
-        var endpointConfiguration = new EndpointConfiguration("EndpointMySql");
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+var endpointConfiguration = new EndpointConfiguration("EndpointMySql");
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        endpointConfiguration.UseTransport(new LearningTransport());
-        endpointConfiguration.EnableInstallers();
+endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.EnableInstallers();
 
-        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
 
-        var connection = "server=localhost;user=root;database=sqlpersistencesampletransition;port=3306;password=yourStrong(!)Password;AllowUserVariables=True;AutoEnlist=false";
+var connection = "server=localhost;user=root;database=sqlpersistencesampletransition;port=3306;password=yourStrong(!)Password;AllowUserVariables=True;AutoEnlist=false";
 
-        persistence.SqlDialect<SqlDialect.MySql>();
-        persistence.ConnectionBuilder(
-            () => new MySqlConnection(connection));
+persistence.SqlDialect<SqlDialect.MySql>();
+persistence.ConnectionBuilder(
+    () => new MySqlConnection(connection));
 
-        var subscriptions = persistence.SubscriptionSettings();
-        subscriptions.CacheFor(TimeSpan.FromMinutes(1));
+var subscriptions = persistence.SubscriptionSettings();
+subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
-        SqlHelper.EnsureDatabaseExists(connection);
+SqlHelper.EnsureDatabaseExists(connection);
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+var host = builder.Build();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+await host.StartAsync();
+await SendMessage(messageSession);
 
-        await SendMessage(endpointInstance);
+Console.WriteLine("StartOrder Message sent");
 
-        Console.WriteLine("StartOrder Message sent");
+Console.WriteLine("Press any key to exit");
+Console.ReadKey();
 
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-
-        await endpointInstance.Stop();
-    }
-}
+await host.StopAsync();

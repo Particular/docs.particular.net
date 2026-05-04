@@ -1,39 +1,37 @@
 ﻿using System;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 using Oracle.ManagedDataAccess.Client;
 
-partial class Program
-{
-    static async Task Main()
-    {
-        Console.Title = "EndpointOracle";
+Console.Title = "EndpointOracle";
 
-        var endpointConfiguration = new EndpointConfiguration("EndpointOracle");
+var endpointConfiguration = new EndpointConfiguration("EndpointOracle");
 
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.UseTransport(new LearningTransport());
-        endpointConfiguration.EnableInstallers();
+endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+endpointConfiguration.UseTransport(new LearningTransport());
+endpointConfiguration.EnableInstallers();
 
-        var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
+var persistence = endpointConfiguration.UsePersistence<SqlPersistence>();
 
-        var connection = "Data Source=localhost;User Id=SYSTEM; Password=yourStrong(!)Password; Enlist=false";
+var connection = "Data Source=localhost;User Id=SYSTEM; Password=yourStrong(!)Password; Enlist=false";
 
-        persistence.SqlDialect<SqlDialect.Oracle>();
-        persistence.ConnectionBuilder(() => new OracleConnection(connection));
+persistence.SqlDialect<SqlDialect.Oracle>();
+persistence.ConnectionBuilder(() => new OracleConnection(connection));
 
-        var subscriptions = persistence.SubscriptionSettings();
-        subscriptions.CacheFor(TimeSpan.FromMinutes(1));
+var subscriptions = persistence.SubscriptionSettings();
+subscriptions.CacheFor(TimeSpan.FromMinutes(1));
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+var host = builder.Build();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+await host.StartAsync();
+await SendMessage(messageSession);
 
-        await SendMessage(endpointInstance);
+Console.WriteLine("StartOrder Message sent");
 
-        Console.WriteLine("StartOrder Message sent");
+Console.WriteLine("Press any key to exit");
+Console.ReadKey();
 
-        Console.WriteLine("Press any key to exit");
-        Console.ReadKey();
-
-        await endpointInstance.Stop();
-    }
-}
+await host.StopAsync();
