@@ -12,7 +12,16 @@ Source-generated registration is trimming and AOT-friendly because it references
 
 ### Default behavior
 
-When the attribute is not applied, the source generator uses the assembly name as the entry point and a default naming convention.
+Without the `[HandlerRegistryExtensions]` attribute, the source generator produces an entry point named after the assembly and creates registration methods from the discovered class names:
+
+| Type kind | Class name | Generated method |
+|---|---|---|
+| Handler | `OrderShippedHandler` | `AddOrderShippedHandler` |
+| Handler | `OrderShipped` | `AddOrderShippedHandler` |
+| Saga | `OrderShippingSaga` | `AddOrderShippingSaga` |
+| Saga | `OrderShippingPolicy` | `AddOrderShippingPolicy` |
+
+For handlers, the generator prepends `Add` and guarantees the method name ends with `Handler`. If the class name does not already end with `Handler`, the suffix is appended automatically. For sagas, the generator prepends `Add` and ensures the name ends with `Saga`, except when the class already ends with `Saga` or `Policy` (case-insensitive).
 
 ### Advanced source generation configuration
 
@@ -31,12 +40,16 @@ When the attribute above is applied, `registry.Handlers.Core...` becomes `regist
 
 #### `RegistrationMethodNamePatterns`
 
-Regex replacement patterns (format `"pattern=>replacement"`) applied to handler or saga type names to customize the generated registration method names. Patterns are applied in order and the first match wins.
+The default `Add<TypeName>` convention mirrors the class name exactly, which can produce repetitive or unnecessarily long method names. For example, `OrderShippedHandler` generates `AddOrderShippedHandler`, duplicating the `Handler` suffix on every call site.
+
+Use `RegistrationMethodNamePatterns` to remap class names to shorter or more idiomatic method names. Each pattern is a regex replacement in the form `pattern=>replacement`. The pattern is matched against the original class name, and the replacement string becomes the final method name, so any desired prefix must be included in the replacement itself. Patterns are evaluated in order and the first match wins.
+
+Invalid pattern format or regular expression syntax is caught by a build-time analyzer and reported as a compiler error.
 
 Examples:
 
-- `Handler$=>Register` transforms `OrderShippedHandler` to `OrderShippedRegister`.
 - `^(.*)Handler$=>Add$1` transforms `OrderShippedHandler` to `AddOrderShipped`.
+- `Handler$=>Register` transforms `OrderShippedHandler` to `OrderShippedRegister`.
 - `^(.*)Saga$=>Register$1Saga` transforms `OrderShippingSaga` to `RegisterOrderShippingSaga`.
 
 #### Visibility control
