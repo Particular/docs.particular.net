@@ -56,7 +56,7 @@ The primary options for hosting NServiceBus endpoints are:
 
 ### App Service
 
-Within App Service, [WebJobs](https://learn.microsoft.com/en-us/azure/app-service/webjobs-create) can host background processes. This is the recommended solution for hosting NServiceBus endpoints.
+Within App Service, [WebJobs](https://learn.microsoft.com/en-us/azure/app-service/webjobs-create) can host background processes, making them suitable for hosting NServiceBus endpoints.
 
 ### Containers
 
