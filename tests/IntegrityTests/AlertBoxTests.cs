@@ -36,7 +36,7 @@ internal partial class AlertBoxTests
     [Test]
     public void AlertBoxesAreValid()
     {
-        var only = string.Join(" ", ValidGitHubAlertTypes.Select(s => $"![{s}]"));
+        var only = string.Join(" ", ValidGitHubAlertTypes.Select(s => $"[!{s}]"));
 
         new TestRunner("*.md", $"Invalid alert boxes found, only {only} are valid")
             .Run(path =>
@@ -50,7 +50,7 @@ internal partial class AlertBoxTests
 
                 if (invalidTypes.Any())
                 {
-                    var typesStr = string.Join(" & ", invalidTypes.Select(s => $"![{s}]"));
+                    var typesStr = string.Join(" & ", invalidTypes.Select(s => $"[!{s}]"));
                     var msg = $"Alert box of type {typesStr} is invalid";
                     return (false, msg);
                 }
