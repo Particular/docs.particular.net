@@ -5,6 +5,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus" Version="10.*" />
+    <PackageReference Include="NServiceBus" Version="10.*-*" />
   </ItemGroup>
 </Project>
