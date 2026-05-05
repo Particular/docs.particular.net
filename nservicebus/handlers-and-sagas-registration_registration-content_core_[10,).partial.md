@@ -10,6 +10,10 @@ endpointConfiguration.Handlers.MyAssembly.MyNamespace.AddAll();
 
 Source-generated registration is trimming and AOT-friendly because it references handler and saga types directly from the composition root (the host). It also eliminates runtime surprises: any type that is discoverable at build time is discoverable at runtime with no additional scanning.
 
+### Default behavior
+
+When the attribute is not applied, the source generator uses the assembly name as the entry point and a default naming convention.
+
 ### Advanced source generation configuration
 
 The `[HandlerRegistryExtensions]` attribute can be applied to a `partial static class` to customize the source-generated handler registration API:
@@ -39,11 +43,7 @@ Examples:
 
 The source generator automatically matches the visibility of the generated extension methods to the visibility of the attributed `partial class`. Declaring the class as `internal` hides the registration methods from the public API.
 
-#### Default behavior
-
-When the attribute is not applied, the source generator uses the assembly name as the entry point and a default naming convention.
-
-#### Relationship to other attributes
+### Relationship to other attributes
 
 `[HandlerRegistryExtensions]` works alongside `[Handler]` (for marking message handlers) and `[Saga]` (for marking sagas) to enable source generation.
 
