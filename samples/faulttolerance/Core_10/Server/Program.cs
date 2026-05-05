@@ -24,7 +24,7 @@ Console.WriteLine("Press any key, the application is starting");
 Console.ReadKey();
 Console.WriteLine("Starting...");
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 using var app = builder.Build();
 await app.RunAsync();
