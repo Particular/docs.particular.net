@@ -3,6 +3,9 @@
     <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="10.*" />
+    <PackageReference Include="NServiceBus.ClaimCheck" Version="2.*" />
+    <PackageReference Include="NServiceBus.Gateway" Version="6.*" />
     <PackageReference Include="NServiceBus.Gateway.RavenDB" Version="6.*" />
   </ItemGroup>
 </Project>

@@ -5,11 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="8.*" />
     <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="3.*" />
-  </ItemGroup>
-
-  <ItemGroup Label="Resolves vulnerabilities">
-    <PackageReference Include="System.Text.Json" Version="6.*" />
   </ItemGroup>
 
 </Project>

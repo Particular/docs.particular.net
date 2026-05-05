@@ -5,8 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Persistence.DynamoDB.TransactionalSession" Version="3.*" />
     <PackageReference Include="NServiceBus" Version="9.*" />
+    <PackageReference Include="NServiceBus.Persistence.DynamoDB" Version="3.*" />
+    <PackageReference Include="NServiceBus.Persistence.DynamoDB.TransactionalSession" Version="3.*" />
+    <PackageReference Include="NServiceBus.TransactionalSession" Version="3.*" />
   </ItemGroup>
 
   <ItemGroup Label="Elevated transitive dependencies">

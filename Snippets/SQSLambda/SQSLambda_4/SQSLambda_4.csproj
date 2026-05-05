@@ -7,8 +7,9 @@
   <ItemGroup>
     <PackageReference Include="Amazon.Lambda.Annotations" Version="1.*" />
     <PackageReference Include="Amazon.Lambda.Serialization.SystemTextJson" Version="2.*" />
-    <PackageReference Include="NServiceBus.AwsLambda.SQS" Version="4.*" />
     <PackageReference Include="NServiceBus" Version="10.*" />
+    <PackageReference Include="NServiceBus.AmazonSQS" Version="9.*" />
+    <PackageReference Include="NServiceBus.AwsLambda.SQS" Version="4.*" />
   </ItemGroup>
 
 </Project>

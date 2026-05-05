@@ -3,7 +3,12 @@
     <TargetFramework>net8.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.ServicePlatform.Connector" Version="3.*" />
     <PackageReference Include="NServiceBus" Version="9.*" />
+    <PackageReference Include="NServiceBus.CustomChecks" Version="5.*" />
+    <PackageReference Include="NServiceBus.Heartbeat" Version="5.*" />
+    <PackageReference Include="NServiceBus.Metrics" Version="5.*" />
+    <PackageReference Include="NServiceBus.Metrics.ServiceControl" Version="5.*" />
+    <PackageReference Include="NServiceBus.SagaAudit" Version="5.*" />
+    <PackageReference Include="NServiceBus.ServicePlatform.Connector" Version="3.*" />
   </ItemGroup>
 </Project>

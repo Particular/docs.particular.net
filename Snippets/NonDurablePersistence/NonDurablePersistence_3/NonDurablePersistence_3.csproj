@@ -4,7 +4,7 @@
     <RootNamespace>NonDurablePersistence_3</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="3.*" />
     <PackageReference Include="NServiceBus" Version="10.*" />
+    <PackageReference Include="NServiceBus.Persistence.NonDurable" Version="3.*" />
   </ItemGroup>
 </Project>
