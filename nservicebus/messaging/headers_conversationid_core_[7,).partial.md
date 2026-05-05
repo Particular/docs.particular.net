@@ -4,5 +4,5 @@ snippet: custom-conversation-id-convention
 
 This is useful to avoid setting the `Conversation ID` when sending individual messages but rather apply a convention using a custom attribute, inheriting from an interface, using reflection based on message types, or some other method.
 
-> [!INFO]
+> [!NOTE]
 > This is invoked for each message being send. This is not invoked for incoming messages that do not have the header set.
