@@ -1387,9 +1387,8 @@
       Title: Windows Service Installation
   - Title: Azure Functions
     Articles:
-    # For the new multi-endpoint NServiceBus.AzureFunctions
-    #- Url: nservicebus/hosting/azure/functions
-    #  Title: Multi-Endpoint Functions Hosting
+    - Url: nservicebus/hosting/azure/functions
+      Title: Azure Functions
     - Url: nservicebus/hosting/azure-functions-service-bus
       Title: Isolated Worker, Single-Endpoint Model
       Articles:
