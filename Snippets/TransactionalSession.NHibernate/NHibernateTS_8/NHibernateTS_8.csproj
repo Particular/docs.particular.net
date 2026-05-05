@@ -5,7 +5,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="NServiceBus" Version="7.*" />
+		<PackageReference Include="NServiceBus.NHibernate" Version="8.*" />
 		<PackageReference Include="NServiceBus.NHibernate.TransactionalSession" Version="8.*" />
+		<PackageReference Include="NServiceBus.TransactionalSession" Version="1.*" />
 	</ItemGroup>
 
   <ItemGroup Label="Resolves vulnerabilities">

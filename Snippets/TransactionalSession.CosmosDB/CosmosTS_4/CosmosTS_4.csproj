@@ -3,6 +3,9 @@
 		<TargetFramework>net10.0</TargetFramework>
 	</PropertyGroup>
 	<ItemGroup>
+		<PackageReference Include="NServiceBus" Version="10.*" />
+		<PackageReference Include="NServiceBus.Persistence.CosmosDB" Version="4.*" />
 		<PackageReference Include="NServiceBus.Persistence.CosmosDB.TransactionalSession" Version="4.*" />
+		<PackageReference Include="NServiceBus.TransactionalSession" Version="4.*" />
 	</ItemGroup>
 </Project>

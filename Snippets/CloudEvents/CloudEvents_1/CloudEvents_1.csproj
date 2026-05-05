@@ -3,6 +3,7 @@
     <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="10.*" />
     <PackageReference Include="NServiceBus.Envelope.CloudEvents" Version="1.*" />
   </ItemGroup>
 </Project>

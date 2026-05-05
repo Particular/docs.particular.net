@@ -3,6 +3,7 @@
     <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="10.*" />
     <PackageReference Include="NServiceBus.Encryption.MessageProperty" Version="6.*" />
   </ItemGroup>
 </Project>

@@ -3,6 +3,7 @@
     <TargetFramework>net9.0-windows</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <PackageReference Include="NServiceBus" Version="9.*" />
     <PackageReference Include="NServiceBus.MessagingBridge" Version="3.*" />
     <PackageReference Include="NServiceBus.MessagingBridge.Msmq" Version="3.*" />
     <PackageReference Include="NServiceBus.Transport.AzureServiceBus" Version="4.*" />

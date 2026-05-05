@@ -36,12 +36,12 @@
             // message handler calls SharedComponent within Handle
             await messageHandler.Handle(new SomeEvent(), handlerContext);
 
-            Assert.Multiple(() =>
+            using (Assert.EnterMultipleScope())
             {
                 Assert.That(uniformSession.SentMessages, Has.Length.EqualTo(1));
                 // the message handler context and the uniform session share the same state, so these assertions are identical
                 Assert.That(handlerContext.SentMessages, Has.Length.EqualTo(1));
-            });
+            }
         }
         #endregion
 
@@ -57,12 +57,12 @@
             // MyService calls SharedComponent within Start
             await myService.Start(messageSession);
 
-            Assert.Multiple(() =>
+            using (Assert.EnterMultipleScope())
             {
                 Assert.That(uniformSession.SentMessages, Has.Length.EqualTo(1));
                 // the message session and the uniform session share the same state, so these assertions are identical
                 Assert.That(messageSession.SentMessages, Has.Length.EqualTo(1));
-            });
+            }
         }
         #endregion
 
