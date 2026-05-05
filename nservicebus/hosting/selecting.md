@@ -1,7 +1,7 @@
 ---
 title: Selecting a host
 summary: A guide for selecting a host for NServiceBus endpoints.
-reviewed: 2024-08-02
+reviewed: 2026-05-04
 isLearningPath: true
 ---
 This document provides guidance for deciding how to [host](/nservicebus/hosting) [NServiceBus endpoints](/nservicebus/endpoints/).
@@ -33,8 +33,8 @@ In Windows, IIS is a reliable host for web-based applications. An NServiceBus en
 
 This restricts IIS as a choice for hosting NServiceBus endpoints to two specific scenarios:
 
-* [Send-only endpoints](/nservicebus/hosting/#self-hosting-send-only-hosting), which can send but don't receive messages and, therefore, don't need to initialize any receiving infrastructure. Messages are sent while handling incoming HTTP requests or after user input in an interactive application.
-* Web applications which provide [near real-time feedback](/samples/near-realtime-clients/) using queues for asynchronous and reliable communication.
+- [Send-only endpoints](/nservicebus/hosting/#self-hosting-send-only-hosting), which can send but don't receive messages and, therefore, don't need to initialize any receiving infrastructure. Messages are sent while handling incoming HTTP requests or after user input in an interactive application.
+- Web applications which provide [near real-time feedback](/samples/near-realtime-clients/) using queues for asynchronous and reliable communication.
 
 See [Web Application Hosting](/nservicebus/hosting/web-application.md) for details.
 
@@ -50,13 +50,23 @@ See [Docker Container Host](/nservicebus/hosting/docker-host/) for details on ho
 
 ## Microsoft Azure
 
-Azure offers various solutions for hosting NServiceBus endpoints. Unfortunately, none of them are specifically designed to run continuous background processes, similar to Windows Services. So, it can be challenging to choose the best hosting options for NServiceBus endpoints. For assistance, contact [Particular Software](https://particular.net/contactus).
+Azure offers various solutions for hosting NServiceBus endpoints. The best option depends on the requirements of each scenario. For assistance, contact [Particular Software](https://particular.net/contactus).
 
 The primary options for hosting NServiceBus endpoints are:
 
-### AppServices
+### App Service
 
-Within AppServices, [WebJobs](https://docs.microsoft.com/en-us/azure/app-service/webjobs-create) can host background processes. This is the recommended solution for hosting NServiceBus endpoints.
+Within App Service, [WebJobs](https://learn.microsoft.com/en-us/azure/app-service/webjobs-create) can host background processes. This is the recommended solution for hosting NServiceBus endpoints.
+
+### Containers
+
+NServiceBus endpoints can be deployed to Azure container services such as:
+
+- [Azure Container Apps](https://azure.microsoft.com/en-us/products/container-apps/)
+- [Azure Container Instances](https://azure.microsoft.com/en-us/products/container-instances/)
+- [Azure Kubernetes Service](https://azure.microsoft.com/en-us/products/kubernetes-service/)
+
+See [Docker Container Host](/nservicebus/hosting/docker-host/) for details on hosting endpoints in Docker containers.
 
 ### Azure Functions
 
@@ -68,7 +78,7 @@ Service Fabric works on top of Virtual Machine Scale Sets to provide clustered, 
 
 ## Amazon Web Services
 
-Although there is a [comparison chart](https://docs.microsoft.com/en-us/azure/architecture/aws-professional/services#miscellaneous) that compares Amazon Web Services (AWS) to Microsoft Azure, AWS does not provide any comparable alternatives for hosting background processes. That leaves the following options for Amazon Web Services:
+AWS offers various solutions for hosting NServiceBus endpoints. The primary options are:
 
 ### AWS Lambda
 
@@ -76,12 +86,13 @@ AWS Lambda can run NServiceBus endpoints in a serverless and dynamically scaled 
 
 ### Virtual Machines
 
-AWS virtual machines provide the same options as those described in [on-premises](#on-premises).
+AWS EC2 virtual machines provide the same options as those described in [on-premises](#on-premises).
 
 ### Containers
 
-AWS containers provide the same options described in the [containers](#containers) section.
+NServiceBus endpoints can be deployed to AWS container orchestration services such as:
 
-### AWS Mesh
+- [Amazon Elastic Container Service](https://aws.amazon.com/ecs/)
+- [Amazon Elastic Kubernetes Service](https://aws.amazon.com/eks/)
 
-AWS Mesh is comparable to Azure [Service Fabric](#microsoft-azure-service-fabric).
+See [Docker Container Host](/nservicebus/hosting/docker-host/) for details on hosting endpoints in Docker containers.
