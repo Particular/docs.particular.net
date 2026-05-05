@@ -106,9 +106,9 @@ Messages sent from a [saga](/nservicebus/sagas/) using the `ReplyToOriginator` m
 
 The identifier of the conversation that this message is part of. It enables the tracking of message flows that span more than one message exchange. `ConversationId`, `RelatedTo`, `OriginatingEndpoint`, and `ProcessingEndpoint` fields allow [ServicePulse](/servicepulse/message-details.md#messages-with-audited-conversation-data-flow-diagram) to reconstruct the entire message flow.
 
-The first message sent in a new flow is automatically assigned a unique `ConversationId` that gets propagated to all the messages that are sent afterward, forming a _conversation_. Each message sent within a conversation has a `RelatedTo` value that identifies the message that caused it to be sent.
+The first message **sent** in a new flow is automatically assigned a unique `ConversationId` that gets propagated to all the messages that are sent afterward, forming a _conversation_. Each message sent within a conversation has a `RelatedTo` value that identifies the message that caused it to be sent.
 
-The `ConversationId` must be assigned manually in cases where NServiceBus can't infer when messages belong to the same conversation. For example, when a `CancelOrder` message must be part of an existing order conversation, the Order ID can be used as the Conversation ID. Manually assigning a `ConversationId` can be achieved by overriding the header with a custom value:
+The `ConversationId` must be assigned manually in cases where NServiceBus can't infer when messages belong to the same conversation. For example, when a `CancelOrder` message must be part of an existing order conversation, the Order ID can be used as the Conversation ID. Manually assigning a `ConversationId` for the message that is being send can be achieved by overriding the header with a custom value:
 
 snippet: override-conversation-id
 
