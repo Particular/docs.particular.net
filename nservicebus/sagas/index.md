@@ -53,6 +53,9 @@ partial: disable-shared-state-check
 > [!NOTE]
 > By default, sagas are discovered via assembly scanning. They can also be registered explicitly. See [Registering Handlers and Sagas](/nservicebus/handlers-and-sagas-registration.md) for all registration options.
 
+> [!NOTE]
+> By default, sagas are discovered via assembly scanning. They can also be registered explicitly. See [Registering Handlers and Sagas](/nservicebus/handlers-and-sagas-registration.md) for all registration options.
+
 ## Adding behavior
 
 The important part of a long-running process is its behavior. Just like regular message handlers, the behavior of a saga is implemented via the `IHandleMessages<M>` interface for the message types to be handled.
