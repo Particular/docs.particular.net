@@ -2,27 +2,34 @@
 title: Azure Functions hosting
 component: AzureFunctions
 summary: Hosting NServiceBus endpoints in Azure Functions with the AzureServiceBus package
-reviewed: 2026-05-01
+reviewed: 2026-05-05
 ---
 
-NServiceBus endpoints run inside an Azure Functions app using a hosting model where each endpoint is declared as a partial class or method decorated with `[NServiceBusFunction]`. A source generator emits the trigger function and registers the endpoint with the Functions host. A single Functions app can host one or more endpoints.
+NServiceBus endpoints can be hosted in an Azure Functions app using the [`NServiceBus.AzureFunctions.AzureServiceBus`](https://www.nuget.org/packages/NServiceBus.AzureFunctions.AzureServiceBus) package:
 
-Trigger support is provided by transport-specific packages. The only one available today is [`NServiceBus.AzureFunctions.AzureServiceBus`](https://www.nuget.org/packages/NServiceBus.AzureFunctions.AzureServiceBus), which provides Azure Service Bus triggers. The rest of this page covers hosting endpoints with that package.
+```csharp
+[NServiceBusFunction]
+public partial class SalesEndpoint
+{
+    [Function(nameof(Sales))]
+    public partial Task Sales(/* Service Bus trigger parameters */);
+
+    public static void ConfigureSales(EndpointConfiguration endpoint)
+    {
+        endpoint.AddHandler<SubmitOrderHandler>();
+    }
+}
+```
+
+A source generator emits the trigger body and registers each endpoint with the Functions host. A single Functions app can host one or more endpoints.
 
 ## When to use this package
 
-`NServiceBus.AzureFunctions.AzureServiceBus` is the recommended hosting package for new Azure Functions endpoints that use Azure Service Bus. It supports multiple receiving and send-only endpoints in a single Functions app, with explicit endpoint declarations in code.
+`NServiceBus.AzureFunctions.AzureServiceBus` is the package to use for new Azure Functions hosting work. It targets the isolated worker model on .NET 10, supports multiple receiving and send-only endpoints in a single Functions app, and brings in everything required: the source generator, `[NServiceBusFunction]`, and the host extensions shown below.
 
-The earlier packages remain supported for existing applications:
-
-- [`NServiceBus.AzureFunctions.Worker.ServiceBus`](/nservicebus/hosting/azure-functions-service-bus) — single-endpoint isolated worker model.
-- [`NServiceBus.AzureFunctions.InProcess.ServiceBus`](/nservicebus/hosting/azure-functions-service-bus/in-process) — in-process model (deprecated).
+Existing applications can continue using the earlier [`NServiceBus.AzureFunctions.Worker.ServiceBus`](/nservicebus/hosting/azure-functions-service-bus) (single-endpoint isolated worker) or the deprecated [`NServiceBus.AzureFunctions.InProcess.ServiceBus`](/nservicebus/hosting/azure-functions-service-bus/in-process).
 
 TODO: link to migration guide (`/nservicebus/upgrades/azure-functions-service-bus-isolated-to-azure-functions`) once it lands on the integration branch.
-
-## Package
-
-[`NServiceBus.AzureFunctions.AzureServiceBus`](https://www.nuget.org/packages/NServiceBus.AzureFunctions.AzureServiceBus) targets Azure Functions on .NET 10 with the isolated worker model. It depends on the transport-agnostic `NServiceBus.AzureFunctions.Common` package, which provides `[NServiceBusFunction]`, the source generator, and `AddSendOnlyNServiceBusEndpoint`. `Common` is pulled in transitively; it does not need to be referenced directly.
 
 ## Defining an endpoint
 
@@ -39,21 +46,21 @@ using NServiceBus;
 using NServiceBus.Transport.AzureServiceBus;
 
 [NServiceBusFunction]
-public partial class ShippingEndpoint
+public partial class OrdersEndpoint
 {
-    [Function(nameof(Shipping))]
-    public partial Task Shipping(
-        [ServiceBusTrigger("shipping", Connection = "AzureWebJobsServiceBus", AutoCompleteMessages = false)]
+    [Function(nameof(Orders))]
+    public partial Task Orders(
+        [ServiceBusTrigger("orders", Connection = "ServiceBusConnection", AutoCompleteMessages = false)]
         ServiceBusReceivedMessage message,
         ServiceBusMessageActions messageActions,
         FunctionContext functionContext,
         CancellationToken cancellationToken = default);
 
-    public static void ConfigureShipping(EndpointConfiguration endpoint)
+    public static void ConfigureOrders(EndpointConfiguration endpoint)
     {
         endpoint.UseTransport(new AzureServiceBusServerlessTransport(TopicTopology.Default));
         endpoint.UseSerialization<SystemJsonSerializer>();
-        endpoint.AddHandler<ShipOrderHandler>();
+        endpoint.AddHandler<PlaceOrderHandler>();
     }
 }
 ```
@@ -83,22 +90,22 @@ using NServiceBus;
 using NServiceBus.Transport.AzureServiceBus;
 
 [NServiceBusFunction]
-public partial class SalesEndpoint
+public partial class ShippingEndpoint
 {
-    [Function("Sales")]
-    public partial Task Sales(
-        [ServiceBusTrigger("sales", Connection = "AzureWebJobsServiceBus", AutoCompleteMessages = false)]
+    [Function("Shipping")]
+    public partial Task Shipping(
+        [ServiceBusTrigger("shipping", Connection = "ServiceBusConnection", AutoCompleteMessages = false)]
         ServiceBusReceivedMessage message,
         ServiceBusMessageActions messageActions,
         FunctionContext functionContext,
         CancellationToken cancellationToken = default);
 
-    public static void ConfigureSales(EndpointConfiguration configuration, IServiceCollection services)
+    public static void ConfigureShipping(EndpointConfiguration configuration, IServiceCollection services)
     {
         configuration.UseTransport(new AzureServiceBusServerlessTransport(TopicTopology.Default));
         configuration.UseSerialization<SystemJsonSerializer>();
-        services.AddSingleton(new MyComponent("Sales"));
-        configuration.AddHandler<SubmitOrderHandler>();
+        services.AddSingleton(new MyComponent("Shipping"));
+        configuration.AddHandler<ShipOrderHandler>();
     }
 }
 ```
@@ -142,7 +149,7 @@ public partial class BillingFunctions
     [Function("BillingApi")]
     [NServiceBusFunction]
     public partial Task BillingApi(
-        [ServiceBusTrigger("%BillingPrefix%-api", Connection = "AzureWebJobsServiceBus", AutoCompleteMessages = false)]
+        [ServiceBusTrigger("billing-api", Connection = "ServiceBusConnection", AutoCompleteMessages = false)]
         ServiceBusReceivedMessage message,
         ServiceBusMessageActions messageActions,
         FunctionContext functionContext,
@@ -158,7 +165,7 @@ public partial class BillingFunctions
     [Function("BillingBackend")]
     [NServiceBusFunction]
     public partial Task BillingBackend(
-        [ServiceBusTrigger("%BillingPrefix%-backend", Connection = "AzureWebJobsServiceBus", AutoCompleteMessages = false)]
+        [ServiceBusTrigger("billing-backend", Connection = "ServiceBusConnection", AutoCompleteMessages = false)]
         ServiceBusReceivedMessage message,
         ServiceBusMessageActions messageActions,
         FunctionContext functionContext,
@@ -168,7 +175,7 @@ public partial class BillingFunctions
     {
         endpointConfiguration.UseTransport(new AzureServiceBusServerlessTransport(TopicTopology.Default));
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.AddHandler<RecordChargeHandler>();
+        endpointConfiguration.AddHandler<PaymentChargedHandler>();
 
         if (environment.IsProduction())
         {
@@ -182,14 +189,14 @@ Each endpoint has its own `Configure{FunctionName}` method; the source generator
 
 ## Send-only endpoints
 
-A send-only endpoint can be registered for components that need to dispatch messages without listening for incoming traffic — for example, a function fronting an HTTP API:
+A send-only endpoint can be registered for components that need to dispatch messages without listening for incoming traffic, for example a function fronting an HTTP API:
 
 ```csharp
 builder.AddSendOnlyNServiceBusEndpoint("client", (configuration, services) =>
 {
     var transport = new AzureServiceBusServerlessTransport(TopicTopology.Default)
     {
-        ConnectionName = "AzureWebJobsServiceBus"
+        ConnectionName = "ServiceBusConnection"
     };
     var routing = configuration.UseTransport(transport);
     routing.RouteToEndpoint(typeof(SubmitOrder), "sales");
@@ -197,7 +204,7 @@ builder.AddSendOnlyNServiceBusEndpoint("client", (configuration, services) =>
 });
 ```
 
-To send or publish from another function — for example, an HTTP trigger — inject `IMessageSession` keyed by the same name used at registration:
+To send or publish from another function (for example, an HTTP trigger), inject `IMessageSession` keyed by the same name used at registration:
 
 ```csharp
 using System.Net;
@@ -227,7 +234,7 @@ The connection string for Azure Service Bus is read from the Functions configura
 - The `Connection` parameter on the `[ServiceBusTrigger]` attribute.
 - The `ConnectionName` property on `AzureServiceBusServerlessTransport` when registering a send-only endpoint.
 
-The default value is `AzureWebJobsServiceBus`, matching the standard Functions setting.
+Any setting name can be used; the examples on this page use `ServiceBusConnection`.
 
 ## Logging and diagnostics
 
