@@ -8,38 +8,6 @@ reviewed: 2026-05-05
 NServiceBus endpoints can be hosted in an Azure Functions app using the [`NServiceBus.AzureFunctions.AzureServiceBus`](https://www.nuget.org/packages/NServiceBus.AzureFunctions.AzureServiceBus) package:
 
 ```csharp
-[NServiceBusFunction]
-public partial class SalesEndpoint
-{
-    [Function(nameof(Sales))]
-    public partial Task Sales(/* Service Bus trigger parameters */);
-
-    public static void ConfigureSales(EndpointConfiguration endpoint)
-    {
-        endpoint.AddHandler<SubmitOrderHandler>();
-    }
-}
-```
-
-A source generator emits the trigger body and registers each endpoint with the Functions host. A single Functions app can host one or more endpoints.
-
-## When to use this package
-
-`NServiceBus.AzureFunctions.AzureServiceBus` is the package to use for new Azure Functions hosting work. It targets the isolated worker model on .NET 10, supports multiple receiving and send-only endpoints in a single Functions app, and brings in everything required: the source generator, `[NServiceBusFunction]`, and the host extensions shown below.
-
-Existing applications can continue using the earlier [`NServiceBus.AzureFunctions.Worker.ServiceBus`](/nservicebus/hosting/azure-functions-service-bus) (single-endpoint isolated worker) or the deprecated [`NServiceBus.AzureFunctions.InProcess.ServiceBus`](/nservicebus/hosting/azure-functions-service-bus/in-process).
-
-TODO: link to migration guide (`/nservicebus/upgrades/azure-functions-service-bus-isolated-to-azure-functions`) once it lands on the integration branch.
-
-## Defining an endpoint
-
-An endpoint is a partial class composed of three parts:
-
-- The class is decorated with `[NServiceBusFunction]`.
-- A partial method declares the Azure Service Bus trigger.
-- A static `Configure{FunctionName}` method registers handlers and configures the endpoint.
-
-```csharp
 using Azure.Messaging.ServiceBus;
 using Microsoft.Azure.Functions.Worker;
 using NServiceBus;
@@ -65,11 +33,17 @@ public partial class OrdersEndpoint
 }
 ```
 
-The partial method body is generated automatically; the trigger forwards each incoming message to the NServiceBus pipeline.
+An endpoint is a partial class composed of three parts:
+
+- The class is decorated with `[NServiceBusFunction]`.
+- A partial method declares the Azure Service Bus trigger. The source generator emits the body, which forwards each incoming message to the NServiceBus pipeline.
+- A static `Configure{FunctionName}` method registers handlers and configures the endpoint.
 
 The trigger must set `AutoCompleteMessages = false`. The NServiceBus pipeline takes responsibility for completing or abandoning each message based on handler outcomes; the `NSBFUNC006` analyzer enforces this requirement.
 
-### The configure method
+A single Functions app can host one or more endpoints.
+
+## The configure method
 
 The static `Configure{FunctionName}` method is discovered by the source generator and called once per endpoint at host startup. Parameters are matched by type, in any combination:
 
@@ -110,7 +84,7 @@ public partial class ShippingEndpoint
 }
 ```
 
-### Handler registration
+## Handler registration
 
 Handlers must be registered explicitly with `EndpointConfiguration.AddHandler<T>`. Assembly scanning is not available in this hosting model; handlers that are not registered will not be invoked.
 
