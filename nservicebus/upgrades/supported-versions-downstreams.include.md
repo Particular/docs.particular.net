@@ -13,20 +13,20 @@
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
 | [9.0.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/9.0.0)| **Current** | 2026-01-29     | Active            | Active |
-| [8.1.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/8.1.0)| Mainstream Support | 2026-01-14     | 2028-01-29        | 2030-01-29 |
-| [7.3.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.3.0)| Mainstream Support | 2025-04-14     | 2026-06-04        | Ineligible |
-| [6.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.2.1)| Extended Support | 2023-11-20     | 2026-04-16        | 2028-04-16 |
+| [8.1.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/8.1.1)| Mainstream Support | 2026-01-14     | 2028-01-29        | 2030-01-29 |
+| [7.3.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/7.3.1)| Mainstream Support | 2025-04-14     | 2026-06-04        | Ineligible |
+| [6.2.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/6.2.2)| Extended Support | 2023-11-20     | 2026-04-16        | 2028-04-16 |
 | [5.7.x](https://www.nuget.org/packages/NServiceBus.AmazonSQS/5.7.3)| Extended Support | 2023-03-07     | 2024-11-17        | 2026-11-17 |
 
 #### [NServiceBus.RabbitMQ](/nuget/NServiceBus.RabbitMQ)
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [11.2.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/11.2.0)| **Current** | 2026-04-07     | Active            | Active |
-| [11.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/11.1.0)| Mainstream Support | 2026-03-16     | 2026-07-07        | Ineligible |
-| [11.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/11.0.0)| Mainstream Support | 2026-01-30     | 2026-06-16        | Ineligible |
-| [10.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.1.7)| Mainstream Support | 2025-04-14     | 2028-01-29        | 2030-01-29 |
-| [8.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/8.0.9)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
+| [11.2.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/11.2.1)| **Current** | 2026-04-07     | Active            | Active |
+| [11.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/11.1.1)| Mainstream Support | 2026-03-16     | 2026-07-07        | Ineligible |
+| [11.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/11.0.1)| Mainstream Support | 2026-01-30     | 2026-06-16        | Ineligible |
+| [10.1.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/10.1.8)| Mainstream Support | 2025-04-14     | 2028-01-29        | 2030-01-29 |
+| [8.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/8.0.10)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [7.0.x](https://www.nuget.org/packages/NServiceBus.RabbitMQ/7.0.7)| Extended Support | 2022-07-14     | 2024-11-17        | 2026-11-17 |
 
 #### [NServiceBus.SqlServer](/nuget/NServiceBus.SqlServer)
@@ -40,7 +40,8 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [6.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.2.2)| **Current** | 2026-03-18     | Active            | Active |
+| [6.3.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.3.0)| **Current** | 2026-05-04     | Active            | Active |
+| [6.2.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.2.2)| Mainstream Support | 2026-03-18     | 2026-08-04        | Ineligible |
 | [6.1.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.1.0)| Mainstream Support | 2026-02-09     | 2026-06-18        | Ineligible |
 | [6.0.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/6.0.0)| Mainstream Support | 2026-01-29     | 2026-05-09        | Ineligible |
 | [5.1.x](https://www.nuget.org/packages/NServiceBus.Transport.AzureServiceBus/5.1.2)| Mainstream Support | 2025-09-26     | 2028-01-29        | 2030-01-29 |
@@ -394,9 +395,9 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.Hosting/4.0.0)| **Current** | 2026-01-30     | Active            | Active |
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.Hosting/3.0.1)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.Hosting/2.0.1)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.Hosting/4.0.1)| **Current** | 2026-01-30     | Active            | Active |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.Hosting/3.0.2)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Extensions.Hosting/2.0.2)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [1.1.x](https://www.nuget.org/packages/NServiceBus.Extensions.Hosting/1.1.0)| Extended Support | 2020-08-12     | 2024-11-17        | 2026-11-17 |
 
 #### [NServiceBus.Host](/nuget/NServiceBus.Host)
