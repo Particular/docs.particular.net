@@ -4,5 +4,6 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="NServiceBus.ServicePlatform.Connector" Version="3.*" />
+    <PackageReference Include="NServiceBus" Version="9.*" />
   </ItemGroup>
 </Project>

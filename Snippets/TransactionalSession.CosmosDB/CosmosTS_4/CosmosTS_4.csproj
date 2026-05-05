@@ -4,5 +4,6 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<PackageReference Include="NServiceBus.Persistence.CosmosDB.TransactionalSession" Version="4.*" />
+    <PackageReference Include="NServiceBus" Version="10.*" />
 	</ItemGroup>
 </Project>

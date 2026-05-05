@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="NServiceBus.Persistence.DynamoDB.TransactionalSession" Version="3.*" />
+    <PackageReference Include="NServiceBus" Version="9.*" />
   </ItemGroup>
 
   <ItemGroup Label="Elevated transitive dependencies">

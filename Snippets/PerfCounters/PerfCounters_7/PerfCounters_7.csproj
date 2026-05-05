@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="NServiceBus.Metrics.PerformanceCounters" Version="7.*" />
+    <PackageReference Include="NServiceBus" Version="10.*" />
   </ItemGroup>
 
 </Project>
