@@ -10,50 +10,41 @@ class Program
 
     public static async Task Main(string[] args)
     {
-        await CreateHostBuilder(args).Build().RunAsync();
-    }
+        var endpointConfiguration = new EndpointConfiguration("Samples.CustomRecoverability.Server");
+        endpointConfiguration.UsePersistence<LearningPersistence>();
+        endpointConfiguration.UseTransport(new LearningTransport());
+        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
+        var recoverability = endpointConfiguration.Recoverability();
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureServices((hostContext, services) =>
+        #region disable
+        //recoverability.Delayed(settings =>
+        //{
+        //    settings.NumberOfRetries(0);
+        //});
+        #endregion
+
+        #region addcustompolicy
+        recoverability.CustomPolicy(MyCustomRetryPolicy());
+        #endregion
+
+        #region addcustomheaders
+        recoverability.Failed(
+            failed =>
             {
-                Console.Title = "Server";
-            }).UseNServiceBus(x =>
-            {
-                var endpointConfiguration = new EndpointConfiguration("Samples.CustomRecoverability.Server");
-                endpointConfiguration.UsePersistence<LearningPersistence>();
-                endpointConfiguration.UseTransport(new LearningTransport());
-                endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-                var recoverability = endpointConfiguration.Recoverability();
-
-                #region disable
-                //recoverability.Delayed(settings =>
-                //{
-                //    settings.NumberOfRetries(0);
-                //});
-                #endregion
-
-                #region addcustompolicy
-                recoverability.CustomPolicy(MyCustomRetryPolicy());
-                #endregion
-
-                #region addcustomheaders
-                recoverability.Failed(
-                failed =>
+                failed.HeaderCustomization(headers =>
                 {
-                    failed.HeaderCustomization(headers =>
+                    if (headers.ContainsKey("NServiceBus.ExceptionInfo.Message"))
                     {
-                        if (headers.ContainsKey("NServiceBus.ExceptionInfo.Message"))
-                        {
-                            headers["NServiceBus.ExceptionInfo.Message"] = "message override";
-                        }
-                    });
+                        headers["NServiceBus.ExceptionInfo.Message"] = "message override";
+                    }
                 });
-                #endregion
-
-                return endpointConfiguration;
             });
+        #endregion
 
+        var builder = Host.CreateApplicationBuilder(args);
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+        await builder.Build().RunAsync();
+    }
 
     #region mycustomretrypolicy
     private static Func<RecoverabilityConfig, ErrorContext, RecoverabilityAction> MyCustomRetryPolicy()

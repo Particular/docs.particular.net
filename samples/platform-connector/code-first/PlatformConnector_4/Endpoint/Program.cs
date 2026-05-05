@@ -1,3 +1,6 @@
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
 Console.Title = "Endpoint";
 
 var endpointConfiguration = new EndpointConfiguration("Endpoint");
@@ -45,14 +48,18 @@ var platformConnection = new ServicePlatformConnectionConfiguration
 endpointConfiguration.ConnectToServicePlatform(platformConnection);
 #endregion
 
-var endpoint = await Endpoint.Start(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+var host = builder.Build();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+await host.StartAsync();
 
 Console.WriteLine("Press any key to send a message, ESC to stop");
 
 while (Console.ReadKey(true).Key != ConsoleKey.Escape)
 {
-    await endpoint.SendLocal(new BusinessMessage { BusinessId = Guid.NewGuid() });
+    await messageSession.SendLocal(new BusinessMessage { BusinessId = Guid.NewGuid() });
     Console.WriteLine("Message sent");
 }
 
-await endpoint.Stop();
+await host.StopAsync();

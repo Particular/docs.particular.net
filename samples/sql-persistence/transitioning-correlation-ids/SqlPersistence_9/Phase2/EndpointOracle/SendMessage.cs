@@ -4,13 +4,13 @@ using NServiceBus;
 
 partial class Program
 {
-    static Task SendMessage(IEndpointInstance endpointInstance)
+    static Task SendMessage(IMessageSession messageSession)
     {
         var message = new StartOrder
         {
             OrderNumber = 10,
             OrderId = new Guid("0f8fad5b-d9cb-469f-a165-70867728950e")
         };
-        return endpointInstance.SendLocal(message);
+        return messageSession.SendLocal(message);
     }
 }

@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <PackageReference Include="NServiceBus.AmazonSQS" Version="9.*" />
-    <PackageReference Include="NServiceBus.Extensions.Hosting" Version="4.*" />
   </ItemGroup>
 
 </Project>

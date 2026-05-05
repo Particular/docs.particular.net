@@ -6,7 +6,6 @@ isLearningPath: true
 related:
  - samples/web
  - nservicebus/lifecycle
- - samples/startup-shutdown-sequence
  - nservicebus/messaging/callbacks
  - nservicebus/hosting/publishing-from-web-applications
 ---

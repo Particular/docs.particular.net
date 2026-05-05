@@ -11,7 +11,6 @@ endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.DefineCriticalErrorAction(OnCriticalError);
 
-
 //  It is recommended to run least privilege and only run installers during deployment.
 //  This also reduces startup time / time to first message.
 
@@ -21,15 +20,15 @@ var isSetup = args.Contains("--setup");
 if (isSetup)
 {
     // Provision resources like transport queue creation and persister schemas
-    await NServiceBus.Installation.Installer.Setup(endpointConfiguration);
-    return; // Exit application
+    builder.Services.AddNServiceBusInstallers(configure =>
+        configure.ShutdownBehavior = InstallersShutdownBehavior.StopApplication);
 }
 else if (isDevelopment)
 {
     endpointConfiguration.EnableInstallers();
 }
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 #endregion
 

@@ -1,3 +1,5 @@
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
@@ -25,7 +27,11 @@ endpointConfiguration.UseTransport<LearningTransport>();
 endpointConfiguration.Pipeline.Register(new TraceOutgoingMessageSizeBehavior(), "Captures body size of outgoing messages as OpenTelemetry tags");
 endpointConfiguration.Pipeline.Register(new TraceCustomExceptionInHandlerBehavior(), "Captures custom exception and sets reason code as a tag");
 
-var endpoint = await Endpoint.Start(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+var host = builder.Build();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+await host.StartAsync();
 
 Console.WriteLine("Endpoint started.");
 
@@ -39,14 +45,14 @@ while (!done)
             done = true;
             break;
         case ConsoleKey.O:
-            await endpoint.SendLocal(new CreateOrder { OrderId = Guid.NewGuid() });
+            await messageSession.SendLocal(new CreateOrder { OrderId = Guid.NewGuid() });
             break;
         case ConsoleKey.F:
-            await endpoint.SendLocal(new CreateOrder { OrderId = Guid.NewGuid(), SimulateFailure = true });
+            await messageSession.SendLocal(new CreateOrder { OrderId = Guid.NewGuid(), SimulateFailure = true });
             break;
     }
 }
 
-await endpoint.Stop();
+await host.StopAsync();
 
 Console.WriteLine("Endpoint stopped");

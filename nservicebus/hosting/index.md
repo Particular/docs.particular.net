@@ -25,7 +25,6 @@ The [Microsoft Generic Host](https://learn.microsoft.com/en-us/aspnet/core/funda
  * Configuration
  * [Logging](/nservicebus/logging)
  * [Dependency injection](/nservicebus/dependency-injection/)
- * [Startup and Shutdown](/samples/startup-shutdown-sequence/)
  * [Endpoint Lifecycle](/nservicebus/lifecycle/)
  * [Critical Error handling](critical-errors.md)
 

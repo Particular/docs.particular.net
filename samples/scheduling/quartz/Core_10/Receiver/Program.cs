@@ -14,5 +14,5 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 Console.WriteLine("Waiting for messages from the Sender");
 Console.WriteLine("Starting...");
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 await builder.Build().RunAsync();

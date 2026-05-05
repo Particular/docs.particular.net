@@ -15,18 +15,15 @@ endpointConfiguration.UseTransport(new LearningTransport());
 
 var pipeline = endpointConfiguration.Pipeline;
 pipeline.Register(new MyUowBehavior(), "Manages the session");
-endpointConfiguration.RegisterComponents(c =>
-{
-    c.AddScoped<IMySession, MySession>();
-    c.AddScoped<MySession, MySession>();
-});
+builder.Services.AddScoped<IMySession, MySession>();
+builder.Services.AddScoped<MySession, MySession>();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+
 #endregion
 
 Console.WriteLine("Press any key, the application is starting");
 Console.ReadKey();
 Console.WriteLine("Starting...");
-
-builder.UseNServiceBus(endpointConfiguration);
 
 var host = builder.Build();
 

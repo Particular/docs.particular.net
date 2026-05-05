@@ -43,29 +43,26 @@ var dialect = persistence.SqlDialect<SqlDialect.MsSqlServer>();
 
 #region UnitOfWork_SQL
 
-endpointConfiguration.RegisterComponents(c =>
+builder.Services.AddScoped(provider =>
 {
-    c.AddScoped(b =>
-    {
-        var session = b.GetRequiredService<ISqlStorageSession>();
+    var session = provider.GetRequiredService<ISqlStorageSession>();
 
-        var context = new ReceiverDataContext(new DbContextOptionsBuilder<ReceiverDataContext>()
-            .UseSqlServer(session.Connection)
-            .Options);
+    var context = new ReceiverDataContext(new DbContextOptionsBuilder<ReceiverDataContext>()
+        .UseSqlServer(session.Connection)
+        .Options);
 
-        //Use the same underlying ADO.NET transaction
-        context.Database.UseTransaction(session.Transaction);
+    //Use the same underlying ADO.NET transaction
+    context.Database.UseTransaction(session.Transaction);
 
-        //Ensure context is flushed before the transaction is committed
-        session.OnSaveChanges((s, token) => context.SaveChangesAsync(token));
+    //Ensure context is flushed before the transaction is committed
+    session.OnSaveChanges((s, token) => context.SaveChangesAsync(token));
 
-        return context;
-    });
+    return context;
 });
 
 #endregion
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 var host = builder.Build();
 await host.StartAsync();

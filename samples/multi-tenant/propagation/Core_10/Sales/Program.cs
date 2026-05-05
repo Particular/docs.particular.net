@@ -16,5 +16,5 @@ pipeline.Register(new PropagateTenantIdBehavior(), "Propagates tenant ID to outg
 
 #endregion
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 await builder.Build().RunAsync();

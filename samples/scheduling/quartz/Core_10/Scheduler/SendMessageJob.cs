@@ -12,9 +12,9 @@ public class SendMessageJob :
     {
         try
         {
-            var endpointInstance = context.EndpointInstance();
+            var messageSession = context.MessageSession();
             var message = new MyMessage();
-            await endpointInstance.Send("Samples.QuartzScheduler.Receiver", message);
+            await messageSession.Send("Samples.QuartzScheduler.Receiver", message);
         }
         catch (Exception exception)
         {
