@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 Console.Title = "Endpoint1";
@@ -10,7 +12,14 @@ endpointConfiguration.ConfigurationEncryption();
 endpointConfiguration.UsePersistence<LearningPersistence>();
 endpointConfiguration.UseTransport(new LearningTransport());
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
+
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+var host = builder.Build();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+await host.StartAsync();
+
+
 var message = new MessageWithSecretData
 {
     Secret = "betcha can't guess my secret",
@@ -32,8 +41,8 @@ var message = new MessageWithSecretData
         }
     }
 };
-await endpointInstance.Send("Samples.Encryption.Endpoint2", message);
+await messageSession.Send("Samples.Encryption.Endpoint2", message);
 
 Console.WriteLine("MessageWithSecretData sent. Press any key to exit");
 Console.ReadKey();
-await endpointInstance.Stop();
+await host.StopAsync();

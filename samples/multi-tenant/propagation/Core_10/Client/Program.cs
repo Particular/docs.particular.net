@@ -1,3 +1,6 @@
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+
 const string letters = "ABCDEFGHIJKLMNOPQRSTUVXYZ";
 var random = new Random();
 Console.Title = "Client";
@@ -9,7 +12,11 @@ endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 var routing = endpointConfiguration.UseTransport(new LearningTransport());
 routing.RouteToEndpoint(typeof(PlaceOrder), "Samples.MultiTenant.Propagation.Sales");
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+var host = builder.Build();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+await host.StartAsync();
 
 Console.WriteLine("Press <enter> to send messages");
 while (true)
@@ -21,7 +28,7 @@ while (true)
 
     var options = new SendOptions();
     options.SetHeader("tenant_id", tenantId);
-    await endpointInstance.Send(new PlaceOrder(), options);
+    await messageSession.Send(new PlaceOrder(), options);
 
     #endregion
 

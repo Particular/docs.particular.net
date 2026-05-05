@@ -5,14 +5,14 @@ using Quartz;
 
 public static class QuartzContextExtensions
 {
-    public static IEndpointInstance EndpointInstance(this IJobExecutionContext context)
+    public static IMessageSession MessageSession(this IJobExecutionContext context)
     {
-        return (IEndpointInstance) context.Scheduler.Context["EndpointInstance"];
+        return (IMessageSession) context.Scheduler.Context["MessageSession"];
     }
 
-    public static void SetEndpointInstance(this IScheduler scheduler, IEndpointInstance instance)
+    public static void SetMessageSession(this IScheduler scheduler, IMessageSession messageSession)
     {
-        scheduler.Context["EndpointInstance"] = instance;
+        scheduler.Context["MessageSession"] = messageSession;
     }
 }
 

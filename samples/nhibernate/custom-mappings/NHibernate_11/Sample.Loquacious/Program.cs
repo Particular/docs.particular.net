@@ -1,5 +1,7 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NHibernate.Cfg;
 using NHibernate.Dialect;
 using NHibernate.Driver;
@@ -33,15 +35,20 @@ class Program
         var persistence = endpointConfiguration.UsePersistence<NHibernatePersistence>();
         persistence.UseConfiguration(hibernateConfig);
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        var builder = Host.CreateApplicationBuilder();
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+        var host = builder.Build();
+        var messageSession = host.Services.GetRequiredService<IMessageSession>();
+        await host.StartAsync();
+
         var startOrder = new StartOrder
         {
             OrderId = "123"
         };
-        await endpointInstance.SendLocal(startOrder);
+        await messageSession.SendLocal(startOrder);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpointInstance.Stop();
+        await host.StopAsync();
     }
 
     #region LoquaciousConfiguration

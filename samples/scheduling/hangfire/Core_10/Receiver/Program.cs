@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 class Program
@@ -11,10 +13,14 @@ class Program
         endpointConfiguration.UseTransport(new LearningTransport());
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        var builder = Host.CreateApplicationBuilder();
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+        var host = builder.Build();
+        await host.StartAsync();
+
         Console.WriteLine("Press any key to exit");
         Console.WriteLine("Waiting for messages from the Scheduler");
         Console.ReadKey();
-        await endpointInstance.Stop();
+        await host.StopAsync();
     }
 }

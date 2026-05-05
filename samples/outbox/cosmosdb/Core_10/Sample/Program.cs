@@ -1,6 +1,8 @@
 using System;
 using System.Threading.Tasks;
 using Microsoft.Azure.Cosmos;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 class Program
@@ -55,7 +57,12 @@ class Program
         endpointConfiguration.LimitMessageProcessingConcurrencyTo(1);
 
         #endregion
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+
+        var builder = Host.CreateApplicationBuilder();
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+        var host = builder.Build();
+        var messageSession = host.Services.GetRequiredService<IMessageSession>();
+        await host.StartAsync();
 
         Console.WriteLine("Endpoint started. Press Enter to send 5 sets of duplicate messages...");
         Console.ReadLine();
@@ -63,12 +70,12 @@ class Program
         for (var i = 0; i < 5; i++)
         {
             var myMessage = new MyMessage();
-            await Helper.SendDuplicates(endpointInstance, myMessage, totalCount: 2);
+            await Helper.SendDuplicates(messageSession, myMessage, totalCount: 2);
         }
 
         await Task.Delay(5000);
         Console.WriteLine("Press any key to exit");
         Console.ReadKey();
-        await endpointInstance.Stop();
+        await host.StopAsync();
     }
 }

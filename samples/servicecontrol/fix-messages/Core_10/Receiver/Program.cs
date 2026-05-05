@@ -26,6 +26,6 @@ recoverability.Immediate(
 
 #endregion
 
-builder.UseNServiceBus(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
 
 await builder.Build().RunAsync();

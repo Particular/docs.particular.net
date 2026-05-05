@@ -3,12 +3,12 @@ using NServiceBus;
 
 partial class Program
 {
-    static Task SendMessage(IEndpointInstance endpointInstance)
+    static Task SendMessage(IMessageSession messageSession)
     {
         var message = new StartOrder
         {
             OrderNumber = 10
         };
-        return endpointInstance.SendLocal(message);
+        return messageSession.SendLocal(message);
     }
 }

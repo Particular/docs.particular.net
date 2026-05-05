@@ -25,7 +25,6 @@ The [Microsoft Generic Host](https://docs.microsoft.com/en-us/aspnet/core/fundam
  * Configuration
  * [Logging](/nservicebus/logging)
  * [Dependency injection](/nservicebus/dependency-injection/)
- * [Startup and Shutdown](/samples/startup-shutdown-sequence/)
  * [Endpoint Lifecycle](/nservicebus/lifecycle/)
  * [Critical Error handling](critical-errors.md)
 

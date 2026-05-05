@@ -1,5 +1,7 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 public static class Program
@@ -19,7 +21,10 @@ public static class Program
         );
         #endregion
 
-        var endpoint = await Endpoint.Start(endpointConfiguration);
+        var builder = Host.CreateApplicationBuilder();
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+        var host = builder.Build();
+        await host.StartAsync();
 
         Console.WriteLine("Press [ESC] to quit.");
 
@@ -27,7 +32,7 @@ public static class Program
         {
         }
 
-        await endpoint.Stop();
+        await host.StopAsync();
     }
 }
 

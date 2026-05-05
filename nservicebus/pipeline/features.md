@@ -7,7 +7,6 @@ versions: '[5.0,)'
 related:
  - samples/feature
  - samples/header-manipulation
- - samples/startup-shutdown-sequence
 ---
 
 While NServiceBus provides interfaces to plug in code at certain steps in the lifecycle, Features offer a more complete approach to writing and distributing custom extensions.

@@ -1,4 +1,6 @@
 using Azure.Monitor.OpenTelemetry.Exporter;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using OpenTelemetry;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
@@ -43,11 +45,15 @@ var meterProvider = Sdk.CreateMeterProviderBuilder()
 var endpointConfiguration = new EndpointConfiguration(endpointName);
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 endpointConfiguration.UseTransport<LearningTransport>();
-var cancellation = new CancellationTokenSource();
-var endpointInstance = await Endpoint.Start(endpointConfiguration, cancellation.Token);
 
-var simulator = new LoadSimulator(endpointInstance, TimeSpan.Zero, TimeSpan.FromSeconds(10));
-simulator.Start(cancellation.Token);
+var builder = Host.CreateApplicationBuilder();
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+var host = builder.Build();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+await host.StartAsync();
+
+var simulator = new LoadSimulator(messageSession, TimeSpan.Zero, TimeSpan.FromSeconds(10));
+simulator.Start();
 
 try
 {
@@ -55,13 +61,13 @@ try
 
     while (Console.ReadKey(true).Key != ConsoleKey.Escape)
     {
-        await endpointInstance.SendLocal(new SomeMessage(), cancellation.Token);
+        await messageSession.SendLocal(new SomeMessage());
     }
 }
 finally
 {
-    await simulator.Stop(cancellation.Token);
-    await endpointInstance.Stop(cancellation.Token);
+    simulator.Stop();
+    await host.StopAsync();
     traceProvider?.Dispose();
     meterProvider?.Dispose();
 }

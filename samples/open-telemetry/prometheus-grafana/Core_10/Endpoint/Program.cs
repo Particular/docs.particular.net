@@ -1,3 +1,5 @@
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using OpenTelemetry;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
@@ -33,13 +35,16 @@ public class Program
         endpointConfiguration.UseSerialization<SystemJsonSerializer>();
         endpointConfiguration.UseTransport<LearningTransport>();
 
-        var cancellation = new CancellationTokenSource();
-        var endpointInstance = await Endpoint.Start(endpointConfiguration, cancellation.Token);
+        var builder = Host.CreateApplicationBuilder();
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+        var host = builder.Build();
+        var messageSession = host.Services.GetRequiredService<IMessageSession>();
+        await host.StartAsync();
 
         #region prometheus-load-simulator
 
-        var simulator = new LoadSimulator(endpointInstance, TimeSpan.Zero, TimeSpan.FromSeconds(10));
-        simulator.Start(cancellation.Token);
+        var simulator = new LoadSimulator(messageSession, TimeSpan.Zero, TimeSpan.FromSeconds(10));
+        simulator.Start();
 
         #endregion
 
@@ -50,13 +55,13 @@ public class Program
             while (Console.ReadKey(true).Key != ConsoleKey.Escape)
             {
 
-                await endpointInstance.SendLocal(new SomeMessage(), cancellation.Token);
+                await messageSession.SendLocal(new SomeMessage());
             }
         }
         finally
         {
-            await simulator.Stop(cancellation.Token);
-            await endpointInstance.Stop(cancellation.Token);
+            simulator.Stop();
+            await host.StopAsync();
             meterProvider?.Dispose();
         }
     }

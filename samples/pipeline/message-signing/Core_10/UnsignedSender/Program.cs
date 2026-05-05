@@ -1,5 +1,7 @@
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
 class Program
@@ -18,7 +20,11 @@ class Program
         // This endpoint does not sign messages.
         // Do not call endpointConfiguration.RegisterSigningBehaviors() here.
 
-        var endpointInstance = await Endpoint.Start(endpointConfiguration);
+        var builder = Host.CreateApplicationBuilder();
+        builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+        var host = builder.Build();
+        var messageSession = host.Services.GetRequiredService<IMessageSession>();
+        await host.StartAsync();
 
         var key = default(ConsoleKeyInfo);
 
@@ -30,9 +36,9 @@ class Program
             var options = new SendOptions();
             options.SetHeader("X-Message-Header", "Fake signature, obviously not correct!");
             var message = new MyMessage { Contents = Guid.NewGuid().ToString() };
-            await endpointInstance.Send(message, options);
+            await messageSession.Send(message, options);
         }
 
-        await endpointInstance.Stop();
+        await host.StopAsync();
     }
 }

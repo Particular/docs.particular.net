@@ -1,4 +1,6 @@
-﻿using NLog.Config;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using NLog.Config;
 using NLog.Extensions.Logging;
 using NLog.Targets;
 using NServiceBus.Extensions.Logging;
@@ -19,13 +21,11 @@ NLog.LogManager.Configuration = config;
 
 #endregion
 
+var builder = Host.CreateApplicationBuilder();
+
 #region MicrosoftExtensionsLoggingNLog
 
-Microsoft.Extensions.Logging.ILoggerFactory extensionsLoggerFactory = new NLogLoggerFactory();
-
-NServiceBus.Logging.ILoggerFactory nservicebusLoggerFactory = new ExtensionsLoggerFactory(loggerFactory: extensionsLoggerFactory);
-
-NServiceBus.Logging.LogManager.UseFactory(loggerFactory: nservicebusLoggerFactory);
+builder.Logging.AddNLog(config);
 
 #endregion
 
@@ -34,9 +34,13 @@ var endpointConfiguration = new EndpointConfiguration("Samples.Logging.Extension
 endpointConfiguration.UseTransport<LearningTransport>();
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
 
-var endpointInstance = await Endpoint.Start(endpointConfiguration);
+builder.Services.AddNServiceBusEndpoint(endpointConfiguration);
+var host = builder.Build();
+var messageSession = host.Services.GetRequiredService<IMessageSession>();
+await host.StartAsync();
+
 var myMessage = new MyMessage();
-await endpointInstance.SendLocal(myMessage);
+await messageSession.SendLocal(myMessage);
 Console.WriteLine("Press any key to exit");
 Console.ReadKey();
-await endpointInstance.Stop();
+await host.StopAsync();
