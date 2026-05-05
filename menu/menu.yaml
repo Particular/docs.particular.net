@@ -472,6 +472,8 @@
     Articles:
     - Url: nservicebus/handlers-and-sagas
       Title: About handlers and sagas
+    - Url: nservicebus/handlers-and-sagas-registration
+      Title: Registration
     - Url: nservicebus/handlers
       Title: Handlers
       Articles:
