@@ -2,7 +2,7 @@
 title: NServiceBus.Extensions.Hosting
 summary: NServiceBus integration with Microsoft.Extensions.Hosting
 component: Extensions.Hosting
-reviewed: 2025-08-19
+reviewed: 2026-05-05
 related:
  - samples/hosting/generic-host
  - samples/dependency-injection/aspnetcore
@@ -20,6 +20,20 @@ This registers the endpoint with the hosting infrastructure and starts/stops it 
 > Call `UseNServiceBus` **before** registering any component that needs `IMessageSession`. Placing it later can cause a `System.InvalidOperationException`:
 >
 > > The message session can't be used before NServiceBus is started. Place `UseNServiceBus()` on the host builder before registering any hosted service (e.g. `services.AddHostedService<HostedServiceAccessingTheSession>()`) or the web host configuration (e.g. `builder.ConfigureWebHostDefaults`) if hosted services or controllers require access to the session.
+
+## Reading application settings
+
+NServiceBus uses code-based configuration. To use values from `appsettings.json` or other sources, read them via `IConfiguration` and pass them to the NServiceBus configuration API.
+
+snippet: extensions-host-appsettings
+
+The Generic Host automatically loads configuration from:
+
+- `appsettings.json`
+- `appsettings.{Environment}.json` (e.g., `appsettings.Development.json`)
+- Environment variables
+
+No additional setup is required to enable these sources.
 
 ## Logging integration
 
