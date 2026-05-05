@@ -32,3 +32,5 @@ The Particular Service Platform collects metrics in two forms:
 - OpenTelemetry-based metrics, which can be collected by enabling OpenTelemetry and exporting the metrics to Azure Monitor
 - Custom metrics with [NServiceBus.Metrics](/monitoring/metrics) which can be exported to Azure Monitor Application Insights. NServiceBus version 8 and above supports [OpenTelemetry](https://opentelemetry.io/docs/instrumentation/net/) through [traces](/nservicebus/operations/opentelemetry.md#traces), [metrics](/nservicebus/operations/opentelemetry.md#meters), and [logging](/nservicebus/operations/opentelemetry.md#logging). See the [OpenTelemetry samples](/samples/open-telemetry/) for details on how to integrate with standard OpenTelemetry exporters.
 
+For step-by-step guidance on configuring metrics, tracing, and logging with Application Insights, see [Monitoring NServiceBus with Application Insights](/architecture/azure/application-insights.md).
+
