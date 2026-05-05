@@ -12,7 +12,7 @@ Source-generated registration is trimming and AOT-friendly because it references
 
 ### Default behavior
 
-Without the `[HandlerRegistryExtensions]` attribute, the source generator produces an entry point named after the assembly and creates registration methods from the discovered class names:
+Without the `[HandlerRegistryExtensions]` attribute, the source generator produces an entry point named after the assembly and creates registration methods from the discovered class names. The assembly name is sanitized into a valid C# identifier by removing non-alphanumeric characters, then `Assembly` is appended. For example, an assembly named `MyCompany.Shipping` produces `registry.Handlers.MyCompanyShippingAssembly...`, while `Shipping` produces `registry.Handlers.ShippingAssembly...`.
 
 | Type kind | Class name | Generated method |
 |---|---|---|
