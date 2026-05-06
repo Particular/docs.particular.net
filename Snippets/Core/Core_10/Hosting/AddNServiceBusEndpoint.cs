@@ -151,3 +151,18 @@ class SalesOrderRouter(MyGlobalService service, [FromKeyedServices("Sales")] IMe
 }
 
 #endregion
+
+static class EndpointRegistrationExtensions
+{
+    public static void AddSalesEndpoint(this IServiceCollection services)
+    {
+        var config = new EndpointConfiguration("Sales");
+        services.AddNServiceBusEndpoint(config, config.EndpointName);
+    }
+
+    public static void AddBillingEndpoint(this IServiceCollection services)
+    {
+        var config = new EndpointConfiguration("Billing");
+        services.AddNServiceBusEndpoint(config, config.EndpointName);
+    }
+}
