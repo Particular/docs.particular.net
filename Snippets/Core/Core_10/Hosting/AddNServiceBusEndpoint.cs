@@ -140,7 +140,7 @@ class SalesOrderService([FromKeyedServices("Sales")] IMessageSession session)
 
 #region AddNServiceBusEndpointInjectMixed
 
-// MyGlobalService is a global (non-keyed) service; IMessageSession is keyed for the "Sales" endpoint.
+// MyGlobalService is a non-keyed (global) service; IMessageSession is keyed for the "Sales" endpoint.
 class SalesOrderRouter(MyGlobalService service, [FromKeyedServices("Sales")] IMessageSession session)
 {
     public Task Submit(Order order)
