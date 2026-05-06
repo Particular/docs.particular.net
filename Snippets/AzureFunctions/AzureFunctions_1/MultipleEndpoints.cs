@@ -10,10 +10,10 @@ using NServiceBus;
 using NServiceBus.Transport.AzureServiceBus;
 
 #region azure-functions-multiple-endpoints
-[NServiceBusFunction]
 public partial class BillingFunctions
 {
     [Function("BillingApi")]
+    [NServiceBusFunction]
     public partial Task BillingApi(
         [ServiceBusTrigger("billing-api", Connection = "ServiceBusConnection", AutoCompleteMessages = false)]
         ServiceBusReceivedMessage message,
@@ -29,6 +29,7 @@ public partial class BillingFunctions
     }
 
     [Function("BillingBackend")]
+    [NServiceBusFunction]
     public partial Task BillingBackend(
         [ServiceBusTrigger("billing-backend", Connection = "ServiceBusConnection", AutoCompleteMessages = false)]
         ServiceBusReceivedMessage message,

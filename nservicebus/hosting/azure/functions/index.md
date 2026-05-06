@@ -94,6 +94,6 @@ The package includes Roslyn analyzers that enforce required patterns:
 | `NSBFUNC004` | Warning | The application must call `builder.AddNServiceBusFunctions()`. |
 | `NSBFUNC005` | Error | Only one `Configure{FunctionName}` method is allowed per function. |
 | `NSBFUNC006` | Error | A `ServiceBusTrigger` must set `AutoCompleteMessages = false`. |
-| `NSBFUNC007` | Error | The function method signature must match the required trigger shape. |
+| `NSBFUNC007` | Error | The function method has an invalid signature or is missing its `Configure{FunctionName}` method. |
 
-Code fixes are provided for the partial-modifier and signature errors.
+A code fix is provided for `NSBFUNC007` to add missing trigger parameters and generate a `Configure{FunctionName}` method stub when one is not present.
