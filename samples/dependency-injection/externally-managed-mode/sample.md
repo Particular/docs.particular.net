@@ -10,6 +10,8 @@ related:
 
 > [!WARNING]
 > In NServiceBus version 10.2.0 and above, externally managed mode is no longer a relevant concept, as integration with the Microsoft .NET Host is integrated directly into NServiceBus.
+>
+> See the documentation on [hosting with Microsoft.Extensions.Hosting](/nservicebus/hosting/core-hosting.md) or the [NServiceBus version 10 to 11 upgrade guide](/nservicebus/upgrades/10to11/) for more information.
 
 ### Configuring the endpoint
 
