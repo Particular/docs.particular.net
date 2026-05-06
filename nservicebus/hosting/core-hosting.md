@@ -25,7 +25,7 @@ Or injected into controllers, background services, or any other component that n
 
 snippet: AddNServiceBusEndpointInjectSession
 
-For most applications, a single endpoint per process is the simplest place to start.
+For most applications, a single endpoint per process should be the default.
 
 ## Hosting multiple endpoints
 
@@ -34,13 +34,18 @@ NServiceBus also supports hosting multiple logical endpoints in one process. Com
 - Multi-tenant systems where each tenant requires an isolated endpoint.
 - Modular monoliths where each module owns its own endpoint within a shared host.
 - Partitioned throughput where each partition is an endpoint sharing a host.
-- Co-located infrastructure endpoints that do not justify a separate process.
+- Competing consumers co-located in the same process that require a shared in-memory synchronization primitive
+- Co-located infrastructure endpoints that do not justify a separate process (for example to save the memory overhead of multiple processes to achieve a more dense hosting).
 
-Compared to a single-endpoint host, each additional endpoint adds registration, startup overhead, and coordination within the shared process.
+Compared to a single-endpoint host, each additional endpoint adds registration, startup, and coordination overhead within the shared process.
 
 Each endpoint is registered with its own `EndpointConfiguration`. The second argument to `AddNServiceBusEndpoint` is the endpoint identifier — a [service key](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) used to distinguish that endpoint's `IMessageSession` and per-endpoint keyed services:
 
 snippet: AddNServiceBusEndpointMulti
+
+It is recommended to encapsulate endpoint specific configuration including the call to `builder.AddNServiceBusEndpoint`inside an extension method to keep the composition root lean and simple to understand.
+
+snippet: AddNServiceBusEndpointMultiLean
 
 Most of the time, the endpoint name is the ideal identifier to separate endpoint-specific services in the service collection. A distinct endpoint identifier is only needed when the same endpoint is registered more than once in a process — for example, a per-tenant deployment where each tenant has the same point but with its own input queue:
 
@@ -54,7 +59,7 @@ When each endpoint requires a different implementation of a shared service, regi
 
 snippet: AddNServiceBusEndpointKeyedServices
 
-Each endpoint resolves its own `DatabaseService` instance as keyed services using the previously chosen identifier as a key. Services that do not vary per endpoint are registered normally (non-keyed) on `IServiceCollection` and every endpoint resolves the same instance.
+In the snippet above each endpoint resolves its own `DatabaseService` instance as keyed services using the previously chosen identifier as a key. Services that do not vary per endpoint are registered normally (non-keyed) on `IServiceCollection` and every endpoint resolves the same instance.
 
 ### Resolving services per endpoint
 
@@ -66,7 +71,7 @@ snippet: AddNServiceBusEndpointGetKeyedSession
 
 snippet: AddNServiceBusEndpointInjectKeyedSession
 
-Global (non-keyed) services and per-endpoint keyed services can be mixed in the same constructor:
+Non-keyed (global) services and per-endpoint keyed services can be mixed in the same constructor:
 
 snippet: AddNServiceBusEndpointInjectMixed
 

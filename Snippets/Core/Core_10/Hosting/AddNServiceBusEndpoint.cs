@@ -36,6 +36,16 @@ class AddNServiceBusEndpointHosting
 
         #endregion
     }
+    
+    void MultipleEndpointsLean(HostApplicationBuilder builder)
+    {
+        #region AddNServiceBusEndpointMultiLean
+
+        builder.Services.AddSalesEndpoint();
+        builder.Services.AddBillingEndpoint();
+
+        #endregion
+    }
 
     void EndpointScopedDependencies(HostApplicationBuilder builder)
     {
