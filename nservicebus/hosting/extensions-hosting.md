@@ -9,7 +9,7 @@ related:
 ---
 
 > [!NOTE]
-> For new development, prefer [hosting with Microsoft.Extensions.Hosting](/nservicebus/hosting/core-hosting.md) using the built-in `AddNServiceBusEndpoint` integration on `IServiceCollection`. The package-based `NServiceBus.Extensions.Hosting` and `UseNServiceBus` integration described on this page is deprecated starting with NServiceBus 10.2.0. See the [upgrade guide](/nservicebus/upgrades/10to11/) for migration details.
+> For new development, prefer [hosting with Microsoft.Extensions.Hosting](/nservicebus/hosting/core-hosting.md) using the built-in `AddNServiceBusEndpoint` integration on `IServiceCollection`. The **NServiceBus.Extensions.Hosting** package's `UseNServiceBus` hosting method described on this page is deprecated starting with NServiceBus 10.2.0. See the [upgrade guide](/nservicebus/upgrades/10to11/) for migration details.
 
 ## Configuration
 

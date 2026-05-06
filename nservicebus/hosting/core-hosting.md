@@ -31,15 +31,15 @@ For most applications, a single endpoint per process should be the default.
 
 NServiceBus also supports hosting multiple logical endpoints in one process. Common scenarios:
 
-- Multi-tenant systems where each tenant requires an isolated endpoint.
-- Modular monoliths where each module owns its own endpoint within a shared host.
-- Partitioned throughput where each partition is an endpoint sharing a host.
+- Multi-tenant systems where each tenant requires an isolated endpoint
+- Modular monoliths where each module owns its own endpoint within a shared host
+- Partitioned throughput where each partition is an endpoint sharing a host
 - Competing consumers co-located in the same process that require a shared in-memory synchronization primitive
-- Co-located infrastructure endpoints that do not justify a separate process (for example to save the memory overhead of multiple processes to achieve a more dense hosting).
+- Co-located infrastructure endpoints that do not justify a separate process (for example to save the memory overhead of multiple processes to achieve a more dense hosting)
 
 Compared to a single-endpoint host, each additional endpoint adds registration, startup, and coordination overhead within the shared process.
 
-Each endpoint is registered with its own `EndpointConfiguration`. The second argument to `AddNServiceBusEndpoint` is the endpoint identifier — a [service key](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) used to distinguish that endpoint's `IMessageSession` and per-endpoint keyed services:
+Each endpoint is registered with its own `EndpointConfiguration`. The second argument to `AddNServiceBusEndpoint` is the endpoint identifier — a [service key](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection#keyed-services) used to distinguish that endpoint's `IMessageSession` and per-endpoint keyed services within the dependency injection container:
 
 snippet: AddNServiceBusEndpointMulti
 
