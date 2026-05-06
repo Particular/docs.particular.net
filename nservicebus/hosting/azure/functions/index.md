@@ -2,36 +2,12 @@
 title: Azure Functions hosting
 component: AzureFunctions
 summary: Hosting NServiceBus endpoints in Azure Functions with the AzureServiceBus package
-reviewed: 2026-05-05
+reviewed: 2026-05-06
 ---
 
 NServiceBus endpoints can be hosted in an Azure Functions app using the [`NServiceBus.AzureFunctions.AzureServiceBus`](https://www.nuget.org/packages/NServiceBus.AzureFunctions.AzureServiceBus) package:
 
-```csharp
-using Azure.Messaging.ServiceBus;
-using Microsoft.Azure.Functions.Worker;
-using NServiceBus;
-using NServiceBus.Transport.AzureServiceBus;
-
-[NServiceBusFunction]
-public partial class OrdersEndpoint
-{
-    [Function(nameof(Orders))]
-    public partial Task Orders(
-        [ServiceBusTrigger("orders", Connection = "ServiceBusConnection", AutoCompleteMessages = false)]
-        ServiceBusReceivedMessage message,
-        ServiceBusMessageActions messageActions,
-        FunctionContext functionContext,
-        CancellationToken cancellationToken = default);
-
-    public static void ConfigureOrders(EndpointConfiguration endpoint)
-    {
-        endpoint.UseTransport(new AzureServiceBusServerlessTransport(TopicTopology.Default));
-        endpoint.UseSerialization<SystemJsonSerializer>();
-        endpoint.AddHandler<PlaceOrderHandler>();
-    }
-}
-```
+snippet: azure-functions-basic-endpoint
 
 An endpoint is a partial class composed of three parts:
 
@@ -56,33 +32,7 @@ The static `Configure{FunctionName}` method is discovered by the source generato
 
 Declare only the parameters needed:
 
-```csharp
-using Azure.Messaging.ServiceBus;
-using Microsoft.Azure.Functions.Worker;
-using Microsoft.Extensions.DependencyInjection;
-using NServiceBus;
-using NServiceBus.Transport.AzureServiceBus;
-
-[NServiceBusFunction]
-public partial class ShippingEndpoint
-{
-    [Function("Shipping")]
-    public partial Task Shipping(
-        [ServiceBusTrigger("shipping", Connection = "ServiceBusConnection", AutoCompleteMessages = false)]
-        ServiceBusReceivedMessage message,
-        ServiceBusMessageActions messageActions,
-        FunctionContext functionContext,
-        CancellationToken cancellationToken = default);
-
-    public static void ConfigureShipping(EndpointConfiguration configuration, IServiceCollection services)
-    {
-        configuration.UseTransport(new AzureServiceBusServerlessTransport(TopicTopology.Default));
-        configuration.UseSerialization<SystemJsonSerializer>();
-        services.AddSingleton(new MyComponent("Shipping"));
-        configuration.AddHandler<ShipOrderHandler>();
-    }
-}
-```
+snippet: azure-functions-configure-with-services
 
 ## Handler registration
 
@@ -92,16 +42,7 @@ Handlers must be registered explicitly with `EndpointConfiguration.AddHandler<T>
 
 The Functions host is bootstrapped in `Program.cs`. Calling `AddNServiceBusFunctions` discovers every `[NServiceBusFunction]` in the application and registers each endpoint with the Functions runtime:
 
-```csharp
-using Microsoft.Azure.Functions.Worker.Builder;
-using Microsoft.Extensions.Hosting;
-
-var builder = FunctionsApplication.CreateBuilder(args);
-builder.AddNServiceBusFunctions();
-
-var host = builder.Build();
-await host.RunAsync();
-```
+snippet: azure-functions-program-builder
 
 > [!NOTE]
 > `AddNServiceBusFunctions` is a source-generated extension on `FunctionsApplicationBuilder` declared in the project's default namespace. Ensure `Program.cs` imports that namespace.
@@ -110,54 +51,7 @@ await host.RunAsync();
 
 Multiple `[NServiceBusFunction]`-decorated members can co-exist in one Functions app. Each is registered as an independent NServiceBus endpoint with its own queue, handlers, and configure method. Two functions hosted from the same partial class:
 
-```csharp
-using Azure.Messaging.ServiceBus;
-using Microsoft.Azure.Functions.Worker;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using NServiceBus;
-using NServiceBus.Transport.AzureServiceBus;
-
-public partial class BillingFunctions
-{
-    [Function("BillingApi")]
-    [NServiceBusFunction]
-    public partial Task BillingApi(
-        [ServiceBusTrigger("billing-api", Connection = "ServiceBusConnection", AutoCompleteMessages = false)]
-        ServiceBusReceivedMessage message,
-        ServiceBusMessageActions messageActions,
-        FunctionContext functionContext,
-        CancellationToken cancellationToken = default);
-
-    public static void ConfigureBillingApi(EndpointConfiguration configuration)
-    {
-        configuration.UseTransport(new AzureServiceBusServerlessTransport(TopicTopology.Default));
-        configuration.UseSerialization<SystemJsonSerializer>();
-        configuration.AddHandler<ProcessPaymentHandler>();
-    }
-
-    [Function("BillingBackend")]
-    [NServiceBusFunction]
-    public partial Task BillingBackend(
-        [ServiceBusTrigger("billing-backend", Connection = "ServiceBusConnection", AutoCompleteMessages = false)]
-        ServiceBusReceivedMessage message,
-        ServiceBusMessageActions messageActions,
-        FunctionContext functionContext,
-        CancellationToken cancellationToken = default);
-
-    public static void ConfigureBillingBackend(EndpointConfiguration endpointConfiguration, IConfiguration configuration, IHostEnvironment environment)
-    {
-        endpointConfiguration.UseTransport(new AzureServiceBusServerlessTransport(TopicTopology.Default));
-        endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-        endpointConfiguration.AddHandler<PaymentChargedHandler>();
-
-        if (environment.IsProduction())
-        {
-            endpointConfiguration.AuditProcessedMessagesTo(configuration["audit-queue"] ?? "audit");
-        }
-    }
-}
-```
+snippet: azure-functions-multiple-endpoints
 
 Each endpoint has its own `Configure{FunctionName}` method; the source generator routes each function to its matching configure method. Endpoints share the host's service provider but maintain independent message-handling pipelines.
 
@@ -165,39 +59,11 @@ Each endpoint has its own `Configure{FunctionName}` method; the source generator
 
 A send-only endpoint can be registered for components that need to dispatch messages without listening for incoming traffic, for example a function fronting an HTTP API:
 
-```csharp
-builder.AddSendOnlyNServiceBusEndpoint("client", (configuration, services) =>
-{
-    var transport = new AzureServiceBusServerlessTransport(TopicTopology.Default)
-    {
-        ConnectionName = "ServiceBusConnection"
-    };
-    var routing = configuration.UseTransport(transport);
-    routing.RouteToEndpoint(typeof(SubmitOrder), "sales");
-    configuration.UseSerialization<SystemJsonSerializer>();
-});
-```
+snippet: azure-functions-sendonly-registration
 
 To send or publish from another function (for example, an HTTP trigger), inject `IMessageSession` keyed by the same name used at registration:
 
-```csharp
-using System.Net;
-using Microsoft.Azure.Functions.Worker;
-using Microsoft.Azure.Functions.Worker.Http;
-using Microsoft.Extensions.DependencyInjection;
-using NServiceBus;
-
-class SalesApi([FromKeyedServices("client")] IMessageSession session)
-{
-    [Function("SalesApi")]
-    public async Task<HttpResponseData> Run(
-        [HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequestData request)
-    {
-        await session.Send(new SubmitOrder());
-        return request.CreateResponse(HttpStatusCode.OK);
-    }
-}
-```
+snippet: azure-functions-sendonly-usage
 
 The key passed to `[FromKeyedServices(...)]` must match the name passed to `AddSendOnlyNServiceBusEndpoint(...)`.
 
