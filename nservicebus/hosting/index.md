@@ -59,21 +59,6 @@ NServiceBus can be hosted in a WebJob. See [Self-Hosting in Azure WebJobs](/samp
 
 NServiceBus can be hosted in several serverless environments such as [Azure Functions](/nservicebus/hosting/azure-functions-service-bus/) and [AWS Lambda](/nservicebus/hosting/aws-lambda-simple-queue-service/).
 
-## Accessing the bus
-
-Most usages of the bus will occur where the NServiceBus APIs are used, for example, [handlers](/nservicebus/handlers/) and [sagas](/nservicebus/sagas/). However, other scenarios may require an alternate approach where the user needs to access the bus from outside of the framework directly.
-
-### Static variable
-
-For many scenarios, dependency injection is not required. In these cases, a simple public static variable on the startup class will suffice. This variable can then be accessed globally within the application. For example:
-
- * In a Windows service or console, the variable could be placed in `Program.cs`
- * In a website, the variable could be placed in `Global.asax.cs`.
-
-The static variable could also be placed in a helper class.
-
-snippet: Hosting-Static
-
 ## Hosting environment requirements
 
 NServiceBus endpoints have certain requirements for the hosting environment:
