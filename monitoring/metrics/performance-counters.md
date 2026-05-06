@@ -28,4 +28,4 @@ partial: counters
 partial: installing
 
 > [!NOTE]
-> [Send-only endpoints](/nservicebus/hosting/#self-hosting-send-only-hosting) are currently not supported since they don't receive messages.
+> [Send-only endpoints](/nservicebus/hosting/#send-only-hosting) are currently not supported since they don't receive messages.
