@@ -74,10 +74,6 @@ The static variable could also be placed in a helper class.
 
 snippet: Hosting-Static
 
-## Custom hosting
-
-A "Custom host" is a process or library that wraps the NServiceBus library to control configuration, startup, and shutdown partially. This host exposes extension points for common activities and uses conventions and/or sensible defaults for many other configuration options.
-
 ## ILMerging NServiceBus assemblies
 
 Since NServiceBus makes assumptions on aspects like assembly names, ILMerging any of the NServiceBus* assemblies is not supported.
