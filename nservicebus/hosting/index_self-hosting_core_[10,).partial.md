@@ -1,2 +1,0 @@
-> [!NOTE]
-> Starting with NServiceBus 10.2.0, self-hosting with `Endpoint.Create` or `Endpoint.Start` is deprecated. For new development, use [hosting with Microsoft.Extensions.Hosting](/nservicebus/hosting/core-hosting.md). Existing self-hosted applications should plan to migrate; see the [upgrade guide](/nservicebus/upgrades/10to11/) for migration details.

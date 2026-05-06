@@ -16,16 +16,6 @@ There are several approaches to hosting.
 
 partial: generic-host
 
-## Self-hosting
-
-"Self-hosting" is a general term used when the application code takes full control over all facets of hosting NServiceBus. This includes the following actions:
-
- * Configuration
- * [Logging](/nservicebus/logging)
- * [Dependency injection](/nservicebus/dependency-injection/)
- * [Endpoint Lifecycle](/nservicebus/lifecycle/)
- * [Critical Error handling](critical-errors.md)
-
 partial: self-hosting
 
 ### Windows Service hosting
