@@ -1,4 +1,6 @@
-﻿namespace Messages;
+﻿using NServiceBus;
+
+namespace Messages;
 
 public class PlaceOrder : ICommand
 {

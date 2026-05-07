@@ -1,18 +1,18 @@
 ---
-title: Hosting endpoints in .NET Aspire
-summary: Hosting multiple NServiceBus endpoints in an .NET Aspire application host
+title: Hosting endpoints in Aspire
+summary: Hosting multiple NServiceBus endpoints in an Aspire application host
 component: Core
-reviewed: 2024-09-20
+reviewed: 2026-05-07
 ---
 
-[.NET Aspire](https://learn.microsoft.com/en-us/dotnet/aspire/) is a stack for developing distributed applications provided by Microsoft.
+[Aspire](https://aspire.dev/) is a stack for developing distributed applications provided by Microsoft.
 
-This sample shows a .NET Aspire AppHost project that orchestrates multiple NServiceBus endpoints, wiring up the required infrastructure pieces including a RabbitMQ broker and PostgreSQL database.
+This sample shows an Aspire AppHost project that orchestrates multiple NServiceBus endpoints, wiring up the required infrastructure pieces including a RabbitMQ broker and PostgreSQL database.
 
 ## Running the sample
 
 1. Run the AspireDemo.AppHost project
-2. Open the .NET Aspire dashboard
+2. Open the Aspire dashboard
 3. Review the metrics, traces, and structured log entries of each of the resources
 
 > [!NOTE]
@@ -22,7 +22,7 @@ This sample shows a .NET Aspire AppHost project that orchestrates multiple NServ
 
 ### AspireDemo.AppHost
 
-The [.NET Aspire orchestration project](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/app-host-overview) defines multiple resources and the relationships between them:
+The [Aspire orchestration project](https://aspire.dev/get-started/app-host/?lang=csharp) defines multiple resources and the relationships between them:
 
 - A RabbitMQ instance named `transport`
 - A PostgreSQL server named `database`
@@ -40,7 +40,7 @@ snippet: app-host
 
 ### AspireDemo.ServiceDefaults
 
-The [.NET Aspire service defaults](https://learn.microsoft.com/en-us/dotnet/aspire/fundamentals/service-defaults) project provides extension methods to configure application hosts in a standardized way. This project is referenced by all of the NServiceBus endpoint projects.
+The [Aspire service defaults](https://aspire.dev/get-started/csharp-service-defaults/) project provides extension methods to configure application hosts in a standardized way. This project is referenced by all of the NServiceBus endpoint projects.
 
 The OpenTelemetry configuration has been updated to include NServiceBus metrics and traces.
 
@@ -64,4 +64,4 @@ Finally, each endpoint enables NServiceBus installers. Every time the applicatio
 
 snippet: enable-installers
 
-If you're missing certain capabilities to use .NET Aspire with NServiceBus, [share them and help shape the future of the platform](/shape-the-future/aspire.md).
+If you're missing certain capabilities to use Aspire with NServiceBus, [share them and help shape the future of the platform](/shape-the-future/aspire.md).
