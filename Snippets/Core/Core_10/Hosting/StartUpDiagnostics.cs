@@ -15,6 +15,15 @@ public class StartUpDiagnostics
         #endregion
     }
 
+    void WriteDiagnosticsToLog(EndpointConfiguration endpointConfiguration)
+    {
+        #region WriteDiagnosticsToLog
+
+        endpointConfiguration.WriteDiagnosticsToLog();
+
+        #endregion
+    }
+
     void CustomDiagnosticsWriter(EndpointConfiguration endpointConfiguration)
     {
         #region CustomDiagnosticsWriter

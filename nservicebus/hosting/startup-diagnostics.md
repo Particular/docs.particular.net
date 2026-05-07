@@ -3,7 +3,7 @@ title: Startup diagnostics
 summary: Describes the mechanism for gathering diagnostic information when endpoints start
 component: Core
 versions: '[7,)'
-reviewed: 2025-03-31
+reviewed: 2026-05-07
 ---
 
 > [!NOTE]
@@ -30,6 +30,7 @@ Sample partial content of the startup diagnostics (formatted for readability):
 
 snippet: StartUpDiagnosticsWriter
 
+partial: write-diagnostics-to-log
 
 ## Writing to other targets
 
