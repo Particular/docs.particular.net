@@ -1232,6 +1232,51 @@ The password to access the RabbitMQ management interface.
 | --- | --- |
 | string | obtained from ServiceControl |
 
+## Usage Reporting when using the IBM MQ transport
+
+ServiceControl reads broker-side throughput data from IBM MQ statistics events. The queue manager must have queue statistics gathering enabled (`ALTER QMGR STATQ(ON)`) and the queues being measured must inherit or override that setting (`STATQ(QMGR)` or `STATQ(ON)`). When statistics are not enabled, ServiceControl will continue to start and operate, and audit-based throughput collection will act as a fallback.
+
+The connecting MQ user requires `+connect` on the queue manager, `+get +inq +browse` on the configured statistics queue, `+put +inq` on `SYSTEM.ADMIN.COMMAND.QUEUE`, `+put +get +browse +dsp` on `SYSTEM.DEFAULT.MODEL.QUEUE`, and `+inq` on user queues. If a forwarding queue is configured, `+put` is also required on it.
+
+### LicensingComponent/IBMMQ/ConnectionString
+
+Optional URI-style IBM MQ connection string used by the throughput collection. When omitted, the connection string configured for the ServiceControl Primary instance is used.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_IBMMQ_CONNECTIONSTRING` |
+| **App config key** | `LicensingComponent/IBMMQ/ConnectionString` |
+
+| Type | Default value |
+| --- | --- |
+| string | obtained from ServiceControl |
+
+### LicensingComponent/IBMMQ/StatisticsQueue
+
+The name of the queue from which IBM MQ statistics PCF messages are read. Override the default when another consumer owns the system statistics queue and a forwarder, MQ topic subscription, or cluster channel delivers a per-consumer copy of stats messages to a dedicated queue.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_IBMMQ_STATISTICSQUEUE` |
+| **App config key** | `LicensingComponent/IBMMQ/StatisticsQueue` |
+
+| Type | Default value |
+| --- | --- |
+| string | `SYSTEM.ADMIN.STATISTICS.QUEUE` |
+
+### LicensingComponent/IBMMQ/StatisticsForwardingQueue
+
+Optional. When set, ServiceControl re-publishes each consumed statistics message verbatim to this queue inside the same transactional unit, so other tools can consume their own copy downstream. Mirrors the NServiceBus error/audit forwarding pattern. Leave unset for single-consumer setups.
+
+| Context | Name |
+| --- | --- |
+| **Environment variable** | `LICENSINGCOMPONENT_IBMMQ_STATISTICSFORWARDINGQUEUE` |
+| **App config key** | `LicensingComponent/IBMMQ/StatisticsForwardingQueue` |
+
+| Type | Default value |
+| --- | --- |
+| string | |
+
 ## Usage Reporting when using the SqlServer transport
 
 ### LicensingComponent/SqlServer/ConnectionString

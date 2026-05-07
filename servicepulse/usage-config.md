@@ -186,6 +186,49 @@ Refer to the [Usage Reporting when using the RabbitMQ transport](/servicecontrol
 
 User with monitoring tag and read permission.
 
+### IBM MQ
+
+#### Settings
+
+Refer to the [Usage Reporting when using the IBM MQ transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-ibm-mq-transport) section of the ServiceControl config file for an explanation of the IBM MQ-specific settings.
+
+ServiceControl reads broker-side throughput data from IBM MQ statistics events. Before enabling broker-side usage reporting, run the following on the queue manager (one-time setup):
+
+```mqsc
+ALTER QMGR STATQ(ON) STATINT(1800)
+```
+
+Queues created with the default `STATQ(QMGR)` setting will then participate automatically. Queues that were created with `STATQ(OFF)` or `STATQ(ON)` explicitly set need to be reset to inherit. The following bash snippet enables statistics for all non-system user queues on a queue manager:
+
+```bash
+QM=QM1   # queue manager name
+
+# 1. Enable queue-manager-wide statistics with a 30-minute interval
+echo "ALTER QMGR STATQ(ON) STATINT(1800)" | runmqsc "$QM"
+
+# 2. Reset every user queue with an explicit STATQ override back to QMGR-inherit.
+#    Skips SYSTEM.* queues; lets the queue manager setting take effect everywhere.
+echo "DISPLAY QLOCAL(*) WHERE(STATQ NE QMGR)" | runmqsc "$QM" \
+    | grep -oP 'QUEUE\(\K[^)]+' \
+    | grep -v '^SYSTEM\.' \
+    | while read -r q; do
+        echo "ALTER QLOCAL($q) STATQ(QMGR)" | runmqsc "$QM"
+    done
+```
+
+The same effect can be achieved per queue with `ALTER QLOCAL(QUEUE.NAME) STATQ(QMGR)` (inherit from queue manager) or `STATQ(ON)` (force on regardless of QMGR setting).
+
+If another tool already drains `SYSTEM.ADMIN.STATISTICS.QUEUE`, ServiceControl can either:
+
+- read from a dedicated queue populated by an external forwarder, MQ topic subscription, or cluster channel — set `LicensingComponent/IBMMQ/StatisticsQueue` to that queue name; or
+- own the system statistics queue and forward a copy of each consumed message to the other tool's queue — set `LicensingComponent/IBMMQ/StatisticsForwardingQueue` to that queue name. The forwarding happens inside the same transactional unit as the read, so each statistics message is delivered exactly once to the downstream consumer.
+
+When statistics are not enabled on the queue manager, ServiceControl still starts and runs; audit-based throughput collection acts as the fallback.
+
+#### Minimum permissions
+
+User with `+connect` on the queue manager, `+get +inq +browse` on the configured statistics queue, `+put +inq` on `SYSTEM.ADMIN.COMMAND.QUEUE`, `+put +get +browse +dsp` on `SYSTEM.DEFAULT.MODEL.QUEUE`, and `+inq` on user queues. If a forwarding queue is configured, also `+put` on that queue.
+
 ### MSMQ & Azure Storage Queues
 
 MSMQ and Azure Storage Queues do not support querying of metrics. To enable the automatic usage reporting functionality for these systems, auditing and/or monitoring must be set up:
