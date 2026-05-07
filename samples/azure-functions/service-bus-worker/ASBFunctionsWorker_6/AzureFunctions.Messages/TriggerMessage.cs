@@ -1,1 +1,3 @@
-﻿public class TriggerMessage : IMessage;
+﻿using NServiceBus;
+
+public class TriggerMessage : IMessage;
