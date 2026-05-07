@@ -1,23 +1,22 @@
 ﻿namespace Common
 {
-    #region SHA1DeterministicGuid
+    #region SHA256DeterministicGuid
 
     using System;
     using System.Security.Cryptography;
     using System.Text;
 
-    static class Sha1DeterministicGuid
+    static class Sha256DeterministicGuid
     {
         public static Guid Create(params object[] data)
         {
             var inputBytes = Encoding.UTF8.GetBytes(string.Concat(data));
 
-            // Will create a FIPS-compliant provider when run on a FIPS-enabled system
-            using (var sha1 = SHA1.Create())
+            using (var sha256 = SHA256.Create())
             {
                 var guidBytes = new byte[16];
 
-                var hashBytes = sha1.ComputeHash(inputBytes);
+                var hashBytes = sha256.ComputeHash(inputBytes);
 
                 Array.ConstrainedCopy(hashBytes, 0, guidBytes, 0, 16);
 

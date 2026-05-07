@@ -33,8 +33,8 @@ In version 11, the XxHash128 algorithm will become the default, and the legacy M
 
 ### Manual host identifier override (legacy approach)
 
-Before version 10.2, the only way to run on FIPS-enabled systems was to provide a FIPS-compliant hash and [override the HostId](/nservicebus/hosting/override-hostid.md):
+Before version 10.2, the only workaround for FIPS-enabled systems was to use a cryptographic hash (such as SHA256) and [override the HostId](/nservicebus/hosting/override-hostid.md). This is unnecessarily expensive for a non-cryptographic identifier and is no longer needed now that NServiceBus uses XxHash128.
 
-snippet: SHA1DeterministicGuid
+snippet: SHA256DeterministicGuid
 
 snippet: HostIdFixer
