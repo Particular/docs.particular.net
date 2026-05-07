@@ -1,7 +1,7 @@
 ---
 title: Connection Settings
 summary: Information about the connection settings for the SQL Server transport, including custom database schemas and circuit breakers
-reviewed: 2024-08-02
+reviewed: 2026-05-07
 component: SqlTransport
 redirects:
 - nservicebus/sqlserver/connection-settings
@@ -14,13 +14,24 @@ The SQL Server transport is built on top of [ADO.NET](https://docs.microsoft.com
 
 In scenarios where the concurrent message processing limit is changed, or the database connection is used for other purposes mentioned above, change the connection pool size to ensure it will not be exhausted. See [SQL Server Connection Pooling and Configuration](https://docs.microsoft.com/en-us/dotnet/framework/data/adonet/sql-server-connection-pooling) for more details.
 
-partial: pool-size
+> [!NOTE]
+> If the maximum pool size is not explicitly set on the connection string a warning message will be logged. See also [Tuning endpoint message processing](/nservicebus/operations/tuning.md).
 
 ## Connection configuration
 
 The connection string can be configured in several ways:
 
-partial: connection-string
+### Via the configuration API
+
+By using the `ConnectionString` extension method:
+
+snippet: sqlserver-config-connectionstring
+
+### Via the App.Config
+
+By adding a connection named `NServiceBus/Transport` in the `connectionStrings` node.
+
+snippet: sqlserver-connection-string-xml
 
 ## Token-credentials
 
@@ -30,18 +41,26 @@ Microsoft Entra ID authentication is supported via the [standard connection stri
 
 The SQL Server transport uses `dbo` as a default schema. It is used for every queue if no other schema is explicitly provided in a transport address. This includes all local queues, error, audit and remote queues of other endpoints.
 
-partial: custom-schema
+The default schema can be overridden using the `DefaultSchema` method:
 
-partial: custom-catalog
+snippet: sqlserver-non-standard-schema
+
+## Custom database catalogs
+
+By default, the SQL Server transport uses the catalog defined in the `Initial Catalog` or `Database` section of the provided connection string.
+
+The catalog can be overwritten using the `DefaultCatalog` method:
+
+snippet: sqlserver-default-catalog
 
 > [!NOTE]
 > When subscribing to events between endpoints in different database schemas or catalogs, a [shared subscription table must be configured](/transports/sql/native-publish-subscribe.md#configure-subscription-table).
 
 ## Custom SQL Server transport connection factory
 
-In some environments it might be necessary to adapt to the database server settings, or to perform additional operations. For example, if the `NOCOUNT` setting is enabled on the server, then it is necessary to send the `SET NOCOUNT OFF` command immediately after opening the connection.
+In some environments, it might be necessary to adapt to the database server settings, or to perform additional operations. For example, if the `NOCOUNT` setting is enabled on the server, then it is necessary to send the `SET NOCOUNT OFF` command immediately after opening the connection.
 
-This can be done by passing a custom factory method to the transport which will provide connection strings at runtime, and which can perform custom actions:
+This can be done by passing a custom factory method to the transport which will provide connection strings at runtime, and can perform custom actions:
 
 snippet: sqlserver-custom-connection-factory
 

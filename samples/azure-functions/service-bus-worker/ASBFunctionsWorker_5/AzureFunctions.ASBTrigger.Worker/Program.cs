@@ -4,9 +4,9 @@ using Microsoft.Extensions.Hosting;
 [assembly: NServiceBusTriggerFunction("ASBWorkerEndpoint")]
 
 var host = new HostBuilder()
-           .ConfigureFunctionsWorkerDefaults()
-           .UseNServiceBus()
-           .Build();
+    .ConfigureFunctionsWorkerDefaults()
+    .UseNServiceBus()
+    .Build();
 
 await host.RunAsync();
 #endregion

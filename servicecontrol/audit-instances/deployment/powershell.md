@@ -1,6 +1,6 @@
 ---
 title: Deploying ServiceControl Audit instances using PowerShell
-reviewed: 2024-08-01
+reviewed: 2026-05-07
 component: ServiceControl
 redirects:
  - servicecontrol/audit-instances/installation-powershell
@@ -55,7 +55,7 @@ Use the `Remove-ServiceControlAuditInstance` cmdlet to remove the instance and d
 
 snippet: ps-remove-audit-instance
 
-### Upgrading a instance
+### Upgrading an instance
 
 include: powershell-updatemodule
 
