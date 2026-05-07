@@ -37,20 +37,5 @@ class Hosting
         await endpointInstance.Stop();
         #endregion
     }
-
-    #region Hosting-Static
-    public static class EndpointInstance
-    {
-        public static IEndpointInstance Endpoint { get; private set; }
-        public static void SetInstance(IEndpointInstance endpoint)
-        {
-            if (Endpoint != null)
-            {
-                throw new Exception("Endpoint already set.");
-            }
-            Endpoint = endpoint;
-        }
-    }
-    #endregion
 #pragma warning restore CS0618 // Type or member is obsolete
 }

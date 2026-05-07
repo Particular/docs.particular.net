@@ -10,7 +10,7 @@ The SQL Server transport supports [delayed delivery](/nservicebus/messaging/dela
 This means that the exact delivery time for a delayed message can be a bit later.
 
 > [!NOTE]
-> The native delayed delivery feature of the SQL Server transport is not available to [send-only](/nservicebus/hosting/#self-hosting-send-only-hosting) endpoints. This is because the delay logic is currently embedded in the receive component which is not initialized for send-only endpoints.
+> The native delayed delivery feature of the SQL Server transport is not available to [send-only](/nservicebus/hosting/#send-only-hosting) endpoints. This is because the delay logic is currently embedded in the receive component which is not initialized for send-only endpoints.
 
 ## Configuration
 

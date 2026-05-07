@@ -33,7 +33,7 @@ In Windows, IIS is a reliable host for web-based applications. An NServiceBus en
 
 This restricts IIS as a choice for hosting NServiceBus endpoints to two specific scenarios:
 
-- [Send-only endpoints](/nservicebus/hosting/#self-hosting-send-only-hosting), which can send but don't receive messages and, therefore, don't need to initialize any receiving infrastructure. Messages are sent while handling incoming HTTP requests or after user input in an interactive application.
+- [Send-only endpoints](/nservicebus/hosting/#send-only-hosting), which can send but don't receive messages and, therefore, don't need to initialize any receiving infrastructure. Messages are sent while handling incoming HTTP requests or after user input in an interactive application.
 - Web applications which provide [near real-time feedback](/samples/near-realtime-clients/) using queues for asynchronous and reliable communication.
 
 See [Web Application Hosting](/nservicebus/hosting/web-application.md) for details.
