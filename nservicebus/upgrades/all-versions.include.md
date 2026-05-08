@@ -350,11 +350,11 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/4.0.0)| **Current** | 2026-01-30     | Active            | Active |
-| [3.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.2.1)| Mainstream Support | 2025-10-13     | 2028-01-29        | 2030-01-29 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/4.0.1)| **Current** | 2026-01-30     | Active            | Active |
+| [3.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.2.2)| Mainstream Support | 2025-10-13     | 2028-01-29        | 2030-01-29 |
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.1.3)| ~~Unsupported~~ | ~~2025-06-03~~ | ~~2026-01-13~~    | ~~Ineligible~~ |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/3.0.2)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2025-09-03~~    | ~~Ineligible~~ |
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/2.0.4)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/2.0.5)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.2.2)| Extended Support | 2022-09-19     | 2024-11-17        | 2026-11-17 |
 | [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.1.1)| ~~Unsupported~~ | ~~2022-01-20~~ | ~~2022-12-19~~    | ~~Ineligible~~ |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB/1.0.0)| ~~Unsupported~~ | ~~2021-08-09~~ | ~~2022-04-20~~    | ~~Ineligible~~ |
@@ -365,11 +365,11 @@
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/4.0.0)| **Current** | 2026-01-30     | Active            | Active |
-| [3.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/3.2.1)| Mainstream Support | 2025-10-13     | 2028-01-29        | 2030-01-29 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/4.0.1)| **Current** | 2026-01-30     | Active            | Active |
+| [3.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/3.2.2)| Mainstream Support | 2025-10-13     | 2028-01-29        | 2030-01-29 |
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/3.1.3)| ~~Unsupported~~ | ~~2025-06-03~~ | ~~2026-01-13~~    | ~~Ineligible~~ |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/3.0.2)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2025-09-03~~    | ~~Ineligible~~ |
-| [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/2.0.4)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
+| [2.0.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/2.0.5)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [1.2.x](https://www.nuget.org/packages/NServiceBus.Persistence.CosmosDB.TransactionalSession/1.2.2)| Extended Support | 2022-09-19     | 2024-11-17        | 2026-11-17 |
 
 #### [NServiceBus.Persistence.DynamoDB](/nuget/NServiceBus.Persistence.DynamoDB)
@@ -851,12 +851,12 @@ No versions released.
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
 | [7.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/7.1.1)| **Current** | 2026-02-10     | Active            | Active |
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/7.0.0)| Mainstream Support | 2026-01-30     | 2026-05-10        | Ineligible |
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/6.0.1)| Mainstream Support | 2025-03-17     | 2028-01-29        | 2030-01-29 |
-| [~~5.2.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.2.3)| ~~Unsupported~~ | ~~2024-06-26~~ | ~~2026-03-17~~    | ~~Ineligible~~ |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/7.0.1)| Mainstream Support | 2026-01-30     | 2026-05-10        | Ineligible |
+| [6.0.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/6.0.2)| Mainstream Support | 2025-03-17     | 2028-01-29        | 2030-01-29 |
+| [~~5.2.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.2.4)| ~~Unsupported~~ | ~~2024-06-26~~ | ~~2026-03-17~~    | ~~Ineligible~~ |
 | [~~5.1.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.1.0)| ~~Unsupported~~ | ~~2024-06-12~~ | ~~2024-09-26~~    | ~~Ineligible~~ |
 | [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/5.0.0)| ~~Unsupported~~ | ~~2024-04-16~~ | ~~2024-09-12~~    | ~~Ineligible~~ |
-| [4.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.2.7)| Extended Support | 2023-09-21     | 2026-04-16        | 2028-04-16 |
+| [4.2.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.2.8)| Extended Support | 2023-09-21     | 2026-04-16        | 2028-04-16 |
 | [~~4.1.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.1.1)| ~~Unsupported~~ | ~~2022-12-21~~ | ~~2023-12-21~~    | ~~Ineligible~~ |
 | [~~4.0.x~~](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/4.0.0)| ~~Unsupported~~ | ~~2022-11-17~~ | ~~2023-03-21~~    | ~~Ineligible~~ |
 | [3.1.x](https://www.nuget.org/packages/NServiceBus.AzureFunctions.Worker.ServiceBus/3.1.2)| Extended Support | 2022-08-31     | 2024-11-17        | 2026-11-17 |
@@ -979,11 +979,11 @@ No versions released.
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/6.0.0)| **Current** | 2026-01-30     | Active            | Active |
-| [5.1.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/5.1.0)| Mainstream Support | 2025-09-09     | 2028-01-29        | 2030-01-29 |
+| [6.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/6.0.1)| **Current** | 2026-01-30     | Active            | Active |
+| [5.1.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/5.1.1)| Mainstream Support | 2025-09-09     | 2028-01-29        | 2030-01-29 |
 | [~~5.0.x~~](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/5.0.0)| ~~Unsupported~~ | ~~2025-08-22~~ | ~~2025-12-09~~    | ~~Ineligible~~ |
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/4.0.1)| Mainstream Support | 2024-04-16     | 2026-08-22        | Ineligible |
-| [3.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/3.0.1)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/4.0.2)| Mainstream Support | 2024-04-16     | 2026-08-22        | Ineligible |
+| [3.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/3.0.2)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [2.0.x](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/2.0.0)| Extended Support | 2021-12-09     | 2024-11-17        | 2026-11-17 |
 | [~~1.1.x~~](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/1.1.1)| ~~Unsupported~~ | ~~2021-11-30~~ | ~~2022-12-09~~    | ~~Ineligible~~ |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Gateway.RavenDB/1.0.0)| ~~Unsupported~~ | ~~2020-02-07~~ | ~~2022-02-28~~    | ~~Ineligible~~ |
@@ -1001,9 +1001,9 @@ No versions released.
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.Heartbeat/6.0.0)| **Current** | 2026-01-29     | Active            | Active |
+| [6.0.x](https://www.nuget.org/packages/NServiceBus.Heartbeat/6.0.1)| **Current** | 2026-01-29     | Active            | Active |
 | [5.0.x](https://www.nuget.org/packages/NServiceBus.Heartbeat/5.0.1)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
-| [4.0.x](https://www.nuget.org/packages/NServiceBus.Heartbeat/4.0.1)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
+| [4.0.x](https://www.nuget.org/packages/NServiceBus.Heartbeat/4.0.2)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [3.0.x](https://www.nuget.org/packages/NServiceBus.Heartbeat/3.0.1)| Extended Support | 2018-05-29     | 2024-11-17        | 2026-11-17 |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.Heartbeat/2.0.1)| ~~Unsupported~~ | ~~2017-11-15~~ | ~~2020-05-29~~    | ~~2022-05-29~~ |
 | [~~1.0.x~~](https://www.nuget.org/packages/NServiceBus.Heartbeat/1.0.0)| ~~Unsupported~~ | ~~2017-11-15~~ | ~~2018-10-11~~    | ~~2020-10-11~~ |
@@ -1036,11 +1036,11 @@ No versions released.
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/5.0.1)| **Current** | 2026-01-30     | Active            | Active |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/5.0.2)| **Current** | 2026-01-30     | Active            | Active |
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/4.0.4)| Mainstream Support | 2024-09-15     | 2028-01-29        | 2030-01-29 |
 | [~~3.1.x~~](https://www.nuget.org/packages/NServiceBus.MessagingBridge/3.1.2)| ~~Unsupported~~ | ~~2024-09-05~~ | ~~2025-09-15~~    | ~~Ineligible~~ |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.MessagingBridge/3.0.3)| ~~Unsupported~~ | ~~2024-04-18~~ | ~~2024-12-05~~    | ~~Ineligible~~ |
-| [2.3.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.3.3)| Extended Support | 2024-09-05     | 2026-04-16        | 2028-04-16 |
+| [2.3.x](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.3.4)| Extended Support | 2024-09-05     | 2026-04-16        | 2028-04-16 |
 | [~~2.2.x~~](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.2.3)| ~~Unsupported~~ | ~~2024-02-26~~ | ~~2024-12-05~~    | ~~Ineligible~~ |
 | [~~2.1.x~~](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.1.0)| ~~Unsupported~~ | ~~2023-07-25~~ | ~~2024-05-26~~    | ~~Ineligible~~ |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.MessagingBridge/2.0.3)| ~~Unsupported~~ | ~~2023-06-20~~ | ~~2023-10-25~~    | ~~Ineligible~~ |
@@ -1062,9 +1062,9 @@ No versions released.
 
 | Version   | Status         | Released     | [Mainstream Until](support-policy.md) | [Extended Until](support-policy.md#extended-support) |
 |:---------:|:--------------:|:------------:|:-------------------------------------:|:----------------------------------------------------:|
-| [7.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters/7.0.0)| **Current** | 2026-01-30     | Active            | Active |
-| [6.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters/6.0.0)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
-| [5.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters/5.0.1)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
+| [7.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters/7.0.1)| **Current** | 2026-01-30     | Active            | Active |
+| [6.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters/6.0.1)| Mainstream Support | 2024-04-16     | 2028-01-29        | 2030-01-29 |
+| [5.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters/5.0.2)| Extended Support | 2022-11-17     | 2026-04-16        | 2028-04-16 |
 | [4.0.x](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters/4.0.0)| Extended Support | 2019-07-23     | 2024-11-17        | 2026-11-17 |
 | [~~3.0.x~~](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters/3.0.0)| ~~Unsupported~~ | ~~2018-05-29~~ | ~~2020-07-23~~    | ~~Ineligible~~ |
 | [~~2.0.x~~](https://www.nuget.org/packages/NServiceBus.Metrics.PerformanceCounters/2.0.0)| ~~Unsupported~~ | ~~2017-11-15~~ | ~~2020-05-29~~    | ~~2022-05-29~~ |
