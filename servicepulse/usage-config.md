@@ -193,9 +193,9 @@ User with monitoring tag and read permission.
 Refer to the [Usage Reporting when using the IBM MQ transport](/servicecontrol/servicecontrol-instances/configuration.md#usage-reporting-when-using-the-ibm-mq-transport) section of the ServiceControl config file for an explanation of the IBM MQ-specific settings.
 
 > [!NOTE]
-> Broker-side throughput collection on IBM MQ is most useful as a **fallback** for environments where ServiceControl Monitoring is not deployed or where some endpoints cannot enable NServiceBus metrics. When every NServiceBus endpoint is configured with monitoring and a Monitoring instance is running, the monitoring source already provides per-day throughput data for the usage report — without requiring any queue manager configuration changes. In that case, enabling IBM MQ statistics events adds operational overhead (`STATQ` administration, `MAXDEPTH` tuning, additional permissions on the connecting user) for limited additional value.
+> Broker-side throughput collection on IBM MQ is most useful as a **fallback** for environments where ServiceControl Monitoring is not deployed or where some endpoints cannot enable NServiceBus metrics. When every NServiceBus endpoint is configured with metrics (see [Monitoring NServiceBus endpoints](/monitoring/) and [Configure metrics](/monitoring/metrics/)) and a [Monitoring instance](/servicecontrol/monitoring-instances/) is running, the monitoring source already provides per-day throughput data for the usage report — without requiring any queue manager configuration changes. In that case, enabling IBM MQ statistics events adds operational overhead (`STATQ` administration, `MAXDEPTH` tuning, additional permissions on the connecting user) for limited additional value.
 
-ServiceControl reads broker-side throughput data from IBM MQ statistics events. Before enabling broker-side usage reporting, run the following on the queue manager (one-time setup):
+The following section applies when broker-side collection is needed. ServiceControl reads broker-side throughput data from IBM MQ statistics events. Before enabling broker-side usage reporting, run the following on the queue manager (one-time setup):
 
 ```mqsc
 ALTER QMGR STATQ(ON) STATINT(1800)
