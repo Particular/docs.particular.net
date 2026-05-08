@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="NServiceBus" Version="7.*" />
+    <PackageReference Include="System.IO.Hashing" Version="10.*" />
   </ItemGroup>
 
 </Project>
