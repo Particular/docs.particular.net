@@ -1,6 +1,6 @@
 ## NServiceBus
 
-Starting in version 10.2, NServiceBus uses a non-cryptographic hash algorithm (XxHash128) to generate deterministic unique identifiers for endpoints, also known as host identifiers (HostIds). This algorithm is not subject to FIPS policy enforcement and eliminates the need for workarounds on FIPS-enabled systems.
+Starting in version 10.2, NServiceBus uses a non-cryptographic hash algorithm (XxHash128) to generate deterministic unique identifiers for endpoints, also known as host identifiers (HostIds). Because XxHash128 is not a cryptographic algorithm, FIPS policy enforcement does not block host identifier generation; the host ID workaround described below is no longer needed.
 
 ### Migrating from MD5 to XxHash128 host identifiers
 
