@@ -3,7 +3,7 @@ title: FIPS Compliance
 summary: Describes NServiceBus compliance with FIPS
 component: Core
 versions: '[7,)'
-reviewed: 2026-05-07
+reviewed: 2026-05-08
 ---
 
 The [Federal Information Processing Standards](https://en.wikipedia.org/wiki/Federal_Information_Processing_Standards) or FIPS are standards developed by the United States government for computer systems that set requirements for, among other things, cryptography.
