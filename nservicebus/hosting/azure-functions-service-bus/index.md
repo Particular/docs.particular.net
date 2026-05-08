@@ -4,10 +4,10 @@ component: ASBFunctionsWorker
 summary: Using NServiceBus with the Azure Functions isolated worker hosting model.
 related:
   - samples/azure-functions/service-bus-worker
-reviewed: 2024-08-06
+reviewed: 2026-05-05
 ---
 
-The isolated worker model is a newer hosting option for Azure Functions. Running out-of-process decouples the function code from the Azure Functions runtime. For further information about the isolated worker, refer to the [Microsoft documentation](https://docs.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-process-guide).
+The isolated worker model is a newer hosting option for Azure Functions. Running out-of-process decouples the function code from the Azure Functions runtime. For further information about the isolated worker, refer to the [Microsoft documentation](https://learn.microsoft.com/en-us/azure/azure-functions/dotnet-isolated-process-guide).
 
 ## Usage
 
@@ -32,7 +32,7 @@ partial: configuration
 
 ### Transactions
 
-Unlike the [in-process hosting model](/nservicebus/hosting/azure-functions-service-bus/in-process/), the isolated worker model does not support using [`TransportTransactionMode.SendsAtomicWithReceive`](/transports/transactions.md#transaction-modes-transport-transaction-sends-atomic-with-receive). [`TransportTransactionMode.ReceiveOnly`](/transports/transactions.md#transaction-modes-transport-transaction-receive-only) is the default option.
+The isolated worker model does not support using [`TransportTransactionMode.SendsAtomicWithReceive`](/transports/transactions.md#transaction-modes-transport-transaction-sends-atomic-with-receive). [`TransportTransactionMode.ReceiveOnly`](/transports/transactions.md#transaction-modes-transport-transaction-receive-only) is the default option.
 
 ### Startup Diagnostics
 
@@ -44,7 +44,7 @@ Diagnostics data will be written with logger identification `StartupDiagnostics`
 
 #### Custom Diagnostics Writer
 
-For full control over the diagnostic log output, the `AdvancedConfiguration.CustomDiagnosticsWriter` can be used. This is advantageous when diagnostics need to be persisted beyond the function's execution lifetime or when centralized diagnostic storage is preferred for multiple function instances. As an example, the diagnostics can be written to [Azure BLOB Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-dotnet?tabs=visual-studio%2Cmanaged-identity%2Croles-azure-portal%2Csign-in-azure-cli%2Cidentity-visual-studio&pivots=blob-storage-quickstart-scratch):
+For full control over the diagnostic log output, the `AdvancedConfiguration.CustomDiagnosticsWriter` can be used. This is advantageous when diagnostics need to be persisted beyond the function's execution lifetime or when centralized diagnostic storage is preferred for multiple function instances. As an example, the diagnostics can be written to [Azure Blob Storage](https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-dotnet?tabs=visual-studio%2Cmanaged-identity%2Croles-azure-portal%2Csign-in-azure-cli%2Cidentity-visual-studio&pivots=blob-storage-quickstart-scratch):
 
 snippet: asb-function-iso-diagnostics-blob
 

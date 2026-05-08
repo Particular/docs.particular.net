@@ -9,11 +9,10 @@ namespace IntegrityTests
     public class ProjectLangVersion
     {
         [Test]
-        public void SnippetsShouldNotHaveLangVersionProperty()
+        public void SnippetsAndTutorialsShouldNotHaveLangVersionProperty()
         {
-            new TestRunner("*.csproj", "Snippets projects should not have a LangVersion property")
+            new TestRunner("*.csproj", "Snippets and Tutorial projects should not have a LangVersion property")
                 .IgnoreSamples()
-                .IgnoreTutorials()
                 .Run(projectFilePath =>
                 {
                     var xdoc = XDocument.Load(projectFilePath);

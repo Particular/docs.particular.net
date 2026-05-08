@@ -1,6 +1,6 @@
 ---
 title: Message Throughput Throttling
-reviewed: 2024-05-05
+reviewed: 2026-02-17
 component: Core
 related:
 - nservicebus/pipeline/manipulate-with-behaviors
@@ -13,11 +13,9 @@ This sample demonstrates an integration with the [GitHub API](https://developer.
 
 The solution consists of two endpoints; Sender and Limited. The reason two endpoints are required in this scenario is that NServiceBus does not support limiting messages by message type. So, to limit **only** a specific message type, a separate endpoint is used for it.
 
-
 ## Sender
 
-The Sender is a normal endpoint that sends the `SearchGitHub` message and the handles the reply `SearchResponse` message.
-
+The Sender is a normal endpoint that sends the `SearchGitHub` message and then handles the reply `SearchResponse` message.
 
 ### Sending
 
@@ -25,18 +23,15 @@ The message sending occurs at startup.
 
 snippet: Sending
 
-
 ### Handling the response
 
 Handling the GitHubSearchResponse message.
 
 snippet: GitHubSearchResponseHandler
 
-
 ## Limited
 
-This endpoint is limited to processing one message at a time and uses a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) to handle when the processing limit of Octokit has been exceeded.
-
+This endpoint is limited to processing one message at a time and uses a [pipeline behavior](/nservicebus/pipeline/manipulate-with-behaviors.md) to handle the processing limit of Octokit being exceeded.
 
 ### Configure to process only one concurrent message
 
@@ -44,13 +39,11 @@ This endpoint is limited to processing one message at a time and uses a [pipelin
 
 snippet: LimitConcurrency
 
-
 ### Search Handler
 
 Performs the Octokit search.
 
 snippet: SearchHandler
-
 
 ### Registering the behavior in pipeline
 

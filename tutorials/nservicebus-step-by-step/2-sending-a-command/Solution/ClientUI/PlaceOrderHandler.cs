@@ -1,16 +1,13 @@
-﻿using System.Threading.Tasks;
-using Messages;
-using NServiceBus;
+﻿using Messages;
 using Microsoft.Extensions.Logging;
 
 namespace ClientUI;
 
-public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) :
-    IHandleMessages<PlaceOrder>
+public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) : IHandleMessages<PlaceOrder>
 {
     public Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
-        logger.LogInformation("Received PlaceOrder, OrderId = {orderId}", message.OrderId);
+        logger.LogInformation("Received PlaceOrder, OrderId = {OrderId}", message.OrderId);
         return Task.CompletedTask;
     }
 }

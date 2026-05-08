@@ -7,7 +7,6 @@ redirects:
  - nservicebus/hosting/expose-an-endpoint-as-a-web-wcf-service
 related:
  - nservicebus/messaging/callbacks
- - samples/wcf
 reviewed: 2025-05-13
 ---
 

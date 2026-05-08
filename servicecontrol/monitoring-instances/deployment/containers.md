@@ -1,6 +1,6 @@
 ---
 title: Deploying ServiceControl Monitoring instances using containers
-reviewed: 2024-07-08
+reviewed: 2026-04-17
 component: ServiceControl
 versions: '[5.3, )'
 ---

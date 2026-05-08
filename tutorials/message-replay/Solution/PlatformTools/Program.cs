@@ -1,12 +1,3 @@
-﻿namespace PlatformTools
-{
-    using System.Threading.Tasks;
+﻿// Launch the Particular Service Platform tools
 
-    class Program
-    {
-        static async Task Main()
-        {
-            await Particular.PlatformLauncher.Launch();
-        }
-    }
-}
+await Particular.PlatformLauncher.Launch();

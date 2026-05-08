@@ -1,7 +1,7 @@
 ---
 title: Deploying Error instances using ServiceControl Management
 summary: A guide to using ServiceControl Management Utility to set up ServiceControl instances. Information about installing and upgrading ServiceControl instances.
-reviewed: 2024-06-14
+reviewed: 2026-03-20
 component: ServiceControl
 related:
  - servicecontrol/servicecontrol-instances/hardware
@@ -9,6 +9,8 @@ related:
 redirects:
  - servicecontrol/multi-transport-support
 ---
+
+include: portable-application-note
 
 Every component in the Particular Service Platform (not including NServiceBus), including ServiceControl, must be [downloaded](https://particular.net/downloads) and installed.
 
@@ -48,6 +50,7 @@ There are [three types](/servicecontrol/#servicecontrol-instance-types) of Servi
       This queue is important to endpoints that send error and audit messages to these ServiceControl instances, as well as [plugins](/servicecontrol/servicecontrol-instances/configuration.md#host-settings-servicecontrolinstancename).
    6. If needed, configure [forwarding queues](/servicecontrol/errorlog-auditlog-behavior.md).
    7. Full-text search can be turned off for [performance reasons](/servicecontrol/capacity-and-planning.md#storage-performance) if it's not needed.
+   8. Disable [integrated ServicePulse](/servicecontrol/servicecontrol-instances/integrated-servicepulse.md) if it is not needed.
 
 A monitoring instance differs from error and audit instances in its configuration:
 

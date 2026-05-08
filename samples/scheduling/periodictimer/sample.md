@@ -1,7 +1,7 @@
 ---
 title: PeriodTimer usage
 summary: Using PeriodicTimer in a BackgroundJob to send messages from within an NServiceBus endpoint.
-reviewed: 2024-06-26
+reviewed: 2026-04-10
 component: Core
 related:
   - nservicebus/scheduling

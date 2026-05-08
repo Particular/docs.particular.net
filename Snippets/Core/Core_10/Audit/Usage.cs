@@ -1,5 +1,6 @@
 ﻿namespace Core.Audit;
 
+using System;
 using NServiceBus;
 
 class Usage
@@ -11,7 +12,11 @@ class Usage
         endpointConfiguration.AuditProcessedMessagesTo("targetAuditQueue");
 
         #endregion
+
+        #region OverrideTimeToBeReceived
+
+        endpointConfiguration.AuditProcessedMessagesTo("targetAuditQueue", TimeSpan.FromMinutes(30));
+
+        #endregion
     }
-
-
 }

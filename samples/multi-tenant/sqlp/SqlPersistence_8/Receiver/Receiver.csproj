@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net9.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net10.0;net9.0;net8.0</TargetFrameworks>
     <OutputType>Exe</OutputType>
     <LangVersion>12.0</LangVersion>
   </PropertyGroup>
@@ -14,10 +14,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.*" />
     <PackageReference Include="NServiceBus.Extensions.Hosting" Version="3.0.1" />
-    <PackageReference Include="NServiceBus.Persistence.Sql" Version="8.*" />        
+    <PackageReference Include="NServiceBus.Persistence.Sql" Version="8.*" />
   </ItemGroup>
 
-  <ItemGroup Label="Resolves vulnerabilities">    
+  <ItemGroup Label="Resolves vulnerabilities">
     <PackageReference Include="Azure.Identity" Version="1.*" />
     <PackageReference Include="Microsoft.Extensions.Caching.Memory" Version="8.*" />
     <PackageReference Include="Microsoft.Identity.Client" Version="4.*" />

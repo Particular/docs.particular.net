@@ -4,6 +4,8 @@ reviewed: 2025-11-24
 component: ServiceFabricPersistence
 ---
 
+include: servicefabric-sunset
+
 ## Reliable collections
 
 Saga data is stored in reliable dictionaries.

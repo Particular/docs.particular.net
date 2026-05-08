@@ -6,13 +6,7 @@ public static class PackageMetadataResourceExtensions
             .OrderByDescending(pkg => pkg.Identity.Version)
             .FirstOrDefault();
 
-        if (latestPackage == null)
-        {
-            // Package is not yet on NuGet
-            return null;
-        }
-
-        if (latestPackage.Authors == "Particular Software" || latestPackage.Authors == "NServiceBus Ltd")
+        if (latestPackage is null or { Authors: "Particular Software" or "NServiceBus Ltd" })
         {
             return null;
         }
@@ -37,7 +31,7 @@ public static class PackageMetadataResourceExtensions
             .OrderByDescending(pkg => pkg.Identity.Version)
             .FirstOrDefault();
 
-        if (latestPackage == null)
+        if (latestPackage is null)
         {
             // Package is not yet on NuGet
             return result;
@@ -56,7 +50,7 @@ public static class PackageMetadataResourceExtensions
                 .OrderByDescending(pkg => pkg.Identity.Version)
                 .FirstOrDefault(pkg => dependency.VersionRange.Satisfies(pkg.Identity.Version));
 
-            if (dependencyPackage.Authors == "Particular Software" || dependencyPackage.Authors == "NServiceBus Ltd")
+            if (dependencyPackage is null or { Authors: "Particular Software" or "NServiceBus Ltd" })
             {
                 continue;
             }

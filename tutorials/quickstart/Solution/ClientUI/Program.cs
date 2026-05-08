@@ -1,8 +1,4 @@
-using System;
 using Messages;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using NServiceBus;
 
 Console.Title = "ClientUI";
 
@@ -10,9 +6,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 var endpointConfiguration = new EndpointConfiguration("ClientUI");
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-var transport = endpointConfiguration.UseTransport<LearningTransport>();
 
-var routing = transport.Routing();
+var routing = endpointConfiguration.UseTransport(new LearningTransport());
 routing.RouteToEndpoint(typeof(PlaceOrder), "Sales");
 
 endpointConfiguration.SendFailedMessagesTo("error");

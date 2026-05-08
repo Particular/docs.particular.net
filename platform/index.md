@@ -1,19 +1,20 @@
 ---
 title: The Particular Service Platform
-reviewed: 2024-05-23
+summary: Discover how NServiceBus, ServiceControl, and ServicePulse work together to monitor, recover, and scale distributed messaging systems.
+reviewed: 2026-03-05
 suppressRelated: true
 isLearningPath: true
 redirects:
  - nservicebus/preparing-your-machine-to-run-nservicebus
 ---
 
-Messaging is a great way to build loosely coupled, scalable, and reliable systems. But it has its challenges. The most common difficulty is seeing what's happening in a system. This is one of the problems solved by the Particular Service Platform.
+Messaging is a great way to build loosely coupled, scalable, and reliable systems. It has its challenges, however; the most common difficulty is seeing what's happening in a system. This is one of the problems solved by the Particular Service Platform.
 
-The Platform's goal is to provide a set of tools that make it easier to build and maintain messaging systems. The tools are tailored to the common needs of messaging systems and 'just work', out of the box. They enable developers to focus on more important challenges, such as gaining a better understanding of their business domains.
+The Platform's goal is to provide a set of tools that make it easier to build and maintain messaging systems. The tools are tailored to the common needs of messaging systems and 'just work' out of the box. They enable developers to focus on more important challenges, such as gaining a better understanding of their business domains.
 
 The Particular Service Platform consists of [NServiceBus](/nservicebus), [ServiceControl](/servicecontrol), and [ServicePulse](/servicepulse).
 
-![Particular Service Platform architecture](architecture-overview.png)
+![Particular Service Platform architecture](architecture-overview.png 'width=800')
 
 The details of each component are discussed below. A Particular Service Platform-based system consists of several NServiceBus [endpoints](/nservicebus/endpoints/). Endpoints are logical entities that perform business operations. They communicate with each other using messages (via queues) and forward messages to ServiceControl for auditing. ServiceControl stores this audit trail and provides integration points for ServicePulse. ServicePulse provides monitoring and recoverability for production systems, as well as debugging information and visualization of how the system works.
 

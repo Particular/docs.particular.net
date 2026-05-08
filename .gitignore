@@ -5,6 +5,7 @@ binaries
 *UpgradeLog.*
 *.vshost.*
 *.lock.json
+‎docstool-version.json
 .nu
 .learningtransport
 .learningtransport2

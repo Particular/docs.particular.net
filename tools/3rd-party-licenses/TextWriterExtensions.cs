@@ -28,11 +28,11 @@ public static class TextWriterExtensions
         output.WriteExternalLink(dependency.Id, dependency.RegistryUrl);
         output.Write(" | ");
 
-        if (dependency.License != null)
+        if (dependency.License is not null)
         {
             output.WriteExternalLink(dependency.License, dependency.LicenseUrl);
         }
-        else if (dependency.LicenseUrl != null)
+        else if (dependency.LicenseUrl is not null)
         {
             output.WriteExternalLink("View License", dependency.LicenseUrl);
         }
@@ -43,7 +43,7 @@ public static class TextWriterExtensions
         }
 
         output.Write(" | ");
-        if (dependency.ProjectUrl != null)
+        if (dependency.ProjectUrl is not null)
         {
             output.WriteExternalLink("Project Site", dependency.ProjectUrl);
         }

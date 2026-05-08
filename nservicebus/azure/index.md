@@ -9,7 +9,6 @@ NServiceBus helps create distributed .NET systems not only on premises but also 
 ## Hosting
 
 * [Hosting in Azure WebJobs](/samples/azure/webjob-host/)
-* [Hosting in Service Fabric](/nservicebus/hosting/service-fabric-hosting/)
 
 ## Serverless
 
@@ -23,10 +22,8 @@ NServiceBus helps create distributed .NET systems not only on premises but also 
 ## Persistence
 
 * [Azure Table Persistence](/persistence/azure-table/)
-* [Service Fabric Persistence](/persistence/service-fabric/)
 * [Azure CosmosDB Persistence](/persistence/cosmosdb/)
 
 ## Cloud native extensions and samples
 
 * [Azure Blob Storage Data Bus](/samples/databus/blob-storage-databus/)
-* [Azure Service Fabric Partition Aware Routing](/samples/azure/azure-service-fabric-routing/)

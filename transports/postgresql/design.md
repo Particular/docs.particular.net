@@ -1,7 +1,7 @@
 ---
 title: PostgreSQL Transport Design
 summary: The design and implementation details of PostgreSQL Transport
-reviewed: 2024-05-28
+reviewed: 2026-03-09
 component: PostgreSqlTransport
 ---
 
@@ -49,7 +49,7 @@ Messages are sent by executing an `insert` command against the queue table.
 
 Messages are received by executing a `delete` command against the queue table. The `delete` is limited to a row with the lowest `Seq` not locked by any other concurrent `delete`. This ensures that multiple threads within an endpoint instance, and multiple instances of the same scaled-out endpoint, can operate at full speed without conflicts.
 
-PostgreSQL transport operates in two modes: *peek* and *receive*. It starts in the *peek* mode and checks via `max(seq) - min(seq)` the number of pending messages. If the number is greater then zero, it switches to the *receive* mode and starts spawning receive tasks that use the `delete` command to receive messages.
+PostgreSQL transport operates in two modes: *peek* and *receive*. It starts in the *peek* mode and checks via `max(seq) - min(seq)` the number of pending messages. If the number is greater than zero, it switches to the *receive* mode and starts spawning receive tasks that use the `delete` command to receive messages.
 
 The maximum number of concurrent receive tasks never exceeds the value set by `LimitMessageProcessingConcurrencyTo` (the number of tasks does not translate to the number of running threads which is controlled by the TPL scheduling mechanisms).
 

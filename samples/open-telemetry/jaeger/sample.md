@@ -1,7 +1,7 @@
 ---
 title: Monitoring NServiceBus endpoints with Jaeger
 summary: How to configure NServiceBus to export OpenTelemetry traces to Jaeger
-reviewed: 2024-07-26
+reviewed: 2026-04-30
 component: Core
 related:
  - nservicebus/operations/opentelemetry
@@ -11,7 +11,7 @@ Jaeger is a distributed tracing system for monitoring and troubleshooting distri
 
 ## Prerequisites
 
-A Jaeger instance is required to send, process and view OpenTelemetry trace diagnostics. Use the [`All in one` Jaeger container image](https://www.jaegertracing.io/docs/1.53/getting-started/#all-in-one) for development and testing purpose by running the following docker command:
+A Jaeger instance is required to send, process and view OpenTelemetry trace diagnostics. Use the [`All in one` Jaeger container image](https://www.jaegertracing.io/docs/1.53/getting-started/#all-in-one) for development and testing purposes by running the following docker command:
 
 ```
 $ docker run --name jaeger \
@@ -22,11 +22,11 @@ $ docker run --name jaeger \
   jaegertracing/all-in-one:latest
 ```
 
-With this default configuration, the Jaeger UI will be available at `http://localhost:16686` and the [OTEL Collector](https://opentelemetry.io/docs/collector/) is set up to listen on the default ports, 4317 (gRPC) 4318 (http).
+With this default configuration, the Jaeger UI will be available at `http://localhost:16686` and the [OTEL Collector](https://opentelemetry.io/docs/collector/) is set up to listen on the default ports: 4317 (gRPC) and 4318 (http).
 
 ## Code overview
 
-The sample contains two endpoints exchanging publish-subscribe events and point-to-point messages between each other. To enable tracing and export to Jaeger, the `TraceProvider` for each endpoint has to be configured as follows:
+The sample contains two endpoints. The `Publisher` endpoint publishes events. The `Subscriber` event subscribes to the events and sends replies. To enable tracing and export to Jaeger, the `TraceProvider` for each endpoint has to be configured as follows:
 
 snippet: jaeger-exporter-configuration
 

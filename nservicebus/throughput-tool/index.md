@@ -1,7 +1,7 @@
 ---
 title: Collecting usage data using legacy Endpoint Throughput Counter tool
 summary: Use the Particular endpoint throughput counter tool to measure the usage of an NServiceBus system.
-reviewed: 2024-05-22
+reviewed: 2026-03-09
 related:
   - servicepulse/usage
 redirects:
@@ -69,7 +69,7 @@ The tool can collect data using various methods depending on the system's config
 - [PostgreSQL Transport](#running-the-tool-postgresql-transport)
 - Microsoft Message Queueing (MSMQ) – Use [ServiceControl data collection](#running-the-tool-servicecontrol)
 - Azure Storage Queues – Use [ServiceControl data collection](#running-the-tool-servicecontrol)
-- [Click here if unsure what message transport is used by the system](#determining-message-transport)
+- [Not sure what message transport is used? See determining message transport](#determining-message-transport)
 
 > [!TIP]
 > If the system uses MSMQ or Azure Storage Queues but does not use ServiceControl, this tool cannot be used to measure throughput.
@@ -109,7 +109,7 @@ throughput-counter azureservicebus [options] --resourceId /subscriptions/xxxxxxx
 Or, if using the [self-contained executable](/nservicebus/throughput-tool/#installation-self-contained-executable):
 
 ```shell
-Particular.EndpointThroughputCounter.exe azureservicebus [options] --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace  --region xxxxxxxxx
+Particular.EndpointThroughputCounter.exe azureservicebus [options] --resourceId /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/my-resource-group/providers/Microsoft.ServiceBus/namespaces/my-asb-namespace --region xxxxxxxxx
 ```
 
 #### Options
@@ -124,9 +124,9 @@ include: throughput-tool-global-options
 
 #### What the tool does
 
-First, the tool uses a `ServiceBusAdministrationClient` to [query the queue names](https://learn.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.administration.servicebusadministrationclient.getqueuesasync?view=azure-dotnet) from the namespace. Next, a `MetricsClient` is used to [query for `CompleteMessage` metrics](https://learn.microsoft.com/en-us/dotnet/api/azure.monitor.query.metricsclient.queryresourcesasync?view=azure-dotnet) for the past 30 days from each queue.
+First, the tool uses a `ServiceBusAdministrationClient` to [query the queue names](https://learn.microsoft.com/en-us/dotnet/api/azure.messaging.servicebus.administration.servicebusadministrationclient.getqueuesasync?view=azure-dotnet) from the namespace. Next, a `MetricsClient` is used to [query for `CompleteMessage` metrics](https://learn.microsoft.com/en-us/dotnet/api/azure.monitor.query.metricsclient.queryresourcesasync?view=azure-dotnet) for the past 90 days from each queue.
 
-Using Azure Service Bus metrics allows the tool to capture the last 30 days worth of data at once. Although the tool collects 30 days worth of data, only the highest daily throughput is included in the report.
+Using Azure Service Bus metrics allows the tool to capture the last 90 days worth of data at once.
 
 ### Amazon SQS
 
@@ -163,7 +163,7 @@ include: throughput-tool-global-options
 
 The tool first queries the SQS API to [fetch all queue names](https://docs.aws.amazon.com/AWSSimpleQueueService/latest/APIReference/API_ListQueues.html). Then, for each queue that is discovered, the tool queries the [CloudWatch API](https://docs.aws.amazon.com/AmazonCloudWatch/latest/APIReference/API_GetMetricStatistics.html) for the `NumberOfMessagesDeleted` metrics for the past 30 days.
 
-Unlike ServiceControl, using SQS and CloudWatch metrics allows the tool to capture the last 30 days' worth of data at once, which means that the report will be generated without delay. Although the tool collects 30 days worth of data, only the highest daily throughput is included in the report.
+Unlike ServiceControl, using SQS and CloudWatch metrics allows the tool to capture the last 365 days' worth of data at once, which means that the report will be generated without delay.
 
 ### RabbitMQ
 
@@ -236,7 +236,7 @@ include: throughput-tool-global-options
 <sup>1</sup> See [examples of SQL Server connection strings](https://www.connectionstrings.com/sql-server/). Authentication is often via username/password `User Id=myUsername;Password=myPassword`, integrated security `Integrated Security=true`, or active directory with MFA `Authentication=ActiveDirectoryInteractive;UID=user@domain.com`.
 
 > [!NOTE]
-> In recent versions of Microsoft's Sql Server drivers encryption has been enabled by default. When trying to connect to a Sql Server instance that uses a self-signed cerftificate, the tool may display an exception stating *[The certificate chain was issued by an authority that is not trusted](https://learn.microsoft.com/en-us/troubleshoot/sql/connect/certificate-chain-not-trusted?tabs=ole-db-driver-19)*. To bypass this exception update the connection string to include `;Trust Server Certificate=true`.
+> In recent versions of Microsoft's Sql Server drivers encryption has been enabled by default. When trying to connect to a Sql Server instance that uses a self-signed certificate, the tool may display an exception stating *[The certificate chain was issued by an authority that is not trusted](https://learn.microsoft.com/en-us/troubleshoot/sql/connect/certificate-chain-not-trusted?tabs=ole-db-driver-19)*. To bypass this exception update the connection string to include `;Trust Server Certificate=true`.
 
 #### What the tool does
 
@@ -402,14 +402,14 @@ The following requests will be sent to the monitoring instance:
 The generated report will contain the names of endpoints/queues. Certain strings can be masked in the report file if the queue names contain confidential or proprietary information.
 
 ```shell
-throughput-counter [command] [options] --queueNameMasks Samples
+throughput-counter [command] [options] --queueNameMasks Samples Simple
 ```
 
 This will result in a report file with masked data, such as:
 
 ```json
 {
-  "QueueName": "***.RabbitMQ.SimpleReceiver",
+  "QueueName": "REDACTED1.RabbitMQ.REDACTED2Receiver",
   "Throughput": 0
 }
 ```
@@ -452,7 +452,7 @@ It's generally sufficient to find one NServiceBus application, as in most cases,
 
 ### Look for transport DLLs
 
-Examine the executable directory of the NServiceBus services. The presence of any of the DLLs listed below will determine what message transport is used, which in turn dictates the data collection mechansim.
+Examine the executable directory of the NServiceBus services. The presence of any of the DLLs listed below will determine what message transport is used, which in turn dictates the data collection mechanism.
 
 | DLL Name | Message Transport | Collection Method |
 |-|-|-|
@@ -493,7 +493,7 @@ Note that ServiceControl is a form of a database, and is commonly installed on i
 To find where a ServiceControl instance might be:
 
 1. Find an instance on the current server by using <kbd>Windows</kbd> + <kbd>R</kbd> to run `services.msc` and look for services that contain the word `ServiceControl` in either the **Name** or **Description** column.
-2. If the system has been determined to use the MSMQ transport, it might be possible to find the ServiceControl server by following the steps under the [If no transport DLLs exist](#determining-message-transport-look-for-transport-dlls-if-no-transport-dlls-exist) to find the Outgoing Queues. An outgoing queue for `error` or `audit` (or a queue name containing one of those words) will likely point to the ServivceControl server.
+2. If the system has been determined to use the MSMQ transport, it might be possible to find the ServiceControl server by following the steps under the [If no transport DLLs exist](#determining-message-transport-look-for-transport-dlls-if-no-transport-dlls-exist) to find the Outgoing Queues. An outgoing queue for `error` or `audit` (or a queue name containing one of those words) will likely point to the ServiceControl server.
 
 If a ServiceControl instance can't be found, email contact@particular.net for instructions on how to estimate the number of endpoints and system throughput.
 
@@ -501,7 +501,7 @@ If a ServiceControl instance can't be found, email contact@particular.net for in
 
 ### What does the tool do
 
-The tool measures the number of endpoints used in a system, along with each endpoint's maximum daily throughout. After collecting this data, it produces a report in the directory where the tool was run.
+The tool measures the number of endpoints used in a system, along with each endpoint's maximum daily throughput. After collecting this data, it produces a report in the directory where the tool was run.
 
 ### Why should I run the tool
 
@@ -595,7 +595,7 @@ The tool requires a [ServiceControl Monitoring](/servicecontrol/monitoring-insta
 
 The tool queries the monitoring instance once every hour to get the per-endpoint throughput information for the last hour. It repeats this query 23 additional times to gather information for a 24-hour period.
 
-For endpoints not configured to [send metrics data to ServiceControl](/monitoring/metrics/install-plugin.md), the tool inspect Audit information to find how many messages have been successfully processed.
+For endpoints not configured to [send metrics data to ServiceControl](/monitoring/metrics/install-plugin.md), the tool inspects audit information to find how many messages have been successfully processed.
 
 See the [technical details](#running-the-tool-servicecontrol-what-the-tool-does) for more information.
 

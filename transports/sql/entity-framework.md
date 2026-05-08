@@ -1,6 +1,6 @@
 ---
 title: Using the SQL Server transport with Entity Framework
-reviewed: 2024-05-19
+reviewed: 2026-02-26
 component: SqlTransport
 redirects:
  - nservicebus/sqlserver/entity-framework

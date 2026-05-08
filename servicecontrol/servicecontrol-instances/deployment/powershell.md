@@ -1,7 +1,7 @@
 ---
 title: Deploying ServiceControl Error instances using PowerShell
 summary: A guide to setting up and deploying ServiceControl Error instances using PowerShell. Prerequisites, installation and deployment
-reviewed: 2024-06-28
+reviewed: 2026-04-10
 component: ServiceControl
 redirects:
 - servicecontrol/powershell
@@ -11,7 +11,7 @@ include: powershell-module-installation
 
 ## Error instance Cmdlets and Aliases
 
-The following cmdlets and aliases are provided by the ServiceControl Management PowerShell module for the management of ServiceControl Error instances.
+The following cmdlets and aliases are provided by the ServiceControl Management PowerShell module for managing ServiceControl Error instances.
 
 | Alias                  | Cmdlet                                                     |
 | ---------------------- | ---------------------------------------------------------- |

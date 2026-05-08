@@ -25,7 +25,7 @@ These examples use the [System.Messaging](https://docs.microsoft.com/en-us/dotne
 Queue creation can be done for a specific endpoint or queues shared between multiple endpoints.
 
 > [!NOTE]
-> It may be necessary to script the creation of extra instance-specific queues. For example when using [callbacks](/nservicebus/messaging/callbacks.md#message-routing) or scale-out based on [sender-side distribution](/samples/scaleout/senderside/).
+> It may be necessary to script the creation of extra instance-specific queues. For example when using [callbacks](/nservicebus/messaging/callbacks.md#message-routing) or scale-out based on sender-side distribution.
 
 
 See also: [Queue Permissions](/transports/msmq/#permissions)

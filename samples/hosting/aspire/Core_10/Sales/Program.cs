@@ -7,7 +7,7 @@ builder.AddServiceDefaults();
 
 var endpointConfiguration = new EndpointConfiguration("Sales");
 
-var connectionString = builder.Configuration.GetConnectionString("transport");
+var connectionString = builder.Configuration.GetConnectionString("transport") ?? throw new Exception("No connection string for transport");
 var transport = new RabbitMQTransport(RoutingTopology.Conventional(QueueType.Quorum), connectionString);
 var routing = endpointConfiguration.UseTransport(transport);
 

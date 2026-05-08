@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-using NServiceBus;
-using Shared;
+﻿using Shared;
 
 public class CustomerStatusHandler : IHandleMessages<OrderReceived>
 {

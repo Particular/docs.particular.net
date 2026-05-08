@@ -2,7 +2,7 @@
 title: How to be notified of new releases
 summary: Instructions on how to receive notifications of new releases
 component: Core
-reviewed: 2024-05-17
+reviewed: 2026-02-13
 ---
 
 All releases are [announced on the Particular Software discussion forum](https://discuss.particular.net/c/announcements).
@@ -14,7 +14,7 @@ There are two ways to be notified of new releases of packages and software from 
 1) Register on the [Particular forum](https://discuss.particular.net) and ensure that notifications are set to "Watching" on the announcement channel to receive announcements for all platform components.
 1) Register at [GitHub](https://github.com/) and browse to repositories under the [Particular organization](https://github.com/Particular). For each repository you are interested in, expand the repository watch options and enable notifications for releases.
 
-## Atom Feeds
+## RSS/Atom Feeds
 
 Feeds are useful to receive updates on releases via other channels and can be integrated into other workflows with [IFTTT](https://ifttt.com/) and [Zapier](https://zapier.com/).
 

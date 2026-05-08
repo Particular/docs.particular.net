@@ -1,13 +1,9 @@
 ﻿using Messages;
 using Microsoft.Extensions.Logging;
-using NServiceBus;
-using System.Threading.Tasks;
 
 namespace Shipping;
 
-class ShippingPolicy(ILogger<ShippingPolicy> logger) : Saga<ShippingPolicyData>,
-    IAmStartedByMessages<OrderBilled>,
-    IAmStartedByMessages<OrderPlaced>
+class ShippingPolicy(ILogger<ShippingPolicy> logger) : Saga<ShippingPolicyData>, IAmStartedByMessages<OrderBilled>, IAmStartedByMessages<OrderPlaced>
 {
     protected override void ConfigureHowToFindSaga(SagaPropertyMapper<ShippingPolicyData> mapper)
     {
@@ -38,4 +34,13 @@ class ShippingPolicy(ILogger<ShippingPolicy> logger) : Saga<ShippingPolicyData>,
             MarkAsComplete();
         }
     }
+}
+
+class ShippingPolicyData : ContainSagaData
+{
+    public string? OrderId { get; set; }
+
+    public bool IsOrderPlaced { get; set; }
+
+    public bool IsOrderBilled { get; set; }
 }

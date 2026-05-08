@@ -2,6 +2,7 @@
 using System.Security.Cryptography.X509Certificates;
 
 using NServiceBus;
+using RabbitMQ.Client;
 
 class Usage
 {
@@ -151,14 +152,52 @@ class Usage
         #endregion
     }
 
+#pragma warning disable CS0618 // Type or member is obsolete
     public void UseExternalAuthMechanism(EndpointConfiguration endpointConfiguration)
     {
         #region rabbitmq-external-auth-mechanism
 
         var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+
         transport.UseExternalAuthMechanism();
 
         #endregion
+    }
+#pragma warning restore CS0618 // Type or member is obsolete
+
+    public void SetExternalAuthMechanism(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-set-external-auth-mechanism
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+
+        transport.SetAuthMechanisms([new ExternalMechanismFactory()]);
+
+        #endregion
+    }
+
+    public void CustomAuthMechanisms(EndpointConfiguration endpointConfiguration)
+    {
+        #region rabbitmq-custom-auth-mechanisms
+
+        var transport = endpointConfiguration.UseTransport<RabbitMQTransport>();
+
+        transport.SetAuthMechanisms([new CustomMechanismFactory(), new PlainMechanismFactory()]);
+
+        #endregion
+    }
+
+    public class CustomMechanismFactory : IAuthMechanismFactory
+    {
+        public string Name
+        {
+            get { return "CUSTOM"; }
+        }
+
+        public IAuthMechanism GetInstance()
+        {
+            return null;
+        }
     }
 
     public void ChangeRequestedHeartbeatForDebugging(EndpointConfiguration endpointConfiguration)

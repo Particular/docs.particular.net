@@ -14,7 +14,7 @@
   GitHubOwner: Particular
   ProjectUrl: https://github.com/Particular/NServiceBus.MessageInterfaces
   NugetOrder:
-    - NServiceBus.MessageInterfaces    
+    - NServiceBus.MessageInterfaces
 
 - Key: DataBus
   Name: DataBus
@@ -52,6 +52,15 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.AmazonSQS
   NugetOrder:
     - NServiceBus.AmazonSQS
+
+- Key: IBMMQ
+  Name: IBM MQ Transport
+  DocsUrl: /transports/ibmmq
+  GitHubOwner: Particular
+  Category: Transport
+  ProjectUrl: https://github.com/Particular/NServiceBus.Transport.IBMMQ
+  NugetOrder:
+    - NServiceBus.Transport.IBMMQ
 
 - Key: ASB
   Name: Azure Service Bus Transport (Legacy)
@@ -432,18 +441,6 @@
   NugetOrder:
     - NServiceBus.RavenDB
 
-- Key: RawMessaging
-  Name: NServiceBus raw messaging
-  DocsUrl: /nservicebus/rawmessaging
-  GitHubOwner: SzymonPobiega
-  Category: Other
-  SupportLevel: Community
-  LicenseUrl: https://github.com/SzymonPobiega/NServiceBus.Raw/blob/master/LICENSE.md
-  ProjectUrl: https://github.com/SzymonPobiega/NServiceBus.Raw
-  NugetOrder:
-    - NServiceBus
-    - NServiceBus.Raw
-
 - Key: SqlPersistence
   Name: Sql Persistence
   DocsUrl: /persistence/sql
@@ -666,6 +663,15 @@
   NugetOrder:
     - NServiceBus.UniformSession.Testing
 
+- Key: AzureFunctions
+  Name: NServiceBus.AzureFunctions
+  DocsUrl: /nservicebus/hosting/azure/functions
+  GitHubOwner: Particular
+  Category: Host
+  ProjectUrl: https://github.com/Particular/NServiceBus.AzureFunctions
+  NugetOrder:
+    - NServiceBus.AzureFunctions.AzureServiceBus
+
 - Key: ASBFunctions
   Name: NServiceBus.AzureFunctions.InProcess.ServiceBus
   DocsUrl: /nservicebus/hosting/azure-functions-service-bus/in-process
@@ -821,3 +827,13 @@
   ProjectUrl: https://github.com/Particular/NServiceBus.Persistence.DynamoDB
   NugetOrder:
     - NServiceBus.Persistence.DynamoDB.TransactionalSession
+
+- Key: CloudEvents
+  Name: NServiceBus.Envelope.CloudEvents
+  DocsUrl: /nservicebus/cloudevents
+  GitHubOwner: Particular
+  Category: Other
+  LicenseUrl: https://github.com/Particular/NServiceBus.Envelope.CloudEvents/blob/main/LICENSE.md
+  ProjectUrl: https://github.com/Particular/NServiceBus.Envelope.CloudEvents
+  NugetOrder:
+    - NServiceBus.Envelope.CloudEvents

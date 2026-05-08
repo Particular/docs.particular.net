@@ -1,17 +1,11 @@
-﻿using NServiceBus;
+﻿using Messages;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
-using Messages;
 
 namespace Sales;
 
-class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorsePolicyData>,
-    IAmStartedByMessages<PlaceOrder>,
-    IHandleMessages<CancelOrder>,
-    IHandleTimeouts<BuyersRemorseIsOver>
+class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>, IAmStartedByMessages<PlaceOrder>, IHandleMessages<CancelOrder>, IHandleTimeouts<BuyersRemorseIsOver>
 {
-    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorsePolicyData> mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseData> mapper)
     {
         mapper.MapSaga(saga => saga.OrderId)
             .ToMessage<PlaceOrder>(message => message.OrderId)
@@ -22,9 +16,6 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemo
     {
         logger.LogInformation("Received PlaceOrder, OrderId = {OrderId}", message.OrderId);
 
-        Data.OrderId = message.OrderId;
-        Data.CustomerId = message.CustomerId;
-
         logger.LogInformation("Starting cool down period for order #{OrderId}.", Data.OrderId);
         await RequestTimeout(context, TimeSpan.FromSeconds(20), new BuyersRemorseIsOver());
     }
@@ -34,7 +25,6 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemo
         logger.LogInformation("Cooling down period for order #{OrderId} has elapsed.", Data.OrderId);
         var orderPlaced = new OrderPlaced
         {
-            CustomerId = Data.CustomerId,
             OrderId = Data.OrderId
         };
 
@@ -55,12 +45,9 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemo
     }
 }
 
-internal class BuyersRemorseIsOver
-{
-}
+internal class BuyersRemorseIsOver { }
 
-public class BuyersRemorsePolicyData : ContainSagaData
+public class BuyersRemorseData : ContainSagaData
 {
-    public string CustomerId { get; set; }
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }

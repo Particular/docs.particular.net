@@ -76,7 +76,6 @@ The following saga persisters support pessimistic locking:
 
 - [NHibernate](/persistence/nhibernate/)
 - [MongoDB](/persistence/mongodb/) (since version 2.2.0)
-- [Service Fabric](/persistence/service-fabric/) (since version 2.2.0)
 - [SQL](/persistence/sql/) (since version 4.1.1)
 - [RavenDB](/persistence/ravendb/) (available since version 6.4.0, default since version 7.0.0)
 - [CosmosDB](/persistence/cosmosdb/)
@@ -95,7 +94,6 @@ The following saga persisters support OCC:
 - [Non-Durable](/persistence/non-durable/)
 - [MongoDB](/persistence/mongodb/) (prior to 2.2.0)
 - [RavenDB](/persistence/ravendb/) (prior to 7.0.0)
-- [Service Fabric](/persistence/service-fabric/) (prior to 2.2.0)
 - [SQL](/persistence/sql/) (prior to 4.1.1)
 - [CosmosDB](/persistence/cosmosdb/)
 - [DynamoDB](/persistence/dynamodb/)
@@ -134,7 +132,7 @@ The default message processing model is a single queue with one or more [competi
 
 Note that it isn't necessary to [shard](https://en.wikipedia.org/wiki/Shard_(database_architecture)) or [partition](https://en.wikipedia.org/wiki/Partition_(database)) saga data, although those techniques could be applied to improve performance even further.
 
-A partitioned endpoint instance must be configured to be uniquely addressable using `MakeInstanceUniquelyAddressable`. Messages must be sent to the appropriate endpoint instances using [routing extensibility](/nservicebus/messaging/routing-extensibility.md). This is demonstrated in the [Service Fabric Partition-Aware Routing sample](/samples/azure/azure-service-fabric-routing/).
+A partitioned endpoint instance must be configured to be uniquely addressable using `MakeInstanceUniquelyAddressable`. Messages must be sent to the appropriate endpoint instances using [routing extensibility](/nservicebus/messaging/routing-extensibility.md).
 
 ### Decrease network latency or bandwidth
 

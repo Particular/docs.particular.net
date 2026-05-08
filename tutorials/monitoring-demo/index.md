@@ -1,7 +1,7 @@
 ---
 title: "NServiceBus monitoring demo"
-reviewed: 2025-08-22
-summary: A self-contained demo solution to explore the monitoring features of the Particular Service Platform.
+reviewed: 2026-02-06
+summary: A demo solution to explore the monitoring features of the Particular Service Platform.
 suppressRelated: true
 redirects:
 - tutorials/monitoring/demo
@@ -20,7 +20,7 @@ Experience the monitoring features of the Particular Service Platform by running
 
 To run the sample, ensure you have:
 
-- [.NET 8 runtime](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) installed
+- [.NET 10 runtime](https://dotnet.microsoft.com/en-us/download/dotnet/10.0) installed
 - Windows operating system:
   - Desktop: Windows 8 or later
   - Server: Windows Server 2016 or later

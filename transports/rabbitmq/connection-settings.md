@@ -75,9 +75,9 @@ snippet: rabbitmq-connection-tls
 
 #end-if
 
-### Client authentication
+### Peer verification
 
-If the broker has been configured to require client authentication, a client certificate must be specified:
+If the broker has been configured to verify peer certificates, then a client certificate must be provided:
 
 snippet: rabbitmq-client-certificate-file
 
@@ -93,11 +93,15 @@ By default, the RabbitMQ client will refuse to connect to the broker if the remo
 
 snippet: rabbitmq-disable-remote-certificate-validation
 
-### External authentication
+### Certificate authentication
 
-By default, the broker requires a username and password to authenticate the client, but it can be configured to use other external authentication mechanisms. If the broker requires an external authentication mechanism, the client can be configured to use it with the following setting:
+By default, the broker requires a username and password to authenticate the client, but it can be configured to use client certificate data instead. To do this, the client needs to be configured to use the external authentication mechanism:
 
 snippet: rabbitmq-external-auth-mechanism
+
+partial: external-auth
+
+partial: auth-mechanisms
 
 partial: add-cluster-node
 

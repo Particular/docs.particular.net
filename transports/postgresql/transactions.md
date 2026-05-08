@@ -1,7 +1,7 @@
 ---
 title: Transaction support
 summary: The design and implementation details of PostgreSQL transport transaction support
-reviewed: 2024-05-27
+reviewed: 2026-03-09
 component: PostgreSqlTransport
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Replacing an Error instance
 summary: Instructions on how to replace a ServiceControl Error instance with zero downtime
-reviewed: 2024-07-10
+reviewed: 2026-04-23
 component: ServiceControl
 related:
   - servicecontrol/migrations/replacing-audit-instances
@@ -11,11 +11,11 @@ ServiceControl, which exists to serve the management of distributed systems, is 
 
 This document describes in general terms how to replace a ServiceControl Error instance, and links to more specific information on how to accomplish these tasks for each potential deployment method.
 
-See [Replacing an Audit Instance](../replacing-audit-instances/) for similar guidance for Error instances.
+See [Replacing an Audit Instance](../replacing-audit-instances/) for similar guidance for Audit instances.
 
 ## Overview
 
-ServiceControl Error instances serve as the central access point for both Error and Audit data. When ServicePulse requests data from the API, those requests are either answered by the Error instance directly or passed through to one or more Audit instances in a scatter/gather pattern. So it is possible to create a new Error instance configured to communicate with the same Audit instance(s) and begin using the new Error instance to consume messages from the error queue. The critical aspect is to protect any active error messages during the transition that might still contain any valuable business data.
+ServiceControl Error instances serve as the central access point for both Error and Audit data. When ServicePulse requests data from the API, those requests are either answered by the Error instance directly or passed through to one or more Audit instances in a scatter/gather pattern. It is possible to create a new Error instance configured to communicate with the same Audit instance(s) and begin using the new Error instance to consume messages from the error queue. The critical aspect is to protect any active error messages during the transition that might still contain any valuable business data.
 
 Keeping this in mind, an Error instance that can't be upgraded can be replaced without downtime. The process follows these steps:
 
@@ -51,7 +51,7 @@ In ServicePulse, retry or archive any failed messages that have arrived during t
 
 If a retried message fails again, it will go to the error queue, but the instance will not ingest it.
 
-Once the failed message list is "clean" there will be no data of any continuing value left in the database, making it safe to continue. The only data left is ephemeral data, such as heartbeats, custom check results, etc.
+Once the failed message list is empty, there will be no data of any value left in the database, making it safe to continue. The only data left is ephemeral data, such as heartbeats, custom check results, etc.
 
 ## Replace the Error instance
 

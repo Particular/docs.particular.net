@@ -2,12 +2,12 @@
 title: Usage Reporting Setup
 summary: Viewing endpoint usage summary and generating a usage report
 component: ServicePulse
-reviewed: 2024-05-08
+reviewed: 2026-02-11
 related:
   - servicepulse/usage
 ---
 
-Specific settings for collecting usage data to generate a usage report.
+This document describes the settings required for collecting usage data to generate a usage report.
 
 > [!NOTE]
 > The usage data collection functionality requires ServicePulse version 1.40 or later, and ServiceControl version 5.4 or later.
@@ -21,7 +21,7 @@ In most scenarios existing ServiceControl error instance connection settings wil
 If there is a connection problem, specific usage settings can be provided as environment variables or directly in the [ServiceControl.exe.config](/servicecontrol/servicecontrol-instances/configuration.md) file.
 The Usage Setup tab provides easy copy/paste functionality to obtain the required settings in the correct format, based on configuration type.
 
-Look at the [Diagnostics](#diagnostics) tab to diagnose connection issues.
+Refer to the [Diagnostics](#diagnostics) tab to diagnose connection issues.
 
 ### Azure Service Bus
 
@@ -38,14 +38,14 @@ Steps:
 
 #### Using Azure Portal
 
-Instructions when using the Azure Portal, alternative is using the Azure CLI listed below.
+To use the Azure Portal, follow these instructions. Alternatively, use the Azure CLI as described below.
 
 
 1. Create App
     - Native to: **Home > App registrations**
     - Select **➕ New registration**
 2. Assign application to role:
-    - Natigate to: **Home > Service Bus > {service bus namespace} > Access control (IAM)**
+    - Navigate to: **Home > Service Bus > {service bus namespace} > Access control (IAM)**
     - Select: **➕ Add**
     - Enter:
       - Role: `Monitoring Reader`
@@ -54,7 +54,7 @@ Instructions when using the Azure Portal, alternative is using the Azure CLI lis
 
 #### Using Azure CLI
 
-Instructions when using the Azure CLI or scripting, alternative is using the Azure Portal above.
+To use the Azure CLI or scripting, follow these instructions. Alternatively, use the Azure Portal as described above.
 
 ```ps1
 # Set context first
@@ -82,7 +82,7 @@ $resourceGroupName = "<Your Resource Group Name>"
 $scope = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName"
 
 # or to specific resource in resource group
-$scope = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.ServiceBus/namespaces/$namespaceName
+$scope = "/subscriptions/$subscriptionId/resourceGroups/$resourceGroupName/providers/Microsoft.ServiceBus/namespaces/$namespaceName"
 # end alternative
 
 # assign Monitoring Reader role to ApplicationId
@@ -97,7 +97,7 @@ Refer to the [Usage Reporting when using the Azure Service Bus transport](/servi
 
 The built-in role [`Monitoring Reader`](https://learn.microsoft.com/en-us/azure/azure-monitor/roles-permissions-security#monitoring-reader) is sufficient to access the required Azure Service Bus metrics.
 
-To lock it down even further to the minimally required permissions, create a custom role with the following permissions:
+To restrict permissions to the minimal required set, create a custom role with the following permissions:
 
 ```json
 {
@@ -188,7 +188,7 @@ User with monitoring tag and read permission.
 
 ### MSMQ & Azure Storage Queues
 
-MSMQ and Azure Storage Queues do not support querying of metrics. To enable the automatic usage reporting functionality for these systems, auditing and/or monitoring must be setup:
+MSMQ and Azure Storage Queues do not support querying of metrics. To enable the automatic usage reporting functionality for these systems, auditing and/or monitoring must be set up:
 
 - Auditing
   - install the [Audit](./../servicecontrol/audit-instances) instance
@@ -203,8 +203,8 @@ The Diagnostics tab helps to diagnose any connection issues to the broker, as we
 
 ![usage-setup-diagnostics](images/usage-setup-diagnostics.png "width=600")
 
-After making any setting changes, press the `Refresh Connection Test` button to see if the problem is resolved.
-If unable to fix the issue, open a [non-critical support case](https://particular.net/support) and include the diagnostic output.
+After making any setting changes, press the `Refresh Connection Test` button to verify whether the problem is resolved.
+If unable to resolve the issue, open a [non-critical support case](https://particular.net/support) and include the diagnostic output.
 
 ## Report masks
 

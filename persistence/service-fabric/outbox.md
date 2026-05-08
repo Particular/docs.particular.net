@@ -4,6 +4,8 @@ reviewed: 2025-11-26
 component: ServiceFabricPersistence
 ---
 
+include: servicefabric-sunset
+
 ## Reliable collections
 
 Outbox-related data is stored in a reliable dictionary called `outbox`.

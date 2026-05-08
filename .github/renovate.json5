@@ -1,4 +1,5 @@
 {
+    enabledManagers: [ "nuget", "github-actions" ],
     // Don't want NuGet updates on samples for older versions
-    enabledManagers: [ "github-actions" ]
+    ignorePaths: ["**/samples/**", "**/Snippets/**", "**/tutorials/**"]
 }

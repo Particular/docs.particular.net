@@ -8,10 +8,12 @@ ASQN: NServiceBus.Transport.AzureStorageQueues
 ASP: NServiceBus.Persistence.AzureStorage
 ASTP: NServiceBus.Persistence.AzureTable
 Autofac: NServiceBus.Autofac
+AzureFunctions: NServiceBus.AzureFunctions.AzureServiceBus
 BinaryDataBusSerializer: NServiceBus.DataBus.BinarySerializer
 Callbacks: NServiceBus.Callbacks
 CallbacksTesting: NServiceBus.Callbacks.Testing
 Castle: NServiceBus.CastleWindsor
+CloudEvents: NServiceBus.Envelope.CloudEvents
 CommonLogging: NServiceBus.CommonLogging
 Core: NServiceBus
 CustomChecks3: ServiceControl.Plugin.Nsb3.CustomChecks
@@ -29,6 +31,7 @@ Heartbeats4: ServiceControl.Plugin.Nsb4.Heartbeat
 Heartbeats5: ServiceControl.Plugin.Nsb5.Heartbeat
 Heartbeats6: ServiceControl.Plugin.Nsb6.Heartbeat
 Heartbeats: NServiceBus.Heartbeat
+IBMMQ: NServiceBus.Transport.IBMMQ
 Host: NServiceBus.Host
 Log4Net: NServiceBus.Log4Net
 MessageInterfaces: NServiceBus.MessageInterfaces
@@ -46,7 +49,6 @@ OracleAQ: NServiceBus.OracleAQ
 PerfCounters: NServiceBus.Metrics.PerformanceCounters
 PlatformConnector: NServiceBus.ServicePlatform.Connector
 PropertyEncryption: NServiceBus.Encryption.MessageProperty
-RawMessaging: NServiceBus.Raw
 RawDelayedRetries: NServiceBus.Raw.DelayedRetries
 Rabbit: NServiceBus.RabbitMQ
 Raven: NServiceBus.RavenDB

@@ -4,6 +4,7 @@ summary: Explains the configuration options
 component: ASBS
 reviewed: 2025-03-21
 related:
+ - transports/azure-service-bus/operational-scripting
  - samples/azure-service-bus-netstandard/options
 ---
 
@@ -33,6 +34,8 @@ These settings control how the transport creates entities in the Azure Service B
 include: managed-access-rights
 
 partial: entity-topology
+
+partial: entity-hierarchy
 
 partial: entity-settings
 
@@ -70,3 +73,5 @@ partial: lockrenewal
 >
 > - Optimise the message handlers to reduce their execution time.
 > - Reduce the prefetch count. All messages are locked on peek, so when they are prefetched, they remain locked until they are all processed.
+
+partial: dead-lettering

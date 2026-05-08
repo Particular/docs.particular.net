@@ -1,7 +1,7 @@
 ---
 title: Dispatch notification pipeline extension
 summary: Extending the pipeline to fire a notification when messages are dispatched.
-reviewed: 2024-07-03
+reviewed: 2026-04-17
 component: Core
 related:
  - nservicebus/pipeline

@@ -1,7 +1,7 @@
 ---
 title: MongoDB Persistence
-summary: Using MongoDB for NServiceBus persistence.
-reviewed: 2024-05-18
+summary: Learn how to use MongoDB as a persistence mechanism for NServiceBus, including saga and timeout storage.
+reviewed: 2026-02-19
 component: mongodb
 related:
 - nservicebus/sagas
@@ -12,9 +12,9 @@ redirects:
 
 ## Prerequisites
 
-Ensure an instance of [MongoDB](https://www.mongodb.com/) is executing on `localhost:27017`.
+Ensure an instance of [MongoDB](https://www.mongodb.com/) is running on `localhost:27017`.
 
-The easiest way to do this is to run MongoDB in Docker by running the following commands
+The easiest way to do this is to run MongoDB in Docker:
 
 ```shell
 docker run -d -p 27017:27017 --name TestMongoDB mongo:latest --replSet tr0
@@ -36,7 +36,7 @@ endpointConfiguration.UsePersistence<MongoPersistence>().UseTransactions(false)
 
 ### Data visualization
 
-To visualize data in MongoDB, it is useful to install a [MongoDB visualization tool](https://www.mongodb.com/docs/tools-and-connectors/), like for example, [Compass](https://www.mongodb.com/try/download/compass). The screen shots in this sample are from [Robomongo](https://robomongo.org/).
+To visualize data in MongoDB, install a [MongoDB visualization tool](https://www.mongodb.com/docs/tools-and-connectors/), such as [Compass](https://www.mongodb.com/try/download/compass). The screenshots in this sample are taken using Compass.
 
 ## Code walk-through
 
@@ -70,10 +70,11 @@ snippet: sagadata
 
 ![](sagadata.png)
 
-- `_id` stores `IContainSagaData.Id`
-- `_t` is type serialization metadata used by the [MongoDB .NET/C# Driver](https://www.mongodb.com/docs/languages/csharp/)
-- `Originator` stores `IContainSagaData.Originator`
-- `OriginalMessageId` stores `IContainSagaData.OriginalMessageId`
-- `OrderID` stores `OrderSagaData.OrderID`
-- `OrderDescription` stores `OrderSagaData.OrderDescription`
-- `_version` is added and managed by the persistence to prevent concurrency issues
+| Field | Maps to |
+|-------|---------|
+| `_id` | `IContainSagaData.Id` |
+| `Originator` | `IContainSagaData.Originator` |
+| `OriginalMessageId` | `IContainSagaData.OriginalMessageId` |
+| `OrderID` | `OrderSagaData.OrderID` |
+| `OrderDescription` | `OrderSagaData.OrderDescription` |
+| `_version` | Added and managed by the persistence to prevent concurrency issues |

@@ -2,7 +2,7 @@
 title: Azure Storage Queues Troubleshooting
 summary: Tips for troubleshooting the Azure Storage Queues persister
 component: ASQ
-reviewed: 2024-05-19
+reviewed: 2026-02-25
 ---
 
 ## Message size too large

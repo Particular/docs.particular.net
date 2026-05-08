@@ -21,8 +21,8 @@ The value for the `TransportType` settings can be any of the following:
 | [RabbitMQ](#rabbitmq)<br/><i>See topology options below.</i> | `RabbitMQ.QuorumConventionalRouting`<br/>`RabbitMQ.ClassicConventionalRouting`<br/>`RabbitMQ.QuorumDirectRouting`<br/>`RabbitMQ.ClassicDirectRouting` |
 | [SQL Server](#sql) | `SQLServer` |
 | [PostgreSQL](#postgresql) | `PostgreSQL` |
+| [IBM MQ](#ibm-mq) | `IBMMQ` |
 | [Microsoft Message Queuing (MSMQ)](#msmq) | `MSMQ` |
-
 
 ## Azure Service Bus
 
@@ -61,10 +61,36 @@ As of versions 4.33.3 and 5.0.5 of ServiceControl, support for partitioned entit
 
 * `EnablePartitioning=<True|False>` — Configures the transport to create entities that support partitioning. The default value is `false`.
 
+### Enabling Hierarchical Entities
+
+As of version 6.12.0 of ServiceControl, support for hierarchical entities can be enabled by adding the following connection string parameter:
+
+* `HierarchyNamespace=<hierarchyNamespacePrefix>` — Configures the transport to use [a hierarchy namespace prefix](/transports/azure-service-bus/configuration.md#entity-creation-hierarchy-namespace). The default value is `null`, which means no hierarchy namespace is used.
+
+This isolates the ServiceControl instance to the hierarchy, so an instance-per-hierarchy would be required to monitor multiple hierarchies.
+
+#### Configuring a single ServiceControl instance for multiple hierarchies
+
+Endpoints configured with a hierarchy namespace will use error, audit, and monitoring queues prefixed with the hierarchy namespace.  To monitor all hierarchies with a single ServiceControl installation:
+1. Configure ServiceControl error, audit, and monitoring instances as you would without using a hierarchy namespace.
+2. For each hierarchy-specific error, audit, and monitoring queue that you wish to monitor centrally, configure [auto-forwarding for their corresponding queues in Azure](https://learn.microsoft.com/en-us/azure/service-bus-messaging/enable-auto-forward#update-the-auto-forward-setting-for-an-existing-queue) to forward messages to the central error, audit, and monitoring queues.
+
+#### Previous versions
+
+Previous versions of ServiceControl can still be configured on a per-hierarchy basis. At a minimum, the error queue name needs the prefix prepended to the queue name, separated by a `/`.  If monitoring or auditing are enabled, they also need to be modified.
+
+For example, given a hierarchy namespace of `my-hierarchy` and error, audit, and monitoring queues named `error`, `audit`, and `monitoring`:
+- The [error queue name](/servicecontrol/servicecontrol-instances/configuration.md#transport-servicebuserrorqueue) would need to be set to `my-hierarchy/error`.
+- The [audit queue name](/servicecontrol/audit-instances/configuration.md#transport-servicebusauditqueue) would need to be set to `my-hierarchy/audit`.
+- The [monitoring queue name](/servicecontrol/monitoring-instances/configuration.md#transport-monitoringerrorqueue) would need to be set to `my-hierarchy/monitoring`.
+
 ### Example connection string
 
+> [!NOTE]
+> When using the [Azure Service Bus emulator](https://learn.microsoft.com/en-us/azure/service-bus-messaging/overview-emulator), the default connection string points to `localhost` for the Endpoint value. That results in an error being logged during the startup of ServiceControl instances. The error can be safely ignored as it doesn't affect ServiceControl operations, instead it's related to the throughput and licensing portion of Servicecontrol, which will be anyway not available when using the Azure Service Bus emulator. It's possible to prevent the error from showing up in the logs by creating an alias for `localhost` containing a `.`, such as for example, `servicebus-emulator.local` or by specifying an IP address, such as `127.0.0.1` for the Endpoint value.
+
 ```text
-Endpoint=sb://[namespace].servicebus.windows.net; SharedSecretIssuer=<owner>;SharedSecretValue=<someSecret>;QueueLengthQueryDelayInterval=<IntervalInMilliseconds(Default=500ms)>;TopicName=<TopicBundleName(Default=bundle-1)>;EnablePartitioning=<true|false(Default=false)>
+Endpoint=sb://[namespace].servicebus.windows.net; SharedSecretIssuer=<owner>;SharedSecretValue=<someSecret>;QueueLengthQueryDelayInterval=<IntervalInMilliseconds(Default=500ms)>;TopicName=<TopicBundleName(Default=bundle-1)>;EnablePartitioning=<true|false(Default=false)>;HierarchyNamespace=<hierarchyNamespacePrefix>
 ```
 
 ## Azure Storage Queues
@@ -90,7 +116,7 @@ RabbitMQ contains different `TransportType` options based on the topology and qu
 
 In addition to the [connection string options of the transport](/transports/rabbitmq/connection-settings.md), the following options are available in versions 4.4 and above:
 
-* `UseExternalAuthMechanism=true|false(default)` - Specifies that an [external authentication mechanism should be used for client authentication](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-external-authentication).
+* `UseExternalAuthMechanism=true|false(default)` - Specifies that an [external authentication mechanism should be used for client authentication](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-certificate-authentication).
 * `DisableRemoteCertificateValidation=true|false(default)` - Allows ServiceControl to connect to the broker [even if the remote server certificate is invalid](/transports/rabbitmq/connection-settings.md#transport-layer-security-support-remote-certificate-validation).
 
 These options are available in version 6.5 and above:
@@ -160,6 +186,41 @@ The following ServiceControl connection string options are available:
 ```text
 Region=<REGION>;QueueNamePrefix=<prefix>;TopicNamePrefix=<prefix>;AccessKeyId=<ACCESSKEYID>;SecretAccessKey=<SECRETACCESSKEY>;S3BucketForLargeMessages=<BUCKETNAME>;S3KeyPrefix=<KEYPREFIX>
 ```
+
+## IBM MQ
+
+ServiceControl uses a URI-based connection string to configure the IBM MQ transport. The connection string format is:
+
+```
+mq://[user[:password]]@host[:port]/[QueueManagerName]?[options]
+```
+
+The following connection string options are available:
+
+| Option | Description | Default |
+|:---|---|---|
+| `channel` | SVRCONN channel name | `DEV.ADMIN.SVRCONN` |
+| `topicprefix` | Prefix for topic names and topic strings | `DEV` |
+| `appname` | Application name shown in IBM MQ monitoring tools | _(assembly name)_ |
+| `sslkeyrepo` | SSL key repository (`*SYSTEM`, `*USER`, or file path) | _(none)_ |
+| `cipherspec` | SSL cipher specification (must match SVRCONN channel) | _(none)_ |
+| `sslpeername` | Distinguished name pattern of the server certificate | _(none)_ |
+
+If no port is specified, the default IBM MQ port `1414` is used. If no queue manager name is specified, `QM1` is used.
+
+### Example connection string
+
+```text
+mq://admin:passw0rd@mq-server.example.com:1414/QM1?channel=APP.SVRCONN&topicprefix=PROD
+```
+
+### Example connection string with SSL
+
+```text
+mq://admin:passw0rd@mq-server.example.com:1414/QM1?channel=APP.SVRCONN&topicprefix=PROD&sslkeyrepo=*SYSTEM&cipherspec=TLS_RSA_WITH_AES_256_CBC_SHA256
+```
+
+See the [IBM MQ transport connection settings](/transports/ibmmq/connection-settings.md) for details on individual settings.
 
 ## MSMQ
 

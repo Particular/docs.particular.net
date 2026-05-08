@@ -1,33 +1,23 @@
-using System;
-using System.Threading.Tasks;
-using Messages;
-using NServiceBus;
+﻿using Messages;
 using Microsoft.Extensions.Logging;
 
-#pragma warning disable 162
+namespace Sales;
 
-namespace Sales
+public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) : IHandleMessages<PlaceOrder>
 {
-    public class PlaceOrderHandler (ILogger<PlaceOrderHandler> logger) :
-        IHandleMessages<PlaceOrder>
+    public async Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
+        logger.LogInformation("Received PlaceOrder, OrderId = {OrderId}", message.OrderId);
 
-        public Task Handle(PlaceOrder message, IMessageHandlerContext context)
+        // This is normally where some business logic would occur
+
+        var orderPlaced = new OrderPlaced
         {
-            logger.LogInformation("Received PlaceOrder, OrderId = {OrderId}", message.OrderId);
+            OrderId = message.OrderId
+        };
+        await context.Publish(orderPlaced);
 
-            // This is normally where some business logic would occur
-
-            // Uncomment to test throwing a systemic exception
-            //throw new Exception("BOOM");
-
-            var orderPlaced = new OrderPlaced
-            {
-                OrderId = message.OrderId
-            };
-            return context.Publish(orderPlaced);
-        }
+        // Uncomment to test throwing a systemic exception
+        //throw new Exception("BOOM");
     }
 }
-
-#pragma warning restore 162

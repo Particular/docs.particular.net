@@ -23,7 +23,7 @@ It is recommended to specify a central auditing queue for all related endpoints 
 
 ## How it works
 
-Auditing shows the end state of the flow of messages. When configured to audit, NServiceBus captures a copy of every **successfully processed message** and forwards it to a specified audit queue. When a message fails to be processed it is forwarded to the configured error queue and not be copied to the audit queue. 
+Auditing shows the end state of the flow of messages. When configured to audit, NServiceBus captures a copy of every **successfully processed message** and forwards it to a specified audit queue. When a message fails to be processed it is forwarded to the configured error queue and not be copied to the audit queue.
 
 This means that a message is eventually forwarded to either the *audit queue* or the *error queue*, but while it's in flight it will be in the *endpoint queue* until all immediate and delayed processing attempts have exceeded.
 
@@ -32,7 +32,7 @@ This means that a message is eventually forwarded to either the *audit queue* or
 
 ### Events
 
-Because auditing only shows processed messages, published messages only appear if there are subscribers for that message. If there are multiple subscribers there will be an audit message for each subscriber in the audit queue **after each subscriber successfully processes their copy of the event message**. If there is no subscriber or the routing  in the messaging infrastructure is misconfigured no event message will be copied to the audit queue. 
+Because auditing only shows processed messages, published messages only appear if there are subscribers for that message. If there are multiple subscribers there will be an audit message for each subscriber in the audit queue **after each subscriber successfully processes their copy of the event message**. If there is no subscriber or the routing  in the messaging infrastructure is misconfigured no event message will be copied to the audit queue.
 
 ## Performance impact
 
@@ -77,17 +77,11 @@ Audit messages can be handled in various ways: saved in a database, custom logge
 
 partial: configuration
 
-## Audit configuration options
+### TimeToBeReceived
 
-Two settings control auditing:
+To configure a [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md) value for audit messages, use the configuration syntax below.
 
-### Queue Name
-
-The queue name to forward audit messages.
-
-### OverrideTimeToBeReceived
-
-To force a [TimeToBeReceived](/nservicebus/messaging/discard-old-messages.md) on audit messages by setting `OverrideTimeToBeReceived` use the configuration syntax below.
+snippet: OverrideTimeToBeReceived
 
 Note that while the phrasing is "forwarding a message" in the implementation, it is actually "cloning and sending a new message". This is important when considering TimeToBeReceived since the time taken to receive and process the original message is not part of the TimeToBeReceived of the new audit message. In effect, the audit message receives the full-time allotment of whatever TimeToBeReceived is used.
 

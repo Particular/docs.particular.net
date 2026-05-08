@@ -9,7 +9,6 @@ related:
  - persistence/sql/accessing-data
  - persistence/mongodb
  - persistence/ravendb
- - persistence/service-fabric
  - persistence/cosmosdb
  - persistence/dynamodb
  - persistence/azure-table
@@ -17,9 +16,9 @@ related:
 
 In most cases, [handlers](/nservicebus/handlers/) are used to modify the internal state of an application based on the content of a received message. In any system, it is critical to ensure the state change happens exactly once. In a messaging system, this can be challenging as exactly-once delivery is not guaranteed by many queuing technologies. NServiceBus provides several strategies to mitigate the risk of a handler leaving the application in an inconsistent state.
 
-Accessing the application state can be achieved in a number of ways and is not enforced or restricted by using NServiceBus. 
+Accessing the application state can be achieved in a number of ways and is not enforced or restricted by using NServiceBus.
 
-The section below outlines several ways to access the application state using the same data context NServiceBus use internally. 
+The section below outlines several ways to access the application state using the same data context NServiceBus use internally.
 
 partial: transactionscope
 
@@ -47,7 +46,6 @@ The synchronized storage session feature is supported by most NServiceBus persis
 - [MongoDB](/persistence/mongodb/#transactions-shared-transactions)
 - [RavenDB](/persistence/ravendb/#shared-session)
 - [AWS DynamoDB](/persistence/dynamodb/transactions.md)
-- [Service Fabric](/persistence/service-fabric/transaction-sharing.md)
 - [CosmosDB](/persistence/cosmosdb/transactions.md#sharing-the-transaction)
 - [Azure Table](/persistence/azure-table/transactions.md#sharing-the-transaction)
 
@@ -69,15 +67,15 @@ The [SQL Server](/transports/sql) and [PostgreSQL](/transports/postgresql) trans
 
 This guarantees that no duplicate messages are sent.
 
-[SQL Server transport](/transports/sql) will share transactions with [SQL persistence](/persistence/sql/accessing-data.md) when using the following [transaction modes](/transports/transactions.md): 
+[SQL Server transport](/transports/sql) will share transactions with [SQL persistence](/persistence/sql/accessing-data.md) when using the following [transaction modes](/transports/transactions.md):
 - `ReceiveOnly`
 - `SendsAtomicWithReceive`
 - `TransactionScope`
 
-[SQL Server transport](/transports/sql) will share transactions with [NHibernate persistence](/persistence/nhibernate) when using the following [transaction mode](/transports/transactions.md): 
+[SQL Server transport](/transports/sql) will share transactions with [NHibernate persistence](/persistence/nhibernate) when using the following [transaction mode](/transports/transactions.md):
 - `TransactionScope`
 
-[PostgreSQL transport](/transports/postgresql) will share transactions with [SQL persistence](/persistence/sql/accessing-data.md) when using the following [transaction modes](/transports/transactions.md): 
+[PostgreSQL transport](/transports/postgresql) will share transactions with [SQL persistence](/persistence/sql/accessing-data.md) when using the following [transaction modes](/transports/transactions.md):
 - `ReceiveOnly`
 - `SendsAtomicWithReceive`
 
@@ -108,7 +106,7 @@ In situations where none of the built-in deduplication strategies can be applied
 
 ### Idempotence caveats
 
-Message processing logic is idempotent if it can be applied multiple times, and its outcome is the same as if it were applied once. The outcome includes both the application state changes and the potential outgoing messages sent. 
+Message processing logic is idempotent if it can be applied multiple times, and its outcome is the same as if it were applied once. The outcome includes both the application state changes and the potential outgoing messages sent.
 
 In order to ilustrate this, consider the following pseudocode that demonstrates **how to not implement idempotent message handling**:
 

@@ -63,6 +63,8 @@
       Url: architecture/workflows
     - Title: Hybrid systems
       Url: architecture/hybrid-systems
+    - Title: Polycloud systems
+      Url: architecture/polycloud
     - Title: Observability
       Url: architecture/observability
     - Title: Data distribution
@@ -196,12 +198,8 @@
     Articles:
     - Url: nservicebus/upgrades
       Title: About upgrading NServiceBus
-    - Url: nservicebus/upgrades/callbacks-1to2
-      Title: Callbacks 1 to 2
-    - Url: nservicebus/upgrades/sqs-lambda-2to3
-      Title: AwsLambda SQS 2 to 3
-    - Url: nservicebus/upgrades/sqs-lambda-1to2
-      Title: AwsLambda SQS 1 to 2
+    - Url: nservicebus/upgrades/10to11
+      Title: NServiceBus 10 to 11
     - Url: nservicebus/upgrades/9to10
       Title: NServiceBus 9 to 10
     - Url: nservicebus/upgrades/9to9.1
@@ -269,22 +267,14 @@
       Title: NServiceBus 4 to 5
     - Url: nservicebus/upgrades/3to4
       Title: NServiceBus 3 to 4
+    - Url: nservicebus/upgrades/callbacks-1to2
+      Title: Callbacks 1 to 2
     - Title: Metrics
       Articles:
       - Url: nservicebus/upgrades/metrics-1to2
         Title: Version 1 to 2
       - Url: nservicebus/upgrades/metrics-1to1.1
         Title: Version 1 to 1.1
-    - Title: NServiceBus Host
-      Articles:
-      - Url: nservicebus/upgrades/host-7to8
-        Title: Version 7 to 8
-      - Url: nservicebus/upgrades/host-6to7
-        Title: Version 6 to 7
-      - Url: nservicebus/upgrades/host-4to5
-        Title: Version 4 to 5
-    - Title: NServiceBus.Azure deprecated
-      Url: nservicebus/upgrades/azure-deprecation
     - Title: Azure BlobStorage Data Bus
       Articles:
       - Url: nservicebus/upgrades/absdatabus-6to7
@@ -297,36 +287,6 @@
         Title: Version 1 to 2
       - Url: nservicebus/upgrades/absdatabus-6to1
         Title: Migrating off NServiceBus.Azure
-    - Title: Azure Cloud Services Host
-      Articles:
-      - Url: nservicebus/upgrades/acs-host-7to8
-        Title: Version 7 to 8
-      - Url: nservicebus/upgrades/acs-host-6to7
-        Title: Version 6 to 7
-    - Title: Azure Functions (Isolated Worker) with Service Bus
-      Articles:
-      - Url: nservicebus/upgrades/azure-functions-service-bus-isolated-5to6
-        Title: Version 5 to 6
-      - Url: nservicebus/upgrades/azure-functions-service-bus-isolated-4to5
-        Title: Version 4 to 5
-      - Url: nservicebus/upgrades/azure-functions-service-bus-isolated-3to4
-        Title: Version 3 to 4
-      - Url: nservicebus/upgrades/azure-functions-service-bus-isolated-2to3
-        Title: Version 2 to 3
-      - Url: nservicebus/upgrades/azure-functions-service-bus-isolated-1to2
-        Title: Version 1 to 2
-    - Title: Azure Functions (in-process) with Service Bus
-      Articles:
-      - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-isolated-worker
-        Title: Migrate to Azure Functions using Isolated Workers
-      - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-5to6
-        Title: Version 5 to 6
-      - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-3to4
-        Title: Version 3 to 4
-      - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-2to3
-        Title: Version 2 to 3
-      - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-1to2
-        Title: Version 1 to 2
     - Title: Gateway
       Articles:
       - Url: nservicebus/upgrades/gateway-3to4
@@ -508,89 +468,6 @@
         Title: DataBus binary serializer
       - Url: nservicebus/messaging/claimcheck/custom
         Title: Customizing DataBus
-  - Title: Hosting
-    Articles:
-    - Url: nservicebus/hosting
-      Title: About hosting
-    - Url: nservicebus/endpoints
-      Title: Endpoints
-      Articles:
-      - Url: nservicebus/endpoints/specify-endpoint-name
-        Title: Endpoint Name
-    - Url: nservicebus/hosting/selecting
-      Title: Selecting a host
-    - Url: nservicebus/hosting/startup-diagnostics
-      Title: Startup diagnostics
-    - Url: nservicebus/endpoints/decommissioning-endpoints
-      Title: Decommissioning Endpoints
-    - Url: nservicebus/hosting/windows-service
-      Title: Windows Service Installation
-    - Url: nservicebus/hosting/override-hostid
-      Title: Overriding the host identifier
-    - Url: nservicebus/hosting/override-machine-name
-      Title: Overriding the machine name
-    - Url: nservicebus/hosting/assembly-scanning
-      Title: Assembly scanning
-    - Url: nservicebus/hosting/cooperative-cancellation
-      Title: Cooperative cancellation
-    - Url: nservicebus/hosting/critical-errors
-      Title: Critical Errors
-    - Url: nservicebus/hosting/extensions-hosting
-      Title: Microsoft Generic Host
-    - Url: nservicebus/hosting/web-application
-      Title: Web Applications
-      Articles:
-      - Url: nservicebus/hosting/asp-net
-        Title: ASP.NET
-    - Url: nservicebus/hosting/azure-functions-service-bus
-      Title: Azure Functions with Service Bus (Isolated Worker)
-      Articles:
-      - Url: nservicebus/hosting/azure-functions-service-bus/custom-triggers
-        Title: Custom triggers
-      - Url: nservicebus/hosting/azure-functions-service-bus/analyzers
-        Title: Roslyn analyzers
-    - Url: nservicebus/hosting/azure-functions-service-bus/in-process
-      Title: Azure Functions with Service Bus (In Process)
-      Articles:
-      - Url: nservicebus/hosting/azure-functions-service-bus/in-process/custom-triggers
-        Title: Custom triggers
-      - Url: nservicebus/hosting/azure-functions-service-bus/in-process/analyzers
-        Title: Roslyn analyzers
-    - Url: nservicebus/hosting/aws-lambda-simple-queue-service
-      Title: AWS Lambda with SQS
-      Articles:
-      - Url: nservicebus/hosting/aws-lambda-simple-queue-service/analyzers
-        Title: Roslyn analyzers
-    - Url: nservicebus/hosting/service-fabric-hosting
-      Title: Service Fabric
-    - Url: nservicebus/hosting/publishing-from-web-applications
-      Title: Publishing from Web Applications
-    - Url: nservicebus/wcf
-      Title: Exposing endpoints via WCF
-    - Url: nservicebus/hosting/nservicebus-host
-      Title: NServiceBus Host
-      Articles:
-      - Url: nservicebus/hosting/nservicebus-host/installation
-        Title: Installation
-      - Url: nservicebus/hosting/nservicebus-host/profiles
-        Title: Profiles
-      - Url: nservicebus/hosting/nservicebus-host/profiles-customization
-        Title: Profiles customization
-      - Url: nservicebus/hosting/nservicebus-host/logging-configuration
-        Title: Logging configuration
-      - Url: nservicebus/hosting/nservicebus-host/troubleshooting
-        Title: Troubleshooting
-    - Url: nservicebus/hosting/docker-host
-      Title: Docker Container Host
-    - Url: nservicebus/lifecycle
-      Title: Interface lifecycles
-      Articles:
-      - Url: nservicebus/lifecycle/ineedinitialization
-        Title: Initialization
-      - Url: nservicebus/lifecycle/iwanttorunbeforeconfigurationisfinalized
-        Title: Before Configuration Finalized
-      - Url: nservicebus/lifecycle/endpointstartandstop
-        Title: Endpoint Instance Starts and Stops
   - Title: Handlers and sagas
     Articles:
     - Url: nservicebus/handlers-and-sagas
@@ -685,6 +562,10 @@
       Title: Xml
     - Url: nservicebus/serialization/custom-serializer
       Title: Custom
+  - Title: Message Envelopes
+    Articles:
+    - Url: nservicebus/cloudevents
+      Title: CloudEvents
   - Title: Dependency Injection
     Articles:
     - Url: nservicebus/dependency-injection
@@ -717,10 +598,6 @@
       Title: NLog
     - Url: nservicebus/logging/common-logging
       Title: CommonLogging
-    - Url: nservicebus/logging/message-contents
-      Title: Message contents
-    - Url: nservicebus/logging/usage
-      Title: Writing a log entry
     - Url: nservicebus/operations/auditing
       Title: Auditing Messages
   - Title: Security
@@ -1020,6 +897,8 @@
       Title: Callback support
     - Url: transports/sql/sql-azure
       Title: Azure SQL considerations
+    - Url: transports/sql/azure-sql-failover
+      Title: Azure SQL failover
     - Url: transports/sql/troubleshooting
       Title: Troubleshooting
   - Title: PostgreSQL
@@ -1078,6 +957,24 @@
       Title: Scaling out
     - Url: transports/msmq/sender-side-distribution
       Title: Scaling out with Sender-Side Distribution
+  - Title: IBM MQ
+    Articles:
+    - Url: transports/ibmmq
+      Title: IBM MQ transport
+    - Url: transports/ibmmq/connection-settings
+      Title: Connection settings
+    - Url: transports/ibmmq/topology
+      Title: Publish/subscribe topology
+    - Url: transports/ibmmq/transactions
+      Title: Transaction support
+    - Url: transports/ibmmq/native-integration
+      Title: Native integration
+    - Url: transports/ibmmq/observability
+      Title: Observability
+    - Url: transports/ibmmq/security
+      Title: Security and permissions
+    - Url: transports/ibmmq/operations-scripting
+      Title: Scripting
   - Title: RabbitMQ
     Articles:
     - Url: transports/rabbitmq
@@ -1155,6 +1052,8 @@
         Title: Version 2 to 3
     - Title: NHibernate
       Articles:
+      - Url: persistence/upgrades/nhibernate-10to11
+        Title: Version 10 to 11
       - Url: persistence/upgrades/nhibernate-8to9
         Title: Version 8 to 9
       - Url: persistence/upgrades/nhibernate-8to8.1
@@ -1313,6 +1212,9 @@
       Title: Scripting
     - Title: Migration from Azure Table Storage to Cosmos DB Table API
       Url: persistence/azure-table/migration-from-azure-storage-table-to-cosmos-table
+    - Url: persistence/azure-table/capacity-planning
+      Title: Capacity planning
+
   - Title: RavenDB
     Articles:
     - Url: persistence/ravendb
@@ -1383,6 +1285,145 @@
       Title: Transactions
     - Url: nservicebus/aws/local-development
       Title: Local development
+    - Url: persistence/dynamodb/capacity-planning
+      Title: Capacity planning
+
+- Name: Hosting
+  Topics:
+  - Title: General
+    Articles:
+    - Url: nservicebus/hosting
+      Title: About hosting
+    - Url: nservicebus/endpoints
+      Title: Endpoints
+    - Url: nservicebus/hosting/selecting
+      Title: Selecting a host
+    - Url: nservicebus/hosting/override-hostid
+      Title: Overriding the host identifier
+    - Url: nservicebus/hosting/override-machine-name
+      Title: Overriding the machine name
+    - Url: nservicebus/hosting/assembly-scanning
+      Title: Assembly scanning
+    - Url: nservicebus/hosting/cooperative-cancellation
+      Title: Cooperative cancellation
+    - Url: nservicebus/hosting/critical-errors
+      Title: Critical Errors
+    - Url: nservicebus/lifecycle
+      Title: Interface lifecycles
+      Articles:
+      - Url: nservicebus/lifecycle/ineedinitialization
+        Title: Initialization
+      - Url: nservicebus/lifecycle/iwanttorunbeforeconfigurationisfinalized
+        Title: Before Configuration Finalized
+      - Url: nservicebus/lifecycle/endpointstartandstop
+        Title: Endpoint Instance Starts and Stops
+  - Title: Upgrade Guides
+    Articles:
+    - Title: Azure Functions (Isolated Worker) with Service Bus
+      Articles:
+      - Url: nservicebus/upgrades/azure-functions-service-bus-isolated-5to6
+        Title: Version 5 to 6
+      - Url: nservicebus/upgrades/azure-functions-service-bus-isolated-4to5
+        Title: Version 4 to 5
+      - Url: nservicebus/upgrades/azure-functions-service-bus-isolated-3to4
+        Title: Version 3 to 4
+      - Url: nservicebus/upgrades/azure-functions-service-bus-isolated-2to3
+        Title: Version 2 to 3
+      - Url: nservicebus/upgrades/azure-functions-service-bus-isolated-1to2
+        Title: Version 1 to 2
+    - Title: Azure Functions (in-process) with Service Bus
+      Articles:
+      - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-isolated-worker
+        Title: Migrate to Azure Functions using Isolated Workers
+      - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-5to6
+        Title: Version 5 to 6
+      - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-3to4
+        Title: Version 3 to 4
+      - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-2to3
+        Title: Version 2 to 3
+      - Url: nservicebus/upgrades/azure-functions-service-bus-in-process-1to2
+        Title: Version 1 to 2
+    - Title: AWSLambda SQS
+      Articles:
+      - Url: nservicebus/upgrades/sqs-lambda-2to3
+        Title: AwsLambda SQS 2 to 3
+      - Url: nservicebus/upgrades/sqs-lambda-1to2
+        Title: AwsLambda SQS 1 to 2
+    - Title: NServiceBus Host
+      Articles:
+      - Url: nservicebus/upgrades/host-7to8
+        Title: Version 7 to 8
+      - Url: nservicebus/upgrades/host-6to7
+        Title: Version 6 to 7
+      - Url: nservicebus/upgrades/host-4to5
+        Title: Version 4 to 5
+    - Title: NServiceBus.Azure deprecated
+      Url: nservicebus/upgrades/azure-deprecation
+    - Title: Azure Cloud Services Host
+      Articles:
+      - Url: nservicebus/upgrades/acs-host-7to8
+        Title: Version 7 to 8
+      - Url: nservicebus/upgrades/acs-host-6to7
+        Title: Version 6 to 7
+
+  - Title: Standard Hosting
+    Articles:
+    - Url: nservicebus/hosting/extensions-hosting
+      Title: Microsoft Generic Host
+    - Url: nservicebus/hosting/web-application
+      Title: Web Applications
+      Articles:
+      - Url: nservicebus/hosting/asp-net
+        Title: ASP.NET
+      - Url: nservicebus/hosting/publishing-from-web-applications
+        Title: Publishing from Web Applications
+    - Url: nservicebus/hosting/docker-host
+      Title: Docker Container Host
+    - Url: nservicebus/hosting/windows-service
+      Title: Windows Service Installation
+  - Title: Azure Functions
+    Articles:
+    # For the new multi-endpoint NServiceBus.AzureFunctions
+    #- Url: nservicebus/hosting/azure/functions
+    #  Title: Multi-Endpoint Functions Hosting
+    - Url: nservicebus/hosting/azure-functions-service-bus
+      Title: Isolated Worker, Single-Endpoint Model
+      Articles:
+      - Url: nservicebus/hosting/azure-functions-service-bus/custom-triggers
+        Title: Custom triggers
+      - Url: nservicebus/hosting/azure-functions-service-bus/analyzers
+        Title: Roslyn analyzers
+    - Url: nservicebus/hosting/azure-functions-service-bus/in-process
+      Title: In-Process hosting (Deprecated)
+      Articles:
+      - Url: nservicebus/hosting/azure-functions-service-bus/in-process/custom-triggers
+        Title: Custom triggers
+      - Url: nservicebus/hosting/azure-functions-service-bus/in-process/analyzers
+        Title: Roslyn analyzers
+  - Title: AWS Lambda
+    Articles:
+      - Url: nservicebus/hosting/aws-lambda-simple-queue-service
+        Title: AWS Lambda with SQS
+      - Url: nservicebus/hosting/aws-lambda-simple-queue-service/analyzers
+        Title: Roslyn analyzers
+  - Title: Deprecated Hosting Options
+    Articles:
+    - Title: NServiceBus Host App
+      Articles:
+      - Url: nservicebus/hosting/nservicebus-host
+        Title: Overview
+      - Url: nservicebus/hosting/nservicebus-host/installation
+        Title: Installation
+      - Url: nservicebus/hosting/nservicebus-host/profiles
+        Title: Profiles
+      - Url: nservicebus/hosting/nservicebus-host/profiles-customization
+        Title: Profiles customization
+      - Url: nservicebus/hosting/nservicebus-host/logging-configuration
+        Title: Logging configuration
+      - Url: nservicebus/hosting/nservicebus-host/troubleshooting
+        Title: Troubleshooting
+    - Url: nservicebus/wcf
+      Title: Exposing endpoints via WCF
 
 - Name: ServiceInsight
   Topics:
@@ -1427,8 +1468,24 @@
           Title: Support Policy
     - Title: Upgrade Guides
       Articles:
+      - Title: ServiceInsight to ServicePulse
+        Url: servicepulse/migrate-from-serviceinsight
       - Title: Version 1 to 2
         Url: servicepulse/1to2
+    - Title: Security
+      Articles:
+      - Title: Overview
+        Url: servicepulse/security
+      - Title: Configuration
+        Articles:
+        - Title: Authentication
+          Url: servicepulse/security/configuration/authentication
+        - Title: Forward Headers for Reverse Proxy
+          Url: servicepulse/security/configuration/forward-headers
+        - Title: TLS
+          Url: servicepulse/security/configuration/tls
+      - Title: Hosting guide
+        Url: servicepulse/security/hosting-guide
     - Title: Configuration
       Articles:
         - Url: servicepulse/host-config
@@ -1510,6 +1567,26 @@
       Url: servicecontrol/upgrades/2to3
     - Title: Version 1 to 2
       Url: servicecontrol/upgrades/1to2
+  - Title: Security
+    Articles:
+    - Title: Overview
+      Url: servicecontrol/security
+    - Title: Configuration
+      Articles:
+      - Title: Authentication
+        Url: servicecontrol/security/configuration/authentication
+      - Title: Forward Headers for Reverse Proxy
+        Url: servicecontrol/security/configuration/forward-headers
+      - Title: TLS
+        Url: servicecontrol/security/configuration/tls
+      - Title: CORS
+        Url: servicecontrol/security/configuration/cors
+    - Title: Hosting guide
+      Url: servicecontrol/security/hosting-guide
+    - Title: Examples
+      Articles:
+      - Title: Microsoft Entra ID Authentication Guide
+        Url: servicecontrol/security/entra-id-authentication
   - Title: Planning
     Articles:
     - Title: Optimizing for use in different environments
@@ -1534,6 +1611,8 @@
     Articles:
     - Title: ServiceControl Error instances
       Url: servicecontrol/servicecontrol-instances
+    - Title: Integrated ServicePulse
+      Url: servicecontrol/servicecontrol-instances/integrated-servicepulse
     - Title: Deployment
       Url: servicecontrol/servicecontrol-instances/deployment
       Articles:
@@ -1553,8 +1632,6 @@
         Url: servicecontrol/transports
       - Title: Configure the URI
         Url: servicecontrol/setting-custom-hostname
-      - Title: Overriding the host identifier
-        Url: nservicebus/hosting/override-hostid
       - Title: RavenDB location
         Url: servicecontrol/configure-ravendb-location
       - Title: Logging
@@ -1584,8 +1661,6 @@
           Url: servicecontrol/transports
         - Title: Configure the URI
           Url: servicecontrol/setting-custom-hostname
-        - Title: Overriding the host identifier
-          Url: nservicebus/hosting/override-hostid
         - Title: RavenDB location
           Url: servicecontrol/configure-ravendb-location
         - Title: Logging
@@ -1615,8 +1690,6 @@
           Url: servicecontrol/transports
         - Title: Configure the URI
           Url: servicecontrol/monitoring-instances/configure-the-uri
-        - Title: Overriding the host identifier
-          Url: nservicebus/hosting/override-hostid
   - Title: Data Management
     Articles:
     - Title: Data expiration
@@ -1746,7 +1819,7 @@
     Url: shape-the-future/cloudevents
   - Title: NServiceBus and Apache Avro
     Url: shape-the-future/avro
-  - Title: NServiceBus and .NET Aspire
+  - Title: NServiceBus and Aspire
     Url: shape-the-future/aspire
   - Title: NServiceBus and Redis
     Url: shape-the-future/redis

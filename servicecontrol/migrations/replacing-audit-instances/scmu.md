@@ -1,7 +1,7 @@
 ---
 title: Replacing an Audit instance using ServiceControl Management
 summary: Instructions on how to replace a ServiceControl Audit instance with zero downtime
-reviewed: 2024-07-10
+reviewed: 2026-04-17
 component: ServiceControl
 related:
   - servicecontrol/migrations/replacing-audit-instances/powershell
@@ -49,11 +49,11 @@ Configure the old audit instance so that it will no longer ingest new messages f
 5. In ServiceControl Management, stop and restart the Audit instance for the changes to take effect.
 
 > [!NOTE]
-> For versions 4.32.0 of ServiceControl and older use `!disable` as the [`AuditQueue`](/servicecontrol/audit-instances/configuration.md#transport-servicebusauditqueue) name to disable the audit message ingestion.
+> For versions 4.32.0 of ServiceControl and older, use `!disable` as the [`AuditQueue`](/servicecontrol/audit-instances/configuration.md#transport-servicebusauditqueue) name to disable the audit message ingestion.
 
 ## Decommission the old audit instance
 
-When the audit retention period has expired and there are no remaining processed messages in the database, you can decommission the old audit instance.
+When the audit retention period has expired, and there are no remaining processed messages in the database, you can decommission the old audit instance.
 
 First, use the same instructions above to edit the Error instance's configuration file, but this time removing the old Audit instance URL from the `ServiceControl/RemoteInstances` setting.
 

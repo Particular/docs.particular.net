@@ -1,0 +1,58 @@
+name: Publish
+on:
+  push:
+    branches: master
+env:
+  DOTNET_NOLOGO: true
+permissions:
+  id-token: write
+concurrency:
+  group: publish
+  cancel-in-progress: true
+defaults:
+  run:
+    shell: bash
+jobs:
+  publish-samples:
+    name: Publish Samples
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v5.2.0
+        with:
+          global-json-file: global.json
+        # Caching is done to limit data transfer on each PR, not to optimize CI speed
+      - name: Check docstool version for cache
+        run: |
+           curl --connect-timeout 5 --max-time 15 --silent --show-error https://f.feedz.io/particular-software/packages/nuget/v3/packages/particular.docstool/index.json >> docstool-versions.json
+      - name: Cache docstool
+        id: cache-docstool
+        uses: actions/cache@v5.0.4
+        with:
+          path: |
+             ~/.dotnet/tools/docstool
+             ~/.dotnet/tools/.store/particular.docstool
+          key: docstool-${{ hashFiles('docstool-versions.json') }}
+      - name: Install docstool
+        if: steps.cache-docstool.outputs.cache-hit != 'true'
+        run: dotnet tool install Particular.DocsTool --global --add-source https://f.feedz.io/particular-software/packages/nuget/index.json
+      - name: Run docstool
+        run: docstool test --no-version-check --zipfiles --out ~/build-output
+      - name: Azure Login
+        uses: azure/login@v3
+        with:
+          client-id: ${{ secrets.AZURE_OPENID_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_OPENID_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_OPENID_SUBSCRIPTION_ID }}
+      - name: Publish Samples
+        shell: pwsh
+        run: az storage blob upload-batch `
+                --source ~/build-output `
+                --destination zips `
+                --account-name particulardocs `
+                --pattern "*.zip" `
+                --overwrite `
+                --auth-mode login `
+                --no-progress

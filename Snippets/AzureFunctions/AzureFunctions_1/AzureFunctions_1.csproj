@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+
+  <!-- First alpha not yet released
+  <ItemGroup>
+    <PackageReference Include="NServiceBus.AzureFunctions.AzureServiceBus" Version="1.*-*" />
+    <PackageReference Include="NServiceBus.AzureFunctions.Common" Version="1.*-*" />
+  </ItemGroup>
+  -->
+
+</Project>

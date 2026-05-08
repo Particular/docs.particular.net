@@ -27,6 +27,26 @@ There are various reasons that can cause the ServiceControl Windows Service fail
 
 In Windows applications, critical exception thrown at service start up will be reported via an error message in the `Application` Windows Event Log.
 
+## ServiceControl instance upgrade failure
+
+During a ServiceControl instance upgrade, the ServiceControl Management Utility (SCMU) may fail to activate the new version and also fail to automatically restore the previous version. When this occurs, SCMU displays the following error:
+
+> Error while making new version active and unsuccessful in restoring previous version. Manually restore `<InstallPath>.old` to `<InstallPath>` to repair instance.
+
+> [!NOTE] 
+> This error is commonly caused by antivirus or anti-malware software scanning the installation folder which should be [excluded from such checks](servicecontrol-in-practice.md#anti-virus-checks).
+
+The previous version's files are stored in a folder with an `.old` suffix. To restore the instance manually:
+
+1. Stop the Windows service for the affected instance if it is still running
+2. Delete or rename the current installation folder
+3. Rename the `.old` folder back to the original name
+4. Start the Windows service
+
+The instance will run on the previous version. After confirming the instance is healthy, the upgrade can be retried via SCMU.
+
+Contact [Particular support](https://particular.net/support) if the issue persists.
+
 ## The port is already in use (Windows)
 
 When adding a ServiceControl instance the configured port number is checked to ensure it is available. This is not infallible though as another application or service that uses the same port may not be running at the time the service is added.
@@ -450,9 +470,9 @@ Dirty memory issues can be mitigated using one or more of the following strategi
 - Reduce the instance max concurrency level by reducing the `MaximumConcurrencyLevel` setting ([error instance documentation](servicecontrol-instances/configuration.md#performance-tuning-servicecontrolmaximumconcurrencylevel), [audit instance documentation](audit-instances/configuration.md#performance-tuning-servicecontrol-auditmaximumconcurrencylevel))
 - If the issue affects an audit instance, consider [scaling it out using a sharding or a competing consumer approach](servicecontrol-instances/remotes.md).
 
-## Benchmark container storage
+## Benchmarking storage performance on Linux containers
 
-Storage performance can be tested on (linux) containers using flo. Use a distro image like `alpine:latest` which is lightweight:
+Storage performance can be tested on containers by using [Flexible I/O tester (fio)](https://fio.readthedocs.io/en/latest/). Use a distro image like `[alpine:latest](https://www.alpinelinux.org/)` which is lightweight.
 
 Replace `/path/to/test` with the mounted volume.
 
@@ -463,7 +483,7 @@ docker run --rm -v /path/to/test:/data \
 ```
 
 > [!NOTE]
-> The `--fsync_on_close` argument is very important as that is what determines write performance on databases as this guarantees that data has been flushed.
+> The `--fsync_on_close` argument ensures that data has been flushed; this is necessary to accurately determine write performance.
 
 Example output:
 ```
@@ -500,4 +520,4 @@ Run status group 0 (all jobs):
   WRITE: bw=1571MiB/s (1647MB/s), 1571MiB/s-1571MiB/s (1647MB/s-1647MB/s), io=512MiB (537MB), run=326-326msec
 ```
 
-The repored `write: IOPS=` value gives a good estimate on the storage performance.
+The reported `write: IOPS=` value provides a reasonably accurate estimate on storage performance.

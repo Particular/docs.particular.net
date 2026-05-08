@@ -2,7 +2,6 @@ using System;
 using Microsoft.Extensions.Hosting;
 using NServiceBus;
 
-
 Console.Title = "SimpleReceiver";
 var builder = Host.CreateApplicationBuilder(args);
 

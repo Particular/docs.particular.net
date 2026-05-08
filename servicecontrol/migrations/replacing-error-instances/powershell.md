@@ -1,7 +1,7 @@
 ---
 title: Replacing an Error instance using PowerShell
 summary: Instructions on how to replace a ServiceControl Error instance with zero downtime
-reviewed: 2024-07-10
+reviewed: 2026-04-24
 component: ServiceControl
 related:
   - servicecontrol/migrations/replacing-error-instances/scmu
@@ -32,7 +32,9 @@ The alternative is to [create a brand new instance](#replace-the-error-instance-
 
 ### Force upgrading the Error instance
 
-Perform a **Forced upgrade** for the old Error instance. _**Note:** This is a destructive operation. A database backup is made but will require application re-installation of the instance to recover._
+Perform a **Forced upgrade** for the old Error instance. 
+> [!WARNING]
+> This is a destructive operation. A database backup is made but will require application re-installation of the instance to recover.
 
 ```ps1
 # List existing error/primary instances

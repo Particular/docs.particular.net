@@ -41,27 +41,7 @@ For more information about devcontainers visit the [official documentation](http
 
 ### Building samples and snippets
 
-To build all samples and snippets run `.\tools\build-samples-and-snippets.ps1` from the repository root folder.
-
-### Reviewing a page
-
-If, as part of editing a page, a full review of the content is done, the [reviewed header](#reviewed) should be updated. This date is used to render the [last reviewed page](https://docs.particular.net/review).
-
-As part of a full review, the following should be done:
-
-* Spelling (US)
-* Grammar
-* Version-specific language and content is correct
-* Language is concise
-* All links are relevant. No 3rd party links have redirects or 404s.
-* Are there any more links that can be added to improve the content
-* Content is correct up to and including the current released version
-* Content can benefit from having its own header so that it is picked up while searching for a related topic.
-* Summary and title are adequate
-* Summary adheres to the [ai friendliness](https://github.com/particular/developereducation/tree/master/seo/ai-friendliness.md] guidelines.
-* Consider what is the best place to direct the reader after they are done reading the current page. Add a link to that page at the bottom.
-* Update the reviewed date in the header, even if no changes were made.
-* Remove [security advisories](https://docs.particular.net/security-advisories/) for no longer supported versions
+To build all samples and snippets run `.\tools\build-samples-and-snippets.ps1 -FullBuild` from the repository root folder. Without `-FullBuild`, the script only builds affected solutions unless it is running on `master`.
 
 ## Conventions
 
@@ -530,6 +510,8 @@ Tutorials are similar to samples but optimized for new users to follow in a step
 * Markdown file must be named `tutorial.md`
 * No component specified in the header
 * Focus on only the most recent version
+  * Projects are not multi-targeted
+  * Projects do not have a `LangVersion` property defined
 * Rendered without button toolbar and component information at the top
 * By default, solution download button is rendered at the end
   * An inline download button can be created instead using a `downloadbutton` directive on its own line within the tutorial markdown.
@@ -972,6 +954,28 @@ Which means elsewhere in the page you can link to it with this:
 ```markdown
 [Goto My Heading](#My-Heading)
 ```
+
+#### Anchor hierarchy
+
+The docs tool generates anchors by maintaining a stack of headings. When a new top-level heading (`##`) is encountered, the stack resets; when a sub-heading (`###`, `####`, etc.) is encountered, it is appended to the current stack.
+
+For example:
+
+```markdown
+## Heading 1
+### Heading 1.1
+## Heading 2
+```
+
+produces these anchors:
+
+| Heading | Generated anchor |
+|---------|-----------------|
+| Heading 1 | `#heading-1` |
+| Heading 1.1 | `#heading-1-heading-1-1` |
+| Heading 2 | `#heading-2` |
+
+This means **reparenting a heading under a new `##` changes its anchor slug**, which will break existing external links. If you need to keep a stable anchor for backward compatibility, keep the heading at its original level in the hierarchy.
 
 ### Images
 

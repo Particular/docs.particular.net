@@ -1,8 +1,10 @@
 ---
 title: Deploying Audit instances using ServiceControl Management
-reviewed: 2024-06-21
+reviewed: 2026-04-02
 component: ServiceControl
 ---
+
+include: portable-application-note
 
 When using ServiceControl Management to [create a new ServiceControl instance](/servicecontrol/servicecontrol-instances/deployment/scmu.md), a connected ServiceControl Audit instance is automatically created by default.
 

@@ -4,8 +4,10 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.*" />
+    <PackageReference Include="NServiceBus" Version="8.*" />
     <PackageReference Include="NServiceBus.Gateway" Version="4.*" />
     <PackageReference Include="NServiceBus.Testing" Version="8.*" />
+    <PackageReference Include="NServiceBus.UniformSession" Version="3.*" />
     <PackageReference Include="NServiceBus.UniformSession.Testing" Version="3.*" />
     <PackageReference Include="NUnit" Version="4.*" />
     <PackageReference Include="NUnit.Analyzers" Version="4.3.0" />

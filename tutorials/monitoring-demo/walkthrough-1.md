@@ -35,7 +35,7 @@ Notice that the Sales endpoint has the highest processing time, so it is taking 
 
 **Find the ClientUI endpoint window and toggle *High-Throughput* mode. Now go back to the ServicePulse Monitoring tab.**
 
-In high throughput mode, the ClientUI endpoint sends 20 orders to Sales every second. Now look at the processing time and throughput of each endpoint. The throughput of Sales will increase and then plateau at around three messages / second. This is as fast Sales can currently process messages. It can process four messages in parallel, but each message takes 1.3 seconds to process.
+In high throughput mode, the ClientUI endpoint sends 8 orders to Sales every second. Now look at the processing time and throughput of each endpoint. The throughput of Sales will increase and then plateau at around three messages / second. This is as fast Sales can currently process messages. It can process four messages in parallel, but each message takes 1.3 seconds to process.
 
 ![Service Pulse monitoring tab showing sample endpoints in high throughput mode](servicepulse-monitoring-tab-sample-high-throughput.png "width=500")
 

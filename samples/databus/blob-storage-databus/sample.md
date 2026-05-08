@@ -26,9 +26,9 @@ Look at the Shared project:
 
 snippet: MessageWithLargePayload
 
-`DataBusProperty<byte[]>` is an NServiceBus data type that instructs NServiceBus to treat the `LargePayload` property as an attachment. It is not transported in the NServiceBus normal flow.
+`ClaimCheckProperty<T>` is an NServiceBus data type that instructs NServiceBus not to treat the `LargePayload` property in the NServiceBus normal flow.
 
-When sending a message using the NServiceBus Message attachments mechanism, the message's payload resides on Azure Storage as a blob. The value assigned to the property while the message is being transported is a special value that allows the message's property to reconnect with its original value once the message is received. An inspected message in flight would look like the following:
+When sending a message using the NServiceBus DataBus mechanism, the message payload is stored in Azure Storage as a blob. The value assigned to the property while the message is being transported is a special value that allows the message's property to reconnect with its original value once the message is received. An inspected message in flight would look like the following:
 
 ```json
 {
@@ -42,8 +42,6 @@ When sending a message using the NServiceBus Message attachments mechanism, the 
 ```
 
 `Key` represents the Azure Storage blob name used to store the message property's original value.
-
-The `TimeToBeReceived` attribute instructs the NServiceBus framework that it is allowed to clean the message after three minutes if it was not received by the receiver. The message payload will be removed from Azure storage after three minutes.
 
 ### Configuring the DataBus location
 

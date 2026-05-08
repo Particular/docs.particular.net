@@ -1,14 +1,12 @@
-﻿using NServiceBus.Logging;
+﻿using Microsoft.Extensions.Logging;
 
 #region FollowupMessageHandler
 
-public class FollowupMessageHandler : IHandleMessages<FollowupMessage>
+public class FollowupMessageHandler(ILogger<FollowupMessageHandler> logger) : IHandleMessages<FollowupMessage>
 {
-    static readonly ILog Log = LogManager.GetLogger<FollowupMessageHandler>();
-
     public Task Handle(FollowupMessage message, IMessageHandlerContext context)
     {
-        Log.Warn($"Handling {nameof(FollowupMessage)} in {nameof(FollowupMessageHandler)}.");
+        logger.LogWarning("Handling {MessageType} in {HandlerType}.", nameof(FollowupMessage), nameof(FollowupMessageHandler));
 
         return Task.CompletedTask;
     }

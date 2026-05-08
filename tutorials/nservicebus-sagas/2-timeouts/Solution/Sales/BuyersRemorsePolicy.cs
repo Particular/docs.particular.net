@@ -1,18 +1,11 @@
-﻿using NServiceBus;
+﻿using Messages;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
-using Messages;
 
 namespace Sales;
 
-class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger)
-    : Saga<BuyersRemorseState>
-    , IAmStartedByMessages<PlaceOrder>
-    , IHandleMessages<CancelOrder>
-    , IHandleTimeouts<BuyersRemorseIsOver>
+class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger) : Saga<BuyersRemorseData>, IAmStartedByMessages<PlaceOrder>, IHandleMessages<CancelOrder>, IHandleTimeouts<BuyersRemorseIsOver>
 {
-    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseState> mapper)
+    protected override void ConfigureHowToFindSaga(SagaPropertyMapper<BuyersRemorseData> mapper)
     {
         mapper.MapSaga(saga => saga.OrderId)
             .ToMessage<PlaceOrder>(message => message.OrderId)
@@ -54,12 +47,9 @@ class BuyersRemorsePolicy(ILogger<BuyersRemorsePolicy> logger)
     }
 }
 
-internal class BuyersRemorseIsOver
-{
+internal class BuyersRemorseIsOver { }
 
-}
-
-public class BuyersRemorseState : ContainSagaData
+public class BuyersRemorseData : ContainSagaData
 {
-    public string OrderId { get; set; }
+    public string? OrderId { get; set; }
 }

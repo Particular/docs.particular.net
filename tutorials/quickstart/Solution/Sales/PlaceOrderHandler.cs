@@ -1,49 +1,36 @@
-﻿using System;
-using System.Threading.Tasks;
-using Messages;
+﻿using Messages;
 using Microsoft.Extensions.Logging;
-using NServiceBus;
 
-namespace Sales
-{    
-    public class PlaceOrderHandler :
-        IHandleMessages<PlaceOrder>
+namespace Sales;
+
+public class PlaceOrderHandler(ILogger<PlaceOrderHandler> logger) : IHandleMessages<PlaceOrder>
+{
+    public async Task Handle(PlaceOrder message, IMessageHandlerContext context)
     {
-        static readonly Random random = new Random();
-        private readonly ILogger<PlaceOrderHandler> logger;
+        logger.LogInformation("Received PlaceOrder, OrderId = {OrderId}", message.OrderId);
 
-        public PlaceOrderHandler(ILogger<PlaceOrderHandler> logger)
+        // This is normally where some business logic would occur
+
+        var orderPlaced = new OrderPlaced
         {
-            this.logger = logger;
-        }        
+            OrderId = message.OrderId
+        };
 
-         public Task Handle(PlaceOrder message, IMessageHandlerContext context)
-        {
-            logger.LogInformation("Received PlaceOrder, OrderId = {orderId}",  message.OrderId);
+        logger.LogInformation("Publishing OrderPlaced, OrderId = {OrderId}", message.OrderId);
 
-            // This is normally where some business logic would occur
+        await context.Publish(orderPlaced);
 
-            #region ThrowTransientException
-            // Uncomment to test throwing transient exceptions
-            //if (random.Next(0, 5) == 0)
-            //{
-            //    throw new Exception("Oops");
-            //}
-            #endregion
+        #region ThrowFatalException
+        // Uncomment to test throwing fatal exceptions
+        //throw new Exception("BOOM");
+        #endregion
 
-            #region ThrowFatalException
-            // Uncomment to test throwing fatal exceptions
-            //throw new Exception("BOOM");
-            #endregion
-
-            var orderPlaced = new OrderPlaced
-            {
-                OrderId = message.OrderId
-            };
-
-            logger.LogInformation("Publishing OrderPlaced, OrderId = {orderId}", message.OrderId);
-
-            return context.Publish(orderPlaced);
-        }
+        #region ThrowTransientException
+        // Uncomment to test throwing transient exceptions
+        //if (Random.Shared.Next(0, 5) == 0)
+        //{
+        //    throw new Exception("Oops");
+        //}
+        #endregion
     }
 }

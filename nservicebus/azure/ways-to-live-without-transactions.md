@@ -22,7 +22,7 @@ If local transactions are available and all business and messaging operations oc
 
 ### Advantages
 
-- It is possible to prevent escalating a transaction to a distributed transaction. The only required change is to injecti the transport level transaction into other parts of the application.
+- It is possible to prevent escalating a transaction to a distributed transaction. The only required change is to injecting the transport level transaction into other parts of the application.
 
 ### Disadvantages
 
@@ -64,26 +64,6 @@ In essence, using sagas is implementing a Distributed Transaction Coordinator th
 - Considering and implementing all possible variations and error conditions in a transaction can be difficult.
 - Effective implementation requires a deep understanding of the business requirements. The implementation details are driven by business decisions rather than technical considerations, so it's recommended to collaborate closely with business experts when designing sagas.
 - Sagas are stateful, therefore the operation cannot be atomic. This should be considered when sagas are used in combination with atomic operations that cannot be batched. Operations against a store should never be executed directly inside the saga itself. Instead, they should be executed by another handler and queued in between to cater for idempotency at all levels.
-
-## Routing slips and compensation logic
-
-Instead of using a central coordinator that orchestrates the work in a transaction, this approach uses a chain of independent handlers. It can be thought of as a linked list of message handlers that can send messages back and forward within the list.
-
-The first handler composes a [*routing slip*](/samples/routing-slips/) that defines what needs to be done in the transaction, and passes it to the next handler in the chain. The next handler processes the message according to the information in the routing slip, and passes the message to the next one in the chain and so forth, until all handlers have been invoked and the transaction has completed.
-
-If at any point in time a handler fails, it sends the message back in the chain to execute compensation logic. The slip is continuously sent back until it reaches the original handler again. At that point the transaction is rolled back.
-
-### Advantages
-
-- Consistency can be achieved without transactions.
-- The conceptual model is more "linear" than sagas, so it might be easier to analyze and implement.
-- It doesn't require maintaining state in the data store. State information can be passed in the routing slip.
-
-### Disadvantages
-
-- Considering and implementing all possible variations and error conditions in a transaction can be difficult.
-- The handlers can't be executed in parallel; therefore the implementation is often slower than with sagas.
-- This approach is less flexible than sagas.
 
 ## The need for idempotency
 

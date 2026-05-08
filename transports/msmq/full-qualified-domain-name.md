@@ -3,7 +3,7 @@ title: Using Fully Qualified Domain Names
 summary: How to use Fully Qualified Domain Names (FQDN) for MSMQ routing with NServiceBus
 component: MsmqTransport
 versions: '[4,)'
-reviewed: 2024-05-17
+reviewed: 2026-02-17
 redirects:
  - nservicebus/msmq/full-qualified-domain-name
 ---

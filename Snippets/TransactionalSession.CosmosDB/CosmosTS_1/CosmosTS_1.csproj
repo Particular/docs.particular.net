@@ -5,7 +5,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="NServiceBus" Version="7.*" />
+		<PackageReference Include="NServiceBus.Persistence.CosmosDB" Version="1.*" />
 		<PackageReference Include="NServiceBus.Persistence.CosmosDB.TransactionalSession" Version="1.*" />
+		<PackageReference Include="NServiceBus.TransactionalSession" Version="1.*" />
 	</ItemGroup>
 
   <ItemGroup Label="Resolves vulnerabilities">

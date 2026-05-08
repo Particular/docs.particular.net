@@ -1,0 +1,49 @@
+name: Copilot Setup Steps
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+  pull_request:
+    paths:
+      - .github/workflows/copilot-setup-steps.yml
+
+jobs:
+  copilot-setup-steps:
+    name: Copilot setup
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      DOTNET_NOLOGO: true
+      DOTNET_ROLL_FORWARD: Major
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v5.2.0
+        with:
+          global-json-file: global.json
+
+      # Caching is done to limit data transfer for Copilot sessions.
+      - name: Check docstool version for cache
+        run: |
+          curl --connect-timeout 5 --max-time 15 --silent --show-error https://s3.amazonaws.com/particular.downloads/Particular.DocsTool/version.json >> docstool-version.json
+
+      - name: Cache docstool
+        id: cache-docstool
+        uses: actions/cache@v5.0.4
+        with:
+          path: |
+            ~/.dotnet/tools/docstool
+            ~/.dotnet/tools/.store/particular.docstool
+          key: docstool-${{ hashFiles('docstool-version.json') }}
+
+      - name: Install docstool
+        if: steps.cache-docstool.outputs.cache-hit != 'true'
+        run: dotnet tool install Particular.DocsTool --global --add-source https://f.feedz.io/particular-software/packages/nuget/index.json
+
+      - name: Verify docstool is available
+        run: docstool --version

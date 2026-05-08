@@ -1,6 +1,6 @@
 ---
 title: "NServiceBus Step-by-step: Getting started"
-reviewed: 2024-05-13
+reviewed: 2026-02-10
 summary: In this 10-15 minute tutorial, you will learn how to set up a development machine for NServiceBus and create your very first messaging endpoint.
 redirects:
 - tutorials/intro-to-nservicebus/1-getting-started
@@ -20,14 +20,14 @@ In this first lesson, which should take 10-15 minutes, you will create your firs
 
 Let's build something simple to give NServiceBus a try.
 
-This tutorial uses NServiceBus version 9, .NET 8, and assumes an up-to-date installation of [Visual Studio 2022](https://www.visualstudio.com/downloads/).
+This tutorial uses NServiceBus version 9, .NET 10, and assumes an up-to-date installation of [Visual Studio 2026](https://www.visualstudio.com/downloads/).
 
 ### Create a solution
 
 First, let's create a basic solution and include the dependencies we need.
 
  1. In Visual Studio, create a new project and select the **Console App** project type.
- 2. Select **.NET 8.0 (Long Term Support)** from the Framework dropdown.
+ 2. Select **.NET 10.0 (Long Term Support)** from the Framework dropdown.
  3. Set the project name to **ClientUI**.
  4. Set the solution name to **RetailDemo**.
 
@@ -38,15 +38,15 @@ dotnet add package NServiceBus
 dotnet add package NServiceBus.Extensions.Hosting
 ```
 
-This adds NServiceBus and NSeviceBus.Extension.Hosting package references to the ClientUI project. Now we're ready to start writing code.
+This adds NServiceBus and NServiceBus.Extensions.Hosting package references to the ClientUI project. Now we're ready to start writing code.
 
 ### Configure an endpoint
 
 We're ready to create a [**messaging endpoint**](/nservicebus/endpoints/). A messaging endpoint (or just **endpoint**) is a logical component capable of sending and receiving messages. An endpoint is hosted within a process, which in this case is a simple console application, but could be a web application or other .NET process.
 
 > [!NOTE]
-> For the sake of brevity, code snippets in this tutorial do not contain the `using` statements needed to import namespaces. 
-> If you're using Visual Studio, unknown references such as `Task` or NServiceBus types will generate a "red squiggly" underline effect. 
+> For the sake of brevity, code snippets in this tutorial do not contain the `using` statements needed to import namespaces.
+> If you're using Visual Studio, unknown references such as `Task` or NServiceBus types will generate a "red squiggly" underline effect.
 > If you hover or click on the red squiggly, you can click on the "light bulb" icon or press <span style="white-space: nowrap"><kbd>Ctrl</kbd> + <kbd>.</kbd></span> to see the available fixes and insert the appropriate `using` statements for the missing namespaces.
 >
 > Alternatively, in the code snippet's **Copy/Edit** menu you will find a **Copy usings** item that will copy the namespaces used by the snippet to your clipboard.

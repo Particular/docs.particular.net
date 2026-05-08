@@ -1,6 +1,4 @@
-using System;
 using Microsoft.Extensions.Hosting;
-using NServiceBus;
 
 Console.Title = "Billing";
 
@@ -9,7 +7,7 @@ var builder = Host.CreateApplicationBuilder(args);
 var endpointConfiguration = new EndpointConfiguration("Billing");
 
 endpointConfiguration.UseSerialization<SystemJsonSerializer>();
-endpointConfiguration.UseTransport<LearningTransport>();
+endpointConfiguration.UseTransport(new LearningTransport());
 
 endpointConfiguration.SendFailedMessagesTo("error");
 endpointConfiguration.AuditProcessedMessagesTo("audit");
@@ -23,4 +21,3 @@ builder.UseNServiceBus(endpointConfiguration);
 var app = builder.Build();
 
 await app.RunAsync();
-

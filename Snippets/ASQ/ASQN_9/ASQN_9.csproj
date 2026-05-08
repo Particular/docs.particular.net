@@ -5,8 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="9.*" />
+    <PackageReference Include="NServiceBus" Version="7.*" />
     <PackageReference Include="NServiceBus.Newtonsoft.Json" Version="2.*" />
+    <PackageReference Include="NServiceBus.Transport.AzureStorageQueues" Version="9.*" />
   </ItemGroup>
 
   <ItemGroup Label="Resolves vulnerabilities">
