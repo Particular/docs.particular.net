@@ -4,7 +4,7 @@ component: ASBFunctions
 summary: How to write custom triggers to call NServiceBus from Azure Functions
 related:
  - nservicebus/hosting/azure-functions-service-bus/in-process
-reviewed: 2024-08-02
+reviewed: 2026-05-10
 ---
 
 include: azurefunctions-inprocess-sunset
